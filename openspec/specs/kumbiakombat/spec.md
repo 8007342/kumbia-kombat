@@ -57,3 +57,13 @@ integration branch, and `main` advances only through pull requests.
 - **THEN** the push is rejected with a message telling them to use
   `work/` branches, pull-request into the `game/` integration branch,
   then pull-request into `main`
+
+## Next product phase
+
+The landing requirements above describe the deployed bootstrap state.
+The campaign behavior is defined in `../rhythm-combat/spec.md`,
+`../dynamic-music/spec.md`, `../art-direction/spec.md`,
+`../run-lifecycle/spec.md`, and `../leaderboard/spec.md`. The landing is
+replaced only after the first playable audiovisual slice passes review.
+The integration branch is named `game` (without a trailing slash), and the
+work-ref grammar in `.tillandsias/branch-discipline.yaml` is authoritative.

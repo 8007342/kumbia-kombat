@@ -96,3 +96,30 @@ in the forge image/tooling.
 5. Auth for `gh` (or a PR-less landing path) before any project adopts
    integration-branch + PR discipline.
 6. Warn-phase pre-push output should state loudly that the push will succeed.
+
+## Foundation session — 2026-10-18
+
+- Reproduced the missing PATH wiring and inherited global hooksPath on this
+  checkout. The documented binary still exists and runs at
+  `/usr/local/lib/tillandsias/policy-bin/tillandsias-plan`.
+- Restored `~/.local/bin/tillandsias-plan` symlink and repo-local
+  `core.hooksPath=.tillandsias/hooks`. If a harness PATH omits ~/.local/bin,
+  set `TILLANDSIAS_PLAN_BIN` to the absolute path for git operations.
+- `discipline show`: seed level 2; `derive`: observed 1/effective 1 because
+  only one committer host is visible. This is the documented early opt-in
+  warning phase; work still follows level 2 by project instruction.
+- Initial remote connectivity probe used `work/kumbia-foundation`, accepted
+  with a grammar warning. Actual work moved immediately to grammar-valid
+  `work/1824-kumb`, successfully relayed and durably accepted by GitHub.
+  The initial probe ref contains only the preexisting integration commit.
+- Standalone `dart` resolves to Dart 3.12.1, while the Flutter wrapper uses
+  Flutter 3.47.7 / Dart 3.13.5 and the project declares SDK ^3.13.5. Thus
+  plain `dart run tool/music/transport_check.dart` fails on package language
+  version even though Flutter analyze/test pass. The standalone music build
+  writes an empty build/music-preview/packages.json and uses
+  `dart --packages=build/music-preview/packages.json` for dependency-free
+  transport checks. This avoids changing the app SDK constraint; use Flutter's
+  bundled Dart for package-aware work.
+- GitHub CLI remains unauthenticated this session (`gh auth status`); git
+  mirror pushes succeed independently. Lakanoa public API returned 404;
+  its initials implementation could not be inspected.

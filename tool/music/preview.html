@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kumbia Kombat · score room</title>
+<style>
+body{margin:0;background:#101522;color:#fff3d6;font:17px system-ui;min-height:100vh;display:grid;place-items:center}main{max-width:700px;padding:32px}h1{font-size:44px;line-height:1;margin:12px 0 24px;color:#ffc25c}p{line-height:1.6;color:#b8c2d3}select,button{font:inherit;color:inherit;background:#263247;border:1px solid #5a667b;border-radius:12px;padding:12px;margin:5px 2px;cursor:pointer}select{max-width:100%;width:100%}button:hover{background:#43536d}output{display:block;padding:20px 0;color:#66e0c2;font-variant-numeric:tabular-nums}.small{font-size:14px}label{display:block;margin-top:24px}
+</style>
+<main><p>KUMBIA KOMBAT / ORIGINAL SCORE ROOM</p><h1>Build the dance.<br>Hear the room answer.</h1>
+<p>Five original synth cumbia instrumentals. Choose a room, start the pulse, then add an arrangement tier. Changes land on the next two-bar phrase.</p>
+<select id="score" aria-label="Score"></select><div><button id="play">Play / resume</button><button id="pause">Pause</button><button id="stop">Stop</button></div>
+<label>Arrangement</label><div id="tiers"></div><label>Optional musical flourishes</label><div id="flourishes"></div>
+<output id="status" aria-live="off">Loading scores…</output><p class="small">These are live synthesized notes. MIDI files are composition previews; no recorded stems play here. Resume leaves one silent bar for a breath. Gameplay adds the visible and audible count-in. This score-room prototype stops at the written form; gameplay will use phrase vamps until the opponent approves.</p></main>
+<script src="main.js" defer></script><script>
+const select=document.querySelector('#score'),status=document.querySelector('#status');
+let ready=false,loadVersion=0;
+async function load(){ready=false;const version=++loadVersion;window.kumbiaMusic?.stop();try{const response=await fetch('assets/music/scores/'+select.value+'.json');if(!response.ok)throw Error(response.status);const text=await response.text();if(version!==loadVersion)return;window.kumbiaMusic.load(text);ready=true;}catch(error){status.textContent='Could not load score: '+error;}}
+window.addEventListener('load',async()=>{
+ try{const response=await fetch('assets/music/manifest.json');if(!response.ok)throw Error(response.status);const manifest=await response.json();for(const score of manifest.scores){const option=document.createElement('option');option.value=score.id;option.textContent=score.title+' · '+score.baseBpm+'–'+score.fullBpm+' BPM';select.append(option);}await load();}catch(error){status.textContent='Could not load manifest: '+error;}
+ select.onchange=load;document.querySelector('#play').onclick=()=>ready&&kumbiaMusic.play();document.querySelector('#pause').onclick=()=>kumbiaMusic.pause();document.querySelector('#stop').onclick=()=>kumbiaMusic.stop();
+ ['Pulse','Groove','Harmony','Melody','Full'].forEach((name,i)=>{const b=document.createElement('button');b.textContent=i+' · '+name;b.onclick=()=>kumbiaMusic.tier(i);document.querySelector('#tiers').append(b);});
+ ['spark','dip','slide','shine'].forEach(name=>{const b=document.createElement('button');b.textContent=name;b.onclick=()=>kumbiaMusic.flourish(name);document.querySelector('#flourishes').append(b);});
+ setInterval(()=>{if(!ready)return;kumbiaMusic.pump();status.textContent=kumbiaMusic.status;},20);
+ document.addEventListener('visibilitychange',()=>{if(document.hidden)kumbiaMusic.pause();});
+});
+</script></html>

@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "scores": [
+    {
+      "id": "garden_mojo",
+      "title": "Lanterns in the Garden",
+      "path": "assets/music/scores/garden_mojo.json",
+      "bars": 32,
+      "baseBpm": 92,
+      "fullBpm": 104
+    },
+    {
+      "id": "bar_swag",
+      "title": "Copper Counter Shuffle",
+      "path": "assets/music/scores/bar_swag.json",
+      "bars": 32,
+      "baseBpm": 100,
+      "fullBpm": 112
+    },
+    {
+      "id": "crowd_duende",
+      "title": "Velvet Current",
+      "path": "assets/music/scores/crowd_duende.json",
+      "bars": 32,
+      "baseBpm": 108,
+      "fullBpm": 120
+    },
+    {
+      "id": "restroom_nerve",
+      "title": "The Last Cubicle Sprint",
+      "path": "assets/music/scores/restroom_nerve.json",
+      "bars": 16,
+      "baseBpm": 132,
+      "fullBpm": 144
+    },
+    {
+      "id": "vip_presence",
+      "title": "Gold at the Door",
+      "path": "assets/music/scores/vip_presence.json",
+      "bars": 32,
+      "baseBpm": 112,
+      "fullBpm": 124
+    }
+  ]
+}
