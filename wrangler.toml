@@ -1,0 +1,12 @@
+name = "kumbia-kombat"
+compatibility_date = "2026-10-01"
+
+# Static assets produced by `npm run build` (flutter build web --release).
+[assets]
+directory = "./build/web"
+not_found_handling = "single-page-application"
+
+# Production: kumbias.tlatoani.net (zone tlatoani.net lives in this account).
+[[routes]]
+pattern = "kumbias.tlatoani.net"
+custom_domain = true

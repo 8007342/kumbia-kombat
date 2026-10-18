@@ -1,0 +1,11 @@
+{
+  "name": "kumbia-kombat",
+  "private": true,
+  "scripts": {
+    "build": "bash tool/build.sh",
+    "deploy": "wrangler deploy"
+  },
+  "devDependencies": {
+    "wrangler": "^4.0.0"
+  }
+}
