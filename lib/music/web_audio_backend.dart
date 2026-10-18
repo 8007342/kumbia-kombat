@@ -2,7 +2,7 @@
 import 'dart:js_interop';
 import 'dart:math' as math;
 import 'score.dart';
-import 'transport.dart';
+import 'game_audio_contract.dart';
 
 @JS('AudioContext')
 extension type _Context._(JSObject _) implements JSObject {
@@ -12,6 +12,7 @@ extension type _Context._(JSObject _) implements JSObject {
   external double get sampleRate;
   external JSObject get destination;
   external JSPromise<JSAny?> resume();
+  external JSPromise<JSAny?> close();
   external _Gain createGain();
   external _Oscillator createOscillator();
   external _Filter createBiquadFilter();
@@ -73,17 +74,21 @@ class _Voice {
 
 /// Sample-free subtractive synth for the original scores. Percussion noise is
 /// generated in memory; no recorded stems or third-party soundfonts are loaded.
-class WebAudioMusicBackend implements MusicAudioBackend {
+class WebAudioMusicBackend implements GameAudio {
   WebAudioMusicBackend({this.leadShape = 'triangle'});
+  @override
   String leadShape;
   _Context? _context;
   _Gain? _master;
   _Buffer? _noise;
   final List<_Voice> _voices = [];
   int stolenVoices = 0;
+  bool _disposed = false;
 
   /// Invoke from a user gesture. Keep one AudioContext for this backend's life.
+  @override
   Future<void> activate() async {
+    if (_disposed) throw StateError('Audio backend has been disposed');
     if (_context == null) {
       final context = _context = _Context();
       _master = context.createGain()..gain.value = .32;
@@ -101,12 +106,26 @@ class WebAudioMusicBackend implements MusicAudioBackend {
       }
     }
     await _context!.resume().toDart;
+    if (_disposed) throw StateError('Audio backend has been disposed');
   }
 
   @override
   double get nowSeconds => _context?.currentTime ?? 0;
   @override
-  bool get ready => _context?.state == 'running';
+  bool get ready => !_disposed && _context?.state == 'running';
+
+  @override
+  Future<void> dispose() async {
+    if (_disposed) return;
+    _disposed = true;
+    silence();
+    final context = _context;
+    _context = null;
+    _master?.disconnect();
+    _master = null;
+    _noise = null;
+    if (context != null) await context.close().toDart;
+  }
 
   void _collect() {
     final expired = _voices.where((voice) => voice.end < nowSeconds).toList();

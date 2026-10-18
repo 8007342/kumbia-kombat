@@ -1,6 +1,7 @@
 # Music asset provenance
 
-All five compositions, note arrangements, MIDI exports, and four adornment motifs
+All five room compositions, five success mini-themes, four connecting bridges,
+note arrangements, MIDI exports, and four adornment motifs
 per composition in this directory were created for Kumbia Kombat in this repository
 on 2026-10-18 with AI assistance. The authoring source is
 `tool/music/generate.mjs`; output is deterministic. No song, melody transcription,
@@ -19,5 +20,5 @@ separate public redistribution license or make claims about copyrightability of
 AI-assisted output. The owner should choose the repository's publication license
 before distributing source/assets under a named open license.
 
-Inventory: `scores/*.json` (five original event scores), `midi/*.mid` (25 original
+Inventory: `scores/*.json` (14 original event scores), `midi/*.mid` (34 original
 Standard MIDI File type 1 arrangements), `manifest.json` (catalog).

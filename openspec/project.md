@@ -11,7 +11,7 @@ push the player to the entrance of the current level.
 
 ## Product decisions
 
-- Mobile web first, portrait, whole-screen four-quadrant controls, one finger.
+- Mobile web first, portrait, lower-screen four-zone thumb controls, one finger.
 - Pixel art, parallax, sprite animation and simulated camera depth; minimal text.
 - Narrative: garden/entrance → bar → cool crowd → short urgent restroom → VIP.
 - Final high five, “Chingón”, and a seat beside Tlatoāni, Covi and party guests.
@@ -20,7 +20,9 @@ push the player to the entrance of the current level.
   Pizazz breaks equal recorded times. Cloudflare SQLite Durable Object.
 - Specs are the intended behavior. Existing landing page remains until the
   first audiovisual vertical slice is ready; foundations are not a finished game.
-- Work on `work/[0-9]{3,4}-[a-z0-9]{4}`, PR into `game`, then PR into `main`.
+- Work on `work/[0-9]{3,4}-[a-z0-9]{4}`; the owner explicitly authorized
+  integrating completed milestones into `game` (2026-10-18). Reserve `main`
+  for the complete release and respect its protection hooks.
 
 ## Architecture boundaries
 

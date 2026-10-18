@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "assets": [
+    {
+      "id": "garden.background.base",
+      "file": "garden-mansion.png",
+      "width": 1024,
+      "height": 1536,
+      "format": "RGB PNG",
+      "status": "runtime-starter-flat",
+      "sampling": "nearest",
+      "anchor": [
+        0.5,
+        0.5
+      ],
+      "provenance": "Built-in imagegen, 2026-10-18; exact prompt in README.md",
+      "notes": "No baked UI or characters; genuine separated parallax layers pending"
+    },
+    {
+      "id": "garden.gatekeeper.source",
+      "file": "gatekeeper.png",
+      "width": 1024,
+      "height": 1536,
+      "format": "RGBA PNG",
+      "status": "runtime-starter-single-pose",
+      "sampling": "nearest",
+      "anchor": [
+        0.5,
+        0.97
+      ],
+      "provenance": "Built-in imagegen, 2026-10-18; exact prompt in README.md",
+      "notes": "Full-body single pose with transparent background; soft alpha edge glow; multi-frame animation pending"
+    }
+  ]
+}

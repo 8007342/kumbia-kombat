@@ -1,6 +1,6 @@
 # Assets and animation production plan
 
-Status: specifications complete; SVG input icons created; eight-pose raster concept starter generated and visually inspected. Final sprite cleanup, all level backgrounds, full animations and integration remain scheduled work. Do not mark those complete from concept art.
+Status: specifications complete; SVG input icons created; eight-pose raster concept starter generated and visually inspected. Garden/bar backgrounds and single challenger poses are generated and integrated as starters. Final sprite cleanup, remaining three room backgrounds, full animations and genuine parallax remain scheduled work. Do not mark those complete from concept art.
 
 ## References and provenance
 - Canon: https://raw.githubusercontent.com/8007342/macron.dev/refs/heads/main/assets/Tlato%C4%81ni%20%2B%20M%C4%81cron%20cannon%20guidelines.md (read 2026-10-18).
@@ -14,7 +14,7 @@ Status: specifications complete; SVG input icons created; eight-pose raster conc
 - [ ] Create garden layers at 180×320 (sky/mansion, gate/plants, converging floor, foreground plants) with 24px overscan where panning occurs.
 - [ ] Gatekeeper 48×64: idle 2, demonstrate 4, approving 2, deny/reset 2, step aside 2. Total 12 frames.
 - [ ] Hook animation tags to exact beat markers; show opening, one repeat, recovery, acceptance and traversal.
-- [ ] Device review: Mācron remains recognizable at tiny scale, quadrant contrast over plants, upper-screen reach, thumb-reach option, reduced motion.
+- [ ] Device review: Mācron remains recognizable at tiny scale, quadrant contrast over plants, compact thumb reach, beat-dependent destinations, reduced motion.
 
 ## Session B: five-stage environments and cast
 Each level needs independent back/middle/floor/front layers and an emissive mask; 5 layers × 5 levels = 25 source layers. Each environment also needs a side-on dance backdrop (5) and a transition doorway/rope/threshold strip (5). Native backgrounds 180×320 plus overscan; side-view strips 360×320. Export lossless PNG; no baked UI text.
@@ -46,3 +46,9 @@ Crowd characters must never resemble an unverified Covi. Use 3 silhouettes with 
 
 ## Animation contract
 Metadata entry: `id`, `file`, `cellWidth`, `cellHeight`, `frames` (rectangles or grid indices), `pivot` (normalized bottom center), `facing` (rear/front/side), `loop`, `durationBeats`, `events` (beat offsets), `status` (concept/clean/runtime), `provenance`. Walk cycles loop every two beats; idle breath every four; required gestures peak at judgment beat, recover before next required gesture. Pause freezes music-linked animation; resume reconstructs from beat, not wall-clock drift.
+
+## Delivered stage-2 art starter (2026-10-18)
+
+- `assets/art/bar/bar-interior.png`: actual generated and inspected 1024×1536 portrait RGB background, no characters or HUD. Parent can integrate as flattened starter.
+- `assets/art/bar/bartender.png`: actual generated and inspected 1024×1536 transparent single pose; not a completed animation set.
+- Prompt provenance and production status: `assets/art/bar/README.md`. Bar parallax separation, side-view strip, shaker/drink animations and acceptance/recovery poses remain unfinished in Session B.

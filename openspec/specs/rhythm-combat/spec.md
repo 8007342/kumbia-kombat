@@ -12,15 +12,15 @@ hard time limits or lengths enforced by the prototype model.
 
 ### Requirement: Readable four-zone input
 
-The entire usable portrait viewport SHALL be four nonoverlapping quadrants:
-upper left = left hand, upper right = right hand, lower left = left foot,
-lower right = right foot. Corner targets SHALL show matching SVG silhouettes,
-with distinct hand/foot shapes and left/right orientation; color SHALL be
-supplementary. Insets SHALL keep targets away from browser chrome and notches.
-An opt-in thumb-reach mode SHALL remap both hit regions and cue anchors to a
-lower-screen 2×2 pad with the same limb ordering. Layout changes SHALL apply
-only between phrases; hit regions and anchors SHALL remain fixed throughout
-each phrase. No required chord or simultaneous fingers SHALL be authored.
+The lower portrait viewport SHALL contain four generous nonoverlapping thumb
+regions in a 2×2 pad: LH/RH above LF/RF. This SHALL be the only layout;
+there is no corner mode. Matching SVG silhouettes identify each move.
+Required destinations SHALL vary modestly by authored hit beat within their
+stable region, closer to the pad center than the old corner targets. Each
+note's destination SHALL remain immutable from preview birth through judgment.
+Simultaneously visible notes MAY show separate destination rings, including
+doubles. Moving markers SHALL NOT shrink or move logical touch regions.
+No required chord or simultaneous fingers SHALL be authored.
 
 #### Scenario: one-hand play
 
@@ -34,7 +34,7 @@ Notes SHALL appear near center at least two beats before their hit, with a
 minimum 900 ms preview and maximum 1500 ms. At their birth their limb silhouette
 and destination SHALL be recognizable; opacity SHALL never make that essential
 information invisible. A bounded curling trajectory SHALL remain within its
-destination quadrant and end at its corner ring. A final half-beat radial ring
+destination region and end at its own previewed judgment ring. A final half-beat radial ring
 SHALL communicate the exact hit moment. Reduced motion SHALL replace curling
 with a straight path and disable camera turns/zooms. Camera motion SHALL never
 move HUD targets or affect judging. The pure Dart curve is an initial visual

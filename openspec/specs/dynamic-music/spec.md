@@ -185,3 +185,129 @@ run within five to eight minutes. Compile success is not a listening test.
 
 - **WHEN** a score or synth revision is proposed
 - **THEN** asset and transport validation SHALL pass and physical listening review SHALL remain required before release.
+
+### Requirement: Looping and gameplay checkpoints preserve clock authority
+
+The transport SHALL provide an opt-in complete-form loop mode. In this mode
+absolute beat position SHALL increase continuously through form boundaries, and
+score-local position SHALL wrap modulo the written form length. A seam SHALL
+schedule the next form's first attack exactly once, without restarting the audio
+context or clearing the tempo map. Tier changes SHALL remain phrase-aligned on
+the absolute timeline, including at a seam. Finite playback SHALL remain the
+default for score previews.
+
+An explicit seek SHALL cancel sounding and queued voices, restore a supplied
+checkpoint tier, clear pending tier intents, and leave the transport paused at
+the requested absolute beat. A phrase restart SHALL perform that operation at
+the current music-phrase start and resume after a requested count-in. Ordinary
+pause/resume SHALL preserve pending tier intents; checkpoint rewinds SHALL
+replace them with restored gameplay state. Judgment SHALL stay disabled while
+`countingIn` is true. The game may seek its own offset checkpoint grid rather
+than the music's bar-aligned phrase grid.
+
+#### Scenario: tempo change at the repeating form boundary
+
+- GIVEN a looping score with a pending tier change at its final boundary
+- WHEN the audio clock reaches that boundary
+- THEN absolute beat position continues forward, the new tempo applies continuously
+- AND the first note of the next form is scheduled exactly once
+- AND no opponent approval is implied by the loop.
+
+#### Scenario: replay a gameplay checkpoint
+
+- GIVEN future attacks have been scheduled and gameplay needs to replay a phrase
+- WHEN it seeks an earlier checkpoint with the saved tier
+- THEN queued attacks and sounding voices from the old timeline are cancelled
+- AND the transport remains paused at that checkpoint until resume
+- AND resume holds that beat during the count-in before scheduling new attacks.
+
+### Requirement: Platform-safe gameplay audio factory
+
+`createGameAudio()` SHALL expose activation, disposal, audio-clock access,
+scheduling, silence and lead timbre through a shared Dart interface. Conditional
+imports SHALL isolate web JS interop from VM tests and native application builds.
+The implemented web backend SHALL release its AudioContext on disposal and
+reject activation after disposal. The unsupported native stub SHALL report
+`ready == false` and throw on activation or scheduling; it SHALL never simulate
+an advancing clock that could allow a silent scored run.
+
+#### Scenario: widget tests or unsupported native platform
+
+- GIVEN a non-web build imports the gameplay audio factory
+- WHEN it constructs the default backend
+- THEN the import and construction succeed without loading browser libraries
+- AND activation explicitly reports unsupported audio while readiness stays false.
+
+### Requirement: Original room success phrases and composed tonal bridges
+
+Each of the five rooms SHALL have its own original two-bar success/exit phrase,
+derived from that room's melody and tonal identity. Its first bar SHALL recall the
+room's call, and its second bar SHALL answer with a distinctive tonic coda. The VIP
+success phrase SHALL also serve as the final musical tag. Successful approval
+SHALL trigger this authored phrase after the next uncommitted music-phrase boundary;
+approval SHALL NOT trigger an immediate silence or generic success sound in place
+of the composed exit.
+
+Four distinct two-bar bridges SHALL connect Garden A minor to Bar C minor, Bar C
+minor to Crowd D Dorian, Crowd D Dorian to Restroom E minor, and Restroom E minor to
+VIP F major. Each bridge SHALL use a written percussion-only first bar to establish
+the destination's base tempo without unresolved pitched overlap, then a second bar
+that introduces the destination's original motif and a dominant pickup. This is an
+arranged harmonic transition, not pitch-shifting or crossfading recordings. A tempo
+step at the bridge downbeat is an authored choice; no continuous tempo ramp is
+claimed. Room intro beats provide visual breathing room while the composition
+continues. These phrases SHALL require no gameplay input and SHALL award no extra
+progress or Pizazz.
+
+#### Scenario: identifiable success theme
+
+- GIVEN a room is approved after its full-tier challenge
+- WHEN its next safe musical boundary arrives
+- THEN that room's own success phrase quotes its melody and resolves its tonic
+- AND the music continues into its matching bridge or the final VIP ending.
+
+### Requirement: Shared-clock transition conductor
+
+`TransitionConductor` SHALL schedule source retirement, success, bridge and the next
+looping room on one existing audio backend and device clock. Every segment's first
+downbeat SHALL coincide exactly with the preceding segment's written end time.
+Starting or naturally completing a transition segment SHALL NOT invoke backend-wide
+silence, reset the audio context, or cancel a successor's already-scheduled voices.
+The source SHALL stop scheduling attacks at its retirement timestamp; normal
+instrument releases MAY decay naturally across a boundary. Score data and visual
+assets SHALL be preloaded before the handoff is committed.
+
+The conductor SHALL expose playing/paused/completed state, live boundary timestamps,
+and the next room's transport. Gameplay MAY adopt that transport once its count-in
+flag clears, without restarting it; subsequent room intro beats remain input-free.
+The conductor SHALL have no internal timers. One external pump owns all segments
+until adoption, then gameplay pumps the adopted transport. It SHALL also permit
+successive handoffs from its running destination without silencing the backend.
+`finish()` SHALL schedule the room's success phrase and let its final notes release
+naturally; finishing a prototype room SHALL not falsely imply later rooms are ready.
+
+Explicit pause, application interruption and scheduling starvation SHALL cancel all
+queued and sounding voices across the shared backend. Coordinated resume SHALL
+preserve each active or future segment's relative position, shift remaining device
+timestamps by one common offset and preserve a source's pending retirement. A future
+segment whose attacks were queued before pause SHALL be scheduled exactly once at
+its new boundary. Normal handoffs SHALL insert neither a silent count-in nor a loading
+wait between composed segments; an explicit resume may use the normal count-in.
+
+#### Scenario: source, success, bridge and destination share boundaries
+
+- GIVEN a playing source and all three subsequent scores have been loaded
+- WHEN a handoff is committed
+- THEN the source retires on its next uncommitted phrase boundary
+- AND success starts at that timestamp, bridge starts at success end, and the next
+  room starts at bridge end on the same device clock
+- AND no transport completion cancels the next segment's queued voices.
+
+#### Scenario: pause with a bridge attack already queued
+
+- GIVEN the success phrase is playing and lookahead has queued the bridge downbeat
+- WHEN the player pauses and later resumes
+- THEN the shared queue is cancelled completely during pause
+- AND success resumes from its frozen beat after the resume count-in
+- AND the bridge downbeat and next room move together to their new timestamps
+- AND the bridge attack is queued exactly once at its new boundary.

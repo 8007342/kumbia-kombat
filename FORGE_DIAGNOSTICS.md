@@ -135,3 +135,20 @@ in the forge image/tooling.
   repo despite successful mirror pushes. Work is safely on remote
   `work/1824-kumb`; PR creation remains an operator/access followup. Do not
   merge directly into game to work around missing PR access.
+
+## Garden/storyboard continuation — 2026-10-18
+
+- Stock Flutter builds try to fetch CanvasKit from gstatic and a default font;
+  host-browser's project-only network rejects those requests. Build with
+  `--no-web-resources-cdn` and bundle the UI font. `tool/build.sh` now does so.
+- Managed static preview of build/web returned 404 for existing canvaskit/
+  files and the added music/ subtree while serving assets/ and root entry files.
+  Re-publish/reload did not fix it. Publishing the root project's existing
+  Wrangler configuration (`runtime=wrangler`) serves those paths correctly.
+- Wrangler watch can exit on a transient ENOENT under assets/shaders while
+  Flutter replaces build outputs. After builds finish, `service_reload` restores
+  the local preview. The Request.cf DNS warning is harmless in local mode;
+  the fatal error observed was a disappearing shader file during rebuild.
+- Mobile screenshots at DPR 3 with the detailed garden exceed the MCP 4 MiB
+  per-line cap. Use page-level CDP Page.captureScreenshot with JPEG/quality 50,
+  or set DPR 1 in an agent-owned headless test window. Do not print base64.

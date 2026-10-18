@@ -1,37 +1,36 @@
 # Remaining work
 
 Read `openspec/project.md` and feature specs before each session. Work on a
-new grammar-valid `work/<order>` branch based on `game`; push early, land via
-PR. Foundation work lives on `work/1824-kumb` until reviewed. Check boxes only
+new grammar-valid `work/<order>` branch based on `game`; push early and
+integrate tested milestones into `game`, as explicitly authorized by the owner.
+Foundation `cf4fdb7` has landed on `game`; main remains the release branch. Check boxes only
 when their acceptance gate has evidence, and leave a handoff below.
 
-- [ ] **01 — Audible portrait garden slice.** Load original garden score,
-  connect synth audio clock to combat model, display four SVG targets and
-  tornado previews, pointer-down taps and optional after-tap swipes. Include
-  start-to-unlock-audio and non-scoring count-in. Gate: full garden fight can
-  clear on a physical portrait phone with one thumb; misses lower complexity,
-  full-tier finish is required, optional swipes audibly decorate music.
-- [ ] **02 — Timing and music quality.** Implement measured latency calibration,
-  adaptive arrangement/tempo commits, scheduled note cancellation, voice caps,
-  clipping protection and mute controls. Listen to all five songs at every
-  tier and transition, tune hooks and percussion, test dropped frames and
-  Bluetooth latency. Gate: no stuck notes, phase jumps or judgements based on
-  frame rate; musicianship and catchy hooks reviewed by listening, not tests.
-- [ ] **03 — Save/pause/resume.** Persist versioned checkpoints on phrase commits
-  and lifecycle transitions, recover partial writes, cancel queued voices,
-  count in on explicit resume, deduplicate style awards. Gate: hide, reload,
-  audio interruption and process-kill recovery preserve progression without
-  misses or Pizazz farming; incompatible saves fail gracefully.
-- [ ] **04 — Garden art and story vertical slice.** Curate generated starter
-  against canon references, export aligned frame strips and animation metadata,
-  build parallax mansion/garden, over-shoulder walk, challenger call/response,
-  approval and transition. Gate: readable at 320 px width; protagonist clearly
-  Mācron; reduced-motion mode; camera never shifts touch targets.
-- [ ] **05 — Campaign charts and second/third fights.** Author deterministic
-  call/response charts against the score beat grid; implement bar and cool
-  crowd challengers, poses, backgrounds and camera cues. Gate: clean timing
-  budgets reconciled with phrase lengths; a tap-only run progresses; repeated
-  failures reset only current level; no required simultaneous touches.
+- [ ] **01 — Physical garden/bar acceptance.** The code, scene starters,
+  eight-move charts and musical handoff are implemented and tested. Verify
+  both fights on a physical portrait phone, one thumb, taps only and then
+  optional swipes. Gate: readable cue previews, reachable regions and no
+  unacceptable input/audio latency. Emulator checks do not satisfy this gate.
+- [ ] **02 — Timing and music quality.** Calibration, headroom measurement,
+  voice priority and independent mute remain. Looping and shared-clock
+  success/bridge scheduling are implemented. Listen to all 14 pieces, every
+  tier change and all 4 room bridges; tune hooks and percussion on speakers,
+  headphones and Bluetooth. Gate: no stuck notes/clipping; catchy musical
+  joins and acceptable timing established by listening and device evidence.
+- [ ] **03 — Durable save/resume.** In-memory pause, cancellation, phrase replay,
+  one-bar count-in and style deduplication are implemented. Persist versioned
+  committed checkpoints, recover partial writes and process-kill/reload.
+  Gate: recover without missed unheard notes, progress loss or Pizazz farming.
+- [ ] **04 — Production character animation/parallax.** Garden/bar source
+  backgrounds and challenger single poses are integrated; Mācron has aligned
+  code-native rear/front hit/walk/spin poses. Produce full challenger clips,
+  genuine layered backgrounds, side-view combos and frame manifests. Gate:
+  native-size canon/readability review, motion options and stable touch regions and immutable per-note destinations.
+- [ ] **05 — Cool crowd plus bar tuning.** Bar has its distinct Swag chart,
+  artwork, musical entry and sign-off. Build Flow art, chart and crowd-opening
+  sequence, then connect authored bar→crowd bridge. Tune current bar chart
+  (~90–95s) toward its 80s design budget without mandatory flourishes.
+  Gate: three rooms flow continuously and each clears through taps alone.
 - [ ] **06 — Restroom and VIP finale.** Author short faster restroom chart,
   hardest VIP sustain, remaining art and transitions, high-five closeup,
   “Chingón” and invitation to sit. Gate: complete clean run 5–8 minutes;
@@ -51,9 +50,9 @@ when their acceptance gate has evidence, and leave a handoff below.
   reduced motion and color-independent cues. Gate: one-handed casual runs and
   expert Pizazz play both viable; memory/audio scheduling stay bounded over
   long retry sessions; asset/synth licenses documented.
-- [ ] **10 — Release.** Update README from landing to game only when slice is
-  available; verify analyze/tests/release web build, review asset manifest,
-  cost/abuse bounds and persistence migrations; PR work→game then game→main.
+- [ ] **10 — Release.** Verify analyze/tests/release web build, review asset
+  manifest, cost/abuse bounds and persistence migrations. Integrate completed
+  work into game; merge to protected main only when the release is complete.
   Deploy through existing Cloudflare flow after release review.
 
 ## Handoff protocol

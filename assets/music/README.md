@@ -37,7 +37,7 @@ forge use the managed local publisher with `app_dir: build/music-preview`; do no
 open the HTML via `file://`, because score loading uses fetch. The builder uses an
 empty package configuration to keep the dependency-free preview compatible with
 the locally installed Dart CLI as well as the newer Flutter toolchain. Build output
-is disposable and ignored by git. The preview is separate from the landing page.
+is disposable and ignored by git. The preview is separate from the playable Flutter rooms.
 
 JSON schema v1 uses quarter-note beats, 4/4 meter, 480 PPQ MIDI export, MIDI pitches
 0–127, velocity 1–127, and sorted absolute note positions. `minTier` / `maxTier`
@@ -49,3 +49,35 @@ truth, and no live random composition replaces the written score.
 
 See `LICENSE.md` for provenance and license status; `plan/music.md` for integration
 work and device/listening checks still required.
+
+The pack also contains five original two-bar success phrases and four two-bar
+bridges (14 JSON scores and 34 MIDI files in total). `manifest.transitions.successes`
+maps each success to its room; `manifest.transitions.bridges` names its source and
+destination. Transition MIDI files export the success at its full-tier tempo and
+the bridge at the destination's base tempo. Every transition note plays at every
+tier; these are complete composed phrases, not progression arrangements.
+
+| Segment | Tonal and rhythmic purpose |
+| --- | --- |
+| `garden_mojo_success` | Garden reed call raised an octave; rising A-minor tonic answer |
+| `bar_swag_success` | Syncopated bar call; clipped descending C-minor answer |
+| `crowd_duende_success` | Flow call; D-Dorian sixth and gentle descending resolution |
+| `restroom_nerve_success` | Urgent square-pluck call; short-note release into E minor |
+| `vip_presence_success` | Broad brass call; F-major tonic tag closes the whole night |
+| `garden_to_bar` | Dry guiro/clave pivot, then the C-minor bar motif |
+| `bar_to_crowd` | Lighter clave pivot, then the D-Dorian crowd motif |
+| `crowd_to_restroom` | Tightening timbales, then the urgent E-minor motif |
+| `restroom_to_vip` | Spacious percussion pivot, then the opening F-major VIP motif |
+
+Every bridge begins with unpitched percussion, then introduces the destination key.
+Its downbeat takes the destination base tempo intentionally; this is an authored
+rhythmic change rather than a synthetic tempo ramp. No prerecorded audio or pitch
+crossfade is used. The score room dropdown groups rooms, success phrases and bridges
+for individual audition. The live `TransitionConductor` sequences them without
+backend-wide silence; isolated score-room auditions still stop at form EOF.
+
+Additional scheduler verification:
+
+```sh
+dart --packages=build/music-preview/packages.json tool/music/transition_check.dart
+```

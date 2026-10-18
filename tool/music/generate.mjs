@@ -83,6 +83,69 @@ function compose(p) {
       cleanTargetSeconds:[60,80,95,45,110][pieces.indexOf(p)]},
     transition:{cadenceBars:2,nextLevelCountInBars:1}};
 }
+
+// Success tags quote the room's opening call, then answer with a new tonic coda.
+const codas = [
+ [[4,7,.5],[4.75,10,.25],[5.5,12,.5],[6.5,7,.5],[7,0,.75]],
+ [[4.25,10,.25],[4.75,7,.25],[5.5,3,.5],[6.25,2,.25],[7,0,.75]],
+ [[4,9,.75],[5,7,.5],[5.75,5,.5],[6.5,2,.25],[7,0,.75]],
+ [[4,12,.25],[4.5,10,.25],[5,7,.25],[5.5,3,.25],[6,2,.25],[6.5,0,1.25]],
+ [[4,12,.75],[5,9,.5],[5.75,7,.5],[6.5,4,.25],[7,0,.875]],
+];
+const bridgeNames=['garden_to_bar','bar_to_crowd','crowd_to_restroom','restroom_to_vip'];
+const bridgeTitles=['Through the Copper Door','Into the Velvet Current','Quick Step Down the Hall','Breathe, Then Enter Gold'];
+function transitionBase(id,title,p,bpm,events,kind) {
+ return {schemaVersion:1,id,title,stat:p.stat,kind,composer:'Kumbia Kombat original project score',
+  license:'See assets/music/LICENSE.md',ppq:PPQ,beatsPerBar:4,bars:2,phraseBars:2,
+  key:{midiTonic:p.root,mode:p.mode},style:'Original synth cumbia / Latin instrumental',
+  tiers:Array.from({length:5},(_,tier)=>({tier,bpm:typeof bpm==='number'?bpm:bpm[tier],name:'Authored transition'})),
+  tracks:tracks.map(t=>({...t,program:t.id==='lead'?p.program:t.program})),
+  sections:[{bar:0,bars:2,name:kind==='success'?'Recognition and tonic answer':'Percussion pivot and tonal pickup'}],
+  events:events.sort((a,b)=>a.beat-b.beat||a.track.localeCompare(b.track)||a.pitch-b.pitch),adornments:[]};
+}
+function composeSuccess(p,index){
+ const events=[], note=(track,beat,pitch,duration,velocity)=>events.push({track,beat,pitch,duration,velocity,minTier:0,maxTier:4});
+ for(let beat=0;beat<8;beat+=.5)note('pulse',beat,73,.14,beat%1===0?44:34);
+ for(const beat of [0,2,4,6])note('pulse',beat,36,.18,82);
+ for(const beat of [1,3,5,7])note('pulse',beat,38,.12,48);
+ for(const beat of [1.5,3.5,5.5,6.75])note('pulse',beat,beat===6.75?65:63,.12,64);
+ for(const beat of [0,4]){
+  note('bass',beat,p.root-24,1.4,82);note('bass',beat+2,p.root-17,.7,74);
+  for(const x of [.5,1.5,2.5,3.5])for(const interval of [0,p.mode==='major'?4:3,7])note('guitar',beat+x,p.root+interval,.22,52);
+ }
+ for(const [beat,pitch,duration] of [...p.motif.filter(n=>n[0]<4),...codas[index]])note('lead',beat,p.root+pitch+12,duration,84);
+ for(const interval of [0,p.mode==='major'?4:3,7])note('brass',7,p.root+interval,.875,index===4?65:54);
+ const result=transitionBase(p.id+'_success',p.title+' — Room Approval',p,[0,3,6,9,12].map(d=>p.bpm+d),events,'success');
+ result.parentScore=p.id;result.musicalIntent=index===4?'Final VIP tonic tag: the whole night resolves.':'Quote the room call, raise it an octave, answer on the tonic.';
+ return result;
+}
+function composeBridge(from,to,index){
+ const events=[], note=(track,beat,pitch,duration,velocity)=>events.push({track,beat,pitch,duration,velocity,minTier:0,maxTier:4});
+ // First bar intentionally has no bass/chords: a written percussion pivot lets
+ // the prior key resolve before the new harmony arrives, without bending audio.
+ const clavePatterns=[[0,1.5,3,4.5,6],[0,.75,2.5,4,5.5,7],[0,.5,1.25,2,2.75,3.5,4.5,6],[0,2,3.5,4,5.5,7]];
+ for(const beat of clavePatterns[index])note('pulse',beat,75,.1,62);
+ for(let beat=0;beat<8;beat+=.5)note('pulse',beat,73,.13,beat%1===0?40:28);
+ for(const beat of [0,2,4,6])note('pulse',beat,36,.16,index===3?62:78);
+ for(const [j,pitch] of [64,63,65,60].entries())note('pulse',2.5+j*.375,pitch,.14,52+j*6);
+ const pickup=to.motif.filter(n=>n[0]<3.5);
+ for(const [beat,pitch,duration] of pickup)note('answer',4+beat,to.root+pitch,Math.min(duration,7.75-(4+beat)),72);
+ note('bass',4,to.root-24,.9,78);note('bass',6,to.root-17,.65,72);
+ const third=to.mode==='major'?4:3;
+ for(const beat of [4.5,5.5,6.5])for(const interval of [0,third,7])note('guitar',beat,to.root+interval,.24,48);
+ // Dominant pickup is a short written cadence; destination tonic answers it.
+ note('bass',7,to.root-17,.7,74);
+ note('answer',7.5,to.root+7,.25,68);
+ note('pulse',7.75,65,.12,72);
+ const result=transitionBase(bridgeNames[index],bridgeTitles[index],to,to.bpm,events,'bridge');
+ result.fromScore=from.id;result.toScore=to.id;
+ result.musicalIntent=['A minor settles; a dry guiro/clave pivot opens C minor.',
+  'C minor releases into a lighter clave pattern; D Dorian answers.',
+  'D Dorian opens into a tightening timbale pickup toward urgent E minor.',
+  'E minor releases into a spacious percussion bar; F major opens the VIP door.'][index];
+ result.tempoIntent='Written percussion pivot takes the destination base tempo at its downbeat; the second bar introduces the destination motif. No pitch/time crossfade.';
+ return result;
+}
 function variable(n){const a=[n&127];while(n>>=7)a.unshift((n&127)|128);return Buffer.from(a)}
 const u16=n=>{const b=Buffer.alloc(2);b.writeUInt16BE(n);return b};
 const u32=n=>{const b=Buffer.alloc(4);b.writeUInt32BE(n);return b};
@@ -107,12 +170,26 @@ function midi(score,tier=4) {
 }
 mkdirSync(resolve(root,'assets/music/scores'),{recursive:true});
 mkdirSync(resolve(root,'assets/music/midi'),{recursive:true});
-const manifest={schemaVersion:1,scores:[]};
+const manifest={schemaVersion:1,scores:[],transitions:{successes:[],bridges:[]}};
 for(const piece of pieces){
   const score=compose(piece);
   writeFileSync(resolve(root,`assets/music/scores/${piece.id}.json`),JSON.stringify(score)+'\n');
   for(let tier=0;tier<5;tier++)writeFileSync(resolve(root,`assets/music/midi/${piece.id}_tier${tier}.mid`),midi(score,tier));
   manifest.scores.push({id:score.id,title:score.title,path:`assets/music/scores/${score.id}.json`,bars:score.bars,baseBpm:score.tiers[0].bpm,fullBpm:score.tiers[4].bpm});
   console.log(`${score.id}: ${score.events.length} notes, ${score.bars} bars, five MIDI arrangements`);
+}
+
+for(const [index,piece] of pieces.entries()){
+ const success=composeSuccess(piece,index);
+ writeFileSync(resolve(root,'assets/music/scores/'+success.id+'.json'),JSON.stringify(success)+'\n');
+ writeFileSync(resolve(root,'assets/music/midi/'+success.id+'.mid'),midi(success,4));
+ manifest.transitions.successes.push({id:success.id,title:success.title,bars:2,baseBpm:success.tiers[0].bpm,fullBpm:success.tiers[4].bpm,parentScore:piece.id,path:'assets/music/scores/'+success.id+'.json',midiPath:'assets/music/midi/'+success.id+'.mid'});
+ console.log(success.id+': original two-bar success phrase');
+ if(index===pieces.length-1)continue;
+ const bridge=composeBridge(piece,pieces[index+1],index);
+ writeFileSync(resolve(root,'assets/music/scores/'+bridge.id+'.json'),JSON.stringify(bridge)+'\n');
+ writeFileSync(resolve(root,'assets/music/midi/'+bridge.id+'.mid'),midi(bridge,0));
+ manifest.transitions.bridges.push({id:bridge.id,title:bridge.title,bars:2,baseBpm:bridge.tiers[0].bpm,fullBpm:bridge.tiers[4].bpm,fromScore:piece.id,toScore:pieces[index+1].id,path:'assets/music/scores/'+bridge.id+'.json',midiPath:'assets/music/midi/'+bridge.id+'.mid'});
+ console.log(bridge.id+': original two-bar percussion pivot and pickup');
 }
 writeFileSync(resolve(root,'assets/music/manifest.json'),JSON.stringify(manifest,null,2)+'\n');

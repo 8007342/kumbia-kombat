@@ -88,6 +88,7 @@ class MusicPreview {
 
   void flourish(String id) {
     if (transport?.state != TransportState.playing || !backend.ready) return;
+    if ((data!['adornments'] as List).isEmpty) return;
     final adornment = (data!['adornments'] as List).firstWhere(
       (a) => a['id'] == id,
     );

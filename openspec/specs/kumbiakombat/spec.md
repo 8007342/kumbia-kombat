@@ -20,17 +20,17 @@ buildable to static web assets with `flutter build web`.
 - **WHEN** an agent runs `npm run build` (which runs `flutter build web --release`)
 - **THEN** static web assets are produced in `build/web/` ready for deployment
 
-### Requirement: Landing page announces the project under construction
+### Requirement: Portrait start screen introduces the current fight
 
-The first screen SHALL display the title "KumbiaKombat" with an unmistakable
-"under construction" motif (hazard-stripe styling), rendered through the
-Flame engine.
+The first screen SHALL introduce Kumbia Kombat and the current room, with an
+explicit audio-start action, one-thumb controls and reduced-motion options.
+The game SHALL never begin scoring before successful user-activated audio.
 
-#### Scenario: opening the landing page
+#### Scenario: opening the prototype
 
-- **WHEN** a visitor opens the deployed site
-- **THEN** they see "KumbiaKombat" styled with construction-hazard stripes
-  and an under-construction message
+- **WHEN** a player opens the local game
+- **THEN** they see Kumbia Kombat, the Garden, and a clear start action
+- **AND** they can use the default thumb controls and opt into a calm camera before play
 
 ### Requirement: Deployable to Cloudflare with default actions
 
@@ -45,11 +45,12 @@ using the platform's default commands: build via `npm run build`, deploy via
 - **THEN** the site is deployed as a Worker with static assets and served
   at `kumbias.tlatoani.net`
 
-### Requirement: main is protected; work flows through game/ then PRs
+### Requirement: main is protected; completed work integrates through game
 
 Direct pushes to `main` SHALL be rejected by git hooks with a clear
 affordance. Work happens on `work/<id>` branches, lands on the `game`
-integration branch, and `main` advances only through pull requests.
+integration branch through pull requests or owner-authorized milestone integration.
+`main` remains protected and advances only for a completed release.
 
 #### Scenario: pushing directly to main
 
@@ -60,10 +61,9 @@ integration branch, and `main` advances only through pull requests.
 
 ## Next product phase
 
-The landing requirements above describe the deployed bootstrap state.
+The public production site may retain its earlier bootstrap landing until work and release PRs land.
 The campaign behavior is defined in `../rhythm-combat/spec.md`,
 `../dynamic-music/spec.md`, `../art-direction/spec.md`,
-`../run-lifecycle/spec.md`, and `../leaderboard/spec.md`. The landing is
-replaced only after the first playable audiovisual slice passes review.
+`../run-lifecycle/spec.md`, and `../leaderboard/spec.md`. The current branch introduces the playable audiovisual slice for review; physical-device acceptance remains a release gate.
 The integration branch is named `game` (without a trailing slash), and the
 work-ref grammar in `.tillandsias/branch-discipline.yaml` is authoritative.
