@@ -182,7 +182,9 @@ class GardenSession {
             chart.offsets[i];
         final id = '$_phraseIdentity:$i';
         if (!demonstration && _hit.contains(id)) continue;
-        if (beat >= target - 2 && beat <= target + .2) {
+        if (beat >= target - 2 &&
+            backend.nowSeconds <=
+                transport.secondsAt(target) + RhythmJudge.goodWindowMs / 1000) {
           cues.add(
             GardenCue(
               id: id,

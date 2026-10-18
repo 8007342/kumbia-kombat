@@ -51,8 +51,8 @@ calibration remain essential; compilation alone does not establish quality.
 ## Branching and deployment
 
 Use seed-valid `work/1234-abcd` refs. Integrate tested milestones into `game`;
-reserve protected `main` for the complete release. The owner explicitly
-authorized milestone integration in this session. The foundation has landed
+publish reviewed releases through protected `main`. The owner explicitly
+authorized milestone integration and a mobile-test prototype release in this session. The foundation has landed
 on `game`; tested garden/bar milestones follow the same integration path.
 `npm run build` builds static web files; `npx wrangler deploy` deploys the
 Worker/static assets at https://kumbias.tlatoani.net . Local preview does not

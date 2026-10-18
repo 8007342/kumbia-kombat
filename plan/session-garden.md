@@ -101,3 +101,13 @@ This verifies the two-room flow, not physical-device latency or listening qualit
 
 The refreshed 360×780 browser preview shows the compact moving destinations
 in the lower pad, with the corner toggle absent and no runtime exceptions.
+
+## Mobile preview timing release
+
+User requested a more forgiving early/late window and publication of the current
+prototype for real-device testing. Good taps now accept ±180 ms (was ±110 ms),
+Perfect accepts ±75 ms (was ±45 ms). Late cues remain visible through judgment.
+Regression coverage checks inclusive early/late boundaries, just-outside misses,
+nearest-note selection for overlapping double-tap windows and single consumption.
+The user explicitly authorized publishing this incomplete prototype to main;
+remaining campaign work stays in the roadmap.

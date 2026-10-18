@@ -49,8 +49,8 @@ model; device playtests determine density and final opacity.
 ### Requirement: Audio-clock timing and phrase success
 
 Judgment SHALL use monotonic audible-song time, corrected for measured output
-and player input latency, never frame count. Perfect is absolute error ≤45 ms;
-Good is ≤110 ms; later notes expire only after their late Good boundary.
+and player input latency, never frame count. Perfect is absolute error ≤75 ms;
+Good is ≤180 ms; later notes expire only after their late Good boundary.
 A press SHALL consume at most one nearest unresolved matching-limb note.
 Wrong-zone presses SHALL not consume another limb's note. Every required note
 in a response phrase SHALL receive Good or Perfect to pass. Stray presses MAY

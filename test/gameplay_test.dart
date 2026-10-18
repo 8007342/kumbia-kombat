@@ -11,9 +11,31 @@ void main() {
     expect(judge.tap(Limb.rightFoot, 1000).grade, TapGrade.miss);
     expect(judge.tap(Limb.leftHand, 955).grade, TapGrade.perfect);
     expect(judge.tap(Limb.leftHand, 1000).grade, TapGrade.miss);
-    expect(judge.expire(1610), isEmpty);
-    expect(judge.expire(1611).single.id, 'b');
+    expect(judge.expire(1680), isEmpty);
+    expect(judge.expire(1681).single.id, 'b');
     expect(judge.expire(1700), isEmpty);
+  });
+
+  test('wider grace accepts both edges and picks closest repeated note', () {
+    for (final offset in [-180, 180]) {
+      final judge = RhythmJudge([const RhythmNote('a', Limb.leftHand, 1000)]);
+      expect(judge.tap(Limb.leftHand, 1000 + offset).grade, TapGrade.good);
+    }
+    for (final offset in [-181, 181]) {
+      final judge = RhythmJudge([const RhythmNote('a', Limb.leftHand, 1000)]);
+      expect(judge.tap(Limb.leftHand, 1000 + offset).grade, TapGrade.miss);
+    }
+    for (final offset in [-75, 75]) {
+      final judge = RhythmJudge([const RhythmNote('a', Limb.leftHand, 1000)]);
+      expect(judge.tap(Limb.leftHand, 1000 + offset).grade, TapGrade.perfect);
+    }
+    final doubles = RhythmJudge([
+      const RhythmNote('a', Limb.leftHand, 1000),
+      const RhythmNote('b', Limb.leftHand, 1250),
+    ]);
+    expect(doubles.tap(Limb.leftHand, 1140).note?.id, 'b');
+    expect(doubles.tap(Limb.leftHand, 1150).note?.id, 'a');
+    expect(doubles.tap(Limb.leftHand, 1250).note, isNull);
   });
 
   test('flourish follows success once and cannot consume a future tap', () {

@@ -42,7 +42,7 @@ void main() {
       at(start + offsets[i]);
       expect(garden.tap(limbs[i]).grade, TapGrade.perfect);
     }
-    at(start + (garden.progress.cleared ? 7.5 : 6.75));
+    at(start + (garden.progress.cleared ? 7.5 : 6.9));
     if (garden.progress.cleared && garden.phase != GardenPhase.cleared) {
       at(start + 7.5);
     }
@@ -90,7 +90,7 @@ void main() {
 
   test('missing phrases retries then entrance reset without game over', () {
     for (var cycle = 0; cycle < 5; cycle++) {
-      at(18.75 + cycle * 16);
+      at(18.9 + cycle * 16);
     }
     expect(garden.progress.entranceResets, 1);
     expect(garden.progress.tier, 0);
@@ -147,16 +147,16 @@ void main() {
     () {
       at(4);
       expect(garden.tap(Limb.leftHand).note, isNull);
-      at(11.778); // 111 ms early at 120 BPM.
+      at(11.638); // 181 ms early at 120 BPM.
       expect(garden.tap(Limb.leftHand).note, isNull);
-      at(11.78); // Exactly 110 ms early.
+      at(11.64); // Exactly 180 ms early.
       expect(garden.phase, GardenPhase.call);
       expect(garden.tap(Limb.leftHand).grade, TapGrade.good);
       for (var i = 1; i < garden.chart.limbs.length; i++) {
         at(12 + garden.chart.offsets[i]);
         garden.tap(garden.chart.limbs[i]);
       }
-      at(18.75);
+      at(18.9);
       expect(garden.progress.tier, 1);
       expect(garden.passedPhrases, 1);
     },
@@ -242,7 +242,7 @@ void main() {
         at(start + garden.chart.offsets[i]);
         lastId = garden.tap(garden.chart.limbs[i]).note!.id;
       }
-      at(start + 6.75);
+      at(start + 6.9);
       final approvalAt = garden.completedAtSeconds;
       expect(approvalAt, isNotNull);
       expect(garden.phase, GardenPhase.response);

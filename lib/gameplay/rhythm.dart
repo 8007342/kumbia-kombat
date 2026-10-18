@@ -21,8 +21,8 @@ class TapResult {
 
 class RhythmJudge {
   RhythmJudge(List<RhythmNote> notes) : notes = List.unmodifiable(notes);
-  static const perfectWindowMs = 45;
-  static const goodWindowMs = 110;
+  static const perfectWindowMs = 75;
+  static const goodWindowMs = 180;
   static const flourishWindowMs = 300;
   final List<RhythmNote> notes;
   final Set<String> _resolved = {};
