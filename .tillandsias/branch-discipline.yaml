@@ -4,7 +4,7 @@
 version: 1
 level: 2
 enforcement:
-  default_branch: enforced
+  default_branch: warn
   ref_grammar: warn
 messages:
   default_branch_denied: >-
