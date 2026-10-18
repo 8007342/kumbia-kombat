@@ -1,0 +1,20 @@
+# Branch discipline seed (order 1443-w79y), created by
+# `tillandsias-plan discipline raise --to 2` (order 1446-xqi6).
+# Levels only move forward; read it with `tillandsias-plan discipline show`.
+version: 1
+level: 2
+enforcement:
+  default_branch: enforced
+  ref_grammar: warn
+messages:
+  default_branch_denied: >-
+    direct pushes to main are refused; use work/<id> branches, then
+    pull-request into the game integration branch, then pull-requests into
+    main (see /project-discipline)
+work_ref: 'work/[0-9]{3,4}-[a-z0-9]{4}'
+default_branch: main
+integration:
+  linux: game
+  forge: game
+  windows: game
+  macos: game

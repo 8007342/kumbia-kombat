@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# tillandsias-discipline-hook v1 post-commit
+# Installed by `tillandsias-plan discipline install-hooks` (order 1446-xqi6).
+# The logic is the post-commit template embedded in the plan binary, or this
+# project's .tillandsias/hooks/post-commit.lua when present. Nothing is decided
+# here: without a runnable plan binary this hook refuses, it never falls back.
+PLAN="${TILLANDSIAS_PLAN_BIN:-$(command -v tillandsias-plan 2>/dev/null)}"
+if [ -z "$PLAN" ] || ! "$PLAN" capabilities >/dev/null 2>&1; then
+    echo "blocked:hook:post-commit:no-plan-binary"
+    echo "  no runnable tillandsias-plan (${PLAN:-none}); remedy: install it, or set TILLANDSIAS_PLAN_BIN" >&2
+    exit 1
+fi
+exec "$PLAN" discipline hook post-commit "$@"
