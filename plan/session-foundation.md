@@ -68,3 +68,16 @@ Final commands and results are recorded below after all agent files settle.
 
 - `openspec validate --all --no-interactive`: all seven items pass; advisory
   warnings flag long requirement prose for future editorial splitting.
+
+## Remote and live preview
+
+Foundation commit `feab623` was pushed successfully and durably relayed to
+GitHub on `work/1824-kumb`. A followup docs commit records this handoff.
+Draft PR creation via connector returned 404; git CLI has no GitHub auth.
+Open a PR from this work ref into `game` when repository API access is fixed.
+
+Visible music review window: https://www.kumbia-kombat.localhost:18443 .
+Managed preview serves build/music-preview; rebuild it after audio changes.
+Flutter dev server is running with hot reload (`r` in its interactive session),
+but host-browser rejects its advertised flutter subdomain; diagnostics records
+the exact failure. Flutter UI remains the bootstrap landing.

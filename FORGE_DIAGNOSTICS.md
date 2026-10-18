@@ -123,3 +123,15 @@ in the forge image/tooling.
 - GitHub CLI remains unauthenticated this session (`gh auth status`); git
   mirror pushes succeed independently. Lakanoa public API returned 404;
   its initials implementation could not be inspected.
+- Flutter dev wrapper successfully starts shared-toolchain `flutter run -d
+  web-server --web-hostname 0.0.0.0 --web-port 8080 --hot` and announces
+  `https://flutter.kumbia-kombat.localhost:18443/` as routed. After Flutter
+  reports serving, host-browser `browser_open` still rejects that exact HTTPS
+  URL with `URL_NOT_ALLOWED: not in active routes for project`. HTTP/8080 is
+  also refused because the browser requires HTTPS. No route policy bypass
+  was attempted. The separately published static `www` music preview opens
+  visibly and works; route registration/allowlist synchronization needs repair.
+- GitHub connector draft-PR creation also returned API 404 for this private
+  repo despite successful mirror pushes. Work is safely on remote
+  `work/1824-kumb`; PR creation remains an operator/access followup. Do not
+  merge directly into game to work around missing PR access.

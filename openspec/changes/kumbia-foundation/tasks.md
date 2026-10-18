@@ -8,6 +8,6 @@
 - [x] Deliver music transport core and audible synth review path.
 - [x] Deliver art starters, SVG limb silhouettes and animation production plan.
 - [x] Write dependency-ordered multi-session roadmap with acceptance gates.
-- [ ] Run final repository checks, record handoff, commit and push foundation.
+- [x] Run final repository checks, record handoff, commit and push foundation.
 
 Complete campaign implementation is tracked separately in plan/roadmap.md.
