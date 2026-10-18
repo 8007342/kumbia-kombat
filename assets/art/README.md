@@ -1,0 +1,10 @@
+# Art starter assets
+
+`macron-dance-concepts.png` is an actual built-in imagegen output generated 2026-10-18, transparent RGBA, eight Mācron poses in a 4×2 composition. Inspected visually: ivory robot, cyan antenna/display, two arms, no animal anatomy; rear walk, rear turns, front and dance poses are recognizable. Status: **concept, not runtime animation atlas**. Pose bounds and pixel grid are not uniform, right-arm cuff continuity needs cleanup, and final side pose is not a complete spin cycle. Do not slice evenly or advertise this as production-ready animation.
+
+Prompt (built-in mode):
+> Use case: stylized-concept. Asset type: game sprite-sheet concept for portrait mobile 1980s pixel art rhythm game Kumbia Kombat. Generate one transparent image containing 8 isolated same-scale sprites in a precise 4 column 2 row layout. One character throughout: Mācron, adorable toy-sized compact ivory AI robot with rounded rectangular large head, dark teal face screen with simple cyan eyes, ONE small cyan antenna orb, two short arms, two short legs, teal joints, subtle right arm cuff; no animal parts, no ears no tail no weapons. First row: rear view walking frame left step, rear view walking right step, rear three-quarter left, rear three-quarter right. Second row: front happy neutral, front left-hand dance up, front right-hand dance up, side-view spinning dance. Consistent silhouette, chunky crisp square pixels, restrained cream teal cyan palette with dark outlines. No text, labels, ground, shadows, guides or decorative backgrounds. Generous transparent gutters. This is a production concept sheet for later exact grid pixel cleanup, not finished animation.
+
+`references/character-scale.png` is upstream reference material, not a new game asset and not for runtime bundling. Provenance and shipping-license followup are in `plan/assets.md`.
+
+Production requirements and inventory: `openspec/specs/art-direction/spec.md` and `plan/assets.md`. Four project-authored SVG body-part controls are in `assets/ui/`.

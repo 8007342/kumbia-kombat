@@ -1,0 +1,145 @@
+{
+  "schemaVersion": 1,
+  "scores": [
+    {
+      "id": "garden_mojo",
+      "title": "Lanterns in the Garden",
+      "path": "assets/music/scores/garden_mojo.json",
+      "bars": 32,
+      "baseBpm": 92,
+      "fullBpm": 104
+    },
+    {
+      "id": "bar_swag",
+      "title": "Copper Counter Shuffle",
+      "path": "assets/music/scores/bar_swag.json",
+      "bars": 32,
+      "baseBpm": 100,
+      "fullBpm": 112
+    },
+    {
+      "id": "crowd_duende",
+      "title": "Velvet Current",
+      "path": "assets/music/scores/crowd_duende.json",
+      "bars": 32,
+      "baseBpm": 108,
+      "fullBpm": 120
+    },
+    {
+      "id": "restroom_nerve",
+      "title": "The Last Cubicle Sprint",
+      "path": "assets/music/scores/restroom_nerve.json",
+      "bars": 16,
+      "baseBpm": 132,
+      "fullBpm": 144
+    },
+    {
+      "id": "vip_presence",
+      "title": "Gold at the Door",
+      "path": "assets/music/scores/vip_presence.json",
+      "bars": 32,
+      "baseBpm": 112,
+      "fullBpm": 124
+    }
+  ],
+  "transitions": {
+    "successes": [
+      {
+        "id": "garden_mojo_success",
+        "title": "Lanterns in the Garden — Room Approval",
+        "bars": 2,
+        "baseBpm": 92,
+        "fullBpm": 104,
+        "parentScore": "garden_mojo",
+        "path": "assets/music/scores/garden_mojo_success.json",
+        "midiPath": "assets/music/midi/garden_mojo_success.mid"
+      },
+      {
+        "id": "bar_swag_success",
+        "title": "Copper Counter Shuffle — Room Approval",
+        "bars": 2,
+        "baseBpm": 100,
+        "fullBpm": 112,
+        "parentScore": "bar_swag",
+        "path": "assets/music/scores/bar_swag_success.json",
+        "midiPath": "assets/music/midi/bar_swag_success.mid"
+      },
+      {
+        "id": "crowd_duende_success",
+        "title": "Velvet Current — Room Approval",
+        "bars": 2,
+        "baseBpm": 108,
+        "fullBpm": 120,
+        "parentScore": "crowd_duende",
+        "path": "assets/music/scores/crowd_duende_success.json",
+        "midiPath": "assets/music/midi/crowd_duende_success.mid"
+      },
+      {
+        "id": "restroom_nerve_success",
+        "title": "The Last Cubicle Sprint — Room Approval",
+        "bars": 2,
+        "baseBpm": 132,
+        "fullBpm": 144,
+        "parentScore": "restroom_nerve",
+        "path": "assets/music/scores/restroom_nerve_success.json",
+        "midiPath": "assets/music/midi/restroom_nerve_success.mid"
+      },
+      {
+        "id": "vip_presence_success",
+        "title": "Gold at the Door — Room Approval",
+        "bars": 2,
+        "baseBpm": 112,
+        "fullBpm": 124,
+        "parentScore": "vip_presence",
+        "path": "assets/music/scores/vip_presence_success.json",
+        "midiPath": "assets/music/midi/vip_presence_success.mid"
+      }
+    ],
+    "bridges": [
+      {
+        "id": "garden_to_bar",
+        "title": "Through the Copper Door",
+        "bars": 2,
+        "baseBpm": 100,
+        "fullBpm": 100,
+        "fromScore": "garden_mojo",
+        "toScore": "bar_swag",
+        "path": "assets/music/scores/garden_to_bar.json",
+        "midiPath": "assets/music/midi/garden_to_bar.mid"
+      },
+      {
+        "id": "bar_to_crowd",
+        "title": "Into the Velvet Current",
+        "bars": 2,
+        "baseBpm": 108,
+        "fullBpm": 108,
+        "fromScore": "bar_swag",
+        "toScore": "crowd_duende",
+        "path": "assets/music/scores/bar_to_crowd.json",
+        "midiPath": "assets/music/midi/bar_to_crowd.mid"
+      },
+      {
+        "id": "crowd_to_restroom",
+        "title": "Quick Step Down the Hall",
+        "bars": 2,
+        "baseBpm": 132,
+        "fullBpm": 132,
+        "fromScore": "crowd_duende",
+        "toScore": "restroom_nerve",
+        "path": "assets/music/scores/crowd_to_restroom.json",
+        "midiPath": "assets/music/midi/crowd_to_restroom.mid"
+      },
+      {
+        "id": "restroom_to_vip",
+        "title": "Breathe, Then Enter Gold",
+        "bars": 2,
+        "baseBpm": 112,
+        "fullBpm": 112,
+        "fromScore": "restroom_nerve",
+        "toScore": "vip_presence",
+        "path": "assets/music/scores/restroom_to_vip.json",
+        "midiPath": "assets/music/midi/restroom_to_vip.mid"
+      }
+    ]
+  }
+}

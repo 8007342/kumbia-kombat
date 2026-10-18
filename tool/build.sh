@@ -22,5 +22,5 @@ else
 fi
 
 flutter pub get
-flutter build web --release
+flutter build web --release --no-web-resources-cdn
 echo "ok:build:build/web"

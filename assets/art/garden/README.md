@@ -1,0 +1,17 @@
+# Garden art handoff
+
+Generated with built-in imagegen, 2026-10-18. These are newly generated game assets. They do not embed the upstream canon reference image. No HUD or captions are baked into art.
+
+## `garden-mansion.png`
+
+1024×1536 RGB PNG. Visually inspected: clean dark lower-center approach, mansion/open gate upper-center, lantern/leaf framing, no characters or text. Ready as a flattened runtime background with nearest-neighbor sampling. Art is a generated pixel aesthetic, not a hand-edited native-resolution pixel grid. True separable parallax layers remain future production work; runtime may add independent foreground elements.
+
+Exact prompt:
+> Use case: stylized-concept. Asset type: portrait mobile rhythm-game background, Kumbia Kombat level 1 mansion garden. Produce one continuous portrait image, 2:3 composition. Strict 1980s arcade pixel art: crisp square pixels, limited midnight navy, deep leaf teal, warm amber and ivory palette, no painterly smoothing. Nighttime lush mansion garden party. Upper third: grand welcoming cream mansion façade with warm lit windows behind an elegant iron open gate, hanging warm lanterns and string lights. Sides: terracotta pots, tropical foliage and hanging Tillandsia plants frame the scene. Lower two thirds: broad clean gently converging tiled garden path toward entrance, dark and visually quiet in center so small robot player and dance challenger sprites can be composited on it. Leave middle 50 percent of canvas width uncluttered all the way down. Mansion entrance clearly visible upper-center. Friendly festive atmosphere, no menace. Camera is low over-the-shoulder perspective but DO NOT include any characters, people, robots, animals, UI, icons, lettering, logos, captions or text. Single runtime background, no contact sheet or border.
+
+## `gatekeeper.png`
+
+1024×1536 RGBA PNG, single transparent source sprite. Visually inspected: complete friendly human figure, cream fedora/trousers, plum/teal shirt, open hand and hip pose, no baked text. Alpha decoded and checked: 952,888 fully transparent pixels; soft semi-transparent edge glow remains, so it is a runtime starter rather than a finalized native-grid sprite. A runtime can apply beat-linked small translation/scale to this isolated pose; this does not constitute full skeletal or frame animation. Additional demonstrate/accept/reset frames remain in the asset plan.
+
+Exact prompt:
+> Use case: stylized-concept. Asset type: single transparent isolated front-facing game sprite, garden gatekeeper dancer for Kumbia Kombat portrait mobile rhythm game. One full body character only, exactly one centered pose, no sprite sheet. Friendly broad adult human doorkeeper with warm medium brown skin, small rounded cream fedora, dark plum short-sleeve guayabera with subtle teal vertical stripe, cream trousers, deep teal dance shoes. Tall broad readable chunky silhouette, smiling slightly, one open palm held chest-high inviting a dance challenge, other hand rests on hip, feet separated in relaxed cumbia dance stance. No fighting weapons, no aggressive expression. 1980s retro arcade pixel art, large crisp square pixel blocks, hard edges and dark outline, limited palette matching midnight navy, warm cream, muted plum and teal. Keep full hat and both shoes inside frame with generous transparent margin. Flat sprite perspective, no floor, no shadow, no scenery, no props, no UI, no lettering or labels. Character should remain recognizable when rendered 48 pixels tall.

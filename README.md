@@ -1,41 +1,64 @@
-# KumbiaKombat
+# Kumbia Kombat
 
-A kumbia-themed fighting game — under construction. Today the repo serves a
-Flame-rendered landing page announcing that.
+A portrait, one-thumb rhythm dance game built with Flutter and Flame. Mācron
+mirrors challengers' moves to earn a way from the mansion garden to Tlatoāni's
+VIP lounge. Required taps earn respect; optional swipes add musical flourishes
+and Pizazz. A full clean campaign targets 5–8 minutes.
 
-Live at: https://kumbias.tlatoani.net (Cloudflare Worker, static assets)
+## Current prototype
 
-## Stack
+The app now plays the garden and bar: original live synth music, four
+SVG limb zones in a compact lower thumb pad, beat-varying destinations, curved incoming cues, call/response, Mojo progression, optional
+swipes, repeated-failure retreats and in-memory pause recovery. A matching
+success phrase and tonal bridge carry the garden into the bar without
+resetting the shared audio clock. The bar has its own Swag chart and sign-off. Generated
+pixel-art settings and challengers accompany an animated code-native Mācron.
 
-Flutter with the Flame engine (games and graphics), built to static web
-assets and deployed to Cloudflare Workers.
+The five-level [storyboard](plan/storyboard.md), [feature specs](openspec/specs/)
+and [remaining plan](plan/roadmap.md) distinguish delivered work from future
+animation, rooms, save/reload, ending and global leaderboard integration.
+Current challenger assets are starter single poses; production animation is pending.
+Native synth audio is not yet supported; play the prototype in a browser.
 
-## Develop
+## Develop and review
 
 ```bash
-flutter run -d chrome   # local dev
-flutter test            # widget tests
-flutter analyze         # lints
+flutter run -d web-server --web-hostname 0.0.0.0 --web-port 8080 --hot
+flutter analyze
+flutter test
+npm run build                  # release web, including local CanvasKit
+node tool/prepare_preview.mjs  # also put standalone score room at /music/
 ```
 
-## Build & deploy (Cloudflare defaults)
+For the forge's working local preview, publish the root project with the
+managed Wrangler runtime. See [preview handoff](plan/session-garden.md) and
+[forge diagnostics](FORGE_DIAGNOSTICS.md) for the current dev-route issue.
+The score room lets you play all five songs and change tiers independently.
 
 ```bash
-npm run build           # flutter build web --release into build/web
-                        # (downloads a pinned Flutter SDK if none is installed)
-npx wrangler deploy     # deploys build/web as a Worker + binds kumbias.tlatoani.net
+node tool/music/generate.mjs
+node tool/music/validate.mjs
+node tool/music/build_preview.mjs
+dart --packages=build/music-preview/packages.json tool/music/transport_check.dart
 ```
 
-## How this project is organised
+All five room scores are original MIDI-style note data with five arrangement
+and tempo tiers plus four adornments each. Five short success themes and
+four connecting bridges are also authored and auditionable. MIDI files are review exports, while
+runtime notes are synthesized live. Speaker/phone listening and timing
+calibration remain essential; compilation alone does not establish quality.
 
-- `openspec/`: what the app should do, written as short specs. Change the
-  specs first, then the code.
-- `plan/`: work that takes more than one session. Each line says what is left.
-- `lib/landing/`: the Flame landing game (hazard stripes + title).
-- `tool/build.sh`: the self-bootstrapping web build used by `npm run build`.
+## Branching and deployment
 
-## Branching
+Use seed-valid `work/1234-abcd` refs. Integrate tested milestones into `game`;
+publish reviewed releases through protected `main`. The owner explicitly
+authorized milestone integration and a mobile-test prototype release in this session. The foundation has landed
+on `game`; tested garden/bar milestones follow the same integration path.
+`npm run build` builds static web files; `npx wrangler deploy` deploys the
+Worker/static assets at https://kumbias.tlatoani.net . Local preview does not
+deploy to production. The live public site may still show the earlier landing
+until integration and release PRs are merged.
 
-`main` is protected — direct pushes are rejected. Do work on `work/<id>`
-branches, land them on the `game` integration branch by pull request, then
-pull-request `game` into `main`.
+Music/art provenance lives beside the assets. The local UI font retains its
+SIL Open Font License in assets/fonts/. No global leaderboard service is
+currently deployed by this prototype.

@@ -1,0 +1,17 @@
+# Bar art handoff
+
+Generated with built-in imagegen, 2026-10-18, for stage 2 Swag. Newly generated original environment and original challenger. Character identity is not a canon character or Covi. Both source assets generated and visually inspected. No caption/UI text is baked into either asset. Additional animation poses and genuine separated parallax layers remain tracked production work.
+
+## `bar-interior.png`
+
+1024×1536 RGB PNG. Inspected: counter/mirror/bottles in upper third, warm lanterns, dark plum/teal central floor, open right passage. No people, UI or readable text. Runtime starter flattened background, nearest-neighbor sampling; not a genuine layered parallax source.
+
+Exact prompt:
+> Use case: stylized-concept. Asset type: single portrait mobile game background for Kumbia Kombat level 2 Swag bar. 2:3 portrait composition, strict 1980s arcade pixel art with crisp chunky square pixels, hard outlines, restrained amber, midnight plum, deep teal and warm cream palette. Interior bar of a grand friendly mansion dance party at night, warm hanging lamps, distant upper-center carved wood bar counter with bottle silhouettes and a mirror reflecting only lights and abstract room geometry. Counter runs across upper third with an obvious open passage at its right end toward next room. Teal velvet stools tucked along far wall, restrained tropical hanging plants at edges. Lower two thirds broad dark polished tile dance floor with quiet clear middle 60 percent of width for tiny ivory robot and bartender sprites to be composited. Low over-the-shoulder floor perspective leading toward counter, welcoming rhythmic festive setting, sufficient dark center contrast for cream/cyan sprites. Include no characters, people, robots, animals, UI, captions, signs, lettering, labels or logos, no readable bottle labels, no borders or contact sheet. One continuous runtime environment image.
+
+## `bartender.png`
+
+1024×1536 RGBA PNG. Inspected: full figure including hair, shaker, open hand and both shoes, teal waistcoat/ivory rolled sleeves/plum apron, distinctly different from garden gatekeeper. Transparent corner verified directly from PNG data; soft edge glow remains despite prompt, so retain runtime-starter status. Single pose, not a finished animation atlas.
+
+Exact prompt:
+> Use case: stylized-concept. Asset type: single isolated transparent full-body original bartender sprite for Kumbia Kombat stage 2 Swag, portrait mobile 1980s arcade pixel-art rhythm game. Exactly one character and one pose, not a sheet. Friendly adult woman bartender with medium tan skin, compact curly dark hair tied up in a rounded puff, rolled ivory shirt sleeves, fitted deep teal waistcoat, plum apron tied at waist, dark plum trousers and amber dance shoes. Slim upright silhouette distinctly different from a broad fedora-wearing gatekeeper. No hat, no mustache. One hand raises a small silver cocktail shaker near shoulder, other open hand gestures a rhythmic invitation across the body, feet in a relaxed separated dance stance. Warm confident smile, non-aggressive social dance challenge. Hard dark outline, chunky crisp square pixels, restrained teal/plum/ivory/amber palette. Full hair, both hands and both shoes inside frame, generous transparent margin. Transparent background only: no glow, no floor, no shadow, no counter, no scenery, no other people, no UI, captions, lettering, labels or logos. Readable at small sprite size, flat game sprite perspective.

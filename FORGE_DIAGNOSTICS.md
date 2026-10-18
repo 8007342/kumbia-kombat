@@ -96,3 +96,74 @@ in the forge image/tooling.
 5. Auth for `gh` (or a PR-less landing path) before any project adopts
    integration-branch + PR discipline.
 6. Warn-phase pre-push output should state loudly that the push will succeed.
+
+## Foundation session — 2026-10-18
+
+- Reproduced the missing PATH wiring and inherited global hooksPath on this
+  checkout. The documented binary still exists and runs at
+  `/usr/local/lib/tillandsias/policy-bin/tillandsias-plan`.
+- Restored `~/.local/bin/tillandsias-plan` symlink and repo-local
+  `core.hooksPath=.tillandsias/hooks`. If a harness PATH omits ~/.local/bin,
+  set `TILLANDSIAS_PLAN_BIN` to the absolute path for git operations.
+- `discipline show`: seed level 2; `derive`: observed 1/effective 1 because
+  only one committer host is visible. This is the documented early opt-in
+  warning phase; work still follows level 2 by project instruction.
+- Initial remote connectivity probe used `work/kumbia-foundation`, accepted
+  with a grammar warning. Actual work moved immediately to grammar-valid
+  `work/1824-kumb`, successfully relayed and durably accepted by GitHub.
+  The initial probe ref contains only the preexisting integration commit.
+- Standalone `dart` resolves to Dart 3.12.1, while the Flutter wrapper uses
+  Flutter 3.47.7 / Dart 3.13.5 and the project declares SDK ^3.13.5. Thus
+  plain `dart run tool/music/transport_check.dart` fails on package language
+  version even though Flutter analyze/test pass. The standalone music build
+  writes an empty build/music-preview/packages.json and uses
+  `dart --packages=build/music-preview/packages.json` for dependency-free
+  transport checks. This avoids changing the app SDK constraint; use Flutter's
+  bundled Dart for package-aware work.
+- GitHub CLI remains unauthenticated this session (`gh auth status`); git
+  mirror pushes succeed independently. Lakanoa public API returned 404;
+  its initials implementation could not be inspected.
+- Flutter dev wrapper successfully starts shared-toolchain `flutter run -d
+  web-server --web-hostname 0.0.0.0 --web-port 8080 --hot` and announces
+  `https://flutter.kumbia-kombat.localhost:18443/` as routed. After Flutter
+  reports serving, host-browser `browser_open` still rejects that exact HTTPS
+  URL with `URL_NOT_ALLOWED: not in active routes for project`. HTTP/8080 is
+  also refused because the browser requires HTTPS. No route policy bypass
+  was attempted. The separately published static `www` music preview opens
+  visibly and works; route registration/allowlist synchronization needs repair.
+- GitHub connector draft-PR creation also returned API 404 for this private
+  repo despite successful mirror pushes. Work is safely on remote
+  `work/1824-kumb`; PR creation remains an operator/access followup. Do not
+  merge directly into game to work around missing PR access.
+
+## Garden/storyboard continuation — 2026-10-18
+
+- Stock Flutter builds try to fetch CanvasKit from gstatic and a default font;
+  host-browser's project-only network rejects those requests. Build with
+  `--no-web-resources-cdn` and bundle the UI font. `tool/build.sh` now does so.
+- Managed static preview of build/web returned 404 for existing canvaskit/
+  files and the added music/ subtree while serving assets/ and root entry files.
+  Re-publish/reload did not fix it. Publishing the root project's existing
+  Wrangler configuration (`runtime=wrangler`) serves those paths correctly.
+- Wrangler watch can exit on a transient ENOENT under assets/shaders while
+  Flutter replaces build outputs. After builds finish, `service_reload` restores
+  the local preview. The Request.cf DNS warning is harmless in local mode;
+  the fatal error observed was a disappearing shader file during rebuild.
+- Mobile screenshots at DPR 3 with the detailed garden exceed the MCP 4 MiB
+  per-line cap. Use page-level CDP Page.captureScreenshot with JPEG/quality 50,
+  or set DPR 1 in an agent-owned headless test window. Do not print base64.
+
+## Mobile-test release attempt — 2026-10-18
+
+- User explicitly requested the more forgiving timing prototype be merged into
+  main for auto-publication. Commit cb61c74 is durably pushed to
+  work/1826-time and game. Flutter analysis is clean and all 20 tests pass.
+- GitHub connector create_pull_request (game → main) still returns API 404
+  Not Found. `gh auth status` confirms no authenticated GitHub hosts.
+- A normal push of the reviewed game head to main was refused locally:
+  `refused:hook:pre-push:default-branch-protected:enforced`. The hook requires
+  a pull request. No hook or protection was changed or bypassed.
+- Release is ready at game. Restore GitHub connector access to this repository
+  or authenticate gh, then open/merge game → main. Alternatively the owner can
+  open https://github.com/8007342/kumbia-kombat/compare/main...game directly.
+  Main was not updated; automatic production publication was not triggered.

@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "assets": [
+    {
+      "id": "bar.background.base",
+      "file": "bar-interior.png",
+      "width": 1024,
+      "height": 1536,
+      "format": "RGB PNG",
+      "status": "runtime-starter-flat",
+      "sampling": "nearest",
+      "anchor": [
+        0.5,
+        0.5
+      ],
+      "provenance": "Built-in imagegen, 2026-10-18; exact prompt in README.md",
+      "notes": "No baked UI or characters; genuine separated parallax layers pending"
+    },
+    {
+      "id": "bar.bartender.source",
+      "file": "bartender.png",
+      "width": 1024,
+      "height": 1536,
+      "format": "RGBA PNG",
+      "status": "runtime-starter-single-pose",
+      "sampling": "nearest",
+      "anchor": [
+        0.5,
+        0.96
+      ],
+      "provenance": "Built-in imagegen, 2026-10-18; exact prompt in README.md",
+      "notes": "Transparent single pose with soft edge glow; demonstrate/accept/recovery frames pending"
+    }
+  ]
+}
