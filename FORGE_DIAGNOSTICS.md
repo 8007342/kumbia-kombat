@@ -152,3 +152,18 @@ in the forge image/tooling.
 - Mobile screenshots at DPR 3 with the detailed garden exceed the MCP 4 MiB
   per-line cap. Use page-level CDP Page.captureScreenshot with JPEG/quality 50,
   or set DPR 1 in an agent-owned headless test window. Do not print base64.
+
+## Mobile-test release attempt — 2026-10-18
+
+- User explicitly requested the more forgiving timing prototype be merged into
+  main for auto-publication. Commit cb61c74 is durably pushed to
+  work/1826-time and game. Flutter analysis is clean and all 20 tests pass.
+- GitHub connector create_pull_request (game → main) still returns API 404
+  Not Found. `gh auth status` confirms no authenticated GitHub hosts.
+- A normal push of the reviewed game head to main was refused locally:
+  `refused:hook:pre-push:default-branch-protected:enforced`. The hook requires
+  a pull request. No hook or protection was changed or bypassed.
+- Release is ready at game. Restore GitHub connector access to this repository
+  or authenticate gh, then open/merge game → main. Alternatively the owner can
+  open https://github.com/8007342/kumbia-kombat/compare/main...game directly.
+  Main was not updated; automatic production publication was not triggered.
