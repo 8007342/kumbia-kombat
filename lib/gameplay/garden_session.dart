@@ -102,6 +102,8 @@ class GardenSession {
   final FightChart chart;
   GardenPhase phase = GardenPhase.ready;
   TapGrade? lastGrade;
+  TapTiming? lastTiming;
+  int? lastDeltaMs;
   ChallengeOutcome? lastOutcome;
   int pizazz = 0;
   int perfects = 0;
@@ -293,6 +295,8 @@ class GardenSession {
     }
     final result = _judge!.tap(limb, _nowMs);
     lastGrade = result.grade;
+    lastTiming = result.timing;
+    lastDeltaMs = result.deltaMs;
     if (result.note != null) {
       _hits++;
       combo++;
