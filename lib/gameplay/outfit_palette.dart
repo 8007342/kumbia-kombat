@@ -6,20 +6,22 @@ enum OutfitColor { teal, blue, coral, gold }
 /// pink gates are reviewed against the ensemble v2 clothing/skin/hair pixels.
 /// Arbitrary art must not opt in without a new mask/palette review.
 class OutfitPalette {
-  OutfitPalette._(this._shader);
-  final ui.FragmentShader _shader;
-  final ui.Paint _paint = ui.Paint()..filterQuality = ui.FilterQuality.none;
+  OutfitPalette._(this._compiledProgram);
+  final ui.FragmentProgram _compiledProgram;
+  final Map<(ui.Image, OutfitColor, Object?), _OutfitVariant> _variants = {};
   static Future<ui.FragmentProgram>? _program;
   bool _disposed = false;
 
-  /// Cache the compiled program, but own/dispose each renderer's shader instance.
+  int get cachedVariantCount => _variants.length;
+
+  /// Cache the compiled program, but own/dispose each renderer's shader pool.
   /// Failure is explicit: the caller may show source plum without claiming a
   /// recolored variant. Do not silently run a global ColorFilter fallback.
   static Future<OutfitPalette> load() async {
     final program = await (_program ??= ui.FragmentProgram.fromAsset(
       'shaders/party_palette.frag',
     ));
-    return OutfitPalette._(program.fragmentShader());
+    return OutfitPalette._(program);
   }
 
   ui.Paint paint({
@@ -27,6 +29,9 @@ class OutfitPalette {
     required ui.Rect source,
     required ui.Rect destination,
     required OutfitColor palette,
+    // Distinguish multiple actors sharing the same atlas and palette. The
+    // current 3 archetypes × 4 palettes already have unique (image, palette).
+    Object? instanceKey,
   }) {
     if (_disposed) throw StateError('Outfit palette is disposed');
     for (final rect in [source, destination]) {
@@ -40,12 +45,11 @@ class OutfitPalette {
         source.bottom > image.height) {
       throw ArgumentError.value(source, 'source', 'Outside atlas');
     }
-    final hue = switch (palette) {
-      OutfitColor.teal => (0.18, 0.72, 0.60),
-      OutfitColor.blue => (0.23, 0.47, 0.92),
-      OutfitColor.coral => (0.94, 0.34, 0.25),
-      OutfitColor.gold => (0.95, 0.69, 0.19),
-    };
+    final variant = _variants.putIfAbsent((
+      image,
+      palette,
+      instanceKey,
+    ), () => _OutfitVariant(_compiledProgram.fragmentShader(), image, palette));
     final uniforms = [
       destination.left,
       destination.top,
@@ -55,23 +59,45 @@ class OutfitPalette {
       source.top,
       source.width,
       source.height,
-      image.width.toDouble(),
-      image.height.toDouble(),
-      hue.$1,
-      hue.$2,
-      hue.$3,
     ];
     for (var i = 0; i < uniforms.length; i++) {
-      _shader.setFloat(i, uniforms[i]);
+      variant.shader.setFloat(i, uniforms[i]);
     }
-    _shader.setImageSampler(0, image);
-    return _paint..shader = _shader;
+    return variant.paint;
   }
 
   void dispose() {
     if (_disposed) return;
     _disposed = true;
-    _paint.shader = null;
-    _shader.dispose();
+    for (final variant in _variants.values) {
+      variant.paint.shader = null;
+      variant.shader.dispose();
+    }
+    _variants.clear();
   }
+}
+
+/// Texture and hue remain fixed for this avatar. CanvasKit may retain uniform
+/// state when recording draws, so distinct guests must not share one mutable
+/// shader even when a native raster test appears to snapshot its uniforms.
+class _OutfitVariant {
+  _OutfitVariant(this.shader, ui.Image image, OutfitColor palette)
+    : paint = ui.Paint()..filterQuality = ui.FilterQuality.none {
+    final hue = switch (palette) {
+      OutfitColor.teal => (0.18, 0.72, 0.60),
+      OutfitColor.blue => (0.23, 0.47, 0.92),
+      OutfitColor.coral => (0.94, 0.34, 0.25),
+      OutfitColor.gold => (0.95, 0.69, 0.19),
+    };
+    shader.setFloat(8, image.width.toDouble());
+    shader.setFloat(9, image.height.toDouble());
+    shader.setFloat(10, hue.$1);
+    shader.setFloat(11, hue.$2);
+    shader.setFloat(12, hue.$3);
+    shader.setImageSampler(0, image);
+    paint.shader = shader;
+  }
+
+  final ui.FragmentShader shader;
+  final ui.Paint paint;
 }

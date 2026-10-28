@@ -8,6 +8,111 @@ import 'package:kumbia_kombat/gameplay/outfit_palette.dart';
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
+  test('twelve avatars own stable independent shaders, paints and texture bindings', () async {
+    final images = <ui.Image>[];
+    for (final color in [
+      const ui.Color(0xff874197),
+      const ui.Color(0xffa41670),
+      const ui.Color(0xffc84f83),
+    ]) {
+      final recorder = ui.PictureRecorder();
+      ui.Canvas(recorder).drawRect(
+        const ui.Rect.fromLTWH(0, 0, 1, 1),
+        ui.Paint()
+          ..color = color
+          ..isAntiAlias = false,
+      );
+      final picture = recorder.endRecording();
+      images.add(await picture.toImage(1, 1));
+      picture.dispose();
+    }
+    final palette = await OutfitPalette.load();
+    try {
+      final shaders = <ui.Shader>{};
+      final paints = <ui.Paint>{};
+      final recorder = ui.PictureRecorder();
+      final canvas = ui.Canvas(recorder);
+      for (var actor = 0; actor < 3; actor++) {
+        // Teal is deliberately last, reproducing the problematic browser order.
+        for (final color in OutfitColor.values.reversed) {
+          final destination = ui.Rect.fromLTWH(
+            color.index * 2.0,
+            actor * 2.0,
+            2,
+            2,
+          );
+          final paint = palette.paint(
+            image: images[actor],
+            source: const ui.Rect.fromLTWH(0, 0, 1, 1),
+            destination: destination,
+            palette: color,
+          );
+          shaders.add(paint.shader!);
+          paints.add(paint);
+          expect(
+            palette.paint(
+              image: images[actor],
+              source: const ui.Rect.fromLTWH(0, 0, 1, 1),
+              destination: destination,
+              palette: color,
+            ),
+            same(paint),
+          );
+          canvas.drawRect(destination, paint);
+        }
+      }
+      expect(shaders.length, 12);
+      expect(paints.length, 12);
+      expect(palette.cachedVariantCount, 12);
+      final picture = recorder.endRecording();
+      final rendered = await picture.toImage(8, 6);
+      picture.dispose();
+      final pixels = (await rendered.toByteData(
+        format: ui.ImageByteFormat.rawStraightRgba,
+      ))!;
+      for (var actor = 0; actor < 3; actor++) {
+        final colors = <String>{};
+        for (final color in OutfitColor.values) {
+          final offset = (actor * 2 * 8 + color.index * 2) * 4;
+          final rgb = List.generate(3, (i) => pixels.getUint8(offset + i));
+          colors.add(rgb.join(','));
+          expect(rgb.reduce(math.max), closeTo([151, 164, 200][actor], 1));
+          switch (color) {
+            case OutfitColor.teal:
+              expect(rgb[1], greaterThan(rgb[0]));
+              expect(rgb[1], greaterThan(rgb[2]));
+            case OutfitColor.blue:
+              expect(rgb[2], greaterThan(rgb[0]));
+              expect(rgb[2], greaterThan(rgb[1]));
+            case OutfitColor.coral:
+              expect(rgb[0], greaterThan(rgb[1]));
+              expect(rgb[1] - rgb[2], lessThan(30));
+            case OutfitColor.gold:
+              expect(rgb[0], greaterThan(rgb[1]));
+              expect(rgb[1] - rgb[2], greaterThan(30));
+          }
+        }
+        expect(colors.length, 4, reason: 'All four palettes for actor $actor');
+      }
+      rendered.dispose();
+      final extra = palette.paint(
+        image: images.first,
+        source: const ui.Rect.fromLTWH(0, 0, 1, 1),
+        destination: const ui.Rect.fromLTWH(0, 0, 2, 2),
+        palette: OutfitColor.teal,
+        instanceKey: 'extra-guest',
+      );
+      expect(shaders.contains(extra.shader), isFalse);
+      expect(palette.cachedVariantCount, 13);
+    } finally {
+      palette.dispose();
+      expect(palette.cachedVariantCount, 0);
+      for (final image in images) {
+        image.dispose();
+      }
+    }
+  });
+
   test(
     'actual ensemble clothing changes while sampled skin and hair stay intact',
     () async {
