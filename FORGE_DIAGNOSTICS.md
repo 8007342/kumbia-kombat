@@ -1,5 +1,47 @@
 # FORGE_DIAGNOSTICS
 
+## Direct main publication clarification — 2026-10-28
+
+The stable `game` integration was merged directly to `main` after the owner
+asked for a remote phone-test build. This worked under the **current** forge
+configuration; earlier notes below describe a different historical seed and
+must not be read as the current outcome.
+
+- Before publishing, `tillandsias-plan discipline show` reported Level 2 with
+  `default_branch: main`, but specifically `enforcement.default_branch: warn`.
+  `tillandsias-plan discipline check-ref refs/heads/main` returned
+  `warn:discipline:default-branch-protected`, not `refused`.
+- The installed local `.tillandsias/hooks/pre-push.lua` maps only an
+  `enforced` verdict to refusal. It emitted the seed remedy text saying direct
+  pushes are refused, which conflicted with the actual `warn` verdict. The
+  local hook therefore printed a warning and allowed the push.
+- The remote pre-receive hook was authoritative and also reported
+  `warn only: accepted`; the mirror relay pushed the ref to upstream and
+  verified durable acceptance.
+- Stable `game` at `e045f16` was merged locally into `main` as `caacc6b` and
+  pushed directly. `git fetch origin` confirmed `origin/main` at `caacc6b`;
+  upstream relay confirmed success. The push was not a bypass: both policy
+  layers were in warning mode.
+- The resulting `main` update is intended to trigger the remote build for the
+  owner's touchscreen phone playtest. The requested staging implementation and
+  generated v3/travel assets were not part of this publication and remain
+  documented recovery work in `plan/opponent-depth-staging-pass.md`.
+
+### Wording improvements
+
+The behavior appears to be working as configured. The confusing part is that
+the seed's `remedy` still says direct pushes “are refused” while enforcement is
+`warn`, and the local hook prints that remedy unconditionally. That text should
+be made mode-aware: in warn mode explicitly say the push **will be accepted**
+and recommend the normal branch flow; in enforced mode say it **will be
+refused**. The forge should keep the distinction visible in both
+`check-ref` output and pre-push/post-receive messages. Do not infer enforcement
+from the protection rule name alone; check the verdict and the configured mode.
+
+The push is now also recorded in commit history and remote refs. This note is
+being committed separately on `work/1829-danc` for durable diagnostics; it does
+not need another integration merge.
+
 ## Dance staging implementation session — 2026-10-28
 
 The owner asked for a fleet implementation pass based on the dance-fluidity and
