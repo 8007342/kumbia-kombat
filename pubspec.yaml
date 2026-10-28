@@ -62,11 +62,14 @@ flutter:
       fonts:
         - asset: assets/fonts/Cantarell-VF.otf
   uses-material-design: true
+  shaders:
+    - shaders/party_palette.frag
   assets:
     - assets/ui/
     - assets/art/garden/
     - assets/art/bar/
     - assets/art/party/
+    - assets/art/ensemble/
     - assets/music/scores/
 
   # To add assets to your application, add an assets section, like this:
