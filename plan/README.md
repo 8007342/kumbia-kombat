@@ -37,3 +37,6 @@ and the normal-image fallback used to keep every guest visible on web renderers.
 
 `dance-fluidity-pass.md` turns the post-crowd animation research into the next
 production slice: authored dancer breakdowns and a music-owned floor exchange.
+
+`opponent-depth-staging-pass.md` scopes the follow-up: richer opponent dances,
+floor-derived approach/yield routes and close-but-safe audience framing.
