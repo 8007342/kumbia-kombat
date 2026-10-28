@@ -93,6 +93,40 @@ void main() {
     },
   );
 
+  test('foreground crowd anchors reuse the existing IDs and chair ownership', () {
+    const expected = <String, List<PartyPoint>>{
+      'garden': [
+        PartyPoint(.20, .61),
+        PartyPoint(.80, .61),
+        PartyPoint(.24, .46),
+        PartyPoint(.76, .46),
+      ],
+      'bar': [
+        PartyPoint(.20, .48),
+        PartyPoint(.80, .48),
+        PartyPoint(.23, .40),
+        PartyPoint(.77, .40),
+      ],
+    };
+    for (final entry in expected.entries) {
+      final room = partyRoomLayouts[entry.key]!;
+      for (var i = 0; i < entry.value.length; i++) {
+        final guest = room.guests[i];
+        final point = entry.value[i];
+        expect(guest.id, '${entry.key}-guest-$i');
+        expect(guest.interestIndex, i);
+        expect(guest.floor.x, point.x);
+        expect(guest.floor.y, point.y);
+        final chair = room.props.singleWhere((prop) => prop.id == guest.homePropId);
+        expect(chair.floor.x, point.x);
+        expect(chair.floor.y, point.y);
+      }
+      // The foreground is art direction, not a crowd-budget increase.
+      expect(room.guests.length, 12);
+      expect(room.props.where((prop) => prop.kind == PartyPropKind.chair).length, 12);
+    }
+  });
+
   test('chair support and stature are independent of seated sprite bounds', () {
     final viewport = PartyViewport(360, 640);
     for (final room in partyRoomLayouts.values) {

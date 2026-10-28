@@ -219,10 +219,12 @@ List<PartyGuestSlot> _seatedGuests(String room, List<PartyPoint> anchors) =>
     ]);
 
 final _gardenGuests = _seatedGuests('garden', const [
-  PartyPoint(.26, .450),
-  PartyPoint(.74, .450),
-  PartyPoint(.22, .415),
-  PartyPoint(.78, .415),
+  // Foreground pair: allowed to crop at narrow edges, but their actual chair
+  // and interest IDs remain the original slots 0–1.
+  PartyPoint(.20, .610),
+  PartyPoint(.80, .610),
+  PartyPoint(.24, .460),
+  PartyPoint(.76, .460),
   PartyPoint(.31, .408),
   PartyPoint(.69, .408),
   PartyPoint(.24, .360),
@@ -233,10 +235,11 @@ final _gardenGuests = _seatedGuests('garden', const [
   PartyPoint(.76, .360),
 ]);
 final _barGuests = _seatedGuests('bar', const [
-  PartyPoint(.23, .415),
-  PartyPoint(.77, .415),
-  PartyPoint(.20, .375),
-  PartyPoint(.80, .375),
+  // Match the bar's steeper floor without duplicating people or chairs.
+  PartyPoint(.20, .480),
+  PartyPoint(.80, .480),
+  PartyPoint(.23, .400),
+  PartyPoint(.77, .400),
   PartyPoint(.31, .370),
   PartyPoint(.69, .370),
   PartyPoint(.23, .335),
