@@ -404,10 +404,16 @@ class _GardenPageState extends State<GardenPage>
       _scene.dance(limb);
       _styleDestination = result.note!.flourishTo;
       _styleUntil = _audio.nowSeconds + .3;
-      _showFeedback(
-        result.grade == TapGrade.perfect ? 'PERFECT' : 'NICE',
-        result.grade == TapGrade.perfect ? _gold : _mint,
-      );
+      if (result.timing == TapTiming.perfect) {
+        _showFeedback('PERFECT', _gold);
+      } else if (result.timing == TapTiming.early) {
+        _showFeedback('◀ EARLY (${result.deltaMs}ms)', const Color(0xFF72DDF7));
+      } else {
+        final sign = result.deltaMs > 0 ? '+${result.deltaMs}' : '${result.deltaMs}';
+        _showFeedback('LATE ($sign ms) ▶', const Color(0xFFFF9E79));
+      }
+    } else {
+      _showFeedback('MISS', const Color(0xFFFF6B6B));
     }
     return result;
   }
@@ -815,6 +821,42 @@ class _GardenPageState extends State<GardenPage>
             ),
           ),
         ),
+        if (session.combo >= 2 && session.phase == GardenPhase.response)
+          Positioned(
+            top: size.height * .53,
+            left: 20,
+            right: 20,
+            child: Center(
+              child: Text(
+                'COMBO × ${session.combo} • ${session.combo >= 6 ? "THE CROWD IS HYPED!" : "CROWD GROOVING"}',
+                style: const TextStyle(
+                  color: _gold,
+                  letterSpacing: 2,
+                  fontSize: 10,
+                  fontWeight: FontWeight.w800,
+                  shadows: [Shadow(blurRadius: 6, color: _ink)],
+                ),
+              ),
+            ),
+          ),
+        if (session.phase == GardenPhase.cleared)
+          Positioned(
+            top: size.height * .53,
+            left: 20,
+            right: 20,
+            child: const Center(
+              child: Text(
+                'THE ENTIRE ROOM IS CHEERING! CHINGÓN!',
+                style: TextStyle(
+                  color: _mint,
+                  letterSpacing: 2.5,
+                  fontSize: 11,
+                  fontWeight: FontWeight.w900,
+                  shadows: [Shadow(blurRadius: 8, color: _ink)],
+                ),
+              ),
+            ),
+          ),
         if (_feedback != null && _audio.nowSeconds < _feedbackUntil)
           Positioned(
             top: size.height * .57,

@@ -4,6 +4,8 @@ enum Limb { leftHand, rightHand, leftFoot, rightFoot }
 
 enum TapGrade { perfect, good, miss }
 
+enum TapTiming { perfect, early, late }
+
 /// Times are audible-song milliseconds, after input/output calibration.
 class RhythmNote {
   const RhythmNote(this.id, this.limb, this.atMs, {this.flourishTo});
@@ -14,9 +16,16 @@ class RhythmNote {
 }
 
 class TapResult {
-  const TapResult(this.grade, this.note);
+  const TapResult(
+    this.grade,
+    this.note, {
+    this.deltaMs = 0,
+    this.timing,
+  });
   final TapGrade grade;
   final RhythmNote? note;
+  final int deltaMs;
+  final TapTiming? timing;
 }
 
 class RhythmJudge {
@@ -45,9 +54,16 @@ class RhythmJudge {
     if (closest == null) return const TapResult(TapGrade.miss, null);
     _resolved.add(closest.id);
     _successfulTapAt[closest.id] = audibleMs;
+    final signedDelta = audibleMs - closest.atMs;
+    final isPerfect = distance <= perfectWindowMs;
+    final timing = isPerfect
+        ? TapTiming.perfect
+        : (signedDelta < 0 ? TapTiming.early : TapTiming.late);
     return TapResult(
-      distance <= perfectWindowMs ? TapGrade.perfect : TapGrade.good,
+      isPerfect ? TapGrade.perfect : TapGrade.good,
       closest,
+      deltaMs: signedDelta,
+      timing: timing,
     );
   }
 
