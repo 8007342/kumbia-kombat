@@ -34,3 +34,6 @@ variants, challenger choreography and ambient life. Authoring rules now live in
 
 `wardrobe-rendering-stability.md` records the hosted crowd-sprite investigation
 and the normal-image fallback used to keep every guest visible on web renderers.
+
+`dance-fluidity-pass.md` turns the post-crowd animation research into the next
+production slice: authored dancer breakdowns and a music-owned floor exchange.
