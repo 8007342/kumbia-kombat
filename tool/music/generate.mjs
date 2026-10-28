@@ -46,6 +46,10 @@ function compose(p) {
     note('bass',b+2,chord-17,.7,78);
     note('bass',b+1.5,chord-12,.3,68,1);
     note('bass',b+3.5,chord-24,.3,74,1);
+    // The party already has harmony when the player arrives. Sparse dyads give
+    // way to the denser four-offbeat triads at tier 2, without doubling voices.
+    for(const x of [.5,2.5]) for(const interval of [third,7])
+      note('guitar',b+x,chord+interval,.24,39,0,1);
     for(const x of [.5,1.5,2.5,3.5]) for(const interval of [0,third,7])
       note('guitar',b+x,chord+interval,.22,48+(x===2.5?8:0),2);
     if(bar%4===3) for(const [j,pitch] of [65,64,60,65].entries()) note('pulse',b+3+j*.25,pitch,.1,55+j*6,4);
@@ -61,9 +65,19 @@ function compose(p) {
       note('lead',base+offset,pitch,Math.min(duration,p.bars*4-base-offset),76,3);
       if(phrase%2===1 && offset<4) note('answer',base+offset+4,p.root+interval+12,duration*.7,48,4);
     }
-    // A recognizable two-note invitation survives below the complete melody tier.
-    note('lead',base,p.root,.5,58,1,2);
-    note('lead',base+6,p.root+7,.5,54,1,2);
+    // A restrained version of this room's real hook is present from tier 0.
+    // Tier 3 replaces it with the complete phrase, rather than merely getting louder.
+    for(const [i,[offset,interval,duration]] of motif.entries()) {
+      if(i%2!==0 && i!==motif.length-1) continue;
+      const cadence=phrase%4===3 && offset>=7;
+      note('lead',base+offset,p.root+(cadence?0:interval),duration*.85,58,0,2);
+    }
+    // A separate answer joins on alternate phrases at tier 2; the intervening
+    // phrases remain open until the full-ensemble response arrives at tier 4.
+    if(phrase%2===0) for(const [offset,interval,duration] of p.answer) {
+      if(offset>=3.5) continue;
+      note('answer',base+4+offset,p.root+interval+12,duration*.6,42,2);
+    }
   }
   events.sort((a,b)=>a.beat-b.beat||a.track.localeCompare(b.track)||a.pitch-b.pitch);
   const adornments=[
@@ -75,7 +89,7 @@ function compose(p) {
   return {schemaVersion:1,id:p.id,title:p.title,stat:p.stat,composer:'Kumbia Kombat original project score',
     license:'See assets/music/LICENSE.md',ppq:PPQ,beatsPerBar:4,bars:p.bars,phraseBars:2,
     key:{midiTonic:p.root,mode:p.mode},style:'Original synth cumbia / Latin instrumental',color:p.color,
-    tiers:[0,3,6,9,12].map((delta,tier)=>({tier,bpm:p.bpm+delta,name:['Pulse','Groove','Harmony','Melody','Full ensemble'][tier]})),
+    tiers:[0,3,6,9,12].map((delta,tier)=>({tier,bpm:p.bpm+delta,name:['Party groove','Percussion lift','Countermelody','Full melody','Full ensemble'][tier]})),
     sections:Array.from({length:p.bars/8},(_,i)=>({bar:i*8,bars:8,name:['Invitation','Answer','Lift','Approval'][i]})),
     tracks:tracks.map(t=>({...t,program:t.id==='lead'?p.program:t.program})),events,adornments,
     gameplayReference:{authority:'lib/game campaign configuration; score EOF does not approve an opponent',
@@ -105,18 +119,25 @@ function transitionBase(id,title,p,bpm,events,kind) {
 }
 function composeSuccess(p,index){
  const events=[], note=(track,beat,pitch,duration,velocity)=>events.push({track,beat,pitch,duration,velocity,minTier:0,maxTier:4});
- for(let beat=0;beat<8;beat+=.5)note('pulse',beat,73,.14,beat%1===0?44:34);
- for(const beat of [0,2,4,6])note('pulse',beat,36,.18,82);
- for(const beat of [1,3,5,7])note('pulse',beat,38,.12,48);
- for(const beat of [1.5,3.5,5.5,6.75])note('pulse',beat,beat===6.75?65:63,.12,64);
- for(const beat of [0,4]){
-  note('bass',beat,p.root-24,1.4,82);note('bass',beat+2,p.root-17,.7,74);
-  for(const x of [.5,1.5,2.5,3.5])for(const interval of [0,p.mode==='major'?4:3,7])note('guitar',beat+x,p.root+interval,.22,52);
+ // Recognition first; the second bar lets the room settle while the tonic
+ // answer remains audible. Keep the beat, not a master-volume fade or ritard.
+ for(let beat=0;beat<8;beat+=.5) {
+  if(beat>=4 && beat%1!==0)continue;
+  note('pulse',beat,73,.14,beat>=4?28:beat%1===0?44:34);
  }
- for(const [beat,pitch,duration] of [...p.motif.filter(n=>n[0]<4),...codas[index]])note('lead',beat,p.root+pitch+12,duration,84);
- for(const interval of [0,p.mode==='major'?4:3,7])note('brass',7,p.root+interval,.875,index===4?65:54);
+ for(const beat of [0,2,4,6])note('pulse',beat,36,.18,beat>=4?62:82);
+ for(const beat of [1,3,5,7])note('pulse',beat,38,.12,beat>=4?34:48);
+ for(const beat of [1.5,3.5])note('pulse',beat,63,.12,64);
+ for(const beat of [0,4]){
+  note('bass',beat,p.root-24,1.4,beat===0?82:66);note('bass',beat+2,p.root-17,.7,beat===0?74:58);
+  const offbeats=beat===0?[.5,1.5,2.5,3.5]:[.5,2.5];
+  const voicing=beat===0?[0,p.mode==='major'?4:3,7]:[p.mode==='major'?4:3,7];
+  for(const x of offbeats)for(const interval of voicing)note('guitar',beat+x,p.root+interval,.22,beat===0?52:38);
+ }
+ for(const [beat,pitch,duration] of [...p.motif.filter(n=>n[0]<4),...codas[index]])note('lead',beat,p.root+pitch+12,duration,beat>=4?68:84);
+ for(const interval of [0,p.mode==='major'?4:3,7])note('brass',7,p.root+interval,.875,index===4?54:40);
  const result=transitionBase(p.id+'_success',p.title+' — Room Approval',p,[0,3,6,9,12].map(d=>p.bpm+d),events,'success');
- result.parentScore=p.id;result.musicalIntent=index===4?'Final VIP tonic tag: the whole night resolves.':'Quote the room call, raise it an octave, answer on the tonic.';
+ result.parentScore=p.id;result.musicalIntent=index===4?'Final VIP tonic tag: the whole night resolves with a quieter second-bar answer.':'Quote the room call, then thin percussion and harmony as the tonic answer settles the room.';
  return result;
 }
 function composeBridge(from,to,index){

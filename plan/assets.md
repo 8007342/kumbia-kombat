@@ -1,5 +1,10 @@
 # Assets and animation production plan
 
+2026-10-28 planning update: [party overhaul](party-overhaul.md) refines the
+garden animation inventory, native pixel-grid direction and crowd behaviors.
+Use its first proof gates before bulk production. The older minimal counts
+below remain historical scope, not evidence of animation quality or delivery.
+
 Status: specifications complete; SVG input icons created; eight-pose raster concept starter generated and visually inspected. Garden/bar backgrounds and single challenger poses are generated and integrated as starters. Final sprite cleanup, remaining three room backgrounds, full animations and genuine parallax remain scheduled work. Do not mark those complete from concept art.
 
 ## References and provenance
@@ -10,7 +15,7 @@ Status: specifications complete; SVG input icons created; eight-pose raster conc
 
 ## Session A: usable vertical slice
 - [ ] Inspect generated Mācron concept; select consistent rear/front/side designs and rectify to native pixel grid.
-- [ ] Produce clean 32×40 Mācron cells: rear walk 4, rear idle 2, front idle 2, LH/RH dance 2 each, LF/RF step 2 each, recovery 2, spin 4, side walk 4. Total 28 frames; split view tags explicitly.
+- [ ] Produce clean 32×40 Mācron cells: rear walk 4, rear idle 2, front idle 2, LH/RH dance 2 each, LF/RF step 2 each, recovery 2, spin 4, side walk 4. Total 26 frames; split view tags explicitly. This old minimum is superseded for the garden proof by the richer clip inventory in `party-overhaul.md`.
 - [ ] Create garden layers at 180×320 (sky/mansion, gate/plants, converging floor, foreground plants) with 24px overscan where panning occurs.
 - [ ] Gatekeeper 48×64: idle 2, demonstrate 4, approving 2, deny/reset 2, step aside 2. Total 12 frames.
 - [ ] Hook animation tags to exact beat markers; show opening, one repeat, recovery, acceptance and traversal.
@@ -45,10 +50,19 @@ Crowd characters must never resemble an unverified Covi. Use 3 silhouettes with 
 - [ ] Record upstream license status, generator provenance and final asset approval in art manifest.
 
 ## Animation contract
-Metadata entry: `id`, `file`, `cellWidth`, `cellHeight`, `frames` (rectangles or grid indices), `pivot` (normalized bottom center), `facing` (rear/front/side), `loop`, `durationBeats`, `events` (beat offsets), `status` (concept/clean/runtime), `provenance`. Walk cycles loop every two beats; idle breath every four; required gestures peak at judgment beat, recover before next required gesture. Pause freezes music-linked animation; resume reconstructs from beat, not wall-clock drift.
+Metadata entry: `id`, `file`, `cellWidth`, `cellHeight`, `frames` (rectangles or grid indices), `pivot` (normalized bottom center), `facing` (rear/front/side), `loop`, `durationBeats`, `events` (beat offsets), `status` (concept/clean/runtime), `provenance`. Walk cycles loop every two beats; idle breath every four; demonstrated gestures peak at the scheduled note; accepted player gestures respond immediately, with early preparation and late accents handled as specified in `party-overhaul.md`, then recover or transfer into the next required gesture. Pause freezes music-linked animation; resume reconstructs from beat, not wall-clock drift.
 
 ## Delivered stage-2 art starter (2026-10-18)
 
 - `assets/art/bar/bar-interior.png`: actual generated and inspected 1024×1536 portrait RGB background, no characters or HUD. Parent can integrate as flattened starter.
 - `assets/art/bar/bartender.png`: actual generated and inspected 1024×1536 transparent single pose; not a completed animation set.
 - Prompt provenance and production status: `assets/art/bar/README.md`. Bar parallax separation, side-view strip, shaker/drink animations and acceptance/recovery poses remain unfinished in Session B.
+
+## Reusable ensemble delivery —2026-10-28
+
+The initial standing-only six-pose guests are superseded at runtime by
+`assets/art/ensemble/manifest.json`: 72 audience poses, 40 challenger poses and 20
+ambient/furniture poses. Scene composition follows `assets/art/STYLEGUIDE.md`.
+These sources are integrated previews with explicit metadata and provenance;
+phone/native-grid/continuity acceptance remains open. See
+`plan/session-ensemble.md` for the pushed milestones and verification.

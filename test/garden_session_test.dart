@@ -36,15 +36,16 @@ void main() {
   }
 
   void playResponse(double start) {
-    final limbs = garden.chart.limbs;
+    at(start - .5);
+    final limbs = garden.activeLimbs;
     final offsets = garden.chart.offsets;
     for (var i = 0; i < limbs.length; i++) {
       at(start + offsets[i]);
       expect(garden.tap(limbs[i]).grade, TapGrade.perfect);
     }
-    at(start + (garden.progress.cleared ? 7.5 : 6.9));
+    at(start + (garden.progress.cleared ? 7.9 : 6.9));
     if (garden.progress.cleared && garden.phase != GardenPhase.cleared) {
-      at(start + 7.5);
+      at(start + 7.9);
     }
   }
 
@@ -97,6 +98,180 @@ void main() {
     expect(garden.running, isTrue);
     expect(garden.phase, GardenPhase.response);
   });
+
+  test('six garden hits pass; early crowd attention is not clearance', () {
+    expect(garden.requiredHits, 6);
+    for (var i = 0; i < 6; i++) {
+      at(12 + garden.activeOffsets[i]);
+      garden.tap(garden.activeLimbs[i]);
+    }
+    expect(garden.combo, 6);
+    expect(garden.crowd.peakSupported, isFalse);
+    expect(garden.crowd.guests.every((g) => g.interest < .1), isTrue);
+    at(18.9);
+    expect(garden.progress.tier, 1);
+    expect(garden.passedPhrases, 1);
+    expect(garden.crowd.peakSupported, isFalse);
+    expect(garden.progress.cleared, isFalse);
+    at(28);
+    for (var i = 0; i < 5; i++) {
+      at(28 + garden.activeOffsets[i]);
+      garden.tap(garden.activeLimbs[i]);
+    }
+    at(34.9);
+    expect(garden.lastOutcome, ChallengeOutcome.retry);
+    expect(garden.passedPhrases, 1);
+    expect(garden.lastStumbleBeat, closeTo(34.86, .001));
+  });
+
+  test(
+    'peak is held through distinct combos, with one recoverable dropped note',
+    () {
+      for (var cycle = 0; cycle < 4; cycle++) {
+        playResponse(12 + cycle * 16);
+      }
+      expect(garden.crowd.peakSupported, isTrue);
+      expect(garden.progress.cleared, isFalse);
+      expect(garden.peakChallengesRemaining, 2);
+      at(75.5);
+      final firstPeak = garden.activeLimbs.toList();
+      expect(garden.requiredHits, 7);
+      for (var i = 0; i < 7; i++) {
+        at(76 + garden.activeOffsets[i]);
+        garden.tap(garden.activeLimbs[i]);
+      }
+      at(82.9);
+      expect(garden.progress.fullTierSuccesses, 1);
+      expect(garden.progress.cleared, isFalse);
+      expect(garden.activeLimbs, firstPeak, reason: 'The phrase stays frozen.');
+      at(91.5);
+      expect(garden.activeLimbs, isNot(firstPeak));
+      playResponse(92);
+      expect(garden.phase, GardenPhase.cleared);
+      expect(garden.pizazz, 0);
+    },
+  );
+
+  test('bar needs seven hits and failed peak resets the sustain count', () {
+    transport.stop();
+    garden = GardenSession(
+      transport,
+      audio,
+      definition: fights[1],
+      chart: FightChart.bar,
+    )..start();
+    expect(garden.requiredHits, 7);
+    for (var cycle = 0; cycle < 9; cycle++) {
+      playResponse(12 + cycle * 16);
+    }
+    expect(garden.progress.fullTierSuccesses, 1);
+    at(162.9);
+    expect(garden.progress.fullTierSuccesses, 0);
+    expect(garden.progress.tier, 3);
+    expect(garden.progress.cleared, isFalse);
+  });
+
+  test(
+    'pause before and after commit preserves the correct crowd checkpoint',
+    () {
+      at(12);
+      final id = garden.tap(garden.activeLimbs.first).note!.id;
+      final pattern = garden.activeLimbs.toList();
+      garden.pause();
+      garden.resume();
+      at(12);
+      expect(garden.activeLimbs, pattern);
+      expect(garden.tap(garden.activeLimbs.first).note!.id, id);
+      for (var i = 1; i < 8; i++) {
+        at(12 + garden.activeOffsets[i]);
+        garden.tap(garden.activeLimbs[i]);
+      }
+      at(18.9);
+      final interest = garden.crowd.guests.map((g) => g.interest).toList();
+      expect(garden.passedPhrases, 1);
+      garden.pause();
+      garden.resume();
+      expect(garden.crowd.guests.map((g) => g.interest), interest);
+      at(12);
+      expect(garden.tap(garden.activeLimbs.first).note!.id, isNot(id));
+      expect(garden.passedPhrases, 1);
+      expect(garden.crowd.guests.map((g) => g.interest), interest);
+    },
+  );
+
+  test(
+    'varied local flicks chain style without duplicate or replay farming',
+    () {
+      transport.stop();
+      garden = GardenSession(
+        transport,
+        audio,
+        chart: const FightChart(
+          limbs: [Limb.leftHand, Limb.rightHand, Limb.leftFoot, Limb.rightFoot],
+          offsets: [0, 2, 4, 6],
+        ),
+      )..start();
+      String adorn(int index, FlourishDirection direction) {
+        final target = 12.0 + garden.activeOffsets[index];
+        at(target);
+        final result = garden.tap(garden.activeLimbs[index]);
+        expect(result.note!.flourishTo, isNotNull);
+        at(target + .1);
+        expect(garden.flourishGesture(result.note!.id, direction), isTrue);
+        return result.note!.id;
+      }
+
+      adorn(0, FlourishDirection.up);
+      expect(garden.styleCombo, 1);
+      final secondId = adorn(1, FlourishDirection.right);
+      expect(garden.styleCombo, 2);
+      expect(garden.flourishGesture(secondId, FlourishDirection.down), isFalse);
+      expect(garden.styleCombo, 2);
+      adorn(2, FlourishDirection.down);
+      expect(garden.styleCombo, 3);
+      expect(
+        garden.crowd.guest(2, garden.positionBeats + .5).styleEnergy,
+        greaterThan(0),
+      );
+      adorn(3, FlourishDirection.down);
+      expect(
+        garden.styleCombo,
+        1,
+        reason: 'Variety builds the expressive chain.',
+      );
+      expect(garden.pizazz, 400);
+      expect(garden.crowd.peakSupported, isFalse);
+      garden.pause();
+      expect(garden.styleCombo, 0);
+      garden.resume();
+      adorn(0, FlourishDirection.up);
+      expect(garden.pizazz, 400);
+      expect(garden.styleCombo, 0);
+      expect(garden.crowd.guest(0, garden.positionBeats).styleEnergy, 0);
+    },
+  );
+
+  test(
+    'an accepted early tap can finish its local flick before the response beat',
+    () {
+      transport.stop();
+      garden = GardenSession(
+        transport,
+        audio,
+        chart: const FightChart(
+          limbs: [Limb.leftHand, Limb.rightHand],
+          offsets: [0, 2],
+        ),
+      )..start();
+      at(11.64);
+      expect(garden.phase, GardenPhase.call);
+      final note = garden.tap(Limb.leftHand).note!;
+      at(11.84);
+      expect(garden.phase, GardenPhase.call);
+      expect(garden.flourishGesture(note.id, FlourishDirection.left), isTrue);
+      expect(garden.pizazz, 100);
+    },
+  );
 
   test('joining bridge transport preserves anchor and queued audio', () {
     transport.stop();
@@ -152,9 +327,9 @@ void main() {
       at(11.64); // Exactly 180 ms early.
       expect(garden.phase, GardenPhase.call);
       expect(garden.tap(Limb.leftHand).grade, TapGrade.good);
-      for (var i = 1; i < garden.chart.limbs.length; i++) {
+      for (var i = 1; i < garden.activeLimbs.length; i++) {
         at(12 + garden.chart.offsets[i]);
-        garden.tap(garden.chart.limbs[i]);
+        garden.tap(garden.activeLimbs[i]);
       }
       at(18.9);
       expect(garden.progress.tier, 1);
@@ -209,9 +384,9 @@ void main() {
   test('pause replays phrase and credited flourish cannot be farmed', () {
     String playUntilFlourish() {
       String id = '';
-      for (var i = 0; i < garden.chart.limbs.length; i++) {
+      for (var i = 0; i < garden.activeLimbs.length; i++) {
         at(12 + garden.chart.offsets[i]);
-        id = garden.tap(garden.chart.limbs[i]).note!.id;
+        id = garden.tap(garden.activeLimbs[i]).note!.id;
       }
       at(18.6);
       expect(garden.flourish(id, Limb.rightFoot), isTrue);
@@ -237,10 +412,11 @@ void main() {
         playResponse(12 + cycle * 16);
       }
       const start = 92.0;
+      at(start - .5);
       String lastId = '';
-      for (var i = 0; i < garden.chart.limbs.length; i++) {
+      for (var i = 0; i < garden.activeLimbs.length; i++) {
         at(start + garden.chart.offsets[i]);
-        lastId = garden.tap(garden.chart.limbs[i]).note!.id;
+        lastId = garden.tap(garden.activeLimbs[i]).note!.id;
       }
       at(start + 6.9);
       final approvalAt = garden.completedAtSeconds;
@@ -251,7 +427,7 @@ void main() {
       expect(garden.flourish(lastId, Limb.rightFoot), isTrue);
       expect(garden.pizazz, 100);
       expect(garden.completedAtSeconds, approvalAt);
-      at(start + 7.5);
+      at(start + 7.9);
       expect(garden.phase, GardenPhase.cleared);
       expect(garden.completedAtSeconds, approvalAt);
       expect(transport.state, TransportState.playing);

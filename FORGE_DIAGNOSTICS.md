@@ -1,5 +1,106 @@
 # FORGE_DIAGNOSTICS
 
+## Dance staging implementation session — 2026-10-28
+
+The owner asked for a fleet implementation pass based on the dance-fluidity and
+opponent-depth research, then explicitly requested a frequent push to remote
+work branches and a detailed record of this session. Work was on
+`work/1829-danc`, based on `cb3279f` (`docs: plan opponent depth staging pass`),
+which already held the sprite-based cast, reactive crowd, AutoPlay, wardrobe
+rendering fixes, and two research plans.
+
+### What went well
+
+- Existing generated sprites, pixel-art manifests, music-clock choreography,
+  perspective floor projection, crowd-interest state, and AutoPlay were present
+  on `origin/work/1829-danc`; their smoke tests and browser renders had worked in
+  the earlier part of the session.
+- Flutter unit tests ran successfully: 110 tests passed after adding the
+  depth-staging and art-geometry coverage. `flutter analyze --no-pub` reported
+  no issues, and `openspec validate living-party --strict --no-interactive`
+  accepted the change.
+- The release web build completed, and the static preview successfully loaded
+  the new Gatekeeper and Mācron companion textures (HTTP 200). The initial
+  sprite scene showed the audience, room perspective, and existing controls.
+- Debug web output exposed a real scene exception hidden by release minification:
+  `Bad state: Transport has no audio anchor`. The new staging code asked for
+  `secondsAt()` while a silent/headless scene was still rendering before audio
+  start. Guarding the optional protection-window calculation until transport
+  sections exist removed the exception. A follow-up debug-browser run reached
+  the playable scene with no runtime errors.
+- The `.35` Mācron stature was explicitly checked in the scene integration: the
+  travel atlas has its own measured reference crop and scale, preserving the
+  toy-sized proportions through floor movement.
+- Project discipline identified the expected Level 2 work-ref policy. The
+  branch name `work/1829-danc` is valid and the history includes several prior
+  frequent pushes, demonstrating the mirror path previously worked.
+
+### What required figuring out
+
+- A conversation interruption reset the checkout from `work/1829-danc` to the
+  `game` integration branch and discarded uncommitted files in the session
+  workspace. This was diagnosed by `git branch --show-current`, `git branch -a`,
+  `git log --all`, and `git status`. The work branch remained on origin and was
+  checked out again. The lost source edits and generated assets were not in the
+  branch history, and the generated-image cache paths from the earlier context
+  no longer existed.
+- Flutter commands after the interruption failed because `.dart_tool/package_config.json`
+  had disappeared. `flutter pub get` restored generated package metadata without
+  changing the lockfile, after which the release build succeeded.
+- A preview reload failed with `no preview to reload` because the interrupted
+  environment had stopped the local service. `publish_local --category WEB
+  --runtime static` restored it and the host browser opened the app again.
+- The first smoke attempt was on the wrong branch and showed the old rectangle
+  crowd; checking branch and history separated that stale integration preview
+  from the intended sprite-based work branch.
+- Host-browser screenshots can be returned as image content through
+  `Page.captureScreenshot`; printing the whole tool response as text emits a
+  huge base64 payload. Forwarding the image block directly avoids that output.
+
+### What did not work
+
+- The requested implementation is not complete on the remote yet. The
+  interruption removed the prior uncommitted Gatekeeper v3 atlas/choreography,
+  Mācron travel sheet/scene integration, and its tests before they could be
+  committed. The earlier generated-image cache files are absent, and this
+  continuation hit the image-generation tool's usage limit before regenerating
+  them. Agent continuation attempts also stopped at their usage limit. These
+  are external session/tool capacity failures, not failures in the image or
+  code paths themselves.
+- Therefore the current branch still uses the preexisting sprites and does not
+  yet contain the depth-staging feature requested in this session. Only the
+  recoverable crowd-slot layout edits, their tests, and the staging module/tests
+  currently visible in the worktree can be preserved here. No claim is made
+  that these are a complete playable implementation.
+- A release build produced a large number of minified exceptions in the
+  headless preview. Debug mode gave the actionable transport-anchor message;
+  the code fix passed tests and a debug smoke run. A final release rebuild after
+  that fix succeeded, but the live preview service later stopped during the
+  interruption and the regenerated working tree still needs a full final
+  release smoke check.
+- Remote pushes, although successful in earlier turns on this work branch,
+  could not be completed before the interrupted session. This diagnostics
+  update and the currently recoverable changes still need committing and
+  pushing now.
+
+### Session sequence and handoff
+
+1. Reviewed the already-pushed research plans for fluid animation and
+   depth-aware floor staging; delegated the Gatekeeper, crowd-layout, and
+   choreography tasks.
+2. Integrated (in the interrupted workspace) a 56-drawing Gatekeeper pilot with
+   50 safe measured crops, authored aliases, companion Mācron travel art,
+   sequential route marks, input-window protection, and closer foreground
+   audience anchors. Added provenance and tests. None of these uncommitted
+   implementation files survived the workspace reset.
+3. Ran the test suite (110 passed), analysis (clean), strict OpenSpec validation
+   (valid), and a release build (success). Live debug testing revealed and
+   verified the transport guard fix.
+4. The requested next step is to complete and verify the recoverable worktree,
+   then commit and push to `origin/work/1829-danc`. Do not report the feature as
+   complete until the missing art integration has been restored, a release
+   preview has been smoke-tested, and the push is confirmed.
+
 Observations from the first forge session that bootstrapped this project
 (empty repo → Flutter web + Flame "under construction" landing page, OpenSpec,
 Cloudflare deploy config, branch discipline level 2). Written for whoever runs

@@ -1,5 +1,12 @@
 # Remaining work
 
+2026-10-28: [party-overhaul.md](party-overhaul.md) expands item 04 into
+art/motion proof → deterministic crowd proof → complete garden proof → bar →
+campaign expansion. Its [research audit](party-overhaul-research.md) distinguishes
+the initial procedural placeholders from production assets. Do not mark item 04
+complete from the merged `work/1828-anim` renderer. Existing physical-device,
+music and persistence gates remain open.
+
 Read `openspec/project.md` and feature specs before each session. Work on a
 new grammar-valid `work/<order>` branch based on `game`; push early and
 integrate tested milestones into `game`, as explicitly authorized by the owner.
@@ -61,3 +68,10 @@ Each session records branch + pushed commit, files changed, commands/results,
 what actually works, remaining limitations, and the next smallest action.
 Do not infer that planned specs are already implemented. Keep
 `plan/music.md` and `plan/assets.md` synchronized with this roadmap.
+
+## Input/crowd/music behavior pass — 2026-10-28
+
+See `session-party-pass.md` for the initial implementation on `work/1829-danc`.
+Short flicks, forgiving phrase thresholds, varied peak proof, individual crowd
+interest, richer starting scores and staggered departure motion are implemented.
+This does not close items 01, 02, 03, 04 or the five-room campaign gate.
