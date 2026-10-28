@@ -31,3 +31,6 @@ variants, challenger choreography and ambient life. Authoring rules now live in
 `../assets/art/STYLEGUIDE.md`; the three supporting research documents are
 `crowd-animation-system.md`, `dance-battle-choreography.md` and
 `party-perspective-and-life.md`.
+
+`wardrobe-rendering-stability.md` records the hosted crowd-sprite investigation
+and the normal-image fallback used to keep every guest visible on web renderers.

@@ -3,7 +3,7 @@
 2026-10-28. This contract addresses the mismatch between independently scaled
 sprites and the painted rooms. It also defines reusable seated/standing guests,
 furniture and local environmental life. The first implementation is
-`lib/gameplay/party_layout.dart`, its tests, and the clothing palette shader.
+`lib/gameplay/party_layout.dart`, its tests, and the clothing palette pipeline.
 Production artwork, scene integration and phone review are separate acceptance
 steps. The current backgrounds remain flattened starters.
 
@@ -32,9 +32,8 @@ steps. The current backgrounds remain flattened starters.
   No Ranitas code or image assets were copied into this project.
 - [Flutter: Writing and using fragment shaders](https://docs.flutter.dev/ui/design/graphics/fragment-shaders)
   documents shader assets, `FragmentProgram`, float/sampler uniforms, local
-  `FlutterFragCoord`, premultiplied output and program/shader reuse. The clothing
-  helper uses a Canvas shader on an explicit destination rectangle; it does not
-  use an Impeller-only image filter or recolor the entire scene.
+  `FlutterFragCoord` and premultiplied output. Kumbia uses this only once while
+  preparing a wardrobe image; animated frames are ordinary image draws.
 
 ## Inspected landmarks versus chosen calibration
 
@@ -122,16 +121,15 @@ own body shape; palette variants should not alter skin, face, hair or accessorie
 
 ## Clothing palette contract
 
-`OutfitPalette.load()` caches the compiled program and returns an owned picture
-and shader pool. `draw(canvas, image:, source:, destination:, palette:)` records an
-immutable GPU picture per atlas crop and palette, retaining its initialized
-shader until scene disposal. The picture retains native texture references and
-the shader keeps its uniform buffer alive; subsequent frames never access
-CanvasKit's expiring sampler wrapper. Canvas transforms position and scale the
-pose without changing uniforms or duplicating textures. `drawImageRect` does not
-apply a Paint shader as a recoloring operation. Dispose the helper with the owning
-scene. Four `OutfitColor` values are teal, blue, coral
-and gold. There is no CPU image rewriting or atlas duplication for palette swaps.
+`OutfitPalette.load()` caches the compiled program. Its first use records and
+rasterizes one full atlas per `(source atlas, wardrobe)` pair; the shader and
+temporary picture are immediately disposed. `draw(canvas, image:, source:,
+destination:, palette:)` always uses `drawImageRect`, selecting either that
+ordinary rasterized atlas or the still-visible source atlas while preparation is
+pending or unavailable. Four `OutfitColor` values are teal, blue, coral and gold.
+The cache is deliberately bounded to the three guest atlases × four wardrobes.
+This trades memory for a renderer that cannot lose people during an animation.
+`plan/wardrobe-rendering-stability.md` records its browser evidence and budget.
 
 The original cool ramp (`#4B245E`, `#874197`, `#C878D6`) barely matched the actual
 generated ensemble: only 1 woman, 0 man and 7 host pixels with alpha≥128.
@@ -154,12 +152,12 @@ needed for every future replacement. This remains a reviewed semantic color-key
 convention, not automatic clothing recognition. A future asset with overlapping
 skin/hair hues needs an explicit separate mask rather than a global hue filter.
 
-The shader retains alpha, source HSV value and saturation while changing the
-reserved hue. This preserves shade ordering; it does not claim identical measured
-perceptual luminance across hues. Non-matching pixels pass through. Sampling uses
-explicit texel centers clamped inside the selected frame, so adjacent cells cannot
-bleed in. Program-load failure is explicit: ordinary drawing shows the original
-source plum and must be reported as that fallback, not labeled a working variant.
+The one-time palette raster preserves alpha, source HSV value and saturation while
+changing the reserved hue. This preserves shade ordering; it does not claim
+identical measured perceptual luminance across hues. Non-matching pixels pass
+through. Its alpha is checked against the source before the result can replace it.
+Program-load or preparation failure leaves the original source plum visibly drawn;
+that fallback must not be labeled a working wardrobe variant.
 
 ## Local life and attention budget
 
@@ -190,10 +188,11 @@ it does not require simultaneous large gestures or whole-screen flashes.
 Six layout tests cover shared crop/projection on 360×640, 390×844 and 412×915
 surfaces; inverse mapping; monotonic depth/stature; twelve unique seated slots;
 persistent chair anchors; continuous bounded ambient motion; and invalid inputs.
-The shader raster test renders a synthetic atlas through the actual compiled
-fragment program: four outfit colors, unchanged skin/wood, preserved partial
-alpha/shade values, nearest cell boundaries and no adjacent-cell bleed. It also
-checks reuse across multiple differently configured draws in the same frame.
+The palette tests raster a synthetic atlas through the actual compiled fragment
+program, then render only its ordinary image: four outfit colors, unchanged
+skin/wood, preserved partial alpha/shade values, nearest cell boundaries and no
+adjacent-cell bleed. They also check source fallback and safe teardown while a
+palette job is pending.
 
 Before acceptance, compare screen captures over a temporary floor/horizon guide:
 feet and chair bases meet the same tile, rising does not grow a person, nearby
@@ -202,7 +201,7 @@ Inspect all new sheets at native size and in both rooms. Review occlusion/croppi
 on narrow/tall phones; moving an isolated sprite to dodge clipping breaks its
 relationship to the scenery, so adjust the authored group or whole-camera framing.
 
-Measure phone frame time, shader compilation/load time, texture memory and audio
+Measure phone frame time, one-time palette preparation, texture memory and audio
 underruns with all twelve guests, chairs and local loops visible. Structural tests
 do not establish a measured device budget, artistic coherence, a recovered 3D
 camera, or completed five-room art. Those reviews remain open.

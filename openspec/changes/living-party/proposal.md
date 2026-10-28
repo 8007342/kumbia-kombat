@@ -21,8 +21,8 @@ people, transitions, consistent physical depth and visible call/response dancing
   accents, follow-through, settling, finish/cede/invite and quiet response watching.
 - Independent foliage, canopy, flame and waiter loops, restrained source-anchored
   lamp light, frozen foreground clocks during pause and reduced-motion poses.
-- 132 measured new raster frames, exact prompts/provenance, an explicit outfit-mask
-  shader and CanvasKit-safe per-variant shader state.
+- 132 measured new raster frames, exact prompts/provenance, a reviewed outfit-mask
+  palette baked once into bounded ordinary atlas images before animation begins.
 
 ## Scope and evidence
 

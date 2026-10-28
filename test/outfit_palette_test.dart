@@ -8,6 +8,46 @@ import 'package:kumbia_kombat/gameplay/outfit_palette.dart';
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
+  test(
+    'source stays visible before preparation and without shader support',
+    () async {
+      final recorder = ui.PictureRecorder();
+      ui.Canvas(recorder).drawRect(
+        const ui.Rect.fromLTWH(0, 0, 1, 1),
+        ui.Paint()..color = const ui.Color(0xff874197),
+      );
+      final sourcePicture = recorder.endRecording();
+      final source = await sourcePicture.toImage(1, 1);
+      sourcePicture.dispose();
+      final supported = await OutfitPalette.load();
+      final unsupported = OutfitPalette.sourceOnly();
+      for (final palette in [supported, unsupported]) {
+        final pictureRecorder = ui.PictureRecorder();
+        palette.draw(
+          ui.Canvas(pictureRecorder),
+          image: source,
+          source: const ui.Rect.fromLTWH(0, 0, 1, 1),
+          destination: const ui.Rect.fromLTWH(0, 0, 1, 1),
+          palette: OutfitColor.teal,
+        );
+        // Disposing while work is queued must also dispose late raster results.
+        final pending = palette.prepare(source, OutfitColor.teal);
+        palette.dispose();
+        await pending;
+        expect(palette.cachedVariantCount, 0);
+        final picture = pictureRecorder.endRecording();
+        final rendered = await picture.toImage(1, 1);
+        final bytes = (await rendered.toByteData(
+          format: ui.ImageByteFormat.rawStraightRgba,
+        ))!;
+        expect(bytes.buffer.asUint8List(), [135, 65, 151, 255]);
+        rendered.dispose();
+        picture.dispose();
+      }
+      source.dispose();
+    },
+  );
+
   test('twelve avatars cache independent immutable wardrobe variants', () async {
     final images = <ui.Image>[];
     for (final color in [
@@ -28,6 +68,11 @@ void main() {
     }
     final palette = await OutfitPalette.load();
     try {
+      for (final image in images) {
+        for (final color in OutfitColor.values) {
+          await palette.prepare(image, color);
+        }
+      }
       final recorder = ui.PictureRecorder();
       final canvas = ui.Canvas(recorder);
       for (var actor = 0; actor < 3; actor++) {
@@ -141,6 +186,8 @@ void main() {
           final original = (await atlas.toByteData(
             format: ui.ImageByteFormat.rawStraightRgba,
           ))!;
+          await palette.prepare(atlas, OutfitColor.teal);
+          expect(palette.lastPreparationError, isNull);
           final recorder = ui.PictureRecorder();
           final canvas = ui.Canvas(recorder);
           const frame = ui.Rect.fromLTWH(0, 0, 256, 256);
@@ -237,6 +284,7 @@ void main() {
     final variants = <String>{};
     try {
       for (final color in OutfitColor.values) {
+        await palette.prepare(atlas, color);
         final recorder = ui.PictureRecorder();
         final canvas = ui.Canvas(recorder);
         const destination = ui.Rect.fromLTWH(0, 0, 14, 2);
@@ -340,7 +388,7 @@ void main() {
       nextImage.dispose();
       // Exercise consecutive animation frames, repeated actors sharing a pose,
       // mirrored parent transforms and changing destinations. The cache must
-      // depend only on source poses/palettes, never screen position or scale.
+      // depend only on atlas/palette, never pose, screen position or scale.
       for (var tick = 0; tick < 60; tick++) {
         final recorder = ui.PictureRecorder();
         final canvas = ui.Canvas(recorder);
@@ -390,7 +438,7 @@ void main() {
           }
         }
         image.dispose();
-        if (tick > 0) expect(palette.cachedVariantCount, 12);
+        if (tick > 0) expect(palette.cachedVariantCount, 4);
       }
       final invalidRecorder = ui.PictureRecorder();
       expect(

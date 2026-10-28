@@ -12,6 +12,9 @@ Branch: `work/1829-danc`. Continued from `d981a47`; frequent work-ref pushes:
   all-outfits-teal behavior seen in the CanvasKit browser.
 - `37b66e3`: bind each texture sampler after its per-frame crop and destination
   floats, fixing CanvasKit's zero-area crowd draw.
+- `b1f23bc`: retained per-pose shader pictures after the live sampler path could
+  lose a crowd on some web renderers. This was superseded by ordinary rasterized
+  wardrobe images; see `wardrobe-rendering-stability.md`.
 
 ## Delivered behavior
 
@@ -43,10 +46,11 @@ foreground clock, independent of scoring. Reduced motion holds informative poses
 
 ## Validation and limits
 
-The final suite passes 81 tests with clean analysis. `flutter build web --release
+The original integration suite passed 81 tests with clean analysis. `flutter build web --release
 --no-web-resources-cdn --no-pub` succeeds. A hard-reloaded CanvasKit preview showed
 the twelve seated garden guests with independently visible teal, blue, coral and
-gold wardrobes; AutoPlay also reached the challenger handoff without hiding them.
+gold wardrobes; later real-GPU reports still showed disappearing guests, so it is
+not acceptance evidence for the superseded live shader path.
 OpenSpec strict validation and diff checks pass.
 
 Sources/prompts: `assets/art/ensemble/provenance.json`. The read-only alpha inspector
