@@ -5,7 +5,9 @@ import 'package:flame/game.dart';
 import 'package:flutter/painting.dart';
 
 import 'garden_session.dart';
+import 'crowd_interest.dart';
 import 'rhythm.dart';
+import 'room_departure.dart';
 
 class Spectator {
   const Spectator({
@@ -143,12 +145,14 @@ class GardenSceneGame extends FlameGame {
   double actionBeat = -10;
   double flourishBeat = -10;
   double exitTravel = 0;
+  // Supplied from the continuing conductor through approval and travel.
+  double? presentationBeat;
+  double warmDown = 0;
   ui.Image? _background;
   ui.Image? _gatekeeper;
   String _currentBackground = 'garden/garden-mansion.png';
   double _ambient = 0;
   double _resetBeat = -10;
-  double? _clearedAt;
 
   bool get isBar => _currentBackground.contains('bar');
 
@@ -177,7 +181,8 @@ class GardenSceneGame extends FlameGame {
     if (generation != _roomGeneration) return;
     _background = loaded[0];
     _gatekeeper = loaded[1];
-    _clearedAt = null;
+    presentationBeat = null;
+    warmDown = 0;
     _resetBeat = -10;
     exitTravel = 0;
   }
@@ -198,10 +203,9 @@ class GardenSceneGame extends FlameGame {
     final w = size.x;
     final h = size.y;
     if (w <= 0 || h <= 0) return;
-    final beat = session?.positionBeats ?? _ambient * .6;
+    final beat = presentationBeat ?? session?.positionBeats ?? _ambient * .6;
     final playing = session?.running ?? false;
     final cleared = session?.phase == GardenPhase.cleared;
-    final tier = session?.progress.tier ?? 0;
     final combo = session?.combo ?? 0;
 
     final pulse = reducedMotion ? 0.0 : math.sin(beat * math.pi * 2);
@@ -230,16 +234,12 @@ class GardenSceneGame extends FlameGame {
     canvas.drawRect(ui.Rect.fromLTWH(0, 0, w, h), shade);
 
     // 2. Party Crowd / Spectators in Depth
-    _drawSpectators(canvas, w, h, beat, tier, combo, cleared);
+    _drawSpectators(canvas, w, h, beat, cleared);
 
     // 3. Challenger / Gatekeeper
-    if (cleared) {
-      _clearedAt ??= _ambient;
-    } else {
-      _clearedAt = null;
-    }
+    final approvalBeat = session?.completedAtBeat ?? beat;
     final accepted = cleared
-        ? ((_ambient - _clearedAt!) / .8).clamp(0.0, 1.0)
+        ? ((beat - approvalBeat) / 2).clamp(0.0, 1.0)
         : 0.0;
     final hostX = w * (.51 + .25 * accepted);
     final hostY = h * .43 + (playing ? pulse * 1.5 : 0);
@@ -271,7 +271,7 @@ class GardenSceneGame extends FlameGame {
       canvas.restore();
     }
 
-    // 4. Mācron Protagonist with Multi-Frame Dance Engine
+    // 4. Procedural movement proof; production authored atlases remain planned.
     final entrance = session?.phase == GardenPhase.intro
         ? (beat / 4).clamp(0.0, 1.0)
         : 1.0;
@@ -279,21 +279,35 @@ class GardenSceneGame extends FlameGame {
     final retreat = resetAge >= 0 && resetAge < 2
         ? math.sin(resetAge / 2 * math.pi)
         : 0.0;
-    final robotY =
-        h * (.76 - entrance * .09 + retreat * .09 - exitTravel * .16);
-    final robotX = w * .5;
+    final departure = roomDepartures[isBar ? 'bar' : 'garden']!.sample(
+      exitTravel,
+      reducedMotion: reducedMotion,
+    );
+    final robotY = exitTravel > 0
+        ? h * departure.y
+        : h * (.76 - entrance * .09 + retreat * .09);
+    final robotX = w * (exitTravel > 0 ? departure.x : .5);
     _shadow(canvas, ui.Offset(robotX, robotY + 20), w * .14);
 
     canvas.save();
     canvas.translate(robotX, robotY);
     final zoom = reducedMotion ? 1.0 : 1 + pulse.abs() * .012;
-    final scale = (w / 150).clamp(1.8, 3.0) * zoom * (1 - exitTravel * .35);
+    final scale =
+        (w / 150).clamp(1.8, 3.0) *
+        zoom *
+        (exitTravel > 0 ? departure.scale : 1);
     canvas.scale(scale);
 
     final flourish = beat - flourishBeat >= 0 && beat - flourishBeat < 1;
     final hit = beat - actionBeat >= 0 && beat - actionBeat < .45;
-    final front = hit || flourish || cleared;
+    final front = exitTravel > 0 ? false : hit || flourish || cleared;
 
+    final stumbleAge = beat - (session?.lastStumbleBeat ?? -100);
+    final stumbling = stumbleAge >= 0 && stumbleAge < 1.5;
+    if (stumbling && !reducedMotion) {
+      // A tiny recovery step, never a fall, collision penalty or humiliation.
+      canvas.translate((stumbleAge < .5 ? 2 : -1), 1);
+    }
     _drawMacron(
       canvas,
       beat + exitTravel * 8,
@@ -310,17 +324,17 @@ class GardenSceneGame extends FlameGame {
     canvas.restore();
 
     // 5. Celebration Confetti & Fireflies
-    if (cleared) {
-      _drawConfetti(canvas, w, h);
+    if (cleared && warmDown < .65 && !reducedMotion) {
+      _drawConfetti(canvas, w, h, beat);
     } else {
       for (var i = 0; i < 8; i++) {
         final x = w * (.07 + ((i * .137) % .86));
         final y = h * (.32 + ((i * .093) % .36));
-        final alpha = .15 + .15 * math.sin(_ambient + i).abs();
+        final alpha = .15 + .15 * math.sin(beat * .5 + i).abs();
         canvas.drawRect(
           ui.Rect.fromLTWH(
             x,
-            y + (reducedMotion ? 0 : math.sin(_ambient + i) * 3),
+            y + (reducedMotion ? 0 : math.sin(beat * .5 + i) * 3),
             2,
             2,
           ),
@@ -345,62 +359,62 @@ class GardenSceneGame extends FlameGame {
     double w,
     double h,
     double beat,
-    int tier,
-    int combo,
     bool cleared,
   ) {
     final list = isBar ? _barSpectators : _gardenSpectators;
-    final isHyped = cleared || tier >= 3 || combo >= 6;
-    final isVibing = tier >= 1 || combo >= 3;
-
     for (var i = 0; i < list.length; i++) {
       final spec = list[i];
+      final guest = session?.crowd.guest(i, beat);
+      final state = guest?.state ?? CrowdGuestState.occupied;
+      // Each guest settles separately; a pair continues clapping the exit.
+      final settleAt = .15 + i * .16;
+      final settled = cleared && warmDown > settleAt;
+      final escorting = cleared && warmDown > 0 && i % 3 == 0 && warmDown < .9;
+      final styleEnergy = guest?.styleEnergy ?? 0;
+      final attentive =
+          !settled && (state != CrowdGuestState.occupied || styleEnergy > .1);
+      final dancing =
+          !settled &&
+          (state == CrowdGuestState.participating ||
+              state == CrowdGuestState.celebrating);
+      final cheering =
+          escorting ||
+          (!settled &&
+              (state == CrowdGuestState.celebrating || styleEnergy > .2));
+      final following = !settled && state == CrowdGuestState.following;
+      final noticing = !settled && state == CrowdGuestState.curious;
+      final localBeat = beat + i * .25;
+      final pose = (localBeat * 2).floor() % 4;
+      final foot = reducedMotion || !dancing
+          ? 0.0
+          : const [0.0, -2.0, 0.0, 2.0][pose];
+      final bounce = reducedMotion
+          ? 0.0
+          : dancing
+          ? const [0.0, 1.0, 0.0, 2.0][pose]
+          : following
+          ? (pose.isEven ? 0.0 : .5)
+          : 0.0;
+      final charScale = spec.scale * (w / 180).clamp(1.1, 2.0);
       final sx = w * spec.relX;
       final sy = h * spec.relY;
-
-      // Calculate animation bounce and gestures based on hype tier
-      double bounce = 0;
-      double armAngle = 0;
-      bool cheering = false;
-      bool facingPlayer = false;
-
-      if (cleared) {
-        cheering = true;
-        facingPlayer = true;
-        bounce = reducedMotion
-            ? 0
-            : math.sin((beat * 2 + i * 0.7) * math.pi).abs() * 6.5;
-        armAngle = math.sin((beat * 2 + i) * math.pi) * 0.4;
-      } else if (isHyped) {
-        cheering = true;
-        facingPlayer = true;
-        bounce = reducedMotion
-            ? 0
-            : math.sin((beat + i * 0.5) * math.pi).abs() * 4.0;
-        armAngle = math.sin((beat + i) * math.pi) * 0.3;
-      } else if (isVibing) {
-        facingPlayer = true;
-        bounce = reducedMotion ? 0 : math.sin((beat + i) * math.pi) * 2.0;
-      } else {
-        // Oblivious state: subtle breathing, facing away or chatting
-        bounce = reducedMotion
-            ? 0
-            : math.sin((beat * 0.5 + i * 1.2) * math.pi) * 0.8;
-      }
-
-      final charScale = spec.scale * (w / 180).clamp(1.1, 2.0);
-
+      _shadow(canvas, ui.Offset(sx, sy + charScale * 2), charScale * 12);
       canvas.save();
-      canvas.translate(sx, sy - bounce);
+      canvas.translate(
+        sx.roundToDouble(),
+        (sy - bounce * charScale).roundToDouble(),
+      );
       canvas.scale(spec.facingRight ? charScale : -charScale, charScale);
-
       _drawSingleSpectator(
         canvas,
         spec,
         cheering: cheering,
-        facingPlayer: facingPlayer,
-        armAngle: armAngle,
+        facingPlayer: attentive || escorting,
+        armAngle: pose.isEven ? -.2 : .2,
         isBar: isBar,
+        footStep: foot,
+        pointing: noticing && i.isEven,
+        footTapping: following && !reducedMotion && pose.isOdd,
       );
       canvas.restore();
     }
@@ -413,6 +427,9 @@ class GardenSceneGame extends FlameGame {
     required bool facingPlayer,
     required double armAngle,
     required bool isBar,
+    required double footStep,
+    required bool pointing,
+    required bool footTapping,
   }) {
     void px(double x, double y, double w, double h, Color c) {
       canvas.drawRect(ui.Rect.fromLTWH(x, y, w, h), Paint()..color = c);
@@ -466,6 +483,11 @@ class GardenSceneGame extends FlameGame {
         // Cocktail glass raised
         px(7, -33 - armAngle * 4, 3, 5, const Color(0xFFFFD166));
       }
+    } else if (pointing) {
+      // A neighbor-facing "look over there" gesture before joining the groove.
+      px(-7, -19, 3, 8, outfit);
+      px(4, -20, 8, 3, outfit);
+      px(11, -21, 4, 2, skin);
     } else if (facingPlayer) {
       // One arm resting, one holding drink or clapping
       px(-7, -19, 3, 8, outfit);
@@ -477,10 +499,10 @@ class GardenSceneGame extends FlameGame {
     }
 
     // Legs / Lower body
-    px(-4, -8, 4, 9, const Color(0xFF1D2D44));
-    px(0, -8, 4, 9, const Color(0xFF1D2D44));
-    px(-5, 0, 4, 2, ink);
-    px(1, 0, 4, 2, ink);
+    px(-4 + footStep, -8, 4, 9, const Color(0xFF1D2D44));
+    px(-footStep, -8, 4, 9, const Color(0xFF1D2D44));
+    px(-5 + footStep, 0, 4, 2, ink);
+    px(1 - footStep, footTapping ? -1 : 0, 4, 2, ink);
   }
 
   void _drawChallengerCallDemo(
@@ -556,13 +578,7 @@ class GardenSceneGame extends FlameGame {
         : (isLH ? -2.0 : (isRH ? 2.0 : math.sin(beat * math.pi) * 1.5));
     pixel(-3 + antennaSway, -37 + bodyYOffset, 6, 4, ink);
     pixel(-1 + antennaSway, -35 + bodyYOffset, 2, 6, teal);
-    pixel(
-      -2 + antennaSway,
-      -38 + bodyYOffset,
-      4,
-      4,
-      combo >= 5 ? gold : cyan,
-    );
+    pixel(-2 + antennaSway, -38 + bodyYOffset, 4, 4, combo >= 5 ? gold : cyan);
 
     // 3. Head casing
     pixel(-11, -29 + bodyYOffset, 22, 18, ink);
@@ -646,7 +662,7 @@ class GardenSceneGame extends FlameGame {
     pixel(1, 8 + rightStep, 7, 3, shell);
   }
 
-  void _drawConfetti(ui.Canvas canvas, double w, double h) {
+  void _drawConfetti(ui.Canvas canvas, double w, double h, double beat) {
     const colors = [
       Color(0xFFFFC35F),
       Color(0xFF7CE2C4),
@@ -656,10 +672,10 @@ class GardenSceneGame extends FlameGame {
     ];
 
     for (var i = 0; i < 28; i++) {
-      final t = (_ambient * 0.8 + i * 0.23) % 1.0;
-      final x = w * ((i * 0.173 + math.sin(_ambient * 1.5 + i) * 0.05) % 1.0);
+      final t = (beat * 0.4 + i * 0.23) % 1.0;
+      final x = w * ((i * 0.173 + math.sin(beat * .75 + i) * 0.05) % 1.0);
       final y = h * (0.15 + 0.8 * t);
-      final rotation = (_ambient * 3 + i) % (math.pi * 2);
+      final rotation = (beat * 1.5 + i) % (math.pi * 2);
       final color = colors[i % colors.length];
 
       canvas.save();

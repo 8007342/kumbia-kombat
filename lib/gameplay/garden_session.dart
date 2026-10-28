@@ -1,4 +1,5 @@
 import '../music/transport.dart';
+import 'crowd_interest.dart';
 import 'progression.dart';
 import 'rhythm.dart';
 
@@ -31,12 +32,17 @@ class FightChart {
     this.callBeats = 8,
     this.introBeats = 4,
     this.flourishDestination = Limb.rightFoot,
+    this.variants = const [],
   });
   final List<Limb> limbs;
   final List<double> offsets;
   final double callBeats;
   final double introBeats;
   final Limb flourishDestination;
+  final List<List<Limb>> variants;
+  List<Limb> limbsFor(int tier, int peakPhrase) => variants.isEmpty || tier == 0
+      ? limbs
+      : variants[(tier == 4 ? 3 + peakPhrase : tier - 1) % variants.length];
   double get cycleBeats => callBeats * 2;
   static const garden = FightChart(
     limbs: [
@@ -50,6 +56,58 @@ class FightChart {
       Limb.leftHand,
     ],
     offsets: [0, 1, 2, 2.5, 4, 5, 6, 6.5],
+    variants: [
+      [
+        Limb.leftFoot,
+        Limb.rightFoot,
+        Limb.leftHand,
+        Limb.rightHand,
+        Limb.leftFoot,
+        Limb.rightFoot,
+        Limb.rightHand,
+        Limb.leftHand,
+      ],
+      [
+        Limb.rightHand,
+        Limb.leftFoot,
+        Limb.leftHand,
+        Limb.rightFoot,
+        Limb.rightHand,
+        Limb.leftHand,
+        Limb.leftFoot,
+        Limb.rightFoot,
+      ],
+      [
+        Limb.leftHand,
+        Limb.rightHand,
+        Limb.rightFoot,
+        Limb.leftFoot,
+        Limb.rightHand,
+        Limb.leftHand,
+        Limb.leftFoot,
+        Limb.rightFoot,
+      ],
+      [
+        Limb.leftFoot,
+        Limb.rightHand,
+        Limb.rightFoot,
+        Limb.leftHand,
+        Limb.leftFoot,
+        Limb.rightFoot,
+        Limb.leftHand,
+        Limb.rightHand,
+      ],
+      [
+        Limb.rightHand,
+        Limb.leftHand,
+        Limb.leftFoot,
+        Limb.rightFoot,
+        Limb.leftHand,
+        Limb.rightHand,
+        Limb.rightFoot,
+        Limb.leftFoot,
+      ],
+    ],
   );
   static const bar = FightChart(
     flourishDestination: Limb.leftHand,
@@ -64,18 +122,75 @@ class FightChart {
       Limb.rightFoot,
     ],
     offsets: [0, 1, 2, 2.5, 4, 5, 6, 6.5],
+    variants: [
+      [
+        Limb.rightFoot,
+        Limb.leftFoot,
+        Limb.rightHand,
+        Limb.leftHand,
+        Limb.rightFoot,
+        Limb.leftFoot,
+        Limb.leftHand,
+        Limb.rightHand,
+      ],
+      [
+        Limb.leftHand,
+        Limb.rightFoot,
+        Limb.rightHand,
+        Limb.leftFoot,
+        Limb.leftHand,
+        Limb.rightHand,
+        Limb.rightFoot,
+        Limb.leftFoot,
+      ],
+      [
+        Limb.rightHand,
+        Limb.leftHand,
+        Limb.leftFoot,
+        Limb.rightFoot,
+        Limb.leftHand,
+        Limb.rightHand,
+        Limb.rightFoot,
+        Limb.leftFoot,
+      ],
+      [
+        Limb.rightFoot,
+        Limb.leftHand,
+        Limb.leftFoot,
+        Limb.rightHand,
+        Limb.rightFoot,
+        Limb.leftFoot,
+        Limb.rightHand,
+        Limb.leftHand,
+      ],
+      [
+        Limb.leftHand,
+        Limb.rightHand,
+        Limb.rightFoot,
+        Limb.leftFoot,
+        Limb.rightHand,
+        Limb.leftHand,
+        Limb.leftFoot,
+        Limb.rightFoot,
+      ],
+    ],
   );
 }
 
 /// Garden vertical-slice controller. All judgments read the audio clock.
 /// Pump transport separately at 20 ms; call advance before painting/input.
 class GardenSession {
+  /// A demonstration between responses must not break an expressive chain.
+  static const styleChainWindowBeats = 24;
   GardenSession(
     this.transport,
     this.backend, {
     FightDefinition? definition,
     this.chart = FightChart.garden,
   }) : progress = FightProgress(definition ?? fights.first),
+       crowd = CrowdInterestModel(
+         rampPhrases: 4 * (definition ?? fights.first).successesPerTier,
+       ),
        _cycleStart = chart.introBeats {
     if (chart.limbs.isEmpty ||
         chart.limbs.length != chart.offsets.length ||
@@ -95,27 +210,49 @@ class GardenSession {
       }
       previous = offset;
     }
+    if (chart.variants.any((pattern) => pattern.length != chart.limbs.length)) {
+      throw ArgumentError('Chart variants must preserve note count');
+    }
+    _activeLimbs = chart.limbs;
   }
   final MusicTransport transport;
   final MusicAudioBackend backend;
   final FightProgress progress;
   final FightChart chart;
+  final CrowdInterestModel crowd;
+  late List<Limb> _activeLimbs;
+  List<Limb> get activeLimbs => _activeLimbs;
+  List<double> get activeOffsets => chart.offsets;
+  int get requiredHits => progress.definition.requiredHits(
+    _activeLimbs.length,
+    atPeak: _phraseTier == 4,
+  );
+  int get peakChallengesRemaining =>
+      progress.definition.finalChallenges - progress.fullTierSuccesses;
+  double lastStumbleBeat = -100;
+  int lastStumbleGuest = 0;
   GardenPhase phase = GardenPhase.ready;
   TapGrade? lastGrade;
   TapTiming? lastTiming;
   int? lastDeltaMs;
   ChallengeOutcome? lastOutcome;
   int pizazz = 0;
+  int styleCombo = 0;
+  FlourishDirection? _lastStyleDirection;
+  double _lastStyleBeat = -100;
   int perfects = 0;
   int combo = 0;
   int passedPhrases = 0;
   double? completedAtSeconds;
+  double? completedAtBeat;
   double _cycleStart;
   RhythmJudge? _judge;
   bool _resolved = false;
-  bool _missed = false;
   int _hits = 0;
   int _responseTier = 0;
+  int _phraseTier = 0;
+  int _responseSequence = 0;
+  CrowdCheckpoint? _crowdCheckpoint;
   final Set<String> _credited = {};
   final Set<String> _perfectCredited = {};
   final Set<String> _hit = {};
@@ -143,29 +280,46 @@ class GardenSession {
     _prepareCycle();
   }
 
-  void _prepareCycle() {
+  void _prepareCycle({bool newOccurrence = false}) {
+    if (newOccurrence) _responseSequence++;
     _judge = null;
     _resolved = false;
-    _missed = false;
     _hits = 0;
     _hit.clear();
+    _phraseTier = progress.tier;
+    _activeLimbs = List.unmodifiable(
+      chart.limbsFor(_phraseTier, progress.fullTierSuccesses),
+    );
+    _crowdCheckpoint = crowd.checkpoint();
     _phraseIdentity =
         '${progress.definition.id}:${progress.tier}:${progress.successesAtTier}:${progress.fullTierSuccesses}';
   }
 
   RhythmJudge _makeJudge() => RhythmJudge([
-    for (var i = 0; i < chart.limbs.length; i++)
+    for (var i = 0; i < _activeLimbs.length; i++)
       RhythmNote(
         '$_phraseIdentity:$i',
-        chart.limbs[i],
+        _activeLimbs[i],
         (transport.secondsAt(_cycleStart + chart.callBeats + chart.offsets[i]) *
                 1000)
             .round(),
-        flourishTo: i == chart.limbs.length - 1
-            ? chart.flourishDestination
-            : null,
+        flourishTo: _flourishDestination(i),
       ),
   ]);
+
+  Limb? _flourishDestination(int index) {
+    if (index == _activeLimbs.length - 1) return chart.flourishDestination;
+    final response = _cycleStart + chart.callBeats;
+    final gapMs =
+        (transport.secondsAt(response + chart.offsets[index + 1]) -
+            transport.secondsAt(response + chart.offsets[index])) *
+        1000;
+    // Leave the full late tap + ornament + next early tap windows unobstructed.
+    return gapMs >=
+            2 * RhythmJudge.goodWindowMs + RhythmJudge.flourishWindowMs + 40
+        ? chart.flourishDestination
+        : null;
+  }
 
   List<GardenCue> get visibleCues {
     if (phase == GardenPhase.ready ||
@@ -177,7 +331,7 @@ class GardenSession {
     final beat = positionBeats;
     final cues = <GardenCue>[];
     for (final demonstration in [true, false]) {
-      for (var i = 0; i < chart.limbs.length; i++) {
+      for (var i = 0; i < _activeLimbs.length; i++) {
         final target =
             _cycleStart +
             (demonstration ? 0 : chart.callBeats) +
@@ -190,13 +344,11 @@ class GardenSession {
           cues.add(
             GardenCue(
               id: id,
-              limb: chart.limbs[i],
+              limb: _activeLimbs[i],
               beat: target,
               progress: ((beat - target + 2) / 2).clamp(0, 1),
               demonstration: demonstration,
-              flourishTo: !demonstration && i == chart.limbs.length - 1
-                  ? chart.flourishDestination
-                  : null,
+              flourishTo: _flourishDestination(i),
             ),
           );
         }
@@ -206,6 +358,7 @@ class GardenSession {
   }
 
   void advance() {
+    if (positionBeats - _lastStyleBeat > styleChainWindowBeats) styleCombo = 0;
     if (phase == GardenPhase.ready ||
         phase == GardenPhase.paused ||
         phase == GardenPhase.cleared) {
@@ -227,7 +380,7 @@ class GardenSession {
     }
     if (beat >= _cycleStart + chart.cycleBeats) {
       _cycleStart += chart.cycleBeats;
-      _prepareCycle();
+      _prepareCycle(newOccurrence: true);
     }
     // Use the same millisecond precision as judgment. At a handoff the beat
     // inverse may be 11.99999999999 at the exact response timestamp.
@@ -250,19 +403,33 @@ class GardenSession {
       return;
     }
     if (judge.expire(_nowMs).isNotEmpty) {
-      _missed = true;
       combo = 0;
     }
     if (!_resolved &&
         _nowMs > judge.notes.last.atMs + RhythmJudge.goodWindowMs) {
       _resolved = true;
-      final passed = !_missed && _hits == judge.notes.length;
+      final passed = _hits >= requiredHits;
       // Full-arrangement sustain cannot score while its request is pending.
       if (passed && progress.tier == 4 && _responseTier < 4) return;
       lastOutcome = progress.resolve(passed: passed);
       if (passed) passedPhrases++;
+      final resolvedBeat = transport.beatAt(
+        (judge.notes.last.atMs + RhythmJudge.goodWindowMs) / 1000,
+      );
+      crowd.resolvePhrase(
+        sequence: _responseSequence,
+        passed: passed,
+        beat: resolvedBeat,
+        cleared: progress.cleared,
+      );
+      if (!passed) {
+        lastStumbleBeat = resolvedBeat;
+        lastStumbleGuest = _responseSequence % 5;
+      }
+      _crowdCheckpoint = crowd.checkpoint();
       if (progress.cleared) {
         completedAtSeconds = backend.nowSeconds;
+        completedAtBeat = positionBeats;
         // Required timing is frozen now. Keep the gesture surface alive until
         // the final optional swipe's complete (late-tap-inclusive) window ends.
         // The host then keeps pumping the groove through its musical bridge.
@@ -311,12 +478,46 @@ class GardenSession {
 
   /// Host verifies same pointer and minimum swipe distance before invoking.
   bool flourish(String noteId, Limb destination) {
-    if (phase != GardenPhase.response || _judge == null) return false;
+    if ((phase != GardenPhase.response && phase != GardenPhase.call) ||
+        transport.countingIn ||
+        _judge == null) {
+      return false;
+    }
     final accepted = _judge!.flourish(noteId, destination, _nowMs);
+    _creditFlourish(noteId, accepted);
+    return accepted;
+  }
+
+  bool flourishGesture(String noteId, FlourishDirection direction) {
+    if ((phase != GardenPhase.response && phase != GardenPhase.call) ||
+        transport.countingIn ||
+        _judge == null) {
+      return false;
+    }
+    final accepted = _judge!.flourishGesture(noteId, _nowMs);
+    _creditFlourish(noteId, accepted, direction: direction);
+    return accepted;
+  }
+
+  void _creditFlourish(
+    String noteId,
+    bool accepted, {
+    FlourishDirection? direction,
+  }) {
     if (accepted && _credited.add('${progress.definition.id}:$noteId')) {
       pizazz += 100;
+      final elapsed = positionBeats - _lastStyleBeat;
+      final varied =
+          direction != null &&
+          _lastStyleDirection != null &&
+          direction != _lastStyleDirection &&
+          elapsed >= 0 &&
+          elapsed <= styleChainWindowBeats;
+      styleCombo = varied ? (styleCombo + 1).clamp(1, 4) : 1;
+      _lastStyleDirection = direction;
+      _lastStyleBeat = positionBeats;
+      crowd.adorn(_responseSequence % 5, positionBeats, chain: styleCombo);
     }
-    return accepted;
   }
 
   void pause() {
@@ -327,7 +528,13 @@ class GardenSession {
     }
     final replayBeat = phase == GardenPhase.intro ? 0.0 : _cycleStart;
     transport.seek(replayBeat, tier: progress.tier);
-    _prepareCycle();
+    if (_crowdCheckpoint != null) crowd.restore(_crowdCheckpoint!);
+    crowd.clearStyle();
+    _prepareCycle(newOccurrence: _resolved);
+    lastStumbleBeat = -100;
+    styleCombo = 0;
+    _lastStyleDirection = null;
+    _lastStyleBeat = -100;
     phase = GardenPhase.paused;
     combo = 0;
   }

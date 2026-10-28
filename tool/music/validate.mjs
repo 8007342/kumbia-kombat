@@ -47,6 +47,14 @@ for(const entry of all){
  assert.ok(score.events.some(e=>e.beat===0),'Every segment has an authored downbeat');
  if(!score.kind){
   assert.equal(score.adornments.length,4);
+  const baseline=score.events.filter(n=>n.minTier===0);
+  for(let phrase=0;phrase<score.bars*4;phrase+=8){
+   const heard=baseline.filter(n=>n.beat>=phrase&&n.beat<phrase+8);
+   assert.ok(heard.filter(n=>n.track==='lead').length>=4,'Every opening-tier phrase carries its room hook');
+   assert.ok(heard.some(n=>n.track==='guitar'),'Opening tier has harmonic accompaniment');
+   assert.ok(heard.some(n=>n.track==='bass')&&heard.some(n=>n.track==='pulse'),'Opening tier keeps bass and percussion');
+  }
+  for(let tier=1;tier<5;tier++)assert.equal(score.tiers[tier].bpm-score.tiers[tier-1].bpm,3,'Orchestration revision preserves authored tempo steps');
   signatures.add(JSON.stringify(score.events.filter(n=>n.track==='lead'&&n.minTier===3).slice(0,9)));
   let previousCount=0;
   for(let tier=0;tier<5;tier++){
@@ -61,6 +69,12 @@ for(const entry of all){
   if(score.kind==='bridge'){
    assert.ok(score.events.filter(e=>e.beat<4).every(e=>e.track==='pulse'),'Bridge starts with a genuine percussion pivot');
    assert.ok(score.events.some(e=>e.beat>=4&&e.track==='answer'),'Bridge introduces destination motif');
+  } else {
+   const opening=score.events.filter(e=>e.beat<4), settling=score.events.filter(e=>e.beat>=4);
+   assert.ok(settling.length<opening.length,'Success second bar thins the ensemble');
+   assert.ok(settling.reduce((sum,e)=>sum+e.velocity,0)<opening.reduce((sum,e)=>sum+e.velocity,0),'Success second bar has gentler authored attacks (not a loudness measurement)');
+   assert.ok(settling.some(e=>e.track==='lead'),'Warm-down retains the tonic answer');
+   assert.ok([4,6].every(beat=>settling.some(e=>e.track==='pulse'&&e.pitch===36&&e.beat===beat)),'Warm-down retains the beat');
   }
   validateMidi(entry.midiPath,score,score.kind==='success'?4:0);
  }
