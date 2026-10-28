@@ -14,6 +14,7 @@ import '../music/transport.dart';
 import '../music/transition_conductor.dart';
 import 'garden_scene.dart';
 import 'garden_session.dart';
+import 'party_autoplay.dart';
 import 'progression.dart';
 import 'rhythm.dart';
 import 'rooms.dart';
@@ -39,6 +40,8 @@ class _GardenPageState extends State<GardenPage>
   final _scene = GardenSceneGame();
   final _focus = FocusNode();
   final _touches = DanceTouchGestures();
+  final _autoplay = PartyAutoplay();
+  bool _usedAutoplay = false;
   late final GameAudio _audio;
   late final Ticker _ticker;
   Timer? _pump;
@@ -131,8 +134,23 @@ class _GardenPageState extends State<GardenPage>
       if (session.phase == GardenPhase.cleared && !_exitStarted && _exitReady) {
         _beginExit();
       }
-      if (!session.running) return;
+      if (!session.running) {
+        _autoplay.suspend();
+        return;
+      }
       session.advance();
+      if (_conductor == null &&
+          !_handoffPaused &&
+          !_adoptingRoom &&
+          _foreground) {
+        _autoplay.pump(
+          session,
+          onTap: _tap,
+          onFlourish: (direction) => _ornament(direction.name),
+        );
+      } else {
+        _autoplay.suspend();
+      }
       final signature =
           '${session.progress.tier}:${session.progress.consecutiveFailures}:'
           '${session.progress.entranceResets}:${session.passedPhrases}';
@@ -179,6 +197,8 @@ class _GardenPageState extends State<GardenPage>
   }
 
   void _newSession() {
+    _autoplay.suspend();
+    _usedAutoplay = _autoplay.enabled;
     _transport?.stop();
     _transport = MusicTransport(
       MusicScore.fromJson(_scoreData!),
@@ -354,6 +374,7 @@ class _GardenPageState extends State<GardenPage>
       if (mounted) {
         setState(
           () => _error =
+              _scene.artLoadError ??
               'Sound needs your permission. Tap again to start the music.',
         );
       }
@@ -363,6 +384,7 @@ class _GardenPageState extends State<GardenPage>
   }
 
   void _pause() {
+    _autoplay.suspend();
     if (_conductor?.isPlaying == true) {
       _conductor!.pause();
       _handoffPaused = true;
@@ -373,6 +395,22 @@ class _GardenPageState extends State<GardenPage>
     _styleDestination = null;
     _styleNote = null;
     setState(() {});
+  }
+
+  void _toggleAutoplay() {
+    setState(() {
+      _autoplay.enabled = !_autoplay.enabled;
+      if (_autoplay.enabled) _usedAutoplay = true;
+      _touches.clear();
+      _styleDestination = null;
+      _styleNote = null;
+    });
+    if (_autoplay.enabled &&
+        _session?.phase == GardenPhase.ready &&
+        !_starting) {
+      // Activate sound in this same user gesture on desktop browsers.
+      unawaited(_start());
+    }
   }
 
   void _playCountIn(double seconds) {
@@ -543,7 +581,22 @@ class _GardenPageState extends State<GardenPage>
                 return Stack(
                   fit: StackFit.expand,
                   children: [
-                    GameWidget(game: _scene),
+                    GameWidget(
+                      game: _scene,
+                      errorBuilder: (context, error) => ColoredBox(
+                        color: _ink,
+                        child: Center(
+                          child: Padding(
+                            padding: const EdgeInsets.all(28),
+                            child: Text(
+                              _scene.artLoadError ?? 'The party scene could not load. Refresh to retry.',
+                              textAlign: TextAlign.center,
+                              style: const TextStyle(color: _cream),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
                     if (active)
                       Listener(
                         behavior: HitTestBehavior.opaque,
@@ -630,14 +683,24 @@ class _GardenPageState extends State<GardenPage>
           ),
         ),
         const SizedBox(width: 10),
-        const Text(
-          'KUMBIA KOLISEUM',
-          style: TextStyle(
-            color: _cream,
-            fontSize: 9,
-            letterSpacing: 2,
-            fontWeight: FontWeight.w600,
-          ),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text(
+              'KUMBIA KOLISEUM',
+              style: TextStyle(
+                color: _cream,
+                fontSize: 9,
+                letterSpacing: 2,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+            if (_usedAutoplay)
+              const Text(
+                'AUTOMATIC RUN',
+                style: TextStyle(color: _mint, fontSize: 8, letterSpacing: 1),
+              ),
+          ],
         ),
         const Spacer(),
         if (active)
@@ -656,6 +719,32 @@ class _GardenPageState extends State<GardenPage>
               fontSize: 11,
             ),
           ),
+        Semantics(
+          toggled: _autoplay.enabled,
+          label: 'AutoPlay',
+          child: IconButton(
+            onPressed: _session == null ? null : _toggleAutoplay,
+            tooltip: _autoplay.enabled
+                ? 'Turn off AutoPlay'
+                : 'AutoPlay · watch the party',
+            color: _autoplay.enabled ? _mint : _cream.withValues(alpha: .65),
+            iconSize: 20,
+            icon: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Icon(
+                  _autoplay.enabled
+                      ? Icons.smart_toy
+                      : Icons.smart_toy_outlined,
+                ),
+                const Text(
+                  'AUTO',
+                  style: TextStyle(fontSize: 7, letterSpacing: .6),
+                ),
+              ],
+            ),
+          ),
+        ),
       ],
     ),
   );

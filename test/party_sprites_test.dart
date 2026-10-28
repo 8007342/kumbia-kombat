@@ -141,13 +141,11 @@ void main() {
   test(
     'walk, groove and spin select authored silhouettes rather than transforms',
     () {
+      expect({
+        for (var i = 0; i < 4; i++) hero(beat: i * .25, walking: true),
+      }, containsAll(['rear_walk_left', 'rear_walk_right', 'rear_idle']));
       expect(
-        [for (var i = 0; i < 4; i++) hero(beat: i * .25, walking: true)]
-            .toSet(),
-        containsAll(['rear_walk_left', 'rear_walk_right', 'rear_idle']),
-      );
-      expect(
-        [for (var i = 0; i < 4; i++) hero(beat: 2 + i * .25)].toSet(),
+        {for (var i = 0; i < 4; i++) hero(beat: 2 + i * .25)},
         containsAll([
           'front_idle',
           'groove_left',
@@ -155,10 +153,9 @@ void main() {
           'anticipate',
         ]),
       );
-      expect(
-        [for (var i = 0; i < 8; i++) hero(flourishAge: i * .125)].toSet(),
-        containsAll(['spin_front', 'profile', 'spin_rear', 'rear_finish']),
-      );
+      expect({
+        for (var i = 0; i < 8; i++) hero(flourishAge: i * .125),
+      }, containsAll(['spin_front', 'profile', 'spin_rear', 'rear_finish']));
       expect(hero(front: false), 'rear_idle');
     },
   );
@@ -210,10 +207,9 @@ void main() {
   test(
     'crowd follows individual state, style and settling with multiple poses',
     () {
-      expect(
-        [for (var i = 0; i < 4; i++) guest(beat: i * .5)].toSet(),
-        containsAll(['guest1_step_left', 'guest1_step_right', 'guest1_clap']),
-      );
+      expect({
+        for (var i = 0; i < 4; i++) guest(beat: i * .5),
+      }, containsAll(['guest1_step_left', 'guest1_step_right', 'guest1_clap']));
       expect(guest(state: CrowdGuestState.occupied), 'guest1_occupied');
       expect(guest(state: CrowdGuestState.occupied, style: 1), 'guest1_clap');
       expect(
