@@ -230,7 +230,7 @@ void main() {
       adorn(2, FlourishDirection.down);
       expect(garden.styleCombo, 3);
       expect(
-        garden.crowd.guest(2, garden.positionBeats).styleEnergy,
+        garden.crowd.guest(2, garden.positionBeats + .5).styleEnergy,
         greaterThan(0),
       );
       adorn(3, FlourishDirection.down);

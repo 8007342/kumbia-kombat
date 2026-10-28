@@ -190,6 +190,7 @@ class GardenSession {
   }) : progress = FightProgress(definition ?? fights.first),
        crowd = CrowdInterestModel(
          rampPhrases: 4 * (definition ?? fights.first).successesPerTier,
+         profile: CrowdStageProfile.forRoom((definition ?? fights.first).id),
        ),
        _cycleStart = chart.introBeats {
     if (chart.limbs.isEmpty ||
@@ -236,6 +237,7 @@ class GardenSession {
   TapTiming? lastTiming;
   int? lastDeltaMs;
   ChallengeOutcome? lastOutcome;
+  double? lastOutcomeBeat;
   int pizazz = 0;
   int styleCombo = 0;
   FlourishDirection? _lastStyleDirection;
@@ -259,6 +261,7 @@ class GardenSession {
   String _phraseIdentity = '0:0';
 
   double get positionBeats => transport.positionBeats;
+  double get callStartBeat => _cycleStart;
   double get phaseBeat => phase == GardenPhase.intro
       ? positionBeats
       : (positionBeats - _cycleStart) % chart.callBeats;
@@ -416,6 +419,7 @@ class GardenSession {
       final resolvedBeat = transport.beatAt(
         (judge.notes.last.atMs + RhythmJudge.goodWindowMs) / 1000,
       );
+      lastOutcomeBeat = resolvedBeat;
       crowd.resolvePhrase(
         sequence: _responseSequence,
         passed: passed,
@@ -424,7 +428,7 @@ class GardenSession {
       );
       if (!passed) {
         lastStumbleBeat = resolvedBeat;
-        lastStumbleGuest = _responseSequence % 5;
+        lastStumbleGuest = _responseSequence % crowd.guestCount;
       }
       _crowdCheckpoint = crowd.checkpoint();
       if (progress.cleared) {
@@ -516,7 +520,11 @@ class GardenSession {
       styleCombo = varied ? (styleCombo + 1).clamp(1, 4) : 1;
       _lastStyleDirection = direction;
       _lastStyleBeat = positionBeats;
-      crowd.adorn(_responseSequence % 5, positionBeats, chain: styleCombo);
+      crowd.adorn(
+        _responseSequence % crowd.guestCount,
+        positionBeats,
+        chain: styleCombo,
+      );
     }
   }
 
