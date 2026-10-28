@@ -1,0 +1,1780 @@
+{
+  "version": 1,
+  "status": "integrated-preview; native-pixel and anatomical continuity cleanup remains",
+  "atlases": {
+    "guest0": {
+      "image": "guest-woman-v2.png",
+      "imageWidth": 1536,
+      "imageHeight": 1024,
+      "referenceFrame": "standing_idle_a",
+      "frames": {
+        "seated_idle_a": {
+          "rect": [
+            67,
+            24,
+            135,
+            231
+          ],
+          "anchor": [
+            61.0,
+            231
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "seated_idle_b": {
+          "rect": [
+            321,
+            21,
+            134,
+            235
+          ],
+          "anchor": [
+            63.0,
+            235
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "notice_a": {
+          "rect": [
+            576,
+            20,
+            134,
+            236
+          ],
+          "anchor": [
+            64.0,
+            236
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "notice_b": {
+          "rect": [
+            822,
+            19,
+            195,
+            236
+          ],
+          "anchor": [
+            74.0,
+            236
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "seated_follow_a": {
+          "rect": [
+            1064,
+            24,
+            169,
+            227
+          ],
+          "anchor": [
+            88.0,
+            227
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "seated_follow_b": {
+          "rect": [
+            1330,
+            23,
+            156,
+            229
+          ],
+          "anchor": [
+            78.0,
+            229
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "stand_up_a": {
+          "rect": [
+            82,
+            296,
+            137,
+            221
+          ],
+          "anchor": [
+            46.0,
+            221
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "stand_up_b": {
+          "rect": [
+            334,
+            304,
+            140,
+            213
+          ],
+          "anchor": [
+            50.0,
+            213
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "stand_up_c": {
+          "rect": [
+            589,
+            282,
+            129,
+            237
+          ],
+          "anchor": [
+            51.0,
+            237
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "stand_up_d": {
+          "rect": [
+            834,
+            257,
+            137,
+            262
+          ],
+          "anchor": [
+            62.0,
+            262
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "standing_idle_a": {
+          "rect": [
+            1097,
+            259,
+            135,
+            263
+          ],
+          "anchor": [
+            55.0,
+            263
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "standing_idle_b": {
+          "rect": [
+            1343,
+            260,
+            143,
+            262
+          ],
+          "anchor": [
+            65.0,
+            262
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "step_touch_a": {
+          "rect": [
+            70,
+            524,
+            179,
+            237
+          ],
+          "anchor": [
+            58.0,
+            237
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "step_touch_b": {
+          "rect": [
+            319,
+            524,
+            190,
+            240
+          ],
+          "anchor": [
+            65.0,
+            240
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "step_touch_c": {
+          "rect": [
+            575,
+            524,
+            162,
+            240
+          ],
+          "anchor": [
+            65.0,
+            240
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "step_touch_d": {
+          "rect": [
+            827,
+            526,
+            176,
+            239
+          ],
+          "anchor": [
+            69.0,
+            239
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "clap_a": {
+          "rect": [
+            1102,
+            527,
+            130,
+            242
+          ],
+          "anchor": [
+            50.0,
+            242
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "clap_b": {
+          "rect": [
+            1352,
+            530,
+            121,
+            240
+          ],
+          "anchor": [
+            56.0,
+            240
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "cheer_a": {
+          "rect": [
+            52,
+            764,
+            199,
+            248
+          ],
+          "anchor": [
+            76.0,
+            248
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "cheer_b": {
+          "rect": [
+            328,
+            768,
+            134,
+            244
+          ],
+          "anchor": [
+            56.0,
+            244
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "sit_down_a": {
+          "rect": [
+            591,
+            771,
+            148,
+            237
+          ],
+          "anchor": [
+            49.0,
+            237
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "sit_down_b": {
+          "rect": [
+            831,
+            791,
+            144,
+            214
+          ],
+          "anchor": [
+            65.0,
+            214
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "sit_down_c": {
+          "rect": [
+            1092,
+            785,
+            141,
+            220
+          ],
+          "anchor": [
+            60.0,
+            220
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "sit_down_d": {
+          "rect": [
+            1335,
+            792,
+            135,
+            216
+          ],
+          "anchor": [
+            73.0,
+            216
+          ],
+          "pixelsPerUnit": 8.0
+        }
+      }
+    },
+    "guest1": {
+      "image": "guest-man-v2.png",
+      "imageWidth": 1254,
+      "imageHeight": 1254,
+      "referenceFrame": "standing_idle_a",
+      "frames": {
+        "seated_idle_a": {
+          "rect": [
+            23,
+            95,
+            204,
+            240
+          ],
+          "anchor": [
+            81.5,
+            240
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "seated_idle_b": {
+          "rect": [
+            233,
+            91,
+            190,
+            243
+          ],
+          "anchor": [
+            80.5,
+            243
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "notice_a": {
+          "rect": [
+            439,
+            88,
+            196,
+            247
+          ],
+          "anchor": [
+            83.5,
+            247
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "notice_b": {
+          "rect": [
+            625,
+            89,
+            219,
+            247
+          ],
+          "anchor": [
+            106.5,
+            247
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "seated_follow_a": {
+          "rect": [
+            844,
+            91,
+            160,
+            239
+          ],
+          "anchor": [
+            96.5,
+            239
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "seated_follow_b": {
+          "rect": [
+            1058,
+            90,
+            174,
+            245
+          ],
+          "anchor": [
+            91.5,
+            245
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "stand_up_a": {
+          "rect": [
+            54,
+            400,
+            141,
+            229
+          ],
+          "anchor": [
+            50.5,
+            229
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "stand_up_b": {
+          "rect": [
+            264,
+            375,
+            134,
+            254
+          ],
+          "anchor": [
+            49.5,
+            254
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "stand_up_c": {
+          "rect": [
+            455,
+            397,
+            133,
+            236
+          ],
+          "anchor": [
+            67.5,
+            236
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "stand_up_d": {
+          "rect": [
+            645,
+            366,
+            159,
+            266
+          ],
+          "anchor": [
+            86.5,
+            266
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "standing_idle_a": {
+          "rect": [
+            878,
+            362,
+            146,
+            274
+          ],
+          "anchor": [
+            62.5,
+            274
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "standing_idle_b": {
+          "rect": [
+            1069,
+            364,
+            151,
+            272
+          ],
+          "anchor": [
+            80.5,
+            272
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "step_touch_a": {
+          "rect": [
+            24,
+            662,
+            215,
+            257
+          ],
+          "anchor": [
+            80.5,
+            257
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "step_touch_b": {
+          "rect": [
+            243,
+            661,
+            173,
+            261
+          ],
+          "anchor": [
+            70.5,
+            261
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "step_touch_c": {
+          "rect": [
+            440,
+            663,
+            194,
+            260
+          ],
+          "anchor": [
+            82.5,
+            260
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "step_touch_d": {
+          "rect": [
+            651,
+            664,
+            201,
+            263
+          ],
+          "anchor": [
+            80.5,
+            263
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "clap_a": {
+          "rect": [
+            861,
+            661,
+            171,
+            274
+          ],
+          "anchor": [
+            79.5,
+            274
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "clap_b": {
+          "rect": [
+            1063,
+            666,
+            166,
+            269
+          ],
+          "anchor": [
+            86.5,
+            269
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "cheer_a": {
+          "rect": [
+            34,
+            931,
+            192,
+            270
+          ],
+          "anchor": [
+            70.5,
+            270
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "cheer_b": {
+          "rect": [
+            266,
+            940,
+            152,
+            263
+          ],
+          "anchor": [
+            47.5,
+            263
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "sit_down_a": {
+          "rect": [
+            442,
+            963,
+            160,
+            237
+          ],
+          "anchor": [
+            80.5,
+            237
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "sit_down_b": {
+          "rect": [
+            665,
+            974,
+            144,
+            229
+          ],
+          "anchor": [
+            66.5,
+            229
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "sit_down_c": {
+          "rect": [
+            870,
+            976,
+            168,
+            224
+          ],
+          "anchor": [
+            70.5,
+            224
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "sit_down_d": {
+          "rect": [
+            1062,
+            972,
+            189,
+            226
+          ],
+          "anchor": [
+            87.5,
+            226
+          ],
+          "pixelsPerUnit": 8.0
+        }
+      }
+    },
+    "guest2": {
+      "image": "guest-host-v2.png",
+      "imageWidth": 1536,
+      "imageHeight": 1024,
+      "referenceFrame": "standing_idle_a",
+      "frames": {
+        "seated_idle_a": {
+          "rect": [
+            51,
+            16,
+            170,
+            229
+          ],
+          "anchor": [
+            77.0,
+            229
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "seated_idle_b": {
+          "rect": [
+            306,
+            16,
+            159,
+            230
+          ],
+          "anchor": [
+            78.0,
+            230
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "notice_a": {
+          "rect": [
+            565,
+            14,
+            166,
+            232
+          ],
+          "anchor": [
+            75.0,
+            232
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "notice_b": {
+          "rect": [
+            788,
+            15,
+            204,
+            232
+          ],
+          "anchor": [
+            108.0,
+            232
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "seated_follow_a": {
+          "rect": [
+            1079,
+            13,
+            162,
+            233
+          ],
+          "anchor": [
+            73.0,
+            233
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "seated_follow_b": {
+          "rect": [
+            1344,
+            16,
+            153,
+            231
+          ],
+          "anchor": [
+            64.0,
+            231
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "stand_up_a": {
+          "rect": [
+            66,
+            288,
+            169,
+            219
+          ],
+          "anchor": [
+            62.0,
+            219
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "stand_up_b": {
+          "rect": [
+            314,
+            264,
+            164,
+            242
+          ],
+          "anchor": [
+            70.0,
+            242
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "stand_up_c": {
+          "rect": [
+            567,
+            270,
+            174,
+            237
+          ],
+          "anchor": [
+            73.0,
+            237
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "stand_up_d": {
+          "rect": [
+            810,
+            257,
+            190,
+            252
+          ],
+          "anchor": [
+            86.0,
+            252
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "standing_idle_a": {
+          "rect": [
+            1083,
+            256,
+            159,
+            252
+          ],
+          "anchor": [
+            69.0,
+            252
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "standing_idle_b": {
+          "rect": [
+            1343,
+            260,
+            156,
+            249
+          ],
+          "anchor": [
+            65.0,
+            249
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "step_touch_a": {
+          "rect": [
+            41,
+            518,
+            193,
+            233
+          ],
+          "anchor": [
+            87.0,
+            233
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "step_touch_b": {
+          "rect": [
+            292,
+            518,
+            220,
+            231
+          ],
+          "anchor": [
+            92.0,
+            231
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "step_touch_c": {
+          "rect": [
+            552,
+            512,
+            214,
+            233
+          ],
+          "anchor": [
+            88.0,
+            233
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "step_touch_d": {
+          "rect": [
+            826,
+            520,
+            190,
+            229
+          ],
+          "anchor": [
+            70.0,
+            229
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "clap_a": {
+          "rect": [
+            1098,
+            514,
+            143,
+            245
+          ],
+          "anchor": [
+            54.0,
+            245
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "clap_b": {
+          "rect": [
+            1349,
+            513,
+            142,
+            246
+          ],
+          "anchor": [
+            59.0,
+            246
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "cheer_a": {
+          "rect": [
+            46,
+            762,
+            193,
+            246
+          ],
+          "anchor": [
+            82.0,
+            246
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "cheer_b": {
+          "rect": [
+            322,
+            752,
+            152,
+            257
+          ],
+          "anchor": [
+            62.0,
+            257
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "sit_down_a": {
+          "rect": [
+            578,
+            773,
+            158,
+            235
+          ],
+          "anchor": [
+            62.0,
+            235
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "sit_down_b": {
+          "rect": [
+            840,
+            788,
+            169,
+            220
+          ],
+          "anchor": [
+            56.0,
+            220
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "sit_down_c": {
+          "rect": [
+            1096,
+            789,
+            155,
+            218
+          ],
+          "anchor": [
+            56.0,
+            218
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "sit_down_d": {
+          "rect": [
+            1320,
+            785,
+            187,
+            222
+          ],
+          "anchor": [
+            88.0,
+            222
+          ],
+          "pixelsPerUnit": 8.0
+        }
+      }
+    },
+    "gatekeeper": {
+      "image": "gatekeeper-v2.png",
+      "imageWidth": 1214,
+      "imageHeight": 1295,
+      "referenceFrame": "occupied",
+      "frames": {
+        "occupied": {
+          "rect": [
+            23,
+            14,
+            198,
+            310
+          ],
+          "anchor": [
+            98.4,
+            310
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "ready": {
+          "rect": [
+            263,
+            20,
+            205,
+            303
+          ],
+          "anchor": [
+            101.2,
+            303
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "anticipate_left": {
+          "rect": [
+            523,
+            32,
+            204,
+            291
+          ],
+          "anchor": [
+            84.0,
+            291
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "anticipate_right": {
+          "rect": [
+            758,
+            26,
+            192,
+            297
+          ],
+          "anchor": [
+            91.8,
+            297
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "left_hand": {
+          "rect": [
+            975,
+            11,
+            229,
+            313
+          ],
+          "anchor": [
+            117.6,
+            313
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "right_hand": {
+          "rect": [
+            20,
+            330,
+            210,
+            309
+          ],
+          "anchor": [
+            101.4,
+            309
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "left_foot": {
+          "rect": [
+            248,
+            335,
+            228,
+            305
+          ],
+          "anchor": [
+            116.2,
+            305
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "right_foot": {
+          "rect": [
+            506,
+            338,
+            233,
+            302
+          ],
+          "anchor": [
+            101.0,
+            302
+          ],
+          "pixelsPerUnit": 8.0,
+          "mirror": true
+        },
+        "follow_left": {
+          "rect": [
+            765,
+            342,
+            203,
+            298
+          ],
+          "anchor": [
+            84.8,
+            298
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "follow_right": {
+          "rect": [
+            993,
+            343,
+            212,
+            295
+          ],
+          "anchor": [
+            99.6,
+            295
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "settle": {
+          "rect": [
+            20,
+            659,
+            217,
+            282
+          ],
+          "anchor": [
+            101.4,
+            282
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "finish": {
+          "rect": [
+            278,
+            649,
+            185,
+            292
+          ],
+          "anchor": [
+            86.2,
+            292
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "cede": {
+          "rect": [
+            479,
+            658,
+            260,
+            283
+          ],
+          "anchor": [
+            128.0,
+            283
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "invite": {
+          "rect": [
+            744,
+            653,
+            231,
+            288
+          ],
+          "anchor": [
+            105.8,
+            288
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "watch_left": {
+          "rect": [
+            1035,
+            653,
+            145,
+            288
+          ],
+          "anchor": [
+            57.6,
+            288
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "watch_right": {
+          "rect": [
+            19,
+            953,
+            189,
+            309
+          ],
+          "anchor": [
+            102.4,
+            309
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "approve": {
+          "rect": [
+            267,
+            954,
+            184,
+            309
+          ],
+          "anchor": [
+            97.2,
+            309
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "recover": {
+          "rect": [
+            480,
+            958,
+            277,
+            304
+          ],
+          "anchor": [
+            127.0,
+            304
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "turn_in": {
+          "rect": [
+            780,
+            954,
+            180,
+            309
+          ],
+          "anchor": [
+            69.8,
+            309
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "turn_out": {
+          "rect": [
+            988,
+            953,
+            206,
+            310
+          ],
+          "anchor": [
+            104.6,
+            310
+          ],
+          "pixelsPerUnit": 8.0
+        }
+      }
+    },
+    "bartender": {
+      "image": "bartender-v2.png",
+      "imageWidth": 1145,
+      "imageHeight": 1374,
+      "referenceFrame": "occupied",
+      "frames": {
+        "occupied": {
+          "rect": [
+            53,
+            8,
+            145,
+            331
+          ],
+          "anchor": [
+            61.5,
+            331
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "ready": {
+          "rect": [
+            255,
+            13,
+            164,
+            326
+          ],
+          "anchor": [
+            88.5,
+            326
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "anticipate_left": {
+          "rect": [
+            484,
+            12,
+            190,
+            327
+          ],
+          "anchor": [
+            88.5,
+            327
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "anticipate_right": {
+          "rect": [
+            716,
+            13,
+            179,
+            328
+          ],
+          "anchor": [
+            85.5,
+            328
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "left_hand": {
+          "rect": [
+            945,
+            13,
+            184,
+            328
+          ],
+          "anchor": [
+            85.5,
+            328
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "right_hand": {
+          "rect": [
+            26,
+            344,
+            186,
+            335
+          ],
+          "anchor": [
+            88.5,
+            335
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "left_foot": {
+          "rect": [
+            239,
+            352,
+            208,
+            326
+          ],
+          "anchor": [
+            104.5,
+            326
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "right_foot": {
+          "rect": [
+            494,
+            352,
+            158,
+            326
+          ],
+          "anchor": [
+            78.5,
+            326
+          ],
+          "pixelsPerUnit": 8.0,
+          "mirror": true
+        },
+        "follow_left": {
+          "rect": [
+            681,
+            353,
+            245,
+            325
+          ],
+          "anchor": [
+            120.5,
+            325
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "follow_right": {
+          "rect": [
+            917,
+            357,
+            188,
+            321
+          ],
+          "anchor": [
+            113.5,
+            321
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "settle": {
+          "rect": [
+            21,
+            708,
+            196,
+            297
+          ],
+          "anchor": [
+            93.5,
+            297
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "finish": {
+          "rect": [
+            242,
+            688,
+            177,
+            322
+          ],
+          "anchor": [
+            101.5,
+            322
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "cede": {
+          "rect": [
+            484,
+            692,
+            221,
+            318
+          ],
+          "anchor": [
+            88.5,
+            318
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "invite": {
+          "rect": [
+            723,
+            695,
+            209,
+            315
+          ],
+          "anchor": [
+            78.5,
+            315
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "watch_left": {
+          "rect": [
+            983,
+            693,
+            128,
+            314
+          ],
+          "anchor": [
+            47.5,
+            314
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "watch_right": {
+          "rect": [
+            37,
+            1024,
+            183,
+            317
+          ],
+          "anchor": [
+            77.5,
+            317
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "approve": {
+          "rect": [
+            276,
+            1025,
+            172,
+            319
+          ],
+          "anchor": [
+            67.5,
+            319
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "recover": {
+          "rect": [
+            467,
+            1038,
+            221,
+            301
+          ],
+          "anchor": [
+            105.5,
+            301
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "turn_in": {
+          "rect": [
+            744,
+            1024,
+            120,
+            320
+          ],
+          "anchor": [
+            57.5,
+            320
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "turn_out": {
+          "rect": [
+            947,
+            1022,
+            167,
+            321
+          ],
+          "anchor": [
+            83.5,
+            321
+          ],
+          "pixelsPerUnit": 8.0
+        }
+      }
+    },
+    "life": {
+      "image": "party-life-v2.png",
+      "imageWidth": 1246,
+      "imageHeight": 1263,
+      "referenceFrame": "umbrella_a",
+      "frames": {
+        "umbrella_a": {
+          "rect": [
+            39,
+            9,
+            284,
+            359
+          ],
+          "anchor": [
+            144,
+            359
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "umbrella_b": {
+          "rect": [
+            352,
+            9,
+            285,
+            357
+          ],
+          "anchor": [
+            123,
+            357
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "umbrella_c": {
+          "rect": [
+            656,
+            9,
+            278,
+            357
+          ],
+          "anchor": [
+            126,
+            357
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "umbrella_d": {
+          "rect": [
+            954,
+            9,
+            266,
+            357
+          ],
+          "anchor": [
+            126,
+            357
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "plant_a": {
+          "rect": [
+            60,
+            382,
+            222,
+            296
+          ],
+          "anchor": [
+            111,
+            0
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "plant_b": {
+          "rect": [
+            370,
+            381,
+            219,
+            301
+          ],
+          "anchor": [
+            103,
+            0
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "plant_c": {
+          "rect": [
+            674,
+            381,
+            214,
+            297
+          ],
+          "anchor": [
+            105,
+            0
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "plant_d": {
+          "rect": [
+            972,
+            382,
+            210,
+            291
+          ],
+          "anchor": [
+            108,
+            0
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "candle_a": {
+          "rect": [
+            97,
+            686,
+            147,
+            158
+          ],
+          "anchor": [
+            73.5,
+            158
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "candle_b": {
+          "rect": [
+            409,
+            699,
+            147,
+            145
+          ],
+          "anchor": [
+            73.5,
+            145
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "candle_c": {
+          "rect": [
+            709,
+            686,
+            145,
+            158
+          ],
+          "anchor": [
+            72.5,
+            158
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "candle_d": {
+          "rect": [
+            1002,
+            697,
+            145,
+            147
+          ],
+          "anchor": [
+            72.5,
+            147
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "waiter_a": {
+          "rect": [
+            46,
+            863,
+            228,
+            374
+          ],
+          "anchor": [
+            114.0,
+            374
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "waiter_b": {
+          "rect": [
+            376,
+            863,
+            226,
+            374
+          ],
+          "anchor": [
+            113.0,
+            374
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "waiter_c": {
+          "rect": [
+            693,
+            863,
+            220,
+            374
+          ],
+          "anchor": [
+            110.0,
+            374
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "waiter_d": {
+          "rect": [
+            1002,
+            866,
+            196,
+            371
+          ],
+          "anchor": [
+            98.0,
+            371
+          ],
+          "pixelsPerUnit": 8.0
+        }
+      }
+    },
+    "furniture": {
+      "image": "furniture-v2.png",
+      "imageWidth": 1536,
+      "imageHeight": 1024,
+      "referenceFrame": "chair_right",
+      "frames": {
+        "chair_right": {
+          "rect": [
+            289,
+            13,
+            317,
+            476
+          ],
+          "anchor": [
+            158.5,
+            476
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "chair_left": {
+          "rect": [
+            930,
+            13,
+            317,
+            476
+          ],
+          "anchor": [
+            158.5,
+            476
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "table": {
+          "rect": [
+            284,
+            539,
+            361,
+            466
+          ],
+          "anchor": [
+            180.5,
+            466
+          ],
+          "pixelsPerUnit": 8.0
+        },
+        "umbrella_closed": {
+          "rect": [
+            1006,
+            497,
+            150,
+            508
+          ],
+          "anchor": [
+            75.0,
+            508
+          ],
+          "pixelsPerUnit": 8.0
+        }
+      }
+    }
+  }
+}

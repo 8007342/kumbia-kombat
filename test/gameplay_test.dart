@@ -19,7 +19,10 @@ void main() {
   test('wider grace accepts both edges and picks closest repeated note', () {
     for (final offset in [-180, 180]) {
       final judge = RhythmJudge([const RhythmNote('a', Limb.leftHand, 1000)]);
-      expect(judge.tap(Limb.leftHand, 1000 + offset).grade, TapGrade.good);
+      final res = judge.tap(Limb.leftHand, 1000 + offset);
+      expect(res.grade, TapGrade.good);
+      expect(res.timing, offset < 0 ? TapTiming.early : TapTiming.late);
+      expect(res.deltaMs, offset);
     }
     for (final offset in [-181, 181]) {
       final judge = RhythmJudge([const RhythmNote('a', Limb.leftHand, 1000)]);
@@ -27,7 +30,10 @@ void main() {
     }
     for (final offset in [-75, 75]) {
       final judge = RhythmJudge([const RhythmNote('a', Limb.leftHand, 1000)]);
-      expect(judge.tap(Limb.leftHand, 1000 + offset).grade, TapGrade.perfect);
+      final res = judge.tap(Limb.leftHand, 1000 + offset);
+      expect(res.grade, TapGrade.perfect);
+      expect(res.timing, TapTiming.perfect);
+      expect(res.deltaMs, offset);
     }
     final doubles = RhythmJudge([
       const RhythmNote('a', Limb.leftHand, 1000),

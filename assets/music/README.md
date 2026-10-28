@@ -3,9 +3,12 @@
 The JSON files are the runtime source of composed note events. The MIDI files are
 DAW/listening previews of the exact five arrangement tiers; the game does not play
 them as recordings. Each tier retains the rhythmic foundation and adds written
-parts. Tier 3 replaces the short invitation melody with the full melody; tier 4
-adds counterlines, brass and fills. Notes with `maxTier: 2` are the invitation and
-must disappear when the full melody enters.
+parts. Tier 0 already has each room's restrained hook, sparse offbeat harmony,
+bass and percussion. Tier 1 lifts percussion/bass; tier 2 adds fuller harmony and
+alternating answers; tier 3 replaces the restrained hook with the full melody;
+tier 4 completes the responses, brass and fills. Notes with `maxTier: 2` are the
+restrained hook and disappear when the full melody enters. The harmonic dyads
+with `maxTier: 1` give way to fuller accompaniment at tier 2.
 
 | Room / stat | Original composition | Form | BPM, tiers 0 → 4 | Character |
 | --- | --- | --- | --- | --- |
@@ -56,6 +59,8 @@ maps each success to its room; `manifest.transitions.bridges` names its source a
 destination. Transition MIDI files export the success at its full-tier tempo and
 the bridge at the destination's base tempo. Every transition note plays at every
 tier; these are complete composed phrases, not progression arrangements.
+Success phrases thin accompaniment and soften attacks in their second bar while
+retaining the melodic answer and beat, giving the party an authored warm-down.
 
 | Segment | Tonal and rhythmic purpose |
 | --- | --- |

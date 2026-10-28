@@ -1,5 +1,15 @@
 # Music foundation and remaining integration
 
+2026-10-28 party revision: all five opening arrangements now include their own
+restrained melodic hook and offbeat harmony. Subsequent tiers add percussion,
+countermelody, complete lead and ensemble detail. Approval phrases settle in their
+second bar with fewer accompaniment attacks and softer velocities; authored BPM,
+judgment timing and bridge lengths remain unchanged. Regenerated catalog: 7,544
+note events / 34 MIDI files. Validator, transport and conductor checks pass;
+listening/headroom and physical-phone acceptance remain open. Research, departure
+storyboards and future optional-tempo boundaries:
+[music-overhaul-research.md](music-overhaul-research.md).
+
 Implemented 2026-10-18: five original instrumental event scores, five tier MIDI
 previews per piece (25 files, 6,136 authored/arranged events total), four optional
 ornaments per piece, deterministic JS authoring and independent MIDI/data validator,

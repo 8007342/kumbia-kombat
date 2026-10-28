@@ -59,3 +59,13 @@ Covi is a reserved non-identifying silhouette until a verified identity referenc
 ## Stage-2 delivered art handoff (2026-10-18)
 
 `bar.background.base` → `assets/art/bar/bar-interior.png` (1024×1536 RGB, generated and visually inspected). `bar.bartender.source` → `assets/art/bar/bartender.png` (1024×1536 RGBA single pose, generated and visually inspected). These fulfill starter scene composition, not the full B01 demonstrate/response/acceptance animation inventory. Source prompts and status are in `assets/art/bar/README.md`.
+
+## Progressive departures and standing ovation
+
+The updated room-by-room social arc and six-part transition structure are in
+[play-and-transition-overhaul.md](play-and-transition-overhaul.md). Peak support
+precedes varied full-arrangement proof. Approval then yields to a thinning coda,
+staggered returns to activity and a few guests clapping Mācron onward. Later
+rooms progressively recruit more standing guests; VIP earns the whole-room
+standing ovation before the high five. Planned seated/standing contact clips
+and doors require authored assets and are not delivered by procedural motion.

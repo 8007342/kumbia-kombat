@@ -13,6 +13,12 @@ class FightDefinition {
   final int successesPerTier;
   final int finalChallenges;
   final int resetAfterFailures;
+
+  /// Forgiving early room, then one dropped note allowed per eight-note phrase.
+  int requiredHits(int noteCount, {required bool atPeak}) {
+    final ratio = id == 'garden' && !atPeak ? .75 : .875;
+    return (noteCount * ratio).ceil().clamp(1, noteCount);
+  }
 }
 
 const fights = [

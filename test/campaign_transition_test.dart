@@ -5,6 +5,7 @@ import 'dart:math' as math;
 import 'package:flutter_test/flutter_test.dart';
 import 'package:kumbia_kombat/gameplay/garden_session.dart';
 import 'package:kumbia_kombat/gameplay/progression.dart';
+import 'package:kumbia_kombat/gameplay/rhythm.dart';
 import 'package:kumbia_kombat/music/score.dart';
 import 'package:kumbia_kombat/music/transport.dart';
 import 'package:kumbia_kombat/music/transition_conductor.dart';
@@ -51,13 +52,13 @@ void clearFight(CampaignAudio audio, GardenSession session) {
     cycle++
   ) {
     final start = session.chart.introBeats + cycle * session.chart.cycleBeats;
-    for (var i = 0; i < session.chart.limbs.length; i++) {
+    for (var i = 0; i < session.activeLimbs.length; i++) {
       final when = music.secondsAt(
         start + session.chart.callBeats + session.chart.offsets[i],
       );
       advance(audio, when, update);
       expect(
-        session.tap(session.chart.limbs[i]).note,
+        session.tap(session.activeLimbs[i]).note,
         isNotNull,
         reason:
             '${session.progress.definition.id} cycle $cycle note $i phase ${session.phase} beat ${music.positionBeats} now ${audio.nowSeconds} target $when transport ${music.state}',
@@ -75,6 +76,60 @@ void clearFight(CampaignAudio audio, GardenSession session) {
 }
 
 void main() {
+  test(
+    'actual garden offers reach four style steps across non-scoring calls',
+    () {
+      final audio = CampaignAudio();
+      final music = MusicTransport(
+        score('garden_mojo'),
+        audio,
+        loop: true,
+        lookaheadSeconds: .3,
+      );
+      final session = GardenSession(music, audio)..start();
+      void update() {
+        music.pump();
+        session.advance();
+      }
+
+      var ornaments = 0;
+      for (var cycle = 0; cycle < 2; cycle++) {
+        final start =
+            session.chart.introBeats + cycle * session.chart.cycleBeats;
+        advance(audio, music.secondsAt(start), update);
+        for (var i = 0; i < session.activeLimbs.length; i++) {
+          final when = music.secondsAt(
+            start + session.chart.callBeats + session.activeOffsets[i],
+          );
+          advance(audio, when, update);
+          final result = session.tap(session.activeLimbs[i]);
+          expect(result.note, isNotNull);
+          if (result.note!.flourishTo != null) {
+            advance(audio, when + .1, update);
+            expect(
+              session.flourishGesture(
+                result.note!.id,
+                FlourishDirection.values[ornaments % 4],
+              ),
+              isTrue,
+            );
+            ornaments++;
+          }
+        }
+        advance(
+          audio,
+          music.secondsAt(start + session.chart.cycleBeats - .05),
+          update,
+        );
+      }
+      expect(ornaments, 4);
+      expect(session.styleCombo, 4);
+      expect(session.pizazz, 400);
+      expect(session.progress.tier, 2);
+      expect(session.progress.cleared, isFalse);
+    },
+  );
+
   test(
     'real garden and bar charts clear with seamless success/bridge audio',
     () {
