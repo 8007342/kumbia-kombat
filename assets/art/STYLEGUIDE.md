@@ -5,7 +5,7 @@ reusable people and props belong to the same photographed/painted space.
 
 ## Perspective and relative size
 
-- Author world composition at nominal180px logical width. Source paintings are
+- Author world composition at nominal 180px logical width. Source paintings are
   mapped with one centered cover transform; actors and props use that exact mapping.
   The HUD and thumb zones stay in screen space.
 - Each room has an inspected source-image horizon and a standing-adult height at

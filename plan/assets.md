@@ -57,3 +57,12 @@ Metadata entry: `id`, `file`, `cellWidth`, `cellHeight`, `frames` (rectangles or
 - `assets/art/bar/bar-interior.png`: actual generated and inspected 1024×1536 portrait RGB background, no characters or HUD. Parent can integrate as flattened starter.
 - `assets/art/bar/bartender.png`: actual generated and inspected 1024×1536 transparent single pose; not a completed animation set.
 - Prompt provenance and production status: `assets/art/bar/README.md`. Bar parallax separation, side-view strip, shaker/drink animations and acceptance/recovery poses remain unfinished in Session B.
+
+## Reusable ensemble delivery —2026-10-28
+
+The initial standing-only six-pose guests are superseded at runtime by
+`assets/art/ensemble/manifest.json`: 72 audience poses, 40 challenger poses and 20
+ambient/furniture poses. Scene composition follows `assets/art/STYLEGUIDE.md`.
+These sources are integrated previews with explicit metadata and provenance;
+phone/native-grid/continuity acceptance remains open. See
+`plan/session-ensemble.md` for the pushed milestones and verification.

@@ -1,27 +1,37 @@
-# Living party and authored dance
+# Living party and authored dance battles
 
 ## Why
 
-The current garden/bar prototype renders procedural pose switches and shared
-combo-driven crowd reactions over flattened starter backgrounds. It cannot
-show articulated dancing or a gradual, individual social response.
+The first raster pass replaced rectangle bodies, but its five standing guests
+had only a few poses, shared broad excitement thresholds and arbitrary screen
+sizes. Challengers remained single paintings. The party needs reusable seated
+people, transitions, consistent physical depth and visible call/response dancing.
 
 ## What changes
 
-- Refine existing art guidance with a consistent native pixel grid, grounded
-  motion, authored facings and variable frame holds inspired by expressive
-  action animation, applied to the original joyful party theme.
-- Add timestamped presentation events, an authored dance controller, individual
-  crowd interest and a bounded scene director, all following the music clock.
-- Produce and review one complete layered garden with causal background details
-  before extending the system to bar and the remaining campaign.
-- Preserve required taps, optional flourishes, chart/judgment authority, fixed
-  controls, canon, reduced motion and the existing five-stage story.
+- Twelve reusable guests from three silhouettes and four outfit palettes, with
+  multi-frame seated idle, noticing, seated rhythm, rising, dancing, applause,
+  cheering and returning-to-seat clips. Stage budgets preserve mostly apathetic
+  early audiences while VIP can gradually earn a complete standing ovation.
+- Per-guest delayed transitions, bounded neighbor excitement and persistent
+  furniture. Approval never overrides the social budget or the existing mastery.
+- One inspected floor projection shared by backgrounds, people, chairs, props
+  and toy-sized Mācron; separate fixed HUD/input geometry.
+- Actual chart-driven gatekeeper/bartender choreography with anticipation,
+  accents, follow-through, settling, finish/cede/invite and quiet response watching.
+- Independent foliage, canopy, flame and waiter loops, restrained source-anchored
+  lamp light, frozen foreground clocks during pause and reduced-motion poses.
+- 132 measured new raster frames, exact prompts/provenance, an explicit outfit-mask
+  shader and CanvasKit-safe per-variant shader state.
 
 ## Scope and evidence
 
-Design: `plan/party-overhaul.md`. Source/audit record:
-`plan/party-overhaul-research.md`. An initial input/crowd/music behavior pass accompanies the proposal; production
-art and the complete runtime overhaul remain unfinished. Thresholds, frame counts and resource caps are proposed measurements.
-Durable save implementation remains separate but must preserve crowd checkpoints
-when added. No new raster art generation, release or production deployment is included here.
+Garden and bar are the implemented rooms. The remaining three social profiles
+and storyboards do not constitute playable levels. Native pixel-grid/anatomical
+cleanup, physical-phone performance and human listening remain open gates.
+AutoPlay continues through ordinary judgment and optional adornment APIs.
+
+Research: `plan/crowd-animation-system.md`, `plan/dance-battle-choreography.md`,
+`plan/party-perspective-and-life.md`. Authoring contract:
+`assets/art/STYLEGUIDE.md`; sprite inventory and prompts:
+`assets/art/ensemble/README.md` and `provenance.json`.

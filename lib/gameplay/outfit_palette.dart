@@ -63,6 +63,9 @@ class OutfitPalette {
     for (var i = 0; i < uniforms.length; i++) {
       variant.shader.setFloat(i, uniforms[i]);
     }
+    // Rebind after changing floats so sampler state and draw uniforms stay
+    // synchronized on web backends; binding occurs before assigning the Paint.
+    variant.shader.setImageSampler(0, image);
     // Bind only after every uniform is initialized. CanvasKit can snapshot the
     // shader when Paint.shader is assigned; reusing a previously bound Paint
     // would retain its initial zero crop or the prior frame's destination.
@@ -97,7 +100,6 @@ class _OutfitVariant {
     shader.setFloat(10, hue.$1);
     shader.setFloat(11, hue.$2);
     shader.setFloat(12, hue.$3);
-    shader.setImageSampler(0, image);
   }
 
   final ui.FragmentShader shader;

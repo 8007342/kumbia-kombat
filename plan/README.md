@@ -25,3 +25,9 @@ Primary input/music/crowd research: `input-research.md`,
 
 `session-sprites-autoplay.md` records the actual rectangle-renderer replacement,
 reviewed sprite sources and the desktop AutoPlay follow-up.
+
+`session-ensemble.md` records reusable seated audiences, perspective, wardrobe
+variants, challenger choreography and ambient life. Authoring rules now live in
+`../assets/art/STYLEGUIDE.md`; the three supporting research documents are
+`crowd-animation-system.md`, `dance-battle-choreography.md` and
+`party-perspective-and-life.md`.
