@@ -63,14 +63,18 @@ class OutfitPalette {
     for (var i = 0; i < uniforms.length; i++) {
       variant.shader.setFloat(i, uniforms[i]);
     }
-    return variant.paint;
+    // Bind only after every uniform is initialized. CanvasKit can snapshot the
+    // shader when Paint.shader is assigned; reusing a previously bound Paint
+    // would retain its initial zero crop or the prior frame's destination.
+    return ui.Paint()
+      ..filterQuality = ui.FilterQuality.none
+      ..shader = variant.shader;
   }
 
   void dispose() {
     if (_disposed) return;
     _disposed = true;
     for (final variant in _variants.values) {
-      variant.paint.shader = null;
       variant.shader.dispose();
     }
     _variants.clear();
@@ -81,8 +85,7 @@ class OutfitPalette {
 /// state when recording draws, so distinct guests must not share one mutable
 /// shader even when a native raster test appears to snapshot its uniforms.
 class _OutfitVariant {
-  _OutfitVariant(this.shader, ui.Image image, OutfitColor palette)
-    : paint = ui.Paint()..filterQuality = ui.FilterQuality.none {
+  _OutfitVariant(this.shader, ui.Image image, OutfitColor palette) {
     final hue = switch (palette) {
       OutfitColor.teal => (0.18, 0.72, 0.60),
       OutfitColor.blue => (0.23, 0.47, 0.92),
@@ -95,9 +98,7 @@ class _OutfitVariant {
     shader.setFloat(11, hue.$2);
     shader.setFloat(12, hue.$3);
     shader.setImageSampler(0, image);
-    paint.shader = shader;
   }
 
   final ui.FragmentShader shader;
-  final ui.Paint paint;
 }

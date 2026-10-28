@@ -8,7 +8,7 @@ import 'package:kumbia_kombat/gameplay/outfit_palette.dart';
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
-  test('twelve avatars own stable independent shaders, paints and texture bindings', () async {
+  test('twelve avatars own independent shaders with freshly bound paints', () async {
     final images = <ui.Image>[];
     for (final color in [
       const ui.Color(0xff874197),
@@ -49,15 +49,14 @@ void main() {
           );
           shaders.add(paint.shader!);
           paints.add(paint);
-          expect(
-            palette.paint(
-              image: images[actor],
-              source: const ui.Rect.fromLTWH(0, 0, 1, 1),
-              destination: destination,
-              palette: color,
-            ),
-            same(paint),
+          final rebound = palette.paint(
+            image: images[actor],
+            source: const ui.Rect.fromLTWH(0, 0, 1, 1),
+            destination: destination,
+            palette: color,
           );
+          expect(rebound, isNot(same(paint)));
+          expect(rebound.shader, same(paint.shader));
           canvas.drawRect(destination, paint);
         }
       }
@@ -342,6 +341,34 @@ void main() {
       };
       expect(crowdColors, variants);
       crowdImage.dispose();
+      // Update both the crop and destination of an already used variant on a
+      // later frame. Binding a fresh Paint must snapshot these new uniforms.
+      final nextRecorder = ui.PictureRecorder();
+      final nextCanvas = ui.Canvas(nextRecorder);
+      const nextDestination = ui.Rect.fromLTWH(2, 0, 2, 1);
+      nextCanvas.drawRect(
+        nextDestination,
+        palette.paint(
+          image: atlas,
+          source: const ui.Rect.fromLTWH(4, 0, 1, 1),
+          destination: nextDestination,
+          palette: OutfitColor.teal,
+        ),
+      );
+      final nextPicture = nextRecorder.endRecording();
+      final nextImage = await nextPicture.toImage(4, 1);
+      nextPicture.dispose();
+      final nextPixels = (await nextImage.toByteData(
+        format: ui.ImageByteFormat.rawStraightRgba,
+      ))!;
+      expect(nextPixels.getUint8(3), 0);
+      expect(List.generate(4, (channel) => nextPixels.getUint8(8 + channel)), [
+        220,
+        145,
+        112,
+        255,
+      ]);
+      nextImage.dispose();
       expect(
         () => palette.paint(
           image: atlas,
