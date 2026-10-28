@@ -94,6 +94,7 @@ class _GardenPageState extends State<GardenPage>
         _conductor!.pump();
         if (_conductor!.isPaused && !_handoffPaused) {
           _handoffPaused = true;
+          _scene.presentationPaused = true;
           if (mounted) setState(() {});
         }
         final next = _handoff?.nextTransport;
@@ -167,6 +168,9 @@ class _GardenPageState extends State<GardenPage>
       }
       if (session.phase == GardenPhase.paused ||
           session.phase == GardenPhase.cleared) {
+        if (session.phase == GardenPhase.paused) {
+          _scene.presentationPaused = true;
+        }
         _touches.clear();
         _styleDestination = null;
         _styleNote = null;
@@ -232,10 +236,7 @@ class _GardenPageState extends State<GardenPage>
         _exitScores[id] = MusicScore.fromJson(data);
       }
       await _scene.loaded;
-      await Future.wait([
-        _scene.images.load(partyRooms[1].background),
-        _scene.images.load(partyRooms[1].challenger),
-      ]);
+      await _scene.images.load(partyRooms[1].background);
       if (mounted) setState(() => _exitReady = true);
     } catch (error) {
       // The current loop continues safely if the next room cannot be prepared.
@@ -266,6 +267,7 @@ class _GardenPageState extends State<GardenPage>
         success: _exitScores['${_room.score}_success']!,
       );
     }
+    _scene.exitCodaBeat = _transport!.beatAt(_transport!.retirementSeconds) + 4;
     if (mounted) setState(() {});
   }
 
@@ -335,6 +337,7 @@ class _GardenPageState extends State<GardenPage>
         _audio.silence();
         return;
       }
+      _scene.presentationPaused = false;
       if (_handoffPaused) {
         final barSeconds =
             4 * 60 / _transport!.score.tempos[_transport!.currentTier];
@@ -385,6 +388,7 @@ class _GardenPageState extends State<GardenPage>
 
   void _pause() {
     _autoplay.suspend();
+    _scene.presentationPaused = true;
     if (_conductor?.isPlaying == true) {
       _conductor!.pause();
       _handoffPaused = true;
@@ -433,6 +437,7 @@ class _GardenPageState extends State<GardenPage>
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     _foreground = state == AppLifecycleState.resumed;
+    _scene.presentationPaused = !_foreground;
     if (!_foreground) _activationEpoch++;
     if (state != AppLifecycleState.resumed &&
         (_session?.running == true || _conductor?.isPlaying == true)) {
@@ -461,7 +466,16 @@ class _GardenPageState extends State<GardenPage>
   TapResult _tap(Limb limb) {
     final result = _session!.tap(limb);
     if (result.note != null) {
-      _scene.dance(limb);
+      final targetBeat = _transport!.beatAt(result.note!.atMs / 1000);
+      final futureBeats = [
+        for (final offset in _session!.activeOffsets)
+          _session!.callStartBeat + _session!.chart.callBeats + offset,
+      ].where((beat) => beat > targetBeat + .001);
+      _scene.dance(
+        limb,
+        targetBeat: targetBeat,
+        nextRequiredBeat: futureBeats.isEmpty ? null : futureBeats.first,
+      );
       _styleDestination = result.note!.flourishTo == null ? null : limb;
       _styleNote = result.note!.flourishTo == null ? null : result.note!.id;
       _styleBeat = _transport!.beatAt(result.note!.atMs / 1000);

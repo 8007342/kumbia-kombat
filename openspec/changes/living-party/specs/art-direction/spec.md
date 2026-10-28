@@ -70,3 +70,54 @@ timeline, including the continuing conductor during approval and bridges.
 #### Scenario: approval across a bridge
 Given a cleared session whose local beat stops advancing, approval and traversal
 SHALL continue on the conductor timeline without changing completed judgments.
+
+### Requirement: reusable seated audience animation
+Every reusable guest SHALL have authored multi-frame idle, notice, seated rhythm,
+standing, dance, clap and cheer clips, plus stand-up and sit-down transitions.
+Furniture SHALL retain its floor anchor through those transitions. Outfit
+variants SHALL preserve skin, hair, anatomy and alpha rather than tinting the
+whole person.
+
+#### Scenario: slowly recruited spectators
+Given successful phrases, individual guests SHALL enter their next clip at
+different bounded delays. A new result SHALL NOT cut an unfinished stand-up
+transition into a seated or standing loop.
+
+#### Scenario: restrained early room and final ovation
+Given twelve guests, garden SHALL retain at least nine occupied guests even at
+approval, while VIP MAY gradually earn all twelve standing and cheering before
+approval. Clearance and optional style SHALL NOT override the room's audience
+budget. These presentation ceilings SHALL NOT add a new mastery gate.
+
+### Requirement: shared floor perspective
+Background, floor anchors, actors and furniture SHALL use one source-to-world
+cover transform. Actor scale SHALL derive from floor depth and a fixed standing
+reference, shared across all clips. Mācron SHALL remain toy-sized relative to an
+adult at the same distance. HUD and judgment geometry SHALL remain independent.
+
+#### Scenario: seated guest rises at the same distance
+Given a seated guest whose floor position is fixed, standing SHALL change the
+authored pose without rescaling the head or moving the chair base. A farther
+adult SHALL project smaller than an equivalent nearby adult.
+
+### Requirement: challengers visibly perform the actual challenge
+Each challenger SHALL demonstrate the actual active limb motif and musical note
+timing, with anticipation, accents, follow-through and settling. The existing
+musical rest SHALL contain finishing, ceding and inviting gestures. During the
+player response the challenger SHALL watch without introducing competing cues.
+
+#### Scenario: floor changes hands
+Given the final demonstrated note, the challenger SHALL finish and invite Mācron
+before the response's early input window. Mācron SHALL finish and return attention
+to the challenger at the response boundary; accepted required inputs and optional
+flourishes SHALL take visual priority over a cosmetic handover.
+
+### Requirement: independently phased party life
+Foliage, umbrellas, flames, drinks and waiters SHALL use bounded, independently
+phased activity. Ambient lights SHALL remain gentle and non-strobing. Foreground
+ambient clocks SHALL freeze during pause and backgrounding; reduced motion SHALL
+retain steady lights and informative held poses.
+
+#### Scenario: living room while nobody scores
+Given an occupied audience and no scored inputs, ambient life MAY continue but
+SHALL NOT create social interest, score, progress or a new judgment clock.

@@ -6,150 +6,91 @@ import 'package:flame/game.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/services.dart';
 
+import 'challenger_choreography.dart';
+import 'ensemble_sprites.dart';
 import 'garden_session.dart';
-import 'crowd_interest.dart';
+import 'outfit_palette.dart';
+import 'party_layout.dart';
+import 'party_sprites.dart';
+import 'progression.dart';
 import 'rhythm.dart';
 import 'room_departure.dart';
-import 'party_sprites.dart';
 
-class Spectator {
-  const Spectator({
-    required this.relX,
-    required this.relY,
-    required this.scale,
-    required this.facingRight,
-    required this.archetype,
-  });
-
-  final double relX;
-  final double relY;
-  final double scale;
-  final bool facingRight;
-  final int archetype; // 0: Sipper/Lounger, 1: Dancer/Hat, 2: Vibing guest
+class _WorldDraw {
+  const _WorldDraw(this.id, this.floorY, this.layer, this.draw);
+  final String id;
+  final double floorY;
+  final int layer;
+  final void Function(ui.Canvas) draw;
+  ({double floorY, int layer, String id}) get order =>
+      (floorY: floorY, layer: layer, id: id);
 }
 
-const _gardenSpectators = [
-  Spectator(
-    relX: 0.14,
-    relY: 0.49,
-    scale: 0.82,
-    facingRight: true,
-    archetype: 0,
-  ),
-  Spectator(
-    relX: 0.27,
-    relY: 0.43,
-    scale: 0.74,
-    facingRight: true,
-    archetype: 1,
-  ),
-  Spectator(
-    relX: 0.73,
-    relY: 0.42,
-    scale: 0.75,
-    facingRight: false,
-    archetype: 2,
-  ),
-  Spectator(
-    relX: 0.86,
-    relY: 0.48,
-    scale: 0.85,
-    facingRight: false,
-    archetype: 0,
-  ),
-  Spectator(
-    relX: 0.63,
-    relY: 0.38,
-    scale: 0.62,
-    facingRight: false,
-    archetype: 1,
-  ),
-];
-
-const _barSpectators = [
-  Spectator(
-    relX: 0.12,
-    relY: 0.50,
-    scale: 0.88,
-    facingRight: true,
-    archetype: 0,
-  ),
-  Spectator(
-    relX: 0.25,
-    relY: 0.46,
-    scale: 0.80,
-    facingRight: true,
-    archetype: 2,
-  ),
-  Spectator(
-    relX: 0.74,
-    relY: 0.45,
-    scale: 0.80,
-    facingRight: false,
-    archetype: 1,
-  ),
-  Spectator(
-    relX: 0.88,
-    relY: 0.51,
-    scale: 0.90,
-    facingRight: false,
-    archetype: 0,
-  ),
-  Spectator(
-    relX: 0.38,
-    relY: 0.39,
-    scale: 0.66,
-    facingRight: true,
-    archetype: 2,
-  ),
-];
-
-/// Scene motion follows the song; the touch HUD is a separate fixed overlay.
+/// Scenery, actors and furniture share a single source-image cover transform.
+/// Only music sampling controls the dance; the HUD stays outside this canvas.
 class GardenSceneGame extends FlameGame {
   GardenSession? session;
   bool reducedMotion = false;
+  bool presentationPaused = false;
   Limb? action;
   double actionBeat = -10;
+  double? actionTargetBeat;
+  double? nextRequiredBeat;
   double flourishBeat = -10;
   double exitTravel = 0;
-  // Supplied from the continuing conductor through approval and travel.
   double? presentationBeat;
+  double? exitCodaBeat;
   double warmDown = 0;
   String? artLoadError;
   PartySpriteAtlas? _heroAtlas;
-  PartySpriteAtlas? _crowdAtlas;
+  Map<String, EnsembleAtlas>? _ensemble;
+  OutfitPalette? _outfits;
   ui.Image? _background;
-  ui.Image? _gatekeeper;
   String _currentBackground = 'garden/garden-mansion.png';
-  double _ambient = 0;
+  double _foregroundSeconds = 0;
+  double _lastBeat = 0;
   double _resetBeat = -10;
+  int _roomGeneration = 0;
+  ChallengerChoreography? _choreography;
+  GardenSession? _choreographySession;
+  List<Limb>? _choreographyLimbs;
+  List<double>? _choreographyOffsets;
 
   bool get isBar => _currentBackground.contains('bar');
+  String get _roomId => isBar ? 'bar' : 'garden';
 
-  void resetEntrance() {
-    _resetBeat = session?.positionBeats ?? -10;
-  }
+  void resetEntrance() => _resetBeat = session?.positionBeats ?? -10;
 
   @override
   Color backgroundColor() => const Color(0xFF0B1821);
-
-  int _roomGeneration = 0;
 
   @override
   Future<void> onLoad() async {
     images.prefix = 'assets/art/';
     try {
-      final manifest = PartySpriteManifest.fromJson(
+      final source = jsonDecode(
+        await rootBundle.loadString('assets/art/party/manifest.json'),
+      ) as Map<String, dynamic>;
+      final hero = PartyAtlasDefinition.fromJson(
+        Map<String, dynamic>.from(source['atlases']['hero'] as Map),
+      )..requireFrames(heroFrameIds);
+      final ensemble = EnsembleManifest.fromJson(
         jsonDecode(
-          await rootBundle.loadString('assets/art/party/manifest.json'),
+          await rootBundle.loadString('assets/art/ensemble/manifest.json'),
         ) as Map<String, dynamic>,
       );
-      final sheets = await Future.wait([
-        images.load('party/${manifest.hero.image}'),
-        images.load('party/${manifest.crowd.image}'),
+      final loaded = await Future.wait([
+        images.load('party/${hero.image}'),
+        for (final entry in ensemble.atlases.entries)
+          images.load('ensemble/${entry.value.art.image}'),
       ]);
-      _heroAtlas = PartySpriteAtlas(manifest.hero, sheets[0]);
-      _crowdAtlas = PartySpriteAtlas(manifest.crowd, sheets[1]);
+      _heroAtlas = PartySpriteAtlas(hero, loaded.first);
+      var index = 1;
+      _ensemble = {
+        for (final entry in ensemble.atlases.entries)
+          entry.key: EnsembleAtlas(entry.value, loaded[index++]),
+      };
+      _outfits = await OutfitPalette.load();
       await showRoom('garden/garden-mansion.png', 'garden/gatekeeper.png');
     } catch (error) {
       artLoadError = 'Party character art could not load. Refresh to retry.';
@@ -157,250 +98,531 @@ class GardenSceneGame extends FlameGame {
     }
   }
 
+  /// The second argument remains compatible with room/page handoffs. Challenger
+  /// animation comes exclusively from the ensemble atlas, never that old PNG.
   Future<void> showRoom(String background, String challenger) async {
-    _currentBackground = background;
     final generation = ++_roomGeneration;
-    final loaded = await Future.wait([
-      images.load(background),
-      images.load(challenger),
-    ]);
+    final loaded = await images.load(background);
     if (generation != _roomGeneration) return;
-    _background = loaded[0];
-    _gatekeeper = loaded[1];
+    _currentBackground = background;
+    _background = loaded;
     presentationBeat = null;
+    exitCodaBeat = null;
     warmDown = 0;
     _resetBeat = -10;
     exitTravel = 0;
     actionBeat = -10;
+    actionTargetBeat = null;
+    nextRequiredBeat = null;
     flourishBeat = -10;
+    _choreography = null;
   }
 
   @override
   void update(double dt) {
     super.update(dt);
-    _ambient += dt;
+    if (!presentationPaused &&
+        session?.phase != GardenPhase.paused &&
+        dt.isFinite &&
+        dt > 0) {
+      _foregroundSeconds += dt;
+    }
   }
 
-  void dance(Limb limb) {
+  @override
+  void onRemove() {
+    _outfits?.dispose();
+    super.onRemove();
+  }
+
+  void dance(Limb limb, {double? targetBeat, double? nextRequiredBeat}) {
     action = limb;
     actionBeat = session?.positionBeats ?? 0;
+    actionTargetBeat = targetBeat;
+    this.nextRequiredBeat = nextRequiredBeat;
+  }
+
+  ChallengerPose _challengerAt(double beat) {
+    final s = session;
+    if (s == null) {
+      return const ChallengerPose(
+        frameId: 'occupied',
+        state: ChallengerDanceState.occupied,
+      );
+    }
+    if (_choreography == null ||
+        !identical(_choreographySession, s) ||
+        !identical(_choreographyLimbs, s.activeLimbs) ||
+        !identical(_choreographyOffsets, s.activeOffsets)) {
+      _choreography = ChallengerChoreography(
+        limbs: s.activeLimbs,
+        offsets: s.activeOffsets,
+        callBeats: s.chart.callBeats,
+      );
+      _choreographySession = s;
+      _choreographyLimbs = s.activeLimbs;
+      _choreographyOffsets = s.activeOffsets;
+    }
+    final cleared = s.phase == GardenPhase.cleared;
+    final passed = s.lastOutcome == null
+        ? null
+        : s.lastOutcome != ChallengeOutcome.retry &&
+              s.lastOutcome != ChallengeOutcome.entranceReset;
+    return _choreography!.sample(
+      beat: beat,
+      callStartBeat: s.callStartBeat,
+      started: s.phase != GardenPhase.ready,
+      reducedMotion: reducedMotion,
+      outcomeBeat: cleared ? s.completedAtBeat : s.lastOutcomeBeat,
+      passed: passed,
+      cleared: cleared,
+    );
   }
 
   @override
   void render(ui.Canvas canvas) {
-    final w = size.x;
-    final h = size.y;
-    if (w <= 0 || h <= 0) return;
-    if (_heroAtlas == null || _crowdAtlas == null) return;
-    final beat = presentationBeat ?? session?.positionBeats ?? _ambient * .6;
-    final playing = session?.running ?? false;
-    final cleared = session?.phase == GardenPhase.cleared;
-
-    final pulse = reducedMotion ? 0.0 : math.sin(beat * math.pi * 2);
-    final sway = reducedMotion ? 0.0 : math.sin(beat * math.pi / 4) * w * .006;
+    if (size.x <= 0 ||
+        size.y <= 0 ||
+        _heroAtlas == null ||
+        _ensemble == null ||
+        _outfits == null ||
+        _background == null) {
+      return;
+    }
+    final paused = presentationPaused || session?.phase == GardenPhase.paused;
+    final sampledBeat = presentationBeat ?? session?.positionBeats ?? 0;
+    final beat = paused ? _lastBeat : sampledBeat;
+    if (!paused) _lastBeat = beat;
+    final viewport = PartyViewport(
+      size.x,
+      size.y,
+      sourceWidth: _background!.width.toDouble(),
+      sourceHeight: _background!.height.toDouble(),
+    );
+    final room = partyRoomLayouts[_roomId]!;
+    final backgroundRect = viewport.backgroundRect;
     canvas.save();
-    canvas.translate(sway, 0);
+    canvas.scale(viewport.pixelsPerUnit);
+    canvas.clipRect(
+      ui.Rect.fromLTWH(
+        0,
+        0,
+        PartyViewport.logicalWidth,
+        viewport.logicalHeight,
+      ),
+    );
+    canvas.drawImageRect(
+      _background!,
+      ui.Rect.fromLTWH(
+        0,
+        0,
+        _background!.width.toDouble(),
+        _background!.height.toDouble(),
+      ),
+      ui.Rect.fromLTWH(
+        backgroundRect.left,
+        backgroundRect.top,
+        backgroundRect.width,
+        backgroundRect.height,
+      ),
+      ui.Paint()..filterQuality = ui.FilterQuality.none,
+    );
+    final bounds = ui.Rect.fromLTWH(
+      0,
+      0,
+      PartyViewport.logicalWidth,
+      viewport.logicalHeight,
+    );
+    canvas.drawRect(
+      bounds,
+      ui.Paint()
+        ..shader = const LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [Color(0x22101620), Color(0x00101620), Color(0x6607151E)],
+          stops: [0, .45, 1],
+        ).createShader(bounds),
+    );
 
-    // 1. Background layer
-    if (_background != null) {
-      paintImage(
-        canvas: canvas,
-        rect: ui.Rect.fromLTWH(-8, -8, w + 16, h + 16),
-        image: _background!,
-        fit: BoxFit.cover,
-        filterQuality: FilterQuality.none,
+    _drawLampGlows(canvas, viewport);
+    final draws = <_WorldDraw>[];
+    _addFurniture(draws, viewport, room);
+    _addGuests(draws, viewport, room, beat);
+    _addLife(draws, viewport, room);
+    final challenger = _challengerAt(beat);
+    _addChallenger(draws, viewport, room, challenger);
+    _addHero(draws, viewport, room, beat, challenger);
+    draws.sort((a, b) => compareEnsembleDepth(a.order, b.order));
+    for (final draw in draws) {
+      draw.draw(canvas);
+    }
+    canvas.restore();
+    super.render(canvas);
+  }
+
+  double _adultHeight(
+    PartyViewport viewport,
+    PartyRoomLayout room,
+    PartyPoint floor, {
+    double stature = 1,
+  }) => viewport.sourceHeightToLogical(
+    room.floor.standingHeightAt(floor.y, stature: stature),
+  );
+  ui.Offset _point(PartyPoint point) => ui.Offset(point.x, point.y);
+
+  void _shadow(ui.Canvas canvas, ui.Offset floor, double standingHeight) {
+    canvas.drawOval(
+      ui.Rect.fromCenter(
+        center: floor,
+        width: standingHeight * .34,
+        height: standingHeight * .065,
+      ),
+      ui.Paint()..color = const Color(0x55030C14),
+    );
+  }
+
+  void _addGuests(
+    List<_WorldDraw> draws,
+    PartyViewport viewport,
+    PartyRoomLayout room,
+    double beat,
+  ) {
+    final s = session;
+    for (final slot in room.guests) {
+      final projected = room.projectSlot(viewport, slot);
+      final snapshot = s != null && slot.interestIndex != null
+          ? s.crowd.guest(
+              slot.interestIndex!,
+              beat,
+              exitBeat: s.phase == GardenPhase.cleared
+                  ? exitCodaBeat ?? s.completedAtBeat
+                  : null,
+            )
+          : null;
+      final atlas =
+          _ensemble!['guest${snapshot?.archetypeIndex ?? slot.archetype}']!;
+      final frame = snapshot == null
+          ? 'seated_idle_a'
+          : ensembleGuestFrame(snapshot, reducedMotion: reducedMotion);
+      final scale = projected.spriteScale(
+        atlas.nativeHeight('standing_idle_a'),
+      );
+      final ground = _point(projected.floor);
+      final palette =
+          OutfitColor.values[(snapshot?.paletteIndex ?? slot.paletteIndex) %
+              OutfitColor.values.length];
+      draws.add(
+        _WorldDraw(slot.id, projected.floor.y, 10, (canvas) {
+          _shadow(canvas, ground, projected.standingHeight);
+          atlas.draw(
+            canvas,
+            frame,
+            ground,
+            scale,
+            flipX: !slot.facingRight,
+            outfits: _outfits,
+            palette: palette,
+          );
+        }),
       );
     }
+  }
 
-    final shade = Paint()
-      ..shader = const LinearGradient(
-        begin: Alignment.topCenter,
-        end: Alignment.bottomCenter,
-        colors: [Color(0x77101620), Color(0x00101620), Color(0xBB07151E)],
-        stops: [0, .45, 1],
-      ).createShader(ui.Rect.fromLTWH(0, 0, w, h));
-    canvas.drawRect(ui.Rect.fromLTWH(0, 0, w, h), shade);
-
-    // 2. Party Crowd / Spectators in Depth
-    _drawSpectators(canvas, w, h, beat, cleared);
-
-    // 3. Challenger / Gatekeeper
-    final approvalBeat = session?.completedAtBeat ?? beat;
-    final accepted = cleared
-        ? ((beat - approvalBeat) / 2).clamp(0.0, 1.0)
-        : 0.0;
-    final hostX = w * (.51 + .25 * accepted);
-    final hostY = h * .43 + (playing ? pulse * 1.5 : 0);
-    _shadow(canvas, ui.Offset(hostX, hostY + h * .05), w * .14);
-
-    if (_gatekeeper != null) {
-      canvas.save();
-      // Subtle rhythmic dance sway for the challenger
-      if (!reducedMotion && playing) {
-        final challengerBounce = math.sin(beat * math.pi) * 1.5;
-        canvas.translate(0, challengerBounce);
+  void _addFurniture(
+    List<_WorldDraw> draws,
+    PartyViewport viewport,
+    PartyRoomLayout room,
+  ) {
+    final furniture = _ensemble!['furniture']!;
+    final life = _ensemble!['life']!;
+    for (var i = 0; i < room.props.length; i++) {
+      final prop = room.props[i];
+      if (prop.bakedIntoStarter) continue;
+      final projected = viewport.project(prop.floor);
+      final adult = _adultHeight(viewport, room, prop.floor);
+      late final EnsembleAtlas atlas;
+      late final String frame;
+      late final String reference;
+      switch (prop.kind) {
+        case PartyPropKind.chair:
+          final owner = room.guests
+              .where((g) => g.homePropId == prop.id)
+              .firstOrNull;
+          if (owner?.chairIncluded == true) continue;
+          atlas = furniture;
+          frame = owner?.facingRight == false ? 'chair_left' : 'chair_right';
+          reference = frame;
+        case PartyPropKind.table:
+          atlas = furniture;
+          frame = 'table';
+          reference = frame;
+        case PartyPropKind.umbrella:
+          atlas = life;
+          reference = 'umbrella_a';
+          frame = ensembleAmbientFrame(
+            'umbrella',
+            _foregroundSeconds,
+            instance: i,
+            reducedMotion: reducedMotion,
+          );
+        case PartyPropKind.plant:
+          atlas = life;
+          reference = 'plant_a';
+          frame = ensembleAmbientFrame(
+            'plant',
+            _foregroundSeconds,
+            instance: i,
+            reducedMotion: reducedMotion,
+          );
+        case PartyPropKind.candle:
+          atlas = life;
+          reference = 'candle_a';
+          frame = ensembleAmbientFrame(
+            'candle',
+            _foregroundSeconds,
+            instance: i,
+            reducedMotion: reducedMotion,
+          );
+        case PartyPropKind.drink:
+          continue; // Drinks belong to the authored seated poses.
       }
-      paintImage(
-        canvas: canvas,
-        rect: ui.Rect.fromCenter(
-          center: ui.Offset(hostX, hostY - h * .025),
-          width: w * .30,
-          height: h * .24,
-        ),
-        image: _gatekeeper!,
-        fit: BoxFit.contain,
-        filterQuality: FilterQuality.none,
+      final scale = adult * prop.heightInAdults / atlas.nativeHeight(reference);
+      // A hanging plant's measured pivot is its top cord; depth still belongs
+      // to the pot below it, rather than the elevated attachment point.
+      final propGround = prop.kind == PartyPropKind.plant
+          ? ui.Offset(projected.x, projected.y - adult * prop.heightInAdults)
+          : _point(projected);
+      draws.add(
+        _WorldDraw(prop.id, projected.y, 0, (canvas) {
+          atlas.draw(canvas, frame, propGround, scale);
+        }),
       );
-
-      // Challenger demonstration indicator during call phase
-      if (session?.phase == GardenPhase.call) {
-        _drawChallengerCallDemo(canvas, hostX, hostY, w, h, beat);
+      if (prop.kind == PartyPropKind.table) {
+        final candle = ensembleAmbientFrame(
+          'candle',
+          _foregroundSeconds,
+          instance: i,
+          reducedMotion: reducedMotion,
+        );
+        final candleGround = ui.Offset(
+          projected.x,
+          projected.y - adult * prop.heightInAdults * .92,
+        );
+        draws.add(
+          _WorldDraw('${prop.id}-candle', projected.y, 1, (canvas) {
+            life.draw(
+              canvas,
+              candle,
+              candleGround,
+              adult * .16 / life.nativeHeight('candle_a'),
+            );
+          }),
+        );
       }
-      canvas.restore();
     }
+  }
 
-    // 4. Reviewed raster poses, anchored consistently to the same ground point.
-    final entrance = session?.phase == GardenPhase.intro
+  void _addLife(
+    List<_WorldDraw> draws,
+    PartyViewport viewport,
+    PartyRoomLayout room,
+  ) {
+    final life = _ensemble!['life']!;
+    for (var i = 0; i < 2; i++) {
+      final floor = PartyPoint(i == 0 ? .14 : .86, isBar ? .43 : .49);
+      final projected = viewport.project(floor);
+      final height = _adultHeight(viewport, room, floor) * .62;
+      final frame = ensembleAmbientFrame(
+        'plant',
+        _foregroundSeconds,
+        instance: i + 21,
+        reducedMotion: reducedMotion,
+      );
+      draws.add(
+        _WorldDraw('plant-$i', projected.y, 0, (canvas) {
+          life.draw(
+            canvas,
+            frame,
+            ui.Offset(projected.x, projected.y - height),
+            height / life.nativeHeight('plant_a'),
+          );
+        }),
+      );
+    }
+    final waiterX = reducedMotion
+        ? .51
+        : .51 + .055 * math.sin(_foregroundSeconds * .11);
+    final floor = PartyPoint(waiterX, isBar ? .345 : .385);
+    final projected = viewport.project(floor);
+    final height = _adultHeight(viewport, room, floor);
+    final frame = ensembleAmbientFrame(
+      'waiter',
+      _foregroundSeconds,
+      instance: 4,
+      reducedMotion: reducedMotion,
+    );
+    draws.add(
+      _WorldDraw('waiter', projected.y, 10, (canvas) {
+        _shadow(canvas, _point(projected), height);
+        life.draw(
+          canvas,
+          frame,
+          _point(projected),
+          height / life.nativeHeight('waiter_a'),
+        );
+      }),
+    );
+  }
+
+  void _drawLampGlows(ui.Canvas canvas, PartyViewport viewport) {
+    // Centers measured against the painted lamps, under the same cover crop.
+    final sources = isBar
+        ? const [
+            PartyPoint(.198, .204),
+            PartyPoint(.471, .204),
+            PartyPoint(.676, .204),
+            PartyPoint(.706, .082),
+          ]
+        : const [
+            PartyPoint(.177, .129),
+            PartyPoint(.856, .129),
+            PartyPoint(.205, .280),
+            PartyPoint(.796, .280),
+          ];
+    for (var i = 0; i < sources.length; i++) {
+      final center = _point(viewport.project(sources[i]));
+      final gain = partyAmbientAt(
+        _foregroundSeconds,
+        instance: i,
+        reducedMotion: reducedMotion,
+      ).lightGain;
+      const radius = 2.0;
+      canvas.drawCircle(
+        center,
+        radius,
+        ui.Paint()
+          ..shader = ui.Gradient.radial(center, radius, [
+            const ui.Color(0xffffce83).withValues(alpha: .045 * gain),
+            const ui.Color(0x00ffce83),
+          ]),
+      );
+    }
+  }
+
+  void _addChallenger(
+    List<_WorldDraw> draws,
+    PartyViewport viewport,
+    PartyRoomLayout room,
+    ChallengerPose pose,
+  ) {
+    final floor = PartyPoint(.5 + .2 * pose.floorYield, isBar ? .45 : .53);
+    final projected = viewport.project(floor);
+    final height = _adultHeight(viewport, room, floor);
+    final atlas = _ensemble![isBar ? 'bartender' : 'gatekeeper']!;
+    final scale = height / atlas.nativeHeight('ready');
+    final ground = ui.Offset(
+      projected.x + pose.rootOffsetX * scale,
+      projected.y,
+    );
+    draws.add(
+      _WorldDraw('challenger', projected.y, 10, (canvas) {
+        _shadow(canvas, ground, height);
+        atlas.draw(canvas, pose.frameId, ground, scale);
+      }),
+    );
+  }
+
+  void _addHero(
+    List<_WorldDraw> draws,
+    PartyViewport viewport,
+    PartyRoomLayout room,
+    double beat,
+    ChallengerPose challenger,
+  ) {
+    final s = session;
+    final entrance = s?.phase == GardenPhase.intro
         ? (beat / 4).clamp(0.0, 1.0)
         : 1.0;
     final resetAge = beat - _resetBeat;
     final retreat = resetAge >= 0 && resetAge < 2
         ? math.sin(resetAge / 2 * math.pi)
         : 0.0;
-    final departure = roomDepartures[isBar ? 'bar' : 'garden']!.sample(
+    final departure = roomDepartures[_roomId]!.sample(
       exitTravel,
       reducedMotion: reducedMotion,
     );
-    final robotY = exitTravel > 0
-        ? h * departure.y
-        : h * (.76 - entrance * .09 + retreat * .09);
-    final robotX = w * (exitTravel > 0 ? departure.x : .5);
-    _shadow(canvas, ui.Offset(robotX, robotY + 20), w * .14);
-
-    final scale =
-        (w / 150).clamp(1.8, 3.0) * (exitTravel > 0 ? departure.scale : 1);
-    final stumbleAge = beat - (session?.lastStumbleBeat ?? -100);
-    final stumbling = stumbleAge >= 0 && stumbleAge < 1.5;
-    final frame = heroSpriteFrame(
+    final homeY = isBar ? .62 : .69;
+    final floor = PartyPoint(
+      exitTravel > 0 ? departure.x : .5,
+      exitTravel > 0
+          ? homeY + departure.y - .67
+          : homeY + (1 - entrance) * .07 + retreat * .04,
+    );
+    final projected = viewport.project(floor);
+    final height = _adultHeight(viewport, room, floor, stature: .35);
+    final reference = _heroAtlas!.definition.frames['front_idle']!;
+    final scale = height / (reference.source.height / reference.pixelsPerUnit);
+    final stumbleAge = beat - (s?.lastStumbleBeat ?? -100);
+    var frame = heroSpriteFrame(
       beat: beat,
-      phaseBeat: session?.phaseBeat ?? 0,
-      front: session?.phase == GardenPhase.response || cleared,
-      walking:
-          session?.phase == GardenPhase.intro || exitTravel > 0 || retreat > 0,
+      phaseBeat: s?.phaseBeat ?? 0,
+      front:
+          s?.phase == GardenPhase.response || s?.phase == GardenPhase.cleared,
+      walking: s?.phase == GardenPhase.intro || exitTravel > 0 || retreat > 0,
       sideOn: exitTravel > 0 && departure.facing == DepartureFacing.sideRight,
       reducedMotion: reducedMotion,
       action: action,
       actionAge: beat - actionBeat,
       flourishAge: beat - flourishBeat,
-      stumbling: stumbling,
+      stumbling: stumbleAge >= 0 && stumbleAge < 1.5,
     );
-    _heroAtlas!.draw(canvas, frame, ui.Offset(robotX, robotY + 20), scale);
-
-    // 5. Celebration Confetti & Fireflies
-    if (cleared && warmDown < .65 && !reducedMotion) {
-      _drawConfetti(canvas, w, h, beat);
-    } else {
-      for (var i = 0; i < 8; i++) {
-        final x = w * (.07 + ((i * .137) % .86));
-        final y = h * (.32 + ((i * .093) % .36));
-        final alpha = .15 + .15 * math.sin(beat * .5 + i).abs();
-        canvas.drawRect(
-          ui.Rect.fromLTWH(
-            x,
-            y + (reducedMotion ? 0 : math.sin(beat * .5 + i) * 3),
-            2,
-            2,
-          ),
-          Paint()..color = const Color(0xFFFFD27A).withValues(alpha: alpha),
-        );
+    if (challenger.playerRole == PlayerDanceRole.ready &&
+        s?.phase == GardenPhase.call &&
+        beat - actionBeat > 1 &&
+        beat - flourishBeat > 1) {
+      frame = challenger.floorYield < .5 ? 'rear_turn' : 'profile';
+    }
+    var activeMove =
+        action != null && beat - actionBeat >= 0 && beat - actionBeat < .65;
+    if (action != null &&
+        actionTargetBeat != null &&
+        (actionBeat >= flourishBeat || beat - flourishBeat >= 1)) {
+      final move = playerMovePose(
+        limb: action!,
+        acceptedBeat: actionBeat,
+        targetBeat: actionTargetBeat!,
+        beat: beat,
+        nextRequiredBeat: nextRequiredBeat,
+      );
+      if (move.phase != DanceMovePhase.idle) {
+        frame = move.frameId;
+        activeMove = true;
       }
     }
-
-    canvas.restore();
-    super.render(canvas);
-  }
-
-  void _shadow(ui.Canvas canvas, ui.Offset center, double width) {
-    canvas.drawOval(
-      ui.Rect.fromCenter(center: center, width: width, height: width * .22),
-      Paint()..color = const Color(0x77030C14),
-    );
-  }
-
-  void _drawSpectators(
-    ui.Canvas canvas,
-    double w,
-    double h,
-    double beat,
-    bool cleared,
-  ) {
-    final list = isBar ? _barSpectators : _gardenSpectators;
-    for (var i = 0; i < list.length; i++) {
-      final spec = list[i];
-      final guest = session?.crowd.guest(i, beat);
-      final settled = cleared && warmDown > .15 + i * .16;
-      final escorting = cleared && warmDown > 0 && i % 3 == 0 && warmDown < .9;
-      final frame = guestSpriteFrame(
-        archetype: spec.archetype,
-        state: guest?.state ?? CrowdGuestState.occupied,
-        beat: beat + i * .25,
-        styleEnergy: guest?.styleEnergy ?? 0,
-        settled: settled,
-        escorting: escorting,
-        reducedMotion: reducedMotion,
-      );
-      final scale = spec.scale * (w / 180).clamp(1.1, 2.0);
-      final ground = ui.Offset(w * spec.relX, h * spec.relY + scale * 2);
-      _shadow(canvas, ground, scale * 14);
-      _crowdAtlas!.draw(canvas, frame, ground, scale, flipX: !spec.facingRight);
+    if (s != null && s.phase == GardenPhase.response && !s.progress.cleared) {
+      final responseEnd = s.callStartBeat + s.chart.cycleBeats;
+      final lastRequired =
+          s.callStartBeat + s.chart.callBeats + s.activeOffsets.last;
+      final handoverStart = math.max(lastRequired + .65, responseEnd - 1);
+      if (handoverStart < responseEnd) {
+        frame =
+            ensembleHeroHandoverFrame(
+              role: challenger.playerRole,
+              responseProgress:
+                  (beat - handoverStart) / (responseEnd - handoverStart),
+              activeMove: activeMove,
+              activeFlourish:
+                  beat - flourishBeat >= 0 && beat - flourishBeat < 1,
+              reducedMotion: reducedMotion,
+            ) ??
+            frame;
+      }
     }
-  }
-
-  void _drawChallengerCallDemo(
-    ui.Canvas canvas,
-    double hostX,
-    double hostY,
-    double w,
-    double h,
-    double beat,
-  ) {
-    // Demonstration aura pulsing when challenger is performing call notes
-    final pulse = math.sin(beat * math.pi * 4).abs();
-    final auraPaint = Paint()
-      ..color = const Color(0x66FFC35F).withValues(alpha: 0.2 + 0.3 * pulse)
-      ..maskFilter = const ui.MaskFilter.blur(ui.BlurStyle.normal, 12);
-
-    canvas.drawCircle(
-      ui.Offset(hostX, hostY - h * 0.03),
-      w * 0.16 + pulse * 6,
-      auraPaint,
+    draws.add(
+      _WorldDraw('macron', projected.y, 10, (canvas) {
+        _shadow(canvas, _point(projected), height);
+        _heroAtlas!.draw(canvas, frame, _point(projected), scale);
+      }),
     );
-  }
-
-  void _drawConfetti(ui.Canvas canvas, double w, double h, double beat) {
-    const colors = [
-      Color(0xFFFFC35F),
-      Color(0xFF7CE2C4),
-      Color(0xFFFF70A6),
-      Color(0xFF70D6FF),
-      Color(0xFFFFFFFF),
-    ];
-
-    for (var i = 0; i < 28; i++) {
-      final t = (beat * 0.4 + i * 0.23) % 1.0;
-      final x = w * ((i * 0.173 + math.sin(beat * .75 + i) * 0.05) % 1.0);
-      final y = h * (0.15 + 0.8 * t);
-      final rotation = (beat * 1.5 + i) % (math.pi * 2);
-      final color = colors[i % colors.length];
-
-      canvas.save();
-      canvas.translate(x, y);
-      canvas.rotate(rotation);
-      canvas.drawRect(
-        const ui.Rect.fromLTWH(-3, -2, 6, 4),
-        Paint()..color = color,
-      );
-      canvas.restore();
-    }
   }
 }
