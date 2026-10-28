@@ -3,8 +3,10 @@
 Branch: `work/1829-danc`, based on `origin/game` at `6c32f3c`.
 Three Astra agents researched and implemented input, crowd/progression and
 music/departure components; the primary agent integrated rendering, conductor
-presentation timing, specs and planning. Changes remain local and uncommitted;
-no production deployment or integration-branch update was performed.
+presentation timing, specs and planning. This work was subsequently committed and pushed as `fb02490` on the work
+branch at the owner's request. No production deployment or integration-branch
+update was performed. Follow-up sprites and AutoPlay are recorded in
+`session-sprites-autoplay.md`.
 
 ## What changed
 

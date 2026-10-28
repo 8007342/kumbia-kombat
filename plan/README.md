@@ -22,3 +22,6 @@ score and staggered departure arc requested after the first design review.
 
 Primary input/music/crowd research: `input-research.md`,
 `music-overhaul-research.md` and `input-crowd-research.md`.
+
+`session-sprites-autoplay.md` records the actual rectangle-renderer replacement,
+reviewed sprite sources and the desktop AutoPlay follow-up.
