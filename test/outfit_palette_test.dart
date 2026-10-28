@@ -8,7 +8,7 @@ import 'package:kumbia_kombat/gameplay/outfit_palette.dart';
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
-  test('twelve avatars own independent shaders with freshly bound paints', () async {
+  test('twelve avatars cache independent immutable wardrobe variants', () async {
     final images = <ui.Image>[];
     for (final color in [
       const ui.Color(0xff874197),
@@ -28,8 +28,6 @@ void main() {
     }
     final palette = await OutfitPalette.load();
     try {
-      final shaders = <ui.Shader>{};
-      final paints = <ui.Paint>{};
       final recorder = ui.PictureRecorder();
       final canvas = ui.Canvas(recorder);
       for (var actor = 0; actor < 3; actor++) {
@@ -41,27 +39,15 @@ void main() {
             2,
             2,
           );
-          final paint = palette.paint(
+          palette.draw(
+            canvas,
             image: images[actor],
             source: const ui.Rect.fromLTWH(0, 0, 1, 1),
             destination: destination,
             palette: color,
           );
-          shaders.add(paint.shader!);
-          paints.add(paint);
-          final rebound = palette.paint(
-            image: images[actor],
-            source: const ui.Rect.fromLTWH(0, 0, 1, 1),
-            destination: destination,
-            palette: color,
-          );
-          expect(rebound, isNot(same(paint)));
-          expect(rebound.shader, same(paint.shader));
-          canvas.drawRect(destination, paint);
         }
       }
-      expect(shaders.length, 12);
-      expect(paints.length, 12);
       expect(palette.cachedVariantCount, 12);
       final picture = recorder.endRecording();
       final rendered = await picture.toImage(8, 6);
@@ -94,15 +80,6 @@ void main() {
         expect(colors.length, 4, reason: 'All four palettes for actor $actor');
       }
       rendered.dispose();
-      final extra = palette.paint(
-        image: images.first,
-        source: const ui.Rect.fromLTWH(0, 0, 1, 1),
-        destination: const ui.Rect.fromLTWH(0, 0, 2, 2),
-        palette: OutfitColor.teal,
-        instanceKey: 'extra-guest',
-      );
-      expect(shaders.contains(extra.shader), isFalse);
-      expect(palette.cachedVariantCount, 13);
     } finally {
       palette.dispose();
       expect(palette.cachedVariantCount, 0);
@@ -167,14 +144,12 @@ void main() {
           final recorder = ui.PictureRecorder();
           final canvas = ui.Canvas(recorder);
           const frame = ui.Rect.fromLTWH(0, 0, 256, 256);
-          canvas.drawRect(
-            frame,
-            palette.paint(
-              image: atlas,
-              source: frame,
-              destination: frame,
-              palette: OutfitColor.teal,
-            ),
+          palette.draw(
+            canvas,
+            image: atlas,
+            source: frame,
+            destination: frame,
+            palette: OutfitColor.teal,
           );
           final picture = recorder.endRecording();
           final recolored = await picture.toImage(256, 256);
@@ -265,14 +240,12 @@ void main() {
         final recorder = ui.PictureRecorder();
         final canvas = ui.Canvas(recorder);
         const destination = ui.Rect.fromLTWH(0, 0, 14, 2);
-        canvas.drawRect(
-          destination,
-          palette.paint(
-            image: atlas,
-            source: const ui.Rect.fromLTWH(1, 0, 7, 1),
-            destination: destination,
-            palette: color,
-          ),
+        palette.draw(
+          canvas,
+          image: atlas,
+          source: const ui.Rect.fromLTWH(1, 0, 7, 1),
+          destination: destination,
+          palette: color,
         );
         final picture = recorder.endRecording();
         final result = await picture.toImage(14, 2);
@@ -316,14 +289,12 @@ void main() {
       final crowdCanvas = ui.Canvas(crowdRecorder);
       for (final color in OutfitColor.values) {
         final destination = ui.Rect.fromLTWH(color.index * 2.0, 0, 2, 2);
-        crowdCanvas.drawRect(
-          destination,
-          palette.paint(
-            image: atlas,
-            source: const ui.Rect.fromLTWH(2, 0, 1, 1),
-            destination: destination,
-            palette: color,
-          ),
+        palette.draw(
+          crowdCanvas,
+          image: atlas,
+          source: const ui.Rect.fromLTWH(2, 0, 1, 1),
+          destination: destination,
+          palette: color,
         );
       }
       final crowdPicture = crowdRecorder.endRecording();
@@ -341,19 +312,17 @@ void main() {
       };
       expect(crowdColors, variants);
       crowdImage.dispose();
-      // Update both the crop and destination of an already used variant on a
-      // later frame. Binding a fresh Paint must snapshot these new uniforms.
+      // A later pose selects an immutable crop; destination transforms must
+      // not change any shader already used by an earlier frame.
       final nextRecorder = ui.PictureRecorder();
       final nextCanvas = ui.Canvas(nextRecorder);
       const nextDestination = ui.Rect.fromLTWH(2, 0, 2, 1);
-      nextCanvas.drawRect(
-        nextDestination,
-        palette.paint(
-          image: atlas,
-          source: const ui.Rect.fromLTWH(4, 0, 1, 1),
-          destination: nextDestination,
-          palette: OutfitColor.teal,
-        ),
+      palette.draw(
+        nextCanvas,
+        image: atlas,
+        source: const ui.Rect.fromLTWH(4, 0, 1, 1),
+        destination: nextDestination,
+        palette: OutfitColor.teal,
       );
       final nextPicture = nextRecorder.endRecording();
       final nextImage = await nextPicture.toImage(4, 1);
@@ -369,8 +338,64 @@ void main() {
         255,
       ]);
       nextImage.dispose();
+      // Exercise consecutive animation frames, repeated actors sharing a pose,
+      // mirrored parent transforms and changing destinations. The cache must
+      // depend only on source poses/palettes, never screen position or scale.
+      for (var tick = 0; tick < 60; tick++) {
+        final recorder = ui.PictureRecorder();
+        final canvas = ui.Canvas(recorder);
+        canvas.translate(20, 1);
+        canvas.scale(-1, 2);
+        final sourceX = tick.isEven ? 2.0 : 4.0;
+        for (final color in OutfitColor.values) {
+          for (var copy = 0; copy < 2; copy++) {
+            palette.draw(
+              canvas,
+              image: atlas,
+              source: ui.Rect.fromLTWH(sourceX, 0, 1, 1),
+              destination: ui.Rect.fromLTWH(
+                color.index * 4.0,
+                copy * 2.0,
+                2 + tick % 2.0,
+                1,
+              ),
+              palette: color,
+            );
+          }
+        }
+        final picture = recorder.endRecording();
+        final image = await picture.toImage(22, 8);
+        picture.dispose();
+        final pixels = (await image.toByteData(
+          format: ui.ImageByteFormat.rawStraightRgba,
+        ))!;
+        for (final color in OutfitColor.values) {
+          for (var copy = 0; copy < 2; copy++) {
+            final x = 19 - color.index * 4;
+            final y = 2 + copy * 4;
+            final pixel = List.generate(
+              4,
+              (channel) => pixels.getUint8((y * 22 + x) * 4 + channel),
+            );
+            expect(
+              pixel[3],
+              255,
+              reason: 'Guest remains visible at frame $tick',
+            );
+            if (tick.isOdd) {
+              expect(pixel, [220, 145, 112, 255]);
+            } else {
+              expect(variants, contains(pixel.join(',')));
+            }
+          }
+        }
+        image.dispose();
+        if (tick > 0) expect(palette.cachedVariantCount, 12);
+      }
+      final invalidRecorder = ui.PictureRecorder();
       expect(
-        () => palette.paint(
+        () => palette.draw(
+          ui.Canvas(invalidRecorder),
           image: atlas,
           source: const ui.Rect.fromLTWH(-1, 0, 1, 1),
           destination: const ui.Rect.fromLTWH(0, 0, 1, 1),
@@ -378,6 +403,7 @@ void main() {
         ),
         throwsArgumentError,
       );
+      invalidRecorder.endRecording().dispose();
     } finally {
       palette.dispose();
       atlas.dispose();

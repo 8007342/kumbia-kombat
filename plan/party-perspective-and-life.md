@@ -122,11 +122,15 @@ own body shape; palette variants should not alter skin, face, hair or accessorie
 
 ## Clothing palette contract
 
-`OutfitPalette.load()` caches the compiled program and returns an owned shader
-instance. `paint(image:, source:, destination:, palette:)` configures its explicit
-atlas crop and target rectangle. Draw with `canvas.drawRect(destination, paint)`;
-`drawImageRect` does not apply a Paint shader as a recoloring operation. Dispose
-the helper with the owning scene. Four `OutfitColor` values are teal, blue, coral
+`OutfitPalette.load()` caches the compiled program and returns an owned picture
+and shader pool. `draw(canvas, image:, source:, destination:, palette:)` records an
+immutable GPU picture per atlas crop and palette, retaining its initialized
+shader until scene disposal. The picture retains native texture references and
+the shader keeps its uniform buffer alive; subsequent frames never access
+CanvasKit's expiring sampler wrapper. Canvas transforms position and scale the
+pose without changing uniforms or duplicating textures. `drawImageRect` does not
+apply a Paint shader as a recoloring operation. Dispose the helper with the owning
+scene. Four `OutfitColor` values are teal, blue, coral
 and gold. There is no CPU image rewriting or atlas duplication for palette swaps.
 
 The original cool ramp (`#4B245E`, `#874197`, `#C878D6`) barely matched the actual

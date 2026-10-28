@@ -152,14 +152,12 @@ class EnsembleAtlas {
     canvas.translate(ground.dx, ground.dy);
     if (mirrored) canvas.scale(-1, 1);
     final destination = frame.destination(ui.Offset.zero, scale);
-    canvas.drawRect(
-      destination,
-      outfits.paint(
-        image: sprite.image,
-        source: frame.source,
-        destination: destination,
-        palette: palette,
-      ),
+    outfits.draw(
+      canvas,
+      image: sprite.image,
+      source: frame.source,
+      destination: destination,
+      palette: palette,
     );
     canvas.restore();
   }
