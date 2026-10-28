@@ -133,3 +133,102 @@ pose or select one track by explicit priority.
 
 `ranitas`, `cannonball` and `demon_attack` were unavailable as local checkouts,
 so their implementations are not asserted as evidence here.
+
+## Session outcome and recovery record — 2026-10-28
+
+The requested implementation fleet began work on `work/1829-danc` after this
+research pass. The workspace was interrupted before its implementation commit.
+The checkout returned to the `game` branch, and the session's uncommitted scene,
+opponent art/choreography and their tests were no longer present when work
+resumed. The research plans and earlier pushed sprites remain durable on
+`origin/work/1829-danc`; do not confuse the lost uncommitted implementation
+with those surviving assets.
+
+### Lost work that must be regenerated
+
+- `assets/art/ensemble/gatekeeper-v3.png`: generated 8×7 sheet with 56 measured
+  drawings, rather than the requested 64. The interrupted implementation had
+  safely selected 50 non-overlapping crops and excluded overlap pairs 06/07,
+  15/16 and 38/39. Recreate the PNG and measured manifest records; retain all
+  measurements in source inventory and exclude unsafe bounds until repacked.
+- `assets/art/party/macron-travel-v2.png`: generated 4×4, 16-pose companion
+  sheet for forward entry, watcher/clap, finish, yield and retreat. Regenerate
+  this file; original `macron-dance-v1.png` is still the action source.
+- `lib/gameplay/battle_staging.dart` and `test/battle_staging_test.dart`: the
+  deterministic compact/cinematic floor routes, room anchors, sequential
+  ownership handoff, beat-derived walk phase, reduced-motion handling and
+  protected response boundary must be restored and retested.
+- `lib/gameplay/garden_scene.dart` and scene tests: reload the Gatekeeper and
+  Mācron companion atlases, select available opponent gait clips, draw
+  depth-scaled floor roots/shadows, and use Mācron's separately measured travel
+  reference while preserving `.35` adult stature and action/flourish/stumble
+  priority. Reapply the guard that skips `secondsAt()` protection calculations
+  until transport sections/audio anchor exist; debug web found
+  `Bad state: Transport has no audio anchor` without it.
+- `lib/gameplay/challenger_choreography.dart` and tests: restore optional
+  Gatekeeper limb prep/peak/follow/return sequences, locomotion and support
+  selections with legacy Bartender fallbacks and unchanged cue timing.
+- Foreground guest layout edits/tests were separately preserved in commit
+  `cda0bc4`, but they still need visual review on a touchscreen at native phone
+  sizes after the scene integration is restored.
+- Restore asset provenance and README records for both generated sheets. The
+  Gatekeeper output was a preview: it lacked a separate yield row/rear views,
+  missed 8 of the requested 64 poses, and still needs continuity/support-foot
+  review. The Mācron sheet also needs cuff/contact review.
+
+### Tool and validation notes
+
+- `flutter test --no-pub` completed with 110 tests passing before interruption;
+  `flutter analyze --no-pub` was clean and
+  `openspec validate living-party --strict --no-interactive` passed.
+- Flutter release web compilation succeeded. Debug browser inspection is more
+  useful than release logs for exceptions: it surfaced the missing transport
+  anchor, which was fixed and passed a later debug smoke test. A release smoke
+  test must be repeated after restoration.
+- `flutter pub get` was needed after the interruption removed generated
+  `.dart_tool/package_config.json`. The static host preview had also stopped;
+  `publish_local --category WEB --runtime static` brought it back.
+- The image-generation tool and delegated agent runs hit session usage limits
+  during recovery. The generated image cache paths did not persist across the
+  interruption. A future local image generation pipeline should own this step
+  without consuming agent-session generation capacity.
+- The push for the diagnostics and recoverable layout/staging work succeeded to
+  `origin/work/1829-danc` as `cda0bc4`. This is not the missing complete
+  implementation; regenerate and push it as a subsequent reviewed change.
+
+### Upcoming local image-generation pipeline
+
+The forge team expects to provide a local image-generation pipeline, which
+should regenerate these project-bound raster assets without metered agent-token
+consumption. Once its specification is available:
+
+1. Read and cite the pipeline's own specification and its referenced prompt,
+   asset-ingestion, provenance and validation specs in a durable plan/diagnostic
+   update before generating assets. Do not invent command names or assume its
+   interface from the built-in image-generation tool.
+2. Use the pipeline to regenerate Gatekeeper v3 and Mācron travel v2 as separate
+   jobs, preserve output/source provenance and prompt inputs, inspect actual
+   alpha bounds and canvas dimensions, then move selected outputs into the
+   versioned paths above.
+3. Re-measure crop rectangles and floor anchors from the resulting files;
+   regenerate manifests from observations rather than assuming the prior
+   generated dimensions or 8×8 / 4×4 requested layouts were followed exactly.
+4. Update this plan with the exact spec references, pipeline invocation,
+   observed output dimensions/limitations and asset hashes. Keep this
+   knowledge durable so a later session can reproduce the asset pass without
+   depending on conversation history.
+
+The tool specification and its linked specs were not available in this session,
+so no references are fabricated here. Add their exact paths/IDs and key
+requirements as soon as the local pipeline is installed.
+
+## Next-session playtest handoff
+
+The owner plans to test on a touchscreen phone before the next implementation
+pass. After restoring and pushing the feature, use that playtest to review:
+whether the foreground pair remains readable without obscuring phone cues;
+whether the step-forward/back route reads as depth rather than lateral drift;
+whether Mācron remains endearing and toy-sized; whether each opponent has a
+clear watch/clap/taunt response; and whether handoff timing feels musical at the
+actual device's frame rate. Record device/browser, viewport/DPR, tempo and any
+cue misses so art scale or timing adjustments are evidence-based.
