@@ -1,5 +1,95 @@
 # FORGE_DIAGNOSTICS
 
+## Opponent performance and asset pipeline session — 2026-10-29
+
+Work was performed on `work/2610-pipe`, following this project's Level 2 work
+ref discipline. The branch already contained the sprite pipeline plan and an
+earlier cloud-generated Gatekeeper dance candidate. Three focused commits were
+pushed successfully after the forge pre-receive hook caught one ledger issue.
+
+### Forge capabilities confirmed
+
+- `npm run build` uses the installed shared Flutter toolchain (Flutter 3.47.7)
+  and builds the web app to `build/web`. The release build completed in about
+  64 seconds in this session.
+- The authenticated `publish_local` / `service_reload` facilities can run a
+  sibling Wrangler preview. This project's existing WEB preview used Wrangler
+  with watch enabled; after the build, `service_reload` reported the route
+  ready and serving at `https://www.kumbia-kombat.localhost:18443/`.
+- Host-browser navigation can open that local HTTPS preview in the existing
+  visible development window. This was done after rebuilding.
+- The cloud image generation service produced a transparent-background
+  Gatekeeper travel-sheet candidate. It is 1215x1295 RGBA and was recorded with
+  its prompt, provenance, and SHA256 in
+  `assets/art/pipeline/candidates/gatekeeper-travel-cloud-20261029.run.json`.
+  The sheet is a pipeline candidate, not a validated runtime atlas: cell bounds,
+  baseline consistency, and gait alternation still need review.
+- Existing session research found a local Ollama service available for local
+  language-model inference. No image-generation model was loaded through it;
+  Ollama availability alone did not provide a proven image pipeline. ComfyUI
+  sibling-container facilities were not available as a ready image in this
+  session, and this project container cannot start additional containers.
+  The documented next step is to validate the forge's sibling-container
+  ComfyUI service/image and its custom-node inventory before implementing that
+  backend. Cloud imagegen can supply candidates in the meantime.
+- Git mirror pushes relay to GitHub and reported durable upstream acceptance.
+  Three small pushes completed for this work branch.
+
+### Project findings and changes
+
+- Reviewed Mācron's animation history: the existing pipeline moved from an
+  initial generated dance sheet to measured raster atlases and then
+  chart-driven anticipation, accent, follow-through, and settle choreography.
+  Mācron also has a dedicated spin/view sequence. Opponents had chart-derived
+  semantic pose selection, but each semantic pose resolved to a single source
+  rectangle rather than an authored within-phase sequence. Scene rendering
+  also did not consume the existing `BattleStaging` module, explaining the
+  weak opponent dance and sliding travel.
+- Added the `opponent-performance` OpenSpec change for readable, increasingly
+  complex chart-faithful opponent dances; grounded entrance/exit transitions;
+  metadata-driven depth and scale; and reversible crowd response. Strict
+  OpenSpec validation passed.
+- Added `plan/animation-research-register.md` to retain animation and game
+  development references, their practical Kumbia guidance, and the limits of
+  each source. It includes Disney animation process, GDC animation talks,
+  Ubisoft predictive foot IK, Dead Cells production workflow, Valve's Left 4
+  Dead AI Director paper, and additional game/animation references. The Valve
+  paper is explicitly treated as pacing research rather than sprite-animation
+  guidance.
+- Updated `CrowdInterestModel`: isolated failures still produce the nearby
+  stumble response, while repeated consecutive failed phrases cool the full
+  room progressively; a passing phrase clears the failure streak. The initial
+  room cooling decrement is `.025` per repeated failure and remains a tuning
+  value, not an evidence-backed final balance.
+- Added and documented a second cloud-generated Gatekeeper travel candidate.
+  Neither this travel sheet nor the earlier dance sheet is wired into runtime.
+
+### What worked and what did not
+
+- Strict OpenSpec validation, JSON provenance parsing, `git diff --check`, and
+  the release web build succeeded. No automated tests were run in this session.
+- The first push of the specs commit was rejected because the generated
+  `.openspec.yaml` had an unquoted ISO date. The server's Ruby Psych safe YAML
+  parser interpreted it as a `Date` object and rejected the ledger. Quoting the
+  date string and amending the commit resolved the issue; the retry and later
+  pushes were accepted. Quote date-like YAML scalars in future ledger files.
+- The development preview was reloaded after the build and the existing browser
+  window navigated to it successfully. This confirms the route and page load,
+  but is not a mobile gameplay or animation smoke review.
+- Opponent phase sequences and the `BattleStaging` renderer integration remain
+  implementation work. The travel candidate has not been cropped or measured,
+  and opponent complexity, entrances/exits, perspective scaling, and crowd
+  response still need runtime review and tuning.
+
+### Remote work refs
+
+- `83dd0bf docs: define opponent animation standards and research`
+- `b4eaf8f feat: cool crowd after repeated phrase failures`
+- `d399282 art: add Gatekeeper travel candidate`
+
+All three commits were pushed to `origin/work/2610-pipe`. The OpenSpec change
+is intentionally still open while implementation tasks remain.
+
 ## Dance staging implementation session — 2026-10-28
 
 The owner asked for a fleet implementation pass based on the dance-fluidity and
