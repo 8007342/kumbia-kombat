@@ -1,0 +1,49 @@
+{
+  "runId": "cloud-imagegen-20261029-gatekeeper-dance-pilot",
+  "createdDate": "2026-10-29",
+  "service": "built-in cloud image generation",
+  "status": "candidate-needs-cleanup-and-review",
+  "input": {
+    "reference": "assets/art/ensemble/gatekeeper-v2.png",
+    "referenceRole": "identity-and-costume-reference",
+    "referenceSha256": "e099c72e58f3dc718acc7165d854fc38400e26602f0eef196f6beffcd9d5946a"
+  },
+  "output": {
+    "file": "gatekeeper-dance-cloud-20261029.png",
+    "sha256": "15b94c8965813807dd8c1f3548a2db2fab411307c6bc0feb6aa6e1cb4d9d4ce4",
+    "width": 1215,
+    "height": 1295,
+    "format": "PNG RGBA",
+    "alpha": {
+      "verified": true,
+      "minimum": 0,
+      "maximum": 255,
+      "fullyTransparentPixels": 759063
+    }
+  },
+  "workflow": {
+    "type": "single-image generation with character reference",
+    "requestedLayout": "5 columns by 4 rows, 20 full-body poses",
+    "prompt": "Use case: stylized-concept. Asset type: candidate 2D game sprite animation atlas for Kumbia Kombat's Gatekeeper, to be manually inspected and processed before runtime use. Input image: supplied gatekeeper-v2 sprite atlas is the exact identity and costume reference. Preserve his friendly adult face, neat black moustache, cream fedora with teal band, plum short-sleeve guayabera with teal vertical embroidered bands, cream trousers, teal shoes, body proportions and warm pixel-art style. Primary request: Generate one consistent 5-column by 4-row sheet containing 20 distinct full-body dance poses for this same character. The columns are ordered left to right and rows top to bottom. Every cell has one complete isolated character, same camera distance, head size, ground baseline and visual scale. The image is a pose exploration candidate, not a finished production atlas. Rows: Row 1: occupied relaxed idle, ready balanced cumbia stance, anticipation shifting weight to character's anatomical left, anticipation shifting weight to anatomical right, left-hand dance accent. Row 2: right-hand dance accent, left-foot outward step with right foot clearly planted as support, right-foot outward step with left foot clearly planted, follow-through left arm sweep with hip settle, opposing follow-through right arm sweep. Row 3: balanced low settle, proud graceful finish, cede the floor with a diagonal side step and open center, welcoming open-palm invitation, watch pose looking toward the other dancer. Row 4: second subtle watch pose, warm approving clap, playful small balance recovery without falling, turn inward three-quarter, turn outward three-quarter. Style: crisp hand-clustered 16-bit pixel art, deliberate square pixel clusters, dark chromatic outlines, restrained highlights, warm cream/plum/teal palette matching the reference. Grounded joyful dance, readable torso counter-rotation and foot support. Face and costume remain consistent in all frames. Composition: exact regular 5x4 contact sheet on a transparent background; generous clear gutters between cells, full hat, hands, feet inside each cell, consistent centered registration. No cell border, grid lines, text, lettering, labels, scenery, props, floor, drop shadows or glow. Preserve real transparency.",
+    "seed": null,
+    "notes": "Built-in service did not expose a seed or workflow graph for this run."
+  },
+  "validation": {
+    "imageDecodes": true,
+    "transparentBackground": true,
+    "identityVisuallyRecognizable": true,
+    "requestedPoseConceptsPresent": true,
+    "uniformCellGeometry": "not-validated",
+    "sharedGroundAnchor": "not-validated",
+    "pixelGridAndPalette": "needs-processing",
+    "edgeQuality": "needs-fringe-cleanup",
+    "runtimeApproved": false
+  },
+  "nextSteps": [
+    "Measure or manually define twenty source rectangles and verify no pose crosses a cell boundary.",
+    "Remove colored edge fringes and align all crops to one ground anchor.",
+    "Snap to the approved pixel grid and character palette, preserving original source.",
+    "Generate review previews at actual in-game size and compare limb accents to chart beat markers.",
+    "Only after review, emit the runtime manifest records and promote into the scene atlas."
+  ]
+}
