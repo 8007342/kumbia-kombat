@@ -4,6 +4,8 @@
 garden animation inventory, native pixel-grid direction and crowd behaviors.
 Use its first proof gates before bulk production. The older minimal counts
 below remain historical scope, not evidence of animation quality or delivery.
+The automation research and first ComfyUI proof gates are in
+[sprite generation pipeline](sprite-generation-pipeline.md).
 
 Status: specifications complete; SVG input icons created; eight-pose raster concept starter generated and visually inspected. Garden/bar backgrounds and single challenger poses are generated and integrated as starters. Final sprite cleanup, remaining three room backgrounds, full animations and genuine parallax remain scheduled work. Do not mark those complete from concept art.
 

@@ -8,3 +8,6 @@ Prompt (built-in mode):
 `references/character-scale.png` is upstream reference material, not a new game asset and not for runtime bundling. Provenance and shipping-license followup are in `plan/assets.md`.
 
 Production requirements and inventory: `openspec/specs/art-direction/spec.md` and `plan/assets.md`. Four project-authored SVG body-part controls are in `assets/ui/`.
+
+Cloud-generated pipeline candidates, run records, and promotion criteria live
+in `assets/art/pipeline/`. They are not bundled as runtime art until approved.
