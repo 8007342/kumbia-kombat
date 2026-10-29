@@ -1,0 +1,50 @@
+{
+  "runId": "cloud-imagegen-20261029-gatekeeper-travel-pilot",
+  "createdDate": "2026-10-29",
+  "service": "built-in cloud image generation",
+  "status": "candidate-needs-cleanup-and-review",
+  "input": {
+    "reference": "assets/art/ensemble/gatekeeper-v2.png",
+    "referenceRole": "identity-and-costume-reference",
+    "referenceSha256": "e099c72e58f3dc718acc7165d854fc38400e26602f0eef196f6beffcd9d5946a"
+  },
+  "output": {
+    "file": "gatekeeper-travel-cloud-20261029.png",
+    "sha256": "0fcddc61583fe526194fc6008b54162b874586f01e327513050525ba09aeeb53",
+    "width": 1215,
+    "height": 1295,
+    "format": "PNG RGBA",
+    "alpha": {
+      "verified": true,
+      "minimum": 0,
+      "maximum": 255,
+      "fullyTransparentPixels": 866266
+    }
+  },
+  "workflow": {
+    "type": "single-image generation with character reference",
+    "requestedLayout": "4 columns by 4 rows, 16 travel poses",
+    "prompt": "Use case: stylized-concept. Asset type: candidate game sprite locomotion atlas for Kumbia Kombat's Gatekeeper, to be cleaned, measured, and reviewed before runtime use. Input image is an identity reference only: preserve the same friendly broad adult man, cream fedora with teal band, black moustache, plum guayabera with teal embroidered stripes, cream trousers, teal shoes, body proportions, and warm crisp 16-bit pixel art. Do not copy the old sheet layout. Primary request: one contact sheet with EXACT 4 columns by 4 rows, 16 distinct full-body locomotion drawings of the same character, in row-major order. This is an authored movement sequence reference, not a final runtime atlas. Keep camera distance, head size, body scale, feet and visual identity stable. No duplicated or mirrored poses. Row 1: front three-quarter dancer settles from dance into ready stance; turns head and shoulders toward his exit route while keeping feet grounded; transfers weight onto the support foot and begins a forward diagonal start step; completes the first grounded step with the trailing foot passing underneath. Row 2: four-frame forward diagonal walk toward a slightly more distant mark: left step contact, passing position, right step contact, passing position. Keep alternating footfalls and natural arm counter-swing, body height changes only from leg compression, both shoes visible. Row 3: four-frame lateral sidestep/yield sequence facing partly toward the player: load support foot; opposite foot steps sideways; body passes over the new support; feet close and settle. This is a courteous dance-floor yield, not a kick. Row 4: two backward-diagonal retreat steps while keeping a friendly glance toward the player; arrive at a watching mark and decelerate; turn back toward the dance floor with feet planted; relaxed attentive watch pose. Movement quality: clear planted contact, alternating weight transfer, readable passing poses, natural arcs, anticipation before travel, controlled deceleration and follow-through. Maintain consistent ground reference and facing within each row. Character secondary motion is subtle hat brim and shoulder lag, never detached. Composition: equal spacious cells in a regular 4x4 layout, one entire character per cell, full hat/hands/shoes inside, generous clean transparent gutters, consistent baseline. Genuine transparent alpha. No text, labels, grids, shadows, glow, floor, scenery, furniture, other characters, smear blur, or camera effects. Keep clean dark outlines and the reference cream/plum/teal palette.",
+    "seed": null,
+    "notes": "Built-in service did not expose a seed or workflow graph for this run."
+  },
+  "validation": {
+    "imageDecodes": true,
+    "transparentBackground": true,
+    "identityVisuallyRecognizable": true,
+    "requestedPoseGroupsPresent": true,
+    "uniformCellGeometry": "not-validated",
+    "alternatingGaitContinuity": "needs-redraw-or-cleanup",
+    "sharedGroundAnchor": "not-validated",
+    "pixelGridAndPalette": "needs-processing",
+    "edgeQuality": "needs-fringe-cleanup",
+    "runtimeApproved": false
+  },
+  "nextSteps": [
+    "Measure all sixteen source rectangles and reject any pose crossing a cell boundary.",
+    "Redraw or curate a true alternating walk cycle with a stable camera and shared foot baseline.",
+    "Clean edge fringes and align start/stop/turn transitions to the shared ground anchor.",
+    "Emit explicit beat-marker and support-foot metadata only after visual inspection.",
+    "Review the route with floor-derived scale and actor occlusion over the garden background before runtime promotion."
+  ]
+}
