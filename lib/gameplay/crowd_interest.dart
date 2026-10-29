@@ -143,10 +143,16 @@ class _Guest {
 
 /// A bounded in-memory save, not a durable run-save implementation.
 class CrowdCheckpoint {
-  CrowdCheckpoint._(this._guests, this._lastSequence, this._support);
+  CrowdCheckpoint._(
+    this._guests,
+    this._lastSequence,
+    this._support,
+    this._consecutiveFailures,
+  );
   final List<_Guest> _guests;
   final int _lastSequence;
   final double _support;
+  final int _consecutiveFailures;
 }
 
 class CrowdInterestModel {
@@ -174,6 +180,7 @@ class CrowdInterestModel {
   late List<_Guest> _guests;
   int _lastSequence = -1;
   double _support = 0;
+  int _consecutiveFailures = 0;
   int get guestCount => _guests.length;
 
   /// Musical readiness, independent of how expressive this room's guests are.
@@ -257,6 +264,7 @@ class CrowdInterestModel {
     _guests.map((g) => g.copy()).toList(),
     _lastSequence,
     _support,
+    _consecutiveFailures,
   );
   void restore(CrowdCheckpoint checkpoint) {
     if (checkpoint._guests.length != guestCount) {
@@ -265,6 +273,7 @@ class CrowdInterestModel {
     _guests = checkpoint._guests.map((g) => g.copy()).toList();
     _lastSequence = checkpoint._lastSequence;
     _support = checkpoint._support;
+    _consecutiveFailures = checkpoint._consecutiveFailures;
   }
 
   bool resolvePhrase({
@@ -275,14 +284,19 @@ class CrowdInterestModel {
   }) {
     if (sequence <= _lastSequence) return false;
     _lastSequence = sequence;
+    _consecutiveFailures = passed ? 0 : _consecutiveFailures + 1;
     _support = (_support + (passed ? 1 / rampPhrases : -.035)).clamp(0.0, 1.0);
+    // One failed phrase creates the existing local stumble. Repeated failures
+    // cool the wider room slowly; one good phrase resets this broad-loss ramp.
+    final roomLoss = !passed && _consecutiveFailures >= 2 ? .025 : 0.0;
     for (var i = 0; i < guestCount; i++) {
       final g = _guests[i];
       final ceiling = profile.ceiling(g.rank, guestCount);
       final maxInterest = ceiling == CrowdGuestState.occupied ? .07 : 1.0;
       final receptiveness = const [1.06, .94, 1.02, .97, 1.0][i % 5];
-      g.interest = (g.interest + (passed ? receptiveness / rampPhrases : 0))
-          .clamp(0.0, maxInterest);
+      g.interest =
+          (g.interest + (passed ? receptiveness / rampPhrases : -roomLoss))
+              .clamp(0.0, maxInterest);
       _change(i, beat);
     }
     if (!passed) stumble(sequence % guestCount, beat);
