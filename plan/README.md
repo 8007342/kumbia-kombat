@@ -40,3 +40,8 @@ production slice: authored dancer breakdowns and a music-owned floor exchange.
 
 `opponent-depth-staging-pass.md` scopes the follow-up: richer opponent dances,
 floor-derived approach/yield routes and close-but-safe audience framing.
+
+`animation-research-register.md` consolidates reusable Disney, GDC, Valve,
+Ubisoft and game-production references with bounded Kumbia-specific applications.
+The `opponent-performance` OpenSpec change turns those applications into
+opponent dance, travel, chart complexity and reversible crowd requirements.

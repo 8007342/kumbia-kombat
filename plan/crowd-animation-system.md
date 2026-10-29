@@ -71,10 +71,15 @@ The former unconditional `cleared => everyone celebrates` rule is removed.
 The model assigns each guest a stable attention rank, archetype, palette and
 phase offset. Attention rank interleaves scene slots, so early interest does
 not form one uniform row. Completed passing responses grow interest; individual
-thresholds and the room's caps determine the destination behavior. Failed
-phrases affect the nearest guest and one neighbor, with hysteresis around
-state boundaries. Idle time, render calls and social reaction chains cannot
-manufacture earned progress.
+thresholds and the room's caps determine the destination behavior. A failed
+phrase affects the nearest guest and one neighbor. Two or more consecutive
+failed phrases also cool every guest by a small bounded interest amount; a
+passing phrase resets that broad-loss ramp. Individual thresholds and
+hysteresis determine when guests return to seated states. Idle time, render
+calls and social reaction chains cannot manufacture earned progress. The
+current broad-loss amount (`.025` interest per failure after the first
+consecutive failure) is an initial tuning value, not a research-derived
+constant.
 
 Reaction starts use nonidentical fractional offsets distributed over roughly
 four bars for the full cast, with at most four initial notices per bar. A

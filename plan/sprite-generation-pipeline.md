@@ -201,4 +201,5 @@ facility and model storage with the platform owner before beginning G0.
 - Existing project contracts: [art direction](../openspec/specs/art-direction/spec.md),
   [asset plan](assets.md), [ensemble manifest](../assets/art/ensemble/manifest.json),
   [party perspective guide](party-perspective-and-life.md), and
-  [dance choreography plan](dance-battle-choreography.md).
+  [dance choreography plan](dance-battle-choreography.md), plus the shared
+  [animation research register](animation-research-register.md).
