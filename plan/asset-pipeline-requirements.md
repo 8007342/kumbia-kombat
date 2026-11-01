@@ -319,3 +319,17 @@ the coordinator as its own small packet.
   - `nerijs/pixel-art-xl` @ `8bf4a4d9ea283e00a51fafda8e0539f8248ea037`,
     `pixel-art-xl.safetensors`, sha256 `4234637cb80c998f41e348e6a6cb6bc20d8d038b2b0f256b6129b3b5e353eef7` (creativeml-openrail-m)
   - Open risk: sd.cpp may support ControlNet on SD1.5 only; verify on the pinned tag.
+- 2026-11-01: operator standing approval (relayed by demon_attack-forge from
+  macuahuitl): "For our own projects we shall have a standing approval to use
+  all of those free models, we'll not be selling any of those assets." Covers
+  the free models on demon_attack's `plan/asset-pipeline/licence-review.md`,
+  except its flagged rows (FLUX.2-dev / klein-9B, Depth-Anything Base/Large,
+  lllyasviel/LayerDiffuse_Diffusers, the ntc-ai slider). Fetching still goes
+  through the forge licence register; gated click-through terms still need
+  the operator. dinov2-small is not on that list and needs separate approval.
+- 2026-11-01: Blender stand-in rig landed (`tool/art/rig/`). It renders
+  Gatekeeper v3 (64 poses) and the Mācron pilot (54 poses: groove, four limb
+  chains, eight real turn views, watch, clap, ingress/egress, proud finish)
+  into `art_runs/inputs/<family>/`. Measured: one constant ground line per
+  family (Gatekeeper y=902.4, Mācron y=874.7 on the 768×960 canvas), zero
+  undeclared region colours, no canvas clipping.
