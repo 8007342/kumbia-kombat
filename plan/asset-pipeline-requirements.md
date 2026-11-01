@@ -234,6 +234,33 @@ Generation runs against ComfyUI's HTTP API-format workflow JSON (:8188)
 once the studio lands (drafts #791/#793/#794); until then only
 `image.generate` text-to-image is available.
 
+demon_attack's files are readable on GitHub (`8007342/demon_attack`, branch
+`research/local-image-large-models`, head `bd3b89a`):
+`tools/asset_pipeline/{pipeline.py,README.md,families/ship.json}` and
+`plan/asset-pipeline/licence-review.md` (official-card licence table).
+Its palette snap is `snap_to_palette()`; our recolor gates become a post-snap
+QA check that needs a cloth/non-cloth region mask per pose (open problem:
+segmentation vs. a mask rendered from our rig).
+
+## Model approval request (Kumbia, for the operator)
+
+All verified on official cards in demon_attack's `licence-review.md` or in
+`generative-animation-research.md`. In priority order:
+
+| # | File | Licence | Kumbia use |
+|---|---|---|---|
+| 1 | xinsir/controlnet-union-sdxl-1.0 | apache-2.0 | OpenPose for humans + depth/lineart for Mācron in one model |
+| 2 | h94/IP-Adapter SDXL Plus (non-FaceID) | apache-2.0 (verify weights card) | Identity reference per character |
+| 3 | LayerDiffusion/layerdiffusion-v1 `layer_xl_*` | creativeml-openrail-m | Native transparent SDXL output (cleaner alpha than matting) |
+| 4 | ZhengPeng7/BiRefNet or PramaLLC/BEN2 | mit | Matte fallback |
+| 5 | SDXL base 1.0 | openrail++ | Full-step base: Lightning's 4-step/CFG-0 regime may weaken ControlNet and IP-Adapter and ignores negatives — A/B before committing |
+| 6 | nerijs/pixel-art-xl | creativeml-openrail-m | Pixel-art style LoRA for SDXL |
+| 7 | Depth-Anything-V2-Small | apache-2.0 | Depth from reference art when no rig render exists |
+| 8 | kohya-ss sd-scripts / ostris ai-toolkit | Apache-2.0 / MIT | Character LoRA training (later) |
+
+Never: Depth-Anything-V2 Base/Large (cc-by-nc), any FLUX.1-dev ControlNet,
+InsightFace-based FaceID/InstantID/PuLID, Zero123++ weights, RMBG.
+
 ## Open questions for `1935-k2ib`
 
 1. Will ControlNet / IP-Adapter / img2img be exposed through the light
