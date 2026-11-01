@@ -31,8 +31,9 @@ Companion documents in this repo:
 - On-screen size comes from floor projection ÷ a reference frame's height, so
   each sheet needs exactly one scale and one `pixelsPerUnit`.
 - Mācron renders ~63 px tall in the garden and ~110 px in the bar at 360×640.
-  A single 32×40 native grid cannot land on whole-number scales in both rooms;
-  **the native grid is an open owner decision** before bulk pixel finishing.
+  A single 32×40 native grid cannot land on whole-number scales in both rooms.
+  **Owner decision 2026-11-01: native pixel size is per room.** Rooms may also
+  use different camera treatments (see Owner decisions below).
 - Memory: the current 1.5-megapixel contact sheets decode to ~6 MiB each
   (~54 MiB loaded, ~72 MiB more for outfit variants) against a 16 MiB plan.
   Deliver tightly packed native-resolution atlases.
@@ -241,6 +242,29 @@ demon_attack's files are readable on GitHub (`8007342/demon_attack`, branch
 Its palette snap is `snap_to_palette()`; our recolor gates become a post-snap
 QA check that needs a cloth/non-cloth region mask per pose (open problem:
 segmentation vs. a mask rendered from our rig).
+
+## Owner decisions (2026-11-01)
+
+1. **Native pixel size per room.** Each room declares its own native grid.
+   Characters that appear in several rooms (Mācron above all) keep one
+   accepted high-resolution source set; the pixel finish runs once per room
+   target, producing a per-room atlas. A family spec therefore carries
+   `targets[]` per room rather than a single `frame.native`.
+2. **Per-room perspective.** Rooms need not share the rear/three-quarter
+   floor perspective. Level 4 (restroom dash, storyboard R01) is the candidate
+   for a **side-on** level: actors move on a horizontal ground line with no
+   floor-projection scaling. It needs true profile walk/dance views for Mācron
+   and the restroom attendant, side-view backgrounds/parallax strips, and
+   staging marks along one axis. The rig makes this a camera change, not new
+   choreography.
+3. **Motion source: Blender stand-ins, hand-keyed.** Cumbia is absent from
+   every licensable mocap set, so pose keys are authored on simple Blender
+   stand-in rigs (one per character silhouette, a non-human rig for Mācron)
+   at beat-timed key and breakdown frames. They render the OpenPose,
+   depth/lineart and flat-colour region-mask PNGs the contract expects.
+   Filmed reference and mocap are deferred.
+4. **Branching.** Mature work merges into `game`; partial work and drafts
+   stay on `work/*` branches.
 
 ## Model approval request (Kumbia, for the operator)
 

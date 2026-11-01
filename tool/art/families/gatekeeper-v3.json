@@ -20,10 +20,13 @@
    "resolved": null
   },
   "native": {
-   "width": null,
-   "height": null,
-   "pixelScale": null,
-   "$comment": "OPEN owner decision: native grid (plan/asset-pipeline-requirements.md, inventory findings)"
+   "perRoom": true,
+   "$comment": "Owner 2026-11-01: native pixel size is per room. Gatekeeper appears only in the garden; values pending garden calibration.",
+   "garden": {
+    "width": null,
+    "height": null,
+    "pixelScale": null
+   }
   },
   "margin": {
    "minClear": 0.03,
@@ -1716,7 +1719,8 @@
     "anchorRelativeTo": "trimmed-rect",
     "$comment": "anchor is written per frame in pixels from the trimmed rect's top-left; untrimmed anchors are invalid"
    },
-   "requireHumanAcceptance": true
+   "requireHumanAcceptance": true,
+   "room": "garden"
   }
  ],
  "adapters": {

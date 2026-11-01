@@ -491,7 +491,7 @@ about 32 units in the garden but about 55 in the bar. Current sources are
 about 9× oversampled relative to world units: Mācron's `front_idle` is 296 src
 px tall and draws about 32 units. `party-overhaul.md` allows "deliberate scale
 variants" that must pass a pixel-consistency review. The pipeline team should
-settle the native grid with the owner (2610-pipe question 6).
+settle the native grid with the owner (2610-pipe question 6). *Decided 2026-11-01: native pixel size is per room; level 4 may be side-on (see `asset-pipeline-requirements.md` §Owner decisions).*
 
 **Staging marks.** Candidate floor roots, source-normalised (x, y), in
 `battle_staging.dart:25-46`. The file exists on `game` but is **not wired
