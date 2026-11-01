@@ -39,7 +39,9 @@
    "width": 768,
    "height": 960,
    "$comment": "generation canvas, one frame per image"
-  }
+  },
+  "camera": "floor-perspective",
+  "$cameraComment": "family default; each target may override. Poses stay camera-agnostic (rig render parameter)."
  },
  "background_key": null,
  "transparency": {
@@ -1657,7 +1659,8 @@
    {
     "id": "baseline_drift",
     "maxPx": 1,
-    "scope": "consecutive drawings sharing a planted support foot"
+    "scope": "consecutive drawings sharing a planted support foot",
+    "camera": "from target"
    },
    {
     "id": "head_size_variance",
@@ -1686,7 +1689,8 @@
      "outline",
      "palette entries in non-cloth regions"
     ],
-    "when": "before generation"
+    "when": "before generation",
+    "mandatory": true
    },
    {
     "id": "region_mask_colours_declared",
@@ -1720,7 +1724,8 @@
     "$comment": "anchor is written per frame in pixels from the trimmed rect's top-left; untrimmed anchors are invalid"
    },
    "requireHumanAcceptance": true,
-   "room": "garden"
+   "room": "garden",
+   "camera": "floor-perspective"
   }
  ],
  "adapters": {
