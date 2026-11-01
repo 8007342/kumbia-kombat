@@ -16,6 +16,32 @@ Companion documents in this repo:
 - `plan/dance-fluidity-pass.md`, `plan/opponent-depth-staging-pass.md` — the
   animation doctrine and the blocked Gatekeeper v3 / Mācron travel v2 pass.
 - `assets/art/STYLEGUIDE.md` — perspective, crowd budgets, palette rules.
+- Unmerged `origin/work/2610-pipe`: `plan/sprite-generation-pipeline.md`
+  (immutable `art_runs/<run-id>/{inputs,raw,processed,review,run.json}`,
+  run-manifest fields, five generation stages, first proof = one challenger
+  four-to-eight-key cumbia phrase) and `plan/animation-research-register.md`.
+  This document is the forge-facing summary; that plan remains the
+  project-side procedure and should merge alongside it.
+
+## Findings from the inventory that shape the pipeline
+
+- Runtime only reads `party/manifest.json` and `ensemble/manifest.json`; a
+  missing frame ID or PNG size mismatch fails the whole scene. Extra manifest
+  keys are ignored, so the pipeline may emit planned fields now.
+- On-screen size comes from floor projection ÷ a reference frame's height, so
+  each sheet needs exactly one scale and one `pixelsPerUnit`.
+- Mācron renders ~63 px tall in the garden and ~110 px in the bar at 360×640.
+  A single 32×40 native grid cannot land on whole-number scales in both rooms;
+  **the native grid is an open owner decision** before bulk pixel finishing.
+- Memory: the current 1.5-megapixel contact sheets decode to ~6 MiB each
+  (~54 MiB loaded, ~72 MiB more for outfit variants) against a 16 MiB plan.
+  Deliver tightly packed native-resolution atlases.
+- Current PNGs have body alpha 251–253 and 9–12% fringe pixels; target is
+  binary alpha.
+- Mācron is never mirrored (single-arm cuff); the pipeline must not use mirror
+  symmetry for him.
+- Replacing guest art requires updating `test/outfit_palette_test.dart` pixel
+  fixtures and the ensemble frame-count tests.
 
 ## Forge sources read (trunk `551f69d`, 2026-11-01)
 
@@ -215,5 +241,11 @@ once the studio lands (drafts #791/#793/#794); until then only
    That alone would unblock R2 for humans.
 2. Exact I/O mount shared between forge and studio, and its lifetime.
 3. Where trained LoRAs live (project repo vs model cache) and who approves them.
-4. Can a forge request a specific tier for batch jobs without per-call consent
-   tokens, or does each batch need one consent?
+4. ~~Batch jobs without per-call consent?~~ Answered by the operator via the
+   coordinator, 2026-11-01: approvals are standing (they expire per session or
+   by time once enforcement exists), so batches at an approved tier need no
+   per-call consent. Recorded on `1935-k2ib`. Each model/LoRA/ControlNet file
+   still needs its own operator licence approval.
+
+Q1 (ControlNet/LoRA inputs on `image.generate` via sd.cpp) is being filed by
+the coordinator as its own small packet.
