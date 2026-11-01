@@ -276,3 +276,22 @@ InsightFace-based FaceID/InstantID/PuLID, Zero123++ weights, RMBG.
 
 Q1 (ControlNet/LoRA inputs on `image.generate` via sd.cpp) is being filed by
 the coordinator as its own small packet.
+
+## Progress log
+
+- 2026-11-01: contract `1935-k2ib/v0` committed on Tillandsias
+  `work/1935-k2ib` @ `84236b088`
+  (`plan/issues/comfyui-studio-family-contract-v0-2026-11-01.md`), with
+  Kumbia's Gatekeeper family as the `character-frames` example.
+- 2026-11-01: interim `image.generate` on Tillandsias `work/1954-gdi6` @
+  `f3bab082b` accepts `control_net` + `control_image` (caller PNG under
+  `/work/tmp/imagegen`, no detector) and `loras` with weights; results carry
+  file sha256 + licence. One control image per call, no region masks. No
+  ControlNet/LoRA pinned yet. Kumbia submitted pins for operator approval:
+  - `xinsir/controlnet-openpose-sdxl-1.0` @ `23f966cd5cfdd3f7729c903e243d87152162d2b7`,
+    `diffusion_pytorch_model.safetensors`, sha256 `b8524e557a7df60d081f5d4a0eb109967d107df217943bf88c2d99b9ebcc06c5` (apache-2.0)
+  - `xinsir/controlnet-union-sdxl-1.0` @ `801a4a3fa3d4c936f4feea95b98607bc6726f80c`,
+    `diffusion_pytorch_model_promax.safetensors`, sha256 `9fae2e50cb431bfcbe05822b59ec2228df545ef27f711dea8949e9f4ed9f7cdc` (apache-2.0; studio only)
+  - `nerijs/pixel-art-xl` @ `8bf4a4d9ea283e00a51fafda8e0539f8248ea037`,
+    `pixel-art-xl.safetensors`, sha256 `4234637cb80c998f41e348e6a6cb6bc20d8d038b2b0f256b6129b3b5e353eef7` (creativeml-openrail-m)
+  - Open risk: sd.cpp may support ControlNet on SD1.5 only; verify on the pinned tag.
