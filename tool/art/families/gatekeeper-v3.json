@@ -1,7 +1,7 @@
 {
  "contract": "1935-k2ib/v0",
  "pipelineVersion": null,
- "$comment": "DRAFT for the shared family contract (forge row 1935-k2ib/v0), revised after demon_attack-forge review 2026-11-01. pipelineVersion is filled by the pipeline at run time.",
+ "$comment": "DRAFT for the shared family contract (forge row 1935-k2ib/v0), revised after demon_attack-forge reviews 2026-11-01. pipelineVersion stays null here; the tool stamps it into provenance at run time.",
  "family": "gatekeeper-v3",
  "version": 1,
  "project": "kumbia-kombat",
@@ -26,7 +26,8 @@
    "$comment": "OPEN owner decision: native grid (plan/asset-pipeline-requirements.md, inventory findings)"
   },
   "margin": {
-   "minClearPx": 24,
+   "minClear": 0.03,
+   "units": "fraction-of-generation-canvas",
    "failOnBorderTouch": true
   },
   "units": "native-px",
@@ -47,7 +48,7 @@
   "alpha": "binary",
   "$comment": "LayerDiffusion/layerdiffusion-v1 layer_xl_* is SDXL-only (creativeml-openrail-m). Other tiers matte; BiRefNet pending operator approval."
  },
- "outline": "#1A1020",
+ "outline": "#1A1018",
  "symmetry": "none",
  "references": [
   {
@@ -1674,6 +1675,20 @@
      "status": "pending operator approval"
     }
    }
+  ],
+  "static": [
+   {
+    "id": "palette_fails_all_gates",
+    "scope": [
+     "outline",
+     "palette entries in non-cloth regions"
+    ],
+    "when": "before generation"
+   },
+   {
+    "id": "region_mask_colours_declared",
+    "rule": "every regionMask pixel is a declared regions colour or fully transparent"
+   }
   ]
  },
  "targets": [
@@ -1697,7 +1712,9 @@
    ],
    "packing": {
     "gutterPx": 2,
-    "trim": true
+    "trim": true,
+    "anchorRelativeTo": "trimmed-rect",
+    "$comment": "anchor is written per frame in pixels from the trimmed rect's top-left; untrimmed anchors are invalid"
    },
    "requireHumanAcceptance": true
   }
@@ -1709,5 +1726,10 @@
    "qwen-image-edit",
    "img2img"
   ]
+ },
+ "regionsRender": {
+  "antialias": false,
+  "filtering": "none",
+  "$comment": "rig ID pass rendered with flat shading, no AA/filtering"
  }
 }
