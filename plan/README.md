@@ -40,3 +40,10 @@ production slice: authored dancer breakdowns and a music-owned floor exchange.
 
 `opponent-depth-staging-pass.md` scopes the follow-up: richer opponent dances,
 floor-derived approach/yield routes and close-but-safe audience framing.
+
+Generative asset pipeline (2026-11-01): `asset-pipeline-requirements.md` is
+the forge-facing requirements for the shared ComfyUI pipeline (row
+`1935-k2ib`); `asset-inventory-contract.md` records the manifest schema the
+runtime parses, the recolor gates and every needed clip;
+`generative-animation-research.md` covers rig-driven pose control, identity
+lock, pixel finishing, mocap and model licences.
