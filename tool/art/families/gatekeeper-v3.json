@@ -1,25 +1,23 @@
 {
- "$comment": "DRAFT for the shared family contract (forge row 1935-k2ib). Shape follows demon_attack tools/asset_pipeline/families/ship.json; Kumbia extensions: frame, references, regions, reservedRamps, clips, poses[].control/regionMask, targets.kumbiaManifest, qa additions. Field names are proposals.",
+ "contract": "1935-k2ib/v0",
+ "pipelineVersion": null,
+ "$comment": "DRAFT for the shared family contract (forge row 1935-k2ib/v0), revised after demon_attack-forge review 2026-11-01. pipelineVersion is filled by the pipeline at run time.",
  "family": "gatekeeper-v3",
  "version": 1,
  "project": "kumbia-kombat",
  "description": "Garden opponent: 64-drawing native-grid target (plan/opponent-depth-staging-pass.md \u00a7Opponent production target).",
  "kind": "character-frames",
- "canvas": {
-  "width": 768,
-  "height": 960,
-  "$comment": "generation canvas, one frame per image"
- },
  "frame": {
-  "baselineY": 912,
-  "pivot": [
-   0.5,
-   1.0
-  ],
+  "baselineY": null,
+  "pivot": {
+   "x": null,
+   "y": null,
+   "normalized": false
+  },
   "scale": {
    "mode": "fixed-per-family",
    "referencePose": "groove.down_l",
-   "referenceHeightPx": 800
+   "resolved": null
   },
   "native": {
    "width": null,
@@ -30,13 +28,24 @@
   "margin": {
    "minClearPx": 24,
    "failOnBorderTouch": true
+  },
+  "units": "native-px",
+  "$comment": "baseline/pivot in native-grid pixels from the frame's top-left (pivot.normalized=false). Generation-canvas values are derived by pixelScale. Resolved scale is computed once from referencePose bbox height and stored in provenance.",
+  "generationCanvas": {
+   "width": 768,
+   "height": 960,
+   "$comment": "generation canvas, one frame per image"
   }
  },
  "background_key": null,
  "transparency": {
-  "method": "layerdiffuse",
-  "fallback": "birefnet",
-  "alpha": "binary"
+  "byBackend": {
+   "sdxl": "layerdiffuse",
+   "default": "matte"
+  },
+  "matte": "birefnet",
+  "alpha": "binary",
+  "$comment": "LayerDiffusion/layerdiffusion-v1 layer_xl_* is SDXL-only (creativeml-openrail-m). Other tiers matte; BiRefNet pending operator approval."
  },
  "outline": "#1A1020",
  "symmetry": "none",
@@ -45,7 +54,7 @@
    "role": "identity",
    "image": "assets/art/ensemble/gatekeeper-v2.png",
    "crop": "approved model-sheet frames TBD",
-   "adapter": "ip-adapter-plus-sdxl",
+   "adapter": "ip-adapter-sdxl",
    "weight": 0.7
   }
  ],
@@ -65,36 +74,156 @@
     "cloth"
    ],
    "recolor": false,
-   "$comment": "Gatekeeper is not recoloured at runtime, but non-cloth regions must still avoid the gates so a future recolor cannot leak. Gates from shaders/party_palette.frag, unpremultiplied RGB 0-1; a pixel matches if ANY gate passes.",
+   "$comment": "Gates from shaders/party_palette.frag on unpremultiplied RGB 0-1; matches if ANY gate's ALL conditions hold. Structured, never eval'd: lhs is a channel or {sub:[a,b]}, rhs a literal or {mul:[k,channel]}.",
    "gates": [
     {
      "id": "cool",
      "all": [
-      "b>=0.12",
-      "r>=0.70*b",
-      "b>=0.99*r",
-      "g>=0.20*b",
-      "g<=0.66*b"
+      {
+       "lhs": "b",
+       "op": ">=",
+       "rhs": 0.12
+      },
+      {
+       "lhs": "r",
+       "op": ">=",
+       "rhs": {
+        "mul": [
+         0.7,
+         "b"
+        ]
+       }
+      },
+      {
+       "lhs": "b",
+       "op": ">=",
+       "rhs": {
+        "mul": [
+         0.99,
+         "r"
+        ]
+       }
+      },
+      {
+       "lhs": "g",
+       "op": ">=",
+       "rhs": {
+        "mul": [
+         0.2,
+         "b"
+        ]
+       }
+      },
+      {
+       "lhs": "g",
+       "op": "<=",
+       "rhs": {
+        "mul": [
+         0.66,
+         "b"
+        ]
+       }
+      }
      ]
     },
     {
      "id": "plum",
      "all": [
-      "r>=100/255",
-      "r>=0.70*b",
-      "b>=0.32*r",
-      "g<=0.55*b",
-      "b-g>=12/255"
+      {
+       "lhs": "r",
+       "op": ">=",
+       "rhs": 0.392157
+      },
+      {
+       "lhs": "r",
+       "op": ">=",
+       "rhs": {
+        "mul": [
+         0.7,
+         "b"
+        ]
+       }
+      },
+      {
+       "lhs": "b",
+       "op": ">=",
+       "rhs": {
+        "mul": [
+         0.32,
+         "r"
+        ]
+       }
+      },
+      {
+       "lhs": "g",
+       "op": "<=",
+       "rhs": {
+        "mul": [
+         0.55,
+         "b"
+        ]
+       }
+      },
+      {
+       "lhs": {
+        "sub": [
+         "b",
+         "g"
+        ]
+       },
+       "op": ">=",
+       "rhs": 0.047059
+      }
      ]
     },
     {
      "id": "pink",
      "all": [
-      "r>=180/255",
-      "r>=0.70*b",
-      "b>=0.32*r",
-      "g<=0.86*b",
-      "b-g>=12/255"
+      {
+       "lhs": "r",
+       "op": ">=",
+       "rhs": 0.705882
+      },
+      {
+       "lhs": "r",
+       "op": ">=",
+       "rhs": {
+        "mul": [
+         0.7,
+         "b"
+        ]
+       }
+      },
+      {
+       "lhs": "b",
+       "op": ">=",
+       "rhs": {
+        "mul": [
+         0.32,
+         "r"
+        ]
+       }
+      },
+      {
+       "lhs": "g",
+       "op": "<=",
+       "rhs": {
+        "mul": [
+         0.86,
+         "b"
+        ]
+       }
+      },
+      {
+       "lhs": {
+        "sub": [
+         "b",
+         "g"
+        ]
+       },
+       "op": ">=",
+       "rhs": 0.047059
+      }
      ]
     }
    ]
@@ -1538,7 +1667,12 @@
    {
     "id": "identity_similarity",
     "against": "references",
-    "threshold": "TBD"
+    "threshold": "TBD",
+    "embedding": {
+     "model": "facebook/dinov2-small",
+     "licence": "apache-2.0",
+     "status": "pending operator approval"
+    }
    }
   ]
  },
@@ -1567,5 +1701,13 @@
    },
    "requireHumanAcceptance": true
   }
- ]
+ ],
+ "adapters": {
+  "$comment": "approved-adapter enum; FLUX Redux excluded (dev-licensed)",
+  "enum": [
+   "ip-adapter-sdxl",
+   "qwen-image-edit",
+   "img2img"
+  ]
+ }
 }
