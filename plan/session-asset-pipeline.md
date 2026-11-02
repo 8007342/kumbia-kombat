@@ -1,0 +1,90 @@
+# Session record: generative asset pipeline (2026-11-01/02)
+
+Handoff for resuming after a forge restart. Requirements, inventory and
+research are on `game` (`plan/asset-pipeline-requirements.md`,
+`plan/asset-inventory-contract.md`, `plan/generative-animation-research.md`).
+The rig, family spec and control images are on `work/1830-pipe` (partial work,
+not yet merged by owner policy).
+
+## Delivered
+
+- `work/1830-pipe`: `tool/art/families/gatekeeper-v3.json` (contract
+  `1935-k2ib/v0` example), `tool/art/rig/` (Blender stand-in rig, see its
+  README for bpy setup), `art_runs/inputs/gatekeeper-v3/` (64 poses) and
+  `art_runs/inputs/macron-pilot/` (54 poses): pose, depth, regions, lineart,
+  rig.json, contact sheets, clip GIFs.
+- `game` @ `cf81edc`: the three docs above, via `work/1831-pdoc`.
+
+## Owner decisions (2026-11-01)
+
+Per-room native pixel size; rooms may differ in perspective, level 4 is the
+side-on candidate; hand-keyed Blender stand-ins for motion; mature work merges
+into `game`, partial work stays on `work/*`.
+
+## Peers and where their work lives
+
+| Peer session | Role | Durable location |
+|---|---|---|
+| macuahuitl-fedora | Tillandsias coordinator | Tillandsias repo |
+| calmecacpilli-silverblue | owns design row `1935-k2ib` | Tillandsias `work/1935-k2ib` @ `84236b088` (contract v0 file `plan/issues/comfyui-studio-family-contract-v0-2026-11-01.md`), revision `4c7f51c1a` |
+| demon_attack-forge | project-local pipeline (process/QA/pack) | github `8007342/demon_attack` branch `research/local-image-large-models`: `tools/asset_pipeline/`, `plan/asset-pipeline/{licence-review,shared-contract-notes}.md` |
+
+Our repo `8007342/kumbia-kombat` is **private**: peers cannot read it. Paste
+content into messages. Public sibling files are readable via
+`raw.githubusercontent.com/8007342/<repo>/<branch>/<path>`.
+
+## Waiting on
+
+1. **Operator sign-off of contract `1935-k2ib/v0`** (calmecacpilli only
+   records; sign-off is the operator's). calmecacpilli recommends YES to:
+   (a) `palette_fails_all_gates` mandatory when `reservedRamps` exist;
+   (b) `camera` on `targets[]` with `frame.camera` as family default.
+   demon_attack builds character-frame features (regionMask, structured gate
+   grammar, baseline/pivot writer, baseline_drift/head_size QA) only after
+   sign-off. Relay the sign-off to demon_attack-forge when it lands.
+2. **Interim ControlNet test.** Tillandsias `work/1954-gdi6` (control_net +
+   control_image + loras on `image.generate`), `1955-rjv3` (queued parallel
+   calls) and `1957-pins` @ `15b6f59bc` (xinsir OpenPose SDXL + pixel-art-xl
+   admitted) must merge into `linux-next` and reach this forge's build. Check
+   the `image.generate` schema shows `control_net` before testing. Then:
+
+   ```
+   cp art_runs/inputs/gatekeeper-v3/left_hand.peak.pose.png /work/tmp/imagegen/kumbia-gk-left_hand.peak.pose.png
+   image.generate {prompt, tier:"I1", control_net:"openpose",
+     control_image:"/work/tmp/imagegen/kumbia-gk-left_hand.peak.pose.png",
+     loras:[{name:"pixel-art-xl", weight:0.8}]}
+   ```
+
+   SDXL files require tier I1. sd.cpp `master-1015-e41fbcf` documents
+   ControlNet for SD1.5 only; if it fails, send the verbatim error to
+   calmecacpilli. The SD1.5 route (`lllyasviel/control_v11p_sd15_openpose`,
+   plain "openrail") needs an SD1.5 base tier and a code change to accept that
+   licence.
+3. **ComfyUI studio** (drafts #791/#793/#794, :8188): needed for depth/lineart
+   control (Mācron), IP-Adapter identity, LayerDiffuse, region masks.
+
+## Licences
+
+Operator standing approval (2026-11-01, relayed): free models on demon_attack's
+`licence-review.md` for own, non-sale projects, including dinov2-small; flagged
+rows excluded (FLUX.2-dev / klein-9B, Depth-Anything Base/Large,
+lllyasviel/LayerDiffuse_Diffusers, ntc-ai slider). Fetching still goes through
+the forge licence register; gated click-through (FLUX.1-schnell) needs the
+operator. Never: flux.1-dev, sd3.5, sd/sdxl-turbo, RMBG-1.4/2.0, InsightFace.
+
+## Next steps on our side
+
+- Tune Mācron raised-hand peaks (arm passes behind the head) at review.
+- Extract a locked Gatekeeper palette (`tool/art/palettes/gatekeeper.json`)
+  from approved v2 frames; demon_attack needs it for real tests.
+- Write the Mācron family spec once the pilot is reviewed.
+- Side-on camera rig for level 4 once its characters are designed.
+- Merge `work/1830-pipe` into `game` after the first generation test shows the
+  stand-ins steer the generator.
+
+## Environment notes
+
+- bpy: `UV_NATIVE_TLS=1 uv python install 3.13`, venv at `~/.cache/kumbia-bpy`
+  (lost on restart; rebuild per `tool/art/rig/README.md`).
+- zsh does not word-split `$var` in `for` loops; call commands explicitly.
+- `/work/tmp/imagegen/` is deleted on forge teardown.
