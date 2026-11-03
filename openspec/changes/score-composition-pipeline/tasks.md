@@ -2,8 +2,8 @@
 
 ## 1. Measure first
 
-- [ ] 1.1 Implement complexity gates over existing score JSON with fixtures; verify a synthetic transposed-repeat score fails and report today's five scores as the baseline
-- [ ] 1.2 Write the brief and motif schemas; verify a valid brief passes and an unknown voice or section is refused by name
+- [x] 1.1 Implement complexity gates over existing score JSON with fixtures; verify a synthetic transposed-repeat score fails and report today's five scores as the baseline
+- [x] 1.2 Write the brief and motif schemas; verify a valid brief passes and an unknown voice or section is refused by name
 
 ## 2. Arranger
 

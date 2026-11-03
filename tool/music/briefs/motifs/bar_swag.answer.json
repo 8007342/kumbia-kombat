@@ -1,0 +1,7 @@
+{
+ "schemaVersion": 1,
+ "id": "bar_swag.answer",
+ "beats": 8,
+ "notes": [[0,12,0.5],[0.75,10,0.25],[1.5,7,0.25],[2.25,3,0.5],[3.25,5,0.25],[4.5,7,0.5],[5.5,10,0.25],[6.25,7,0.5],[7.5,0,0.25]],
+ "provenance": {"source": "authored", "detail": "The bar's existing answer, from tool/music/generate.mjs (Copper Counter Shuffle).", "licence": "See assets/music/LICENSE.md", "accepted": true}
+}

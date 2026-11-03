@@ -1,0 +1,5 @@
+{
+ "$comment": "Every synth voice a brief may name. Existing voices sound by track in lib/music/web_audio_backend.dart; the recipe voices are defined in lib/music/voice_recipes.dart, and voices.test.mjs keeps this list and that file in step.",
+ "existing": ["drums", "roundBass", "mutedPluck", "reed", "sineFlute", "softBrass"],
+ "recipes": ["nylonPluck", "pedalSteel", "subDrone", "chugGuitar", "warmPad"]
+}

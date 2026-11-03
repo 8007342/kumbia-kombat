@@ -1,0 +1,26 @@
+{
+ "$comment": "A motif from any source. notes: [beat, semitones above the key's tonic, duration in beats]. Candidates carry provenance and a person accepts them; only accepted motifs may be used by a brief. Validated by tool/music/compose/brief.mjs.",
+ "type": "object",
+ "additionalProperties": false,
+ "required": ["schemaVersion", "id", "beats", "notes", "provenance"],
+ "properties": {
+  "$comment": {"type": "string"},
+  "schemaVersion": {"enum": [1]},
+  "id": {"type": "string", "pattern": "^[a-z][a-z0-9_.-]*$"},
+  "beats": {"type": "number", "minimum": 1, "maximum": 32},
+  "notes": {
+   "type": "array", "minItems": 1,
+   "items": {"type": "array", "minItems": 3, "maxItems": 3, "items": {"type": "number"}}
+  },
+  "provenance": {
+   "type": "object", "additionalProperties": false, "required": ["source", "licence", "accepted"],
+   "properties": {
+    "source": {"enum": ["authored", "llm", "amt", "text2midi", "ace-step-transcription"]},
+    "detail": {"type": "string"},
+    "model": {"type": "string"},
+    "licence": {"type": "string"},
+    "accepted": {"type": "boolean"}
+   }
+  }
+ }
+}
