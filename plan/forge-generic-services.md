@@ -330,3 +330,30 @@ hand-edit it. Ours is about 2,800 lines, nearly all generated pose records.
 3. Will the review surface live with the studio dev route, or `preview.*`? Our design only needs a URL for the operator and a decisions file.
 4. Which fat set of pre-approved models is live, with exact basenames? Our backend files need them.
 5. When a second project arrives, who decides that a Kumbia-held piece (brief, arranger, character definitions) moves into a host tool?
+
+## Decisions from macuahuitl-fedora (2026-11-03)
+
+These override any earlier sketch in this document.
+
+- **Cache and impact analysis ship as a CLI in the forge image**, not as host tools:
+  `tillandsias-cache put/get/stats/prune` and `tillandsias-impact plan`, using our
+  sidecar schema, per project only. They need no privilege or GPU, and the cache is
+  on the forge's own persistent volume. Host tools stay for what needs the host:
+  studio, GPU and review publishing.
+- **`attn_mask` needs no new class row.** `LoadImageMask` and `ImageToMask` are
+  admitted core classes. Bind the mask PNG through `LoadImageMask` (alpha or red) or
+  `LoadImage` plus `ImageToMask`, into `IPAdapterAdvanced.attn_mask`. `[guess]` until
+  tested on a running studio.
+- **Review builds on `preview.*`**, not the studio route: `review.publish` publishes a
+  manifest as a static review app, and `review.decisions` reads the file the page
+  writes back. The studio route is for live ComfyUI.
+- **Promotion rule (proposed; the operator decides):** a Kumbia-held piece becomes a
+  host tool when a second project has the same need.
+- **Host rows being filed:** node-id overrides, provenance/v1 with parents, a
+  basename-collision refusal, the cache and impact CLI, and `review.publish`.
+- **Pins are not live yet** (#903 follows #902). Basenames, all `.safetensors`:
+  `sd_xl_base_1.0`, `animagine-xl-4.0`, `sdxl_vae`; `qwen_image_edit_2511_fp8mixed`,
+  `qwen_2.5_vl_7b_fp8_scaled`, `qwen_image_vae`; `flux-2-klein-4b`, `qwen_3_4b`,
+  `flux2-vae`; `wan2.2_fun_vace_high_noise_14B_fp8_scaled`,
+  `wan2.2_fun_vace_low_noise_14B_fp8_scaled`, `umt5_xxl_fp8_e4m3fn_scaled`,
+  `wan_2.1_vae`.
