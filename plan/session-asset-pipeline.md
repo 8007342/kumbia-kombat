@@ -137,9 +137,13 @@ Infrastructure state:
 
 - Palette nudged out of the outfit recolor gates (`extract_palette.py
   --avoid-gates`); `studio.validate_family` → `ok:family:gatekeeper-v3`.
-- `studio.run_workflow` returned `studio_unavailable`: no
-  `.tillandsias/config.toml` existed. Added it with `[imagegen] studio = true`;
-  the forge must be relaunched for the studio container to start.
+- `studio.run_workflow` returned `studio_unavailable`: the tray exit had torn
+  the studio down. macuahuitl-fedora restarted it from the host
+  (`tillandsias --cloud 8007342/kumbia-kombat --studio comfyui`). Operator
+  ruling: studios are on-demand appliances, never auto-started at forge launch
+  (start-from-tool is order 1969-cfyt), so do NOT add `[imagegen] studio = true`
+  to `.tillandsias/config.toml`; the error text suggesting it is stale (#873).
+  If the studio is down, ask macuahuitl-fedora to restart it.
 - The ComfyUI web UI is not reachable from the forge (`browser.open` allows only
   the https preview URL; no HTTP route to :8188), so review happens through
   contact sheets and an Artifact gallery.

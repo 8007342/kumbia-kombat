@@ -1,7 +1,0 @@
-# Tillandsias project settings (read by the host when the forge launches).
-
-[imagegen]
-# Start the headless ComfyUI studio container beside the forge, so
-# studio.run_workflow can generate the character-frame families
-# (tool/art/pipeline/README.md).
-studio = true
