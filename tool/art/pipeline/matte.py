@@ -43,8 +43,9 @@ def _components(mask: np.ndarray):
         yield np.array(ys), np.array(xs)
 
 
-def key(img: Image.Image, tol: float, hole: int, grey_chroma: int, grey_min: int) -> np.ndarray:
-    a = np.asarray(img.convert("RGB"), dtype=np.int32)
+def background(a: np.ndarray, tol: float = 34.0, hole: int = 250, grey_chroma: int = 14,
+               grey_min: int = 150) -> np.ndarray:
+    """Background mask of an RGB int array (before speck removal)."""
     h, w, _ = a.shape
     border = np.concatenate([a[0], a[-1], a[:, 0], a[:, -1]])
     bg = np.median(border, axis=0)
@@ -56,9 +57,16 @@ def key(img: Image.Image, tol: float, hole: int, grey_chroma: int, grey_min: int
         touches = ys.min() == 0 or xs.min() == 0 or ys.max() == h - 1 or xs.max() == w - 1
         if touches or len(ys) >= hole:  # border-connected, or a large enclosed gap (between legs)
             is_bg[ys, xs] = True
-    fg = ~is_bg
+    return is_bg
+
+
+def key(img: Image.Image, tol: float = 34.0, hole: int = 250, grey_chroma: int = 14,
+        grey_min: int = 150) -> np.ndarray:
+    """Binary character mask: not background, largest component only."""
+    a = np.asarray(img.convert("RGB"), dtype=np.int32)
+    fg = ~background(a, tol, hole, grey_chroma, grey_min)
     best = max(_components(fg), key=lambda c: len(c[0]), default=None)
-    out = np.zeros((h, w), bool)
+    out = np.zeros(fg.shape, bool)
     if best is not None:
         out[best] = True
     return out

@@ -55,3 +55,6 @@ node_modules/
 .forge-startup-context.md
 .cache/
 .forge-expert-context.md
+
+# Raw studio candidates (~140 MB per run); kept on disk, summarised by raw/index.json + scores.json
+art_runs/*/raw/*/

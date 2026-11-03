@@ -149,3 +149,26 @@ Infrastructure state:
   contact sheets and an Artifact gallery.
 - After relaunch: rebuild `~/.cache/kumbia-art`, re-run `plan_jobs.py`, then
   run `left_hand.peak` first.
+
+## Run gatekeeper-v3-20261103a (2026-11-03): all 64 drawings generated
+
+- Studio (re)started by macuahuitl-fedora with
+  `tillandsias --cloud 8007342/kumbia-kombat --studio comfyui`. Host bugs, now with
+  lenovinha (studio.start, order 1969-cfyt): the output dir is not pre-created
+  for the forge uid (stopgap: `mkdir /work/tmp/imagegen/studio`, chmod 0777 and a
+  default ACL set via `os.setxattr('system.posix_acl_default', …)`); BiRefNet is
+  pinned but never fetched (the validator misses LoadRembgByBiRefNetModel.model);
+  run_workflow returns only one SaveImage node's outputs.
+- Pinned models match the file basename (or `<tier>/<basename>`), never the Hub path.
+- Workflow: denoise 0.85 on every profile (0.6–0.7 let the colour proxy win:
+  flat blobs), one SaveImage, matte keyed locally (`tool/art/pipeline/matte.py`).
+- 64 jobs × 4 candidates ran through 8 subagents (each result is ~25k tokens of
+  provenance; `collect.py --from-disk` rebuilds results from the sidecars).
+- `prep_finish.py` mattes + scores, `suggest.py` picks by identity (hat/shirt
+  colour vs rig regions) and matte debris, `review_sheets.py` draws per-clip sheets.
+- Selection = suggestion (first pass, owner to correct). 64 frames finished,
+  packed to `assets/art/ensemble/gatekeeper-v3.png` + `.candidate.json` (status
+  candidate; not promoted). Review gallery: https://claude.ai/artifact/CLHiM7owAHX21esVpgbkKJ
+- Raw candidates (139 MB) stay on disk under `art_runs/<run>/raw/` (gitignored).
+- Next: owner corrections → re-finish → re-pack → promote; outline enforcement;
+  BiRefNet once fixed.
