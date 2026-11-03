@@ -2,8 +2,8 @@
 
 ## 1. Foundations (no GPU)
 
-- [ ] 1.1 Rebuild `~/.cache/kumbia-art` and `~/.cache/kumbia-bpy`, re-render Gatekeeper to a scratch dir, and verify `check_poses.py` passes and pose IDs match the committed `rig.json`
-- [ ] 1.2 Fix the inverted region map in `suggest.py` with OKLab ΔE scoring; verify with a test that a synthetic wrong-hat candidate ranks last and that uniform or missing scores abort (D9)
+- [x] 1.1 Rebuild `~/.cache/kumbia-art` and `~/.cache/kumbia-bpy`, re-render Gatekeeper to a scratch dir, and verify `check_poses.py` passes and pose IDs match the committed `rig.json`
+- [x] 1.2 Fix the inverted region map in `suggest.py` with OKLab ΔE scoring; verify with a test that a synthetic wrong-hat candidate ranks last and that uniform or missing scores abort (D9)
 - [ ] 1.3 Check whether `~/.cache/tillandsias-project` survives a forge restart (ask macuahuitl-fedora) and pick the cache root; document it in `tool/art/pipeline/README.md`
 
 ## 2. Definitions and compiler
@@ -30,7 +30,9 @@
 - [ ] 4.5 Implement the masked mode's job planning (mask dilation, `$mask`, `$init_image`, `$strength`); verify generated job args against fixtures
 - [ ] 4.6 Implement per-region colour matching; verify a test frame's region medians move toward target colours while other regions stay unchanged
 - [ ] 4.7 Add aliases and rig-derived `facing` to `pack_atlas.py`; verify all 20 `challengerFrameIds` resolve with `test/ensemble_sprites_test.dart`'s rules
-- [ ] 4.8 Update `tool/art/pipeline/README.md` with the new stages and verify its commands run
+- [ ] 4.8 Implement the ramp stage and flagging after `finish_pixels`; verify with a fixture that every opaque output pixel belongs to one ramp and that off-ramp pixels are reported (D13)
+- [ ] 4.9 Implement named variants: colour-only variants emit a ramp LUT and manifest `ramps`; verify applying the LUT to the base atlas equals the recoloured frames, byte for byte, with no GPU call
+- [ ] 4.10 Update `tool/art/pipeline/README.md` with the new stages and verify its commands run
 
 ## 5. Backends and bake-off (needs studio)
 
@@ -57,8 +59,9 @@
 
 - [ ] 8.1 Gatekeeper's hat to red: `art plan` reports recolour with no GPU; verify non-hat pixels are byte-identical and the atlas is rebuilt
 - [ ] 8.2 Bartender gains a red hat (geometry added): verify the reference is rebuilt first, frames regenerate in masked mode, frames without visible change keep their keys, and seams pass owner review
-- [ ] 8.3 Revert both edits; verify cached outputs return with no new images generated
-- [ ] 8.4 Update the `art-family` skill with the edit flow (D8); verify by following it end to end from a plain-language request
+- [ ] 8.3 Build a colour-only `replay-1` variant for Gatekeeper and Bartender; verify it needs no GPU and review both at game size
+- [ ] 8.4 Revert both hat edits; verify cached outputs return with no new images generated
+- [ ] 8.5 Update the `art-family` skill with the edit flow (D8); verify by following it end to end from a plain-language request
 
 ## 9. Integration
 

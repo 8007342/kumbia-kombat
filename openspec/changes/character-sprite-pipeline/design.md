@@ -67,7 +67,7 @@ Character definition, in outline:
   ],
   "props": [{ "id": "shaker", "hand": "right", "colour": "#BFC6CC", "clips": ["groove"] }],
   "skin": "#B5784A",
-  "traits": "friendly adult woman bartender, warm confident smile, dignified skilled dancer",
+  "traits": "friendly adult woman bartender, fully buttoned shirt and waistcoat, warm confident smile, dignified professional who dances superbly",
   "pronoun": "her",
   "motion": { "set": "opponent-64", "overrides": {} },
   "references": { "sources": ["assets/art/bar/bartender.png"], "mode": "derive" },
@@ -234,6 +234,30 @@ sprite comparison, and doctrine forbids shipping raw interpolated sequences.
 are ignored at runtime, so promoting needs no game change. A rig-derived `facing`
 replaces the hard-coded `front`.
 
+### D13. Palette-aware frames and named variants
+
+Owner direction: replays after beating the game show slightly different opponents,
+with more complex music and faster play. This change makes the art ready for that;
+the replay mode itself is out of scope.
+
+- **Ramps are per-region.** Each garment, skin and hair declares a ramp of 3–5
+  shades, and no colour belongs to two ramps. A finished frame therefore records
+  which part of the character every pixel is.
+- **A ramp stage follows `finish_pixels`:** it remaps each opaque pixel to the
+  nearest shade of an allowed ramp, using the rig mask. This is needed because
+  the shared-palette quantise can give a hat and trousers the same cream.
+- **Variants are data:** `"variants": {"replay-1": {"apron": "#1F4E7A"}}`. A
+  colour-only variant is a ramp LUT, so it costs no GPU and uses one atlas plus a
+  small table. A variant that also changes garment shapes (the "slightly differently
+  composed" case) goes through masked mode, and gets its own atlas.
+- **Runtime contract:** the pack step emits `ramps` in the manifest block. Extra
+  keys are ignored today, so nothing breaks, and a later boss-variant shader can
+  read them. The existing guest outfit gates in `party_palette.frag` are untouched,
+  and opponent ramps must still fail those gates (see the spec).
+
+Alternative: baking a full atlas per variant. Rejected as the default because it
+multiplies memory on phones, against the existing atlas budget concerns.
+
 ## Risks / Trade-offs
 
 - [Bartender's plum apron and trousers may fall inside the outfit recolour gates]
@@ -251,9 +275,13 @@ replaces the hard-coded `front`.
   pipeline runs on Lightning if the new checkpoints aren't live yet.
 - [Rig fixes may not be enough for appeal] → the proof clip is reviewed before the
   64-frame run; LoRA and edit-model routes remain as escalation.
-- [Bartender's source art is cut low at the neckline] → the definition's `traits`
-  and text describe a dignified, fully buttoned adult professional, in line with
-  the project's cultural-respect notes. The owner can revise this at review.
+- [Bartender's source art is cut low at the neckline, and identity references could
+  carry that through] → owner decision 2026-11-03: fully buttoned, fully clothed
+  adult professional who dances superbly. The rig's waistcoat and collar cover the
+  chest, the text says so, and references are derived rather than copied from it.
+- [Mask-based ramp assignment can misclassify pixels where generated art leaves the
+  rig mask] → assign by nearest ramp within a dilated mask, and count the pixels
+  that fall outside any allowed ramp as a review signal.
 
 ## Migration Plan
 

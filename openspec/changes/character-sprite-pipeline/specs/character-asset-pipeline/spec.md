@@ -148,6 +148,27 @@ Colours of non-recolourable regions SHALL fail all reserved-ramp gates, so runti
 - **WHEN** an edit sets a skin, hair or hat colour that matches a reserved ramp gate
 - **THEN** the pipeline SHALL refuse the edit and report the gate and colour, or apply a declared nudge and report the resulting colour
 
+### Requirement: Frames are palette-aware
+
+Every finished frame SHALL use only colours from declared per-region ramps, with no colour shared between ramps, so that any region can be recoloured from a table without regenerating art.
+
+#### Scenario: ramp check
+
+- **WHEN** a frame is finished
+- **THEN** each opaque pixel SHALL belong to exactly one declared ramp
+- **AND** frames with pixels outside any ramp allowed for their region SHALL be flagged for review
+
+### Requirement: Characters declare named palette variants
+
+A definition SHALL be able to declare named variants that override colours or garments. Colour-only variants SHALL be produced without GPU work and without a second atlas.
+
+#### Scenario: replay variant
+
+- **GIVEN** a definition with a colour-only variant `replay-1`
+- **WHEN** that variant is built
+- **THEN** the pipeline SHALL emit a colour table that, applied to the base atlas, reproduces the recoloured frames exactly
+- **AND** no images SHALL be generated
+
 ### Requirement: Every frame is attributable
 
 Each output frame SHALL record its definition and style hashes, backend, workflow hash, all model files with hash and licence, seed, prompts, control-input hashes and update mode. Only models the studio admits SHALL appear.
