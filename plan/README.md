@@ -47,4 +47,5 @@ the forge-facing requirements for the shared ComfyUI pipeline (row
 runtime parses, the recolor gates and every needed clip;
 `generative-animation-research.md` covers rig-driven pose control, identity
 lock, pixel finishing, mocap and model licences.
+- [session-handoff-2026-11-03.md](session-handoff-2026-11-03.md): read first; asset pipeline state before the tray restart.
 `session-asset-pipeline.md` is the resume record for the pipeline coordination (peers, blockers, test steps).
