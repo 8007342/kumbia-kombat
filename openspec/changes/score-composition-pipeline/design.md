@@ -38,17 +38,24 @@ Composing is split: the agent (or a local LLM) writes a brief as JSON, and a
 deterministic arranger renders it.
 
 ```jsonc
-{ "id": "bar_swag", "prompt": "…", "bpm": 92, "meter": "4/4",
-  "keys": [{ "section": "A", "root": "D", "mode": "mixolydian" }],
-  "form": [{ "section": "A", "bars": 8 }, { "section": "B", "bars": 8 }, ...],
-  "harmony": { "A": ["I", "IV", "I", "V"], "B": ["vi", "IV", "I", "V"] },
-  "groove": { "pattern": "train-beat", "swing": 0.12, "layers": ["cumbia-guacharaca"] },
-  "voices": ["pedalSteel", "nylonPluck", "subDrone", "chugGuitar"],
-  "tiers": [{ "adds": ["subDrone", "brushes"] }, { "adds": ["nylonPluck"] },
-            { "adds": ["pedalSteel countermelody"] }, { "adds": ["lead"] },
-            { "adds": ["chugGuitar on bar 4 of each phrase", "double-time kick"] }],
-  "motifs": { "lead": "motifs/bar_swag.lead.json" } }
+{ "id": "garden_mojo", "prompt": "…", "style": "…", "seed": 20261104, "bpm": 92, "meter": "4/4",
+  "keys": [{ "section": "A", "root": "A", "mode": "minor" }],
+  "form": [{ "section": "A", "bars": 8, "name": "Invitation" }, ...],
+  "harmony": { "A": ["i", "iv", "V7", "i"] },
+  "groove": { "pattern": "son", "layers": ["clave"] },
+  "voices": ["drums", "roundBass", "montunoKeys", "reed", "sineFlute", "softBrass"],
+  "parts": [
+    { "id": "clave", "track": "pulse", "voice": "drums", "role": "percussion", "kit": "clave" },
+    { "id": "tumbao", "track": "bass", "voice": "roundBass", "role": "bass", "style": "tumbao" },
+    { "id": "montuno", "track": "guitar", "voice": "montunoKeys", "role": "comp", "style": "montuno" },
+    { "id": "mambo", "track": "brass", "voice": "softBrass", "role": "stabs", "style": "mambo", "sections": ["C"] }
+  ],
+  "tiers": [{ "name": "Party groove", "adds": ["clave", "tumbao"] }, ...],
+  "motifs": { "lead": "motifs/garden_mojo.lead.json" } }
 ```
+
+Tiers name parts by ID (`adds`, `removes`) rather than prose, because prose could not
+build deterministically; `tool/music/schemas/brief.schema.json` is the authority.
 
 Why: LLMs handle structured musical plans well, and code guarantees loop seams, tier
 ranges, boundaries and validity. Alternative: raw model MIDI into the game. Rejected:
@@ -71,6 +78,11 @@ Measured on note data, per score and tier:
 - **Independence:** how far voices avoid moving in parallel rhythm.
 - **Pitch and rhythm variety:** pitch-class entropy and rhythm pattern count per voice.
 - **Build:** note density and active voices must rise between tiers, without relying on velocity.
+
+- **Latin identity:** in every tier, the share of bars holding a son or rumba clave cycle,
+  a tumbao bass (anticipating with no downbeat) or a cumbia pattern. This is a presence
+  check on note positions. It cannot judge feel, quality or authenticity, and a score
+  could pass by placing a clave under music that sounds nothing like salsa.
 
 Starting thresholds are calibrated against today's five scores, which should fail the
 repetition gate, then tuned by listening. Gates catch bad patterns; only ears approve.
@@ -96,11 +108,21 @@ New voices (`pedalSteel`, `chugGuitar` through a waveshaper, `subDrone`, and so 
 oscillator-and-filter recipes within the existing backend and voice cap. No sound
 fonts or samples. The cap and CPU are checked on phones, as heavy distortion can be costly.
 
+### D7. Level styles follow the character
+
+Level 1 (Garden, Gatekeeper) is salsa-led: clave, tumbao, montuno and brass mambos.
+Level 2 (Bar, Bartender) is Latin-electronic: synth lead and arps over a cumbia base with
+her shaker-like percussion. Later levels get their own briefs. Level 4's chill country
+into heavy metal keeps a Latin pattern under the country and metal writing, as the Latin
+identity gate requires of every tier. Style notes in briefs cite sources or say they are
+project judgement.
+
 ## Risks / Trade-offs
 
 - [Oscillator synthesis limits realism] → it is the game's chosen sound; style comes
   through writing and voice recipes. Listening review decides how far to push.
-- [Style mashups may fight the game's identity] → awaiting the owner's cumbia decision.
+- [Hints of other styles may crowd out the Latin base] → the gate requires patterns in every tier, and listening decides whether they are still heard.
+- [Base tempos stay as authored, so salsa at 92 BPM runs slower than dance-floor salsa] → changing them would affect gameplay, and is left to a tuning pass.
 - [Text2midi weights are pickle format] → the host converts or sandboxes them; never load raw.
 - [Larger scores] → a size budget is enforced, and repeated material compresses well.
 - [LMD-trained models may echo existing songs] → motifs stay short, are fitted and edited,

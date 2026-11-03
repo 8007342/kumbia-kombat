@@ -19,7 +19,43 @@ export const THRESHOLDS={
  minRhythmPatterns:4,      // distinct bar rhythms per melody track
  minDensityStep:1.05,      // notes in tier n / notes in tier n-1
  maxVelocityShare:0.5,     // velocity-only changes / all changes between adjacent tiers
+ minLatinBarShare:0.75,    // bars with a recognised Latin rhythm pattern, in every tier
 };
+// Two-bar clave cycles, in beats. Son 3-2 is the grid in en.wikipedia.org/wiki/Salsa_(musical_structure);
+// the 2-3 forms and rumba clave are the same cycle rotated or varied (project judgement to include them).
+const CLAVES=[[0,1.5,3,5,6],[1,2,4,5.5,7],[0,1.5,3.5,5,6],[1,2,4,5.5,7.5]];
+const has=(onsets,x)=>onsets.has(r3(x));
+/**
+ * Which Latin rhythm patterns are present, bar by bar, at one tier. This measures that the
+ * note positions are there. It says nothing about feel, quality or authenticity.
+ *  clave:   exactly a two-bar cycle on one percussion pitch
+ *  tumbao:  bass anticipating on the and of 2 and on 4, with no downbeat, in that bar
+ *  cumbia:  running eighth scraper, kicks on 1 and 3, and an offbeat answer from a pitched
+ *           part. Project judgement: sources describe the instruments, not one fixed grid.
+ */
+export function latinPatterns(score,tier){
+ const notes=notesAt(score,tier),size=score.beatsPerBar;
+ const pulse=new Map();
+ for(const n of notes)if(n.track==='pulse'){if(!pulse.has(n.pitch))pulse.set(n.pitch,new Set());pulse.get(n.pitch).add(r3(n.beat));}
+ const on=track=>new Set(notes.filter(n=>n.track===track).map(n=>r3(n.beat)));
+ const bass=on('bass'),comp=on('guitar');
+ const hit={clave:new Set(),tumbao:new Set(),cumbia:new Set()};
+ for(let bar=0;bar<score.bars;bar++){
+  const b=bar*size;
+  // Exactly the cycle on that pitch: a running scraper contains every clave hit, but is no clave.
+  if(bar+1<score.bars)for(const onsets of pulse.values()){
+   const inCycle=[...onsets].filter(x=>x>=b&&x<b+2*size).length;
+   for(const cycle of CLAVES)if(inCycle===cycle.length&&cycle.every(x=>has(onsets,b+x))){hit.clave.add(bar);hit.clave.add(bar+1);}
+  }
+  if(has(bass,b+1.5)&&has(bass,b+3)&&!has(bass,b))hit.tumbao.add(bar);
+  const kick=pulse.get(36)??new Set();
+  const running=[...pulse.values()].some(o=>[0,.5,1,1.5,2,2.5,3,3.5].every(x=>has(o,b+x)));
+  if(running&&has(kick,b)&&has(kick,b+2)&&[.5,1.5,2.5,3.5].some(x=>has(comp,b+x)))hit.cumbia.add(bar);
+ }
+ const share=set=>r3(set.size/score.bars);
+ const any=new Set([...hit.clave,...hit.tumbao,...hit.cumbia]);
+ return {tier,share:share(any),clave:share(hit.clave),tumbao:share(hit.tumbao),cumbia:share(hit.cumbia)};
+}
 const MELODY=new Set(['lead','answer']);
 const r3=n=>Math.round(n*1000)/1000;
 export const notesAt=(score,tier)=>score.events.filter(e=>e.minTier<=tier&&e.maxTier>=tier);
@@ -111,8 +147,9 @@ export function evaluate(score,thresholds=THRESHOLDS){
  const phrase=Object.fromEntries(melody.map(id=>{const r=repetition(score,id,score.phraseBars);return [id,r3(r.distinct/Math.max(1,r.total))]}));
  const h=harmony(score),ind=independence(score),steps=build(score);
  const melodyDetail=Object.fromEntries(melody.map(id=>[id,{pitchEntropy:entropy(score,id),rhythmPatterns:rhythms(score,id)}]));
+ const latin=[0,1,2,3,4].map(tier=>latinPatterns(score,tier));
  const metrics={barRepeat,melodyBarRepeat:melodyRepeat,repeatByTrack:Object.fromEntries(pitched.map(id=>[id,r3(perTrack[id].repeated/Math.max(1,perTrack[id].total))])),
-  phraseVariety:phrase,...h,independence:ind.value,mostParallel:ind.mostParallel,melody:melodyDetail,tiers:steps};
+  phraseVariety:phrase,...h,independence:ind.value,mostParallel:ind.mostParallel,melody:melodyDetail,tiers:steps,latinIdentity:latin};
  const worstNamed=(ids=pitched)=>{const id=[...ids].sort((a,b)=>perTrack[b].repeated-perTrack[a].repeated)[0];const bars=perTrack[id].worstBars;
   return `${id}: one pattern (or its transposition) fills ${bars.length} bars, first at bars ${bars.slice(0,4).join(', ')}`};
  if(barRepeat>T.maxBarRepeat)fail('repetition',`${barRepeat} of pitched bars copy or transpose an earlier bar (limit ${T.maxBarRepeat}); ${worstNamed()}`);
@@ -129,6 +166,7 @@ export function evaluate(score,thresholds=THRESHOLDS){
   if(s.density<T.minDensityStep)fail('build',`tier ${s.tier} has ${s.density}x the notes of tier ${s.tier-1} (minimum ${T.minDensityStep})`);
   if(s.velocityShare>T.maxVelocityShare)fail('louder-not-richer',`tier ${s.tier} differs from tier ${s.tier-1} mostly by velocity (${s.velocityShare} of changes)`);
  }
+ for(const l of latin)if(l.share<T.minLatinBarShare)fail('latinIdentity',`tier ${l.tier}: a Latin rhythm pattern is present in only ${l.share} of bars (minimum ${T.minLatinBarShare})`);
  if(steps[3].voices<=new Set(notesAt(score,0).map(n=>n.track)).size)fail('build','tier 4 uses no more voices than tier 0');
  return {id:score.id,passed:failures.length===0,metrics,failures};
 }

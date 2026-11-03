@@ -13,8 +13,8 @@ A text prompt SHALL expand into a structured brief declaring form, harmony, groo
 
 #### Scenario: style prompt
 
-- **WHEN** a level's prompt asks for slow chill country ambient with a hint of death metal
-- **THEN** a brief SHALL be produced for review, naming how those styles appear in tempo, voices and harmony, before any score is built
+- **WHEN** a level's prompt asks for salsa with a brass mambo build
+- **THEN** a brief SHALL be produced for review, naming how that style appears in tempo, voices and harmony, before any score is built
 
 ### Requirement: Scores build deterministically from the brief
 
@@ -47,6 +47,15 @@ Each score SHALL pass measured thresholds for variety and intensity: limited exa
 
 - **WHEN** a higher tier differs from the lower one mostly by velocity
 - **THEN** the gate SHALL fail
+
+### Requirement: Latin identity is measured in every tier
+
+Each tier of a score SHALL contain recognised Latin rhythm patterns in a measured share of its bars. This check SHALL NOT be treated as evidence of quality or authenticity.
+
+#### Scenario: a tier loses its pattern
+
+- **WHEN** a tier of a score has no clave, tumbao or cumbia pattern in most bars
+- **THEN** the gate SHALL fail and name that tier
 
 ### Requirement: Models contribute candidates only
 

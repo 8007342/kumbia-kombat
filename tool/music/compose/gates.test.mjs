@@ -1,7 +1,7 @@
 // node --test tool/music/compose/
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {evaluate} from './gates.mjs';
+import {evaluate,latinPatterns} from './gates.mjs';
 
 const TRACKS=['pulse','bass','guitar','lead','answer','brass'].map((id,channel)=>({id,channel,program:0,voice:id}));
 const base={id:'fixture',beatsPerBar:4,bars:16,phraseBars:2,tracks:TRACKS,sections:[{bar:0,bars:8,name:'A'},{bar:8,bars:8,name:'B'}]};
@@ -29,6 +29,7 @@ function varied(){
  for(let bar=0;bar<16;bar++){
   const b=bar*4,root=roots[bar];
   events.push(note('pulse',b,36),note('pulse',b+2,36));
+  for(const x of bar%2===0?[0,1.5,3]:[1,2])events.push(note('pulse',b+x,75,.1,45));
   for(let i=0;i<4;i++)events.push(note('pulse',b+i+.5,73,.1,40,1));
   events.push(note('bass',b,36+root),note('bass',b+1.25+rnd(3)*.5,43+rnd(5)),note('bass',b+3.5,36+rnd(12),.25,60,1));
   for(let i=0;i<3;i++)events.push(note('guitar',b+[.5,1.25,2.75,3.25][rnd(4)]+i*.01,60+scale[rnd(7)],.25,50,2));
@@ -79,4 +80,54 @@ test('tiers without added notes fail the build gate',()=>{
  const score=varied();
  score.events=score.events.map(n=>({...n,minTier:0,maxTier:4}));
  assert.ok(evaluate(score).failures.some(f=>f.gate==='build'));
+});
+
+// A bar of plain rock: kicks and straight hats, with no Latin pattern anywhere.
+const rockBars=(bars=4)=>{
+ const events=[];
+ for(let bar=0;bar<bars;bar++){
+  const b=bar*4;
+  events.push(note('pulse',b,36),note('pulse',b+2,36),note('pulse',b+1,38),note('pulse',b+3,38));
+  for(let x=0;x<4;x+=.5)events.push(note('pulse',b+x,73,.1,40));
+  events.push(note('bass',b,36),note('bass',b+2,43));
+ }
+ return {...base,bars,events};
+};
+test('latinIdentity finds the son clave on any one percussion pitch',()=>{
+ const events=[];
+ for(const x of [0,1.5,3,5,6])events.push(note('pulse',x,75));
+ const l=latinPatterns({...base,bars:2,events},0);
+ assert.equal(l.clave,1);assert.equal(l.share,1);
+});
+test('latinIdentity needs every clave hit',()=>{
+ const events=[];
+ for(const x of [0,1.5,3,5])events.push(note('pulse',x,75));
+ assert.equal(latinPatterns({...base,bars:2,events},0).clave,0);
+});
+test('a running scraper contains the clave hits but does not count as clave',()=>{
+ const events=[];
+ for(let x=0;x<8;x+=.5)events.push(note('pulse',x,73));
+ assert.equal(latinPatterns({...base,bars:2,events},0).clave,0);
+});
+test('latinIdentity finds tumbao bass only without a downbeat',()=>{
+ assert.equal(latinPatterns({...base,bars:1,events:[note('bass',1.5,40),note('bass',3,43)]},0).tumbao,1);
+ assert.equal(latinPatterns({...base,bars:1,events:[note('bass',0,36),note('bass',1.5,40),note('bass',3,43)]},0).tumbao,0);
+});
+test('latinIdentity counts cumbia only with an offbeat pitched answer',()=>{
+ const score=rockBars(2);
+ assert.equal(latinPatterns(score,0).cumbia,0);
+ score.events.push(note('guitar',.5,60),note('guitar',4.5,60));
+ assert.equal(latinPatterns(score,0).cumbia,1);
+});
+test('a rock beat fails latinIdentity by name, per tier',()=>{
+ const result=evaluate(rockBars());
+ assert.ok(result.failures.some(f=>f.gate==='latinIdentity'&&/tier 0/.test(f.message)));
+});
+test('a tier that loses its pattern fails even if other tiers keep it',()=>{
+ const events=[];
+ for(let bar=0;bar<16;bar+=2)for(const x of [0,1.5,3,5,6])events.push(note('pulse',bar*4+x,75,.1,45,2));
+ const result=evaluate({...base,events});
+ const names=result.failures.filter(f=>f.gate==='latinIdentity').map(f=>f.message);
+ assert.ok(names.some(m=>/tier 1/.test(m)));
+ assert.ok(!names.some(m=>/tier 2/.test(m)));
 });
