@@ -1,0 +1,2151 @@
+[
+ {
+  "pose": "groove.down_l",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-moderate.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/groove.down_l.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/groove.down_l.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/groove.down_l.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/groove.down_l.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful mustached latino man, cream panama hat with teal band, purple guayabera shirt with teal embroidered panels, cream trousers, teal shoes, dignified skilled cumbia dancer, weight sunk on his bent left knee, right foot stepped back on its ball with the heel raised, left hip high and pushed out, shoulders tilted the other way, left forearm swinging forward at belly height, right arm low and back, head level facing the viewer, clear readable silhouette, weight on one leg, hips tilted, relaxed shoulders, playful attitude, asymmetric pose, feet firmly on the ground",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms, jumping",
+    "seed": 930000
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "secondary-action",
+   "no-twinning",
+   "timing-on-beat",
+   "planted-pivot"
+  ],
+  "inputHashes": {
+   "pose": "f4cf694034f166bfff6d022d2b516b10fec0f129e43f2467ef8d014abe277efe",
+   "depth": "09a81708c96a231b8eafbba045ec708859482321e95bb9ee080b9b00d9b429ac",
+   "lineart": "24e268a9c763e304eee865aae3758170839159351325ce4b2afdeeb018a76c70"
+  }
+ },
+ {
+  "pose": "groove.pass_l",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-moderate.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/groove.pass_l.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/groove.pass_l.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/groove.pass_l.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/groove.pass_l.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful mustached latino man, cream panama hat with teal band, purple guayabera shirt with teal embroidered panels, cream trousers, teal shoes, dignified skilled cumbia dancer, weight rolling forward onto the left foot, knees softening upward, right foot still slightly back on its ball, hips easing toward level, arms loose and low swinging back toward the body, clear readable silhouette, weight on one leg, hips tilted, relaxed shoulders, playful attitude, asymmetric pose, feet firmly on the ground",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms, jumping",
+    "seed": 930100
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "secondary-action",
+   "no-twinning",
+   "timing-on-beat",
+   "planted-pivot"
+  ],
+  "inputHashes": {
+   "pose": "f356adb961f9060ec13c41cd05bf9b7fbea2f0b0ebf14493d9c75f399d4f51ea",
+   "depth": "875310aff3a042b132be38157e170c85be95e2a5fae1396941bbd66638564eda",
+   "lineart": "6b6ab002ba6f83ea4428ddccc03594ab91bb7b6d61f9470489a5209094900417"
+  }
+ },
+ {
+  "pose": "groove.up_l",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-moderate.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/groove.up_l.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/groove.up_l.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/groove.up_l.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/groove.up_l.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful mustached latino man, cream panama hat with teal band, purple guayabera shirt with teal embroidered panels, cream trousers, teal shoes, dignified skilled cumbia dancer, both feet together and flat, legs nearly straight in a small rise, hips almost level, chin lifted proudly, arms relaxed low at the sides with elbows soft, clear readable silhouette, weight on one leg, hips tilted, relaxed shoulders, playful attitude, asymmetric pose, feet firmly on the ground",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms, jumping",
+    "seed": 930200
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "secondary-action",
+   "no-twinning",
+   "timing-on-beat",
+   "planted-pivot"
+  ],
+  "inputHashes": {
+   "pose": "a942ffb0386fb1fd0ebc5dda23de8da1202c1c5da128cc8a1ad4957f2b160cbd",
+   "depth": "17a603ef7d790f8afca38f0fe558442c88478efcb55b5a990e883f102e176765",
+   "lineart": "23272e9c806d1ac1213885267cfddbee23ec43a646d61cee925a9b3de918ce9b"
+  }
+ },
+ {
+  "pose": "groove.pass_l2",
+  "profile": "peak",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-peak.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/groove.pass_l2.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/groove.pass_l2.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/groove.pass_l2.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/groove.pass_l2.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful mustached latino man, cream panama hat with teal band, purple guayabera shirt with teal embroidered panels, cream trousers, teal shoes, dignified skilled cumbia dancer, hip popped out to his right over the straight right leg, right hip high, right shoulder dipped, left knee bent with the left foot resting on its toe, right forearm lifted out at hip height in a wrist roll, left forearm across the belly, head tilted toward his left, clear readable silhouette, dynamic dance pose, strong line of action, weight on one leg, hips tilted, exaggerated energetic pose, relaxed shoulders, playful attitude, asymmetric pose, feet firmly on the ground",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, stiff pose, straight rigid body, floating, feet off ground, symmetrical pose, mirrored arms, jumping",
+    "seed": 930300
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "line-of-action",
+   "contrapposto",
+   "exaggeration-accent",
+   "secondary-action",
+   "no-twinning",
+   "timing-on-beat",
+   "planted-pivot"
+  ],
+  "inputHashes": {
+   "pose": "441ebca8ecdf5cf7576245b172c1b1355265d53bc3f33a8e9072188ded910ee2",
+   "depth": "b52902fdb2ab918a07a097595131d186f6d522adc9123161c4d6709094d2e7a9",
+   "lineart": "0cecfd19471b66595f9170f518102fd5fd7d35ad9bb9e06e0b1cca711527c05d"
+  }
+ },
+ {
+  "pose": "groove.down_r",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-moderate.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/groove.down_r.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/groove.down_r.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/groove.down_r.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/groove.down_r.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful mustached latino man, cream panama hat with teal band, purple guayabera shirt with teal embroidered panels, cream trousers, teal shoes, dignified skilled cumbia dancer, weight sunk on his bent right knee, left foot stepped back on its ball with the heel raised, right hip high and pushed out, shoulders tilted the other way, right forearm swinging forward at belly height, left arm low and back, head level facing the viewer, clear readable silhouette, weight on one leg, hips tilted, relaxed shoulders, playful attitude, asymmetric pose, feet firmly on the ground",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms, jumping",
+    "seed": 930400
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "secondary-action",
+   "no-twinning",
+   "timing-on-beat",
+   "planted-pivot"
+  ],
+  "inputHashes": {
+   "pose": "aea8ca1030d130639cde4d7ca312a4de2cc3f313272ec2234f30c5d6b382e2c7",
+   "depth": "96d0915445cf43636f05fa753cea9ffd09592683c8d28b3e2aa37504905c08b9",
+   "lineart": "18d81457dd4e5befee6ddb8d1da02a2fbb29995704305e41c42b2292d3497249"
+  }
+ },
+ {
+  "pose": "groove.pass_r",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-moderate.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/groove.pass_r.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/groove.pass_r.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/groove.pass_r.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/groove.pass_r.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful mustached latino man, cream panama hat with teal band, purple guayabera shirt with teal embroidered panels, cream trousers, teal shoes, dignified skilled cumbia dancer, weight rolling forward onto the right foot, knees softening upward, left foot still slightly back on its ball, hips easing toward level, arms loose and low swinging back toward the body, clear readable silhouette, weight on one leg, hips tilted, relaxed shoulders, playful attitude, asymmetric pose, feet firmly on the ground",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms, jumping",
+    "seed": 930500
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "secondary-action",
+   "no-twinning",
+   "timing-on-beat",
+   "planted-pivot"
+  ],
+  "inputHashes": {
+   "pose": "d882a24219de52cbd6f610c845377008d1e67dc3eabd704e95368bd7e3d952f6",
+   "depth": "3b104cef85eeb314da93ab019aa5d6716726239bb2cbb58de49213e70662c17e",
+   "lineart": "d79fee4e0e321009754dfec65a95f5b76d6285477eba710a2e1c486f72369eda"
+  }
+ },
+ {
+  "pose": "groove.up_r",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-moderate.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/groove.up_r.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/groove.up_r.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/groove.up_r.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/groove.up_r.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful mustached latino man, cream panama hat with teal band, purple guayabera shirt with teal embroidered panels, cream trousers, teal shoes, dignified skilled cumbia dancer, both feet together and flat, legs nearly straight in a small rise, hips almost level, chin lifted proudly, arms relaxed low at the sides with elbows soft, clear readable silhouette, weight on one leg, hips tilted, relaxed shoulders, playful attitude, asymmetric pose, feet firmly on the ground",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms, jumping",
+    "seed": 930600
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "secondary-action",
+   "no-twinning",
+   "timing-on-beat",
+   "planted-pivot"
+  ],
+  "inputHashes": {
+   "pose": "74e95ab94427c3056d95783c320c5886297670911cf52636ed79818d2b938d2d",
+   "depth": "50b58af52f8fb7bb81105f24f8256e68e7478850866b1ea2d14aa035c16b9f9b",
+   "lineart": "1ec0bfa6f6d47eab70cf8c5a9c554a12d0cb3e0b65ae0ae844646af1bd1ab2a1"
+  }
+ },
+ {
+  "pose": "groove.pass_r2",
+  "profile": "peak",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-peak.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/groove.pass_r2.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/groove.pass_r2.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/groove.pass_r2.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/groove.pass_r2.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful mustached latino man, cream panama hat with teal band, purple guayabera shirt with teal embroidered panels, cream trousers, teal shoes, dignified skilled cumbia dancer, hip popped out to his left over the straight left leg, left hip high, left shoulder dipped, right knee bent with the right foot resting on its toe, left forearm lifted out at hip height in a wrist roll, right forearm across the belly, head tilted toward his right, clear readable silhouette, dynamic dance pose, strong line of action, weight on one leg, hips tilted, exaggerated energetic pose, relaxed shoulders, playful attitude, asymmetric pose, feet firmly on the ground",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, stiff pose, straight rigid body, floating, feet off ground, symmetrical pose, mirrored arms, jumping",
+    "seed": 930700
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "line-of-action",
+   "contrapposto",
+   "exaggeration-accent",
+   "secondary-action",
+   "no-twinning",
+   "timing-on-beat",
+   "planted-pivot"
+  ],
+  "inputHashes": {
+   "pose": "feb636b30d7f4fe4a46af072c41b3779fc4581815959d53619df975321a985a6",
+   "depth": "ea7b597555549e012c48dfbfd2d258059d43367baa5544a42b81b423f06ab024",
+   "lineart": "3e80ccb21fa3f4028969a70e9e6354e7336dcf3b340ef1aa2741d751181cbd4b"
+  }
+ },
+ {
+  "pose": "left_hand.prep",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-moderate.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/left_hand.prep.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/left_hand.prep.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/left_hand.prep.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/left_hand.prep.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful mustached latino man, cream panama hat with teal band, purple guayabera shirt with teal embroidered panels, cream trousers, teal shoes, dignified skilled cumbia dancer, crouched low with weight on the bent right leg, right fist on the hip, left hand scooped down low in front of the left hip, torso turned away to his right, head glancing down at the left hand, clear readable silhouette, weight on one leg, hips tilted, crouched, gathering energy, knees bent, asymmetric pose",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms",
+    "seed": 930800
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "anticipation",
+   "no-twinning",
+   "timing-on-beat"
+  ],
+  "inputHashes": {
+   "pose": "ab921ff354696e18dc5309948fbf67195b9d47a230e064d36eebd219626a58b0",
+   "depth": "f275e3e79dd13672edf80c10247913b3f815a39b39cda4edee84dc4b5ec8ca35",
+   "lineart": "2343f053eb24a2c5617871163bff18d270cbfa11c7a312f8751f0145fc002543"
+  }
+ },
+ {
+  "pose": "left_hand.peak",
+  "profile": "peak",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-peak.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/left_hand.peak.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/left_hand.peak.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/left_hand.peak.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/left_hand.peak.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful mustached latino man, cream panama hat with teal band, purple guayabera shirt with teal embroidered panels, cream trousers, teal shoes, dignified skilled cumbia dancer, weight on the straight right foot, right hip pushed out, right fist on the hip, body leaning toward his left so one long diagonal runs from the right foot to the left palm thrust high and out at about 45 degrees, left foot on its toe out to the side, head turned up toward the raised hand, clear readable silhouette, dynamic dance pose, strong line of action, weight on one leg, hips tilted, exaggerated energetic pose, asymmetric pose",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, stiff pose, straight rigid body, floating, feet off ground, symmetrical pose, mirrored arms",
+    "seed": 930900
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "line-of-action",
+   "contrapposto",
+   "exaggeration-accent",
+   "no-twinning",
+   "timing-on-beat"
+  ],
+  "inputHashes": {
+   "pose": "9386db3da0a225fa2d635d461cc4832a1f69ce39a09ca1ef5109a32ae6371bc9",
+   "depth": "f273ccaeebbdbaf16a0837a7ddd7ed72c81956ffd4bbc09d0d61ac28a65683e5",
+   "lineart": "99277f858ee3ab2b7c257a04f95bc8ac6adf0ea7552fdb881fdd1985a467e4f8"
+  }
+ },
+ {
+  "pose": "left_hand.follow",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-moderate.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/left_hand.follow.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/left_hand.follow.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/left_hand.follow.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/left_hand.follow.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful mustached latino man, cream panama hat with teal band, purple guayabera shirt with teal embroidered panels, cream trousers, teal shoes, dignified skilled cumbia dancer, same diagonal pushed further: left arm reaching higher and the palm rolling forward, torso leaning further toward his left, right elbow pushed back on the hip, left toe touch out wider, head following the hand, clear readable silhouette, weight on one leg, hips tilted, shirt hem swinging, follow-through, asymmetric pose",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms",
+    "seed": 931000
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "follow-through",
+   "no-twinning",
+   "timing-on-beat"
+  ],
+  "inputHashes": {
+   "pose": "48593ee4c8079b27df406166e8d9a2972d78ce133e6ec3253037fb640df2222a",
+   "depth": "ec1cd60f9d7432f207e011578a4ab4b3207bc260220a0ed51d3e8e6dc407d2fa",
+   "lineart": "d4d2d0458f96e513cc00eb21ae89f4729f1405f69bd663366708b7d11bb70ef8"
+  }
+ },
+ {
+  "pose": "left_hand.return",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-moderate.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/left_hand.return.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/left_hand.return.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/left_hand.return.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/left_hand.return.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful mustached latino man, cream panama hat with teal band, purple guayabera shirt with teal embroidered panels, cream trousers, teal shoes, dignified skilled cumbia dancer, left arm sweeping down in an arc at shoulder height with the elbow bent, right hand low on the hip, both feet flat and close, torso returning upright, clear readable silhouette, weight on one leg, hips tilted, shirt hem swinging, follow-through, asymmetric pose",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms",
+    "seed": 931100
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "follow-through",
+   "no-twinning",
+   "timing-on-beat"
+  ],
+  "inputHashes": {
+   "pose": "005abc4c0381effe4455e6eb05f4c09066b49ac80046162866c40864bc460113",
+   "depth": "e66a808ae1911057fd7f06701a48f6e9b579ce8c7e18371e4f73bb14dca7fe29",
+   "lineart": "2ec39e29666bb0c3967b9e16cd5a5f7c6c53e357af8ec1814e55118554c43bbe"
+  }
+ },
+ {
+  "pose": "right_hand.prep",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-moderate.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/right_hand.prep.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/right_hand.prep.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/right_hand.prep.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/right_hand.prep.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful mustached latino man, cream panama hat with teal band, purple guayabera shirt with teal embroidered panels, cream trousers, teal shoes, dignified skilled cumbia dancer, crouched low with weight on the bent left leg, left fist on the hip, right hand scooped down low in front of the right hip, torso turned away to his left, head glancing down at the right hand, clear readable silhouette, weight on one leg, hips tilted, crouched, gathering energy, knees bent, asymmetric pose",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms",
+    "seed": 931200
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "anticipation",
+   "no-twinning",
+   "timing-on-beat"
+  ],
+  "inputHashes": {
+   "pose": "9eb8c410132a830d32b5705bed056610af53ae8de09b08aef3f47dcec5fb2231",
+   "depth": "611ebe2ed7b501e49f94866db7c11967984ca2d01d36c8dc544e22637fe2555b",
+   "lineart": "23b6964c512db6e6a93629a91e02d83d14b344a994472c4fa159f0a57ee5c9df"
+  }
+ },
+ {
+  "pose": "right_hand.peak",
+  "profile": "peak",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-peak.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/right_hand.peak.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/right_hand.peak.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/right_hand.peak.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/right_hand.peak.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful mustached latino man, cream panama hat with teal band, purple guayabera shirt with teal embroidered panels, cream trousers, teal shoes, dignified skilled cumbia dancer, weight on the straight left foot, left hip pushed out, left fist on the hip, body leaning toward his right so one long diagonal runs from the left foot to the right palm thrust high and out at about 45 degrees, right foot on its toe out to the side, head turned up toward the raised hand, clear readable silhouette, dynamic dance pose, strong line of action, weight on one leg, hips tilted, exaggerated energetic pose, asymmetric pose",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, stiff pose, straight rigid body, floating, feet off ground, symmetrical pose, mirrored arms",
+    "seed": 931300
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "line-of-action",
+   "contrapposto",
+   "exaggeration-accent",
+   "no-twinning",
+   "timing-on-beat"
+  ],
+  "inputHashes": {
+   "pose": "83dddad80390afe287c6e7d99b16fc5f6409fa6d68e39e38ba400ba4aeb0ef25",
+   "depth": "40055ffce0d992fbdc4c0a97b86192edf97357ce0a6fdb52a1292f558a589e1b",
+   "lineart": "e0445666f6fb2befae41e7a02d06571432058e40c2432fd7535fc34d89049466"
+  }
+ },
+ {
+  "pose": "right_hand.follow",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-moderate.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/right_hand.follow.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/right_hand.follow.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/right_hand.follow.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/right_hand.follow.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful mustached latino man, cream panama hat with teal band, purple guayabera shirt with teal embroidered panels, cream trousers, teal shoes, dignified skilled cumbia dancer, same diagonal pushed further: right arm reaching higher and the palm rolling forward, torso leaning further toward his right, left elbow pushed back on the hip, right toe touch out wider, head following the hand, clear readable silhouette, weight on one leg, hips tilted, shirt hem swinging, follow-through, asymmetric pose",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms",
+    "seed": 931400
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "follow-through",
+   "no-twinning",
+   "timing-on-beat"
+  ],
+  "inputHashes": {
+   "pose": "19154b6ba07a97b916b7548b64688dc12b2ec5dfd98c43292cbde641ff24d1eb",
+   "depth": "a4a5168118d6c17def07aa0330c7644659d7c91adfdd79b051bdcae3d582d9c6",
+   "lineart": "8b8b50c39293ad879168d333471b9edacbb27081ea45c0444d8094af10ac5cac"
+  }
+ },
+ {
+  "pose": "right_hand.return",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-moderate.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/right_hand.return.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/right_hand.return.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/right_hand.return.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/right_hand.return.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful mustached latino man, cream panama hat with teal band, purple guayabera shirt with teal embroidered panels, cream trousers, teal shoes, dignified skilled cumbia dancer, right arm sweeping down in an arc at shoulder height with the elbow bent, left hand low on the hip, both feet flat and close, torso returning upright, clear readable silhouette, weight on one leg, hips tilted, shirt hem swinging, follow-through, asymmetric pose",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms",
+    "seed": 931500
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "follow-through",
+   "no-twinning",
+   "timing-on-beat"
+  ],
+  "inputHashes": {
+   "pose": "3883a505267d130b190502a0adc93cb3bf59725a88ebf5809ab9f58c1b262efc",
+   "depth": "53b52e053fa38a30db5f3220448f378567635d57651730241ac671e819943370",
+   "lineart": "27bb59b3b9da22c0b50a8b28e9441114cc80c9ea72df4300c8405d0fed9a6199"
+  }
+ },
+ {
+  "pose": "left_foot.prep",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-moderate.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/left_foot.prep.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/left_foot.prep.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/left_foot.prep.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/left_foot.prep.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful mustached latino man, cream panama hat with teal band, purple guayabera shirt with teal embroidered panels, cream trousers, teal shoes, dignified skilled cumbia dancer, weight on the bent right leg, left knee lifted forward and out with the foot off the floor and the toe pointing down, left fist on the hip, right arm low and out for balance, head looking down at the left foot, clear readable silhouette, weight on one leg, hips tilted, crouched, gathering energy, knees bent, asymmetric pose",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms",
+    "seed": 931600
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "anticipation",
+   "no-twinning",
+   "timing-on-beat"
+  ],
+  "inputHashes": {
+   "pose": "161c6d1c0c6fcf1fbba89b122575a4d682152c6ac4623405b75059a005086dc4",
+   "depth": "8201d03d1bd92084444fa5e58cd9ef2ad61941cf75648291aca3611c15cc6048",
+   "lineart": "43ef9d21a3986287fc39d5ba2af41f83e06368de7e69ee899c89913ccce4b2b8"
+  }
+ },
+ {
+  "pose": "left_foot.peak",
+  "profile": "peak",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-peak.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/left_foot.peak.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/left_foot.peak.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/left_foot.peak.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/left_foot.peak.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful mustached latino man, cream panama hat with teal band, purple guayabera shirt with teal embroidered panels, cream trousers, teal shoes, dignified skilled cumbia dancer, heel dig: left leg stretched out on a forward diagonal with the left heel on the floor and the toe up, weight on the bent right leg, chest proud and leaning back slightly, right fist on the hip, left arm low and back, head turned toward the left foot, clear readable silhouette, dynamic dance pose, strong line of action, weight on one leg, hips tilted, exaggerated energetic pose, asymmetric pose",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, stiff pose, straight rigid body, floating, feet off ground, symmetrical pose, mirrored arms",
+    "seed": 931700
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "line-of-action",
+   "contrapposto",
+   "exaggeration-accent",
+   "no-twinning",
+   "timing-on-beat"
+  ],
+  "inputHashes": {
+   "pose": "d4c9ec265985e3d0fd7f522b7b8dc02e4a57c2837464f6b903236bb0f7a72215",
+   "depth": "68d66210a8854b29cc92477947b02b0094419f737790bdb08205a7631b1a19fb",
+   "lineart": "e81d5f1a6e5e09b1dead2d29093ecc7c4b764c149577442a100b9513be31fd39"
+  }
+ },
+ {
+  "pose": "left_foot.follow",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-moderate.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/left_foot.follow.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/left_foot.follow.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/left_foot.follow.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/left_foot.follow.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful mustached latino man, cream panama hat with teal band, purple guayabera shirt with teal embroidered panels, cream trousers, teal shoes, dignified skilled cumbia dancer, left heel still dug in on the diagonal, hip popped over the right foot, shoulders tilted against the hips, right elbow pushed back on the hip, left arm low and out, head on the left foot, clear readable silhouette, weight on one leg, hips tilted, shirt hem swinging, follow-through, asymmetric pose",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms",
+    "seed": 931800
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "follow-through",
+   "no-twinning",
+   "timing-on-beat"
+  ],
+  "inputHashes": {
+   "pose": "c436315ae3736d25ae9ee7ee8934391640fcf6f2cd25df38809564567740416a",
+   "depth": "0655fa9143157b6ba6db3f9a65b9d7ea7b7307a460afaf297824d4c694530eb5",
+   "lineart": "375526fe0a4f1ad6f440dae322fd3d80b0b9317147575905219caa02b7139cf1"
+  }
+ },
+ {
+  "pose": "left_foot.return",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-moderate.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/left_foot.return.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/left_foot.return.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/left_foot.return.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/left_foot.return.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful mustached latino man, cream panama hat with teal band, purple guayabera shirt with teal embroidered panels, cream trousers, teal shoes, dignified skilled cumbia dancer, left foot dragged back along the floor to close beside the right, both feet flat, knees soft, arms relaxed low at the sides, clear readable silhouette, weight on one leg, hips tilted, shirt hem swinging, follow-through, asymmetric pose",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms",
+    "seed": 931900
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "follow-through",
+   "no-twinning",
+   "timing-on-beat"
+  ],
+  "inputHashes": {
+   "pose": "7d2069a5f6f04c8a3b3267894752fc4615cc0b7ea5193b41fe8920446de7ef8b",
+   "depth": "f9b1a8e2cebbeecfec3c3cc1265beba55cc188466abb1b0e4ad614f8b11e2396",
+   "lineart": "a6014a8fd4f568f6994efc084c4e9c87bac50a969f3c89942559ecf3087d4bd9"
+  }
+ },
+ {
+  "pose": "right_foot.prep",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-moderate.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/right_foot.prep.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/right_foot.prep.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/right_foot.prep.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/right_foot.prep.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful mustached latino man, cream panama hat with teal band, purple guayabera shirt with teal embroidered panels, cream trousers, teal shoes, dignified skilled cumbia dancer, weight on the bent left leg, right knee lifted forward and out with the foot off the floor and the toe pointing down, right fist on the hip, left arm low and out for balance, head looking down at the right foot, clear readable silhouette, weight on one leg, hips tilted, crouched, gathering energy, knees bent, asymmetric pose",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms",
+    "seed": 932000
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "anticipation",
+   "no-twinning",
+   "timing-on-beat"
+  ],
+  "inputHashes": {
+   "pose": "d90a88a1c5eadeeeb9882d359f767ad06d87e7b6065c5f43739260018a75c8a8",
+   "depth": "eb1012d41fa7ee9c7c8076a2bb0a350bcbc945a1a9b624aa953ca41538ca30bb",
+   "lineart": "6976ad4e8f0aef2a9cd9371c2b10e829bf28a1098eedd3f3d0e4e01a9803b81c"
+  }
+ },
+ {
+  "pose": "right_foot.peak",
+  "profile": "peak",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-peak.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/right_foot.peak.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/right_foot.peak.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/right_foot.peak.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/right_foot.peak.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful mustached latino man, cream panama hat with teal band, purple guayabera shirt with teal embroidered panels, cream trousers, teal shoes, dignified skilled cumbia dancer, heel dig: right leg stretched out on a forward diagonal with the right heel on the floor and the toe up, weight on the bent left leg, chest proud and leaning back slightly, left fist on the hip, right arm low and back, head turned toward the right foot, clear readable silhouette, dynamic dance pose, strong line of action, weight on one leg, hips tilted, exaggerated energetic pose, asymmetric pose",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, stiff pose, straight rigid body, floating, feet off ground, symmetrical pose, mirrored arms",
+    "seed": 932100
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "line-of-action",
+   "contrapposto",
+   "exaggeration-accent",
+   "no-twinning",
+   "timing-on-beat"
+  ],
+  "inputHashes": {
+   "pose": "d64c40dd8b36bc1a2b994f68de6fbfe64ee945af1717326b2f42bd86f5f53375",
+   "depth": "3bcb9fa9b237a49c2ea1d701eae1da7300daf55278ce82872740d6de38a9ac05",
+   "lineart": "f86052da8d8b97df803075b763b5ce74517e6fb40a5df8c7cf0318ea99d3ae52"
+  }
+ },
+ {
+  "pose": "right_foot.follow",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-moderate.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/right_foot.follow.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/right_foot.follow.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/right_foot.follow.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/right_foot.follow.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful mustached latino man, cream panama hat with teal band, purple guayabera shirt with teal embroidered panels, cream trousers, teal shoes, dignified skilled cumbia dancer, right heel still dug in on the diagonal, hip popped over the left foot, shoulders tilted against the hips, left elbow pushed back on the hip, right arm low and out, head on the right foot, clear readable silhouette, weight on one leg, hips tilted, shirt hem swinging, follow-through, asymmetric pose",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms",
+    "seed": 932200
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "follow-through",
+   "no-twinning",
+   "timing-on-beat"
+  ],
+  "inputHashes": {
+   "pose": "b35ed77fe08a9959d0623137ce741156c26627d69064882c259bf6f784f592c2",
+   "depth": "7b51fdddb80a0bc4e3dd93dffc5b5d632275219f9e5797c025306b1a3ed0872a",
+   "lineart": "fee5cf662c565d6f0ecc7ccd8964568492da4e22d248c5bc8d995bdeefebc904"
+  }
+ },
+ {
+  "pose": "right_foot.return",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-moderate.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/right_foot.return.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/right_foot.return.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/right_foot.return.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/right_foot.return.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful mustached latino man, cream panama hat with teal band, purple guayabera shirt with teal embroidered panels, cream trousers, teal shoes, dignified skilled cumbia dancer, right foot dragged back along the floor to close beside the left, both feet flat, knees soft, arms relaxed low at the sides, clear readable silhouette, weight on one leg, hips tilted, shirt hem swinging, follow-through, asymmetric pose",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms",
+    "seed": 932300
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "follow-through",
+   "no-twinning",
+   "timing-on-beat"
+  ],
+  "inputHashes": {
+   "pose": "90450e4528fd1b3873f60324a0a60f1be06b0d9b31a31b2393546bb044777716",
+   "depth": "9a188546e5353e4937f8c720ad87b74fd873e460ea7938ba818cabd9cce28144",
+   "lineart": "cc7337d4fdd36646dd925ccfe9b8a8ee0e11c1811ea5ce49d6e3f2e40ad1ca6f"
+  }
+ },
+ {
+  "pose": "enter_forward.contact_l",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-moderate.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/enter_forward.contact_l.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/enter_forward.contact_l.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/enter_forward.contact_l.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/enter_forward.contact_l.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful mustached latino man, cream panama hat with teal band, purple guayabera shirt with teal embroidered panels, cream trousers, teal shoes, dignified skilled cumbia dancer, swaggering walk toward the viewer on a slight diagonal, left heel landing in front, right foot behind on its toe, right fist on the hip, left arm swinging back, chin up, clear readable silhouette, weight on one leg, hips tilted, crouched, gathering energy, knees bent, asymmetric pose, feet firmly on the ground",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms, jumping",
+    "seed": 932400
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "anticipation",
+   "no-twinning",
+   "timing-on-beat",
+   "planted-pivot"
+  ],
+  "inputHashes": {
+   "pose": "3c26b409cd93783fefccb32a6e2f8d61450f4c24548dfc8fde8ea26f6cfbdffe",
+   "depth": "cea3662f2a211792b7a51273230f73ccb88a1fb2f267ed059df717326c8c8ed6",
+   "lineart": "5bd4eaa1dd9eee9086428d980219921e78226f7362b8468856a7f06f8f11ce54"
+  }
+ },
+ {
+  "pose": "enter_forward.down_l",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-moderate.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/enter_forward.down_l.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/enter_forward.down_l.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/enter_forward.down_l.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/enter_forward.down_l.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful mustached latino man, cream panama hat with teal band, purple guayabera shirt with teal embroidered panels, cream trousers, teal shoes, dignified skilled cumbia dancer, weight dropping into the bent left knee, left hip high, right foot pushing off behind on its toe, right fist on the hip, left arm swinging, head dipping on the beat, clear readable silhouette, weight on one leg, hips tilted, asymmetric pose, feet firmly on the ground",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms, jumping",
+    "seed": 932500
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "no-twinning",
+   "timing-on-beat",
+   "planted-pivot"
+  ],
+  "inputHashes": {
+   "pose": "c97be5ec28137f5a880e10c0d5a9c3c8cebb6aa1c02cd9e02c8299868c57677f",
+   "depth": "177adad8101255f240052db30e0a6de65ca4d9f7e412bb278a6cdb285bbb1851",
+   "lineart": "c1d8c3863286ed1d2c93adebf54c804119f8a85f5bb9049c6e516112a782ab41"
+  }
+ },
+ {
+  "pose": "enter_forward.pass_l",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-moderate.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/enter_forward.pass_l.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/enter_forward.pass_l.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/enter_forward.pass_l.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/enter_forward.pass_l.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful mustached latino man, cream panama hat with teal band, purple guayabera shirt with teal embroidered panels, cream trousers, teal shoes, dignified skilled cumbia dancer, standing tall on the straight left leg, right knee swinging forward past it, right fist on the hip, left arm relaxed at the side, chin up, clear readable silhouette, weight on one leg, hips tilted, asymmetric pose, feet firmly on the ground",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms, jumping",
+    "seed": 932600
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "no-twinning",
+   "timing-on-beat",
+   "planted-pivot"
+  ],
+  "inputHashes": {
+   "pose": "1d730916558a40e766d2bb234b1f9db9db989283bb106df4cfb08d2f65836365",
+   "depth": "164da76f035616a7506739a1b039bb2f09e54da424a63bad01667887a2a4cada",
+   "lineart": "64a5bb39dd1cf9ced8a75b3e5076d636a4f6a0713e73b66b9594c4b9875b342a"
+  }
+ },
+ {
+  "pose": "enter_forward.contact_r",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-moderate.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/enter_forward.contact_r.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/enter_forward.contact_r.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/enter_forward.contact_r.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/enter_forward.contact_r.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful mustached latino man, cream panama hat with teal band, purple guayabera shirt with teal embroidered panels, cream trousers, teal shoes, dignified skilled cumbia dancer, swaggering walk toward the viewer on a slight diagonal, right heel landing in front, left foot behind on its toe, right fist on the hip, left arm swinging forward, chin up, clear readable silhouette, weight on one leg, hips tilted, crouched, gathering energy, knees bent, asymmetric pose, feet firmly on the ground",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms, jumping",
+    "seed": 932700
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "anticipation",
+   "no-twinning",
+   "timing-on-beat",
+   "planted-pivot"
+  ],
+  "inputHashes": {
+   "pose": "2347a49a92fdca6c8c7b3c2e33da2210fc95856742e2b03b72e193e5850df39f",
+   "depth": "8cc9cd82e34f28d0cdae6322f73a89d8fb3870bc7d67164754f523977c55e8b5",
+   "lineart": "dab2d5c2ff8e138c2326e9dc901971c1f677ef5f379b9ab3598eabdc2d625f18"
+  }
+ },
+ {
+  "pose": "enter_forward.down_r",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-moderate.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/enter_forward.down_r.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/enter_forward.down_r.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/enter_forward.down_r.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/enter_forward.down_r.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful mustached latino man, cream panama hat with teal band, purple guayabera shirt with teal embroidered panels, cream trousers, teal shoes, dignified skilled cumbia dancer, weight dropping into the bent right knee, right hip high, left foot pushing off behind on its toe, right fist on the hip, left arm swinging forward, head dipping on the beat, clear readable silhouette, weight on one leg, hips tilted, asymmetric pose, feet firmly on the ground",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms, jumping",
+    "seed": 932800
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "no-twinning",
+   "timing-on-beat",
+   "planted-pivot"
+  ],
+  "inputHashes": {
+   "pose": "3e1983bb109afb5e862bd1d78426cb713b3704f775c78feb1522c15edebaa811",
+   "depth": "fb4d8fa15e7263f89dc89c26e9b91d34922c4921294207fe78e6fc744c14e2f1",
+   "lineart": "f2191282690912afde946bfb0af77e3d35de370b34acb91fe8a46d57eb414bb7"
+  }
+ },
+ {
+  "pose": "enter_forward.pass_r",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-moderate.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/enter_forward.pass_r.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/enter_forward.pass_r.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/enter_forward.pass_r.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/enter_forward.pass_r.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful mustached latino man, cream panama hat with teal band, purple guayabera shirt with teal embroidered panels, cream trousers, teal shoes, dignified skilled cumbia dancer, standing tall on the straight right leg, left knee swinging forward past it, right fist on the hip, left arm relaxed at the side, chin up, clear readable silhouette, weight on one leg, hips tilted, asymmetric pose, feet firmly on the ground",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms, jumping",
+    "seed": 932900
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "no-twinning",
+   "timing-on-beat",
+   "planted-pivot"
+  ],
+  "inputHashes": {
+   "pose": "13aa73471fb4c5d8e1c3730e9a6ffd18c56c41b8ad767588bba09d5f1312f74a",
+   "depth": "e34fef479f5c4447b8e20f0785fb8816dbc9a77a2dbd6420cadafe3a4d7b82e6",
+   "lineart": "a5f01b80ec99adf46e76d78bf97dffb86091e8ce71399554b0dfc6f721a2a3cc"
+  }
+ },
+ {
+  "pose": "retreat_backward.contact_l",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-moderate.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/retreat_backward.contact_l.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/retreat_backward.contact_l.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/retreat_backward.contact_l.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/retreat_backward.contact_l.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful mustached latino man, cream panama hat with teal band, purple guayabera shirt with teal embroidered panels, cream trousers, teal shoes, dignified skilled cumbia dancer, stepping backward while still facing the viewer, left foot reaching back onto its ball, weight still on the flat right foot, left hand behind the back, right arm low and loose, clear readable silhouette, weight on one leg, hips tilted, crouched, gathering energy, knees bent, asymmetric pose, feet firmly on the ground",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms, jumping",
+    "seed": 933000
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "anticipation",
+   "no-twinning",
+   "timing-on-beat",
+   "planted-pivot"
+  ],
+  "inputHashes": {
+   "pose": "2e4b76437d6da7bdd993543860079cd82c3a3d79c807e2c8cef513fcfeae64e8",
+   "depth": "0057a84852736d956398c8dd98b6d9a5111a3ccee4c5d393cf4cf1c9557c5929",
+   "lineart": "d7506e114a9f45358ab037e164caad3477f3b8911353d4ce46a80f74751ff6c2"
+  }
+ },
+ {
+  "pose": "retreat_backward.down_l",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-moderate.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/retreat_backward.down_l.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/retreat_backward.down_l.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/retreat_backward.down_l.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/retreat_backward.down_l.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful mustached latino man, cream panama hat with teal band, purple guayabera shirt with teal embroidered panels, cream trousers, teal shoes, dignified skilled cumbia dancer, weight rolled back onto the bent left leg, left hip high, right foot in front with the toe lifted, left hand behind the back, right arm low and forward, head nodding, clear readable silhouette, weight on one leg, hips tilted, asymmetric pose, feet firmly on the ground",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms, jumping",
+    "seed": 933100
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "no-twinning",
+   "timing-on-beat",
+   "planted-pivot"
+  ],
+  "inputHashes": {
+   "pose": "5042b2dfd90f7299820976ec6f51f87e91cc5d0ae064e6e0aa7ce709e1ea2ee9",
+   "depth": "c9cd26cbaa3d302e5fa41e71935bed0807d7768be889ed86f99191ed251d7e02",
+   "lineart": "23f0ebf609eebff124339e7fea2340f2f4fec3a3daabc205ea780741aeb14efb"
+  }
+ },
+ {
+  "pose": "retreat_backward.pass_l",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-moderate.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/retreat_backward.pass_l.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/retreat_backward.pass_l.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/retreat_backward.pass_l.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/retreat_backward.pass_l.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful mustached latino man, cream panama hat with teal band, purple guayabera shirt with teal embroidered panels, cream trousers, teal shoes, dignified skilled cumbia dancer, right foot dragged back along the floor past the straight left leg, left hand behind the back, right arm hanging loose, chin up, clear readable silhouette, weight on one leg, hips tilted, asymmetric pose, feet firmly on the ground",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms, jumping",
+    "seed": 933200
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "no-twinning",
+   "timing-on-beat",
+   "planted-pivot"
+  ],
+  "inputHashes": {
+   "pose": "5dbda71ed9cfb201cec1d013f612bc89f9ffd58a00cfc92101fb4e2d7dbde3be",
+   "depth": "0d77721fda44b6c64b2fc0479af18fc69a6be90dc1a14113e5dae7e392cbb35e",
+   "lineart": "f0cc7a78e96fb0c5330333acb1d714604caed0b3cd3ea7431aa6e2e86c8b628b"
+  }
+ },
+ {
+  "pose": "retreat_backward.contact_r",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-moderate.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/retreat_backward.contact_r.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/retreat_backward.contact_r.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/retreat_backward.contact_r.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/retreat_backward.contact_r.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful mustached latino man, cream panama hat with teal band, purple guayabera shirt with teal embroidered panels, cream trousers, teal shoes, dignified skilled cumbia dancer, stepping backward while still facing the viewer, right foot reaching back onto its ball, weight still on the flat left foot, left hand behind the back, right arm low and loose, clear readable silhouette, weight on one leg, hips tilted, crouched, gathering energy, knees bent, asymmetric pose, feet firmly on the ground",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms, jumping",
+    "seed": 933300
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "anticipation",
+   "no-twinning",
+   "timing-on-beat",
+   "planted-pivot"
+  ],
+  "inputHashes": {
+   "pose": "7b748fe56427266f636aaccbdff07d07c40a3b244246b765b9bb38946a76da3d",
+   "depth": "e2f56db9fab04a1fff1c6e31bb3847121c84eb05ef0aa8b68dbd5cd46ac595ca",
+   "lineart": "d2a871345e66b775f4ecf528a3f23961f0fde3701314cd0cda23b22d7266cdbb"
+  }
+ },
+ {
+  "pose": "retreat_backward.down_r",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-moderate.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/retreat_backward.down_r.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/retreat_backward.down_r.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/retreat_backward.down_r.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/retreat_backward.down_r.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful mustached latino man, cream panama hat with teal band, purple guayabera shirt with teal embroidered panels, cream trousers, teal shoes, dignified skilled cumbia dancer, weight rolled back onto the bent right leg, right hip high, left foot in front with the toe lifted, left hand behind the back, right arm low, head nodding, clear readable silhouette, weight on one leg, hips tilted, asymmetric pose, feet firmly on the ground",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms, jumping",
+    "seed": 933400
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "no-twinning",
+   "timing-on-beat",
+   "planted-pivot"
+  ],
+  "inputHashes": {
+   "pose": "ae4858af9896ac41297687dbc2172d4007675545ed543174446ce97b3a777db5",
+   "depth": "3a8984d1ea516d4c6b9790247d0585d7d09ce59a44c935d7ded28942c734819f",
+   "lineart": "116b1651a83e7f3c01b6ac8d9621c7f5f491a15bc67a063b42d5911c0beaacc0"
+  }
+ },
+ {
+  "pose": "retreat_backward.pass_r",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-moderate.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/retreat_backward.pass_r.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/retreat_backward.pass_r.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/retreat_backward.pass_r.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/retreat_backward.pass_r.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful mustached latino man, cream panama hat with teal band, purple guayabera shirt with teal embroidered panels, cream trousers, teal shoes, dignified skilled cumbia dancer, left foot dragged back along the floor past the straight right leg, left hand behind the back, right arm hanging loose, chin up, clear readable silhouette, weight on one leg, hips tilted, asymmetric pose, feet firmly on the ground",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms, jumping",
+    "seed": 933500
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "no-twinning",
+   "timing-on-beat",
+   "planted-pivot"
+  ],
+  "inputHashes": {
+   "pose": "36065cba9a6dd5066895a4b6888db081fd8265e23ebf10e22fe97b86046b37c8",
+   "depth": "36282586555bc4bef4592a99ba8617907895f4844f1f0d22c796e19a91eebd25",
+   "lineart": "0ca9dc0ecd7368ef56c6b2ba424d18df1bf2d8d7e7420f1a134fa3340894a636"
+  }
+ },
+ {
+  "pose": "yield_side.contact_l",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-moderate.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/yield_side.contact_l.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/yield_side.contact_l.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/yield_side.contact_l.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/yield_side.contact_l.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful mustached latino man, cream panama hat with teal band, purple guayabera shirt with teal embroidered panels, cream trousers, teal shoes, dignified skilled cumbia dancer, side-step toward the sideline: left leg reaching out sideways with the foot landing, weight still on the bent right leg, right fist on the hip, left arm out low, clear readable silhouette, weight on one leg, hips tilted, crouched, gathering energy, knees bent, asymmetric pose, feet firmly on the ground",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms, jumping",
+    "seed": 933600
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "anticipation",
+   "no-twinning",
+   "timing-on-beat",
+   "planted-pivot"
+  ],
+  "inputHashes": {
+   "pose": "f2b801cf5fedd354a276af8fad95ae75922b0aa4b9cb103603198514bd7b7261",
+   "depth": "3a484486f5f5332a95cc759bd07a13a2a494a74299acfdd763081001478ec742",
+   "lineart": "fa606e7a6a6f57101ce55925f64aa76e92a89118a10e378f12424cf3fe0bba5d"
+  }
+ },
+ {
+  "pose": "yield_side.down_l",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-moderate.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/yield_side.down_l.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/yield_side.down_l.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/yield_side.down_l.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/yield_side.down_l.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful mustached latino man, cream panama hat with teal band, purple guayabera shirt with teal embroidered panels, cream trousers, teal shoes, dignified skilled cumbia dancer, weight shifted onto the bent left leg, left hip high and pushed out, right foot trailing on its toe, right fist on the hip, head nodding, clear readable silhouette, weight on one leg, hips tilted, asymmetric pose, feet firmly on the ground",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms, jumping",
+    "seed": 933700
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "no-twinning",
+   "timing-on-beat",
+   "planted-pivot"
+  ],
+  "inputHashes": {
+   "pose": "bce78a236ea49cdbf803b3e06ea4a26eac91cabef9d150b8f2964bd015c59dc6",
+   "depth": "882e46ef140f60461f327729527b6c23908a37ff039460817c783c9152fb2d18",
+   "lineart": "389fc44caa73f5fb160bf0b06f4c2372e889749de5cb34dcc280e686ebd8574f"
+  }
+ },
+ {
+  "pose": "yield_side.pass_l",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-moderate.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/yield_side.pass_l.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/yield_side.pass_l.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/yield_side.pass_l.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/yield_side.pass_l.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful mustached latino man, cream panama hat with teal band, purple guayabera shirt with teal embroidered panels, cream trousers, teal shoes, dignified skilled cumbia dancer, right foot dragged in along the floor to close beside the straight left leg, right fist on the hip, left arm relaxed at the side, clear readable silhouette, weight on one leg, hips tilted, asymmetric pose, feet firmly on the ground",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms, jumping",
+    "seed": 933800
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "no-twinning",
+   "timing-on-beat",
+   "planted-pivot"
+  ],
+  "inputHashes": {
+   "pose": "ba9ddcdf940f260484cb100e53e160aca8500d6ef6a8365f9f7dd2521bce40bb",
+   "depth": "2d01291803c000453071c3dcdf2c9d70b349d731137a73360b97be7ce27e38b9",
+   "lineart": "1013aab788b472ec5d321a8efe69ae76d9f06fa8d1c35c46778c009523060f4a"
+  }
+ },
+ {
+  "pose": "yield_side.contact_r",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-moderate.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/yield_side.contact_r.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/yield_side.contact_r.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/yield_side.contact_r.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/yield_side.contact_r.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful mustached latino man, cream panama hat with teal band, purple guayabera shirt with teal embroidered panels, cream trousers, teal shoes, dignified skilled cumbia dancer, right foot stepping back on a diagonal onto its ball, left knee bent, arms low and loose, torso turning open, clear readable silhouette, weight on one leg, hips tilted, crouched, gathering energy, knees bent, asymmetric pose, feet firmly on the ground",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms, jumping",
+    "seed": 933900
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "anticipation",
+   "no-twinning",
+   "timing-on-beat",
+   "planted-pivot"
+  ],
+  "inputHashes": {
+   "pose": "c67fabb27beb6c21cad8fda81c00a7737362a5bd3d75a489cd955065d84394f8",
+   "depth": "c6f93394d370533faa9532eee85210b8341350695f53440fcc44283b9d73edf1",
+   "lineart": "f0d1a2168a19f70ab86adc955bd1013fc818501c9a097f66fc7a2d038cf70ee7"
+  }
+ },
+ {
+  "pose": "yield_side.down_r",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-moderate.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/yield_side.down_r.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/yield_side.down_r.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/yield_side.down_r.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/yield_side.down_r.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful mustached latino man, cream panama hat with teal band, purple guayabera shirt with teal embroidered panels, cream trousers, teal shoes, dignified skilled cumbia dancer, weight settled onto the bent right leg, right hip high, left foot in front with the toe lifted, right forearm coming forward at waist height, clear readable silhouette, weight on one leg, hips tilted, asymmetric pose, feet firmly on the ground",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms, jumping",
+    "seed": 934000
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "no-twinning",
+   "timing-on-beat",
+   "planted-pivot"
+  ],
+  "inputHashes": {
+   "pose": "ad85c3fc11943a5f39265ad31198af20a48e412a7bf43049502f2623288c3320",
+   "depth": "723bc420e85dbd7d1b21f0a4d6956c27718e0b8aa34047799ab1d6ff483694f6",
+   "lineart": "e38eb1fcc09ba31781d392f5ab64a0d949b2ea882459da146c4d427ca6c237f7"
+  }
+ },
+ {
+  "pose": "yield_side.pass_r",
+  "profile": "peak",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-peak.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/yield_side.pass_r.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/yield_side.pass_r.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/yield_side.pass_r.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/yield_side.pass_r.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful mustached latino man, cream panama hat with teal band, purple guayabera shirt with teal embroidered panels, cream trousers, teal shoes, dignified skilled cumbia dancer, standing on the right leg, left fist on the hip, right arm held out low and wide with the palm open and up toward the empty floor, head turned toward the open palm with a slight bow, offering the floor, clear readable silhouette, dynamic dance pose, strong line of action, weight on one leg, hips tilted, exaggerated energetic pose, asymmetric pose, feet firmly on the ground",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, stiff pose, straight rigid body, floating, feet off ground, symmetrical pose, mirrored arms, jumping",
+    "seed": 934100
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "line-of-action",
+   "contrapposto",
+   "exaggeration-accent",
+   "no-twinning",
+   "timing-on-beat",
+   "planted-pivot"
+  ],
+  "inputHashes": {
+   "pose": "6ad5e4864ffed00e6a3beec2bf2b0ad23c0bd65e3f8eb3676b9bf413f906e1c7",
+   "depth": "8bed4c3b6bce225dfb2772f3bd9600a5b88fd7840bdaf766f7f50684b4d7299e",
+   "lineart": "a952ff023493375c364fba18bac44f559ed706fb5b7b94946d9c319896d6ac5c"
+  }
+ },
+ {
+  "pose": "watch.shift_l",
+  "profile": "overlap",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-overlap.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/watch.shift_l.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/watch.shift_l.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/watch.shift_l.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/watch.shift_l.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful mustached latino man, cream panama hat with teal band, purple guayabera shirt with teal embroidered panels, cream trousers, teal shoes, dignified skilled cumbia dancer, relaxed stance turned slightly to his left, hands clasped behind the back, weight on the left foot with the left hip high, right knee soft, head turned to watch the other dancer, clear readable silhouette, weight on one leg, hips tilted, relaxed shoulders, playful attitude, asymmetric pose, feet firmly on the ground",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms, jumping",
+    "seed": 934200
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "secondary-action",
+   "no-twinning",
+   "timing-on-beat",
+   "planted-pivot"
+  ],
+  "inputHashes": {
+   "pose": "e88ea858cc1178102cbaa0314906396f6969987f5a63a717737fa1b9a17019f7",
+   "depth": "04689c13ed60c0df3e57c3ccf2a1128f2bc29613f8e8210e3791dfbaf2ac3335",
+   "lineart": "28844514b6e6f6514f5eb774b1f7c273ee72c4232411bae7c74435eec0749e50"
+  }
+ },
+ {
+  "pose": "watch.hold_l",
+  "profile": "overlap",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-overlap.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/watch.hold_l.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/watch.hold_l.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/watch.hold_l.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/watch.hold_l.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful mustached latino man, cream panama hat with teal band, purple guayabera shirt with teal embroidered panels, cream trousers, teal shoes, dignified skilled cumbia dancer, hands clasped behind the back, weight sunk on the left foot with both knees softer, head nodding along to the music while watching, clear readable silhouette, weight on one leg, hips tilted, shirt hem swinging, follow-through, relaxed shoulders, playful attitude, asymmetric pose",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms",
+    "seed": 934300
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "follow-through",
+   "secondary-action",
+   "no-twinning",
+   "timing-on-beat"
+  ],
+  "inputHashes": {
+   "pose": "42cddf44acf93b59e01846967d01dd1370cb40d3aa801578ccde7d6121841143",
+   "depth": "0119cf88b23de92a03c761331798176d0e832fb27109149d9de22bbb85bb4772",
+   "lineart": "34b1182dffb3f765d360e03967a7feeb9307232c2bc74bb2324af91a20db74f9"
+  }
+ },
+ {
+  "pose": "watch.shift_r",
+  "profile": "overlap",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-overlap.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/watch.shift_r.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/watch.shift_r.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/watch.shift_r.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/watch.shift_r.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful mustached latino man, cream panama hat with teal band, purple guayabera shirt with teal embroidered panels, cream trousers, teal shoes, dignified skilled cumbia dancer, relaxed stance turned slightly to his left, hands clasped behind the back, weight on the right foot with the right hip high, left knee soft, head turned to watch the other dancer, clear readable silhouette, weight on one leg, hips tilted, relaxed shoulders, playful attitude, asymmetric pose, feet firmly on the ground",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms, jumping",
+    "seed": 934400
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "secondary-action",
+   "no-twinning",
+   "timing-on-beat",
+   "planted-pivot"
+  ],
+  "inputHashes": {
+   "pose": "e0efa8ae970cd962fef2a6289bdb01dbb0681545d982bd780a228da598b97eb4",
+   "depth": "e80277c12efab6469175253a80c7c48abf10d808ba1ac9502a9103a0641f0dfe",
+   "lineart": "b2614d7ef8e6be681db4543211dfd3d01cd825c8739546602b783a9fff8d2154"
+  }
+ },
+ {
+  "pose": "watch.hold_r",
+  "profile": "overlap",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-overlap.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/watch.hold_r.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/watch.hold_r.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/watch.hold_r.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/watch.hold_r.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful mustached latino man, cream panama hat with teal band, purple guayabera shirt with teal embroidered panels, cream trousers, teal shoes, dignified skilled cumbia dancer, hands clasped behind the back, weight sunk on the right foot with both knees softer, head tilted with a small nod while watching, clear readable silhouette, weight on one leg, hips tilted, shirt hem swinging, follow-through, relaxed shoulders, playful attitude, asymmetric pose",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms",
+    "seed": 934500
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "follow-through",
+   "secondary-action",
+   "no-twinning",
+   "timing-on-beat"
+  ],
+  "inputHashes": {
+   "pose": "51d4bb6a18dbe77a46afff8323c7d7f30bd377d19cd3cf6aeb7bb014b73d6a73",
+   "depth": "ef9a637a433e1765a629b0618d319652eb1fbe811edda6eb836c4c8e6cfc249e",
+   "lineart": "ec57cf60c472e95cd76aaccb1421583f1c30b2fd52834de39be5d8c58a9cee48"
+  }
+ },
+ {
+  "pose": "clap.open",
+  "profile": "overlap",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-overlap.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/clap.open.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/clap.open.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/clap.open.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/clap.open.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful mustached latino man, cream panama hat with teal band, purple guayabera shirt with teal embroidered panels, cream trousers, teal shoes, dignified skilled cumbia dancer, standing square and upright, both forearms raised in front of the chest with the palms apart and facing each other, elbows out, chin up, clear readable silhouette, weight on one leg, hips tilted, crouched, gathering energy, knees bent, asymmetric pose",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms",
+    "seed": 934600
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "anticipation",
+   "no-twinning",
+   "timing-on-beat"
+  ],
+  "inputHashes": {
+   "pose": "bb3fed83af6b1f628e29d47356647fd25fc251e44bb5672993cbac572733e59a",
+   "depth": "44795973ca304f61e66821e624fbdc5bc832a0d9a789e6b3dca975a74f134375",
+   "lineart": "0c8a4305e29541228e6581c11460cd4a428a1d4b7ffaccdfd2461e6f3c1a2d3f"
+  }
+ },
+ {
+  "pose": "clap.close",
+  "profile": "overlap",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-overlap.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/clap.close.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/clap.close.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/clap.close.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/clap.close.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful mustached latino man, cream panama hat with teal band, purple guayabera shirt with teal embroidered panels, cream trousers, teal shoes, dignified skilled cumbia dancer, both hands swinging together in front of the chest, elbows out, knees starting to bend, head starting to nod, clear readable silhouette, weight on one leg, hips tilted, asymmetric pose, feet firmly on the ground",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms, jumping",
+    "seed": 934700
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "no-twinning",
+   "timing-on-beat",
+   "planted-pivot"
+  ],
+  "inputHashes": {
+   "pose": "200ad3add3ba2be90691847febb856c32b5fe0620378fe35f8ade5b8942739cd",
+   "depth": "cd8ba12486ad16f3007f20516d850b8b7b73a27558ae281b929675686b78f811",
+   "lineart": "0fe3f640cb2f98743193a1cc488bd6e315c9c343781a3470105dee88b56d1f0a"
+  }
+ },
+ {
+  "pose": "clap.contact",
+  "profile": "overlap",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-overlap.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/clap.contact.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/clap.contact.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/clap.contact.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/clap.contact.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful mustached latino man, cream panama hat with teal band, purple guayabera shirt with teal embroidered panels, cream trousers, teal shoes, dignified skilled cumbia dancer, palms clapped together in front of the chest, elbows out to the sides, both knees dipped, head nodding down with a smile, clear readable silhouette, weight on one leg, hips tilted, crouched, gathering energy, knees bent, asymmetric pose, feet firmly on the ground",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms, jumping",
+    "seed": 934800
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "anticipation",
+   "no-twinning",
+   "timing-on-beat",
+   "planted-pivot"
+  ],
+  "inputHashes": {
+   "pose": "727b17e3c685f460fecf1a90994840021ab5783f8a6c6a81257de01de98ab116",
+   "depth": "cc16e17dc25393bcb6f785fb12555e656cb4c64ff7bd0d78171aae316f8c8811",
+   "lineart": "6d0a38dd87b09e06cced03bcbe9a1e73e15358149e91d26008d0d14a78943e25"
+  }
+ },
+ {
+  "pose": "clap.release",
+  "profile": "overlap",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-overlap.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/clap.release.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/clap.release.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/clap.release.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/clap.release.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful mustached latino man, cream panama hat with teal band, purple guayabera shirt with teal embroidered panels, cream trousers, teal shoes, dignified skilled cumbia dancer, hands bouncing apart in front of the chest, elbows out, knees rising, head level, clear readable silhouette, weight on one leg, hips tilted, shirt hem swinging, follow-through, asymmetric pose",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms",
+    "seed": 934900
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "follow-through",
+   "no-twinning",
+   "timing-on-beat"
+  ],
+  "inputHashes": {
+   "pose": "9ea3b2f9234db62cfd883cb8a3486fee217e4f8f781e455660f010b975de523a",
+   "depth": "6a243a42b38b88ab1456ef75b9bc8ae63fd1d8305bdaf3fa6b6276aa517d20e1",
+   "lineart": "e7a293c6eb1100637a9422a63f6c4a337880fd20066ff0ec8e2818a3277b6438"
+  }
+ },
+ {
+  "pose": "challenge.load",
+  "profile": "overlap",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-overlap.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/challenge.load.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/challenge.load.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/challenge.load.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/challenge.load.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful mustached latino man, cream panama hat with teal band, purple guayabera shirt with teal embroidered panels, cream trousers, teal shoes, dignified skilled cumbia dancer, back-break dip: weight sunk on the bent left leg, right foot back on its ball, torso leaning forward, both hands travelling toward the hips, head lowered, clear readable silhouette, weight on one leg, hips tilted, crouched, gathering energy, knees bent, asymmetric pose",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms",
+    "seed": 935000
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "anticipation",
+   "no-twinning",
+   "timing-on-beat"
+  ],
+  "inputHashes": {
+   "pose": "751d143ec314bae3144df7220888177177bd250ef3c09959c5922d4b9c1f8659",
+   "depth": "6132a792b618d773b59786dc301d860c55b898e4bcd63ef744580741d34c24c8",
+   "lineart": "d434509b664f8968bae2fa528e33a933b68cd79da539c30068fbd66705992674"
+  }
+ },
+ {
+  "pose": "challenge.proud",
+  "profile": "overlap",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-overlap.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/challenge.proud.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/challenge.proud.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/challenge.proud.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/challenge.proud.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful mustached latino man, cream panama hat with teal band, purple guayabera shirt with teal embroidered panels, cream trousers, teal shoes, dignified skilled cumbia dancer, proud stance: both fists on the hips with the elbows out, chest pushed out and leaning back, chin raised, weight on the straight right leg, left heel set forward with the toe up, clear readable silhouette, dynamic dance pose, strong line of action, weight on one leg, hips tilted, exaggerated energetic pose, asymmetric pose",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, stiff pose, straight rigid body, floating, feet off ground, symmetrical pose, mirrored arms",
+    "seed": 935100
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "line-of-action",
+   "contrapposto",
+   "exaggeration-accent",
+   "no-twinning",
+   "timing-on-beat"
+  ],
+  "inputHashes": {
+   "pose": "77b05e61303ad7201b69c94db8e7e2018497f0de0088985f4f14a2e29c8547a5",
+   "depth": "66e1962bae90418a5acd2f268b5f8efa1f96d7cc66cf3867058d76ca383f1a3d",
+   "lineart": "10cce5ebdb2770b5806d176a6271769bece75cb5119e009b3f52ca9f452071a3"
+  }
+ },
+ {
+  "pose": "challenge.offer",
+  "profile": "peak",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-peak.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/challenge.offer.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/challenge.offer.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/challenge.offer.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/challenge.offer.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful mustached latino man, cream panama hat with teal band, purple guayabera shirt with teal embroidered panels, cream trousers, teal shoes, dignified skilled cumbia dancer, courteous invitation: weight on the right leg, left fist on the hip, right arm sweeping out low and forward with the palm open and up toward the floor, torso bowing slightly forward, head bowed toward the open hand, clear readable silhouette, dynamic dance pose, strong line of action, weight on one leg, hips tilted, exaggerated energetic pose, asymmetric pose",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, stiff pose, straight rigid body, floating, feet off ground, symmetrical pose, mirrored arms",
+    "seed": 935200
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "line-of-action",
+   "contrapposto",
+   "exaggeration-accent",
+   "no-twinning",
+   "timing-on-beat"
+  ],
+  "inputHashes": {
+   "pose": "ce986c039ab887b02c49373d4c9d52cf3d9b241168dbcdd4f9e64766d4642571",
+   "depth": "ac09e0a1e378c9e6232dc086c05c1fd2eb47a3393e66b6ec3afbe16c1351afc5",
+   "lineart": "52d3ba53e0d98712bfbdcaceae236c90219287c290309d6e2f2e2acdd33e3608"
+  }
+ },
+ {
+  "pose": "challenge.return",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-moderate.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/challenge.return.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/challenge.return.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/challenge.return.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/challenge.return.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful mustached latino man, cream panama hat with teal band, purple guayabera shirt with teal embroidered panels, cream trousers, teal shoes, dignified skilled cumbia dancer, both feet flat, standing easy, right forearm relaxed in front, left hand low near the hip, body upright, clear readable silhouette, weight on one leg, hips tilted, shirt hem swinging, follow-through, asymmetric pose",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms",
+    "seed": 935300
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "follow-through",
+   "no-twinning",
+   "timing-on-beat"
+  ],
+  "inputHashes": {
+   "pose": "735ab3895f5265e2a2b38e5782968d2dc07b7a5e33b6a57f3b7217a81ccaedb9",
+   "depth": "744472ce8be2965a973008eaa11c270b4950a31d57f8d5e55a2653159e3acbcc",
+   "lineart": "58415084da57b58547f74de297a3fce8281b14fd5fff04e512fa279aab254d16"
+  }
+ },
+ {
+  "pose": "approval.load",
+  "profile": "overlap",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-overlap.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/approval.load.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/approval.load.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/approval.load.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/approval.load.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful mustached latino man, cream panama hat with teal band, purple guayabera shirt with teal embroidered panels, cream trousers, teal shoes, dignified skilled cumbia dancer, small inhale: chest lifted and leaning back slightly, chin raised, weight on the right foot, arms loose and slightly away from the body, clear readable silhouette, weight on one leg, hips tilted, crouched, gathering energy, knees bent, relaxed shoulders, playful attitude, asymmetric pose",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms",
+    "seed": 935400
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "anticipation",
+   "secondary-action",
+   "no-twinning",
+   "timing-on-beat"
+  ],
+  "inputHashes": {
+   "pose": "ad52ccaa1b1264835e3d2065247d37ceeec40d210ece9c7f4df45604c55115d1",
+   "depth": "6160d4f014b0e0d7334861a6684237a2b2c75eca18f9fe2b9ea20ff6b1501132",
+   "lineart": "957fde7f9bad1de0f41a4760b35d04f16b2bb3bf51f378b051bf44b1e814888c"
+  }
+ },
+ {
+  "pose": "approval.nod",
+  "profile": "overlap",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-overlap.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/approval.nod.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/approval.nod.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/approval.nod.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/approval.nod.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful mustached latino man, cream panama hat with teal band, purple guayabera shirt with teal embroidered panels, cream trousers, teal shoes, dignified skilled cumbia dancer, right palm pressed flat to the chest, a deep nod with the head bowed, both knees dipped, left arm low and out at the side, clear readable silhouette, dynamic dance pose, strong line of action, weight on one leg, hips tilted, exaggerated energetic pose, relaxed shoulders, playful attitude, asymmetric pose",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, stiff pose, straight rigid body, floating, feet off ground, symmetrical pose, mirrored arms",
+    "seed": 935500
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "line-of-action",
+   "contrapposto",
+   "exaggeration-accent",
+   "secondary-action",
+   "no-twinning",
+   "timing-on-beat"
+  ],
+  "inputHashes": {
+   "pose": "4efa773f9af7cb6dd4236a01e62535bc3b4fc7b34427613b1b9215b1a62690ce",
+   "depth": "17f024d0f47a1fe448baf3975b063cb62cb8b4917801242406de468dcb231f24",
+   "lineart": "8f972c68df507b4a6bb59900b82d3e89f03ef64a58cf80eecc7c5a48f1aab819"
+  }
+ },
+ {
+  "pose": "approval.release",
+  "profile": "overlap",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-overlap.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/approval.release.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/approval.release.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/approval.release.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/approval.release.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful mustached latino man, cream panama hat with teal band, purple guayabera shirt with teal embroidered panels, cream trousers, teal shoes, dignified skilled cumbia dancer, left fist on the hip, right arm held out forward at waist height with the palm open toward the viewer, head tilted warmly, clear readable silhouette, weight on one leg, hips tilted, shirt hem swinging, follow-through, relaxed shoulders, playful attitude, asymmetric pose",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms",
+    "seed": 935600
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "follow-through",
+   "secondary-action",
+   "no-twinning",
+   "timing-on-beat"
+  ],
+  "inputHashes": {
+   "pose": "5a98b6ef6e2398badb6a2e633e198fc45116beee88ea2d480713da4c6026da41",
+   "depth": "9d51035bd4f731ab55707b56ffc2418ae8a91737ee327b67e2725cca9518d3d2",
+   "lineart": "8880a5a8774b4d17750ff9b5d7e79aa82d400a70a7150514a41ad7c69b5d4aa5"
+  }
+ },
+ {
+  "pose": "reassurance.notice",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-moderate.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/reassurance.notice.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/reassurance.notice.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/reassurance.notice.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/reassurance.notice.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful mustached latino man, cream panama hat with teal band, purple guayabera shirt with teal embroidered panels, cream trousers, teal shoes, dignified skilled cumbia dancer, head tilted to his right with a soft warm look, weight on the left foot, arms relaxed low, right forearm slightly forward, clear readable silhouette, weight on one leg, hips tilted, crouched, gathering energy, knees bent, asymmetric pose",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms",
+    "seed": 935700
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "anticipation",
+   "no-twinning",
+   "timing-on-beat"
+  ],
+  "inputHashes": {
+   "pose": "5f4588ac4053e988107794d44b09575593d1567069c1ac10aee867dd3d03437d",
+   "depth": "7b7db6f16f8be3e5a60db458cd627bf3a107c30615f9840ea588780866fc90b3",
+   "lineart": "67d1dc00005ab53fd43f4b2556f7f8d94bd39feb0cc8cddc4c6feab2312c49cd"
+  }
+ },
+ {
+  "pose": "reassurance.open_hand",
+  "profile": "peak",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-peak.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/reassurance.open_hand.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/reassurance.open_hand.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/reassurance.open_hand.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/reassurance.open_hand.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful mustached latino man, cream panama hat with teal band, purple guayabera shirt with teal embroidered panels, cream trousers, teal shoes, dignified skilled cumbia dancer, small friendly shrug: both forearms out at waist height with the palms open and up, the right hand a little higher, both knees softly bent, head tilted, clear readable silhouette, dynamic dance pose, strong line of action, weight on one leg, hips tilted, exaggerated energetic pose, asymmetric pose",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, stiff pose, straight rigid body, floating, feet off ground, symmetrical pose, mirrored arms",
+    "seed": 935800
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "line-of-action",
+   "contrapposto",
+   "exaggeration-accent",
+   "no-twinning",
+   "timing-on-beat"
+  ],
+  "inputHashes": {
+   "pose": "399835cb0c79a73c5e3b40e5f5763bf65e914f86c19e5de6bc2113027b8a8bbe",
+   "depth": "60e8b55b6c24a3dfa110825c06af9b69dc190da34234bbf1c2d707f1a41ba330",
+   "lineart": "0e6a18ac4ff0162ed833c950fa57f33adab5cfde63ed0b2e98d32ddacb69caad"
+  }
+ },
+ {
+  "pose": "reassurance.settle",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-moderate.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/reassurance.settle.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/reassurance.settle.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/reassurance.settle.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/reassurance.settle.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful mustached latino man, cream panama hat with teal band, purple guayabera shirt with teal embroidered panels, cream trousers, teal shoes, dignified skilled cumbia dancer, a back-break step on the spot: weight on the bent left knee, right foot back on its ball, left forearm forward, right arm low and back, inviting the rhythm back, clear readable silhouette, weight on one leg, hips tilted, shirt hem swinging, follow-through, asymmetric pose",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms",
+    "seed": 935900
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "follow-through",
+   "no-twinning",
+   "timing-on-beat"
+  ],
+  "inputHashes": {
+   "pose": "c8b30627f8a2dfda68ae2b5ef17b2c9caaa242446830756ab8f2c179a153f832",
+   "depth": "a91d00d8addf6823b57c533b49827a6f1ee6caf5e0a4e14de484e8db9cb7accd",
+   "lineart": "b7dcd1254079236b0e58cfbadead516ac667afed85a544d7d9da8f74388545ba"
+  }
+ },
+ {
+  "pose": "finish_turn.finish_a",
+  "profile": "overlap",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-overlap.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/finish_turn.finish_a.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/finish_turn.finish_a.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/finish_turn.finish_a.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/finish_turn.finish_a.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful mustached latino man, cream panama hat with teal band, purple guayabera shirt with teal embroidered panels, cream trousers, teal shoes, dignified skilled cumbia dancer, weight on the straight right leg, left heel set forward with the toe up, left fist on the hip, right hand rising beside the head on its way to the hat brim, chest proud, chin up, clear readable silhouette, weight on one leg, hips tilted, exaggerated energetic pose, asymmetric pose",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms",
+    "seed": 936000
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "exaggeration-accent",
+   "no-twinning",
+   "timing-on-beat"
+  ],
+  "inputHashes": {
+   "pose": "2c91ea335e0e90392e02f103f9488560500b3109d0bd8a7242ea56756f02790c",
+   "depth": "7bb2723147da2ab43e5679100c4c0f9a9f98e49a9012d028c54ce6a6d4724bcb",
+   "lineart": "22603dcbd7bdd323a6e7859c01b4115f60b67088d4c19db2dcc84a8767b6a236"
+  }
+ },
+ {
+  "pose": "finish_turn.finish_b",
+  "profile": "overlap",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-overlap.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/finish_turn.finish_b.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/finish_turn.finish_b.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/finish_turn.finish_b.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/finish_turn.finish_b.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful mustached latino man, cream panama hat with teal band, purple guayabera shirt with teal embroidered panels, cream trousers, teal shoes, dignified skilled cumbia dancer, right fingertips touching the front of the hat brim in a courteous salute, the hat still on his head, head dipped slightly, chest proud, left elbow out with the fist on the hip, left heel forward with the toe up, clear readable silhouette, dynamic dance pose, strong line of action, weight on one leg, hips tilted, exaggerated energetic pose, asymmetric pose",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, stiff pose, straight rigid body, floating, feet off ground, symmetrical pose, mirrored arms",
+    "seed": 936100
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "line-of-action",
+   "contrapposto",
+   "exaggeration-accent",
+   "no-twinning",
+   "timing-on-beat"
+  ],
+  "inputHashes": {
+   "pose": "28d46b77a26c61d83f059702cb123233d9cd9d1bcf91a764c187ea4fb059710e",
+   "depth": "8b93668df327653c97f6416f9610fbda58acf66b9fdc3cdc450192800f76dfd5",
+   "lineart": "c18b6851031b732a8bcb6b12db0eeb22a829f464b83fb93a3adf1c2756f96933"
+  }
+ },
+ {
+  "pose": "finish_turn.turn_in",
+  "profile": "turn",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-turn.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/finish_turn.turn_in.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/finish_turn.turn_in.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/finish_turn.turn_in.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/finish_turn.turn_in.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful mustached latino man, cream panama hat with teal band, purple guayabera shirt with teal embroidered panels, cream trousers, teal shoes, dignified skilled cumbia dancer, body turned about 30 degrees toward his left on a heel pivot, leaning into the turn, left arm open out to the side at hip height, right fist on the hip, clear readable silhouette, weight on one leg, hips tilted, asymmetric pose, feet firmly on the ground",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms, jumping",
+    "seed": 936200
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "no-twinning",
+   "timing-on-beat",
+   "planted-pivot"
+  ],
+  "inputHashes": {
+   "pose": "4ac9c826859c48f558cd7f5d1f5aad132edc43bd3e1c06a5c100fe47de9ce97f",
+   "depth": "e8521ac9cfae516c253e2cb14bd076e802c09e66d5a782f164b8f37d292771f6",
+   "lineart": "5e87332ef835a2e2e925b21c261d4bb5f02bab2de938abf160891c397af70230"
+  }
+ },
+ {
+  "pose": "finish_turn.turn_out",
+  "profile": "turn",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-turn.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/finish_turn.turn_out.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/finish_turn.turn_out.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/finish_turn.turn_out.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261103a/in/finish_turn.turn_out.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful mustached latino man, cream panama hat with teal band, purple guayabera shirt with teal embroidered panels, cream trousers, teal shoes, dignified skilled cumbia dancer, body turned about 30 degrees toward his right on a heel pivot, leaning into the turn, right arm open out to the side at hip height, left fist on the hip, clear readable silhouette, weight on one leg, hips tilted, asymmetric pose, feet firmly on the ground",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms, jumping",
+    "seed": 936300
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "no-twinning",
+   "timing-on-beat",
+   "planted-pivot"
+  ],
+  "inputHashes": {
+   "pose": "c5dfa3ad34860fe01a3b66013abe465d3997b7768864d276290b0cf53b5bdd0c",
+   "depth": "d06304f71b7eac5493d3b52bbc7894bec67b114b7d398c09b891a54bbbb4a804",
+   "lineart": "0b145e4dff97553c465c70efd7a7609adfeb94f435065dc7804e0ac532b3dd4e"
+  }
+ }
+]

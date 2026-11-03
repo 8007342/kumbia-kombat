@@ -1,0 +1,44 @@
+{
+ "schema": "tillandsias.palette/v1",
+ "name": "gatekeeper",
+ "colours": [
+  "#1A1018",
+  "#010108",
+  "#04071D",
+  "#220828",
+  "#1C1117",
+  "#380937",
+  "#07263E",
+  "#242430",
+  "#58154B",
+  "#462737",
+  "#6B1A57",
+  "#013E53",
+  "#413B44",
+  "#87322B",
+  "#015E6E",
+  "#3B5561",
+  "#A74117",
+  "#745B50",
+  "#BE4F19",
+  "#29737A",
+  "#D15F1F",
+  "#378B8A",
+  "#E1712A",
+  "#BD8F69",
+  "#E4A265",
+  "#CAB28B",
+  "#D2BF9A",
+  "#E5C996",
+  "#F2D9AD",
+  "#FDEDC5"
+ ],
+ "transparent": null,
+ "$provenance": {
+  "tool": "tool/art/palettes/extract_palette.py",
+  "sources": {
+   "assets/art/ensemble/gatekeeper-v2.png": "e099c72e58f3dc718acc7165d854fc38400e26602f0eef196f6beffcd9d5946a"
+  },
+  "method": "median-cut 93, merge<20, top 31 by count, alpha>=128, luma order, outline at 0"
+ }
+}

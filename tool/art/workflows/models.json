@@ -1,0 +1,16 @@
+{
+ "$comment": "File names of the pinned, licence-admitted models as the studio's ComfyUI sees them (Tillandsias images/models/licence-register.tsv, linux-next 2026-11-02). build_workflows.py reads this; fix a name here and rebuild, never hand-edit the generated workflows. Names confirmed by macuahuitl-fedora 2026-11-02 (pinned, folder-relative); re-check against the studio's /object_info when it is up \u2014 two controlnet roots share upstream file names.",
+ "checkpoint": "sdxl_lightning_4step.safetensors",
+ "lora_pixel": "pixel-art-xl.safetensors",
+ "controlnet_openpose": "diffusion_pytorch_model.safetensors",
+ "controlnet_union": "diffusion_pytorch_model_promax.safetensors",
+ "birefnet_model": "model.safetensors",
+ "sampler": {
+  "steps": 4,
+  "cfg": 1.0,
+  "sampler_name": "euler",
+  "scheduler": "sgm_uniform"
+ },
+ "ipadapter": "sdxl_models/ip-adapter-plus_sdxl_vit-h.safetensors",
+ "clip_vision": "model.safetensors"
+}

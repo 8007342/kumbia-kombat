@@ -1,11 +1,10 @@
 {
- "contract": "1935-k2ib/v0",
+ "contract": "1935-k2ib/v1",
  "pipelineVersion": null,
- "$comment": "DRAFT for the shared family contract (forge row 1935-k2ib/v0), revised after demon_attack-forge reviews 2026-11-01. pipelineVersion stays null here; the tool stamps it into provenance at run time.",
  "family": "gatekeeper-v3",
  "version": 1,
  "project": "kumbia-kombat",
- "description": "Garden opponent: 64-drawing native-grid target (plan/opponent-depth-staging-pass.md \u00a7Opponent production target).",
+ "description": "Garden opponent Gatekeeper: 64-drawing cumbia dance set (plan/opponent-depth-staging-pass.md §Opponent production target; plan/research/gatekeeper-dance-2026-11-02.md).",
  "kind": "character-frames",
  "frame": {
   "baselineY": null,
@@ -21,11 +20,10 @@
   },
   "native": {
    "perRoom": true,
-   "$comment": "Owner 2026-11-01: native pixel size is per room. Gatekeeper appears only in the garden; values pending garden calibration.",
    "garden": {
-    "width": null,
-    "height": null,
-    "pixelScale": null
+    "width": 96,
+    "height": 120,
+    "pixelScale": 8
    }
   },
   "margin": {
@@ -34,24 +32,19 @@
    "failOnBorderTouch": true
   },
   "units": "native-px",
-  "$comment": "baseline/pivot in native-grid pixels from the frame's top-left (pivot.normalized=false). Generation-canvas values are derived by pixelScale. Resolved scale is computed once from referencePose bbox height and stored in provenance.",
   "generationCanvas": {
    "width": 768,
-   "height": 960,
-   "$comment": "generation canvas, one frame per image"
+   "height": 960
   },
-  "camera": "floor-perspective",
-  "$cameraComment": "family default; each target may override. Poses stay camera-agnostic (rig render parameter)."
+  "camera": "floor-perspective"
  },
- "background_key": null,
  "transparency": {
   "byBackend": {
-   "sdxl": "layerdiffuse",
+   "sdxl": "matte",
    "default": "matte"
   },
   "matte": "birefnet",
-  "alpha": "binary",
-  "$comment": "LayerDiffusion/layerdiffusion-v1 layer_xl_* is SDXL-only (creativeml-openrail-m). Other tiers matte; BiRefNet pending operator approval."
+  "alpha": "binary"
  },
  "outline": "#1A1018",
  "symmetry": "none",
@@ -59,19 +52,27 @@
   {
    "role": "identity",
    "image": "assets/art/ensemble/gatekeeper-v2.png",
-   "crop": "approved model-sheet frames TBD",
+   "crop": {
+    "frame": "occupied",
+    "rect": [
+     23,
+     14,
+     198,
+     310
+    ]
+   },
    "adapter": "ip-adapter-sdxl",
    "weight": 0.7
   }
  ],
  "regions": {
-  "$comment": "flat colours in each pose's regionMask PNG, rendered from the rig ID pass",
   "#FF0000": "skin",
   "#00FF00": "hair",
   "#0000FF": "cloth",
   "#FFFF00": "hat",
   "#00FFFF": "shoes",
-  "#FF00FF": "accessory"
+  "#FF00FF": "accessory",
+  "#FF8000": "trousers"
  },
  "reservedRamps": [
   {
@@ -236,12 +237,11 @@
   }
  ],
  "palette": {
-  "locked": "tool/art/palettes/gatekeeper.json",
-  "$comment": "to be extracted from approved v2 frames"
+  "locked": "tool/art/palettes/gatekeeper.json"
  },
- "style_prompt": "pixel art game sprite, full body, single character, warm festive party, crisp clusters, clean dark outline, flat shading, plain background",
- "style_negative": "multiple characters, sprite sheet, grid, text, logo, blur, motion blur, cropped feet, cropped hat, shadow on floor",
- "character_prompt": "cheerful mustached man in a cream panama hat with teal band, purple guayabera shirt with teal embroidery panels, cream trousers, teal shoes",
+ "style_prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background",
+ "style_negative": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render",
+ "character_prompt": "stocky cheerful mustached latino man, cream panama hat with teal band, purple guayabera shirt with teal embroidered panels, cream trousers, teal shoes, dignified skilled cumbia dancer",
  "clips": [
   {
    "id": "groove",
@@ -417,12 +417,28 @@
      {
       "type": "depth",
       "image": "art_runs/inputs/gatekeeper-v3/groove.down_l.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/gatekeeper-v3/groove.down_l.lineart.png"
      }
-    ],
-    "strength": 0.85
+    ]
    },
    "regionMask": "art_runs/inputs/gatekeeper-v3/groove.down_l.regions.png",
-   "supportFoot": "from_rig"
+   "supportFoot": "left",
+   "accent": false,
+   "phase": "down",
+   "phaseNote": "down (beat 1, back-step)",
+   "intent": "weight sunk on his bent left knee, right foot stepped back on its ball with the heel raised, left hip high and pushed out, shoulders tilted the other way, left forearm swinging forward at belly height, right arm low and back, head level facing the viewer",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "secondary-action",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
   },
   {
    "id": "groove.pass_l",
@@ -436,12 +452,28 @@
      {
       "type": "depth",
       "image": "art_runs/inputs/gatekeeper-v3/groove.pass_l.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/gatekeeper-v3/groove.pass_l.lineart.png"
      }
-    ],
-    "strength": 0.85
+    ]
    },
    "regionMask": "art_runs/inputs/gatekeeper-v3/groove.pass_l.regions.png",
-   "supportFoot": "from_rig"
+   "supportFoot": "left",
+   "accent": false,
+   "phase": "pass",
+   "phaseNote": "pass (beat 2, replace)",
+   "intent": "weight rolling forward onto the left foot, knees softening upward, right foot still slightly back on its ball, hips easing toward level, arms loose and low swinging back toward the body",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "secondary-action",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
   },
   {
    "id": "groove.up_l",
@@ -455,12 +487,28 @@
      {
       "type": "depth",
       "image": "art_runs/inputs/gatekeeper-v3/groove.up_l.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/gatekeeper-v3/groove.up_l.lineart.png"
      }
-    ],
-    "strength": 0.85
+    ]
    },
    "regionMask": "art_runs/inputs/gatekeeper-v3/groove.up_l.regions.png",
-   "supportFoot": "from_rig"
+   "supportFoot": "both",
+   "accent": false,
+   "phase": "up",
+   "phaseNote": "up (beat 3, close)",
+   "intent": "both feet together and flat, legs nearly straight in a small rise, hips almost level, chin lifted proudly, arms relaxed low at the sides with elbows soft",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "secondary-action",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
   },
   {
    "id": "groove.pass_l2",
@@ -474,12 +522,30 @@
      {
       "type": "depth",
       "image": "art_runs/inputs/gatekeeper-v3/groove.pass_l2.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/gatekeeper-v3/groove.pass_l2.lineart.png"
      }
-    ],
-    "strength": 0.85
+    ]
    },
    "regionMask": "art_runs/inputs/gatekeeper-v3/groove.pass_l2.regions.png",
-   "supportFoot": "from_rig"
+   "supportFoot": "right",
+   "accent": true,
+   "phase": "accent",
+   "phaseNote": "accent (beat 4, the hold)",
+   "intent": "hip popped out to his right over the straight right leg, right hip high, right shoulder dipped, left knee bent with the left foot resting on its toe, right forearm lifted out at hip height in a wrist roll, left forearm across the belly, head tilted toward his left",
+   "profile": "peak",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "line-of-action",
+    "contrapposto",
+    "exaggeration-accent",
+    "secondary-action",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
   },
   {
    "id": "groove.down_r",
@@ -493,12 +559,28 @@
      {
       "type": "depth",
       "image": "art_runs/inputs/gatekeeper-v3/groove.down_r.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/gatekeeper-v3/groove.down_r.lineart.png"
      }
-    ],
-    "strength": 0.85
+    ]
    },
    "regionMask": "art_runs/inputs/gatekeeper-v3/groove.down_r.regions.png",
-   "supportFoot": "from_rig"
+   "supportFoot": "right",
+   "accent": false,
+   "phase": "down",
+   "phaseNote": "down (beat 1, back-step)",
+   "intent": "weight sunk on his bent right knee, left foot stepped back on its ball with the heel raised, right hip high and pushed out, shoulders tilted the other way, right forearm swinging forward at belly height, left arm low and back, head level facing the viewer",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "secondary-action",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
   },
   {
    "id": "groove.pass_r",
@@ -512,12 +594,28 @@
      {
       "type": "depth",
       "image": "art_runs/inputs/gatekeeper-v3/groove.pass_r.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/gatekeeper-v3/groove.pass_r.lineart.png"
      }
-    ],
-    "strength": 0.85
+    ]
    },
    "regionMask": "art_runs/inputs/gatekeeper-v3/groove.pass_r.regions.png",
-   "supportFoot": "from_rig"
+   "supportFoot": "right",
+   "accent": false,
+   "phase": "pass",
+   "phaseNote": "pass (beat 2, replace)",
+   "intent": "weight rolling forward onto the right foot, knees softening upward, left foot still slightly back on its ball, hips easing toward level, arms loose and low swinging back toward the body",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "secondary-action",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
   },
   {
    "id": "groove.up_r",
@@ -531,12 +629,28 @@
      {
       "type": "depth",
       "image": "art_runs/inputs/gatekeeper-v3/groove.up_r.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/gatekeeper-v3/groove.up_r.lineart.png"
      }
-    ],
-    "strength": 0.85
+    ]
    },
    "regionMask": "art_runs/inputs/gatekeeper-v3/groove.up_r.regions.png",
-   "supportFoot": "from_rig"
+   "supportFoot": "both",
+   "accent": false,
+   "phase": "up",
+   "phaseNote": "up (beat 3, close)",
+   "intent": "both feet together and flat, legs nearly straight in a small rise, hips almost level, chin lifted proudly, arms relaxed low at the sides with elbows soft",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "secondary-action",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
   },
   {
    "id": "groove.pass_r2",
@@ -550,12 +664,30 @@
      {
       "type": "depth",
       "image": "art_runs/inputs/gatekeeper-v3/groove.pass_r2.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/gatekeeper-v3/groove.pass_r2.lineart.png"
      }
-    ],
-    "strength": 0.85
+    ]
    },
    "regionMask": "art_runs/inputs/gatekeeper-v3/groove.pass_r2.regions.png",
-   "supportFoot": "from_rig"
+   "supportFoot": "left",
+   "accent": true,
+   "phase": "accent",
+   "phaseNote": "accent (beat 4, the hold)",
+   "intent": "hip popped out to his left over the straight left leg, left hip high, left shoulder dipped, right knee bent with the right foot resting on its toe, left forearm lifted out at hip height in a wrist roll, right forearm across the belly, head tilted toward his right",
+   "profile": "peak",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "line-of-action",
+    "contrapposto",
+    "exaggeration-accent",
+    "secondary-action",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
   },
   {
    "id": "left_hand.prep",
@@ -569,12 +701,27 @@
      {
       "type": "depth",
       "image": "art_runs/inputs/gatekeeper-v3/left_hand.prep.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/gatekeeper-v3/left_hand.prep.lineart.png"
      }
-    ],
-    "strength": 0.85
+    ]
    },
    "regionMask": "art_runs/inputs/gatekeeper-v3/left_hand.prep.regions.png",
-   "supportFoot": "both"
+   "supportFoot": "right",
+   "accent": false,
+   "phase": "anticipation",
+   "phaseNote": "anticipation",
+   "intent": "crouched low with weight on the bent right leg, right fist on the hip, left hand scooped down low in front of the left hip, torso turned away to his right, head glancing down at the left hand",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "anticipation",
+    "no-twinning",
+    "timing-on-beat"
+   ]
   },
   {
    "id": "left_hand.peak",
@@ -588,13 +735,28 @@
      {
       "type": "depth",
       "image": "art_runs/inputs/gatekeeper-v3/left_hand.peak.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/gatekeeper-v3/left_hand.peak.lineart.png"
      }
-    ],
-    "strength": 0.85
+    ]
    },
    "regionMask": "art_runs/inputs/gatekeeper-v3/left_hand.peak.regions.png",
-   "supportFoot": "both",
-   "accent": true
+   "supportFoot": "right",
+   "accent": true,
+   "phase": "accent",
+   "phaseNote": "accent",
+   "intent": "weight on the straight right foot, right hip pushed out, right fist on the hip, body leaning toward his left so one long diagonal runs from the right foot to the left palm thrust high and out at about 45 degrees, left foot on its toe out to the side, head turned up toward the raised hand",
+   "profile": "peak",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "line-of-action",
+    "contrapposto",
+    "exaggeration-accent",
+    "no-twinning",
+    "timing-on-beat"
+   ]
   },
   {
    "id": "left_hand.follow",
@@ -608,12 +770,27 @@
      {
       "type": "depth",
       "image": "art_runs/inputs/gatekeeper-v3/left_hand.follow.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/gatekeeper-v3/left_hand.follow.lineart.png"
      }
-    ],
-    "strength": 0.85
+    ]
    },
    "regionMask": "art_runs/inputs/gatekeeper-v3/left_hand.follow.regions.png",
-   "supportFoot": "both"
+   "supportFoot": "right",
+   "accent": false,
+   "phase": "follow-through",
+   "phaseNote": "follow-through",
+   "intent": "same diagonal pushed further: left arm reaching higher and the palm rolling forward, torso leaning further toward his left, right elbow pushed back on the hip, left toe touch out wider, head following the hand",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "follow-through",
+    "no-twinning",
+    "timing-on-beat"
+   ]
   },
   {
    "id": "left_hand.return",
@@ -627,12 +804,27 @@
      {
       "type": "depth",
       "image": "art_runs/inputs/gatekeeper-v3/left_hand.return.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/gatekeeper-v3/left_hand.return.lineart.png"
      }
-    ],
-    "strength": 0.85
+    ]
    },
    "regionMask": "art_runs/inputs/gatekeeper-v3/left_hand.return.regions.png",
-   "supportFoot": "both"
+   "supportFoot": "both",
+   "accent": false,
+   "phase": "settle",
+   "phaseNote": "settle",
+   "intent": "left arm sweeping down in an arc at shoulder height with the elbow bent, right hand low on the hip, both feet flat and close, torso returning upright",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "follow-through",
+    "no-twinning",
+    "timing-on-beat"
+   ]
   },
   {
    "id": "right_hand.prep",
@@ -646,12 +838,27 @@
      {
       "type": "depth",
       "image": "art_runs/inputs/gatekeeper-v3/right_hand.prep.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/gatekeeper-v3/right_hand.prep.lineart.png"
      }
-    ],
-    "strength": 0.85
+    ]
    },
    "regionMask": "art_runs/inputs/gatekeeper-v3/right_hand.prep.regions.png",
-   "supportFoot": "both"
+   "supportFoot": "left",
+   "accent": false,
+   "phase": "anticipation",
+   "phaseNote": "anticipation",
+   "intent": "crouched low with weight on the bent left leg, left fist on the hip, right hand scooped down low in front of the right hip, torso turned away to his left, head glancing down at the right hand",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "anticipation",
+    "no-twinning",
+    "timing-on-beat"
+   ]
   },
   {
    "id": "right_hand.peak",
@@ -665,13 +872,28 @@
      {
       "type": "depth",
       "image": "art_runs/inputs/gatekeeper-v3/right_hand.peak.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/gatekeeper-v3/right_hand.peak.lineart.png"
      }
-    ],
-    "strength": 0.85
+    ]
    },
    "regionMask": "art_runs/inputs/gatekeeper-v3/right_hand.peak.regions.png",
-   "supportFoot": "both",
-   "accent": true
+   "supportFoot": "left",
+   "accent": true,
+   "phase": "accent",
+   "phaseNote": "accent",
+   "intent": "weight on the straight left foot, left hip pushed out, left fist on the hip, body leaning toward his right so one long diagonal runs from the left foot to the right palm thrust high and out at about 45 degrees, right foot on its toe out to the side, head turned up toward the raised hand",
+   "profile": "peak",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "line-of-action",
+    "contrapposto",
+    "exaggeration-accent",
+    "no-twinning",
+    "timing-on-beat"
+   ]
   },
   {
    "id": "right_hand.follow",
@@ -685,12 +907,27 @@
      {
       "type": "depth",
       "image": "art_runs/inputs/gatekeeper-v3/right_hand.follow.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/gatekeeper-v3/right_hand.follow.lineart.png"
      }
-    ],
-    "strength": 0.85
+    ]
    },
    "regionMask": "art_runs/inputs/gatekeeper-v3/right_hand.follow.regions.png",
-   "supportFoot": "both"
+   "supportFoot": "left",
+   "accent": false,
+   "phase": "follow-through",
+   "phaseNote": "follow-through",
+   "intent": "same diagonal pushed further: right arm reaching higher and the palm rolling forward, torso leaning further toward his right, left elbow pushed back on the hip, right toe touch out wider, head following the hand",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "follow-through",
+    "no-twinning",
+    "timing-on-beat"
+   ]
   },
   {
    "id": "right_hand.return",
@@ -704,12 +941,27 @@
      {
       "type": "depth",
       "image": "art_runs/inputs/gatekeeper-v3/right_hand.return.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/gatekeeper-v3/right_hand.return.lineart.png"
      }
-    ],
-    "strength": 0.85
+    ]
    },
    "regionMask": "art_runs/inputs/gatekeeper-v3/right_hand.return.regions.png",
-   "supportFoot": "both"
+   "supportFoot": "both",
+   "accent": false,
+   "phase": "settle",
+   "phaseNote": "settle",
+   "intent": "right arm sweeping down in an arc at shoulder height with the elbow bent, left hand low on the hip, both feet flat and close, torso returning upright",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "follow-through",
+    "no-twinning",
+    "timing-on-beat"
+   ]
   },
   {
    "id": "left_foot.prep",
@@ -723,12 +975,27 @@
      {
       "type": "depth",
       "image": "art_runs/inputs/gatekeeper-v3/left_foot.prep.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/gatekeeper-v3/left_foot.prep.lineart.png"
      }
-    ],
-    "strength": 0.85
+    ]
    },
    "regionMask": "art_runs/inputs/gatekeeper-v3/left_foot.prep.regions.png",
-   "supportFoot": "right"
+   "supportFoot": "right",
+   "accent": false,
+   "phase": "anticipation",
+   "phaseNote": "anticipation",
+   "intent": "weight on the bent right leg, left knee lifted forward and out with the foot off the floor and the toe pointing down, left fist on the hip, right arm low and out for balance, head looking down at the left foot",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "anticipation",
+    "no-twinning",
+    "timing-on-beat"
+   ]
   },
   {
    "id": "left_foot.peak",
@@ -742,13 +1009,28 @@
      {
       "type": "depth",
       "image": "art_runs/inputs/gatekeeper-v3/left_foot.peak.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/gatekeeper-v3/left_foot.peak.lineart.png"
      }
-    ],
-    "strength": 0.85
+    ]
    },
    "regionMask": "art_runs/inputs/gatekeeper-v3/left_foot.peak.regions.png",
    "supportFoot": "right",
-   "accent": true
+   "accent": true,
+   "phase": "accent",
+   "phaseNote": "accent",
+   "intent": "heel dig: left leg stretched out on a forward diagonal with the left heel on the floor and the toe up, weight on the bent right leg, chest proud and leaning back slightly, right fist on the hip, left arm low and back, head turned toward the left foot",
+   "profile": "peak",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "line-of-action",
+    "contrapposto",
+    "exaggeration-accent",
+    "no-twinning",
+    "timing-on-beat"
+   ]
   },
   {
    "id": "left_foot.follow",
@@ -762,12 +1044,27 @@
      {
       "type": "depth",
       "image": "art_runs/inputs/gatekeeper-v3/left_foot.follow.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/gatekeeper-v3/left_foot.follow.lineart.png"
      }
-    ],
-    "strength": 0.85
+    ]
    },
    "regionMask": "art_runs/inputs/gatekeeper-v3/left_foot.follow.regions.png",
-   "supportFoot": "right"
+   "supportFoot": "right",
+   "accent": false,
+   "phase": "follow-through",
+   "phaseNote": "follow-through",
+   "intent": "left heel still dug in on the diagonal, hip popped over the right foot, shoulders tilted against the hips, right elbow pushed back on the hip, left arm low and out, head on the left foot",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "follow-through",
+    "no-twinning",
+    "timing-on-beat"
+   ]
   },
   {
    "id": "left_foot.return",
@@ -781,12 +1078,27 @@
      {
       "type": "depth",
       "image": "art_runs/inputs/gatekeeper-v3/left_foot.return.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/gatekeeper-v3/left_foot.return.lineart.png"
      }
-    ],
-    "strength": 0.85
+    ]
    },
    "regionMask": "art_runs/inputs/gatekeeper-v3/left_foot.return.regions.png",
-   "supportFoot": "right"
+   "supportFoot": "both",
+   "accent": false,
+   "phase": "settle",
+   "phaseNote": "settle",
+   "intent": "left foot dragged back along the floor to close beside the right, both feet flat, knees soft, arms relaxed low at the sides",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "follow-through",
+    "no-twinning",
+    "timing-on-beat"
+   ]
   },
   {
    "id": "right_foot.prep",
@@ -800,12 +1112,27 @@
      {
       "type": "depth",
       "image": "art_runs/inputs/gatekeeper-v3/right_foot.prep.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/gatekeeper-v3/right_foot.prep.lineart.png"
      }
-    ],
-    "strength": 0.85
+    ]
    },
    "regionMask": "art_runs/inputs/gatekeeper-v3/right_foot.prep.regions.png",
-   "supportFoot": "left"
+   "supportFoot": "left",
+   "accent": false,
+   "phase": "anticipation",
+   "phaseNote": "anticipation",
+   "intent": "weight on the bent left leg, right knee lifted forward and out with the foot off the floor and the toe pointing down, right fist on the hip, left arm low and out for balance, head looking down at the right foot",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "anticipation",
+    "no-twinning",
+    "timing-on-beat"
+   ]
   },
   {
    "id": "right_foot.peak",
@@ -819,13 +1146,28 @@
      {
       "type": "depth",
       "image": "art_runs/inputs/gatekeeper-v3/right_foot.peak.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/gatekeeper-v3/right_foot.peak.lineart.png"
      }
-    ],
-    "strength": 0.85
+    ]
    },
    "regionMask": "art_runs/inputs/gatekeeper-v3/right_foot.peak.regions.png",
    "supportFoot": "left",
-   "accent": true
+   "accent": true,
+   "phase": "accent",
+   "phaseNote": "accent",
+   "intent": "heel dig: right leg stretched out on a forward diagonal with the right heel on the floor and the toe up, weight on the bent left leg, chest proud and leaning back slightly, left fist on the hip, right arm low and back, head turned toward the right foot",
+   "profile": "peak",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "line-of-action",
+    "contrapposto",
+    "exaggeration-accent",
+    "no-twinning",
+    "timing-on-beat"
+   ]
   },
   {
    "id": "right_foot.follow",
@@ -839,12 +1181,27 @@
      {
       "type": "depth",
       "image": "art_runs/inputs/gatekeeper-v3/right_foot.follow.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/gatekeeper-v3/right_foot.follow.lineart.png"
      }
-    ],
-    "strength": 0.85
+    ]
    },
    "regionMask": "art_runs/inputs/gatekeeper-v3/right_foot.follow.regions.png",
-   "supportFoot": "left"
+   "supportFoot": "left",
+   "accent": false,
+   "phase": "follow-through",
+   "phaseNote": "follow-through",
+   "intent": "right heel still dug in on the diagonal, hip popped over the left foot, shoulders tilted against the hips, left elbow pushed back on the hip, right arm low and out, head on the right foot",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "follow-through",
+    "no-twinning",
+    "timing-on-beat"
+   ]
   },
   {
    "id": "right_foot.return",
@@ -858,12 +1215,27 @@
      {
       "type": "depth",
       "image": "art_runs/inputs/gatekeeper-v3/right_foot.return.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/gatekeeper-v3/right_foot.return.lineart.png"
      }
-    ],
-    "strength": 0.85
+    ]
    },
    "regionMask": "art_runs/inputs/gatekeeper-v3/right_foot.return.regions.png",
-   "supportFoot": "left"
+   "supportFoot": "both",
+   "accent": false,
+   "phase": "settle",
+   "phaseNote": "settle",
+   "intent": "right foot dragged back along the floor to close beside the left, both feet flat, knees soft, arms relaxed low at the sides",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "follow-through",
+    "no-twinning",
+    "timing-on-beat"
+   ]
   },
   {
    "id": "enter_forward.contact_l",
@@ -877,12 +1249,28 @@
      {
       "type": "depth",
       "image": "art_runs/inputs/gatekeeper-v3/enter_forward.contact_l.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/gatekeeper-v3/enter_forward.contact_l.lineart.png"
      }
-    ],
-    "strength": 0.85
+    ]
    },
    "regionMask": "art_runs/inputs/gatekeeper-v3/enter_forward.contact_l.regions.png",
-   "supportFoot": "from_rig"
+   "supportFoot": "both",
+   "accent": true,
+   "phase": "contact",
+   "phaseNote": "contact",
+   "intent": "swaggering walk toward the viewer on a slight diagonal, left heel landing in front, right foot behind on its toe, right fist on the hip, left arm swinging back, chin up",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "anticipation",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
   },
   {
    "id": "enter_forward.down_l",
@@ -896,12 +1284,27 @@
      {
       "type": "depth",
       "image": "art_runs/inputs/gatekeeper-v3/enter_forward.down_l.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/gatekeeper-v3/enter_forward.down_l.lineart.png"
      }
-    ],
-    "strength": 0.85
+    ]
    },
    "regionMask": "art_runs/inputs/gatekeeper-v3/enter_forward.down_l.regions.png",
-   "supportFoot": "from_rig"
+   "supportFoot": "left",
+   "accent": false,
+   "phase": "down",
+   "phaseNote": "down",
+   "intent": "weight dropping into the bent left knee, left hip high, right foot pushing off behind on its toe, right fist on the hip, left arm swinging, head dipping on the beat",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
   },
   {
    "id": "enter_forward.pass_l",
@@ -915,12 +1318,27 @@
      {
       "type": "depth",
       "image": "art_runs/inputs/gatekeeper-v3/enter_forward.pass_l.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/gatekeeper-v3/enter_forward.pass_l.lineart.png"
      }
-    ],
-    "strength": 0.85
+    ]
    },
    "regionMask": "art_runs/inputs/gatekeeper-v3/enter_forward.pass_l.regions.png",
-   "supportFoot": "from_rig"
+   "supportFoot": "left",
+   "accent": false,
+   "phase": "pass",
+   "phaseNote": "pass",
+   "intent": "standing tall on the straight left leg, right knee swinging forward past it, right fist on the hip, left arm relaxed at the side, chin up",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
   },
   {
    "id": "enter_forward.contact_r",
@@ -934,12 +1352,28 @@
      {
       "type": "depth",
       "image": "art_runs/inputs/gatekeeper-v3/enter_forward.contact_r.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/gatekeeper-v3/enter_forward.contact_r.lineart.png"
      }
-    ],
-    "strength": 0.85
+    ]
    },
    "regionMask": "art_runs/inputs/gatekeeper-v3/enter_forward.contact_r.regions.png",
-   "supportFoot": "from_rig"
+   "supportFoot": "both",
+   "accent": true,
+   "phase": "contact",
+   "phaseNote": "contact",
+   "intent": "swaggering walk toward the viewer on a slight diagonal, right heel landing in front, left foot behind on its toe, right fist on the hip, left arm swinging forward, chin up",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "anticipation",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
   },
   {
    "id": "enter_forward.down_r",
@@ -953,12 +1387,27 @@
      {
       "type": "depth",
       "image": "art_runs/inputs/gatekeeper-v3/enter_forward.down_r.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/gatekeeper-v3/enter_forward.down_r.lineart.png"
      }
-    ],
-    "strength": 0.85
+    ]
    },
    "regionMask": "art_runs/inputs/gatekeeper-v3/enter_forward.down_r.regions.png",
-   "supportFoot": "from_rig"
+   "supportFoot": "right",
+   "accent": false,
+   "phase": "down",
+   "phaseNote": "down",
+   "intent": "weight dropping into the bent right knee, right hip high, left foot pushing off behind on its toe, right fist on the hip, left arm swinging forward, head dipping on the beat",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
   },
   {
    "id": "enter_forward.pass_r",
@@ -972,12 +1421,27 @@
      {
       "type": "depth",
       "image": "art_runs/inputs/gatekeeper-v3/enter_forward.pass_r.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/gatekeeper-v3/enter_forward.pass_r.lineart.png"
      }
-    ],
-    "strength": 0.85
+    ]
    },
    "regionMask": "art_runs/inputs/gatekeeper-v3/enter_forward.pass_r.regions.png",
-   "supportFoot": "from_rig"
+   "supportFoot": "right",
+   "accent": false,
+   "phase": "pass",
+   "phaseNote": "pass",
+   "intent": "standing tall on the straight right leg, left knee swinging forward past it, right fist on the hip, left arm relaxed at the side, chin up",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
   },
   {
    "id": "retreat_backward.contact_l",
@@ -991,12 +1455,28 @@
      {
       "type": "depth",
       "image": "art_runs/inputs/gatekeeper-v3/retreat_backward.contact_l.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/gatekeeper-v3/retreat_backward.contact_l.lineart.png"
      }
-    ],
-    "strength": 0.85
+    ]
    },
    "regionMask": "art_runs/inputs/gatekeeper-v3/retreat_backward.contact_l.regions.png",
-   "supportFoot": "from_rig"
+   "supportFoot": "both",
+   "accent": true,
+   "phase": "contact",
+   "phaseNote": "contact",
+   "intent": "stepping backward while still facing the viewer, left foot reaching back onto its ball, weight still on the flat right foot, left hand behind the back, right arm low and loose",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "anticipation",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
   },
   {
    "id": "retreat_backward.down_l",
@@ -1010,12 +1490,27 @@
      {
       "type": "depth",
       "image": "art_runs/inputs/gatekeeper-v3/retreat_backward.down_l.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/gatekeeper-v3/retreat_backward.down_l.lineart.png"
      }
-    ],
-    "strength": 0.85
+    ]
    },
    "regionMask": "art_runs/inputs/gatekeeper-v3/retreat_backward.down_l.regions.png",
-   "supportFoot": "from_rig"
+   "supportFoot": "left",
+   "accent": false,
+   "phase": "down",
+   "phaseNote": "down",
+   "intent": "weight rolled back onto the bent left leg, left hip high, right foot in front with the toe lifted, left hand behind the back, right arm low and forward, head nodding",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
   },
   {
    "id": "retreat_backward.pass_l",
@@ -1029,12 +1524,27 @@
      {
       "type": "depth",
       "image": "art_runs/inputs/gatekeeper-v3/retreat_backward.pass_l.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/gatekeeper-v3/retreat_backward.pass_l.lineart.png"
      }
-    ],
-    "strength": 0.85
+    ]
    },
    "regionMask": "art_runs/inputs/gatekeeper-v3/retreat_backward.pass_l.regions.png",
-   "supportFoot": "from_rig"
+   "supportFoot": "left",
+   "accent": false,
+   "phase": "pass",
+   "phaseNote": "pass",
+   "intent": "right foot dragged back along the floor past the straight left leg, left hand behind the back, right arm hanging loose, chin up",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
   },
   {
    "id": "retreat_backward.contact_r",
@@ -1048,12 +1558,28 @@
      {
       "type": "depth",
       "image": "art_runs/inputs/gatekeeper-v3/retreat_backward.contact_r.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/gatekeeper-v3/retreat_backward.contact_r.lineart.png"
      }
-    ],
-    "strength": 0.85
+    ]
    },
    "regionMask": "art_runs/inputs/gatekeeper-v3/retreat_backward.contact_r.regions.png",
-   "supportFoot": "from_rig"
+   "supportFoot": "both",
+   "accent": true,
+   "phase": "contact",
+   "phaseNote": "contact",
+   "intent": "stepping backward while still facing the viewer, right foot reaching back onto its ball, weight still on the flat left foot, left hand behind the back, right arm low and loose",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "anticipation",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
   },
   {
    "id": "retreat_backward.down_r",
@@ -1067,12 +1593,27 @@
      {
       "type": "depth",
       "image": "art_runs/inputs/gatekeeper-v3/retreat_backward.down_r.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/gatekeeper-v3/retreat_backward.down_r.lineart.png"
      }
-    ],
-    "strength": 0.85
+    ]
    },
    "regionMask": "art_runs/inputs/gatekeeper-v3/retreat_backward.down_r.regions.png",
-   "supportFoot": "from_rig"
+   "supportFoot": "right",
+   "accent": false,
+   "phase": "down",
+   "phaseNote": "down",
+   "intent": "weight rolled back onto the bent right leg, right hip high, left foot in front with the toe lifted, left hand behind the back, right arm low, head nodding",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
   },
   {
    "id": "retreat_backward.pass_r",
@@ -1086,18 +1627,33 @@
      {
       "type": "depth",
       "image": "art_runs/inputs/gatekeeper-v3/retreat_backward.pass_r.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/gatekeeper-v3/retreat_backward.pass_r.lineart.png"
      }
-    ],
-    "strength": 0.85
+    ]
    },
    "regionMask": "art_runs/inputs/gatekeeper-v3/retreat_backward.pass_r.regions.png",
-   "supportFoot": "from_rig"
+   "supportFoot": "right",
+   "accent": false,
+   "phase": "pass",
+   "phaseNote": "pass",
+   "intent": "left foot dragged back along the floor past the straight right leg, left hand behind the back, right arm hanging loose, chin up",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
   },
   {
    "id": "yield_side.contact_l",
    "clip": "yield_side",
    "order": 0,
-   "view": "front_3q",
+   "view": "front",
    "control": {
     "type": "openpose",
     "image": "art_runs/inputs/gatekeeper-v3/yield_side.contact_l.pose.png",
@@ -1105,18 +1661,34 @@
      {
       "type": "depth",
       "image": "art_runs/inputs/gatekeeper-v3/yield_side.contact_l.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/gatekeeper-v3/yield_side.contact_l.lineart.png"
      }
-    ],
-    "strength": 0.85
+    ]
    },
    "regionMask": "art_runs/inputs/gatekeeper-v3/yield_side.contact_l.regions.png",
-   "supportFoot": "from_rig"
+   "supportFoot": "both",
+   "accent": true,
+   "phase": "contact",
+   "phaseNote": "contact",
+   "intent": "side-step toward the sideline: left leg reaching out sideways with the foot landing, weight still on the bent right leg, right fist on the hip, left arm out low",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "anticipation",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
   },
   {
    "id": "yield_side.down_l",
    "clip": "yield_side",
    "order": 1,
-   "view": "front_3q",
+   "view": "front",
    "control": {
     "type": "openpose",
     "image": "art_runs/inputs/gatekeeper-v3/yield_side.down_l.pose.png",
@@ -1124,18 +1696,33 @@
      {
       "type": "depth",
       "image": "art_runs/inputs/gatekeeper-v3/yield_side.down_l.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/gatekeeper-v3/yield_side.down_l.lineart.png"
      }
-    ],
-    "strength": 0.85
+    ]
    },
    "regionMask": "art_runs/inputs/gatekeeper-v3/yield_side.down_l.regions.png",
-   "supportFoot": "from_rig"
+   "supportFoot": "left",
+   "accent": false,
+   "phase": "down",
+   "phaseNote": "down",
+   "intent": "weight shifted onto the bent left leg, left hip high and pushed out, right foot trailing on its toe, right fist on the hip, head nodding",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
   },
   {
    "id": "yield_side.pass_l",
    "clip": "yield_side",
    "order": 2,
-   "view": "front_3q",
+   "view": "front",
    "control": {
     "type": "openpose",
     "image": "art_runs/inputs/gatekeeper-v3/yield_side.pass_l.pose.png",
@@ -1143,18 +1730,33 @@
      {
       "type": "depth",
       "image": "art_runs/inputs/gatekeeper-v3/yield_side.pass_l.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/gatekeeper-v3/yield_side.pass_l.lineart.png"
      }
-    ],
-    "strength": 0.85
+    ]
    },
    "regionMask": "art_runs/inputs/gatekeeper-v3/yield_side.pass_l.regions.png",
-   "supportFoot": "from_rig"
+   "supportFoot": "left",
+   "accent": false,
+   "phase": "pass",
+   "phaseNote": "pass",
+   "intent": "right foot dragged in along the floor to close beside the straight left leg, right fist on the hip, left arm relaxed at the side",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
   },
   {
    "id": "yield_side.contact_r",
    "clip": "yield_side",
    "order": 3,
-   "view": "front_3q",
+   "view": "front",
    "control": {
     "type": "openpose",
     "image": "art_runs/inputs/gatekeeper-v3/yield_side.contact_r.pose.png",
@@ -1162,18 +1764,34 @@
      {
       "type": "depth",
       "image": "art_runs/inputs/gatekeeper-v3/yield_side.contact_r.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/gatekeeper-v3/yield_side.contact_r.lineart.png"
      }
-    ],
-    "strength": 0.85
+    ]
    },
    "regionMask": "art_runs/inputs/gatekeeper-v3/yield_side.contact_r.regions.png",
-   "supportFoot": "from_rig"
+   "supportFoot": "both",
+   "accent": true,
+   "phase": "contact",
+   "phaseNote": "contact",
+   "intent": "right foot stepping back on a diagonal onto its ball, left knee bent, arms low and loose, torso turning open",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "anticipation",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
   },
   {
    "id": "yield_side.down_r",
    "clip": "yield_side",
    "order": 4,
-   "view": "front_3q",
+   "view": "front",
    "control": {
     "type": "openpose",
     "image": "art_runs/inputs/gatekeeper-v3/yield_side.down_r.pose.png",
@@ -1181,18 +1799,33 @@
      {
       "type": "depth",
       "image": "art_runs/inputs/gatekeeper-v3/yield_side.down_r.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/gatekeeper-v3/yield_side.down_r.lineart.png"
      }
-    ],
-    "strength": 0.85
+    ]
    },
    "regionMask": "art_runs/inputs/gatekeeper-v3/yield_side.down_r.regions.png",
-   "supportFoot": "from_rig"
+   "supportFoot": "right",
+   "accent": false,
+   "phase": "down",
+   "phaseNote": "down",
+   "intent": "weight settled onto the bent right leg, right hip high, left foot in front with the toe lifted, right forearm coming forward at waist height",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
   },
   {
    "id": "yield_side.pass_r",
    "clip": "yield_side",
    "order": 5,
-   "view": "front_3q",
+   "view": "front",
    "control": {
     "type": "openpose",
     "image": "art_runs/inputs/gatekeeper-v3/yield_side.pass_r.pose.png",
@@ -1200,18 +1833,35 @@
      {
       "type": "depth",
       "image": "art_runs/inputs/gatekeeper-v3/yield_side.pass_r.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/gatekeeper-v3/yield_side.pass_r.lineart.png"
      }
-    ],
-    "strength": 0.85
+    ]
    },
    "regionMask": "art_runs/inputs/gatekeeper-v3/yield_side.pass_r.regions.png",
-   "supportFoot": "from_rig"
+   "supportFoot": "right",
+   "accent": true,
+   "phase": "accent",
+   "phaseNote": "accent (hand-over)",
+   "intent": "standing on the right leg, left fist on the hip, right arm held out low and wide with the palm open and up toward the empty floor, head turned toward the open palm with a slight bow, offering the floor",
+   "profile": "peak",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "line-of-action",
+    "contrapposto",
+    "exaggeration-accent",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
   },
   {
    "id": "watch.shift_l",
    "clip": "watch",
    "order": 0,
-   "view": "front_3q",
+   "view": "front",
    "control": {
     "type": "openpose",
     "image": "art_runs/inputs/gatekeeper-v3/watch.shift_l.pose.png",
@@ -1219,18 +1869,34 @@
      {
       "type": "depth",
       "image": "art_runs/inputs/gatekeeper-v3/watch.shift_l.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/gatekeeper-v3/watch.shift_l.lineart.png"
      }
-    ],
-    "strength": 0.85
+    ]
    },
    "regionMask": "art_runs/inputs/gatekeeper-v3/watch.shift_l.regions.png",
-   "supportFoot": "from_rig"
+   "supportFoot": "left",
+   "accent": false,
+   "phase": "pass",
+   "phaseNote": "pass (weight shift)",
+   "intent": "relaxed stance turned slightly to his left, hands clasped behind the back, weight on the left foot with the left hip high, right knee soft, head turned to watch the other dancer",
+   "profile": "overlap",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "secondary-action",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
   },
   {
    "id": "watch.hold_l",
    "clip": "watch",
    "order": 1,
-   "view": "front_3q",
+   "view": "front",
    "control": {
     "type": "openpose",
     "image": "art_runs/inputs/gatekeeper-v3/watch.hold_l.pose.png",
@@ -1238,18 +1904,34 @@
      {
       "type": "depth",
       "image": "art_runs/inputs/gatekeeper-v3/watch.hold_l.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/gatekeeper-v3/watch.hold_l.lineart.png"
      }
-    ],
-    "strength": 0.85
+    ]
    },
    "regionMask": "art_runs/inputs/gatekeeper-v3/watch.hold_l.regions.png",
-   "supportFoot": "from_rig"
+   "supportFoot": "left",
+   "accent": false,
+   "phase": "settle",
+   "phaseNote": "settle (nod on beat 1)",
+   "intent": "hands clasped behind the back, weight sunk on the left foot with both knees softer, head nodding along to the music while watching",
+   "profile": "overlap",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "follow-through",
+    "secondary-action",
+    "no-twinning",
+    "timing-on-beat"
+   ]
   },
   {
    "id": "watch.shift_r",
    "clip": "watch",
    "order": 2,
-   "view": "front_3q",
+   "view": "front",
    "control": {
     "type": "openpose",
     "image": "art_runs/inputs/gatekeeper-v3/watch.shift_r.pose.png",
@@ -1257,18 +1939,34 @@
      {
       "type": "depth",
       "image": "art_runs/inputs/gatekeeper-v3/watch.shift_r.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/gatekeeper-v3/watch.shift_r.lineart.png"
      }
-    ],
-    "strength": 0.85
+    ]
    },
    "regionMask": "art_runs/inputs/gatekeeper-v3/watch.shift_r.regions.png",
-   "supportFoot": "from_rig"
+   "supportFoot": "right",
+   "accent": false,
+   "phase": "pass",
+   "phaseNote": "pass (weight shift)",
+   "intent": "relaxed stance turned slightly to his left, hands clasped behind the back, weight on the right foot with the right hip high, left knee soft, head turned to watch the other dancer",
+   "profile": "overlap",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "secondary-action",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
   },
   {
    "id": "watch.hold_r",
    "clip": "watch",
    "order": 3,
-   "view": "front_3q",
+   "view": "front",
    "control": {
     "type": "openpose",
     "image": "art_runs/inputs/gatekeeper-v3/watch.hold_r.pose.png",
@@ -1276,12 +1974,28 @@
      {
       "type": "depth",
       "image": "art_runs/inputs/gatekeeper-v3/watch.hold_r.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/gatekeeper-v3/watch.hold_r.lineart.png"
      }
-    ],
-    "strength": 0.85
+    ]
    },
    "regionMask": "art_runs/inputs/gatekeeper-v3/watch.hold_r.regions.png",
-   "supportFoot": "from_rig"
+   "supportFoot": "right",
+   "accent": false,
+   "phase": "settle",
+   "phaseNote": "settle",
+   "intent": "hands clasped behind the back, weight sunk on the right foot with both knees softer, head tilted with a small nod while watching",
+   "profile": "overlap",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "follow-through",
+    "secondary-action",
+    "no-twinning",
+    "timing-on-beat"
+   ]
   },
   {
    "id": "clap.open",
@@ -1295,12 +2009,27 @@
      {
       "type": "depth",
       "image": "art_runs/inputs/gatekeeper-v3/clap.open.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/gatekeeper-v3/clap.open.lineart.png"
      }
-    ],
-    "strength": 0.85
+    ]
    },
    "regionMask": "art_runs/inputs/gatekeeper-v3/clap.open.regions.png",
-   "supportFoot": "from_rig"
+   "supportFoot": "both",
+   "accent": false,
+   "phase": "anticipation",
+   "phaseNote": "anticipation",
+   "intent": "standing square and upright, both forearms raised in front of the chest with the palms apart and facing each other, elbows out, chin up",
+   "profile": "overlap",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "anticipation",
+    "no-twinning",
+    "timing-on-beat"
+   ]
   },
   {
    "id": "clap.close",
@@ -1314,12 +2043,27 @@
      {
       "type": "depth",
       "image": "art_runs/inputs/gatekeeper-v3/clap.close.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/gatekeeper-v3/clap.close.lineart.png"
      }
-    ],
-    "strength": 0.85
+    ]
    },
    "regionMask": "art_runs/inputs/gatekeeper-v3/clap.close.regions.png",
-   "supportFoot": "from_rig"
+   "supportFoot": "both",
+   "accent": false,
+   "phase": "pass",
+   "phaseNote": "pass",
+   "intent": "both hands swinging together in front of the chest, elbows out, knees starting to bend, head starting to nod",
+   "profile": "overlap",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
   },
   {
    "id": "clap.contact",
@@ -1333,13 +2077,28 @@
      {
       "type": "depth",
       "image": "art_runs/inputs/gatekeeper-v3/clap.contact.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/gatekeeper-v3/clap.contact.lineart.png"
      }
-    ],
-    "strength": 0.85
+    ]
    },
    "regionMask": "art_runs/inputs/gatekeeper-v3/clap.contact.regions.png",
-   "supportFoot": "from_rig",
-   "accent": true
+   "supportFoot": "both",
+   "accent": true,
+   "phase": "contact",
+   "phaseNote": "contact (on the beat)",
+   "intent": "palms clapped together in front of the chest, elbows out to the sides, both knees dipped, head nodding down with a smile",
+   "profile": "overlap",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "anticipation",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
   },
   {
    "id": "clap.release",
@@ -1353,12 +2112,27 @@
      {
       "type": "depth",
       "image": "art_runs/inputs/gatekeeper-v3/clap.release.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/gatekeeper-v3/clap.release.lineart.png"
      }
-    ],
-    "strength": 0.85
+    ]
    },
    "regionMask": "art_runs/inputs/gatekeeper-v3/clap.release.regions.png",
-   "supportFoot": "from_rig"
+   "supportFoot": "both",
+   "accent": false,
+   "phase": "follow-through",
+   "phaseNote": "follow-through",
+   "intent": "hands bouncing apart in front of the chest, elbows out, knees rising, head level",
+   "profile": "overlap",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "follow-through",
+    "no-twinning",
+    "timing-on-beat"
+   ]
   },
   {
    "id": "challenge.load",
@@ -1372,12 +2146,27 @@
      {
       "type": "depth",
       "image": "art_runs/inputs/gatekeeper-v3/challenge.load.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/gatekeeper-v3/challenge.load.lineart.png"
      }
-    ],
-    "strength": 0.85
+    ]
    },
    "regionMask": "art_runs/inputs/gatekeeper-v3/challenge.load.regions.png",
-   "supportFoot": "from_rig"
+   "supportFoot": "left",
+   "accent": false,
+   "phase": "anticipation",
+   "phaseNote": "anticipation",
+   "intent": "back-break dip: weight sunk on the bent left leg, right foot back on its ball, torso leaning forward, both hands travelling toward the hips, head lowered",
+   "profile": "overlap",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "anticipation",
+    "no-twinning",
+    "timing-on-beat"
+   ]
   },
   {
    "id": "challenge.proud",
@@ -1391,12 +2180,28 @@
      {
       "type": "depth",
       "image": "art_runs/inputs/gatekeeper-v3/challenge.proud.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/gatekeeper-v3/challenge.proud.lineart.png"
      }
-    ],
-    "strength": 0.85
+    ]
    },
    "regionMask": "art_runs/inputs/gatekeeper-v3/challenge.proud.regions.png",
-   "supportFoot": "from_rig"
+   "supportFoot": "right",
+   "accent": true,
+   "phase": "accent",
+   "phaseNote": "accent",
+   "intent": "proud stance: both fists on the hips with the elbows out, chest pushed out and leaning back, chin raised, weight on the straight right leg, left heel set forward with the toe up",
+   "profile": "overlap",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "line-of-action",
+    "contrapposto",
+    "exaggeration-accent",
+    "no-twinning",
+    "timing-on-beat"
+   ]
   },
   {
    "id": "challenge.offer",
@@ -1410,13 +2215,28 @@
      {
       "type": "depth",
       "image": "art_runs/inputs/gatekeeper-v3/challenge.offer.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/gatekeeper-v3/challenge.offer.lineart.png"
      }
-    ],
-    "strength": 0.85
+    ]
    },
    "regionMask": "art_runs/inputs/gatekeeper-v3/challenge.offer.regions.png",
-   "supportFoot": "from_rig",
-   "accent": true
+   "supportFoot": "right",
+   "accent": true,
+   "phase": "accent",
+   "phaseNote": "accent (invitation)",
+   "intent": "courteous invitation: weight on the right leg, left fist on the hip, right arm sweeping out low and forward with the palm open and up toward the floor, torso bowing slightly forward, head bowed toward the open hand",
+   "profile": "peak",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "line-of-action",
+    "contrapposto",
+    "exaggeration-accent",
+    "no-twinning",
+    "timing-on-beat"
+   ]
   },
   {
    "id": "challenge.return",
@@ -1430,12 +2250,27 @@
      {
       "type": "depth",
       "image": "art_runs/inputs/gatekeeper-v3/challenge.return.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/gatekeeper-v3/challenge.return.lineart.png"
      }
-    ],
-    "strength": 0.85
+    ]
    },
    "regionMask": "art_runs/inputs/gatekeeper-v3/challenge.return.regions.png",
-   "supportFoot": "from_rig"
+   "supportFoot": "both",
+   "accent": false,
+   "phase": "settle",
+   "phaseNote": "settle",
+   "intent": "both feet flat, standing easy, right forearm relaxed in front, left hand low near the hip, body upright",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "follow-through",
+    "no-twinning",
+    "timing-on-beat"
+   ]
   },
   {
    "id": "approval.load",
@@ -1449,12 +2284,28 @@
      {
       "type": "depth",
       "image": "art_runs/inputs/gatekeeper-v3/approval.load.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/gatekeeper-v3/approval.load.lineart.png"
      }
-    ],
-    "strength": 0.85
+    ]
    },
    "regionMask": "art_runs/inputs/gatekeeper-v3/approval.load.regions.png",
-   "supportFoot": "from_rig"
+   "supportFoot": "both",
+   "accent": false,
+   "phase": "anticipation",
+   "phaseNote": "anticipation",
+   "intent": "small inhale: chest lifted and leaning back slightly, chin raised, weight on the right foot, arms loose and slightly away from the body",
+   "profile": "overlap",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "anticipation",
+    "secondary-action",
+    "no-twinning",
+    "timing-on-beat"
+   ]
   },
   {
    "id": "approval.nod",
@@ -1468,13 +2319,29 @@
      {
       "type": "depth",
       "image": "art_runs/inputs/gatekeeper-v3/approval.nod.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/gatekeeper-v3/approval.nod.lineart.png"
      }
-    ],
-    "strength": 0.85
+    ]
    },
    "regionMask": "art_runs/inputs/gatekeeper-v3/approval.nod.regions.png",
-   "supportFoot": "from_rig",
-   "accent": true
+   "supportFoot": "both",
+   "accent": true,
+   "phase": "accent",
+   "phaseNote": "accent",
+   "intent": "right palm pressed flat to the chest, a deep nod with the head bowed, both knees dipped, left arm low and out at the side",
+   "profile": "overlap",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "line-of-action",
+    "contrapposto",
+    "exaggeration-accent",
+    "secondary-action",
+    "no-twinning",
+    "timing-on-beat"
+   ]
   },
   {
    "id": "approval.release",
@@ -1488,12 +2355,28 @@
      {
       "type": "depth",
       "image": "art_runs/inputs/gatekeeper-v3/approval.release.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/gatekeeper-v3/approval.release.lineart.png"
      }
-    ],
-    "strength": 0.85
+    ]
    },
    "regionMask": "art_runs/inputs/gatekeeper-v3/approval.release.regions.png",
-   "supportFoot": "from_rig"
+   "supportFoot": "both",
+   "accent": false,
+   "phase": "settle",
+   "phaseNote": "settle",
+   "intent": "left fist on the hip, right arm held out forward at waist height with the palm open toward the viewer, head tilted warmly",
+   "profile": "overlap",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "follow-through",
+    "secondary-action",
+    "no-twinning",
+    "timing-on-beat"
+   ]
   },
   {
    "id": "reassurance.notice",
@@ -1507,12 +2390,27 @@
      {
       "type": "depth",
       "image": "art_runs/inputs/gatekeeper-v3/reassurance.notice.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/gatekeeper-v3/reassurance.notice.lineart.png"
      }
-    ],
-    "strength": 0.85
+    ]
    },
    "regionMask": "art_runs/inputs/gatekeeper-v3/reassurance.notice.regions.png",
-   "supportFoot": "from_rig"
+   "supportFoot": "both",
+   "accent": false,
+   "phase": "anticipation",
+   "phaseNote": "anticipation",
+   "intent": "head tilted to his right with a soft warm look, weight on the left foot, arms relaxed low, right forearm slightly forward",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "anticipation",
+    "no-twinning",
+    "timing-on-beat"
+   ]
   },
   {
    "id": "reassurance.open_hand",
@@ -1526,13 +2424,28 @@
      {
       "type": "depth",
       "image": "art_runs/inputs/gatekeeper-v3/reassurance.open_hand.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/gatekeeper-v3/reassurance.open_hand.lineart.png"
      }
-    ],
-    "strength": 0.85
+    ]
    },
    "regionMask": "art_runs/inputs/gatekeeper-v3/reassurance.open_hand.regions.png",
-   "supportFoot": "from_rig",
-   "accent": true
+   "supportFoot": "both",
+   "accent": true,
+   "phase": "accent",
+   "phaseNote": "accent",
+   "intent": "small friendly shrug: both forearms out at waist height with the palms open and up, the right hand a little higher, both knees softly bent, head tilted",
+   "profile": "peak",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "line-of-action",
+    "contrapposto",
+    "exaggeration-accent",
+    "no-twinning",
+    "timing-on-beat"
+   ]
   },
   {
    "id": "reassurance.settle",
@@ -1546,12 +2459,27 @@
      {
       "type": "depth",
       "image": "art_runs/inputs/gatekeeper-v3/reassurance.settle.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/gatekeeper-v3/reassurance.settle.lineart.png"
      }
-    ],
-    "strength": 0.85
+    ]
    },
    "regionMask": "art_runs/inputs/gatekeeper-v3/reassurance.settle.regions.png",
-   "supportFoot": "from_rig"
+   "supportFoot": "left",
+   "accent": false,
+   "phase": "settle",
+   "phaseNote": "settle (invitation)",
+   "intent": "a back-break step on the spot: weight on the bent left knee, right foot back on its ball, left forearm forward, right arm low and back, inviting the rhythm back",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "follow-through",
+    "no-twinning",
+    "timing-on-beat"
+   ]
   },
   {
    "id": "finish_turn.finish_a",
@@ -1565,12 +2493,27 @@
      {
       "type": "depth",
       "image": "art_runs/inputs/gatekeeper-v3/finish_turn.finish_a.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/gatekeeper-v3/finish_turn.finish_a.lineart.png"
      }
-    ],
-    "strength": 0.85
+    ]
    },
    "regionMask": "art_runs/inputs/gatekeeper-v3/finish_turn.finish_a.regions.png",
-   "supportFoot": "from_rig"
+   "supportFoot": "right",
+   "accent": false,
+   "phase": "anticipation",
+   "phaseNote": "anticipation (remate)",
+   "intent": "weight on the straight right leg, left heel set forward with the toe up, left fist on the hip, right hand rising beside the head on its way to the hat brim, chest proud, chin up",
+   "profile": "overlap",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "exaggeration-accent",
+    "no-twinning",
+    "timing-on-beat"
+   ]
   },
   {
    "id": "finish_turn.finish_b",
@@ -1584,12 +2527,28 @@
      {
       "type": "depth",
       "image": "art_runs/inputs/gatekeeper-v3/finish_turn.finish_b.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/gatekeeper-v3/finish_turn.finish_b.lineart.png"
      }
-    ],
-    "strength": 0.85
+    ]
    },
    "regionMask": "art_runs/inputs/gatekeeper-v3/finish_turn.finish_b.regions.png",
-   "supportFoot": "from_rig"
+   "supportFoot": "right",
+   "accent": true,
+   "phase": "accent",
+   "phaseNote": "accent (remate)",
+   "intent": "right fingertips touching the front of the hat brim in a courteous salute, the hat still on his head, head dipped slightly, chest proud, left elbow out with the fist on the hip, left heel forward with the toe up",
+   "profile": "overlap",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "line-of-action",
+    "contrapposto",
+    "exaggeration-accent",
+    "no-twinning",
+    "timing-on-beat"
+   ]
   },
   {
    "id": "finish_turn.turn_in",
@@ -1603,12 +2562,27 @@
      {
       "type": "depth",
       "image": "art_runs/inputs/gatekeeper-v3/finish_turn.turn_in.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/gatekeeper-v3/finish_turn.turn_in.lineart.png"
      }
-    ],
-    "strength": 0.85
+    ]
    },
    "regionMask": "art_runs/inputs/gatekeeper-v3/finish_turn.turn_in.regions.png",
-   "supportFoot": "from_rig"
+   "supportFoot": "both",
+   "accent": false,
+   "phase": "pass",
+   "phaseNote": "pass (turn)",
+   "intent": "body turned about 30 degrees toward his left on a heel pivot, leaning into the turn, left arm open out to the side at hip height, right fist on the hip",
+   "profile": "turn",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
   },
   {
    "id": "finish_turn.turn_out",
@@ -1622,31 +2596,81 @@
      {
       "type": "depth",
       "image": "art_runs/inputs/gatekeeper-v3/finish_turn.turn_out.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/gatekeeper-v3/finish_turn.turn_out.lineart.png"
      }
-    ],
-    "strength": 0.85
+    ]
    },
    "regionMask": "art_runs/inputs/gatekeeper-v3/finish_turn.turn_out.regions.png",
-   "supportFoot": "from_rig"
+   "supportFoot": "both",
+   "accent": false,
+   "phase": "pass",
+   "phaseNote": "pass (turn)",
+   "intent": "body turned about 30 degrees toward his right on a heel pivot, leaning into the turn, right arm open out to the side at hip height, left fist on the hip",
+   "profile": "turn",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
   }
  ],
  "generation": {
   "count_per_pose": 4,
   "seed_base": 930000,
-  "seed_policy": "fixed per pose while tuning",
+  "seed_policy": "seed = seed_base + 100*pose_index + k; fixed per pose while tuning",
   "backend": "comfyui-api",
-  "workflow": "tool/art/workflows/character-pose-sdxl.api.json",
+  "workflow": "tool/art/workflows/character-frame-moderate.api.json",
   "tiers": {
    "I1": {
-    "model": "SDXL-Lightning-4step",
+    "model": "SDXL-Lightning-4step-full",
     "steps": 4
-   },
-   "SDXL-base": {
-    "model": "SDXL base 1.0",
-    "steps": 25,
-    "$comment": "A/B: Lightning may weaken ControlNet/IP-Adapter"
    }
-  }
+  },
+  "workflowsByProfile": {
+   "moderate": "tool/art/workflows/character-frame-moderate.api.json",
+   "peak": "tool/art/workflows/character-frame-peak.api.json",
+   "overlap": "tool/art/workflows/character-frame-overlap.api.json",
+   "turn": "tool/art/workflows/character-frame-turn.api.json"
+  },
+  "defaultProfile": "moderate",
+  "profileRules": [
+   {
+    "profile": "turn",
+    "poses": [
+     "finish_turn.turn_in",
+     "finish_turn.turn_out"
+    ]
+   },
+   {
+    "profile": "overlap",
+    "clips": [
+     "clap",
+     "watch",
+     "approval"
+    ],
+    "poses": [
+     "challenge.proud",
+     "challenge.load",
+     "finish_turn.finish_a",
+     "finish_turn.finish_b"
+    ]
+   },
+   {
+    "profile": "peak",
+    "phases": [
+     "accent"
+    ],
+    "poses": [
+     "challenge.offer",
+     "reassurance.open_hand"
+    ]
+   }
+  ]
  },
  "qa": {
   "inherit": [
@@ -1685,12 +2709,7 @@
   "static": [
    {
     "id": "palette_fails_all_gates",
-    "scope": [
-     "outline",
-     "palette entries in non-cloth regions"
-    ],
-    "when": "before generation",
-    "mandatory": true
+    "rule": "outline and palette entries outside cloth fail every kumbia-outfit gate"
    },
    {
     "id": "region_mask_colours_declared",
@@ -1720,8 +2739,7 @@
    "packing": {
     "gutterPx": 2,
     "trim": true,
-    "anchorRelativeTo": "trimmed-rect",
-    "$comment": "anchor is written per frame in pixels from the trimmed rect's top-left; untrimmed anchors are invalid"
+    "anchorRelativeTo": "trimmed-rect"
    },
    "requireHumanAcceptance": true,
    "room": "garden",
@@ -1729,7 +2747,6 @@
   }
  ],
  "adapters": {
-  "$comment": "approved-adapter enum; FLUX Redux excluded (dev-licensed)",
   "enum": [
    "ip-adapter-sdxl",
    "qwen-image-edit",
@@ -1738,7 +2755,60 @@
  },
  "regionsRender": {
   "antialias": false,
-  "filtering": "none",
-  "$comment": "rig ID pass rendered with flat shading, no AA/filtering"
+  "filtering": "none"
+ },
+ "$notes": {
+  "spec": "Contract 1935-k2ib/v1. poses[] is generated by tool/art/pipeline/sync_family.py from the rig output; edit the rig (tool/art/rig/poses.py), not the poses here.",
+  "frame.native": "Owner 2026-11-01: native size per room. Garden 96x120 at pixelScale 8 (768x960 canvas / 8), ~100 px figure: chosen 2026-11-02 from the research readability floor (~110 px) and v2 cluster size; revisit at phone review.",
+  "frame": "family default; each target may override. Poses stay camera-agnostic (rig render parameter).",
+  "transparency": "BiRefNet (MIT, admitted 2026-11-02) runs inside the workflow; LayerDiffuse kept as an alternative once the studio's ControlNet+LayerDiffuse combination is tested.",
+  "regionProxyColours": "Init image for img2img: the rig's region mask repainted in the character's own colours so exaggerated limbs are already painted (research Part 2 §3).",
+  "generation": "Largest admitted SDXL-class checkpoint is SDXL-Lightning 4-step (no SDXL base pin yet). FLUX.1-schnell (I3) has no admitted ControlNet, so pose-controlled frames stay on SDXL.",
+  "regions": "flat colours in each pose's regionMask PNG, rendered from the rig ID pass",
+  "generation.profileRules": "First matching rule wins (poses, clips or phases). Finish = brim touch, an overlap pose."
+ },
+ "rigInputs": "art_runs/inputs/gatekeeper-v3",
+ "regionProxyColours": {
+  "skin": "#B5653A",
+  "hair": "#1C1117",
+  "cloth": "#6B1A57",
+  "hat": "#F2D9AD",
+  "shoes": "#29737A",
+  "accessory": "#29737A",
+  "trousers": "#E5C996"
+ },
+ "animationReferences": {
+  "registry": "tool/art/references/animation-principles.json",
+  "research": [
+   "plan/research/gatekeeper-dance-2026-11-02.md",
+   "plan/dance-fluidity-pass.md",
+   "plan/opponent-depth-staging-pass.md"
+  ],
+  "principlesUsed": [
+   "anticipation",
+   "contrapposto",
+   "exaggeration-accent",
+   "follow-through",
+   "line-of-action",
+   "no-twinning",
+   "planted-pivot",
+   "secondary-action",
+   "staging-silhouette",
+   "timing-on-beat"
+  ],
+  "sourcesUsed": [
+   "cartwright-gdc2014",
+   "contrapposto-fonseca",
+   "dead-cells-pipeline",
+   "disney-process",
+   "illusion-of-life",
+   "silhouette-test",
+   "simogo-bsb",
+   "slynyrd-53",
+   "slynyrd-55",
+   "twinning",
+   "ubisoft-foot-ik",
+   "williams-survival-kit"
+  ]
  }
 }

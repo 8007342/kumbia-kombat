@@ -1,0 +1,182 @@
+{
+ "schema": "kumbia.animation-references/v1",
+ "$comment": "Project-wide animation authorities. The generation pipeline (tool/art/pipeline/) reads this file: every pose's phase selects principles, their promptFragments are appended to the image prompt, and their ids are written into each frame's provenance and the family spec's animationReferences. Research sources: plan/dance-fluidity-pass.md and plan/opponent-depth-staging-pass.md (Mācron passes, 2026-10-28), the animation research register on work/2610-pipe (plan/animation-research-register.md), and plan/research/gatekeeper-dance-2026-11-02.md. Fragments are kept short because SDXL's text encoder reads 77-token chunks.",
+ "sources": {
+  "disney-process": {
+   "title": "Walt Disney Animation Studios: Animation process",
+   "url": "https://www.disneyanimation.com/process/animation/",
+   "authority": "studio",
+   "usedBy": ["plan/dance-fluidity-pass.md", "plan/opponent-depth-staging-pass.md"]
+  },
+  "illusion-of-life": {
+   "title": "Frank Thomas & Ollie Johnston, The Illusion of Life: Disney Animation (1981) — the twelve principles",
+   "url": "https://archive.org/details/illusionoflifedi00thom",
+   "authority": "studio",
+   "usedBy": ["plan/research/gatekeeper-dance-2026-11-02.md"]
+  },
+  "williams-survival-kit": {
+   "title": "Richard Williams, The Animator's Survival Kit (2001)",
+   "url": "https://www.harvard.com/book/9780865478978",
+   "authority": "practitioner",
+   "usedBy": ["plan/research/gatekeeper-dance-2026-11-02.md"]
+  },
+  "cartwright-gdc2014": {
+   "title": "Mariel Cartwright (Lab Zero), GDC 2014: Fluid and Powerful Animation within Frame Restrictions",
+   "url": "https://media.gdcvault.com/GDC2014/Presentations/Cartwright_Muriel_Animation_Bootcamp_Fluid.pdf",
+   "authority": "game-studio",
+   "usedBy": ["plan/dance-fluidity-pass.md", "plan/opponent-depth-staging-pass.md"]
+  },
+  "slynyrd-53": {
+   "title": "SLYNYRD Pixelblog 53: Punches and Kicks",
+   "url": "https://www.slynyrd.com/blog/2024/11/25/pixelblog-53-punches-and-kicks",
+   "authority": "pixel-art",
+   "usedBy": ["plan/dance-fluidity-pass.md"]
+  },
+  "slynyrd-55": {
+   "title": "SLYNYRD Pixelblog 55: Top-down character animation",
+   "url": "https://www.slynyrd.com/blog/2025/3/24/pixelblog-55-top-down-character-animation",
+   "authority": "pixel-art",
+   "usedBy": ["plan/dance-fluidity-pass.md"]
+  },
+  "dead-cells-pipeline": {
+   "title": "Thomas Vasseur (Motion Twin): Dead Cells 3D-to-2D animation pipeline",
+   "url": "https://www.gamedeveloper.com/production/art-design-deep-dive-using-a-3d-pipeline-for-2d-animation-in-i-dead-cells-i-",
+   "authority": "game-studio",
+   "usedBy": ["work/2610-pipe:plan/animation-research-register.md"]
+  },
+  "ubisoft-foot-ik": {
+   "title": "Roche & Torres-Cros (Ubisoft), GDC 2016: Fitting the World — A Biomechanical Approach to Foot IK",
+   "url": "https://gdcvault.com/play/1023009/Fitting-the-World-A-Biomechanical",
+   "authority": "game-studio",
+   "usedBy": ["work/2610-pipe:plan/animation-research-register.md"]
+  },
+  "simogo-bsb": {
+   "title": "Simogo: Beat Sneak Bandit retrospective",
+   "url": "https://simogo.com/work/beat-sneak-bandit/",
+   "authority": "game-studio",
+   "usedBy": ["plan/dance-fluidity-pass.md", "plan/opponent-depth-staging-pass.md"]
+  },
+  "contrapposto-fonseca": {
+   "title": "J. Fonseca (Bournemouth University): contrapposto and weight in character posing",
+   "url": "https://eprints.bournemouth.ac.uk/25588/1/Jose%20Fonseca_Poster_BU_OpenAcess.pdf",
+   "authority": "academic",
+   "usedBy": ["plan/research/gatekeeper-dance-2026-11-02.md"]
+  },
+  "twinning": {
+   "title": "Animator Island: Twinning 102",
+   "url": "https://www.animatorisland.com/?p=2053",
+   "authority": "practitioner",
+   "usedBy": ["plan/research/gatekeeper-dance-2026-11-02.md"]
+  },
+  "silhouette-test": {
+   "title": "Sprite silhouette test for character readability",
+   "url": "https://freegamesprites.com/es/news/sprite-silhouette-test-character-readability",
+   "authority": "pixel-art",
+   "usedBy": ["plan/research/gatekeeper-dance-2026-11-02.md"]
+  }
+ },
+ "principles": [
+  {
+   "id": "staging-silhouette",
+   "name": "Staging / clear silhouette",
+   "sources": ["disney-process", "illusion-of-life", "silhouette-test", "cartwright-gdc2014"],
+   "phases": ["*"],
+   "guidance": "The active limb reads against empty background, never across the torso; one idea per drawing.",
+   "promptFragment": "clear readable silhouette",
+   "negativeFragment": "limbs merged into body",
+   "rigCheck": "check_poses.py: no 2D limb crossings; wrist clearance from head"
+  },
+  {
+   "id": "line-of-action",
+   "name": "Line of action",
+   "sources": ["williams-survival-kit", "illusion-of-life"],
+   "phases": ["accent", "peak", "proud", "finish", "offer", "open_hand"],
+   "guidance": "One C or S curve from the planted foot through the spine to the accent limb.",
+   "promptFragment": "dynamic dance pose, strong line of action",
+   "negativeFragment": "stiff pose, straight rigid body"
+  },
+  {
+   "id": "contrapposto",
+   "name": "Weight and contrapposto",
+   "sources": ["contrapposto-fonseca", "illusion-of-life", "ubisoft-foot-ik"],
+   "phases": ["*"],
+   "guidance": "Hip line and shoulder line tilt in opposite directions; the hip rises over the support foot; the support foot stays planted.",
+   "promptFragment": "weight on one leg, hips tilted",
+   "negativeFragment": "floating, feet off ground",
+   "rigCheck": "pelvis_roll keyed; support ankle pinned; check_poses.py support drift"
+  },
+  {
+   "id": "anticipation",
+   "name": "Anticipation",
+   "sources": ["disney-process", "illusion-of-life", "cartwright-gdc2014", "williams-survival-kit"],
+   "phases": ["prep", "load", "notice", "contact", "open"],
+   "guidance": "Compact, low, gathered key before the accent (body down 5–8% of height) so the peak reads big by contrast.",
+   "promptFragment": "crouched, gathering energy, knees bent",
+   "negativeFragment": ""
+  },
+  {
+   "id": "exaggeration-accent",
+   "name": "Exaggeration on the accent",
+   "sources": ["illusion-of-life", "cartwright-gdc2014", "slynyrd-53"],
+   "phases": ["peak", "accent", "proud", "finish_a", "finish_b"],
+   "guidance": "The beat accent is the most extended, clearest key; favour it with a hold.",
+   "promptFragment": "exaggerated energetic pose",
+   "negativeFragment": ""
+  },
+  {
+   "id": "follow-through",
+   "name": "Follow-through and overlapping action",
+   "sources": ["disney-process", "illusion-of-life", "cartwright-gdc2014"],
+   "phases": ["follow", "release", "settle", "return"],
+   "guidance": "Hat brim and shirt hem trail the body by one drawing; the limb overshoots then settles.",
+   "promptFragment": "shirt hem swinging, follow-through",
+   "negativeFragment": ""
+  },
+  {
+   "id": "secondary-action",
+   "name": "Secondary action",
+   "sources": ["disney-process", "illusion-of-life"],
+   "phases": ["groove", "watch", "hold", "approval", "nod"],
+   "guidance": "Hat settle, shoulder shimmy and head nod support the main action without competing with the call.",
+   "promptFragment": "relaxed shoulders, playful attitude",
+   "negativeFragment": ""
+  },
+  {
+   "id": "no-twinning",
+   "name": "Asymmetry (no twinning)",
+   "sources": ["twinning", "williams-survival-kit"],
+   "phases": ["*"],
+   "guidance": "Arms and legs never mirror each other exactly, except the clap contact.",
+   "promptFragment": "asymmetric pose",
+   "negativeFragment": "symmetrical pose, mirrored arms"
+  },
+  {
+   "id": "timing-on-beat",
+   "name": "Timing owned by the music",
+   "sources": ["simogo-bsb", "disney-process"],
+   "phases": ["*"],
+   "guidance": "Drawings are beat-sampled keys; the audio transport owns accents. Never generate timing — only poses.",
+   "promptFragment": "",
+   "negativeFragment": "motion blur"
+  },
+  {
+   "id": "planted-pivot",
+   "name": "Planted pivots and grounded steps",
+   "sources": ["slynyrd-55", "ubisoft-foot-ik", "dead-cells-pipeline"],
+   "phases": ["contact", "down", "pass", "groove", "shift"],
+   "guidance": "Contact, down and passing positions keep a single planted foot on the ground line.",
+   "promptFragment": "feet firmly on the ground",
+   "negativeFragment": "jumping, feet off ground"
+  },
+  {
+   "id": "keys-before-volume",
+   "name": "Validate keys before volume",
+   "sources": ["dead-cells-pipeline", "cartwright-gdc2014"],
+   "phases": [],
+   "guidance": "Review pose keys at game size and tempo before bulk generation; this is a process rule, not a prompt.",
+   "promptFragment": "",
+   "negativeFragment": "",
+   "process": "contact sheet + clip GIF review gate before atlas promotion"
+  }
+ ]
+}
