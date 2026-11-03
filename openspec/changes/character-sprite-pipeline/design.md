@@ -277,7 +277,7 @@ distances in OKLab scaled by 100:
 |---|---|---|
 | Trousers `#3A1A38`, all four shades | none | Clear, no change |
 | Apron `#7A1F57`, base shade | `plum` | Moves to `#7A3057`, distance 3.29 |
-| Apron's three other shades (`#270014`, `#4E0033`, `#934671`) | none | Clear, though the shared ramp pass nudges them slightly to avoid collisions |
+| Apron's other shades from `#7A1F57` (`#270014`, `#4E0033`, `#934671`) | none | Clear. With the nudge the ramp is rebuilt from the new base: `#290014`, `#500E34`, `#7A3057`, `#945272` |
 
 Options for the apron:
 
