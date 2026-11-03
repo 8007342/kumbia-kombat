@@ -34,6 +34,9 @@
 - [x] 4.9 Implement named variants: colour-only variants emit a ramp LUT and manifest `ramps`; verify applying the LUT to the base atlas equals the recoloured frames, byte for byte, with no GPU call
 - [x] 4.10 Update `tool/art/pipeline/README.md` with the new stages and verify its commands run
 
+- [ ] 4.11 Add one `art build <character>` command chaining definitions, planner, stages and pack, so `plan_jobs.py` only queues what the planner selects; verify with a no-GPU fixture that an unchanged rebuild queues nothing and a colour edit queues nothing but recolours
+- [ ] 4.12 Make `secondaryMotion` real or refuse it: implement the one-drawing apron and shirt lag, and reject unsupported values by name; verify with a rig test comparing consecutive drawings
+
 ## 5. Backends and bake-off (needs studio)
 
 - [ ] 5.1 Confirm `studio.start` works and which pins are live; record exact basenames in the backend definitions, and verify by a one-image run per backend
