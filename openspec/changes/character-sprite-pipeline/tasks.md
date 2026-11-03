@@ -4,7 +4,7 @@
 
 - [x] 1.1 Rebuild `~/.cache/kumbia-art` and `~/.cache/kumbia-bpy`, re-render Gatekeeper to a scratch dir, and verify `check_poses.py` passes and pose IDs match the committed `rig.json`
 - [x] 1.2 Fix the inverted region map in `suggest.py` with OKLab ΔE scoring; verify with a test that a synthetic wrong-hat candidate ranks last and that uniform or missing scores abort (D9)
-- [ ] 1.3 Check whether `~/.cache/tillandsias-project` survives a forge restart (ask macuahuitl-fedora) and pick the cache root; document it in `tool/art/pipeline/README.md`
+- [x] 1.3 Check whether `~/.cache/tillandsias-project` survives a forge restart (ask macuahuitl-fedora) and pick the cache root; document it in `tool/art/pipeline/README.md`
 
 ## 2. Definitions and compiler
 
@@ -53,7 +53,7 @@
 
 ## 7. Bartender: the generality test
 
-- [ ] 7.1 Author `characters/bartender.json` only; verify no pipeline code changes are needed, as shown by the diff touching only definitions and shared library additions
+- [x] 7.1 Author `characters/bartender.json` only; verify no pipeline code changes are needed, as shown by the diff touching only definitions and shared library additions
 - [ ] 7.2 Resolve the plum gate question for apron and trousers with a palette check; record the decision
 - [ ] 7.3 Render, check, and review contact sheet and clip GIFs; verify `check_poses.py` passes on her proportions, with any motion overrides recorded in her definition
 - [ ] 7.4 Generate proof clips, then all 64 drawings; deliver a candidate `bartender` atlas and review gallery

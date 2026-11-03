@@ -1,0 +1,130 @@
+{
+ "id": "bartender",
+ "family": "bartender-v1",
+ "style": "party-pixel",
+ "description": "Bar opponent Bartender, level 2 Swag: the 64-drawing opponent target on the same pipeline as Gatekeeper (plan/opponent-depth-staging-pass.md). Owner brief 2026-11-03: fully buttoned, fully clothed adult professional who dances superbly.",
+ "body": {
+  "preset": "slim-adult"
+ },
+ "pronouns": [
+  "she",
+  "her",
+  "her"
+ ],
+ "skin": "#B5784A",
+ "traits": "friendly adult woman bartender, warm confident smile, shirt buttoned to the collar and waistcoat fully buttoned, fully clothed",
+ "demeanor": "dignified professional who dances superbly",
+ "garments": [
+  {
+   "id": "hair",
+   "shape": "puff",
+   "region": "hair",
+   "colour": "#2A1712",
+   "text": "compact curly dark hair tied up in a rounded puff"
+  },
+  {
+   "id": "shirt",
+   "shape": "shirt-fitted",
+   "region": "shirt",
+   "colour": "#E8DDC2",
+   "text": "ivory shirt with a closed collar"
+  },
+  {
+   "id": "sleeves",
+   "shape": "sleeve-rolled",
+   "region": "shirt",
+   "colour": "#D9CCAC",
+   "text": "rolled ivory sleeves"
+  },
+  {
+   "id": "waistcoat",
+   "shape": "waistcoat-fitted",
+   "region": "cloth",
+   "colour": "#0F5A5E",
+   "text": "high-buttoned deep teal waistcoat covering the chest",
+   "secondaryMotion": "lag-1"
+  },
+  {
+   "id": "apron",
+   "shape": "waist-apron",
+   "region": "apron",
+   "colour": "#7A1F57",
+   "text": "plum apron tied at the waist",
+   "nudge": true,
+   "secondaryMotion": "lag-1"
+  },
+  {
+   "id": "trousers",
+   "shape": "trousers",
+   "region": "trousers",
+   "colour": "#3A1A38",
+   "text": "dark plum trousers"
+  },
+  {
+   "id": "shoes",
+   "shape": "shoes-heeled",
+   "region": "shoes",
+   "colour": "#C98A1E",
+   "text": "amber dance shoes"
+  }
+ ],
+ "props": [
+  {
+   "id": "shaker",
+   "kind": "shaker",
+   "hand": "right",
+   "colour": "#BFC6CC",
+   "text": "small silver cocktail shaker",
+   "clips": [
+    "groove",
+    "challenge"
+   ]
+  }
+ ],
+ "motion": {
+  "set": "opponent-64",
+  "overrides": {
+   "finish_turn.finish_a": {
+    "intent": "weight on the straight right leg, left heel set forward with the toe up, left fist on the hip, right hand rising beside the head toward the hair puff, chest proud, chin up"
+   },
+   "finish_turn.finish_b": {
+    "intent": "right fingertips touching the side of the hair puff in a courteous flourish, head dipped slightly, chest proud, left elbow out with the fist on the hip, left heel forward with the toe up"
+   }
+  }
+ },
+ "references": {
+  "mode": "derive",
+  "sources": [
+   {
+    "role": "identity",
+    "image": "assets/art/bar/bartender.png",
+    "crop": {
+     "frame": "full",
+     "rect": [
+      160,
+      70,
+      780,
+      1400
+     ]
+    },
+    "adapter": "ip-adapter-sdxl",
+    "weight": 0.7
+   }
+  ]
+ },
+ "targets": [
+  {
+   "room": "bar",
+   "atlas": "bartender",
+   "out": "assets/art/ensemble/bartender-v3.png",
+   "native": [
+    96,
+    120
+   ],
+   "pixelScale": 8,
+   "camera": "floor-perspective"
+  }
+ ],
+ "seedBase": 940000,
+ "variants": {}
+}

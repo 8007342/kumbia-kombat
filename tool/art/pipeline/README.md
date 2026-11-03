@@ -48,7 +48,7 @@ $PY tool/art/pipeline/ramps.py lut gatekeeper <variant>         # a colour-only 
 | Module | Stage |
 |---|---|
 | `art.py` | The whole chain: reuses stored frames, recolours without a GPU, and queues only what is left |
-| `stages.py` | Content-addressed store; outputs keyed by the hash of their inputs. Root: `$KUMBIA_ART_CACHE`, else `~/.cache/tillandsias-project/kumbia-art` (survival across forges is still to be confirmed) |
+| `stages.py` | Content-addressed store; outputs keyed by the hash of their inputs. Root: `$KUMBIA_ART_CACHE`, else `~/.cache/tillandsias-project/kumbia-art` (a persistent per-project volume: it survives forge restarts, confirmed by macuahuitl-fedora 2026-11-03) |
 | `planner.py` | Per-frame update mode (`recolour`, `finish`, `masked`, `full`) and `frame_key`, which covers only what can show in that frame |
 | `selection.py` | `{pose: {k, key, accepted}}`; a changed key returns just that frame to review |
 | `masked.py` | Changed-region mask, masked job args, and the composite that keeps outside pixels byte-identical |
