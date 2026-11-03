@@ -28,6 +28,7 @@ import json
 import shutil
 from pathlib import Path
 
+import numpy as np
 from PIL import Image
 
 LANE = Path("/work/tmp/imagegen/kumbia")
@@ -44,12 +45,14 @@ def hex_rgb(h: str) -> tuple[int, int, int]:
 
 
 def proxy(regions_png: Path, regions: dict, proxy_cols: dict, out: Path) -> None:
-    im = Image.open(regions_png).convert("RGBA")
-    lut = {hex_rgb(c): hex_rgb(proxy_cols[name]) for c, name in regions.items() if name in proxy_cols}
-    px = [(lut.get(p[:3], p[:3]) if p[3] >= 128 else BG) for p in im.get_flattened_data()]
-    o = Image.new("RGB", im.size)
-    o.putdata(px)
-    o.save(out)
+    a = np.asarray(Image.open(regions_png).convert("RGBA"))
+    res = np.empty(a.shape[:2] + (3,), np.uint8)
+    res[:] = a[..., :3]
+    for c, name in regions.items():
+        if name in proxy_cols:
+            res[np.all(a[..., :3] == hex_rgb(c), axis=-1)] = hex_rgb(proxy_cols[name])
+    res[a[..., 3] < 128] = BG
+    Image.fromarray(res, "RGB").save(out)
 
 
 def compose_prompt(spec: dict, pose: dict, principles: dict) -> tuple[str, str]:
@@ -74,32 +77,27 @@ def compose_prompt(spec: dict, pose: dict, principles: dict) -> tuple[str, str]:
     return ", ".join(parts), neg
 
 
-def main() -> None:
-    ap = argparse.ArgumentParser()
-    ap.add_argument("spec")
-    ap.add_argument("--run", required=True)
-    ap.add_argument("--only", default="")
-    ap.add_argument("--count", type=int, default=None)
-    ap.add_argument("--tier", default="I1")
-    a = ap.parse_args()
-
-    spec_p = Path(a.spec)
+def plan_run(spec_path: str | Path, run: str, *, only: set[str] | None = None, count: int | None = None, tier: str = "I1",
+             lane_root: Path = LANE, runs_root: Path = Path("art_runs"), identity: str | None = None,
+             jobs_name: str = "jobs.json") -> list[dict]:
+    """Stage inputs for the poses in `only` (all when None) and write the run's job list."""
+    spec_p = Path(spec_path)
     spec = json.loads(spec_p.read_text())
     refs = json.loads(Path(spec["animationReferences"]["registry"]).read_text())
     principles = {p["id"]: p for p in refs["principles"]}
     gen = spec["generation"]
-    count = a.count or gen.get("count_per_pose", 1)
-    only = {x for x in a.only.split(",") if x}
+    count = count or gen.get("count_per_pose", 1)
+    only = only or set()
 
-    lane = LANE / a.run / "in"
+    lane = Path(lane_root) / run / "in"
     lane.mkdir(parents=True, exist_ok=True)
-    run_dir = Path("art_runs") / a.run
+    run_dir = Path(runs_root) / run
     run_dir.mkdir(parents=True, exist_ok=True)
 
     ident = spec["references"][0]
     ident_out = lane / "identity.png"
-    src = Image.open(ident["image"]).convert("RGBA")
-    crop = ident.get("crop")
+    src = Image.open(identity or ident["image"]).convert("RGBA")
+    crop = None if identity else ident.get("crop")
     if isinstance(crop, dict) and "rect" in crop:
         x, y, w, h = crop["rect"]
         src = src.crop((x, y, x + w, y + h))
@@ -134,7 +132,7 @@ def main() -> None:
             "profile": profile,
             "args": {
                 "workflow": gen["workflowsByProfile"][profile],
-                "tier": a.tier,
+                "tier": tier,
                 "count": count,
                 "inputs": wf_inputs,
                 "init_image": str(init),
@@ -144,23 +142,36 @@ def main() -> None:
             "inputHashes": {k: sha(Path(v)) for k, v in staged.items()},
         })
 
-    (run_dir / "jobs.json").write_text(json.dumps(jobs, indent=1, ensure_ascii=False) + "\n")
+    (run_dir / jobs_name).write_text(json.dumps(jobs, indent=1, ensure_ascii=False) + "\n")
     run = {
-        "run": a.run,
+        "run": run,
         "created": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"),
         "family": str(spec_p),
         "familySha256": sha(spec_p),
         "contract": spec["contract"],
-        "tier": a.tier,
+        "tier": tier,
         "countPerPose": count,
         "poses": len(jobs),
         "workflows": {k: sha(Path(v)) for k, v in gen["workflowsByProfile"].items()},
-        "identity": {"image": ident["image"], "crop": ident.get("crop"), "sha256": sha(Path(ident["image"]))},
+        "identity": {"image": identity or ident["image"], "crop": crop, "sha256": sha(Path(identity or ident["image"]))},
         "animationReferences": spec["animationReferences"],
         "status": "planned",
     }
     (run_dir / "run.json").write_text(json.dumps(run, indent=1, ensure_ascii=False) + "\n")
-    print(f"{len(jobs)} jobs -> {run_dir}/jobs.json ; inputs staged in {lane}")
+    return jobs
+
+
+def main() -> None:
+    ap = argparse.ArgumentParser()
+    ap.add_argument("spec")
+    ap.add_argument("--run", required=True)
+    ap.add_argument("--only", default="")
+    ap.add_argument("--count", type=int, default=None)
+    ap.add_argument("--tier", default="I1")
+    a = ap.parse_args()
+    only = {x for x in a.only.split(",") if x}
+    jobs = plan_run(a.spec, a.run, only=only, count=a.count, tier=a.tier)
+    print(f"{len(jobs)} jobs -> art_runs/{a.run}/jobs.json ; inputs staged in {LANE / a.run / 'in'}")
 
 
 if __name__ == "__main__":

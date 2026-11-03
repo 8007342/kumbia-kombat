@@ -33,6 +33,11 @@ Edit a definition, then:
 
 ```bash
 PY=~/.cache/kumbia-art/bin/python
+$PY tool/art/pipeline/art.py build gatekeeper --dry-run         # every frame's action; changes nothing
+$PY tool/art/pipeline/art.py build gatekeeper                   # rig, spec, recolours, then jobs.json or the atlas
+#   run art_runs/<run>/jobs.json through studio.run_workflow, collect, select, finish into final/, then:
+$PY tool/art/pipeline/art.py ingest gatekeeper --run <run>      # store the frames; build again to pack
+$PY tool/art/pipeline/art.py accept-reference bartender --image <png>   # releases jobs a derived reference holds
 $PY tool/art/pipeline/definitions.py character gatekeeper      # refusals name the field
 $PY tool/art/pipeline/planner.py plan gatekeeper                # impact of the edit vs HEAD; changes nothing
 $PY tool/art/pipeline/planner.py plan-style party-pixel         # which characters a style edit reaches
@@ -42,6 +47,7 @@ $PY tool/art/pipeline/ramps.py lut gatekeeper <variant>         # a colour-only 
 
 | Module | Stage |
 |---|---|
+| `art.py` | The whole chain: reuses stored frames, recolours without a GPU, and queues only what is left |
 | `stages.py` | Content-addressed store; outputs keyed by the hash of their inputs. Root: `$KUMBIA_ART_CACHE`, else `~/.cache/tillandsias-project/kumbia-art` (survival across forges is still to be confirmed) |
 | `planner.py` | Per-frame update mode (`recolour`, `finish`, `masked`, `full`) and `frame_key`, which covers only what can show in that frame |
 | `selection.py` | `{pose: {k, key, accepted}}`; a changed key returns just that frame to review |

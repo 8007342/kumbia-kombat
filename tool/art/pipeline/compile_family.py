@@ -108,9 +108,12 @@ def palette_doc(c: dict, style: dict, ramps: dict) -> dict:
 
 
 def compile_character(ident: str, backend_id: str | None = None) -> tuple[dict, dict, dict]:
-    c = D.load_character(ident)
+    return compile_definition(D.load_character(ident), backend_id)
+
+
+def compile_definition(c: dict, backend_id: str | None = None) -> tuple[dict, dict, dict]:
     if c.get("status") == "rig-only":
-        raise D.DefinitionError([f"status: {ident} is rig-only and has no family spec yet"])
+        raise D.DefinitionError([f"status: {c['id']} is rig-only and has no family spec yet"])
     style = D.load_style(c["style"])
     motion = D.load_motion(c["motion"]["set"])
     backend = D.resolve_backend(c, style, backend_id)
@@ -129,13 +132,20 @@ def main() -> None:
         spec, palette, motion = compile_character(a.character, a.backend)
     except (D.DefinitionError, C.GateViolation) as e:
         sys.exit(f"refused:{a.character}:{e}")
+    n, used, out = write_family(spec, palette, motion)
+    print(f"compiled {a.character} -> {out.relative_to(ROOT)}: {n} poses, {used} principles, {len(palette['colours'])} palette colours")
+
+
+def write_family(spec: dict, palette: dict, motion: dict, families: Path | None = None, palettes: Path | None = None):
+    """Fill the spec from the rig and write it with its palette. Returns (poses, principles, spec path)."""
     import os
     os.chdir(ROOT)
     n, used = apply_rig(spec, motion.get("research"))
-    (ROOT / spec["palette"]["locked"]).write_text(json.dumps(palette, indent=1, ensure_ascii=False) + "\n")
-    out = ROOT / "tool" / "art" / "families" / f"{spec['family']}.json"
+    palette_out = (palettes / Path(spec["palette"]["locked"]).name) if palettes else ROOT / spec["palette"]["locked"]
+    palette_out.write_text(json.dumps(palette, indent=1, ensure_ascii=False) + "\n")
+    out = (families or ROOT / "tool" / "art" / "families") / f"{spec['family']}.json"
     out.write_text(json.dumps(spec, indent=1, ensure_ascii=False) + "\n")
-    print(f"compiled {a.character} -> {out.relative_to(ROOT)}: {n} poses, {used} principles, {len(palette['colours'])} palette colours")
+    return n, used, out
 
 
 if __name__ == "__main__":
