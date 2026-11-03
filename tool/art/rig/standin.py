@@ -41,7 +41,11 @@ from PIL import Image, ImageDraw, ImageFilter
 
 ROOT = Path(__file__).resolve().parents[3]
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from poses import CLIPS_BY_CHARACTER, INTENT_BY_CHARACTER, Pose  # noqa: E402
+sys.path.insert(0, str(ROOT / "tool" / "art" / "pipeline"))
+import definitions as D  # noqa: E402
+from garments import build_character  # noqa: E402
+from poses import INTENT_BY_SET, MOTION_SETS, Pose, apply_overrides, intent_text  # noqa: E402
+from prims import _MATS, emission_mat, srgb_to_linear  # noqa: E402
 
 # ---------------------------------------------------------------- characters
 
@@ -64,46 +68,30 @@ class Proportions:
     ankle_h: float
     limb_r: dict = field(default_factory=dict)
     human: bool = True
+    orthoScale: float = 2.5
+    centerZ: float = 1.10
 
 
-# Stocky uncle (assets/art/ensemble/gatekeeper-v2.png): broad chest, round
-# belly about 1.35x the hip width, thick upper arms and thighs, short neck,
-# head about 1/5.5 of total height, hat brim wider than the shoulders.
-GATEKEEPER = Proportions(
-    hip_height=0.90, torso=0.50, neck=0.05, head_r=0.15,
-    shoulder_half=0.23, hip_half=0.12, upper_arm=0.30, forearm=0.27,
-    thigh=0.43, shin=0.41, foot=0.24, ankle_h=0.07,
-    limb_r={"torso": 0.235, "belly": 0.27, "arm": 0.078, "fore": 0.06,
-            "thigh": 0.11, "shin": 0.078, "brim": 0.31, "crown": 0.15},
-)
+@dataclass(frozen=True)
+class Rig:
+    """One character ready to render: its definition and resolved body."""
 
-# Mācron: toy robot, ~.35 adult stature. The rig is authored at adult scale
-# and the camera frames it identically, so frames stay comparable; final
-# stature comes from the game's floor projection, never from these numbers.
-MACRON = Proportions(
-    hip_height=0.42, torso=0.30, neck=0.05, head_r=0.30,
-    shoulder_half=0.17, hip_half=0.08, upper_arm=0.17, forearm=0.15,
-    thigh=0.20, shin=0.18, foot=0.12, ankle_h=0.05,
-    limb_r={"torso": 0.15, "belly": 0.15, "arm": 0.055, "fore": 0.055,
-            "thigh": 0.065, "shin": 0.065},
-    human=False,
-)
+    definition: dict
+    p: Proportions
+    regions: dict
+    clips: dict
 
-CHARACTERS = {"gatekeeper": GATEKEEPER, "macron": MACRON}
+    @classmethod
+    def load(cls, ident: str) -> "Rig":
+        return cls.from_definition(D.load_character(ident))
 
-# Region colours. Gatekeeper matches tool/art/families/gatekeeper-v3.json.
-REGIONS = {
-    "gatekeeper": {"skin": "#FF0000", "hair": "#00FF00", "cloth": "#0000FF",
-                   "hat": "#FFFF00", "shoes": "#00FFFF", "accessory": "#FF00FF",
-                   "trousers": "#FF8000"},
-    "macron": {"shell": "#FFFFFF", "screen": "#0000FF", "joint": "#00FFFF",
-               "antenna": "#FFFF00", "cuff": "#FF00FF", "limb": "#FF8000",
-               "chest_light": "#00FF00"},
-}
+    @classmethod
+    def from_definition(cls, c: dict) -> "Rig":
+        clips = apply_overrides(MOTION_SETS[c["motion"]["set"]], c["motion"].get("overrides", {}))
+        return cls(c, Proportions(**D.body_of(c)), D.rig_regions(c), clips)
 
-CANVAS = (768, 960)          # generation canvas (family frame.generationCanvas)
-ORTHO = {"gatekeeper": 2.5, "macron": 1.8}   # metres of canvas height
-CENTER_Z = {"gatekeeper": 1.10, "macron": 0.74}
+
+CANVAS = (768, 960)          # generation canvas (style frame.generationCanvas)
 VIEW_YAW = {"front": 0, "front_3q": 35, "profile": 90, "rear_3q": 145,
             "rear": 180, "rear_3q_opp": -145, "profile_opp": -90,
             "front_3q_opp": -35}
@@ -289,19 +277,11 @@ def solve(p: Proportions, pose: Pose, support: str) -> dict:
 # ---------------------------------------------------------------- scene
 
 
-def srgb_to_linear(c: float) -> float:
-    return c / 12.92 if c <= 0.04045 else ((c + 0.055) / 1.055) ** 2.4
-
-
 def hex_rgb_255(h: str) -> tuple[int, int, int]:
     return tuple(int(h[i:i + 2], 16) for i in (1, 3, 5))  # type: ignore[return-value]
 
 
-def hex_rgb(h: str) -> tuple[float, float, float]:
-    return tuple(int(h[i:i + 2], 16) / 255 for i in (1, 3, 5))  # type: ignore[return-value]
-
-
-def reset_scene(character: str, camera: str) -> None:
+def reset_scene(p: Proportions, camera: str) -> None:
     bpy.ops.wm.read_factory_settings(use_empty=True)
     sc = bpy.context.scene
     sc.render.engine = "CYCLES"
@@ -325,11 +305,11 @@ def reset_scene(character: str, camera: str) -> None:
     sc.world = world
     cam_data = bpy.data.cameras.new("cam")
     cam_data.type = "ORTHO"
-    cam_data.ortho_scale = ORTHO[character]
+    cam_data.ortho_scale = p.orthoScale
     cam = bpy.data.objects.new("cam", cam_data)
     sc.collection.objects.link(cam)
     sc.camera = cam
-    cz = CENTER_Z[character]
+    cz = p.centerZ
     if camera == "side-on":
         # Side-on levels look along -X at the character's left profile.
         cam.location = (10, 0, cz)
@@ -338,145 +318,6 @@ def reset_scene(character: str, camera: str) -> None:
         cam.location = (0, -10, cz)
         cam.rotation_euler = (math.pi / 2, 0, 0)
 
-
-_MATS: dict[str, bpy.types.Material] = {}
-
-
-def emission_mat(name: str, rgb: tuple[float, float, float] | None) -> bpy.types.Material:
-    key = name
-    if key in _MATS and _MATS[key].name in bpy.data.materials:
-        return _MATS[key]
-    m = bpy.data.materials.new(name)
-    with warnings.catch_warnings():
-        warnings.simplefilter("ignore", DeprecationWarning)
-        m.use_nodes = True
-    nt = m.node_tree
-    nt.nodes.clear()
-    out = nt.nodes.new("ShaderNodeOutputMaterial")
-    em = nt.nodes.new("ShaderNodeEmission")
-    em.inputs["Strength"].default_value = 1.0
-    if rgb is None:  # depth: read the per-vertex attribute
-        attr = nt.nodes.new("ShaderNodeAttribute")
-        attr.attribute_name = "depth"
-        nt.links.new(attr.outputs["Color"], em.inputs["Color"])
-    else:
-        em.inputs["Color"].default_value = (*[srgb_to_linear(c) for c in rgb], 1)
-    nt.links.new(em.outputs["Emission"], out.inputs["Surface"])
-    _MATS[key] = m
-    return m
-
-
-def add_capsule(a: Vector, b: Vector, r: float, region: str, regions: dict) -> None:
-    d = b - a
-    length = d.length
-    mid = (a + b) / 2
-    bpy.ops.mesh.primitive_cylinder_add(vertices=20, radius=r, depth=max(length, 1e-4), location=mid)
-    cyl = bpy.context.object
-    cyl.rotation_euler = d.to_track_quat("Z", "Y").to_euler()
-    _assign(cyl, region, regions)
-    for end in (a, b):
-        add_sphere(end, r, region, regions)
-
-
-def add_sphere(c: Vector, r: float, region: str, regions: dict, scale=(1, 1, 1), rot_m: Matrix | None = None) -> bpy.types.Object:
-    bpy.ops.mesh.primitive_uv_sphere_add(segments=24, ring_count=12, radius=r, location=c)
-    o = bpy.context.object
-    o.scale = scale
-    if rot_m is not None:
-        o.rotation_euler = rot_m.to_euler()
-    _assign(o, region, regions)
-    return o
-
-
-def add_box(c: Vector, size: tuple, region: str, regions: dict, rot_m: Matrix | None = None, bevel: float = 0.0) -> bpy.types.Object:
-    bpy.ops.mesh.primitive_cube_add(size=1, location=c)
-    o = bpy.context.object
-    o.scale = size
-    if rot_m is not None:
-        o.rotation_euler = rot_m.to_euler()
-    if bevel:
-        mod = o.modifiers.new("bevel", "BEVEL")
-        mod.width = bevel
-        mod.segments = 6
-        mod.affect = "EDGES"
-        bpy.ops.object.transform_apply(scale=True)
-        bpy.ops.object.modifier_apply(modifier="bevel")
-    _assign(o, region, regions)
-    return o
-
-
-def add_cyl(c: Vector, r: float, depth: float, region: str, regions: dict, rot_m: Matrix | None = None) -> None:
-    bpy.ops.mesh.primitive_cylinder_add(vertices=24, radius=r, depth=depth, location=c)
-    o = bpy.context.object
-    if rot_m is not None:
-        o.rotation_euler = rot_m.to_euler()
-    _assign(o, region, regions)
-
-
-def _assign(o: bpy.types.Object, region: str, regions: dict) -> None:
-    o.data.materials.append(emission_mat("r_" + region, hex_rgb(regions[region])))
-
-
-def build_gatekeeper(p: Proportions, j: dict, regions: dict) -> None:
-    R = p.limb_r
-    up = (j["chest"] - j["pelvis"]).normalized()
-    torso_rot = up.to_track_quat("Z", "Y").to_matrix()
-    # Stocky torso: broad chest capsule + round belly (shirt = cloth region),
-    # trousers waist block that tilts with pelvis_roll.
-    add_capsule(j["pelvis"] + up * 0.16, j["chest"] - up * 0.02, R["torso"], "cloth", regions)
-    add_sphere(j["chest"] - up * 0.06, R["torso"], "cloth", regions, scale=(1.12, 0.9, 0.85), rot_m=torso_rot)
-    add_sphere(j["pelvis"] + up * 0.2, R["belly"], "cloth", regions, scale=(1.0, 1.0, 0.95), rot_m=torso_rot)
-    add_capsule(j["l_hip"] + up * 0.04, j["r_hip"] + up * 0.04, R["thigh"] * 1.25, "trousers", regions)
-    add_capsule(j["chest"], j["neck"], 0.06, "skin", regions)
-    hr: Matrix = j["_head_rot"]
-    hd = p.head_r
-    add_sphere(j["head"], hd, "skin", regions, scale=(0.95, 0.95, 1.05), rot_m=hr)
-    # Hair at the back of the head, moustache, hat brim and crown on top.
-    add_sphere(j["head"] + hr @ Vector((0, 0.06, 0.0)), hd * 0.9, "hair", regions, scale=(0.97, 0.75, 0.85), rot_m=hr)
-    add_sphere(j["head"] + hr @ Vector((0, -hd * 0.92, -hd * 0.3)), 0.035, "hair", regions, scale=(1.7, 0.6, 0.45), rot_m=hr)
-    add_cyl(j["head"] + hr @ Vector((0, 0, hd * 0.6)), R["brim"], 0.022, "hat", regions, rot_m=hr)
-    add_cyl(j["head"] + hr @ Vector((0, 0, hd * 1.05)), R["crown"], 0.13, "hat", regions, rot_m=hr)
-    for s in ("l", "r"):
-        add_capsule(j[f"{s}_sho"], j[f"{s}_elb"], R["arm"], "cloth", regions)       # short sleeve
-        add_capsule(j[f"{s}_elb"], j[f"{s}_wri"], R["fore"], "skin", regions)
-        add_sphere(j[f"{s}_wri"] + (j[f"{s}_wri"] - j[f"{s}_elb"]).normalized() * 0.06, 0.055, "skin", regions)
-        add_capsule(j[f"{s}_hip"], j[f"{s}_kne"], R["thigh"], "trousers", regions)
-        add_capsule(j[f"{s}_kne"], j[f"{s}_ank"], R["shin"], "trousers", regions)
-        add_capsule(j[f"{s}_ank"], j[f"{s}_toe"], 0.05, "shoes", regions)
-
-
-def build_macron(p: Proportions, j: dict, regions: dict) -> None:
-    R = p.limb_r
-    up = (j["chest"] - j["pelvis"]).normalized()
-    torso_rot = up.to_track_quat("Z", "Y").to_matrix()
-    add_capsule(j["pelvis"], j["chest"], R["torso"], "shell", regions)
-    add_sphere(j["chest"] + torso_rot @ Vector((0, -R["torso"] * 0.95, -0.12)), 0.03, "chest_light", regions)
-    add_capsule(j["chest"], j["neck"], 0.05, "joint", regions)
-    hr: Matrix = j["_head_rot"]
-    # Big rounded head shell with a dark screen on the front face.
-    add_box(j["head"], (0.62, 0.52, 0.50), "shell", regions, rot_m=hr, bevel=0.14)
-    add_box(j["head"] + hr @ Vector((0, -0.215, -0.01)), (0.48, 0.12, 0.34), "screen", regions, rot_m=hr, bevel=0.07)
-    for s in (1, -1):  # ear pods
-        add_cyl(j["head"] + hr @ Vector((s * 0.31, 0, 0)), 0.08, 0.05, "joint", regions, rot_m=hr @ rot("Y", 90))
-    top = j["head"] + hr @ Vector((0, 0, 0.25))
-    add_capsule(top, top + hr @ Vector((0, 0, 0.12)), 0.018, "joint", regions)
-    add_sphere(top + hr @ Vector((0, 0, 0.16)), 0.05, "antenna", regions)
-    for s in ("l", "r"):
-        add_sphere(j[f"{s}_sho"], 0.065, "joint", regions)
-        add_capsule(j[f"{s}_sho"], j[f"{s}_elb"], R["arm"], "limb", regions)
-        add_capsule(j[f"{s}_elb"], j[f"{s}_wri"], R["fore"], "limb", regions)
-        if s == "r":  # canon: subtle modular cuff on the anatomical right arm only
-            mid = j["r_elb"].lerp(j["r_wri"], 0.45)
-            add_capsule(mid - (j["r_wri"] - j["r_elb"]).normalized() * 0.025,
-                        mid + (j["r_wri"] - j["r_elb"]).normalized() * 0.025, R["fore"] * 1.12, "cuff", regions)
-        add_sphere(j[f"{s}_wri"] + (j[f"{s}_wri"] - j[f"{s}_elb"]).normalized() * 0.04, 0.06, "joint", regions)
-        add_sphere(j[f"{s}_hip"], 0.06, "joint", regions)
-        add_capsule(j[f"{s}_hip"], j[f"{s}_kne"], R["thigh"], "limb", regions)
-        add_capsule(j[f"{s}_kne"], j[f"{s}_ank"], R["shin"], "limb", regions)
-        add_capsule(j[f"{s}_ank"], j[f"{s}_toe"], 0.055, "joint", regions)
-
-
-BUILDERS = {"gatekeeper": build_gatekeeper, "macron": build_macron}
 
 # ---------------------------------------------------------------- render
 
@@ -602,18 +443,17 @@ def check_regions(path: Path, regions: dict) -> list[str]:
 # ---------------------------------------------------------------- main
 
 
-def render_pose(character: str, camera: str, pose_id: str, pose: Pose, support: str, out: Path) -> dict:
-    p = CHARACTERS[character]
-    regions = REGIONS[character]
-    reset_scene(character, camera)
+def render_pose(rig: Rig, camera: str, pose_id: str, pose: Pose, support: str, out: Path) -> dict:
+    p, regions = rig.p, rig.regions
+    reset_scene(p, camera)
     _MATS.clear()
     j = solve(p, pose, support)
-    BUILDERS[character](p, j, regions)
+    build_character(rig.definition, p, j, regions, pose_id.split(".", 1)[0])
     sc = bpy.context.scene
     cam = sc.camera
     cam_fwd = (cam.matrix_world.to_3x3() @ Vector((0, 0, -1))).normalized()
-    dist = (Vector((0, 0, CENTER_Z[character])) - cam.location).dot(cam_fwd)
-    span = ORTHO[character] * 0.35
+    dist = (Vector((0, 0, p.centerZ)) - cam.location).dot(cam_fwd)
+    span = p.orthoScale * 0.35
     set_depth_attributes(dist - span, dist + span, cam.location, cam_fwd)
     render_to(out / f"{pose_id}.regions.png", None)
     render_to(out / f"{pose_id}.depth.png", emission_mat("depth", None))
@@ -644,7 +484,7 @@ def render_pose(character: str, camera: str, pose_id: str, pose: Pose, support: 
             visible[idx] = pts2d[idx][2] < head_depth + p.head_r * 0.5
         # Omit wrists hidden behind the torso (hands behind the back) rather
         # than drawing forearms through the body.
-        px_per_m = CANVAS[1] / ORTHO[character]
+        px_per_m = CANVAS[1] / p.orthoScale
         pel = project({"p": j["pelvis"], "c": j["chest"]})
         for idx, side in ((4, "r"), (7, "l")):
             w = pts2d[idx]
@@ -686,14 +526,18 @@ def previews(out: Path, records: list[dict], clips: dict) -> None:
 
 def main() -> None:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--character", choices=sorted(CHARACTERS), required=True)
+    ap.add_argument("--character", required=True, help="id in tool/art/characters/")
     ap.add_argument("--out", required=True)
     ap.add_argument("--camera", default="floor-perspective", choices=["floor-perspective", "side-on"])
     ap.add_argument("--only", help="comma-separated pose ids")
     args = ap.parse_args()
     out = (ROOT / args.out).resolve()
     out.mkdir(parents=True, exist_ok=True)
-    clips = CLIPS_BY_CHARACTER[args.character]
+    try:
+        rig = Rig.load(args.character)
+    except (D.DefinitionError, KeyError) as e:
+        sys.exit(f"refused:{args.character}:{e}")
+    clips, c = rig.clips, rig.definition
     wanted = set(args.only.split(",")) if args.only else None
     records = []
     clip_ids: dict[str, list[str]] = {}
@@ -703,22 +547,26 @@ def main() -> None:
             clip_ids.setdefault(clip, []).append(pid)
             if wanted and pid not in wanted:
                 continue
-            records.append(render_pose(args.character, args.camera, pid, pose, support, out))
+            records.append(render_pose(rig, args.camera, pid, pose, support, out))
             print(f"rendered {pid} problems={records[-1]['problems']}", flush=True)
     meta = {"character": args.character, "camera": args.camera, "canvas": CANVAS,
-            "orthoScale": ORTHO[args.character], "regions": REGIONS[args.character],
-            "human": CHARACTERS[args.character].human,
+            "orthoScale": rig.p.orthoScale, "regions": rig.regions,
+            "human": rig.p.human,
             "blender": bpy.app.version_string, "poses": records}
     (out / "rig.json").write_text(json.dumps(meta, indent=1))
-    intent = INTENT_BY_CHARACTER.get(args.character)
+    intent = INTENT_BY_SET.get(c["motion"]["set"])
     if intent and not wanted:
-        sides = "Sides are the character's own; he faces the viewer, so his left is on screen right."
+        pron = c["pronouns"]
+        overrides = c["motion"].get("overrides", {})
+        sides = f"Sides are the character's own; {pron[0]} faces the viewer, so {pron[2]} left is on screen right."
         doc = {"character": args.character, "note": sides, "poses": {}}
         for clip, drawings in clips.items():
             for name, (pose, support) in drawings.items():
                 pid = f"{clip}.{name}"
-                phase, text = intent[pid]
-                doc["poses"][pid] = {"clip": clip, "phase": phase, "support": support, "description": text}
+                phase, template = intent[pid]
+                text = overrides.get(pid, {}).get("intent", template)
+                doc["poses"][pid] = {"clip": clip, "phase": phase, "support": support,
+                                     "description": intent_text(text, pron)}
         (out / "poses.intent.json").write_text(json.dumps(doc, indent=1, ensure_ascii=False) + "\n")
     if not wanted:
         previews(out, records, clip_ids)

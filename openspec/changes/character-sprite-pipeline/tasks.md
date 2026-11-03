@@ -15,11 +15,11 @@
 
 ## 3. Data-driven rig
 
-- [ ] 3.1 Move the 64 clips into motion set `opponent-64` with pronoun-neutral intent templates; verify Gatekeeper's `rig.json` joint data is unchanged apart from intended fixes
-- [ ] 3.2 Implement the parametric garment and prop library with dynamic regions; verify undeclared colours fail and every declared region renders on a sample pose
-- [ ] 3.3 Apply the baseline body fixes (head, forearms, mitten hands); verify `check_poses.py` passes and review the new contact sheet by eye
-- [ ] 3.4 Put Mācron behind the same interface; verify his rig output is unchanged by comparing `rig.json`
-- [ ] 3.5 Update `tool/art/rig/README.md` for definitions and verify its documented commands run as written
+- [x] 3.1 Move the 64 clips into motion set `opponent-64` with pronoun-neutral intent templates; verify Gatekeeper's `rig.json` joint data is unchanged apart from intended fixes
+- [x] 3.2 Implement the parametric garment and prop library with dynamic regions; verify undeclared colours fail and every declared region renders on a sample pose
+- [x] 3.3 Apply the baseline body fixes (head, forearms, mitten hands); verify `check_poses.py` passes and review the new contact sheet by eye
+- [x] 3.4 Put Mācron behind the same interface; verify his rig output is unchanged by comparing `rig.json`
+- [x] 3.5 Update `tool/art/rig/README.md` for definitions and verify its documented commands run as written
 
 ## 4. Stage graph and planner
 

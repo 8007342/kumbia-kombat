@@ -41,8 +41,8 @@ render still puts his cuff on the anatomical right arm. Only image mirroring is
 forbidden. Mirrored *clips* (right_hand from left_hand) are allowed; within a
 single drawing the left and right sides are never twins, except on the clap.
 
-Clip names and drawing names for the Gatekeeper match
-tool/art/families/gatekeeper-v3.json (14 clips, 64 drawings). Choreography
+Clip and drawing names of motion set opponent-64 (14 clips, 64 drawings) are
+shared by every opponent; tool/art/motion/opponent-64.json holds their metadata. Choreography
 follows the approved cumbia research (back-break groove with the accent on the
 beat-4 hold, diagonal hand calls, heel-dig foot calls, brim-touch finish).
 """
@@ -434,7 +434,7 @@ FINISH_TURN = {
                       r_arm=(56, 20), r_fore=(70, 30), **AKIMBO_L), "both"),
 }
 
-GATEKEEPER = {
+OPPONENT_64 = {
     "groove": GROOVE,
     "left_hand": LEFT_HAND, "right_hand": RIGHT_HAND,
     "left_foot": LEFT_FOOT, "right_foot": RIGHT_FOOT,
@@ -465,8 +465,8 @@ MACRON_FINISH = {
                       l_thigh=(22, 10), l_shin=(26, 4)), "right"),
 }
 
-MACRON = {
-    "groove": GATEKEEPER["groove"],
+MACRON_PILOT = {
+    "groove": OPPONENT_64["groove"],
     "left_hand": LEFT_HAND, "right_hand": RIGHT_HAND,
     "left_foot": LEFT_FOOT, "right_foot": RIGHT_FOOT,
     "turn": TURN8,
@@ -475,32 +475,32 @@ MACRON = {
     "proud_finish": MACRON_FINISH,
 }
 
-CLIPS_BY_CHARACTER = {"gatekeeper": GATEKEEPER, "macron": MACRON}
+MOTION_SETS = {"opponent-64": OPPONENT_64, "macron-pilot": MACRON_PILOT}
 
-assert sum(len(v) for v in GATEKEEPER.values()) == 64, "Gatekeeper v3 target is 64 drawings"
+assert sum(len(v) for v in OPPONENT_64.values()) == 64, "opponent target is 64 drawings"
 
 # ---------------------------------------------------------------- intent
-# Per-drawing intent for generation prompts: (phase, plain-English body
-# action). Sides are the character's own: he faces the viewer, so his left
-# is on screen right. standin.py writes these to poses.intent.json together
-# with the clip and support foot.
+# Per-drawing intent templates: (phase, plain-English body action) with {he},
+# {him} and {his} filled from the character definition. Sides are the
+# character's own: facing the viewer, the character's left is on screen right.
+# standin.py writes these to poses.intent.json with the clip and support foot.
 
-GATEKEEPER_INTENT = {
-    "groove.down_l": ("down (beat 1, back-step)", "weight sunk on his bent left knee, right foot stepped back on its ball with the heel raised, left hip high and pushed out, shoulders tilted the other way, left forearm swinging forward at belly height, right arm low and back, head level facing the viewer"),
+OPPONENT_64_INTENT = {
+    "groove.down_l": ("down (beat 1, back-step)", "weight sunk on {his} bent left knee, right foot stepped back on its ball with the heel raised, left hip high and pushed out, shoulders tilted the other way, left forearm swinging forward at belly height, right arm low and back, head level facing the viewer"),
     "groove.pass_l": ("pass (beat 2, replace)", "weight rolling forward onto the left foot, knees softening upward, right foot still slightly back on its ball, hips easing toward level, arms loose and low swinging back toward the body"),
     "groove.up_l": ("up (beat 3, close)", "both feet together and flat, legs nearly straight in a small rise, hips almost level, chin lifted proudly, arms relaxed low at the sides with elbows soft"),
-    "groove.pass_l2": ("accent (beat 4, the hold)", "hip popped out to his right over the straight right leg, right hip high, right shoulder dipped, left knee bent with the left foot resting on its toe, right forearm lifted out at hip height in a wrist roll, left forearm across the belly, head tilted toward his left"),
-    "groove.down_r": ("down (beat 1, back-step)", "weight sunk on his bent right knee, left foot stepped back on its ball with the heel raised, right hip high and pushed out, shoulders tilted the other way, right forearm swinging forward at belly height, left arm low and back, head level facing the viewer"),
+    "groove.pass_l2": ("accent (beat 4, the hold)", "hip popped out to {his} right over the straight right leg, right hip high, right shoulder dipped, left knee bent with the left foot resting on its toe, right forearm lifted out at hip height in a wrist roll, left forearm across the belly, head tilted toward {his} left"),
+    "groove.down_r": ("down (beat 1, back-step)", "weight sunk on {his} bent right knee, left foot stepped back on its ball with the heel raised, right hip high and pushed out, shoulders tilted the other way, right forearm swinging forward at belly height, left arm low and back, head level facing the viewer"),
     "groove.pass_r": ("pass (beat 2, replace)", "weight rolling forward onto the right foot, knees softening upward, left foot still slightly back on its ball, hips easing toward level, arms loose and low swinging back toward the body"),
     "groove.up_r": ("up (beat 3, close)", "both feet together and flat, legs nearly straight in a small rise, hips almost level, chin lifted proudly, arms relaxed low at the sides with elbows soft"),
-    "groove.pass_r2": ("accent (beat 4, the hold)", "hip popped out to his left over the straight left leg, left hip high, left shoulder dipped, right knee bent with the right foot resting on its toe, left forearm lifted out at hip height in a wrist roll, right forearm across the belly, head tilted toward his right"),
-    "left_hand.prep": ("anticipation", "crouched low with weight on the bent right leg, right fist on the hip, left hand scooped down low in front of the left hip, torso turned away to his right, head glancing down at the left hand"),
-    "left_hand.peak": ("accent", "weight on the straight right foot, right hip pushed out, right fist on the hip, body leaning toward his left so one long diagonal runs from the right foot to the left palm thrust high and out at about 45 degrees, left foot on its toe out to the side, head turned up toward the raised hand"),
-    "left_hand.follow": ("follow-through", "same diagonal pushed further: left arm reaching higher and the palm rolling forward, torso leaning further toward his left, right elbow pushed back on the hip, left toe touch out wider, head following the hand"),
+    "groove.pass_r2": ("accent (beat 4, the hold)", "hip popped out to {his} left over the straight left leg, left hip high, left shoulder dipped, right knee bent with the right foot resting on its toe, left forearm lifted out at hip height in a wrist roll, right forearm across the belly, head tilted toward {his} right"),
+    "left_hand.prep": ("anticipation", "crouched low with weight on the bent right leg, right fist on the hip, left hand scooped down low in front of the left hip, torso turned away to {his} right, head glancing down at the left hand"),
+    "left_hand.peak": ("accent", "weight on the straight right foot, right hip pushed out, right fist on the hip, body leaning toward {his} left so one long diagonal runs from the right foot to the left palm thrust high and out at about 45 degrees, left foot on its toe out to the side, head turned up toward the raised hand"),
+    "left_hand.follow": ("follow-through", "same diagonal pushed further: left arm reaching higher and the palm rolling forward, torso leaning further toward {his} left, right elbow pushed back on the hip, left toe touch out wider, head following the hand"),
     "left_hand.return": ("settle", "left arm sweeping down in an arc at shoulder height with the elbow bent, right hand low on the hip, both feet flat and close, torso returning upright"),
-    "right_hand.prep": ("anticipation", "crouched low with weight on the bent left leg, left fist on the hip, right hand scooped down low in front of the right hip, torso turned away to his left, head glancing down at the right hand"),
-    "right_hand.peak": ("accent", "weight on the straight left foot, left hip pushed out, left fist on the hip, body leaning toward his right so one long diagonal runs from the left foot to the right palm thrust high and out at about 45 degrees, right foot on its toe out to the side, head turned up toward the raised hand"),
-    "right_hand.follow": ("follow-through", "same diagonal pushed further: right arm reaching higher and the palm rolling forward, torso leaning further toward his right, left elbow pushed back on the hip, right toe touch out wider, head following the hand"),
+    "right_hand.prep": ("anticipation", "crouched low with weight on the bent left leg, left fist on the hip, right hand scooped down low in front of the right hip, torso turned away to {his} left, head glancing down at the right hand"),
+    "right_hand.peak": ("accent", "weight on the straight left foot, left hip pushed out, left fist on the hip, body leaning toward {his} right so one long diagonal runs from the left foot to the right palm thrust high and out at about 45 degrees, right foot on its toe out to the side, head turned up toward the raised hand"),
+    "right_hand.follow": ("follow-through", "same diagonal pushed further: right arm reaching higher and the palm rolling forward, torso leaning further toward {his} right, left elbow pushed back on the hip, right toe touch out wider, head following the hand"),
     "right_hand.return": ("settle", "right arm sweeping down in an arc at shoulder height with the elbow bent, left hand low on the hip, both feet flat and close, torso returning upright"),
     "left_foot.prep": ("anticipation", "weight on the bent right leg, left knee lifted forward and out with the foot off the floor and the toe pointing down, left fist on the hip, right arm low and out for balance, head looking down at the left foot"),
     "left_foot.peak": ("accent", "heel dig: left leg stretched out on a forward diagonal with the left heel on the floor and the toe up, weight on the bent right leg, chest proud and leaning back slightly, right fist on the hip, left arm low and back, head turned toward the left foot"),
@@ -528,9 +528,9 @@ GATEKEEPER_INTENT = {
     "yield_side.contact_r": ("contact", "right foot stepping back on a diagonal onto its ball, left knee bent, arms low and loose, torso turning open"),
     "yield_side.down_r": ("down", "weight settled onto the bent right leg, right hip high, left foot in front with the toe lifted, right forearm coming forward at waist height"),
     "yield_side.pass_r": ("accent (hand-over)", "standing on the right leg, left fist on the hip, right arm held out low and wide with the palm open and up toward the empty floor, head turned toward the open palm with a slight bow, offering the floor"),
-    "watch.shift_l": ("pass (weight shift)", "relaxed stance turned slightly to his left, hands clasped behind the back, weight on the left foot with the left hip high, right knee soft, head turned to watch the other dancer"),
+    "watch.shift_l": ("pass (weight shift)", "relaxed stance turned slightly to {his} left, hands clasped behind the back, weight on the left foot with the left hip high, right knee soft, head turned to watch the other dancer"),
     "watch.hold_l": ("settle (nod on beat 1)", "hands clasped behind the back, weight sunk on the left foot with both knees softer, head nodding along to the music while watching"),
-    "watch.shift_r": ("pass (weight shift)", "relaxed stance turned slightly to his left, hands clasped behind the back, weight on the right foot with the right hip high, left knee soft, head turned to watch the other dancer"),
+    "watch.shift_r": ("pass (weight shift)", "relaxed stance turned slightly to {his} left, hands clasped behind the back, weight on the right foot with the right hip high, left knee soft, head turned to watch the other dancer"),
     "watch.hold_r": ("settle", "hands clasped behind the back, weight sunk on the right foot with both knees softer, head tilted with a small nod while watching"),
     "clap.open": ("anticipation", "standing square and upright, both forearms raised in front of the chest with the palms apart and facing each other, elbows out, chin up"),
     "clap.close": ("pass", "both hands swinging together in front of the chest, elbows out, knees starting to bend, head starting to nod"),
@@ -543,15 +543,34 @@ GATEKEEPER_INTENT = {
     "approval.load": ("anticipation", "small inhale: chest lifted and leaning back slightly, chin raised, weight on the right foot, arms loose and slightly away from the body"),
     "approval.nod": ("accent", "right palm pressed flat to the chest, a deep nod with the head bowed, both knees dipped, left arm low and out at the side"),
     "approval.release": ("settle", "left fist on the hip, right arm held out forward at waist height with the palm open toward the viewer, head tilted warmly"),
-    "reassurance.notice": ("anticipation", "head tilted to his right with a soft warm look, weight on the left foot, arms relaxed low, right forearm slightly forward"),
+    "reassurance.notice": ("anticipation", "head tilted to {his} right with a soft warm look, weight on the left foot, arms relaxed low, right forearm slightly forward"),
     "reassurance.open_hand": ("accent", "small friendly shrug: both forearms out at waist height with the palms open and up, the right hand a little higher, both knees softly bent, head tilted"),
     "reassurance.settle": ("settle (invitation)", "a back-break step on the spot: weight on the bent left knee, right foot back on its ball, left forearm forward, right arm low and back, inviting the rhythm back"),
     "finish_turn.finish_a": ("anticipation (remate)", "weight on the straight right leg, left heel set forward with the toe up, left fist on the hip, right hand rising beside the head on its way to the hat brim, chest proud, chin up"),
-    "finish_turn.finish_b": ("accent (remate)", "right fingertips touching the front of the hat brim in a courteous salute, the hat still on his head, head dipped slightly, chest proud, left elbow out with the fist on the hip, left heel forward with the toe up"),
-    "finish_turn.turn_in": ("pass (turn)", "body turned about 30 degrees toward his left on a heel pivot, leaning into the turn, left arm open out to the side at hip height, right fist on the hip"),
-    "finish_turn.turn_out": ("pass (turn)", "body turned about 30 degrees toward his right on a heel pivot, leaning into the turn, right arm open out to the side at hip height, left fist on the hip"),
+    "finish_turn.finish_b": ("accent (remate)", "right fingertips touching the front of the hat brim in a courteous salute, the hat still on {his} head, head dipped slightly, chest proud, left elbow out with the fist on the hip, left heel forward with the toe up"),
+    "finish_turn.turn_in": ("pass (turn)", "body turned about 30 degrees toward {his} left on a heel pivot, leaning into the turn, left arm open out to the side at hip height, right fist on the hip"),
+    "finish_turn.turn_out": ("pass (turn)", "body turned about 30 degrees toward {his} right on a heel pivot, leaning into the turn, right arm open out to the side at hip height, left fist on the hip"),
 }
 
-INTENT_BY_CHARACTER = {"gatekeeper": GATEKEEPER_INTENT}
+INTENT_BY_SET = {"opponent-64": OPPONENT_64_INTENT}
 
-assert set(GATEKEEPER_INTENT) == {f"{c}.{n}" for c, d in GATEKEEPER.items() for n in d}, "intent ids != pose ids"
+assert set(OPPONENT_64_INTENT) == {f"{c}.{n}" for c, d in OPPONENT_64.items() for n in d}, "intent ids != pose ids"
+
+
+def intent_text(template: str, pronouns: list[str]) -> str:
+    """Fill {he}/{him}/{his}; templates are authored pronoun-neutral."""
+    return template.format(he=pronouns[0], him=pronouns[1], his=pronouns[2])
+
+
+def apply_overrides(clips: dict, overrides: dict) -> dict:
+    """A character's motion overrides: {pose id: {"pose": {param: value}}}. Lists become tuples."""
+    out = {c: dict(d) for c, d in clips.items()}
+    for pid, ov in overrides.items():
+        clip, name = pid.split(".", 1)
+        if clip not in out or name not in out[clip]:
+            raise KeyError(f"motion.overrides.{pid}: unknown pose")
+        if "pose" in ov:
+            params = {k: (tuple(v) if isinstance(v, list) else v) for k, v in ov["pose"].items()}
+            pose, sup = out[clip][name]
+            out[clip][name] = (replace(pose, **params), sup)
+    return out

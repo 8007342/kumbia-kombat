@@ -67,12 +67,12 @@
  ],
  "regions": {
   "#FF0000": "skin",
+  "#FFFF00": "hat",
+  "#FF00FF": "accessory",
   "#00FF00": "hair",
   "#0000FF": "cloth",
-  "#FFFF00": "hat",
-  "#00FFFF": "shoes",
-  "#FF00FF": "accessory",
-  "#FF8000": "trousers"
+  "#FF8000": "trousers",
+  "#00FFFF": "shoes"
  },
  "reservedRamps": [
   {

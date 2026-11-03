@@ -1,0 +1,8 @@
+{
+ "$comment": "Rig-only for now: his dance art stays as is. A full definition comes with the cinematic shots.",
+ "id": "macron", "status": "rig-only", "style": "party-pixel",
+ "body": {"preset": "macron"},
+ "garments": [{"id": "body", "shape": "macron-body", "region": "shell",
+               "params": {"regions": ["shell", "screen", "joint", "antenna", "cuff", "limb", "chest_light"]}}],
+ "motion": {"set": "macron-pilot", "overrides": {}}
+}

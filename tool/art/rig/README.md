@@ -14,8 +14,23 @@ forge's TLS proxy requires the system certificate store:
 export UV_NATIVE_TLS=1
 uv python install 3.13
 uv venv --python 3.13 ~/.cache/kumbia-bpy
-VIRTUAL_ENV=~/.cache/kumbia-bpy uv pip install bpy==5.2.3 pillow numpy
+VIRTUAL_ENV=~/.cache/kumbia-bpy uv pip install bpy==5.2.3 pillow numpy jsonschema
 ```
+
+## What a render is made of
+
+A character is data, not code. `--character <id>` loads `tool/art/characters/<id>.json`:
+
+- `body.preset` and `body.overrides`: proportions and camera, from `bodies.json`.
+- `garments[]`: each names a `shape` (`garments.py`, listed in `library.json`) and a
+  `region`. Regions are dynamic per character, and each renders one flat mask colour.
+- `props[]`: a `kind` held in one hand, optionally limited to some clips.
+- `motion.set`: a shared pose table (`poses.py`, `MOTION_SETS`) with metadata in
+  `tool/art/motion/<set>.json`. `motion.overrides` changes `pose` params or `intent`
+  text per pose. Intent templates use `{he}`, `{him}` and `{his}`, filled from `pronouns`.
+
+A new humanoid needs no code. A new garment kind needs one function in `garments.py`
+and one word in `library.json`.
 
 ## Render
 

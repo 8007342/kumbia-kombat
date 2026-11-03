@@ -1,0 +1,5 @@
+{
+ "id": "macron-pilot", "description": "Mācron pilot inventory (plan/dance-fluidity-pass.md). Pose tables live in tool/art/rig/poses.py.",
+ "human": false, "poseTable": "macron-pilot", "referencePose": "groove.down_l", "clips": [], "defaultProfile": "moderate", "profileRules": [],
+ "research": ["plan/dance-fluidity-pass.md"], "runtimeAliases": {}
+}
