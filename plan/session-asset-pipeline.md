@@ -88,3 +88,47 @@ operator. Never: flux.1-dev, sd3.5, sd/sdxl-turbo, RMBG-1.4/2.0, InsightFace.
   (lost on restart; rebuild per `tool/art/rig/README.md`).
 - zsh does not word-split `$var` in `for` loops; call commands explicitly.
 - `/work/tmp/imagegen/` is deleted on forge teardown.
+
+## Session 2026-11-02/03: Gatekeeper v3 cumbia re-key and scripted pipeline (`work/1832-gk64`)
+
+Operator decisions: all 64 drawings in one pass; GPU time has standing approval
+for this project; prefer the largest admitted models; adopt the research's
+pose changes; cite the animation authorities in the specs and prompts.
+
+Delivered:
+- Research: `plan/research/gatekeeper-dance-2026-11-02.md`, with cumbia
+  vocabulary in part 1 and animation craft plus the SDXL control stack in part 2.
+- Rig: hip tilt (`pelvis_roll`), outward knee bends, pinned support ankle,
+  foot pitch and stocky proportions. All 64 poses are re-keyed, with prompt
+  intents in `poses.intent.json`. `check_poses.py` passes for both characters.
+- Pipeline: see `tool/art/pipeline/README.md` and the project skill
+  `.claude/skills/art-family/SKILL.md`. The spec is on contract v1 and passes
+  the schema; it has a locked palette and garden native size 96x120 at x8
+  (my choice, for the owner to confirm). Workflows live in
+  `tool/art/workflows/`, and model names were confirmed by macuahuitl-fedora.
+- Animation references: `tool/art/references/animation-principles.json`. The
+  spec's `animationReferences` and each pose's `animationPrinciples` cite it.
+- The planned run `art_runs/gatekeeper-v3-20261103a/jobs.json` has 64 jobs
+  with 4 candidates each.
+
+Resume after restart:
+1. Rebuild the virtual environments: `~/.cache/kumbia-art` (pillow numpy
+   jsonschema) and `~/.cache/kumbia-bpy` (see `tool/art/rig/README.md`).
+2. Re-stage the inputs, because `/work/tmp` is wiped:
+   `plan_jobs.py tool/art/families/gatekeeper-v3.json --run gatekeeper-v3-20261103a`
+3. Run `studio.validate_family`, then one `studio.run_workflow` for
+   `left_hand.peak`. Check the model names against `/object_info` and report
+   any refusals verbatim to macuahuitl-fedora. Then run all 64 jobs, then
+   `collect.py`, contact sheets, selection, `finish_pixels`, `pack_atlas.py`,
+   and a review gallery artifact.
+
+Infrastructure state:
+- Calling `image.generate` with `control_net` or `loras` panicked the
+  host-services MCP (Tillandsias P0). Avoid both until the fix lands.
+- The studio container `tillandsias-kumbia-kombat-studio` has no HTTP route
+  from the forge, so it is reachable through the MCP only.
+- Host services 56.11.3.1 (studio fixes, #875) needs the operator's tray to
+  restart.
+- Music: Tillandsias PR #874 shortlists ACE-Step 1.5 XL, the Anticipatory
+  Music Transformer and Text2midi, pending licence approval. Our needs were
+  sent: cumbia at 112-144 BPM, an exact bar grid, and intensity stems.
