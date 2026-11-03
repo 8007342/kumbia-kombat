@@ -42,7 +42,7 @@
   "groove": {
    "type": "object", "additionalProperties": false, "required": ["pattern"],
    "properties": {
-    "pattern": {"enum": ["cumbia", "train-beat", "half-time"]},
+    "pattern": {"enum": ["cumbia", "son", "train-beat", "half-time"]},
     "swing": {"type": "number", "minimum": 0, "maximum": 0.25},
     "layers": {"type": "array", "items": {"enum": ["cumbia-guacharaca", "clave", "double-time-kick"]}}
    }
@@ -57,8 +57,9 @@
      "track": {"type": "string"},
      "voice": {"type": "string"},
      "role": {"enum": ["percussion", "bass", "comp", "pad", "melody", "counter", "stabs"]},
-     "kit": {"enum": ["core", "lift", "bright", "fills"]},
-     "style": {"enum": ["root-fifth", "walking", "pedal", "offbeat-dyads", "offbeat-triads", "arpeggio", "hook", "full", "held"]},
+     "kit": {"enum": ["core", "lift", "bright", "fills", "clave", "anchor", "conga", "cascara", "campana", "shaker"]},
+     "style": {"enum": ["root-fifth", "walking", "tumbao", "pedal", "offbeat-dyads", "offbeat-triads", "arpeggio", "montuno", "arp16", "mambo", "hook", "full", "held"]},
+     "sections": {"type": "array", "minItems": 1, "items": {"type": "string"}},
      "motif": {"type": "string"},
      "plan": {"type": "object", "additionalProperties": {"type": "array", "minItems": 1, "items": {"enum": ["statement", "sequence", "displace", "invert", "fragment", "ornament", "answer", "cadence"]}}},
      "register": {"type": "array", "minItems": 2, "maxItems": 2, "items": {"type": "integer", "minimum": 0, "maximum": 127}},

@@ -79,6 +79,7 @@ export function validateBrief(brief,{loadMotif}={}){
   if(p.role==='percussion'&&!p.kit)problems.push(`$.parts[${i}].kit: percussion part "${p.id}" needs a kit`);
   if(p.role==='melody'&&!p.motif)problems.push(`$.parts[${i}].motif: melody part "${p.id}" needs a motif`);
   if(p.motif&&!brief.motifs[p.motif])problems.push(`$.parts[${i}].motif: unknown motif "${p.motif}"`);
+  (p.sections??[]).forEach(s=>{if(!sections.has(s))problems.push(`$.parts[${i}].sections: unknown section "${s}"`)});
   for(const s of Object.keys(p.plan??{}))if(!sections.has(s))problems.push(`$.parts[${i}].plan.${s}: unknown section "${s}"`);
  });
  const tracks=brief.parts.map(p=>p.track);

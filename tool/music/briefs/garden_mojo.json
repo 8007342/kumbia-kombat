@@ -1,0 +1,392 @@
+{
+ "$comment": "Level 1, Gatekeeper. Salsa-led, not yet heard or approved; output goes to build/music-candidates only. Sourced: son clave 3-2 and salsa structure (en.wikipedia.org/wiki/Salsa_(musical_structure)), tumbao anticipating the and of 2 and beat 4 (en.wikipedia.org/wiki/Tumbao), montuno as a syncopated chord figure aligned to clave (pianowithjonny.com/piano-lessons/piano-montunos-the-complete-guide). Project judgement: the exact montuno, conga, cascara and mambo patterns, the anchor kit, and the harmony. Tempo stays at the room's authored 92 BPM, which is slower than typical dance-floor salsa, because changing it would affect gameplay. This is an original instrumental that borrows these devices; it makes no claim of authenticity.",
+ "schemaVersion": 1,
+ "id": "garden_mojo",
+ "title": "Lanterns in the Garden",
+ "stat": "Mojo",
+ "prompt": "Salsa-led garden party for a dignified man in a Panama hat: clave and tumbao from the start, a piano-like montuno, reed lead, and brass mambo sections building to a full ensemble.",
+ "style": "Original synth salsa instrumental",
+ "color": "montuno keys, tumbao bass, clave and congas, brass mambos",
+ "seed": 20261104,
+ "bpm": 92,
+ "meter": "4/4",
+ "keys": [
+  {
+   "section": "A",
+   "root": "A",
+   "mode": "minor"
+  },
+  {
+   "section": "B",
+   "root": "A",
+   "mode": "minor"
+  },
+  {
+   "section": "C",
+   "root": "C",
+   "mode": "major"
+  },
+  {
+   "section": "D",
+   "root": "A",
+   "mode": "minor"
+  }
+ ],
+ "form": [
+  {
+   "section": "A",
+   "bars": 8,
+   "name": "Invitation"
+  },
+  {
+   "section": "B",
+   "bars": 8,
+   "name": "Answer"
+  },
+  {
+   "section": "C",
+   "bars": 8,
+   "name": "Lift"
+  },
+  {
+   "section": "D",
+   "bars": 8,
+   "name": "Approval"
+  }
+ ],
+ "harmony": {
+  "A": [
+   "i",
+   "iv",
+   "V7",
+   "i",
+   "i",
+   "VI",
+   "V7",
+   "i"
+  ],
+  "B": [
+   "i",
+   "VII",
+   "VI",
+   "V7",
+   "iv",
+   "i",
+   "V7",
+   "i"
+  ],
+  "C": [
+   "I",
+   "IV",
+   "V7",
+   "I",
+   "vi",
+   "ii",
+   "V7",
+   "I"
+  ],
+  "D": [
+   "iv",
+   "VII",
+   "III",
+   "VI",
+   "ii",
+   "V7",
+   "i",
+   "V7"
+  ]
+ },
+ "groove": {
+  "pattern": "son",
+  "swing": 0,
+  "layers": [
+   "clave"
+  ]
+ },
+ "voices": [
+  "drums",
+  "roundBass",
+  "montunoKeys",
+  "reed",
+  "sineFlute",
+  "softBrass"
+ ],
+ "parts": [
+  {
+   "id": "anchor",
+   "track": "pulse",
+   "voice": "drums",
+   "role": "percussion",
+   "kit": "anchor"
+  },
+  {
+   "id": "clave",
+   "track": "pulse",
+   "voice": "drums",
+   "role": "percussion",
+   "kit": "clave"
+  },
+  {
+   "id": "conga",
+   "track": "pulse",
+   "voice": "drums",
+   "role": "percussion",
+   "kit": "conga"
+  },
+  {
+   "id": "cascara",
+   "track": "pulse",
+   "voice": "drums",
+   "role": "percussion",
+   "kit": "cascara"
+  },
+  {
+   "id": "campana",
+   "track": "pulse",
+   "voice": "drums",
+   "role": "percussion",
+   "kit": "campana"
+  },
+  {
+   "id": "fills",
+   "track": "pulse",
+   "voice": "drums",
+   "role": "percussion",
+   "kit": "fills"
+  },
+  {
+   "id": "tumbao",
+   "track": "bass",
+   "voice": "roundBass",
+   "role": "bass",
+   "style": "tumbao",
+   "program": 32,
+   "velocity": 86
+  },
+  {
+   "id": "sparse",
+   "track": "guitar",
+   "voice": "montunoKeys",
+   "role": "comp",
+   "style": "offbeat-dyads",
+   "program": 0,
+   "register": [
+    55,
+    79
+   ],
+   "velocity": 44
+  },
+  {
+   "id": "montuno",
+   "track": "guitar",
+   "voice": "montunoKeys",
+   "role": "comp",
+   "style": "montuno",
+   "program": 0,
+   "register": [
+    57,
+    81
+   ],
+   "velocity": 54
+  },
+  {
+   "id": "hook",
+   "track": "lead",
+   "voice": "reed",
+   "role": "melody",
+   "style": "hook",
+   "motif": "lead",
+   "program": 71,
+   "register": [
+    60,
+    84
+   ],
+   "velocity": 58
+  },
+  {
+   "id": "lead",
+   "track": "lead",
+   "voice": "reed",
+   "role": "melody",
+   "style": "full",
+   "motif": "lead",
+   "program": 71,
+   "register": [
+    60,
+    88
+   ],
+   "velocity": 78,
+   "plan": {
+    "A": [
+     "statement",
+     "sequence",
+     "ornament",
+     "cadence"
+    ],
+    "B": [
+     "answer",
+     "displace",
+     "fragment",
+     "cadence"
+    ],
+    "C": [
+     "invert",
+     "sequence",
+     "displace",
+     "ornament"
+    ],
+    "D": [
+     "statement",
+     "fragment",
+     "answer",
+     "cadence"
+    ]
+   }
+  },
+  {
+   "id": "counter",
+   "track": "answer",
+   "voice": "sineFlute",
+   "role": "counter",
+   "program": 73,
+   "register": [
+    67,
+    91
+   ],
+   "velocity": 46
+  },
+  {
+   "id": "response",
+   "track": "answer",
+   "voice": "sineFlute",
+   "role": "melody",
+   "style": "full",
+   "motif": "answer",
+   "program": 73,
+   "register": [
+    67,
+    91
+   ],
+   "velocity": 50,
+   "plan": {
+    "A": [
+     "answer",
+     "fragment",
+     "displace",
+     "sequence"
+    ],
+    "B": [
+     "invert",
+     "answer",
+     "fragment",
+     "ornament"
+    ],
+    "C": [
+     "displace",
+     "answer",
+     "sequence",
+     "fragment"
+    ],
+    "D": [
+     "fragment",
+     "invert",
+     "displace",
+     "answer"
+    ]
+   }
+  },
+  {
+   "id": "mamboLift",
+   "track": "brass",
+   "voice": "softBrass",
+   "role": "stabs",
+   "style": "mambo",
+   "sections": [
+    "C"
+   ],
+   "program": 61,
+   "register": [
+    58,
+    82
+   ],
+   "velocity": 54
+  },
+  {
+   "id": "mambo",
+   "track": "brass",
+   "voice": "softBrass",
+   "role": "stabs",
+   "style": "mambo",
+   "sections": [
+    "A",
+    "B",
+    "D"
+   ],
+   "program": 61,
+   "register": [
+    58,
+    82
+   ],
+   "velocity": 50
+  }
+ ],
+ "tiers": [
+  {
+   "name": "Clave and tumbao",
+   "adds": [
+    "anchor",
+    "clave",
+    "tumbao",
+    "sparse",
+    "hook"
+   ]
+  },
+  {
+   "name": "Congas and montuno",
+   "adds": [
+    "conga",
+    "montuno"
+   ],
+   "removes": [
+    "sparse"
+   ]
+  },
+  {
+   "name": "Countermelody",
+   "adds": [
+    "cascara",
+    "counter"
+   ]
+  },
+  {
+   "name": "Full melody and first mambo",
+   "adds": [
+    "lead",
+    "mamboLift"
+   ],
+   "removes": [
+    "hook"
+   ]
+  },
+  {
+   "name": "Full ensemble",
+   "adds": [
+    "response",
+    "mambo",
+    "campana",
+    "fills"
+   ]
+  }
+ ],
+ "motifs": {
+  "lead": "motifs/garden_mojo.lead.json",
+  "answer": "motifs/garden_mojo.answer.json"
+ },
+ "transitions": {
+  "successIntent": "Quote the room call, then thin to a warm tonic answer.",
+  "bridgeIntent": "A percussion pivot lets the salsa settle before the next room's call arrives."
+ },
+ "gameplayReference": {
+  "authority": "lib/game campaign configuration; score EOF does not approve an opponent"
+ }
+}

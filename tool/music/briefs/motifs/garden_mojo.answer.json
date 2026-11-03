@@ -1,0 +1,58 @@
+{
+ "schemaVersion": 1,
+ "id": "garden_mojo.answer",
+ "beats": 8,
+ "notes": [
+  [
+   0,
+   7,
+   0.5
+  ],
+  [
+   1,
+   10,
+   0.5
+  ],
+  [
+   1.75,
+   12,
+   0.25
+  ],
+  [
+   2.5,
+   10,
+   0.5
+  ],
+  [
+   3.5,
+   7,
+   0.25
+  ],
+  [
+   4.5,
+   5,
+   0.5
+  ],
+  [
+   5.5,
+   3,
+   0.5
+  ],
+  [
+   6.5,
+   2,
+   0.25
+  ],
+  [
+   7,
+   0,
+   0.5
+  ]
+ ],
+ "provenance": {
+  "source": "authored",
+  "detail": "The garden's existing answer, from tool/music/generate.mjs (Lanterns in the Garden).",
+  "licence": "See assets/music/LICENSE.md",
+  "accepted": true
+ }
+}

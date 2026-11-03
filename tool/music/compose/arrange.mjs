@@ -1,6 +1,6 @@
 // The deterministic arranger: a validated brief plus its motifs becomes score JSON in the
 // format the game already plays. No model and no wall clock: same inputs, same bytes.
-import {MODES,makeRng,pick,buildTimeline,bassRootFifth,bassWalking,bassPedal,comp,pad,voiceLead,parseChord} from './harmony.mjs';
+import {MODES,makeRng,pick,buildTimeline,bassRootFifth,bassWalking,bassTumbao,bassPedal,comp,pad,voiceLead,parseChord} from './harmony.mjs';
 import {applyOp,fitToHarmony,counterLine,fills} from './motif.mjs';
 
 const round=n=>Math.round(n*10000)/10000;
@@ -15,7 +15,26 @@ function percussion(part,brief,timeline,rng){
  }
  for(const entry of timeline){
   const b=entry.bar*4,odd=entry.bar%2===1;
-  if(part.kit==='core'){
+  if(part.kit==='clave'){
+   // Son clave 3-2 (en.wikipedia.org/wiki/Salsa_(musical_structure)), alone on its pitch.
+   for(const x of odd?[1,2]:[0,1.5,3])add(b+x,75,.09,56);
+  }else if(part.kit==='anchor'){
+   // Project judgement: a soft pulse so players can still find the beat over an anticipated bass.
+   for(const x of [0,2])add(b+x,36,.14,58);
+   for(const x of [1,3])add(b+x,73,.1,30);
+  }else if(part.kit==='conga'){
+   // Sources say the conga pattern stresses beat 4 (en.wikipedia.org/wiki/Tumbao); the hits around it are project judgement.
+   for(const x of pick(rng,[[1,3,3.5],[1,2.5,3,3.5],[.5,1,3,3.5],[1,1.75,3,3.5]]))add(b+x,x>=3?64:63,.14,x>=3?62:46);
+  }else if(part.kit==='cascara'){
+   // Project judgement: a shell-like syncopated eighth line, not a transcribed pattern.
+   for(const x of odd?[0,1,1.5,2.5,3.5]:[0,.5,1.5,2,3])add(b+x,73,.12,x%1===0?44:34);
+  }else if(part.kit==='campana'){
+   for(const x of [0,1,2,3])add(b+x,65,.12,x===0?60:46);
+   add(b+1.5,60,.1,38);
+  }else if(part.kit==='shaker'){
+   // Project judgement: the shaker motif sits between the scraper's eighths.
+   for(const x of odd?[.25,.75,1.25,2.25,2.75,3.25,3.75]:[.25,.75,1.75,2.25,2.75,3.75])add(b+x,73,.07,26);
+  }else if(part.kit==='core'){
    const kicks=pattern==='half-time'?[0]:[0,2];
    for(const x of kicks)add(b+x,36,.16,86);
    if(layers.includes('double-time-kick'))for(const x of [1,3])add(b+x,36,.12,64);
@@ -73,6 +92,19 @@ function stabs(timeline,register,rng){
  return out;
 }
 
+/** Brass riffs on a two-bar cycle, for mambo sections. Project judgement, not a transcription. */
+const MAMBO=[[0,.75,1.5,2.5,3.25],[.5,1.25,2,3,3.5],[.5,1.5,2.25,3.5],[0,1,1.5,2.75,3.5]];
+function mambo(timeline,register,rng){
+ const out=[];let previous=null,riff=pick(rng,MAMBO);
+ for(const entry of timeline){
+  const voiced=voiceLead(previous,entry.pcs,3,register);previous=voiced;
+  if(entry.bar%2===0)riff=pick(rng,MAMBO);
+  const shape=entry.bar%2===0?riff:pick(rng,MAMBO);
+  for(const x of shape)for(const pitch of voiced)out.push({beat:entry.bar*4+x,pitch,duration:.35});
+ }
+ return out;
+}
+
 function tierRanges(brief){
  const ranges=new Map();
  brief.tiers.forEach((tier,index)=>{
@@ -96,14 +128,18 @@ function renderParts(brief,timeline,motifs){
   if(part.role==='percussion')notes=percussion(part,brief,timeline,rng);
   else if(part.role==='bass'){
    notes=[];
-   timeline.forEach((entry,i)=>notes.push(...(part.style==='walking'?bassWalking(entry,timeline[(i+1)%timeline.length],rng):part.style==='pedal'?bassPedal(entry):bassRootFifth(entry,rng))));
+   timeline.forEach((entry,i)=>notes.push(...(part.style==='tumbao'?bassTumbao(entry,timeline[(i+1)%timeline.length],rng):part.style==='walking'?bassWalking(entry,timeline[(i+1)%timeline.length],rng):part.style==='pedal'?bassPedal(entry):bassRootFifth(entry,rng))));
   }
   else if(part.role==='comp')notes=comp(timeline,part.style,part.register??[55,79],rng);
   else if(part.role==='pad')notes=pad(timeline,part.register??[48,72]);
-  else if(part.role==='stabs')notes=stabs(timeline,part.register??[58,82],rng);
+  else if(part.role==='stabs')notes=(part.style==='mambo'?mambo:stabs)(timeline,part.register??[58,82],rng);
   else if(part.role==='counter')notes=counterLine(primary,timeline,part.register??[67,91],rng);
   else if(part.role==='melody'){
    notes=part.style==='hook'?thinHook(melodies[part.motif],motifs[part.motif].beats):melodyPart(part,brief,timeline,motifs[part.motif]);
+  }
+  if(part.sections){
+   const allowed=new Set(timeline.filter(e=>part.sections.includes(e.section)).map(e=>e.bar));
+   notes=notes.filter(n=>allowed.has(Math.floor(n.beat/4)));
   }
   for(const n of notes)events.push({track:part.track,beat:n.beat,pitch:n.pitch,duration:n.duration,velocity:n.velocity??velocity,...range});
  }

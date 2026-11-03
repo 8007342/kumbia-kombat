@@ -1,74 +1,389 @@
 {
- "$comment": "Pipeline test brief for the bar (task 2.3). Not yet heard or approved: output goes to build/music-candidates only.",
+ "$comment": "Level 2, Bartender. Latin-electronic, not yet heard or approved; output goes to build/music-candidates only. Sourced: digital cumbia replaces or enriches traditional instruments with synths and drum machines (festt.io/en/festivals/genre/digital-cumbia), guacharaca as steady scraped texture (melodigging.com/genre/cumbia), and son clave 3-2 (en.wikipedia.org/wiki/Salsa_(musical_structure)). Project judgement: the exact cumbia grid, shaker motif, arpeggio patterns and harmony. This is an original instrumental that borrows these devices; it makes no claim of authenticity.",
  "schemaVersion": 1,
  "id": "bar_swag",
  "title": "Copper Counter Shuffle",
  "stat": "Swag",
- "prompt": "Syncopated cumbia for a warm mansion bar: bright electric keys over a rounded bass, tight percussion, building from a relaxed groove to a full ensemble answer.",
- "style": "Original synth cumbia / Latin instrumental",
- "color": "bright electric keys, rounded bass, tight congas",
+ "prompt": "Latin-electronic bar for a sharp, professional bartender who dances superbly: a synth lead and arps over a cumbia base, her shaker-like percussion running throughout, building to a full ensemble answer.",
+ "style": "Original digital cumbia / electro-Latin instrumental",
+ "color": "square-wave lead, saw arps, rounded bass, cumbia scraper and shaker",
  "seed": 20261103,
  "bpm": 100,
  "meter": "4/4",
  "keys": [
-  {"section": "A", "root": "C", "mode": "minor"},
-  {"section": "B", "root": "C", "mode": "minor"},
-  {"section": "C", "root": "Eb", "mode": "major"},
-  {"section": "D", "root": "C", "mode": "minor"}
+  {
+   "section": "A",
+   "root": "C",
+   "mode": "minor"
+  },
+  {
+   "section": "B",
+   "root": "C",
+   "mode": "minor"
+  },
+  {
+   "section": "C",
+   "root": "Eb",
+   "mode": "major"
+  },
+  {
+   "section": "D",
+   "root": "C",
+   "mode": "minor"
+  }
  ],
  "form": [
-  {"section": "A", "bars": 8, "name": "Invitation"},
-  {"section": "B", "bars": 8, "name": "Answer"},
-  {"section": "C", "bars": 8, "name": "Lift"},
-  {"section": "D", "bars": 8, "name": "Approval"}
+  {
+   "section": "A",
+   "bars": 8,
+   "name": "Invitation"
+  },
+  {
+   "section": "B",
+   "bars": 8,
+   "name": "Answer"
+  },
+  {
+   "section": "C",
+   "bars": 8,
+   "name": "Lift"
+  },
+  {
+   "section": "D",
+   "bars": 8,
+   "name": "Approval"
+  }
  ],
  "harmony": {
-  "A": ["i", "i", "VI", "VI", "iv", "iv", "V", "V"],
-  "B": ["i", "VII", "VI", "V", "i", "iv", "V", "i"],
-  "C": ["I", "vi", "IV", "V", "I", "iii", "IV", "V7"],
-  "D": ["iv", "VI", "III", "V", "i", "VI", "V7", "i"]
+  "A": [
+   "i",
+   "i",
+   "VI",
+   "VI",
+   "iv",
+   "iv",
+   "V",
+   "V"
+  ],
+  "B": [
+   "i",
+   "VII",
+   "VI",
+   "V",
+   "i",
+   "iv",
+   "V",
+   "i"
+  ],
+  "C": [
+   "I",
+   "vi",
+   "IV",
+   "V",
+   "I",
+   "iii",
+   "IV",
+   "V7"
+  ],
+  "D": [
+   "iv",
+   "VI",
+   "III",
+   "V",
+   "i",
+   "VI",
+   "V7",
+   "i"
+  ]
  },
- "groove": {"pattern": "cumbia", "swing": 0, "layers": ["cumbia-guacharaca", "clave"]},
- "voices": ["drums", "roundBass", "mutedPluck", "reed", "sineFlute", "softBrass"],
+ "groove": {
+  "pattern": "cumbia",
+  "swing": 0,
+  "layers": [
+   "cumbia-guacharaca",
+   "clave"
+  ]
+ },
+ "voices": [
+  "drums",
+  "roundBass",
+  "synthArp",
+  "synthLead",
+  "sineFlute",
+  "softBrass"
+ ],
  "parts": [
-  {"id": "kit", "track": "pulse", "voice": "drums", "role": "percussion", "kit": "core"},
-  {"id": "congas", "track": "pulse", "voice": "drums", "role": "percussion", "kit": "lift"},
-  {"id": "bells", "track": "pulse", "voice": "drums", "role": "percussion", "kit": "bright"},
-  {"id": "fills", "track": "pulse", "voice": "drums", "role": "percussion", "kit": "fills"},
-  {"id": "bass", "track": "bass", "voice": "roundBass", "role": "bass", "style": "root-fifth", "program": 33, "velocity": 84},
-  {"id": "walk", "track": "bass", "voice": "roundBass", "role": "bass", "style": "walking", "program": 33, "velocity": 76},
-  {"id": "dyads", "track": "guitar", "voice": "mutedPluck", "role": "comp", "style": "offbeat-dyads", "program": 24, "register": [55, 79], "velocity": 42},
-  {"id": "triads", "track": "guitar", "voice": "mutedPluck", "role": "comp", "style": "offbeat-triads", "program": 24, "register": [55, 79], "velocity": 50},
-  {"id": "arp", "track": "guitar", "voice": "mutedPluck", "role": "comp", "style": "arpeggio", "program": 24, "register": [62, 84], "velocity": 40},
-  {"id": "hook", "track": "lead", "voice": "reed", "role": "melody", "style": "hook", "motif": "lead", "program": 5, "register": [60, 84], "velocity": 58},
-  {"id": "lead", "track": "lead", "voice": "reed", "role": "melody", "style": "full", "motif": "lead", "program": 5, "register": [60, 88], "velocity": 78,
+  {
+   "id": "kit",
+   "track": "pulse",
+   "voice": "drums",
+   "role": "percussion",
+   "kit": "core"
+  },
+  {
+   "id": "shaker",
+   "track": "pulse",
+   "voice": "drums",
+   "role": "percussion",
+   "kit": "shaker"
+  },
+  {
+   "id": "congas",
+   "track": "pulse",
+   "voice": "drums",
+   "role": "percussion",
+   "kit": "lift"
+  },
+  {
+   "id": "bells",
+   "track": "pulse",
+   "voice": "drums",
+   "role": "percussion",
+   "kit": "bright"
+  },
+  {
+   "id": "fills",
+   "track": "pulse",
+   "voice": "drums",
+   "role": "percussion",
+   "kit": "fills"
+  },
+  {
+   "id": "bass",
+   "track": "bass",
+   "voice": "roundBass",
+   "role": "bass",
+   "style": "root-fifth",
+   "program": 33,
+   "velocity": 84
+  },
+  {
+   "id": "walk",
+   "track": "bass",
+   "voice": "roundBass",
+   "role": "bass",
+   "style": "walking",
+   "program": 33,
+   "velocity": 76
+  },
+  {
+   "id": "dyads",
+   "track": "guitar",
+   "voice": "synthArp",
+   "role": "comp",
+   "style": "offbeat-dyads",
+   "program": 81,
+   "register": [
+    55,
+    79
+   ],
+   "velocity": 42
+  },
+  {
+   "id": "triads",
+   "track": "guitar",
+   "voice": "synthArp",
+   "role": "comp",
+   "style": "offbeat-triads",
+   "program": 81,
+   "register": [
+    55,
+    79
+   ],
+   "velocity": 50
+  },
+  {
+   "id": "arp",
+   "track": "guitar",
+   "voice": "synthArp",
+   "role": "comp",
+   "style": "arp16",
+   "program": 81,
+   "register": [
+    64,
+    88
+   ],
+   "velocity": 42
+  },
+  {
+   "id": "hook",
+   "track": "lead",
+   "voice": "synthLead",
+   "role": "melody",
+   "style": "hook",
+   "motif": "lead",
+   "program": 80,
+   "register": [
+    60,
+    84
+   ],
+   "velocity": 58
+  },
+  {
+   "id": "lead",
+   "track": "lead",
+   "voice": "synthLead",
+   "role": "melody",
+   "style": "full",
+   "motif": "lead",
+   "program": 80,
+   "register": [
+    60,
+    88
+   ],
+   "velocity": 78,
    "plan": {
-    "A": ["statement", "sequence", "ornament", "cadence"],
-    "B": ["answer", "displace", "fragment", "cadence"],
-    "C": ["invert", "sequence", "displace", "ornament"],
-    "D": ["statement", "fragment", "answer", "cadence"]
-   }},
-  {"id": "counter", "track": "answer", "voice": "sineFlute", "role": "counter", "program": 73, "register": [67, 91], "velocity": 46},
-  {"id": "response", "track": "answer", "voice": "sineFlute", "role": "melody", "style": "full", "motif": "answer", "program": 73, "register": [67, 91], "velocity": 50,
+    "A": [
+     "statement",
+     "sequence",
+     "ornament",
+     "cadence"
+    ],
+    "B": [
+     "answer",
+     "displace",
+     "fragment",
+     "cadence"
+    ],
+    "C": [
+     "invert",
+     "sequence",
+     "displace",
+     "ornament"
+    ],
+    "D": [
+     "statement",
+     "fragment",
+     "answer",
+     "cadence"
+    ]
+   }
+  },
+  {
+   "id": "counter",
+   "track": "answer",
+   "voice": "sineFlute",
+   "role": "counter",
+   "program": 73,
+   "register": [
+    67,
+    91
+   ],
+   "velocity": 46
+  },
+  {
+   "id": "response",
+   "track": "answer",
+   "voice": "sineFlute",
+   "role": "melody",
+   "style": "full",
+   "motif": "answer",
+   "program": 73,
+   "register": [
+    67,
+    91
+   ],
+   "velocity": 50,
    "plan": {
-    "A": ["answer", "fragment", "displace", "sequence"],
-    "B": ["invert", "answer", "fragment", "ornament"],
-    "C": ["displace", "answer", "sequence", "fragment"],
-    "D": ["fragment", "invert", "displace", "answer"]
-   }},
-  {"id": "stabs", "track": "brass", "voice": "softBrass", "role": "stabs", "program": 61, "register": [58, 82], "velocity": 50}
+    "A": [
+     "answer",
+     "fragment",
+     "displace",
+     "sequence"
+    ],
+    "B": [
+     "invert",
+     "answer",
+     "fragment",
+     "ornament"
+    ],
+    "C": [
+     "displace",
+     "answer",
+     "sequence",
+     "fragment"
+    ],
+    "D": [
+     "fragment",
+     "invert",
+     "displace",
+     "answer"
+    ]
+   }
+  },
+  {
+   "id": "stabs",
+   "track": "brass",
+   "voice": "softBrass",
+   "role": "stabs",
+   "program": 61,
+   "register": [
+    58,
+    82
+   ],
+   "velocity": 50
+  }
  ],
  "tiers": [
-  {"name": "Party groove", "adds": ["kit", "bass", "dyads", "hook"]},
-  {"name": "Percussion lift", "adds": ["congas", "walk"]},
-  {"name": "Countermelody", "adds": ["bells", "counter", "triads"], "removes": ["dyads"]},
-  {"name": "Full melody", "adds": ["lead", "arp"], "removes": ["hook"]},
-  {"name": "Full ensemble", "adds": ["response", "stabs", "fills"]}
+  {
+   "name": "Party groove",
+   "adds": [
+    "kit",
+    "bass",
+    "dyads",
+    "hook"
+   ]
+  },
+  {
+   "name": "Percussion lift",
+   "adds": [
+    "congas",
+    "walk",
+    "shaker"
+   ]
+  },
+  {
+   "name": "Countermelody",
+   "adds": [
+    "bells",
+    "counter",
+    "triads"
+   ],
+   "removes": [
+    "dyads"
+   ]
+  },
+  {
+   "name": "Full melody",
+   "adds": [
+    "lead",
+    "arp"
+   ],
+   "removes": [
+    "hook"
+   ]
+  },
+  {
+   "name": "Full ensemble",
+   "adds": [
+    "response",
+    "stabs",
+    "fills"
+   ]
+  }
  ],
- "motifs": {"lead": "motifs/bar_swag.lead.json", "answer": "motifs/bar_swag.answer.json"},
+ "motifs": {
+  "lead": "motifs/bar_swag.lead.json",
+  "answer": "motifs/bar_swag.answer.json"
+ },
  "transitions": {
   "successIntent": "Quote the room call, then thin to a warm tonic answer.",
   "bridgeIntent": "A percussion pivot lets the previous key settle before this room's call arrives."
  },
- "gameplayReference": {"authority": "lib/game campaign configuration; score EOF does not approve an opponent", "phrasePassesPerTier": 2, "fullTierChallengePasses": 2, "cleanTargetSeconds": 80}
+ "gameplayReference": {
+  "authority": "lib/game campaign configuration; score EOF does not approve an opponent",
+  "phrasePassesPerTier": 2,
+  "fullTierChallengePasses": 2,
+  "cleanTargetSeconds": 80
+ }
 }

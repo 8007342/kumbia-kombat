@@ -96,8 +96,32 @@ export function bassWalking(entry,next,rng){
  const approach=target>root?target-pick(rng,[1,2]):target+pick(rng,[1,2]);
  return [{beat:bar+1.5,pitch:mid,duration:.3},{beat:bar+3.5,pitch:approach,duration:.3}];
 }
+/**
+ * Tumbao: the bass anticipates, on the and of 2 and on 4, instead of landing on the downbeat
+ * (en.wikipedia.org/wiki/Tumbao). The note on 4 already plays the next chord's root and rings
+ * into its bar. Pickups are project judgement, added so the line isn't one pattern throughout.
+ */
+const TUMBAO=[[],[],[[.5,'root',.4]],[[2.5,'third',.4]],[[3.5,'nextFifth',.4]]];
+export function bassTumbao(entry,next,rng){
+ const root=bassPitch(entry.rootPc),target=next?bassPitch(next.rootPc):root,bar=entry.bar*4;
+ const fifth=root+entry.chord.intervals[2]-12,third=root+entry.chord.intervals[1];
+ const tones={root,third,nextFifth:target-5};
+ const notes=[{beat:bar+1.5,pitch:pick(rng,[fifth,fifth,root]),duration:1.4},{beat:bar+3,pitch:target,duration:.9}];
+ for(const [x,tone,duration] of pick(rng,TUMBAO))notes.push({beat:bar+x,pitch:tones[tone],duration});
+ // The form's very first bar has nothing to anticipate from, so it states the root.
+ if(entry.bar===0)notes.unshift({beat:0,pitch:root,duration:1.2});
+ return notes.sort((a,b)=>a.beat-b.beat);
+}
 export const bassPedal=entry=>[{beat:entry.bar*4,pitch:bassPitch(entry.rootPc),duration:3.9}];
 
+// Montuno: repeating, syncopated eighth-note chord arpeggiation in a two-bar cycle aligned to
+// the clave (pianowithjonny.com/piano-lessons/piano-montunos-the-complete-guide). The exact
+// patterns here are project judgement, written for the 3-2 side, not transcriptions.
+const MONTUNO={
+ three:[[.5,1,2,2.5,3.5],[.5,1.5,2,3,3.5],[0,1,1.5,2.5,3.5]],
+ two:[[.5,1.5,2.5,3,3.5],[0,.5,1.5,2,3.5],[1,1.5,2.5,3.5]],
+};
+const ARP_GRID=[[0,.5,.75,1.25,1.5,2,2.5,2.75,3.25,3.5],[.25,.5,1,1.25,1.75,2.25,2.5,3,3.25,3.75],[0,.25,.75,1.5,2,2.25,2.75,3.5,3.75]];
 const COMP_RHYTHMS={
  'offbeat-dyads':[[.5,2.5],[.5,2.5],[.5,1.5,3.5],[.5,2.75]],
  'offbeat-triads':[[.5,1.5,2.5,3.5],[.5,1.5,2.5,3.5],[.5,1.5,2.75,3.5],[.5,2,2.5,3.5],[.5,1.25,2.5,3.25]],
@@ -107,6 +131,23 @@ export function comp(timeline,style,register,rng){
  const size=style==='offbeat-dyads'?2:3,out=[];let previous=null;
  for(const entry of timeline){
   const voiced=voiceLead(previous,entry.pcs,size,register);previous=voiced;
+  if(style==='montuno'){
+   const rhythm=pick(rng,entry.bar%2===0?MONTUNO.three:MONTUNO.two),order=pick(rng,[[0,2,1,2,0],[2,1,0,1,2],[1,2,0,2,1]]);
+   rhythm.forEach((x,i)=>{
+    const pitch=voiced[order[i%order.length]%voiced.length];
+    out.push({beat:entry.bar*4+x,pitch,duration:.3});
+    if(i===0)out.push({beat:entry.bar*4+x,pitch:pitch-12>=register[0]?pitch-12:pitch+12,duration:.3});
+   });
+   continue;
+  }
+  if(style==='arp16'){
+   const order=pick(rng,[[0,1,2,1],[2,1,0,1],[0,2,1,2],[1,2,0,2]]);
+   pick(rng,ARP_GRID).forEach((x,i)=>{
+    const octave=i%5===4&&voiced[0]+12<=register[1]?12:0;
+    out.push({beat:entry.bar*4+x,pitch:voiced[order[i%order.length]%voiced.length]+(voiced[order[i%order.length]%voiced.length]+octave<=register[1]?octave:0),duration:.18});
+   });
+   continue;
+  }
   if(style==='arpeggio'){
    const order=pick(rng,[[0,1,2,1],[2,1,0,1],[0,2,1,2]]);
    order.forEach((v,i)=>out.push({beat:entry.bar*4+.5+i,pitch:voiced[v%voiced.length],duration:.3}));

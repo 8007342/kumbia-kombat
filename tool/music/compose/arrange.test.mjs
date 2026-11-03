@@ -5,7 +5,7 @@ import {resolve,dirname} from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {tmpdir} from 'node:os';
 import {mkdtempSync} from 'node:fs';
-import {MODES,makeRng,parseChord,buildTimeline,voiceLead,bassRootFifth,bassWalking,bassPitch,comp} from './harmony.mjs';
+import {MODES,makeRng,parseChord,buildTimeline,voiceLead,bassRootFifth,bassWalking,bassTumbao,bassPitch,comp} from './harmony.mjs';
 import {applyOp,ops,fitToHarmony,counterLine,fills,shiftDiatonic} from './motif.mjs';
 import {arrange,composeSuccess} from './arrange.mjs';
 import {midi} from './midi.mjs';
@@ -61,7 +61,7 @@ test('the bass plays the chord root on every downbeat and walks into the next ch
 
 test('comping uses only chord tones and stays inside each bar',()=>{
  const timeline=buildTimeline(loadBrief());
- for(const style of ['offbeat-dyads','offbeat-triads','arpeggio']){
+ for(const style of ['offbeat-dyads','offbeat-triads','arpeggio','montuno','arp16']){
   for(const n of comp(timeline,style,[55,79],makeRng(5,style))){
    const entry=timeline[Math.floor(n.beat/4)];
    assert.ok(entry.pcs.includes(pc(n.pitch)),`${style} beat ${n.beat}`);
@@ -215,4 +215,42 @@ test('an invalid brief builds nothing and names the problem',()=>{
  assert.ok(result.problems.some(p=>p.includes('kazooOfDoom')));
  assert.equal(existsSync(resolve(dir,'out')),false);
  rmSync(dir,{recursive:true,force:true});
+});
+
+// Level styles
+const gardenBrief=()=>JSON.parse(readFileSync(resolve(briefs,'garden_mojo.json')));
+test('a tumbao anticipates: no downbeat, the and of 2, and the next root on 4',()=>{
+ const timeline=buildTimeline(gardenBrief()),rng=makeRng(3,'tumbao');
+ timeline.slice(1).forEach((entry,i)=>{
+  const next=timeline[(i+2)%timeline.length],beats=bassTumbao(entry,next,rng);
+  const at=x=>beats.find(n=>n.beat===entry.bar*4+x);
+  assert.equal(at(0),undefined,`bar ${entry.bar}`);
+  assert.ok(at(1.5));
+  assert.equal(at(3).pitch,bassPitch(next.rootPc));
+ });
+});
+test('a section-limited part only sounds in its sections',()=>{
+ const brief=gardenBrief(),score=arrange(brief,motifsOf(brief));
+ const lift=score.events.filter(e=>e.track==='brass'&&e.minTier===3);
+ assert.ok(lift.length);
+ assert.ok(lift.every(e=>Math.floor(e.beat/4)>=16&&Math.floor(e.beat/4)<24));
+});
+test('both level briefs pass every gate, including Latin identity in every tier',()=>{
+ for(const brief of [gardenBrief(),loadBrief()]){
+  const result=evaluate(arrange(brief,motifsOf(brief)));
+  assert.deepEqual(result.failures,[],brief.id);
+  for(const l of result.metrics.latinIdentity)assert.ok(l.share>=.75,`${brief.id} tier ${l.tier}`);
+ }
+});
+test('Garden carries clave and tumbao from tier 0, and Bar a cumbia base',()=>{
+ const garden=gardenBrief(),bar=loadBrief();
+ const g=evaluate(arrange(garden,motifsOf(garden))).metrics.latinIdentity[0];
+ assert.ok(g.clave>=.9&&g.tumbao>=.9,JSON.stringify(g));
+ const b=evaluate(arrange(bar,motifsOf(bar))).metrics.latinIdentity[0];
+ assert.ok(b.cumbia>=.9,JSON.stringify(b));
+});
+test('an unknown part section is refused by name',async()=>{
+ const {validateBrief}=await import('./brief.mjs');
+ const brief=gardenBrief();brief.parts.find(p=>p.id==='mambo').sections=['Z'];
+ assert.ok(validateBrief(brief).some(p=>/sections.*"Z"/.test(p)));
 });

@@ -19,7 +19,7 @@
 ## 4. Prompt-to-score proof
 
 - [ ] 4.1 Write the Garden salsa and Bar electro-Latin briefs and build complete score sets; verify all gates pass, including `latinIdentity`, and deliver the preview page for owner listening before promotion
-- [ ] 4.2 Add the `latinIdentity` gate and arranger styles those briefs need; verify tests, including that a rock beat fails by name
+- [x] 4.2 Add the `latinIdentity` gate and arranger styles those briefs need; verify tests, including that a rock beat fails by name
 - [ ] 4.3 Document the flow in `tool/music/README.md` and verify its commands run
 
 ## 5. Models
