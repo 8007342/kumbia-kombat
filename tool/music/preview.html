@@ -8,6 +8,7 @@ body{margin:0;background:#101522;color:#fff3d6;font:17px system-ui;min-height:10
 <p>Five original synth cumbia instrumentals, five success phrases, and four bridges. Choose a piece, start the pulse, then audition an arrangement tier. Changes land on the next two-bar phrase.</p>
 <select id="score" aria-label="Score"></select><div><button id="play">Play / resume</button><button id="pause">Pause</button><button id="stop">Stop</button></div>
 <label>Arrangement</label><div id="tiers"></div><label>Optional musical flourishes</label><div id="flourishes"></div>
+<label>Synth voices</label><div id="voices"></div>
 <output id="status" aria-live="off">Loading scores…</output><p class="small">These are live synthesized notes. MIDI files are composition previews; no recorded stems play here. Resume leaves one silent bar for a breath. Gameplay adds the visible and audible count-in. This score-room prototype stops at the written form; gameplay will use phrase vamps until the opponent approves.</p></main>
 <script src="main.js" defer></script><script>
 const select=document.querySelector('#score'),status=document.querySelector('#status');
@@ -18,6 +19,7 @@ window.addEventListener('load',async()=>{
  select.onchange=load;document.querySelector('#play').onclick=()=>ready&&kumbiaMusic.play();document.querySelector('#pause').onclick=()=>kumbiaMusic.pause();document.querySelector('#stop').onclick=()=>kumbiaMusic.stop();
  ['Pulse','Groove','Harmony','Melody','Full'].forEach((name,i)=>{const b=document.createElement('button');b.textContent=i+' · '+name;b.onclick=()=>kumbiaMusic.tier(i);document.querySelector('#tiers').append(b);});
  ['spark','dip','slide','shine'].forEach(name=>{const b=document.createElement('button');b.textContent=name;b.onclick=()=>kumbiaMusic.flourish(name);document.querySelector('#flourishes').append(b);});
+ kumbiaMusic.voiceNames.split(',').forEach(name=>{const b=document.createElement('button');b.textContent=name;b.dataset.voice=name;b.onclick=()=>kumbiaMusic.audition(name);document.querySelector('#voices').append(b)});
  setInterval(()=>{if(!ready)return;kumbiaMusic.pump();status.textContent=kumbiaMusic.status;},20);
  document.addEventListener('visibilitychange',()=>{if(document.hidden)kumbiaMusic.pause();});
 });

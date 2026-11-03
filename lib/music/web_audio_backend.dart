@@ -1,8 +1,10 @@
 // Web-only adapter. Import conditionally when integrating native targets.
 import 'dart:js_interop';
 import 'dart:math' as math;
+import 'dart:typed_data';
 import 'score.dart';
 import 'game_audio_contract.dart';
+import 'voice_recipes.dart';
 
 @JS('AudioContext')
 extension type _Context._(JSObject _) implements JSObject {
@@ -16,6 +18,7 @@ extension type _Context._(JSObject _) implements JSObject {
   external _Gain createGain();
   external _Oscillator createOscillator();
   external _Filter createBiquadFilter();
+  external _Shaper createWaveShaper();
   external _Buffer createBuffer(int channels, int length, double sampleRate);
   external _BufferSource createBufferSource();
 }
@@ -42,6 +45,10 @@ extension type _Filter._(JSObject _) implements _Node {
   external set type(String value);
   external _Param get frequency;
   external _Param get Q;
+}
+
+extension type _Shaper._(JSObject _) implements _Node {
+  external set curve(JSFloat32Array value);
 }
 
 extension type _Source._(JSObject _) implements _Node {
@@ -81,6 +88,7 @@ class WebAudioMusicBackend implements GameAudio {
   _Context? _context;
   _Gain? _master;
   _Buffer? _noise;
+  late final JSFloat32Array _driveCurve = _softClipCurve();
   final List<_Voice> _voices = [];
   int stolenVoices = 0;
   bool _disposed = false;
@@ -127,6 +135,15 @@ class WebAudioMusicBackend implements GameAudio {
     if (context != null) await context.close().toDart;
   }
 
+  static JSFloat32Array _softClipCurve() {
+    final curve = Float32List(1024);
+    for (var i = 0; i < curve.length; i++) {
+      final x = i / (curve.length - 1) * 2 - 1;
+      curve[i] = (math.atan(x * 6) / math.atan(6)).toDouble();
+    }
+    return curve.toJS;
+  }
+
   void _collect() {
     final expired = _voices.where((voice) => voice.end < nowSeconds).toList();
     for (final voice in expired) {
@@ -152,6 +169,7 @@ class WebAudioMusicBackend implements GameAudio {
     filter.Q.value = .7;
     final drum = note.track == 'pulse';
     final noisy = drum && [38, 73, 75].contains(note.pitch);
+    final recipe = drum ? null : voiceRecipes[note.voice];
     late _Source source;
     var length = math.max(.025, durationSeconds);
     var gain = note.velocity / 127 * .18;
@@ -170,7 +188,7 @@ class WebAudioMusicBackend implements GameAudio {
       source = oscillator;
       oscillator.type = drum
           ? 'sine'
-          : switch (note.track) {
+          : recipe?.wave ?? switch (note.track) {
               'bass' => 'triangle',
               'guitar' => 'sawtooth',
               'brass' => 'sawtooth',
@@ -180,41 +198,68 @@ class WebAudioMusicBackend implements GameAudio {
       final frequency = drum
           ? (note.pitch == 36 ? 110.0 : 160 + (note.pitch - 60) * 24.0)
           : 440 * math.pow(2, (note.pitch - 69) / 12).toDouble();
-      oscillator.frequency.setValueAtTime(frequency, when);
+      if (recipe != null && recipe.glideSemitones > 0) {
+        final from = frequency * math.pow(2, -recipe.glideSemitones / 12);
+        oscillator.frequency.setValueAtTime(from.toDouble(), when);
+        oscillator.frequency.linearRampToValueAtTime(
+          frequency,
+          when + recipe.glideSeconds,
+        );
+      } else {
+        oscillator.frequency.setValueAtTime(frequency, when);
+      }
       if (drum) {
         oscillator.frequency.exponentialRampToValueAtTime(
           frequency * .45,
           when + .09,
         );
       }
-      filter.frequency.value = switch (note.track) {
+      filter.frequency.value = recipe?.cutoff ?? switch (note.track) {
         'bass' => 700,
         'guitar' => 1700,
         'brass' => 2200,
         _ => 4200,
       };
-      if (note.track == 'bass') gain *= 1.3;
-      if (note.track == 'guitar' || note.track == 'brass') gain *= .65;
+      if (recipe != null) {
+        filter.Q.value = recipe.q;
+        gain *= recipe.gain;
+        length = math.min(length, recipe.maxLength ?? length);
+        length = math.max(length, recipe.attack + .02);
+      } else {
+        if (note.track == 'bass') gain *= 1.3;
+        if (note.track == 'guitar' || note.track == 'brass') gain *= .65;
+      }
     }
     final end = when + length + .04;
     envelope.gain.setValueAtTime(.0001, when);
-    envelope.gain.linearRampToValueAtTime(gain, when + .006);
+    envelope.gain.linearRampToValueAtTime(
+      gain,
+      when + (recipe?.attack ?? .006),
+    );
     envelope.gain.exponentialRampToValueAtTime(
-      math.max(.0002, gain * .35),
+      math.max(.0002, gain * (recipe?.sustain ?? .35)),
       when + length,
     );
     envelope.gain.exponentialRampToValueAtTime(.0001, end);
-    source.connect(filter);
+    final nodes = <_Node>[source, filter, envelope];
+    if (recipe?.drive ?? false) {
+      final shaper = context.createWaveShaper()..curve = _driveCurve;
+      source.connect(shaper);
+      shaper.connect(filter);
+      nodes.add(shaper);
+    } else {
+      source.connect(filter);
+    }
     filter.connect(envelope);
     envelope.connect(_master!);
     source.onended = (() {
-      source.disconnect();
-      filter.disconnect();
-      envelope.disconnect();
+      for (final node in nodes) {
+        node.disconnect();
+      }
     }).toJS;
     source.start(when);
     source.stop(end);
-    _voices.add(_Voice(source, envelope, [source, filter, envelope], end));
+    _voices.add(_Voice(source, envelope, nodes, end));
   }
 
   @override

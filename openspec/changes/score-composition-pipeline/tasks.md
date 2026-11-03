@@ -14,7 +14,7 @@
 
 ## 3. Synth voices
 
-- [ ] 3.1 Add new voice recipes in `lib/music` within the voice cap; verify `flutter analyze` and the preview page plays each
+- [x] 3.1 Add new voice recipes in `lib/music` within the voice cap; verify `flutter analyze` and the preview page plays each
 
 ## 4. Prompt-to-score proof
 

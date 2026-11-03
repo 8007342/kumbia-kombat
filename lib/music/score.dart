@@ -8,6 +8,7 @@ class ScoreNote {
     required this.velocity,
     this.minTier = 0,
     this.maxTier = 4,
+    this.voice,
   });
   final String track;
   final double beat;
@@ -17,6 +18,9 @@ class ScoreNote {
   final int minTier;
   final int maxTier;
 
+  /// The track's synth voice, when its score names one.
+  final String? voice;
+
   factory ScoreNote.fromJson(Map<String, dynamic> json) => ScoreNote(
     track: json['track'] as String,
     beat: (json['beat'] as num).toDouble(),
@@ -25,6 +29,7 @@ class ScoreNote {
     velocity: json['velocity'] as int,
     minTier: json['minTier'] as int? ?? 0,
     maxTier: json['maxTier'] as int? ?? 4,
+    voice: json['voice'] as String?,
   );
 
   bool audibleAt(int tier) => minTier <= tier && tier <= maxTier;
@@ -81,6 +86,10 @@ class MusicScore {
     if (json['schemaVersion'] != 1) {
       throw const FormatException('Unsupported music score version');
     }
+    final voices = <String, String>{
+      for (final t in (json['tracks'] as List? ?? const []))
+        if ((t as Map)['voice'] != null) t['id'] as String: t['voice'] as String,
+    };
     return MusicScore(
       id: json['id'] as String,
       beatsPerBar: json['beatsPerBar'] as int,
@@ -90,7 +99,12 @@ class MusicScore {
           .map((t) => (t['bpm'] as num).toDouble())
           .toList(),
       notes: (json['events'] as List)
-          .map((n) => ScoreNote.fromJson(n as Map<String, dynamic>))
+          .map(
+            (n) => ScoreNote.fromJson({
+              ...n as Map<String, dynamic>,
+              'voice': voices[n['track']],
+            }),
+          )
           .toList(),
     );
   }

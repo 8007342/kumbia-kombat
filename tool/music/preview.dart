@@ -5,6 +5,7 @@ import 'dart:js_interop';
 import 'dart:js_interop_unsafe';
 import '../../lib/music/score.dart';
 import '../../lib/music/transport.dart';
+import '../../lib/music/voice_recipes.dart';
 import '../../lib/music/web_audio_backend.dart';
 
 @JSExport()
@@ -84,6 +85,34 @@ class MusicPreview {
     if (transport?.state != TransportState.playing) return;
     final boundary = transport!.requestTier(value);
     message = 'Tier $value enters at beat ${boundary.toInt()}';
+  }
+
+  /// Comma-separated recipe voices, for the audition buttons.
+  String get voiceNames => voiceRecipes.keys.join(',');
+
+  /// A short figure on one recipe voice, independent of the loaded score.
+  void audition(String voice) {
+    backend.activate().then((_) {
+      final bass = voice == 'subDrone' || voice == 'chugGuitar';
+      final root = bass ? 40 : 60;
+      final start = backend.nowSeconds + .05;
+      const steps = [0, 4, 7, 12];
+      for (var i = 0; i < steps.length; i++) {
+        backend.schedule(
+          ScoreNote(
+            track: 'audition',
+            beat: 0,
+            pitch: root + steps[i],
+            duration: 1,
+            velocity: 90,
+            voice: voice,
+          ),
+          start + i * .32,
+          .3,
+        );
+      }
+      message = 'Voice: $voice';
+    });
   }
 
   void flourish(String id) {
