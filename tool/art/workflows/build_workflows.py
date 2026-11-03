@@ -55,16 +55,20 @@ def build(profile: dict, m: dict) -> dict:
                            "strength_model": 0.8, "strength_clip": 0.8})
     model, clip = ["2", 0], ["2", 1]
 
-    ref = node(3, "LoadImage", {"image": "$identity"}, "identity reference")
-    # Explicit loaders: the pinned CLIP-vision file is not named the way
-    # IPAdapterUnifiedLoader's presets expect.
-    node(4, "IPAdapterModelLoader", {"ipadapter_file": m["ipadapter"]})
-    node(8, "CLIPVisionLoader", {"clip_name": m["clip_vision"]})
-    node(5, "IPAdapterAdvanced", {
-        "model": model, "ipadapter": ["4", 0], "clip_vision": ["8", 0], "image": ref,
-        "weight": 0.7, "weight_type": "style and composition", "combine_embeds": "concat",
-        "start_at": 0.0, "end_at": 1.0, "embeds_scaling": "V only"})
-    model = ["5", 0]
+    # IP-Adapter is optional: models.json "ipadapter": null drops it (and the
+    # $identity input) until a file is pinned and licence-admitted; identity
+    # then rests on the colour-proxy init image and the prompt.
+    if m.get("ipadapter"):
+        ref = node(3, "LoadImage", {"image": "$identity"}, "identity reference")
+        # Explicit loaders: the pinned CLIP-vision file is not named the way
+        # IPAdapterUnifiedLoader's presets expect.
+        node(4, "IPAdapterModelLoader", {"ipadapter_file": m["ipadapter"]})
+        node(8, "CLIPVisionLoader", {"clip_name": m["clip_vision"]})
+        node(5, "IPAdapterAdvanced", {
+            "model": model, "ipadapter": ["4", 0], "clip_vision": ["8", 0], "image": ref,
+            "weight": 0.7, "weight_type": "style and composition", "combine_embeds": "concat",
+            "start_at": 0.0, "end_at": 1.0, "embeds_scaling": "V only"})
+        model = ["5", 0]
 
     pos = node(6, "CLIPTextEncode", {"clip": clip, "text": "$prompt"}, "$prompt")
     neg = node(7, "CLIPTextEncode", {"clip": clip, "text": "$negative_prompt"}, "$negative_prompt")

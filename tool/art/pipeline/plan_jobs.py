@@ -124,6 +124,10 @@ def main() -> None:
         proxy(Path(pose["regionMask"]), spec["regions"], spec["regionProxyColours"], init)
         prompt, neg = compose_prompt(spec, pose, principles)
         profile = pose.get("profile", gen.get("defaultProfile", "moderate"))
+        wf_inputs = {"pose": staged["pose"], "depth": staged["depth"],
+                     "lineart": staged["lineart"], "identity": str(ident_out)}
+        wf_text = Path(gen["workflowsByProfile"][profile]).read_text()
+        wf_inputs = {k: v for k, v in wf_inputs.items() if f'"${k}"' in wf_text}
         seed = gen["seed_base"] + 100 * idx
         jobs.append({
             "pose": pid,
@@ -132,8 +136,7 @@ def main() -> None:
                 "workflow": gen["workflowsByProfile"][profile],
                 "tier": a.tier,
                 "count": count,
-                "inputs": {"pose": staged["pose"], "depth": staged["depth"],
-                           "lineart": staged["lineart"], "identity": str(ident_out)},
+                "inputs": wf_inputs,
                 "init_image": str(init),
                 "overrides": {"prompt": prompt, "negative_prompt": neg, "seed": seed},
             },

@@ -11,6 +11,7 @@
   "sampler_name": "euler",
   "scheduler": "sgm_uniform"
  },
- "ipadapter": "sdxl_models/ip-adapter-plus_sdxl_vit-h.safetensors",
- "clip_vision": "model.safetensors"
+ "ipadapter": "ip-adapter-plus_sdxl_vit-h.safetensors",
+ "clip_vision": "model.safetensors",
+ "$ipadapter": "Pinned names match the file basename or <tier>/<basename>, never the Hub repo path (macuahuitl-fedora 2026-11-03). Set null to drop IP-Adapter and the $identity input."
 }
