@@ -1,0 +1,390 @@
+{
+ "character": "gatekeeper",
+ "note": "Sides are the character's own; he faces the viewer, so his left is on screen right.",
+ "poses": {
+  "groove.down_l": {
+   "clip": "groove",
+   "phase": "down (beat 1, back-step)",
+   "support": "left",
+   "description": "weight sunk on his bent left knee, right foot stepped back on its ball with the heel raised, left hip high and pushed out, shoulders tilted the other way, left forearm swinging forward at belly height, right arm low and back, head level facing the viewer"
+  },
+  "groove.pass_l": {
+   "clip": "groove",
+   "phase": "pass (beat 2, replace)",
+   "support": "left",
+   "description": "weight rolling forward onto the left foot, knees softening upward, right foot still slightly back on its ball, hips easing toward level, arms loose and low swinging back toward the body"
+  },
+  "groove.up_l": {
+   "clip": "groove",
+   "phase": "up (beat 3, close)",
+   "support": "both",
+   "description": "both feet together and flat, legs nearly straight in a small rise, hips almost level, chin lifted proudly, arms relaxed low at the sides with elbows soft"
+  },
+  "groove.pass_l2": {
+   "clip": "groove",
+   "phase": "accent (beat 4, the hold)",
+   "support": "right",
+   "description": "hip popped out to his right over the straight right leg, right hip high, right shoulder dipped, left knee bent with the left foot resting on its toe, right forearm lifted out at hip height in a wrist roll, left forearm across the belly, head tilted toward his left"
+  },
+  "groove.down_r": {
+   "clip": "groove",
+   "phase": "down (beat 1, back-step)",
+   "support": "right",
+   "description": "weight sunk on his bent right knee, left foot stepped back on its ball with the heel raised, right hip high and pushed out, shoulders tilted the other way, right forearm swinging forward at belly height, left arm low and back, head level facing the viewer"
+  },
+  "groove.pass_r": {
+   "clip": "groove",
+   "phase": "pass (beat 2, replace)",
+   "support": "right",
+   "description": "weight rolling forward onto the right foot, knees softening upward, left foot still slightly back on its ball, hips easing toward level, arms loose and low swinging back toward the body"
+  },
+  "groove.up_r": {
+   "clip": "groove",
+   "phase": "up (beat 3, close)",
+   "support": "both",
+   "description": "both feet together and flat, legs nearly straight in a small rise, hips almost level, chin lifted proudly, arms relaxed low at the sides with elbows soft"
+  },
+  "groove.pass_r2": {
+   "clip": "groove",
+   "phase": "accent (beat 4, the hold)",
+   "support": "left",
+   "description": "hip popped out to his left over the straight left leg, left hip high, left shoulder dipped, right knee bent with the right foot resting on its toe, left forearm lifted out at hip height in a wrist roll, right forearm across the belly, head tilted toward his right"
+  },
+  "left_hand.prep": {
+   "clip": "left_hand",
+   "phase": "anticipation",
+   "support": "right",
+   "description": "crouched low with weight on the bent right leg, right fist on the hip, left hand scooped down low in front of the left hip, torso turned away to his right, head glancing down at the left hand"
+  },
+  "left_hand.peak": {
+   "clip": "left_hand",
+   "phase": "accent",
+   "support": "right",
+   "description": "weight on the straight right foot, right hip pushed out, right fist on the hip, body leaning toward his left so one long diagonal runs from the right foot to the left palm thrust high and out at about 45 degrees, left foot on its toe out to the side, head turned up toward the raised hand"
+  },
+  "left_hand.follow": {
+   "clip": "left_hand",
+   "phase": "follow-through",
+   "support": "right",
+   "description": "same diagonal pushed further: left arm reaching higher and the palm rolling forward, torso leaning further toward his left, right elbow pushed back on the hip, left toe touch out wider, head following the hand"
+  },
+  "left_hand.return": {
+   "clip": "left_hand",
+   "phase": "settle",
+   "support": "both",
+   "description": "left arm sweeping down in an arc at shoulder height with the elbow bent, right hand low on the hip, both feet flat and close, torso returning upright"
+  },
+  "right_hand.prep": {
+   "clip": "right_hand",
+   "phase": "anticipation",
+   "support": "left",
+   "description": "crouched low with weight on the bent left leg, left fist on the hip, right hand scooped down low in front of the right hip, torso turned away to his left, head glancing down at the right hand"
+  },
+  "right_hand.peak": {
+   "clip": "right_hand",
+   "phase": "accent",
+   "support": "left",
+   "description": "weight on the straight left foot, left hip pushed out, left fist on the hip, body leaning toward his right so one long diagonal runs from the left foot to the right palm thrust high and out at about 45 degrees, right foot on its toe out to the side, head turned up toward the raised hand"
+  },
+  "right_hand.follow": {
+   "clip": "right_hand",
+   "phase": "follow-through",
+   "support": "left",
+   "description": "same diagonal pushed further: right arm reaching higher and the palm rolling forward, torso leaning further toward his right, left elbow pushed back on the hip, right toe touch out wider, head following the hand"
+  },
+  "right_hand.return": {
+   "clip": "right_hand",
+   "phase": "settle",
+   "support": "both",
+   "description": "right arm sweeping down in an arc at shoulder height with the elbow bent, left hand low on the hip, both feet flat and close, torso returning upright"
+  },
+  "left_foot.prep": {
+   "clip": "left_foot",
+   "phase": "anticipation",
+   "support": "right",
+   "description": "weight on the bent right leg, left knee lifted forward and out with the foot off the floor and the toe pointing down, left fist on the hip, right arm low and out for balance, head looking down at the left foot"
+  },
+  "left_foot.peak": {
+   "clip": "left_foot",
+   "phase": "accent",
+   "support": "right",
+   "description": "heel dig: left leg stretched out on a forward diagonal with the left heel on the floor and the toe up, weight on the bent right leg, chest proud and leaning back slightly, right fist on the hip, left arm low and back, head turned toward the left foot"
+  },
+  "left_foot.follow": {
+   "clip": "left_foot",
+   "phase": "follow-through",
+   "support": "right",
+   "description": "left heel still dug in on the diagonal, hip popped over the right foot, shoulders tilted against the hips, right elbow pushed back on the hip, left arm low and out, head on the left foot"
+  },
+  "left_foot.return": {
+   "clip": "left_foot",
+   "phase": "settle",
+   "support": "both",
+   "description": "left foot dragged back along the floor to close beside the right, both feet flat, knees soft, arms relaxed low at the sides"
+  },
+  "right_foot.prep": {
+   "clip": "right_foot",
+   "phase": "anticipation",
+   "support": "left",
+   "description": "weight on the bent left leg, right knee lifted forward and out with the foot off the floor and the toe pointing down, right fist on the hip, left arm low and out for balance, head looking down at the right foot"
+  },
+  "right_foot.peak": {
+   "clip": "right_foot",
+   "phase": "accent",
+   "support": "left",
+   "description": "heel dig: right leg stretched out on a forward diagonal with the right heel on the floor and the toe up, weight on the bent left leg, chest proud and leaning back slightly, left fist on the hip, right arm low and back, head turned toward the right foot"
+  },
+  "right_foot.follow": {
+   "clip": "right_foot",
+   "phase": "follow-through",
+   "support": "left",
+   "description": "right heel still dug in on the diagonal, hip popped over the left foot, shoulders tilted against the hips, left elbow pushed back on the hip, right arm low and out, head on the right foot"
+  },
+  "right_foot.return": {
+   "clip": "right_foot",
+   "phase": "settle",
+   "support": "both",
+   "description": "right foot dragged back along the floor to close beside the left, both feet flat, knees soft, arms relaxed low at the sides"
+  },
+  "enter_forward.contact_l": {
+   "clip": "enter_forward",
+   "phase": "contact",
+   "support": "both",
+   "description": "swaggering walk toward the viewer on a slight diagonal, left heel landing in front, right foot behind on its toe, right fist on the hip, left arm swinging back, chin up"
+  },
+  "enter_forward.down_l": {
+   "clip": "enter_forward",
+   "phase": "down",
+   "support": "left",
+   "description": "weight dropping into the bent left knee, left hip high, right foot pushing off behind on its toe, right fist on the hip, left arm swinging, head dipping on the beat"
+  },
+  "enter_forward.pass_l": {
+   "clip": "enter_forward",
+   "phase": "pass",
+   "support": "left",
+   "description": "standing tall on the straight left leg, right knee swinging forward past it, right fist on the hip, left arm relaxed at the side, chin up"
+  },
+  "enter_forward.contact_r": {
+   "clip": "enter_forward",
+   "phase": "contact",
+   "support": "both",
+   "description": "swaggering walk toward the viewer on a slight diagonal, right heel landing in front, left foot behind on its toe, right fist on the hip, left arm swinging forward, chin up"
+  },
+  "enter_forward.down_r": {
+   "clip": "enter_forward",
+   "phase": "down",
+   "support": "right",
+   "description": "weight dropping into the bent right knee, right hip high, left foot pushing off behind on its toe, right fist on the hip, left arm swinging forward, head dipping on the beat"
+  },
+  "enter_forward.pass_r": {
+   "clip": "enter_forward",
+   "phase": "pass",
+   "support": "right",
+   "description": "standing tall on the straight right leg, left knee swinging forward past it, right fist on the hip, left arm relaxed at the side, chin up"
+  },
+  "retreat_backward.contact_l": {
+   "clip": "retreat_backward",
+   "phase": "contact",
+   "support": "both",
+   "description": "stepping backward while still facing the viewer, left foot reaching back onto its ball, weight still on the flat right foot, left hand behind the back, right arm low and loose"
+  },
+  "retreat_backward.down_l": {
+   "clip": "retreat_backward",
+   "phase": "down",
+   "support": "left",
+   "description": "weight rolled back onto the bent left leg, left hip high, right foot in front with the toe lifted, left hand behind the back, right arm low and forward, head nodding"
+  },
+  "retreat_backward.pass_l": {
+   "clip": "retreat_backward",
+   "phase": "pass",
+   "support": "left",
+   "description": "right foot dragged back along the floor past the straight left leg, left hand behind the back, right arm hanging loose, chin up"
+  },
+  "retreat_backward.contact_r": {
+   "clip": "retreat_backward",
+   "phase": "contact",
+   "support": "both",
+   "description": "stepping backward while still facing the viewer, right foot reaching back onto its ball, weight still on the flat left foot, left hand behind the back, right arm low and loose"
+  },
+  "retreat_backward.down_r": {
+   "clip": "retreat_backward",
+   "phase": "down",
+   "support": "right",
+   "description": "weight rolled back onto the bent right leg, right hip high, left foot in front with the toe lifted, left hand behind the back, right arm low, head nodding"
+  },
+  "retreat_backward.pass_r": {
+   "clip": "retreat_backward",
+   "phase": "pass",
+   "support": "right",
+   "description": "left foot dragged back along the floor past the straight right leg, left hand behind the back, right arm hanging loose, chin up"
+  },
+  "yield_side.contact_l": {
+   "clip": "yield_side",
+   "phase": "contact",
+   "support": "both",
+   "description": "side-step toward the sideline: left leg reaching out sideways with the foot landing, weight still on the bent right leg, right fist on the hip, left arm out low"
+  },
+  "yield_side.down_l": {
+   "clip": "yield_side",
+   "phase": "down",
+   "support": "left",
+   "description": "weight shifted onto the bent left leg, left hip high and pushed out, right foot trailing on its toe, right fist on the hip, head nodding"
+  },
+  "yield_side.pass_l": {
+   "clip": "yield_side",
+   "phase": "pass",
+   "support": "left",
+   "description": "right foot dragged in along the floor to close beside the straight left leg, right fist on the hip, left arm relaxed at the side"
+  },
+  "yield_side.contact_r": {
+   "clip": "yield_side",
+   "phase": "contact",
+   "support": "both",
+   "description": "right foot stepping back on a diagonal onto its ball, left knee bent, arms low and loose, torso turning open"
+  },
+  "yield_side.down_r": {
+   "clip": "yield_side",
+   "phase": "down",
+   "support": "right",
+   "description": "weight settled onto the bent right leg, right hip high, left foot in front with the toe lifted, right forearm coming forward at waist height"
+  },
+  "yield_side.pass_r": {
+   "clip": "yield_side",
+   "phase": "accent (hand-over)",
+   "support": "right",
+   "description": "standing on the right leg, left fist on the hip, right arm held out low and wide with the palm open and up toward the empty floor, head turned toward the open palm with a slight bow, offering the floor"
+  },
+  "watch.shift_l": {
+   "clip": "watch",
+   "phase": "pass (weight shift)",
+   "support": "left",
+   "description": "relaxed stance turned slightly to his left, hands clasped behind the back, weight on the left foot with the left hip high, right knee soft, head turned to watch the other dancer"
+  },
+  "watch.hold_l": {
+   "clip": "watch",
+   "phase": "settle (nod on beat 1)",
+   "support": "left",
+   "description": "hands clasped behind the back, weight sunk on the left foot with both knees softer, head nodding along to the music while watching"
+  },
+  "watch.shift_r": {
+   "clip": "watch",
+   "phase": "pass (weight shift)",
+   "support": "right",
+   "description": "relaxed stance turned slightly to his left, hands clasped behind the back, weight on the right foot with the right hip high, left knee soft, head turned to watch the other dancer"
+  },
+  "watch.hold_r": {
+   "clip": "watch",
+   "phase": "settle",
+   "support": "right",
+   "description": "hands clasped behind the back, weight sunk on the right foot with both knees softer, head tilted with a small nod while watching"
+  },
+  "clap.open": {
+   "clip": "clap",
+   "phase": "anticipation",
+   "support": "both",
+   "description": "standing square and upright, both forearms raised in front of the chest with the palms apart and facing each other, elbows out, chin up"
+  },
+  "clap.close": {
+   "clip": "clap",
+   "phase": "pass",
+   "support": "both",
+   "description": "both hands swinging together in front of the chest, elbows out, knees starting to bend, head starting to nod"
+  },
+  "clap.contact": {
+   "clip": "clap",
+   "phase": "contact (on the beat)",
+   "support": "both",
+   "description": "palms clapped together in front of the chest, elbows out to the sides, both knees dipped, head nodding down with a smile"
+  },
+  "clap.release": {
+   "clip": "clap",
+   "phase": "follow-through",
+   "support": "both",
+   "description": "hands bouncing apart in front of the chest, elbows out, knees rising, head level"
+  },
+  "challenge.load": {
+   "clip": "challenge",
+   "phase": "anticipation",
+   "support": "left",
+   "description": "back-break dip: weight sunk on the bent left leg, right foot back on its ball, torso leaning forward, both hands travelling toward the hips, head lowered"
+  },
+  "challenge.proud": {
+   "clip": "challenge",
+   "phase": "accent",
+   "support": "right",
+   "description": "proud stance: both fists on the hips with the elbows out, chest pushed out and leaning back, chin raised, weight on the straight right leg, left heel set forward with the toe up"
+  },
+  "challenge.offer": {
+   "clip": "challenge",
+   "phase": "accent (invitation)",
+   "support": "right",
+   "description": "courteous invitation: weight on the right leg, left fist on the hip, right arm sweeping out low and forward with the palm open and up toward the floor, torso bowing slightly forward, head bowed toward the open hand"
+  },
+  "challenge.return": {
+   "clip": "challenge",
+   "phase": "settle",
+   "support": "both",
+   "description": "both feet flat, standing easy, right forearm relaxed in front, left hand low near the hip, body upright"
+  },
+  "approval.load": {
+   "clip": "approval",
+   "phase": "anticipation",
+   "support": "both",
+   "description": "small inhale: chest lifted and leaning back slightly, chin raised, weight on the right foot, arms loose and slightly away from the body"
+  },
+  "approval.nod": {
+   "clip": "approval",
+   "phase": "accent",
+   "support": "both",
+   "description": "right palm pressed flat to the chest, a deep nod with the head bowed, both knees dipped, left arm low and out at the side"
+  },
+  "approval.release": {
+   "clip": "approval",
+   "phase": "settle",
+   "support": "both",
+   "description": "left fist on the hip, right arm held out forward at waist height with the palm open toward the viewer, head tilted warmly"
+  },
+  "reassurance.notice": {
+   "clip": "reassurance",
+   "phase": "anticipation",
+   "support": "both",
+   "description": "head tilted to his right with a soft warm look, weight on the left foot, arms relaxed low, right forearm slightly forward"
+  },
+  "reassurance.open_hand": {
+   "clip": "reassurance",
+   "phase": "accent",
+   "support": "both",
+   "description": "small friendly shrug: both forearms out at waist height with the palms open and up, the right hand a little higher, both knees softly bent, head tilted"
+  },
+  "reassurance.settle": {
+   "clip": "reassurance",
+   "phase": "settle (invitation)",
+   "support": "left",
+   "description": "a back-break step on the spot: weight on the bent left knee, right foot back on its ball, left forearm forward, right arm low and back, inviting the rhythm back"
+  },
+  "finish_turn.finish_a": {
+   "clip": "finish_turn",
+   "phase": "anticipation (remate)",
+   "support": "right",
+   "description": "weight on the straight right leg, left heel set forward with the toe up, left fist on the hip, right hand rising beside the head on its way to the hat brim, chest proud, chin up"
+  },
+  "finish_turn.finish_b": {
+   "clip": "finish_turn",
+   "phase": "accent (remate)",
+   "support": "right",
+   "description": "right fingertips touching the front of the hat brim in a courteous salute, the hat still on his head, head dipped slightly, chest proud, left elbow out with the fist on the hip, left heel forward with the toe up"
+  },
+  "finish_turn.turn_in": {
+   "clip": "finish_turn",
+   "phase": "pass (turn)",
+   "support": "both",
+   "description": "body turned about 30 degrees toward his left on a heel pivot, leaning into the turn, left arm open out to the side at hip height, right fist on the hip"
+  },
+  "finish_turn.turn_out": {
+   "clip": "finish_turn",
+   "phase": "pass (turn)",
+   "support": "both",
+   "description": "body turned about 30 degrees toward his right on a heel pivot, leaning into the turn, right arm open out to the side at hip height, left fist on the hip"
+  }
+ }
+}
