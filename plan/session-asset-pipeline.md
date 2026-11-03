@@ -176,3 +176,31 @@ Infrastructure state:
 - Raw candidates (139 MB) stay on disk under `art_runs/<run>/raw/` (gitignored).
 - Next: owner corrections → re-finish → re-pack → promote; outline enforcement;
   BiRefNet once fixed.
+
+## Session 2026-11-03: parameterized pipelines (`work/1833-cast`, `1834-scor`, `1835-lvls`)
+
+Owner decisions:
+
+- Characters are parameterized: "add a red hat to character X" reruns only what it affects,
+  including animations elsewhere. Bartender is the second pipeline test; she is fully buttoned,
+  fully clothed, a professional who dances superbly.
+- Bar outcome: defeated, she pours motor oil, and Mācron gulps it comically. Cinematics are sub-second views.
+- Opponent variants are palette-only for now (replays); hats, gloves, chains and coats come later.
+- Music is free but dominantly Latin, with hints, and follows the character: Gatekeeper reads as
+  salsa, Bartender as electronic/synth. MIDI-style assets on the web synth stay. Level 4 is chill country
+  building to heavy metal. Levels 1–2 are the current focus; level 3 only needs readiness.
+- This project discovers generic services; macuahuitl-fedora turns them into forge facilities
+  (`plan/forge-generic-services.md`). Models approved: SDXL base, Animagine XL 4.0, Qwen-Image-Edit-2511,
+  FLUX.2 klein 4B, Wan 2.2 VACE Fun, ACE-Step 1.5 XL, Anticipatory Music Transformer, Text2midi.
+
+OpenSpec changes: `character-sprite-pipeline`, `cinematic-shot-pipeline`,
+`score-composition-pipeline`, `level-production-pipeline`. Readiness: `plan/level-3-readiness.md`.
+
+State: rig, definitions, planner, stage store and `art build` are on `work/1833-cast`, tested without
+a GPU. Arranger and gates are on `work/1834-scor`: all five shipped scores fail the repetition check,
+and a bar candidate passes it but has not been heard. No new art has been generated yet.
+
+Environment: `~/.cache/tillandsias-project` survives restarts (volume `forge_tool_cache_volume`), so the
+art cache lives there. Forges have no egress to claude.ai, so Artifact reads fail by design: write sheets and GIFs
+to scratch for the host to publish. Basic Pitch and Demucs are not approved yet. Node-id overrides
+`$node:<id>.<input>` are planned, which would lift the `$seed`/`$strength` title limit.
