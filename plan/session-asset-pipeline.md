@@ -132,3 +132,16 @@ Infrastructure state:
 - Music: Tillandsias PR #874 shortlists ACE-Step 1.5 XL, the Anticipatory
   Music Transformer and Text2midi, pending licence approval. Our needs were
   sent: cumbia at 112-144 BPM, an exact bar grid, and intensity stems.
+
+## Session 2026-11-03 (resume)
+
+- Palette nudged out of the outfit recolor gates (`extract_palette.py
+  --avoid-gates`); `studio.validate_family` → `ok:family:gatekeeper-v3`.
+- `studio.run_workflow` returned `studio_unavailable`: no
+  `.tillandsias/config.toml` existed. Added it with `[imagegen] studio = true`;
+  the forge must be relaunched for the studio container to start.
+- The ComfyUI web UI is not reachable from the forge (`browser.open` allows only
+  the https preview URL; no HTTP route to :8188), so review happens through
+  contact sheets and an Artifact gallery.
+- After relaunch: rebuild `~/.cache/kumbia-art`, re-run `plan_jobs.py`, then
+  run `left_hand.peak` first.
