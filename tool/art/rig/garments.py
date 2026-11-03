@@ -29,6 +29,17 @@ class Ctx:
     regions: dict
     region: str
     params: dict
+    prev: dict | None = None   # joints of the previous drawing, for one-drawing lag
+    lag: str | None = None     # the garment's secondaryMotion
+
+
+def hem_lag(c: Ctx) -> Vector:
+    """Sideways drag of a hem on lag-1: it is still where the hips were one drawing ago."""
+    if c.lag != "lag-1" or c.prev is None:
+        return Vector((0, 0, 0))
+    now = (c.j["l_hip"] + c.j["r_hip"]) / 2
+    was = (c.prev["l_hip"] + c.prev["r_hip"]) / 2
+    return Vector((was.x - now.x, 0, 0))
 
 
 def _torso_axes(j: dict):
@@ -88,13 +99,20 @@ def _sleeves(c: Ctx, length: float) -> None:
             add_capsule(c.j[f"{s}_elb"], c.j[f"{s}_elb"].lerp(c.j[f"{s}_wri"], length), R["fore"] * 1.08, c.region, c.regions)
 
 
+def _hem(c: Ctx, up: Vector, r: float, at: float) -> None:
+    """Lower edge of a fitted garment, trailing the hips when it lags."""
+    drag = hem_lag(c)
+    if drag.length > 1e-4:
+        add_sphere(c.j["pelvis"] + up * at + drag * 0.8, r * 0.92, c.region, c.regions, scale=(1.0, 0.9, 0.6))
+
+
 def shirt_stocky(c: Ctx) -> None:
     """Broad chest capsule, round belly, short sleeves."""
     up, tr = _torso_axes(c.j)
     R = c.p.limb_r
     add_capsule(c.j["pelvis"] + up * 0.16, c.j["chest"] - up * 0.02, R["torso"], c.region, c.regions)
     add_sphere(c.j["chest"] - up * 0.06, R["torso"], c.region, c.regions, scale=(1.12, 0.9, 0.85), rot_m=tr)
-    add_sphere(c.j["pelvis"] + up * 0.2, R["belly"], c.region, c.regions, scale=(1.0, 1.0, 0.95), rot_m=tr)
+    add_sphere(c.j["pelvis"] + up * 0.2 + hem_lag(c) * 0.5, R["belly"], c.region, c.regions, scale=(1.0, 1.0, 0.95), rot_m=tr)
     _sleeves(c, 0.0)
 
 
@@ -105,6 +123,7 @@ def shirt_fitted(c: Ctx) -> None:
     add_capsule(c.j["pelvis"] + up * 0.12, c.j["chest"] - up * 0.02, R["torso"], c.region, c.regions)
     add_sphere(c.j["chest"] - up * 0.04, R["torso"], c.region, c.regions, scale=(1.1, 0.85, 0.85), rot_m=tr)
     add_capsule(c.j["chest"] + up * 0.02, c.j["neck"], 0.075, c.region, c.regions)
+    _hem(c, up, R["torso"], 0.12)
 
 
 def waistcoat_fitted(c: Ctx) -> None:
@@ -113,6 +132,7 @@ def waistcoat_fitted(c: Ctx) -> None:
     R = c.p.limb_r
     add_capsule(c.j["pelvis"] + up * 0.10, c.j["chest"] - up * 0.05, R["torso"] * 1.06, c.region, c.regions)
     add_sphere(c.j["chest"] - up * 0.07, R["torso"] * 1.04, c.region, c.regions, scale=(1.1, 0.87, 0.85), rot_m=tr)
+    _hem(c, up, R["torso"] * 1.06, 0.10)
 
 
 def sleeve_rolled(c: Ctx) -> None:
@@ -120,16 +140,25 @@ def sleeve_rolled(c: Ctx) -> None:
 
 
 def waist_apron(c: Ctx) -> None:
-    """Apron from the waist to mid-thigh; the hem counter-swings against the hip."""
+    """Apron from the waist to mid-thigh, hinged at the waistband.
+
+    Without secondaryMotion the hem counter-swings against the hip tilt. With lag-1 it
+    trails the hips by one drawing, so it settles after the body moves.
+    """
+    import math
     up, tr = _torso_axes(c.j)
     R = c.p.limb_r
     hips = (c.j["l_hip"] + c.j["r_hip"]) / 2
     width = (c.p.hip_half + R["thigh"]) * 2.0
     drop = c.p.thigh * c.params.get("length", 0.62)
     add_capsule(c.j["l_hip"] + up * 0.09, c.j["r_hip"] + up * 0.09, R["thigh"] * 1.12, c.region, c.regions)
-    lag = rot("Y", -0.6 * (c.j["l_hip"].z - c.j["r_hip"].z) * 100)
-    centre = hips + Vector((0, -R["thigh"] * 1.05, -drop / 2 + 0.05))
-    add_box(centre, (width, 0.05, drop), c.region, c.regions, rot_m=lag, bevel=0.015)
+    if c.lag == "lag-1":
+        deg = max(-20.0, min(20.0, math.degrees(math.atan2(hem_lag(c).x * 1.6, drop))))
+        swing = rot("Y", -deg)
+    else:
+        swing = rot("Y", -0.6 * (c.j["l_hip"].z - c.j["r_hip"].z) * 100)
+    hinge = hips + Vector((0, -R["thigh"] * 1.05, 0.05))
+    add_box(hinge + swing @ Vector((0, 0, -drop / 2)), (width, 0.05, drop), c.region, c.regions, rot_m=swing, bevel=0.015)
 
 
 def trousers(c: Ctx) -> None:
@@ -218,12 +247,12 @@ def prop_glass(c: Ctx, at: Vector, axis: Vector) -> None:
 PROPS = {"shaker": prop_shaker, "bottle": prop_bottle, "glass": prop_glass}
 
 
-def build_character(definition: dict, p, j: dict, regions: dict, clip: str) -> None:
-    """All geometry for one pose of one character."""
+def build_character(definition: dict, p, j: dict, regions: dict, clip: str, prev: dict | None = None) -> None:
+    """All geometry for one pose of one character. prev: joints of the previous drawing."""
     if p.human:
         base_body(p, j, regions)
     for g in definition["garments"]:
-        SHAPES[g["shape"]](Ctx(p, j, regions, g["region"], g.get("params", {})))
+        SHAPES[g["shape"]](Ctx(p, j, regions, g["region"], g.get("params", {}), prev, g.get("secondaryMotion")))
     for pr in definition.get("props", []):
         if pr.get("clips") and clip not in pr["clips"]:
             continue

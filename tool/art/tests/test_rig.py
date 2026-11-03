@@ -71,5 +71,56 @@ class Library(unittest.TestCase):
         self.assertTrue(np.all((a[..., 3] == 0) | (a[..., 3] == 255)))
 
 
+@unittest.skipIf(standin is None, "needs bpy")
+class SecondaryMotion(unittest.TestCase):
+    """Consecutive drawings: a lag-1 hem sits toward where the hips were one drawing ago."""
+
+    @classmethod
+    def setUpClass(cls):
+        cls.tmp = tempfile.TemporaryDirectory()
+        cls.out = Path(cls.tmp.name)
+
+    @classmethod
+    def tearDownClass(cls):
+        cls.tmp.cleanup()
+
+    def render(self, lag: bool, pid: str):
+        d = json.loads(json.dumps(ALL_SHAPES))
+        for g in d["garments"]:
+            if g["id"] == "apron" and lag:
+                g["secondaryMotion"] = "lag-1"
+        rig = standin.Rig.from_definition(d)
+        clip, name = pid.split(".", 1)
+        pose, support = rig.clips[clip][name]
+        out = self.out / ("lag" if lag else "base") / pid
+        out.mkdir(parents=True, exist_ok=True)
+        rec = standin.render_pose(rig, "floor-perspective", pid, pose, support, out)
+        a = np.asarray(Image.open(out / f"{pid}.regions.png").convert("RGB"))
+        ys, xs = np.nonzero(np.all(a == standin.hex_rgb_255(rig.regions["apron"]), axis=-1))
+        below = ys > np.percentile(ys, 70)  # the hem, not the waistband
+        return float(xs[below].mean()), rec, rig
+
+    def test_hem_trails_the_hips_across_consecutive_drawings(self):
+        prev_id, pid = "groove.up_l", "groove.pass_l2"
+        hem, rec, rig = self.render(True, pid)
+        base, _, _ = self.render(False, pid)
+        _, prev_rec, _ = self.render(False, prev_id)
+        hips = lambda r: (r["joints"]["l_hip"][0] + r["joints"]["r_hip"][0]) / 2  # noqa: E731
+        moved = hips(rec) - hips(prev_rec)
+        self.assertGreater(abs(moved), 4, "fixture needs hips that really move between these drawings")
+        self.assertLess((hem - base) * moved, 0, f"hem {hem} vs {base} should trail hip motion {moved}")
+
+    def test_previous_drawing_wraps_only_in_loops(self):
+        rig = standin.Rig.from_definition(ALL_SHAPES)
+        self.assertIs(standin.previous_drawing(rig, "groove", "down_l"), rig.clips["groove"]["pass_r2"])
+        self.assertIsNone(standin.previous_drawing(rig, "left_hand", "prep"))
+        self.assertIs(standin.previous_drawing(rig, "left_hand", "peak"), rig.clips["left_hand"]["prep"])
+
+    def test_no_lag_at_a_one_shot_start(self):
+        a, _, _ = self.render(True, "left_hand.prep")
+        b, _, _ = self.render(False, "left_hand.prep")
+        self.assertAlmostEqual(a, b, delta=4.0)
+
+
 if __name__ == "__main__":
     unittest.main()

@@ -81,6 +81,10 @@ class Rig:
     regions: dict
     clips: dict
 
+    def loops(self, clip: str) -> bool:
+        clips = D.load_motion(self.definition["motion"]["set"]).get("clips", [])
+        return any(c["id"] == clip and c.get("loop") for c in clips)
+
     @classmethod
     def load(cls, ident: str) -> "Rig":
         return cls.from_definition(D.load_character(ident))
@@ -443,12 +447,23 @@ def check_regions(path: Path, regions: dict) -> list[str]:
 # ---------------------------------------------------------------- main
 
 
+def previous_drawing(rig: Rig, clip: str, name: str) -> tuple[Pose, str] | None:
+    """The drawing before this one: wraps in a looping clip, none at a one-shot's start."""
+    names = list(rig.clips[clip])
+    i = names.index(name)
+    if i == 0 and not rig.loops(clip):
+        return None
+    return rig.clips[clip][names[i - 1]]
+
+
 def render_pose(rig: Rig, camera: str, pose_id: str, pose: Pose, support: str, out: Path) -> dict:
     p, regions = rig.p, rig.regions
     reset_scene(p, camera)
     _MATS.clear()
     j = solve(p, pose, support)
-    build_character(rig.definition, p, j, regions, pose_id.split(".", 1)[0])
+    clip, name = pose_id.split(".", 1)
+    before = previous_drawing(rig, clip, name) if clip in rig.clips and name in rig.clips[clip] else None
+    build_character(rig.definition, p, j, regions, clip, solve(p, *before) if before else None)
     sc = bpy.context.scene
     cam = sc.camera
     cam_fwd = (cam.matrix_world.to_3x3() @ Vector((0, 0, -1))).normalized()

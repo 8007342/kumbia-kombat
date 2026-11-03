@@ -113,3 +113,9 @@ Known stand-in limits: front-camera walks foreshorten (hence the diagonal yaw
 on entrance, retreat and yield); Mācron's raised-hand peaks pass behind his
 large head and need per-character tuning at review; faces and hands are
 simple volumes; hands behind the back are mostly hidden by the torso.
+
+## Secondary motion
+
+`"secondaryMotion": "lag-1"` on a supported garment (`library.json`) makes its hem
+trail the hips by one drawing. The previous drawing wraps in a looping clip; a
+one-shot's first drawing has none. Any other value or shape is refused by name.

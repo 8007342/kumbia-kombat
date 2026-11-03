@@ -57,6 +57,12 @@ def character_problems(c: dict, root: Path = ROOT) -> list[str]:
             out.append(f"garments.{i}.shape: unknown garment shape {g['shape']!r}")
         if g["region"] not in LIBRARY["regions"]:
             out.append(f"garments.{i}.region: unknown region {g['region']!r}")
+        if "secondaryMotion" in g:
+            sm = LIBRARY["secondaryMotion"]
+            if g["secondaryMotion"] not in sm["values"]:
+                out.append(f"garments.{i}.secondaryMotion: unsupported value {g['secondaryMotion']!r} (supported: {sm['values']})")
+            elif g["shape"] not in sm["shapes"]:
+                out.append(f"garments.{i}.secondaryMotion: shape {g['shape']!r} has no secondary motion")
         if g["id"] in seen:
             out.append(f"garments.{i}.id: duplicate id {g['id']!r}")
         seen[g["id"]] = g["region"]

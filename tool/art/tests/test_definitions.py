@@ -31,6 +31,17 @@ class Refusals(unittest.TestCase):
         joined = " | ".join(D.character_problems(c))
         self.assertIn(needle, joined)
 
+    def test_unsupported_secondary_motion_value(self):
+        self.refused(lambda c: c["garments"][3].update(secondaryMotion="lag-9"), "garments.3.secondaryMotion: unsupported value 'lag-9'")
+
+    def test_secondary_motion_on_a_shape_without_it(self):
+        self.refused(lambda c: c["garments"][0].update(secondaryMotion="lag-1"), "garments.0.secondaryMotion: shape 'brimmed-hat'")
+
+    def test_supported_secondary_motion_passes(self):
+        c = base()
+        c["garments"][3]["secondaryMotion"] = "lag-1"
+        self.assertEqual(D.character_problems(c), [])
+
     def test_unknown_shape(self):
         self.refused(lambda c: c["garments"][0].update(shape="cape"), "garments.0.shape: unknown garment shape 'cape'")
 
