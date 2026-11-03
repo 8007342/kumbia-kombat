@@ -39,6 +39,7 @@ function varied(){
   const answerAt=[.25,1.75,2.25,3.25,3.75];const n=2+rnd(3);
   for(let i=0;i<n;i++)events.push(note('answer',b+answerAt[(i+rnd(5))%5]+i*.002,72+scale[rnd(7)],.2,50,2));
   events.push(note('brass',b+rnd(4)+.75*rnd(2),72+scale[rnd(7)],.5,50,4));
+  events.push(note('brass',b+3.25,74+scale[rnd(7)],.25,50,4));
  }
  events.sort((a,b)=>a.beat-b.beat);
  return {...base,events};
