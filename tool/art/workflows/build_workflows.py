@@ -10,7 +10,7 @@ Graph (SDXL-Lightning, 4 steps, cfg 1):
   checkpoint -> LoRA pixel-art-xl -> IP-Adapter (identity reference)
   prompt/negative -> ControlNet openpose -> union(depth) -> union(lineart)
   init: colour-proxy render ($init_image) -> VAEEncode -> KSampler(denoise)
-  decode -> SaveImage (rgb) ; BiRefNet -> SaveImage (matte)
+  decode -> SaveImage (rgb); matte keyed locally (tool/art/pipeline/matte.py)
 
 Control starting values come from the animation research
 (plan/research/gatekeeper-dance-2026-11-02.md §control stack); the summed
@@ -28,13 +28,13 @@ HERE = Path(__file__).resolve().parent
 
 PROFILES = {
     # name: openpose (str, end), depth (str, end), lineart (str, end), denoise
-    "moderate": {"pose": (0.90, 0.75), "depth": (0.40, 0.50), "lineart": (0.30, 0.50), "denoise": 0.70,
+    "moderate": {"pose": (0.90, 0.75), "depth": (0.40, 0.50), "lineart": (0.30, 0.50), "denoise": 0.85,
                  "use": "groove, walks, watch, settle"},
-    "peak":     {"pose": (1.00, 1.00), "depth": (0.60, 0.50), "lineart": (0.40, 0.75), "denoise": 0.60,
+    "peak":     {"pose": (1.00, 1.00), "depth": (0.60, 0.50), "lineart": (0.40, 0.75), "denoise": 0.85,
                  "use": "exaggerated accents: hand/foot peaks, finish, offer"},
-    "overlap":  {"pose": (0.80, 0.75), "depth": (0.70, 0.75), "lineart": (0.50, 0.75), "denoise": 0.60,
+    "overlap":  {"pose": (0.80, 0.75), "depth": (0.70, 0.75), "lineart": (0.50, 0.75), "denoise": 0.85,
                  "use": "clap, hands on hip, hand to chest, behind back"},
-    "turn":     {"pose": (0.45, 0.50), "depth": (0.70, 0.75), "lineart": (0.60, 0.75), "denoise": 0.60,
+    "turn":     {"pose": (0.45, 0.50), "depth": (0.70, 0.75), "lineart": (0.60, 0.75), "denoise": 0.85,
                  "use": "turns, rear and near-profile views"},
 }
 
@@ -97,10 +97,9 @@ def build(profile: dict, m: dict) -> dict:
                           "scheduler": s["scheduler"], "denoise": profile["denoise"]}, "$seed")
     rgb = node(33, "VAEDecode", {"samples": ["32", 0], "vae": vae})
     node(34, "SaveImage", {"images": rgb, "filename_prefix": "frame"}, "save rgb")
-
-    node(40, "LoadRembgByBiRefNetModel", {"model": m["birefnet_model"], "device": "AUTO"})  # local file: the studio has no egress
-    node(41, "RembgByBiRefNet", {"model": ["40", 0], "images": rgb})
-    node(42, "SaveImage", {"images": ["41", 0], "filename_prefix": "frame_rgba"}, "save rgba")
+    # Matte: BiRefNet is not installed in the studio yet (2026-11-03: its model
+    # list is empty), and run_workflow returns one save node's outputs only, so
+    # the matte is keyed from the plain background by tool/art/pipeline/matte.py.
     return g
 
 

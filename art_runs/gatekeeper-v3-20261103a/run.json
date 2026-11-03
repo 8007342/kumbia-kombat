@@ -1,6 +1,6 @@
 {
  "run": "gatekeeper-v3-20261103a",
- "created": "2026-11-03T06:19:45+00:00",
+ "created": "2026-11-03T06:34:43+00:00",
  "family": "tool/art/families/gatekeeper-v3.json",
  "familySha256": "8875c65ec44f6179f645470413506e18ef43257538b1b67883e1de7434f06e97",
  "contract": "1935-k2ib/v1",
@@ -8,10 +8,10 @@
  "countPerPose": 4,
  "poses": 64,
  "workflows": {
-  "moderate": "69db5d6e9c333e23f00d32d390850d8563a465f09821c6d276cb0d5d788bf923",
-  "peak": "0c4c1cd30ce330b698494e8dcd8a7e0674c2b74778ba3b680da9af3d4f883e84",
-  "overlap": "10d66b5f19145693ad2db055e785ad06ba68381761dc39e7894055dcc6fe7cc6",
-  "turn": "f15a0a0f69617482b594c5d31f3d6457cc0c152af260c0b1dcd56505ce151967"
+  "moderate": "e16ea9a037d276ceb5c7ba85fa6dc7629096d636e754bf67abdba84ddc0761a5",
+  "peak": "fd553faca5feb30fb9e87b2026293893ce3d493ec300465d7dfa5f5938efb95f",
+  "overlap": "ac2bafa68e16d1d2540bc01a66a77a408e97fbc9e4356dbafa78b257d4cf212c",
+  "turn": "8d083d7378d9813339c786b3d49288f52bb7d0560c50a89a5af5ffeba532a2cf"
  },
  "identity": {
   "image": "assets/art/ensemble/gatekeeper-v2.png",

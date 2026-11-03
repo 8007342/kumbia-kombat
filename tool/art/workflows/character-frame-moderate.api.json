@@ -284,7 +284,7 @@
    "cfg": 1.0,
    "sampler_name": "euler",
    "scheduler": "sgm_uniform",
-   "denoise": 0.7
+   "denoise": 0.85
   },
   "_meta": {
    "title": "$seed"
@@ -314,39 +314,6 @@
   },
   "_meta": {
    "title": "save rgb"
-  }
- },
- "40": {
-  "class_type": "LoadRembgByBiRefNetModel",
-  "inputs": {
-   "model": "model.safetensors",
-   "device": "AUTO"
-  }
- },
- "41": {
-  "class_type": "RembgByBiRefNet",
-  "inputs": {
-   "model": [
-    "40",
-    0
-   ],
-   "images": [
-    "33",
-    0
-   ]
-  }
- },
- "42": {
-  "class_type": "SaveImage",
-  "inputs": {
-   "images": [
-    "41",
-    0
-   ],
-   "filename_prefix": "frame_rgba"
-  },
-  "_meta": {
-   "title": "save rgba"
   }
  }
 }

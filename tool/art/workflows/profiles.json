@@ -12,7 +12,7 @@
    0.3,
    0.5
   ],
-  "denoise": 0.7,
+  "denoise": 0.85,
   "use": "groove, walks, watch, settle"
  },
  "peak": {
@@ -28,7 +28,7 @@
    0.4,
    0.75
   ],
-  "denoise": 0.6,
+  "denoise": 0.85,
   "use": "exaggerated accents: hand/foot peaks, finish, offer"
  },
  "overlap": {
@@ -44,7 +44,7 @@
    0.5,
    0.75
   ],
-  "denoise": 0.6,
+  "denoise": 0.85,
   "use": "clap, hands on hip, hand to chest, behind back"
  },
  "turn": {
@@ -60,7 +60,7 @@
    0.6,
    0.75
   ],
-  "denoise": 0.6,
+  "denoise": 0.85,
   "use": "turns, rear and near-profile views"
  }
 }
