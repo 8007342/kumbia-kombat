@@ -27,7 +27,8 @@ from pathlib import Path
 import numpy as np
 from PIL import Image, ImageFilter
 
-WEIGHTS = {"hat": 2.0, "cloth": 1.0, "trousers": 0.7, "shoes": 0.5, "skin": 0.5}
+WEIGHTS = {"hat": 2.0, "hair": 1.5, "cloth": 1.0, "shirt": 0.7, "apron": 1.0, "trousers": 0.7,
+           "shoes": 0.5, "skin": 0.5, "prop": 0.3}
 
 
 def hexrgb(h: str) -> np.ndarray:

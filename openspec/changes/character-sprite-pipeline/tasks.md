@@ -23,16 +23,16 @@
 
 ## 4. Stage graph and planner
 
-- [ ] 4.1 Implement the content-addressed stage runner; verify with tests that an unchanged rebuild does no work and an interrupted run resumes
-- [ ] 4.2 Implement `art plan`: definition diff to per-frame modes; verify with fixtures for colour-only, garment-added, body and style edits, and that a dry run changes no files
-- [ ] 4.3 Implement key-based selection state; verify an edit returns only affected frames to review
-- [ ] 4.4 Implement the recolour mode; verify pixels outside the region are byte-identical and no GPU tool is called
-- [ ] 4.5 Implement the masked mode's job planning (mask dilation, `$mask`, `$init_image`, `$strength`); verify generated job args against fixtures
-- [ ] 4.6 Implement per-region colour matching; verify a test frame's region medians move toward target colours while other regions stay unchanged
-- [ ] 4.7 Add aliases and rig-derived `facing` to `pack_atlas.py`; verify all 20 `challengerFrameIds` resolve with `test/ensemble_sprites_test.dart`'s rules
-- [ ] 4.8 Implement the ramp stage and flagging after `finish_pixels`; verify with a fixture that every opaque output pixel belongs to one ramp and that off-ramp pixels are reported (D13)
-- [ ] 4.9 Implement named variants: colour-only variants emit a ramp LUT and manifest `ramps`; verify applying the LUT to the base atlas equals the recoloured frames, byte for byte, with no GPU call
-- [ ] 4.10 Update `tool/art/pipeline/README.md` with the new stages and verify its commands run
+- [x] 4.1 Implement the content-addressed stage runner; verify with tests that an unchanged rebuild does no work and an interrupted run resumes
+- [x] 4.2 Implement `art plan`: definition diff to per-frame modes; verify with fixtures for colour-only, garment-added, body and style edits, and that a dry run changes no files
+- [x] 4.3 Implement key-based selection state; verify an edit returns only affected frames to review
+- [x] 4.4 Implement the recolour mode; verify pixels outside the region are byte-identical and no GPU tool is called
+- [x] 4.5 Implement the masked mode's job planning (mask dilation, `$mask`, `$init_image`, `$strength`); verify generated job args against fixtures
+- [x] 4.6 Implement per-region colour matching; verify a test frame's region medians move toward target colours while other regions stay unchanged
+- [x] 4.7 Add aliases and rig-derived `facing` to `pack_atlas.py`; verify all 20 `challengerFrameIds` resolve with `test/ensemble_sprites_test.dart`'s rules
+- [x] 4.8 Implement the ramp stage and flagging after `finish_pixels`; verify with a fixture that every opaque output pixel belongs to one ramp and that off-ramp pixels are reported (D13)
+- [x] 4.9 Implement named variants: colour-only variants emit a ramp LUT and manifest `ramps`; verify applying the LUT to the base atlas equals the recoloured frames, byte for byte, with no GPU call
+- [x] 4.10 Update `tool/art/pipeline/README.md` with the new stages and verify its commands run
 
 ## 5. Backends and bake-off (needs studio)
 

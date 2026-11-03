@@ -39,7 +39,10 @@ PROFILES = {
 }
 
 
-def build(profile: dict, m: dict) -> dict:
+MASKED_DENOISE = 0.75  # baked: one KSampler can't carry both the $seed and $strength titles
+
+
+def build(profile: dict, m: dict, masked: bool = False) -> dict:
     s = m["sampler"]
     g: dict[str, dict] = {}
 
@@ -92,9 +95,14 @@ def build(profile: dict, m: dict) -> dict:
 
     init = node(30, "LoadImage", {"image": "$init_image"}, "colour proxy init")
     lat = node(31, "VAEEncode", {"pixels": init, "vae": vae})
+    if masked:
+        # Repaint only inside the rig's changed-region mask (white = repaint).
+        msk_img = node(35, "LoadImage", {"image": "$mask"}, "changed region mask")
+        msk = node(36, "ImageToMask", {"image": msk_img, "channel": "red"})
+        lat = node(37, "SetLatentNoiseMask", {"samples": lat, "mask": msk})
     node(32, "KSampler", {"model": model, "positive": p, "negative": n, "latent_image": lat,
                           "seed": 0, "steps": s["steps"], "cfg": s["cfg"], "sampler_name": s["sampler_name"],
-                          "scheduler": s["scheduler"], "denoise": profile["denoise"]}, "$seed")
+                          "scheduler": s["scheduler"], "denoise": MASKED_DENOISE if masked else profile["denoise"]}, "$seed")
     rgb = node(33, "VAEDecode", {"samples": ["32", 0], "vae": vae})
     node(34, "SaveImage", {"images": rgb, "filename_prefix": "frame"}, "save rgb")
     # Matte: BiRefNet is not installed in the studio yet (2026-11-03: its model
@@ -110,6 +118,9 @@ def main() -> None:
         out = HERE / f"character-frame-{name}.api.json"
         out.write_text(json.dumps(wf, indent=1) + "\n")
         print(f"wrote {out.relative_to(HERE.parent.parent.parent)} ({prof['use']})")
+    masked = HERE / "character-frame-masked.api.json"
+    masked.write_text(json.dumps(build(PROFILES["moderate"], m, masked=True), indent=1) + "\n")
+    print(f"wrote {masked.relative_to(HERE.parent.parent.parent)} (masked regeneration)")
     (HERE / "profiles.json").write_text(json.dumps(PROFILES, indent=1) + "\n")
 
 

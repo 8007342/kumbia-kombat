@@ -38,6 +38,7 @@
    "properties": {"id": {"type": "string"}, "shape": {"type": "string"}, "region": {"type": "string"},
                   "colour": {"$ref": "#/$defs/colour"}, "text": {"type": "string"},
                   "recolourable": {"type": "boolean"}, "nudge": {"type": "boolean"},
+                  "alsoIn": {"type": "array", "items": {"type": "string"}},
                   "secondaryMotion": {"type": "string"}, "params": {"type": "object"}}},
   "prop": {"type": "object", "additionalProperties": false, "required": ["id", "kind", "hand", "colour"],
    "properties": {"id": {"type": "string"}, "kind": {"type": "string"}, "hand": {"enum": ["left", "right"]},

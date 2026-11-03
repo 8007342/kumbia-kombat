@@ -26,12 +26,45 @@ from pathlib import Path
 
 from PIL import Image
 
+MOTION_DIR = Path(__file__).resolve().parents[1] / "motion"
+
+
+def facing_of(yaw: float) -> str:
+    """Rig-derived view for a frame (body yaw in degrees, positive toward its left)."""
+    y = abs((yaw + 180) % 360 - 180)
+    if y <= 15:
+        return "front"
+    if y <= 60:
+        return "front_3q"
+    if y <= 120:
+        return "profile"
+    return "rear_3q" if y <= 165 else "rear"
+
+
+def resolve_aliases(frames: dict, aliases: dict, frame_id) -> dict:
+    """Runtime frame ids as copies of their drawings. Refuses a dangling alias."""
+    out = {}
+    for alias, pose_id in aliases.items():
+        fid = frame_id(pose_id)
+        if fid not in frames:
+            raise SystemExit(f"alias {alias} points at {pose_id}, which is not in the atlas")
+        out[alias] = {**frames[fid], "aliasOf": fid}
+    return out
+
+
+def selection_fields(sel) -> dict:
+    """selection.json entries are {k, key, accepted}; older runs stored a bare index."""
+    if isinstance(sel, dict):
+        return {"selected": sel.get("k"), "frameKey": sel.get("key"), "accepted": sel.get("accepted", False)}
+    return {"selected": sel}
+
 
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("spec")
     ap.add_argument("--run", required=True)
     ap.add_argument("--max-width", type=int, default=1024)
+    ap.add_argument("--out-dir", help="write atlas and candidate here instead of target.out's folder")
     a = ap.parse_args()
 
     spec = json.loads(Path(a.spec).read_text())
@@ -96,7 +129,7 @@ def main() -> None:
             "rect": [px, py, im.width, im.height],
             "anchor": [round(ax, 1), round(ay, 1)],
             "pixelsPerUnit": ppu,
-            "facing": "front",
+            "facing": facing_of(rp.get("params", {}).get("yaw", 0)),
             "loop": clip.get("loop", False),
             "durationBeats": clip.get("durationBeats"),
             "events": [e for e in clip.get("events", []) if e.get("drawing") == drawing],
@@ -106,12 +139,28 @@ def main() -> None:
                 "run": a.run,
                 "pose": pose["id"],
                 "sha256": hashlib.sha256(f.read_bytes()).hexdigest(),
-                "selected": selections.get(pose["id"]),
+                **selection_fields(selections.get(pose["id"])),
                 "animationPrinciples": pose.get("animationPrinciples", []),
             },
         }
 
+    notes = spec.get("$notes", {})
+    motion_set = notes.get("motionSet", "opponent-64")
+    aliases = json.loads((MOTION_DIR / f"{motion_set}.json").read_text()).get("runtimeAliases", {})
+    frame_id = lambda pid: target["frameId"].format(clip=pid.split(".", 1)[0], drawing=pid.split(".", 1)[1])  # noqa: E731
+    frames = {**frames, **resolve_aliases(frames, aliases, frame_id)}
+    extra = {}
+    if notes.get("character"):
+        import sys
+        sys.path.insert(0, str(Path(__file__).resolve().parent))
+        import definitions as D
+        import ramps as R
+        c = D.load_character(notes["character"])
+        extra = R.manifest_block(c, D.load_style(c["style"]))
+
     out = Path(target["out"])
+    if a.out_dir:
+        out = Path(a.out_dir) / out.name
     out.parent.mkdir(parents=True, exist_ok=True)
     atlas.save(out, optimize=False)
     cand = out.with_suffix(".candidate.json")
@@ -120,9 +169,10 @@ def main() -> None:
         "image": out.name,
         "imageWidth": W,
         "imageHeight": H,
-        "referenceFrame": target["frameId"].format(clip="groove", drawing="down_l"),
+        "referenceFrame": "occupied" if "occupied" in aliases else frame_id(ref_id),
         "family": a.spec,
         "animationReferences": spec.get("animationReferences"),
+        **extra,
         "frames": dict(sorted(frames.items())),
     }, indent=1, ensure_ascii=False) + "\n")
     print(f"packed {len(frames)} frames -> {out} ({W}x{H}), {cand}")

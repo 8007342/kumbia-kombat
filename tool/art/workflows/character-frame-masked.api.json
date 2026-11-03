@@ -1,0 +1,351 @@
+{
+ "1": {
+  "class_type": "CheckpointLoaderSimple",
+  "inputs": {
+   "ckpt_name": "sdxl_lightning_4step.safetensors"
+  }
+ },
+ "2": {
+  "class_type": "LoraLoader",
+  "inputs": {
+   "model": [
+    "1",
+    0
+   ],
+   "clip": [
+    "1",
+    1
+   ],
+   "lora_name": "pixel-art-xl.safetensors",
+   "strength_model": 0.8,
+   "strength_clip": 0.8
+  }
+ },
+ "3": {
+  "class_type": "LoadImage",
+  "inputs": {
+   "image": "$identity"
+  },
+  "_meta": {
+   "title": "identity reference"
+  }
+ },
+ "4": {
+  "class_type": "IPAdapterModelLoader",
+  "inputs": {
+   "ipadapter_file": "ip-adapter-plus_sdxl_vit-h.safetensors"
+  }
+ },
+ "8": {
+  "class_type": "CLIPVisionLoader",
+  "inputs": {
+   "clip_name": "model.safetensors"
+  }
+ },
+ "5": {
+  "class_type": "IPAdapterAdvanced",
+  "inputs": {
+   "model": [
+    "2",
+    0
+   ],
+   "ipadapter": [
+    "4",
+    0
+   ],
+   "clip_vision": [
+    "8",
+    0
+   ],
+   "image": [
+    "3",
+    0
+   ],
+   "weight": 0.7,
+   "weight_type": "style and composition",
+   "combine_embeds": "concat",
+   "start_at": 0.0,
+   "end_at": 1.0,
+   "embeds_scaling": "V only"
+  }
+ },
+ "6": {
+  "class_type": "CLIPTextEncode",
+  "inputs": {
+   "clip": [
+    "2",
+    1
+   ],
+   "text": "$prompt"
+  },
+  "_meta": {
+   "title": "$prompt"
+  }
+ },
+ "7": {
+  "class_type": "CLIPTextEncode",
+  "inputs": {
+   "clip": [
+    "2",
+    1
+   ],
+   "text": "$negative_prompt"
+  },
+  "_meta": {
+   "title": "$negative_prompt"
+  }
+ },
+ "10": {
+  "class_type": "ControlNetLoader",
+  "inputs": {
+   "control_net_name": "diffusion_pytorch_model.safetensors"
+  }
+ },
+ "11": {
+  "class_type": "ControlNetLoader",
+  "inputs": {
+   "control_net_name": "diffusion_pytorch_model_promax.safetensors"
+  }
+ },
+ "12": {
+  "class_type": "SetUnionControlNetType",
+  "inputs": {
+   "control_net": [
+    "11",
+    0
+   ],
+   "type": "depth"
+  }
+ },
+ "13": {
+  "class_type": "SetUnionControlNetType",
+  "inputs": {
+   "control_net": [
+    "11",
+    0
+   ],
+   "type": "canny/lineart/anime_lineart/mlsd"
+  }
+ },
+ "14": {
+  "class_type": "LoadImage",
+  "inputs": {
+   "image": "$pose"
+  },
+  "_meta": {
+   "title": "openpose control"
+  }
+ },
+ "15": {
+  "class_type": "LoadImage",
+  "inputs": {
+   "image": "$depth"
+  },
+  "_meta": {
+   "title": "depth control"
+  }
+ },
+ "16": {
+  "class_type": "LoadImage",
+  "inputs": {
+   "image": "$lineart"
+  },
+  "_meta": {
+   "title": "lineart control"
+  }
+ },
+ "20": {
+  "class_type": "ControlNetApplyAdvanced",
+  "inputs": {
+   "positive": [
+    "6",
+    0
+   ],
+   "negative": [
+    "7",
+    0
+   ],
+   "control_net": [
+    "10",
+    0
+   ],
+   "image": [
+    "14",
+    0
+   ],
+   "strength": 0.9,
+   "start_percent": 0.0,
+   "end_percent": 0.75,
+   "vae": [
+    "1",
+    2
+   ]
+  }
+ },
+ "21": {
+  "class_type": "ControlNetApplyAdvanced",
+  "inputs": {
+   "positive": [
+    "20",
+    0
+   ],
+   "negative": [
+    "20",
+    1
+   ],
+   "control_net": [
+    "12",
+    0
+   ],
+   "image": [
+    "15",
+    0
+   ],
+   "strength": 0.4,
+   "start_percent": 0.0,
+   "end_percent": 0.5,
+   "vae": [
+    "1",
+    2
+   ]
+  }
+ },
+ "22": {
+  "class_type": "ControlNetApplyAdvanced",
+  "inputs": {
+   "positive": [
+    "21",
+    0
+   ],
+   "negative": [
+    "21",
+    1
+   ],
+   "control_net": [
+    "13",
+    0
+   ],
+   "image": [
+    "16",
+    0
+   ],
+   "strength": 0.3,
+   "start_percent": 0.0,
+   "end_percent": 0.5,
+   "vae": [
+    "1",
+    2
+   ]
+  }
+ },
+ "30": {
+  "class_type": "LoadImage",
+  "inputs": {
+   "image": "$init_image"
+  },
+  "_meta": {
+   "title": "colour proxy init"
+  }
+ },
+ "31": {
+  "class_type": "VAEEncode",
+  "inputs": {
+   "pixels": [
+    "30",
+    0
+   ],
+   "vae": [
+    "1",
+    2
+   ]
+  }
+ },
+ "35": {
+  "class_type": "LoadImage",
+  "inputs": {
+   "image": "$mask"
+  },
+  "_meta": {
+   "title": "changed region mask"
+  }
+ },
+ "36": {
+  "class_type": "ImageToMask",
+  "inputs": {
+   "image": [
+    "35",
+    0
+   ],
+   "channel": "red"
+  }
+ },
+ "37": {
+  "class_type": "SetLatentNoiseMask",
+  "inputs": {
+   "samples": [
+    "31",
+    0
+   ],
+   "mask": [
+    "36",
+    0
+   ]
+  }
+ },
+ "32": {
+  "class_type": "KSampler",
+  "inputs": {
+   "model": [
+    "5",
+    0
+   ],
+   "positive": [
+    "22",
+    0
+   ],
+   "negative": [
+    "22",
+    1
+   ],
+   "latent_image": [
+    "37",
+    0
+   ],
+   "seed": 0,
+   "steps": 4,
+   "cfg": 1.0,
+   "sampler_name": "euler",
+   "scheduler": "sgm_uniform",
+   "denoise": 0.75
+  },
+  "_meta": {
+   "title": "$seed"
+  }
+ },
+ "33": {
+  "class_type": "VAEDecode",
+  "inputs": {
+   "samples": [
+    "32",
+    0
+   ],
+   "vae": [
+    "1",
+    2
+   ]
+  }
+ },
+ "34": {
+  "class_type": "SaveImage",
+  "inputs": {
+   "images": [
+    "33",
+    0
+   ],
+   "filename_prefix": "frame"
+  },
+  "_meta": {
+   "title": "save rgb"
+  }
+ }
+}

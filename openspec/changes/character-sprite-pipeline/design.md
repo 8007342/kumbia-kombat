@@ -144,12 +144,22 @@ per-frame modes from which regions each frame contains (from `rig.json`
 | Edit | Mode | GPU |
 |---|---|---|
 | Colour of an existing garment | **recolour:** remap that region's ramp, using the mask, on the finished frame | none |
-| New or reshaped garment, prop | **masked:** re-render rig, regenerate within the changed-region mask dilated by a few px via `$mask` + `$init_image` + `$strength` | per frame |
+| New or reshaped garment, prop | **masked:** re-render rig, regenerate within the changed-region mask dilated by a few px via `$mask` + `$init_image` | per frame |
 | Body, motion, style or backend | **full** | per frame |
 | Text only (`traits`) | **full**, unless forced lower | per frame |
 
 Frames where the region is invisible are skipped. A rear view with no visible
 edit keeps its key.
+
+A part can declare `alsoIn` regions: surface detail with no rig geometry, such as
+embroidered panels painted on a shirt, keeps its own ramp and is not snapped away
+by the ramp stage.
+
+Masked jobs bake their denoise in the workflow rather than passing `$strength`:
+a KSampler has one title, and it must stay `$seed` so seeds can vary. If the studio
+later binds both, this can become a runtime value. The workflow's latent round trip
+alters unmasked pixels slightly, so the masked stage composites the result over the
+previous frame, which is what guarantees byte-identical pixels outside the mask.
 
 Alternative: always full regeneration. Rejected: 256 images per edit would make
 iteration impractical, and it would churn frames the owner already accepted.

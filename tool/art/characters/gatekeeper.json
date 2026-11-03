@@ -26,7 +26,10 @@
    "id": "band",
    "shape": "hat-band",
    "region": "accessory",
-   "colour": "#29737A"
+   "colour": "#29737A",
+   "alsoIn": [
+    "cloth"
+   ]
   },
   {
    "id": "hair",

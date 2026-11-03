@@ -101,13 +101,13 @@ def make_ramp(colour: str, shades: int) -> list[tuple[int, int, int]]:
 
 def colour_entries(c: dict) -> list[dict]:
     """Every coloured part of a definition, in a stable order: id, region, colour, flags."""
-    out = [{"id": "skin", "region": "skin", "colour": c["skin"], "recolourable": False, "nudge": False}]
+    out = [{"id": "skin", "region": "skin", "colour": c["skin"], "recolourable": False, "nudge": False, "alsoIn": []}]
     for g in c["garments"]:
         if "colour" in g:
-            out.append({"id": g["id"], "region": g["region"], "colour": g["colour"],
+            out.append({"id": g["id"], "region": g["region"], "colour": g["colour"], "alsoIn": g.get("alsoIn", []),
                         "recolourable": g.get("recolourable", False), "nudge": g.get("nudge", False)})
     for p in c.get("props", []):
-        out.append({"id": p["id"], "region": "prop", "colour": p["colour"], "recolourable": False, "nudge": False})
+        out.append({"id": p["id"], "region": "prop", "colour": p["colour"], "recolourable": False, "nudge": False, "alsoIn": []})
     return out
 
 
@@ -140,7 +140,8 @@ def build_ramps(c: dict, style: dict, overrides: dict | None = None, avoid: tupl
     """Per-part ramps with no colour shared between ramps, all outside the gates.
 
     Returns {part id: {region, shades: [hex dark..light], nudged: {from: to}}}.
-    Parts sharing a region (a waistcoat's buttons, say) keep separate ramps.
+    Parts sharing a region keep separate ramps. `alsoIn` lets a part's shades appear in
+    other regions: embroidered panels painted on a shirt have no rig geometry of their own.
     `avoid` lists colours no ramp may take (the outline).
     """
     finals = check_gates(c, style, overrides)
@@ -162,5 +163,5 @@ def build_ramps(c: dict, style: dict, overrides: dict | None = None, avoid: tupl
             shades.append(rgb_to_hex(cand))
             if cand != tuple(rgb):
                 nudged[rgb_to_hex(rgb)] = rgb_to_hex(cand)
-        out[e["id"]] = {"region": e["region"], "shades": shades, "nudged": nudged}
+        out[e["id"]] = {"region": e["region"], "alsoIn": e["alsoIn"], "shades": shades, "nudged": nudged}
     return out

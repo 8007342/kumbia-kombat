@@ -5,7 +5,7 @@ every frame traceable to its rig pose, workflow, seed and animation principles.
 Contract: Tillandsias family spec `1935-k2ib/v1`.
 
 ```
-tool/art/rig/poses.py ──standin.py──▶ art_runs/inputs/<family>/   pose/depth/lineart/regions, rig.json, poses.intent.json
+tool/art/characters/<id>.json + tool/art/rig/poses.py ──standin.py──▶ art_runs/inputs/<family>/   pose/depth/lineart/regions, rig.json, poses.intent.json
                                          │ check_poses.py (grounding, crossings, clearance)
 tool/art/references/animation-principles.json ─┐
 tool/art/families/<family>.json ◀──sync_family.py──┘   poses[], phases, profiles, animationReferences
@@ -24,6 +24,34 @@ pack_atlas.py ──▶ <target.out> atlas + .candidate.json (status: candidate)
         ▼
 promote: merge the candidate atlas block into assets/art/ensemble/manifest.json
 ```
+
+## Characters as data
+
+`tool/art/characters/<id>.json`, `styles/<id>.json`, `backends/<id>.json` and
+`motion/<set>.json` are the authored source. The family spec and palette are generated.
+Edit a definition, then:
+
+```bash
+PY=~/.cache/kumbia-art/bin/python
+$PY tool/art/pipeline/definitions.py character gatekeeper      # refusals name the field
+$PY tool/art/pipeline/planner.py plan gatekeeper                # impact of the edit vs HEAD; changes nothing
+$PY tool/art/pipeline/planner.py plan-style party-pixel         # which characters a style edit reaches
+$PY tool/art/pipeline/compile_family.py gatekeeper              # family spec + palette (--backend <id> to switch)
+$PY tool/art/pipeline/ramps.py lut gatekeeper <variant>         # a colour-only variant's table
+```
+
+| Module | Stage |
+|---|---|
+| `stages.py` | Content-addressed store; outputs keyed by the hash of their inputs. Root: `$KUMBIA_ART_CACHE`, else `~/.cache/tillandsias-project/kumbia-art` (survival across forges is still to be confirmed) |
+| `planner.py` | Per-frame update mode (`recolour`, `finish`, `masked`, `full`) and `frame_key`, which covers only what can show in that frame |
+| `selection.py` | `{pose: {k, key, accepted}}`; a changed key returns just that frame to review |
+| `masked.py` | Changed-region mask, masked job args, and the composite that keeps outside pixels byte-identical |
+| `colourmatch.py` | Per-region median match to the definition's colours, before the pixel finish |
+| `ramps.py` | Snaps each finished pixel to one ramp its region allows, flags off-ramp pixels, and builds recolour tables |
+| `pack_atlas.py` | Atlas plus 64 frames, 20 runtime aliases (`motion/<set>.json`), rig-derived `facing`, `ramps` and `variants` blocks |
+
+Tests: `$PY -m unittest discover -s tool/art/tests`; renderer tests run with the bpy venv
+from inside that folder: `~/.cache/kumbia-bpy/bin/python -m unittest test_rig`.
 
 ## Where animation research enters
 
