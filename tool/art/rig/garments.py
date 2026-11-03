@@ -15,6 +15,7 @@ from prims import add_box, add_capsule, add_cyl, add_sphere
 
 
 HEM = 0.84  # fraction of the shin a trouser leg covers
+HEM_DRAG = 0.045  # metres a lagging hem may trail the hips, about two native pixels
 
 
 def rot(axis, deg: float) -> Matrix:
@@ -39,7 +40,8 @@ def hem_lag(c: Ctx) -> Vector:
         return Vector((0, 0, 0))
     now = (c.j["l_hip"] + c.j["r_hip"]) / 2
     was = (c.prev["l_hip"] + c.prev["r_hip"]) / 2
-    return Vector((was.x - now.x, 0, 0))
+    # Cloth settles a little: a big hip travel must not fling the hem out of the silhouette.
+    return Vector((max(-HEM_DRAG, min(HEM_DRAG, was.x - now.x)), 0, 0))
 
 
 def _torso_axes(j: dict):
@@ -151,7 +153,7 @@ def waist_apron(c: Ctx) -> None:
     hips = (c.j["l_hip"] + c.j["r_hip"]) / 2
     width = (c.p.hip_half + R["thigh"]) * 2.0
     drop = c.p.thigh * c.params.get("length", 0.62)
-    add_capsule(c.j["l_hip"] + up * 0.09, c.j["r_hip"] + up * 0.09, R["thigh"] * 1.12, c.region, c.regions)
+    add_capsule(c.j["l_hip"] + up * 0.09, c.j["r_hip"] + up * 0.09, R["thigh"] * 1.32, c.region, c.regions)
     if c.lag == "lag-1":
         deg = max(-20.0, min(20.0, math.degrees(math.atan2(hem_lag(c).x * 1.6, drop))))
         swing = rot("Y", -deg)

@@ -1,0 +1,64 @@
+{
+ "run": "bartender-v1-8f1f71d942",
+ "created": "2026-11-03T22:09:01+00:00",
+ "family": "/home/forge/src/kumbia-kombat/tool/art/families/bartender-v1.json",
+ "familySha256": "2c21870e9b7f48c4512293f1db6f969d473597860edbd8c38bedda102c1137d6",
+ "contract": "1935-k2ib/v1",
+ "tier": "I1",
+ "countPerPose": 4,
+ "poses": 64,
+ "workflows": {
+  "moderate": "e16ea9a037d276ceb5c7ba85fa6dc7629096d636e754bf67abdba84ddc0761a5",
+  "peak": "fd553faca5feb30fb9e87b2026293893ce3d493ec300465d7dfa5f5938efb95f",
+  "overlap": "ac2bafa68e16d1d2540bc01a66a77a408e97fbc9e4356dbafa78b257d4cf212c",
+  "turn": "8d083d7378d9813339c786b3d49288f52bb7d0560c50a89a5af5ffeba532a2cf"
+ },
+ "identity": {
+  "image": "assets/art/bar/bartender.png",
+  "crop": {
+   "frame": "full",
+   "rect": [
+    160,
+    70,
+    780,
+    1400
+   ]
+  },
+  "sha256": "d2340ce9e845d974788c70812e86402f6e20938ae28405c125641c21e9af8f91"
+ },
+ "animationReferences": {
+  "registry": "tool/art/references/animation-principles.json",
+  "research": [
+   "plan/research/gatekeeper-dance-2026-11-02.md",
+   "plan/dance-fluidity-pass.md",
+   "plan/opponent-depth-staging-pass.md"
+  ],
+  "principlesUsed": [
+   "anticipation",
+   "contrapposto",
+   "exaggeration-accent",
+   "follow-through",
+   "line-of-action",
+   "no-twinning",
+   "planted-pivot",
+   "secondary-action",
+   "staging-silhouette",
+   "timing-on-beat"
+  ],
+  "sourcesUsed": [
+   "cartwright-gdc2014",
+   "contrapposto-fonseca",
+   "dead-cells-pipeline",
+   "disney-process",
+   "illusion-of-life",
+   "silhouette-test",
+   "simogo-bsb",
+   "slynyrd-53",
+   "slynyrd-55",
+   "twinning",
+   "ubisoft-foot-ik",
+   "williams-survival-kit"
+  ]
+ },
+ "status": "planned"
+}

@@ -1,0 +1,2151 @@
+[
+ {
+  "pose": "groove.down_l",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-moderate.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/groove.down_l.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/groove.down_l.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/groove.down_l.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/groove.down_l.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, friendly adult woman bartender, warm confident smile, shirt buttoned to the collar and waistcoat fully buttoned, fully clothed, compact curly dark hair tied up in a rounded puff, ivory shirt with a closed collar, rolled ivory sleeves, high-buttoned deep teal waistcoat covering the chest, plum apron tied at the waist, dark plum trousers, amber dance shoes, small silver cocktail shaker, dignified professional who dances superbly, weight sunk on her bent left knee, right foot stepped back on its ball with the heel raised, left hip high and pushed out, shoulders tilted the other way, left forearm swinging forward at belly height, right arm low and back, head level facing the viewer, clear readable silhouette, weight on one leg, hips tilted, relaxed shoulders, playful attitude, asymmetric pose, feet firmly on the ground",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms, jumping",
+    "seed": 940000
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "secondary-action",
+   "no-twinning",
+   "timing-on-beat",
+   "planted-pivot"
+  ],
+  "inputHashes": {
+   "pose": "4e7f6c9a5ec9f0e8a8dbb5caf9644a3c49049f9de1ba7638602ec510bf2e69a3",
+   "depth": "8dcb407f2772a23b498565639e939638c950d5b33864eea32ed6b598bd903366",
+   "lineart": "3e53954320156ca52729c1172255f83f1d9e8a745b156406d24031945a367e4e"
+  }
+ },
+ {
+  "pose": "groove.pass_l",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-moderate.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/groove.pass_l.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/groove.pass_l.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/groove.pass_l.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/groove.pass_l.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, friendly adult woman bartender, warm confident smile, shirt buttoned to the collar and waistcoat fully buttoned, fully clothed, compact curly dark hair tied up in a rounded puff, ivory shirt with a closed collar, rolled ivory sleeves, high-buttoned deep teal waistcoat covering the chest, plum apron tied at the waist, dark plum trousers, amber dance shoes, small silver cocktail shaker, dignified professional who dances superbly, weight rolling forward onto the left foot, knees softening upward, right foot still slightly back on its ball, hips easing toward level, arms loose and low swinging back toward the body, clear readable silhouette, weight on one leg, hips tilted, relaxed shoulders, playful attitude, asymmetric pose, feet firmly on the ground",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms, jumping",
+    "seed": 940100
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "secondary-action",
+   "no-twinning",
+   "timing-on-beat",
+   "planted-pivot"
+  ],
+  "inputHashes": {
+   "pose": "8a39e65c1d300b72521e6f4d30a62068d8f49991aad56f262dcd616cff867c8c",
+   "depth": "ea973f84fa7f7ea98c3fcb8b3268a24ceea7bfa154aacce86993c975cc4d66e3",
+   "lineart": "520f5327c542a681f700ca4d4ec840a5a0937c5816db025c4cc7178d2ed67dce"
+  }
+ },
+ {
+  "pose": "groove.up_l",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-moderate.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/groove.up_l.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/groove.up_l.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/groove.up_l.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/groove.up_l.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, friendly adult woman bartender, warm confident smile, shirt buttoned to the collar and waistcoat fully buttoned, fully clothed, compact curly dark hair tied up in a rounded puff, ivory shirt with a closed collar, rolled ivory sleeves, high-buttoned deep teal waistcoat covering the chest, plum apron tied at the waist, dark plum trousers, amber dance shoes, small silver cocktail shaker, dignified professional who dances superbly, both feet together and flat, legs nearly straight in a small rise, hips almost level, chin lifted proudly, arms relaxed low at the sides with elbows soft, clear readable silhouette, weight on one leg, hips tilted, relaxed shoulders, playful attitude, asymmetric pose, feet firmly on the ground",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms, jumping",
+    "seed": 940200
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "secondary-action",
+   "no-twinning",
+   "timing-on-beat",
+   "planted-pivot"
+  ],
+  "inputHashes": {
+   "pose": "b4d37b65930f49efe919cbef098454405c5bf36b8fcd0471a87d1d7a8e130cf9",
+   "depth": "62a4269d4f8b5a1883175df89d109f60b412bcf3cb03e16d969f482f8d652384",
+   "lineart": "f5a15a41db634fcfcdb55f770bb96f6349be65374a6d8ce098536496212a55c6"
+  }
+ },
+ {
+  "pose": "groove.pass_l2",
+  "profile": "peak",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-peak.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/groove.pass_l2.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/groove.pass_l2.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/groove.pass_l2.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/groove.pass_l2.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, friendly adult woman bartender, warm confident smile, shirt buttoned to the collar and waistcoat fully buttoned, fully clothed, compact curly dark hair tied up in a rounded puff, ivory shirt with a closed collar, rolled ivory sleeves, high-buttoned deep teal waistcoat covering the chest, plum apron tied at the waist, dark plum trousers, amber dance shoes, small silver cocktail shaker, dignified professional who dances superbly, hip popped out to her right over the straight right leg, right hip high, right shoulder dipped, left knee bent with the left foot resting on its toe, right forearm lifted out at hip height in a wrist roll, left forearm across the belly, head tilted toward her left, clear readable silhouette, dynamic dance pose, strong line of action, weight on one leg, hips tilted, exaggerated energetic pose, relaxed shoulders, playful attitude, asymmetric pose, feet firmly on the ground",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, stiff pose, straight rigid body, floating, feet off ground, symmetrical pose, mirrored arms, jumping",
+    "seed": 940300
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "line-of-action",
+   "contrapposto",
+   "exaggeration-accent",
+   "secondary-action",
+   "no-twinning",
+   "timing-on-beat",
+   "planted-pivot"
+  ],
+  "inputHashes": {
+   "pose": "09b89df2e6028387af8aca54a796e3f5a6b398440a0fcde28f81aca009d0082b",
+   "depth": "e57bfd533a84923616be1607a17daa07e8ad5af3abe24aa36d61a7d37bfd1760",
+   "lineart": "331dccb7b73d25015e2fee24b0dee39c539550f7cc8473d3e6572b7c2f0a4045"
+  }
+ },
+ {
+  "pose": "groove.down_r",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-moderate.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/groove.down_r.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/groove.down_r.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/groove.down_r.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/groove.down_r.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, friendly adult woman bartender, warm confident smile, shirt buttoned to the collar and waistcoat fully buttoned, fully clothed, compact curly dark hair tied up in a rounded puff, ivory shirt with a closed collar, rolled ivory sleeves, high-buttoned deep teal waistcoat covering the chest, plum apron tied at the waist, dark plum trousers, amber dance shoes, small silver cocktail shaker, dignified professional who dances superbly, weight sunk on her bent right knee, left foot stepped back on its ball with the heel raised, right hip high and pushed out, shoulders tilted the other way, right forearm swinging forward at belly height, left arm low and back, head level facing the viewer, clear readable silhouette, weight on one leg, hips tilted, relaxed shoulders, playful attitude, asymmetric pose, feet firmly on the ground",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms, jumping",
+    "seed": 940400
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "secondary-action",
+   "no-twinning",
+   "timing-on-beat",
+   "planted-pivot"
+  ],
+  "inputHashes": {
+   "pose": "f891e14972d502861a680002a19ee487c1126187f5a141549f0723cce748c6d8",
+   "depth": "2fa2142c16cfcbb296071a0014fff13de5741fea1572a438cc1eb765afa1697a",
+   "lineart": "c5189db7bc7994821e92b239ea60702fd2db0559bcfa9b7c033bd0e771e04768"
+  }
+ },
+ {
+  "pose": "groove.pass_r",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-moderate.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/groove.pass_r.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/groove.pass_r.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/groove.pass_r.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/groove.pass_r.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, friendly adult woman bartender, warm confident smile, shirt buttoned to the collar and waistcoat fully buttoned, fully clothed, compact curly dark hair tied up in a rounded puff, ivory shirt with a closed collar, rolled ivory sleeves, high-buttoned deep teal waistcoat covering the chest, plum apron tied at the waist, dark plum trousers, amber dance shoes, small silver cocktail shaker, dignified professional who dances superbly, weight rolling forward onto the right foot, knees softening upward, left foot still slightly back on its ball, hips easing toward level, arms loose and low swinging back toward the body, clear readable silhouette, weight on one leg, hips tilted, relaxed shoulders, playful attitude, asymmetric pose, feet firmly on the ground",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms, jumping",
+    "seed": 940500
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "secondary-action",
+   "no-twinning",
+   "timing-on-beat",
+   "planted-pivot"
+  ],
+  "inputHashes": {
+   "pose": "d848bf813870328967f7f0572fc4b71e00c7ad227ed4291c2c71dfb4bbff8e42",
+   "depth": "57a6593371b85dd73228d172a4afd61884e6b776db7fe0691aa359141e4d627b",
+   "lineart": "a1b86e5e6808752a8d8fc217c84268fce0ee57d080419bd73ce39d84cba9ebbd"
+  }
+ },
+ {
+  "pose": "groove.up_r",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-moderate.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/groove.up_r.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/groove.up_r.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/groove.up_r.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/groove.up_r.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, friendly adult woman bartender, warm confident smile, shirt buttoned to the collar and waistcoat fully buttoned, fully clothed, compact curly dark hair tied up in a rounded puff, ivory shirt with a closed collar, rolled ivory sleeves, high-buttoned deep teal waistcoat covering the chest, plum apron tied at the waist, dark plum trousers, amber dance shoes, small silver cocktail shaker, dignified professional who dances superbly, both feet together and flat, legs nearly straight in a small rise, hips almost level, chin lifted proudly, arms relaxed low at the sides with elbows soft, clear readable silhouette, weight on one leg, hips tilted, relaxed shoulders, playful attitude, asymmetric pose, feet firmly on the ground",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms, jumping",
+    "seed": 940600
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "secondary-action",
+   "no-twinning",
+   "timing-on-beat",
+   "planted-pivot"
+  ],
+  "inputHashes": {
+   "pose": "8a1c09068626a7fe448d99842574d176af5626abcba93ac10fef6dff1df261c8",
+   "depth": "416d38ccab644d33c945a5e252eb2b7816a8b51ef7dd6f91b96dd1d38c821e90",
+   "lineart": "340fae6bff4c51d970199f148f87a46b5ea441ff19852d22df184dd26c76e9db"
+  }
+ },
+ {
+  "pose": "groove.pass_r2",
+  "profile": "peak",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-peak.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/groove.pass_r2.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/groove.pass_r2.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/groove.pass_r2.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/groove.pass_r2.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, friendly adult woman bartender, warm confident smile, shirt buttoned to the collar and waistcoat fully buttoned, fully clothed, compact curly dark hair tied up in a rounded puff, ivory shirt with a closed collar, rolled ivory sleeves, high-buttoned deep teal waistcoat covering the chest, plum apron tied at the waist, dark plum trousers, amber dance shoes, small silver cocktail shaker, dignified professional who dances superbly, hip popped out to her left over the straight left leg, left hip high, left shoulder dipped, right knee bent with the right foot resting on its toe, left forearm lifted out at hip height in a wrist roll, right forearm across the belly, head tilted toward her right, clear readable silhouette, dynamic dance pose, strong line of action, weight on one leg, hips tilted, exaggerated energetic pose, relaxed shoulders, playful attitude, asymmetric pose, feet firmly on the ground",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, stiff pose, straight rigid body, floating, feet off ground, symmetrical pose, mirrored arms, jumping",
+    "seed": 940700
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "line-of-action",
+   "contrapposto",
+   "exaggeration-accent",
+   "secondary-action",
+   "no-twinning",
+   "timing-on-beat",
+   "planted-pivot"
+  ],
+  "inputHashes": {
+   "pose": "39b88747d830ff93913aa8d6bcea89209d37427b210bac968764b4dc089d301c",
+   "depth": "e2eb28d2f428f34bb05d4ee12a708a0b7a2a034b7f011e6391d3399bad2b333b",
+   "lineart": "a67949f2bd5fc665fdd9dd49eb7c460374ba2bbd2fadb96424841e1587c69706"
+  }
+ },
+ {
+  "pose": "left_hand.prep",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-moderate.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/left_hand.prep.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/left_hand.prep.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/left_hand.prep.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/left_hand.prep.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, friendly adult woman bartender, warm confident smile, shirt buttoned to the collar and waistcoat fully buttoned, fully clothed, compact curly dark hair tied up in a rounded puff, ivory shirt with a closed collar, rolled ivory sleeves, high-buttoned deep teal waistcoat covering the chest, plum apron tied at the waist, dark plum trousers, amber dance shoes, small silver cocktail shaker, dignified professional who dances superbly, crouched low with weight on the bent right leg, right fist on the hip, left hand scooped down low in front of the left hip, torso turned away to her right, head glancing down at the left hand, clear readable silhouette, weight on one leg, hips tilted, crouched, gathering energy, knees bent, asymmetric pose",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms",
+    "seed": 940800
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "anticipation",
+   "no-twinning",
+   "timing-on-beat"
+  ],
+  "inputHashes": {
+   "pose": "0d914b0ecbc06c92cd1332b09d7697bc2359505992ec2bf21af53083fb9bbe9a",
+   "depth": "5c1664830b42dd880973add4d4b3c67b097f57f44dc3f778bac867a2533cb36b",
+   "lineart": "763fab909dea893f635a5dd7615e3c682d001dc7d63b1f18abe0206f126dddff"
+  }
+ },
+ {
+  "pose": "left_hand.peak",
+  "profile": "peak",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-peak.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/left_hand.peak.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/left_hand.peak.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/left_hand.peak.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/left_hand.peak.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, friendly adult woman bartender, warm confident smile, shirt buttoned to the collar and waistcoat fully buttoned, fully clothed, compact curly dark hair tied up in a rounded puff, ivory shirt with a closed collar, rolled ivory sleeves, high-buttoned deep teal waistcoat covering the chest, plum apron tied at the waist, dark plum trousers, amber dance shoes, small silver cocktail shaker, dignified professional who dances superbly, weight on the straight right foot, right hip pushed out, right fist on the hip, body leaning toward her left so one long diagonal runs from the right foot to the left palm thrust high and out at about 45 degrees, left foot on its toe out to the side, head turned up toward the raised hand, clear readable silhouette, dynamic dance pose, strong line of action, weight on one leg, hips tilted, exaggerated energetic pose, asymmetric pose",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, stiff pose, straight rigid body, floating, feet off ground, symmetrical pose, mirrored arms",
+    "seed": 940900
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "line-of-action",
+   "contrapposto",
+   "exaggeration-accent",
+   "no-twinning",
+   "timing-on-beat"
+  ],
+  "inputHashes": {
+   "pose": "a6efcbb15ba9dddfc628c61e33b4cb7587ddbb1fabfbdc97543a70cab42b0e13",
+   "depth": "f121c29d58f93dbf807556990f67976d59e47570eb0a3c79a30100977f7bca2c",
+   "lineart": "47219c2a5e794e86ea56b3b6010295991f057b278a8a42f1afc67042588a3451"
+  }
+ },
+ {
+  "pose": "left_hand.follow",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-moderate.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/left_hand.follow.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/left_hand.follow.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/left_hand.follow.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/left_hand.follow.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, friendly adult woman bartender, warm confident smile, shirt buttoned to the collar and waistcoat fully buttoned, fully clothed, compact curly dark hair tied up in a rounded puff, ivory shirt with a closed collar, rolled ivory sleeves, high-buttoned deep teal waistcoat covering the chest, plum apron tied at the waist, dark plum trousers, amber dance shoes, small silver cocktail shaker, dignified professional who dances superbly, same diagonal pushed further: left arm reaching higher and the palm rolling forward, torso leaning further toward her left, right elbow pushed back on the hip, left toe touch out wider, head following the hand, clear readable silhouette, weight on one leg, hips tilted, shirt hem swinging, follow-through, asymmetric pose",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms",
+    "seed": 941000
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "follow-through",
+   "no-twinning",
+   "timing-on-beat"
+  ],
+  "inputHashes": {
+   "pose": "282b8208a511f0df14cb0bb825abce00d8fe1919ca504af6d6aa451249c58aa9",
+   "depth": "ead64f49c004ea06e8e44595212c7842b37833f723f5dcc05a3efd57fb54381c",
+   "lineart": "fd8b70fed84376fcdc39ab0cecb37a6e042c2236493e92c134855448be9dace2"
+  }
+ },
+ {
+  "pose": "left_hand.return",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-moderate.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/left_hand.return.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/left_hand.return.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/left_hand.return.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/left_hand.return.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, friendly adult woman bartender, warm confident smile, shirt buttoned to the collar and waistcoat fully buttoned, fully clothed, compact curly dark hair tied up in a rounded puff, ivory shirt with a closed collar, rolled ivory sleeves, high-buttoned deep teal waistcoat covering the chest, plum apron tied at the waist, dark plum trousers, amber dance shoes, small silver cocktail shaker, dignified professional who dances superbly, left arm sweeping down in an arc at shoulder height with the elbow bent, right hand low on the hip, both feet flat and close, torso returning upright, clear readable silhouette, weight on one leg, hips tilted, shirt hem swinging, follow-through, asymmetric pose",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms",
+    "seed": 941100
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "follow-through",
+   "no-twinning",
+   "timing-on-beat"
+  ],
+  "inputHashes": {
+   "pose": "5b5f5d5dd07b9d6f0be98efc00c232eda340aa663e77e5f47c9fc0523e2f1fdd",
+   "depth": "57a8151b3b4c2f65aff484f96d82d96c7dc9f0245b5977bb48ce174ebc0ec65e",
+   "lineart": "cf1faed9fece638bac846d907372a0d4308a29a5238c542f5228adbebd710b15"
+  }
+ },
+ {
+  "pose": "right_hand.prep",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-moderate.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/right_hand.prep.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/right_hand.prep.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/right_hand.prep.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/right_hand.prep.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, friendly adult woman bartender, warm confident smile, shirt buttoned to the collar and waistcoat fully buttoned, fully clothed, compact curly dark hair tied up in a rounded puff, ivory shirt with a closed collar, rolled ivory sleeves, high-buttoned deep teal waistcoat covering the chest, plum apron tied at the waist, dark plum trousers, amber dance shoes, small silver cocktail shaker, dignified professional who dances superbly, crouched low with weight on the bent left leg, left fist on the hip, right hand scooped down low in front of the right hip, torso turned away to her left, head glancing down at the right hand, clear readable silhouette, weight on one leg, hips tilted, crouched, gathering energy, knees bent, asymmetric pose",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms",
+    "seed": 941200
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "anticipation",
+   "no-twinning",
+   "timing-on-beat"
+  ],
+  "inputHashes": {
+   "pose": "0bff1a93702b283ffe40bc8c7cafba853bf646124b3bba3dd5a7f2a0219a7a13",
+   "depth": "90433d2e4db01f41fcb2cc4797133989cfcac27d5f8c9a61e2e02b18528d5e3f",
+   "lineart": "7a79f457a343aaf394081b746bca95d7491741f4becea56c148811683ebd2c94"
+  }
+ },
+ {
+  "pose": "right_hand.peak",
+  "profile": "peak",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-peak.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/right_hand.peak.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/right_hand.peak.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/right_hand.peak.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/right_hand.peak.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, friendly adult woman bartender, warm confident smile, shirt buttoned to the collar and waistcoat fully buttoned, fully clothed, compact curly dark hair tied up in a rounded puff, ivory shirt with a closed collar, rolled ivory sleeves, high-buttoned deep teal waistcoat covering the chest, plum apron tied at the waist, dark plum trousers, amber dance shoes, small silver cocktail shaker, dignified professional who dances superbly, weight on the straight left foot, left hip pushed out, left fist on the hip, body leaning toward her right so one long diagonal runs from the left foot to the right palm thrust high and out at about 45 degrees, right foot on its toe out to the side, head turned up toward the raised hand, clear readable silhouette, dynamic dance pose, strong line of action, weight on one leg, hips tilted, exaggerated energetic pose, asymmetric pose",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, stiff pose, straight rigid body, floating, feet off ground, symmetrical pose, mirrored arms",
+    "seed": 941300
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "line-of-action",
+   "contrapposto",
+   "exaggeration-accent",
+   "no-twinning",
+   "timing-on-beat"
+  ],
+  "inputHashes": {
+   "pose": "dd31527091f4b17184e46b0220f71e5c342efbd9d197fdcfde28daa01c2c52ae",
+   "depth": "2c3b66e89330e42572438d7dc3b3a312af35b2ef6ec4ac9c6ce040ae6bb95184",
+   "lineart": "14992c08a7c0096f315cfd66562908cfcadf7668abbf0a0108d21ae580cc1335"
+  }
+ },
+ {
+  "pose": "right_hand.follow",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-moderate.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/right_hand.follow.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/right_hand.follow.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/right_hand.follow.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/right_hand.follow.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, friendly adult woman bartender, warm confident smile, shirt buttoned to the collar and waistcoat fully buttoned, fully clothed, compact curly dark hair tied up in a rounded puff, ivory shirt with a closed collar, rolled ivory sleeves, high-buttoned deep teal waistcoat covering the chest, plum apron tied at the waist, dark plum trousers, amber dance shoes, small silver cocktail shaker, dignified professional who dances superbly, same diagonal pushed further: right arm reaching higher and the palm rolling forward, torso leaning further toward her right, left elbow pushed back on the hip, right toe touch out wider, head following the hand, clear readable silhouette, weight on one leg, hips tilted, shirt hem swinging, follow-through, asymmetric pose",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms",
+    "seed": 941400
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "follow-through",
+   "no-twinning",
+   "timing-on-beat"
+  ],
+  "inputHashes": {
+   "pose": "81495cc9832a799610ebcb24166d280b5466924bf74cf1b10a697c822ef52cf3",
+   "depth": "4712db0269539ada0c87d9422c6b3002026e963a60759caa5fcdb33fcbb60ec0",
+   "lineart": "197bc2cede35b4a7cbddcb94013f2d83e0302792c9faa2f26f55a232e4357db8"
+  }
+ },
+ {
+  "pose": "right_hand.return",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-moderate.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/right_hand.return.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/right_hand.return.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/right_hand.return.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/right_hand.return.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, friendly adult woman bartender, warm confident smile, shirt buttoned to the collar and waistcoat fully buttoned, fully clothed, compact curly dark hair tied up in a rounded puff, ivory shirt with a closed collar, rolled ivory sleeves, high-buttoned deep teal waistcoat covering the chest, plum apron tied at the waist, dark plum trousers, amber dance shoes, small silver cocktail shaker, dignified professional who dances superbly, right arm sweeping down in an arc at shoulder height with the elbow bent, left hand low on the hip, both feet flat and close, torso returning upright, clear readable silhouette, weight on one leg, hips tilted, shirt hem swinging, follow-through, asymmetric pose",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms",
+    "seed": 941500
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "follow-through",
+   "no-twinning",
+   "timing-on-beat"
+  ],
+  "inputHashes": {
+   "pose": "642c1018eec353f65eed566de5023133e3e4fb78b0b96db585e65dec691fcd17",
+   "depth": "eb45f83a5e4bcbb8128f7e3a866cc732b14f444a6fb3ea962224d3a7c306b47c",
+   "lineart": "9433f0fbaca39b0cb3f68b60d4ae0a4fe0afe4cfda3a52070b3bb1e24ca39024"
+  }
+ },
+ {
+  "pose": "left_foot.prep",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-moderate.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/left_foot.prep.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/left_foot.prep.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/left_foot.prep.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/left_foot.prep.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, friendly adult woman bartender, warm confident smile, shirt buttoned to the collar and waistcoat fully buttoned, fully clothed, compact curly dark hair tied up in a rounded puff, ivory shirt with a closed collar, rolled ivory sleeves, high-buttoned deep teal waistcoat covering the chest, plum apron tied at the waist, dark plum trousers, amber dance shoes, small silver cocktail shaker, dignified professional who dances superbly, weight on the bent right leg, left knee lifted forward and out with the foot off the floor and the toe pointing down, left fist on the hip, right arm low and out for balance, head looking down at the left foot, clear readable silhouette, weight on one leg, hips tilted, crouched, gathering energy, knees bent, asymmetric pose",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms",
+    "seed": 941600
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "anticipation",
+   "no-twinning",
+   "timing-on-beat"
+  ],
+  "inputHashes": {
+   "pose": "fde68d006742e718cc14c5c5f78df5b34d65c60d6270a8cb01adf26774996a09",
+   "depth": "b954a3fb6d8f6696bd8f7aad18e3e7a14ac2792de41b3c6a85554eb3e6468f14",
+   "lineart": "0a9263ac4ebafc23e5b4312284cc924f6502ebe0fc7e03d7b04c63f89cafdbdd"
+  }
+ },
+ {
+  "pose": "left_foot.peak",
+  "profile": "peak",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-peak.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/left_foot.peak.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/left_foot.peak.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/left_foot.peak.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/left_foot.peak.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, friendly adult woman bartender, warm confident smile, shirt buttoned to the collar and waistcoat fully buttoned, fully clothed, compact curly dark hair tied up in a rounded puff, ivory shirt with a closed collar, rolled ivory sleeves, high-buttoned deep teal waistcoat covering the chest, plum apron tied at the waist, dark plum trousers, amber dance shoes, small silver cocktail shaker, dignified professional who dances superbly, heel dig: left leg stretched out on a forward diagonal with the left heel on the floor and the toe up, weight on the bent right leg, chest proud and leaning back slightly, right fist on the hip, left arm low and back, head turned toward the left foot, clear readable silhouette, dynamic dance pose, strong line of action, weight on one leg, hips tilted, exaggerated energetic pose, asymmetric pose",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, stiff pose, straight rigid body, floating, feet off ground, symmetrical pose, mirrored arms",
+    "seed": 941700
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "line-of-action",
+   "contrapposto",
+   "exaggeration-accent",
+   "no-twinning",
+   "timing-on-beat"
+  ],
+  "inputHashes": {
+   "pose": "86d1197fdac74e46c19f9a13dc560f59cd3439364131cb67812aa8e6de12b8a0",
+   "depth": "59896ecd355f18495c7ea56f678e4f1a579bb64b93ca6d80dd195a4b5b44b878",
+   "lineart": "af76536b77515c29be04e495eaa99a78a2cd4919834d6064baa76cad5a6535fe"
+  }
+ },
+ {
+  "pose": "left_foot.follow",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-moderate.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/left_foot.follow.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/left_foot.follow.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/left_foot.follow.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/left_foot.follow.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, friendly adult woman bartender, warm confident smile, shirt buttoned to the collar and waistcoat fully buttoned, fully clothed, compact curly dark hair tied up in a rounded puff, ivory shirt with a closed collar, rolled ivory sleeves, high-buttoned deep teal waistcoat covering the chest, plum apron tied at the waist, dark plum trousers, amber dance shoes, small silver cocktail shaker, dignified professional who dances superbly, left heel still dug in on the diagonal, hip popped over the right foot, shoulders tilted against the hips, right elbow pushed back on the hip, left arm low and out, head on the left foot, clear readable silhouette, weight on one leg, hips tilted, shirt hem swinging, follow-through, asymmetric pose",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms",
+    "seed": 941800
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "follow-through",
+   "no-twinning",
+   "timing-on-beat"
+  ],
+  "inputHashes": {
+   "pose": "d08a327375a16882a3865a61d5f46ff34cf6dc43104d1f426d73288180d1c1e8",
+   "depth": "b7246046e67cc3dcabdec85e272c39e4b30bca100da6f74bad361154fe15e438",
+   "lineart": "3b229696bb64fc84e5ecb9203fb732ca986c668e14d902c4c6f9232d165fb40b"
+  }
+ },
+ {
+  "pose": "left_foot.return",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-moderate.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/left_foot.return.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/left_foot.return.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/left_foot.return.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/left_foot.return.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, friendly adult woman bartender, warm confident smile, shirt buttoned to the collar and waistcoat fully buttoned, fully clothed, compact curly dark hair tied up in a rounded puff, ivory shirt with a closed collar, rolled ivory sleeves, high-buttoned deep teal waistcoat covering the chest, plum apron tied at the waist, dark plum trousers, amber dance shoes, small silver cocktail shaker, dignified professional who dances superbly, left foot dragged back along the floor to close beside the right, both feet flat, knees soft, arms relaxed low at the sides, clear readable silhouette, weight on one leg, hips tilted, shirt hem swinging, follow-through, asymmetric pose",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms",
+    "seed": 941900
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "follow-through",
+   "no-twinning",
+   "timing-on-beat"
+  ],
+  "inputHashes": {
+   "pose": "068d30b93d8a283220ca11ecc6aacabedc1d676c8f9abd894c507905228f58d2",
+   "depth": "9ab003a5f2359f615150c38b0d83a183e321a5e526848093c95ebb7ef674bb0b",
+   "lineart": "11c35d9b196ee21a17d5a837e56a229f6509bcfb85daeec45740e21b46f7c214"
+  }
+ },
+ {
+  "pose": "right_foot.prep",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-moderate.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/right_foot.prep.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/right_foot.prep.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/right_foot.prep.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/right_foot.prep.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, friendly adult woman bartender, warm confident smile, shirt buttoned to the collar and waistcoat fully buttoned, fully clothed, compact curly dark hair tied up in a rounded puff, ivory shirt with a closed collar, rolled ivory sleeves, high-buttoned deep teal waistcoat covering the chest, plum apron tied at the waist, dark plum trousers, amber dance shoes, small silver cocktail shaker, dignified professional who dances superbly, weight on the bent left leg, right knee lifted forward and out with the foot off the floor and the toe pointing down, right fist on the hip, left arm low and out for balance, head looking down at the right foot, clear readable silhouette, weight on one leg, hips tilted, crouched, gathering energy, knees bent, asymmetric pose",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms",
+    "seed": 942000
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "anticipation",
+   "no-twinning",
+   "timing-on-beat"
+  ],
+  "inputHashes": {
+   "pose": "6ce974ab2e8e51cee0ba865930f764bb42b4fd30ad9a6de2f7f0bc8c65efee34",
+   "depth": "c1901e11bd55008ae6759aea50a8d8a63ddd07e1af4c1f5433c4fc3a91aeb6a6",
+   "lineart": "3d767ea60848596a594fb0f08dfe04547fc234c09540488108fc36a936f6186e"
+  }
+ },
+ {
+  "pose": "right_foot.peak",
+  "profile": "peak",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-peak.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/right_foot.peak.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/right_foot.peak.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/right_foot.peak.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/right_foot.peak.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, friendly adult woman bartender, warm confident smile, shirt buttoned to the collar and waistcoat fully buttoned, fully clothed, compact curly dark hair tied up in a rounded puff, ivory shirt with a closed collar, rolled ivory sleeves, high-buttoned deep teal waistcoat covering the chest, plum apron tied at the waist, dark plum trousers, amber dance shoes, small silver cocktail shaker, dignified professional who dances superbly, heel dig: right leg stretched out on a forward diagonal with the right heel on the floor and the toe up, weight on the bent left leg, chest proud and leaning back slightly, left fist on the hip, right arm low and back, head turned toward the right foot, clear readable silhouette, dynamic dance pose, strong line of action, weight on one leg, hips tilted, exaggerated energetic pose, asymmetric pose",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, stiff pose, straight rigid body, floating, feet off ground, symmetrical pose, mirrored arms",
+    "seed": 942100
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "line-of-action",
+   "contrapposto",
+   "exaggeration-accent",
+   "no-twinning",
+   "timing-on-beat"
+  ],
+  "inputHashes": {
+   "pose": "de58c37ab3c18a9dd3d0945dcd1d40fb4fd64b6c5ed65413f4937857b04ac853",
+   "depth": "020488960f208c8004d10828ebfba63e081260d6eb554727809e1747df8a893c",
+   "lineart": "fe0d5538d1afd02b4d373f053f7a71e799b0ca5100fde465cb539f7e0099e743"
+  }
+ },
+ {
+  "pose": "right_foot.follow",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-moderate.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/right_foot.follow.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/right_foot.follow.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/right_foot.follow.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/right_foot.follow.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, friendly adult woman bartender, warm confident smile, shirt buttoned to the collar and waistcoat fully buttoned, fully clothed, compact curly dark hair tied up in a rounded puff, ivory shirt with a closed collar, rolled ivory sleeves, high-buttoned deep teal waistcoat covering the chest, plum apron tied at the waist, dark plum trousers, amber dance shoes, small silver cocktail shaker, dignified professional who dances superbly, right heel still dug in on the diagonal, hip popped over the left foot, shoulders tilted against the hips, left elbow pushed back on the hip, right arm low and out, head on the right foot, clear readable silhouette, weight on one leg, hips tilted, shirt hem swinging, follow-through, asymmetric pose",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms",
+    "seed": 942200
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "follow-through",
+   "no-twinning",
+   "timing-on-beat"
+  ],
+  "inputHashes": {
+   "pose": "6c8e0580f182db4788cdf865ae280bed8d609a59b3d9fcaf8b08c71e33add6d1",
+   "depth": "3269bfb91bec636c171b97c59a7950efa2d1cc22e16e7cabd0fa46d53e43bba7",
+   "lineart": "f788b960849d9ae5cba891b9d61e1d0b4ad08c3026431d45913376f58a101040"
+  }
+ },
+ {
+  "pose": "right_foot.return",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-moderate.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/right_foot.return.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/right_foot.return.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/right_foot.return.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/right_foot.return.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, friendly adult woman bartender, warm confident smile, shirt buttoned to the collar and waistcoat fully buttoned, fully clothed, compact curly dark hair tied up in a rounded puff, ivory shirt with a closed collar, rolled ivory sleeves, high-buttoned deep teal waistcoat covering the chest, plum apron tied at the waist, dark plum trousers, amber dance shoes, small silver cocktail shaker, dignified professional who dances superbly, right foot dragged back along the floor to close beside the left, both feet flat, knees soft, arms relaxed low at the sides, clear readable silhouette, weight on one leg, hips tilted, shirt hem swinging, follow-through, asymmetric pose",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms",
+    "seed": 942300
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "follow-through",
+   "no-twinning",
+   "timing-on-beat"
+  ],
+  "inputHashes": {
+   "pose": "15adfe0bb608d19970536d794f4732bee8f3e6ce4726087f57ec7409bcb99292",
+   "depth": "8fe7ba7fca7f3784e801c56b4101d45d72ac62324ac050772f09e22a11e5c661",
+   "lineart": "e5e20aa974307e5dd77bef5eb61e80dbefc0bb2dda68a8b28172ce1b6f5e24d8"
+  }
+ },
+ {
+  "pose": "enter_forward.contact_l",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-moderate.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/enter_forward.contact_l.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/enter_forward.contact_l.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/enter_forward.contact_l.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/enter_forward.contact_l.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, friendly adult woman bartender, warm confident smile, shirt buttoned to the collar and waistcoat fully buttoned, fully clothed, compact curly dark hair tied up in a rounded puff, ivory shirt with a closed collar, rolled ivory sleeves, high-buttoned deep teal waistcoat covering the chest, plum apron tied at the waist, dark plum trousers, amber dance shoes, small silver cocktail shaker, dignified professional who dances superbly, swaggering walk toward the viewer on a slight diagonal, left heel landing in front, right foot behind on its toe, right fist on the hip, left arm swinging back, chin up, clear readable silhouette, weight on one leg, hips tilted, crouched, gathering energy, knees bent, asymmetric pose, feet firmly on the ground",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms, jumping",
+    "seed": 942400
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "anticipation",
+   "no-twinning",
+   "timing-on-beat",
+   "planted-pivot"
+  ],
+  "inputHashes": {
+   "pose": "d926f558be90ef180a0ee8f28d99174d4460e7246092b56da730cd881a9582af",
+   "depth": "592e041135ec7d9851057b0f40f619bcd156307b62311905992773355618aad2",
+   "lineart": "a66a0552d8b928b55af2969b9d75183a4947921de4a6f93f171149f29565ca0f"
+  }
+ },
+ {
+  "pose": "enter_forward.down_l",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-moderate.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/enter_forward.down_l.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/enter_forward.down_l.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/enter_forward.down_l.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/enter_forward.down_l.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, friendly adult woman bartender, warm confident smile, shirt buttoned to the collar and waistcoat fully buttoned, fully clothed, compact curly dark hair tied up in a rounded puff, ivory shirt with a closed collar, rolled ivory sleeves, high-buttoned deep teal waistcoat covering the chest, plum apron tied at the waist, dark plum trousers, amber dance shoes, small silver cocktail shaker, dignified professional who dances superbly, weight dropping into the bent left knee, left hip high, right foot pushing off behind on its toe, right fist on the hip, left arm swinging, head dipping on the beat, clear readable silhouette, weight on one leg, hips tilted, asymmetric pose, feet firmly on the ground",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms, jumping",
+    "seed": 942500
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "no-twinning",
+   "timing-on-beat",
+   "planted-pivot"
+  ],
+  "inputHashes": {
+   "pose": "21bdc8df004990236b11b36dfd1246ee0a1067e47622f08d4cda3ef8f2267e46",
+   "depth": "ccd2dadb6b2f5e10792ad561b665c89c1cf5e42434fa820e95aa62af799388de",
+   "lineart": "dd71eeda157ccb3a4f9ff903ac0c1e72a5be50e34d33e646fe9bef4a28de1f12"
+  }
+ },
+ {
+  "pose": "enter_forward.pass_l",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-moderate.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/enter_forward.pass_l.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/enter_forward.pass_l.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/enter_forward.pass_l.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/enter_forward.pass_l.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, friendly adult woman bartender, warm confident smile, shirt buttoned to the collar and waistcoat fully buttoned, fully clothed, compact curly dark hair tied up in a rounded puff, ivory shirt with a closed collar, rolled ivory sleeves, high-buttoned deep teal waistcoat covering the chest, plum apron tied at the waist, dark plum trousers, amber dance shoes, small silver cocktail shaker, dignified professional who dances superbly, standing tall on the straight left leg, right knee swinging forward past it, right fist on the hip, left arm relaxed at the side, chin up, clear readable silhouette, weight on one leg, hips tilted, asymmetric pose, feet firmly on the ground",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms, jumping",
+    "seed": 942600
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "no-twinning",
+   "timing-on-beat",
+   "planted-pivot"
+  ],
+  "inputHashes": {
+   "pose": "83e5764a93fe65ac5bfbf963d140ba14aab525670391790f566876d7b4246935",
+   "depth": "760977149c003fda7d1008784212c2c52d69bfdf64b2c8e6d54ca982feb15251",
+   "lineart": "956d574582843ffae2f01926309eb4d91826ae4704f89eed5981841d44ca1865"
+  }
+ },
+ {
+  "pose": "enter_forward.contact_r",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-moderate.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/enter_forward.contact_r.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/enter_forward.contact_r.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/enter_forward.contact_r.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/enter_forward.contact_r.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, friendly adult woman bartender, warm confident smile, shirt buttoned to the collar and waistcoat fully buttoned, fully clothed, compact curly dark hair tied up in a rounded puff, ivory shirt with a closed collar, rolled ivory sleeves, high-buttoned deep teal waistcoat covering the chest, plum apron tied at the waist, dark plum trousers, amber dance shoes, small silver cocktail shaker, dignified professional who dances superbly, swaggering walk toward the viewer on a slight diagonal, right heel landing in front, left foot behind on its toe, right fist on the hip, left arm swinging forward, chin up, clear readable silhouette, weight on one leg, hips tilted, crouched, gathering energy, knees bent, asymmetric pose, feet firmly on the ground",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms, jumping",
+    "seed": 942700
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "anticipation",
+   "no-twinning",
+   "timing-on-beat",
+   "planted-pivot"
+  ],
+  "inputHashes": {
+   "pose": "f1c43e8effa2ba9d9aa1dd17dd5420b934946c67492386cd3ded485666b5a369",
+   "depth": "5139ae95e468753b14dd633f39df8f16814df92c082e078c998fa3cdacbd7001",
+   "lineart": "6e562878512ebd6e1a05692cc46ce2ecf4888f4f9bdb34f0a910fad1ad54fa0c"
+  }
+ },
+ {
+  "pose": "enter_forward.down_r",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-moderate.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/enter_forward.down_r.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/enter_forward.down_r.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/enter_forward.down_r.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/enter_forward.down_r.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, friendly adult woman bartender, warm confident smile, shirt buttoned to the collar and waistcoat fully buttoned, fully clothed, compact curly dark hair tied up in a rounded puff, ivory shirt with a closed collar, rolled ivory sleeves, high-buttoned deep teal waistcoat covering the chest, plum apron tied at the waist, dark plum trousers, amber dance shoes, small silver cocktail shaker, dignified professional who dances superbly, weight dropping into the bent right knee, right hip high, left foot pushing off behind on its toe, right fist on the hip, left arm swinging forward, head dipping on the beat, clear readable silhouette, weight on one leg, hips tilted, asymmetric pose, feet firmly on the ground",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms, jumping",
+    "seed": 942800
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "no-twinning",
+   "timing-on-beat",
+   "planted-pivot"
+  ],
+  "inputHashes": {
+   "pose": "96a4a61f5cbc0fe27ea298e4d177f8d6cdb6daccb4c5a831f7e488d99acd447b",
+   "depth": "af02c7b4c467a1516d7fc7cb1396f8b374036c046ac65aa2842f364920fbda85",
+   "lineart": "99130549a97de50b93ca1b08f1aa0498c663197db2d29c030742fea85abd7cee"
+  }
+ },
+ {
+  "pose": "enter_forward.pass_r",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-moderate.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/enter_forward.pass_r.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/enter_forward.pass_r.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/enter_forward.pass_r.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/enter_forward.pass_r.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, friendly adult woman bartender, warm confident smile, shirt buttoned to the collar and waistcoat fully buttoned, fully clothed, compact curly dark hair tied up in a rounded puff, ivory shirt with a closed collar, rolled ivory sleeves, high-buttoned deep teal waistcoat covering the chest, plum apron tied at the waist, dark plum trousers, amber dance shoes, small silver cocktail shaker, dignified professional who dances superbly, standing tall on the straight right leg, left knee swinging forward past it, right fist on the hip, left arm relaxed at the side, chin up, clear readable silhouette, weight on one leg, hips tilted, asymmetric pose, feet firmly on the ground",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms, jumping",
+    "seed": 942900
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "no-twinning",
+   "timing-on-beat",
+   "planted-pivot"
+  ],
+  "inputHashes": {
+   "pose": "510d444302e48c74fd2f39d842b424859c862bcc2ae90428b82751d75c2132b3",
+   "depth": "386630b93ca66d8d44ab34ecff163a2419d274173393b85242e6036d4d57ba92",
+   "lineart": "9f9c596c4e238eaaea6f2b4118dc4881de2d00674f782d695b64d7daf8a8512c"
+  }
+ },
+ {
+  "pose": "retreat_backward.contact_l",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-moderate.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/retreat_backward.contact_l.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/retreat_backward.contact_l.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/retreat_backward.contact_l.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/retreat_backward.contact_l.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, friendly adult woman bartender, warm confident smile, shirt buttoned to the collar and waistcoat fully buttoned, fully clothed, compact curly dark hair tied up in a rounded puff, ivory shirt with a closed collar, rolled ivory sleeves, high-buttoned deep teal waistcoat covering the chest, plum apron tied at the waist, dark plum trousers, amber dance shoes, small silver cocktail shaker, dignified professional who dances superbly, stepping backward while still facing the viewer, left foot reaching back onto its ball, weight still on the flat right foot, left hand behind the back, right arm low and loose, clear readable silhouette, weight on one leg, hips tilted, crouched, gathering energy, knees bent, asymmetric pose, feet firmly on the ground",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms, jumping",
+    "seed": 943000
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "anticipation",
+   "no-twinning",
+   "timing-on-beat",
+   "planted-pivot"
+  ],
+  "inputHashes": {
+   "pose": "08580190d684e774ae0413e8df9f1d92e205aee82462d5b2df5cb7b981c6dff5",
+   "depth": "324af0647be945ba0593a7fd8ad189f6588a801179d5f6b21cf2fd8f95110419",
+   "lineart": "689705b6aa62e8b46f4179f53fda6d95a872973966b3e8d8c99d84bcad5e990d"
+  }
+ },
+ {
+  "pose": "retreat_backward.down_l",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-moderate.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/retreat_backward.down_l.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/retreat_backward.down_l.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/retreat_backward.down_l.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/retreat_backward.down_l.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, friendly adult woman bartender, warm confident smile, shirt buttoned to the collar and waistcoat fully buttoned, fully clothed, compact curly dark hair tied up in a rounded puff, ivory shirt with a closed collar, rolled ivory sleeves, high-buttoned deep teal waistcoat covering the chest, plum apron tied at the waist, dark plum trousers, amber dance shoes, small silver cocktail shaker, dignified professional who dances superbly, weight rolled back onto the bent left leg, left hip high, right foot in front with the toe lifted, left hand behind the back, right arm low and forward, head nodding, clear readable silhouette, weight on one leg, hips tilted, asymmetric pose, feet firmly on the ground",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms, jumping",
+    "seed": 943100
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "no-twinning",
+   "timing-on-beat",
+   "planted-pivot"
+  ],
+  "inputHashes": {
+   "pose": "2f437f65620b06ecf507ce97396b283ec1bb869ddf436acf61c2a4feb9419b9b",
+   "depth": "6aa277a3e5167b6adfcea582b7de7dd4b921d30d179cd3c188f87dba3f5e0ae7",
+   "lineart": "0573ed74fd8c2479cdf5ebac989ad12ed2ec54afa30188cb5c35476d0df3819c"
+  }
+ },
+ {
+  "pose": "retreat_backward.pass_l",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-moderate.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/retreat_backward.pass_l.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/retreat_backward.pass_l.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/retreat_backward.pass_l.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/retreat_backward.pass_l.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, friendly adult woman bartender, warm confident smile, shirt buttoned to the collar and waistcoat fully buttoned, fully clothed, compact curly dark hair tied up in a rounded puff, ivory shirt with a closed collar, rolled ivory sleeves, high-buttoned deep teal waistcoat covering the chest, plum apron tied at the waist, dark plum trousers, amber dance shoes, small silver cocktail shaker, dignified professional who dances superbly, right foot dragged back along the floor past the straight left leg, left hand behind the back, right arm hanging loose, chin up, clear readable silhouette, weight on one leg, hips tilted, asymmetric pose, feet firmly on the ground",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms, jumping",
+    "seed": 943200
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "no-twinning",
+   "timing-on-beat",
+   "planted-pivot"
+  ],
+  "inputHashes": {
+   "pose": "605303d970d884db5c358c27aaa1d040e87b70c3f6615ccbbf9a3e5f1a171586",
+   "depth": "0415c0a1d693a11e61af36d160ecf85495622545a465882c0b16fa062baa395e",
+   "lineart": "dd93dc150fa143d7543462d22df327496e4ed2b08e59868cd76ab6b2da20d7c5"
+  }
+ },
+ {
+  "pose": "retreat_backward.contact_r",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-moderate.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/retreat_backward.contact_r.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/retreat_backward.contact_r.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/retreat_backward.contact_r.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/retreat_backward.contact_r.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, friendly adult woman bartender, warm confident smile, shirt buttoned to the collar and waistcoat fully buttoned, fully clothed, compact curly dark hair tied up in a rounded puff, ivory shirt with a closed collar, rolled ivory sleeves, high-buttoned deep teal waistcoat covering the chest, plum apron tied at the waist, dark plum trousers, amber dance shoes, small silver cocktail shaker, dignified professional who dances superbly, stepping backward while still facing the viewer, right foot reaching back onto its ball, weight still on the flat left foot, left hand behind the back, right arm low and loose, clear readable silhouette, weight on one leg, hips tilted, crouched, gathering energy, knees bent, asymmetric pose, feet firmly on the ground",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms, jumping",
+    "seed": 943300
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "anticipation",
+   "no-twinning",
+   "timing-on-beat",
+   "planted-pivot"
+  ],
+  "inputHashes": {
+   "pose": "8744b6613d103691f5fa41c26a04eed78b9149372c351c078416b72930455d92",
+   "depth": "055219a1719fbf74c20901066f2e4cc66b9ef6b1ac8103879cf7cae07d474c22",
+   "lineart": "a2fcadef1272f638f47ddeb5c53908f2cecbaec2fbe5e153e6e1a115993e8136"
+  }
+ },
+ {
+  "pose": "retreat_backward.down_r",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-moderate.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/retreat_backward.down_r.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/retreat_backward.down_r.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/retreat_backward.down_r.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/retreat_backward.down_r.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, friendly adult woman bartender, warm confident smile, shirt buttoned to the collar and waistcoat fully buttoned, fully clothed, compact curly dark hair tied up in a rounded puff, ivory shirt with a closed collar, rolled ivory sleeves, high-buttoned deep teal waistcoat covering the chest, plum apron tied at the waist, dark plum trousers, amber dance shoes, small silver cocktail shaker, dignified professional who dances superbly, weight rolled back onto the bent right leg, right hip high, left foot in front with the toe lifted, left hand behind the back, right arm low, head nodding, clear readable silhouette, weight on one leg, hips tilted, asymmetric pose, feet firmly on the ground",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms, jumping",
+    "seed": 943400
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "no-twinning",
+   "timing-on-beat",
+   "planted-pivot"
+  ],
+  "inputHashes": {
+   "pose": "24dd11f6529c1c0b38eecf430e89838792142fed05019425e0eb170e3f5dfd78",
+   "depth": "fc3005befa53686788cae9a4fa8ad491531eac740275fd7a63cd963c3abac87d",
+   "lineart": "cc160f638e161ede3e2dd5ab1379d8e8043e6b4212bf2573e268e9b590ff33d9"
+  }
+ },
+ {
+  "pose": "retreat_backward.pass_r",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-moderate.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/retreat_backward.pass_r.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/retreat_backward.pass_r.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/retreat_backward.pass_r.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/retreat_backward.pass_r.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, friendly adult woman bartender, warm confident smile, shirt buttoned to the collar and waistcoat fully buttoned, fully clothed, compact curly dark hair tied up in a rounded puff, ivory shirt with a closed collar, rolled ivory sleeves, high-buttoned deep teal waistcoat covering the chest, plum apron tied at the waist, dark plum trousers, amber dance shoes, small silver cocktail shaker, dignified professional who dances superbly, left foot dragged back along the floor past the straight right leg, left hand behind the back, right arm hanging loose, chin up, clear readable silhouette, weight on one leg, hips tilted, asymmetric pose, feet firmly on the ground",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms, jumping",
+    "seed": 943500
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "no-twinning",
+   "timing-on-beat",
+   "planted-pivot"
+  ],
+  "inputHashes": {
+   "pose": "316a171d79ae33436d60ed84a47365a3c36d139f48537b6b8b3ddff80b52fe14",
+   "depth": "a452fc8826d92a5d06019fd8e9f9aa4da4d696a87fa6b16f6a4341583b832464",
+   "lineart": "090c40ba63d154c767dc247b8b745162f74c6046238b25480a4544a4bb450ee6"
+  }
+ },
+ {
+  "pose": "yield_side.contact_l",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-moderate.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/yield_side.contact_l.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/yield_side.contact_l.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/yield_side.contact_l.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/yield_side.contact_l.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, friendly adult woman bartender, warm confident smile, shirt buttoned to the collar and waistcoat fully buttoned, fully clothed, compact curly dark hair tied up in a rounded puff, ivory shirt with a closed collar, rolled ivory sleeves, high-buttoned deep teal waistcoat covering the chest, plum apron tied at the waist, dark plum trousers, amber dance shoes, small silver cocktail shaker, dignified professional who dances superbly, side-step toward the sideline: left leg reaching out sideways with the foot landing, weight still on the bent right leg, right fist on the hip, left arm out low, clear readable silhouette, weight on one leg, hips tilted, crouched, gathering energy, knees bent, asymmetric pose, feet firmly on the ground",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms, jumping",
+    "seed": 943600
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "anticipation",
+   "no-twinning",
+   "timing-on-beat",
+   "planted-pivot"
+  ],
+  "inputHashes": {
+   "pose": "55e5e79888723c1894901208c8648ab1fa0e664a81bc8c7564bf44540374c65f",
+   "depth": "565f372b2db41234b44642cb3f3ea8b0b05549ac8465de72a2da1d3ca4cfc6c2",
+   "lineart": "9506329e05ef94866bd6ee8e5b150b13518991e731c05a6d6476cea4199f093a"
+  }
+ },
+ {
+  "pose": "yield_side.down_l",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-moderate.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/yield_side.down_l.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/yield_side.down_l.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/yield_side.down_l.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/yield_side.down_l.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, friendly adult woman bartender, warm confident smile, shirt buttoned to the collar and waistcoat fully buttoned, fully clothed, compact curly dark hair tied up in a rounded puff, ivory shirt with a closed collar, rolled ivory sleeves, high-buttoned deep teal waistcoat covering the chest, plum apron tied at the waist, dark plum trousers, amber dance shoes, small silver cocktail shaker, dignified professional who dances superbly, weight shifted onto the bent left leg, left hip high and pushed out, right foot trailing on its toe, right fist on the hip, head nodding, clear readable silhouette, weight on one leg, hips tilted, asymmetric pose, feet firmly on the ground",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms, jumping",
+    "seed": 943700
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "no-twinning",
+   "timing-on-beat",
+   "planted-pivot"
+  ],
+  "inputHashes": {
+   "pose": "1c85d98b2f4ffa31a272bdb6dd56f365e36ccb24052fe516842df19378992c27",
+   "depth": "a5a7a611cda1a296583f7cdd7db1cb5ca472ea1a66b08d3c3bd53edb268246f6",
+   "lineart": "cc26630b28cdc5402546baf414b71558ae7d0246d20650557a3a61986fc50e3d"
+  }
+ },
+ {
+  "pose": "yield_side.pass_l",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-moderate.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/yield_side.pass_l.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/yield_side.pass_l.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/yield_side.pass_l.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/yield_side.pass_l.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, friendly adult woman bartender, warm confident smile, shirt buttoned to the collar and waistcoat fully buttoned, fully clothed, compact curly dark hair tied up in a rounded puff, ivory shirt with a closed collar, rolled ivory sleeves, high-buttoned deep teal waistcoat covering the chest, plum apron tied at the waist, dark plum trousers, amber dance shoes, small silver cocktail shaker, dignified professional who dances superbly, right foot dragged in along the floor to close beside the straight left leg, right fist on the hip, left arm relaxed at the side, clear readable silhouette, weight on one leg, hips tilted, asymmetric pose, feet firmly on the ground",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms, jumping",
+    "seed": 943800
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "no-twinning",
+   "timing-on-beat",
+   "planted-pivot"
+  ],
+  "inputHashes": {
+   "pose": "8dd89ac1725690463f87713782d9938b97499217fc1ac96cbb7beb09aa3ea649",
+   "depth": "46b2e1ca66ba22e45102925a133e8f3cfa303ec9a16fdadf2513f5d296c1e618",
+   "lineart": "3d72baf0b1aede68282b97b1ae1d71cdb00a6cfeccd9ad4cfcef6e2174b9d4c5"
+  }
+ },
+ {
+  "pose": "yield_side.contact_r",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-moderate.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/yield_side.contact_r.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/yield_side.contact_r.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/yield_side.contact_r.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/yield_side.contact_r.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, friendly adult woman bartender, warm confident smile, shirt buttoned to the collar and waistcoat fully buttoned, fully clothed, compact curly dark hair tied up in a rounded puff, ivory shirt with a closed collar, rolled ivory sleeves, high-buttoned deep teal waistcoat covering the chest, plum apron tied at the waist, dark plum trousers, amber dance shoes, small silver cocktail shaker, dignified professional who dances superbly, right foot stepping back on a diagonal onto its ball, left knee bent, arms low and loose, torso turning open, clear readable silhouette, weight on one leg, hips tilted, crouched, gathering energy, knees bent, asymmetric pose, feet firmly on the ground",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms, jumping",
+    "seed": 943900
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "anticipation",
+   "no-twinning",
+   "timing-on-beat",
+   "planted-pivot"
+  ],
+  "inputHashes": {
+   "pose": "28604a01918e3de154c27ebb36d9119a49aabe1146630be00bcc17e7c5b1ec15",
+   "depth": "c89fe90300bb1cad528ea34cd9bbbd3cbb4854825900ad7dcd2ab82fa608ef59",
+   "lineart": "c7d050a83d5faea6da483675a693e0761d77449ca6809ab27c7e7e0d63eb6991"
+  }
+ },
+ {
+  "pose": "yield_side.down_r",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-moderate.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/yield_side.down_r.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/yield_side.down_r.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/yield_side.down_r.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/yield_side.down_r.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, friendly adult woman bartender, warm confident smile, shirt buttoned to the collar and waistcoat fully buttoned, fully clothed, compact curly dark hair tied up in a rounded puff, ivory shirt with a closed collar, rolled ivory sleeves, high-buttoned deep teal waistcoat covering the chest, plum apron tied at the waist, dark plum trousers, amber dance shoes, small silver cocktail shaker, dignified professional who dances superbly, weight settled onto the bent right leg, right hip high, left foot in front with the toe lifted, right forearm coming forward at waist height, clear readable silhouette, weight on one leg, hips tilted, asymmetric pose, feet firmly on the ground",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms, jumping",
+    "seed": 944000
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "no-twinning",
+   "timing-on-beat",
+   "planted-pivot"
+  ],
+  "inputHashes": {
+   "pose": "797389cb66e862b0da8035ad33fa3d0d9a9f538d39b24053f51312cac4dec58e",
+   "depth": "d56a22187936433f8189c8c6de4deac909bd17b455296513ddf114d924ab9b0b",
+   "lineart": "f1704ab9a5f41b9d86c0de7fd3fde3ae7e158fab3e6f20560c956bdc02497273"
+  }
+ },
+ {
+  "pose": "yield_side.pass_r",
+  "profile": "peak",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-peak.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/yield_side.pass_r.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/yield_side.pass_r.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/yield_side.pass_r.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/yield_side.pass_r.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, friendly adult woman bartender, warm confident smile, shirt buttoned to the collar and waistcoat fully buttoned, fully clothed, compact curly dark hair tied up in a rounded puff, ivory shirt with a closed collar, rolled ivory sleeves, high-buttoned deep teal waistcoat covering the chest, plum apron tied at the waist, dark plum trousers, amber dance shoes, small silver cocktail shaker, dignified professional who dances superbly, standing on the right leg, left fist on the hip, right arm held out low and wide with the palm open and up toward the empty floor, head turned toward the open palm with a slight bow, offering the floor, clear readable silhouette, dynamic dance pose, strong line of action, weight on one leg, hips tilted, exaggerated energetic pose, asymmetric pose, feet firmly on the ground",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, stiff pose, straight rigid body, floating, feet off ground, symmetrical pose, mirrored arms, jumping",
+    "seed": 944100
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "line-of-action",
+   "contrapposto",
+   "exaggeration-accent",
+   "no-twinning",
+   "timing-on-beat",
+   "planted-pivot"
+  ],
+  "inputHashes": {
+   "pose": "6560b119f1bc4c115570e3118f92b329737b15705286fdb7423c1bdf99818010",
+   "depth": "b11242ed548bfa2cc0b79de7b83939ad929cb674bbe784af0e2a84824f6b8d1c",
+   "lineart": "40d1060fe9a9685713ac4dc58af255c06eb74173f7b688b3546253228870737a"
+  }
+ },
+ {
+  "pose": "watch.shift_l",
+  "profile": "overlap",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-overlap.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/watch.shift_l.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/watch.shift_l.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/watch.shift_l.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/watch.shift_l.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, friendly adult woman bartender, warm confident smile, shirt buttoned to the collar and waistcoat fully buttoned, fully clothed, compact curly dark hair tied up in a rounded puff, ivory shirt with a closed collar, rolled ivory sleeves, high-buttoned deep teal waistcoat covering the chest, plum apron tied at the waist, dark plum trousers, amber dance shoes, small silver cocktail shaker, dignified professional who dances superbly, relaxed stance turned slightly to her left, hands clasped behind the back, weight on the left foot with the left hip high, right knee soft, head turned to watch the other dancer, clear readable silhouette, weight on one leg, hips tilted, relaxed shoulders, playful attitude, asymmetric pose, feet firmly on the ground",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms, jumping",
+    "seed": 944200
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "secondary-action",
+   "no-twinning",
+   "timing-on-beat",
+   "planted-pivot"
+  ],
+  "inputHashes": {
+   "pose": "d8d597bf9624ae56a148995df20236e70531868ba9955963d2055659e52d4414",
+   "depth": "2f587f236a634ed2e869fdeee8b094a64c52579e5e2bd919987c98c100577f18",
+   "lineart": "515f9e2220cae83032e3da97cf752928358e69479fcd025355a9e1b1ca39038c"
+  }
+ },
+ {
+  "pose": "watch.hold_l",
+  "profile": "overlap",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-overlap.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/watch.hold_l.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/watch.hold_l.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/watch.hold_l.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/watch.hold_l.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, friendly adult woman bartender, warm confident smile, shirt buttoned to the collar and waistcoat fully buttoned, fully clothed, compact curly dark hair tied up in a rounded puff, ivory shirt with a closed collar, rolled ivory sleeves, high-buttoned deep teal waistcoat covering the chest, plum apron tied at the waist, dark plum trousers, amber dance shoes, small silver cocktail shaker, dignified professional who dances superbly, hands clasped behind the back, weight sunk on the left foot with both knees softer, head nodding along to the music while watching, clear readable silhouette, weight on one leg, hips tilted, shirt hem swinging, follow-through, relaxed shoulders, playful attitude, asymmetric pose",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms",
+    "seed": 944300
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "follow-through",
+   "secondary-action",
+   "no-twinning",
+   "timing-on-beat"
+  ],
+  "inputHashes": {
+   "pose": "021294f0019c69f3aa1e6e3150b8a571406baef33ce1e80ad98c521e576570ed",
+   "depth": "247717a2819ffdd40499ebf708b9f498718e68eb25e591cfdb575b026354d76b",
+   "lineart": "38e8ae4fc60b173ac3d150a869008c676f714de17a2bbfab793330035de61b4d"
+  }
+ },
+ {
+  "pose": "watch.shift_r",
+  "profile": "overlap",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-overlap.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/watch.shift_r.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/watch.shift_r.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/watch.shift_r.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/watch.shift_r.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, friendly adult woman bartender, warm confident smile, shirt buttoned to the collar and waistcoat fully buttoned, fully clothed, compact curly dark hair tied up in a rounded puff, ivory shirt with a closed collar, rolled ivory sleeves, high-buttoned deep teal waistcoat covering the chest, plum apron tied at the waist, dark plum trousers, amber dance shoes, small silver cocktail shaker, dignified professional who dances superbly, relaxed stance turned slightly to her left, hands clasped behind the back, weight on the right foot with the right hip high, left knee soft, head turned to watch the other dancer, clear readable silhouette, weight on one leg, hips tilted, relaxed shoulders, playful attitude, asymmetric pose, feet firmly on the ground",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms, jumping",
+    "seed": 944400
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "secondary-action",
+   "no-twinning",
+   "timing-on-beat",
+   "planted-pivot"
+  ],
+  "inputHashes": {
+   "pose": "0e70ece0d6618745f6722b23a4d222796638244e20191a895149657ae982d10a",
+   "depth": "d502783150b56f49791bcc69c2980010112f7ca5798390ab445c092f697a51cf",
+   "lineart": "2ec7e213ad0ba0306e918ce6dde3e55c4efa7ce5eb9815899d169e8fc2f804e6"
+  }
+ },
+ {
+  "pose": "watch.hold_r",
+  "profile": "overlap",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-overlap.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/watch.hold_r.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/watch.hold_r.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/watch.hold_r.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/watch.hold_r.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, friendly adult woman bartender, warm confident smile, shirt buttoned to the collar and waistcoat fully buttoned, fully clothed, compact curly dark hair tied up in a rounded puff, ivory shirt with a closed collar, rolled ivory sleeves, high-buttoned deep teal waistcoat covering the chest, plum apron tied at the waist, dark plum trousers, amber dance shoes, small silver cocktail shaker, dignified professional who dances superbly, hands clasped behind the back, weight sunk on the right foot with both knees softer, head tilted with a small nod while watching, clear readable silhouette, weight on one leg, hips tilted, shirt hem swinging, follow-through, relaxed shoulders, playful attitude, asymmetric pose",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms",
+    "seed": 944500
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "follow-through",
+   "secondary-action",
+   "no-twinning",
+   "timing-on-beat"
+  ],
+  "inputHashes": {
+   "pose": "b54f0fd8174a8b983b03b52805a495d2339eab03d99dd34436c34052b5ad4e57",
+   "depth": "7a098de980669dbde0a4cae2246098c45062c3f754f99090a98d042d85bf4e69",
+   "lineart": "12eeaf4613a45173f3e3216c5ad094e121a6e33b2b6178bdadd1c5b0bcd9d2cd"
+  }
+ },
+ {
+  "pose": "clap.open",
+  "profile": "overlap",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-overlap.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/clap.open.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/clap.open.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/clap.open.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/clap.open.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, friendly adult woman bartender, warm confident smile, shirt buttoned to the collar and waistcoat fully buttoned, fully clothed, compact curly dark hair tied up in a rounded puff, ivory shirt with a closed collar, rolled ivory sleeves, high-buttoned deep teal waistcoat covering the chest, plum apron tied at the waist, dark plum trousers, amber dance shoes, small silver cocktail shaker, dignified professional who dances superbly, standing square and upright, both forearms raised in front of the chest with the palms apart and facing each other, elbows out, chin up, clear readable silhouette, weight on one leg, hips tilted, crouched, gathering energy, knees bent, asymmetric pose",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms",
+    "seed": 944600
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "anticipation",
+   "no-twinning",
+   "timing-on-beat"
+  ],
+  "inputHashes": {
+   "pose": "0fde0b2fd528188c8424e9c9d258cf72bf6bff56d5db8610605a3008a9237fa5",
+   "depth": "e3e5b433a5a1209fec5200aad7a0d32310b3d59f6f9b0393f88aa3434c92502c",
+   "lineart": "82cba683a3f9f524c678d440efae5e807e2971a0826d2c067af041fa64db9671"
+  }
+ },
+ {
+  "pose": "clap.close",
+  "profile": "overlap",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-overlap.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/clap.close.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/clap.close.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/clap.close.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/clap.close.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, friendly adult woman bartender, warm confident smile, shirt buttoned to the collar and waistcoat fully buttoned, fully clothed, compact curly dark hair tied up in a rounded puff, ivory shirt with a closed collar, rolled ivory sleeves, high-buttoned deep teal waistcoat covering the chest, plum apron tied at the waist, dark plum trousers, amber dance shoes, small silver cocktail shaker, dignified professional who dances superbly, both hands swinging together in front of the chest, elbows out, knees starting to bend, head starting to nod, clear readable silhouette, weight on one leg, hips tilted, asymmetric pose, feet firmly on the ground",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms, jumping",
+    "seed": 944700
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "no-twinning",
+   "timing-on-beat",
+   "planted-pivot"
+  ],
+  "inputHashes": {
+   "pose": "b12c2747f57a054162f4dede7d0802a0beaeb4afbf069f2b478cdcc4468583f2",
+   "depth": "b6613efd627c124ec43e2a737ef344b828cb1144cefc5a830512afabd83a2848",
+   "lineart": "66997d9ffce5878546a7e44dceac3c6a7217168b5f80929a50ddc066d6a8bca8"
+  }
+ },
+ {
+  "pose": "clap.contact",
+  "profile": "overlap",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-overlap.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/clap.contact.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/clap.contact.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/clap.contact.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/clap.contact.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, friendly adult woman bartender, warm confident smile, shirt buttoned to the collar and waistcoat fully buttoned, fully clothed, compact curly dark hair tied up in a rounded puff, ivory shirt with a closed collar, rolled ivory sleeves, high-buttoned deep teal waistcoat covering the chest, plum apron tied at the waist, dark plum trousers, amber dance shoes, small silver cocktail shaker, dignified professional who dances superbly, palms clapped together in front of the chest, elbows out to the sides, both knees dipped, head nodding down with a smile, clear readable silhouette, weight on one leg, hips tilted, crouched, gathering energy, knees bent, asymmetric pose, feet firmly on the ground",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms, jumping",
+    "seed": 944800
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "anticipation",
+   "no-twinning",
+   "timing-on-beat",
+   "planted-pivot"
+  ],
+  "inputHashes": {
+   "pose": "2095de32964f0c3946b957fb8d1261cbdee1592665644b0b473359f783633d36",
+   "depth": "3858a21baacf703127364b4f2a1bacdf2c1689133b0b9b1d891a7a88bbd73f6d",
+   "lineart": "926b5e022166ba872aaee5974519d719d7b9e173970b2886814041054845d53d"
+  }
+ },
+ {
+  "pose": "clap.release",
+  "profile": "overlap",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-overlap.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/clap.release.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/clap.release.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/clap.release.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/clap.release.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, friendly adult woman bartender, warm confident smile, shirt buttoned to the collar and waistcoat fully buttoned, fully clothed, compact curly dark hair tied up in a rounded puff, ivory shirt with a closed collar, rolled ivory sleeves, high-buttoned deep teal waistcoat covering the chest, plum apron tied at the waist, dark plum trousers, amber dance shoes, small silver cocktail shaker, dignified professional who dances superbly, hands bouncing apart in front of the chest, elbows out, knees rising, head level, clear readable silhouette, weight on one leg, hips tilted, shirt hem swinging, follow-through, asymmetric pose",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms",
+    "seed": 944900
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "follow-through",
+   "no-twinning",
+   "timing-on-beat"
+  ],
+  "inputHashes": {
+   "pose": "8be33279a5383cce1e8b6ff2d7824beb381d1edd5c02be46d03bc837356f07ef",
+   "depth": "91fb742a1348144ae5fa9c53116e75cab0e6e2a166ba947826259588bae10ba6",
+   "lineart": "994881251bbf92363849d6de6a4cb6a94468ed9c652faaa2cb405a2e3d8d26ac"
+  }
+ },
+ {
+  "pose": "challenge.load",
+  "profile": "overlap",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-overlap.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/challenge.load.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/challenge.load.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/challenge.load.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/challenge.load.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, friendly adult woman bartender, warm confident smile, shirt buttoned to the collar and waistcoat fully buttoned, fully clothed, compact curly dark hair tied up in a rounded puff, ivory shirt with a closed collar, rolled ivory sleeves, high-buttoned deep teal waistcoat covering the chest, plum apron tied at the waist, dark plum trousers, amber dance shoes, small silver cocktail shaker, dignified professional who dances superbly, back-break dip: weight sunk on the bent left leg, right foot back on its ball, torso leaning forward, both hands travelling toward the hips, head lowered, clear readable silhouette, weight on one leg, hips tilted, crouched, gathering energy, knees bent, asymmetric pose",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms",
+    "seed": 945000
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "anticipation",
+   "no-twinning",
+   "timing-on-beat"
+  ],
+  "inputHashes": {
+   "pose": "f6a2fcec57059254896aeca382707babbb9327a3104c6831331eb89f4d66e470",
+   "depth": "b427af2275bee1b3de42faa463458697381018a275452f41babfc65fdaec8e6e",
+   "lineart": "78bd77852b33693c012c795df967f902d93fcee5d43e337f46412e91e209a4e9"
+  }
+ },
+ {
+  "pose": "challenge.proud",
+  "profile": "overlap",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-overlap.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/challenge.proud.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/challenge.proud.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/challenge.proud.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/challenge.proud.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, friendly adult woman bartender, warm confident smile, shirt buttoned to the collar and waistcoat fully buttoned, fully clothed, compact curly dark hair tied up in a rounded puff, ivory shirt with a closed collar, rolled ivory sleeves, high-buttoned deep teal waistcoat covering the chest, plum apron tied at the waist, dark plum trousers, amber dance shoes, small silver cocktail shaker, dignified professional who dances superbly, proud stance: both fists on the hips with the elbows out, chest pushed out and leaning back, chin raised, weight on the straight right leg, left heel set forward with the toe up, clear readable silhouette, dynamic dance pose, strong line of action, weight on one leg, hips tilted, exaggerated energetic pose, asymmetric pose",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, stiff pose, straight rigid body, floating, feet off ground, symmetrical pose, mirrored arms",
+    "seed": 945100
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "line-of-action",
+   "contrapposto",
+   "exaggeration-accent",
+   "no-twinning",
+   "timing-on-beat"
+  ],
+  "inputHashes": {
+   "pose": "bf3fc85033e88fb1fb73f1b51c760077fd6fc4c2671a8101d0110814debf6cda",
+   "depth": "b42457205e1e9323b695b0114dcb8305872e06f4be05f73cc65fdf6f49baf40c",
+   "lineart": "a15c70018c4e71b36285db84cab31cf9497ee83c359b333f6d2b17a3481c4953"
+  }
+ },
+ {
+  "pose": "challenge.offer",
+  "profile": "peak",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-peak.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/challenge.offer.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/challenge.offer.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/challenge.offer.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/challenge.offer.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, friendly adult woman bartender, warm confident smile, shirt buttoned to the collar and waistcoat fully buttoned, fully clothed, compact curly dark hair tied up in a rounded puff, ivory shirt with a closed collar, rolled ivory sleeves, high-buttoned deep teal waistcoat covering the chest, plum apron tied at the waist, dark plum trousers, amber dance shoes, small silver cocktail shaker, dignified professional who dances superbly, courteous invitation: weight on the right leg, left fist on the hip, right arm sweeping out low and forward with the palm open and up toward the floor, torso bowing slightly forward, head bowed toward the open hand, clear readable silhouette, dynamic dance pose, strong line of action, weight on one leg, hips tilted, exaggerated energetic pose, asymmetric pose",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, stiff pose, straight rigid body, floating, feet off ground, symmetrical pose, mirrored arms",
+    "seed": 945200
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "line-of-action",
+   "contrapposto",
+   "exaggeration-accent",
+   "no-twinning",
+   "timing-on-beat"
+  ],
+  "inputHashes": {
+   "pose": "751191d3d6d7f1ef2df6f1357b9d0aa05b7a8f59cd63ceb4c2958581546cf8e6",
+   "depth": "aa88658039b2847938ae147c6d60c2ec6b3609b484a2ddaefbbd9c72d82b6f4b",
+   "lineart": "2073b052fbd400fedca6bd6cb14f069b231e6ddb7bc1abce13772eb3bd5b17bb"
+  }
+ },
+ {
+  "pose": "challenge.return",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-moderate.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/challenge.return.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/challenge.return.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/challenge.return.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/challenge.return.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, friendly adult woman bartender, warm confident smile, shirt buttoned to the collar and waistcoat fully buttoned, fully clothed, compact curly dark hair tied up in a rounded puff, ivory shirt with a closed collar, rolled ivory sleeves, high-buttoned deep teal waistcoat covering the chest, plum apron tied at the waist, dark plum trousers, amber dance shoes, small silver cocktail shaker, dignified professional who dances superbly, both feet flat, standing easy, right forearm relaxed in front, left hand low near the hip, body upright, clear readable silhouette, weight on one leg, hips tilted, shirt hem swinging, follow-through, asymmetric pose",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms",
+    "seed": 945300
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "follow-through",
+   "no-twinning",
+   "timing-on-beat"
+  ],
+  "inputHashes": {
+   "pose": "21c29644aea172d6cd640299ffa1780ade62c54f61bf6fd09b908d1b20181381",
+   "depth": "8b97aa259c8be0b0ecc02facd8ed59f6fcb04557eb283b9dd5842cd369e2bc4b",
+   "lineart": "74347ee8adda634a65003f8250a11dd9ca07240e753ba43c37f2af19ea917721"
+  }
+ },
+ {
+  "pose": "approval.load",
+  "profile": "overlap",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-overlap.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/approval.load.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/approval.load.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/approval.load.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/approval.load.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, friendly adult woman bartender, warm confident smile, shirt buttoned to the collar and waistcoat fully buttoned, fully clothed, compact curly dark hair tied up in a rounded puff, ivory shirt with a closed collar, rolled ivory sleeves, high-buttoned deep teal waistcoat covering the chest, plum apron tied at the waist, dark plum trousers, amber dance shoes, small silver cocktail shaker, dignified professional who dances superbly, small inhale: chest lifted and leaning back slightly, chin raised, weight on the right foot, arms loose and slightly away from the body, clear readable silhouette, weight on one leg, hips tilted, crouched, gathering energy, knees bent, relaxed shoulders, playful attitude, asymmetric pose",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms",
+    "seed": 945400
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "anticipation",
+   "secondary-action",
+   "no-twinning",
+   "timing-on-beat"
+  ],
+  "inputHashes": {
+   "pose": "22dcbd5c0701459f646558b44e1a99d3b8b6cc8e43a090cf9713f4855a2c8fa0",
+   "depth": "672757cbdf73578d913b230fdf47b5cecac78496e0b3369b52a1dfca37c6ffbc",
+   "lineart": "f3c5dd80d1afb4daf44131110a229a0abea8eb8c404c47af03a4f95f6b0d7a18"
+  }
+ },
+ {
+  "pose": "approval.nod",
+  "profile": "overlap",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-overlap.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/approval.nod.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/approval.nod.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/approval.nod.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/approval.nod.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, friendly adult woman bartender, warm confident smile, shirt buttoned to the collar and waistcoat fully buttoned, fully clothed, compact curly dark hair tied up in a rounded puff, ivory shirt with a closed collar, rolled ivory sleeves, high-buttoned deep teal waistcoat covering the chest, plum apron tied at the waist, dark plum trousers, amber dance shoes, small silver cocktail shaker, dignified professional who dances superbly, right palm pressed flat to the chest, a deep nod with the head bowed, both knees dipped, left arm low and out at the side, clear readable silhouette, dynamic dance pose, strong line of action, weight on one leg, hips tilted, exaggerated energetic pose, relaxed shoulders, playful attitude, asymmetric pose",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, stiff pose, straight rigid body, floating, feet off ground, symmetrical pose, mirrored arms",
+    "seed": 945500
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "line-of-action",
+   "contrapposto",
+   "exaggeration-accent",
+   "secondary-action",
+   "no-twinning",
+   "timing-on-beat"
+  ],
+  "inputHashes": {
+   "pose": "692a6d94601ea955e6a6541c325be2dc74baebf7784c01b004e87ad942832637",
+   "depth": "9f0fbd97bd5364b04edcac23601000202d1071114e4291ba8f86c1d11e855490",
+   "lineart": "35bc22286e43cb80a3fab8d3dbe003440ad256b766a4d39dc7030845c4cc0409"
+  }
+ },
+ {
+  "pose": "approval.release",
+  "profile": "overlap",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-overlap.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/approval.release.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/approval.release.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/approval.release.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/approval.release.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, friendly adult woman bartender, warm confident smile, shirt buttoned to the collar and waistcoat fully buttoned, fully clothed, compact curly dark hair tied up in a rounded puff, ivory shirt with a closed collar, rolled ivory sleeves, high-buttoned deep teal waistcoat covering the chest, plum apron tied at the waist, dark plum trousers, amber dance shoes, small silver cocktail shaker, dignified professional who dances superbly, left fist on the hip, right arm held out forward at waist height with the palm open toward the viewer, head tilted warmly, clear readable silhouette, weight on one leg, hips tilted, shirt hem swinging, follow-through, relaxed shoulders, playful attitude, asymmetric pose",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms",
+    "seed": 945600
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "follow-through",
+   "secondary-action",
+   "no-twinning",
+   "timing-on-beat"
+  ],
+  "inputHashes": {
+   "pose": "c8ef23bbed325df28cf0a3501c26e1c8d571fb352491a10d245788db3d987aca",
+   "depth": "d88e63307e53f88cc863f635c05b249f91b9af0fb61571c3d86e3e00bec58a8d",
+   "lineart": "764e1f2571486f11c68ab880336792f9045d8af62ee81117e12c401568ff3331"
+  }
+ },
+ {
+  "pose": "reassurance.notice",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-moderate.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/reassurance.notice.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/reassurance.notice.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/reassurance.notice.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/reassurance.notice.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, friendly adult woman bartender, warm confident smile, shirt buttoned to the collar and waistcoat fully buttoned, fully clothed, compact curly dark hair tied up in a rounded puff, ivory shirt with a closed collar, rolled ivory sleeves, high-buttoned deep teal waistcoat covering the chest, plum apron tied at the waist, dark plum trousers, amber dance shoes, small silver cocktail shaker, dignified professional who dances superbly, head tilted to her right with a soft warm look, weight on the left foot, arms relaxed low, right forearm slightly forward, clear readable silhouette, weight on one leg, hips tilted, crouched, gathering energy, knees bent, asymmetric pose",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms",
+    "seed": 945700
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "anticipation",
+   "no-twinning",
+   "timing-on-beat"
+  ],
+  "inputHashes": {
+   "pose": "e7d2c0319711cda798f6c01f87c447bd3995352d7dd34041e1fb521b3451d7e7",
+   "depth": "02ec81e9ba2678e79dc92f6bf1f1f50a23766d7f60fdfefc8cab9064efe38232",
+   "lineart": "2a11ce507af4183a3a2b6403bb87f1ec7e20cab890424f717a4cfa428231b5ab"
+  }
+ },
+ {
+  "pose": "reassurance.open_hand",
+  "profile": "peak",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-peak.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/reassurance.open_hand.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/reassurance.open_hand.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/reassurance.open_hand.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/reassurance.open_hand.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, friendly adult woman bartender, warm confident smile, shirt buttoned to the collar and waistcoat fully buttoned, fully clothed, compact curly dark hair tied up in a rounded puff, ivory shirt with a closed collar, rolled ivory sleeves, high-buttoned deep teal waistcoat covering the chest, plum apron tied at the waist, dark plum trousers, amber dance shoes, small silver cocktail shaker, dignified professional who dances superbly, small friendly shrug: both forearms out at waist height with the palms open and up, the right hand a little higher, both knees softly bent, head tilted, clear readable silhouette, dynamic dance pose, strong line of action, weight on one leg, hips tilted, exaggerated energetic pose, asymmetric pose",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, stiff pose, straight rigid body, floating, feet off ground, symmetrical pose, mirrored arms",
+    "seed": 945800
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "line-of-action",
+   "contrapposto",
+   "exaggeration-accent",
+   "no-twinning",
+   "timing-on-beat"
+  ],
+  "inputHashes": {
+   "pose": "bf430caf6effe128ff961e01c401b287fb2aa561bd49607d87cfbf9884af9aca",
+   "depth": "11cc2adea82c0d9f54bffbc8f4b94b9812670e2ff068ee74ac393f9b80492d8c",
+   "lineart": "44ce9e22b403c46678e9dee71dd0b003122a8e58d94e54af960b480dff5d0ceb"
+  }
+ },
+ {
+  "pose": "reassurance.settle",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-moderate.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/reassurance.settle.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/reassurance.settle.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/reassurance.settle.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/reassurance.settle.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, friendly adult woman bartender, warm confident smile, shirt buttoned to the collar and waistcoat fully buttoned, fully clothed, compact curly dark hair tied up in a rounded puff, ivory shirt with a closed collar, rolled ivory sleeves, high-buttoned deep teal waistcoat covering the chest, plum apron tied at the waist, dark plum trousers, amber dance shoes, small silver cocktail shaker, dignified professional who dances superbly, a back-break step on the spot: weight on the bent left knee, right foot back on its ball, left forearm forward, right arm low and back, inviting the rhythm back, clear readable silhouette, weight on one leg, hips tilted, shirt hem swinging, follow-through, asymmetric pose",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms",
+    "seed": 945900
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "follow-through",
+   "no-twinning",
+   "timing-on-beat"
+  ],
+  "inputHashes": {
+   "pose": "cabcbe1adf06ffc9f18aba4b14259ab64131326ca6f38d6cdd8d4d4c3cc47f3a",
+   "depth": "01c62812f02090c58752bd2c13acc8c1953e830919b0e45511a41078480d6de8",
+   "lineart": "c8ddc5a29572378d0d11a268cd117f65f96ea7d82e144f6184b63c73d2e4cd04"
+  }
+ },
+ {
+  "pose": "finish_turn.finish_a",
+  "profile": "overlap",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-overlap.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/finish_turn.finish_a.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/finish_turn.finish_a.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/finish_turn.finish_a.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/finish_turn.finish_a.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, friendly adult woman bartender, warm confident smile, shirt buttoned to the collar and waistcoat fully buttoned, fully clothed, compact curly dark hair tied up in a rounded puff, ivory shirt with a closed collar, rolled ivory sleeves, high-buttoned deep teal waistcoat covering the chest, plum apron tied at the waist, dark plum trousers, amber dance shoes, small silver cocktail shaker, dignified professional who dances superbly, weight on the straight right leg, left heel set forward with the toe up, left fist on the hip, right hand rising beside the head toward the hair puff, chest proud, chin up, clear readable silhouette, weight on one leg, hips tilted, exaggerated energetic pose, asymmetric pose",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms",
+    "seed": 946000
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "exaggeration-accent",
+   "no-twinning",
+   "timing-on-beat"
+  ],
+  "inputHashes": {
+   "pose": "9c4dde6cb38ffcd5ef2a7bae791d422dc1dd6dc2de9a2ce4de44a1eea0066486",
+   "depth": "4de02dfa9b9ffa00f2c77b98e16166f0f51af2aeb6b10cd3ca667ebe58ec2f6a",
+   "lineart": "05e0a7335e9fc04a5661a1ca205f4b6669e02536f30d32dd1a314890a1f4b966"
+  }
+ },
+ {
+  "pose": "finish_turn.finish_b",
+  "profile": "overlap",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-overlap.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/finish_turn.finish_b.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/finish_turn.finish_b.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/finish_turn.finish_b.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/finish_turn.finish_b.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, friendly adult woman bartender, warm confident smile, shirt buttoned to the collar and waistcoat fully buttoned, fully clothed, compact curly dark hair tied up in a rounded puff, ivory shirt with a closed collar, rolled ivory sleeves, high-buttoned deep teal waistcoat covering the chest, plum apron tied at the waist, dark plum trousers, amber dance shoes, small silver cocktail shaker, dignified professional who dances superbly, right fingertips touching the side of the hair puff in a courteous flourish, head dipped slightly, chest proud, left elbow out with the fist on the hip, left heel forward with the toe up, clear readable silhouette, dynamic dance pose, strong line of action, weight on one leg, hips tilted, exaggerated energetic pose, asymmetric pose",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, stiff pose, straight rigid body, floating, feet off ground, symmetrical pose, mirrored arms",
+    "seed": 946100
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "line-of-action",
+   "contrapposto",
+   "exaggeration-accent",
+   "no-twinning",
+   "timing-on-beat"
+  ],
+  "inputHashes": {
+   "pose": "1fe4f498f572f8c124f095917da4cb7b10aed639b36b2e2d1d28fffe8bf20f91",
+   "depth": "c493b298f375b900e02086034ec9b3908bf61d6a9dec9f26fe6bba9b2e188070",
+   "lineart": "53bdad5819ac3cdb4cd868790167603aa153891b6ea1126d1ef3d583f154c811"
+  }
+ },
+ {
+  "pose": "finish_turn.turn_in",
+  "profile": "turn",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-turn.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/finish_turn.turn_in.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/finish_turn.turn_in.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/finish_turn.turn_in.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/finish_turn.turn_in.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, friendly adult woman bartender, warm confident smile, shirt buttoned to the collar and waistcoat fully buttoned, fully clothed, compact curly dark hair tied up in a rounded puff, ivory shirt with a closed collar, rolled ivory sleeves, high-buttoned deep teal waistcoat covering the chest, plum apron tied at the waist, dark plum trousers, amber dance shoes, small silver cocktail shaker, dignified professional who dances superbly, body turned about 30 degrees toward her left on a heel pivot, leaning into the turn, left arm open out to the side at hip height, right fist on the hip, clear readable silhouette, weight on one leg, hips tilted, asymmetric pose, feet firmly on the ground",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms, jumping",
+    "seed": 946200
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "no-twinning",
+   "timing-on-beat",
+   "planted-pivot"
+  ],
+  "inputHashes": {
+   "pose": "04d847ebc97dd5d4725bcf8c9c2ca2aae9a158d26fa1c1e2c4429f1a9f511b19",
+   "depth": "8870c0b14556d71fa11e1db2fed95d087f36a8cc76d9a4795dd280667c3bb8b8",
+   "lineart": "e68d28afee09489a4a5fd31e70ff3f13405b3982f43ef6df4d906bd3483a1111"
+  }
+ },
+ {
+  "pose": "finish_turn.turn_out",
+  "profile": "turn",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-turn.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/finish_turn.turn_out.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/finish_turn.turn_out.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/finish_turn.turn_out.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/bartender-v1-8f1f71d942/in/finish_turn.turn_out.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, friendly adult woman bartender, warm confident smile, shirt buttoned to the collar and waistcoat fully buttoned, fully clothed, compact curly dark hair tied up in a rounded puff, ivory shirt with a closed collar, rolled ivory sleeves, high-buttoned deep teal waistcoat covering the chest, plum apron tied at the waist, dark plum trousers, amber dance shoes, small silver cocktail shaker, dignified professional who dances superbly, body turned about 30 degrees toward her right on a heel pivot, leaning into the turn, right arm open out to the side at hip height, left fist on the hip, clear readable silhouette, weight on one leg, hips tilted, asymmetric pose, feet firmly on the ground",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms, jumping",
+    "seed": 946300
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "no-twinning",
+   "timing-on-beat",
+   "planted-pivot"
+  ],
+  "inputHashes": {
+   "pose": "7301f35124b2d3a96c527f129c508dfb6fae42e99f8be7adbc5b3b369a1bf806",
+   "depth": "df63ded7a5586696141ebde74d0a77ab5d3c012e2634fd04c670eee44a96d098",
+   "lineart": "ce31cd8b8c0dfbebf32e370159c5484289037adaf5b0f1dc28cc997aa63fd73e"
+  }
+ }
+]

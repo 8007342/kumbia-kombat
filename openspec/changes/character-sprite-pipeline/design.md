@@ -268,6 +268,26 @@ the replay mode itself is out of scope.
 Alternative: baking a full atlas per variant. Rejected as the default because it
 multiplies memory on phones, against the existing atlas budget concerns.
 
+### D14. Bartender's plum and the recolour gates (task 7.2, awaiting the owner)
+
+Measured 2026-11-03 against the style's reserved gates (`cool`, `plum`, `pink`), with
+distances in OKLab scaled by 100:
+
+| Colour | Gates hit | Result |
+|---|---|---|
+| Trousers `#3A1A38`, all four shades | none | Clear, no change |
+| Apron `#7A1F57`, base shade | `plum` | Moves to `#7A3057`, distance 3.29 |
+| Apron's three other shades (`#270014`, `#4E0033`, `#934671`) | none | Clear, though the shared ramp pass nudges them slightly to avoid collisions |
+
+Options for the apron:
+
+- **A, provisional in the definition:** `"nudge": true`, base `#7A3057`. Slightly greyer
+  and pinker, and visible side by side on swatches, so it is the owner's call.
+- **B:** the nearest whole-ramp colour, `#762D51`, at distance 3.05. About the same shift.
+- **C:** base `#511837`, sampled from the source art's apron, which clears every gate
+  unchanged but is much darker.
+- **D:** declare the apron recolourable, keeping `#7A1F57`, so outfit tinting could reach it.
+
 ## Risks / Trade-offs
 
 - [Bartender's plum apron and trousers may fall inside the outfit recolour gates]
