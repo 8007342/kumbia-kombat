@@ -159,6 +159,10 @@ Infrastructure state:
   default ACL set via `os.setxattr('system.posix_acl_default', …)`); BiRefNet is
   pinned but never fetched (the validator misses LoadRembgByBiRefNetModel.model);
   run_workflow returns only one SaveImage node's outputs.
+  Fixed in #881 on linux-next (7b9fcf50f): image.generate ControlNet panic +
+  per-call panic guard, BiRefNet `model` fetched, one prefix per SaveImage node.
+  Not live until the operator's next tray rebuild/restart (fedora will say);
+  keep the stopgaps until then, then retry BiRefNet and drop the ACL stopgap.
 - Pinned models match the file basename (or `<tier>/<basename>`), never the Hub path.
 - Workflow: denoise 0.85 on every profile (0.6–0.7 let the colour proxy win:
   flat blobs), one SaveImage, matte keyed locally (`tool/art/pipeline/matte.py`).
