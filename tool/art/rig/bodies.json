@@ -1,0 +1,26 @@
+{
+ "stocky-adult": {
+  "$comment": "Stocky uncle: broad chest, round belly about 1.35x hip width, thick upper arms and thighs, short neck, head about 1/5.5 of height, brim wider than the shoulders.",
+  "human": true, "orthoScale": 2.5, "centerZ": 1.10,
+  "hip_height": 0.90, "torso": 0.50, "neck": 0.05, "head_r": 0.15,
+  "shoulder_half": 0.23, "hip_half": 0.12, "upper_arm": 0.30, "forearm": 0.27,
+  "thigh": 0.43, "shin": 0.41, "foot": 0.24, "ankle_h": 0.07,
+  "limb_r": {"torso": 0.235, "belly": 0.27, "arm": 0.078, "fore": 0.06, "thigh": 0.11, "shin": 0.078, "brim": 0.31, "crown": 0.15}
+ },
+ "slim-adult": {
+  "$comment": "Slim upright adult, distinctly narrower than stocky-adult: longer legs, small waist.",
+  "human": true, "orthoScale": 2.5, "centerZ": 1.10,
+  "hip_height": 0.95, "torso": 0.48, "neck": 0.07, "head_r": 0.14,
+  "shoulder_half": 0.18, "hip_half": 0.11, "upper_arm": 0.29, "forearm": 0.26,
+  "thigh": 0.46, "shin": 0.43, "foot": 0.22, "ankle_h": 0.07,
+  "limb_r": {"torso": 0.165, "belly": 0.15, "arm": 0.058, "fore": 0.05, "thigh": 0.085, "shin": 0.062, "brim": 0.26, "crown": 0.13}
+ },
+ "macron": {
+  "$comment": "Toy robot, about .35 adult stature. Authored at adult scale; final stature comes from the game's floor projection.",
+  "human": false, "orthoScale": 1.8, "centerZ": 0.74,
+  "hip_height": 0.42, "torso": 0.30, "neck": 0.05, "head_r": 0.30,
+  "shoulder_half": 0.17, "hip_half": 0.08, "upper_arm": 0.17, "forearm": 0.15,
+  "thigh": 0.20, "shin": 0.18, "foot": 0.12, "ankle_h": 0.05,
+  "limb_r": {"torso": 0.15, "belly": 0.15, "arm": 0.055, "fore": 0.055, "thigh": 0.065, "shin": 0.065}
+ }
+}

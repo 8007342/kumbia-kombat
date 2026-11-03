@@ -1,0 +1,21 @@
+{
+ "id": "lightning-4step",
+ "role": "pose-frame",
+ "description": "Fast preview backend. CFG 1 disables negatives; real partial denoise needs steps above 4.",
+ "checkpoint": "sdxl_lightning_4step.safetensors",
+ "sampler": {
+  "steps": 4,
+  "cfg": 1.0,
+  "name": "euler",
+  "scheduler": "sgm_uniform"
+ },
+ "denoise": 0.85,
+ "loras": [
+  {
+   "name": "pixel-art-xl.safetensors",
+   "weight": 0.8
+  }
+ ],
+ "negatives": "ineffective",
+ "tier": "I1"
+}

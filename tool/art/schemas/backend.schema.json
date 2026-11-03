@@ -1,0 +1,18 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "title": "Kumbia generation backend",
+ "type": "object",
+ "additionalProperties": false,
+ "required": ["id", "role"],
+ "properties": {
+  "$comment": {"type": "string"}, "id": {"type": "string"}, "description": {"type": "string"},
+  "role": {"enum": ["pose-frame", "edit", "video"]},
+  "checkpoint": {"type": "string"},
+  "sampler": {"type": "object", "additionalProperties": false, "required": ["steps", "cfg", "name", "scheduler"],
+              "properties": {"steps": {"type": "integer"}, "cfg": {"type": "number"}, "name": {"type": "string"}, "scheduler": {"type": "string"}}},
+  "denoise": {"type": "number"},
+  "loras": {"type": "array", "items": {"type": "object", "required": ["name", "weight"]}},
+  "negatives": {"enum": ["effective", "ineffective"]},
+  "tier": {"type": "string"}
+ }
+}

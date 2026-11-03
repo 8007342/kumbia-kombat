@@ -1,0 +1,17 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "title": "Kumbia art style",
+ "type": "object",
+ "additionalProperties": false,
+ "required": ["id", "prompt", "negative", "frame", "outline", "ramp"],
+ "properties": {
+  "$comment": {"type": "string"}, "id": {"type": "string"}, "description": {"type": "string"},
+  "prompt": {"type": "string"}, "negative": {"type": "string"}, "backend": {"type": "string"},
+  "frame": {"type": "object", "required": ["generationCanvas"]},
+  "transparency": {"type": "object"}, "outline": {"type": "string", "pattern": "^#[0-9A-Fa-f]{6}$"},
+  "symmetry": {"type": "string"}, "reservedRamps": {"type": "array"}, "qa": {"type": "object"},
+  "adapters": {}, "regionsRender": {}, "generation": {"type": "object"},
+  "ramp": {"type": "object", "required": ["shades"], "additionalProperties": false,
+           "properties": {"shades": {"type": "integer", "minimum": 3, "maximum": 5}}}
+ }
+}

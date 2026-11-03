@@ -1,0 +1,99 @@
+{
+ "id": "gatekeeper",
+ "family": "gatekeeper-v3",
+ "style": "party-pixel",
+ "description": "Garden opponent Gatekeeper: 64-drawing cumbia dance set (plan/opponent-depth-staging-pass.md §Opponent production target; plan/research/gatekeeper-dance-2026-11-02.md).",
+ "body": {
+  "preset": "stocky-adult"
+ },
+ "pronouns": [
+  "he",
+  "him",
+  "his"
+ ],
+ "skin": "#B5653A",
+ "traits": "stocky cheerful mustached latino man",
+ "demeanor": "dignified skilled cumbia dancer",
+ "garments": [
+  {
+   "id": "hat",
+   "shape": "brimmed-hat",
+   "region": "hat",
+   "colour": "#F2D9AD",
+   "text": "cream panama hat with teal band"
+  },
+  {
+   "id": "band",
+   "shape": "hat-band",
+   "region": "accessory",
+   "colour": "#29737A"
+  },
+  {
+   "id": "hair",
+   "shape": "short-hair-moustache",
+   "region": "hair",
+   "colour": "#1C1117"
+  },
+  {
+   "id": "shirt",
+   "shape": "shirt-stocky",
+   "region": "cloth",
+   "colour": "#631A57",
+   "text": "purple guayabera shirt with teal embroidered panels"
+  },
+  {
+   "id": "trousers",
+   "shape": "trousers",
+   "region": "trousers",
+   "colour": "#E5C996",
+   "text": "cream trousers"
+  },
+  {
+   "id": "shoes",
+   "shape": "shoes-flat",
+   "region": "shoes",
+   "colour": "#29737A",
+   "text": "teal shoes"
+  }
+ ],
+ "props": [],
+ "motion": {
+  "set": "opponent-64",
+  "overrides": {}
+ },
+ "references": {
+  "mode": "source",
+  "sources": [
+   {
+    "role": "identity",
+    "image": "assets/art/ensemble/gatekeeper-v2.png",
+    "crop": {
+     "frame": "occupied",
+     "rect": [
+      23,
+      14,
+      198,
+      310
+     ]
+    },
+    "adapter": "ip-adapter-sdxl",
+    "weight": 0.7
+   }
+  ]
+ },
+ "targets": [
+  {
+   "room": "garden",
+   "atlas": "gatekeeper",
+   "out": "assets/art/ensemble/gatekeeper-v3.png",
+   "native": [
+    96,
+    120
+   ],
+   "pixelScale": 8,
+   "camera": "floor-perspective"
+  }
+ ],
+ "seedBase": 930000,
+ "variants": {}
+}

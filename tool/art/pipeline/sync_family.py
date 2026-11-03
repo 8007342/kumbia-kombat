@@ -37,9 +37,8 @@ def principles_for(pose_id: str, clip: str, phase: str, refs: dict) -> list[str]
     return out
 
 
-def main(spec_path: str) -> None:
-    spec_p = Path(spec_path)
-    spec = json.loads(spec_p.read_text())
+def apply_rig(spec: dict, research: list[str] | None = None) -> tuple[int, int]:
+    """Fill spec's poses, regions and animationReferences from its rigInputs."""
     profiles = spec.get("generation", {}).get("profileRules", [])
     inputs_dir = Path(spec["rigInputs"])
     rig = json.loads((inputs_dir / "rig.json").read_text())
@@ -110,7 +109,7 @@ def main(spec_path: str) -> None:
 
     spec["animationReferences"] = {
         "registry": REFERENCES,
-        "research": [
+        "research": research or [
             "plan/research/gatekeeper-dance-2026-11-02.md",
             "plan/dance-fluidity-pass.md",
             "plan/opponent-depth-staging-pass.md",
@@ -119,8 +118,15 @@ def main(spec_path: str) -> None:
         "sourcesUsed": sorted({s for p in refs["principles"] if p["id"] in used_principles
                                for s in p["sources"]}),
     }
+    return len(poses), len(used_principles)
+
+
+def main(spec_path: str) -> None:
+    spec_p = Path(spec_path)
+    spec = json.loads(spec_p.read_text())
+    n, used = apply_rig(spec)
     spec_p.write_text(json.dumps(spec, indent=1, ensure_ascii=False) + "\n")
-    print(f"synced {spec_p}: {len(poses)} poses, {len(used_principles)} principles, contract {CONTRACT}")
+    print(f"synced {spec_p}: {n} poses, {used} principles, contract {CONTRACT}")
 
 
 if __name__ == "__main__":

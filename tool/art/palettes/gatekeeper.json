@@ -3,48 +3,89 @@
  "name": "gatekeeper",
  "colours": [
   "#1A1018",
-  "#010108",
-  "#04071D",
-  "#220728",
-  "#1C1117",
-  "#380937",
-  "#07263E",
-  "#242430",
-  "#58154B",
-  "#631A57",
-  "#462737",
-  "#013E53",
-  "#413B44",
-  "#87322B",
-  "#015E6E",
-  "#3B5561",
-  "#A74117",
-  "#745B50",
-  "#BE4F19",
-  "#29737A",
-  "#D15F1F",
-  "#378B8A",
-  "#E1712A",
-  "#BD8F69",
-  "#E4A265",
-  "#CAB28B",
-  "#D2BF9A",
-  "#E5C996",
+  "#5F1D00",
+  "#874219",
+  "#B5653A",
+  "#CE8864",
+  "#9D8862",
+  "#C6B089",
   "#F2D9AD",
-  "#FDEDC5"
+  "#FFF9D3",
+  "#002B31",
+  "#004D53",
+  "#29737A",
+  "#558F95",
+  "#000000",
+  "#020001",
+  "#1C1117",
+  "#34292F",
+  "#150011",
+  "#3A0032",
+  "#631A57",
+  "#7C3E70",
+  "#91794D",
+  "#B9A073",
+  "#E5C996",
+  "#FFEABF",
+  "#002B32",
+  "#004D54",
+  "#29737B",
+  "#558F96"
  ],
  "transparent": null,
  "$provenance": {
-  "tool": "tool/art/palettes/extract_palette.py",
-  "sources": {
-   "assets/art/ensemble/gatekeeper-v2.png": "e099c72e58f3dc718acc7165d854fc38400e26602f0eef196f6beffcd9d5946a"
+  "tool": "tool/art/pipeline/compile_family.py",
+  "definition": "tool/art/characters/gatekeeper.json",
+  "ramps": {
+   "skin": [
+    "#5F1D00",
+    "#874219",
+    "#B5653A",
+    "#CE8864"
+   ],
+   "hat": [
+    "#9D8862",
+    "#C6B089",
+    "#F2D9AD",
+    "#FFF9D3"
+   ],
+   "band": [
+    "#002B31",
+    "#004D53",
+    "#29737A",
+    "#558F95"
+   ],
+   "hair": [
+    "#000000",
+    "#020001",
+    "#1C1117",
+    "#34292F"
+   ],
+   "shirt": [
+    "#150011",
+    "#3A0032",
+    "#631A57",
+    "#7C3E70"
+   ],
+   "trousers": [
+    "#91794D",
+    "#B9A073",
+    "#E5C996",
+    "#FFEABF"
+   ],
+   "shoes": [
+    "#002B32",
+    "#004D54",
+    "#29737B",
+    "#558F96"
+   ]
   },
-  "method": "median-cut 93, merge<20, top 31 by count, alpha>=128, luma order, outline at 0",
-  "avoidGates": {
-   "spec": "tool/art/families/gatekeeper-v3.json",
-   "nudged": {
-    "#6B1A57": "#631A57",
-    "#220828": "#220728"
+  "nudged": {
+   "shoes": {
+    "#002B31": "#002B32",
+    "#004D53": "#004D54",
+    "#29737A": "#29737B",
+    "#558F95": "#558F96"
    }
   }
  }

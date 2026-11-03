@@ -8,10 +8,10 @@
 
 ## 2. Definitions and compiler
 
-- [ ] 2.1 Write JSON Schemas for character, style and backend definitions with tests for valid files and for refusals naming the bad field
-- [ ] 2.2 Author `styles/party-pixel.json` and `characters/gatekeeper.json`, and verify both pass schema validation
-- [ ] 2.3 Implement the definition-to-family-spec compiler; verify `studio.validate_family` returns `ok` and pose IDs, count and order match the current spec
-- [ ] 2.4 Add the gate check for non-recolourable colours; verify with a test that an in-gate hat colour is refused with gate and colour named
+- [x] 2.1 Write JSON Schemas for character, style and backend definitions with tests for valid files and for refusals naming the bad field
+- [x] 2.2 Author `styles/party-pixel.json` and `characters/gatekeeper.json`, and verify both pass schema validation
+- [x] 2.3 Implement the definition-to-family-spec compiler; verify `studio.validate_family` returns `ok` and pose IDs, count and order match the current spec
+- [x] 2.4 Add the gate check for non-recolourable colours; verify with a test that an in-gate hat colour is refused with gate and colour named
 
 ## 3. Data-driven rig
 
