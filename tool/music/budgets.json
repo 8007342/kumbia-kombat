@@ -1,0 +1,4 @@
+{
+ "$comment": "Per-room budget for a score set: room score + success phrase + its bridges, uncompressed JSON. Shipped bar_swag's set is about 164 KB; this allows about 1.5x that for richer writing. Raise it only with a reason.",
+ "scoreSetBytes": 250000
+}

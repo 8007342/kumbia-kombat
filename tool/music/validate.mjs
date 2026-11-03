@@ -3,7 +3,9 @@ import assert from 'node:assert/strict';
 import {readFileSync, readdirSync} from 'node:fs';
 import {resolve,dirname} from 'node:path';
 import {fileURLToPath} from 'node:url';
-const root=resolve(dirname(fileURLToPath(import.meta.url)),'../..');
+// --root <dir> validates a candidate pack under <dir>/assets/music by the same rules.
+const rootArg=process.argv.indexOf('--root');
+const root=rootArg>=0?resolve(process.argv[rootArg+1]):resolve(dirname(fileURLToPath(import.meta.url)),'../..');
 const manifest=JSON.parse(readFileSync(resolve(root,'assets/music/manifest.json')));
 assert.equal(manifest.scores.length,5);
 assert.equal(manifest.transitions.successes.length,5);
@@ -13,9 +15,9 @@ function validateMidi(path,score,tier){
  const events=score.events.filter(n=>n.minTier<=tier&&n.maxTier>=tier);
  const midi=readFileSync(resolve(root,path));
  assert.equal(midi.toString('ascii',0,4),'MThd');assert.equal(midi.readUInt16BE(8),1);
- assert.equal(midi.readUInt16BE(10),7);assert.equal(midi.readUInt16BE(12),480);
+ const trackCount=score.tracks.length+1;assert.equal(midi.readUInt16BE(10),trackCount);assert.equal(midi.readUInt16BE(12),480);
  let offset=14,totalOns=0,totalOffs=0;
- for(let track=0;track<7;track++){
+ for(let track=0;track<trackCount;track++){
   assert.equal(midi.toString('ascii',offset,offset+4),'MTrk');
   const end=offset+8+midi.readUInt32BE(offset+4);offset+=8;let tick=0;const active=new Map();
   const vlq=()=>{let value=0,byte;do{byte=midi[offset++];value=value*128+(byte&127)}while(byte&128);return value};

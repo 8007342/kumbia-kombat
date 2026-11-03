@@ -7,10 +7,10 @@
 
 ## 2. Arranger
 
-- [ ] 2.1 Implement harmony, bass and voice-led accompaniment devices; verify unit tests, plus byte-identical rebuilds
-- [ ] 2.2 Implement motif operations, counter-melody and fills; verify tests and that seams stay on form boundaries
-- [ ] 2.3 Implement tier, success-phrase, bridge and adornment output; verify `tool/music/validate.mjs` and `transport_check.dart` pass on one new score
-- [ ] 2.4 Enforce the size budget; verify an over-budget fixture fails
+- [x] 2.1 Implement harmony, bass and voice-led accompaniment devices; verify unit tests, plus byte-identical rebuilds
+- [x] 2.2 Implement motif operations, counter-melody and fills; verify tests and that seams stay on form boundaries
+- [x] 2.3 Implement tier, success-phrase, bridge and adornment output; verify `tool/music/validate.mjs` and `transport_check.dart` pass on one new score
+- [x] 2.4 Enforce the size budget; verify an over-budget fixture fails
 
 ## 3. Synth voices
 

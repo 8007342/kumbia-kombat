@@ -26,7 +26,7 @@
   "A": ["i", "i", "VI", "VI", "iv", "iv", "V", "V"],
   "B": ["i", "VII", "VI", "V", "i", "iv", "V", "i"],
   "C": ["I", "vi", "IV", "V", "I", "iii", "IV", "V7"],
-  "D": ["vi", "VI", "iv", "V", "i", "VI", "V7", "i"]
+  "D": ["iv", "VI", "III", "V", "i", "VI", "V7", "i"]
  },
  "groove": {"pattern": "cumbia", "swing": 0, "layers": ["cumbia-guacharaca", "clave"]},
  "voices": ["drums", "roundBass", "mutedPluck", "reed", "sineFlute", "softBrass"],
@@ -39,6 +39,7 @@
   {"id": "walk", "track": "bass", "voice": "roundBass", "role": "bass", "style": "walking", "program": 33, "velocity": 76},
   {"id": "dyads", "track": "guitar", "voice": "mutedPluck", "role": "comp", "style": "offbeat-dyads", "program": 24, "register": [55, 79], "velocity": 42},
   {"id": "triads", "track": "guitar", "voice": "mutedPluck", "role": "comp", "style": "offbeat-triads", "program": 24, "register": [55, 79], "velocity": 50},
+  {"id": "arp", "track": "guitar", "voice": "mutedPluck", "role": "comp", "style": "arpeggio", "program": 24, "register": [62, 84], "velocity": 40},
   {"id": "hook", "track": "lead", "voice": "reed", "role": "melody", "style": "hook", "motif": "lead", "program": 5, "register": [60, 84], "velocity": 58},
   {"id": "lead", "track": "lead", "voice": "reed", "role": "melody", "style": "full", "motif": "lead", "program": 5, "register": [60, 88], "velocity": 78,
    "plan": {
@@ -61,7 +62,7 @@
   {"name": "Party groove", "adds": ["kit", "bass", "dyads", "hook"]},
   {"name": "Percussion lift", "adds": ["congas", "walk"]},
   {"name": "Countermelody", "adds": ["bells", "counter", "triads"], "removes": ["dyads"]},
-  {"name": "Full melody", "adds": ["lead"], "removes": ["hook"]},
+  {"name": "Full melody", "adds": ["lead", "arp"], "removes": ["hook"]},
   {"name": "Full ensemble", "adds": ["response", "stabs", "fills"]}
  ],
  "motifs": {"lead": "motifs/bar_swag.lead.json", "answer": "motifs/bar_swag.answer.json"},
