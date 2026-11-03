@@ -1,0 +1,20 @@
+{
+ "id": "sdxl-base-1",
+ "role": "pose-frame",
+ "description": "Full-step SDXL base 1.0 for the D10 bake-off. Starting values, untested. Pin named by macuahuitl-fedora; not live until #903.",
+ "checkpoint": "sd_xl_base_1.0.safetensors",
+ "sampler": {
+  "steps": 28,
+  "cfg": 6.0,
+  "name": "dpmpp_2m",
+  "scheduler": "karras"
+ },
+ "denoise": 0.7,
+ "loras": [
+  {
+   "name": "pixel-art-xl.safetensors",
+   "weight": 0.8
+  }
+ ],
+ "negatives": "effective"
+}
