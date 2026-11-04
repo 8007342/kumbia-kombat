@@ -1,0 +1,198 @@
+{
+ "1": {
+  "_meta": {
+   "title": "$rear"
+  },
+  "class_type": "LoadImage",
+  "inputs": {
+   "image": "$rear"
+  }
+ },
+ "2": {
+  "_meta": {
+   "title": "Load Diffusion Model"
+  },
+  "class_type": "UNETLoader",
+  "inputs": {
+   "unet_name": "qwen_image_edit_2511_fp8mixed.safetensors",
+   "weight_dtype": "default"
+  }
+ },
+ "3": {
+  "_meta": {
+   "title": "ModelSamplingAuraFlow"
+  },
+  "class_type": "ModelSamplingAuraFlow",
+  "inputs": {
+   "model": [
+    "2",
+    0
+   ],
+   "sampling": "flow",
+   "shift": 3.1
+  }
+ },
+ "300": {
+  "_meta": {
+   "title": "rear repair prompt"
+  },
+  "class_type": "TextEncodeQwenImageEditPlus",
+  "inputs": {
+   "clip": [
+    "5",
+    0
+   ],
+   "image1": [
+    "1",
+    0
+   ],
+   "image2": [
+    "8",
+    0
+   ],
+   "prompt": "Edit image 1, keeping the same man, pose, framing, size, colours and pixel art style with its crisp pixel grid and dark outline. Remove the teal band across the shoulders: the back of the purple shirt is plain solid purple from collar to hem with no teal anywhere. Turn both shoes so they point away from the viewer: we see the heels and backs of the teal shoes, not the toes. Change nothing else. Flat light grey background.",
+   "vae": [
+    "6",
+    0
+   ]
+  }
+ },
+ "301": {
+  "_meta": {
+   "title": "rear repair negative"
+  },
+  "class_type": "TextEncodeQwenImageEditPlus",
+  "inputs": {
+   "clip": [
+    "5",
+    0
+   ],
+   "image1": [
+    "1",
+    0
+   ],
+   "image2": [
+    "8",
+    0
+   ],
+   "prompt": "",
+   "vae": [
+    "6",
+    0
+   ]
+  }
+ },
+ "302": {
+  "_meta": {
+   "title": "$seed"
+  },
+  "class_type": "KSampler",
+  "inputs": {
+   "cfg": 3,
+   "denoise": 1,
+   "latent_image": [
+    "7",
+    0
+   ],
+   "model": [
+    "4",
+    0
+   ],
+   "negative": [
+    "301",
+    0
+   ],
+   "positive": [
+    "300",
+    0
+   ],
+   "sampler_name": "euler",
+   "scheduler": "simple",
+   "seed": 930000,
+   "steps": 40
+  }
+ },
+ "303": {
+  "_meta": {
+   "title": "VAE Decode"
+  },
+  "class_type": "VAEDecode",
+  "inputs": {
+   "samples": [
+    "302",
+    0
+   ],
+   "vae": [
+    "6",
+    0
+   ]
+  }
+ },
+ "304": {
+  "_meta": {
+   "title": "save rear"
+  },
+  "class_type": "SaveImage",
+  "inputs": {
+   "filename_prefix": "kk/sheet_rear_repair",
+   "images": [
+    "303",
+    0
+   ]
+  }
+ },
+ "4": {
+  "_meta": {
+   "title": "CFGNorm"
+  },
+  "class_type": "CFGNorm",
+  "inputs": {
+   "model": [
+    "3",
+    0
+   ],
+   "pre_cfg": false,
+   "strength": 1
+  }
+ },
+ "5": {
+  "_meta": {
+   "title": "Load CLIP"
+  },
+  "class_type": "CLIPLoader",
+  "inputs": {
+   "clip_name": "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+   "device": "default",
+   "type": "qwen_image"
+  }
+ },
+ "6": {
+  "_meta": {
+   "title": "Load VAE"
+  },
+  "class_type": "VAELoader",
+  "inputs": {
+   "vae_name": "qwen_image_vae.safetensors"
+  }
+ },
+ "7": {
+  "_meta": {
+   "title": "Empty Latent Image"
+  },
+  "class_type": "EmptyLatentImage",
+  "inputs": {
+   "batch_size": 1,
+   "height": 1216,
+   "width": 832
+  }
+ },
+ "8": {
+  "_meta": {
+   "title": "$front"
+  },
+  "class_type": "LoadImage",
+  "inputs": {
+   "image": "$front"
+  }
+ }
+}
