@@ -1,0 +1,24 @@
+{
+  "schema": "tillandsias.finish/v1",
+  "output": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/final/retreat_backward.down_l.png",
+  "output_sha256": "8777c105c3a0ac98508fb65428ec15c5716e9c66d452fc517059a71cb008b7b0",
+  "input": "/work/tmp/imagegen/studio/st-1793833239177-116/0000/402_00001_.png",
+  "input_sha256": "18091b9f11c227c77006b6266e37905e21a14f6b1bc721d829b2da0638393f5d",
+  "matte": null,
+  "matte_sha256": null,
+  "family": "tool/art/families/gatekeeper-v3.json",
+  "family_sha256": "34e38544b78e94c7e14cb0a89b21d45b83dbcfc19b59922700a645c3ac734599",
+  "palette": "tool/art/palettes/gatekeeper.json",
+  "palette_sha256": "df753f0fd05d6644bcb9295a5847ab3aae1adf413b3decb922b9d25df803e61d",
+  "room": "garden",
+  "params": {
+    "alpha": "engine",
+    "tolerance": 0,
+    "sample": "centre",
+    "dither": "none",
+    "native": [
+      256,
+      320
+    ]
+  }
+}
