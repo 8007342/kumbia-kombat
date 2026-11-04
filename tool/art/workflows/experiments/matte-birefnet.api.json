@@ -1,0 +1,6 @@
+{
+ "1": {"class_type": "LoadImage", "inputs": {"image": "$image"}, "_meta": {"title": "image to matte"}},
+ "2": {"class_type": "LoadRembgByBiRefNetModel", "inputs": {"model": "model.safetensors", "device": "AUTO"}},
+ "3": {"class_type": "RembgByBiRefNet", "inputs": {"model": ["2", 0], "images": ["1", 0]}},
+ "4": {"class_type": "SaveImage", "inputs": {"images": ["3", 0], "filename_prefix": "matte"}, "_meta": {"title": "save rgba"}}
+}
