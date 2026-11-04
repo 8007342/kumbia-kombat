@@ -8,5 +8,10 @@ GALLERY_ONLY=0
 [ "${1:-}" = "--gallery-only" ] && GALLERY_ONLY=1
 if [ "$GALLERY_ONLY" = 0 ]; then
   bash tool/build.sh
+  # Candidate atlases under review, listed one per line. Local builds only.
+  if [ -f tool/local_preview_candidates.txt ]; then
+    mapfile -t CANDIDATES < tool/local_preview_candidates.txt
+    python3 tool/art/pipeline/preview_candidate.py "${CANDIDATES[@]}"
+  fi
 fi
 ~/.cache/kumbia-art/bin/python tool/art/gallery/build_gallery.py --out build/web/gallery
