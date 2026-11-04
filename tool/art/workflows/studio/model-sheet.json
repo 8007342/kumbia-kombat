@@ -1,1456 +1,28 @@
 {
- "id": "00000000-0000-4000-8000-000000000000",
- "revision": 0,
- "last_node_id": 305,
- "last_link_id": 45,
- "nodes": [
+ "config": {},
+ "extra": {
+  "kumbia": {
+   "purpose": "front, 3/4 and rear reference sheet"
+  }
+ },
+ "groups": [
   {
+   "bounding": [
+    0,
+    0,
+    3340,
+    1292
+   ],
+   "color": "#3f5d9e",
+   "flags": {},
+   "font_size": 24,
    "id": 1,
-   "type": "LoadImage",
-   "pos": [
-    -40,
-    60
-   ],
-   "size": [
-    260,
-    134
-   ],
-   "flags": {},
-   "order": 0,
-   "mode": 0,
-   "inputs": [
-    {
-     "name": "image",
-     "type": "COMBO",
-     "widget": {
-      "name": "image"
-     },
-     "link": null
-    }
-   ],
-   "outputs": [
-    {
-     "name": "IMAGE",
-     "type": "IMAGE",
-     "links": [
-      5,
-      8,
-      18,
-      22,
-      33,
-      37
-     ],
-     "slot_index": 0
-    },
-    {
-     "name": "MASK",
-     "type": "MASK",
-     "links": null,
-     "slot_index": 1
-    }
-   ],
-   "properties": {
-    "Node name for S&R": "LoadImage"
-   },
-   "widgets_values": [
-    "identity.png",
-    "image"
-   ],
-   "title": "$identity",
-   "color": "#233",
-   "bgcolor": "#355"
-  },
-  {
-   "id": 2,
-   "type": "UNETLoader",
-   "pos": [
-    300,
-    60
-   ],
-   "size": [
-    300,
-    112
-   ],
-   "flags": {},
-   "order": 1,
-   "mode": 0,
-   "inputs": [
-    {
-     "name": "unet_name",
-     "type": "COMBO",
-     "widget": {
-      "name": "unet_name"
-     },
-     "link": null
-    },
-    {
-     "name": "weight_dtype",
-     "type": "COMBO",
-     "widget": {
-      "name": "weight_dtype"
-     },
-     "link": null
-    }
-   ],
-   "outputs": [
-    {
-     "name": "MODEL",
-     "type": "MODEL",
-     "links": [
-      1
-     ],
-     "slot_index": 0
-    }
-   ],
-   "properties": {
-    "Node name for S&R": "UNETLoader"
-   },
-   "widgets_values": [
-    "qwen_image_edit_2511_fp8mixed.safetensors",
-    "default"
-   ],
-   "color": "#222",
-   "bgcolor": "#333"
-  },
-  {
-   "id": 3,
-   "type": "ModelSamplingAuraFlow",
-   "pos": [
-    300,
-    190
-   ],
-   "size": [
-    300,
-    134
-   ],
-   "flags": {},
-   "order": 2,
-   "mode": 0,
-   "inputs": [
-    {
-     "name": "model",
-     "type": "MODEL",
-     "link": 1
-    },
-    {
-     "name": "shift",
-     "type": "FLOAT",
-     "widget": {
-      "name": "shift"
-     },
-     "link": null
-    },
-    {
-     "name": "sampling",
-     "type": "COMBO",
-     "widget": {
-      "name": "sampling"
-     },
-     "link": null
-    }
-   ],
-   "outputs": [
-    {
-     "name": "MODEL",
-     "type": "MODEL",
-     "links": [
-      2
-     ],
-     "slot_index": 0
-    }
-   ],
-   "properties": {
-    "Node name for S&R": "ModelSamplingAuraFlow"
-   },
-   "widgets_values": [
-    3.1,
-    "flow"
-   ],
-   "color": "#222",
-   "bgcolor": "#333"
-  },
-  {
-   "id": 4,
-   "type": "CFGNorm",
-   "pos": [
-    300,
-    310
-   ],
-   "size": [
-    300,
-    134
-   ],
-   "flags": {},
-   "order": 3,
-   "mode": 0,
-   "inputs": [
-    {
-     "name": "model",
-     "type": "MODEL",
-     "link": 2
-    },
-    {
-     "name": "strength",
-     "type": "FLOAT",
-     "widget": {
-      "name": "strength"
-     },
-     "link": null
-    },
-    {
-     "name": "pre_cfg",
-     "type": "BOOLEAN",
-     "widget": {
-      "name": "pre_cfg"
-     },
-     "link": null
-    }
-   ],
-   "outputs": [
-    {
-     "name": "patched_model",
-     "type": "MODEL",
-     "links": [
-      9,
-      24,
-      39
-     ],
-     "slot_index": 0
-    }
-   ],
-   "properties": {
-    "Node name for S&R": "CFGNorm"
-   },
-   "widgets_values": [
-    1.0,
-    false
-   ],
-   "color": "#222",
-   "bgcolor": "#333"
-  },
-  {
-   "id": 5,
-   "type": "CLIPLoader",
-   "pos": [
-    300,
-    450
-   ],
-   "size": [
-    300,
-    134
-   ],
-   "flags": {},
-   "order": 4,
-   "mode": 0,
-   "inputs": [
-    {
-     "name": "clip_name",
-     "type": "COMBO",
-     "widget": {
-      "name": "clip_name"
-     },
-     "link": null
-    },
-    {
-     "name": "type",
-     "type": "COMBO",
-     "widget": {
-      "name": "type"
-     },
-     "link": null
-    },
-    {
-     "name": "device",
-     "type": "COMBO",
-     "widget": {
-      "name": "device"
-     },
-     "link": null
-    }
-   ],
-   "outputs": [
-    {
-     "name": "CLIP",
-     "type": "CLIP",
-     "links": [
-      3,
-      6,
-      16,
-      20,
-      31,
-      35
-     ],
-     "slot_index": 0
-    }
-   ],
-   "properties": {
-    "Node name for S&R": "CLIPLoader"
-   },
-   "widgets_values": [
-    "qwen_2.5_vl_7b_fp8_scaled.safetensors",
-    "qwen_image",
-    "default"
-   ],
-   "color": "#222",
-   "bgcolor": "#333"
-  },
-  {
-   "id": 6,
-   "type": "VAELoader",
-   "pos": [
-    300,
-    600
-   ],
-   "size": [
-    300,
-    90
-   ],
-   "flags": {},
-   "order": 5,
-   "mode": 0,
-   "inputs": [
-    {
-     "name": "vae_name",
-     "type": "COMBO",
-     "widget": {
-      "name": "vae_name"
-     },
-     "link": null
-    }
-   ],
-   "outputs": [
-    {
-     "name": "VAE",
-     "type": "VAE",
-     "links": [
-      4,
-      7,
-      14,
-      17,
-      21,
-      29,
-      32,
-      36,
-      44
-     ],
-     "slot_index": 0
-    }
-   ],
-   "properties": {
-    "Node name for S&R": "VAELoader"
-   },
-   "widgets_values": [
-    "qwen_image_vae.safetensors"
-   ],
-   "color": "#222",
-   "bgcolor": "#333"
-  },
-  {
-   "id": 7,
-   "type": "EmptyLatentImage",
-   "pos": [
-    300,
-    700
-   ],
-   "size": [
-    300,
-    134
-   ],
-   "flags": {},
-   "order": 6,
-   "mode": 0,
-   "inputs": [
-    {
-     "name": "width",
-     "type": "INT",
-     "widget": {
-      "name": "width"
-     },
-     "link": null
-    },
-    {
-     "name": "height",
-     "type": "INT",
-     "widget": {
-      "name": "height"
-     },
-     "link": null
-    },
-    {
-     "name": "batch_size",
-     "type": "INT",
-     "widget": {
-      "name": "batch_size"
-     },
-     "link": null
-    }
-   ],
-   "outputs": [
-    {
-     "name": "LATENT",
-     "type": "LATENT",
-     "links": [
-      12,
-      27,
-      42
-     ],
-     "slot_index": 0
-    }
-   ],
-   "properties": {
-    "Node name for S&R": "EmptyLatentImage"
-   },
-   "widgets_values": [
-    832,
-    1216,
-    1
-   ],
-   "color": "#222",
-   "bgcolor": "#333"
-  },
-  {
-   "id": 100,
-   "type": "TextEncodeQwenImageEditPlus",
-   "pos": [
-    680,
-    60
-   ],
-   "size": [
-    380,
-    200
-   ],
-   "flags": {},
-   "order": 7,
-   "mode": 0,
-   "inputs": [
-    {
-     "name": "clip",
-     "type": "CLIP",
-     "link": 3
-    },
-    {
-     "name": "prompt",
-     "type": "STRING",
-     "widget": {
-      "name": "prompt"
-     },
-     "link": null
-    },
-    {
-     "name": "vae",
-     "type": "VAE",
-     "link": 4
-    },
-    {
-     "name": "image1",
-     "type": "IMAGE",
-     "link": 5
-    },
-    {
-     "name": "image2",
-     "type": "IMAGE",
-     "link": null
-    },
-    {
-     "name": "image3",
-     "type": "IMAGE",
-     "link": null
-    }
-   ],
-   "outputs": [
-    {
-     "name": "CONDITIONING",
-     "type": "CONDITIONING",
-     "links": [
-      10
-     ],
-     "slot_index": 0
-    }
-   ],
-   "properties": {
-    "Node name for S&R": "TextEncodeQwenImageEditPlus"
-   },
-   "widgets_values": [
-    "Full-body character model sheet, front view: the man from image 1 standing straight and facing the viewer. same man, same panama hat with one teal band, same purple guayabera with teal embroidered panels, cream trousers, teal shoes, same pixel art style with a crisp pixel grid and dark outline, clean-shaven with a thin pencil mustache, closed mouth, plain light grey background, full body from hat to shoes, arms slightly away from his body"
-   ],
-   "title": "front prompt",
-   "color": "#223",
-   "bgcolor": "#335"
-  },
-  {
-   "id": 101,
-   "type": "TextEncodeQwenImageEditPlus",
-   "pos": [
-    680,
-    350
-   ],
-   "size": [
-    380,
-    200
-   ],
-   "flags": {},
-   "order": 8,
-   "mode": 0,
-   "inputs": [
-    {
-     "name": "clip",
-     "type": "CLIP",
-     "link": 6
-    },
-    {
-     "name": "prompt",
-     "type": "STRING",
-     "widget": {
-      "name": "prompt"
-     },
-     "link": null
-    },
-    {
-     "name": "vae",
-     "type": "VAE",
-     "link": 7
-    },
-    {
-     "name": "image1",
-     "type": "IMAGE",
-     "link": 8
-    },
-    {
-     "name": "image2",
-     "type": "IMAGE",
-     "link": null
-    },
-    {
-     "name": "image3",
-     "type": "IMAGE",
-     "link": null
-    }
-   ],
-   "outputs": [
-    {
-     "name": "CONDITIONING",
-     "type": "CONDITIONING",
-     "links": [
-      11
-     ],
-     "slot_index": 0
-    }
-   ],
-   "properties": {
-    "Node name for S&R": "TextEncodeQwenImageEditPlus"
-   },
-   "widgets_values": [
-    ""
-   ],
-   "title": "front negative",
-   "color": "#223",
-   "bgcolor": "#335"
-  },
-  {
-   "id": 102,
-   "type": "KSampler",
-   "pos": [
-    1100,
-    60
-   ],
-   "size": [
-    300,
-    310
-   ],
-   "flags": {},
-   "order": 9,
-   "mode": 0,
-   "inputs": [
-    {
-     "name": "model",
-     "type": "MODEL",
-     "link": 9
-    },
-    {
-     "name": "seed",
-     "type": "INT",
-     "widget": {
-      "name": "seed"
-     },
-     "link": null
-    },
-    {
-     "name": "steps",
-     "type": "INT",
-     "widget": {
-      "name": "steps"
-     },
-     "link": null
-    },
-    {
-     "name": "cfg",
-     "type": "FLOAT",
-     "widget": {
-      "name": "cfg"
-     },
-     "link": null
-    },
-    {
-     "name": "sampler_name",
-     "type": "COMBO",
-     "widget": {
-      "name": "sampler_name"
-     },
-     "link": null
-    },
-    {
-     "name": "scheduler",
-     "type": "COMBO",
-     "widget": {
-      "name": "scheduler"
-     },
-     "link": null
-    },
-    {
-     "name": "positive",
-     "type": "CONDITIONING",
-     "link": 10
-    },
-    {
-     "name": "negative",
-     "type": "CONDITIONING",
-     "link": 11
-    },
-    {
-     "name": "latent_image",
-     "type": "LATENT",
-     "link": 12
-    },
-    {
-     "name": "denoise",
-     "type": "FLOAT",
-     "widget": {
-      "name": "denoise"
-     },
-     "link": null
-    }
-   ],
-   "outputs": [
-    {
-     "name": "LATENT",
-     "type": "LATENT",
-     "links": [
-      13
-     ],
-     "slot_index": 0
-    }
-   ],
-   "properties": {
-    "Node name for S&R": "KSampler"
-   },
-   "widgets_values": [
-    930000,
-    "fixed",
-    40,
-    3.0,
-    "euler",
-    "simple",
-    1.0
-   ],
-   "title": "$seed",
-   "color": "#223",
-   "bgcolor": "#335"
-  },
-  {
-   "id": 103,
-   "type": "VAEDecode",
-   "pos": [
-    1100,
-    400
-   ],
-   "size": [
-    300,
-    112
-   ],
-   "flags": {},
-   "order": 10,
-   "mode": 0,
-   "inputs": [
-    {
-     "name": "samples",
-     "type": "LATENT",
-     "link": 13
-    },
-    {
-     "name": "vae",
-     "type": "VAE",
-     "link": 14
-    }
-   ],
-   "outputs": [
-    {
-     "name": "IMAGE",
-     "type": "IMAGE",
-     "links": [
-      15,
-      19,
-      23,
-      34,
-      38
-     ],
-     "slot_index": 0
-    }
-   ],
-   "properties": {
-    "Node name for S&R": "VAEDecode"
-   },
-   "widgets_values": [],
-   "color": "#223",
-   "bgcolor": "#335"
-  },
-  {
-   "id": 104,
-   "type": "SaveImage",
-   "pos": [
-    1100,
-    500
-   ],
-   "size": [
-    300,
-    112
-   ],
-   "flags": {},
-   "order": 11,
-   "mode": 0,
-   "inputs": [
-    {
-     "name": "images",
-     "type": "IMAGE",
-     "link": 15
-    },
-    {
-     "name": "filename_prefix",
-     "type": "STRING",
-     "widget": {
-      "name": "filename_prefix"
-     },
-     "link": null
-    }
-   ],
-   "outputs": [
-    {
-     "name": "images",
-     "type": "IMAGE",
-     "links": null,
-     "slot_index": 0
-    }
-   ],
-   "properties": {
-    "Node name for S&R": "SaveImage"
-   },
-   "widgets_values": [
-    "kk/sheet_front"
-   ],
-   "title": "save front",
-   "color": "#223",
-   "bgcolor": "#335"
-  },
-  {
-   "id": 200,
-   "type": "TextEncodeQwenImageEditPlus",
-   "pos": [
-    1520,
-    60
-   ],
-   "size": [
-    380,
-    200
-   ],
-   "flags": {},
-   "order": 12,
-   "mode": 0,
-   "inputs": [
-    {
-     "name": "clip",
-     "type": "CLIP",
-     "link": 16
-    },
-    {
-     "name": "prompt",
-     "type": "STRING",
-     "widget": {
-      "name": "prompt"
-     },
-     "link": null
-    },
-    {
-     "name": "vae",
-     "type": "VAE",
-     "link": 17
-    },
-    {
-     "name": "image1",
-     "type": "IMAGE",
-     "link": 18
-    },
-    {
-     "name": "image2",
-     "type": "IMAGE",
-     "link": 19
-    },
-    {
-     "name": "image3",
-     "type": "IMAGE",
-     "link": null
-    }
-   ],
-   "outputs": [
-    {
-     "name": "CONDITIONING",
-     "type": "CONDITIONING",
-     "links": [
-      25
-     ],
-     "slot_index": 0
-    }
-   ],
-   "properties": {
-    "Node name for S&R": "TextEncodeQwenImageEditPlus"
-   },
-   "widgets_values": [
-    "Full-body character model sheet, three-quarter view: the man from image 2 turned 45 degrees to his left, same size. The man and his clothes are exactly as in image 2. same man, same panama hat with one teal band, same purple guayabera with teal embroidered panels, cream trousers, teal shoes, same pixel art style with a crisp pixel grid and dark outline, clean-shaven with a thin pencil mustache, closed mouth, plain light grey background, full body from hat to shoes, arms slightly away from his body"
-   ],
-   "title": "three-quarter prompt",
-   "color": "#232",
-   "bgcolor": "#353"
-  },
-  {
-   "id": 201,
-   "type": "TextEncodeQwenImageEditPlus",
-   "pos": [
-    1520,
-    350
-   ],
-   "size": [
-    380,
-    200
-   ],
-   "flags": {},
-   "order": 13,
-   "mode": 0,
-   "inputs": [
-    {
-     "name": "clip",
-     "type": "CLIP",
-     "link": 20
-    },
-    {
-     "name": "prompt",
-     "type": "STRING",
-     "widget": {
-      "name": "prompt"
-     },
-     "link": null
-    },
-    {
-     "name": "vae",
-     "type": "VAE",
-     "link": 21
-    },
-    {
-     "name": "image1",
-     "type": "IMAGE",
-     "link": 22
-    },
-    {
-     "name": "image2",
-     "type": "IMAGE",
-     "link": 23
-    },
-    {
-     "name": "image3",
-     "type": "IMAGE",
-     "link": null
-    }
-   ],
-   "outputs": [
-    {
-     "name": "CONDITIONING",
-     "type": "CONDITIONING",
-     "links": [
-      26
-     ],
-     "slot_index": 0
-    }
-   ],
-   "properties": {
-    "Node name for S&R": "TextEncodeQwenImageEditPlus"
-   },
-   "widgets_values": [
-    ""
-   ],
-   "title": "three-quarter negative",
-   "color": "#232",
-   "bgcolor": "#353"
-  },
-  {
-   "id": 202,
-   "type": "KSampler",
-   "pos": [
-    1940,
-    60
-   ],
-   "size": [
-    300,
-    310
-   ],
-   "flags": {},
-   "order": 14,
-   "mode": 0,
-   "inputs": [
-    {
-     "name": "model",
-     "type": "MODEL",
-     "link": 24
-    },
-    {
-     "name": "seed",
-     "type": "INT",
-     "widget": {
-      "name": "seed"
-     },
-     "link": null
-    },
-    {
-     "name": "steps",
-     "type": "INT",
-     "widget": {
-      "name": "steps"
-     },
-     "link": null
-    },
-    {
-     "name": "cfg",
-     "type": "FLOAT",
-     "widget": {
-      "name": "cfg"
-     },
-     "link": null
-    },
-    {
-     "name": "sampler_name",
-     "type": "COMBO",
-     "widget": {
-      "name": "sampler_name"
-     },
-     "link": null
-    },
-    {
-     "name": "scheduler",
-     "type": "COMBO",
-     "widget": {
-      "name": "scheduler"
-     },
-     "link": null
-    },
-    {
-     "name": "positive",
-     "type": "CONDITIONING",
-     "link": 25
-    },
-    {
-     "name": "negative",
-     "type": "CONDITIONING",
-     "link": 26
-    },
-    {
-     "name": "latent_image",
-     "type": "LATENT",
-     "link": 27
-    },
-    {
-     "name": "denoise",
-     "type": "FLOAT",
-     "widget": {
-      "name": "denoise"
-     },
-     "link": null
-    }
-   ],
-   "outputs": [
-    {
-     "name": "LATENT",
-     "type": "LATENT",
-     "links": [
-      28
-     ],
-     "slot_index": 0
-    }
-   ],
-   "properties": {
-    "Node name for S&R": "KSampler"
-   },
-   "widgets_values": [
-    930000,
-    "fixed",
-    40,
-    3.0,
-    "euler",
-    "simple",
-    1.0
-   ],
-   "title": "$seed",
-   "color": "#232",
-   "bgcolor": "#353"
-  },
-  {
-   "id": 203,
-   "type": "VAEDecode",
-   "pos": [
-    1940,
-    400
-   ],
-   "size": [
-    300,
-    112
-   ],
-   "flags": {},
-   "order": 15,
-   "mode": 0,
-   "inputs": [
-    {
-     "name": "samples",
-     "type": "LATENT",
-     "link": 28
-    },
-    {
-     "name": "vae",
-     "type": "VAE",
-     "link": 29
-    }
-   ],
-   "outputs": [
-    {
-     "name": "IMAGE",
-     "type": "IMAGE",
-     "links": [
-      30
-     ],
-     "slot_index": 0
-    }
-   ],
-   "properties": {
-    "Node name for S&R": "VAEDecode"
-   },
-   "widgets_values": [],
-   "color": "#232",
-   "bgcolor": "#353"
-  },
-  {
-   "id": 204,
-   "type": "SaveImage",
-   "pos": [
-    1940,
-    500
-   ],
-   "size": [
-    300,
-    112
-   ],
-   "flags": {},
-   "order": 16,
-   "mode": 0,
-   "inputs": [
-    {
-     "name": "images",
-     "type": "IMAGE",
-     "link": 30
-    },
-    {
-     "name": "filename_prefix",
-     "type": "STRING",
-     "widget": {
-      "name": "filename_prefix"
-     },
-     "link": null
-    }
-   ],
-   "outputs": [
-    {
-     "name": "images",
-     "type": "IMAGE",
-     "links": null,
-     "slot_index": 0
-    }
-   ],
-   "properties": {
-    "Node name for S&R": "SaveImage"
-   },
-   "widgets_values": [
-    "kk/sheet_three-quarter"
-   ],
-   "title": "save three-quarter",
-   "color": "#232",
-   "bgcolor": "#353"
-  },
-  {
-   "id": 300,
-   "type": "TextEncodeQwenImageEditPlus",
-   "pos": [
-    2360,
-    60
-   ],
-   "size": [
-    380,
-    200
-   ],
-   "flags": {},
-   "order": 17,
-   "mode": 0,
-   "inputs": [
-    {
-     "name": "clip",
-     "type": "CLIP",
-     "link": 31
-    },
-    {
-     "name": "prompt",
-     "type": "STRING",
-     "widget": {
-      "name": "prompt"
-     },
-     "link": null
-    },
-    {
-     "name": "vae",
-     "type": "VAE",
-     "link": 32
-    },
-    {
-     "name": "image1",
-     "type": "IMAGE",
-     "link": 33
-    },
-    {
-     "name": "image2",
-     "type": "IMAGE",
-     "link": 34
-    },
-    {
-     "name": "image3",
-     "type": "IMAGE",
-     "link": null
-    }
-   ],
-   "outputs": [
-    {
-     "name": "CONDITIONING",
-     "type": "CONDITIONING",
-     "links": [
-      40
-     ],
-     "slot_index": 0
-    }
-   ],
-   "properties": {
-    "Node name for S&R": "TextEncodeQwenImageEditPlus"
-   },
-   "widgets_values": [
-    "Full-body character model sheet, rear view: the man from image 2 seen from directly behind, same size, facing away so that only the back of his head, the back of his hat and the back of his shirt are visible, no face visible. Plain back of shirt with the teal panels only on the front. Same pixel art style with a crisp pixel grid and dark outline, plain light grey background, full body from hat to shoes."
-   ],
-   "title": "rear prompt",
-   "color": "#323",
-   "bgcolor": "#535"
-  },
-  {
-   "id": 301,
-   "type": "TextEncodeQwenImageEditPlus",
-   "pos": [
-    2360,
-    350
-   ],
-   "size": [
-    380,
-    200
-   ],
-   "flags": {},
-   "order": 18,
-   "mode": 0,
-   "inputs": [
-    {
-     "name": "clip",
-     "type": "CLIP",
-     "link": 35
-    },
-    {
-     "name": "prompt",
-     "type": "STRING",
-     "widget": {
-      "name": "prompt"
-     },
-     "link": null
-    },
-    {
-     "name": "vae",
-     "type": "VAE",
-     "link": 36
-    },
-    {
-     "name": "image1",
-     "type": "IMAGE",
-     "link": 37
-    },
-    {
-     "name": "image2",
-     "type": "IMAGE",
-     "link": 38
-    },
-    {
-     "name": "image3",
-     "type": "IMAGE",
-     "link": null
-    }
-   ],
-   "outputs": [
-    {
-     "name": "CONDITIONING",
-     "type": "CONDITIONING",
-     "links": [
-      41
-     ],
-     "slot_index": 0
-    }
-   ],
-   "properties": {
-    "Node name for S&R": "TextEncodeQwenImageEditPlus"
-   },
-   "widgets_values": [
-    ""
-   ],
-   "title": "rear negative",
-   "color": "#323",
-   "bgcolor": "#535"
-  },
-  {
-   "id": 302,
-   "type": "KSampler",
-   "pos": [
-    2780,
-    60
-   ],
-   "size": [
-    300,
-    310
-   ],
-   "flags": {},
-   "order": 19,
-   "mode": 0,
-   "inputs": [
-    {
-     "name": "model",
-     "type": "MODEL",
-     "link": 39
-    },
-    {
-     "name": "seed",
-     "type": "INT",
-     "widget": {
-      "name": "seed"
-     },
-     "link": null
-    },
-    {
-     "name": "steps",
-     "type": "INT",
-     "widget": {
-      "name": "steps"
-     },
-     "link": null
-    },
-    {
-     "name": "cfg",
-     "type": "FLOAT",
-     "widget": {
-      "name": "cfg"
-     },
-     "link": null
-    },
-    {
-     "name": "sampler_name",
-     "type": "COMBO",
-     "widget": {
-      "name": "sampler_name"
-     },
-     "link": null
-    },
-    {
-     "name": "scheduler",
-     "type": "COMBO",
-     "widget": {
-      "name": "scheduler"
-     },
-     "link": null
-    },
-    {
-     "name": "positive",
-     "type": "CONDITIONING",
-     "link": 40
-    },
-    {
-     "name": "negative",
-     "type": "CONDITIONING",
-     "link": 41
-    },
-    {
-     "name": "latent_image",
-     "type": "LATENT",
-     "link": 42
-    },
-    {
-     "name": "denoise",
-     "type": "FLOAT",
-     "widget": {
-      "name": "denoise"
-     },
-     "link": null
-    }
-   ],
-   "outputs": [
-    {
-     "name": "LATENT",
-     "type": "LATENT",
-     "links": [
-      43
-     ],
-     "slot_index": 0
-    }
-   ],
-   "properties": {
-    "Node name for S&R": "KSampler"
-   },
-   "widgets_values": [
-    930000,
-    "fixed",
-    40,
-    3.0,
-    "euler",
-    "simple",
-    1.0
-   ],
-   "title": "$seed",
-   "color": "#323",
-   "bgcolor": "#535"
-  },
-  {
-   "id": 303,
-   "type": "VAEDecode",
-   "pos": [
-    2780,
-    400
-   ],
-   "size": [
-    300,
-    112
-   ],
-   "flags": {},
-   "order": 20,
-   "mode": 0,
-   "inputs": [
-    {
-     "name": "samples",
-     "type": "LATENT",
-     "link": 43
-    },
-    {
-     "name": "vae",
-     "type": "VAE",
-     "link": 44
-    }
-   ],
-   "outputs": [
-    {
-     "name": "IMAGE",
-     "type": "IMAGE",
-     "links": [
-      45
-     ],
-     "slot_index": 0
-    }
-   ],
-   "properties": {
-    "Node name for S&R": "VAEDecode"
-   },
-   "widgets_values": [],
-   "color": "#323",
-   "bgcolor": "#535"
-  },
-  {
-   "id": 304,
-   "type": "SaveImage",
-   "pos": [
-    2780,
-    500
-   ],
-   "size": [
-    300,
-    112
-   ],
-   "flags": {},
-   "order": 21,
-   "mode": 0,
-   "inputs": [
-    {
-     "name": "images",
-     "type": "IMAGE",
-     "link": 45
-    },
-    {
-     "name": "filename_prefix",
-     "type": "STRING",
-     "widget": {
-      "name": "filename_prefix"
-     },
-     "link": null
-    }
-   ],
-   "outputs": [
-    {
-     "name": "images",
-     "type": "IMAGE",
-     "links": null,
-     "slot_index": 0
-    }
-   ],
-   "properties": {
-    "Node name for S&R": "SaveImage"
-   },
-   "widgets_values": [
-    "kk/sheet_rear"
-   ],
-   "title": "save rear",
-   "color": "#323",
-   "bgcolor": "#535"
-  },
-  {
-   "id": 305,
-   "type": "MarkdownNote",
-   "title": "Read me",
-   "pos": [
-    -60,
-    -290
-   ],
-   "size": [
-    700,
-    250
-   ],
-   "flags": {},
-   "order": 22,
-   "mode": 0,
-   "inputs": [],
-   "outputs": [],
-   "properties": {},
-   "widgets_values": [
-    "# Character model sheet\nFront, 3/4 and rear for the owner's acceptance. The 3/4 and rear views take the front result as image 2, so they copy this man, not the older reference.\n\n**Differs from the `image_qwen_image_edit_2511` template:** `FluxKontextMultiReferenceLatentMethod` is refused `node_not_pinned`, so it's left out. It still gives a usable image at 40 steps, CFG 3, `euler`/`simple`, shift 3.1, `CFGNorm` 1.\n\nCrop the accepted views with `stage_parts.py` into `ref_head.png` and `ref_outfit.png` to use them as identity."
-   ],
-   "color": "#432",
-   "bgcolor": "#653"
+   "title": "Front, then 3/4 and rear from the front"
   }
  ],
+ "id": "00000000-0000-4000-8000-000000000000",
+ "last_link_id": 45,
+ "last_node_id": 305,
  "links": [
   [
    1,
@@ -1477,22 +49,6 @@
    "CLIP"
   ],
   [
-   4,
-   6,
-   0,
-   100,
-   2,
-   "VAE"
-  ],
-  [
-   5,
-   1,
-   0,
-   100,
-   3,
-   "IMAGE"
-  ],
-  [
    6,
    5,
    0,
@@ -1501,52 +57,12 @@
    "CLIP"
   ],
   [
-   7,
-   6,
-   0,
-   101,
-   2,
-   "VAE"
-  ],
-  [
-   8,
-   1,
-   0,
-   101,
-   3,
-   "IMAGE"
-  ],
-  [
    9,
    4,
    0,
    102,
    0,
    "MODEL"
-  ],
-  [
-   10,
-   100,
-   0,
-   102,
-   6,
-   "CONDITIONING"
-  ],
-  [
-   11,
-   101,
-   0,
-   102,
-   7,
-   "CONDITIONING"
-  ],
-  [
-   12,
-   7,
-   0,
-   102,
-   8,
-   "LATENT"
   ],
   [
    13,
@@ -1581,30 +97,6 @@
    "CLIP"
   ],
   [
-   17,
-   6,
-   0,
-   200,
-   2,
-   "VAE"
-  ],
-  [
-   18,
-   1,
-   0,
-   200,
-   3,
-   "IMAGE"
-  ],
-  [
-   19,
-   103,
-   0,
-   200,
-   4,
-   "IMAGE"
-  ],
-  [
    20,
    5,
    0,
@@ -1613,60 +105,12 @@
    "CLIP"
   ],
   [
-   21,
-   6,
-   0,
-   201,
-   2,
-   "VAE"
-  ],
-  [
-   22,
-   1,
-   0,
-   201,
-   3,
-   "IMAGE"
-  ],
-  [
-   23,
-   103,
-   0,
-   201,
-   4,
-   "IMAGE"
-  ],
-  [
    24,
    4,
    0,
    202,
    0,
    "MODEL"
-  ],
-  [
-   25,
-   200,
-   0,
-   202,
-   6,
-   "CONDITIONING"
-  ],
-  [
-   26,
-   201,
-   0,
-   202,
-   7,
-   "CONDITIONING"
-  ],
-  [
-   27,
-   7,
-   0,
-   202,
-   8,
-   "LATENT"
   ],
   [
    28,
@@ -1701,30 +145,6 @@
    "CLIP"
   ],
   [
-   32,
-   6,
-   0,
-   300,
-   2,
-   "VAE"
-  ],
-  [
-   33,
-   1,
-   0,
-   300,
-   3,
-   "IMAGE"
-  ],
-  [
-   34,
-   103,
-   0,
-   300,
-   4,
-   "IMAGE"
-  ],
-  [
    35,
    5,
    0,
@@ -1733,60 +153,12 @@
    "CLIP"
   ],
   [
-   36,
-   6,
-   0,
-   301,
-   2,
-   "VAE"
-  ],
-  [
-   37,
-   1,
-   0,
-   301,
-   3,
-   "IMAGE"
-  ],
-  [
-   38,
-   103,
-   0,
-   301,
-   4,
-   "IMAGE"
-  ],
-  [
    39,
    4,
    0,
    302,
    0,
    "MODEL"
-  ],
-  [
-   40,
-   300,
-   0,
-   302,
-   6,
-   "CONDITIONING"
-  ],
-  [
-   41,
-   301,
-   0,
-   302,
-   7,
-   "CONDITIONING"
-  ],
-  [
-   42,
-   7,
-   0,
-   302,
-   8,
-   "LATENT"
   ],
   [
    43,
@@ -1811,70 +183,1891 @@
    304,
    0,
    "IMAGE"
+  ],
+  [
+   4,
+   6,
+   0,
+   100,
+   1,
+   "VAE"
+  ],
+  [
+   5,
+   1,
+   0,
+   100,
+   2,
+   "IMAGE"
+  ],
+  [
+   7,
+   6,
+   0,
+   101,
+   1,
+   "VAE"
+  ],
+  [
+   8,
+   1,
+   0,
+   101,
+   2,
+   "IMAGE"
+  ],
+  [
+   10,
+   100,
+   0,
+   102,
+   1,
+   "CONDITIONING"
+  ],
+  [
+   11,
+   101,
+   0,
+   102,
+   2,
+   "CONDITIONING"
+  ],
+  [
+   12,
+   7,
+   0,
+   102,
+   3,
+   "LATENT"
+  ],
+  [
+   17,
+   6,
+   0,
+   200,
+   1,
+   "VAE"
+  ],
+  [
+   18,
+   1,
+   0,
+   200,
+   2,
+   "IMAGE"
+  ],
+  [
+   19,
+   103,
+   0,
+   200,
+   3,
+   "IMAGE"
+  ],
+  [
+   21,
+   6,
+   0,
+   201,
+   1,
+   "VAE"
+  ],
+  [
+   22,
+   1,
+   0,
+   201,
+   2,
+   "IMAGE"
+  ],
+  [
+   23,
+   103,
+   0,
+   201,
+   3,
+   "IMAGE"
+  ],
+  [
+   25,
+   200,
+   0,
+   202,
+   1,
+   "CONDITIONING"
+  ],
+  [
+   26,
+   201,
+   0,
+   202,
+   2,
+   "CONDITIONING"
+  ],
+  [
+   27,
+   7,
+   0,
+   202,
+   3,
+   "LATENT"
+  ],
+  [
+   32,
+   6,
+   0,
+   300,
+   1,
+   "VAE"
+  ],
+  [
+   33,
+   1,
+   0,
+   300,
+   2,
+   "IMAGE"
+  ],
+  [
+   34,
+   103,
+   0,
+   300,
+   3,
+   "IMAGE"
+  ],
+  [
+   36,
+   6,
+   0,
+   301,
+   1,
+   "VAE"
+  ],
+  [
+   37,
+   1,
+   0,
+   301,
+   2,
+   "IMAGE"
+  ],
+  [
+   38,
+   103,
+   0,
+   301,
+   3,
+   "IMAGE"
+  ],
+  [
+   40,
+   300,
+   0,
+   302,
+   1,
+   "CONDITIONING"
+  ],
+  [
+   41,
+   301,
+   0,
+   302,
+   2,
+   "CONDITIONING"
+  ],
+  [
+   42,
+   7,
+   0,
+   302,
+   3,
+   "LATENT"
   ]
  ],
- "groups": [
+ "nodes": [
   {
+   "bgcolor": "#355",
+   "color": "#233",
+   "flags": {},
    "id": 1,
-   "title": "Reference and models",
-   "bounding": [
-    -60,
-    -10,
-    700,
-    880
+   "inputs": [
+    {
+     "link": null,
+     "localized_name": "image",
+     "name": "image",
+     "type": "COMBO",
+     "widget": {
+      "name": "image"
+     }
+    },
+    {
+     "link": null,
+     "localized_name": "choose file to upload",
+     "name": "upload",
+     "type": "IMAGEUPLOAD",
+     "widget": {
+      "name": "upload"
+     }
+    }
    ],
-   "color": "#444",
-   "font_size": 24,
-   "flags": {}
+   "mode": 0,
+   "order": 0,
+   "outputs": [
+    {
+     "links": [
+      5,
+      8,
+      18,
+      22,
+      33,
+      37
+     ],
+     "localized_name": "IMAGE",
+     "name": "IMAGE",
+     "slot_index": 0,
+     "type": "IMAGE"
+    },
+    {
+     "links": null,
+     "localized_name": "MASK",
+     "name": "MASK",
+     "slot_index": 1,
+     "type": "MASK"
+    }
+   ],
+   "pos": [
+    30,
+    60
+   ],
+   "properties": {
+    "Node name for S&R": "LoadImage"
+   },
+   "size": [
+    260,
+    314
+   ],
+   "title": "$identity",
+   "type": "LoadImage",
+   "widgets_values": [
+    "identity.png",
+    "image"
+   ],
+   "widgets_values_named": {
+    "image": "identity.png",
+    "upload": "image"
+   }
   },
   {
+   "bgcolor": "#333",
+   "color": "#222",
+   "flags": {},
    "id": 2,
-   "title": "Front view",
-   "bounding": [
-    660,
-    -10,
-    820,
-    880
+   "inputs": [
+    {
+     "link": null,
+     "localized_name": "unet_name",
+     "name": "unet_name",
+     "type": "COMBO",
+     "widget": {
+      "name": "unet_name"
+     }
+    },
+    {
+     "link": null,
+     "localized_name": "weight_dtype",
+     "name": "weight_dtype",
+     "type": "COMBO",
+     "widget": {
+      "name": "weight_dtype"
+     }
+    }
    ],
-   "color": "#3f5d9e",
-   "font_size": 24,
-   "flags": {}
+   "mode": 0,
+   "order": 1,
+   "outputs": [
+    {
+     "links": [
+      1
+     ],
+     "localized_name": "MODEL",
+     "name": "MODEL",
+     "slot_index": 0,
+     "type": "MODEL"
+    }
+   ],
+   "pos": [
+    30,
+    434
+   ],
+   "properties": {
+    "Node name for S&R": "UNETLoader"
+   },
+   "size": [
+    300,
+    112
+   ],
+   "type": "UNETLoader",
+   "widgets_values": [
+    "qwen_image_edit_2511_fp8mixed.safetensors",
+    "default"
+   ],
+   "widgets_values_named": {
+    "unet_name": "qwen_image_edit_2511_fp8mixed.safetensors",
+    "weight_dtype": "default"
+   }
   },
   {
+   "bgcolor": "#333",
+   "color": "#222",
+   "flags": {},
    "id": 3,
-   "title": "Three-quarter view",
-   "bounding": [
-    1500,
-    -10,
-    820,
-    880
+   "inputs": [
+    {
+     "link": 1,
+     "localized_name": "model",
+     "name": "model",
+     "type": "MODEL"
+    },
+    {
+     "link": null,
+     "localized_name": "shift",
+     "name": "shift",
+     "type": "FLOAT",
+     "widget": {
+      "name": "shift"
+     }
+    },
+    {
+     "link": null,
+     "localized_name": "sampling",
+     "name": "sampling",
+     "shape": 7,
+     "type": "COMBO",
+     "widget": {
+      "name": "sampling"
+     }
+    }
    ],
-   "color": "#3f5d9e",
-   "font_size": 24,
-   "flags": {}
+   "mode": 0,
+   "order": 6,
+   "outputs": [
+    {
+     "links": [
+      2
+     ],
+     "localized_name": "MODEL",
+     "name": "MODEL",
+     "slot_index": 0,
+     "type": "MODEL"
+    }
+   ],
+   "pos": [
+    380,
+    60
+   ],
+   "properties": {
+    "Node name for S&R": "ModelSamplingAuraFlow"
+   },
+   "size": [
+    300,
+    134
+   ],
+   "type": "ModelSamplingAuraFlow",
+   "widgets_values": [
+    3.1,
+    "flow"
+   ],
+   "widgets_values_named": {
+    "sampling": "flow",
+    "shift": 3.1
+   }
   },
   {
+   "bgcolor": "#333",
+   "color": "#222",
+   "flags": {},
    "id": 4,
-   "title": "Rear view",
-   "bounding": [
-    2340,
-    -10,
-    820,
-    880
+   "inputs": [
+    {
+     "link": 2,
+     "localized_name": "model",
+     "name": "model",
+     "type": "MODEL"
+    },
+    {
+     "link": null,
+     "localized_name": "strength",
+     "name": "strength",
+     "type": "FLOAT",
+     "widget": {
+      "name": "strength"
+     }
+    },
+    {
+     "link": null,
+     "localized_name": "pre_cfg",
+     "name": "pre_cfg",
+     "shape": 7,
+     "type": "BOOLEAN",
+     "widget": {
+      "name": "pre_cfg"
+     }
+    }
    ],
-   "color": "#3f5d9e",
-   "font_size": 24,
-   "flags": {}
+   "mode": 0,
+   "order": 9,
+   "outputs": [
+    {
+     "links": [
+      9,
+      24,
+      39
+     ],
+     "localized_name": "patched_model",
+     "name": "patched_model",
+     "slot_index": 0,
+     "type": "MODEL"
+    }
+   ],
+   "pos": [
+    810,
+    60
+   ],
+   "properties": {
+    "Node name for S&R": "CFGNorm"
+   },
+   "size": [
+    300,
+    134
+   ],
+   "type": "CFGNorm",
+   "widgets_values": [
+    1,
+    false
+   ],
+   "widgets_values_named": {
+    "pre_cfg": false,
+    "strength": 1
+   }
+  },
+  {
+   "bgcolor": "#333",
+   "color": "#222",
+   "flags": {},
+   "id": 5,
+   "inputs": [
+    {
+     "link": null,
+     "localized_name": "clip_name",
+     "name": "clip_name",
+     "type": "COMBO",
+     "widget": {
+      "name": "clip_name"
+     }
+    },
+    {
+     "link": null,
+     "localized_name": "type",
+     "name": "type",
+     "type": "COMBO",
+     "widget": {
+      "name": "type"
+     }
+    },
+    {
+     "link": null,
+     "localized_name": "device",
+     "name": "device",
+     "shape": 7,
+     "type": "COMBO",
+     "widget": {
+      "name": "device"
+     }
+    }
+   ],
+   "mode": 0,
+   "order": 2,
+   "outputs": [
+    {
+     "links": [
+      3,
+      6,
+      16,
+      20,
+      31,
+      35
+     ],
+     "localized_name": "CLIP",
+     "name": "CLIP",
+     "slot_index": 0,
+     "type": "CLIP"
+    }
+   ],
+   "pos": [
+    30,
+    606
+   ],
+   "properties": {
+    "Node name for S&R": "CLIPLoader"
+   },
+   "size": [
+    300,
+    134
+   ],
+   "type": "CLIPLoader",
+   "widgets_values": [
+    "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+    "qwen_image",
+    "default"
+   ],
+   "widgets_values_named": {
+    "clip_name": "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+    "device": "default",
+    "type": "qwen_image"
+   }
+  },
+  {
+   "bgcolor": "#333",
+   "color": "#222",
+   "flags": {},
+   "id": 6,
+   "inputs": [
+    {
+     "link": null,
+     "localized_name": "vae_name",
+     "name": "vae_name",
+     "type": "COMBO",
+     "widget": {
+      "name": "vae_name"
+     }
+    }
+   ],
+   "mode": 0,
+   "order": 3,
+   "outputs": [
+    {
+     "links": [
+      4,
+      7,
+      14,
+      17,
+      21,
+      29,
+      32,
+      36,
+      44
+     ],
+     "localized_name": "VAE",
+     "name": "VAE",
+     "slot_index": 0,
+     "type": "VAE"
+    }
+   ],
+   "pos": [
+    30,
+    800
+   ],
+   "properties": {
+    "Node name for S&R": "VAELoader"
+   },
+   "size": [
+    300,
+    90
+   ],
+   "type": "VAELoader",
+   "widgets_values": [
+    "qwen_image_vae.safetensors"
+   ],
+   "widgets_values_named": {
+    "vae_name": "qwen_image_vae.safetensors"
+   }
+  },
+  {
+   "bgcolor": "#333",
+   "color": "#222",
+   "flags": {},
+   "id": 7,
+   "inputs": [
+    {
+     "link": null,
+     "localized_name": "width",
+     "name": "width",
+     "type": "INT",
+     "widget": {
+      "name": "width"
+     }
+    },
+    {
+     "link": null,
+     "localized_name": "height",
+     "name": "height",
+     "type": "INT",
+     "widget": {
+      "name": "height"
+     }
+    },
+    {
+     "link": null,
+     "localized_name": "batch_size",
+     "name": "batch_size",
+     "type": "INT",
+     "widget": {
+      "name": "batch_size"
+     }
+    }
+   ],
+   "mode": 0,
+   "order": 4,
+   "outputs": [
+    {
+     "links": [
+      12,
+      27,
+      42
+     ],
+     "localized_name": "LATENT",
+     "name": "LATENT",
+     "slot_index": 0,
+     "type": "LATENT"
+    }
+   ],
+   "pos": [
+    30,
+    950
+   ],
+   "properties": {
+    "Node name for S&R": "EmptyLatentImage"
+   },
+   "size": [
+    300,
+    134
+   ],
+   "type": "EmptyLatentImage",
+   "widgets_values": [
+    832,
+    1216,
+    1
+   ],
+   "widgets_values_named": {
+    "batch_size": 1,
+    "height": 1216,
+    "width": 832
+   }
+  },
+  {
+   "bgcolor": "#335",
+   "color": "#223",
+   "flags": {},
+   "id": 100,
+   "inputs": [
+    {
+     "link": 3,
+     "localized_name": "clip",
+     "name": "clip",
+     "type": "CLIP"
+    },
+    {
+     "link": 4,
+     "localized_name": "vae",
+     "name": "vae",
+     "shape": 7,
+     "type": "VAE"
+    },
+    {
+     "link": 5,
+     "localized_name": "image1",
+     "name": "image1",
+     "shape": 7,
+     "type": "IMAGE"
+    },
+    {
+     "link": null,
+     "localized_name": "image2",
+     "name": "image2",
+     "shape": 7,
+     "type": "IMAGE"
+    },
+    {
+     "link": null,
+     "localized_name": "image3",
+     "name": "image3",
+     "shape": 7,
+     "type": "IMAGE"
+    },
+    {
+     "link": null,
+     "localized_name": "prompt",
+     "name": "prompt",
+     "type": "STRING",
+     "widget": {
+      "name": "prompt"
+     }
+    }
+   ],
+   "mode": 0,
+   "order": 7,
+   "outputs": [
+    {
+     "links": [
+      10
+     ],
+     "localized_name": "CONDITIONING",
+     "name": "CONDITIONING",
+     "slot_index": 0,
+     "type": "CONDITIONING"
+    }
+   ],
+   "pos": [
+    380,
+    254
+   ],
+   "properties": {
+    "Node name for S&R": "TextEncodeQwenImageEditPlus"
+   },
+   "size": [
+    380,
+    200
+   ],
+   "title": "front prompt",
+   "type": "TextEncodeQwenImageEditPlus",
+   "widgets_values": [
+    "Full-body character model sheet, front view: the man from image 1 standing straight and facing the viewer. same man, same panama hat with one teal band, same purple guayabera with teal embroidered panels, cream trousers, teal shoes, same pixel art style with a crisp pixel grid and dark outline, clean-shaven with a thin pencil mustache, closed mouth, plain light grey background, full body from hat to shoes, arms slightly away from his body"
+   ],
+   "widgets_values_named": {
+    "prompt": "Full-body character model sheet, front view: the man from image 1 standing straight and facing the viewer. same man, same panama hat with one teal band, same purple guayabera with teal embroidered panels, cream trousers, teal shoes, same pixel art style with a crisp pixel grid and dark outline, clean-shaven with a thin pencil mustache, closed mouth, plain light grey background, full body from hat to shoes, arms slightly away from his body"
+   }
+  },
+  {
+   "bgcolor": "#335",
+   "color": "#223",
+   "flags": {},
+   "id": 101,
+   "inputs": [
+    {
+     "link": 6,
+     "localized_name": "clip",
+     "name": "clip",
+     "type": "CLIP"
+    },
+    {
+     "link": 7,
+     "localized_name": "vae",
+     "name": "vae",
+     "shape": 7,
+     "type": "VAE"
+    },
+    {
+     "link": 8,
+     "localized_name": "image1",
+     "name": "image1",
+     "shape": 7,
+     "type": "IMAGE"
+    },
+    {
+     "link": null,
+     "localized_name": "image2",
+     "name": "image2",
+     "shape": 7,
+     "type": "IMAGE"
+    },
+    {
+     "link": null,
+     "localized_name": "image3",
+     "name": "image3",
+     "shape": 7,
+     "type": "IMAGE"
+    },
+    {
+     "link": null,
+     "localized_name": "prompt",
+     "name": "prompt",
+     "type": "STRING",
+     "widget": {
+      "name": "prompt"
+     }
+    }
+   ],
+   "mode": 0,
+   "order": 8,
+   "outputs": [
+    {
+     "links": [
+      11
+     ],
+     "localized_name": "CONDITIONING",
+     "name": "CONDITIONING",
+     "slot_index": 0,
+     "type": "CONDITIONING"
+    }
+   ],
+   "pos": [
+    380,
+    514
+   ],
+   "properties": {
+    "Node name for S&R": "TextEncodeQwenImageEditPlus"
+   },
+   "size": [
+    380,
+    200
+   ],
+   "title": "front negative",
+   "type": "TextEncodeQwenImageEditPlus",
+   "widgets_values": [
+    ""
+   ],
+   "widgets_values_named": {
+    "prompt": ""
+   }
+  },
+  {
+   "bgcolor": "#335",
+   "color": "#223",
+   "flags": {},
+   "id": 102,
+   "inputs": [
+    {
+     "link": 9,
+     "localized_name": "model",
+     "name": "model",
+     "type": "MODEL"
+    },
+    {
+     "link": 10,
+     "localized_name": "positive",
+     "name": "positive",
+     "type": "CONDITIONING"
+    },
+    {
+     "link": 11,
+     "localized_name": "negative",
+     "name": "negative",
+     "type": "CONDITIONING"
+    },
+    {
+     "link": 12,
+     "localized_name": "latent_image",
+     "name": "latent_image",
+     "type": "LATENT"
+    },
+    {
+     "link": null,
+     "localized_name": "seed",
+     "name": "seed",
+     "type": "INT",
+     "widget": {
+      "name": "seed"
+     }
+    },
+    {
+     "link": null,
+     "localized_name": "steps",
+     "name": "steps",
+     "type": "INT",
+     "widget": {
+      "name": "steps"
+     }
+    },
+    {
+     "link": null,
+     "localized_name": "cfg",
+     "name": "cfg",
+     "type": "FLOAT",
+     "widget": {
+      "name": "cfg"
+     }
+    },
+    {
+     "link": null,
+     "localized_name": "sampler_name",
+     "name": "sampler_name",
+     "type": "COMBO",
+     "widget": {
+      "name": "sampler_name"
+     }
+    },
+    {
+     "link": null,
+     "localized_name": "scheduler",
+     "name": "scheduler",
+     "type": "COMBO",
+     "widget": {
+      "name": "scheduler"
+     }
+    },
+    {
+     "link": null,
+     "localized_name": "denoise",
+     "name": "denoise",
+     "type": "FLOAT",
+     "widget": {
+      "name": "denoise"
+     }
+    }
+   ],
+   "mode": 0,
+   "order": 10,
+   "outputs": [
+    {
+     "links": [
+      13
+     ],
+     "localized_name": "LATENT",
+     "name": "LATENT",
+     "slot_index": 0,
+     "type": "LATENT"
+    }
+   ],
+   "pos": [
+    1160,
+    60
+   ],
+   "properties": {
+    "Node name for S&R": "KSampler"
+   },
+   "size": [
+    300,
+    310
+   ],
+   "title": "$seed",
+   "type": "KSampler",
+   "widgets_values": [
+    930000,
+    "fixed",
+    40,
+    3,
+    "euler",
+    "simple",
+    1
+   ],
+   "widgets_values_named": {
+    "cfg": 3,
+    "control_after_generate": "fixed",
+    "denoise": 1,
+    "sampler_name": "euler",
+    "scheduler": "simple",
+    "seed": 930000,
+    "steps": 40
+   }
+  },
+  {
+   "bgcolor": "#335",
+   "color": "#223",
+   "flags": {},
+   "id": 103,
+   "inputs": [
+    {
+     "link": 13,
+     "localized_name": "samples",
+     "name": "samples",
+     "type": "LATENT"
+    },
+    {
+     "link": 14,
+     "localized_name": "vae",
+     "name": "vae",
+     "type": "VAE"
+    }
+   ],
+   "mode": 0,
+   "order": 11,
+   "outputs": [
+    {
+     "links": [
+      15,
+      19,
+      23,
+      34,
+      38
+     ],
+     "localized_name": "IMAGE",
+     "name": "IMAGE",
+     "slot_index": 0,
+     "type": "IMAGE"
+    }
+   ],
+   "pos": [
+    1510,
+    60
+   ],
+   "properties": {
+    "Node name for S&R": "VAEDecode"
+   },
+   "size": [
+    300,
+    112
+   ],
+   "type": "VAEDecode"
+  },
+  {
+   "bgcolor": "#335",
+   "color": "#223",
+   "flags": {},
+   "id": 104,
+   "inputs": [
+    {
+     "link": 15,
+     "localized_name": "images",
+     "name": "images",
+     "type": "IMAGE"
+    },
+    {
+     "link": null,
+     "localized_name": "filename_prefix",
+     "name": "filename_prefix",
+     "type": "STRING",
+     "widget": {
+      "name": "filename_prefix"
+     }
+    }
+   ],
+   "mode": 0,
+   "order": 12,
+   "outputs": [
+    {
+     "links": null,
+     "localized_name": "images",
+     "name": "images",
+     "slot_index": 0,
+     "type": "IMAGE"
+    }
+   ],
+   "pos": [
+    1860,
+    60
+   ],
+   "properties": {
+    "Node name for S&R": "SaveImage"
+   },
+   "size": [
+    300,
+    112
+   ],
+   "title": "save front",
+   "type": "SaveImage",
+   "widgets_values": [
+    "kk/sheet_front"
+   ],
+   "widgets_values_named": {
+    "filename_prefix": "kk/sheet_front"
+   }
+  },
+  {
+   "bgcolor": "#353",
+   "color": "#232",
+   "flags": {},
+   "id": 200,
+   "inputs": [
+    {
+     "link": 16,
+     "localized_name": "clip",
+     "name": "clip",
+     "type": "CLIP"
+    },
+    {
+     "link": 17,
+     "localized_name": "vae",
+     "name": "vae",
+     "shape": 7,
+     "type": "VAE"
+    },
+    {
+     "link": 18,
+     "localized_name": "image1",
+     "name": "image1",
+     "shape": 7,
+     "type": "IMAGE"
+    },
+    {
+     "link": 19,
+     "localized_name": "image2",
+     "name": "image2",
+     "shape": 7,
+     "type": "IMAGE"
+    },
+    {
+     "link": null,
+     "localized_name": "image3",
+     "name": "image3",
+     "shape": 7,
+     "type": "IMAGE"
+    },
+    {
+     "link": null,
+     "localized_name": "prompt",
+     "name": "prompt",
+     "type": "STRING",
+     "widget": {
+      "name": "prompt"
+     }
+    }
+   ],
+   "mode": 0,
+   "order": 13,
+   "outputs": [
+    {
+     "links": [
+      25
+     ],
+     "localized_name": "CONDITIONING",
+     "name": "CONDITIONING",
+     "slot_index": 0,
+     "type": "CONDITIONING"
+    }
+   ],
+   "pos": [
+    1860,
+    232
+   ],
+   "properties": {
+    "Node name for S&R": "TextEncodeQwenImageEditPlus"
+   },
+   "size": [
+    380,
+    200
+   ],
+   "title": "three-quarter prompt",
+   "type": "TextEncodeQwenImageEditPlus",
+   "widgets_values": [
+    "Full-body character model sheet, three-quarter view: the man from image 2 turned 45 degrees to his left, same size. The man and his clothes are exactly as in image 2. same man, same panama hat with one teal band, same purple guayabera with teal embroidered panels, cream trousers, teal shoes, same pixel art style with a crisp pixel grid and dark outline, clean-shaven with a thin pencil mustache, closed mouth, plain light grey background, full body from hat to shoes, arms slightly away from his body"
+   ],
+   "widgets_values_named": {
+    "prompt": "Full-body character model sheet, three-quarter view: the man from image 2 turned 45 degrees to his left, same size. The man and his clothes are exactly as in image 2. same man, same panama hat with one teal band, same purple guayabera with teal embroidered panels, cream trousers, teal shoes, same pixel art style with a crisp pixel grid and dark outline, clean-shaven with a thin pencil mustache, closed mouth, plain light grey background, full body from hat to shoes, arms slightly away from his body"
+   }
+  },
+  {
+   "bgcolor": "#353",
+   "color": "#232",
+   "flags": {},
+   "id": 201,
+   "inputs": [
+    {
+     "link": 20,
+     "localized_name": "clip",
+     "name": "clip",
+     "type": "CLIP"
+    },
+    {
+     "link": 21,
+     "localized_name": "vae",
+     "name": "vae",
+     "shape": 7,
+     "type": "VAE"
+    },
+    {
+     "link": 22,
+     "localized_name": "image1",
+     "name": "image1",
+     "shape": 7,
+     "type": "IMAGE"
+    },
+    {
+     "link": 23,
+     "localized_name": "image2",
+     "name": "image2",
+     "shape": 7,
+     "type": "IMAGE"
+    },
+    {
+     "link": null,
+     "localized_name": "image3",
+     "name": "image3",
+     "shape": 7,
+     "type": "IMAGE"
+    },
+    {
+     "link": null,
+     "localized_name": "prompt",
+     "name": "prompt",
+     "type": "STRING",
+     "widget": {
+      "name": "prompt"
+     }
+    }
+   ],
+   "mode": 0,
+   "order": 14,
+   "outputs": [
+    {
+     "links": [
+      26
+     ],
+     "localized_name": "CONDITIONING",
+     "name": "CONDITIONING",
+     "slot_index": 0,
+     "type": "CONDITIONING"
+    }
+   ],
+   "pos": [
+    1860,
+    492
+   ],
+   "properties": {
+    "Node name for S&R": "TextEncodeQwenImageEditPlus"
+   },
+   "size": [
+    380,
+    200
+   ],
+   "title": "three-quarter negative",
+   "type": "TextEncodeQwenImageEditPlus",
+   "widgets_values": [
+    ""
+   ],
+   "widgets_values_named": {
+    "prompt": ""
+   }
+  },
+  {
+   "bgcolor": "#353",
+   "color": "#232",
+   "flags": {},
+   "id": 202,
+   "inputs": [
+    {
+     "link": 24,
+     "localized_name": "model",
+     "name": "model",
+     "type": "MODEL"
+    },
+    {
+     "link": 25,
+     "localized_name": "positive",
+     "name": "positive",
+     "type": "CONDITIONING"
+    },
+    {
+     "link": 26,
+     "localized_name": "negative",
+     "name": "negative",
+     "type": "CONDITIONING"
+    },
+    {
+     "link": 27,
+     "localized_name": "latent_image",
+     "name": "latent_image",
+     "type": "LATENT"
+    },
+    {
+     "link": null,
+     "localized_name": "seed",
+     "name": "seed",
+     "type": "INT",
+     "widget": {
+      "name": "seed"
+     }
+    },
+    {
+     "link": null,
+     "localized_name": "steps",
+     "name": "steps",
+     "type": "INT",
+     "widget": {
+      "name": "steps"
+     }
+    },
+    {
+     "link": null,
+     "localized_name": "cfg",
+     "name": "cfg",
+     "type": "FLOAT",
+     "widget": {
+      "name": "cfg"
+     }
+    },
+    {
+     "link": null,
+     "localized_name": "sampler_name",
+     "name": "sampler_name",
+     "type": "COMBO",
+     "widget": {
+      "name": "sampler_name"
+     }
+    },
+    {
+     "link": null,
+     "localized_name": "scheduler",
+     "name": "scheduler",
+     "type": "COMBO",
+     "widget": {
+      "name": "scheduler"
+     }
+    },
+    {
+     "link": null,
+     "localized_name": "denoise",
+     "name": "denoise",
+     "type": "FLOAT",
+     "widget": {
+      "name": "denoise"
+     }
+    }
+   ],
+   "mode": 0,
+   "order": 17,
+   "outputs": [
+    {
+     "links": [
+      28
+     ],
+     "localized_name": "LATENT",
+     "name": "LATENT",
+     "slot_index": 0,
+     "type": "LATENT"
+    }
+   ],
+   "pos": [
+    2290,
+    60
+   ],
+   "properties": {
+    "Node name for S&R": "KSampler"
+   },
+   "size": [
+    300,
+    310
+   ],
+   "title": "$seed",
+   "type": "KSampler",
+   "widgets_values": [
+    930000,
+    "fixed",
+    40,
+    3,
+    "euler",
+    "simple",
+    1
+   ],
+   "widgets_values_named": {
+    "cfg": 3,
+    "control_after_generate": "fixed",
+    "denoise": 1,
+    "sampler_name": "euler",
+    "scheduler": "simple",
+    "seed": 930000,
+    "steps": 40
+   }
+  },
+  {
+   "bgcolor": "#353",
+   "color": "#232",
+   "flags": {},
+   "id": 203,
+   "inputs": [
+    {
+     "link": 28,
+     "localized_name": "samples",
+     "name": "samples",
+     "type": "LATENT"
+    },
+    {
+     "link": 29,
+     "localized_name": "vae",
+     "name": "vae",
+     "type": "VAE"
+    }
+   ],
+   "mode": 0,
+   "order": 19,
+   "outputs": [
+    {
+     "links": [
+      30
+     ],
+     "localized_name": "IMAGE",
+     "name": "IMAGE",
+     "slot_index": 0,
+     "type": "IMAGE"
+    }
+   ],
+   "pos": [
+    2640,
+    60
+   ],
+   "properties": {
+    "Node name for S&R": "VAEDecode"
+   },
+   "size": [
+    300,
+    112
+   ],
+   "type": "VAEDecode"
+  },
+  {
+   "bgcolor": "#353",
+   "color": "#232",
+   "flags": {},
+   "id": 204,
+   "inputs": [
+    {
+     "link": 30,
+     "localized_name": "images",
+     "name": "images",
+     "type": "IMAGE"
+    },
+    {
+     "link": null,
+     "localized_name": "filename_prefix",
+     "name": "filename_prefix",
+     "type": "STRING",
+     "widget": {
+      "name": "filename_prefix"
+     }
+    }
+   ],
+   "mode": 0,
+   "order": 21,
+   "outputs": [
+    {
+     "links": null,
+     "localized_name": "images",
+     "name": "images",
+     "slot_index": 0,
+     "type": "IMAGE"
+    }
+   ],
+   "pos": [
+    2990,
+    60
+   ],
+   "properties": {
+    "Node name for S&R": "SaveImage"
+   },
+   "size": [
+    300,
+    112
+   ],
+   "title": "save three-quarter",
+   "type": "SaveImage",
+   "widgets_values": [
+    "kk/sheet_three-quarter"
+   ],
+   "widgets_values_named": {
+    "filename_prefix": "kk/sheet_three-quarter"
+   }
+  },
+  {
+   "bgcolor": "#535",
+   "color": "#323",
+   "flags": {},
+   "id": 300,
+   "inputs": [
+    {
+     "link": 31,
+     "localized_name": "clip",
+     "name": "clip",
+     "type": "CLIP"
+    },
+    {
+     "link": 32,
+     "localized_name": "vae",
+     "name": "vae",
+     "shape": 7,
+     "type": "VAE"
+    },
+    {
+     "link": 33,
+     "localized_name": "image1",
+     "name": "image1",
+     "shape": 7,
+     "type": "IMAGE"
+    },
+    {
+     "link": 34,
+     "localized_name": "image2",
+     "name": "image2",
+     "shape": 7,
+     "type": "IMAGE"
+    },
+    {
+     "link": null,
+     "localized_name": "image3",
+     "name": "image3",
+     "shape": 7,
+     "type": "IMAGE"
+    },
+    {
+     "link": null,
+     "localized_name": "prompt",
+     "name": "prompt",
+     "type": "STRING",
+     "widget": {
+      "name": "prompt"
+     }
+    }
+   ],
+   "mode": 0,
+   "order": 15,
+   "outputs": [
+    {
+     "links": [
+      40
+     ],
+     "localized_name": "CONDITIONING",
+     "name": "CONDITIONING",
+     "slot_index": 0,
+     "type": "CONDITIONING"
+    }
+   ],
+   "pos": [
+    1860,
+    752
+   ],
+   "properties": {
+    "Node name for S&R": "TextEncodeQwenImageEditPlus"
+   },
+   "size": [
+    380,
+    200
+   ],
+   "title": "rear prompt",
+   "type": "TextEncodeQwenImageEditPlus",
+   "widgets_values": [
+    "Full-body character model sheet, rear view: the man from image 2 seen from directly behind, same size, facing away so that only the back of his head, the back of his hat and the back of his shirt are visible, no face visible. Plain back of shirt with the teal panels only on the front. Same pixel art style with a crisp pixel grid and dark outline, plain light grey background, full body from hat to shoes."
+   ],
+   "widgets_values_named": {
+    "prompt": "Full-body character model sheet, rear view: the man from image 2 seen from directly behind, same size, facing away so that only the back of his head, the back of his hat and the back of his shirt are visible, no face visible. Plain back of shirt with the teal panels only on the front. Same pixel art style with a crisp pixel grid and dark outline, plain light grey background, full body from hat to shoes."
+   }
+  },
+  {
+   "bgcolor": "#535",
+   "color": "#323",
+   "flags": {},
+   "id": 301,
+   "inputs": [
+    {
+     "link": 35,
+     "localized_name": "clip",
+     "name": "clip",
+     "type": "CLIP"
+    },
+    {
+     "link": 36,
+     "localized_name": "vae",
+     "name": "vae",
+     "shape": 7,
+     "type": "VAE"
+    },
+    {
+     "link": 37,
+     "localized_name": "image1",
+     "name": "image1",
+     "shape": 7,
+     "type": "IMAGE"
+    },
+    {
+     "link": 38,
+     "localized_name": "image2",
+     "name": "image2",
+     "shape": 7,
+     "type": "IMAGE"
+    },
+    {
+     "link": null,
+     "localized_name": "image3",
+     "name": "image3",
+     "shape": 7,
+     "type": "IMAGE"
+    },
+    {
+     "link": null,
+     "localized_name": "prompt",
+     "name": "prompt",
+     "type": "STRING",
+     "widget": {
+      "name": "prompt"
+     }
+    }
+   ],
+   "mode": 0,
+   "order": 16,
+   "outputs": [
+    {
+     "links": [
+      41
+     ],
+     "localized_name": "CONDITIONING",
+     "name": "CONDITIONING",
+     "slot_index": 0,
+     "type": "CONDITIONING"
+    }
+   ],
+   "pos": [
+    1860,
+    1012
+   ],
+   "properties": {
+    "Node name for S&R": "TextEncodeQwenImageEditPlus"
+   },
+   "size": [
+    380,
+    200
+   ],
+   "title": "rear negative",
+   "type": "TextEncodeQwenImageEditPlus",
+   "widgets_values": [
+    ""
+   ],
+   "widgets_values_named": {
+    "prompt": ""
+   }
+  },
+  {
+   "bgcolor": "#535",
+   "color": "#323",
+   "flags": {},
+   "id": 302,
+   "inputs": [
+    {
+     "link": 39,
+     "localized_name": "model",
+     "name": "model",
+     "type": "MODEL"
+    },
+    {
+     "link": 40,
+     "localized_name": "positive",
+     "name": "positive",
+     "type": "CONDITIONING"
+    },
+    {
+     "link": 41,
+     "localized_name": "negative",
+     "name": "negative",
+     "type": "CONDITIONING"
+    },
+    {
+     "link": 42,
+     "localized_name": "latent_image",
+     "name": "latent_image",
+     "type": "LATENT"
+    },
+    {
+     "link": null,
+     "localized_name": "seed",
+     "name": "seed",
+     "type": "INT",
+     "widget": {
+      "name": "seed"
+     }
+    },
+    {
+     "link": null,
+     "localized_name": "steps",
+     "name": "steps",
+     "type": "INT",
+     "widget": {
+      "name": "steps"
+     }
+    },
+    {
+     "link": null,
+     "localized_name": "cfg",
+     "name": "cfg",
+     "type": "FLOAT",
+     "widget": {
+      "name": "cfg"
+     }
+    },
+    {
+     "link": null,
+     "localized_name": "sampler_name",
+     "name": "sampler_name",
+     "type": "COMBO",
+     "widget": {
+      "name": "sampler_name"
+     }
+    },
+    {
+     "link": null,
+     "localized_name": "scheduler",
+     "name": "scheduler",
+     "type": "COMBO",
+     "widget": {
+      "name": "scheduler"
+     }
+    },
+    {
+     "link": null,
+     "localized_name": "denoise",
+     "name": "denoise",
+     "type": "FLOAT",
+     "widget": {
+      "name": "denoise"
+     }
+    }
+   ],
+   "mode": 0,
+   "order": 18,
+   "outputs": [
+    {
+     "links": [
+      43
+     ],
+     "localized_name": "LATENT",
+     "name": "LATENT",
+     "slot_index": 0,
+     "type": "LATENT"
+    }
+   ],
+   "pos": [
+    2290,
+    430
+   ],
+   "properties": {
+    "Node name for S&R": "KSampler"
+   },
+   "size": [
+    300,
+    310
+   ],
+   "title": "$seed",
+   "type": "KSampler",
+   "widgets_values": [
+    930000,
+    "fixed",
+    40,
+    3,
+    "euler",
+    "simple",
+    1
+   ],
+   "widgets_values_named": {
+    "cfg": 3,
+    "control_after_generate": "fixed",
+    "denoise": 1,
+    "sampler_name": "euler",
+    "scheduler": "simple",
+    "seed": 930000,
+    "steps": 40
+   }
+  },
+  {
+   "bgcolor": "#535",
+   "color": "#323",
+   "flags": {},
+   "id": 303,
+   "inputs": [
+    {
+     "link": 43,
+     "localized_name": "samples",
+     "name": "samples",
+     "type": "LATENT"
+    },
+    {
+     "link": 44,
+     "localized_name": "vae",
+     "name": "vae",
+     "type": "VAE"
+    }
+   ],
+   "mode": 0,
+   "order": 20,
+   "outputs": [
+    {
+     "links": [
+      45
+     ],
+     "localized_name": "IMAGE",
+     "name": "IMAGE",
+     "slot_index": 0,
+     "type": "IMAGE"
+    }
+   ],
+   "pos": [
+    2640,
+    232
+   ],
+   "properties": {
+    "Node name for S&R": "VAEDecode"
+   },
+   "size": [
+    300,
+    112
+   ],
+   "type": "VAEDecode"
+  },
+  {
+   "bgcolor": "#535",
+   "color": "#323",
+   "flags": {},
+   "id": 304,
+   "inputs": [
+    {
+     "link": 45,
+     "localized_name": "images",
+     "name": "images",
+     "type": "IMAGE"
+    },
+    {
+     "link": null,
+     "localized_name": "filename_prefix",
+     "name": "filename_prefix",
+     "type": "STRING",
+     "widget": {
+      "name": "filename_prefix"
+     }
+    }
+   ],
+   "mode": 0,
+   "order": 22,
+   "outputs": [
+    {
+     "links": null,
+     "localized_name": "images",
+     "name": "images",
+     "slot_index": 0,
+     "type": "IMAGE"
+    }
+   ],
+   "pos": [
+    2990,
+    232
+   ],
+   "properties": {
+    "Node name for S&R": "SaveImage"
+   },
+   "size": [
+    300,
+    112
+   ],
+   "title": "save rear",
+   "type": "SaveImage",
+   "widgets_values": [
+    "kk/sheet_rear"
+   ],
+   "widgets_values_named": {
+    "filename_prefix": "kk/sheet_rear"
+   }
+  },
+  {
+   "bgcolor": "#653",
+   "color": "#432",
+   "flags": {},
+   "id": 305,
+   "inputs": [],
+   "mode": 0,
+   "order": 5,
+   "outputs": [],
+   "pos": [
+    0,
+    -290
+   ],
+   "properties": {},
+   "size": [
+    700,
+    250
+   ],
+   "title": "Read me",
+   "type": "MarkdownNote",
+   "widgets_values": [
+    "# Character model sheet\nFront, 3/4 and rear for the owner's acceptance. The 3/4 and rear views take the front result as image 2, so they copy this man, not the older reference.\n\n**Differs from the `image_qwen_image_edit_2511` template:** `FluxKontextMultiReferenceLatentMethod` is refused `node_not_pinned`, so it's left out. It still gives a usable image at 40 steps, CFG 3, `euler`/`simple`, shift 3.1, `CFGNorm` 1.\n\nCrop the accepted views with `stage_parts.py` into `ref_head.png` and `ref_outfit.png` to use them as identity."
+   ],
+   "widgets_values_named": {
+    "text": "# Character model sheet\nFront, 3/4 and rear for the owner's acceptance. The 3/4 and rear views take the front result as image 2, so they copy this man, not the older reference.\n\n**Differs from the `image_qwen_image_edit_2511` template:** `FluxKontextMultiReferenceLatentMethod` is refused `node_not_pinned`, so it's left out. It still gives a usable image at 40 steps, CFG 3, `euler`/`simple`, shift 3.1, `CFGNorm` 1.\n\nCrop the accepted views with `stage_parts.py` into `ref_head.png` and `ref_outfit.png` to use them as identity."
+   }
   }
  ],
- "definitions": {
-  "subgraphs": []
- },
- "config": {},
- "extra": {
-  "kumbia": {
-   "purpose": "front, 3/4 and rear reference sheet"
-  }
- },
  "version": 0.4
 }

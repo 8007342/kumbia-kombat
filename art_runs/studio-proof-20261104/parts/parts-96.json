@@ -1,0 +1,16 @@
+{
+ "part_pixels": {
+  "head": 158,
+  "hat": 211,
+  "shirt": 919,
+  "arms": 179,
+  "legs": 889
+ },
+ "whole_opaque": 2438,
+ "composite_opaque": 2356,
+ "opaque_in_whole_missing_from_parts": 101,
+ "opaque_in_parts_not_in_whole": 19,
+ "double_covered": 0,
+ "same_colour_where_both": 2337,
+ "both": 2337
+}

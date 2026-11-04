@@ -47,7 +47,7 @@
     "4",
     0
    ],
-   "strength": 1.0,
+   "strength": 1,
    "pre_cfg": false
   },
   "class_type": "CFGNorm",
@@ -144,7 +144,7 @@
    ],
    "seed": 930000,
    "steps": 40,
-   "cfg": 3.0,
+   "cfg": 3,
    "sampler_name": "euler",
    "scheduler": "simple",
    "positive": [
@@ -159,7 +159,7 @@
     "8",
     0
    ],
-   "denoise": 1.0
+   "denoise": 1
   },
   "class_type": "KSampler",
   "_meta": {

@@ -53,8 +53,8 @@
    "weight": 0.6,
    "weight_type": "style transfer",
    "combine_embeds": "concat",
-   "start_at": 0.0,
-   "end_at": 1.0,
+   "start_at": 0,
+   "end_at": 1,
    "embeds_scaling": "V only",
    "attn_mask": [
     "56",
@@ -194,9 +194,9 @@
     "14",
     0
    ],
-   "strength": 1.0,
-   "start_percent": 0.0,
-   "end_percent": 1.0,
+   "strength": 1,
+   "start_percent": 0,
+   "end_percent": 1,
    "vae": [
     "1",
     2
@@ -226,7 +226,7 @@
     0
    ],
    "strength": 0.6,
-   "start_percent": 0.0,
+   "start_percent": 0,
    "end_percent": 0.5,
    "vae": [
     "1",
@@ -257,7 +257,7 @@
     0
    ],
    "strength": 0.4,
-   "start_percent": 0.0,
+   "start_percent": 0,
    "end_percent": 0.75,
    "vae": [
     "1",
@@ -302,7 +302,7 @@
    ],
    "seed": 930000,
    "steps": 28,
-   "cfg": 6.0,
+   "cfg": 6,
    "sampler_name": "dpmpp_2m",
    "scheduler": "karras",
    "positive": [
@@ -478,7 +478,7 @@
    ],
    "interpolation": "LANCZOS",
    "crop_position": "center",
-   "sharpening": 0.0
+   "sharpening": 0
   },
   "class_type": "PrepImageForClipVision",
   "_meta": {
@@ -493,7 +493,7 @@
    ],
    "interpolation": "LANCZOS",
    "crop_position": "center",
-   "sharpening": 0.0
+   "sharpening": 0
   },
   "class_type": "PrepImageForClipVision",
   "_meta": {
@@ -543,8 +543,8 @@
    "weight": 0.6,
    "weight_type": "style transfer",
    "combine_embeds": "concat",
-   "start_at": 0.0,
-   "end_at": 1.0,
+   "start_at": 0,
+   "end_at": 1,
    "embeds_scaling": "V only",
    "attn_mask": [
     "57",
@@ -606,7 +606,7 @@
     0
    ],
    "blur_radius": 9,
-   "sigma": 3.0
+   "sigma": 3
   },
   "class_type": "ImageBlur",
   "_meta": {
@@ -671,7 +671,7 @@
     0
    ],
    "strength": 0.5,
-   "start_percent": 0.0,
+   "start_percent": 0,
    "end_percent": 0.7,
    "vae": [
     "1",
@@ -723,7 +723,7 @@
    ],
    "seed": 930000,
    "steps": 24,
-   "cfg": 6.0,
+   "cfg": 6,
    "sampler_name": "dpmpp_2m",
    "scheduler": "karras",
    "positive": [
@@ -880,7 +880,7 @@
     0
    ],
    "blur_radius": 9,
-   "sigma": 3.0
+   "sigma": 3
   },
   "class_type": "ImageBlur",
   "_meta": {
@@ -945,7 +945,7 @@
     0
    ],
    "strength": 0.5,
-   "start_percent": 0.0,
+   "start_percent": 0,
    "end_percent": 0.7,
    "vae": [
     "1",
@@ -997,7 +997,7 @@
    ],
    "seed": 930000,
    "steps": 24,
-   "cfg": 6.0,
+   "cfg": 6,
    "sampler_name": "dpmpp_2m",
    "scheduler": "karras",
    "positive": [
@@ -1302,7 +1302,7 @@
     0
    ],
    "blur_radius": 15,
-   "sigma": 5.0
+   "sigma": 5
   },
   "class_type": "ImageBlur",
   "_meta": {
@@ -1386,7 +1386,7 @@
     0
    ],
    "strength": 0.25,
-   "start_percent": 0.0,
+   "start_percent": 0,
    "end_percent": 0.6,
    "vae": [
     "1",
@@ -1417,7 +1417,7 @@
     0
    ],
    "strength": 0.4,
-   "start_percent": 0.0,
+   "start_percent": 0,
    "end_percent": 0.5,
    "vae": [
     "1",
@@ -1469,7 +1469,7 @@
    ],
    "seed": 930000,
    "steps": 24,
-   "cfg": 6.0,
+   "cfg": 6,
    "sampler_name": "dpmpp_2m",
    "scheduler": "karras",
    "positive": [
@@ -1686,7 +1686,7 @@
     0
    ],
    "blur_radius": 5,
-   "sigma": 2.0
+   "sigma": 2
   },
   "class_type": "ImageBlur",
   "_meta": {
@@ -1763,7 +1763,7 @@
     0
    ],
    "strength": 0.7,
-   "start_percent": 0.0,
+   "start_percent": 0,
    "end_percent": 0.7,
    "vae": [
     "1",
@@ -2031,7 +2031,7 @@
     0
    ],
    "blur_radius": 5,
-   "sigma": 2.0
+   "sigma": 2
   },
   "class_type": "ImageBlur",
   "_meta": {
@@ -2128,7 +2128,7 @@
     0
    ],
    "strength": 0.6,
-   "start_percent": 0.0,
+   "start_percent": 0,
    "end_percent": 0.8,
    "vae": [
     "1",
@@ -2180,7 +2180,7 @@
    ],
    "seed": 930000,
    "steps": 24,
-   "cfg": 6.0,
+   "cfg": 6,
    "sampler_name": "dpmpp_2m",
    "scheduler": "karras",
    "positive": [

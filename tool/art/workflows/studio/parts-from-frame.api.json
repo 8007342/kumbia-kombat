@@ -1,0 +1,326 @@
+{
+ "1": {
+  "inputs": {
+   "image": "$frame"
+  },
+  "class_type": "LoadImage",
+  "_meta": {
+   "title": "$frame"
+  }
+ },
+ "10": {
+  "inputs": {
+   "image": "$mask_head"
+  },
+  "class_type": "LoadImage",
+  "_meta": {
+   "title": "$mask_head"
+  }
+ },
+ "11": {
+  "inputs": {
+   "image": [
+    "10",
+    0
+   ],
+   "channel": "red"
+  },
+  "class_type": "ImageToMask",
+  "_meta": {
+   "title": "Convert Image to Mask"
+  }
+ },
+ "12": {
+  "inputs": {
+   "mask": [
+    "11",
+    0
+   ]
+  },
+  "class_type": "InvertMask",
+  "_meta": {
+   "title": "alpha convention: 1 = transparent"
+  }
+ },
+ "13": {
+  "inputs": {
+   "image": [
+    "1",
+    0
+   ],
+   "alpha": [
+    "12",
+    0
+   ]
+  },
+  "class_type": "JoinImageWithAlpha",
+  "_meta": {
+   "title": "Join Image with Alpha"
+  }
+ },
+ "14": {
+  "inputs": {
+   "images": [
+    "13",
+    0
+   ],
+   "filename_prefix": "kk/part_head"
+  },
+  "class_type": "SaveImage",
+  "_meta": {
+   "title": "save head"
+  }
+ },
+ "20": {
+  "inputs": {
+   "image": "$mask_hat"
+  },
+  "class_type": "LoadImage",
+  "_meta": {
+   "title": "$mask_hat"
+  }
+ },
+ "21": {
+  "inputs": {
+   "image": [
+    "20",
+    0
+   ],
+   "channel": "red"
+  },
+  "class_type": "ImageToMask",
+  "_meta": {
+   "title": "Convert Image to Mask"
+  }
+ },
+ "22": {
+  "inputs": {
+   "mask": [
+    "21",
+    0
+   ]
+  },
+  "class_type": "InvertMask",
+  "_meta": {
+   "title": "alpha convention: 1 = transparent"
+  }
+ },
+ "23": {
+  "inputs": {
+   "image": [
+    "1",
+    0
+   ],
+   "alpha": [
+    "22",
+    0
+   ]
+  },
+  "class_type": "JoinImageWithAlpha",
+  "_meta": {
+   "title": "Join Image with Alpha"
+  }
+ },
+ "24": {
+  "inputs": {
+   "images": [
+    "23",
+    0
+   ],
+   "filename_prefix": "kk/part_hat"
+  },
+  "class_type": "SaveImage",
+  "_meta": {
+   "title": "save hat"
+  }
+ },
+ "30": {
+  "inputs": {
+   "image": "$mask_shirt"
+  },
+  "class_type": "LoadImage",
+  "_meta": {
+   "title": "$mask_shirt"
+  }
+ },
+ "31": {
+  "inputs": {
+   "image": [
+    "30",
+    0
+   ],
+   "channel": "red"
+  },
+  "class_type": "ImageToMask",
+  "_meta": {
+   "title": "Convert Image to Mask"
+  }
+ },
+ "32": {
+  "inputs": {
+   "mask": [
+    "31",
+    0
+   ]
+  },
+  "class_type": "InvertMask",
+  "_meta": {
+   "title": "alpha convention: 1 = transparent"
+  }
+ },
+ "33": {
+  "inputs": {
+   "image": [
+    "1",
+    0
+   ],
+   "alpha": [
+    "32",
+    0
+   ]
+  },
+  "class_type": "JoinImageWithAlpha",
+  "_meta": {
+   "title": "Join Image with Alpha"
+  }
+ },
+ "34": {
+  "inputs": {
+   "images": [
+    "33",
+    0
+   ],
+   "filename_prefix": "kk/part_shirt"
+  },
+  "class_type": "SaveImage",
+  "_meta": {
+   "title": "save shirt"
+  }
+ },
+ "40": {
+  "inputs": {
+   "image": "$mask_arms"
+  },
+  "class_type": "LoadImage",
+  "_meta": {
+   "title": "$mask_arms"
+  }
+ },
+ "41": {
+  "inputs": {
+   "image": [
+    "40",
+    0
+   ],
+   "channel": "red"
+  },
+  "class_type": "ImageToMask",
+  "_meta": {
+   "title": "Convert Image to Mask"
+  }
+ },
+ "42": {
+  "inputs": {
+   "mask": [
+    "41",
+    0
+   ]
+  },
+  "class_type": "InvertMask",
+  "_meta": {
+   "title": "alpha convention: 1 = transparent"
+  }
+ },
+ "43": {
+  "inputs": {
+   "image": [
+    "1",
+    0
+   ],
+   "alpha": [
+    "42",
+    0
+   ]
+  },
+  "class_type": "JoinImageWithAlpha",
+  "_meta": {
+   "title": "Join Image with Alpha"
+  }
+ },
+ "44": {
+  "inputs": {
+   "images": [
+    "43",
+    0
+   ],
+   "filename_prefix": "kk/part_arms"
+  },
+  "class_type": "SaveImage",
+  "_meta": {
+   "title": "save arms"
+  }
+ },
+ "50": {
+  "inputs": {
+   "image": "$mask_legs"
+  },
+  "class_type": "LoadImage",
+  "_meta": {
+   "title": "$mask_legs"
+  }
+ },
+ "51": {
+  "inputs": {
+   "image": [
+    "50",
+    0
+   ],
+   "channel": "red"
+  },
+  "class_type": "ImageToMask",
+  "_meta": {
+   "title": "Convert Image to Mask"
+  }
+ },
+ "52": {
+  "inputs": {
+   "mask": [
+    "51",
+    0
+   ]
+  },
+  "class_type": "InvertMask",
+  "_meta": {
+   "title": "alpha convention: 1 = transparent"
+  }
+ },
+ "53": {
+  "inputs": {
+   "image": [
+    "1",
+    0
+   ],
+   "alpha": [
+    "52",
+    0
+   ]
+  },
+  "class_type": "JoinImageWithAlpha",
+  "_meta": {
+   "title": "Join Image with Alpha"
+  }
+ },
+ "54": {
+  "inputs": {
+   "images": [
+    "53",
+    0
+   ],
+   "filename_prefix": "kk/part_legs"
+  },
+  "class_type": "SaveImage",
+  "_meta": {
+   "title": "save legs"
+  }
+ }
+}

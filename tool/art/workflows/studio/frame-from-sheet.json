@@ -1,810 +1,28 @@
 {
- "id": "00000000-0000-4000-8000-000000000000",
- "revision": 0,
- "last_node_id": 15,
- "last_link_id": 17,
- "nodes": [
+ "config": {},
+ "extra": {
+  "kumbia": {
+   "purpose": "one frame from the model sheet and a rig pose, experiment"
+  }
+ },
+ "groups": [
   {
+   "bounding": [
+    0,
+    0,
+    2230,
+    1538
+   ],
+   "color": "#3f5d9e",
+   "flags": {},
+   "font_size": 24,
    "id": 1,
-   "type": "LoadImage",
-   "pos": [
-    -40,
-    60
-   ],
-   "size": [
-    260,
-    134
-   ],
-   "flags": {},
-   "order": 0,
-   "mode": 0,
-   "inputs": [
-    {
-     "name": "image",
-     "type": "COMBO",
-     "widget": {
-      "name": "image"
-     },
-     "link": null
-    }
-   ],
-   "outputs": [
-    {
-     "name": "IMAGE",
-     "type": "IMAGE",
-     "links": [
-      5,
-      9
-     ],
-     "slot_index": 0
-    },
-    {
-     "name": "MASK",
-     "type": "MASK",
-     "links": null,
-     "slot_index": 1
-    }
-   ],
-   "properties": {
-    "Node name for S&R": "LoadImage"
-   },
-   "widgets_values": [
-    "sheet_front.png",
-    "image"
-   ],
-   "title": "$sheet_front",
-   "color": "#233",
-   "bgcolor": "#355"
-  },
-  {
-   "id": 2,
-   "type": "LoadImage",
-   "pos": [
-    -40,
-    400
-   ],
-   "size": [
-    260,
-    134
-   ],
-   "flags": {},
-   "order": 1,
-   "mode": 0,
-   "inputs": [
-    {
-     "name": "image",
-     "type": "COMBO",
-     "widget": {
-      "name": "image"
-     },
-     "link": null
-    }
-   ],
-   "outputs": [
-    {
-     "name": "IMAGE",
-     "type": "IMAGE",
-     "links": [
-      6,
-      10
-     ],
-     "slot_index": 0
-    },
-    {
-     "name": "MASK",
-     "type": "MASK",
-     "links": null,
-     "slot_index": 1
-    }
-   ],
-   "properties": {
-    "Node name for S&R": "LoadImage"
-   },
-   "widgets_values": [
-    "groove.down_l.proxy.png",
-    "image"
-   ],
-   "title": "$pose_proxy",
-   "color": "#233",
-   "bgcolor": "#355"
-  },
-  {
-   "id": 3,
-   "type": "UNETLoader",
-   "pos": [
-    300,
-    60
-   ],
-   "size": [
-    300,
-    112
-   ],
-   "flags": {},
-   "order": 2,
-   "mode": 0,
-   "inputs": [
-    {
-     "name": "unet_name",
-     "type": "COMBO",
-     "widget": {
-      "name": "unet_name"
-     },
-     "link": null
-    },
-    {
-     "name": "weight_dtype",
-     "type": "COMBO",
-     "widget": {
-      "name": "weight_dtype"
-     },
-     "link": null
-    }
-   ],
-   "outputs": [
-    {
-     "name": "MODEL",
-     "type": "MODEL",
-     "links": [
-      1
-     ],
-     "slot_index": 0
-    }
-   ],
-   "properties": {
-    "Node name for S&R": "UNETLoader"
-   },
-   "widgets_values": [
-    "qwen_image_edit_2511_fp8mixed.safetensors",
-    "default"
-   ],
-   "color": "#222",
-   "bgcolor": "#333"
-  },
-  {
-   "id": 4,
-   "type": "ModelSamplingAuraFlow",
-   "pos": [
-    300,
-    190
-   ],
-   "size": [
-    300,
-    134
-   ],
-   "flags": {},
-   "order": 3,
-   "mode": 0,
-   "inputs": [
-    {
-     "name": "model",
-     "type": "MODEL",
-     "link": 1
-    },
-    {
-     "name": "shift",
-     "type": "FLOAT",
-     "widget": {
-      "name": "shift"
-     },
-     "link": null
-    },
-    {
-     "name": "sampling",
-     "type": "COMBO",
-     "widget": {
-      "name": "sampling"
-     },
-     "link": null
-    }
-   ],
-   "outputs": [
-    {
-     "name": "MODEL",
-     "type": "MODEL",
-     "links": [
-      2
-     ],
-     "slot_index": 0
-    }
-   ],
-   "properties": {
-    "Node name for S&R": "ModelSamplingAuraFlow"
-   },
-   "widgets_values": [
-    3.1,
-    "flow"
-   ],
-   "color": "#222",
-   "bgcolor": "#333"
-  },
-  {
-   "id": 5,
-   "type": "CFGNorm",
-   "pos": [
-    300,
-    310
-   ],
-   "size": [
-    300,
-    134
-   ],
-   "flags": {},
-   "order": 4,
-   "mode": 0,
-   "inputs": [
-    {
-     "name": "model",
-     "type": "MODEL",
-     "link": 2
-    },
-    {
-     "name": "strength",
-     "type": "FLOAT",
-     "widget": {
-      "name": "strength"
-     },
-     "link": null
-    },
-    {
-     "name": "pre_cfg",
-     "type": "BOOLEAN",
-     "widget": {
-      "name": "pre_cfg"
-     },
-     "link": null
-    }
-   ],
-   "outputs": [
-    {
-     "name": "patched_model",
-     "type": "MODEL",
-     "links": [
-      11
-     ],
-     "slot_index": 0
-    }
-   ],
-   "properties": {
-    "Node name for S&R": "CFGNorm"
-   },
-   "widgets_values": [
-    1.0,
-    false
-   ],
-   "color": "#222",
-   "bgcolor": "#333"
-  },
-  {
-   "id": 6,
-   "type": "CLIPLoader",
-   "pos": [
-    300,
-    450
-   ],
-   "size": [
-    300,
-    134
-   ],
-   "flags": {},
-   "order": 5,
-   "mode": 0,
-   "inputs": [
-    {
-     "name": "clip_name",
-     "type": "COMBO",
-     "widget": {
-      "name": "clip_name"
-     },
-     "link": null
-    },
-    {
-     "name": "type",
-     "type": "COMBO",
-     "widget": {
-      "name": "type"
-     },
-     "link": null
-    },
-    {
-     "name": "device",
-     "type": "COMBO",
-     "widget": {
-      "name": "device"
-     },
-     "link": null
-    }
-   ],
-   "outputs": [
-    {
-     "name": "CLIP",
-     "type": "CLIP",
-     "links": [
-      3,
-      7
-     ],
-     "slot_index": 0
-    }
-   ],
-   "properties": {
-    "Node name for S&R": "CLIPLoader"
-   },
-   "widgets_values": [
-    "qwen_2.5_vl_7b_fp8_scaled.safetensors",
-    "qwen_image",
-    "default"
-   ],
-   "color": "#222",
-   "bgcolor": "#333"
-  },
-  {
-   "id": 7,
-   "type": "VAELoader",
-   "pos": [
-    300,
-    600
-   ],
-   "size": [
-    300,
-    90
-   ],
-   "flags": {},
-   "order": 6,
-   "mode": 0,
-   "inputs": [
-    {
-     "name": "vae_name",
-     "type": "COMBO",
-     "widget": {
-      "name": "vae_name"
-     },
-     "link": null
-    }
-   ],
-   "outputs": [
-    {
-     "name": "VAE",
-     "type": "VAE",
-     "links": [
-      4,
-      8,
-      16
-     ],
-     "slot_index": 0
-    }
-   ],
-   "properties": {
-    "Node name for S&R": "VAELoader"
-   },
-   "widgets_values": [
-    "qwen_image_vae.safetensors"
-   ],
-   "color": "#222",
-   "bgcolor": "#333"
-  },
-  {
-   "id": 8,
-   "type": "EmptyLatentImage",
-   "pos": [
-    300,
-    700
-   ],
-   "size": [
-    300,
-    134
-   ],
-   "flags": {},
-   "order": 7,
-   "mode": 0,
-   "inputs": [
-    {
-     "name": "width",
-     "type": "INT",
-     "widget": {
-      "name": "width"
-     },
-     "link": null
-    },
-    {
-     "name": "height",
-     "type": "INT",
-     "widget": {
-      "name": "height"
-     },
-     "link": null
-    },
-    {
-     "name": "batch_size",
-     "type": "INT",
-     "widget": {
-      "name": "batch_size"
-     },
-     "link": null
-    }
-   ],
-   "outputs": [
-    {
-     "name": "LATENT",
-     "type": "LATENT",
-     "links": [
-      14
-     ],
-     "slot_index": 0
-    }
-   ],
-   "properties": {
-    "Node name for S&R": "EmptyLatentImage"
-   },
-   "widgets_values": [
-    768,
-    960,
-    1
-   ],
-   "color": "#222",
-   "bgcolor": "#333"
-  },
-  {
-   "id": 10,
-   "type": "TextEncodeQwenImageEditPlus",
-   "pos": [
-    680,
-    60
-   ],
-   "size": [
-    400,
-    200
-   ],
-   "flags": {},
-   "order": 8,
-   "mode": 0,
-   "inputs": [
-    {
-     "name": "clip",
-     "type": "CLIP",
-     "link": 3
-    },
-    {
-     "name": "prompt",
-     "type": "STRING",
-     "widget": {
-      "name": "prompt"
-     },
-     "link": null
-    },
-    {
-     "name": "vae",
-     "type": "VAE",
-     "link": 4
-    },
-    {
-     "name": "image1",
-     "type": "IMAGE",
-     "link": 5
-    },
-    {
-     "name": "image2",
-     "type": "IMAGE",
-     "link": 6
-    },
-    {
-     "name": "image3",
-     "type": "IMAGE",
-     "link": null
-    }
-   ],
-   "outputs": [
-    {
-     "name": "CONDITIONING",
-     "type": "CONDITIONING",
-     "links": [
-      12
-     ],
-     "slot_index": 0
-    }
-   ],
-   "properties": {
-    "Node name for S&R": "TextEncodeQwenImageEditPlus"
-   },
-   "widgets_values": [
-    "Redraw the man from image 1 in exactly the pose, position, size and proportions of the flat figure in image 2. Keep his face, panama hat, purple guayabera with its teal embroidered panels, cream trousers and teal shoes exactly as in image 1. Same pixel art style with a crisp pixel grid and dark outline. Clean-shaven with a thin pencil mustache, closed mouth. Plain light grey background, full body."
-   ],
-   "title": "$prompt",
-   "color": "#232",
-   "bgcolor": "#353"
-  },
-  {
-   "id": 11,
-   "type": "TextEncodeQwenImageEditPlus",
-   "pos": [
-    680,
-    380
-   ],
-   "size": [
-    400,
-    200
-   ],
-   "flags": {},
-   "order": 9,
-   "mode": 0,
-   "inputs": [
-    {
-     "name": "clip",
-     "type": "CLIP",
-     "link": 7
-    },
-    {
-     "name": "prompt",
-     "type": "STRING",
-     "widget": {
-      "name": "prompt"
-     },
-     "link": null
-    },
-    {
-     "name": "vae",
-     "type": "VAE",
-     "link": 8
-    },
-    {
-     "name": "image1",
-     "type": "IMAGE",
-     "link": 9
-    },
-    {
-     "name": "image2",
-     "type": "IMAGE",
-     "link": 10
-    },
-    {
-     "name": "image3",
-     "type": "IMAGE",
-     "link": null
-    }
-   ],
-   "outputs": [
-    {
-     "name": "CONDITIONING",
-     "type": "CONDITIONING",
-     "links": [
-      13
-     ],
-     "slot_index": 0
-    }
-   ],
-   "properties": {
-    "Node name for S&R": "TextEncodeQwenImageEditPlus"
-   },
-   "widgets_values": [
-    ""
-   ],
-   "title": "negative",
-   "color": "#232",
-   "bgcolor": "#353"
-  },
-  {
-   "id": 12,
-   "type": "KSampler",
-   "pos": [
-    1120,
-    60
-   ],
-   "size": [
-    300,
-    310
-   ],
-   "flags": {},
-   "order": 10,
-   "mode": 0,
-   "inputs": [
-    {
-     "name": "model",
-     "type": "MODEL",
-     "link": 11
-    },
-    {
-     "name": "seed",
-     "type": "INT",
-     "widget": {
-      "name": "seed"
-     },
-     "link": null
-    },
-    {
-     "name": "steps",
-     "type": "INT",
-     "widget": {
-      "name": "steps"
-     },
-     "link": null
-    },
-    {
-     "name": "cfg",
-     "type": "FLOAT",
-     "widget": {
-      "name": "cfg"
-     },
-     "link": null
-    },
-    {
-     "name": "sampler_name",
-     "type": "COMBO",
-     "widget": {
-      "name": "sampler_name"
-     },
-     "link": null
-    },
-    {
-     "name": "scheduler",
-     "type": "COMBO",
-     "widget": {
-      "name": "scheduler"
-     },
-     "link": null
-    },
-    {
-     "name": "positive",
-     "type": "CONDITIONING",
-     "link": 12
-    },
-    {
-     "name": "negative",
-     "type": "CONDITIONING",
-     "link": 13
-    },
-    {
-     "name": "latent_image",
-     "type": "LATENT",
-     "link": 14
-    },
-    {
-     "name": "denoise",
-     "type": "FLOAT",
-     "widget": {
-      "name": "denoise"
-     },
-     "link": null
-    }
-   ],
-   "outputs": [
-    {
-     "name": "LATENT",
-     "type": "LATENT",
-     "links": [
-      15
-     ],
-     "slot_index": 0
-    }
-   ],
-   "properties": {
-    "Node name for S&R": "KSampler"
-   },
-   "widgets_values": [
-    930000,
-    "fixed",
-    40,
-    3.0,
-    "euler",
-    "simple",
-    1.0
-   ],
-   "title": "$seed",
-   "color": "#232",
-   "bgcolor": "#353"
-  },
-  {
-   "id": 13,
-   "type": "VAEDecode",
-   "pos": [
-    1120,
-    400
-   ],
-   "size": [
-    300,
-    112
-   ],
-   "flags": {},
-   "order": 11,
-   "mode": 0,
-   "inputs": [
-    {
-     "name": "samples",
-     "type": "LATENT",
-     "link": 15
-    },
-    {
-     "name": "vae",
-     "type": "VAE",
-     "link": 16
-    }
-   ],
-   "outputs": [
-    {
-     "name": "IMAGE",
-     "type": "IMAGE",
-     "links": [
-      17
-     ],
-     "slot_index": 0
-    }
-   ],
-   "properties": {
-    "Node name for S&R": "VAEDecode"
-   },
-   "widgets_values": [],
-   "color": "#232",
-   "bgcolor": "#353"
-  },
-  {
-   "id": 14,
-   "type": "SaveImage",
-   "pos": [
-    1120,
-    500
-   ],
-   "size": [
-    300,
-    112
-   ],
-   "flags": {},
-   "order": 12,
-   "mode": 0,
-   "inputs": [
-    {
-     "name": "images",
-     "type": "IMAGE",
-     "link": 17
-    },
-    {
-     "name": "filename_prefix",
-     "type": "STRING",
-     "widget": {
-      "name": "filename_prefix"
-     },
-     "link": null
-    }
-   ],
-   "outputs": [
-    {
-     "name": "images",
-     "type": "IMAGE",
-     "links": null,
-     "slot_index": 0
-    }
-   ],
-   "properties": {
-    "Node name for S&R": "SaveImage"
-   },
-   "widgets_values": [
-    "kk/qframe"
-   ],
-   "title": "save frame",
-   "color": "#232",
-   "bgcolor": "#353"
-  },
-  {
-   "id": 15,
-   "type": "MarkdownNote",
-   "title": "Read me",
-   "pos": [
-    -60,
-    -270
-   ],
-   "size": [
-    700,
-    220
-   ],
-   "flags": {},
-   "order": 13,
-   "mode": 0,
-   "inputs": [],
-   "outputs": [],
-   "properties": {},
-   "widgets_values": [
-    "# Frame from the sheet, edit model\nDraws the accepted front view in a rig pose. An experiment beside `frame-multipass`, not a replacement: it takes minutes per frame, and pose accuracy is judged against the rig.\n\nSame template difference as `model-sheet`: `FluxKontextMultiReferenceLatentMethod` is refused."
-   ],
-   "color": "#432",
-   "bgcolor": "#653"
+   "title": "Sheet and rig pose to frame (experiment)"
   }
  ],
+ "id": "00000000-0000-4000-8000-000000000000",
+ "last_link_id": 17,
+ "last_node_id": 15,
  "links": [
   [
    1,
@@ -831,30 +49,6 @@
    "CLIP"
   ],
   [
-   4,
-   7,
-   0,
-   10,
-   2,
-   "VAE"
-  ],
-  [
-   5,
-   1,
-   0,
-   10,
-   3,
-   "IMAGE"
-  ],
-  [
-   6,
-   2,
-   0,
-   10,
-   4,
-   "IMAGE"
-  ],
-  [
    7,
    6,
    0,
@@ -863,60 +57,12 @@
    "CLIP"
   ],
   [
-   8,
-   7,
-   0,
-   11,
-   2,
-   "VAE"
-  ],
-  [
-   9,
-   1,
-   0,
-   11,
-   3,
-   "IMAGE"
-  ],
-  [
-   10,
-   2,
-   0,
-   11,
-   4,
-   "IMAGE"
-  ],
-  [
    11,
    5,
    0,
    12,
    0,
    "MODEL"
-  ],
-  [
-   12,
-   10,
-   0,
-   12,
-   6,
-   "CONDITIONING"
-  ],
-  [
-   13,
-   11,
-   0,
-   12,
-   7,
-   "CONDITIONING"
-  ],
-  [
-   14,
-   8,
-   0,
-   12,
-   8,
-   "LATENT"
   ],
   [
    15,
@@ -941,44 +87,1021 @@
    14,
    0,
    "IMAGE"
+  ],
+  [
+   4,
+   7,
+   0,
+   10,
+   1,
+   "VAE"
+  ],
+  [
+   5,
+   1,
+   0,
+   10,
+   2,
+   "IMAGE"
+  ],
+  [
+   6,
+   2,
+   0,
+   10,
+   3,
+   "IMAGE"
+  ],
+  [
+   8,
+   7,
+   0,
+   11,
+   1,
+   "VAE"
+  ],
+  [
+   9,
+   1,
+   0,
+   11,
+   2,
+   "IMAGE"
+  ],
+  [
+   10,
+   2,
+   0,
+   11,
+   3,
+   "IMAGE"
+  ],
+  [
+   12,
+   10,
+   0,
+   12,
+   1,
+   "CONDITIONING"
+  ],
+  [
+   13,
+   11,
+   0,
+   12,
+   2,
+   "CONDITIONING"
+  ],
+  [
+   14,
+   8,
+   0,
+   12,
+   3,
+   "LATENT"
   ]
  ],
- "groups": [
+ "nodes": [
   {
+   "bgcolor": "#355",
+   "color": "#233",
+   "flags": {},
    "id": 1,
-   "title": "Reference, rig pose and models",
-   "bounding": [
-    -60,
-    -10,
-    700,
-    880
+   "inputs": [
+    {
+     "link": null,
+     "localized_name": "image",
+     "name": "image",
+     "type": "COMBO",
+     "widget": {
+      "name": "image"
+     }
+    },
+    {
+     "link": null,
+     "localized_name": "choose file to upload",
+     "name": "upload",
+     "type": "IMAGEUPLOAD",
+     "widget": {
+      "name": "upload"
+     }
+    }
    ],
-   "color": "#444",
-   "font_size": 24,
-   "flags": {}
+   "mode": 0,
+   "order": 0,
+   "outputs": [
+    {
+     "links": [
+      5,
+      9
+     ],
+     "localized_name": "IMAGE",
+     "name": "IMAGE",
+     "slot_index": 0,
+     "type": "IMAGE"
+    },
+    {
+     "links": null,
+     "localized_name": "MASK",
+     "name": "MASK",
+     "slot_index": 1,
+     "type": "MASK"
+    }
+   ],
+   "pos": [
+    30,
+    60
+   ],
+   "properties": {
+    "Node name for S&R": "LoadImage"
+   },
+   "size": [
+    260,
+    314
+   ],
+   "title": "$sheet_front",
+   "type": "LoadImage",
+   "widgets_values": [
+    "sheet_front.png",
+    "image"
+   ],
+   "widgets_values_named": {
+    "image": "sheet_front.png",
+    "upload": "image"
+   }
   },
   {
+   "bgcolor": "#355",
+   "color": "#233",
+   "flags": {},
    "id": 2,
-   "title": "Edit model: draw the sheet in the rig pose",
-   "bounding": [
-    660,
-    -10,
-    800,
-    880
+   "inputs": [
+    {
+     "link": null,
+     "localized_name": "image",
+     "name": "image",
+     "type": "COMBO",
+     "widget": {
+      "name": "image"
+     }
+    },
+    {
+     "link": null,
+     "localized_name": "choose file to upload",
+     "name": "upload",
+     "type": "IMAGEUPLOAD",
+     "widget": {
+      "name": "upload"
+     }
+    }
    ],
-   "color": "#3f9e5d",
-   "font_size": 24,
-   "flags": {}
+   "mode": 0,
+   "order": 1,
+   "outputs": [
+    {
+     "links": [
+      6,
+      10
+     ],
+     "localized_name": "IMAGE",
+     "name": "IMAGE",
+     "slot_index": 0,
+     "type": "IMAGE"
+    },
+    {
+     "links": null,
+     "localized_name": "MASK",
+     "name": "MASK",
+     "slot_index": 1,
+     "type": "MASK"
+    }
+   ],
+   "pos": [
+    30,
+    434
+   ],
+   "properties": {
+    "Node name for S&R": "LoadImage"
+   },
+   "size": [
+    260,
+    314
+   ],
+   "title": "$pose_proxy",
+   "type": "LoadImage",
+   "widgets_values": [
+    "groove.down_l.proxy.png",
+    "image"
+   ],
+   "widgets_values_named": {
+    "image": "groove.down_l.proxy.png",
+    "upload": "image"
+   }
+  },
+  {
+   "bgcolor": "#333",
+   "color": "#222",
+   "flags": {},
+   "id": 3,
+   "inputs": [
+    {
+     "link": null,
+     "localized_name": "unet_name",
+     "name": "unet_name",
+     "type": "COMBO",
+     "widget": {
+      "name": "unet_name"
+     }
+    },
+    {
+     "link": null,
+     "localized_name": "weight_dtype",
+     "name": "weight_dtype",
+     "type": "COMBO",
+     "widget": {
+      "name": "weight_dtype"
+     }
+    }
+   ],
+   "mode": 0,
+   "order": 2,
+   "outputs": [
+    {
+     "links": [
+      1
+     ],
+     "localized_name": "MODEL",
+     "name": "MODEL",
+     "slot_index": 0,
+     "type": "MODEL"
+    }
+   ],
+   "pos": [
+    30,
+    808
+   ],
+   "properties": {
+    "Node name for S&R": "UNETLoader"
+   },
+   "size": [
+    300,
+    112
+   ],
+   "type": "UNETLoader",
+   "widgets_values": [
+    "qwen_image_edit_2511_fp8mixed.safetensors",
+    "default"
+   ],
+   "widgets_values_named": {
+    "unet_name": "qwen_image_edit_2511_fp8mixed.safetensors",
+    "weight_dtype": "default"
+   }
+  },
+  {
+   "bgcolor": "#333",
+   "color": "#222",
+   "flags": {},
+   "id": 4,
+   "inputs": [
+    {
+     "link": 1,
+     "localized_name": "model",
+     "name": "model",
+     "type": "MODEL"
+    },
+    {
+     "link": null,
+     "localized_name": "shift",
+     "name": "shift",
+     "type": "FLOAT",
+     "widget": {
+      "name": "shift"
+     }
+    },
+    {
+     "link": null,
+     "localized_name": "sampling",
+     "name": "sampling",
+     "shape": 7,
+     "type": "COMBO",
+     "widget": {
+      "name": "sampling"
+     }
+    }
+   ],
+   "mode": 0,
+   "order": 7,
+   "outputs": [
+    {
+     "links": [
+      2
+     ],
+     "localized_name": "MODEL",
+     "name": "MODEL",
+     "slot_index": 0,
+     "type": "MODEL"
+    }
+   ],
+   "pos": [
+    380,
+    60
+   ],
+   "properties": {
+    "Node name for S&R": "ModelSamplingAuraFlow"
+   },
+   "size": [
+    300,
+    134
+   ],
+   "type": "ModelSamplingAuraFlow",
+   "widgets_values": [
+    3.1,
+    "flow"
+   ],
+   "widgets_values_named": {
+    "sampling": "flow",
+    "shift": 3.1
+   }
+  },
+  {
+   "bgcolor": "#333",
+   "color": "#222",
+   "flags": {},
+   "id": 5,
+   "inputs": [
+    {
+     "link": 2,
+     "localized_name": "model",
+     "name": "model",
+     "type": "MODEL"
+    },
+    {
+     "link": null,
+     "localized_name": "strength",
+     "name": "strength",
+     "type": "FLOAT",
+     "widget": {
+      "name": "strength"
+     }
+    },
+    {
+     "link": null,
+     "localized_name": "pre_cfg",
+     "name": "pre_cfg",
+     "shape": 7,
+     "type": "BOOLEAN",
+     "widget": {
+      "name": "pre_cfg"
+     }
+    }
+   ],
+   "mode": 0,
+   "order": 10,
+   "outputs": [
+    {
+     "links": [
+      11
+     ],
+     "localized_name": "patched_model",
+     "name": "patched_model",
+     "slot_index": 0,
+     "type": "MODEL"
+    }
+   ],
+   "pos": [
+    830,
+    60
+   ],
+   "properties": {
+    "Node name for S&R": "CFGNorm"
+   },
+   "size": [
+    300,
+    134
+   ],
+   "type": "CFGNorm",
+   "widgets_values": [
+    1,
+    false
+   ],
+   "widgets_values_named": {
+    "pre_cfg": false,
+    "strength": 1
+   }
+  },
+  {
+   "bgcolor": "#333",
+   "color": "#222",
+   "flags": {},
+   "id": 6,
+   "inputs": [
+    {
+     "link": null,
+     "localized_name": "clip_name",
+     "name": "clip_name",
+     "type": "COMBO",
+     "widget": {
+      "name": "clip_name"
+     }
+    },
+    {
+     "link": null,
+     "localized_name": "type",
+     "name": "type",
+     "type": "COMBO",
+     "widget": {
+      "name": "type"
+     }
+    },
+    {
+     "link": null,
+     "localized_name": "device",
+     "name": "device",
+     "shape": 7,
+     "type": "COMBO",
+     "widget": {
+      "name": "device"
+     }
+    }
+   ],
+   "mode": 0,
+   "order": 3,
+   "outputs": [
+    {
+     "links": [
+      3,
+      7
+     ],
+     "localized_name": "CLIP",
+     "name": "CLIP",
+     "slot_index": 0,
+     "type": "CLIP"
+    }
+   ],
+   "pos": [
+    30,
+    980
+   ],
+   "properties": {
+    "Node name for S&R": "CLIPLoader"
+   },
+   "size": [
+    300,
+    134
+   ],
+   "type": "CLIPLoader",
+   "widgets_values": [
+    "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+    "qwen_image",
+    "default"
+   ],
+   "widgets_values_named": {
+    "clip_name": "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+    "device": "default",
+    "type": "qwen_image"
+   }
+  },
+  {
+   "bgcolor": "#333",
+   "color": "#222",
+   "flags": {},
+   "id": 7,
+   "inputs": [
+    {
+     "link": null,
+     "localized_name": "vae_name",
+     "name": "vae_name",
+     "type": "COMBO",
+     "widget": {
+      "name": "vae_name"
+     }
+    }
+   ],
+   "mode": 0,
+   "order": 4,
+   "outputs": [
+    {
+     "links": [
+      4,
+      8,
+      16
+     ],
+     "localized_name": "VAE",
+     "name": "VAE",
+     "slot_index": 0,
+     "type": "VAE"
+    }
+   ],
+   "pos": [
+    30,
+    1174
+   ],
+   "properties": {
+    "Node name for S&R": "VAELoader"
+   },
+   "size": [
+    300,
+    90
+   ],
+   "type": "VAELoader",
+   "widgets_values": [
+    "qwen_image_vae.safetensors"
+   ],
+   "widgets_values_named": {
+    "vae_name": "qwen_image_vae.safetensors"
+   }
+  },
+  {
+   "bgcolor": "#333",
+   "color": "#222",
+   "flags": {},
+   "id": 8,
+   "inputs": [
+    {
+     "link": null,
+     "localized_name": "width",
+     "name": "width",
+     "type": "INT",
+     "widget": {
+      "name": "width"
+     }
+    },
+    {
+     "link": null,
+     "localized_name": "height",
+     "name": "height",
+     "type": "INT",
+     "widget": {
+      "name": "height"
+     }
+    },
+    {
+     "link": null,
+     "localized_name": "batch_size",
+     "name": "batch_size",
+     "type": "INT",
+     "widget": {
+      "name": "batch_size"
+     }
+    }
+   ],
+   "mode": 0,
+   "order": 5,
+   "outputs": [
+    {
+     "links": [
+      14
+     ],
+     "localized_name": "LATENT",
+     "name": "LATENT",
+     "slot_index": 0,
+     "type": "LATENT"
+    }
+   ],
+   "pos": [
+    30,
+    1324
+   ],
+   "properties": {
+    "Node name for S&R": "EmptyLatentImage"
+   },
+   "size": [
+    300,
+    134
+   ],
+   "type": "EmptyLatentImage",
+   "widgets_values": [
+    768,
+    960,
+    1
+   ],
+   "widgets_values_named": {
+    "batch_size": 1,
+    "height": 960,
+    "width": 768
+   }
+  },
+  {
+   "bgcolor": "#353",
+   "color": "#232",
+   "flags": {},
+   "id": 10,
+   "inputs": [
+    {
+     "link": 3,
+     "localized_name": "clip",
+     "name": "clip",
+     "type": "CLIP"
+    },
+    {
+     "link": 4,
+     "localized_name": "vae",
+     "name": "vae",
+     "shape": 7,
+     "type": "VAE"
+    },
+    {
+     "link": 5,
+     "localized_name": "image1",
+     "name": "image1",
+     "shape": 7,
+     "type": "IMAGE"
+    },
+    {
+     "link": 6,
+     "localized_name": "image2",
+     "name": "image2",
+     "shape": 7,
+     "type": "IMAGE"
+    },
+    {
+     "link": null,
+     "localized_name": "image3",
+     "name": "image3",
+     "shape": 7,
+     "type": "IMAGE"
+    },
+    {
+     "link": null,
+     "localized_name": "prompt",
+     "name": "prompt",
+     "type": "STRING",
+     "widget": {
+      "name": "prompt"
+     }
+    }
+   ],
+   "mode": 0,
+   "order": 8,
+   "outputs": [
+    {
+     "links": [
+      12
+     ],
+     "localized_name": "CONDITIONING",
+     "name": "CONDITIONING",
+     "slot_index": 0,
+     "type": "CONDITIONING"
+    }
+   ],
+   "pos": [
+    380,
+    254
+   ],
+   "properties": {
+    "Node name for S&R": "TextEncodeQwenImageEditPlus"
+   },
+   "size": [
+    400,
+    200
+   ],
+   "title": "$prompt",
+   "type": "TextEncodeQwenImageEditPlus",
+   "widgets_values": [
+    "Redraw the man from image 1 in exactly the pose, position, size and proportions of the flat figure in image 2. Keep his face, panama hat, purple guayabera with its teal embroidered panels, cream trousers and teal shoes exactly as in image 1. Same pixel art style with a crisp pixel grid and dark outline. Clean-shaven with a thin pencil mustache, closed mouth. Plain light grey background, full body."
+   ],
+   "widgets_values_named": {
+    "prompt": "Redraw the man from image 1 in exactly the pose, position, size and proportions of the flat figure in image 2. Keep his face, panama hat, purple guayabera with its teal embroidered panels, cream trousers and teal shoes exactly as in image 1. Same pixel art style with a crisp pixel grid and dark outline. Clean-shaven with a thin pencil mustache, closed mouth. Plain light grey background, full body."
+   }
+  },
+  {
+   "bgcolor": "#353",
+   "color": "#232",
+   "flags": {},
+   "id": 11,
+   "inputs": [
+    {
+     "link": 7,
+     "localized_name": "clip",
+     "name": "clip",
+     "type": "CLIP"
+    },
+    {
+     "link": 8,
+     "localized_name": "vae",
+     "name": "vae",
+     "shape": 7,
+     "type": "VAE"
+    },
+    {
+     "link": 9,
+     "localized_name": "image1",
+     "name": "image1",
+     "shape": 7,
+     "type": "IMAGE"
+    },
+    {
+     "link": 10,
+     "localized_name": "image2",
+     "name": "image2",
+     "shape": 7,
+     "type": "IMAGE"
+    },
+    {
+     "link": null,
+     "localized_name": "image3",
+     "name": "image3",
+     "shape": 7,
+     "type": "IMAGE"
+    },
+    {
+     "link": null,
+     "localized_name": "prompt",
+     "name": "prompt",
+     "type": "STRING",
+     "widget": {
+      "name": "prompt"
+     }
+    }
+   ],
+   "mode": 0,
+   "order": 9,
+   "outputs": [
+    {
+     "links": [
+      13
+     ],
+     "localized_name": "CONDITIONING",
+     "name": "CONDITIONING",
+     "slot_index": 0,
+     "type": "CONDITIONING"
+    }
+   ],
+   "pos": [
+    380,
+    514
+   ],
+   "properties": {
+    "Node name for S&R": "TextEncodeQwenImageEditPlus"
+   },
+   "size": [
+    400,
+    200
+   ],
+   "title": "negative",
+   "type": "TextEncodeQwenImageEditPlus",
+   "widgets_values": [
+    ""
+   ],
+   "widgets_values_named": {
+    "prompt": ""
+   }
+  },
+  {
+   "bgcolor": "#353",
+   "color": "#232",
+   "flags": {},
+   "id": 12,
+   "inputs": [
+    {
+     "link": 11,
+     "localized_name": "model",
+     "name": "model",
+     "type": "MODEL"
+    },
+    {
+     "link": 12,
+     "localized_name": "positive",
+     "name": "positive",
+     "type": "CONDITIONING"
+    },
+    {
+     "link": 13,
+     "localized_name": "negative",
+     "name": "negative",
+     "type": "CONDITIONING"
+    },
+    {
+     "link": 14,
+     "localized_name": "latent_image",
+     "name": "latent_image",
+     "type": "LATENT"
+    },
+    {
+     "link": null,
+     "localized_name": "seed",
+     "name": "seed",
+     "type": "INT",
+     "widget": {
+      "name": "seed"
+     }
+    },
+    {
+     "link": null,
+     "localized_name": "steps",
+     "name": "steps",
+     "type": "INT",
+     "widget": {
+      "name": "steps"
+     }
+    },
+    {
+     "link": null,
+     "localized_name": "cfg",
+     "name": "cfg",
+     "type": "FLOAT",
+     "widget": {
+      "name": "cfg"
+     }
+    },
+    {
+     "link": null,
+     "localized_name": "sampler_name",
+     "name": "sampler_name",
+     "type": "COMBO",
+     "widget": {
+      "name": "sampler_name"
+     }
+    },
+    {
+     "link": null,
+     "localized_name": "scheduler",
+     "name": "scheduler",
+     "type": "COMBO",
+     "widget": {
+      "name": "scheduler"
+     }
+    },
+    {
+     "link": null,
+     "localized_name": "denoise",
+     "name": "denoise",
+     "type": "FLOAT",
+     "widget": {
+      "name": "denoise"
+     }
+    }
+   ],
+   "mode": 0,
+   "order": 11,
+   "outputs": [
+    {
+     "links": [
+      15
+     ],
+     "localized_name": "LATENT",
+     "name": "LATENT",
+     "slot_index": 0,
+     "type": "LATENT"
+    }
+   ],
+   "pos": [
+    1180,
+    60
+   ],
+   "properties": {
+    "Node name for S&R": "KSampler"
+   },
+   "size": [
+    300,
+    310
+   ],
+   "title": "$seed",
+   "type": "KSampler",
+   "widgets_values": [
+    930000,
+    "fixed",
+    40,
+    3,
+    "euler",
+    "simple",
+    1
+   ],
+   "widgets_values_named": {
+    "cfg": 3,
+    "control_after_generate": "fixed",
+    "denoise": 1,
+    "sampler_name": "euler",
+    "scheduler": "simple",
+    "seed": 930000,
+    "steps": 40
+   }
+  },
+  {
+   "bgcolor": "#353",
+   "color": "#232",
+   "flags": {},
+   "id": 13,
+   "inputs": [
+    {
+     "link": 15,
+     "localized_name": "samples",
+     "name": "samples",
+     "type": "LATENT"
+    },
+    {
+     "link": 16,
+     "localized_name": "vae",
+     "name": "vae",
+     "type": "VAE"
+    }
+   ],
+   "mode": 0,
+   "order": 12,
+   "outputs": [
+    {
+     "links": [
+      17
+     ],
+     "localized_name": "IMAGE",
+     "name": "IMAGE",
+     "slot_index": 0,
+     "type": "IMAGE"
+    }
+   ],
+   "pos": [
+    1530,
+    60
+   ],
+   "properties": {
+    "Node name for S&R": "VAEDecode"
+   },
+   "size": [
+    300,
+    112
+   ],
+   "type": "VAEDecode"
+  },
+  {
+   "bgcolor": "#353",
+   "color": "#232",
+   "flags": {},
+   "id": 14,
+   "inputs": [
+    {
+     "link": 17,
+     "localized_name": "images",
+     "name": "images",
+     "type": "IMAGE"
+    },
+    {
+     "link": null,
+     "localized_name": "filename_prefix",
+     "name": "filename_prefix",
+     "type": "STRING",
+     "widget": {
+      "name": "filename_prefix"
+     }
+    }
+   ],
+   "mode": 0,
+   "order": 13,
+   "outputs": [
+    {
+     "links": null,
+     "localized_name": "images",
+     "name": "images",
+     "slot_index": 0,
+     "type": "IMAGE"
+    }
+   ],
+   "pos": [
+    1880,
+    60
+   ],
+   "properties": {
+    "Node name for S&R": "SaveImage"
+   },
+   "size": [
+    300,
+    112
+   ],
+   "title": "save frame",
+   "type": "SaveImage",
+   "widgets_values": [
+    "kk/qframe"
+   ],
+   "widgets_values_named": {
+    "filename_prefix": "kk/qframe"
+   }
+  },
+  {
+   "bgcolor": "#653",
+   "color": "#432",
+   "flags": {},
+   "id": 15,
+   "inputs": [],
+   "mode": 0,
+   "order": 6,
+   "outputs": [],
+   "pos": [
+    0,
+    -260
+   ],
+   "properties": {},
+   "size": [
+    700,
+    220
+   ],
+   "title": "Read me",
+   "type": "MarkdownNote",
+   "widgets_values": [
+    "# Frame from the sheet, edit model\nDraws the accepted front view in a rig pose. An experiment beside `frame-multipass`, not a replacement: it takes minutes per frame, and pose accuracy is judged against the rig.\n\nSame template difference as `model-sheet`: `FluxKontextMultiReferenceLatentMethod` is refused."
+   ],
+   "widgets_values_named": {
+    "text": "# Frame from the sheet, edit model\nDraws the accepted front view in a rig pose. An experiment beside `frame-multipass`, not a replacement: it takes minutes per frame, and pose accuracy is judged against the rig.\n\nSame template difference as `model-sheet`: `FluxKontextMultiReferenceLatentMethod` is refused."
+   }
   }
  ],
- "definitions": {
-  "subgraphs": []
- },
- "config": {},
- "extra": {
-  "kumbia": {
-   "purpose": "one frame from the model sheet and a rig pose, experiment"
-  }
- },
  "version": 0.4
 }

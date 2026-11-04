@@ -86,6 +86,11 @@ strengths are baked per profile by `tool/art/workflows/build_workflows.py`
 `generation.profileRules` pick a profile per clip/phase/pose. Model file names
 live in `tool/art/workflows/models.json`.
 
+## Studio workflows
+
+Editable multi-pass graphs live in `tool/art/workflows/studio/`, with API files generated from them.
+Editing, sync, conversion and headless runs: `tool/art/studio/README.md`.
+
 ## Environment
 
 ```bash

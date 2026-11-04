@@ -1,0 +1,98 @@
+{
+ "groove.down_l.k0.before": {
+  "facial_hair": "mustache only",
+  "teeth_visible": true,
+  "two_teal_stripes_on_shirt": true,
+  "fine_embroidery_pattern_visible": true
+ },
+ "groove.down_l.k0.after": {
+  "facial_hair": "mustache only",
+  "teeth_visible": false,
+  "two_teal_stripes_on_shirt": true,
+  "fine_embroidery_pattern_visible": false
+ },
+ "groove.down_l.k1.before": {
+  "facial_hair": "mustache only",
+  "teeth_visible": false,
+  "two_teal_stripes_on_shirt": true,
+  "fine_embroidery_pattern_visible": false
+ },
+ "groove.down_l.k1.after": {
+  "facial_hair": "mustache only",
+  "teeth_visible": false,
+  "two_teal_stripes_on_shirt": true,
+  "fine_embroidery_pattern_visible": false
+ },
+ "groove.pass_l2.k0.before": {
+  "facial_hair": "mustache only",
+  "teeth_visible": false,
+  "two_teal_stripes_on_shirt": true,
+  "fine_embroidery_pattern_visible": false
+ },
+ "groove.pass_l2.k0.after": {
+  "facial_hair": "mustache only",
+  "teeth_visible": false,
+  "two_teal_stripes_on_shirt": true,
+  "fine_embroidery_pattern_visible": false
+ },
+ "groove.pass_l2.k1.before": {
+  "facial_hair": "mustache only",
+  "teeth_visible": false,
+  "two_teal_stripes_on_shirt": true,
+  "fine_embroidery_pattern_visible": false
+ },
+ "groove.pass_l2.k1.after": {
+  "facial_hair": "mustache only",
+  "teeth_visible": false,
+  "two_teal_stripes_on_shirt": true,
+  "fine_embroidery_pattern_visible": false
+ },
+ "left_hand.peak.k0.before": {
+  "facial_hair": "beard or goatee",
+  "teeth_visible": true,
+  "two_teal_stripes_on_shirt": true,
+  "fine_embroidery_pattern_visible": true
+ },
+ "left_hand.peak.k0.after": {
+  "facial_hair": "mustache only",
+  "teeth_visible": true,
+  "two_teal_stripes_on_shirt": true,
+  "fine_embroidery_pattern_visible": true
+ },
+ "left_hand.peak.k1.before": {
+  "facial_hair": "mustache only",
+  "teeth_visible": false,
+  "two_teal_stripes_on_shirt": true,
+  "fine_embroidery_pattern_visible": false
+ },
+ "left_hand.peak.k1.after": {
+  "facial_hair": "mustache only",
+  "teeth_visible": true,
+  "two_teal_stripes_on_shirt": true,
+  "fine_embroidery_pattern_visible": true
+ },
+ "left_hand.follow.k0.before": {
+  "facial_hair": "mustache only",
+  "teeth_visible": false,
+  "two_teal_stripes_on_shirt": true,
+  "fine_embroidery_pattern_visible": false
+ },
+ "left_hand.follow.k0.after": {
+  "facial_hair": "mustache only",
+  "teeth_visible": false,
+  "two_teal_stripes_on_shirt": true,
+  "fine_embroidery_pattern_visible": false
+ },
+ "left_hand.follow.k1.before": {
+  "facial_hair": "mustache only",
+  "teeth_visible": false,
+  "two_teal_stripes_on_shirt": true,
+  "fine_embroidery_pattern_visible": false
+ },
+ "left_hand.follow.k1.after": {
+  "facial_hair": "mustache only",
+  "teeth_visible": false,
+  "two_teal_stripes_on_shirt": true,
+  "fine_embroidery_pattern_visible": false
+ }
+}

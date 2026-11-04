@@ -86,8 +86,19 @@ def canonical(ui: dict) -> dict:
     return {"nodes": nodes, "edges": edges(ui), "groups": groups, "kumbia": ui.get("extra", {}).get("kumbia")}
 
 
+def _numbers(value):
+    """JavaScript writes 1.0 as 1, so a re-saved number must hash the same."""
+    if isinstance(value, float):
+        return int(value) if value.is_integer() else round(value, 6)
+    if isinstance(value, list):
+        return [_numbers(v) for v in value]
+    if isinstance(value, dict):
+        return {k: _numbers(v) for k, v in value.items()}
+    return value
+
+
 def digest(ui: dict) -> str:
-    return hashlib.sha256(json.dumps(canonical(ui), sort_keys=True).encode()).hexdigest()
+    return hashlib.sha256(json.dumps(_numbers(canonical(ui)), sort_keys=True).encode()).hexdigest()
 
 
 def diff_lines(studio: dict, repo: dict) -> list[str]:
@@ -242,11 +253,11 @@ def cmd_pull(studio: Studio, args) -> int:
         if status == "owner-edit":
             write_source(path, remote)
             state[name] = digest(remote)
-            print(f"{name}: pulled; review with `git diff {path.relative_to(U.ROOT)}`")
+            print(f"{name}: pulled; review with `git diff {path}`")
         elif status == "conflict":
             side = path.with_name(f"{name}.studio.json")
             side.write_text(json.dumps(remote, indent=1, sort_keys=True) + "\n")
-            print(f"{name}: BOTH changed: wrote {side.relative_to(U.ROOT)}; the source is untouched. "
+            print(f"{name}: BOTH changed: wrote {side}; the source is untouched. "
                   "Merge by hand, then push --force.")
         else:
             print(f"{name}: nothing to pull ({status})")

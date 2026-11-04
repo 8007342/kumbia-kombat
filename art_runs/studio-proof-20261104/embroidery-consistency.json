@@ -1,0 +1,17 @@
+{
+ "before d70": {
+  "across poses mean NCC": 0.112,
+  "min": -0.286,
+  "across seeds, same pose mean NCC": 0.171
+ },
+ "after pass 3": {
+  "across poses mean NCC": 0.767,
+  "min": 0.739,
+  "across seeds, same pose mean NCC": 0.803
+ },
+ "after pass 5 (final canvas)": {
+  "across poses mean NCC": 0.733,
+  "min": 0.701,
+  "across seeds, same pose mean NCC": 0.791
+ }
+}

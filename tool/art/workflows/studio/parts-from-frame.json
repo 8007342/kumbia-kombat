@@ -1,0 +1,1453 @@
+{
+ "config": {},
+ "definitions": {
+  "subgraphs": []
+ },
+ "extra": {
+  "kumbia": {
+   "purpose": "RGBA parts from a frame and the rig masks, experiment"
+  }
+ },
+ "groups": [
+  {
+   "bounding": [
+    0,
+    0,
+    1740,
+    1244
+   ],
+   "color": "#3f5d9e",
+   "flags": {},
+   "font_size": 24,
+   "id": 1,
+   "title": "Frame cut into RGBA parts on the rig masks, aligned to the canvas"
+  }
+ ],
+ "id": "00000000-0000-4000-8000-000000000000",
+ "last_link_id": 25,
+ "last_node_id": 55,
+ "links": [
+  [
+   1,
+   10,
+   0,
+   11,
+   0,
+   "IMAGE"
+  ],
+  [
+   2,
+   11,
+   0,
+   12,
+   0,
+   "MASK"
+  ],
+  [
+   3,
+   1,
+   0,
+   13,
+   0,
+   "IMAGE"
+  ],
+  [
+   4,
+   12,
+   0,
+   13,
+   1,
+   "MASK"
+  ],
+  [
+   5,
+   13,
+   0,
+   14,
+   0,
+   "IMAGE"
+  ],
+  [
+   6,
+   20,
+   0,
+   21,
+   0,
+   "IMAGE"
+  ],
+  [
+   7,
+   21,
+   0,
+   22,
+   0,
+   "MASK"
+  ],
+  [
+   8,
+   1,
+   0,
+   23,
+   0,
+   "IMAGE"
+  ],
+  [
+   9,
+   22,
+   0,
+   23,
+   1,
+   "MASK"
+  ],
+  [
+   10,
+   23,
+   0,
+   24,
+   0,
+   "IMAGE"
+  ],
+  [
+   11,
+   30,
+   0,
+   31,
+   0,
+   "IMAGE"
+  ],
+  [
+   12,
+   31,
+   0,
+   32,
+   0,
+   "MASK"
+  ],
+  [
+   13,
+   1,
+   0,
+   33,
+   0,
+   "IMAGE"
+  ],
+  [
+   14,
+   32,
+   0,
+   33,
+   1,
+   "MASK"
+  ],
+  [
+   15,
+   33,
+   0,
+   34,
+   0,
+   "IMAGE"
+  ],
+  [
+   16,
+   40,
+   0,
+   41,
+   0,
+   "IMAGE"
+  ],
+  [
+   17,
+   41,
+   0,
+   42,
+   0,
+   "MASK"
+  ],
+  [
+   18,
+   1,
+   0,
+   43,
+   0,
+   "IMAGE"
+  ],
+  [
+   19,
+   42,
+   0,
+   43,
+   1,
+   "MASK"
+  ],
+  [
+   20,
+   43,
+   0,
+   44,
+   0,
+   "IMAGE"
+  ],
+  [
+   21,
+   50,
+   0,
+   51,
+   0,
+   "IMAGE"
+  ],
+  [
+   22,
+   51,
+   0,
+   52,
+   0,
+   "MASK"
+  ],
+  [
+   23,
+   1,
+   0,
+   53,
+   0,
+   "IMAGE"
+  ],
+  [
+   24,
+   52,
+   0,
+   53,
+   1,
+   "MASK"
+  ],
+  [
+   25,
+   53,
+   0,
+   54,
+   0,
+   "IMAGE"
+  ]
+ ],
+ "nodes": [
+  {
+   "bgcolor": "#355",
+   "color": "#233",
+   "flags": {},
+   "id": 1,
+   "inputs": [
+    {
+     "link": null,
+     "name": "image",
+     "type": "COMBO",
+     "widget": {
+      "name": "image"
+     }
+    }
+   ],
+   "mode": 0,
+   "order": 0,
+   "outputs": [
+    {
+     "links": [
+      3,
+      8,
+      13,
+      18,
+      23
+     ],
+     "name": "IMAGE",
+     "slot_index": 0,
+     "type": "IMAGE"
+    },
+    {
+     "links": null,
+     "name": "MASK",
+     "slot_index": 1,
+     "type": "MASK"
+    }
+   ],
+   "pos": [
+    30,
+    60
+   ],
+   "properties": {
+    "Node name for S&R": "LoadImage"
+   },
+   "size": [
+    260,
+    134
+   ],
+   "title": "$frame",
+   "type": "LoadImage",
+   "widgets_values": [
+    "groove.down_l.proxy.png",
+    "image"
+   ]
+  },
+  {
+   "bgcolor": "#355",
+   "color": "#233",
+   "flags": {},
+   "id": 10,
+   "inputs": [
+    {
+     "link": null,
+     "name": "image",
+     "type": "COMBO",
+     "widget": {
+      "name": "image"
+     }
+    }
+   ],
+   "mode": 0,
+   "order": 1,
+   "outputs": [
+    {
+     "links": [
+      1
+     ],
+     "name": "IMAGE",
+     "slot_index": 0,
+     "type": "IMAGE"
+    },
+    {
+     "links": null,
+     "name": "MASK",
+     "slot_index": 1,
+     "type": "MASK"
+    }
+   ],
+   "pos": [
+    30,
+    254
+   ],
+   "properties": {
+    "Node name for S&R": "LoadImage"
+   },
+   "size": [
+    260,
+    134
+   ],
+   "title": "$mask_head",
+   "type": "LoadImage",
+   "widgets_values": [
+    "groove.down_l.mask.head.png",
+    "image"
+   ]
+  },
+  {
+   "bgcolor": "#353",
+   "color": "#232",
+   "flags": {},
+   "id": 11,
+   "inputs": [
+    {
+     "link": 1,
+     "name": "image",
+     "type": "IMAGE"
+    },
+    {
+     "link": null,
+     "name": "channel",
+     "type": "COMBO",
+     "widget": {
+      "name": "channel"
+     }
+    }
+   ],
+   "mode": 0,
+   "order": 2,
+   "outputs": [
+    {
+     "links": [
+      2
+     ],
+     "name": "MASK",
+     "slot_index": 0,
+     "type": "MASK"
+    }
+   ],
+   "pos": [
+    340,
+    60
+   ],
+   "properties": {
+    "Node name for S&R": "ImageToMask"
+   },
+   "size": [
+    300,
+    112
+   ],
+   "type": "ImageToMask",
+   "widgets_values": [
+    "red"
+   ]
+  },
+  {
+   "bgcolor": "#353",
+   "color": "#232",
+   "flags": {},
+   "id": 12,
+   "inputs": [
+    {
+     "link": 2,
+     "name": "mask",
+     "type": "MASK"
+    }
+   ],
+   "mode": 0,
+   "order": 3,
+   "outputs": [
+    {
+     "links": [
+      4
+     ],
+     "name": "MASK",
+     "slot_index": 0,
+     "type": "MASK"
+    }
+   ],
+   "pos": [
+    690,
+    60
+   ],
+   "properties": {
+    "Node name for S&R": "InvertMask"
+   },
+   "size": [
+    300,
+    90
+   ],
+   "title": "alpha convention: 1 = transparent",
+   "type": "InvertMask",
+   "widgets_values": []
+  },
+  {
+   "bgcolor": "#353",
+   "color": "#232",
+   "flags": {},
+   "id": 13,
+   "inputs": [
+    {
+     "link": 3,
+     "name": "image",
+     "type": "IMAGE"
+    },
+    {
+     "link": 4,
+     "name": "alpha",
+     "type": "MASK"
+    }
+   ],
+   "mode": 0,
+   "order": 4,
+   "outputs": [
+    {
+     "links": [
+      5
+     ],
+     "name": "IMAGE",
+     "slot_index": 0,
+     "type": "IMAGE"
+    }
+   ],
+   "pos": [
+    1040,
+    60
+   ],
+   "properties": {
+    "Node name for S&R": "JoinImageWithAlpha"
+   },
+   "size": [
+    300,
+    112
+   ],
+   "type": "JoinImageWithAlpha",
+   "widgets_values": []
+  },
+  {
+   "bgcolor": "#353",
+   "color": "#232",
+   "flags": {},
+   "id": 14,
+   "inputs": [
+    {
+     "link": 5,
+     "name": "images",
+     "type": "IMAGE"
+    },
+    {
+     "link": null,
+     "name": "filename_prefix",
+     "type": "STRING",
+     "widget": {
+      "name": "filename_prefix"
+     }
+    }
+   ],
+   "mode": 0,
+   "order": 5,
+   "outputs": [
+    {
+     "links": null,
+     "name": "images",
+     "slot_index": 0,
+     "type": "IMAGE"
+    }
+   ],
+   "pos": [
+    1390,
+    60
+   ],
+   "properties": {
+    "Node name for S&R": "SaveImage"
+   },
+   "size": [
+    300,
+    112
+   ],
+   "title": "save head",
+   "type": "SaveImage",
+   "widgets_values": [
+    "kk/part_head"
+   ]
+  },
+  {
+   "bgcolor": "#355",
+   "color": "#233",
+   "flags": {},
+   "id": 20,
+   "inputs": [
+    {
+     "link": null,
+     "name": "image",
+     "type": "COMBO",
+     "widget": {
+      "name": "image"
+     }
+    }
+   ],
+   "mode": 0,
+   "order": 6,
+   "outputs": [
+    {
+     "links": [
+      6
+     ],
+     "name": "IMAGE",
+     "slot_index": 0,
+     "type": "IMAGE"
+    },
+    {
+     "links": null,
+     "name": "MASK",
+     "slot_index": 1,
+     "type": "MASK"
+    }
+   ],
+   "pos": [
+    30,
+    448
+   ],
+   "properties": {
+    "Node name for S&R": "LoadImage"
+   },
+   "size": [
+    260,
+    134
+   ],
+   "title": "$mask_hat",
+   "type": "LoadImage",
+   "widgets_values": [
+    "groove.down_l.mask.hat.png",
+    "image"
+   ]
+  },
+  {
+   "bgcolor": "#353",
+   "color": "#232",
+   "flags": {},
+   "id": 21,
+   "inputs": [
+    {
+     "link": 6,
+     "name": "image",
+     "type": "IMAGE"
+    },
+    {
+     "link": null,
+     "name": "channel",
+     "type": "COMBO",
+     "widget": {
+      "name": "channel"
+     }
+    }
+   ],
+   "mode": 0,
+   "order": 7,
+   "outputs": [
+    {
+     "links": [
+      7
+     ],
+     "name": "MASK",
+     "slot_index": 0,
+     "type": "MASK"
+    }
+   ],
+   "pos": [
+    340,
+    232
+   ],
+   "properties": {
+    "Node name for S&R": "ImageToMask"
+   },
+   "size": [
+    300,
+    112
+   ],
+   "type": "ImageToMask",
+   "widgets_values": [
+    "red"
+   ]
+  },
+  {
+   "bgcolor": "#353",
+   "color": "#232",
+   "flags": {},
+   "id": 22,
+   "inputs": [
+    {
+     "link": 7,
+     "name": "mask",
+     "type": "MASK"
+    }
+   ],
+   "mode": 0,
+   "order": 8,
+   "outputs": [
+    {
+     "links": [
+      9
+     ],
+     "name": "MASK",
+     "slot_index": 0,
+     "type": "MASK"
+    }
+   ],
+   "pos": [
+    690,
+    210
+   ],
+   "properties": {
+    "Node name for S&R": "InvertMask"
+   },
+   "size": [
+    300,
+    90
+   ],
+   "title": "alpha convention: 1 = transparent",
+   "type": "InvertMask",
+   "widgets_values": []
+  },
+  {
+   "bgcolor": "#353",
+   "color": "#232",
+   "flags": {},
+   "id": 23,
+   "inputs": [
+    {
+     "link": 8,
+     "name": "image",
+     "type": "IMAGE"
+    },
+    {
+     "link": 9,
+     "name": "alpha",
+     "type": "MASK"
+    }
+   ],
+   "mode": 0,
+   "order": 9,
+   "outputs": [
+    {
+     "links": [
+      10
+     ],
+     "name": "IMAGE",
+     "slot_index": 0,
+     "type": "IMAGE"
+    }
+   ],
+   "pos": [
+    1040,
+    232
+   ],
+   "properties": {
+    "Node name for S&R": "JoinImageWithAlpha"
+   },
+   "size": [
+    300,
+    112
+   ],
+   "type": "JoinImageWithAlpha",
+   "widgets_values": []
+  },
+  {
+   "bgcolor": "#353",
+   "color": "#232",
+   "flags": {},
+   "id": 24,
+   "inputs": [
+    {
+     "link": 10,
+     "name": "images",
+     "type": "IMAGE"
+    },
+    {
+     "link": null,
+     "name": "filename_prefix",
+     "type": "STRING",
+     "widget": {
+      "name": "filename_prefix"
+     }
+    }
+   ],
+   "mode": 0,
+   "order": 10,
+   "outputs": [
+    {
+     "links": null,
+     "name": "images",
+     "slot_index": 0,
+     "type": "IMAGE"
+    }
+   ],
+   "pos": [
+    1390,
+    232
+   ],
+   "properties": {
+    "Node name for S&R": "SaveImage"
+   },
+   "size": [
+    300,
+    112
+   ],
+   "title": "save hat",
+   "type": "SaveImage",
+   "widgets_values": [
+    "kk/part_hat"
+   ]
+  },
+  {
+   "bgcolor": "#355",
+   "color": "#233",
+   "flags": {},
+   "id": 30,
+   "inputs": [
+    {
+     "link": null,
+     "name": "image",
+     "type": "COMBO",
+     "widget": {
+      "name": "image"
+     }
+    }
+   ],
+   "mode": 0,
+   "order": 11,
+   "outputs": [
+    {
+     "links": [
+      11
+     ],
+     "name": "IMAGE",
+     "slot_index": 0,
+     "type": "IMAGE"
+    },
+    {
+     "links": null,
+     "name": "MASK",
+     "slot_index": 1,
+     "type": "MASK"
+    }
+   ],
+   "pos": [
+    30,
+    642
+   ],
+   "properties": {
+    "Node name for S&R": "LoadImage"
+   },
+   "size": [
+    260,
+    134
+   ],
+   "title": "$mask_shirt",
+   "type": "LoadImage",
+   "widgets_values": [
+    "groove.down_l.mask.shirt.png",
+    "image"
+   ]
+  },
+  {
+   "bgcolor": "#353",
+   "color": "#232",
+   "flags": {},
+   "id": 31,
+   "inputs": [
+    {
+     "link": 11,
+     "name": "image",
+     "type": "IMAGE"
+    },
+    {
+     "link": null,
+     "name": "channel",
+     "type": "COMBO",
+     "widget": {
+      "name": "channel"
+     }
+    }
+   ],
+   "mode": 0,
+   "order": 12,
+   "outputs": [
+    {
+     "links": [
+      12
+     ],
+     "name": "MASK",
+     "slot_index": 0,
+     "type": "MASK"
+    }
+   ],
+   "pos": [
+    340,
+    404
+   ],
+   "properties": {
+    "Node name for S&R": "ImageToMask"
+   },
+   "size": [
+    300,
+    112
+   ],
+   "type": "ImageToMask",
+   "widgets_values": [
+    "red"
+   ]
+  },
+  {
+   "bgcolor": "#353",
+   "color": "#232",
+   "flags": {},
+   "id": 32,
+   "inputs": [
+    {
+     "link": 12,
+     "name": "mask",
+     "type": "MASK"
+    }
+   ],
+   "mode": 0,
+   "order": 13,
+   "outputs": [
+    {
+     "links": [
+      14
+     ],
+     "name": "MASK",
+     "slot_index": 0,
+     "type": "MASK"
+    }
+   ],
+   "pos": [
+    690,
+    360
+   ],
+   "properties": {
+    "Node name for S&R": "InvertMask"
+   },
+   "size": [
+    300,
+    90
+   ],
+   "title": "alpha convention: 1 = transparent",
+   "type": "InvertMask",
+   "widgets_values": []
+  },
+  {
+   "bgcolor": "#353",
+   "color": "#232",
+   "flags": {},
+   "id": 33,
+   "inputs": [
+    {
+     "link": 13,
+     "name": "image",
+     "type": "IMAGE"
+    },
+    {
+     "link": 14,
+     "name": "alpha",
+     "type": "MASK"
+    }
+   ],
+   "mode": 0,
+   "order": 14,
+   "outputs": [
+    {
+     "links": [
+      15
+     ],
+     "name": "IMAGE",
+     "slot_index": 0,
+     "type": "IMAGE"
+    }
+   ],
+   "pos": [
+    1040,
+    404
+   ],
+   "properties": {
+    "Node name for S&R": "JoinImageWithAlpha"
+   },
+   "size": [
+    300,
+    112
+   ],
+   "type": "JoinImageWithAlpha",
+   "widgets_values": []
+  },
+  {
+   "bgcolor": "#353",
+   "color": "#232",
+   "flags": {},
+   "id": 34,
+   "inputs": [
+    {
+     "link": 15,
+     "name": "images",
+     "type": "IMAGE"
+    },
+    {
+     "link": null,
+     "name": "filename_prefix",
+     "type": "STRING",
+     "widget": {
+      "name": "filename_prefix"
+     }
+    }
+   ],
+   "mode": 0,
+   "order": 15,
+   "outputs": [
+    {
+     "links": null,
+     "name": "images",
+     "slot_index": 0,
+     "type": "IMAGE"
+    }
+   ],
+   "pos": [
+    1390,
+    404
+   ],
+   "properties": {
+    "Node name for S&R": "SaveImage"
+   },
+   "size": [
+    300,
+    112
+   ],
+   "title": "save shirt",
+   "type": "SaveImage",
+   "widgets_values": [
+    "kk/part_shirt"
+   ]
+  },
+  {
+   "bgcolor": "#355",
+   "color": "#233",
+   "flags": {},
+   "id": 40,
+   "inputs": [
+    {
+     "link": null,
+     "name": "image",
+     "type": "COMBO",
+     "widget": {
+      "name": "image"
+     }
+    }
+   ],
+   "mode": 0,
+   "order": 16,
+   "outputs": [
+    {
+     "links": [
+      16
+     ],
+     "name": "IMAGE",
+     "slot_index": 0,
+     "type": "IMAGE"
+    },
+    {
+     "links": null,
+     "name": "MASK",
+     "slot_index": 1,
+     "type": "MASK"
+    }
+   ],
+   "pos": [
+    30,
+    836
+   ],
+   "properties": {
+    "Node name for S&R": "LoadImage"
+   },
+   "size": [
+    260,
+    134
+   ],
+   "title": "$mask_arms",
+   "type": "LoadImage",
+   "widgets_values": [
+    "groove.down_l.mask.arms.png",
+    "image"
+   ]
+  },
+  {
+   "bgcolor": "#353",
+   "color": "#232",
+   "flags": {},
+   "id": 41,
+   "inputs": [
+    {
+     "link": 16,
+     "name": "image",
+     "type": "IMAGE"
+    },
+    {
+     "link": null,
+     "name": "channel",
+     "type": "COMBO",
+     "widget": {
+      "name": "channel"
+     }
+    }
+   ],
+   "mode": 0,
+   "order": 17,
+   "outputs": [
+    {
+     "links": [
+      17
+     ],
+     "name": "MASK",
+     "slot_index": 0,
+     "type": "MASK"
+    }
+   ],
+   "pos": [
+    340,
+    576
+   ],
+   "properties": {
+    "Node name for S&R": "ImageToMask"
+   },
+   "size": [
+    300,
+    112
+   ],
+   "type": "ImageToMask",
+   "widgets_values": [
+    "red"
+   ]
+  },
+  {
+   "bgcolor": "#353",
+   "color": "#232",
+   "flags": {},
+   "id": 42,
+   "inputs": [
+    {
+     "link": 17,
+     "name": "mask",
+     "type": "MASK"
+    }
+   ],
+   "mode": 0,
+   "order": 18,
+   "outputs": [
+    {
+     "links": [
+      19
+     ],
+     "name": "MASK",
+     "slot_index": 0,
+     "type": "MASK"
+    }
+   ],
+   "pos": [
+    690,
+    510
+   ],
+   "properties": {
+    "Node name for S&R": "InvertMask"
+   },
+   "size": [
+    300,
+    90
+   ],
+   "title": "alpha convention: 1 = transparent",
+   "type": "InvertMask",
+   "widgets_values": []
+  },
+  {
+   "bgcolor": "#353",
+   "color": "#232",
+   "flags": {},
+   "id": 43,
+   "inputs": [
+    {
+     "link": 18,
+     "name": "image",
+     "type": "IMAGE"
+    },
+    {
+     "link": 19,
+     "name": "alpha",
+     "type": "MASK"
+    }
+   ],
+   "mode": 0,
+   "order": 19,
+   "outputs": [
+    {
+     "links": [
+      20
+     ],
+     "name": "IMAGE",
+     "slot_index": 0,
+     "type": "IMAGE"
+    }
+   ],
+   "pos": [
+    1040,
+    576
+   ],
+   "properties": {
+    "Node name for S&R": "JoinImageWithAlpha"
+   },
+   "size": [
+    300,
+    112
+   ],
+   "type": "JoinImageWithAlpha",
+   "widgets_values": []
+  },
+  {
+   "bgcolor": "#353",
+   "color": "#232",
+   "flags": {},
+   "id": 44,
+   "inputs": [
+    {
+     "link": 20,
+     "name": "images",
+     "type": "IMAGE"
+    },
+    {
+     "link": null,
+     "name": "filename_prefix",
+     "type": "STRING",
+     "widget": {
+      "name": "filename_prefix"
+     }
+    }
+   ],
+   "mode": 0,
+   "order": 20,
+   "outputs": [
+    {
+     "links": null,
+     "name": "images",
+     "slot_index": 0,
+     "type": "IMAGE"
+    }
+   ],
+   "pos": [
+    1390,
+    576
+   ],
+   "properties": {
+    "Node name for S&R": "SaveImage"
+   },
+   "size": [
+    300,
+    112
+   ],
+   "title": "save arms",
+   "type": "SaveImage",
+   "widgets_values": [
+    "kk/part_arms"
+   ]
+  },
+  {
+   "bgcolor": "#355",
+   "color": "#233",
+   "flags": {},
+   "id": 50,
+   "inputs": [
+    {
+     "link": null,
+     "name": "image",
+     "type": "COMBO",
+     "widget": {
+      "name": "image"
+     }
+    }
+   ],
+   "mode": 0,
+   "order": 21,
+   "outputs": [
+    {
+     "links": [
+      21
+     ],
+     "name": "IMAGE",
+     "slot_index": 0,
+     "type": "IMAGE"
+    },
+    {
+     "links": null,
+     "name": "MASK",
+     "slot_index": 1,
+     "type": "MASK"
+    }
+   ],
+   "pos": [
+    30,
+    1030
+   ],
+   "properties": {
+    "Node name for S&R": "LoadImage"
+   },
+   "size": [
+    260,
+    134
+   ],
+   "title": "$mask_legs",
+   "type": "LoadImage",
+   "widgets_values": [
+    "groove.down_l.mask.legs.png",
+    "image"
+   ]
+  },
+  {
+   "bgcolor": "#353",
+   "color": "#232",
+   "flags": {},
+   "id": 51,
+   "inputs": [
+    {
+     "link": 21,
+     "name": "image",
+     "type": "IMAGE"
+    },
+    {
+     "link": null,
+     "name": "channel",
+     "type": "COMBO",
+     "widget": {
+      "name": "channel"
+     }
+    }
+   ],
+   "mode": 0,
+   "order": 22,
+   "outputs": [
+    {
+     "links": [
+      22
+     ],
+     "name": "MASK",
+     "slot_index": 0,
+     "type": "MASK"
+    }
+   ],
+   "pos": [
+    340,
+    748
+   ],
+   "properties": {
+    "Node name for S&R": "ImageToMask"
+   },
+   "size": [
+    300,
+    112
+   ],
+   "type": "ImageToMask",
+   "widgets_values": [
+    "red"
+   ]
+  },
+  {
+   "bgcolor": "#353",
+   "color": "#232",
+   "flags": {},
+   "id": 52,
+   "inputs": [
+    {
+     "link": 22,
+     "name": "mask",
+     "type": "MASK"
+    }
+   ],
+   "mode": 0,
+   "order": 23,
+   "outputs": [
+    {
+     "links": [
+      24
+     ],
+     "name": "MASK",
+     "slot_index": 0,
+     "type": "MASK"
+    }
+   ],
+   "pos": [
+    690,
+    660
+   ],
+   "properties": {
+    "Node name for S&R": "InvertMask"
+   },
+   "size": [
+    300,
+    90
+   ],
+   "title": "alpha convention: 1 = transparent",
+   "type": "InvertMask",
+   "widgets_values": []
+  },
+  {
+   "bgcolor": "#353",
+   "color": "#232",
+   "flags": {},
+   "id": 53,
+   "inputs": [
+    {
+     "link": 23,
+     "name": "image",
+     "type": "IMAGE"
+    },
+    {
+     "link": 24,
+     "name": "alpha",
+     "type": "MASK"
+    }
+   ],
+   "mode": 0,
+   "order": 24,
+   "outputs": [
+    {
+     "links": [
+      25
+     ],
+     "name": "IMAGE",
+     "slot_index": 0,
+     "type": "IMAGE"
+    }
+   ],
+   "pos": [
+    1040,
+    748
+   ],
+   "properties": {
+    "Node name for S&R": "JoinImageWithAlpha"
+   },
+   "size": [
+    300,
+    112
+   ],
+   "type": "JoinImageWithAlpha",
+   "widgets_values": []
+  },
+  {
+   "bgcolor": "#353",
+   "color": "#232",
+   "flags": {},
+   "id": 54,
+   "inputs": [
+    {
+     "link": 25,
+     "name": "images",
+     "type": "IMAGE"
+    },
+    {
+     "link": null,
+     "name": "filename_prefix",
+     "type": "STRING",
+     "widget": {
+      "name": "filename_prefix"
+     }
+    }
+   ],
+   "mode": 0,
+   "order": 25,
+   "outputs": [
+    {
+     "links": null,
+     "name": "images",
+     "slot_index": 0,
+     "type": "IMAGE"
+    }
+   ],
+   "pos": [
+    1390,
+    748
+   ],
+   "properties": {
+    "Node name for S&R": "SaveImage"
+   },
+   "size": [
+    300,
+    112
+   ],
+   "title": "save legs",
+   "type": "SaveImage",
+   "widgets_values": [
+    "kk/part_legs"
+   ]
+  },
+  {
+   "bgcolor": "#653",
+   "color": "#432",
+   "flags": {},
+   "id": 55,
+   "inputs": [],
+   "mode": 0,
+   "order": 26,
+   "outputs": [],
+   "pos": [
+    0,
+    -250
+   ],
+   "properties": {},
+   "size": [
+    700,
+    210
+   ],
+   "title": "Read me",
+   "type": "MarkdownNote",
+   "widgets_values": [
+    "# Partial assets\nCuts a finished canvas frame into head, hat, shirt, arms and legs using the rig's region masks (stage_parts.py). Every layer stays the frame's size, so they stack at (0,0).\n\nVerdict and numbers: tool/art/studio/README.md. Only the head-and-hat part earns its place: limb layers have holes wherever a limb crosses the body."
+   ]
+  }
+ ],
+ "version": 0.4
+}
