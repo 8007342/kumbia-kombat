@@ -54,7 +54,7 @@
 ## 7. Bartender: the generality test
 
 - [x] 7.1 Author `characters/bartender.json` only; verify no pipeline code changes are needed, as shown by the diff touching only definitions and shared library additions
-- [ ] 7.2 Resolve the plum gate question for apron and trousers with a palette check; record the decision (checked 2026-11-03: trousers clear, apron base hits `plum`; options in design D14, owner decision pending, nudge is provisional)
+- [x] 7.2 Resolve the plum gate question for apron and trousers with a palette check; record the decision (checked 2026-11-03: trousers clear, apron base hits `plum`; options in design D14, owner chose B on 2026-11-04: apron base `#762D51`, no nudge; `ok:family:bartender-v1`)
 - [ ] 7.3 Render, check, and review contact sheet and clip GIFs; verify `check_poses.py` passes on her proportions, with any motion overrides recorded in her definition (machine checks pass 2026-11-03: 64 poses, 0 problems, `ok:family:bartender-v1`; owner review of `art_runs/inputs/bartender-v1/` still pending)
 - [ ] 7.4 Generate proof clips, then all 64 drawings; deliver a candidate `bartender` atlas and review gallery
 

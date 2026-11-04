@@ -410,18 +410,18 @@
   "seed_base": 940000,
   "seed_policy": "seed = seed_base + 100*pose_index + k; fixed per pose while tuning",
   "backend": "comfyui-api",
-  "workflow": "tool/art/workflows/character-frame-moderate.api.json",
+  "workflow": "tool/art/workflows/sdxl-base-1/moderate.api.json",
   "tiers": {
    "I1": {
-    "model": "sdxl_lightning_4step.safetensors",
-    "steps": 4
+    "model": "sd_xl_base_1.0.safetensors",
+    "steps": 28
    }
   },
   "workflowsByProfile": {
-   "moderate": "tool/art/workflows/character-frame-moderate.api.json",
-   "peak": "tool/art/workflows/character-frame-peak.api.json",
-   "overlap": "tool/art/workflows/character-frame-overlap.api.json",
-   "turn": "tool/art/workflows/character-frame-turn.api.json"
+   "moderate": "tool/art/workflows/sdxl-base-1/moderate.api.json",
+   "peak": "tool/art/workflows/sdxl-base-1/peak.api.json",
+   "overlap": "tool/art/workflows/sdxl-base-1/overlap.api.json",
+   "turn": "tool/art/workflows/sdxl-base-1/turn.api.json"
   },
   "defaultProfile": "moderate",
   "profileRules": [
@@ -555,7 +555,7 @@
   "hair": "#2A1712",
   "shirt": "#E8DDC2",
   "cloth": "#0F5A5E",
-  "apron": "#7A3057",
+  "apron": "#762D51",
   "trousers": "#3A1A38",
   "shoes": "#C98A1E",
   "prop": "#BFC6CC"

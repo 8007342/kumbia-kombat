@@ -268,7 +268,7 @@ the replay mode itself is out of scope.
 Alternative: baking a full atlas per variant. Rejected as the default because it
 multiplies memory on phones, against the existing atlas budget concerns.
 
-### D14. Bartender's plum and the recolour gates (task 7.2, awaiting the owner)
+### D14. Bartender's plum and the recolour gates (task 7.2, owner chose B on 2026-11-04)
 
 Measured 2026-11-03 against the style's reserved gates (`cool`, `plum`, `pink`), with
 distances in OKLab scaled by 100:
@@ -281,9 +281,9 @@ distances in OKLab scaled by 100:
 
 Options for the apron:
 
-- **A, provisional in the definition:** `"nudge": true`, base `#7A3057`. Slightly greyer
+- **A, earlier provisional choice:** `"nudge": true`, base `#7A3057`. Slightly greyer
   and pinker, and visible side by side on swatches, so it is the owner's call.
-- **B:** the nearest whole-ramp colour, `#762D51`, at distance 3.05. About the same shift.
+- **B, chosen:** the nearest whole-ramp colour, `#762D51`, at distance 3.05. About the same shift.
 - **C:** base `#511837`, sampled from the source art's apron, which clears every gate
   unchanged but is much darker.
 - **D:** declare the apron recolourable, keeping `#7A1F57`, so outfit tinting could reach it.
