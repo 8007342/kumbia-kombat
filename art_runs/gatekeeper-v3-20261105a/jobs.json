@@ -1,0 +1,2151 @@
+[
+ {
+  "pose": "groove.down_l",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/sdxl-base-1/moderate.api.json",
+   "tier": "I1",
+   "count": 1,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/groove.down_l.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/groove.down_l.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/groove.down_l.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/groove.down_l.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful clean-shaven latino man with a thin neatly groomed pencil mustache, smooth bare chin and cheeks, cream panama hat with one plain teal band, solid deep purple short sleeved guayabera shirt worn untucked, exactly two thin vertical teal embroidered stripes running down the front, plain fabric everywhere else, cream trousers, teal shoes, dignified skilled cumbia dancer, weight sunk on his bent left knee, right foot stepped back on its ball with the heel raised, left hip high and pushed out, shoulders tilted the other way, left forearm swinging forward at belly height, right arm low and back, head level facing the viewer, clear readable silhouette, weight on one leg, hips tilted, relaxed shoulders, playful attitude, asymmetric pose, feet firmly on the ground",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, beard, goatee, stubble, sideburns, five o clock shadow, thick mustache, handlebar mustache, vest, waistcoat, jacket, necklace, belt, breast pocket, tucked in shirt, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms, jumping",
+    "seed": 930000
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "secondary-action",
+   "no-twinning",
+   "timing-on-beat",
+   "planted-pivot"
+  ],
+  "inputHashes": {
+   "pose": "670708b5fd58136d0e75a8b71888a7932faef010111bc9ef3019707e181d41c7",
+   "depth": "789a956a45f0c1f8535b6c568b636c130e7343a499f6d85ba6e777942537a1c8",
+   "lineart": "5fa073b1e9a6ffa39e19bce84f80c6971659cc46f826722b998957ef2dac580e"
+  }
+ },
+ {
+  "pose": "groove.pass_l",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/sdxl-base-1/moderate.api.json",
+   "tier": "I1",
+   "count": 1,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/groove.pass_l.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/groove.pass_l.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/groove.pass_l.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/groove.pass_l.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful clean-shaven latino man with a thin neatly groomed pencil mustache, smooth bare chin and cheeks, cream panama hat with one plain teal band, solid deep purple short sleeved guayabera shirt worn untucked, exactly two thin vertical teal embroidered stripes running down the front, plain fabric everywhere else, cream trousers, teal shoes, dignified skilled cumbia dancer, weight rolling forward onto the left foot, knees softening upward, right foot still slightly back on its ball, hips easing toward level, arms loose and low swinging back toward the body, clear readable silhouette, weight on one leg, hips tilted, relaxed shoulders, playful attitude, asymmetric pose, feet firmly on the ground",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, beard, goatee, stubble, sideburns, five o clock shadow, thick mustache, handlebar mustache, vest, waistcoat, jacket, necklace, belt, breast pocket, tucked in shirt, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms, jumping",
+    "seed": 930100
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "secondary-action",
+   "no-twinning",
+   "timing-on-beat",
+   "planted-pivot"
+  ],
+  "inputHashes": {
+   "pose": "40c10c8093ef5a00ac62056cbef949daaa798d08bd27c48db3a08b4c36d02008",
+   "depth": "0707dc8d03593763ffa3a8970de9c9469878bce5a7c2359e8f60002b0dff97ac",
+   "lineart": "4d9a8f904cd609af92ee1869bcf8929086277a48935d4dd006555011c8dd6ce2"
+  }
+ },
+ {
+  "pose": "groove.up_l",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/sdxl-base-1/moderate.api.json",
+   "tier": "I1",
+   "count": 1,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/groove.up_l.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/groove.up_l.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/groove.up_l.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/groove.up_l.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful clean-shaven latino man with a thin neatly groomed pencil mustache, smooth bare chin and cheeks, cream panama hat with one plain teal band, solid deep purple short sleeved guayabera shirt worn untucked, exactly two thin vertical teal embroidered stripes running down the front, plain fabric everywhere else, cream trousers, teal shoes, dignified skilled cumbia dancer, both feet together and flat, legs nearly straight in a small rise, hips almost level, chin lifted proudly, arms relaxed low at the sides with elbows soft, clear readable silhouette, weight on one leg, hips tilted, relaxed shoulders, playful attitude, asymmetric pose, feet firmly on the ground",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, beard, goatee, stubble, sideburns, five o clock shadow, thick mustache, handlebar mustache, vest, waistcoat, jacket, necklace, belt, breast pocket, tucked in shirt, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms, jumping",
+    "seed": 930200
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "secondary-action",
+   "no-twinning",
+   "timing-on-beat",
+   "planted-pivot"
+  ],
+  "inputHashes": {
+   "pose": "e54f45ae5a06842f83d8b2e34bcc4d75ad8ef86169c83164c4cc72e5c826af15",
+   "depth": "58a29ae3aa856417d6884e083d912d9bcdda88688cba3ccc4821f2316e10dacb",
+   "lineart": "23740d8d22abb478118616ce4a6467a7fe3c9d322d0ddcc096ff8b0564e529d6"
+  }
+ },
+ {
+  "pose": "groove.pass_l2",
+  "profile": "peak",
+  "args": {
+   "workflow": "tool/art/workflows/sdxl-base-1/peak.api.json",
+   "tier": "I1",
+   "count": 1,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/groove.pass_l2.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/groove.pass_l2.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/groove.pass_l2.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/groove.pass_l2.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful clean-shaven latino man with a thin neatly groomed pencil mustache, smooth bare chin and cheeks, cream panama hat with one plain teal band, solid deep purple short sleeved guayabera shirt worn untucked, exactly two thin vertical teal embroidered stripes running down the front, plain fabric everywhere else, cream trousers, teal shoes, dignified skilled cumbia dancer, hip popped out to his right over the straight right leg, right hip high, right shoulder dipped, left knee bent with the left foot resting on its toe, right forearm lifted out at hip height in a wrist roll, left forearm across the belly, head tilted toward his left, clear readable silhouette, dynamic dance pose, strong line of action, weight on one leg, hips tilted, exaggerated energetic pose, relaxed shoulders, playful attitude, asymmetric pose, feet firmly on the ground",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, beard, goatee, stubble, sideburns, five o clock shadow, thick mustache, handlebar mustache, vest, waistcoat, jacket, necklace, belt, breast pocket, tucked in shirt, limbs merged into body, stiff pose, straight rigid body, floating, feet off ground, symmetrical pose, mirrored arms, jumping",
+    "seed": 930300
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "line-of-action",
+   "contrapposto",
+   "exaggeration-accent",
+   "secondary-action",
+   "no-twinning",
+   "timing-on-beat",
+   "planted-pivot"
+  ],
+  "inputHashes": {
+   "pose": "aa482b1d260995bf492b755cb61de47c1ca9d8459a4a1c51606f3eebdb6a4251",
+   "depth": "7a1c60b1f298df2cafb8bb2d81142762e767e1f78b2a1c968e021a35dc1e6163",
+   "lineart": "7826ec8a8da94b1bfd22d9389489e992be7b7e9a9969c266cb7cb43ef7bbe4fa"
+  }
+ },
+ {
+  "pose": "groove.down_r",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/sdxl-base-1/moderate.api.json",
+   "tier": "I1",
+   "count": 1,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/groove.down_r.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/groove.down_r.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/groove.down_r.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/groove.down_r.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful clean-shaven latino man with a thin neatly groomed pencil mustache, smooth bare chin and cheeks, cream panama hat with one plain teal band, solid deep purple short sleeved guayabera shirt worn untucked, exactly two thin vertical teal embroidered stripes running down the front, plain fabric everywhere else, cream trousers, teal shoes, dignified skilled cumbia dancer, weight sunk on his bent right knee, left foot stepped back on its ball with the heel raised, right hip high and pushed out, shoulders tilted the other way, right forearm swinging forward at belly height, left arm low and back, head level facing the viewer, clear readable silhouette, weight on one leg, hips tilted, relaxed shoulders, playful attitude, asymmetric pose, feet firmly on the ground",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, beard, goatee, stubble, sideburns, five o clock shadow, thick mustache, handlebar mustache, vest, waistcoat, jacket, necklace, belt, breast pocket, tucked in shirt, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms, jumping",
+    "seed": 930400
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "secondary-action",
+   "no-twinning",
+   "timing-on-beat",
+   "planted-pivot"
+  ],
+  "inputHashes": {
+   "pose": "36356114b64039ebe8f2676b55a18eaabfe6a32c9219afc7f5dc86e2f91e8139",
+   "depth": "9339490ba3a520be4d96d12cb8570f93ae67493a43e5d098c78afc8a8d658542",
+   "lineart": "5bee1bafafadaba1e94039c8d329ddcb55c7621c3e7192a4a5bbacfc4b8bd250"
+  }
+ },
+ {
+  "pose": "groove.pass_r",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/sdxl-base-1/moderate.api.json",
+   "tier": "I1",
+   "count": 1,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/groove.pass_r.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/groove.pass_r.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/groove.pass_r.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/groove.pass_r.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful clean-shaven latino man with a thin neatly groomed pencil mustache, smooth bare chin and cheeks, cream panama hat with one plain teal band, solid deep purple short sleeved guayabera shirt worn untucked, exactly two thin vertical teal embroidered stripes running down the front, plain fabric everywhere else, cream trousers, teal shoes, dignified skilled cumbia dancer, weight rolling forward onto the right foot, knees softening upward, left foot still slightly back on its ball, hips easing toward level, arms loose and low swinging back toward the body, clear readable silhouette, weight on one leg, hips tilted, relaxed shoulders, playful attitude, asymmetric pose, feet firmly on the ground",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, beard, goatee, stubble, sideburns, five o clock shadow, thick mustache, handlebar mustache, vest, waistcoat, jacket, necklace, belt, breast pocket, tucked in shirt, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms, jumping",
+    "seed": 930500
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "secondary-action",
+   "no-twinning",
+   "timing-on-beat",
+   "planted-pivot"
+  ],
+  "inputHashes": {
+   "pose": "792a22634ea7ac0616f2992f679d3aece9259f436786b2d0473dc97d9626f189",
+   "depth": "656b16e10c51629f2a03109b356b5d36ab2dbeda9a76fb5ff24ab7dca5017d4d",
+   "lineart": "e8c06dc1b8b93be9c445834d8c9d8c689b69e0ba44b7abb68fcfe1b6888e4863"
+  }
+ },
+ {
+  "pose": "groove.up_r",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/sdxl-base-1/moderate.api.json",
+   "tier": "I1",
+   "count": 1,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/groove.up_r.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/groove.up_r.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/groove.up_r.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/groove.up_r.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful clean-shaven latino man with a thin neatly groomed pencil mustache, smooth bare chin and cheeks, cream panama hat with one plain teal band, solid deep purple short sleeved guayabera shirt worn untucked, exactly two thin vertical teal embroidered stripes running down the front, plain fabric everywhere else, cream trousers, teal shoes, dignified skilled cumbia dancer, both feet together and flat, legs nearly straight in a small rise, hips almost level, chin lifted proudly, arms relaxed low at the sides with elbows soft, clear readable silhouette, weight on one leg, hips tilted, relaxed shoulders, playful attitude, asymmetric pose, feet firmly on the ground",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, beard, goatee, stubble, sideburns, five o clock shadow, thick mustache, handlebar mustache, vest, waistcoat, jacket, necklace, belt, breast pocket, tucked in shirt, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms, jumping",
+    "seed": 930600
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "secondary-action",
+   "no-twinning",
+   "timing-on-beat",
+   "planted-pivot"
+  ],
+  "inputHashes": {
+   "pose": "dfe6f80723267d33575a618d7147ce5a4e183f5f40d0d9c65cf73cf6843e64da",
+   "depth": "1400edcd1f6930c88ca384ff9cce404dbaf9614857388a393cddd90bb0f97f19",
+   "lineart": "a29d22dd7a14e5f1dcbe890e440835503c04d4f0ab8b991bc5c1723aa4ba45b4"
+  }
+ },
+ {
+  "pose": "groove.pass_r2",
+  "profile": "peak",
+  "args": {
+   "workflow": "tool/art/workflows/sdxl-base-1/peak.api.json",
+   "tier": "I1",
+   "count": 1,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/groove.pass_r2.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/groove.pass_r2.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/groove.pass_r2.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/groove.pass_r2.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful clean-shaven latino man with a thin neatly groomed pencil mustache, smooth bare chin and cheeks, cream panama hat with one plain teal band, solid deep purple short sleeved guayabera shirt worn untucked, exactly two thin vertical teal embroidered stripes running down the front, plain fabric everywhere else, cream trousers, teal shoes, dignified skilled cumbia dancer, hip popped out to his left over the straight left leg, left hip high, left shoulder dipped, right knee bent with the right foot resting on its toe, left forearm lifted out at hip height in a wrist roll, right forearm across the belly, head tilted toward his right, clear readable silhouette, dynamic dance pose, strong line of action, weight on one leg, hips tilted, exaggerated energetic pose, relaxed shoulders, playful attitude, asymmetric pose, feet firmly on the ground",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, beard, goatee, stubble, sideburns, five o clock shadow, thick mustache, handlebar mustache, vest, waistcoat, jacket, necklace, belt, breast pocket, tucked in shirt, limbs merged into body, stiff pose, straight rigid body, floating, feet off ground, symmetrical pose, mirrored arms, jumping",
+    "seed": 930700
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "line-of-action",
+   "contrapposto",
+   "exaggeration-accent",
+   "secondary-action",
+   "no-twinning",
+   "timing-on-beat",
+   "planted-pivot"
+  ],
+  "inputHashes": {
+   "pose": "088e50c8ce2d3d7df2979a8d7ad145f32ecf188f39c64bbff7ea812994e7cb58",
+   "depth": "525b57eac07703a25716e4da1e6436edf0f228b5800f88e552b28bd23fcf2085",
+   "lineart": "832bea29d210cad15b7cfab310b40fe577910cc98f00f9ce831a90c9b32d2798"
+  }
+ },
+ {
+  "pose": "left_hand.prep",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/sdxl-base-1/moderate.api.json",
+   "tier": "I1",
+   "count": 1,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/left_hand.prep.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/left_hand.prep.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/left_hand.prep.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/left_hand.prep.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful clean-shaven latino man with a thin neatly groomed pencil mustache, smooth bare chin and cheeks, cream panama hat with one plain teal band, solid deep purple short sleeved guayabera shirt worn untucked, exactly two thin vertical teal embroidered stripes running down the front, plain fabric everywhere else, cream trousers, teal shoes, dignified skilled cumbia dancer, crouched low with weight on the bent right leg, right fist on the hip, left hand scooped down low in front of the left hip, torso turned away to his right, head glancing down at the left hand, clear readable silhouette, weight on one leg, hips tilted, crouched, gathering energy, knees bent, asymmetric pose",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, beard, goatee, stubble, sideburns, five o clock shadow, thick mustache, handlebar mustache, vest, waistcoat, jacket, necklace, belt, breast pocket, tucked in shirt, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms",
+    "seed": 930800
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "anticipation",
+   "no-twinning",
+   "timing-on-beat"
+  ],
+  "inputHashes": {
+   "pose": "027d3f2502ad630df98fa4164581b96e2b07f2b1ccc94cba399f886b4318bd94",
+   "depth": "1aa92e7aa6b90fbb83ba9cda0e5fb2071d8a9c623e3f1e6cd5a4e9f25e58d5e1",
+   "lineart": "68681b0b0903537c94a2cca554a53755f35a877cbdf2fcefa4c11f8f7a782697"
+  }
+ },
+ {
+  "pose": "left_hand.peak",
+  "profile": "peak",
+  "args": {
+   "workflow": "tool/art/workflows/sdxl-base-1/peak.api.json",
+   "tier": "I1",
+   "count": 1,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/left_hand.peak.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/left_hand.peak.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/left_hand.peak.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/left_hand.peak.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful clean-shaven latino man with a thin neatly groomed pencil mustache, smooth bare chin and cheeks, cream panama hat with one plain teal band, solid deep purple short sleeved guayabera shirt worn untucked, exactly two thin vertical teal embroidered stripes running down the front, plain fabric everywhere else, cream trousers, teal shoes, dignified skilled cumbia dancer, weight on the straight right foot, right hip pushed out, right fist on the hip, body leaning toward his left so one long diagonal runs from the right foot to the left palm thrust high and out at about 45 degrees, left foot on its toe out to the side, head turned up toward the raised hand, clear readable silhouette, dynamic dance pose, strong line of action, weight on one leg, hips tilted, exaggerated energetic pose, asymmetric pose",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, beard, goatee, stubble, sideburns, five o clock shadow, thick mustache, handlebar mustache, vest, waistcoat, jacket, necklace, belt, breast pocket, tucked in shirt, limbs merged into body, stiff pose, straight rigid body, floating, feet off ground, symmetrical pose, mirrored arms",
+    "seed": 930900
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "line-of-action",
+   "contrapposto",
+   "exaggeration-accent",
+   "no-twinning",
+   "timing-on-beat"
+  ],
+  "inputHashes": {
+   "pose": "b398878a59092ba5b1a2402caf1289980695ac648281237935c7ad2c2f3cee55",
+   "depth": "22f45e8cff5d1e45cc797f64d41819a9e965eeb9270754233f27d10658c24b72",
+   "lineart": "ce5b08e7deb4b01eac7fe33c54ef6d5a10fc8b8b983b68d887d50b39b49e1885"
+  }
+ },
+ {
+  "pose": "left_hand.follow",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/sdxl-base-1/moderate.api.json",
+   "tier": "I1",
+   "count": 1,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/left_hand.follow.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/left_hand.follow.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/left_hand.follow.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/left_hand.follow.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful clean-shaven latino man with a thin neatly groomed pencil mustache, smooth bare chin and cheeks, cream panama hat with one plain teal band, solid deep purple short sleeved guayabera shirt worn untucked, exactly two thin vertical teal embroidered stripes running down the front, plain fabric everywhere else, cream trousers, teal shoes, dignified skilled cumbia dancer, same diagonal pushed further: left arm reaching higher and the palm rolling forward, torso leaning further toward his left, right elbow pushed back on the hip, left toe touch out wider, head following the hand, clear readable silhouette, weight on one leg, hips tilted, shirt hem swinging, follow-through, asymmetric pose",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, beard, goatee, stubble, sideburns, five o clock shadow, thick mustache, handlebar mustache, vest, waistcoat, jacket, necklace, belt, breast pocket, tucked in shirt, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms",
+    "seed": 931000
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "follow-through",
+   "no-twinning",
+   "timing-on-beat"
+  ],
+  "inputHashes": {
+   "pose": "4f30d4e65362b2e5ba4b164501eb86b4ef63c869d1b03ca56e24f1fe49d905b2",
+   "depth": "35f3b1afe052828fd7dd7a121df85bae5dcb944ef0dd0764e1d1c533acd7529a",
+   "lineart": "5c4aee3691f113470272ba75a212456ae54b080d2078ddaf9ea491cce53c60ad"
+  }
+ },
+ {
+  "pose": "left_hand.return",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/sdxl-base-1/moderate.api.json",
+   "tier": "I1",
+   "count": 1,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/left_hand.return.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/left_hand.return.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/left_hand.return.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/left_hand.return.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful clean-shaven latino man with a thin neatly groomed pencil mustache, smooth bare chin and cheeks, cream panama hat with one plain teal band, solid deep purple short sleeved guayabera shirt worn untucked, exactly two thin vertical teal embroidered stripes running down the front, plain fabric everywhere else, cream trousers, teal shoes, dignified skilled cumbia dancer, left arm sweeping down in an arc at shoulder height with the elbow bent, right hand low on the hip, both feet flat and close, torso returning upright, clear readable silhouette, weight on one leg, hips tilted, shirt hem swinging, follow-through, asymmetric pose",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, beard, goatee, stubble, sideburns, five o clock shadow, thick mustache, handlebar mustache, vest, waistcoat, jacket, necklace, belt, breast pocket, tucked in shirt, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms",
+    "seed": 931100
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "follow-through",
+   "no-twinning",
+   "timing-on-beat"
+  ],
+  "inputHashes": {
+   "pose": "85a71a36b71458e04a2e9e894da8995f649f7c261abf7ea1553592c069479c2c",
+   "depth": "2a95ed910b6501b9afd202e005eae32967911a8ef7904fb086921da7800ecb05",
+   "lineart": "48e4d51c212c4e5494c49f2ba3d0786aa65a5efa0f03d90e6112a1e2c4f75e5a"
+  }
+ },
+ {
+  "pose": "right_hand.prep",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/sdxl-base-1/moderate.api.json",
+   "tier": "I1",
+   "count": 1,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/right_hand.prep.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/right_hand.prep.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/right_hand.prep.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/right_hand.prep.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful clean-shaven latino man with a thin neatly groomed pencil mustache, smooth bare chin and cheeks, cream panama hat with one plain teal band, solid deep purple short sleeved guayabera shirt worn untucked, exactly two thin vertical teal embroidered stripes running down the front, plain fabric everywhere else, cream trousers, teal shoes, dignified skilled cumbia dancer, crouched low with weight on the bent left leg, left fist on the hip, right hand scooped down low in front of the right hip, torso turned away to his left, head glancing down at the right hand, clear readable silhouette, weight on one leg, hips tilted, crouched, gathering energy, knees bent, asymmetric pose",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, beard, goatee, stubble, sideburns, five o clock shadow, thick mustache, handlebar mustache, vest, waistcoat, jacket, necklace, belt, breast pocket, tucked in shirt, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms",
+    "seed": 931200
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "anticipation",
+   "no-twinning",
+   "timing-on-beat"
+  ],
+  "inputHashes": {
+   "pose": "fcaa8707b0d560da73a4e78189fd0814808cb24a2091436bcf2969fc5f927ec6",
+   "depth": "64b682534b1a94806aae6269d170c0d6c7d4c1c64883b432dcbbe982b0f0a9a2",
+   "lineart": "1bba9556c2c4dfb87041782042574292f6d3c098e75989618959752dc1d9b6d9"
+  }
+ },
+ {
+  "pose": "right_hand.peak",
+  "profile": "peak",
+  "args": {
+   "workflow": "tool/art/workflows/sdxl-base-1/peak.api.json",
+   "tier": "I1",
+   "count": 1,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/right_hand.peak.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/right_hand.peak.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/right_hand.peak.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/right_hand.peak.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful clean-shaven latino man with a thin neatly groomed pencil mustache, smooth bare chin and cheeks, cream panama hat with one plain teal band, solid deep purple short sleeved guayabera shirt worn untucked, exactly two thin vertical teal embroidered stripes running down the front, plain fabric everywhere else, cream trousers, teal shoes, dignified skilled cumbia dancer, weight on the straight left foot, left hip pushed out, left fist on the hip, body leaning toward his right so one long diagonal runs from the left foot to the right palm thrust high and out at about 45 degrees, right foot on its toe out to the side, head turned up toward the raised hand, clear readable silhouette, dynamic dance pose, strong line of action, weight on one leg, hips tilted, exaggerated energetic pose, asymmetric pose",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, beard, goatee, stubble, sideburns, five o clock shadow, thick mustache, handlebar mustache, vest, waistcoat, jacket, necklace, belt, breast pocket, tucked in shirt, limbs merged into body, stiff pose, straight rigid body, floating, feet off ground, symmetrical pose, mirrored arms",
+    "seed": 931300
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "line-of-action",
+   "contrapposto",
+   "exaggeration-accent",
+   "no-twinning",
+   "timing-on-beat"
+  ],
+  "inputHashes": {
+   "pose": "eac5438093dfe3ed09e3add2627f58328b74a0182b3c1dd633edc3653274f584",
+   "depth": "ef4380d3d134fadd9562c8cafb842c7d8e960e8ff580bd1d3cb8866765002fd3",
+   "lineart": "16299befe1bdb8e781fdcae04900c6eb95142157550b194a80fb01941f7cbca5"
+  }
+ },
+ {
+  "pose": "right_hand.follow",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/sdxl-base-1/moderate.api.json",
+   "tier": "I1",
+   "count": 1,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/right_hand.follow.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/right_hand.follow.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/right_hand.follow.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/right_hand.follow.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful clean-shaven latino man with a thin neatly groomed pencil mustache, smooth bare chin and cheeks, cream panama hat with one plain teal band, solid deep purple short sleeved guayabera shirt worn untucked, exactly two thin vertical teal embroidered stripes running down the front, plain fabric everywhere else, cream trousers, teal shoes, dignified skilled cumbia dancer, same diagonal pushed further: right arm reaching higher and the palm rolling forward, torso leaning further toward his right, left elbow pushed back on the hip, right toe touch out wider, head following the hand, clear readable silhouette, weight on one leg, hips tilted, shirt hem swinging, follow-through, asymmetric pose",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, beard, goatee, stubble, sideburns, five o clock shadow, thick mustache, handlebar mustache, vest, waistcoat, jacket, necklace, belt, breast pocket, tucked in shirt, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms",
+    "seed": 931400
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "follow-through",
+   "no-twinning",
+   "timing-on-beat"
+  ],
+  "inputHashes": {
+   "pose": "3c175a19ab810c03b3f2397096c9ec01f862c6dd7249c5e58c7d6e53de7eeee3",
+   "depth": "fa107d60eede04daa4d46de2c51de2d47259d60cf1cbdf68897b68f230aeb1a8",
+   "lineart": "ba1d9589583135f66ba0c262374d44ae8e52afbbeb4c8346feb41d619f41921f"
+  }
+ },
+ {
+  "pose": "right_hand.return",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/sdxl-base-1/moderate.api.json",
+   "tier": "I1",
+   "count": 1,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/right_hand.return.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/right_hand.return.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/right_hand.return.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/right_hand.return.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful clean-shaven latino man with a thin neatly groomed pencil mustache, smooth bare chin and cheeks, cream panama hat with one plain teal band, solid deep purple short sleeved guayabera shirt worn untucked, exactly two thin vertical teal embroidered stripes running down the front, plain fabric everywhere else, cream trousers, teal shoes, dignified skilled cumbia dancer, right arm sweeping down in an arc at shoulder height with the elbow bent, left hand low on the hip, both feet flat and close, torso returning upright, clear readable silhouette, weight on one leg, hips tilted, shirt hem swinging, follow-through, asymmetric pose",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, beard, goatee, stubble, sideburns, five o clock shadow, thick mustache, handlebar mustache, vest, waistcoat, jacket, necklace, belt, breast pocket, tucked in shirt, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms",
+    "seed": 931500
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "follow-through",
+   "no-twinning",
+   "timing-on-beat"
+  ],
+  "inputHashes": {
+   "pose": "3ef15c6cd33e278f2c3bf96d3ad8c93295852d9d7cb88524035c3d5694674cec",
+   "depth": "7b9121e42864c2a033add9b4b82d2093739e687f8d3e66558260ea79b376c0ff",
+   "lineart": "be506e7cea0dd5b6ffae0de5cf52dcdd353058cea6aa85339161182a74d37f63"
+  }
+ },
+ {
+  "pose": "left_foot.prep",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/sdxl-base-1/moderate.api.json",
+   "tier": "I1",
+   "count": 1,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/left_foot.prep.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/left_foot.prep.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/left_foot.prep.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/left_foot.prep.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful clean-shaven latino man with a thin neatly groomed pencil mustache, smooth bare chin and cheeks, cream panama hat with one plain teal band, solid deep purple short sleeved guayabera shirt worn untucked, exactly two thin vertical teal embroidered stripes running down the front, plain fabric everywhere else, cream trousers, teal shoes, dignified skilled cumbia dancer, weight on the bent right leg, left knee lifted forward and out with the foot off the floor and the toe pointing down, left fist on the hip, right arm low and out for balance, head looking down at the left foot, clear readable silhouette, weight on one leg, hips tilted, crouched, gathering energy, knees bent, asymmetric pose",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, beard, goatee, stubble, sideburns, five o clock shadow, thick mustache, handlebar mustache, vest, waistcoat, jacket, necklace, belt, breast pocket, tucked in shirt, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms",
+    "seed": 931600
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "anticipation",
+   "no-twinning",
+   "timing-on-beat"
+  ],
+  "inputHashes": {
+   "pose": "e9bd9481f9396ccdf82dafe6ff8646cc79e7962b9fcd694e9dc53a1384e87fd3",
+   "depth": "d44df26c8c90abcf26b9bfd6fadb2a2bf6ad626244e7bf782976c1697290851d",
+   "lineart": "e546bd0935a8ae1d1277d44dea356c991269fdf079f1da0192abfefccd172789"
+  }
+ },
+ {
+  "pose": "left_foot.peak",
+  "profile": "peak",
+  "args": {
+   "workflow": "tool/art/workflows/sdxl-base-1/peak.api.json",
+   "tier": "I1",
+   "count": 1,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/left_foot.peak.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/left_foot.peak.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/left_foot.peak.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/left_foot.peak.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful clean-shaven latino man with a thin neatly groomed pencil mustache, smooth bare chin and cheeks, cream panama hat with one plain teal band, solid deep purple short sleeved guayabera shirt worn untucked, exactly two thin vertical teal embroidered stripes running down the front, plain fabric everywhere else, cream trousers, teal shoes, dignified skilled cumbia dancer, heel dig: left leg stretched out on a forward diagonal with the left heel on the floor and the toe up, weight on the bent right leg, chest proud and leaning back slightly, right fist on the hip, left arm low and back, head turned toward the left foot, clear readable silhouette, dynamic dance pose, strong line of action, weight on one leg, hips tilted, exaggerated energetic pose, asymmetric pose",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, beard, goatee, stubble, sideburns, five o clock shadow, thick mustache, handlebar mustache, vest, waistcoat, jacket, necklace, belt, breast pocket, tucked in shirt, limbs merged into body, stiff pose, straight rigid body, floating, feet off ground, symmetrical pose, mirrored arms",
+    "seed": 931700
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "line-of-action",
+   "contrapposto",
+   "exaggeration-accent",
+   "no-twinning",
+   "timing-on-beat"
+  ],
+  "inputHashes": {
+   "pose": "3c6c5b44222a248e239c1b10d7f4a392b548831651d2bee2f18200bacd36fe38",
+   "depth": "1517b2bf5f148aa8f9b02c9fc9b0b524dd93bcfaa74f8800caae35ed83c10a09",
+   "lineart": "0edcabc0923be5c3e400eedf4b2360916b63f2a4d6a6d41fb7445713f1c1af39"
+  }
+ },
+ {
+  "pose": "left_foot.follow",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/sdxl-base-1/moderate.api.json",
+   "tier": "I1",
+   "count": 1,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/left_foot.follow.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/left_foot.follow.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/left_foot.follow.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/left_foot.follow.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful clean-shaven latino man with a thin neatly groomed pencil mustache, smooth bare chin and cheeks, cream panama hat with one plain teal band, solid deep purple short sleeved guayabera shirt worn untucked, exactly two thin vertical teal embroidered stripes running down the front, plain fabric everywhere else, cream trousers, teal shoes, dignified skilled cumbia dancer, left heel still dug in on the diagonal, hip popped over the right foot, shoulders tilted against the hips, right elbow pushed back on the hip, left arm low and out, head on the left foot, clear readable silhouette, weight on one leg, hips tilted, shirt hem swinging, follow-through, asymmetric pose",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, beard, goatee, stubble, sideburns, five o clock shadow, thick mustache, handlebar mustache, vest, waistcoat, jacket, necklace, belt, breast pocket, tucked in shirt, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms",
+    "seed": 931800
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "follow-through",
+   "no-twinning",
+   "timing-on-beat"
+  ],
+  "inputHashes": {
+   "pose": "7411691626240f4c33692936ee3e6a74a654fb5f3e46b74642691f0e86a5b11a",
+   "depth": "5da04733d64d26256145691ef5fb006d9444c2ad690e682c5c002cdd49becc87",
+   "lineart": "df88036ba1583bb86074c555b279f9fbfeedf577ed44ec3d0686a8910be9e6c7"
+  }
+ },
+ {
+  "pose": "left_foot.return",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/sdxl-base-1/moderate.api.json",
+   "tier": "I1",
+   "count": 1,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/left_foot.return.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/left_foot.return.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/left_foot.return.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/left_foot.return.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful clean-shaven latino man with a thin neatly groomed pencil mustache, smooth bare chin and cheeks, cream panama hat with one plain teal band, solid deep purple short sleeved guayabera shirt worn untucked, exactly two thin vertical teal embroidered stripes running down the front, plain fabric everywhere else, cream trousers, teal shoes, dignified skilled cumbia dancer, left foot dragged back along the floor to close beside the right, both feet flat, knees soft, arms relaxed low at the sides, clear readable silhouette, weight on one leg, hips tilted, shirt hem swinging, follow-through, asymmetric pose",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, beard, goatee, stubble, sideburns, five o clock shadow, thick mustache, handlebar mustache, vest, waistcoat, jacket, necklace, belt, breast pocket, tucked in shirt, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms",
+    "seed": 931900
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "follow-through",
+   "no-twinning",
+   "timing-on-beat"
+  ],
+  "inputHashes": {
+   "pose": "e4f6de9d9686670037ef8a65034548ecff79fe363db1444cee97e8862d69732e",
+   "depth": "8332ae900344c20c39b4e2420446e9413dc318811b1aef75c81df9483e850c54",
+   "lineart": "10b22c332776f05fef9eb1ef4c805b3a7a4c8aa053d82c938eeea720dbf14e51"
+  }
+ },
+ {
+  "pose": "right_foot.prep",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/sdxl-base-1/moderate.api.json",
+   "tier": "I1",
+   "count": 1,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/right_foot.prep.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/right_foot.prep.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/right_foot.prep.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/right_foot.prep.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful clean-shaven latino man with a thin neatly groomed pencil mustache, smooth bare chin and cheeks, cream panama hat with one plain teal band, solid deep purple short sleeved guayabera shirt worn untucked, exactly two thin vertical teal embroidered stripes running down the front, plain fabric everywhere else, cream trousers, teal shoes, dignified skilled cumbia dancer, weight on the bent left leg, right knee lifted forward and out with the foot off the floor and the toe pointing down, right fist on the hip, left arm low and out for balance, head looking down at the right foot, clear readable silhouette, weight on one leg, hips tilted, crouched, gathering energy, knees bent, asymmetric pose",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, beard, goatee, stubble, sideburns, five o clock shadow, thick mustache, handlebar mustache, vest, waistcoat, jacket, necklace, belt, breast pocket, tucked in shirt, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms",
+    "seed": 932000
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "anticipation",
+   "no-twinning",
+   "timing-on-beat"
+  ],
+  "inputHashes": {
+   "pose": "3d6a3b40fcabfed60fe9f61c3275182ba4e0231e088be49e37e53305591e9424",
+   "depth": "042ec72dc4c71c6c3b87ed5ba79a5843521a38624d4d78dffe2a0fe2681fe315",
+   "lineart": "795d14fabfc288d51e8ad44d61393b83b4f4349f5b12d27acf9d80ddae637650"
+  }
+ },
+ {
+  "pose": "right_foot.peak",
+  "profile": "peak",
+  "args": {
+   "workflow": "tool/art/workflows/sdxl-base-1/peak.api.json",
+   "tier": "I1",
+   "count": 1,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/right_foot.peak.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/right_foot.peak.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/right_foot.peak.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/right_foot.peak.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful clean-shaven latino man with a thin neatly groomed pencil mustache, smooth bare chin and cheeks, cream panama hat with one plain teal band, solid deep purple short sleeved guayabera shirt worn untucked, exactly two thin vertical teal embroidered stripes running down the front, plain fabric everywhere else, cream trousers, teal shoes, dignified skilled cumbia dancer, heel dig: right leg stretched out on a forward diagonal with the right heel on the floor and the toe up, weight on the bent left leg, chest proud and leaning back slightly, left fist on the hip, right arm low and back, head turned toward the right foot, clear readable silhouette, dynamic dance pose, strong line of action, weight on one leg, hips tilted, exaggerated energetic pose, asymmetric pose",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, beard, goatee, stubble, sideburns, five o clock shadow, thick mustache, handlebar mustache, vest, waistcoat, jacket, necklace, belt, breast pocket, tucked in shirt, limbs merged into body, stiff pose, straight rigid body, floating, feet off ground, symmetrical pose, mirrored arms",
+    "seed": 932100
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "line-of-action",
+   "contrapposto",
+   "exaggeration-accent",
+   "no-twinning",
+   "timing-on-beat"
+  ],
+  "inputHashes": {
+   "pose": "76617e6335838c2471f8106bd27b1d1e158b4ff6a0f82c298b4a3c61d4caef7f",
+   "depth": "9d7554613c8f3c628514defaf35b0c395204a86f9d9c36204960adfce3db7c98",
+   "lineart": "d7834cf12d2e0acb32b05df3680133d16288c15bddd6147cb0743cd7bd158afe"
+  }
+ },
+ {
+  "pose": "right_foot.follow",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/sdxl-base-1/moderate.api.json",
+   "tier": "I1",
+   "count": 1,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/right_foot.follow.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/right_foot.follow.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/right_foot.follow.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/right_foot.follow.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful clean-shaven latino man with a thin neatly groomed pencil mustache, smooth bare chin and cheeks, cream panama hat with one plain teal band, solid deep purple short sleeved guayabera shirt worn untucked, exactly two thin vertical teal embroidered stripes running down the front, plain fabric everywhere else, cream trousers, teal shoes, dignified skilled cumbia dancer, right heel still dug in on the diagonal, hip popped over the left foot, shoulders tilted against the hips, left elbow pushed back on the hip, right arm low and out, head on the right foot, clear readable silhouette, weight on one leg, hips tilted, shirt hem swinging, follow-through, asymmetric pose",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, beard, goatee, stubble, sideburns, five o clock shadow, thick mustache, handlebar mustache, vest, waistcoat, jacket, necklace, belt, breast pocket, tucked in shirt, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms",
+    "seed": 932200
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "follow-through",
+   "no-twinning",
+   "timing-on-beat"
+  ],
+  "inputHashes": {
+   "pose": "b69bb4ddacb143ddd6f4732d95db0ae0a2f47f5b3097c16631c183efea167696",
+   "depth": "f0da0d74ce9f018bca522b3cd124543d9aaba7c20fba236cc607dd0eee100fd7",
+   "lineart": "9091d2cd7ea9369991529f5d15aa5fbadba0e217c538841d5ed9ec473913ccfc"
+  }
+ },
+ {
+  "pose": "right_foot.return",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/sdxl-base-1/moderate.api.json",
+   "tier": "I1",
+   "count": 1,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/right_foot.return.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/right_foot.return.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/right_foot.return.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/right_foot.return.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful clean-shaven latino man with a thin neatly groomed pencil mustache, smooth bare chin and cheeks, cream panama hat with one plain teal band, solid deep purple short sleeved guayabera shirt worn untucked, exactly two thin vertical teal embroidered stripes running down the front, plain fabric everywhere else, cream trousers, teal shoes, dignified skilled cumbia dancer, right foot dragged back along the floor to close beside the left, both feet flat, knees soft, arms relaxed low at the sides, clear readable silhouette, weight on one leg, hips tilted, shirt hem swinging, follow-through, asymmetric pose",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, beard, goatee, stubble, sideburns, five o clock shadow, thick mustache, handlebar mustache, vest, waistcoat, jacket, necklace, belt, breast pocket, tucked in shirt, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms",
+    "seed": 932300
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "follow-through",
+   "no-twinning",
+   "timing-on-beat"
+  ],
+  "inputHashes": {
+   "pose": "726910bcbef1db91f1eaec572b63bbbf2e9e80ec8d92f95164b15f5709662685",
+   "depth": "8e1f8d8129fd26ef60667089a5f58f500854f96f6282f767be86a80a21d8fcd8",
+   "lineart": "beec2e6c00af463fa380498581b0a162de9e43cc29925d1d3c143d342a3455a5"
+  }
+ },
+ {
+  "pose": "enter_forward.contact_l",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/sdxl-base-1/moderate.api.json",
+   "tier": "I1",
+   "count": 1,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/enter_forward.contact_l.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/enter_forward.contact_l.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/enter_forward.contact_l.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/enter_forward.contact_l.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful clean-shaven latino man with a thin neatly groomed pencil mustache, smooth bare chin and cheeks, cream panama hat with one plain teal band, solid deep purple short sleeved guayabera shirt worn untucked, exactly two thin vertical teal embroidered stripes running down the front, plain fabric everywhere else, cream trousers, teal shoes, dignified skilled cumbia dancer, swaggering walk toward the viewer on a slight diagonal, left heel landing in front, right foot behind on its toe, right fist on the hip, left arm swinging back, chin up, clear readable silhouette, weight on one leg, hips tilted, crouched, gathering energy, knees bent, asymmetric pose, feet firmly on the ground",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, beard, goatee, stubble, sideburns, five o clock shadow, thick mustache, handlebar mustache, vest, waistcoat, jacket, necklace, belt, breast pocket, tucked in shirt, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms, jumping",
+    "seed": 932400
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "anticipation",
+   "no-twinning",
+   "timing-on-beat",
+   "planted-pivot"
+  ],
+  "inputHashes": {
+   "pose": "994633691d5a12b63c92b309410008d44b4800cb3ca07a634281f10c93ffa422",
+   "depth": "88c5cd96e0e4b66931a10523e3fd9603b0f4cd521ee936f7bf89806296e91f3f",
+   "lineart": "d017ddb16b1c5a258160cf01253f670e61a56a5212ed7867d41136abb2762239"
+  }
+ },
+ {
+  "pose": "enter_forward.down_l",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/sdxl-base-1/moderate.api.json",
+   "tier": "I1",
+   "count": 1,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/enter_forward.down_l.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/enter_forward.down_l.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/enter_forward.down_l.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/enter_forward.down_l.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful clean-shaven latino man with a thin neatly groomed pencil mustache, smooth bare chin and cheeks, cream panama hat with one plain teal band, solid deep purple short sleeved guayabera shirt worn untucked, exactly two thin vertical teal embroidered stripes running down the front, plain fabric everywhere else, cream trousers, teal shoes, dignified skilled cumbia dancer, weight dropping into the bent left knee, left hip high, right foot pushing off behind on its toe, right fist on the hip, left arm swinging, head dipping on the beat, clear readable silhouette, weight on one leg, hips tilted, asymmetric pose, feet firmly on the ground",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, beard, goatee, stubble, sideburns, five o clock shadow, thick mustache, handlebar mustache, vest, waistcoat, jacket, necklace, belt, breast pocket, tucked in shirt, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms, jumping",
+    "seed": 932500
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "no-twinning",
+   "timing-on-beat",
+   "planted-pivot"
+  ],
+  "inputHashes": {
+   "pose": "18b359c541160a5052c2d87cd3afd2c8eff36722ac0f01113ce14813c2f6b751",
+   "depth": "c7251ecc66d6e3d7fb1cc9be0afd393af6456f0a135d5a7b09d11645b49c31ff",
+   "lineart": "f8cdbe83b0bff4cb60cac605835efa40fe91a1124c8f058b20d057838560961c"
+  }
+ },
+ {
+  "pose": "enter_forward.pass_l",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/sdxl-base-1/moderate.api.json",
+   "tier": "I1",
+   "count": 1,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/enter_forward.pass_l.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/enter_forward.pass_l.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/enter_forward.pass_l.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/enter_forward.pass_l.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful clean-shaven latino man with a thin neatly groomed pencil mustache, smooth bare chin and cheeks, cream panama hat with one plain teal band, solid deep purple short sleeved guayabera shirt worn untucked, exactly two thin vertical teal embroidered stripes running down the front, plain fabric everywhere else, cream trousers, teal shoes, dignified skilled cumbia dancer, standing tall on the straight left leg, right knee swinging forward past it, right fist on the hip, left arm relaxed at the side, chin up, clear readable silhouette, weight on one leg, hips tilted, asymmetric pose, feet firmly on the ground",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, beard, goatee, stubble, sideburns, five o clock shadow, thick mustache, handlebar mustache, vest, waistcoat, jacket, necklace, belt, breast pocket, tucked in shirt, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms, jumping",
+    "seed": 932600
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "no-twinning",
+   "timing-on-beat",
+   "planted-pivot"
+  ],
+  "inputHashes": {
+   "pose": "81d003f69a3d417e5493918b6f200636320f11fe1e8f0fd14c9779e36f6b1dc7",
+   "depth": "9900e8e7837c23704cd2f3ce5d45e3d8a4b547934bfa9b2bd08a0d56713b2dcb",
+   "lineart": "fe51aff45964ccb964991c54cf07a2cad5152e8b3ca954d79530c955c68b3ec4"
+  }
+ },
+ {
+  "pose": "enter_forward.contact_r",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/sdxl-base-1/moderate.api.json",
+   "tier": "I1",
+   "count": 1,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/enter_forward.contact_r.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/enter_forward.contact_r.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/enter_forward.contact_r.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/enter_forward.contact_r.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful clean-shaven latino man with a thin neatly groomed pencil mustache, smooth bare chin and cheeks, cream panama hat with one plain teal band, solid deep purple short sleeved guayabera shirt worn untucked, exactly two thin vertical teal embroidered stripes running down the front, plain fabric everywhere else, cream trousers, teal shoes, dignified skilled cumbia dancer, swaggering walk toward the viewer on a slight diagonal, right heel landing in front, left foot behind on its toe, right fist on the hip, left arm swinging forward, chin up, clear readable silhouette, weight on one leg, hips tilted, crouched, gathering energy, knees bent, asymmetric pose, feet firmly on the ground",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, beard, goatee, stubble, sideburns, five o clock shadow, thick mustache, handlebar mustache, vest, waistcoat, jacket, necklace, belt, breast pocket, tucked in shirt, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms, jumping",
+    "seed": 932700
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "anticipation",
+   "no-twinning",
+   "timing-on-beat",
+   "planted-pivot"
+  ],
+  "inputHashes": {
+   "pose": "61d48967228f44f954c86c4e3541791ba562f8a6a3d99eddf5d9ed4c3aaac29d",
+   "depth": "dbcb148c3449a3d543476608830a22f98403303bd3cbd9938d7c4c014897fbd1",
+   "lineart": "acb78a434dee014b2c94e84c411a5ad6951e3b96648dc43511a18513557707e6"
+  }
+ },
+ {
+  "pose": "enter_forward.down_r",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/sdxl-base-1/moderate.api.json",
+   "tier": "I1",
+   "count": 1,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/enter_forward.down_r.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/enter_forward.down_r.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/enter_forward.down_r.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/enter_forward.down_r.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful clean-shaven latino man with a thin neatly groomed pencil mustache, smooth bare chin and cheeks, cream panama hat with one plain teal band, solid deep purple short sleeved guayabera shirt worn untucked, exactly two thin vertical teal embroidered stripes running down the front, plain fabric everywhere else, cream trousers, teal shoes, dignified skilled cumbia dancer, weight dropping into the bent right knee, right hip high, left foot pushing off behind on its toe, right fist on the hip, left arm swinging forward, head dipping on the beat, clear readable silhouette, weight on one leg, hips tilted, asymmetric pose, feet firmly on the ground",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, beard, goatee, stubble, sideburns, five o clock shadow, thick mustache, handlebar mustache, vest, waistcoat, jacket, necklace, belt, breast pocket, tucked in shirt, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms, jumping",
+    "seed": 932800
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "no-twinning",
+   "timing-on-beat",
+   "planted-pivot"
+  ],
+  "inputHashes": {
+   "pose": "6d9782114175140a8a6ce0acdf86dc89e9135ae67160a3f10ee52e28e0a9d712",
+   "depth": "bb19677ef0210e1adcfd74b9b8abd52816477cab115486441db107f5fa4f0a78",
+   "lineart": "df6cb8905b5e2b8698e08c8aa0102e93e6bd05c7160192bf1c04e02e216170ab"
+  }
+ },
+ {
+  "pose": "enter_forward.pass_r",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/sdxl-base-1/moderate.api.json",
+   "tier": "I1",
+   "count": 1,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/enter_forward.pass_r.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/enter_forward.pass_r.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/enter_forward.pass_r.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/enter_forward.pass_r.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful clean-shaven latino man with a thin neatly groomed pencil mustache, smooth bare chin and cheeks, cream panama hat with one plain teal band, solid deep purple short sleeved guayabera shirt worn untucked, exactly two thin vertical teal embroidered stripes running down the front, plain fabric everywhere else, cream trousers, teal shoes, dignified skilled cumbia dancer, standing tall on the straight right leg, left knee swinging forward past it, right fist on the hip, left arm relaxed at the side, chin up, clear readable silhouette, weight on one leg, hips tilted, asymmetric pose, feet firmly on the ground",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, beard, goatee, stubble, sideburns, five o clock shadow, thick mustache, handlebar mustache, vest, waistcoat, jacket, necklace, belt, breast pocket, tucked in shirt, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms, jumping",
+    "seed": 932900
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "no-twinning",
+   "timing-on-beat",
+   "planted-pivot"
+  ],
+  "inputHashes": {
+   "pose": "b2c6036d72b32093dc57e2f7cb8fc27122544ce3c644790250344e62378bc330",
+   "depth": "9585f45c19f333bde68ab0946f656cfd7ff8f4afe20108c3258fe1307dbb30b8",
+   "lineart": "81411cce272832b42bacd5a42ec5de440c04a77f7da3b7f8062ca3c999915250"
+  }
+ },
+ {
+  "pose": "retreat_backward.contact_l",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/sdxl-base-1/moderate.api.json",
+   "tier": "I1",
+   "count": 1,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/retreat_backward.contact_l.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/retreat_backward.contact_l.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/retreat_backward.contact_l.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/retreat_backward.contact_l.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful clean-shaven latino man with a thin neatly groomed pencil mustache, smooth bare chin and cheeks, cream panama hat with one plain teal band, solid deep purple short sleeved guayabera shirt worn untucked, exactly two thin vertical teal embroidered stripes running down the front, plain fabric everywhere else, cream trousers, teal shoes, dignified skilled cumbia dancer, stepping backward while still facing the viewer, left foot reaching back onto its ball, weight still on the flat right foot, left hand behind the back, right arm low and loose, clear readable silhouette, weight on one leg, hips tilted, crouched, gathering energy, knees bent, asymmetric pose, feet firmly on the ground",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, beard, goatee, stubble, sideburns, five o clock shadow, thick mustache, handlebar mustache, vest, waistcoat, jacket, necklace, belt, breast pocket, tucked in shirt, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms, jumping",
+    "seed": 933000
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "anticipation",
+   "no-twinning",
+   "timing-on-beat",
+   "planted-pivot"
+  ],
+  "inputHashes": {
+   "pose": "1ed3ae5e0da0738e44ba5fa79dfc18db7826217f0f955621364297a7a468c778",
+   "depth": "66d8e13cdddd3b34e38ff0145bb21ef43fbba03cf63bfa24d67732e5e4ee62e2",
+   "lineart": "74352a4f6f9a344b093c2bdb8c224fe452e9656222c5fc20ce217e7553c54f66"
+  }
+ },
+ {
+  "pose": "retreat_backward.down_l",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/sdxl-base-1/moderate.api.json",
+   "tier": "I1",
+   "count": 1,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/retreat_backward.down_l.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/retreat_backward.down_l.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/retreat_backward.down_l.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/retreat_backward.down_l.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful clean-shaven latino man with a thin neatly groomed pencil mustache, smooth bare chin and cheeks, cream panama hat with one plain teal band, solid deep purple short sleeved guayabera shirt worn untucked, exactly two thin vertical teal embroidered stripes running down the front, plain fabric everywhere else, cream trousers, teal shoes, dignified skilled cumbia dancer, weight rolled back onto the bent left leg, left hip high, right foot in front with the toe lifted, left hand behind the back, right arm low and forward, head nodding, clear readable silhouette, weight on one leg, hips tilted, asymmetric pose, feet firmly on the ground",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, beard, goatee, stubble, sideburns, five o clock shadow, thick mustache, handlebar mustache, vest, waistcoat, jacket, necklace, belt, breast pocket, tucked in shirt, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms, jumping",
+    "seed": 933100
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "no-twinning",
+   "timing-on-beat",
+   "planted-pivot"
+  ],
+  "inputHashes": {
+   "pose": "8e1be716e2c2838344986ab41779794fe5bf302600c880410f68ff57067aabd4",
+   "depth": "669f5eb652cbdb36b2788025f23b0eacbb8455c4622a2998d567aff475531dce",
+   "lineart": "a2511a9b8bc2fa281ad4a48e08cbfc3eba2d615ba43273b5e3b012c4e2c2d83b"
+  }
+ },
+ {
+  "pose": "retreat_backward.pass_l",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/sdxl-base-1/moderate.api.json",
+   "tier": "I1",
+   "count": 1,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/retreat_backward.pass_l.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/retreat_backward.pass_l.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/retreat_backward.pass_l.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/retreat_backward.pass_l.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful clean-shaven latino man with a thin neatly groomed pencil mustache, smooth bare chin and cheeks, cream panama hat with one plain teal band, solid deep purple short sleeved guayabera shirt worn untucked, exactly two thin vertical teal embroidered stripes running down the front, plain fabric everywhere else, cream trousers, teal shoes, dignified skilled cumbia dancer, right foot dragged back along the floor past the straight left leg, left hand behind the back, right arm hanging loose, chin up, clear readable silhouette, weight on one leg, hips tilted, asymmetric pose, feet firmly on the ground",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, beard, goatee, stubble, sideburns, five o clock shadow, thick mustache, handlebar mustache, vest, waistcoat, jacket, necklace, belt, breast pocket, tucked in shirt, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms, jumping",
+    "seed": 933200
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "no-twinning",
+   "timing-on-beat",
+   "planted-pivot"
+  ],
+  "inputHashes": {
+   "pose": "c9790189b12401b3cadecec2945f76c47e7c818e89fef9391be4c70f91ef7d2c",
+   "depth": "41b66d9d4b07847808d59ebce9ddad29b91d3d016a83ad2f417aa382c6b8888f",
+   "lineart": "c46c7a9483bcc3bb707bf172cbbc61e683031e666d8060ebca33495b230a6322"
+  }
+ },
+ {
+  "pose": "retreat_backward.contact_r",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/sdxl-base-1/moderate.api.json",
+   "tier": "I1",
+   "count": 1,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/retreat_backward.contact_r.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/retreat_backward.contact_r.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/retreat_backward.contact_r.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/retreat_backward.contact_r.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful clean-shaven latino man with a thin neatly groomed pencil mustache, smooth bare chin and cheeks, cream panama hat with one plain teal band, solid deep purple short sleeved guayabera shirt worn untucked, exactly two thin vertical teal embroidered stripes running down the front, plain fabric everywhere else, cream trousers, teal shoes, dignified skilled cumbia dancer, stepping backward while still facing the viewer, right foot reaching back onto its ball, weight still on the flat left foot, left hand behind the back, right arm low and loose, clear readable silhouette, weight on one leg, hips tilted, crouched, gathering energy, knees bent, asymmetric pose, feet firmly on the ground",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, beard, goatee, stubble, sideburns, five o clock shadow, thick mustache, handlebar mustache, vest, waistcoat, jacket, necklace, belt, breast pocket, tucked in shirt, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms, jumping",
+    "seed": 933300
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "anticipation",
+   "no-twinning",
+   "timing-on-beat",
+   "planted-pivot"
+  ],
+  "inputHashes": {
+   "pose": "7d9943ef40ce9af2d14a15ba900e1e796099d4c5b670e5230d7396334a82b809",
+   "depth": "9854278b74dbdd420f12b772c880fd8ea08a9952112cb5848d67c3cf8abf1aab",
+   "lineart": "b4dd31d3f09553de8b5f1631035cbd07cbcda07ec1823f438a60215ce42feeef"
+  }
+ },
+ {
+  "pose": "retreat_backward.down_r",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/sdxl-base-1/moderate.api.json",
+   "tier": "I1",
+   "count": 1,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/retreat_backward.down_r.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/retreat_backward.down_r.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/retreat_backward.down_r.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/retreat_backward.down_r.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful clean-shaven latino man with a thin neatly groomed pencil mustache, smooth bare chin and cheeks, cream panama hat with one plain teal band, solid deep purple short sleeved guayabera shirt worn untucked, exactly two thin vertical teal embroidered stripes running down the front, plain fabric everywhere else, cream trousers, teal shoes, dignified skilled cumbia dancer, weight rolled back onto the bent right leg, right hip high, left foot in front with the toe lifted, left hand behind the back, right arm low, head nodding, clear readable silhouette, weight on one leg, hips tilted, asymmetric pose, feet firmly on the ground",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, beard, goatee, stubble, sideburns, five o clock shadow, thick mustache, handlebar mustache, vest, waistcoat, jacket, necklace, belt, breast pocket, tucked in shirt, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms, jumping",
+    "seed": 933400
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "no-twinning",
+   "timing-on-beat",
+   "planted-pivot"
+  ],
+  "inputHashes": {
+   "pose": "e4fffbef9daaca695030cff04ce8ad8606acc3df9a097227b11ed6f076b0f2bb",
+   "depth": "df78e70b486d52a71b3c1d7af7e17f9f4d585a820ab05a294ca791117ef4e110",
+   "lineart": "dfc34a400d812873d73768bd6cf27c44a62fb4398313a053b3744995875492ac"
+  }
+ },
+ {
+  "pose": "retreat_backward.pass_r",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/sdxl-base-1/moderate.api.json",
+   "tier": "I1",
+   "count": 1,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/retreat_backward.pass_r.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/retreat_backward.pass_r.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/retreat_backward.pass_r.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/retreat_backward.pass_r.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful clean-shaven latino man with a thin neatly groomed pencil mustache, smooth bare chin and cheeks, cream panama hat with one plain teal band, solid deep purple short sleeved guayabera shirt worn untucked, exactly two thin vertical teal embroidered stripes running down the front, plain fabric everywhere else, cream trousers, teal shoes, dignified skilled cumbia dancer, left foot dragged back along the floor past the straight right leg, left hand behind the back, right arm hanging loose, chin up, clear readable silhouette, weight on one leg, hips tilted, asymmetric pose, feet firmly on the ground",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, beard, goatee, stubble, sideburns, five o clock shadow, thick mustache, handlebar mustache, vest, waistcoat, jacket, necklace, belt, breast pocket, tucked in shirt, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms, jumping",
+    "seed": 933500
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "no-twinning",
+   "timing-on-beat",
+   "planted-pivot"
+  ],
+  "inputHashes": {
+   "pose": "8e1156bb40be36f76b6136e4ad5887dc566c8af505924668fdf9a497c82c4ce6",
+   "depth": "5009208b8d519e51f7b3a070d0b7e2bb2fb372c390c61854b94b8a194578557d",
+   "lineart": "15306f3080cc8655c42710b91aca377daad367dc800a500eb0076f1746580a92"
+  }
+ },
+ {
+  "pose": "yield_side.contact_l",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/sdxl-base-1/moderate.api.json",
+   "tier": "I1",
+   "count": 1,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/yield_side.contact_l.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/yield_side.contact_l.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/yield_side.contact_l.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/yield_side.contact_l.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful clean-shaven latino man with a thin neatly groomed pencil mustache, smooth bare chin and cheeks, cream panama hat with one plain teal band, solid deep purple short sleeved guayabera shirt worn untucked, exactly two thin vertical teal embroidered stripes running down the front, plain fabric everywhere else, cream trousers, teal shoes, dignified skilled cumbia dancer, side-step toward the sideline: left leg reaching out sideways with the foot landing, weight still on the bent right leg, right fist on the hip, left arm out low, clear readable silhouette, weight on one leg, hips tilted, crouched, gathering energy, knees bent, asymmetric pose, feet firmly on the ground",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, beard, goatee, stubble, sideburns, five o clock shadow, thick mustache, handlebar mustache, vest, waistcoat, jacket, necklace, belt, breast pocket, tucked in shirt, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms, jumping",
+    "seed": 933600
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "anticipation",
+   "no-twinning",
+   "timing-on-beat",
+   "planted-pivot"
+  ],
+  "inputHashes": {
+   "pose": "22f79fbae386af8be1fb99bffb71b347f2248421555f0ba2b0f6468401fd99fc",
+   "depth": "4a383eef99afc08c7ec05b9fa961a331378a19995ac40c7e26001df3bee61a60",
+   "lineart": "f8dcfde0a178fdf29f0c322836be31bcf94f7db7b02a0e7d9f9814fa00054a92"
+  }
+ },
+ {
+  "pose": "yield_side.down_l",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/sdxl-base-1/moderate.api.json",
+   "tier": "I1",
+   "count": 1,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/yield_side.down_l.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/yield_side.down_l.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/yield_side.down_l.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/yield_side.down_l.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful clean-shaven latino man with a thin neatly groomed pencil mustache, smooth bare chin and cheeks, cream panama hat with one plain teal band, solid deep purple short sleeved guayabera shirt worn untucked, exactly two thin vertical teal embroidered stripes running down the front, plain fabric everywhere else, cream trousers, teal shoes, dignified skilled cumbia dancer, weight shifted onto the bent left leg, left hip high and pushed out, right foot trailing on its toe, right fist on the hip, head nodding, clear readable silhouette, weight on one leg, hips tilted, asymmetric pose, feet firmly on the ground",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, beard, goatee, stubble, sideburns, five o clock shadow, thick mustache, handlebar mustache, vest, waistcoat, jacket, necklace, belt, breast pocket, tucked in shirt, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms, jumping",
+    "seed": 933700
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "no-twinning",
+   "timing-on-beat",
+   "planted-pivot"
+  ],
+  "inputHashes": {
+   "pose": "581374ed7a53dd8036dad9117871f4b03f16e9d24bbe67e6157d520fe2f9321e",
+   "depth": "34aecf4c5c90b6b969a068cac54d3f3fcb4b91dcbcd3049a8a0167a228482dd6",
+   "lineart": "b1ce2747f8ba591606937acffabdf0785f4369d034e9351eeba668b8fbdcf66c"
+  }
+ },
+ {
+  "pose": "yield_side.pass_l",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/sdxl-base-1/moderate.api.json",
+   "tier": "I1",
+   "count": 1,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/yield_side.pass_l.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/yield_side.pass_l.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/yield_side.pass_l.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/yield_side.pass_l.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful clean-shaven latino man with a thin neatly groomed pencil mustache, smooth bare chin and cheeks, cream panama hat with one plain teal band, solid deep purple short sleeved guayabera shirt worn untucked, exactly two thin vertical teal embroidered stripes running down the front, plain fabric everywhere else, cream trousers, teal shoes, dignified skilled cumbia dancer, right foot dragged in along the floor to close beside the straight left leg, right fist on the hip, left arm relaxed at the side, clear readable silhouette, weight on one leg, hips tilted, asymmetric pose, feet firmly on the ground",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, beard, goatee, stubble, sideburns, five o clock shadow, thick mustache, handlebar mustache, vest, waistcoat, jacket, necklace, belt, breast pocket, tucked in shirt, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms, jumping",
+    "seed": 933800
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "no-twinning",
+   "timing-on-beat",
+   "planted-pivot"
+  ],
+  "inputHashes": {
+   "pose": "606aff63e1e5ec7b4eccc01c58e40c7ff607311f06debb67fabbb9d9f9ff9834",
+   "depth": "55be54aba17d87482f1ddc4befa595c05e68e0579f890ffcb4931e55d793062a",
+   "lineart": "a17a6ca3d4b30836b49f75af784e7011ead58ecd6fbca5f456583ea938c23383"
+  }
+ },
+ {
+  "pose": "yield_side.contact_r",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/sdxl-base-1/moderate.api.json",
+   "tier": "I1",
+   "count": 1,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/yield_side.contact_r.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/yield_side.contact_r.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/yield_side.contact_r.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/yield_side.contact_r.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful clean-shaven latino man with a thin neatly groomed pencil mustache, smooth bare chin and cheeks, cream panama hat with one plain teal band, solid deep purple short sleeved guayabera shirt worn untucked, exactly two thin vertical teal embroidered stripes running down the front, plain fabric everywhere else, cream trousers, teal shoes, dignified skilled cumbia dancer, right foot stepping back on a diagonal onto its ball, left knee bent, arms low and loose, torso turning open, clear readable silhouette, weight on one leg, hips tilted, crouched, gathering energy, knees bent, asymmetric pose, feet firmly on the ground",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, beard, goatee, stubble, sideburns, five o clock shadow, thick mustache, handlebar mustache, vest, waistcoat, jacket, necklace, belt, breast pocket, tucked in shirt, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms, jumping",
+    "seed": 933900
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "anticipation",
+   "no-twinning",
+   "timing-on-beat",
+   "planted-pivot"
+  ],
+  "inputHashes": {
+   "pose": "d9e2d0e88ce8818716725a4e39a929e3211f752c7afb9f7478e9cd13e0e516a3",
+   "depth": "921301c7c209b838e3fd748f18f310f5c4089f4e8c1aa6735ee7741e8222f56a",
+   "lineart": "8b448a33d6caa1d0ac62b84060d67d704c4819c2bd551506ffb320c106b29bb8"
+  }
+ },
+ {
+  "pose": "yield_side.down_r",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/sdxl-base-1/moderate.api.json",
+   "tier": "I1",
+   "count": 1,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/yield_side.down_r.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/yield_side.down_r.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/yield_side.down_r.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/yield_side.down_r.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful clean-shaven latino man with a thin neatly groomed pencil mustache, smooth bare chin and cheeks, cream panama hat with one plain teal band, solid deep purple short sleeved guayabera shirt worn untucked, exactly two thin vertical teal embroidered stripes running down the front, plain fabric everywhere else, cream trousers, teal shoes, dignified skilled cumbia dancer, weight settled onto the bent right leg, right hip high, left foot in front with the toe lifted, right forearm coming forward at waist height, clear readable silhouette, weight on one leg, hips tilted, asymmetric pose, feet firmly on the ground",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, beard, goatee, stubble, sideburns, five o clock shadow, thick mustache, handlebar mustache, vest, waistcoat, jacket, necklace, belt, breast pocket, tucked in shirt, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms, jumping",
+    "seed": 934000
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "no-twinning",
+   "timing-on-beat",
+   "planted-pivot"
+  ],
+  "inputHashes": {
+   "pose": "9ef52ed182565bcfc2dbe51725b40fa67a8f51080cbdecca385d4ece53c34375",
+   "depth": "63c08ce3b2d335cb050890625b988c1bc5a454bc422bb200757746dd1b922124",
+   "lineart": "ab57e6708d4f7f6592ab6f4ad6e0232dd86abebc9848bac7b29c3efe61496808"
+  }
+ },
+ {
+  "pose": "yield_side.pass_r",
+  "profile": "peak",
+  "args": {
+   "workflow": "tool/art/workflows/sdxl-base-1/peak.api.json",
+   "tier": "I1",
+   "count": 1,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/yield_side.pass_r.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/yield_side.pass_r.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/yield_side.pass_r.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/yield_side.pass_r.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful clean-shaven latino man with a thin neatly groomed pencil mustache, smooth bare chin and cheeks, cream panama hat with one plain teal band, solid deep purple short sleeved guayabera shirt worn untucked, exactly two thin vertical teal embroidered stripes running down the front, plain fabric everywhere else, cream trousers, teal shoes, dignified skilled cumbia dancer, standing on the right leg, left fist on the hip, right arm held out low and wide with the palm open and up toward the empty floor, head turned toward the open palm with a slight bow, offering the floor, clear readable silhouette, dynamic dance pose, strong line of action, weight on one leg, hips tilted, exaggerated energetic pose, asymmetric pose, feet firmly on the ground",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, beard, goatee, stubble, sideburns, five o clock shadow, thick mustache, handlebar mustache, vest, waistcoat, jacket, necklace, belt, breast pocket, tucked in shirt, limbs merged into body, stiff pose, straight rigid body, floating, feet off ground, symmetrical pose, mirrored arms, jumping",
+    "seed": 934100
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "line-of-action",
+   "contrapposto",
+   "exaggeration-accent",
+   "no-twinning",
+   "timing-on-beat",
+   "planted-pivot"
+  ],
+  "inputHashes": {
+   "pose": "3193586a70d323aab92e683f05e86b93841fa3f55e6285a12c34bd278551ec60",
+   "depth": "d08e73504c838ba8feababe2f747194757e46a0d6c8f27265f79f72a0392ef6e",
+   "lineart": "939fe7f892e1db2931f20acef786203d096f0b0c86eadcf0ec9ca5954f6eb281"
+  }
+ },
+ {
+  "pose": "watch.shift_l",
+  "profile": "overlap",
+  "args": {
+   "workflow": "tool/art/workflows/sdxl-base-1/overlap.api.json",
+   "tier": "I1",
+   "count": 1,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/watch.shift_l.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/watch.shift_l.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/watch.shift_l.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/watch.shift_l.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful clean-shaven latino man with a thin neatly groomed pencil mustache, smooth bare chin and cheeks, cream panama hat with one plain teal band, solid deep purple short sleeved guayabera shirt worn untucked, exactly two thin vertical teal embroidered stripes running down the front, plain fabric everywhere else, cream trousers, teal shoes, dignified skilled cumbia dancer, relaxed stance turned slightly to his left, hands clasped behind the back, weight on the left foot with the left hip high, right knee soft, head turned to watch the other dancer, clear readable silhouette, weight on one leg, hips tilted, relaxed shoulders, playful attitude, asymmetric pose, feet firmly on the ground",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, beard, goatee, stubble, sideburns, five o clock shadow, thick mustache, handlebar mustache, vest, waistcoat, jacket, necklace, belt, breast pocket, tucked in shirt, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms, jumping",
+    "seed": 934200
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "secondary-action",
+   "no-twinning",
+   "timing-on-beat",
+   "planted-pivot"
+  ],
+  "inputHashes": {
+   "pose": "5d2dbd7c7fd269391920c4bf4e61ece6b3ed75a9062d9ef929c888fdefef5603",
+   "depth": "98a88d4d79ecc2091fd66954d5c92f1cc2a0c60e9253353cac7adbcfccf5f895",
+   "lineart": "5df7755b7b4b408cde7671340e3f38e584c3638d128e02b63ec89375f9da3312"
+  }
+ },
+ {
+  "pose": "watch.hold_l",
+  "profile": "overlap",
+  "args": {
+   "workflow": "tool/art/workflows/sdxl-base-1/overlap.api.json",
+   "tier": "I1",
+   "count": 1,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/watch.hold_l.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/watch.hold_l.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/watch.hold_l.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/watch.hold_l.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful clean-shaven latino man with a thin neatly groomed pencil mustache, smooth bare chin and cheeks, cream panama hat with one plain teal band, solid deep purple short sleeved guayabera shirt worn untucked, exactly two thin vertical teal embroidered stripes running down the front, plain fabric everywhere else, cream trousers, teal shoes, dignified skilled cumbia dancer, hands clasped behind the back, weight sunk on the left foot with both knees softer, head nodding along to the music while watching, clear readable silhouette, weight on one leg, hips tilted, shirt hem swinging, follow-through, relaxed shoulders, playful attitude, asymmetric pose",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, beard, goatee, stubble, sideburns, five o clock shadow, thick mustache, handlebar mustache, vest, waistcoat, jacket, necklace, belt, breast pocket, tucked in shirt, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms",
+    "seed": 934300
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "follow-through",
+   "secondary-action",
+   "no-twinning",
+   "timing-on-beat"
+  ],
+  "inputHashes": {
+   "pose": "af0480a8363a0f69521166c868b6e15df51006f2dbe94e9dad00b565c5eae929",
+   "depth": "e64d88bc1d15d0163505c9ca3015f6c8eb9a452bf889aacbbbf361bc71336d9e",
+   "lineart": "27ba33ce673afffca7059964aa6551f1d7e1b940c47973fd3fb0e8cd685250cf"
+  }
+ },
+ {
+  "pose": "watch.shift_r",
+  "profile": "overlap",
+  "args": {
+   "workflow": "tool/art/workflows/sdxl-base-1/overlap.api.json",
+   "tier": "I1",
+   "count": 1,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/watch.shift_r.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/watch.shift_r.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/watch.shift_r.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/watch.shift_r.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful clean-shaven latino man with a thin neatly groomed pencil mustache, smooth bare chin and cheeks, cream panama hat with one plain teal band, solid deep purple short sleeved guayabera shirt worn untucked, exactly two thin vertical teal embroidered stripes running down the front, plain fabric everywhere else, cream trousers, teal shoes, dignified skilled cumbia dancer, relaxed stance turned slightly to his left, hands clasped behind the back, weight on the right foot with the right hip high, left knee soft, head turned to watch the other dancer, clear readable silhouette, weight on one leg, hips tilted, relaxed shoulders, playful attitude, asymmetric pose, feet firmly on the ground",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, beard, goatee, stubble, sideburns, five o clock shadow, thick mustache, handlebar mustache, vest, waistcoat, jacket, necklace, belt, breast pocket, tucked in shirt, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms, jumping",
+    "seed": 934400
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "secondary-action",
+   "no-twinning",
+   "timing-on-beat",
+   "planted-pivot"
+  ],
+  "inputHashes": {
+   "pose": "cb6659185cda424e678981244f2e9c8b377cdd10d9b6c54c06d2a786aa65a841",
+   "depth": "3b769510934e817714f64a5d86360894f1780f0e7b928b1709a68180465abbe1",
+   "lineart": "eaba439f444e1d1b3c433a2b5a58a8c1156a305ce3785445d29c70a8d5b0448c"
+  }
+ },
+ {
+  "pose": "watch.hold_r",
+  "profile": "overlap",
+  "args": {
+   "workflow": "tool/art/workflows/sdxl-base-1/overlap.api.json",
+   "tier": "I1",
+   "count": 1,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/watch.hold_r.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/watch.hold_r.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/watch.hold_r.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/watch.hold_r.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful clean-shaven latino man with a thin neatly groomed pencil mustache, smooth bare chin and cheeks, cream panama hat with one plain teal band, solid deep purple short sleeved guayabera shirt worn untucked, exactly two thin vertical teal embroidered stripes running down the front, plain fabric everywhere else, cream trousers, teal shoes, dignified skilled cumbia dancer, hands clasped behind the back, weight sunk on the right foot with both knees softer, head tilted with a small nod while watching, clear readable silhouette, weight on one leg, hips tilted, shirt hem swinging, follow-through, relaxed shoulders, playful attitude, asymmetric pose",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, beard, goatee, stubble, sideburns, five o clock shadow, thick mustache, handlebar mustache, vest, waistcoat, jacket, necklace, belt, breast pocket, tucked in shirt, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms",
+    "seed": 934500
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "follow-through",
+   "secondary-action",
+   "no-twinning",
+   "timing-on-beat"
+  ],
+  "inputHashes": {
+   "pose": "eee02acefb89e3732d728a7ab9497a6cba8ee733b5c21842f8399492738a29de",
+   "depth": "a1bbe568e1e9ece6af772398289254c5b3c52278d7ac799f87b65565b0d17a07",
+   "lineart": "6845dbac87ade78e6a1c6257465ca172f5d17044f15c6bdf3cc5c9d51badee5f"
+  }
+ },
+ {
+  "pose": "clap.open",
+  "profile": "overlap",
+  "args": {
+   "workflow": "tool/art/workflows/sdxl-base-1/overlap.api.json",
+   "tier": "I1",
+   "count": 1,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/clap.open.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/clap.open.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/clap.open.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/clap.open.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful clean-shaven latino man with a thin neatly groomed pencil mustache, smooth bare chin and cheeks, cream panama hat with one plain teal band, solid deep purple short sleeved guayabera shirt worn untucked, exactly two thin vertical teal embroidered stripes running down the front, plain fabric everywhere else, cream trousers, teal shoes, dignified skilled cumbia dancer, standing square and upright, both forearms raised in front of the chest with the palms apart and facing each other, elbows out, chin up, clear readable silhouette, weight on one leg, hips tilted, crouched, gathering energy, knees bent, asymmetric pose",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, beard, goatee, stubble, sideburns, five o clock shadow, thick mustache, handlebar mustache, vest, waistcoat, jacket, necklace, belt, breast pocket, tucked in shirt, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms",
+    "seed": 934600
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "anticipation",
+   "no-twinning",
+   "timing-on-beat"
+  ],
+  "inputHashes": {
+   "pose": "92ce8d4225e253cefc0e9cfdade1bd63b5ba632354eeb915c026c7bb91dd1410",
+   "depth": "2d4194db8783cdc1ce9a1629df1d17221af2ae0df8717f3b581d92c30625f4af",
+   "lineart": "1e28a2e8c3b6b68e6cd992c84538118ea7909779013b29e278df5f7269dcf77b"
+  }
+ },
+ {
+  "pose": "clap.close",
+  "profile": "overlap",
+  "args": {
+   "workflow": "tool/art/workflows/sdxl-base-1/overlap.api.json",
+   "tier": "I1",
+   "count": 1,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/clap.close.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/clap.close.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/clap.close.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/clap.close.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful clean-shaven latino man with a thin neatly groomed pencil mustache, smooth bare chin and cheeks, cream panama hat with one plain teal band, solid deep purple short sleeved guayabera shirt worn untucked, exactly two thin vertical teal embroidered stripes running down the front, plain fabric everywhere else, cream trousers, teal shoes, dignified skilled cumbia dancer, both hands swinging together in front of the chest, elbows out, knees starting to bend, head starting to nod, clear readable silhouette, weight on one leg, hips tilted, asymmetric pose, feet firmly on the ground",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, beard, goatee, stubble, sideburns, five o clock shadow, thick mustache, handlebar mustache, vest, waistcoat, jacket, necklace, belt, breast pocket, tucked in shirt, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms, jumping",
+    "seed": 934700
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "no-twinning",
+   "timing-on-beat",
+   "planted-pivot"
+  ],
+  "inputHashes": {
+   "pose": "0b1c213abc4cf6da36ded48f503358e03a06e318fbbbea959612efa2486a9b71",
+   "depth": "8634c83e28bfceb09a746d15d797cd8a68a84d6eae240a51c2baf310689ec18b",
+   "lineart": "35e93c8c7550ececc42bb8627273205c88e51b2ed707fc62eff2e5d0834e94cb"
+  }
+ },
+ {
+  "pose": "clap.contact",
+  "profile": "overlap",
+  "args": {
+   "workflow": "tool/art/workflows/sdxl-base-1/overlap.api.json",
+   "tier": "I1",
+   "count": 1,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/clap.contact.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/clap.contact.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/clap.contact.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/clap.contact.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful clean-shaven latino man with a thin neatly groomed pencil mustache, smooth bare chin and cheeks, cream panama hat with one plain teal band, solid deep purple short sleeved guayabera shirt worn untucked, exactly two thin vertical teal embroidered stripes running down the front, plain fabric everywhere else, cream trousers, teal shoes, dignified skilled cumbia dancer, palms clapped together in front of the chest, elbows out to the sides, both knees dipped, head nodding down with a smile, clear readable silhouette, weight on one leg, hips tilted, crouched, gathering energy, knees bent, asymmetric pose, feet firmly on the ground",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, beard, goatee, stubble, sideburns, five o clock shadow, thick mustache, handlebar mustache, vest, waistcoat, jacket, necklace, belt, breast pocket, tucked in shirt, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms, jumping",
+    "seed": 934800
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "anticipation",
+   "no-twinning",
+   "timing-on-beat",
+   "planted-pivot"
+  ],
+  "inputHashes": {
+   "pose": "b07115df674d2ec048043685b5c08b5cd765d26f856ffcaf5d1ef6ebc29cf06c",
+   "depth": "b790dc76c5e8cc2016f9f97bd697171e05f716bfed230d1af8f7f298af2d01ec",
+   "lineart": "f27d95ce336e21e5a3f763bd1ad27eb3a4d8168cc0a5f9a536eeaa9b61bb2f70"
+  }
+ },
+ {
+  "pose": "clap.release",
+  "profile": "overlap",
+  "args": {
+   "workflow": "tool/art/workflows/sdxl-base-1/overlap.api.json",
+   "tier": "I1",
+   "count": 1,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/clap.release.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/clap.release.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/clap.release.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/clap.release.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful clean-shaven latino man with a thin neatly groomed pencil mustache, smooth bare chin and cheeks, cream panama hat with one plain teal band, solid deep purple short sleeved guayabera shirt worn untucked, exactly two thin vertical teal embroidered stripes running down the front, plain fabric everywhere else, cream trousers, teal shoes, dignified skilled cumbia dancer, hands bouncing apart in front of the chest, elbows out, knees rising, head level, clear readable silhouette, weight on one leg, hips tilted, shirt hem swinging, follow-through, asymmetric pose",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, beard, goatee, stubble, sideburns, five o clock shadow, thick mustache, handlebar mustache, vest, waistcoat, jacket, necklace, belt, breast pocket, tucked in shirt, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms",
+    "seed": 934900
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "follow-through",
+   "no-twinning",
+   "timing-on-beat"
+  ],
+  "inputHashes": {
+   "pose": "07806b7f5dbed152a1ff82c867c15cc55b58d08730c8155f6eab04928f8ab6e0",
+   "depth": "1380bf3323197fe503059bfb3770f51f9b5e75387c35e120425dc396ea3bc85e",
+   "lineart": "8c20997cde00a7c605d5c650e22b1182dd500da97368cd8c27bf2ce23b3deee4"
+  }
+ },
+ {
+  "pose": "challenge.load",
+  "profile": "overlap",
+  "args": {
+   "workflow": "tool/art/workflows/sdxl-base-1/overlap.api.json",
+   "tier": "I1",
+   "count": 1,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/challenge.load.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/challenge.load.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/challenge.load.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/challenge.load.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful clean-shaven latino man with a thin neatly groomed pencil mustache, smooth bare chin and cheeks, cream panama hat with one plain teal band, solid deep purple short sleeved guayabera shirt worn untucked, exactly two thin vertical teal embroidered stripes running down the front, plain fabric everywhere else, cream trousers, teal shoes, dignified skilled cumbia dancer, back-break dip: weight sunk on the bent left leg, right foot back on its ball, torso leaning forward, both hands travelling toward the hips, head lowered, clear readable silhouette, weight on one leg, hips tilted, crouched, gathering energy, knees bent, asymmetric pose",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, beard, goatee, stubble, sideburns, five o clock shadow, thick mustache, handlebar mustache, vest, waistcoat, jacket, necklace, belt, breast pocket, tucked in shirt, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms",
+    "seed": 935000
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "anticipation",
+   "no-twinning",
+   "timing-on-beat"
+  ],
+  "inputHashes": {
+   "pose": "873076f21e301ef49b3f7ebb8b68b6b45ed89685024eeb83fce3563cb27db659",
+   "depth": "6a614957ea2da0325cb87fcc2738116e59b392fbca7bd49896a398ca648d9e56",
+   "lineart": "a85d699c83ff44ae913ad588795bca4e1ea5fe4f93d635fe7501aa6f62fb2c6f"
+  }
+ },
+ {
+  "pose": "challenge.proud",
+  "profile": "overlap",
+  "args": {
+   "workflow": "tool/art/workflows/sdxl-base-1/overlap.api.json",
+   "tier": "I1",
+   "count": 1,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/challenge.proud.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/challenge.proud.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/challenge.proud.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/challenge.proud.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful clean-shaven latino man with a thin neatly groomed pencil mustache, smooth bare chin and cheeks, cream panama hat with one plain teal band, solid deep purple short sleeved guayabera shirt worn untucked, exactly two thin vertical teal embroidered stripes running down the front, plain fabric everywhere else, cream trousers, teal shoes, dignified skilled cumbia dancer, proud stance: both fists on the hips with the elbows out, chest pushed out and leaning back, chin raised, weight on the straight right leg, left heel set forward with the toe up, clear readable silhouette, dynamic dance pose, strong line of action, weight on one leg, hips tilted, exaggerated energetic pose, asymmetric pose",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, beard, goatee, stubble, sideburns, five o clock shadow, thick mustache, handlebar mustache, vest, waistcoat, jacket, necklace, belt, breast pocket, tucked in shirt, limbs merged into body, stiff pose, straight rigid body, floating, feet off ground, symmetrical pose, mirrored arms",
+    "seed": 935100
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "line-of-action",
+   "contrapposto",
+   "exaggeration-accent",
+   "no-twinning",
+   "timing-on-beat"
+  ],
+  "inputHashes": {
+   "pose": "35abb3e09e689d891072a0874b149c4f901afc5bb2b561fe803bf8a7dae460c9",
+   "depth": "51b323c2bdd6ffed9d8f75856e12055ada10e278ab8573826878fe54ac3180b2",
+   "lineart": "19e559df32618a80c51c61f6008955b985ded768adf18fbb92c961c16a1de11e"
+  }
+ },
+ {
+  "pose": "challenge.offer",
+  "profile": "peak",
+  "args": {
+   "workflow": "tool/art/workflows/sdxl-base-1/peak.api.json",
+   "tier": "I1",
+   "count": 1,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/challenge.offer.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/challenge.offer.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/challenge.offer.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/challenge.offer.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful clean-shaven latino man with a thin neatly groomed pencil mustache, smooth bare chin and cheeks, cream panama hat with one plain teal band, solid deep purple short sleeved guayabera shirt worn untucked, exactly two thin vertical teal embroidered stripes running down the front, plain fabric everywhere else, cream trousers, teal shoes, dignified skilled cumbia dancer, courteous invitation: weight on the right leg, left fist on the hip, right arm sweeping out low and forward with the palm open and up toward the floor, torso bowing slightly forward, head bowed toward the open hand, clear readable silhouette, dynamic dance pose, strong line of action, weight on one leg, hips tilted, exaggerated energetic pose, asymmetric pose",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, beard, goatee, stubble, sideburns, five o clock shadow, thick mustache, handlebar mustache, vest, waistcoat, jacket, necklace, belt, breast pocket, tucked in shirt, limbs merged into body, stiff pose, straight rigid body, floating, feet off ground, symmetrical pose, mirrored arms",
+    "seed": 935200
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "line-of-action",
+   "contrapposto",
+   "exaggeration-accent",
+   "no-twinning",
+   "timing-on-beat"
+  ],
+  "inputHashes": {
+   "pose": "9b7df0785b12dbb744cf9c64bb8708acfac13d216c0ec540553734f8717d6e0b",
+   "depth": "4cba00e9f62fbdb6a0b722711e2a26631c33346010e246a0bccb850a684014a1",
+   "lineart": "ac94acce29a397448ffdac38410b34dbb3d7a15f3063d4e8c348035d23e1956f"
+  }
+ },
+ {
+  "pose": "challenge.return",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/sdxl-base-1/moderate.api.json",
+   "tier": "I1",
+   "count": 1,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/challenge.return.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/challenge.return.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/challenge.return.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/challenge.return.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful clean-shaven latino man with a thin neatly groomed pencil mustache, smooth bare chin and cheeks, cream panama hat with one plain teal band, solid deep purple short sleeved guayabera shirt worn untucked, exactly two thin vertical teal embroidered stripes running down the front, plain fabric everywhere else, cream trousers, teal shoes, dignified skilled cumbia dancer, both feet flat, standing easy, right forearm relaxed in front, left hand low near the hip, body upright, clear readable silhouette, weight on one leg, hips tilted, shirt hem swinging, follow-through, asymmetric pose",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, beard, goatee, stubble, sideburns, five o clock shadow, thick mustache, handlebar mustache, vest, waistcoat, jacket, necklace, belt, breast pocket, tucked in shirt, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms",
+    "seed": 935300
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "follow-through",
+   "no-twinning",
+   "timing-on-beat"
+  ],
+  "inputHashes": {
+   "pose": "fca7807a6e518def8641b67ef2e1ae31bc37af691efe694e22503db47ccf8ec8",
+   "depth": "61780b733a15516c09c2bb030de87688460329af1e6906a0a6f011c04df48fd8",
+   "lineart": "0c6c1bd82682cb14a6fa3b2a6482630892a51667820167fa681bc3cacb78d8fe"
+  }
+ },
+ {
+  "pose": "approval.load",
+  "profile": "overlap",
+  "args": {
+   "workflow": "tool/art/workflows/sdxl-base-1/overlap.api.json",
+   "tier": "I1",
+   "count": 1,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/approval.load.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/approval.load.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/approval.load.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/approval.load.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful clean-shaven latino man with a thin neatly groomed pencil mustache, smooth bare chin and cheeks, cream panama hat with one plain teal band, solid deep purple short sleeved guayabera shirt worn untucked, exactly two thin vertical teal embroidered stripes running down the front, plain fabric everywhere else, cream trousers, teal shoes, dignified skilled cumbia dancer, small inhale: chest lifted and leaning back slightly, chin raised, weight on the right foot, arms loose and slightly away from the body, clear readable silhouette, weight on one leg, hips tilted, crouched, gathering energy, knees bent, relaxed shoulders, playful attitude, asymmetric pose",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, beard, goatee, stubble, sideburns, five o clock shadow, thick mustache, handlebar mustache, vest, waistcoat, jacket, necklace, belt, breast pocket, tucked in shirt, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms",
+    "seed": 935400
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "anticipation",
+   "secondary-action",
+   "no-twinning",
+   "timing-on-beat"
+  ],
+  "inputHashes": {
+   "pose": "7ce250678aa41c0ab26a56822e04b8c90f413f0fae77949ddf9b44790f480531",
+   "depth": "bfd19a0075dbbc6a9f4e98ee90dc8312ddacf2f63349ae81f09d15c165beaf7b",
+   "lineart": "7a7fe8c30df244137f2219699a8edfe421d6fe3760196558dfeef8cbacd069d7"
+  }
+ },
+ {
+  "pose": "approval.nod",
+  "profile": "overlap",
+  "args": {
+   "workflow": "tool/art/workflows/sdxl-base-1/overlap.api.json",
+   "tier": "I1",
+   "count": 1,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/approval.nod.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/approval.nod.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/approval.nod.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/approval.nod.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful clean-shaven latino man with a thin neatly groomed pencil mustache, smooth bare chin and cheeks, cream panama hat with one plain teal band, solid deep purple short sleeved guayabera shirt worn untucked, exactly two thin vertical teal embroidered stripes running down the front, plain fabric everywhere else, cream trousers, teal shoes, dignified skilled cumbia dancer, right palm pressed flat to the chest, a deep nod with the head bowed, both knees dipped, left arm low and out at the side, clear readable silhouette, dynamic dance pose, strong line of action, weight on one leg, hips tilted, exaggerated energetic pose, relaxed shoulders, playful attitude, asymmetric pose",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, beard, goatee, stubble, sideburns, five o clock shadow, thick mustache, handlebar mustache, vest, waistcoat, jacket, necklace, belt, breast pocket, tucked in shirt, limbs merged into body, stiff pose, straight rigid body, floating, feet off ground, symmetrical pose, mirrored arms",
+    "seed": 935500
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "line-of-action",
+   "contrapposto",
+   "exaggeration-accent",
+   "secondary-action",
+   "no-twinning",
+   "timing-on-beat"
+  ],
+  "inputHashes": {
+   "pose": "226c83cd74b4e3e77d0893bb38c68a1dfbbe0f50b657ad3f47a031fe353794e9",
+   "depth": "58a314ad363fa3fe37dbc0d5d04da6a8e2d49f16eecb2f1127f690457a9d7fef",
+   "lineart": "292882c3faa42a7ecffd159e2fb0fc913534f25cfbd5d1df833ad14ed4a905a6"
+  }
+ },
+ {
+  "pose": "approval.release",
+  "profile": "overlap",
+  "args": {
+   "workflow": "tool/art/workflows/sdxl-base-1/overlap.api.json",
+   "tier": "I1",
+   "count": 1,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/approval.release.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/approval.release.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/approval.release.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/approval.release.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful clean-shaven latino man with a thin neatly groomed pencil mustache, smooth bare chin and cheeks, cream panama hat with one plain teal band, solid deep purple short sleeved guayabera shirt worn untucked, exactly two thin vertical teal embroidered stripes running down the front, plain fabric everywhere else, cream trousers, teal shoes, dignified skilled cumbia dancer, left fist on the hip, right arm held out forward at waist height with the palm open toward the viewer, head tilted warmly, clear readable silhouette, weight on one leg, hips tilted, shirt hem swinging, follow-through, relaxed shoulders, playful attitude, asymmetric pose",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, beard, goatee, stubble, sideburns, five o clock shadow, thick mustache, handlebar mustache, vest, waistcoat, jacket, necklace, belt, breast pocket, tucked in shirt, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms",
+    "seed": 935600
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "follow-through",
+   "secondary-action",
+   "no-twinning",
+   "timing-on-beat"
+  ],
+  "inputHashes": {
+   "pose": "501f3d20a5e90ffe98cf3cab22872275cd7709a7d23aed8835f2467cc60b86ce",
+   "depth": "be1dbc596181f7395ae17368d7b722d7d1f408e3ee4da96af510c793afb65309",
+   "lineart": "3d49e2d5f5c6be6b4ca5de12ea3a57f53103dabb1d2e3a824be8d12774bf8fc5"
+  }
+ },
+ {
+  "pose": "reassurance.notice",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/sdxl-base-1/moderate.api.json",
+   "tier": "I1",
+   "count": 1,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/reassurance.notice.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/reassurance.notice.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/reassurance.notice.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/reassurance.notice.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful clean-shaven latino man with a thin neatly groomed pencil mustache, smooth bare chin and cheeks, cream panama hat with one plain teal band, solid deep purple short sleeved guayabera shirt worn untucked, exactly two thin vertical teal embroidered stripes running down the front, plain fabric everywhere else, cream trousers, teal shoes, dignified skilled cumbia dancer, head tilted to his right with a soft warm look, weight on the left foot, arms relaxed low, right forearm slightly forward, clear readable silhouette, weight on one leg, hips tilted, crouched, gathering energy, knees bent, asymmetric pose",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, beard, goatee, stubble, sideburns, five o clock shadow, thick mustache, handlebar mustache, vest, waistcoat, jacket, necklace, belt, breast pocket, tucked in shirt, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms",
+    "seed": 935700
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "anticipation",
+   "no-twinning",
+   "timing-on-beat"
+  ],
+  "inputHashes": {
+   "pose": "989b68f5f6ed312c832932388744e33d5387219da3ba598d82e85cf862be61b8",
+   "depth": "071f5b5428b3b035cfdc6f11072f7f16023375601933d24735201a2b511d3fd3",
+   "lineart": "d3de7922a12c6005a2601a339915df0adc0b387160abbdb99f954781d74fedc9"
+  }
+ },
+ {
+  "pose": "reassurance.open_hand",
+  "profile": "peak",
+  "args": {
+   "workflow": "tool/art/workflows/sdxl-base-1/peak.api.json",
+   "tier": "I1",
+   "count": 1,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/reassurance.open_hand.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/reassurance.open_hand.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/reassurance.open_hand.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/reassurance.open_hand.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful clean-shaven latino man with a thin neatly groomed pencil mustache, smooth bare chin and cheeks, cream panama hat with one plain teal band, solid deep purple short sleeved guayabera shirt worn untucked, exactly two thin vertical teal embroidered stripes running down the front, plain fabric everywhere else, cream trousers, teal shoes, dignified skilled cumbia dancer, small friendly shrug: both forearms out at waist height with the palms open and up, the right hand a little higher, both knees softly bent, head tilted, clear readable silhouette, dynamic dance pose, strong line of action, weight on one leg, hips tilted, exaggerated energetic pose, asymmetric pose",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, beard, goatee, stubble, sideburns, five o clock shadow, thick mustache, handlebar mustache, vest, waistcoat, jacket, necklace, belt, breast pocket, tucked in shirt, limbs merged into body, stiff pose, straight rigid body, floating, feet off ground, symmetrical pose, mirrored arms",
+    "seed": 935800
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "line-of-action",
+   "contrapposto",
+   "exaggeration-accent",
+   "no-twinning",
+   "timing-on-beat"
+  ],
+  "inputHashes": {
+   "pose": "f38dc593cb50d4d9bf426cdde8b13546405255724e5b27c673891fb159530b1b",
+   "depth": "8c5d6db8f9d44b2dc71b20a26b1029c32c1e7b022ba4b5fba19426fb36425c2c",
+   "lineart": "90318e3a45c96aae2c84625a1c3b4bdbc3483ac049b11f3d7b51b8655b06d8ab"
+  }
+ },
+ {
+  "pose": "reassurance.settle",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/sdxl-base-1/moderate.api.json",
+   "tier": "I1",
+   "count": 1,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/reassurance.settle.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/reassurance.settle.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/reassurance.settle.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/reassurance.settle.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful clean-shaven latino man with a thin neatly groomed pencil mustache, smooth bare chin and cheeks, cream panama hat with one plain teal band, solid deep purple short sleeved guayabera shirt worn untucked, exactly two thin vertical teal embroidered stripes running down the front, plain fabric everywhere else, cream trousers, teal shoes, dignified skilled cumbia dancer, a back-break step on the spot: weight on the bent left knee, right foot back on its ball, left forearm forward, right arm low and back, inviting the rhythm back, clear readable silhouette, weight on one leg, hips tilted, shirt hem swinging, follow-through, asymmetric pose",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, beard, goatee, stubble, sideburns, five o clock shadow, thick mustache, handlebar mustache, vest, waistcoat, jacket, necklace, belt, breast pocket, tucked in shirt, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms",
+    "seed": 935900
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "follow-through",
+   "no-twinning",
+   "timing-on-beat"
+  ],
+  "inputHashes": {
+   "pose": "4a67184853fc8e85f27b0755b4a7f7e962fb3d38f41a671aa8bea2a6dae40f92",
+   "depth": "6a2c413e7fc89dc3f4ad268c9eb31ada9c692102ace53d473c202f7681e90687",
+   "lineart": "10cb6991581cbb44d6917daa7470401024e58f1633a6cc3b212b923b213bb8cd"
+  }
+ },
+ {
+  "pose": "finish_turn.finish_a",
+  "profile": "overlap",
+  "args": {
+   "workflow": "tool/art/workflows/sdxl-base-1/overlap.api.json",
+   "tier": "I1",
+   "count": 1,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/finish_turn.finish_a.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/finish_turn.finish_a.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/finish_turn.finish_a.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/finish_turn.finish_a.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful clean-shaven latino man with a thin neatly groomed pencil mustache, smooth bare chin and cheeks, cream panama hat with one plain teal band, solid deep purple short sleeved guayabera shirt worn untucked, exactly two thin vertical teal embroidered stripes running down the front, plain fabric everywhere else, cream trousers, teal shoes, dignified skilled cumbia dancer, weight on the straight right leg, left heel set forward with the toe up, left fist on the hip, right hand rising beside the head on its way to the hat brim, chest proud, chin up, clear readable silhouette, weight on one leg, hips tilted, exaggerated energetic pose, asymmetric pose",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, beard, goatee, stubble, sideburns, five o clock shadow, thick mustache, handlebar mustache, vest, waistcoat, jacket, necklace, belt, breast pocket, tucked in shirt, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms",
+    "seed": 936000
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "exaggeration-accent",
+   "no-twinning",
+   "timing-on-beat"
+  ],
+  "inputHashes": {
+   "pose": "15103d111e80f39b6ba88463f94663c52116902f8eb778e1c87d56cee158d79d",
+   "depth": "9bdd50b8f23fa45818a6343d603ca75eb3e800aad81140fd56583cce70e1bf1c",
+   "lineart": "e7f1da3eba1b83363a23674959cc4fd3cb489c90cb9d0eb444ea5b6e70a4508c"
+  }
+ },
+ {
+  "pose": "finish_turn.finish_b",
+  "profile": "overlap",
+  "args": {
+   "workflow": "tool/art/workflows/sdxl-base-1/overlap.api.json",
+   "tier": "I1",
+   "count": 1,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/finish_turn.finish_b.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/finish_turn.finish_b.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/finish_turn.finish_b.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/finish_turn.finish_b.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful clean-shaven latino man with a thin neatly groomed pencil mustache, smooth bare chin and cheeks, cream panama hat with one plain teal band, solid deep purple short sleeved guayabera shirt worn untucked, exactly two thin vertical teal embroidered stripes running down the front, plain fabric everywhere else, cream trousers, teal shoes, dignified skilled cumbia dancer, right fingertips touching the front of the hat brim in a courteous salute, the hat still on his head, head dipped slightly, chest proud, left elbow out with the fist on the hip, left heel forward with the toe up, clear readable silhouette, dynamic dance pose, strong line of action, weight on one leg, hips tilted, exaggerated energetic pose, asymmetric pose",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, beard, goatee, stubble, sideburns, five o clock shadow, thick mustache, handlebar mustache, vest, waistcoat, jacket, necklace, belt, breast pocket, tucked in shirt, limbs merged into body, stiff pose, straight rigid body, floating, feet off ground, symmetrical pose, mirrored arms",
+    "seed": 936100
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "line-of-action",
+   "contrapposto",
+   "exaggeration-accent",
+   "no-twinning",
+   "timing-on-beat"
+  ],
+  "inputHashes": {
+   "pose": "902d4ed0dff8d5e87dd4df41a24fadf153e7601c43957d9029ec0bbfc13b41fd",
+   "depth": "3efc903f4dc13e653e436969bda715e72f16e986254259656aeae98cd089febb",
+   "lineart": "630e4749c5f1ecdb0a7986e47e6a89eb8850e36ad0b41e86b55e1a0d8dc8dcf6"
+  }
+ },
+ {
+  "pose": "finish_turn.turn_in",
+  "profile": "turn",
+  "args": {
+   "workflow": "tool/art/workflows/sdxl-base-1/turn.api.json",
+   "tier": "I1",
+   "count": 1,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/finish_turn.turn_in.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/finish_turn.turn_in.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/finish_turn.turn_in.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/finish_turn.turn_in.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful clean-shaven latino man with a thin neatly groomed pencil mustache, smooth bare chin and cheeks, cream panama hat with one plain teal band, solid deep purple short sleeved guayabera shirt worn untucked, exactly two thin vertical teal embroidered stripes running down the front, plain fabric everywhere else, cream trousers, teal shoes, dignified skilled cumbia dancer, body turned about 30 degrees toward his left on a heel pivot, leaning into the turn, left arm open out to the side at hip height, right fist on the hip, clear readable silhouette, weight on one leg, hips tilted, asymmetric pose, feet firmly on the ground",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, beard, goatee, stubble, sideburns, five o clock shadow, thick mustache, handlebar mustache, vest, waistcoat, jacket, necklace, belt, breast pocket, tucked in shirt, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms, jumping",
+    "seed": 936200
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "no-twinning",
+   "timing-on-beat",
+   "planted-pivot"
+  ],
+  "inputHashes": {
+   "pose": "a739627812d09854bfe7b0f484ce273669e355281a6393813fe2e26bdf5e11e3",
+   "depth": "19d7ac33da1f0f5a8cb2118189b1eb60a9f2a39456d7d7ad02a96f40104edc23",
+   "lineart": "4ac7cefc82eba4e6c309de0be861396ef925d95c491560954ebbe6b2da9f3b60"
+  }
+ },
+ {
+  "pose": "finish_turn.turn_out",
+  "profile": "turn",
+  "args": {
+   "workflow": "tool/art/workflows/sdxl-base-1/turn.api.json",
+   "tier": "I1",
+   "count": 1,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/finish_turn.turn_out.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/finish_turn.turn_out.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/finish_turn.turn_out.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105a/in/finish_turn.turn_out.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful clean-shaven latino man with a thin neatly groomed pencil mustache, smooth bare chin and cheeks, cream panama hat with one plain teal band, solid deep purple short sleeved guayabera shirt worn untucked, exactly two thin vertical teal embroidered stripes running down the front, plain fabric everywhere else, cream trousers, teal shoes, dignified skilled cumbia dancer, body turned about 30 degrees toward his right on a heel pivot, leaning into the turn, right arm open out to the side at hip height, left fist on the hip, clear readable silhouette, weight on one leg, hips tilted, asymmetric pose, feet firmly on the ground",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, beard, goatee, stubble, sideburns, five o clock shadow, thick mustache, handlebar mustache, vest, waistcoat, jacket, necklace, belt, breast pocket, tucked in shirt, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms, jumping",
+    "seed": 936300
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "no-twinning",
+   "timing-on-beat",
+   "planted-pivot"
+  ],
+  "inputHashes": {
+   "pose": "393ae649d7abc1d882f13619b9748f0872196f5ce3631b4c54fe60a4161d3bb0",
+   "depth": "e812a7e8c19b13f9a7144a8b51a90fe61c1d225dd8839752e0631ce2f58ef56c",
+   "lineart": "eb26f7a9efa3df60f3ae8b8ccbaa6b5e8e2350d022e0b1ad068cf22fdd827e82"
+  }
+ }
+]

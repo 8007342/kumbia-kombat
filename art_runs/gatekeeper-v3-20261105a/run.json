@@ -1,0 +1,64 @@
+{
+ "run": "gatekeeper-v3-20261105a",
+ "created": "2026-11-04T22:12:34+00:00",
+ "family": "tool/art/families/gatekeeper-v3.json",
+ "familySha256": "34e38544b78e94c7e14cb0a89b21d45b83dbcfc19b59922700a645c3ac734599",
+ "contract": "1935-k2ib/v1",
+ "tier": "I1",
+ "countPerPose": 1,
+ "poses": 64,
+ "workflows": {
+  "moderate": "d0e983e653121673b293749c9fb6797c48c7172abacca7f8336344a02b8cc035",
+  "peak": "bf7a997e086c4616aade256b71a26390b572ddbeb18a74340508fee45f6f8d59",
+  "overlap": "00d3a97f201d95000dc198e1f23140071d0f9ae3f09674796987004b35264bca",
+  "turn": "217e5c30b0b4f8f0b9a754521c9c433e38dd1937d42c1d666f52b22a301dfa6b"
+ },
+ "identity": {
+  "image": "tool/art/references/gatekeeper/front.png",
+  "crop": {
+   "frame": "full",
+   "rect": [
+    148,
+    16,
+    500,
+    1198
+   ]
+  },
+  "sha256": "32ddf66ce9e8eebc2760840c957825123e7eed1d35ccc5f3ee51cf92b14b107d"
+ },
+ "animationReferences": {
+  "registry": "tool/art/references/animation-principles.json",
+  "research": [
+   "plan/research/gatekeeper-dance-2026-11-02.md",
+   "plan/dance-fluidity-pass.md",
+   "plan/opponent-depth-staging-pass.md"
+  ],
+  "principlesUsed": [
+   "anticipation",
+   "contrapposto",
+   "exaggeration-accent",
+   "follow-through",
+   "line-of-action",
+   "no-twinning",
+   "planted-pivot",
+   "secondary-action",
+   "staging-silhouette",
+   "timing-on-beat"
+  ],
+  "sourcesUsed": [
+   "cartwright-gdc2014",
+   "contrapposto-fonseca",
+   "dead-cells-pipeline",
+   "disney-process",
+   "illusion-of-life",
+   "silhouette-test",
+   "simogo-bsb",
+   "slynyrd-53",
+   "slynyrd-55",
+   "twinning",
+   "ubisoft-foot-ik",
+   "williams-survival-kit"
+  ]
+ },
+ "status": "planned"
+}
