@@ -189,17 +189,30 @@ def head_window(head: np.ndarray, canvas: tuple[int, int]) -> tuple[int, int]:
 
 
 TORSO_WINDOW = 384   # torso window side in frame pixels; the frame graph's ImageCrop uses the same
-EMBROIDERY_BOX = (75, 129, 89, 159)  # identity.png: a clean run of the left panel, between the bar tacks
-EMBROIDERY_SCALE = 2.2               # identity.png pixels to canvas pixels: both are at their figure's height
 EMBROIDERY_WIDE = 30                 # canvas pixels across a panel
-REF_HEAD_BOX = (45, 0, 145, 100)     # gatekeeper-v2 identity crop, 198x310: hat to chin
-REF_OUTFIT_BOX = (0, 105, 198, 303)  # shoulders to shoes
+# Pixel boxes on the staged identity.png, per reference, keyed by its size. scale: identity pixels
+# to canvas pixels, both at their figure's height. head: hat to chin. outfit: from the shoulders.
+# embroidery: a clean run of the left panel, between the bar tacks.
+IDENTITY_LAYOUTS = {
+    (198, 310): {"head": (45, 0, 145, 100), "outfit": (0, 105, 198, 303),
+                 "embroidery": (75, 129, 89, 159), "scale": 2.2},   # gatekeeper-v2, kept for older runs
+    (500, 1198): {"head": (110, 0, 390, 280), "outfit": (0, 270, 500, 770),
+                  "embroidery": (140, 445, 186, 585), "scale": 0.57},  # accepted model sheet, front view
+}
+
+
+def layout_of(identity: Image.Image) -> dict:
+    try:
+        return IDENTITY_LAYOUTS[identity.size]
+    except KeyError:
+        raise SystemExit(f"no layout for an identity image of {identity.size}: add one to IDENTITY_LAYOUTS") from None
 
 
 def stage_refs(out: Path) -> None:
     identity = Image.open(out / "identity.png").convert("RGB")
-    identity.crop(REF_HEAD_BOX).save(out / "ref_head.png")
-    identity.crop(REF_OUTFIT_BOX).save(out / "ref_outfit.png")
+    layout = layout_of(identity)
+    identity.crop(layout["head"]).save(out / "ref_head.png")
+    identity.crop(layout["outfit"]).save(out / "ref_outfit.png")
 
 
 def stripe_paths(rgba: np.ndarray, parts: dict) -> list[tuple[np.ndarray, np.ndarray]]:
@@ -215,14 +228,15 @@ def stripe_paths(rgba: np.ndarray, parts: dict) -> list[tuple[np.ndarray, np.nda
 def draw_embroidery(proxy: Image.Image, identity: Image.Image, rgba: np.ndarray, parts: dict) -> tuple[Image.Image, np.ndarray]:
     """Warp one strip along each stripe. The strip mirrors at its ends so it tiles without a jump,
     and each stripe starts at the same place in it, so a stitch keeps its height on the shirt."""
-    strip = np.array(identity.convert("RGB").crop(EMBROIDERY_BOX))
+    layout = layout_of(identity)
+    strip = np.array(identity.convert("RGB").crop(layout["embroidery"]))
     tall = strip.shape[0]
     out = np.array(proxy.convert("RGB"))
     mask = np.zeros(out.shape[:2], bool)
     for rows, centres in stripe_paths(rgba, parts):
         centres = np.convolve(np.pad(centres, 7, mode="edge"), np.ones(15) / 15, mode="valid")  # no jitter
         for r, c in zip(rows, centres):
-            v = int((r - rows[0]) / EMBROIDERY_SCALE) % (2 * tall)
+            v = int((r - rows[0]) / layout["scale"]) % (2 * tall)
             v = v if v < tall else 2 * tall - 1 - v
             for x in range(int(c - EMBROIDERY_WIDE / 2), int(c + EMBROIDERY_WIDE / 2)):
                 if parts["shirt"][r, x]:

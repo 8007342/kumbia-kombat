@@ -21,9 +21,9 @@
   "native": {
    "perRoom": true,
    "garden": {
-    "width": 96,
-    "height": 120,
-    "pixelScale": 8
+    "width": 256,
+    "height": 320,
+    "pixelScale": 3
    }
   },
   "margin": {
@@ -51,14 +51,14 @@
  "references": [
   {
    "role": "identity",
-   "image": "assets/art/ensemble/gatekeeper-v2.png",
+   "image": "tool/art/references/gatekeeper/front.png",
    "crop": {
-    "frame": "occupied",
+    "frame": "full",
     "rect": [
-     23,
-     14,
-     198,
-     310
+     148,
+     16,
+     500,
+     1198
     ]
    },
    "adapter": "ip-adapter-sdxl",

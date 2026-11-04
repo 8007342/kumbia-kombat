@@ -88,14 +88,14 @@
   "sources": [
    {
     "role": "identity",
-    "image": "assets/art/ensemble/gatekeeper-v2.png",
+    "image": "tool/art/references/gatekeeper/front.png",
     "crop": {
-     "frame": "occupied",
+     "frame": "full",
      "rect": [
-      23,
-      14,
-      198,
-      310
+      148,
+      16,
+      500,
+      1198
      ]
     },
     "adapter": "ip-adapter-sdxl",
@@ -109,10 +109,10 @@
    "atlas": "gatekeeper",
    "out": "assets/art/ensemble/gatekeeper-v3.png",
    "native": [
-    96,
-    120
+    256,
+    320
    ],
-   "pixelScale": 8,
+   "pixelScale": 3,
    "camera": "floor-perspective"
   }
  ],
