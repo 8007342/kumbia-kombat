@@ -1,7 +1,7 @@
 {
  "id": "sdxl-base-1",
  "role": "pose-frame",
- "description": "Full-step SDXL base 1.0 for the D10 bake-off. Starting values, untested. Pin named by macuahuitl-fedora; not live until #903.",
+ "description": "Full-step SDXL base 1.0 for the D10 bake-off. Starting values, untested. Live since #903.",
  "checkpoint": "sd_xl_base_1.0.safetensors",
  "sampler": {
   "steps": 28,

@@ -1,7 +1,7 @@
 {
  "id": "animagine-xl4",
  "role": "pose-frame",
- "description": "Full-step Animagine XL 4.0 for the D10 bake-off. Card settings: 25-28 steps, CFG 4-7, Euler a. Compatibility with xinsir ControlNets and IP-Adapter is untested. Pin named by macuahuitl-fedora; not live until #903.",
+ "description": "Full-step Animagine XL 4.0 for the D10 bake-off. Card settings: 25-28 steps, CFG 4-7, Euler a. Compatibility with xinsir ControlNets and IP-Adapter is untested. Live since #903.",
  "checkpoint": "animagine-xl-4.0.safetensors",
  "sampler": {
   "steps": 28,

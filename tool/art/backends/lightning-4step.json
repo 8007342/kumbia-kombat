@@ -1,10 +1,10 @@
 {
  "id": "lightning-4step",
  "role": "pose-frame",
- "description": "Fast preview backend. CFG 1 disables negatives; real partial denoise needs steps above 4.",
+ "description": "Fast preview backend on the 4-step checkpoint. CFG 1 disables negatives. 6 steps because ComfyUI schedules int(steps/denoise): 4 at 0.85 is a full repaint, 6 at 0.85 really runs 6 of 7.",
  "checkpoint": "sdxl_lightning_4step.safetensors",
  "sampler": {
-  "steps": 4,
+  "steps": 6,
   "cfg": 1.0,
   "name": "euler",
   "scheduler": "sgm_uniform"

@@ -17,6 +17,11 @@ Control starting values come from the animation research
 strength stays at about 2.0 so controls do not fight the identity adapter.
 Lightning quantises start/end windows to quarters.
 
+Two sets are written. character-frame-*.api.json are the legacy Lightning graphs
+that run gatekeeper-v3-20261103a used; they stay byte-identical so that baseline
+remains reproducible. <backend>/<profile>.api.json (and <backend>/masked.api.json)
+come from tool/art/backends/*.json and are what compile_family.py prefers.
+
 Usage: python3 tool/art/workflows/build_workflows.py   (writes *.api.json beside this file)
 """
 from __future__ import annotations
@@ -40,6 +45,37 @@ PROFILES = {
 
 
 MASKED_DENOISE = 0.75  # baked: one KSampler can't carry both the $seed and $strength titles
+BACKENDS = HERE.parent / "backends"
+
+
+def effective_denoise(steps: int, denoise: float) -> float:
+    """What ComfyUI's KSampler really does: it schedules int(steps/denoise) steps and
+    runs the last `steps`, so 4 steps at 0.85 is 4 of 4, a full repaint."""
+    return steps / int(steps / denoise)
+
+
+def check_partial_denoise(backend_id: str, steps: int, denoise: float) -> None:
+    if denoise < 1.0 and int(steps / denoise) <= steps:
+        raise SystemExit(f"backend {backend_id}: {steps} steps at denoise {denoise} truncates to a "
+                         f"full repaint (int({steps}/{denoise}) = {int(steps / denoise)}); raise steps")
+
+
+def backend_models(backend: dict, m: dict) -> dict:
+    """models.json with the backend's checkpoint, LoRAs and sampler laid over it."""
+    s = backend["sampler"]
+    return {**m, "checkpoint": backend["checkpoint"], "loras": backend.get("loras", []),
+            "sampler": {"steps": s["steps"], "cfg": s["cfg"], "sampler_name": s["name"], "scheduler": s["scheduler"]}}
+
+
+def backend_workflows(backend: dict, m: dict) -> dict[str, dict]:
+    """{file stem: workflow} for one backend across every control profile, plus masked."""
+    bm = backend_models(backend, m)
+    steps, denoise = backend["sampler"]["steps"], backend["denoise"]
+    check_partial_denoise(backend["id"], steps, denoise)
+    check_partial_denoise(backend["id"], steps, MASKED_DENOISE)
+    out = {name: build({**prof, "denoise": denoise}, bm) for name, prof in PROFILES.items()}
+    out["masked"] = build({**PROFILES["moderate"], "denoise": denoise}, bm, masked=True)
+    return out
 
 
 def build(profile: dict, m: dict, masked: bool = False) -> dict:
@@ -54,9 +90,14 @@ def build(profile: dict, m: dict, masked: bool = False) -> dict:
 
     ckpt = node(1, "CheckpointLoaderSimple", {"ckpt_name": m["checkpoint"]})
     model, clip, vae = ["1", 0], ["1", 1], ["1", 2]
-    node(2, "LoraLoader", {"model": model, "clip": clip, "lora_name": m["lora_pixel"],
-                           "strength_model": 0.8, "strength_clip": 0.8})
-    model, clip = ["2", 0], ["2", 1]
+    # Legacy graphs: the one pixel LoRA at 0.8. Backend graphs: whatever they declare.
+    # Later LoRAs get ids above the graph's fixed range so the first keeps node 2.
+    loras = m.get("loras", [{"name": m["lora_pixel"], "weight": 0.8}])
+    for i, lora in enumerate(loras):
+        nid = 2 if i == 0 else 100 + i
+        node(nid, "LoraLoader", {"model": model, "clip": clip, "lora_name": lora["name"],
+                                 "strength_model": lora["weight"], "strength_clip": lora["weight"]})
+        model, clip = [str(nid), 0], [str(nid), 1]
 
     # IP-Adapter is optional: models.json "ipadapter": null drops it (and the
     # $identity input) until a file is pinned and licence-admitted; identity
@@ -122,6 +163,16 @@ def main() -> None:
     masked.write_text(json.dumps(build(PROFILES["moderate"], m, masked=True), indent=1) + "\n")
     print(f"wrote {masked.relative_to(HERE.parent.parent.parent)} (masked regeneration)")
     (HERE / "profiles.json").write_text(json.dumps(PROFILES, indent=1) + "\n")
+    for path in sorted(BACKENDS.glob("*.json")):
+        backend = json.loads(path.read_text())
+        if backend.get("role") != "pose-frame":
+            continue
+        folder = HERE / backend["id"]
+        folder.mkdir(exist_ok=True)
+        for stem, wf in backend_workflows(backend, m).items():
+            (folder / f"{stem}.api.json").write_text(json.dumps(wf, indent=1) + "\n")
+        print(f"wrote {folder.relative_to(HERE.parent.parent.parent)}/ ({backend['sampler']['steps']} steps, "
+              f"effective denoise {effective_denoise(backend['sampler']['steps'], backend['denoise']):.3f})")
 
 
 if __name__ == "__main__":
