@@ -4,6 +4,15 @@ Read this first after the restart. The owner (the operator) is the human; the pe
 session `macuahuitl-fedora` is the host coordinator (see `/list-agents`). Our repo is
 private, so paste content into messages to peers. Forges have no route to claude.ai.
 
+## Update, 2026-11-04
+
+Studio works, and #903's files are on disk. Tasks 5.2 and 5.3 are done, 5.1 and 5.5 are
+partial: see the notes in `tasks.md`. Waiting on macuahuitl-fedora's ping after a tray and
+studio-image rebuild from linux-next, then run 5.1's two remaining images and 5.4. Bare
+basenames are correct. Venvs now live in `~/.cache/tillandsias-project/venvs/`, symlinked
+from `~/.cache/kumbia-art` and `~/.cache/kumbia-bpy`; recreate only the symlinks if that
+cache survived. curl to the studio needs its IP (`getent hosts`) and `--noproxy '*'`.
+
 ## Goal
 
 Make all characters dance through parameterizable pipelines: "add a red hat to
