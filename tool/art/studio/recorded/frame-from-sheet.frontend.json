@@ -1,0 +1,198 @@
+{
+ "1": {
+  "_meta": {
+   "title": "$sheet_front"
+  },
+  "class_type": "LoadImage",
+  "inputs": {
+   "image": "sheet_front.png"
+  }
+ },
+ "10": {
+  "_meta": {
+   "title": "$prompt"
+  },
+  "class_type": "TextEncodeQwenImageEditPlus",
+  "inputs": {
+   "clip": [
+    "6",
+    0
+   ],
+   "image1": [
+    "1",
+    0
+   ],
+   "image2": [
+    "2",
+    0
+   ],
+   "prompt": "Redraw the man from image 1 in exactly the pose, position, size and proportions of the flat figure in image 2. Keep his face, panama hat, purple guayabera with its teal embroidered panels, cream trousers and teal shoes exactly as in image 1. Same pixel art style with a crisp pixel grid and dark outline. Clean-shaven with a thin pencil mustache, closed mouth. Plain light grey background, full body.",
+   "vae": [
+    "7",
+    0
+   ]
+  }
+ },
+ "11": {
+  "_meta": {
+   "title": "negative"
+  },
+  "class_type": "TextEncodeQwenImageEditPlus",
+  "inputs": {
+   "clip": [
+    "6",
+    0
+   ],
+   "image1": [
+    "1",
+    0
+   ],
+   "image2": [
+    "2",
+    0
+   ],
+   "prompt": "",
+   "vae": [
+    "7",
+    0
+   ]
+  }
+ },
+ "12": {
+  "_meta": {
+   "title": "$seed"
+  },
+  "class_type": "KSampler",
+  "inputs": {
+   "cfg": 3,
+   "denoise": 1,
+   "latent_image": [
+    "8",
+    0
+   ],
+   "model": [
+    "5",
+    0
+   ],
+   "negative": [
+    "11",
+    0
+   ],
+   "positive": [
+    "10",
+    0
+   ],
+   "sampler_name": "euler",
+   "scheduler": "simple",
+   "seed": 930000,
+   "steps": 40
+  }
+ },
+ "13": {
+  "_meta": {
+   "title": "VAE Decode"
+  },
+  "class_type": "VAEDecode",
+  "inputs": {
+   "samples": [
+    "12",
+    0
+   ],
+   "vae": [
+    "7",
+    0
+   ]
+  }
+ },
+ "14": {
+  "_meta": {
+   "title": "save frame"
+  },
+  "class_type": "SaveImage",
+  "inputs": {
+   "filename_prefix": "kk/qframe",
+   "images": [
+    "13",
+    0
+   ]
+  }
+ },
+ "2": {
+  "_meta": {
+   "title": "$pose_proxy"
+  },
+  "class_type": "LoadImage",
+  "inputs": {
+   "image": "groove.down_l.proxy.png"
+  }
+ },
+ "3": {
+  "_meta": {
+   "title": "Load Diffusion Model"
+  },
+  "class_type": "UNETLoader",
+  "inputs": {
+   "unet_name": "qwen_image_edit_2511_fp8mixed.safetensors",
+   "weight_dtype": "default"
+  }
+ },
+ "4": {
+  "_meta": {
+   "title": "ModelSamplingAuraFlow"
+  },
+  "class_type": "ModelSamplingAuraFlow",
+  "inputs": {
+   "model": [
+    "3",
+    0
+   ],
+   "sampling": "flow",
+   "shift": 3.1
+  }
+ },
+ "5": {
+  "_meta": {
+   "title": "CFGNorm"
+  },
+  "class_type": "CFGNorm",
+  "inputs": {
+   "model": [
+    "4",
+    0
+   ],
+   "pre_cfg": false,
+   "strength": 1
+  }
+ },
+ "6": {
+  "_meta": {
+   "title": "Load CLIP"
+  },
+  "class_type": "CLIPLoader",
+  "inputs": {
+   "clip_name": "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+   "device": "default",
+   "type": "qwen_image"
+  }
+ },
+ "7": {
+  "_meta": {
+   "title": "Load VAE"
+  },
+  "class_type": "VAELoader",
+  "inputs": {
+   "vae_name": "qwen_image_vae.safetensors"
+  }
+ },
+ "8": {
+  "_meta": {
+   "title": "Empty Latent Image"
+  },
+  "class_type": "EmptyLatentImage",
+  "inputs": {
+   "batch_size": 1,
+   "height": 960,
+   "width": 768
+  }
+ }
+}

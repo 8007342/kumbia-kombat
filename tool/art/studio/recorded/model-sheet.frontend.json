@@ -1,0 +1,399 @@
+{
+ "1": {
+  "_meta": {
+   "title": "$identity"
+  },
+  "class_type": "LoadImage",
+  "inputs": {
+   "image": "identity.png"
+  }
+ },
+ "100": {
+  "_meta": {
+   "title": "front prompt"
+  },
+  "class_type": "TextEncodeQwenImageEditPlus",
+  "inputs": {
+   "clip": [
+    "5",
+    0
+   ],
+   "image1": [
+    "1",
+    0
+   ],
+   "prompt": "Full-body character model sheet, front view: the man from image 1 standing straight and facing the viewer. same man, same panama hat with one teal band, same purple guayabera with teal embroidered panels, cream trousers, teal shoes, same pixel art style with a crisp pixel grid and dark outline, clean-shaven with a thin pencil mustache, closed mouth, plain light grey background, full body from hat to shoes, arms slightly away from his body",
+   "vae": [
+    "6",
+    0
+   ]
+  }
+ },
+ "101": {
+  "_meta": {
+   "title": "front negative"
+  },
+  "class_type": "TextEncodeQwenImageEditPlus",
+  "inputs": {
+   "clip": [
+    "5",
+    0
+   ],
+   "image1": [
+    "1",
+    0
+   ],
+   "prompt": "",
+   "vae": [
+    "6",
+    0
+   ]
+  }
+ },
+ "102": {
+  "_meta": {
+   "title": "$seed"
+  },
+  "class_type": "KSampler",
+  "inputs": {
+   "cfg": 3,
+   "denoise": 1,
+   "latent_image": [
+    "7",
+    0
+   ],
+   "model": [
+    "4",
+    0
+   ],
+   "negative": [
+    "101",
+    0
+   ],
+   "positive": [
+    "100",
+    0
+   ],
+   "sampler_name": "euler",
+   "scheduler": "simple",
+   "seed": 930000,
+   "steps": 40
+  }
+ },
+ "103": {
+  "_meta": {
+   "title": "VAE Decode"
+  },
+  "class_type": "VAEDecode",
+  "inputs": {
+   "samples": [
+    "102",
+    0
+   ],
+   "vae": [
+    "6",
+    0
+   ]
+  }
+ },
+ "104": {
+  "_meta": {
+   "title": "save front"
+  },
+  "class_type": "SaveImage",
+  "inputs": {
+   "filename_prefix": "kk/sheet_front",
+   "images": [
+    "103",
+    0
+   ]
+  }
+ },
+ "2": {
+  "_meta": {
+   "title": "Load Diffusion Model"
+  },
+  "class_type": "UNETLoader",
+  "inputs": {
+   "unet_name": "qwen_image_edit_2511_fp8mixed.safetensors",
+   "weight_dtype": "default"
+  }
+ },
+ "200": {
+  "_meta": {
+   "title": "three-quarter prompt"
+  },
+  "class_type": "TextEncodeQwenImageEditPlus",
+  "inputs": {
+   "clip": [
+    "5",
+    0
+   ],
+   "image1": [
+    "1",
+    0
+   ],
+   "image2": [
+    "103",
+    0
+   ],
+   "prompt": "Full-body character model sheet, three-quarter view: the man from image 2 turned 45 degrees to his left, same size. The man and his clothes are exactly as in image 2. same man, same panama hat with one teal band, same purple guayabera with teal embroidered panels, cream trousers, teal shoes, same pixel art style with a crisp pixel grid and dark outline, clean-shaven with a thin pencil mustache, closed mouth, plain light grey background, full body from hat to shoes, arms slightly away from his body",
+   "vae": [
+    "6",
+    0
+   ]
+  }
+ },
+ "201": {
+  "_meta": {
+   "title": "three-quarter negative"
+  },
+  "class_type": "TextEncodeQwenImageEditPlus",
+  "inputs": {
+   "clip": [
+    "5",
+    0
+   ],
+   "image1": [
+    "1",
+    0
+   ],
+   "image2": [
+    "103",
+    0
+   ],
+   "prompt": "",
+   "vae": [
+    "6",
+    0
+   ]
+  }
+ },
+ "202": {
+  "_meta": {
+   "title": "$seed"
+  },
+  "class_type": "KSampler",
+  "inputs": {
+   "cfg": 3,
+   "denoise": 1,
+   "latent_image": [
+    "7",
+    0
+   ],
+   "model": [
+    "4",
+    0
+   ],
+   "negative": [
+    "201",
+    0
+   ],
+   "positive": [
+    "200",
+    0
+   ],
+   "sampler_name": "euler",
+   "scheduler": "simple",
+   "seed": 930000,
+   "steps": 40
+  }
+ },
+ "203": {
+  "_meta": {
+   "title": "VAE Decode"
+  },
+  "class_type": "VAEDecode",
+  "inputs": {
+   "samples": [
+    "202",
+    0
+   ],
+   "vae": [
+    "6",
+    0
+   ]
+  }
+ },
+ "204": {
+  "_meta": {
+   "title": "save three-quarter"
+  },
+  "class_type": "SaveImage",
+  "inputs": {
+   "filename_prefix": "kk/sheet_three-quarter",
+   "images": [
+    "203",
+    0
+   ]
+  }
+ },
+ "3": {
+  "_meta": {
+   "title": "ModelSamplingAuraFlow"
+  },
+  "class_type": "ModelSamplingAuraFlow",
+  "inputs": {
+   "model": [
+    "2",
+    0
+   ],
+   "sampling": "flow",
+   "shift": 3.1
+  }
+ },
+ "300": {
+  "_meta": {
+   "title": "rear prompt"
+  },
+  "class_type": "TextEncodeQwenImageEditPlus",
+  "inputs": {
+   "clip": [
+    "5",
+    0
+   ],
+   "image1": [
+    "1",
+    0
+   ],
+   "image2": [
+    "103",
+    0
+   ],
+   "prompt": "Full-body character model sheet, rear view: the man from image 2 seen from directly behind, same size, facing away so that only the back of his head, the back of his hat and the back of his shirt are visible, no face visible. Plain back of shirt with the teal panels only on the front. Same pixel art style with a crisp pixel grid and dark outline, plain light grey background, full body from hat to shoes.",
+   "vae": [
+    "6",
+    0
+   ]
+  }
+ },
+ "301": {
+  "_meta": {
+   "title": "rear negative"
+  },
+  "class_type": "TextEncodeQwenImageEditPlus",
+  "inputs": {
+   "clip": [
+    "5",
+    0
+   ],
+   "image1": [
+    "1",
+    0
+   ],
+   "image2": [
+    "103",
+    0
+   ],
+   "prompt": "",
+   "vae": [
+    "6",
+    0
+   ]
+  }
+ },
+ "302": {
+  "_meta": {
+   "title": "$seed"
+  },
+  "class_type": "KSampler",
+  "inputs": {
+   "cfg": 3,
+   "denoise": 1,
+   "latent_image": [
+    "7",
+    0
+   ],
+   "model": [
+    "4",
+    0
+   ],
+   "negative": [
+    "301",
+    0
+   ],
+   "positive": [
+    "300",
+    0
+   ],
+   "sampler_name": "euler",
+   "scheduler": "simple",
+   "seed": 930000,
+   "steps": 40
+  }
+ },
+ "303": {
+  "_meta": {
+   "title": "VAE Decode"
+  },
+  "class_type": "VAEDecode",
+  "inputs": {
+   "samples": [
+    "302",
+    0
+   ],
+   "vae": [
+    "6",
+    0
+   ]
+  }
+ },
+ "304": {
+  "_meta": {
+   "title": "save rear"
+  },
+  "class_type": "SaveImage",
+  "inputs": {
+   "filename_prefix": "kk/sheet_rear",
+   "images": [
+    "303",
+    0
+   ]
+  }
+ },
+ "4": {
+  "_meta": {
+   "title": "CFGNorm"
+  },
+  "class_type": "CFGNorm",
+  "inputs": {
+   "model": [
+    "3",
+    0
+   ],
+   "pre_cfg": false,
+   "strength": 1
+  }
+ },
+ "5": {
+  "_meta": {
+   "title": "Load CLIP"
+  },
+  "class_type": "CLIPLoader",
+  "inputs": {
+   "clip_name": "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+   "device": "default",
+   "type": "qwen_image"
+  }
+ },
+ "6": {
+  "_meta": {
+   "title": "Load VAE"
+  },
+  "class_type": "VAELoader",
+  "inputs": {
+   "vae_name": "qwen_image_vae.safetensors"
+  }
+ },
+ "7": {
+  "_meta": {
+   "title": "Empty Latent Image"
+  },
+  "class_type": "EmptyLatentImage",
+  "inputs": {
+   "batch_size": 1,
+   "height": 1216,
+   "width": 832
+  }
+ }
+}

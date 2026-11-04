@@ -1,0 +1,399 @@
+{
+ "1": {
+  "inputs": {
+   "image": "$identity"
+  },
+  "class_type": "LoadImage",
+  "_meta": {
+   "title": "$identity"
+  }
+ },
+ "2": {
+  "inputs": {
+   "unet_name": "qwen_image_edit_2511_fp8mixed.safetensors",
+   "weight_dtype": "default"
+  },
+  "class_type": "UNETLoader",
+  "_meta": {
+   "title": "Load Diffusion Model"
+  }
+ },
+ "3": {
+  "inputs": {
+   "model": [
+    "2",
+    0
+   ],
+   "shift": 3.1,
+   "sampling": "flow"
+  },
+  "class_type": "ModelSamplingAuraFlow",
+  "_meta": {
+   "title": "ModelSamplingAuraFlow"
+  }
+ },
+ "4": {
+  "inputs": {
+   "model": [
+    "3",
+    0
+   ],
+   "strength": 1.0,
+   "pre_cfg": false
+  },
+  "class_type": "CFGNorm",
+  "_meta": {
+   "title": "CFGNorm"
+  }
+ },
+ "5": {
+  "inputs": {
+   "clip_name": "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+   "type": "qwen_image",
+   "device": "default"
+  },
+  "class_type": "CLIPLoader",
+  "_meta": {
+   "title": "Load CLIP"
+  }
+ },
+ "6": {
+  "inputs": {
+   "vae_name": "qwen_image_vae.safetensors"
+  },
+  "class_type": "VAELoader",
+  "_meta": {
+   "title": "Load VAE"
+  }
+ },
+ "7": {
+  "inputs": {
+   "width": 832,
+   "height": 1216,
+   "batch_size": 1
+  },
+  "class_type": "EmptyLatentImage",
+  "_meta": {
+   "title": "Empty Latent Image"
+  }
+ },
+ "100": {
+  "inputs": {
+   "clip": [
+    "5",
+    0
+   ],
+   "prompt": "Full-body character model sheet, front view: the man from image 1 standing straight and facing the viewer. same man, same panama hat with one teal band, same purple guayabera with teal embroidered panels, cream trousers, teal shoes, same pixel art style with a crisp pixel grid and dark outline, clean-shaven with a thin pencil mustache, closed mouth, plain light grey background, full body from hat to shoes, arms slightly away from his body",
+   "vae": [
+    "6",
+    0
+   ],
+   "image1": [
+    "1",
+    0
+   ]
+  },
+  "class_type": "TextEncodeQwenImageEditPlus",
+  "_meta": {
+   "title": "front prompt"
+  }
+ },
+ "101": {
+  "inputs": {
+   "clip": [
+    "5",
+    0
+   ],
+   "prompt": "",
+   "vae": [
+    "6",
+    0
+   ],
+   "image1": [
+    "1",
+    0
+   ]
+  },
+  "class_type": "TextEncodeQwenImageEditPlus",
+  "_meta": {
+   "title": "front negative"
+  }
+ },
+ "102": {
+  "inputs": {
+   "model": [
+    "4",
+    0
+   ],
+   "seed": 930000,
+   "steps": 40,
+   "cfg": 3.0,
+   "sampler_name": "euler",
+   "scheduler": "simple",
+   "positive": [
+    "100",
+    0
+   ],
+   "negative": [
+    "101",
+    0
+   ],
+   "latent_image": [
+    "7",
+    0
+   ],
+   "denoise": 1.0
+  },
+  "class_type": "KSampler",
+  "_meta": {
+   "title": "$seed"
+  }
+ },
+ "103": {
+  "inputs": {
+   "samples": [
+    "102",
+    0
+   ],
+   "vae": [
+    "6",
+    0
+   ]
+  },
+  "class_type": "VAEDecode",
+  "_meta": {
+   "title": "VAE Decode"
+  }
+ },
+ "104": {
+  "inputs": {
+   "images": [
+    "103",
+    0
+   ],
+   "filename_prefix": "kk/sheet_front"
+  },
+  "class_type": "SaveImage",
+  "_meta": {
+   "title": "save front"
+  }
+ },
+ "200": {
+  "inputs": {
+   "clip": [
+    "5",
+    0
+   ],
+   "prompt": "Full-body character model sheet, three-quarter view: the man from image 2 turned 45 degrees to his left, same size. The man and his clothes are exactly as in image 2. same man, same panama hat with one teal band, same purple guayabera with teal embroidered panels, cream trousers, teal shoes, same pixel art style with a crisp pixel grid and dark outline, clean-shaven with a thin pencil mustache, closed mouth, plain light grey background, full body from hat to shoes, arms slightly away from his body",
+   "vae": [
+    "6",
+    0
+   ],
+   "image1": [
+    "1",
+    0
+   ],
+   "image2": [
+    "103",
+    0
+   ]
+  },
+  "class_type": "TextEncodeQwenImageEditPlus",
+  "_meta": {
+   "title": "three-quarter prompt"
+  }
+ },
+ "201": {
+  "inputs": {
+   "clip": [
+    "5",
+    0
+   ],
+   "prompt": "",
+   "vae": [
+    "6",
+    0
+   ],
+   "image1": [
+    "1",
+    0
+   ],
+   "image2": [
+    "103",
+    0
+   ]
+  },
+  "class_type": "TextEncodeQwenImageEditPlus",
+  "_meta": {
+   "title": "three-quarter negative"
+  }
+ },
+ "202": {
+  "inputs": {
+   "model": [
+    "4",
+    0
+   ],
+   "seed": 930000,
+   "steps": 40,
+   "cfg": 3.0,
+   "sampler_name": "euler",
+   "scheduler": "simple",
+   "positive": [
+    "200",
+    0
+   ],
+   "negative": [
+    "201",
+    0
+   ],
+   "latent_image": [
+    "7",
+    0
+   ],
+   "denoise": 1.0
+  },
+  "class_type": "KSampler",
+  "_meta": {
+   "title": "$seed"
+  }
+ },
+ "203": {
+  "inputs": {
+   "samples": [
+    "202",
+    0
+   ],
+   "vae": [
+    "6",
+    0
+   ]
+  },
+  "class_type": "VAEDecode",
+  "_meta": {
+   "title": "VAE Decode"
+  }
+ },
+ "204": {
+  "inputs": {
+   "images": [
+    "203",
+    0
+   ],
+   "filename_prefix": "kk/sheet_three-quarter"
+  },
+  "class_type": "SaveImage",
+  "_meta": {
+   "title": "save three-quarter"
+  }
+ },
+ "300": {
+  "inputs": {
+   "clip": [
+    "5",
+    0
+   ],
+   "prompt": "Full-body character model sheet, rear view: the man from image 2 seen from directly behind, same size, facing away so that only the back of his head, the back of his hat and the back of his shirt are visible, no face visible. Plain back of shirt with the teal panels only on the front. Same pixel art style with a crisp pixel grid and dark outline, plain light grey background, full body from hat to shoes.",
+   "vae": [
+    "6",
+    0
+   ],
+   "image1": [
+    "1",
+    0
+   ],
+   "image2": [
+    "103",
+    0
+   ]
+  },
+  "class_type": "TextEncodeQwenImageEditPlus",
+  "_meta": {
+   "title": "rear prompt"
+  }
+ },
+ "301": {
+  "inputs": {
+   "clip": [
+    "5",
+    0
+   ],
+   "prompt": "",
+   "vae": [
+    "6",
+    0
+   ],
+   "image1": [
+    "1",
+    0
+   ],
+   "image2": [
+    "103",
+    0
+   ]
+  },
+  "class_type": "TextEncodeQwenImageEditPlus",
+  "_meta": {
+   "title": "rear negative"
+  }
+ },
+ "302": {
+  "inputs": {
+   "model": [
+    "4",
+    0
+   ],
+   "seed": 930000,
+   "steps": 40,
+   "cfg": 3.0,
+   "sampler_name": "euler",
+   "scheduler": "simple",
+   "positive": [
+    "300",
+    0
+   ],
+   "negative": [
+    "301",
+    0
+   ],
+   "latent_image": [
+    "7",
+    0
+   ],
+   "denoise": 1.0
+  },
+  "class_type": "KSampler",
+  "_meta": {
+   "title": "$seed"
+  }
+ },
+ "303": {
+  "inputs": {
+   "samples": [
+    "302",
+    0
+   ],
+   "vae": [
+    "6",
+    0
+   ]
+  },
+  "class_type": "VAEDecode",
+  "_meta": {
+   "title": "VAE Decode"
+  }
+ },
+ "304": {
+  "inputs": {
+   "images": [
+    "303",
+    0
+   ],
+   "filename_prefix": "kk/sheet_rear"
+  },
+  "class_type": "SaveImage",
+  "_meta": {
+   "title": "save rear"
+  }
+ }
+}

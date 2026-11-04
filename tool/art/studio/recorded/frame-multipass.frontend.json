@@ -1,0 +1,2279 @@
+{
+ "1": {
+  "_meta": {
+   "title": "Load Checkpoint"
+  },
+  "class_type": "CheckpointLoaderSimple",
+  "inputs": {
+   "ckpt_name": "sd_xl_base_1.0.safetensors"
+  }
+ },
+ "10": {
+  "_meta": {
+   "title": "Load ControlNet Model"
+  },
+  "class_type": "ControlNetLoader",
+  "inputs": {
+   "control_net_name": "diffusion_pytorch_model.safetensors"
+  }
+ },
+ "100": {
+  "_meta": {
+   "title": "Convert Image to Mask"
+  },
+  "class_type": "ImageToMask",
+  "inputs": {
+   "channel": "red",
+   "image": [
+    "42",
+    0
+   ]
+  }
+ },
+ "101": {
+  "_meta": {
+   "title": "Grow Mask"
+  },
+  "class_type": "GrowMask",
+  "inputs": {
+   "expand": 6,
+   "mask": [
+    "100",
+    0
+   ],
+   "tapered_corners": true
+  }
+ },
+ "102": {
+  "_meta": {
+   "title": "Convert Mask to Image"
+  },
+  "class_type": "MaskToImage",
+  "inputs": {
+   "mask": [
+    "101",
+    0
+   ]
+  }
+ },
+ "103": {
+  "_meta": {
+   "title": "Blur Image"
+  },
+  "class_type": "ImageBlur",
+  "inputs": {
+   "blur_radius": 9,
+   "image": [
+    "102",
+    0
+   ],
+   "sigma": 3
+  }
+ },
+ "104": {
+  "_meta": {
+   "title": "Convert Image to Mask"
+  },
+  "class_type": "ImageToMask",
+  "inputs": {
+   "channel": "red",
+   "image": [
+    "103",
+    0
+   ]
+  }
+ },
+ "105": {
+  "_meta": {
+   "title": "shirt prompt"
+  },
+  "class_type": "CLIPTextEncode",
+  "inputs": {
+   "clip": [
+    "2",
+    1
+   ],
+   "text": "solid deep purple short sleeved guayabera shirt worn untucked, exactly two thin straight vertical teal stripes running down the front, plain fabric everywhere else, pixel art game sprite, flat shading, clean dark outline, crisp pixel clusters"
+  }
+ },
+ "106": {
+  "_meta": {
+   "title": "shirt negative"
+  },
+  "class_type": "CLIPTextEncode",
+  "inputs": {
+   "clip": [
+    "2",
+    1
+   ],
+   "text": "pockets, buttons, vest, waistcoat, belt, necklace, pattern, extra embroidery, dashed stripes, text, blur, photorealistic"
+  }
+ },
+ "107": {
+  "_meta": {
+   "title": "Apply ControlNet"
+  },
+  "class_type": "ControlNetApplyAdvanced",
+  "inputs": {
+   "control_net": [
+    "13",
+    0
+   ],
+   "end_percent": 0.7,
+   "image": [
+    "16",
+    0
+   ],
+   "negative": [
+    "106",
+    0
+   ],
+   "positive": [
+    "105",
+    0
+   ],
+   "start_percent": 0,
+   "strength": 0.5,
+   "vae": [
+    "1",
+    2
+   ]
+  }
+ },
+ "108": {
+  "_meta": {
+   "title": "VAE Encode"
+  },
+  "class_type": "VAEEncode",
+  "inputs": {
+   "pixels": [
+    "115",
+    0
+   ],
+   "vae": [
+    "1",
+    2
+   ]
+  }
+ },
+ "109": {
+  "_meta": {
+   "title": "Set Latent Noise Mask"
+  },
+  "class_type": "SetLatentNoiseMask",
+  "inputs": {
+   "mask": [
+    "104",
+    0
+   ],
+   "samples": [
+    "108",
+    0
+   ]
+  }
+ },
+ "11": {
+  "_meta": {
+   "title": "Load ControlNet Model"
+  },
+  "class_type": "ControlNetLoader",
+  "inputs": {
+   "control_net_name": "diffusion_pytorch_model_promax.safetensors"
+  }
+ },
+ "110": {
+  "_meta": {
+   "title": "$seed"
+  },
+  "class_type": "KSampler",
+  "inputs": {
+   "cfg": 6,
+   "denoise": 0.35,
+   "latent_image": [
+    "109",
+    0
+   ],
+   "model": [
+    "2",
+    0
+   ],
+   "negative": [
+    "107",
+    1
+   ],
+   "positive": [
+    "107",
+    0
+   ],
+   "sampler_name": "dpmpp_2m",
+   "scheduler": "karras",
+   "seed": 930000,
+   "steps": 24
+  }
+ },
+ "111": {
+  "_meta": {
+   "title": "VAE Decode"
+  },
+  "class_type": "VAEDecode",
+  "inputs": {
+   "samples": [
+    "110",
+    0
+   ],
+   "vae": [
+    "1",
+    2
+   ]
+  }
+ },
+ "112": {
+  "_meta": {
+   "title": "Image Composite Masked"
+  },
+  "class_type": "ImageCompositeMasked",
+  "inputs": {
+   "destination": [
+    "33",
+    0
+   ],
+   "mask": [
+    "104",
+    0
+   ],
+   "resize_source": false,
+   "source": [
+    "111",
+    0
+   ],
+   "x": 0,
+   "y": 0
+  }
+ },
+ "113": {
+  "_meta": {
+   "title": "save pass 2: shirt"
+  },
+  "class_type": "SaveImage",
+  "inputs": {
+   "filename_prefix": "kk/2_shirt",
+   "images": [
+    "112",
+    0
+   ]
+  }
+ },
+ "114": {
+  "_meta": {
+   "title": "interior: mask shrunk"
+  },
+  "class_type": "GrowMask",
+  "inputs": {
+   "expand": -4,
+   "mask": [
+    "100",
+    0
+   ],
+   "tapered_corners": true
+  }
+ },
+ "115": {
+  "_meta": {
+   "title": "wipe from rig proxy"
+  },
+  "class_type": "ImageCompositeMasked",
+  "inputs": {
+   "destination": [
+    "33",
+    0
+   ],
+   "mask": [
+    "114",
+    0
+   ],
+   "resize_source": false,
+   "source": [
+    "30",
+    0
+   ],
+   "x": 0,
+   "y": 0
+  }
+ },
+ "12": {
+  "_meta": {
+   "title": "Set Union ControlNet Type"
+  },
+  "class_type": "SetUnionControlNetType",
+  "inputs": {
+   "control_net": [
+    "11",
+    0
+   ],
+   "type": "depth"
+  }
+ },
+ "13": {
+  "_meta": {
+   "title": "Set Union ControlNet Type"
+  },
+  "class_type": "SetUnionControlNetType",
+  "inputs": {
+   "control_net": [
+    "11",
+    0
+   ],
+   "type": "canny/lineart/anime_lineart/mlsd"
+  }
+ },
+ "14": {
+  "_meta": {
+   "title": "$pose"
+  },
+  "class_type": "LoadImage",
+  "inputs": {
+   "image": "groove.down_l.pose.png"
+  }
+ },
+ "15": {
+  "_meta": {
+   "title": "$depth"
+  },
+  "class_type": "LoadImage",
+  "inputs": {
+   "image": "groove.down_l.depth.png"
+  }
+ },
+ "16": {
+  "_meta": {
+   "title": "$lineart"
+  },
+  "class_type": "LoadImage",
+  "inputs": {
+   "image": "groove.down_l.lineart.png"
+  }
+ },
+ "2": {
+  "_meta": {
+   "title": "Load LoRA (Model and CLIP)"
+  },
+  "class_type": "LoraLoader",
+  "inputs": {
+   "clip": [
+    "1",
+    1
+   ],
+   "lora_name": "pixel-art-xl.safetensors",
+   "model": [
+    "1",
+    0
+   ],
+   "strength_clip": 0.8,
+   "strength_model": 0.8
+  }
+ },
+ "20": {
+  "_meta": {
+   "title": "Apply ControlNet"
+  },
+  "class_type": "ControlNetApplyAdvanced",
+  "inputs": {
+   "control_net": [
+    "10",
+    0
+   ],
+   "end_percent": 0.75,
+   "image": [
+    "14",
+    0
+   ],
+   "negative": [
+    "7",
+    0
+   ],
+   "positive": [
+    "6",
+    0
+   ],
+   "start_percent": 0,
+   "strength": 0.9,
+   "vae": [
+    "1",
+    2
+   ]
+  }
+ },
+ "200": {
+  "_meta": {
+   "title": "Convert Image to Mask"
+  },
+  "class_type": "ImageToMask",
+  "inputs": {
+   "channel": "red",
+   "image": [
+    "41",
+    0
+   ]
+  }
+ },
+ "201": {
+  "_meta": {
+   "title": "Grow Mask"
+  },
+  "class_type": "GrowMask",
+  "inputs": {
+   "expand": 6,
+   "mask": [
+    "200",
+    0
+   ],
+   "tapered_corners": true
+  }
+ },
+ "202": {
+  "_meta": {
+   "title": "Convert Mask to Image"
+  },
+  "class_type": "MaskToImage",
+  "inputs": {
+   "mask": [
+    "201",
+    0
+   ]
+  }
+ },
+ "203": {
+  "_meta": {
+   "title": "Blur Image"
+  },
+  "class_type": "ImageBlur",
+  "inputs": {
+   "blur_radius": 9,
+   "image": [
+    "202",
+    0
+   ],
+   "sigma": 3
+  }
+ },
+ "204": {
+  "_meta": {
+   "title": "Convert Image to Mask"
+  },
+  "class_type": "ImageToMask",
+  "inputs": {
+   "channel": "red",
+   "image": [
+    "203",
+    0
+   ]
+  }
+ },
+ "205": {
+  "_meta": {
+   "title": "hat prompt"
+  },
+  "class_type": "CLIPTextEncode",
+  "inputs": {
+   "clip": [
+    "2",
+    1
+   ],
+   "text": "cream panama hat with one plain teal band, pixel art game sprite, flat shading, clean dark outline, crisp pixel clusters"
+  }
+ },
+ "206": {
+  "_meta": {
+   "title": "hat negative"
+  },
+  "class_type": "CLIPTextEncode",
+  "inputs": {
+   "clip": [
+    "2",
+    1
+   ],
+   "text": "straw weave, pattern, dots, orange hat, yellow hat, feather, text, blur, photorealistic"
+  }
+ },
+ "207": {
+  "_meta": {
+   "title": "Apply ControlNet"
+  },
+  "class_type": "ControlNetApplyAdvanced",
+  "inputs": {
+   "control_net": [
+    "13",
+    0
+   ],
+   "end_percent": 0.7,
+   "image": [
+    "16",
+    0
+   ],
+   "negative": [
+    "206",
+    0
+   ],
+   "positive": [
+    "205",
+    0
+   ],
+   "start_percent": 0,
+   "strength": 0.5,
+   "vae": [
+    "1",
+    2
+   ]
+  }
+ },
+ "208": {
+  "_meta": {
+   "title": "VAE Encode"
+  },
+  "class_type": "VAEEncode",
+  "inputs": {
+   "pixels": [
+    "215",
+    0
+   ],
+   "vae": [
+    "1",
+    2
+   ]
+  }
+ },
+ "209": {
+  "_meta": {
+   "title": "Set Latent Noise Mask"
+  },
+  "class_type": "SetLatentNoiseMask",
+  "inputs": {
+   "mask": [
+    "204",
+    0
+   ],
+   "samples": [
+    "208",
+    0
+   ]
+  }
+ },
+ "21": {
+  "_meta": {
+   "title": "Apply ControlNet"
+  },
+  "class_type": "ControlNetApplyAdvanced",
+  "inputs": {
+   "control_net": [
+    "12",
+    0
+   ],
+   "end_percent": 0.5,
+   "image": [
+    "15",
+    0
+   ],
+   "negative": [
+    "20",
+    1
+   ],
+   "positive": [
+    "20",
+    0
+   ],
+   "start_percent": 0,
+   "strength": 0.4,
+   "vae": [
+    "1",
+    2
+   ]
+  }
+ },
+ "210": {
+  "_meta": {
+   "title": "$seed"
+  },
+  "class_type": "KSampler",
+  "inputs": {
+   "cfg": 6,
+   "denoise": 0.35,
+   "latent_image": [
+    "209",
+    0
+   ],
+   "model": [
+    "2",
+    0
+   ],
+   "negative": [
+    "207",
+    1
+   ],
+   "positive": [
+    "207",
+    0
+   ],
+   "sampler_name": "dpmpp_2m",
+   "scheduler": "karras",
+   "seed": 930000,
+   "steps": 24
+  }
+ },
+ "211": {
+  "_meta": {
+   "title": "VAE Decode"
+  },
+  "class_type": "VAEDecode",
+  "inputs": {
+   "samples": [
+    "210",
+    0
+   ],
+   "vae": [
+    "1",
+    2
+   ]
+  }
+ },
+ "212": {
+  "_meta": {
+   "title": "Image Composite Masked"
+  },
+  "class_type": "ImageCompositeMasked",
+  "inputs": {
+   "destination": [
+    "520",
+    0
+   ],
+   "mask": [
+    "204",
+    0
+   ],
+   "resize_source": false,
+   "source": [
+    "211",
+    0
+   ],
+   "x": 0,
+   "y": 0
+  }
+ },
+ "213": {
+  "_meta": {
+   "title": "save pass 4: hat"
+  },
+  "class_type": "SaveImage",
+  "inputs": {
+   "filename_prefix": "kk/4_hat",
+   "images": [
+    "212",
+    0
+   ]
+  }
+ },
+ "214": {
+  "_meta": {
+   "title": "interior: mask shrunk"
+  },
+  "class_type": "GrowMask",
+  "inputs": {
+   "expand": -4,
+   "mask": [
+    "200",
+    0
+   ],
+   "tapered_corners": true
+  }
+ },
+ "215": {
+  "_meta": {
+   "title": "wipe from rig proxy"
+  },
+  "class_type": "ImageCompositeMasked",
+  "inputs": {
+   "destination": [
+    "520",
+    0
+   ],
+   "mask": [
+    "214",
+    0
+   ],
+   "resize_source": false,
+   "source": [
+    "30",
+    0
+   ],
+   "x": 0,
+   "y": 0
+  }
+ },
+ "22": {
+  "_meta": {
+   "title": "Apply ControlNet"
+  },
+  "class_type": "ControlNetApplyAdvanced",
+  "inputs": {
+   "control_net": [
+    "13",
+    0
+   ],
+   "end_percent": 0.5,
+   "image": [
+    "16",
+    0
+   ],
+   "negative": [
+    "21",
+    1
+   ],
+   "positive": [
+    "21",
+    0
+   ],
+   "start_percent": 0,
+   "strength": 0.3,
+   "vae": [
+    "1",
+    2
+   ]
+  }
+ },
+ "30": {
+  "_meta": {
+   "title": "$init_image"
+  },
+  "class_type": "LoadImage",
+  "inputs": {
+   "image": "groove.down_l.proxy.png"
+  }
+ },
+ "300": {
+  "_meta": {
+   "title": "head window x, y (from $head_xy)"
+  },
+  "class_type": "GetImageSize",
+  "inputs": {
+   "image": [
+    "43",
+    0
+   ]
+  }
+ },
+ "301": {
+  "_meta": {
+   "title": "head crop"
+  },
+  "class_type": "ImageCrop",
+  "inputs": {
+   "height": 256,
+   "image": [
+    "212",
+    0
+   ],
+   "width": 256,
+   "x": [
+    "300",
+    0
+   ],
+   "y": [
+    "300",
+    1
+   ]
+  }
+ },
+ "302": {
+  "_meta": {
+   "title": "upscale head"
+  },
+  "class_type": "ImageScale",
+  "inputs": {
+   "crop": "disabled",
+   "height": 1024,
+   "image": [
+    "301",
+    0
+   ],
+   "upscale_method": "lanczos",
+   "width": 1024
+  }
+ },
+ "303": {
+  "_meta": {
+   "title": "lineart crop"
+  },
+  "class_type": "ImageCrop",
+  "inputs": {
+   "height": 256,
+   "image": [
+    "16",
+    0
+   ],
+   "width": 256,
+   "x": [
+    "300",
+    0
+   ],
+   "y": [
+    "300",
+    1
+   ]
+  }
+ },
+ "304": {
+  "_meta": {
+   "title": "Upscale Image"
+  },
+  "class_type": "ImageScale",
+  "inputs": {
+   "crop": "disabled",
+   "height": 1024,
+   "image": [
+    "303",
+    0
+   ],
+   "upscale_method": "bilinear",
+   "width": 1024
+  }
+ },
+ "305": {
+  "_meta": {
+   "title": "depth crop"
+  },
+  "class_type": "ImageCrop",
+  "inputs": {
+   "height": 256,
+   "image": [
+    "15",
+    0
+   ],
+   "width": 256,
+   "x": [
+    "300",
+    0
+   ],
+   "y": [
+    "300",
+    1
+   ]
+  }
+ },
+ "306": {
+  "_meta": {
+   "title": "Upscale Image"
+  },
+  "class_type": "ImageScale",
+  "inputs": {
+   "crop": "disabled",
+   "height": 1024,
+   "image": [
+    "305",
+    0
+   ],
+   "upscale_method": "bilinear",
+   "width": 1024
+  }
+ },
+ "31": {
+  "_meta": {
+   "title": "VAE Encode"
+  },
+  "class_type": "VAEEncode",
+  "inputs": {
+   "pixels": [
+    "30",
+    0
+   ],
+   "vae": [
+    "1",
+    2
+   ]
+  }
+ },
+ "310": {
+  "_meta": {
+   "title": "Convert Image to Mask"
+  },
+  "class_type": "ImageToMask",
+  "inputs": {
+   "channel": "red",
+   "image": [
+    "40",
+    0
+   ]
+  }
+ },
+ "311": {
+  "_meta": {
+   "title": "head mask crop"
+  },
+  "class_type": "CropMask",
+  "inputs": {
+   "height": 256,
+   "mask": [
+    "310",
+    0
+   ],
+   "width": 256,
+   "x": [
+    "300",
+    0
+   ],
+   "y": [
+    "300",
+    1
+   ]
+  }
+ },
+ "312": {
+  "_meta": {
+   "title": "Grow Mask"
+  },
+  "class_type": "GrowMask",
+  "inputs": {
+   "expand": 10,
+   "mask": [
+    "311",
+    0
+   ],
+   "tapered_corners": true
+  }
+ },
+ "313": {
+  "_meta": {
+   "title": "Convert Mask to Image"
+  },
+  "class_type": "MaskToImage",
+  "inputs": {
+   "mask": [
+    "312",
+    0
+   ]
+  }
+ },
+ "314": {
+  "_meta": {
+   "title": "feather"
+  },
+  "class_type": "ImageBlur",
+  "inputs": {
+   "blur_radius": 15,
+   "image": [
+    "313",
+    0
+   ],
+   "sigma": 5
+  }
+ },
+ "315": {
+  "_meta": {
+   "title": "feathered head mask"
+  },
+  "class_type": "ImageToMask",
+  "inputs": {
+   "channel": "red",
+   "image": [
+    "314",
+    0
+   ]
+  }
+ },
+ "32": {
+  "_meta": {
+   "title": "$seed"
+  },
+  "class_type": "KSampler",
+  "inputs": {
+   "cfg": 6,
+   "denoise": 0.7,
+   "latent_image": [
+    "31",
+    0
+   ],
+   "model": [
+    "58",
+    0
+   ],
+   "negative": [
+    "22",
+    1
+   ],
+   "positive": [
+    "22",
+    0
+   ],
+   "sampler_name": "dpmpp_2m",
+   "scheduler": "karras",
+   "seed": 930000,
+   "steps": 28
+  }
+ },
+ "320": {
+  "_meta": {
+   "title": "pixel LoRA, lower for the face"
+  },
+  "class_type": "LoraLoader",
+  "inputs": {
+   "clip": [
+    "1",
+    1
+   ],
+   "lora_name": "pixel-art-xl.safetensors",
+   "model": [
+    "1",
+    0
+   ],
+   "strength_clip": 0.35,
+   "strength_model": 0.35
+  }
+ },
+ "321": {
+  "_meta": {
+   "title": "face prompt"
+  },
+  "class_type": "CLIPTextEncode",
+  "inputs": {
+   "clip": [
+    "320",
+    1
+   ],
+   "text": "close-up face of a stocky cheerful latino man, clean-shaven, smooth bare chin and cheeks, thin neatly groomed pencil mustache, two clear dark oval eyes, small nose, closed mouth, warm brown skin, simple cartoon game art, soft cel shading, clean dark outline"
+  }
+ },
+ "322": {
+  "_meta": {
+   "title": "face negative"
+  },
+  "class_type": "CLIPTextEncode",
+  "inputs": {
+   "clip": [
+    "320",
+    1
+   ],
+   "text": "beard, goatee, stubble, sideburns, five o clock shadow, thick mustache, handlebar mustache, teeth, open mouth, sunglasses, glasses, eyebrows touching, photorealistic, 3d render, blur, text"
+  }
+ },
+ "323": {
+  "_meta": {
+   "title": "Apply ControlNet"
+  },
+  "class_type": "ControlNetApplyAdvanced",
+  "inputs": {
+   "control_net": [
+    "13",
+    0
+   ],
+   "end_percent": 0.6,
+   "image": [
+    "304",
+    0
+   ],
+   "negative": [
+    "322",
+    0
+   ],
+   "positive": [
+    "321",
+    0
+   ],
+   "start_percent": 0,
+   "strength": 0.25,
+   "vae": [
+    "1",
+    2
+   ]
+  }
+ },
+ "324": {
+  "_meta": {
+   "title": "Apply ControlNet"
+  },
+  "class_type": "ControlNetApplyAdvanced",
+  "inputs": {
+   "control_net": [
+    "12",
+    0
+   ],
+   "end_percent": 0.5,
+   "image": [
+    "306",
+    0
+   ],
+   "negative": [
+    "323",
+    1
+   ],
+   "positive": [
+    "323",
+    0
+   ],
+   "start_percent": 0,
+   "strength": 0.4,
+   "vae": [
+    "1",
+    2
+   ]
+  }
+ },
+ "33": {
+  "_meta": {
+   "title": "VAE Decode"
+  },
+  "class_type": "VAEDecode",
+  "inputs": {
+   "samples": [
+    "32",
+    0
+   ],
+   "vae": [
+    "1",
+    2
+   ]
+  }
+ },
+ "330": {
+  "_meta": {
+   "title": "VAE Encode"
+  },
+  "class_type": "VAEEncode",
+  "inputs": {
+   "pixels": [
+    "353",
+    0
+   ],
+   "vae": [
+    "1",
+    2
+   ]
+  }
+ },
+ "331": {
+  "_meta": {
+   "title": "Set Latent Noise Mask"
+  },
+  "class_type": "SetLatentNoiseMask",
+  "inputs": {
+   "mask": [
+    "315",
+    0
+   ],
+   "samples": [
+    "330",
+    0
+   ]
+  }
+ },
+ "332": {
+  "_meta": {
+   "title": "$seed"
+  },
+  "class_type": "KSampler",
+  "inputs": {
+   "cfg": 6,
+   "denoise": 0.55,
+   "latent_image": [
+    "331",
+    0
+   ],
+   "model": [
+    "320",
+    0
+   ],
+   "negative": [
+    "362",
+    1
+   ],
+   "positive": [
+    "362",
+    0
+   ],
+   "sampler_name": "dpmpp_2m",
+   "scheduler": "karras",
+   "seed": 930000,
+   "steps": 24
+  }
+ },
+ "333": {
+  "_meta": {
+   "title": "VAE Decode"
+  },
+  "class_type": "VAEDecode",
+  "inputs": {
+   "samples": [
+    "332",
+    0
+   ],
+   "vae": [
+    "1",
+    2
+   ]
+  }
+ },
+ "334": {
+  "_meta": {
+   "title": "save: head at working size"
+  },
+  "class_type": "SaveImage",
+  "inputs": {
+   "filename_prefix": "kk/5_head_large",
+   "images": [
+    "333",
+    0
+   ]
+  }
+ },
+ "34": {
+  "_meta": {
+   "title": "save pass 1: base"
+  },
+  "class_type": "SaveImage",
+  "inputs": {
+   "filename_prefix": "kk/1_base",
+   "images": [
+    "33",
+    0
+   ]
+  }
+ },
+ "340": {
+  "_meta": {
+   "title": "scale back to window"
+  },
+  "class_type": "ImageScale",
+  "inputs": {
+   "crop": "disabled",
+   "height": 256,
+   "image": [
+    "333",
+    0
+   ],
+   "upscale_method": "area",
+   "width": 256
+  }
+ },
+ "341": {
+  "_meta": {
+   "title": "paste with feathered mask"
+  },
+  "class_type": "ImageCompositeMasked",
+  "inputs": {
+   "destination": [
+    "212",
+    0
+   ],
+   "mask": [
+    "357",
+    0
+   ],
+   "resize_source": false,
+   "source": [
+    "340",
+    0
+   ],
+   "x": [
+    "300",
+    0
+   ],
+   "y": [
+    "300",
+    1
+   ]
+  }
+ },
+ "342": {
+  "_meta": {
+   "title": "save pass 5: head"
+  },
+  "class_type": "SaveImage",
+  "inputs": {
+   "filename_prefix": "kk/5_head",
+   "images": [
+    "341",
+    0
+   ]
+  }
+ },
+ "350": {
+  "_meta": {
+   "title": "face guide crop"
+  },
+  "class_type": "ImageCrop",
+  "inputs": {
+   "height": 256,
+   "image": [
+    "44",
+    0
+   ],
+   "width": 256,
+   "x": [
+    "300",
+    0
+   ],
+   "y": [
+    "300",
+    1
+   ]
+  }
+ },
+ "351": {
+  "_meta": {
+   "title": "Upscale Image"
+  },
+  "class_type": "ImageScale",
+  "inputs": {
+   "crop": "disabled",
+   "height": 1024,
+   "image": [
+    "350",
+    0
+   ],
+   "upscale_method": "bilinear",
+   "width": 1024
+  }
+ },
+ "352": {
+  "_meta": {
+   "title": "face interior: head mask, shrunk"
+  },
+  "class_type": "GrowMask",
+  "inputs": {
+   "expand": -5,
+   "mask": [
+    "311",
+    0
+   ],
+   "tapered_corners": true
+  }
+ },
+ "353": {
+  "_meta": {
+   "title": "wipe the base face with the drawn one"
+  },
+  "class_type": "ImageCompositeMasked",
+  "inputs": {
+   "destination": [
+    "302",
+    0
+   ],
+   "mask": [
+    "352",
+    0
+   ],
+   "resize_source": false,
+   "source": [
+    "351",
+    0
+   ],
+   "x": 0,
+   "y": 0
+  }
+ },
+ "354": {
+  "_meta": {
+   "title": "blend mask: tighter than the noise mask"
+  },
+  "class_type": "GrowMask",
+  "inputs": {
+   "expand": 2,
+   "mask": [
+    "311",
+    0
+   ],
+   "tapered_corners": true
+  }
+ },
+ "355": {
+  "_meta": {
+   "title": "Convert Mask to Image"
+  },
+  "class_type": "MaskToImage",
+  "inputs": {
+   "mask": [
+    "354",
+    0
+   ]
+  }
+ },
+ "356": {
+  "_meta": {
+   "title": "Blur Image"
+  },
+  "class_type": "ImageBlur",
+  "inputs": {
+   "blur_radius": 5,
+   "image": [
+    "355",
+    0
+   ],
+   "sigma": 2
+  }
+ },
+ "357": {
+  "_meta": {
+   "title": "blend mask"
+  },
+  "class_type": "ImageToMask",
+  "inputs": {
+   "channel": "red",
+   "image": [
+    "356",
+    0
+   ]
+  }
+ },
+ "360": {
+  "_meta": {
+   "title": "openpose crop: face keypoints"
+  },
+  "class_type": "ImageCrop",
+  "inputs": {
+   "height": 256,
+   "image": [
+    "14",
+    0
+   ],
+   "width": 256,
+   "x": [
+    "300",
+    0
+   ],
+   "y": [
+    "300",
+    1
+   ]
+  }
+ },
+ "361": {
+  "_meta": {
+   "title": "Upscale Image"
+  },
+  "class_type": "ImageScale",
+  "inputs": {
+   "crop": "disabled",
+   "height": 1024,
+   "image": [
+    "360",
+    0
+   ],
+   "upscale_method": "bilinear",
+   "width": 1024
+  }
+ },
+ "362": {
+  "_meta": {
+   "title": "Apply ControlNet"
+  },
+  "class_type": "ControlNetApplyAdvanced",
+  "inputs": {
+   "control_net": [
+    "10",
+    0
+   ],
+   "end_percent": 0.7,
+   "image": [
+    "361",
+    0
+   ],
+   "negative": [
+    "324",
+    1
+   ],
+   "positive": [
+    "324",
+    0
+   ],
+   "start_percent": 0,
+   "strength": 0.7,
+   "vae": [
+    "1",
+    2
+   ]
+  }
+ },
+ "4": {
+  "_meta": {
+   "title": "IPAdapter Model Loader"
+  },
+  "class_type": "IPAdapterModelLoader",
+  "inputs": {
+   "ipadapter_file": "ip-adapter-plus_sdxl_vit-h.safetensors"
+  }
+ },
+ "40": {
+  "_meta": {
+   "title": "$mask_head"
+  },
+  "class_type": "LoadImage",
+  "inputs": {
+   "image": "groove.down_l.mask.face.png"
+  }
+ },
+ "400": {
+  "_meta": {
+   "title": "LoadRembgByBiRefNetModel"
+  },
+  "class_type": "LoadRembgByBiRefNetModel",
+  "inputs": {
+   "device": "AUTO",
+   "dtype": "float32",
+   "model": "model.safetensors",
+   "use_weight": false
+  }
+ },
+ "401": {
+  "_meta": {
+   "title": "RembgByBiRefNet"
+  },
+  "class_type": "RembgByBiRefNet",
+  "inputs": {
+   "images": [
+    "341",
+    0
+   ],
+   "model": [
+    "400",
+    0
+   ]
+  }
+ },
+ "402": {
+  "_meta": {
+   "title": "save pass 6: matte"
+  },
+  "class_type": "SaveImage",
+  "inputs": {
+   "filename_prefix": "kk/6_matte",
+   "images": [
+    "407",
+    0
+   ]
+  }
+ },
+ "403": {
+  "_meta": {
+   "title": "Convert Image to Mask"
+  },
+  "class_type": "ImageToMask",
+  "inputs": {
+   "channel": "red",
+   "image": [
+    "45",
+    0
+   ]
+  }
+ },
+ "404": {
+  "_meta": {
+   "title": "rig silhouette + 16 canvas px"
+  },
+  "class_type": "GrowMask",
+  "inputs": {
+   "expand": 16,
+   "mask": [
+    "403",
+    0
+   ],
+   "tapered_corners": true
+  }
+ },
+ "405": {
+  "_meta": {
+   "title": "clamp matte to rig"
+  },
+  "class_type": "MaskComposite",
+  "inputs": {
+   "destination": [
+    "401",
+    1
+   ],
+   "operation": "and",
+   "source": [
+    "404",
+    0
+   ],
+   "x": 0,
+   "y": 0
+  }
+ },
+ "406": {
+  "_meta": {
+   "title": "alpha convention: 1 = transparent"
+  },
+  "class_type": "InvertMask",
+  "inputs": {
+   "mask": [
+    "405",
+    0
+   ]
+  }
+ },
+ "407": {
+  "_meta": {
+   "title": "Join Image with Alpha"
+  },
+  "class_type": "JoinImageWithAlpha",
+  "inputs": {
+   "alpha": [
+    "406",
+    0
+   ],
+   "image": [
+    "341",
+    0
+   ]
+  }
+ },
+ "41": {
+  "_meta": {
+   "title": "$mask_hat"
+  },
+  "class_type": "LoadImage",
+  "inputs": {
+   "image": "groove.down_l.mask.hat.png"
+  }
+ },
+ "42": {
+  "_meta": {
+   "title": "$mask_shirt"
+  },
+  "class_type": "LoadImage",
+  "inputs": {
+   "image": "groove.down_l.mask.shirt.png"
+  }
+ },
+ "43": {
+  "_meta": {
+   "title": "$head_xy"
+  },
+  "class_type": "LoadImage",
+  "inputs": {
+   "image": "groove.down_l.headxy.png"
+  }
+ },
+ "44": {
+  "_meta": {
+   "title": "$face"
+  },
+  "class_type": "LoadImage",
+  "inputs": {
+   "image": "groove.down_l.face.png"
+  }
+ },
+ "45": {
+  "_meta": {
+   "title": "$mask_figure"
+  },
+  "class_type": "LoadImage",
+  "inputs": {
+   "image": "groove.down_l.mask.figure.png"
+  }
+ },
+ "46": {
+  "_meta": {
+   "title": "$embroidery"
+  },
+  "class_type": "LoadImage",
+  "inputs": {
+   "image": "groove.down_l.embroidery.png"
+  }
+ },
+ "47": {
+  "_meta": {
+   "title": "$mask_embroidery"
+  },
+  "class_type": "LoadImage",
+  "inputs": {
+   "image": "groove.down_l.mask.embroidery.png"
+  }
+ },
+ "48": {
+  "_meta": {
+   "title": "$torso_xy"
+  },
+  "class_type": "LoadImage",
+  "inputs": {
+   "image": "groove.down_l.torsoxy.png"
+  }
+ },
+ "5": {
+  "_meta": {
+   "title": "identity: head and hat"
+  },
+  "class_type": "IPAdapterAdvanced",
+  "inputs": {
+   "attn_mask": [
+    "56",
+    0
+   ],
+   "clip_vision": [
+    "8",
+    0
+   ],
+   "combine_embeds": "concat",
+   "embeds_scaling": "V only",
+   "end_at": 1,
+   "image": [
+    "54",
+    0
+   ],
+   "ipadapter": [
+    "4",
+    0
+   ],
+   "model": [
+    "2",
+    0
+   ],
+   "start_at": 0,
+   "weight": 0.6,
+   "weight_type": "style transfer"
+  }
+ },
+ "50": {
+  "_meta": {
+   "title": "$ref_head"
+  },
+  "class_type": "LoadImage",
+  "inputs": {
+   "image": "ref_head.png"
+  }
+ },
+ "500": {
+  "_meta": {
+   "title": "torso window x, y (from $torso_xy)"
+  },
+  "class_type": "GetImageSize",
+  "inputs": {
+   "image": [
+    "48",
+    0
+   ]
+  }
+ },
+ "501": {
+  "_meta": {
+   "title": "Convert Image to Mask"
+  },
+  "class_type": "ImageToMask",
+  "inputs": {
+   "channel": "red",
+   "image": [
+    "47",
+    0
+   ]
+  }
+ },
+ "502": {
+  "_meta": {
+   "title": "lay the one embroidery strip along the rig stripes"
+  },
+  "class_type": "ImageCompositeMasked",
+  "inputs": {
+   "destination": [
+    "112",
+    0
+   ],
+   "mask": [
+    "501",
+    0
+   ],
+   "resize_source": false,
+   "source": [
+    "46",
+    0
+   ],
+   "x": 0,
+   "y": 0
+  }
+ },
+ "503": {
+  "_meta": {
+   "title": "torso crop"
+  },
+  "class_type": "ImageCrop",
+  "inputs": {
+   "height": 384,
+   "image": [
+    "502",
+    0
+   ],
+   "width": 384,
+   "x": [
+    "500",
+    0
+   ],
+   "y": [
+    "500",
+    1
+   ]
+  }
+ },
+ "504": {
+  "_meta": {
+   "title": "Upscale Image"
+  },
+  "class_type": "ImageScale",
+  "inputs": {
+   "crop": "disabled",
+   "height": 1024,
+   "image": [
+    "503",
+    0
+   ],
+   "upscale_method": "lanczos",
+   "width": 1024
+  }
+ },
+ "505": {
+  "_meta": {
+   "title": "Crop Mask"
+  },
+  "class_type": "CropMask",
+  "inputs": {
+   "height": 384,
+   "mask": [
+    "501",
+    0
+   ],
+   "width": 384,
+   "x": [
+    "500",
+    0
+   ],
+   "y": [
+    "500",
+    1
+   ]
+  }
+ },
+ "506": {
+  "_meta": {
+   "title": "Grow Mask"
+  },
+  "class_type": "GrowMask",
+  "inputs": {
+   "expand": 4,
+   "mask": [
+    "505",
+    0
+   ],
+   "tapered_corners": true
+  }
+ },
+ "507": {
+  "_meta": {
+   "title": "Convert Mask to Image"
+  },
+  "class_type": "MaskToImage",
+  "inputs": {
+   "mask": [
+    "506",
+    0
+   ]
+  }
+ },
+ "508": {
+  "_meta": {
+   "title": "Blur Image"
+  },
+  "class_type": "ImageBlur",
+  "inputs": {
+   "blur_radius": 5,
+   "image": [
+    "507",
+    0
+   ],
+   "sigma": 2
+  }
+ },
+ "509": {
+  "_meta": {
+   "title": "feathered embroidery mask"
+  },
+  "class_type": "ImageToMask",
+  "inputs": {
+   "channel": "red",
+   "image": [
+    "508",
+    0
+   ]
+  }
+ },
+ "51": {
+  "_meta": {
+   "title": "$ref_outfit"
+  },
+  "class_type": "LoadImage",
+  "inputs": {
+   "image": "ref_outfit.png"
+  }
+ },
+ "510": {
+  "_meta": {
+   "title": "pixel LoRA, low: its cells are 2.7x too small in this crop"
+  },
+  "class_type": "LoraLoader",
+  "inputs": {
+   "clip": [
+    "1",
+    1
+   ],
+   "lora_name": "pixel-art-xl.safetensors",
+   "model": [
+    "1",
+    0
+   ],
+   "strength_clip": 0.35,
+   "strength_model": 0.35
+  }
+ },
+ "511": {
+  "_meta": {
+   "title": "embroidery prompt"
+  },
+  "class_type": "CLIPTextEncode",
+  "inputs": {
+   "clip": [
+    "510",
+    1
+   ],
+   "text": "intricate teal embroidered guayabera panel on deep purple shirt, small repeating stitched medallions, fine thread texture, elegant shades of teal, crisp game art"
+  }
+ },
+ "512": {
+  "_meta": {
+   "title": "embroidery negative"
+  },
+  "class_type": "CLIPTextEncode",
+  "inputs": {
+   "clip": [
+    "510",
+    1
+   ],
+   "text": "blur, photorealistic, text, buttons, pockets, plain fabric"
+  }
+ },
+ "513": {
+  "_meta": {
+   "title": "Set Union ControlNet Type"
+  },
+  "class_type": "SetUnionControlNetType",
+  "inputs": {
+   "control_net": [
+    "11",
+    0
+   ],
+   "type": "tile"
+  }
+ },
+ "514": {
+  "_meta": {
+   "title": "tile control: holds the stitches"
+  },
+  "class_type": "ControlNetApplyAdvanced",
+  "inputs": {
+   "control_net": [
+    "513",
+    0
+   ],
+   "end_percent": 0.8,
+   "image": [
+    "504",
+    0
+   ],
+   "negative": [
+    "512",
+    0
+   ],
+   "positive": [
+    "511",
+    0
+   ],
+   "start_percent": 0,
+   "strength": 0.6,
+   "vae": [
+    "1",
+    2
+   ]
+  }
+ },
+ "515": {
+  "_meta": {
+   "title": "VAE Encode"
+  },
+  "class_type": "VAEEncode",
+  "inputs": {
+   "pixels": [
+    "504",
+    0
+   ],
+   "vae": [
+    "1",
+    2
+   ]
+  }
+ },
+ "516": {
+  "_meta": {
+   "title": "Set Latent Noise Mask"
+  },
+  "class_type": "SetLatentNoiseMask",
+  "inputs": {
+   "mask": [
+    "509",
+    0
+   ],
+   "samples": [
+    "515",
+    0
+   ]
+  }
+ },
+ "517": {
+  "_meta": {
+   "title": "$seed"
+  },
+  "class_type": "KSampler",
+  "inputs": {
+   "cfg": 6,
+   "denoise": 0.3,
+   "latent_image": [
+    "516",
+    0
+   ],
+   "model": [
+    "510",
+    0
+   ],
+   "negative": [
+    "514",
+    1
+   ],
+   "positive": [
+    "514",
+    0
+   ],
+   "sampler_name": "dpmpp_2m",
+   "scheduler": "karras",
+   "seed": 930000,
+   "steps": 24
+  }
+ },
+ "518": {
+  "_meta": {
+   "title": "VAE Decode"
+  },
+  "class_type": "VAEDecode",
+  "inputs": {
+   "samples": [
+    "517",
+    0
+   ],
+   "vae": [
+    "1",
+    2
+   ]
+  }
+ },
+ "519": {
+  "_meta": {
+   "title": "scale back to window"
+  },
+  "class_type": "ImageScale",
+  "inputs": {
+   "crop": "disabled",
+   "height": 384,
+   "image": [
+    "518",
+    0
+   ],
+   "upscale_method": "area",
+   "width": 384
+  }
+ },
+ "52": {
+  "_meta": {
+   "title": "$mask_ref_head"
+  },
+  "class_type": "LoadImage",
+  "inputs": {
+   "image": "groove.down_l.mask.ref_head.png"
+  }
+ },
+ "520": {
+  "_meta": {
+   "title": "paste, feathered"
+  },
+  "class_type": "ImageCompositeMasked",
+  "inputs": {
+   "destination": [
+    "112",
+    0
+   ],
+   "mask": [
+    "509",
+    0
+   ],
+   "resize_source": false,
+   "source": [
+    "519",
+    0
+   ],
+   "x": [
+    "500",
+    0
+   ],
+   "y": [
+    "500",
+    1
+   ]
+  }
+ },
+ "521": {
+  "_meta": {
+   "title": "save pass 3: embroidery"
+  },
+  "class_type": "SaveImage",
+  "inputs": {
+   "filename_prefix": "kk/3_embroidery",
+   "images": [
+    "520",
+    0
+   ]
+  }
+ },
+ "53": {
+  "_meta": {
+   "title": "$mask_ref_body"
+  },
+  "class_type": "LoadImage",
+  "inputs": {
+   "image": "groove.down_l.mask.ref_body.png"
+  }
+ },
+ "54": {
+  "_meta": {
+   "title": "Prep Image For ClipVision"
+  },
+  "class_type": "PrepImageForClipVision",
+  "inputs": {
+   "crop_position": "center",
+   "image": [
+    "50",
+    0
+   ],
+   "interpolation": "LANCZOS",
+   "sharpening": 0
+  }
+ },
+ "55": {
+  "_meta": {
+   "title": "Prep Image For ClipVision"
+  },
+  "class_type": "PrepImageForClipVision",
+  "inputs": {
+   "crop_position": "center",
+   "image": [
+    "51",
+    0
+   ],
+   "interpolation": "LANCZOS",
+   "sharpening": 0
+  }
+ },
+ "56": {
+  "_meta": {
+   "title": "Convert Image to Mask"
+  },
+  "class_type": "ImageToMask",
+  "inputs": {
+   "channel": "red",
+   "image": [
+    "52",
+    0
+   ]
+  }
+ },
+ "57": {
+  "_meta": {
+   "title": "Convert Image to Mask"
+  },
+  "class_type": "ImageToMask",
+  "inputs": {
+   "channel": "red",
+   "image": [
+    "53",
+    0
+   ]
+  }
+ },
+ "58": {
+  "_meta": {
+   "title": "identity: outfit"
+  },
+  "class_type": "IPAdapterAdvanced",
+  "inputs": {
+   "attn_mask": [
+    "57",
+    0
+   ],
+   "clip_vision": [
+    "8",
+    0
+   ],
+   "combine_embeds": "concat",
+   "embeds_scaling": "V only",
+   "end_at": 1,
+   "image": [
+    "55",
+    0
+   ],
+   "ipadapter": [
+    "4",
+    0
+   ],
+   "model": [
+    "5",
+    0
+   ],
+   "start_at": 0,
+   "weight": 0.6,
+   "weight_type": "style transfer"
+  }
+ },
+ "6": {
+  "_meta": {
+   "title": "$prompt"
+  },
+  "class_type": "CLIPTextEncode",
+  "inputs": {
+   "clip": [
+    "2",
+    1
+   ],
+   "text": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful clean-shaven latino man with a thin neatly groomed pencil mustache, smooth bare chin and cheeks, cream panama hat with one plain teal band, solid deep purple short sleeved guayabera shirt worn untucked, exactly two thin vertical teal embroidered stripes running down the front, plain fabric everywhere else, cream trousers, teal shoes, dignified skilled cumbia dancer, weight sunk on his bent left knee, right foot stepped back on its ball with the heel raised, left hip high and pushed out, shoulders tilted the other way, left forearm swinging forward at belly height, right arm low and back, head level facing the viewer, clear readable silhouette, weight on one leg, hips tilted, relaxed shoulders, playful attitude, asymmetric pose, feet firmly on the ground"
+  }
+ },
+ "7": {
+  "_meta": {
+   "title": "$negative_prompt"
+  },
+  "class_type": "CLIPTextEncode",
+  "inputs": {
+   "clip": [
+    "2",
+    1
+   ],
+   "text": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, beard, goatee, stubble, sideburns, five o clock shadow, thick mustache, handlebar mustache, vest, waistcoat, jacket, necklace, belt, breast pocket, tucked in shirt, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms, jumping"
+  }
+ },
+ "8": {
+  "_meta": {
+   "title": "Load CLIP Vision"
+  },
+  "class_type": "CLIPVisionLoader",
+  "inputs": {
+   "clip_name": "model.safetensors"
+  }
+ }
+}

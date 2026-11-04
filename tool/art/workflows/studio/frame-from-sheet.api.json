@@ -1,0 +1,198 @@
+{
+ "1": {
+  "inputs": {
+   "image": "$sheet_front"
+  },
+  "class_type": "LoadImage",
+  "_meta": {
+   "title": "$sheet_front"
+  }
+ },
+ "2": {
+  "inputs": {
+   "image": "$pose_proxy"
+  },
+  "class_type": "LoadImage",
+  "_meta": {
+   "title": "$pose_proxy"
+  }
+ },
+ "3": {
+  "inputs": {
+   "unet_name": "qwen_image_edit_2511_fp8mixed.safetensors",
+   "weight_dtype": "default"
+  },
+  "class_type": "UNETLoader",
+  "_meta": {
+   "title": "Load Diffusion Model"
+  }
+ },
+ "4": {
+  "inputs": {
+   "model": [
+    "3",
+    0
+   ],
+   "shift": 3.1,
+   "sampling": "flow"
+  },
+  "class_type": "ModelSamplingAuraFlow",
+  "_meta": {
+   "title": "ModelSamplingAuraFlow"
+  }
+ },
+ "5": {
+  "inputs": {
+   "model": [
+    "4",
+    0
+   ],
+   "strength": 1.0,
+   "pre_cfg": false
+  },
+  "class_type": "CFGNorm",
+  "_meta": {
+   "title": "CFGNorm"
+  }
+ },
+ "6": {
+  "inputs": {
+   "clip_name": "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+   "type": "qwen_image",
+   "device": "default"
+  },
+  "class_type": "CLIPLoader",
+  "_meta": {
+   "title": "Load CLIP"
+  }
+ },
+ "7": {
+  "inputs": {
+   "vae_name": "qwen_image_vae.safetensors"
+  },
+  "class_type": "VAELoader",
+  "_meta": {
+   "title": "Load VAE"
+  }
+ },
+ "8": {
+  "inputs": {
+   "width": 768,
+   "height": 960,
+   "batch_size": 1
+  },
+  "class_type": "EmptyLatentImage",
+  "_meta": {
+   "title": "Empty Latent Image"
+  }
+ },
+ "10": {
+  "inputs": {
+   "clip": [
+    "6",
+    0
+   ],
+   "prompt": "Redraw the man from image 1 in exactly the pose, position, size and proportions of the flat figure in image 2. Keep his face, panama hat, purple guayabera with its teal embroidered panels, cream trousers and teal shoes exactly as in image 1. Same pixel art style with a crisp pixel grid and dark outline. Clean-shaven with a thin pencil mustache, closed mouth. Plain light grey background, full body.",
+   "vae": [
+    "7",
+    0
+   ],
+   "image1": [
+    "1",
+    0
+   ],
+   "image2": [
+    "2",
+    0
+   ]
+  },
+  "class_type": "TextEncodeQwenImageEditPlus",
+  "_meta": {
+   "title": "$prompt"
+  }
+ },
+ "11": {
+  "inputs": {
+   "clip": [
+    "6",
+    0
+   ],
+   "prompt": "",
+   "vae": [
+    "7",
+    0
+   ],
+   "image1": [
+    "1",
+    0
+   ],
+   "image2": [
+    "2",
+    0
+   ]
+  },
+  "class_type": "TextEncodeQwenImageEditPlus",
+  "_meta": {
+   "title": "negative"
+  }
+ },
+ "12": {
+  "inputs": {
+   "model": [
+    "5",
+    0
+   ],
+   "seed": 930000,
+   "steps": 40,
+   "cfg": 3.0,
+   "sampler_name": "euler",
+   "scheduler": "simple",
+   "positive": [
+    "10",
+    0
+   ],
+   "negative": [
+    "11",
+    0
+   ],
+   "latent_image": [
+    "8",
+    0
+   ],
+   "denoise": 1.0
+  },
+  "class_type": "KSampler",
+  "_meta": {
+   "title": "$seed"
+  }
+ },
+ "13": {
+  "inputs": {
+   "samples": [
+    "12",
+    0
+   ],
+   "vae": [
+    "7",
+    0
+   ]
+  },
+  "class_type": "VAEDecode",
+  "_meta": {
+   "title": "VAE Decode"
+  }
+ },
+ "14": {
+  "inputs": {
+   "images": [
+    "13",
+    0
+   ],
+   "filename_prefix": "kk/qframe"
+  },
+  "class_type": "SaveImage",
+  "_meta": {
+   "title": "save frame"
+  }
+ }
+}
