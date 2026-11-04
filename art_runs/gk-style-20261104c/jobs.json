@@ -1,0 +1,139 @@
+[
+ {
+  "pose": "groove.down_l",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/sdxl-base-1/moderate.api.json",
+   "tier": "I1",
+   "count": 2,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gk-style-20261104c/in/groove.down_l.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gk-style-20261104c/in/groove.down_l.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gk-style-20261104c/in/groove.down_l.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gk-style-20261104c/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gk-style-20261104c/in/groove.down_l.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful clean-shaven latino man with a thin neatly groomed pencil mustache, smooth bare chin and cheeks, cream panama hat with one plain teal band, solid deep purple short sleeved guayabera shirt worn untucked, exactly two thin vertical teal embroidered stripes running down the front, plain fabric everywhere else, cream trousers, teal shoes, dignified skilled cumbia dancer, weight sunk on his bent left knee, right foot stepped back on its ball with the heel raised, left hip high and pushed out, shoulders tilted the other way, left forearm swinging forward at belly height, right arm low and back, head level facing the viewer, clear readable silhouette, weight on one leg, hips tilted, relaxed shoulders, playful attitude, asymmetric pose, feet firmly on the ground",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, beard, goatee, stubble, sideburns, five o clock shadow, thick mustache, handlebar mustache, vest, waistcoat, jacket, necklace, belt, breast pocket, tucked in shirt, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms, jumping",
+    "seed": 930000
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "secondary-action",
+   "no-twinning",
+   "timing-on-beat",
+   "planted-pivot"
+  ],
+  "inputHashes": {
+   "pose": "670708b5fd58136d0e75a8b71888a7932faef010111bc9ef3019707e181d41c7",
+   "depth": "789a956a45f0c1f8535b6c568b636c130e7343a499f6d85ba6e777942537a1c8",
+   "lineart": "5fa073b1e9a6ffa39e19bce84f80c6971659cc46f826722b998957ef2dac580e"
+  }
+ },
+ {
+  "pose": "groove.pass_l2",
+  "profile": "peak",
+  "args": {
+   "workflow": "tool/art/workflows/sdxl-base-1/peak.api.json",
+   "tier": "I1",
+   "count": 2,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gk-style-20261104c/in/groove.pass_l2.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gk-style-20261104c/in/groove.pass_l2.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gk-style-20261104c/in/groove.pass_l2.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gk-style-20261104c/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gk-style-20261104c/in/groove.pass_l2.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful clean-shaven latino man with a thin neatly groomed pencil mustache, smooth bare chin and cheeks, cream panama hat with one plain teal band, solid deep purple short sleeved guayabera shirt worn untucked, exactly two thin vertical teal embroidered stripes running down the front, plain fabric everywhere else, cream trousers, teal shoes, dignified skilled cumbia dancer, hip popped out to his right over the straight right leg, right hip high, right shoulder dipped, left knee bent with the left foot resting on its toe, right forearm lifted out at hip height in a wrist roll, left forearm across the belly, head tilted toward his left, clear readable silhouette, dynamic dance pose, strong line of action, weight on one leg, hips tilted, exaggerated energetic pose, relaxed shoulders, playful attitude, asymmetric pose, feet firmly on the ground",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, beard, goatee, stubble, sideburns, five o clock shadow, thick mustache, handlebar mustache, vest, waistcoat, jacket, necklace, belt, breast pocket, tucked in shirt, limbs merged into body, stiff pose, straight rigid body, floating, feet off ground, symmetrical pose, mirrored arms, jumping",
+    "seed": 930300
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "line-of-action",
+   "contrapposto",
+   "exaggeration-accent",
+   "secondary-action",
+   "no-twinning",
+   "timing-on-beat",
+   "planted-pivot"
+  ],
+  "inputHashes": {
+   "pose": "aa482b1d260995bf492b755cb61de47c1ca9d8459a4a1c51606f3eebdb6a4251",
+   "depth": "7a1c60b1f298df2cafb8bb2d81142762e767e1f78b2a1c968e021a35dc1e6163",
+   "lineart": "7826ec8a8da94b1bfd22d9389489e992be7b7e9a9969c266cb7cb43ef7bbe4fa"
+  }
+ },
+ {
+  "pose": "left_hand.peak",
+  "profile": "peak",
+  "args": {
+   "workflow": "tool/art/workflows/sdxl-base-1/peak.api.json",
+   "tier": "I1",
+   "count": 2,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gk-style-20261104c/in/left_hand.peak.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gk-style-20261104c/in/left_hand.peak.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gk-style-20261104c/in/left_hand.peak.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gk-style-20261104c/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gk-style-20261104c/in/left_hand.peak.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful clean-shaven latino man with a thin neatly groomed pencil mustache, smooth bare chin and cheeks, cream panama hat with one plain teal band, solid deep purple short sleeved guayabera shirt worn untucked, exactly two thin vertical teal embroidered stripes running down the front, plain fabric everywhere else, cream trousers, teal shoes, dignified skilled cumbia dancer, weight on the straight right foot, right hip pushed out, right fist on the hip, body leaning toward his left so one long diagonal runs from the right foot to the left palm thrust high and out at about 45 degrees, left foot on its toe out to the side, head turned up toward the raised hand, clear readable silhouette, dynamic dance pose, strong line of action, weight on one leg, hips tilted, exaggerated energetic pose, asymmetric pose",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, beard, goatee, stubble, sideburns, five o clock shadow, thick mustache, handlebar mustache, vest, waistcoat, jacket, necklace, belt, breast pocket, tucked in shirt, limbs merged into body, stiff pose, straight rigid body, floating, feet off ground, symmetrical pose, mirrored arms",
+    "seed": 930900
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "line-of-action",
+   "contrapposto",
+   "exaggeration-accent",
+   "no-twinning",
+   "timing-on-beat"
+  ],
+  "inputHashes": {
+   "pose": "b398878a59092ba5b1a2402caf1289980695ac648281237935c7ad2c2f3cee55",
+   "depth": "22f45e8cff5d1e45cc797f64d41819a9e965eeb9270754233f27d10658c24b72",
+   "lineart": "ce5b08e7deb4b01eac7fe33c54ef6d5a10fc8b8b983b68d887d50b39b49e1885"
+  }
+ },
+ {
+  "pose": "left_hand.follow",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/sdxl-base-1/moderate.api.json",
+   "tier": "I1",
+   "count": 2,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gk-style-20261104c/in/left_hand.follow.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gk-style-20261104c/in/left_hand.follow.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gk-style-20261104c/in/left_hand.follow.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gk-style-20261104c/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gk-style-20261104c/in/left_hand.follow.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful clean-shaven latino man with a thin neatly groomed pencil mustache, smooth bare chin and cheeks, cream panama hat with one plain teal band, solid deep purple short sleeved guayabera shirt worn untucked, exactly two thin vertical teal embroidered stripes running down the front, plain fabric everywhere else, cream trousers, teal shoes, dignified skilled cumbia dancer, same diagonal pushed further: left arm reaching higher and the palm rolling forward, torso leaning further toward his left, right elbow pushed back on the hip, left toe touch out wider, head following the hand, clear readable silhouette, weight on one leg, hips tilted, shirt hem swinging, follow-through, asymmetric pose",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, beard, goatee, stubble, sideburns, five o clock shadow, thick mustache, handlebar mustache, vest, waistcoat, jacket, necklace, belt, breast pocket, tucked in shirt, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms",
+    "seed": 931000
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "follow-through",
+   "no-twinning",
+   "timing-on-beat"
+  ],
+  "inputHashes": {
+   "pose": "4f30d4e65362b2e5ba4b164501eb86b4ef63c869d1b03ca56e24f1fe49d905b2",
+   "depth": "35f3b1afe052828fd7dd7a121df85bae5dcb944ef0dd0764e1d1c533acd7529a",
+   "lineart": "5c4aee3691f113470272ba75a212456ae54b080d2078ddaf9ea491cce53c60ad"
+  }
+ }
+]

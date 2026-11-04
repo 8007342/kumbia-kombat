@@ -83,7 +83,8 @@ def hat_band(c: Ctx) -> None:
 def short_hair_moustache(c: Ctx) -> None:
     hr, hd = c.j["_head_rot"], c.p.head_r
     add_sphere(c.j["head"] + hr @ Vector((0, hd * 0.4, 0.0)), hd * 0.9, c.region, c.regions, scale=(0.97, 0.75, 0.85), rot_m=hr)
-    add_sphere(c.j["head"] + hr @ Vector((0, -hd * 0.92, -hd * 0.3)), 0.035, c.region, c.regions, scale=(1.7, 0.6, 0.45), rot_m=hr)
+    width, height = c.params.get("moustache", (1.7, 0.45))
+    add_sphere(c.j["head"] + hr @ Vector((0, -hd * 0.92, -hd * (0.3 - c.params.get("moustacheLift", 0.0)))), 0.035, c.region, c.regions, scale=(width, 0.6, height), rot_m=hr)
 
 
 def puff(c: Ctx) -> None:
@@ -116,6 +117,28 @@ def shirt_stocky(c: Ctx) -> None:
     add_sphere(c.j["chest"] - up * 0.06, R["torso"], c.region, c.regions, scale=(1.12, 0.9, 0.85), rot_m=tr)
     add_sphere(c.j["pelvis"] + up * 0.2 + hem_lag(c) * 0.5, R["belly"], c.region, c.regions, scale=(1.0, 1.0, 0.95), rot_m=tr)
     _sleeves(c, 0.0)
+
+
+def guayabera_stripes(c: Ctx) -> None:
+    """Two vertical embroidered stripes on the front of a stocky shirt, flanking the placket.
+
+    They sit on the shirt's surface in the proxy, so every frame starts from the same layout.
+    """
+    up, _ = _torso_axes(c.j)
+    R = c.p.limb_r
+    side = (c.j["l_sho"] - c.j["r_sho"]).normalized()
+    front = side.cross(up).normalized()
+    if front.y > 0:
+        front = -front
+    offset = c.params.get("offset", 0.4)
+    r = c.params.get("radius", 0.016)
+    depth = (1 - offset ** 2) ** 0.5
+    for sign in (-1, 1):
+        top = c.j["chest"] + up * 0.02 + side * sign * offset * R["torso"] + front * depth * R["torso"] * 1.02
+        mid = c.j["pelvis"] + up * 0.3 + side * sign * offset * R["torso"] + front * depth * R["belly"] * 1.02
+        low = c.j["pelvis"] + up * 0.14 + side * sign * offset * R["belly"] + front * depth * R["belly"] * 0.92
+        add_capsule(top, mid, r, c.region, c.regions)
+        add_capsule(mid, low, r, c.region, c.regions)
 
 
 def shirt_fitted(c: Ctx) -> None:
@@ -224,7 +247,7 @@ def macron_body(c: Ctx) -> None:
 
 SHAPES = {
     "brimmed-hat": brimmed_hat, "hat-band": hat_band, "short-hair-moustache": short_hair_moustache,
-    "puff": puff, "shirt-stocky": shirt_stocky, "shirt-fitted": shirt_fitted,
+    "puff": puff, "guayabera-stripes": guayabera_stripes, "shirt-stocky": shirt_stocky, "shirt-fitted": shirt_fitted,
     "waistcoat-fitted": waistcoat_fitted, "sleeve-rolled": sleeve_rolled, "waist-apron": waist_apron,
     "trousers": trousers, "shoes-flat": shoes_flat, "shoes-heeled": shoes_heeled, "macron-body": macron_body,
 }

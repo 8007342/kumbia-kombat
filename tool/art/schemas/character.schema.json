@@ -18,6 +18,8 @@
   "skin": {"$ref": "#/$defs/colour"},
   "traits": {"type": "string"},
   "demeanor": {"type": "string"},
+  "negative": {"type": "string"},
+  "styleGuide": {"type": "object", "additionalProperties": {"type": "string"}},
   "garments": {"type": "array", "items": {"$ref": "#/$defs/garment"}},
   "props": {"type": "array", "items": {"$ref": "#/$defs/prop"}},
   "motion": {"type": "object", "additionalProperties": false, "required": ["set"],

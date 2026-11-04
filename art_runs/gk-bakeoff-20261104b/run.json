@@ -1,0 +1,64 @@
+{
+ "run": "gk-bakeoff-20261104b",
+ "created": "2026-11-04T18:51:28+00:00",
+ "family": "tool/art/families/gatekeeper-v3.json",
+ "familySha256": "cd39a15b4cbc8f803fea5279d5e4af509a857e15d60bd76687711abaa824d064",
+ "contract": "1935-k2ib/v1",
+ "tier": "I1",
+ "countPerPose": 1,
+ "poses": 3,
+ "workflows": {
+  "moderate": "e16ea9a037d276ceb5c7ba85fa6dc7629096d636e754bf67abdba84ddc0761a5",
+  "peak": "fd553faca5feb30fb9e87b2026293893ce3d493ec300465d7dfa5f5938efb95f",
+  "overlap": "ac2bafa68e16d1d2540bc01a66a77a408e97fbc9e4356dbafa78b257d4cf212c",
+  "turn": "8d083d7378d9813339c786b3d49288f52bb7d0560c50a89a5af5ffeba532a2cf"
+ },
+ "identity": {
+  "image": "assets/art/ensemble/gatekeeper-v2.png",
+  "crop": {
+   "frame": "occupied",
+   "rect": [
+    23,
+    14,
+    198,
+    310
+   ]
+  },
+  "sha256": "e099c72e58f3dc718acc7165d854fc38400e26602f0eef196f6beffcd9d5946a"
+ },
+ "animationReferences": {
+  "registry": "tool/art/references/animation-principles.json",
+  "research": [
+   "plan/research/gatekeeper-dance-2026-11-02.md",
+   "plan/dance-fluidity-pass.md",
+   "plan/opponent-depth-staging-pass.md"
+  ],
+  "principlesUsed": [
+   "anticipation",
+   "contrapposto",
+   "exaggeration-accent",
+   "follow-through",
+   "line-of-action",
+   "no-twinning",
+   "planted-pivot",
+   "secondary-action",
+   "staging-silhouette",
+   "timing-on-beat"
+  ],
+  "sourcesUsed": [
+   "cartwright-gdc2014",
+   "contrapposto-fonseca",
+   "dead-cells-pipeline",
+   "disney-process",
+   "illusion-of-life",
+   "silhouette-test",
+   "simogo-bsb",
+   "slynyrd-53",
+   "slynyrd-55",
+   "twinning",
+   "ubisoft-foot-ik",
+   "williams-survival-kit"
+  ]
+ },
+ "status": "planned"
+}

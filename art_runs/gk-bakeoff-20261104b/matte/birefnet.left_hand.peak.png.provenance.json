@@ -1,0 +1,55 @@
+{
+  "schema": "tillandsias.provenance/v1",
+  "pipelineVersion": "56.11.4.2",
+  "engine": {
+    "name": "comfyui",
+    "ref": "v0.40.0",
+    "sha": "3541246a9c997f4b8c32f9f88f3c985d02021c79",
+    "nodes": [
+      {
+        "name": "ComfyUI-GGUF",
+        "commit": "6ea2651e7df66d7585f6ffee804b20e92fb38b8a"
+      },
+      {
+        "name": "ComfyUI-layerdiffuse",
+        "commit": "b4f6a9e024064a4489f774a8b91049ce0b606ea3"
+      },
+      {
+        "name": "ComfyUI_BiRefNet_ll",
+        "commit": "5443a2aa16cfbd98bb2f7dcc8bdcb70439e08529"
+      },
+      {
+        "name": "ComfyUI_IPAdapter_plus",
+        "commit": "a0f451a5113cf9becb0847b92884cb10cbdec0ef"
+      }
+    ]
+  },
+  "workflow": {
+    "path": "tool/art/workflows/experiments/matte-birefnet.api.json",
+    "sha256": "7c9c9d849291d2c3641dac0936b450666f67b65565b46302a7cf61dec740acad"
+  },
+  "models": [
+    {
+      "file": "model.safetensors",
+      "repo": "ZhengPeng7/BiRefNet",
+      "revision": "e2bf8e4460fc8fa32bba5ea4d94b3233d367b0e4",
+      "sha256": "9ab37426bf4de0567af6b5d21b16151357149139362e6e8992021b8ce356a154",
+      "licence": "mit",
+      "consent": null
+    }
+  ],
+  "cli": null,
+  "inputs": [
+    {
+      "name": "image",
+      "path": "/work/tmp/imagegen/studio/st-1793818369150-3/0000_00001_.png",
+      "sha256": "40b8bb24f0420ecf04eb5553c7535b1d9cd2e998462e43689d6b43046c7b4eb5"
+    }
+  ],
+  "seed": 2499245329,
+  "prompt": "",
+  "negative_prompt": "",
+  "tier": "I1",
+  "placement": "cuda",
+  "family": null
+}

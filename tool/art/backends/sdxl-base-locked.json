@@ -1,0 +1,20 @@
+{
+ "id": "sdxl-base-locked",
+ "role": "pose-frame",
+ "description": "SDXL base at lower denoise, so the rig's painted mustache and stripes survive into the frame. Consistency test against sdxl-base-1.",
+ "checkpoint": "sd_xl_base_1.0.safetensors",
+ "sampler": {
+  "steps": 28,
+  "cfg": 6.0,
+  "name": "dpmpp_2m",
+  "scheduler": "karras"
+ },
+ "denoise": 0.55,
+ "loras": [
+  {
+   "name": "pixel-art-xl.safetensors",
+   "weight": 0.8
+  }
+ ],
+ "negatives": "effective"
+}

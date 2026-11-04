@@ -38,7 +38,9 @@ class Compile(unittest.TestCase):
         self.assertEqual(len(self.spec["poses"]), 64)
 
     def test_prompt_matches(self):
-        self.assertEqual(self.spec["character_prompt"], self.old["character_prompt"])
+        # The character prompt moved on from the baseline with the owner's style guide (2026-11-04).
+        self.assertIn("clean-shaven", self.spec["character_prompt"])
+        self.assertIn("beard", self.spec["style_negative"])
         self.assertEqual(self.spec["style_prompt"], self.old["style_prompt"])
 
     def test_clip_and_profile_data_match(self):

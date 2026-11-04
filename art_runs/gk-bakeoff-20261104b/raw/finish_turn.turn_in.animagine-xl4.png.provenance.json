@@ -1,0 +1,115 @@
+{
+  "schema": "tillandsias.provenance/v1",
+  "pipelineVersion": "56.11.4.2",
+  "engine": {
+    "name": "comfyui",
+    "ref": "v0.40.0",
+    "sha": "3541246a9c997f4b8c32f9f88f3c985d02021c79",
+    "nodes": [
+      {
+        "name": "ComfyUI-GGUF",
+        "commit": "6ea2651e7df66d7585f6ffee804b20e92fb38b8a"
+      },
+      {
+        "name": "ComfyUI-layerdiffuse",
+        "commit": "b4f6a9e024064a4489f774a8b91049ce0b606ea3"
+      },
+      {
+        "name": "ComfyUI_BiRefNet_ll",
+        "commit": "5443a2aa16cfbd98bb2f7dcc8bdcb70439e08529"
+      },
+      {
+        "name": "ComfyUI_IPAdapter_plus",
+        "commit": "a0f451a5113cf9becb0847b92884cb10cbdec0ef"
+      }
+    ]
+  },
+  "workflow": {
+    "path": "tool/art/workflows/animagine-xl4/turn.api.json",
+    "sha256": "dd8098bb578501f8473e3d3ad1d43e53cf63ca253746dcbfb63e311d84b69a41"
+  },
+  "models": [
+    {
+      "file": "animagine-xl-4.0.safetensors",
+      "repo": "cagliostrolab/animagine-xl-4.0",
+      "revision": "2b7c1b397761bf5bd3cc42e5b39ec99314a75a96",
+      "sha256": "1d5b43ff75b6ab598502d4c779d2fbfa3dceca51c60c3b609640a60772333916",
+      "licence": "openrail++",
+      "consent": null
+    },
+    {
+      "file": "pixel-art-xl.safetensors",
+      "repo": "nerijs/pixel-art-xl",
+      "revision": "8bf4a4d9ea283e00a51fafda8e0539f8248ea037",
+      "sha256": "4234637cb80c998f41e348e6a6cb6bc20d8d038b2b0f256b6129b3b5e353eef7",
+      "licence": "creativeml-openrail-m",
+      "consent": null
+    },
+    {
+      "file": "ip-adapter-plus_sdxl_vit-h.safetensors",
+      "repo": "h94/IP-Adapter",
+      "revision": "018e402774aeeddd60609b4ecdb7e298259dc729",
+      "sha256": "3f5062b8400c94b7159665b21ba5c62acdcd7682262743d7f2aefedef00e6581",
+      "licence": "apache-2.0",
+      "consent": null
+    },
+    {
+      "file": "model.safetensors",
+      "repo": "h94/IP-Adapter",
+      "revision": "018e402774aeeddd60609b4ecdb7e298259dc729",
+      "sha256": "6ca9667da1ca9e0b0f75e46bb030f7e011f44f86cbfb8d5a36590fcd7507b030",
+      "licence": "apache-2.0",
+      "consent": null
+    },
+    {
+      "file": "diffusion_pytorch_model.safetensors",
+      "repo": "xinsir/controlnet-openpose-sdxl-1.0",
+      "revision": "23f966cd5cfdd3f7729c903e243d87152162d2b7",
+      "sha256": "b8524e557a7df60d081f5d4a0eb109967d107df217943bf88c2d99b9ebcc06c5",
+      "licence": "apache-2.0",
+      "consent": null
+    },
+    {
+      "file": "diffusion_pytorch_model_promax.safetensors",
+      "repo": "xinsir/controlnet-union-sdxl-1.0",
+      "revision": "801a4a3fa3d4c936f4feea95b98607bc6726f80c",
+      "sha256": "9fae2e50cb431bfcbe05822b59ec2228df545ef27f711dea8949e9f4ed9f7cdc",
+      "licence": "apache-2.0",
+      "consent": null
+    }
+  ],
+  "cli": null,
+  "inputs": [
+    {
+      "name": "depth",
+      "path": "/work/tmp/imagegen/kumbia/gk-bakeoff-20261104b/in/finish_turn.turn_in.depth.png",
+      "sha256": "aff2f581ea16511668fb54415bb699b0fff12b291ab0eadafeae33de862a81c0"
+    },
+    {
+      "name": "identity",
+      "path": "/work/tmp/imagegen/kumbia/gk-bakeoff-20261104b/in/identity.png",
+      "sha256": "8a9a3550285832f5edbe4661e19cbfae8d3571abcdb4334c92dd286d3a62c6f2"
+    },
+    {
+      "name": "init_image",
+      "path": "/work/tmp/imagegen/kumbia/gk-bakeoff-20261104b/in/finish_turn.turn_in.proxy.png",
+      "sha256": "f255df335f05eafabad4372c6c2dad29e42f87185a57f3c2859781118f6a2de8"
+    },
+    {
+      "name": "lineart",
+      "path": "/work/tmp/imagegen/kumbia/gk-bakeoff-20261104b/in/finish_turn.turn_in.lineart.png",
+      "sha256": "f8341c141465e43da6f220243ae37a007036cf84c254226e93d9a1510c1d76ce"
+    },
+    {
+      "name": "pose",
+      "path": "/work/tmp/imagegen/kumbia/gk-bakeoff-20261104b/in/finish_turn.turn_in.pose.png",
+      "sha256": "a2413877346b43791fb46d4334fc1f8abac41e55ff368e86585ff6944f79672b"
+    }
+  ],
+  "seed": 936200,
+  "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful mustached latino man, cream panama hat with teal band, purple guayabera shirt with teal embroidered panels, cream trousers, teal shoes, dignified skilled cumbia dancer, body turned about 30 degrees toward his left on a heel pivot, leaning into the turn, left arm open out to the side at hip height, right fist on the hip, clear readable silhouette, weight on one leg, hips tilted, asymmetric pose, feet firmly on the ground",
+  "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms, jumping",
+  "tier": "I1",
+  "placement": "cuda",
+  "family": null
+}

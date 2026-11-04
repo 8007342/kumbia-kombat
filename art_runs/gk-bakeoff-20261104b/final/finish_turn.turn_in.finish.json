@@ -1,0 +1,24 @@
+{
+  "schema": "tillandsias.finish/v1",
+  "output": "/work/tmp/imagegen/kumbia/gk-bakeoff-20261104b/final/finish_turn.turn_in.png",
+  "output_sha256": "5a82f6d8d94eed2521b010f3d2f61cfdf79ed24f11b9da9c595d0f49792e0273",
+  "input": "/work/tmp/imagegen/studio/st-1793818614274-12/0000_00001_.png",
+  "input_sha256": "b7b4d4074877322827f99c38ff466b70974ca81895f009997fdffc8b70c86928",
+  "matte": null,
+  "matte_sha256": null,
+  "family": "tool/art/families/gatekeeper-v3.json",
+  "family_sha256": "cd39a15b4cbc8f803fea5279d5e4af509a857e15d60bd76687711abaa824d064",
+  "palette": "tool/art/palettes/gatekeeper.json",
+  "palette_sha256": "3717b8edf74ed765091caab6b636b3b45ca1303aee82e58ffd898b106928c39a",
+  "room": "garden",
+  "params": {
+    "alpha": "engine",
+    "tolerance": 0,
+    "sample": "centre",
+    "dither": "none",
+    "native": [
+      96,
+      120
+    ]
+  }
+}

@@ -1,0 +1,56 @@
+[
+ {
+  "pose": "groove.down_l",
+  "backend": "sdxl-base-1",
+  "job": "st-1793818299644-0",
+  "elapsed_s": 21.53
+ },
+ {
+  "pose": "left_hand.peak",
+  "backend": "sdxl-base-1",
+  "job": "st-1793818369150-3",
+  "elapsed_s": 17.35
+ },
+ {
+  "pose": "finish_turn.turn_in",
+  "backend": "sdxl-base-1",
+  "job": "st-1793818418698-6",
+  "elapsed_s": 16.23
+ },
+ {
+  "pose": "groove.down_l",
+  "backend": "animagine-xl4",
+  "job": "st-1793818322799-1",
+  "elapsed_s": 16.26
+ },
+ {
+  "pose": "left_hand.peak",
+  "backend": "animagine-xl4",
+  "job": "st-1793818388078-4",
+  "elapsed_s": 18.18
+ },
+ {
+  "pose": "finish_turn.turn_in",
+  "backend": "animagine-xl4",
+  "job": "st-1793818436565-7",
+  "elapsed_s": 16.99
+ },
+ {
+  "pose": "groove.down_l",
+  "backend": "lightning-4step",
+  "job": "st-1793818340656-2",
+  "elapsed_s": 12.68
+ },
+ {
+  "pose": "left_hand.peak",
+  "backend": "lightning-4step",
+  "job": "st-1793818407858-5",
+  "elapsed_s": 9.29
+ },
+ {
+  "pose": "finish_turn.turn_in",
+  "backend": "lightning-4step",
+  "job": "st-1793818455187-8",
+  "elapsed_s": 9.34
+ }
+]

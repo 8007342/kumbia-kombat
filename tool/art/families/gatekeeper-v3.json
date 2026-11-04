@@ -240,8 +240,8 @@
   "locked": "tool/art/palettes/gatekeeper.json"
  },
  "style_prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background",
- "style_negative": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render",
- "character_prompt": "stocky cheerful mustached latino man, cream panama hat with teal band, purple guayabera shirt with teal embroidered panels, cream trousers, teal shoes, dignified skilled cumbia dancer",
+ "style_negative": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, beard, goatee, stubble, sideburns, five o clock shadow, thick mustache, handlebar mustache, vest, waistcoat, jacket, necklace, belt, breast pocket, tucked in shirt",
+ "character_prompt": "stocky cheerful clean-shaven latino man with a thin neatly groomed pencil mustache, smooth bare chin and cheeks, cream panama hat with one plain teal band, solid deep purple short sleeved guayabera shirt worn untucked, exactly two thin vertical teal embroidered stripes running down the front, plain fabric everywhere else, cream trousers, teal shoes, dignified skilled cumbia dancer",
  "clips": [
   {
    "id": "groove",
@@ -409,18 +409,18 @@
   "seed_base": 930000,
   "seed_policy": "seed = seed_base + 100*pose_index + k; fixed per pose while tuning",
   "backend": "comfyui-api",
-  "workflow": "tool/art/workflows/character-frame-moderate.api.json",
+  "workflow": "tool/art/workflows/sdxl-base-1/moderate.api.json",
   "tiers": {
    "I1": {
-    "model": "sdxl_lightning_4step.safetensors",
-    "steps": 4
+    "model": "sd_xl_base_1.0.safetensors",
+    "steps": 28
    }
   },
   "workflowsByProfile": {
-   "moderate": "tool/art/workflows/character-frame-moderate.api.json",
-   "peak": "tool/art/workflows/character-frame-peak.api.json",
-   "overlap": "tool/art/workflows/character-frame-overlap.api.json",
-   "turn": "tool/art/workflows/character-frame-turn.api.json"
+   "moderate": "tool/art/workflows/sdxl-base-1/moderate.api.json",
+   "peak": "tool/art/workflows/sdxl-base-1/peak.api.json",
+   "overlap": "tool/art/workflows/sdxl-base-1/overlap.api.json",
+   "turn": "tool/art/workflows/sdxl-base-1/turn.api.json"
   },
   "defaultProfile": "moderate",
   "profileRules": [
@@ -556,7 +556,7 @@
   "hair": "#1C1117",
   "cloth": "#631A57",
   "trousers": "#E5C996",
-  "shoes": "#29737B"
+  "shoes": "#297379"
  },
  "poses": [
   {

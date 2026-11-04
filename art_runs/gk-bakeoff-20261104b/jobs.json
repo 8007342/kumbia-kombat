@@ -1,0 +1,103 @@
+[
+ {
+  "pose": "groove.down_l",
+  "profile": "moderate",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-moderate.api.json",
+   "tier": "I1",
+   "count": 1,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gk-bakeoff-20261104b/in/groove.down_l.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gk-bakeoff-20261104b/in/groove.down_l.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gk-bakeoff-20261104b/in/groove.down_l.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gk-bakeoff-20261104b/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gk-bakeoff-20261104b/in/groove.down_l.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful mustached latino man, cream panama hat with teal band, purple guayabera shirt with teal embroidered panels, cream trousers, teal shoes, dignified skilled cumbia dancer, weight sunk on his bent left knee, right foot stepped back on its ball with the heel raised, left hip high and pushed out, shoulders tilted the other way, left forearm swinging forward at belly height, right arm low and back, head level facing the viewer, clear readable silhouette, weight on one leg, hips tilted, relaxed shoulders, playful attitude, asymmetric pose, feet firmly on the ground",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms, jumping",
+    "seed": 930000
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "secondary-action",
+   "no-twinning",
+   "timing-on-beat",
+   "planted-pivot"
+  ],
+  "inputHashes": {
+   "pose": "a39d71cb13fc07ba9704c559c694f21a78d97794d7b0ae1c13f2745ad97cc1dc",
+   "depth": "cf71b67b8bf69edbe0c19ff42f19103e0341b8b0366de0d4f8a9d8ed96a2c9dd",
+   "lineart": "74a5544e43cf019a2d1c00ef0f7c161586083c05a753a1ca6810ad44b27cbf54"
+  }
+ },
+ {
+  "pose": "left_hand.peak",
+  "profile": "peak",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-peak.api.json",
+   "tier": "I1",
+   "count": 1,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gk-bakeoff-20261104b/in/left_hand.peak.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gk-bakeoff-20261104b/in/left_hand.peak.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gk-bakeoff-20261104b/in/left_hand.peak.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gk-bakeoff-20261104b/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gk-bakeoff-20261104b/in/left_hand.peak.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful mustached latino man, cream panama hat with teal band, purple guayabera shirt with teal embroidered panels, cream trousers, teal shoes, dignified skilled cumbia dancer, weight on the straight right foot, right hip pushed out, right fist on the hip, body leaning toward his left so one long diagonal runs from the right foot to the left palm thrust high and out at about 45 degrees, left foot on its toe out to the side, head turned up toward the raised hand, clear readable silhouette, dynamic dance pose, strong line of action, weight on one leg, hips tilted, exaggerated energetic pose, asymmetric pose",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, stiff pose, straight rigid body, floating, feet off ground, symmetrical pose, mirrored arms",
+    "seed": 930900
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "line-of-action",
+   "contrapposto",
+   "exaggeration-accent",
+   "no-twinning",
+   "timing-on-beat"
+  ],
+  "inputHashes": {
+   "pose": "96f524fc0173df7cfb89eb4bf1fa686ded24cf753964fb37642d44ed3efeaa7c",
+   "depth": "a0e456c2eb07d495e045fcc08641cc48cb7bcad57e0934e8116c2dc6168a96c8",
+   "lineart": "b59bb7ecdb315ad012782b416fba5fb698c022635b5924dcabefaad670e34b9b"
+  }
+ },
+ {
+  "pose": "finish_turn.turn_in",
+  "profile": "turn",
+  "args": {
+   "workflow": "tool/art/workflows/character-frame-turn.api.json",
+   "tier": "I1",
+   "count": 1,
+   "inputs": {
+    "pose": "/work/tmp/imagegen/kumbia/gk-bakeoff-20261104b/in/finish_turn.turn_in.pose.png",
+    "depth": "/work/tmp/imagegen/kumbia/gk-bakeoff-20261104b/in/finish_turn.turn_in.depth.png",
+    "lineart": "/work/tmp/imagegen/kumbia/gk-bakeoff-20261104b/in/finish_turn.turn_in.lineart.png",
+    "identity": "/work/tmp/imagegen/kumbia/gk-bakeoff-20261104b/in/identity.png"
+   },
+   "init_image": "/work/tmp/imagegen/kumbia/gk-bakeoff-20261104b/in/finish_turn.turn_in.proxy.png",
+   "overrides": {
+    "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background, stocky cheerful mustached latino man, cream panama hat with teal band, purple guayabera shirt with teal embroidered panels, cream trousers, teal shoes, dignified skilled cumbia dancer, body turned about 30 degrees toward his left on a heel pivot, leaning into the turn, left arm open out to the side at hip height, right fist on the hip, clear readable silhouette, weight on one leg, hips tilted, asymmetric pose, feet firmly on the ground",
+    "negative_prompt": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render, limbs merged into body, floating, feet off ground, symmetrical pose, mirrored arms, jumping",
+    "seed": 936200
+   }
+  },
+  "animationPrinciples": [
+   "staging-silhouette",
+   "contrapposto",
+   "no-twinning",
+   "timing-on-beat",
+   "planted-pivot"
+  ],
+  "inputHashes": {
+   "pose": "a2413877346b43791fb46d4334fc1f8abac41e55ff368e86585ff6944f79672b",
+   "depth": "aff2f581ea16511668fb54415bb699b0fff12b291ab0eadafeae33de862a81c0",
+   "lineart": "f8341c141465e43da6f220243ae37a007036cf84c254226e93d9a1510c1d76ce"
+  }
+ }
+]

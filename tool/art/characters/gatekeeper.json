@@ -4,7 +4,10 @@
  "style": "party-pixel",
  "description": "Garden opponent Gatekeeper: 64-drawing cumbia dance set (plan/opponent-depth-staging-pass.md §Opponent production target; plan/research/gatekeeper-dance-2026-11-02.md).",
  "body": {
-  "preset": "stocky-adult"
+  "preset": "stocky-adult",
+  "overrides": {
+   "neck": 0.12
+  }
  },
  "pronouns": [
   "he",
@@ -12,7 +15,7 @@
   "his"
  ],
  "skin": "#B5653A",
- "traits": "stocky cheerful mustached latino man",
+ "traits": "stocky cheerful clean-shaven latino man with a thin neatly groomed pencil mustache, smooth bare chin and cheeks",
  "demeanor": "dignified skilled cumbia dancer",
  "garments": [
   {
@@ -20,7 +23,7 @@
    "shape": "brimmed-hat",
    "region": "hat",
    "colour": "#F2D9AD",
-   "text": "cream panama hat with teal band"
+   "text": "cream panama hat with one plain teal band"
   },
   {
    "id": "band",
@@ -35,14 +38,30 @@
    "id": "hair",
    "shape": "short-hair-moustache",
    "region": "hair",
-   "colour": "#1C1117"
+   "colour": "#1C1117",
+   "params": {
+    "moustache": [
+     1.9,
+     0.32
+    ],
+    "moustacheLift": 0.12
+   }
   },
   {
    "id": "shirt",
    "shape": "shirt-stocky",
    "region": "cloth",
    "colour": "#631A57",
-   "text": "purple guayabera shirt with teal embroidered panels"
+   "text": "solid deep purple short sleeved guayabera shirt worn untucked, exactly two thin vertical teal embroidered stripes running down the front, plain fabric everywhere else"
+  },
+  {
+   "id": "stripes",
+   "shape": "guayabera-stripes",
+   "region": "accessory",
+   "colour": "#29737A",
+   "alsoIn": [
+    "cloth"
+   ]
   },
   {
    "id": "trousers",
@@ -98,5 +117,11 @@
   }
  ],
  "seedBase": 930000,
- "variants": {}
+ "variants": {},
+ "negative": "beard, goatee, stubble, sideburns, five o clock shadow, thick mustache, handlebar mustache, vest, waistcoat, jacket, necklace, belt, breast pocket, tucked in shirt",
+ "styleGuide": {
+  "face": "Clean-shaven: no beard, goatee, stubble or sideburns. A thin groomed pencil mustache, about one native pixel tall.",
+  "hat": "Cream panama with one plain teal band.",
+  "shirt": "Solid deep purple guayabera, short sleeves, worn untucked, two thin vertical teal stripes down the front, nothing else: no pockets, vest, belt or extra embroidery."
+ }
 }

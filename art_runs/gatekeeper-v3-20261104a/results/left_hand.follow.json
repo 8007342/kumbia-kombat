@@ -1,0 +1,45 @@
+{
+ "job": "st-1793819891862-24",
+ "outputs": [
+  {
+   "path": "/work/tmp/imagegen/studio/st-1793819891862-24/0000_00001_.png",
+   "seed": 931000,
+   "provenance_path": "/work/tmp/imagegen/studio/st-1793819891862-24/0000_00001_.png.provenance.json",
+   "kind": "image",
+   "width": 768,
+   "height": 960,
+   "has_alpha": false
+  },
+  {
+   "path": "/work/tmp/imagegen/studio/st-1793819891862-24/0001_00001_.png",
+   "seed": 931001,
+   "provenance_path": "/work/tmp/imagegen/studio/st-1793819891862-24/0001_00001_.png.provenance.json",
+   "kind": "image",
+   "width": 768,
+   "height": 960,
+   "has_alpha": false
+  },
+  {
+   "path": "/work/tmp/imagegen/studio/st-1793819891862-24/0002_00001_.png",
+   "seed": 931002,
+   "provenance_path": "/work/tmp/imagegen/studio/st-1793819891862-24/0002_00001_.png.provenance.json",
+   "kind": "image",
+   "width": 768,
+   "height": 960,
+   "has_alpha": false
+  },
+  {
+   "path": "/work/tmp/imagegen/studio/st-1793819891862-24/0003_00001_.png",
+   "seed": 931003,
+   "provenance_path": "/work/tmp/imagegen/studio/st-1793819891862-24/0003_00001_.png.provenance.json",
+   "kind": "image",
+   "width": 768,
+   "height": 960,
+   "has_alpha": false
+  }
+ ],
+ "count": 4,
+ "seed": 931000,
+ "elapsed_s": 42.59,
+ "tier": "I1"
+}
