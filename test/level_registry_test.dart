@@ -143,9 +143,9 @@ void main() {
     test('marks that used to be inline in the scene', () {
       final garden = levels.byId('garden');
       final bar = levels.byId('bar');
-      for (final (level, homeY, challengerY) in [
-        (garden, .69, .53),
-        (bar, .62, .45),
+      for (final (level, homeY, challengerY, sideX, sideY) in [
+        (garden, .69, .53, .61, .49),
+        (bar, .62, .45, .60, .42),
       ]) {
         for (final entrance in [0.0, .25, .6, 1.0]) {
           for (final retreat in [0.0, .5, 1.0]) {
@@ -162,8 +162,9 @@ void main() {
         }
         for (final yielded in [0.0, .3, 1.0]) {
           final mark = level.stage.challengers.single.floorAt(yielded);
-          expect(mark.x, closeTo(.5 + .2 * yielded, 1e-9));
-          expect(mark.y, closeTo(challengerY, 1e-9));
+          // Moved from x .70 on 2026-11-05: a seated guest hid the dancer there.
+          expect(mark.x, closeTo(.5 + (sideX - .5) * yielded, 1e-9));
+          expect(mark.y, closeTo(challengerY + (sideY - challengerY) * yielded, 1e-9));
         }
         for (final travel in [0.0, .1, .5, .9, 1.0]) {
           final pose = level.route.sample(travel);
