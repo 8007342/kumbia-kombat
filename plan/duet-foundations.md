@@ -55,9 +55,15 @@ Nearest-neighbour therefore gives uneven pixel widths that change every frame.
 | Bilinear | 0.077 | Steady to the eye, but soft |
 | **Sharp bilinear: 4x nearest, then bilinear down** | **0.029** | Steady and crisp |
 
+**Real renderer, same day.** `tool/probes/depth_probe_main.dart` draws the three filters in Flutter's CanvasKit, in a
+headless window emulating a Galaxy S24 at 3x (software WebGL). Four consecutive 60 fps positions are in
+`art_runs/level3-probes-20261105/sheets/depth-scale-real-renderer.png`, top to bottom nearest, bilinear, sharp. It agrees by eye:
+nearest's mouth and eyes change shape, bilinear is steady and soft, sharp is steady and crisp. The probe prescales one frame
+at runtime. Still untested: a real phone, changing poses, sideways motion, and the shader version.
+
 The number is the frame-to-frame change in error against a stable reference, a proxy for crawl. At 1x all filters
 score about the same, though nearest drops detail. Prescaling a whole atlas 4x costs 16x the memory, so the real
-version should be a small shader or a prescale of the depth dancers only. Next proof: the same comparison in the game.
+version should be a small shader or a prescale of the depth dancers only. Next proof: a real phone, with a dance clip.
 
 ## Findings from the swing research
 
@@ -94,7 +100,7 @@ variation at the highest tiers. The owner decides, after seeing a moving test.
 
 ## Order of proof
 
-1. Motion test: an existing sprite on a floor track between y 0.42 and 0.58, in the game, comparing nearest with sharp bilinear. No GPU. Simulation done.
+1. Motion test: done for one still frame, in simulation and in the real renderer. Repeat on a phone with a clip.
 2. Two sprites with a held-hand anchor and a place swap, in the draft room. Existing art.
 3. One real move, a pair of poses for each dancer, run through the character route.
 4. Only then, the full vocabulary.
