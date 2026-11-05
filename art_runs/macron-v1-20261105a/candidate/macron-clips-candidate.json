@@ -1,0 +1,188 @@
+{
+ "status": "candidate for review, not accepted, not promoted; no palette lock; picks by agent's eye",
+ "run": "macron-v1-20261105a",
+ "frames": {
+  "fist_bump.ready": {
+   "rect": [
+    49,
+    64,
+    142,
+    240
+   ],
+   "anchor": [
+    66,
+    239
+   ],
+   "pixelsPerUnit": 6.4865,
+   "seed": 980002
+  },
+  "fist_bump.contact": {
+   "rect": [
+    307,
+    64,
+    179,
+    240
+   ],
+   "anchor": [
+    78,
+    239
+   ],
+   "pixelsPerUnit": 6.4865,
+   "seed": 980000
+  },
+  "fist_bump.settle": {
+   "rect": [
+    565,
+    64,
+    152,
+    240
+   ],
+   "anchor": [
+    69,
+    239
+   ],
+   "pixelsPerUnit": 6.4865,
+   "seed": 980002
+  },
+  "gulp.lift": {
+   "rect": [
+    814,
+    64,
+    180,
+    240
+   ],
+   "anchor": [
+    84,
+    239
+   ],
+   "pixelsPerUnit": 6.4865,
+   "seed": 980000
+  },
+  "gulp.sip": {
+   "rect": [
+    1064,
+    64,
+    167,
+    240
+   ],
+   "anchor": [
+    89,
+    239
+   ],
+   "pixelsPerUnit": 6.4865,
+   "seed": 980003
+  },
+  "gulp.after": {
+   "rect": [
+    44,
+    384,
+    158,
+    240
+   ],
+   "anchor": [
+    83,
+    239
+   ],
+   "pixelsPerUnit": 6.4865,
+   "seed": 980000
+  },
+  "rear34_walk.step_r": {
+   "rect": [
+    319,
+    384,
+    164,
+    240
+   ],
+   "anchor": [
+    49,
+    239
+   ],
+   "pixelsPerUnit": 6.4865,
+   "seed": 980001
+  },
+  "rear34_walk.pass_r": {
+   "rect": [
+    562,
+    384,
+    153,
+    240
+   ],
+   "anchor": [
+    85,
+    239
+   ],
+   "pixelsPerUnit": 6.4865,
+   "seed": 980001
+  },
+  "rear34_walk.step_l": {
+   "rect": [
+    831,
+    384,
+    164,
+    240
+   ],
+   "anchor": [
+    56,
+    239
+   ],
+   "pixelsPerUnit": 6.4865,
+   "seed": 980001
+  },
+  "rear34_walk.pass_l": {
+   "rect": [
+    1094,
+    384,
+    149,
+    240
+   ],
+   "anchor": [
+    48,
+    239
+   ],
+   "pixelsPerUnit": 6.4865,
+   "seed": 980003
+  },
+  "high_five.ready": {
+   "rect": [
+    37,
+    704,
+    179,
+    240
+   ],
+   "anchor": [
+    103,
+    239
+   ],
+   "pixelsPerUnit": 6.4865,
+   "seed": 980002
+  },
+  "high_five.contact": {
+   "rect": [
+    292,
+    704,
+    187,
+    240
+   ],
+   "anchor": [
+    75,
+    239
+   ],
+   "pixelsPerUnit": 6.4865,
+   "seed": 980000
+  },
+  "high_five.after": {
+   "rect": [
+    564,
+    704,
+    152,
+    240
+   ],
+   "anchor": [
+    60,
+    239
+   ],
+   "pixelsPerUnit": 6.4865,
+   "seed": 980001
+  }
+ }
+}

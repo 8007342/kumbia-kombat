@@ -1,0 +1,86 @@
+[
+ {
+  "pose": "sheet.front",
+  "args": {
+   "workflow": "art_runs/macron-v1-20261105a/workflows/sheet.front.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/macron-v1-20261105a/in/sheet_source.png"
+   },
+   "overrides": {
+    "seed": 980000
+   }
+  }
+ },
+ {
+  "pose": "sheet.rear",
+  "args": {
+   "workflow": "art_runs/macron-v1-20261105a/workflows/sheet.rear.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/macron-v1-20261105a/in/sheet_source.png"
+   },
+   "overrides": {
+    "seed": 980000
+   }
+  }
+ },
+ {
+  "pose": "sheet.three_quarter_right",
+  "args": {
+   "workflow": "art_runs/macron-v1-20261105a/workflows/sheet.three_quarter_right.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/macron-v1-20261105a/in/sheet_source.png"
+   },
+   "overrides": {
+    "seed": 980000
+   }
+  }
+ },
+ {
+  "pose": "sheet.three_quarter_left",
+  "args": {
+   "workflow": "art_runs/macron-v1-20261105a/workflows/sheet.three_quarter_left.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/macron-v1-20261105a/in/sheet_source.png"
+   },
+   "overrides": {
+    "seed": 980000
+   }
+  }
+ },
+ {
+  "pose": "sheet.side",
+  "args": {
+   "workflow": "art_runs/macron-v1-20261105a/workflows/sheet.side.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/macron-v1-20261105a/in/sheet_source.png"
+   },
+   "overrides": {
+    "seed": 980000
+   }
+  }
+ },
+ {
+  "pose": "sheet.rear_three_quarter",
+  "args": {
+   "workflow": "art_runs/macron-v1-20261105a/workflows/sheet.rear_three_quarter.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/macron-v1-20261105a/in/sheet_source.png"
+   },
+   "overrides": {
+    "seed": 980000
+   }
+  }
+ }
+]
