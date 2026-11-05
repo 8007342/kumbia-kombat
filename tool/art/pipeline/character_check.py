@@ -3,13 +3,14 @@
 
 The Gatekeeper's skinny wave was caught only by eye (LESSONS_LEARNED A8), and pose scores can't see it
 because they reward matching the rig. This measures build as central width over height: the median
-width of the body's solid part in the middle band of the figure, which outstretched arms hardly move.
-A figure measured against its own height compares across sizes and backgrounds, though not across
-poses, so one reference in a wide stance is only a rough anchor.
+width of the connected run through the body's middle, chest to belly (the definition used on the
+Gatekeeper v4 pilot, art_runs/gatekeeper-v4-20261105q/measure_build.py). An arm with a gap beside the
+body doesn't count, and an arm touching it does, so a relaxed sheet reads somewhat wider than a dance
+pose: it compares across sizes and backgrounds, and only roughly across poses.
 
 Frames are compared with the sheet and, when drawing.buildReference names the art the owner has in
-mind, both are compared with that: frames can match a sheet that has already lost the build, as the
-Gatekeeper's did (reference 0.334, sheet 0.276, frames 0.273).
+mind, both are compared with that. Measured: Gatekeeper v3 frames 0.294 against sheet 0.396 and
+original 0.346; Bartender frames 0.221 against sheet 0.216 and original 0.215.
 
 Thresholds are advisory, calibrated on two characters: a verdict is a prompt to look, and the exit
 status stays 0 unless --strict.
@@ -33,8 +34,8 @@ import definitions as D  # noqa: E402
 import plan_qwen_frames as Q  # noqa: E402
 from register_frames import figure_mask, matte_mask  # noqa: E402
 
-BAND = (0.40, 0.70)  # of the figure's height from its top: torso and hips on an adult
-ADVISORY = 0.15  # relative difference worth a look: the Bartender's frames sit at +12%, the Gatekeeper's at -18%
+BAND = (0.35, 0.60)  # of the figure's height from its top: chest to belly on an adult, before the legs part
+ADVISORY = 0.15  # relative difference worth a look: the Bartender's frames sit at +2% of her sheet, Gatekeeper v3's at -26%
 
 
 def mask_of(path: Path, rect: list[int] | None = None) -> np.ndarray:
@@ -48,11 +49,16 @@ def mask_of(path: Path, rect: list[int] | None = None) -> np.ndarray:
     return figure_mask(rgba[..., :3])
 
 
-def longest_run(row: np.ndarray) -> int:
-    """Longest unbroken stretch of figure in a row: an arm with a gap beside the body doesn't count."""
+def run_through(row: np.ndarray, x: int) -> int:
+    """The unbroken stretch of figure holding x, or the longest in the row if x falls in a gap."""
     edges = np.diff(np.concatenate(([0], row.astype(np.int8), [0])))
     starts, ends = np.where(edges == 1)[0], np.where(edges == -1)[0]
-    return int((ends - starts).max()) if starts.size else 0
+    if not starts.size:
+        return 0
+    for start, end in zip(starts, ends):
+        if start <= x < end:
+            return int(end - start)
+    return int((ends - starts).max())
 
 
 def build_ratio(mask: np.ndarray) -> float:
@@ -63,7 +69,8 @@ def build_ratio(mask: np.ndarray) -> float:
     top, bottom = int(ys.min()), int(ys.max()) + 1
     height = bottom - top
     rows = mask[top + int(height * BAND[0]) : top + int(height * BAND[1])]
-    return round(float(np.median([longest_run(r) for r in rows])) / height, 3)
+    middle = int(np.median(np.where(rows)[1]))
+    return round(float(np.median([run_through(r, middle) for r in rows])) / height, 3)
 
 
 def frame_paths(root: Path, pid: str) -> list[Path]:

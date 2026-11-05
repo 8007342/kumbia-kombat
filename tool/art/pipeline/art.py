@@ -305,7 +305,7 @@ def adopt_accepted(plan: dict, c: dict, store: Store) -> int:
 
 
 def build_qwen(c: dict, style: dict, backend: dict, paths: Paths, *, run: str | None, dry_run: bool, rig: dict | None,
-               only: set[str] | None, stage: bool, show_prompts: bool) -> dict:
+               only: set[str] | None, stage: bool, show_prompts: bool, sheet: str | None = None) -> dict:
     drawn = Q.is_drawn(c)
     record = _read(paths.runs / "builds" / f"{c['id']}.json")
     key = rig_key(c)
@@ -318,7 +318,7 @@ def build_qwen(c: dict, style: dict, backend: dict, paths: Paths, *, run: str | 
         rig = json.loads((rig_dir / "rig.json").read_text())
     plan = plan_qwen(c, style, backend, rig, record, paths.store, only)
     needed = {p for p, f in plan["frames"].items() if f["action"] == "full"}
-    missing = Q.missing_views(c)
+    missing = [v for v in Q.missing_views(c) if not (sheet and v == "front")]
     rendered = False
     # A rig is only worth rendering for frames about to be drawn, or to have one at all.
     stale_rig = not record or record["rigKey"] != key
@@ -358,7 +358,7 @@ def build_qwen(c: dict, style: dict, backend: dict, paths: Paths, *, run: str | 
     os.chdir(D.ROOT)
     run_dir = paths.runs / run
     if needed or finish or missing:
-        planned = Q.plan_run(c, backend, run, only=needed, runs_root=paths.runs, lane_root=paths.lane, rig_dir=rig_dir, stage=stage)
+        planned = Q.plan_run(c, backend, run, only=needed, runs_root=paths.runs, lane_root=paths.lane, rig_dir=rig_dir, stage=stage, sheet=sheet)
         if planned["sheet"]:
             _write(run_dir / "jobs.sheet.json", planned["sheet"])
         name = "jobs.held.json" if missing else "jobs.json"
@@ -405,14 +405,15 @@ def accept_sheet(c: dict, view: str, image: str) -> dict:
 
 
 def build(c: dict, paths: Paths, *, backend_id: str | None = None, run: str | None = None, dry_run: bool = False,
-          rig: dict | None = None, only: set[str] | None = None, stage: bool = True, show_prompts: bool = False) -> dict:
+          rig: dict | None = None, only: set[str] | None = None, stage: bool = True, show_prompts: bool = False,
+          sheet: str | None = None) -> dict:
     """rig= injects a rig and skips the render (tests, and dry runs over the committed rig)."""
     style = D.load_style(c["style"])
     backend = D.resolve_backend(c, style, backend_id)
     if c.get("status", "active") == "active":
         C.build_ramps(c, style)  # gate refusals before any work
     if backend.get("route") == "qwen":
-        return build_qwen(c, style, backend, paths, run=run, dry_run=dry_run, rig=rig, only=only, stage=stage, show_prompts=show_prompts)
+        return build_qwen(c, style, backend, paths, run=run, dry_run=dry_run, rig=rig, only=only, stage=stage, show_prompts=show_prompts, sheet=sheet)
     record = _read(paths.runs / "builds" / f"{c['id']}.json")
     key = rig_key(c)
     rig_dir = paths.runs / "inputs" / c["family"]
@@ -505,6 +506,7 @@ def main() -> None:
     b.add_argument("--prompts", action="store_true", help="include every pose's prompt in the report")
     b.add_argument("--only", default="", help="clips or pose ids to draw now, as a pilot")
     b.add_argument("--no-stage", action="store_true", help="write workflows and jobs, leaving the lane and the rig alone")
+    b.add_argument("--sheet", help="front sheet to draw from, if not the accepted one")
     i = sub.add_parser("ingest")
     i.add_argument("character")
     i.add_argument("--run", required=True)
@@ -524,7 +526,7 @@ def main() -> None:
             if a.only:
                 want = a.only.split(",")
                 only = {p for p in Q.pose_table(c) if p in want or p.split(".")[0] in want}
-            rep = build(c, paths, backend_id=a.backend, run=a.run, dry_run=a.dry_run, only=only, stage=not a.no_stage, show_prompts=a.prompts)
+            rep = build(c, paths, backend_id=a.backend, run=a.run, dry_run=a.dry_run, only=only, stage=not a.no_stage, show_prompts=a.prompts, sheet=a.sheet)
             rep = {k: v for k, v in rep.items() if k != "frames"}
         elif a.cmd == "ingest":
             rep = ingest(c, a.run, paths)

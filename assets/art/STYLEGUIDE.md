@@ -78,3 +78,24 @@ upcoming cue paths or change input/judgment geometry.
 
 Research and validation limits: `plan/crowd-animation-system.md`,
 `plan/dance-battle-choreography.md`, `plan/party-perspective-and-life.md`.
+
+## Draft additions for new rooms and casts
+
+**Draft, 2026-11-05, not yet approved by the owner.** From `plan/research/level3-art-pipeline-2026-11-05.md`.
+
+**Rooms as a family.** Every room plate shares one prompt block: "Richly detailed late 16-bit pixel art night painting with very fine small pixels and high detail, moody low-key lighting, deep soft shadows, muted natural colours and warm amber lamp glow, not saturated and not cartoon." Warm lamplight is every room's accent, with near-black shadows and no pure white.
+
+**Time of day.** Default to night, since the garden and bar are both night. Dusk would run time backwards unless the story explains it.
+
+**Geometry.** Declare for each room: eye height in adults, horizon, vanishing point, phone-safe rectangle and cue zones. Verticals stay vertical. Keep story elements in the central 69% of the plate's width: that's what a 390×844 phone shows.
+
+**Wardrobe at the mansion party.** Visibly grown adults of varied ages and builds. Classy and covered: wrap dresses, full skirts, linen, guayaberas; hems at or below the knee; closed or modest necklines. No pose or framing sexualises anyone. Swimmers wear modest wide-strapped suits or rash tops, are shown from the shoulders up or with arms on the pool edge, and are never the focus of a shot. Nobody may resemble Covi or a reference individual.
+
+**Framing.** Whole figure or waist-up. No shots from robot height toward women characters.
+
+**Separation.** Named characters differ in silhouette, hair, colour blocking and height, checked side by side at native size.
+
+**Prompts.** Describe what you want: negation backfires ("glasses-free" drew glasses). Prompt and skeleton must agree, or the model draws both. Name a held prop's hand by picture side. State clothing and age in every prompt.
+
+**Checks per room.** A phone-crop sheet beside all accepted rooms, a floor overlay, and a cast proof with an adult, Mācron at 0.35 of adult height and a prop, at near and far marks.
+

@@ -86,8 +86,8 @@
  "drawing": {
   "noun": "man",
   "fits": "hat, both shoes and both hands",
-  "look": "short, stocky, broad body, big belly, face, thin pencil mustache, black hair, panama hat with teal band, purple short-sleeved guayabera with collar, pockets and teal embroidered panels, cream pleated trousers, teal shoes and thick dark ink outline",
-  "extra": "Clean-shaven apart from the mustache, no beard, no goatee. ",
+  "look": "short, stocky, heavyset build, broad body, big round belly straining his shirt and overhanging his waistband, thick arms and legs, thick neck, wide round face with full cheeks, thin pencil mustache, black hair, panama hat with teal band, purple short-sleeved guayabera with collar, pockets and teal embroidered panels, cream pleated trousers, teal shoes and thick dark ink outline",
+  "extra": "His chin and cheeks are smooth and bare, the mustache his only facial hair. Both eyes are open. ",
   "sheet": {
    "views": {
     "front": {
@@ -95,7 +95,7 @@
     }
    }
   },
-  "seed": 930000,
+  "seed": 981000,
   "skeletonOverrides": {
    "clap.open": {
     "3": [
@@ -190,7 +190,7 @@
     ]
    }
   },
-  "$comment": "Wording moved verbatim from CAST in plan_qwen_frames.py at 285ccff. Another agent is changing this entry on work/1839-intg for the A8 build fix: when that lands, its text goes in `look` and `extra` here, and CAST no longer exists to edit.",
+  "$comment": "Wording from d5eb822, the A8 build fix. It describes the build and bare chin because this model draws what a prompt names, even denied ('glasses-free' drew glasses). The candidate sheet is tool/art/references/gatekeeper/front-stocky.png: pass --sheet until the owner accepts it, then accept-sheet --view front.",
   "buildReference": {
    "image": "assets/art/garden/gatekeeper.png"
   }

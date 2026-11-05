@@ -69,6 +69,29 @@ class BartenderReproduces(unittest.TestCase):
             self.assertEqual(graph, baked("groove.down_l"))
 
 
+class GatekeeperV4(unittest.TestCase):
+    """The peer's A8 wording, moved to data, against the workflows its pilot baked from CAST."""
+
+    def test_every_pose_equals_the_v4_plan(self):
+        run = ROOT / "art_runs/gatekeeper-v4-20261105q"
+        prompts = Q.prompts(D.load_character("gatekeeper"), D.load_backend("qwen-frame"))
+        self.assertEqual(len(prompts), 64)
+        for pid, text in prompts.items():
+            baked_v4 = json.loads((run / "workflows" / f"{pid}.api.json").read_text())
+            self.assertEqual(text, baked_v4["10"]["inputs"]["prompt"], pid)
+
+    def test_a_trial_sheet_replaces_the_front_without_touching_it(self):
+        c = D.load_character("gatekeeper")
+        accepted = (ROOT / "tool/art/references/gatekeeper/front.png").read_bytes()
+        with tempfile.TemporaryDirectory() as t:
+            lane, runs = Path(t) / "lane", Path(t) / "runs"
+            Q.plan_run(c, D.load_backend("qwen-frame"), "r", only=set(), runs_root=runs, lane_root=lane,
+                       sheet=str(ROOT / "tool/art/references/gatekeeper/front-stocky.png"))
+            staged = (lane / "r/in/sheet_front.png").read_bytes()
+        self.assertEqual(staged, (ROOT / "tool/art/references/gatekeeper/front-stocky.png").read_bytes())
+        self.assertEqual(accepted, (ROOT / "tool/art/references/gatekeeper/front.png").read_bytes())
+
+
 class Wording(unittest.TestCase):
     def setUp(self):
         self.c = copy.deepcopy(D.load_character("bartender"))

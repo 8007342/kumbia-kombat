@@ -21,7 +21,8 @@ Hand fixes are data, and survive re-planning:
                           canvas pixels. Qwen follows the skeleton over the prompt, and the rig's wrists
                           stop short where its big hands would meet, so a clap reads as arms hanging down.
 
-Usage: plan_qwen_frames.py <character> --run <run> [--only clip,pose.id] [--seed N] [--scale 0.8] [--count 4]
+Usage: plan_qwen_frames.py <character> --run <run> [--only clip,pose.id] [--seed N] [--scale 0.8] [--count 4] [--sheet PNG]
+--sheet tries another front sheet without touching the accepted one.
 Writes art_runs/<run>/jobs.json (jobs.sheet.json first, if a sheet view is missing) and stages inputs
 under /work/tmp/imagegen/kumbia/<run>/in/.
 """
@@ -234,7 +235,7 @@ def skeleton_png(c: dict, rig_dir: Path, rig_poses: dict, pid: str, lane: Path, 
 
 def plan_run(c: dict, backend: dict, run: str, *, only: set[str] | None = None, runs_root: Path | None = None,
              lane_root: Path | None = None, rig_dir: Path | None = None, stage: bool = True, seed: int | None = None,
-             count: int | None = None, scale: float | None = None, workflow_root: str | None = None) -> dict[str, list[dict]]:
+             count: int | None = None, scale: float | None = None, sheet: str | None = None) -> dict[str, list[dict]]:
     """Bake workflows and return {"sheet": jobs, "frames": jobs}; the caller names the job files.
 
     stage=False writes workflows and job paths only, leaving the lane and the rig untouched.
@@ -261,12 +262,12 @@ def plan_run(c: dict, backend: dict, run: str, *, only: set[str] | None = None, 
             rig_poses = {r["id"]: r for r in json.loads((rig_dir / "rig.json").read_text())["poses"]}
 
     views = _sheet(c)["views"]
-    missing = missing_views(c)
+    missing = [v for v in missing_views(c) if not (sheet and v == "front")]
     sheet_files = {}
     for view, spec in views.items():
         sheet_files[view] = lane / f"sheet_{view}.png"
         if stage and view not in missing:
-            shutil.copy(D.ROOT / spec["image"], sheet_files[view])
+            shutil.copy(sheet if sheet and view == "front" else D.ROOT / spec["image"], sheet_files[view])
 
     def bake(graph: dict, pid: str, prompt: str) -> Path:
         wf = copy.deepcopy(graph)
@@ -339,13 +340,14 @@ def main() -> None:
     ap.add_argument("--seed", type=int)
     ap.add_argument("--scale", type=float)
     ap.add_argument("--count", type=int, help="candidates per pose: seed, seed+1, ...")
+    ap.add_argument("--sheet", help="front sheet to draw from, if not the accepted one")
     a = ap.parse_args()
     try:
         c = D.load_character(a.character)
         table = pose_table(c)
         want = [x for x in a.only.split(",") if x]
         only = {p for p in table if not want or p in want or p.split(".")[0] in want}
-        planned = plan_run(c, D.load_backend(BACKEND), a.run, only=only, seed=a.seed, count=a.count, scale=a.scale)
+        planned = plan_run(c, D.load_backend(BACKEND), a.run, only=only, seed=a.seed, count=a.count, scale=a.scale, sheet=a.sheet)
     except D.DefinitionError as e:
         sys.exit(f"refused:{a.character}:{e}")
     out = D.ROOT / "art_runs" / a.run

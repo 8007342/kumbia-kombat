@@ -1,0 +1,150 @@
+{
+ "stage": {
+  "calibration": "unverifiedStoryboard",
+  "floor": {
+   "horizonY": 0.16,
+   "referenceFootY": 0.4,
+   "referenceHeight": 0.1263
+  },
+  "heroHome": [
+   0.449,
+   0.645
+  ],
+  "heroEntrance": [
+   0.315,
+   0.789
+  ],
+  "heroRetreat": [
+   0.392,
+   0.712
+  ],
+  "challengers": [
+   {
+    "id": "gatekeeper",
+    "atlas": "gatekeeper",
+    "mark": [
+     0.55,
+     0.5
+    ],
+    "yieldMark": [
+     0.73,
+     0.489
+    ]
+   }
+  ]
+ },
+ "crowd": {
+  "guests": [
+   [
+    0.301,
+    0.418
+   ],
+   [
+    0.191,
+    0.408
+   ],
+   [
+    0.296,
+    0.364
+   ],
+   [
+    0.198,
+    0.357
+   ],
+   [
+    0.43,
+    0.323
+   ],
+   [
+    0.356,
+    0.319
+   ]
+  ],
+  "props": [
+   {
+    "id": "pool-table-1",
+    "kind": "table",
+    "heightInAdults": 0.43,
+    "widthInAdults": 0.9,
+    "at": [
+     0.244,
+     0.413
+    ]
+   },
+   {
+    "id": "pool-table-2",
+    "kind": "table",
+    "heightInAdults": 0.43,
+    "widthInAdults": 0.9,
+    "at": [
+     0.246,
+     0.361
+    ]
+   },
+   {
+    "id": "pool-table-3",
+    "kind": "table",
+    "heightInAdults": 0.43,
+    "widthInAdults": 0.9,
+    "at": [
+     0.394,
+     0.321
+    ]
+   }
+  ]
+ },
+ "scenery": {
+  "lamps": [
+   [
+    0.5568,
+    0.207
+   ],
+   [
+    0.4433,
+    0.2368
+   ]
+  ],
+  "plants": []
+ },
+ "departure": {
+  "originY": 0.645,
+  "waypoints": [
+   {
+    "at": 0.0,
+    "x": 0.449,
+    "y": 0.645,
+    "facing": "sideRight"
+   },
+   {
+    "at": 0.053,
+    "x": 0.576,
+    "y": 0.599,
+    "facing": "rear"
+   },
+   {
+    "at": 0.26,
+    "x": 0.625,
+    "y": 0.429,
+    "facing": "rear"
+   },
+   {
+    "at": 0.511,
+    "x": 0.653,
+    "y": 0.343,
+    "facing": "rear"
+   },
+   {
+    "at": 0.762,
+    "x": 0.673,
+    "y": 0.299,
+    "facing": "rear"
+   },
+   {
+    "at": 1.0,
+    "x": 0.685,
+    "y": 0.273,
+    "facing": "rear"
+   }
+  ]
+ }
+}

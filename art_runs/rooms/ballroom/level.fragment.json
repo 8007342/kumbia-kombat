@@ -1,0 +1,109 @@
+{
+ "stage": {
+  "calibration": "unverifiedStoryboard",
+  "floor": {
+   "horizonY": 0.16,
+   "referenceFootY": 0.4,
+   "referenceHeight": 0.1297
+  },
+  "heroHome": [
+   0.572,
+   0.628
+  ],
+  "heroEntrance": [
+   0.676,
+   0.8
+  ],
+  "heroRetreat": [
+   0.607,
+   0.707
+  ],
+  "challengers": [
+   {
+    "id": "gatekeeper",
+    "atlas": "gatekeeper",
+    "mark": [
+     0.506,
+     0.482
+    ],
+    "yieldMark": [
+     0.322,
+     0.474
+    ]
+   }
+  ]
+ },
+ "crowd": {
+  "guests": [
+   [
+    0.71,
+    0.378
+   ],
+   [
+    0.809,
+    0.374
+   ],
+   [
+    0.585,
+    0.317
+   ],
+   [
+    0.671,
+    0.314
+   ]
+  ],
+  "props": []
+ },
+ "scenery": {
+  "lamps": [
+   [
+    0.1497,
+    -0.0661
+   ],
+   [
+    0.605,
+    0.0381
+   ],
+   [
+    0.3201,
+    0.0694
+   ]
+  ],
+  "plants": []
+ },
+ "departure": {
+  "originY": 0.628,
+  "waypoints": [
+   {
+    "at": 0.0,
+    "x": 0.572,
+    "y": 0.628,
+    "facing": "sideRight"
+   },
+   {
+    "at": 0.058,
+    "x": 0.448,
+    "y": 0.589,
+    "facing": "rear"
+   },
+   {
+    "at": 0.376,
+    "x": 0.426,
+    "y": 0.39,
+    "facing": "rear"
+   },
+   {
+    "at": 0.667,
+    "x": 0.42,
+    "y": 0.322,
+    "facing": "rear"
+   },
+   {
+    "at": 1.0,
+    "x": 0.415,
+    "y": 0.281,
+    "facing": "rear"
+   }
+  ]
+ }
+}

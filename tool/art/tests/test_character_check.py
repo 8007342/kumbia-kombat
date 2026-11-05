@@ -83,12 +83,11 @@ class Check(unittest.TestCase):
 class RealFrames(unittest.TestCase):
     """A8, measured on the committed frames: the reference is what the owner compared them with."""
 
-    def test_the_gatekeeper_is_caught_at_the_sheet_and_the_frames(self):
+    def test_the_skinny_gatekeeper_wave_is_caught(self):
         rep = K.check(D.load_character("gatekeeper"), ROOT / "art_runs/gatekeeper-v3-20261105q/final")
         self.assertEqual(rep["missing"], {})
-        self.assertEqual(rep["build"]["reference"], 0.334)
-        self.assertTrue(any("the sheet is 17% narrower" in a for a in rep["advisories"]), rep["advisories"])
-        self.assertTrue(any("frames' median is 18% narrower" in a for a in rep["advisories"]), rep["advisories"])
+        self.assertEqual((rep["build"]["sheet"], rep["build"]["frames"]), (0.396, 0.294))
+        self.assertTrue(any("26% narrower than the sheet" in a for a in rep["advisories"]), rep["advisories"])
 
     def test_the_bartender_passes(self):
         rep = K.check(D.load_character("bartender"), ROOT / "art_runs/bartender-v1-20261105q/final")
