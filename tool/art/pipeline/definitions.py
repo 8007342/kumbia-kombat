@@ -86,6 +86,9 @@ def character_problems(c: dict, root: Path = ROOT) -> list[str]:
     source = drawing.get("sheet", {}).get("source")
     if source and not (root / source["image"]).exists():
         out.append(f"drawing.sheet.source.image: missing file {source['image']!r}")
+    reference = drawing.get("buildReference")
+    if reference and not (root / reference["image"]).exists():
+        out.append(f"drawing.buildReference.image: missing file {reference['image']!r}")
     if c.get("status") == "drawn":
         for req in ("family", "pronouns", "drawing"):
             if req not in c:

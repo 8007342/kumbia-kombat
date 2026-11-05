@@ -190,7 +190,10 @@
     ]
    }
   },
-  "$comment": "Wording moved verbatim from CAST in plan_qwen_frames.py at 285ccff. Another agent is changing this entry on work/1839-intg for the A8 build fix: when that lands, its text goes in `look` and `extra` here, and CAST no longer exists to edit."
+  "$comment": "Wording moved verbatim from CAST in plan_qwen_frames.py at 285ccff. Another agent is changing this entry on work/1839-intg for the A8 build fix: when that lands, its text goes in `look` and `extra` here, and CAST no longer exists to edit.",
+  "buildReference": {
+   "image": "assets/art/garden/gatekeeper.png"
+  }
  },
  "references": {
   "mode": "source",
