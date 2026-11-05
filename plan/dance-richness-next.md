@@ -37,3 +37,32 @@ the screen; wiring those to the music costs no GPU time.
 4. Keep the challenger readable on the player's turn: in the bar she steps aside
    and ends up mostly behind the right-hand guest, and the "WATCH THE CALL" label
    sits across her waist. Check both during step 1.
+
+## Grammar first pass (work/1837-chor)
+
+`lib/gameplay/dance_grammar.dart` dresses the sampler's pose using
+`assets/art/ensemble/choreography.json`. It only picks a drawing, so marks,
+timing and each call's accent stay the sampler's. Names and tables are
+provisional until the teacher's interview.
+
+Clean run on a fake clock, up to and through the exit (64 drawings per dancer):
+
+| Measure | Garden before | Garden after | Bar before | Bar after |
+|---|---|---|---|---|
+| Distinct drawings to clear | 18 | 43 | 18 | 35 |
+| Distinct, with exit | 19 | 44 | 18 | 36 |
+| `watch_*` time to clear | 40.6% | 3.0% | 41.5% | 8.8% |
+| Limb peak time to clear | 8.7% | 8.7% | 8.8% | 8.8% |
+| Shaker flips, with exit | n/a | n/a | 24 | 0 |
+
+- **Shaker.** All 12 of her `groove_*` and `challenge_*` drawings hold it and no
+  others do. `groove_up_r` also holds it in the other hand. Today it already
+  flips 24 times a bar run through the `ready`, `invite` and `occupied` aliases.
+  The shared groove would flip it 70 times (35 appearances in 104 s). Her data
+  entry avoids all of those drawings, so she shows it never. To try the shared
+  groove, delete her `clips` and `frames` in the data file; her shaker test will
+  then fail on purpose.
+- **Sideline.** Most groove plays at the response mark, where a guest covers much
+  of the Bartender and part of the Gatekeeper. This needs the room marks fixed.
+- **Not wired.** `enter_forward_*` and `retreat_backward_*` wait for staging. The
+  walk back from the sideline stays a slide because no step is drawn that way.
