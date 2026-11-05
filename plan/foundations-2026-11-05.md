@@ -11,6 +11,8 @@ Found while researching the pool garden. Each one is either referred to but unde
 | Mācron's drawing route | Being designed on `work/1840-qdat`; unproven | Fist bump, gulp, signature step and high five all need him |
 | Campaign sheet and level bibles | Drafted: `plan/campaign-sheet.md`, `plan/levels/` | One view of order, tempo, palette and rewards |
 | Campaign structure and length | **Owner's decision** | No rule for N levels; each addition breaks the time target and ranking |
+| Shot layer and shot lists | Drafted: `plan/cinematics.md`. Nothing built | Close-up transitions on the beat, for every level and the ending |
+| Duet: two bodies, floor tracks, contact | Drafted: `plan/duet-foundations.md`. Nothing built | The scene draws one challenger, moving on one line |
 | Screen contract | Needed | The top area has no defined safe zones. Cues start in the dance area, target rings shift, labels cross dancers' waists, the hero stands in the tap band |
 | House map | Needed | Rooms, doors and time of day have no one map |
 | Movement register | Needed, after the interview | Named moves, source, reviewer, and where each is used. The signature step lives here |

@@ -9,9 +9,9 @@
 | Feeling | Awe at the size of the party, playful rivalry, then welcome |
 | Respect word | Open: Grace, or Sabor if the teacher likes it |
 | Teaches | Reading rhythm shapes: syncopation and rests you can recognise |
-| New idea, only one | Two dancers trade phrases. Same four tap zones, no chords, no new scoring. Risk: players must see whose turn it is |
-| Music | Teacher. Desk research favours cha-cha-chá with flute and strings at 108-120 BPM, with Dominican-style bachata as the runner-up |
-| Dance vocabulary | Teacher, who reviews it. Real step names only |
+| New idea, only one | Two dancers, one partnership: they dance a phrase together and Mācron answers. Same four tap zones, no chords, no new scoring. Details: `plan/duet-foundations.md` |
+| Music | Fast swing, by owner's ruling. Tempo range awaits research, and the music generator needs a swing feel |
+| Dance vocabulary | Swing, from `plan/research/swing-duet-research-2026-11-05.md`, with real step names and a reviewer still to find. Signature step stays with the salsa teacher |
 | Space | Diagonal path to the top right, covered pool at top left, cocktail tables on the lawn at top and left. Night by default, matching the garden and bar. Everything that tells the story stays in the central 69% of the plate's width, which is what a 390×844 phone shows |
 | Screen | Tap zones stay fixed in the thumb band. The top shows the dance. Cues and the scene don't depend on each other |
 | Cast | Two adult women with contrasting silhouettes; table guests standing and chatting; a few swimmers. Proposal: friends or sisters, middle-aged or older |
@@ -25,17 +25,6 @@
 
 Beats are provisional. No extra bars are added: success plus bridge is 16 beats. Music never stops.
 
-**Fist bump, garden to bar (settled by the owner).**
-
-| Beats | Action |
-|---|---|
-| 0-2 | Gatekeeper finishes, touches his brim, nods |
-| 2-3.5 | He bends and offers a fist low |
-| 3.5-4 | Mācron hops, right arm forward |
-| 4 | **Contact on the downbeat of bar two**, with a percussion hit. No glint, which is kept for the finale |
-| 4-8 | He straightens, chuckling; the rope lifts; guests part |
-| Bridge 0-8 | Mācron walks to the copper door |
-
-**Oil gulp, bar to pool garden.** The existing 6.5-beat outro: nod, pour, slide, gulp, exit. Open question: how the glass reaches him, since he's on the floor. Research recommends he climbs the foot rail.
+Storyboards for the fist bump and the oil gulp moved to `plan/cinematics.md`, as extreme close-ups by the owner's ruling.
 
 **Walk to the lawn.** Along the counter end, through a terrace door, reveal, up the diagonal. Two figures step in and close the path, and the first call follows.

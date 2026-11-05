@@ -21,3 +21,15 @@ and two women dancing in the middle who stop Mācron. Its position in the campai
 
 Still open: the pool garden's place among the levels, the level's mood, and whether the two dancers alternate
 calls, pending research and the teacher's interview.
+
+## Second round, the same day
+
+| Topic | Ruling | Owner's words |
+|---|---|---|
+| The two dancers | Fast swing dancers who dance with each other, in combinations, switching places, tempo, complexity and adornments. A deliberate test of the pipelines | "fast swing dancers, so they can dance with each other in combinations" |
+| Perspective | They move toward and away from the viewer, and size must follow the background | "their sizes follow and match the background's perspective" |
+| Fist bump staging | Extreme close-up, so the Gatekeeper's kneeling is never shown | "we can just use an extreme closeup" |
+| Cinematic reference | Learn from Cannonball's work, for the intro and for transitions such as the fist bump and the oil | "we could learn a lot for our intro and level transitions" |
+
+This replaces the desk recommendation of cha-cha-chá for this level's music. Mācron's signature step still comes from the
+salsa teacher. Swing isn't that teacher's stated field, so swing vocabulary needs its own reviewer.
