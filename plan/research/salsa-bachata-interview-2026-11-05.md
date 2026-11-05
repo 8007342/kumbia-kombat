@@ -10,6 +10,9 @@ If you only have ten minutes, ask the starred ones.
 - ★ If a tiny, cheerful, slightly clumsy robot had one signature move, what would it be? Could you show it?
 - ★ Can you count it out? On which beats do the feet and hands move?
 - What makes it read from far away, as a small silhouette? What would make it look wrong?
+- He has short legs, a compact shell, and no hips or neck. What survives on that body, and what could replace the rest?
+- Could it be 2 to 4 beats long, and work from about 92 to 144 BPM? Is there a slow and a fast form?
+- Is there a human version that dancers at the party could copy back to him? Does a musical figure go with it?
 - How would it grow as he gets better: same step in a beginner, a confident and a showing-off version?
 - May we credit you for it, and how would you like to be named?
 
@@ -22,7 +25,7 @@ If you only have ten minutes, ask the starred ones.
 
 ## 3. Moves for our four limbs
 - ★ Which salsa and bachata moves clearly feature one hand or one foot, so a player could copy them?
-- ★ Which moves look great but are all body, like hips and shoulders, and can't be mapped to one limb?
+- ★ Which all-body moves, like hips, shoulders and turns, make a dance look great? We want these too: the tap zones stay separate, so the dancers aren't limited to one limb at a time.
 - Bachata's tap on the fourth beat, and salsa's break step: would those make good moments to tap?
 - Can you give us 5 to 8 moves per style, from easy to hard, with their real names?
 
@@ -30,6 +33,7 @@ If you only have ten minutes, ask the starred ones.
 - ★ Our new level has two women dancing together who stop the robot. What do they do? Side by side, mirrored, or trading moves?
 - ★ How do dancers "call and answer" each other in a real circle or shine? Is there a tradition for this?
 - How would two friends challenge a newcomer playfully, without any cruelty?
+- How do two women dance together socially? Is there any etiquette we should know?
 - How would they signal "okay, you've earned it"? And what does a warm welcome look like at the end?
 
 ## 5. Flourishes
@@ -39,6 +43,8 @@ If you only have ten minutes, ask the starred ones.
 
 ## 6. Music
 - ★ Which tempo feels right for a beginner, a confident dancer and a peak moment, in each style?
+- ★ Do you dance or teach cha-cha-chá? For two friends at dusk at about 110-120 BPM, what would you pick?
+- Our first level pairs cumbia and salsa at about 92 BPM. Does that work?
 - What must a track have so that you feel it's really salsa or bachata? What gives a fake away?
 - Which beat do you dance on (salsa on 1 or on 2)? Which is easiest for people new to it?
 - Could we send you game music to react to?
