@@ -6,7 +6,13 @@ reads as jitter. Each frame is scaled so its figure height matches the rig's sil
 pose, which keeps the rig's bounce, then moved so the feet share the rig's floor line and the torso
 sits over the rig's torso.
 
+A character posed by words has no rig to match, so --character registers to its definition's
+drawing.register instead: every standing figure the same height, feet centred on one floor point. All
+his frames then share one scale, and the game draws that scale at his stature (0.35 adult for Mācron).
+A pose that really is shorter says so with heightScale in its motion file.
+
 Usage: register_frames.py --run <run> --family gatekeeper-v3 [--shirt 5f1f5f] [--root DIR]
+       register_frames.py --run <run> --character macron [--root DIR]
 Reads <root>/raw/<pose>.png or <root>/raw/<pose>/<k>.png, and writes the same layout under
 <root>/registered/. <root> defaults to art_runs/<run>. A frame with an alpha channel uses it as the
 matte, binarised at 128 and reduced to the largest piece; an opaque one is keyed off its background.
@@ -15,6 +21,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import sys
 from pathlib import Path
 
 import numpy as np
@@ -99,14 +106,75 @@ def register(src: Path, dst: Path, rig: Path, pose: str, shirt: np.ndarray, tors
     return {"scale": round(s, 3), "touchesFrame": ox0 == 0 or oy0 == 0 or ox1 == w or oy1 == h}
 
 
+def pixels_per_unit(spec: dict) -> float:
+    """The atlas value that makes a standing frame as tall in world units as the live reference frame.
+
+    The game sizes the hero by one reference frame (garden_scene.dart _addHero), so a frame from any
+    other source resolution only lines up if its own pixelsPerUnit carries the difference.
+    """
+    return round(spec["standingHeightPx"] / spec.get("pixelScale", 1) / spec["referenceWorldHeight"], 4)
+
+
+def register_fixed(src: Path, dst: Path, spec: dict, height_scale: float = 1.0) -> dict:
+    """Same height and floor point for every frame, with no rig: for characters posed by words."""
+    source = Image.open(src)
+    im = source.convert("RGB")
+    rgb = np.array(im)
+    mask = matte_mask(np.array(source.convert("RGBA"))[..., 3]) if source.mode == "RGBA" else figure_mask(rgb)
+    x0, y0, x1, y1 = bbox(mask)
+    s = spec["standingHeightPx"] * height_scale / (y1 - y0)
+    # Feet, not bbox: a raised arm mustn't shove the body sideways.
+    feet = mask[y1 - max(1, (y1 - y0) // 7) : y1]
+    foot_x = float(np.median(np.where(feet)[1]))
+    w, h = im.size
+    rgba = im.convert("RGBA")
+    rgba.putalpha(Image.fromarray((mask * 255).astype(np.uint8)))
+    big = rgba.resize((round(w * s), round(h * s)), Image.LANCZOS)
+    canvas = Image.new("RGBA", (w, h), (0, 0, 0, 0))
+    canvas.paste(big, (round(spec["centerX"] - foot_x * s), round(spec["floorY"] - y1 * s)))
+    dst.parent.mkdir(parents=True, exist_ok=True)
+    canvas.save(dst)
+    ox0, oy0, ox1, oy1 = bbox(np.array(canvas)[..., 3] > 128)
+    return {"scale": round(s, 3), "touchesFrame": ox0 == 0 or oy0 == 0 or ox1 == w or oy1 == h}
+
+
+def main_fixed(a) -> None:
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    import definitions as D
+    import plan_qwen_frames as Q
+
+    c = D.load_character(a.character)
+    if not Q.is_drawn(c) or "register" not in c["drawing"]:
+        raise SystemExit(f"{c['id']} has no drawing.register: use --family, which registers to the rig")
+    spec = c["drawing"]["register"]
+    table = Q.pose_table(c)
+    root = Path(a.root) if a.root else Path("art_runs") / a.run
+    out = root / "registered"
+    report = {}
+    for src in sorted((root / "raw").rglob("*.png")):
+        rel = src.relative_to(root / "raw")
+        pose = rel.stem if rel.parent == Path(".") else rel.parent.name
+        if pose in table:  # sheet views are reviewed as they were drawn
+            report[str(rel.with_suffix(""))] = register_fixed(src, out / rel, spec, table[pose].get("heightScale", 1.0))
+    out.mkdir(parents=True, exist_ok=True)
+    (out / "registration.json").write_text(json.dumps({"pixelsPerUnit": pixels_per_unit(spec), "frames": report}, indent=1) + "\n")
+    print(f"{len(report)} registered, {sum(v['touchesFrame'] for v in report.values())} touch the frame; pixelsPerUnit {pixels_per_unit(spec)}")
+
+
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--run", required=True)
-    ap.add_argument("--family", required=True)
+    ap.add_argument("--family", help="register to this family's rig")
+    ap.add_argument("--character", help="register to this character's drawing.register, with no rig")
     ap.add_argument("--shirt", default="5f1f5f")
     ap.add_argument("--rig-torso", default="0000ff", help="the torso's colour in the rig's regions image")
     ap.add_argument("--root", default="", help="folder holding raw/, if not art_runs/<run>")
     a = ap.parse_args()
+    if a.character:
+        main_fixed(a)
+        return
+    if not a.family:
+        ap.error("--family or --character is required")
 
     root = Path(a.root) if a.root else Path("art_runs") / a.run
     rig = Path("art_runs/inputs") / a.family

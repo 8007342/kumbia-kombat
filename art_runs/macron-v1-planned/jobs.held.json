@@ -1,0 +1,184 @@
+[
+ {
+  "pose": "fist_bump.ready",
+  "args": {
+   "workflow": "art_runs/macron-v1-planned/workflows/fist_bump.ready.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/macron-v1-planned/in/sheet_three_quarter_right.png"
+   },
+   "overrides": {
+    "seed": 980000
+   }
+  }
+ },
+ {
+  "pose": "fist_bump.contact",
+  "args": {
+   "workflow": "art_runs/macron-v1-planned/workflows/fist_bump.contact.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/macron-v1-planned/in/sheet_three_quarter_right.png"
+   },
+   "overrides": {
+    "seed": 980000
+   }
+  }
+ },
+ {
+  "pose": "fist_bump.settle",
+  "args": {
+   "workflow": "art_runs/macron-v1-planned/workflows/fist_bump.settle.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/macron-v1-planned/in/sheet_three_quarter_right.png"
+   },
+   "overrides": {
+    "seed": 980000
+   }
+  }
+ },
+ {
+  "pose": "gulp.lift",
+  "args": {
+   "workflow": "art_runs/macron-v1-planned/workflows/gulp.lift.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/macron-v1-planned/in/sheet_front.png"
+   },
+   "overrides": {
+    "seed": 980000
+   }
+  }
+ },
+ {
+  "pose": "gulp.sip",
+  "args": {
+   "workflow": "art_runs/macron-v1-planned/workflows/gulp.sip.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/macron-v1-planned/in/sheet_front.png"
+   },
+   "overrides": {
+    "seed": 980000
+   }
+  }
+ },
+ {
+  "pose": "gulp.after",
+  "args": {
+   "workflow": "art_runs/macron-v1-planned/workflows/gulp.after.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/macron-v1-planned/in/sheet_front.png"
+   },
+   "overrides": {
+    "seed": 980000
+   }
+  }
+ },
+ {
+  "pose": "rear34_walk.step_r",
+  "args": {
+   "workflow": "art_runs/macron-v1-planned/workflows/rear34_walk.step_r.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/macron-v1-planned/in/sheet_rear_three_quarter.png"
+   },
+   "overrides": {
+    "seed": 980000
+   }
+  }
+ },
+ {
+  "pose": "rear34_walk.pass_r",
+  "args": {
+   "workflow": "art_runs/macron-v1-planned/workflows/rear34_walk.pass_r.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/macron-v1-planned/in/sheet_rear_three_quarter.png"
+   },
+   "overrides": {
+    "seed": 980000
+   }
+  }
+ },
+ {
+  "pose": "rear34_walk.step_l",
+  "args": {
+   "workflow": "art_runs/macron-v1-planned/workflows/rear34_walk.step_l.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/macron-v1-planned/in/sheet_rear_three_quarter.png"
+   },
+   "overrides": {
+    "seed": 980000
+   }
+  }
+ },
+ {
+  "pose": "rear34_walk.pass_l",
+  "args": {
+   "workflow": "art_runs/macron-v1-planned/workflows/rear34_walk.pass_l.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/macron-v1-planned/in/sheet_rear_three_quarter.png"
+   },
+   "overrides": {
+    "seed": 980000
+   }
+  }
+ },
+ {
+  "pose": "high_five.ready",
+  "args": {
+   "workflow": "art_runs/macron-v1-planned/workflows/high_five.ready.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/macron-v1-planned/in/sheet_three_quarter_right.png"
+   },
+   "overrides": {
+    "seed": 980000
+   }
+  }
+ },
+ {
+  "pose": "high_five.contact",
+  "args": {
+   "workflow": "art_runs/macron-v1-planned/workflows/high_five.contact.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/macron-v1-planned/in/sheet_three_quarter_right.png"
+   },
+   "overrides": {
+    "seed": 980000
+   }
+  }
+ },
+ {
+  "pose": "high_five.after",
+  "args": {
+   "workflow": "art_runs/macron-v1-planned/workflows/high_five.after.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/macron-v1-planned/in/sheet_three_quarter_right.png"
+   },
+   "overrides": {
+    "seed": 980000
+   }
+  }
+ }
+]

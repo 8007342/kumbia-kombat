@@ -345,13 +345,14 @@ def build_qwen(c: dict, style: dict, backend: dict, paths: Paths, *, run: str | 
     if not needed and not missing and set(plan["counts"]) <= {"accepted"}:
         report.update(queued=0, held=0, finishQueued=0, packed=False, note="every frame is in the accepted run: nothing to draw or pack")
         return report
-    _write(paths.runs / "selections" / f"{c['id']}.json", selection)
-    report["recoloured"] = recolour_frames(plan, record, c, style, paths.store) if plan["counts"].get("recolour") else 0
+    if stage:
+        _write(paths.runs / "selections" / f"{c['id']}.json", selection)
+    report["recoloured"] = recolour_frames(plan, record, c, style, paths.store) if stage and plan["counts"].get("recolour") else 0
     run = run or f"{c['family']}-{key_of(sorted(f['key'] for f in plan['frames'].values()))[:10]}"
     report["run"] = run
     finish = [p for p, f in plan["frames"].items() if f["action"] == "finish"]
     spec = spec_path = None
-    if c.get("status", "active") == "active":
+    if stage and c.get("status", "active") == "active":
         spec, palette, motion = CF.compile_definition(c, backend["id"])
         _, _, spec_path = CF.write_family(spec, palette, motion, paths.families, paths.palettes)
     os.chdir(D.ROOT)
@@ -371,7 +372,7 @@ def build_qwen(c: dict, style: dict, backend: dict, paths: Paths, *, run: str | 
         return report
     if spec_path is None:
         report.update(queued=0, held=0, finishQueued=0, packed=False,
-                      note=f"{c['id']} is {c['status']}: frames are stored, and finish and pack need a family spec, which this status does not have yet")
+                      note=f"nothing to draw; {c['id']} has no family spec here, so nothing packed" if stage else "nothing to draw")
         return report
     if plan["counts"].get("later"):
         report.update(queued=0, held=0, finishQueued=0, packed=False, note="poses outside --only are still undrawn: nothing packed")

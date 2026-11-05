@@ -1,8 +1,57 @@
 {
- "$comment": "Rig-only for now: his dance art stays as is. A full definition comes with the cinematic shots.",
- "id": "macron", "status": "rig-only", "style": "party-pixel",
+ "$comment": "Status drawn: Qwen draws his new clips from a model sheet and words. The rig below stays for the pilot poses, and gives no OpenPose, since his body isn't human. His dance atlas stays as it is. No family spec yet: finish and pack wait until a palette and a reviewed wave exist.",
+ "id": "macron", "status": "drawn", "family": "macron-v1", "style": "party-pixel",
+ "pronouns": ["he", "him", "his"],
  "body": {"preset": "macron"},
  "garments": [{"id": "body", "shape": "macron-body", "region": "shell",
                "params": {"regions": ["shell", "screen", "joint", "antenna", "cuff", "limb", "chest_light"]}}],
- "motion": {"set": "macron-pilot", "overrides": {}}
+ "motion": {"set": "macron-pilot", "overrides": {}},
+ "drawing": {
+  "motion": "macron-drawn",
+  "noun": "small robot",
+  "fits": "antenna ball and both feet",
+  "look": "big rounded rectangular ivory head, dark teal face screen with two cyan smiling arcs, one small cyan antenna ball on a thin stem, round ivory body with a cyan chest light, teal ball joints, short limbs, cyan cuff bands on the forearm of one arm only, thick dark outline",
+  "extra": "Exactly two arms and two legs. ",
+  "seed": 980000,
+  "buildReference": {"image": "assets/art/party/macron-dance-v1.png", "rect": [41, 337, 223, 296]},
+  "sheet": {
+   "source": {"image": "assets/art/party/macron-dance-v1.png", "rect": [41, 337, 223, 296]},
+   "views": {
+    "front": {
+     "image": "tool/art/references/macron/front.png",
+     "description": "standing on the ground and facing the viewer, arms relaxed and slightly out, feet apart",
+     "look": "big rounded rectangular ivory head, dark teal face screen with two cyan smiling arcs, one small cyan antenna ball on a thin stem, round ivory body with a cyan chest light, teal ball joints, short limbs, cyan cuff bands on the forearm on the left side of the picture only, thick dark outline"
+    },
+    "rear": {
+     "image": "tool/art/references/macron/rear.png",
+     "description": "seen from directly behind, standing on the ground, arms relaxed and slightly out, feet apart. The face screen is not visible",
+     "look": "big rounded rectangular ivory head seen from the back with a vertical seam and a round teal ear disc on each side, one small cyan antenna ball on a thin stem, round ivory body, teal ball joints, short limbs, cyan cuff bands on the forearm on the right side of the picture only, thick dark outline"
+    },
+    "three_quarter_right": {
+     "image": "tool/art/references/macron/three_quarter_right.png",
+     "description": "turned three-quarters towards the right of the picture, standing on the ground, arms relaxed",
+     "look": "big rounded rectangular ivory head, dark teal face screen with two cyan smiling arcs, a round teal ear disc on the near side, one small cyan antenna ball on a thin stem, round ivory body with a cyan chest light, teal ball joints, short limbs, cyan cuff bands on the forearm on the left side of the picture only, thick dark outline"
+    },
+    "three_quarter_left": {
+     "image": "tool/art/references/macron/three_quarter_left.png",
+     "description": "turned three-quarters towards the left of the picture, standing on the ground, arms relaxed",
+     "look": "big rounded rectangular ivory head, dark teal face screen with two cyan smiling arcs, a round teal ear disc on the near side, one small cyan antenna ball on a thin stem, round ivory body with a cyan chest light, teal ball joints, short limbs, cyan cuff bands on the far forearm, on the left side of the picture only, thick dark outline"
+    },
+    "side": {
+     "image": "tool/art/references/macron/side.png",
+     "description": "in full side view, facing the right of the picture, standing on the ground, arms relaxed",
+     "look": "big rounded rectangular ivory head with a round teal ear disc in the middle of its side and only an edge of the dark teal face screen showing, one small cyan antenna ball on a thin stem, round ivory body, teal ball joints, short limbs, cyan cuff bands on the near forearm only, thick dark outline"
+    },
+    "rear_three_quarter": {
+     "image": "tool/art/references/macron/rear_three_quarter.png",
+     "description": "from behind and turned three-quarters, facing the top right of the picture: we see the back of its big head and its back, and only a sliver of its side. The face screen is not visible",
+     "look": "big rounded rectangular ivory head with a round teal side ear disc, one small cyan antenna ball on a thin stem, round ivory body, teal ball joints, short limbs, cyan cuff bands on the forearm on the right side of the picture only, thick dark outline"
+    }
+   }
+  },
+  "register": {
+   "standingHeightPx": 720, "floorY": 912, "centerX": 384, "pixelScale": 3,
+   "stature": 0.35, "referenceFrame": "front_idle", "referenceWorldHeight": 37.0
+  }
+ }
 }
