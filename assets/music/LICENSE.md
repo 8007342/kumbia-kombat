@@ -9,6 +9,11 @@ recording, sample library, soundfont, downloaded MIDI, or artist recording was u
 as a source. Cumbia and Latin rhythmic conventions inform the compositions;
 these are original game instrumentals rather than claims of archival authenticity.
 
+The pool lawn's room score, success phrase and bridge were added the same way on
+2026-11-05. Swing conventions inform them: ride pattern, walking bass, the Charleston
+rhythm and common chord movement, none of which quotes a song. The melodies were
+written for this project and have not been compared against any database of tunes.
+
 The runtime synth uses mathematical oscillators and deterministic noise generated
 in memory. It includes no third-party recordings. General MIDI program and drum
 numbers in exports are interoperability identifiers, not bundled instrument audio.
@@ -20,5 +25,5 @@ separate public redistribution license or make claims about copyrightability of
 AI-assisted output. The owner should choose the repository's publication license
 before distributing source/assets under a named open license.
 
-Inventory: `scores/*.json` (14 original event scores), `midi/*.mid` (34 original
+Inventory: `scores/*.json` (17 original event scores), `midi/*.mid` (41 original
 Standard MIDI File type 1 arrangements), `manifest.json` (catalog).

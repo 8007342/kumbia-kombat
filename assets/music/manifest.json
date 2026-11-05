@@ -40,6 +40,14 @@
       "bars": 32,
       "baseBpm": 112,
       "fullBpm": 124
+    },
+    {
+      "id": "pool_swing",
+      "title": "Long Way Across the Lawn",
+      "path": "assets/music/scores/pool_swing.json",
+      "bars": 32,
+      "baseBpm": 128,
+      "fullBpm": 160
     }
   ],
   "transitions": {
@@ -93,6 +101,16 @@
         "parentScore": "vip_presence",
         "path": "assets/music/scores/vip_presence_success.json",
         "midiPath": "assets/music/midi/vip_presence_success.mid"
+      },
+      {
+        "id": "pool_swing_success",
+        "title": "Long Way Across the Lawn — Room Approval",
+        "bars": 2,
+        "baseBpm": 128,
+        "fullBpm": 160,
+        "parentScore": "pool_swing",
+        "path": "assets/music/scores/pool_swing_success.json",
+        "midiPath": "assets/music/midi/pool_swing_success.mid"
       }
     ],
     "bridges": [
@@ -139,6 +157,17 @@
         "toScore": "vip_presence",
         "path": "assets/music/scores/restroom_to_vip.json",
         "midiPath": "assets/music/midi/restroom_to_vip.mid"
+      },
+      {
+        "id": "bar_to_pool",
+        "title": "Out to the Lawn",
+        "bars": 2,
+        "baseBpm": 128,
+        "fullBpm": 128,
+        "fromScore": "bar_swag",
+        "toScore": "pool_swing",
+        "path": "assets/music/scores/bar_to_pool.json",
+        "midiPath": "assets/music/midi/bar_to_pool.mid"
       }
     ]
   }

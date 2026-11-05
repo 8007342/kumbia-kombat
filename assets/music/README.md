@@ -17,6 +17,7 @@ with `maxTier: 1` give way to fuller accompaniment at tier 2.
 | Crowd / Flow | Velvet Current | 32 bars, D Dorian | 108, 111, 114, 117, 120 | Marimba-style call and flute answer |
 | Restroom / Nerve | The Last Cubicle Sprint | 16 bars, E minor | 132, 135, 138, 141, 144 | Short square plucks and urgent timbales |
 | VIP / Presence | Gold at the Door | 32 bars, F major | 112, 115, 118, 121, 124 | Wide brass and final ensemble |
+| Pool lawn / Grace (draft) | Long Way Across the Lawn | 32 bars AABA, E-flat major | 128, 136, 144, 152, 160 | Swung ride, walking bass, brass riffs |
 
 `crowd_duende` is a stable asset ID; the selected player-facing stat is **Flow**.
 Every piece has two authored two-bar melodic phrases, arranged through eight-bar
@@ -53,8 +54,8 @@ truth, and no live random composition replaces the written score.
 See `LICENSE.md` for provenance and license status; `plan/music.md` for integration
 work and device/listening checks still required.
 
-The pack also contains five original two-bar success phrases and four two-bar
-bridges (14 JSON scores and 34 MIDI files in total). `manifest.transitions.successes`
+The pack also contains six original two-bar success phrases and five two-bar
+bridges (17 JSON scores and 41 MIDI files in total). `manifest.transitions.successes`
 maps each success to its room; `manifest.transitions.bridges` names its source and
 destination. Transition MIDI files export the success at its full-tier tempo and
 the bridge at the destination's base tempo. Every transition note plays at every
@@ -69,10 +70,12 @@ retaining the melodic answer and beat, giving the party an authored warm-down.
 | `crowd_duende_success` | Flow call; D-Dorian sixth and gentle descending resolution |
 | `restroom_nerve_success` | Urgent square-pluck call; short-note release into E minor |
 | `vip_presence_success` | Broad brass call; F-major tonic tag closes the whole night |
+| `pool_swing_success` | Lawn call raised an octave; E-flat tonic answer as the band thins |
 | `garden_to_bar` | Dry guiro/clave pivot, then the C-minor bar motif |
 | `bar_to_crowd` | Lighter clave pivot, then the D-Dorian crowd motif |
 | `crowd_to_restroom` | Tightening timbales, then the urgent E-minor motif |
 | `restroom_to_vip` | Spacious percussion pivot, then the opening F-major VIP motif |
+| `bar_to_pool` | Straight drum break, then the bass walks C, F, B-flat into swung E-flat |
 
 Every bridge begins with unpitched percussion, then introduces the destination key.
 Its downbeat takes the destination base tempo intentionally; this is an authored
@@ -86,3 +89,25 @@ Additional scheduler verification:
 ```sh
 dart --packages=build/music-preview/packages.json tool/music/transition_check.dart
 ```
+
+## Swing
+
+A score can set `swing: {ratioAt100, ratioAt300}` in `tool/music/generate.mjs`. Its
+notes are written on a straight grid and each offbeat is moved later. The ratio falls
+in a straight line with tempo, from `plan/research/swing-duet-research-2026-11-05.md`.
+A score holds one position per note but plays at five tempos, so a swung note is
+written once per tier, gated by `minTier` and `maxTier`. That is why `pool_swing` has
+about three times the events of a cumbia score. Scores without the setting are
+unchanged. A transition plays at one tier, so it swings for that tier's tempo.
+
+On the runtime synth the ride is pitch 73 and the hi-hat 75, its two high noise
+voices. General MIDI's ride (51) and hat (42) would get a negative frequency there.
+In a MIDI player those same numbers are a guiro and claves, so the `pool_swing`
+exports will not sound like a drum kit. Audition it in the score room instead.
+
+```sh
+node tool/music/validate_pool.mjs
+```
+
+This checks notes, tiers, tempos, the pool lawn's chart and its marks. It cannot say
+how the music sounds. Nobody has listened to these scores yet.

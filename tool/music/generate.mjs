@@ -79,6 +79,7 @@ function compose(p) {
       note('answer',base+4+offset,p.root+interval+12,duration*.6,42,2);
     }
   }
+  if(p.swing)events.splice(0,events.length,...swingEvents(events,p.swing,[0,3,6,9,12].map(d=>p.bpm+d)));
   events.sort((a,b)=>a.beat-b.beat||a.track.localeCompare(b.track)||a.pitch-b.pitch);
   const adornments=[
     {id:'spark',gesture:'up',quantizeBeats:.25,events:[[0,12,.12],[.25,16,.12],[.5,19,.25]]},
@@ -167,6 +168,201 @@ function composeBridge(from,to,index){
  result.tempoIntent='Written percussion pivot takes the destination base tempo at its downbeat; the second bar introduces the destination motif. No pitch/time crossfade.';
  return result;
 }
+// Swing feel, set per score with `swing:{ratioAt100,ratioAt300}`. Scores are
+// written on a straight grid; this moves each offbeat later within its beat.
+// The ratio (long eighth : short eighth) falls in a straight line with tempo, as
+// in plan/research/swing-duet-research-2026-11-05.md section 2. A score holds one
+// position per note but plays at five tempos, so a note whose swung position
+// differs between tiers is written once per tier, gated by minTier and maxTier.
+function swingFraction(bpm,swing){
+ const ratio=Math.max(1,swing.ratioAt100+(swing.ratioAt300-swing.ratioAt100)*(bpm-100)/200);
+ return ratio/(1+ratio);
+}
+const toTick=beat=>Math.round(beat*PPQ)/PPQ;
+function swungBeat(beat,fraction){
+ const whole=Math.floor(beat), within=beat-whole;
+ return whole+(within<=.5?within*2*fraction:fraction+(within-.5)*2*(1-fraction));
+}
+function swingNote(e,fraction){
+ const beat=toTick(swungBeat(e.beat,fraction));
+ // Drum lengths set the sound of the hit, so only pitched notes stretch.
+ const duration=e.track==='pulse'?e.duration:Math.max(1/PPQ,toTick(swungBeat(e.beat+e.duration,fraction))-beat);
+ return {...e,beat,duration};
+}
+function swingEvents(events,swing,bpms){
+ const out=[];
+ for(const e of events){
+  let run=null;
+  for(let tier=e.minTier;tier<=e.maxTier;tier++){
+   const moved=swingNote(e,swingFraction(bpms[tier],swing));
+   if(run&&run.beat===moved.beat&&run.duration===moved.duration)run.maxTier=tier;
+   else out.push(run={...moved,minTier:tier,maxTier:tier});
+  }
+ }
+ return out;
+}
+
+// The pool lawn: an original 32-bar AABA in E-flat. The runtime has no real
+// cymbal, so the ride is the synth's narrow noise voice (73) and the hi-hat its
+// wider one (75); GM's own ride and hat numbers would give it a negative pitch.
+const SWING={ratioAt100:3.5,ratioAt300:1};
+const chordKinds={'6':[0,4,7,9],'7':[0,4,7,10],'m7':[0,3,7,10],'m6':[0,3,7,9]};
+const chordNames={Eb6:[0,'6'],C7:[9,'7'],Fm7:[2,'m7'],Bb7:[7,'7'],Ab7:[5,'7'],Ab6:[5,'6'],Abm6:[5,'m6'],Gm7:[4,'m7']};
+const sectionA=[['Eb6'],['C7'],['Fm7'],['Bb7'],['Eb6'],['Ab7'],['Fm7','Bb7'],['Eb6','Bb7']];
+const sectionB=[['Gm7'],['C7'],['Fm7'],['Bb7'],['Ab6'],['Abm6'],['Gm7','C7'],['Fm7','Bb7']];
+const poolForm=[...sectionA,...sectionA.slice(0,7),['Eb6'],...sectionB,...sectionA];
+// [beat, semitones above the tonic, length], on a straight grid. Most phrases
+// share the chart's rhythm, so the tune teaches what the taps will ask for.
+const phraseA1=[[0,4,.9],[1,7,.45],[1.5,9,1.2],[3,7,.8],[4,13,.9],[5,9,.45],[5.5,7,.9],[6.5,4,1.2]];
+const phraseA2=[[0,5,.9],[1,9,.45],[1.5,12,1.2],[3,9,.8],[4,14,.9],[5,11,.45],[5.5,7,.9],[6.5,5,1.2]];
+const phraseA3=[[0,4,.9],[1,7,.45],[1.5,9,1.2],[3,12,.8],[4,15,.9],[5,12,.45],[5.5,9,.9],[6.5,5,1.2]];
+const phraseA4=[[0,9,.8],[1,5,.4],[1.5,2,.9],[3,7,.9],[4,4,.9],[5,7,.4],[5.5,4,.9],[6.5,5,1.2]];
+const phraseHome=[[0,9,.8],[1,5,.4],[1.5,2,.9],[3,7,.9],[4,4,.9],[5,7,.4],[5.5,4,.9],[6.5,0,1.3]];
+const phraseB1=[[0,11,1.8],[2,14,1.4],[3.5,11,.4],[4,13,1.8],[6,16,.9],[7,14,.7]];
+const phraseB2=[[0,9,1.8],[2,12,1.4],[3.5,9,.4],[4,11,1.8],[6,14,.9],[7,12,.7]];
+const phraseB3=[[0,12,1.8],[2,9,1.4],[3.5,5,.4],[4,8,1.8],[6,5,.9],[7,4,.7]];
+const phraseB4=[[0,7,.9],[1,4,.45],[2,13,.9],[3,7,.9],[4,12,.9],[5,9,.45],[6,14,.9],[7,11,.7]];
+const poolPhrases=[phraseA1,phraseA2,phraseA3,phraseA4,phraseA1,phraseA2,phraseA3,phraseHome,
+ phraseB1,phraseB2,phraseB3,phraseB4,phraseA1,phraseA2,phraseA3,phraseA4];
+const swingPieces=[{id:'pool_swing',title:'Long Way Across the Lawn',stat:'Grace',bars:32,bpms:[128,136,144,152,160],root:63,mode:'major',
+ swing:SWING,motif:phraseA1,program:71,color:'square-wave reed lead, sawtooth brass section, noise ride, walking triangle bass'}];
+const chordIn=(bar,beat)=>{const chords=poolForm[bar%poolForm.length];return chordNames[chords[chords.length>1&&beat>=2?1:0]]};
+const tonePitch=(root,[semis,kind],index,low)=>{
+ const pc=(root+semis+chordKinds[kind][index])%12;
+ return low+((pc-low)%12+12)%12;
+};
+function walkingBass(p,bar,note){
+ const b=bar*4, chords=poolForm[bar].map(name=>chordNames[name]);
+ const nextChord=chordIn((bar+1)%p.bars,0);
+ const shapes=[[0,1,2],[0,2,3],[0,3,2]];
+ const velocity=[84,70,78,70];
+ const parts=chords.length>1?[[0,2],[2,2]]:[[0,4]];
+ for(const [i,[start,length]] of parts.entries()){
+  const chord=chords[i], target=i+1<chords.length?chords[i+1]:nextChord;
+  const home=tonePitch(p.root,chord,0,39), landing=tonePitch(p.root,target,0,39);
+  const line=length===4?shapes[bar%3].map(index=>tonePitch(p.root,chord,index,home)):[home];
+  const last=line[line.length-1];
+  // Walk up or down a semitone into the next root, whichever is nearer.
+  const approach=[landing-1,landing+1,landing+11,landing+13].sort((x,y)=>Math.abs(x-last)-Math.abs(y-last)||x-y)[0];
+  for(const [j,pitch] of [...line,approach].entries())note('bass',b+start+j,pitch,.85,velocity[start+j]);
+  if(bar%4===3&&i===parts.length-1)note('bass',b+3.5,approach,.3,56,2);
+ }
+}
+function composeSwing(p){
+ const events=[], note=(track,beat,pitch,duration,velocity,minTier=0,maxTier=4)=>events.push({track,beat,pitch,duration,velocity,minTier,maxTier});
+ for(let bar=0;bar<p.bars;bar++){
+  const b=bar*4, even=bar%2===0, section=Math.floor(bar/8);
+  // Ride "ding, ding-a, ding, ding-a", hi-hat on 2 and 4, feathered kick.
+  for(const x of [0,1,1.5,2,3,3.5])note('pulse',b+x,73,.12,x%1?36:x%2?56:48);
+  for(const x of [1,3])note('pulse',b+x,75,.05,46);
+  for(const x of [0,1,2,3])note('pulse',b+x,36,.1,x===0?52:34);
+  walkingBass(p,bar,note);
+  // Comping follows the chart's one-bar cell, so taps land with the band. It
+  // is the rhythm of beats 0, 1, the swung 1.5, then 3, or 2.5 on even bars.
+  const last=even?2.5:3;
+  for(const x of [0,1.5,last]){
+   const chord=chordIn(bar,x);
+   for(const index of [1,3])note('guitar',b+x,tonePitch(p.root,chord,index,55),.28,44,0,1);
+   for(const index of [1,3])note('guitar',b+x,tonePitch(p.root,chord,index,55),.28,x===0?46:42,2);
+   note('guitar',b+x,tonePitch(p.root,chord,2,55),.28,38,2,3);
+  }
+  for(const index of [1,3])note('guitar',b+1,tonePitch(p.root,chordIn(bar,1),index,55),.2,36,2);
+  // Tier 1: snare chatter joins. Tier 3: a backbeat. Tier 4: a tom fill.
+  if(!even)for(const x of [1.5,3.5])note('pulse',b+x,38,.06,30,1);
+  if(even&&bar%4===2)note('pulse',b+2.5,36,.1,58,2);
+  for(const x of [1,3])note('pulse',b+x,38,.06,42,3);
+  if(bar%4===3)for(const [x,pitch,velocity] of [[2.5,65,56],[3,64,62],[3.5,63,68],[3.75,60,74]])note('pulse',b+x,pitch,.1,velocity,4);
+  // One brass riff, thicker by a voice at each tier after it enters. Voices are
+  // the seventh or sixth, third, fifth, then root, in close position.
+  const riff=(x,duration,velocity,enter)=>{
+   for(const [voice,index] of [3,1,2,0].entries()){
+    if(enter+voice>4)break;
+    note('brass',b+x,tonePitch(p.root,chordIn(bar,x),index,67),duration,velocity,enter+voice);
+   }
+  };
+  if(even)for(const [x,length] of [[2.5,.35],[3.5,.25]])riff(x,length,36,1);
+  else for(const [x,length] of [[1.5,.35],[2,.45]])riff(x,length,34,2);
+  if(section===2)for(const x of [.5,1.5,2.5,3.5])if(!(even&&x>=2.5)&&!(!even&&x===1.5))riff(x,.25,30,3);
+  if(section===3)for(const [x,length] of [[0,.3],[3,.4]])for(const index of [3,1,2])note('brass',b+x,tonePitch(p.root,chordIn(bar,x),index,67),length,36,4);
+  // A quiet high answer: tier 2 on the third bar of each four, tier 4 on the first too.
+  if(bar%2===0){
+   const enter=bar%4===2?2:4;
+   for(const [x,index] of [[.5,2],[1.5,1],[2.5,0]])note('answer',b+x,tonePitch(p.root,chordIn(bar,x),index,75),.4,44,enter);
+  }
+ }
+ for(const [phrase,line] of poolPhrases.entries()){
+  const base=phrase*8;
+  for(const [i,[offset,interval,duration]] of line.entries()){
+   // Tier 3 replaces the restrained hook with the complete phrase.
+   note('lead',base+offset,p.root+interval,duration,58,3);
+   if(i%2===0||i===line.length-1)note('lead',base+offset,p.root+interval,duration*.85,46,0,2);
+  }
+ }
+ const heard=swingEvents(events,p.swing,p.bpms);
+ heard.sort((a,c)=>a.beat-c.beat||a.track.localeCompare(c.track)||a.pitch-c.pitch);
+ const adornments=[
+  {id:'spark',gesture:'up',quantizeBeats:.25,events:[[0,12,.12],[.25,16,.12],[.5,19,.25]]},
+  {id:'dip',gesture:'down',quantizeBeats:.25,events:[[0,12,.16],[.25,7,.16],[.5,0,.3]]},
+  {id:'slide',gesture:'left',quantizeBeats:.25,events:[[0,7,.2],[.25,5,.2],[.5,4,.2],[.75,0,.2]]},
+  {id:'shine',gesture:'right',quantizeBeats:.25,events:[[0,0,.2],[.25,7,.2],[.5,12,.4]]},
+ ].map(a=>({...a,events:a.events.map(([beat,pitch,duration])=>({track:'answer',beat,pitch:p.root+pitch,duration,velocity:65,minTier:0}))}));
+ return {schemaVersion:1,id:p.id,title:p.title,stat:p.stat,composer:'Kumbia Kombat original project score',
+  license:'See assets/music/LICENSE.md',ppq:PPQ,beatsPerBar:4,bars:p.bars,phraseBars:2,
+  key:{midiTonic:p.root,mode:p.mode},style:'Original synth swing instrumental',color:p.color,swing:p.swing,
+  tiers:p.bpms.map((bpm,tier)=>({tier,bpm,name:['Ride and walk','Section enters','Riffs answer','Full melody','Shout chorus'][tier]})),
+  sections:Array.from({length:p.bars/8},(_,i)=>({bar:i*8,bars:8,name:['Invitation','Answer','Lift','Approval'][i]})),
+  tracks:tracks.map(t=>({...t,program:t.id==='lead'?p.program:t.program})),events:heard,adornments,
+  gameplayReference:{authority:'levels/pool-garden.json; score EOF does not approve an opponent',
+   phrasePassesPerTier:2,fullTierChallengePasses:2,cleanTargetSeconds:70},
+  transition:{cadenceBars:2,nextLevelCountInBars:1}};
+}
+function composeSwingSuccess(p){
+ const events=[], note=(track,beat,pitch,duration,velocity)=>events.push({track,beat,pitch,duration,velocity,minTier:0,maxTier:4});
+ // Same shape as the other rooms: recognition, then the room settles on the
+ // tonic while the beat carries on. A room clears at its top tier, so this
+ // swings for that tempo.
+ for(const x of [0,1,1.5,2,3,3.5])note('pulse',x,73,.12,x%1?36:x%2?56:48);
+ for(const x of [4,5,6,7])note('pulse',x,73,.12,x%2?34:28);
+ for(const x of [1,3])note('pulse',x,75,.05,46);
+ for(const x of [0,2,4,6])note('pulse',x,36,.14,x>=4?44:62);
+ for(const [x,pitch,velocity] of [[0,39,82],[1,43,70],[2,46,76],[3,50,68],[4,51,64],[6,46,58]])note('bass',x,pitch,x>=4?1.4:.85,velocity);
+ for(const x of [0,1.5,2.5])for(const index of [1,3,2])note('guitar',x,tonePitch(p.root,chordNames.Eb6,index,55),.28,50);
+ for(const x of [4,5.5])for(const index of [1,3])note('guitar',x,tonePitch(p.root,chordNames.Eb6,index,55),.28,36);
+ for(const [x,interval,duration] of [...p.motif.filter(n=>n[0]<4),[4,7,.75],[5,9,.4],[5.5,7,.9],[6.5,4,.4],[7,0,.9]])
+  note('lead',x,p.root+interval+12,duration,x>=4?50:60);
+ for(const interval of [0,4,7])note('brass',7,p.root+interval,.875,40);
+ const fraction=swingFraction(p.bpms[4],p.swing);
+ const result=transitionBase(p.id+'_success',p.title+' — Room Approval',p,p.bpms,events.map(e=>swingNote(e,fraction)),'success');
+ result.style='Original synth swing instrumental';result.parentScore=p.id;result.swing=p.swing;
+ result.musicalIntent='Quote the lawn call an octave up, then thin the band as the tonic answer settles.';
+ return result;
+}
+function composeBarToPool(to){
+ const events=[], note=(track,beat,pitch,duration,velocity)=>events.push({track,beat,pitch,duration,velocity,minTier:0,maxTier:4});
+ // Bar one is percussion on a straight grid, the last of the bar's feel. Bar two
+ // swings: the bass starts on the bar's C and walks the circle of fifths to the
+ // lawn's E-flat. C minor and E-flat major share every note, so nothing jars.
+ for(const beat of [0,1.5,3])note('pulse',beat,75,.1,62);
+ for(let beat=0;beat<3.5;beat+=.5)note('pulse',beat,73,.13,beat%1===0?40:28);
+ for(const beat of [0,2])note('pulse',beat,36,.16,78);
+ for(const [beat,pitch,velocity] of [[2.5,60,56],[3,63,62],[3.5,65,68]])note('pulse',beat,pitch,.14,velocity);
+ note('pulse',3.75,38,.1,72);
+ for(const x of [4,5,5.5,6,7,7.5])note('pulse',x,73,.12,x%1?36:x%2?56:48);
+ for(const x of [5,7])note('pulse',x,75,.05,46);
+ for(const x of [4,6])note('pulse',x,36,.14,70);
+ for(const [x,pitch] of [[4,48],[5,51],[6,53],[7,46]])note('bass',x,pitch,.85,x===4?82:74);
+ const shells=[[4,'m7',0],[5.5,'m7',0],[6,'7',5],[7.5,'7',10]];
+ for(const [x,kind,semis] of shells)for(const index of [1,3])note('guitar',x,tonePitch(60,[semis,kind],index,55),.26,48);
+ for(const [offset,interval,duration] of to.motif.filter(n=>n[0]<3.5))note('answer',4+offset,to.root+interval,Math.min(duration,3.4-offset),72);
+ for(const index of [1,3,2])note('brass',7.5,tonePitch(60,[10,'7'],index,67),.4,52);
+ note('pulse',7.75,65,.12,72);
+ const fraction=swingFraction(to.bpms[0],to.swing);
+ const result=transitionBase('bar_to_pool','Out to the Lawn',to,to.bpms[0],events.map(e=>e.beat<4?e:swingNote(e,fraction)),'bridge');
+ result.style='Original synth swing instrumental';result.fromScore='bar_swag';result.toScore=to.id;result.swing=to.swing;
+ result.musicalIntent='The bar\'s straight C-minor feel ends in a drum break; the bass walks C, F, B-flat into E-flat major and the band starts to swing.';
+ result.tempoIntent='Takes the lawn\'s base tempo at its downbeat, as every bridge does, so the count-in already has the new pulse. No pitch or time crossfade.';
+ return result;
+}
 function variable(n){const a=[n&127];while(n>>=7)a.unshift((n&127)|128);return Buffer.from(a)}
 const u16=n=>{const b=Buffer.alloc(2);b.writeUInt16BE(n);return b};
 const u32=n=>{const b=Buffer.alloc(4);b.writeUInt32BE(n);return b};
@@ -211,6 +407,23 @@ for(const [index,piece] of pieces.entries()){
  writeFileSync(resolve(root,'assets/music/scores/'+bridge.id+'.json'),JSON.stringify(bridge)+'\n');
  writeFileSync(resolve(root,'assets/music/midi/'+bridge.id+'.mid'),midi(bridge,0));
  manifest.transitions.bridges.push({id:bridge.id,title:bridge.title,bars:2,baseBpm:bridge.tiers[0].bpm,fullBpm:bridge.tiers[4].bpm,fromScore:piece.id,toScore:pieces[index+1].id,path:'assets/music/scores/'+bridge.id+'.json',midiPath:'assets/music/midi/'+bridge.id+'.mid'});
+ console.log(bridge.id+': original two-bar percussion pivot and pickup');
+}
+for(const piece of swingPieces){
+ const score=composeSwing(piece);
+ writeFileSync(resolve(root,`assets/music/scores/${piece.id}.json`),JSON.stringify(score)+'\n');
+ for(let tier=0;tier<5;tier++)writeFileSync(resolve(root,`assets/music/midi/${piece.id}_tier${tier}.mid`),midi(score,tier));
+ manifest.scores.push({id:score.id,title:score.title,path:`assets/music/scores/${score.id}.json`,bars:score.bars,baseBpm:score.tiers[0].bpm,fullBpm:score.tiers[4].bpm});
+ console.log(`${score.id}: ${score.events.length} notes, ${score.bars} bars, five MIDI arrangements`);
+ const success=composeSwingSuccess(piece);
+ writeFileSync(resolve(root,'assets/music/scores/'+success.id+'.json'),JSON.stringify(success)+'\n');
+ writeFileSync(resolve(root,'assets/music/midi/'+success.id+'.mid'),midi(success,4));
+ manifest.transitions.successes.push({id:success.id,title:success.title,bars:2,baseBpm:success.tiers[0].bpm,fullBpm:success.tiers[4].bpm,parentScore:piece.id,path:'assets/music/scores/'+success.id+'.json',midiPath:'assets/music/midi/'+success.id+'.mid'});
+ console.log(success.id+': original two-bar success phrase');
+ const bridge=composeBarToPool(piece);
+ writeFileSync(resolve(root,'assets/music/scores/'+bridge.id+'.json'),JSON.stringify(bridge)+'\n');
+ writeFileSync(resolve(root,'assets/music/midi/'+bridge.id+'.mid'),midi(bridge,0));
+ manifest.transitions.bridges.push({id:bridge.id,title:bridge.title,bars:2,baseBpm:bridge.tiers[0].bpm,fullBpm:bridge.tiers[4].bpm,fromScore:'bar_swag',toScore:piece.id,path:'assets/music/scores/'+bridge.id+'.json',midiPath:'assets/music/midi/'+bridge.id+'.mid'});
  console.log(bridge.id+': original two-bar percussion pivot and pickup');
 }
 writeFileSync(resolve(root,'assets/music/manifest.json'),JSON.stringify(manifest,null,2)+'\n');
