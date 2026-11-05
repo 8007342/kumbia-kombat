@@ -10,7 +10,7 @@
  },
  "10": {
   "_meta": {
-   "title": "$prompt"
+   "title": "prompt, baked per pose by plan_qwen_frames"
   },
   "class_type": "TextEncodeQwenImageEditPlus",
   "inputs": {
@@ -26,7 +26,7 @@
     "2",
     0
    ],
-   "prompt": "Redraw the man from image 1 in exactly the pose, position, size and proportions of the flat figure in image 2. Keep his face, panama hat, purple guayabera with its teal embroidered panels, cream trousers and teal shoes exactly as in image 1. Same pixel art style with a crisp pixel grid and dark outline. Clean-shaven with a thin pencil mustache, closed mouth. Plain light grey background, full body.",
+   "prompt": "Replaced per pose by plan_qwen_frames.py.",
    "vae": [
     "7",
     0

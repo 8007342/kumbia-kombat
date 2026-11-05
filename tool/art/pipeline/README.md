@@ -33,11 +33,13 @@ The rig gives Qwen only a skeleton, and the model sheet gives it the character:
 
 - `score_frames.py` only ranks candidates. It can't see an extra arm, a lost hand or a goatee, so
   look at every candidate. It also rewrites `selection.json`, so run it before picking by eye.
-- Qwen follows the skeleton over the prompt and copies the sheet's hanging arms. Where the rig's
-  wrists stop short (hands meant to reach a hat brim), move them for the drawing in
-  `art_runs/inputs/<family>/skeleton_overrides.json`.
-- It draws one forearm across the chest but not two. Build a symmetric pose such as a clap from one
-  arm with `mirror_half.py`, and record `"mirrored": true` in the selection.
+- Where the rig's wrists stop short (hands meant to reach a hat brim, or to meet in a clap), move
+  them for the drawing in `art_runs/inputs/<family>/skeleton_overrides.json`.
+- Each pose's prompt is baked into `art_runs/<run>/workflows/<pose>.api.json`, because the host's
+  prompt override didn't reach this node (2001-stpr). Check a job with ComfyUI's `/history` if
+  results look unrelated to the prompt.
+- `mirror_half.py` builds a symmetric pose from one arm. Only the prompt-less Gatekeeper wave needed
+  it; with real prompts the model draws two hands meeting by itself.
 
 ## Characters as data
 

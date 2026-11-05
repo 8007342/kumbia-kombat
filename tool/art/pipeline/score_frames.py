@@ -27,10 +27,6 @@ from scipy import ndimage as ndi
 
 # OpenPose COCO-18 indices in rig.json
 JOINTS = {"r_wri": 4, "l_wri": 7, "r_elb": 3, "l_elb": 6, "r_kne": 9, "l_kne": 12, "r_ank": 10, "l_ank": 13}
-# Sheet colours; each joint looks for the part that should be at it.
-SKIN = np.array([224, 116, 43])
-TROUSERS = np.array([252, 237, 196])
-SHOES = np.array([18, 102, 106])
 TOLERANCE = 18  # canvas pixels
 
 
@@ -44,7 +40,7 @@ def skin_mask(rgb: np.ndarray) -> np.ndarray:
     return (r > 90) & (r - g > 35) & (g - b > 15)
 
 
-def measure(path: Path, pose: dict, rig_mask: np.ndarray) -> dict:
+def measure(path: Path, pose: dict, rig_mask: np.ndarray, trousers: np.ndarray, shoes: np.ndarray) -> dict:
     a = np.array(Image.open(path).convert("RGBA"))
     rgb, fig = a[..., :3], a[..., 3] > 128
     h, w = fig.shape
@@ -55,8 +51,8 @@ def measure(path: Path, pose: dict, rig_mask: np.ndarray) -> dict:
     skin = skin_mask(rgb) & fig
     fields = {
         "wri": ndi.distance_transform_edt(~(skin & ~near_head)) if (skin & ~near_head).any() else None,
-        "kne": ndi.distance_transform_edt(~(near(rgb, TROUSERS, 60) & fig)),
-        "ank": ndi.distance_transform_edt(~(near(rgb, SHOES, 60) & fig)),
+        "kne": ndi.distance_transform_edt(~(near(rgb, trousers, 60) & fig)),
+        "ank": ndi.distance_transform_edt(~(near(rgb, shoes, 60) & fig)),
         "elb": ndi.distance_transform_edt(~fig),
     }
     errors = {}
@@ -90,6 +86,9 @@ def main() -> None:
     a = ap.parse_args()
     run = Path("art_runs") / a.run
     rig_dir = Path("art_runs/inputs") / a.family
+    # Each joint looks for the part that should be at it, in the family's own colours.
+    proxy = json.loads(Path(f"tool/art/families/{a.family}.json").read_text())["regionProxyColours"]
+    trousers, shoes = (np.array([int(proxy[k][i : i + 2], 16) for i in (1, 3, 5)]) for k in ("trousers", "shoes"))
     poses = {p["id"]: p for p in json.loads((rig_dir / "rig.json").read_text())["poses"]}
     root = run / a.dir if not Path(a.dir).is_absolute() else Path(a.dir)
     scores, selection, flagged = {}, {}, []
@@ -99,7 +98,7 @@ def main() -> None:
         rig_mask = regions[..., 3] > 0
         if rig_mask.all():
             rig_mask = regions[..., :3].max(axis=-1) > 8
-        cands = {p.stem if p.parent.name == pid else "0": measure(p, pose, rig_mask) for p in paths if p.exists()}
+        cands = {p.stem if p.parent.name == pid else "0": measure(p, pose, rig_mask, trousers, shoes) for p in paths if p.exists()}
         if not cands:
             continue
         scores[pid] = cands

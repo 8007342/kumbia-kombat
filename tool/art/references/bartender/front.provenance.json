@@ -1,0 +1,92 @@
+{
+  "schema": "tillandsias.provenance/v1",
+  "pipelineVersion": "56.11.4.2",
+  "engine": {
+    "name": "comfyui",
+    "ref": "v0.40.0",
+    "sha": "3541246a9c997f4b8c32f9f88f3c985d02021c79",
+    "nodes": [
+      {
+        "name": "ComfyUI-GGUF",
+        "commit": "6ea2651e7df66d7585f6ffee804b20e92fb38b8a"
+      },
+      {
+        "name": "ComfyUI-layerdiffuse",
+        "commit": "b4f6a9e024064a4489f774a8b91049ce0b606ea3"
+      },
+      {
+        "name": "ComfyUI_BiRefNet_ll",
+        "commit": "5443a2aa16cfbd98bb2f7dcc8bdcb70439e08529"
+      },
+      {
+        "name": "ComfyUI_IPAdapter_plus",
+        "commit": "a0f451a5113cf9becb0847b92884cb10cbdec0ef"
+      }
+    ]
+  },
+  "workflow": {
+    "path": "tool/art/workflows/experiments/qwen-frame-placeholder.api.json",
+    "sha256": "ced096581a67b05bac365b93382d1a3dfdb34a9438e815f1e876135d6f484c13"
+  },
+  "models": [
+    {
+      "file": "qwen_image_edit_2511_fp8mixed.safetensors",
+      "repo": "Comfy-Org/Qwen-Image-Edit",
+      "revision": "f68ace85e60b4a02a323e394253731947657b7d2",
+      "sha256": "c9fdc158e46d3b61ef75f21ae866ca2fe808bf4a53643120d1c1e87c19280a4e",
+      "licence": "apache-2.0",
+      "consent": null
+    },
+    {
+      "file": "Qwen-Image-Edit-2509-Lightning-4steps-V1.0-bf16.safetensors",
+      "repo": "lightx2v/Qwen-Image-Lightning",
+      "revision": "d468c534b360e0754c6bf9e38ed49e1e09cd2e2a",
+      "sha256": "2a32ce938ec71db2b49a817b4844ae86995569518dea56ee0ddc209cbe8e1377",
+      "licence": "apache-2.0",
+      "consent": null
+    },
+    {
+      "file": "model.safetensors",
+      "repo": "ZhengPeng7/BiRefNet",
+      "revision": "e2bf8e4460fc8fa32bba5ea4d94b3233d367b0e4",
+      "sha256": "9ab37426bf4de0567af6b5d21b16151357149139362e6e8992021b8ce356a154",
+      "licence": "mit",
+      "consent": null
+    },
+    {
+      "file": "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+      "repo": "Comfy-Org/Qwen-Image",
+      "revision": "1f12b17be14c89b026c51a91d67c32f84bb047bc",
+      "sha256": "cb5636d852a0ea6a9075ab1bef496c0db7aef13c02350571e388aea959c5c0b4",
+      "licence": "apache-2.0",
+      "consent": null
+    },
+    {
+      "file": "qwen_image_vae.safetensors",
+      "repo": "Comfy-Org/Qwen-Image",
+      "revision": "1f12b17be14c89b026c51a91d67c32f84bb047bc",
+      "sha256": "a70580f0213e67967ee9c95f05bb400e8fb08307e017a924bf3441223e023d1f",
+      "licence": "apache-2.0",
+      "consent": null
+    }
+  ],
+  "cli": null,
+  "inputs": [
+    {
+      "name": "pose_proxy",
+      "path": "/work/tmp/imagegen/kumbia/bartender-sheet-20261105/neutral.skeleton.png",
+      "sha256": "8bafb791671276592807555fec14d9b895d7cdce5791341e587bbc1f6cf6c488"
+    },
+    {
+      "name": "sheet_front",
+      "path": "/work/tmp/imagegen/kumbia/bartender-sheet-20261105/pick1.png",
+      "sha256": "dcd01e123836089ba904afa73cf81ab9feee67f11d325ee979859693a260e64b"
+    }
+  ],
+  "seed": 940301,
+  "prompt": "",
+  "negative_prompt": "",
+  "tier": "I1",
+  "placement": "cuda",
+  "family": null
+}

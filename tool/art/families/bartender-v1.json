@@ -21,9 +21,9 @@
   "native": {
    "perRoom": true,
    "bar": {
-    "width": 96,
-    "height": 120,
-    "pixelScale": 8
+    "width": 256,
+    "height": 320,
+    "pixelScale": 3
    }
   },
   "margin": {
@@ -51,14 +51,14 @@
  "references": [
   {
    "role": "identity",
-   "image": "assets/art/bar/bartender.png",
+   "image": "tool/art/references/bartender/front.png",
    "crop": {
     "frame": "full",
     "rect": [
-     160,
-     70,
-     780,
-     1400
+     193,
+     64,
+     371,
+     891
     ]
    },
    "adapter": "ip-adapter-sdxl",
@@ -551,13 +551,13 @@
  },
  "rigInputs": "art_runs/inputs/bartender-v1",
  "regionProxyColours": {
-  "skin": "#B5784A",
+  "skin": "#E28845",
   "hair": "#2A1712",
   "shirt": "#E8DDC2",
-  "cloth": "#0F5A5E",
-  "apron": "#762D51",
-  "trousers": "#3A1A38",
-  "shoes": "#C98A1E",
+  "cloth": "#0F5458",
+  "apron": "#7E2949",
+  "trousers": "#2A1C2A",
+  "shoes": "#E08A1E",
   "prop": "#BFC6CC"
  },
  "poses": [

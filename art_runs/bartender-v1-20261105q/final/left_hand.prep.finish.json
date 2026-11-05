@@ -1,0 +1,24 @@
+{
+  "schema": "tillandsias.finish/v1",
+  "output": "/work/tmp/imagegen/kumbia/bartender-v1-20261105q/final/left_hand.prep.png",
+  "output_sha256": "beb81069e5b1d80aa6b48c642c87ffcf7c3335b5e08f4b238fe8e050475c0207",
+  "input": "/work/tmp/imagegen/kumbia/bartender-v1-20261105q/selected/left_hand.prep.png",
+  "input_sha256": "d47062ca2e46aed9eb4933ecfefc035051f8f2dc0750d4b9ac66c8ef8c6d7f00",
+  "matte": null,
+  "matte_sha256": null,
+  "family": "tool/art/families/bartender-v1.json",
+  "family_sha256": "e5ad78673070f1d23b425f18ca233d61a756d5379ab6c4a974d7671df8877e79",
+  "palette": "tool/art/palettes/bartender.json",
+  "palette_sha256": "534a71ca60e163702280caf19bde714340b88cf072270f22ac5bb8384b43684b",
+  "room": "bar",
+  "params": {
+    "alpha": "engine",
+    "tolerance": 0,
+    "sample": "centre",
+    "dither": "none",
+    "native": [
+      256,
+      320
+    ]
+  }
+}
