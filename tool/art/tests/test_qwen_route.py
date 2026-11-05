@@ -1,17 +1,24 @@
 """The Qwen route as data: prompts reproduce what the accepted run baked, and hand fixes survive."""
 import copy
 import json
+import os
 import re
 import sys
 import tempfile
 import unittest
 from pathlib import Path
 
+import numpy as np
+from PIL import Image
+
 ART = Path(__file__).resolve().parents[1]
 ROOT = ART.parents[1]
 sys.path.insert(0, str(ART / "pipeline"))
+import art as A  # noqa: E402
+import colour as C  # noqa: E402
 import definitions as D  # noqa: E402
 import plan_qwen_frames as Q  # noqa: E402
+from stages import Store  # noqa: E402
 
 RUN = "bartender-v1-20261105q"
 HAND_EDITED = {"clap.open", "groove.pass_l2"}
@@ -94,6 +101,102 @@ class Wording(unittest.TestCase):
         self.c["drawing"]["poseOverrides"]["clap.opne"] = {"description": "typo"}
         with self.assertRaisesRegex(D.DefinitionError, r"drawing.poseOverrides.clap.opne: unknown pose"):
             Q.prompts(self.c, self.backend)
+
+
+class Build(unittest.TestCase):
+    """art.py on the default route, no GPU: the plan, then a wave's whole bookkeeping."""
+
+    @classmethod
+    def setUpClass(cls):
+        cls.cwd = os.getcwd()
+        os.chdir(ROOT)
+        cls.tmp = tempfile.TemporaryDirectory()
+        cls.t = Path(cls.tmp.name)
+        for d in ("runs", "fam", "pal", "atlas", "lane"):
+            (cls.t / d).mkdir()
+        cls.paths = A.Paths(store=Store(cls.t / "store"), runs=cls.t / "runs", lane=cls.t / "lane",
+                            families=cls.t / "fam", palettes=cls.t / "pal", atlas_dir=cls.t / "atlas")
+        cls.bar = D.load_character("bartender")
+        cls.gk = D.load_character("gatekeeper")
+        cls.rig = json.loads((ROOT / "art_runs/inputs/gatekeeper-v3/rig.json").read_text())
+
+    @classmethod
+    def tearDownClass(cls):
+        os.chdir(cls.cwd)
+        cls.tmp.cleanup()
+
+    def dry(self, c, **kw):
+        return A.build(c, self.paths, dry_run=True, **kw)
+
+    def test_accepted_frames_cost_nothing(self):
+        rep = self.dry(self.bar)
+        self.assertEqual(rep["counts"], {"accepted": 64})
+        self.assertEqual((rep["jobsTotal"], rep["estimatedImages"], rep["gpu"]), (0, 0, False))
+
+    def test_a_look_edit_redraws_all_and_says_what_it_costs(self):
+        c = copy.deepcopy(self.bar)
+        c["drawing"]["look"] += ", red scarf"
+        rep = self.dry(c)
+        self.assertEqual(rep["counts"], {"full": 64})
+        self.assertEqual(rep["redrawReasons"], {"prompt differs from the accepted run": 64})
+        self.assertEqual((rep["jobsTotal"], rep["estimatedImages"], rep["estimatedMinutes"]), (64, 256, 98.1))
+
+    def test_one_fix_redraws_one_pose(self):
+        c = copy.deepcopy(self.bar)
+        c["drawing"]["poseOverrides"]["clap.close"] = {"description": "hands nearly meeting at chest height"}
+        rep = self.dry(c)
+        self.assertEqual(rep["counts"], {"accepted": 63, "full": 1})
+        self.assertEqual((rep["jobsTotal"], rep["estimatedImages"]), (1, 4))
+        self.assertEqual(list(rep["samplePrompt"]), ["clap.close"])
+
+    def test_the_old_route_stays_selectable(self):
+        rig = json.loads((ROOT / "art_runs/inputs/bartender-v1/rig.json").read_text())
+        rep = self.dry(self.bar, backend_id="sdxl-base-1", rig=rig)
+        self.assertEqual(rep["estimatedImages"], 256)
+
+    def test_a_dry_run_writes_nothing(self):
+        before = sorted(str(p) for p in self.t.rglob("*"))
+        self.dry(self.gk, show_prompts=True)
+        self.assertEqual(before, sorted(str(p) for p in self.t.rglob("*")))
+
+    def test_a_wave_queues_ingests_packs_and_recolours(self):
+        first = A.build(self.gk, self.paths, rig=self.rig, run="wave")
+        self.assertEqual((first["queued"], first["held"], first["packed"]), (64, 0, False))
+        jobs = json.loads((self.paths.runs / "wave" / "jobs.json").read_text())
+        self.assertEqual(len(jobs), 64)
+        moved = next(j for j in jobs if j["pose"] == "clap.open")
+        self.assertTrue(Path(moved["args"]["inputs"]["pose_proxy"]).exists())
+        self.assertTrue((self.paths.lane / "wave" / "in" / "clap.open.adjusted.png").exists(), "skeleton overrides reach the drawing")
+        baked = json.loads(Path(moved["args"]["workflow"]).read_text())
+        self.assertIn("standing in that exact pose", baked["10"]["inputs"]["prompt"])
+        shirt = C.build_ramps(self.gk, D.load_style("party-pixel"))["shirt"]["shades"][1]
+        final = self.paths.runs / "wave" / "final"
+        final.mkdir(parents=True)
+        for i, pid in enumerate(j["pose"] for j in jobs):
+            a = np.zeros((120, 96, 4), np.uint8)
+            a[40:100, 20:70] = (*C.hex_to_rgb(shirt), 255)
+            a[100, 20 + i] = (0x1A, 0x10, 0x18, 255)
+            Image.fromarray(a, "RGBA").save(final / f"{pid}.png")
+        self.assertEqual(A.ingest(self.gk, "wave", self.paths)["missing"], [])
+        packed = A.build(self.gk, self.paths, rig=self.rig, run="wave")
+        self.assertEqual(packed["counts"], {"reuse": 64})
+        self.assertTrue(packed["packed"])
+
+        def edited(**drawing):
+            c = copy.deepcopy(self.gk)
+            c["drawing"].update(drawing)
+            return c
+
+        recoloured = copy.deepcopy(self.gk)
+        next(g for g in recoloured["garments"] if g["id"] == "shirt")["colour"] = "#27548A"
+        rep = self.dry(recoloured, rig=self.rig)
+        self.assertEqual(rep["counts"].get("full", 0), 0, "a colour edit needs no GPU")
+        self.assertGreater(rep["counts"]["recolour"], 0)
+        look = self.dry(edited(look=self.gk["drawing"]["look"] + ", wide round face"), rig=self.rig)
+        self.assertEqual(look["counts"], {"full": 64})
+        self.assertEqual(look["redrawReasons"], {"prompt changed": 64})
+        fix = self.dry(edited(poseOverrides={"clap.close": {"description": "hands nearly meeting"}}), rig=self.rig)
+        self.assertEqual(fix["counts"], {"full": 1, "reuse": 63})
 
 
 if __name__ == "__main__":

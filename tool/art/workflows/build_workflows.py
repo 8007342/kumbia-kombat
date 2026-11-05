@@ -165,8 +165,8 @@ def main() -> None:
     (HERE / "profiles.json").write_text(json.dumps(PROFILES, indent=1) + "\n")
     for path in sorted(BACKENDS.glob("*.json")):
         backend = json.loads(path.read_text())
-        if backend.get("role") != "pose-frame":
-            continue
+        if backend.get("role") != "pose-frame" or backend.get("route") == "qwen":
+            continue  # the Qwen route bakes one workflow per pose from its own graph
         folder = HERE / backend["id"]
         folder.mkdir(exist_ok=True)
         for stem, wf in backend_workflows(backend, m).items():

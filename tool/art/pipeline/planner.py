@@ -20,6 +20,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import colour as C  # noqa: E402
 import definitions as D  # noqa: E402
+import plan_qwen_frames as Q  # noqa: E402
 from stages import key_of  # noqa: E402
 
 MODES = ("none", "recolour", "finish", "masked", "full")
@@ -64,6 +65,10 @@ def diff_definitions(old: dict, new: dict) -> list[dict]:
                          ("style", "style"), ("backend", "backend"), ("seedBase", "seed"), ("references", "references")):
         if old.get(field) != new.get(field):
             changes.append({"part": label, "what": label, "mode": "full", "regions": None})
+    if old.get("drawing") != new.get("drawing"):
+        poses = drawing_changes(old, new)
+        if poses is None or poses:  # an edit no frame sees, such as a note, changes nothing
+            changes.append({"part": "drawing", "what": "drawing", "mode": "full", "regions": None, "poses": poses})
     om, nm = old["motion"], new["motion"]
     if om["set"] != nm["set"]:
         changes.append({"part": "motion", "what": "motion set", "mode": "full", "regions": None})
@@ -75,6 +80,17 @@ def diff_definitions(old: dict, new: dict) -> list[dict]:
     if old.get("targets") != new.get("targets"):
         changes.append({"part": "targets", "what": "targets", "mode": "finish", "regions": None})
     return changes
+
+
+def drawing_changes(old: dict, new: dict) -> list[str] | None:
+    """Which poses a `drawing` edit reaches, or None for all of them."""
+    a, b = old.get("drawing"), new.get("drawing")
+    if not a or not b or any(a.get(f) != b.get(f) for f in ("seed", "count", "skeletonScale", "sheet")):
+        return None
+    pa, pb = Q.prompts(old), Q.prompts(new)
+    return sorted(p for p in set(pa) | set(pb) if pa.get(p) != pb.get(p)
+                  or a.get("skeletonOverrides", {}).get(p) != b.get("skeletonOverrides", {}).get(p)
+                  or a.get("poseOverrides", {}).get(p) != b.get("poseOverrides", {}).get(p))
 
 
 def visible_regions(rig_pose: dict) -> set[str]:
@@ -130,11 +146,13 @@ def plan(old: dict, new: dict, rig: dict, style: dict, backend: dict, *, new_rig
     frames, counts = {}, {m: 0 for m in MODES}
     for rp in rig["poses"]:
         mode, why = frame_mode(changes, rp, new_by_id.get(rp["id"]))
+        if mode == "masked" and backend.get("route") == "qwen":
+            mode = "full"  # the Qwen route redraws; it has no masked pass
         if force and mode != "none" and RANK[force] > RANK[mode]:
             mode = force
         frames[rp["id"]] = {"mode": mode, "reasons": why}
         counts[mode] += 1
-    per_pose = style.get("generation", {}).get("count_per_pose", 1)
+    per_pose = backend.get("countPerPose") or style.get("generation", {}).get("count_per_pose", 1)
     images = (counts["masked"] + counts["full"]) * per_pose
     warnings = []
     for ch in changes:
