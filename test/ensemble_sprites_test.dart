@@ -70,7 +70,7 @@ void main() {
           as Map<String, dynamic>;
 
   test(
-    'all seven actual sheets supply 132 explicit bounded transparent frames',
+    'all seven actual sheets supply 260 explicit bounded transparent frames',
     () async {
       final manifest = EnsembleManifest.fromJson(json());
       expect(manifest.atlases.keys, containsAll(EnsembleManifest.atlasIds));
@@ -79,7 +79,7 @@ void main() {
           0,
           (count, atlas) => count + atlas.art.frames.length,
         ),
-        132,
+        260,
       );
       for (final definition in manifest.atlases.values) {
         final codec = await ui.instantiateImageCodec(
@@ -131,7 +131,14 @@ void main() {
   );
 
   test('anatomical correction composes with room facing by XOR', () {
-    final manifest = EnsembleManifest.fromJson(json());
+    final data = json();
+    for (final id in ['gatekeeper', 'bartender']) {
+      // The v3 sheets draw each side, so mirroring is only exercised here.
+      final frames = data['atlases'][id]['frames'] as Map;
+      expect(frames['right_foot']['mirror'], isNot(true));
+      frames['right_foot']['mirror'] = true;
+    }
+    final manifest = EnsembleManifest.fromJson(data);
     for (final id in ['gatekeeper', 'bartender']) {
       final atlas = manifest.atlases[id]!;
       expect(atlas.flipFor('right_foot'), isTrue);

@@ -189,6 +189,7 @@ class GardenSceneGame extends FlameGame {
         _background == null) {
       return;
     }
+    _outfits!.holdSlowRasters = session?.running ?? false;
     final paused = presentationPaused || session?.phase == GardenPhase.paused;
     final sampledBeat = presentationBeat ?? session?.positionBeats ?? 0;
     final beat = paused ? _lastBeat : sampledBeat;

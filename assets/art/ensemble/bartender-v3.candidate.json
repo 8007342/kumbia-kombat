@@ -1,0 +1,3153 @@
+{
+ "atlas": "bartender",
+ "image": "bartender-v3.png",
+ "imageWidth": 1024,
+ "imageHeight": 1960,
+ "referenceFrame": "occupied",
+ "family": "tool/art/families/bartender-v1.json",
+ "animationReferences": {
+  "registry": "tool/art/references/animation-principles.json",
+  "research": [
+   "plan/research/gatekeeper-dance-2026-11-02.md",
+   "plan/dance-fluidity-pass.md",
+   "plan/opponent-depth-staging-pass.md"
+  ],
+  "principlesUsed": [
+   "anticipation",
+   "contrapposto",
+   "exaggeration-accent",
+   "follow-through",
+   "line-of-action",
+   "no-twinning",
+   "planted-pivot",
+   "secondary-action",
+   "staging-silhouette",
+   "timing-on-beat"
+  ],
+  "sourcesUsed": [
+   "cartwright-gdc2014",
+   "contrapposto-fonseca",
+   "dead-cells-pipeline",
+   "disney-process",
+   "illusion-of-life",
+   "silhouette-test",
+   "simogo-bsb",
+   "slynyrd-53",
+   "slynyrd-55",
+   "twinning",
+   "ubisoft-foot-ik",
+   "williams-survival-kit"
+  ]
+ },
+ "ramps": {
+  "skin": {
+   "region": "skin",
+   "alsoIn": [],
+   "shades": [
+    "#883D00",
+    "#B26324",
+    "#E28845",
+    "#FBAC76"
+   ]
+  },
+  "hair": {
+   "region": "hair",
+   "alsoIn": [],
+   "shades": [
+    "#010000",
+    "#0A0100",
+    "#2A1712",
+    "#42302B"
+   ]
+  },
+  "shirt": {
+   "region": "shirt",
+   "alsoIn": [],
+   "shades": [
+    "#958B74",
+    "#BDB39B",
+    "#E8DDC2",
+    "#FFFBE4"
+   ]
+  },
+  "sleeves": {
+   "region": "shirt",
+   "alsoIn": [],
+   "shades": [
+    "#877C60",
+    "#AEA387",
+    "#D9CCAC",
+    "#F8EDD1"
+   ]
+  },
+  "waistcoat": {
+   "region": "cloth",
+   "alsoIn": [],
+   "shades": [
+    "#001115",
+    "#003034",
+    "#0F5458",
+    "#3D6F72"
+   ]
+  },
+  "apron": {
+   "region": "apron",
+   "alsoIn": [],
+   "shades": [
+    "#2B000A",
+    "#520428",
+    "#7E2949",
+    "#974D65"
+   ]
+  },
+  "trousers": {
+   "region": "trousers",
+   "alsoIn": [],
+   "shades": [
+    "#000001",
+    "#0B030B",
+    "#2A1C2A",
+    "#423642"
+   ]
+  },
+  "shoes": {
+   "region": "shoes",
+   "alsoIn": [],
+   "shades": [
+    "#863E00",
+    "#B06500",
+    "#E08A1E",
+    "#F9AE61"
+   ]
+  },
+  "shaker": {
+   "region": "prop",
+   "alsoIn": [],
+   "shades": [
+    "#70767B",
+    "#979DA2",
+    "#BFC6CC",
+    "#E0E6EC"
+   ]
+  }
+ },
+ "frames": {
+  "anticipate_left": {
+   "rect": [
+    798,
+    1482,
+    110,
+    236
+   ],
+   "anchor": [
+    46.8,
+    234.4
+   ],
+   "pixelsPerUnit": 5.6556,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [],
+   "supportFoot": "right",
+   "status": "candidate",
+   "provenance": {
+    "run": "bartender-v1-20261105q",
+    "pose": "left_hand.prep",
+    "sha256": "beb81069e5b1d80aa6b48c642c87ffcf7c3335b5e08f4b238fe8e050475c0207",
+    "selected": "950000",
+    "frameKey": null,
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "anticipation",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   },
+   "aliasOf": "left_hand_prep"
+  },
+  "anticipate_right": {
+   "rect": [
+    910,
+    1482,
+    107,
+    236
+   ],
+   "anchor": [
+    61.2,
+    234.4
+   ],
+   "pixelsPerUnit": 5.6556,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [],
+   "supportFoot": "left",
+   "status": "candidate",
+   "provenance": {
+    "run": "bartender-v1-20261105q",
+    "pose": "right_hand.prep",
+    "sha256": "58e9657d5b8cc8d4bbe5df8fa7b8a184d268ed7acad5a43997f8b038d5030ae8",
+    "selected": "950000",
+    "frameKey": null,
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "anticipation",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   },
+   "aliasOf": "right_hand_prep"
+  },
+  "approval_load": {
+   "rect": [
+    2,
+    750,
+    104,
+    244
+   ],
+   "anchor": [
+    55.0,
+    242.4
+   ],
+   "pixelsPerUnit": 5.6556,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "bartender-v1-20261105q",
+    "pose": "approval.load",
+    "sha256": "5c946a6d24209b229f64ff56bfb0f9d8d7560c88b8b26197e610087abcf472e5",
+    "selected": "950000",
+    "frameKey": null,
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "anticipation",
+     "secondary-action",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "approval_nod": {
+   "rect": [
+    855,
+    1240,
+    109,
+    239
+   ],
+   "anchor": [
+    37.0,
+    237.4
+   ],
+   "pixelsPerUnit": 5.6556,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [
+    {
+     "beat": 0.333,
+     "type": "accent",
+     "drawing": "nod"
+    }
+   ],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "bartender-v1-20261105q",
+    "pose": "approval.nod",
+    "sha256": "a4a7d1cd77b3536d64f1c286b833d0f505ef504228793bb7748772c0bf5b9e07",
+    "selected": "950000",
+    "frameKey": null,
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "line-of-action",
+     "contrapposto",
+     "exaggeration-accent",
+     "secondary-action",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "approval_release": {
+   "rect": [
+    820,
+    252,
+    127,
+    247
+   ],
+   "anchor": [
+    82.0,
+    245.4
+   ],
+   "pixelsPerUnit": 5.6556,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "bartender-v1-20261105q",
+    "pose": "approval.release",
+    "sha256": "c4f72dfcf6809df4a6219e3355204373b206706c380b551c7fa83b196af0a1fc",
+    "selected": "950000",
+    "frameKey": null,
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "follow-through",
+     "secondary-action",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "approve": {
+   "rect": [
+    855,
+    1240,
+    109,
+    239
+   ],
+   "anchor": [
+    37.0,
+    237.4
+   ],
+   "pixelsPerUnit": 5.6556,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [
+    {
+     "beat": 0.333,
+     "type": "accent",
+     "drawing": "nod"
+    }
+   ],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "bartender-v1-20261105q",
+    "pose": "approval.nod",
+    "sha256": "a4a7d1cd77b3536d64f1c286b833d0f505ef504228793bb7748772c0bf5b9e07",
+    "selected": "950000",
+    "frameKey": null,
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "line-of-action",
+     "contrapposto",
+     "exaggeration-accent",
+     "secondary-action",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   },
+   "aliasOf": "approval_nod"
+  },
+  "cede": {
+   "rect": [
+    199,
+    2,
+    130,
+    248
+   ],
+   "anchor": [
+    38.8,
+    246.4
+   ],
+   "pixelsPerUnit": 5.6556,
+   "facing": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "right",
+   "status": "candidate",
+   "provenance": {
+    "run": "bartender-v1-20261105q",
+    "pose": "yield_side.pass_r",
+    "sha256": "4534218462a8b2bf33743c57168b970553b1279bc8f6403c301c6c6613c95ae0",
+    "selected": "950000",
+    "frameKey": null,
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "line-of-action",
+     "contrapposto",
+     "exaggeration-accent",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   },
+   "aliasOf": "yield_side_pass_r"
+  },
+  "challenge_load": {
+   "rect": [
+    258,
+    1722,
+    108,
+    236
+   ],
+   "anchor": [
+    68.2,
+    234.4
+   ],
+   "pixelsPerUnit": 5.6556,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "left",
+   "status": "candidate",
+   "provenance": {
+    "run": "bartender-v1-20261105q",
+    "pose": "challenge.load",
+    "sha256": "baca3cf60e815cfe7668aca59b5153488b8db4733669d65dcfa0ff4102ab68cc",
+    "selected": "950002",
+    "frameKey": null,
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "anticipation",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "challenge_offer": {
+   "rect": [
+    281,
+    996,
+    154,
+    242
+   ],
+   "anchor": [
+    93.8,
+    240.4
+   ],
+   "pixelsPerUnit": 5.6556,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 2.0,
+   "events": [
+    {
+     "beat": 1.0,
+     "type": "accent",
+     "drawing": "offer"
+    }
+   ],
+   "supportFoot": "right",
+   "status": "candidate",
+   "provenance": {
+    "run": "bartender-v1-20261105q",
+    "pose": "challenge.offer",
+    "sha256": "98917572987a9bd7e17bccd3da23ed4715b69a80abf7a3d5e9120839c2b18b76",
+    "selected": "950000",
+    "frameKey": null,
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "line-of-action",
+     "contrapposto",
+     "exaggeration-accent",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "challenge_proud": {
+   "rect": [
+    163,
+    996,
+    116,
+    242
+   ],
+   "anchor": [
+    45.8,
+    240.4
+   ],
+   "pixelsPerUnit": 5.6556,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "right",
+   "status": "candidate",
+   "provenance": {
+    "run": "bartender-v1-20261105q",
+    "pose": "challenge.proud",
+    "sha256": "e1381865cc49c1937fe8de2b50d820cc0a4d2efe07f3eff2e8f031445092a471",
+    "selected": "950001",
+    "frameKey": null,
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "line-of-action",
+     "contrapposto",
+     "exaggeration-accent",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "challenge_return": {
+   "rect": [
+    538,
+    2,
+    102,
+    248
+   ],
+   "anchor": [
+    53.0,
+    246.4
+   ],
+   "pixelsPerUnit": 5.6556,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "bartender-v1-20261105q",
+    "pose": "challenge.return",
+    "sha256": "6bf14675895e6ebb6098c8487bcb16d41dae5ed15a38d40be4744dd110591273",
+    "selected": "950001",
+    "frameKey": null,
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "follow-through",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "clap_close": {
+   "rect": [
+    717,
+    252,
+    101,
+    247
+   ],
+   "anchor": [
+    49.0,
+    245.4
+   ],
+   "pixelsPerUnit": 5.6556,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "bartender-v1-20261105q",
+    "pose": "clap.close",
+    "sha256": "ded496c1dc8d4c2860ea8ab57e9aa967daf51b894d7d8d9fa9d4a330d8683307",
+    "selected": "950001",
+    "frameKey": null,
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  },
+  "clap_contact": {
+   "rect": [
+    393,
+    1482,
+    82,
+    238
+   ],
+   "anchor": [
+    40.0,
+    236.4
+   ],
+   "pixelsPerUnit": 5.6556,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [
+    {
+     "beat": 0.5,
+     "type": "accent",
+     "drawing": "contact"
+    }
+   ],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "bartender-v1-20261105q",
+    "pose": "clap.contact",
+    "sha256": "e207abd14dfcf468819c6dcd9cf40e43099766a8611a5a6217516e05990fb63b",
+    "selected": "950002",
+    "frameKey": null,
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "anticipation",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  },
+  "clap_open": {
+   "rect": [
+    331,
+    2,
+    101,
+    248
+   ],
+   "anchor": [
+    49.0,
+    246.4
+   ],
+   "pixelsPerUnit": 5.6556,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "bartender-v1-20261105q",
+    "pose": "clap.open",
+    "sha256": "bca5ff9736de4774f1a29dfbbbd84b9a5f11a283bfa7978d0b15748af90dda3a",
+    "selected": "950100",
+    "frameKey": null,
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "anticipation",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "clap_release": {
+   "rect": [
+    434,
+    2,
+    102,
+    248
+   ],
+   "anchor": [
+    50.0,
+    246.4
+   ],
+   "pixelsPerUnit": 5.6556,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "bartender-v1-20261105q",
+    "pose": "clap.release",
+    "sha256": "671507d40b97bbfca1c0b8b4d8b908e3fdfecaf6d4561eb0ed027a94faadf97c",
+    "selected": "950001",
+    "frameKey": null,
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "follow-through",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "enter_forward_contact_l": {
+   "rect": [
+    587,
+    1482,
+    102,
+    237
+   ],
+   "anchor": [
+    47.9,
+    235.4
+   ],
+   "pixelsPerUnit": 5.6556,
+   "facing": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "bartender-v1-20261105q",
+    "pose": "enter_forward.contact_l",
+    "sha256": "6c96c680518ed6f6c9b485a80f09c5e1b7c847ace268e8f6e94d64e595a71d7e",
+    "selected": "950001",
+    "frameKey": null,
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "anticipation",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  },
+  "enter_forward_contact_r": {
+   "rect": [
+    691,
+    1482,
+    105,
+    237
+   ],
+   "anchor": [
+    46.0,
+    235.4
+   ],
+   "pixelsPerUnit": 5.6556,
+   "facing": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "bartender-v1-20261105q",
+    "pose": "enter_forward.contact_r",
+    "sha256": "0654f99c9bd69b79028de710c8f9118be9c5be5ba099519525f3332257c46037",
+    "selected": "950003",
+    "frameKey": null,
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "anticipation",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  },
+  "enter_forward_down_l": {
+   "rect": [
+    437,
+    996,
+    108,
+    241
+   ],
+   "anchor": [
+    69.2,
+    239.4
+   ],
+   "pixelsPerUnit": 5.6556,
+   "facing": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "left",
+   "status": "candidate",
+   "provenance": {
+    "run": "bartender-v1-20261105q",
+    "pose": "enter_forward.down_l",
+    "sha256": "e4713facb54407c8b0af74303e02f1c9ee40041e17e0f5e852115d0980a77933",
+    "selected": "950001",
+    "frameKey": null,
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  },
+  "enter_forward_down_r": {
+   "rect": [
+    547,
+    996,
+    128,
+    241
+   ],
+   "anchor": [
+    39.8,
+    239.4
+   ],
+   "pixelsPerUnit": 5.6556,
+   "facing": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "right",
+   "status": "candidate",
+   "provenance": {
+    "run": "bartender-v1-20261105q",
+    "pose": "enter_forward.down_r",
+    "sha256": "e720775bffe2b691a958b437d9dde846fa3d3b0e0c1e6a95481fa11c49557dfe",
+    "selected": "950002",
+    "frameKey": null,
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  },
+  "enter_forward_pass_l": {
+   "rect": [
+    2,
+    2,
+    92,
+    248
+   ],
+   "anchor": [
+    64.2,
+    246.4
+   ],
+   "pixelsPerUnit": 5.6556,
+   "facing": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "left",
+   "status": "candidate",
+   "provenance": {
+    "run": "bartender-v1-20261105q",
+    "pose": "enter_forward.pass_l",
+    "sha256": "d26daa919123069e175643e9d477eac9befb86b911ec16c5cf680690970cade5",
+    "selected": "950002",
+    "frameKey": null,
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  },
+  "enter_forward_pass_r": {
+   "rect": [
+    345,
+    252,
+    108,
+    247
+   ],
+   "anchor": [
+    37.8,
+    245.4
+   ],
+   "pixelsPerUnit": 5.6556,
+   "facing": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "right",
+   "status": "candidate",
+   "provenance": {
+    "run": "bartender-v1-20261105q",
+    "pose": "enter_forward.pass_r",
+    "sha256": "51ff2a90689adf0f6286b2e7b065fc3c717f0b4f9bf9b25dc63bc1d414b029a4",
+    "selected": "950000",
+    "frameKey": null,
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  },
+  "finish": {
+   "rect": [
+    108,
+    750,
+    120,
+    244
+   ],
+   "anchor": [
+    56.8,
+    242.4
+   ],
+   "pixelsPerUnit": 5.6556,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "right",
+   "status": "candidate",
+   "provenance": {
+    "run": "bartender-v1-20261105q",
+    "pose": "finish_turn.finish_b",
+    "sha256": "ee50826b017841f1198f119114e251674f7dbcd5360f7a814f24505284b487ed",
+    "selected": "950000",
+    "frameKey": null,
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "line-of-action",
+     "contrapposto",
+     "exaggeration-accent",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   },
+   "aliasOf": "finish_turn_finish_b"
+  },
+  "finish_turn_finish_a": {
+   "rect": [
+    653,
+    501,
+    119,
+    245
+   ],
+   "anchor": [
+    50.8,
+    243.4
+   ],
+   "pixelsPerUnit": 5.6556,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "right",
+   "status": "candidate",
+   "provenance": {
+    "run": "bartender-v1-20261105q",
+    "pose": "finish_turn.finish_a",
+    "sha256": "01c70dc30c9880e4c902ce76fd27f700e6d8d545122a5ea9a1a474ddcda8ea7d",
+    "selected": "950000",
+    "frameKey": null,
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "exaggeration-accent",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "finish_turn_finish_b": {
+   "rect": [
+    108,
+    750,
+    120,
+    244
+   ],
+   "anchor": [
+    56.8,
+    242.4
+   ],
+   "pixelsPerUnit": 5.6556,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "right",
+   "status": "candidate",
+   "provenance": {
+    "run": "bartender-v1-20261105q",
+    "pose": "finish_turn.finish_b",
+    "sha256": "ee50826b017841f1198f119114e251674f7dbcd5360f7a814f24505284b487ed",
+    "selected": "950000",
+    "frameKey": null,
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "line-of-action",
+     "contrapposto",
+     "exaggeration-accent",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "finish_turn_turn_in": {
+   "rect": [
+    230,
+    750,
+    142,
+    244
+   ],
+   "anchor": [
+    41.0,
+    242.4
+   ],
+   "pixelsPerUnit": 5.6556,
+   "facing": "front_3q",
+   "loop": false,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "bartender-v1-20261105q",
+    "pose": "finish_turn.turn_in",
+    "sha256": "fe11ce0408fe7ad166b611e36dcc8df8e7bf7ef247ab6e4182335550e6935f91",
+    "selected": "950001",
+    "frameKey": null,
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  },
+  "finish_turn_turn_out": {
+   "rect": [
+    374,
+    750,
+    148,
+    244
+   ],
+   "anchor": [
+    107.0,
+    242.4
+   ],
+   "pixelsPerUnit": 5.6556,
+   "facing": "front_3q",
+   "loop": false,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "bartender-v1-20261105q",
+    "pose": "finish_turn.turn_out",
+    "sha256": "877012d4ff0d0172022f96792bbba504a7789da2688fd3bf4c96b2d2a1b6931f",
+    "selected": "950002",
+    "frameKey": null,
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  },
+  "follow_left": {
+   "rect": [
+    2,
+    1482,
+    128,
+    238
+   ],
+   "anchor": [
+    34.8,
+    236.4
+   ],
+   "pixelsPerUnit": 5.6556,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [],
+   "supportFoot": "right",
+   "status": "candidate",
+   "provenance": {
+    "run": "bartender-v1-20261105q",
+    "pose": "left_hand.follow",
+    "sha256": "a0bf2a0862bd66d6f6b857c7a5fe25983a1359b44efd6b82abbceb8927f9652a",
+    "selected": "950002",
+    "frameKey": null,
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "follow-through",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   },
+   "aliasOf": "left_hand_follow"
+  },
+  "follow_right": {
+   "rect": [
+    132,
+    1482,
+    124,
+    238
+   ],
+   "anchor": [
+    88.2,
+    236.4
+   ],
+   "pixelsPerUnit": 5.6556,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [],
+   "supportFoot": "left",
+   "status": "candidate",
+   "provenance": {
+    "run": "bartender-v1-20261105q",
+    "pose": "right_hand.follow",
+    "sha256": "c5b7903067918c6103ed9f33f737a1ef6094d436b7b266b9dbbe84a7b55fd3f5",
+    "selected": "950000",
+    "frameKey": null,
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "follow-through",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   },
+   "aliasOf": "right_hand_follow"
+  },
+  "groove_down_l": {
+   "rect": [
+    368,
+    1722,
+    116,
+    234
+   ],
+   "anchor": [
+    80.2,
+    232.4
+   ],
+   "pixelsPerUnit": 5.6556,
+   "facing": "front",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "left",
+   "status": "candidate",
+   "provenance": {
+    "run": "bartender-v1-20261105q",
+    "pose": "groove.down_l",
+    "sha256": "c56686ae1999910ee91431167a384f27d2cb58133aededc8e3a36c1bca878a35",
+    "selected": "950000",
+    "frameKey": null,
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "secondary-action",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  },
+  "groove_down_r": {
+   "rect": [
+    486,
+    1722,
+    138,
+    234
+   ],
+   "anchor": [
+    45.8,
+    232.4
+   ],
+   "pixelsPerUnit": 5.6556,
+   "facing": "front",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "right",
+   "status": "candidate",
+   "provenance": {
+    "run": "bartender-v1-20261105q",
+    "pose": "groove.down_r",
+    "sha256": "6f6056b0ae4607af4876c9dcca9a02cbbd485c5014ae53231a0e6f9cb5067ff5",
+    "selected": "950000",
+    "frameKey": null,
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "secondary-action",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  },
+  "groove_pass_l": {
+   "rect": [
+    99,
+    501,
+    97,
+    246
+   ],
+   "anchor": [
+    70.2,
+    244.4
+   ],
+   "pixelsPerUnit": 5.6556,
+   "facing": "front",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "left",
+   "status": "candidate",
+   "provenance": {
+    "run": "bartender-v1-20261105q",
+    "pose": "groove.pass_l",
+    "sha256": "01aec05d0e4af35b616f0ea2be6425ed695d1d9563df78d1ff9f6ef24a61f3a5",
+    "selected": "950001",
+    "frameKey": null,
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "secondary-action",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  },
+  "groove_pass_l2": {
+   "rect": [
+    376,
+    501,
+    157,
+    245
+   ],
+   "anchor": [
+    88.8,
+    243.4
+   ],
+   "pixelsPerUnit": 5.6556,
+   "facing": "front",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "right",
+   "status": "candidate",
+   "provenance": {
+    "run": "bartender-v1-20261105q",
+    "pose": "groove.pass_l2",
+    "sha256": "094045eb448724553126b11262e6d7d6c82f67bd1fe333a21d3ce97bdaa9cafb",
+    "selected": "950103",
+    "frameKey": null,
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "line-of-action",
+     "contrapposto",
+     "exaggeration-accent",
+     "secondary-action",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  },
+  "groove_pass_r": {
+   "rect": [
+    198,
+    501,
+    102,
+    246
+   ],
+   "anchor": [
+    36.8,
+    244.4
+   ],
+   "pixelsPerUnit": 5.6556,
+   "facing": "front",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "right",
+   "status": "candidate",
+   "provenance": {
+    "run": "bartender-v1-20261105q",
+    "pose": "groove.pass_r",
+    "sha256": "255b2a4760490cd72b4af821c61b1094683f8b2974586a82963dfd14a7892b94",
+    "selected": "950002",
+    "frameKey": null,
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "secondary-action",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  },
+  "groove_pass_r2": {
+   "rect": [
+    535,
+    501,
+    116,
+    245
+   ],
+   "anchor": [
+    59.2,
+    243.4
+   ],
+   "pixelsPerUnit": 5.6556,
+   "facing": "front",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "left",
+   "status": "candidate",
+   "provenance": {
+    "run": "bartender-v1-20261105q",
+    "pose": "groove.pass_r2",
+    "sha256": "31dafd87f3ebc3787cdbedc13a0b08433e8fc97bb73abf9e3c03b9fd8674e723",
+    "selected": "950001",
+    "frameKey": null,
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "line-of-action",
+     "contrapposto",
+     "exaggeration-accent",
+     "secondary-action",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  },
+  "groove_up_l": {
+   "rect": [
+    642,
+    2,
+    97,
+    247
+   ],
+   "anchor": [
+    46.0,
+    245.4
+   ],
+   "pixelsPerUnit": 5.6556,
+   "facing": "front",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "bartender-v1-20261105q",
+    "pose": "groove.up_l",
+    "sha256": "432993ad1b337959a6779287450f3e5f83dc77332d80099fba3e0a6eb168200f",
+    "selected": "950001",
+    "frameKey": null,
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "secondary-action",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  },
+  "groove_up_r": {
+   "rect": [
+    741,
+    2,
+    95,
+    247
+   ],
+   "anchor": [
+    46.0,
+    245.4
+   ],
+   "pixelsPerUnit": 5.6556,
+   "facing": "front",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "bartender-v1-20261105q",
+    "pose": "groove.up_r",
+    "sha256": "5a12858dbd81c9c0cb956a7abac484f207627a1014f8d098a69ecb8b418a6acd",
+    "selected": "950002",
+    "frameKey": null,
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "secondary-action",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  },
+  "invite": {
+   "rect": [
+    281,
+    996,
+    154,
+    242
+   ],
+   "anchor": [
+    93.8,
+    240.4
+   ],
+   "pixelsPerUnit": 5.6556,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 2.0,
+   "events": [
+    {
+     "beat": 1.0,
+     "type": "accent",
+     "drawing": "offer"
+    }
+   ],
+   "supportFoot": "right",
+   "status": "candidate",
+   "provenance": {
+    "run": "bartender-v1-20261105q",
+    "pose": "challenge.offer",
+    "sha256": "98917572987a9bd7e17bccd3da23ed4715b69a80abf7a3d5e9120839c2b18b76",
+    "selected": "950000",
+    "frameKey": null,
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "line-of-action",
+     "contrapposto",
+     "exaggeration-accent",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   },
+   "aliasOf": "challenge_offer"
+  },
+  "left_foot": {
+   "rect": [
+    258,
+    1482,
+    133,
+    238
+   ],
+   "anchor": [
+    53.8,
+    236.4
+   ],
+   "pixelsPerUnit": 5.6556,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [
+    {
+     "beat": 0.25,
+     "type": "accent",
+     "drawing": "peak"
+    }
+   ],
+   "supportFoot": "right",
+   "status": "candidate",
+   "provenance": {
+    "run": "bartender-v1-20261105q",
+    "pose": "left_foot.peak",
+    "sha256": "0e5a5695c93e8563a230eb37186448bdc3a4fdce4b7226dc4dbac194a25e5daa",
+    "selected": "950000",
+    "frameKey": null,
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "line-of-action",
+     "contrapposto",
+     "exaggeration-accent",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   },
+   "aliasOf": "left_foot_peak"
+  },
+  "left_foot_follow": {
+   "rect": [
+    854,
+    996,
+    154,
+    240
+   ],
+   "anchor": [
+    50.8,
+    238.4
+   ],
+   "pixelsPerUnit": 5.6556,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [],
+   "supportFoot": "right",
+   "status": "candidate",
+   "provenance": {
+    "run": "bartender-v1-20261105q",
+    "pose": "left_foot.follow",
+    "sha256": "4caacd24f78aa36980aa57a2bc1f3b991fa3244344175feb72764ed3e3dc27b3",
+    "selected": "950002",
+    "frameKey": null,
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "follow-through",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "left_foot_peak": {
+   "rect": [
+    258,
+    1482,
+    133,
+    238
+   ],
+   "anchor": [
+    53.8,
+    236.4
+   ],
+   "pixelsPerUnit": 5.6556,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [
+    {
+     "beat": 0.25,
+     "type": "accent",
+     "drawing": "peak"
+    }
+   ],
+   "supportFoot": "right",
+   "status": "candidate",
+   "provenance": {
+    "run": "bartender-v1-20261105q",
+    "pose": "left_foot.peak",
+    "sha256": "0e5a5695c93e8563a230eb37186448bdc3a4fdce4b7226dc4dbac194a25e5daa",
+    "selected": "950000",
+    "frameKey": null,
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "line-of-action",
+     "contrapposto",
+     "exaggeration-accent",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "left_foot_prep": {
+   "rect": [
+    2,
+    1722,
+    117,
+    236
+   ],
+   "anchor": [
+    59.8,
+    234.4
+   ],
+   "pixelsPerUnit": 5.6556,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [],
+   "supportFoot": "right",
+   "status": "candidate",
+   "provenance": {
+    "run": "bartender-v1-20261105q",
+    "pose": "left_foot.prep",
+    "sha256": "384fc94ed39859677b04a177390d6a8dd9509cd8c335f02a222ed3e131da733b",
+    "selected": "950002",
+    "frameKey": null,
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "anticipation",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "left_foot_return": {
+   "rect": [
+    147,
+    252,
+    102,
+    247
+   ],
+   "anchor": [
+    52.0,
+    245.4
+   ],
+   "pixelsPerUnit": 5.6556,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "bartender-v1-20261105q",
+    "pose": "left_foot.return",
+    "sha256": "1388d85c09031cc11cd0a617d359e47732f33d8eac19c1d28dbae4ae5359e8d2",
+    "selected": "950002",
+    "frameKey": null,
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "follow-through",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "left_hand": {
+   "rect": [
+    777,
+    750,
+    154,
+    242
+   ],
+   "anchor": [
+    37.8,
+    240.4
+   ],
+   "pixelsPerUnit": 5.6556,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [
+    {
+     "beat": 0.25,
+     "type": "accent",
+     "drawing": "peak"
+    }
+   ],
+   "supportFoot": "right",
+   "status": "candidate",
+   "provenance": {
+    "run": "bartender-v1-20261105q",
+    "pose": "left_hand.peak",
+    "sha256": "0372e9bf81c91261badb2b6e91bb1d0fc6ce15f2e11f4385c66973a56bfc3bc4",
+    "selected": "950000",
+    "frameKey": null,
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "line-of-action",
+     "contrapposto",
+     "exaggeration-accent",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   },
+   "aliasOf": "left_hand_peak"
+  },
+  "left_hand_follow": {
+   "rect": [
+    2,
+    1482,
+    128,
+    238
+   ],
+   "anchor": [
+    34.8,
+    236.4
+   ],
+   "pixelsPerUnit": 5.6556,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [],
+   "supportFoot": "right",
+   "status": "candidate",
+   "provenance": {
+    "run": "bartender-v1-20261105q",
+    "pose": "left_hand.follow",
+    "sha256": "a0bf2a0862bd66d6f6b857c7a5fe25983a1359b44efd6b82abbceb8927f9652a",
+    "selected": "950002",
+    "frameKey": null,
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "follow-through",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "left_hand_peak": {
+   "rect": [
+    777,
+    750,
+    154,
+    242
+   ],
+   "anchor": [
+    37.8,
+    240.4
+   ],
+   "pixelsPerUnit": 5.6556,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [
+    {
+     "beat": 0.25,
+     "type": "accent",
+     "drawing": "peak"
+    }
+   ],
+   "supportFoot": "right",
+   "status": "candidate",
+   "provenance": {
+    "run": "bartender-v1-20261105q",
+    "pose": "left_hand.peak",
+    "sha256": "0372e9bf81c91261badb2b6e91bb1d0fc6ce15f2e11f4385c66973a56bfc3bc4",
+    "selected": "950000",
+    "frameKey": null,
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "line-of-action",
+     "contrapposto",
+     "exaggeration-accent",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "left_hand_prep": {
+   "rect": [
+    798,
+    1482,
+    110,
+    236
+   ],
+   "anchor": [
+    46.8,
+    234.4
+   ],
+   "pixelsPerUnit": 5.6556,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [],
+   "supportFoot": "right",
+   "status": "candidate",
+   "provenance": {
+    "run": "bartender-v1-20261105q",
+    "pose": "left_hand.prep",
+    "sha256": "beb81069e5b1d80aa6b48c642c87ffcf7c3335b5e08f4b238fe8e050475c0207",
+    "selected": "950000",
+    "frameKey": null,
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "anticipation",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "left_hand_return": {
+   "rect": [
+    838,
+    2,
+    134,
+    247
+   ],
+   "anchor": [
+    52.0,
+    245.4
+   ],
+   "pixelsPerUnit": 5.6556,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "bartender-v1-20261105q",
+    "pose": "left_hand.return",
+    "sha256": "bdabec5b0d13cf9081442e7d07d612a8ce10241af83b29b07e5e52ae6d93b365",
+    "selected": "950002",
+    "frameKey": null,
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "follow-through",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "occupied": {
+   "rect": [
+    368,
+    1722,
+    116,
+    234
+   ],
+   "anchor": [
+    80.2,
+    232.4
+   ],
+   "pixelsPerUnit": 5.6556,
+   "facing": "front",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "left",
+   "status": "candidate",
+   "provenance": {
+    "run": "bartender-v1-20261105q",
+    "pose": "groove.down_l",
+    "sha256": "c56686ae1999910ee91431167a384f27d2cb58133aededc8e3a36c1bca878a35",
+    "selected": "950000",
+    "frameKey": null,
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "secondary-action",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   },
+   "aliasOf": "groove_down_l"
+  },
+  "ready": {
+   "rect": [
+    538,
+    2,
+    102,
+    248
+   ],
+   "anchor": [
+    53.0,
+    246.4
+   ],
+   "pixelsPerUnit": 5.6556,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "bartender-v1-20261105q",
+    "pose": "challenge.return",
+    "sha256": "6bf14675895e6ebb6098c8487bcb16d41dae5ed15a38d40be4744dd110591273",
+    "selected": "950001",
+    "frameKey": null,
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "follow-through",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   },
+   "aliasOf": "challenge_return"
+  },
+  "reassurance_notice": {
+   "rect": [
+    2,
+    501,
+    95,
+    247
+   ],
+   "anchor": [
+    49.0,
+    245.4
+   ],
+   "pixelsPerUnit": 5.6556,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.5,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "bartender-v1-20261105q",
+    "pose": "reassurance.notice",
+    "sha256": "217bf399c930f5b252246346fffc7b2937d123337deec2e3197ea19cea4a3f03",
+    "selected": "950002",
+    "frameKey": null,
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "anticipation",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "reassurance_open_hand": {
+   "rect": [
+    296,
+    1240,
+    159,
+    240
+   ],
+   "anchor": [
+    78.0,
+    238.4
+   ],
+   "pixelsPerUnit": 5.6556,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.5,
+   "events": [
+    {
+     "beat": 0.5,
+     "type": "accent",
+     "drawing": "open_hand"
+    }
+   ],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "bartender-v1-20261105q",
+    "pose": "reassurance.open_hand",
+    "sha256": "69c308bd14b4170ce711c5cb02f65b2ad3782f6505009bd398069064792b9f82",
+    "selected": "950000",
+    "frameKey": null,
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "line-of-action",
+     "contrapposto",
+     "exaggeration-accent",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "reassurance_settle": {
+   "rect": [
+    477,
+    1482,
+    108,
+    238
+   ],
+   "anchor": [
+    73.2,
+    236.4
+   ],
+   "pixelsPerUnit": 5.6556,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.5,
+   "events": [],
+   "supportFoot": "left",
+   "status": "candidate",
+   "provenance": {
+    "run": "bartender-v1-20261105q",
+    "pose": "reassurance.settle",
+    "sha256": "6e979b6528e3e039e607ffef6687c81cf5cebbac2614ab087fcabb11c3c00a39",
+    "selected": "950003",
+    "frameKey": null,
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "follow-through",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "recover": {
+   "rect": [
+    296,
+    1240,
+    159,
+    240
+   ],
+   "anchor": [
+    78.0,
+    238.4
+   ],
+   "pixelsPerUnit": 5.6556,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.5,
+   "events": [
+    {
+     "beat": 0.5,
+     "type": "accent",
+     "drawing": "open_hand"
+    }
+   ],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "bartender-v1-20261105q",
+    "pose": "reassurance.open_hand",
+    "sha256": "69c308bd14b4170ce711c5cb02f65b2ad3782f6505009bd398069064792b9f82",
+    "selected": "950000",
+    "frameKey": null,
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "line-of-action",
+     "contrapposto",
+     "exaggeration-accent",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   },
+   "aliasOf": "reassurance_open_hand"
+  },
+  "retreat_backward_contact_l": {
+   "rect": [
+    524,
+    750,
+    70,
+    243
+   ],
+   "anchor": [
+    33.2,
+    241.4
+   ],
+   "pixelsPerUnit": 5.6556,
+   "facing": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "bartender-v1-20261105q",
+    "pose": "retreat_backward.contact_l",
+    "sha256": "344278689fd5205a5ac27b9c135dad3f6d33fb4709d6fb3cf373bb4b3299e207",
+    "selected": "950002",
+    "frameKey": null,
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "anticipation",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  },
+  "retreat_backward_contact_r": {
+   "rect": [
+    596,
+    750,
+    88,
+    243
+   ],
+   "anchor": [
+    39.6,
+    241.4
+   ],
+   "pixelsPerUnit": 5.6556,
+   "facing": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "bartender-v1-20261105q",
+    "pose": "retreat_backward.contact_r",
+    "sha256": "4a4634229e34127b7347d68882af9e757580b2f427a590a62bfcd45403d17cbf",
+    "selected": "950002",
+    "frameKey": null,
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "anticipation",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  },
+  "retreat_backward_down_l": {
+   "rect": [
+    774,
+    501,
+    100,
+    244
+   ],
+   "anchor": [
+    74.2,
+    242.4
+   ],
+   "pixelsPerUnit": 5.6556,
+   "facing": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "left",
+   "status": "candidate",
+   "provenance": {
+    "run": "bartender-v1-20261105q",
+    "pose": "retreat_backward.down_l",
+    "sha256": "28a54745b9d7081ee2bb85fcddb9ad8647145179038117ea174fb0c0c7ada273",
+    "selected": "950000",
+    "frameKey": null,
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  },
+  "retreat_backward_down_r": {
+   "rect": [
+    876,
+    501,
+    87,
+    244
+   ],
+   "anchor": [
+    20.8,
+    242.4
+   ],
+   "pixelsPerUnit": 5.6556,
+   "facing": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "right",
+   "status": "candidate",
+   "provenance": {
+    "run": "bartender-v1-20261105q",
+    "pose": "retreat_backward.down_r",
+    "sha256": "2ffcddf3b173a996226c0d7761fdccdb66b52687df74c0b360406230370fd247",
+    "selected": "950002",
+    "frameKey": null,
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  },
+  "retreat_backward_pass_l": {
+   "rect": [
+    455,
+    252,
+    75,
+    247
+   ],
+   "anchor": [
+    55.2,
+    245.4
+   ],
+   "pixelsPerUnit": 5.6556,
+   "facing": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "left",
+   "status": "candidate",
+   "provenance": {
+    "run": "bartender-v1-20261105q",
+    "pose": "retreat_backward.pass_l",
+    "sha256": "fcfdb1e609214d424fb9ab577a4a2a0903c02a6ac08dbe678fdc6d9fbf4e9e16",
+    "selected": "950003",
+    "frameKey": null,
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  },
+  "retreat_backward_pass_r": {
+   "rect": [
+    532,
+    252,
+    81,
+    247
+   ],
+   "anchor": [
+    24.8,
+    245.4
+   ],
+   "pixelsPerUnit": 5.6556,
+   "facing": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "right",
+   "status": "candidate",
+   "provenance": {
+    "run": "bartender-v1-20261105q",
+    "pose": "retreat_backward.pass_r",
+    "sha256": "e51297b0d49c0affe571449bb048eecbe1e3bccedd6e4a98454f614c8b4d5ed4",
+    "selected": "950001",
+    "frameKey": null,
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  },
+  "right_foot": {
+   "rect": [
+    457,
+    1240,
+    155,
+    239
+   ],
+   "anchor": [
+    101.2,
+    237.4
+   ],
+   "pixelsPerUnit": 5.6556,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [
+    {
+     "beat": 0.25,
+     "type": "accent",
+     "drawing": "peak"
+    }
+   ],
+   "supportFoot": "left",
+   "status": "candidate",
+   "provenance": {
+    "run": "bartender-v1-20261105q",
+    "pose": "right_foot.peak",
+    "sha256": "4141bf69bd77e1abf92ec51e9d94e7b5de648ddd295ade3b732ab5040587d9d6",
+    "selected": "950000",
+    "frameKey": null,
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "line-of-action",
+     "contrapposto",
+     "exaggeration-accent",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   },
+   "aliasOf": "right_foot_peak"
+  },
+  "right_foot_follow": {
+   "rect": [
+    2,
+    1240,
+    157,
+    240
+   ],
+   "anchor": [
+    102.2,
+    238.4
+   ],
+   "pixelsPerUnit": 5.6556,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [],
+   "supportFoot": "left",
+   "status": "candidate",
+   "provenance": {
+    "run": "bartender-v1-20261105q",
+    "pose": "right_foot.follow",
+    "sha256": "2847602a6a11c7211ee209c3edc47ac709aea3df77c5cc29c26e2295c535d54f",
+    "selected": "950003",
+    "frameKey": null,
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "follow-through",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "right_foot_peak": {
+   "rect": [
+    457,
+    1240,
+    155,
+    239
+   ],
+   "anchor": [
+    101.2,
+    237.4
+   ],
+   "pixelsPerUnit": 5.6556,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [
+    {
+     "beat": 0.25,
+     "type": "accent",
+     "drawing": "peak"
+    }
+   ],
+   "supportFoot": "left",
+   "status": "candidate",
+   "provenance": {
+    "run": "bartender-v1-20261105q",
+    "pose": "right_foot.peak",
+    "sha256": "4141bf69bd77e1abf92ec51e9d94e7b5de648ddd295ade3b732ab5040587d9d6",
+    "selected": "950000",
+    "frameKey": null,
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "line-of-action",
+     "contrapposto",
+     "exaggeration-accent",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "right_foot_prep": {
+   "rect": [
+    121,
+    1722,
+    135,
+    236
+   ],
+   "anchor": [
+    61.2,
+    234.4
+   ],
+   "pixelsPerUnit": 5.6556,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [],
+   "supportFoot": "left",
+   "status": "candidate",
+   "provenance": {
+    "run": "bartender-v1-20261105q",
+    "pose": "right_foot.prep",
+    "sha256": "daedb2af3a00b92b3d1a806a45196e484916db4a8d0e142d695588335b5d7332",
+    "selected": "950002",
+    "frameKey": null,
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "anticipation",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "right_foot_return": {
+   "rect": [
+    251,
+    252,
+    92,
+    247
+   ],
+   "anchor": [
+    37.0,
+    245.4
+   ],
+   "pixelsPerUnit": 5.6556,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "bartender-v1-20261105q",
+    "pose": "right_foot.return",
+    "sha256": "d20dd5b146ff10f30cb7d36a27306f703fe14af51b1cd25244a83ab9d6357b17",
+    "selected": "950003",
+    "frameKey": null,
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "follow-through",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "right_hand": {
+   "rect": [
+    2,
+    996,
+    159,
+    242
+   ],
+   "anchor": [
+    117.2,
+    240.4
+   ],
+   "pixelsPerUnit": 5.6556,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [
+    {
+     "beat": 0.25,
+     "type": "accent",
+     "drawing": "peak"
+    }
+   ],
+   "supportFoot": "left",
+   "status": "candidate",
+   "provenance": {
+    "run": "bartender-v1-20261105q",
+    "pose": "right_hand.peak",
+    "sha256": "de07e5f48558f4a6904b434e8074f8d6a8b762b1e4c5ffb29e5aee3880dd9087",
+    "selected": "950000",
+    "frameKey": null,
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "line-of-action",
+     "contrapposto",
+     "exaggeration-accent",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   },
+   "aliasOf": "right_hand_peak"
+  },
+  "right_hand_follow": {
+   "rect": [
+    132,
+    1482,
+    124,
+    238
+   ],
+   "anchor": [
+    88.2,
+    236.4
+   ],
+   "pixelsPerUnit": 5.6556,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [],
+   "supportFoot": "left",
+   "status": "candidate",
+   "provenance": {
+    "run": "bartender-v1-20261105q",
+    "pose": "right_hand.follow",
+    "sha256": "c5b7903067918c6103ed9f33f737a1ef6094d436b7b266b9dbbe84a7b55fd3f5",
+    "selected": "950000",
+    "frameKey": null,
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "follow-through",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "right_hand_peak": {
+   "rect": [
+    2,
+    996,
+    159,
+    242
+   ],
+   "anchor": [
+    117.2,
+    240.4
+   ],
+   "pixelsPerUnit": 5.6556,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [
+    {
+     "beat": 0.25,
+     "type": "accent",
+     "drawing": "peak"
+    }
+   ],
+   "supportFoot": "left",
+   "status": "candidate",
+   "provenance": {
+    "run": "bartender-v1-20261105q",
+    "pose": "right_hand.peak",
+    "sha256": "de07e5f48558f4a6904b434e8074f8d6a8b762b1e4c5ffb29e5aee3880dd9087",
+    "selected": "950000",
+    "frameKey": null,
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "line-of-action",
+     "contrapposto",
+     "exaggeration-accent",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "right_hand_prep": {
+   "rect": [
+    910,
+    1482,
+    107,
+    236
+   ],
+   "anchor": [
+    61.2,
+    234.4
+   ],
+   "pixelsPerUnit": 5.6556,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [],
+   "supportFoot": "left",
+   "status": "candidate",
+   "provenance": {
+    "run": "bartender-v1-20261105q",
+    "pose": "right_hand.prep",
+    "sha256": "58e9657d5b8cc8d4bbe5df8fa7b8a184d268ed7acad5a43997f8b038d5030ae8",
+    "selected": "950000",
+    "frameKey": null,
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "anticipation",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "right_hand_return": {
+   "rect": [
+    2,
+    252,
+    143,
+    247
+   ],
+   "anchor": [
+    85.0,
+    245.4
+   ],
+   "pixelsPerUnit": 5.6556,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "bartender-v1-20261105q",
+    "pose": "right_hand.return",
+    "sha256": "463838204cba4396cea9aa4635978a357f52d67746d52e0a5972eff00ea11103",
+    "selected": "950000",
+    "frameKey": null,
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "follow-through",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "settle": {
+   "rect": [
+    838,
+    2,
+    134,
+    247
+   ],
+   "anchor": [
+    52.0,
+    245.4
+   ],
+   "pixelsPerUnit": 5.6556,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "bartender-v1-20261105q",
+    "pose": "left_hand.return",
+    "sha256": "bdabec5b0d13cf9081442e7d07d612a8ce10241af83b29b07e5e52ae6d93b365",
+    "selected": "950002",
+    "frameKey": null,
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "follow-through",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   },
+   "aliasOf": "left_hand_return"
+  },
+  "turn_in": {
+   "rect": [
+    230,
+    750,
+    142,
+    244
+   ],
+   "anchor": [
+    41.0,
+    242.4
+   ],
+   "pixelsPerUnit": 5.6556,
+   "facing": "front_3q",
+   "loop": false,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "bartender-v1-20261105q",
+    "pose": "finish_turn.turn_in",
+    "sha256": "fe11ce0408fe7ad166b611e36dcc8df8e7bf7ef247ab6e4182335550e6935f91",
+    "selected": "950001",
+    "frameKey": null,
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   },
+   "aliasOf": "finish_turn_turn_in"
+  },
+  "turn_out": {
+   "rect": [
+    374,
+    750,
+    148,
+    244
+   ],
+   "anchor": [
+    107.0,
+    242.4
+   ],
+   "pixelsPerUnit": 5.6556,
+   "facing": "front_3q",
+   "loop": false,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "bartender-v1-20261105q",
+    "pose": "finish_turn.turn_out",
+    "sha256": "877012d4ff0d0172022f96792bbba504a7789da2688fd3bf4c96b2d2a1b6931f",
+    "selected": "950002",
+    "frameKey": null,
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   },
+   "aliasOf": "finish_turn_turn_out"
+  },
+  "watch_hold_l": {
+   "rect": [
+    677,
+    996,
+    78,
+    241
+   ],
+   "anchor": [
+    54.2,
+    239.4
+   ],
+   "pixelsPerUnit": 5.6556,
+   "facing": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "left",
+   "status": "candidate",
+   "provenance": {
+    "run": "bartender-v1-20261105q",
+    "pose": "watch.hold_l",
+    "sha256": "a57d5fd4cdf3e857853ebb7d11a968f8c79aa3943d571887bcf46d09ea41f02d",
+    "selected": "950000",
+    "frameKey": null,
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "follow-through",
+     "secondary-action",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "watch_hold_r": {
+   "rect": [
+    757,
+    996,
+    95,
+    241
+   ],
+   "anchor": [
+    33.8,
+    239.4
+   ],
+   "pixelsPerUnit": 5.6556,
+   "facing": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "right",
+   "status": "candidate",
+   "provenance": {
+    "run": "bartender-v1-20261105q",
+    "pose": "watch.hold_r",
+    "sha256": "7f353208a9b4b315b7cf7b3546019a82bda9c5ae78ca5d9808ca172a913d1ccd",
+    "selected": "950002",
+    "frameKey": null,
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "follow-through",
+     "secondary-action",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "watch_left": {
+   "rect": [
+    302,
+    501,
+    72,
+    246
+   ],
+   "anchor": [
+    54.2,
+    244.4
+   ],
+   "pixelsPerUnit": 5.6556,
+   "facing": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "left",
+   "status": "candidate",
+   "provenance": {
+    "run": "bartender-v1-20261105q",
+    "pose": "watch.shift_l",
+    "sha256": "499d6ab6191efd7080afbed812a2784cd7592d081561635d56c7832a44595ec8",
+    "selected": "950002",
+    "frameKey": null,
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "secondary-action",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   },
+   "aliasOf": "watch_shift_l"
+  },
+  "watch_right": {
+   "rect": [
+    615,
+    252,
+    100,
+    247
+   ],
+   "anchor": [
+    29.8,
+    245.4
+   ],
+   "pixelsPerUnit": 5.6556,
+   "facing": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "right",
+   "status": "candidate",
+   "provenance": {
+    "run": "bartender-v1-20261105q",
+    "pose": "watch.shift_r",
+    "sha256": "5c209dce1db7e9ae071f1ef87acb39fd445bede531ac0499b13a44068c8ee716",
+    "selected": "950000",
+    "frameKey": null,
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "secondary-action",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   },
+   "aliasOf": "watch_shift_r"
+  },
+  "watch_shift_l": {
+   "rect": [
+    302,
+    501,
+    72,
+    246
+   ],
+   "anchor": [
+    54.2,
+    244.4
+   ],
+   "pixelsPerUnit": 5.6556,
+   "facing": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "left",
+   "status": "candidate",
+   "provenance": {
+    "run": "bartender-v1-20261105q",
+    "pose": "watch.shift_l",
+    "sha256": "499d6ab6191efd7080afbed812a2784cd7592d081561635d56c7832a44595ec8",
+    "selected": "950002",
+    "frameKey": null,
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "secondary-action",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  },
+  "watch_shift_r": {
+   "rect": [
+    615,
+    252,
+    100,
+    247
+   ],
+   "anchor": [
+    29.8,
+    245.4
+   ],
+   "pixelsPerUnit": 5.6556,
+   "facing": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "right",
+   "status": "candidate",
+   "provenance": {
+    "run": "bartender-v1-20261105q",
+    "pose": "watch.shift_r",
+    "sha256": "5c209dce1db7e9ae071f1ef87acb39fd445bede531ac0499b13a44068c8ee716",
+    "selected": "950000",
+    "frameKey": null,
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "secondary-action",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  },
+  "yield_side_contact_l": {
+   "rect": [
+    161,
+    1240,
+    133,
+    240
+   ],
+   "anchor": [
+    75.9,
+    238.4
+   ],
+   "pixelsPerUnit": 5.6556,
+   "facing": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "bartender-v1-20261105q",
+    "pose": "yield_side.contact_l",
+    "sha256": "acee0e11a1fa22172b01896da5e5c7dd10d4566ddd2649f3f64673c238920c6d",
+    "selected": "950000",
+    "frameKey": null,
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "anticipation",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  },
+  "yield_side_contact_r": {
+   "rect": [
+    741,
+    1240,
+    112,
+    239
+   ],
+   "anchor": [
+    42.1,
+    237.4
+   ],
+   "pixelsPerUnit": 5.6556,
+   "facing": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "bartender-v1-20261105q",
+    "pose": "yield_side.contact_r",
+    "sha256": "dc8f77e7d432c12aea546fa08c3e671402c6dcc9cc5f19674eaced4b9e5c898c",
+    "selected": "950002",
+    "frameKey": null,
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "anticipation",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  },
+  "yield_side_down_l": {
+   "rect": [
+    614,
+    1240,
+    125,
+    239
+   ],
+   "anchor": [
+    64.2,
+    237.4
+   ],
+   "pixelsPerUnit": 5.6556,
+   "facing": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "left",
+   "status": "candidate",
+   "provenance": {
+    "run": "bartender-v1-20261105q",
+    "pose": "yield_side.down_l",
+    "sha256": "06f3f4949794a209d42aeabafdd809aa0b5a3f8ac4d46e71916bed7c34ca6d08",
+    "selected": "950002",
+    "frameKey": null,
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  },
+  "yield_side_down_r": {
+   "rect": [
+    686,
+    750,
+    89,
+    243
+   ],
+   "anchor": [
+    13.8,
+    241.4
+   ],
+   "pixelsPerUnit": 5.6556,
+   "facing": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "right",
+   "status": "candidate",
+   "provenance": {
+    "run": "bartender-v1-20261105q",
+    "pose": "yield_side.down_r",
+    "sha256": "b9b34f487f8d236a1fe38c430aea4048d974cb5fcb7b45ec6b3a3251e7948e28",
+    "selected": "950000",
+    "frameKey": null,
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  },
+  "yield_side_pass_l": {
+   "rect": [
+    96,
+    2,
+    101,
+    248
+   ],
+   "anchor": [
+    60.2,
+    245.4
+   ],
+   "pixelsPerUnit": 5.6556,
+   "facing": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "left",
+   "status": "candidate",
+   "provenance": {
+    "run": "bartender-v1-20261105q",
+    "pose": "yield_side.pass_l",
+    "sha256": "26ccfd42d9f3c89d083a3ac1201b2eee4489abe28d2cf572b30a0c8802db0162",
+    "selected": "950000",
+    "frameKey": null,
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  },
+  "yield_side_pass_r": {
+   "rect": [
+    199,
+    2,
+    130,
+    248
+   ],
+   "anchor": [
+    38.8,
+    246.4
+   ],
+   "pixelsPerUnit": 5.6556,
+   "facing": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "right",
+   "status": "candidate",
+   "provenance": {
+    "run": "bartender-v1-20261105q",
+    "pose": "yield_side.pass_r",
+    "sha256": "4534218462a8b2bf33743c57168b970553b1279bc8f6403c301c6c6613c95ae0",
+    "selected": "950000",
+    "frameKey": null,
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "line-of-action",
+     "contrapposto",
+     "exaggeration-accent",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  }
+ }
+}

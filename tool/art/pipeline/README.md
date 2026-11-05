@@ -22,7 +22,7 @@ studio.finish_pixels (MCP) ──▶ art_runs/<run>/final/<pose>.png  (native gr
 pack_atlas.py ──▶ <target.out> atlas + .candidate.json (status: candidate)
         │ human acceptance (requireHumanAcceptance)
         ▼
-promote: merge the candidate atlas block into assets/art/ensemble/manifest.json
+promote.py ──▶ merges the candidate atlas block into assets/art/ensemble/manifest.json
 ```
 
 ## Sheet-driven frames (Qwen)

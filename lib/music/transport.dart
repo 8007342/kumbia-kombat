@@ -35,9 +35,16 @@ class MusicTransport {
     this.lookaheadSeconds = .12,
     this.loop = false,
     this.silenceOnCompletion = true,
+    this.starvationGraceSeconds = .025,
   }) {
     if (!lookaheadSeconds.isFinite || lookaheadSeconds <= 0) {
       throw ArgumentError.value(lookaheadSeconds, 'lookaheadSeconds');
+    }
+    if (!starvationGraceSeconds.isFinite || starvationGraceSeconds < 0) {
+      throw ArgumentError.value(
+        starvationGraceSeconds,
+        'starvationGraceSeconds',
+      );
     }
   }
   final MusicScore score;
@@ -45,6 +52,11 @@ class MusicTransport {
   final double lookaheadSeconds;
   final bool loop;
   final bool silenceOnCompletion;
+
+  /// How long the queue may run dry before the transport gives up and pauses.
+  /// Inside this grace, notes whose time has passed are dropped, never played
+  /// late, and music picks up again on the audio clock.
+  final double starvationGraceSeconds;
   double _retireSeconds = double.infinity;
   final List<TempoSection> _sections = [];
   final List<({double beat, int tier})> _pendingSections = [];
@@ -195,7 +207,7 @@ class MusicTransport {
       return;
     }
     // A blocked UI or lost audio device must not create a late-note avalanche.
-    if (now > _scheduledUntilSeconds + .025) {
+    if (now > _scheduledUntilSeconds + starvationGraceSeconds) {
       _pauseAt(
         _boundedBeat(
           math.max(_sections.first.beat, beatAt(_scheduledUntilSeconds)),

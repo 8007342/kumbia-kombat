@@ -26,6 +26,11 @@ const _gold = Color(0xFFFFC35F);
 const _mint = Color(0xFF7CE2C4);
 const _ink = Color(0xFF101F29);
 
+/// A browser without WebGL paints in software: 120 to 160 ms a frame, with
+/// spikes of a second. Audio keeps running through that, so a stall this short
+/// costs a few notes rather than stopping the run for a count-in.
+const _starvationGraceSeconds = 1.5;
+
 class GardenPage extends StatefulWidget {
   const GardenPage({super.key, this.audioFactory});
 
@@ -82,101 +87,108 @@ class _GardenPageState extends State<GardenPage>
     _audio = (widget.audioFactory ?? createGameAudio)();
     _loadScore();
     _ticker = createTicker((_) {
+      // Slow frames can crowd out the timer, so each frame pumps as well.
+      _pumpGame();
       if (mounted &&
           (_session?.running == true || _conductor?.isPlaying == true)) {
         setState(() {});
       }
     })..start();
-    _pump = Timer.periodic(const Duration(milliseconds: 20), (_) {
-      final session = _session;
-      if (session == null) return;
-      if (_conductor != null) {
-        _conductor!.pump();
-        if (_conductor!.isPaused && !_handoffPaused) {
-          _handoffPaused = true;
-          _scene.presentationPaused = true;
-          if (mounted) setState(() {});
-        }
-        final next = _handoff?.nextTransport;
-        if (!_handoffPaused) {
-          final success = _handoff?.success ?? _finish?.success;
-          final source = _handoff?.source ?? _finish?.source;
-          if (success != null && source != null) {
-            final exitAt = source.retirementSeconds;
-            final bridge = _handoff?.bridge;
-            final successBeat = success.positionBeats;
-            final bridgeBeat = bridge?.positionBeats ?? 0;
-            _scene.presentationBeat = _audio.nowSeconds < exitAt
-                ? source.positionBeats
-                : source.beatAt(exitAt) + successBeat + bridgeBeat;
-            // Let applause breathe through the first bar, then settle by guest.
-            final coda = ((successBeat - 4) / 4).clamp(0.0, 1.0);
-            final travel = bridge == null
-                ? 0.0
-                : (bridgeBeat / bridge.score.lengthBeats).clamp(0.0, 1.0);
-            _scene.warmDown = bridge == null ? coda : coda * .55 + travel * .45;
-            _scene.exitTravel = travel;
-          }
-        }
-        if (next != null &&
-            next.state == TransportState.playing &&
-            !next.countingIn &&
-            !_adoptingRoom &&
-            !_handoffPaused) {
-          _adoptNextRoom();
-        }
-        if (_conductor!.completed && _handoff == null) {
-          _conductor = null;
-          if (mounted) setState(() {});
-        }
-      } else if (_transport!.state == TransportState.playing) {
-        _transport!.pump();
-      }
-      if (session.phase == GardenPhase.cleared && !_exitStarted && _exitReady) {
-        _beginExit();
-      }
-      if (!session.running) {
-        _autoplay.suspend();
-        return;
-      }
-      session.advance();
-      if (_conductor == null &&
-          !_handoffPaused &&
-          !_adoptingRoom &&
-          _foreground) {
-        _autoplay.pump(
-          session,
-          onTap: _tap,
-          onFlourish: (direction) => _ornament(direction.name),
-        );
-      } else {
-        _autoplay.suspend();
-      }
-      final signature =
-          '${session.progress.tier}:${session.progress.consecutiveFailures}:'
-          '${session.progress.entranceResets}:${session.passedPhrases}';
-      if (signature != _resultSignature) {
-        _resultSignature = signature;
-        if (session.lastOutcome == ChallengeOutcome.entranceReset) {
-          _scene.resetEntrance();
-          _showFeedback('BACK TO THE GATE', _gold);
-        } else if (session.lastOutcome == ChallengeOutcome.retry) {
-          _showFeedback('FIND THE GROOVE', _cream);
-        } else if (session.lastOutcome != null) {
-          _showFeedback('${_room.metric} +', _mint);
-        }
-      }
-      if (session.phase == GardenPhase.paused ||
-          session.phase == GardenPhase.cleared) {
-        if (session.phase == GardenPhase.paused) {
-          _scene.presentationPaused = true;
-        }
-        _touches.clear();
-        _styleDestination = null;
-        _styleNote = null;
+    _pump = Timer.periodic(
+      const Duration(milliseconds: 20),
+      (_) => _pumpGame(),
+    );
+  }
+
+  void _pumpGame() {
+    final session = _session;
+    if (session == null) return;
+    if (_conductor != null) {
+      _conductor!.pump();
+      if (_conductor!.isPaused && !_handoffPaused) {
+        _handoffPaused = true;
+        _scene.presentationPaused = true;
         if (mounted) setState(() {});
       }
-    });
+      final next = _handoff?.nextTransport;
+      if (!_handoffPaused) {
+        final success = _handoff?.success ?? _finish?.success;
+        final source = _handoff?.source ?? _finish?.source;
+        if (success != null && source != null) {
+          final exitAt = source.retirementSeconds;
+          final bridge = _handoff?.bridge;
+          final successBeat = success.positionBeats;
+          final bridgeBeat = bridge?.positionBeats ?? 0;
+          _scene.presentationBeat = _audio.nowSeconds < exitAt
+              ? source.positionBeats
+              : source.beatAt(exitAt) + successBeat + bridgeBeat;
+          // Let applause breathe through the first bar, then settle by guest.
+          final coda = ((successBeat - 4) / 4).clamp(0.0, 1.0);
+          final travel = bridge == null
+              ? 0.0
+              : (bridgeBeat / bridge.score.lengthBeats).clamp(0.0, 1.0);
+          _scene.warmDown = bridge == null ? coda : coda * .55 + travel * .45;
+          _scene.exitTravel = travel;
+        }
+      }
+      if (next != null &&
+          next.state == TransportState.playing &&
+          !next.countingIn &&
+          !_adoptingRoom &&
+          !_handoffPaused) {
+        _adoptNextRoom();
+      }
+      if (_conductor!.completed && _handoff == null) {
+        _conductor = null;
+        if (mounted) setState(() {});
+      }
+    } else if (_transport!.state == TransportState.playing) {
+      _transport!.pump();
+    }
+    if (session.phase == GardenPhase.cleared && !_exitStarted && _exitReady) {
+      _beginExit();
+    }
+    if (!session.running) {
+      _autoplay.suspend();
+      return;
+    }
+    session.advance();
+    if (_conductor == null &&
+        !_handoffPaused &&
+        !_adoptingRoom &&
+        _foreground) {
+      _autoplay.pump(
+        session,
+        onTap: _tap,
+        onFlourish: (direction) => _ornament(direction.name),
+      );
+    } else {
+      _autoplay.suspend();
+    }
+    final signature =
+        '${session.progress.tier}:${session.progress.consecutiveFailures}:'
+        '${session.progress.entranceResets}:${session.passedPhrases}';
+    if (signature != _resultSignature) {
+      _resultSignature = signature;
+      if (session.lastOutcome == ChallengeOutcome.entranceReset) {
+        _scene.resetEntrance();
+        _showFeedback('BACK TO THE GATE', _gold);
+      } else if (session.lastOutcome == ChallengeOutcome.retry) {
+        _showFeedback('FIND THE GROOVE', _cream);
+      } else if (session.lastOutcome != null) {
+        _showFeedback('${_room.metric} +', _mint);
+      }
+    }
+    if (session.phase == GardenPhase.paused ||
+        session.phase == GardenPhase.cleared) {
+      if (session.phase == GardenPhase.paused) {
+        _scene.presentationPaused = true;
+      }
+      _touches.clear();
+      _styleDestination = null;
+      _styleNote = null;
+      if (mounted) setState(() {});
+    }
   }
 
   Future<void> _loadScore() async {
@@ -209,6 +221,7 @@ class _GardenPageState extends State<GardenPage>
       _audio,
       loop: true,
       lookaheadSeconds: .3,
+      starvationGraceSeconds: _starvationGraceSeconds,
     );
     _audio.leadShape = _room.leadShape;
     _session = GardenSession(
@@ -251,7 +264,11 @@ class _GardenPageState extends State<GardenPage>
   void _beginExit() {
     _exitStarted = true;
     _finish = null;
-    _conductor = TransitionConductor(_audio, lookaheadSeconds: .3);
+    _conductor = TransitionConductor(
+      _audio,
+      lookaheadSeconds: .3,
+      starvationGraceSeconds: _starvationGraceSeconds,
+    );
     if (_roomIndex + 1 < partyRooms.length) {
       _handoff = _conductor!.handoff(
         source: _transport!,
@@ -436,10 +453,14 @@ class _GardenPageState extends State<GardenPage>
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
-    _foreground = state == AppLifecycleState.resumed;
+    // On the web `inactive` only means the window lost focus. The game is still
+    // on screen and audible, so only leaving the screen interrupts a run.
+    _foreground =
+        state == AppLifecycleState.resumed ||
+        state == AppLifecycleState.inactive;
     _scene.presentationPaused = !_foreground;
     if (!_foreground) _activationEpoch++;
-    if (state != AppLifecycleState.resumed &&
+    if (!_foreground &&
         (_session?.running == true || _conductor?.isPlaying == true)) {
       _pause();
     }

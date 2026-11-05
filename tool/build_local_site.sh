@@ -9,7 +9,7 @@ GALLERY_ONLY=0
 if [ "$GALLERY_ONLY" = 0 ]; then
   bash tool/build.sh
   # Candidate atlases under review, listed one per line. Local builds only.
-  if [ -f tool/local_preview_candidates.txt ]; then
+  if [ -s tool/local_preview_candidates.txt ]; then
     mapfile -t CANDIDATES < tool/local_preview_candidates.txt
     python3 tool/art/pipeline/preview_candidate.py "${CANDIDATES[@]}"
   fi

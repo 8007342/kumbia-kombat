@@ -109,9 +109,18 @@ report underruns/drops for diagnostics. The current prototype caps at 96 schedul
 or active voices and records dropped voice requests; priority stealing remains
 integration work.
 
+#### Scenario: brief frame stall rides through
+
+- GIVEN the scheduling horizon has expired by no more than the starvation grace
+- WHEN the pump resumes
+- THEN the transport keeps playing from the current audio time
+- AND drops the attacks it missed rather than playing them late
+- AND shows no pause or count-in.
+
 #### Scenario: frame stall and safe recovery
 
-- GIVEN the scheduling horizon has expired by more than 25 ms
+- GIVEN the scheduling horizon has expired by more than the transport's
+  starvation grace (25 ms by default, 1.5 s in the game)
 - WHEN the pump resumes after a blocked UI or background interruption
 - THEN the transport pauses at its last safely scheduled beat
 - AND cancels queued attacks and sounding voices

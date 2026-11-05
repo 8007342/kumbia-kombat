@@ -14,6 +14,15 @@ class OutfitPalette {
   final ui.FragmentProgram? _compiledProgram;
   static Future<ui.FragmentProgram>? _program;
   static const maxVariants = 12; // Three guest atlases × four wardrobes.
+
+  /// One recolor slower than this means the shader runs in software, where each
+  /// of the others would freeze the page for about a second. Those then wait
+  /// until [holdSlowRasters] is off; until then guests keep their source colors.
+  static const slowRasterBudget = Duration(milliseconds: 500);
+  bool _slowRenderer = false;
+
+  /// Set while a run is playing, so a slow recolor never lands mid-phrase.
+  bool holdSlowRasters = false;
   final Map<(ui.Image, OutfitColor), ui.Image> _images = {};
   final Map<(ui.Image, OutfitColor), Future<void>> _requests = {};
   final ui.Paint _paint = ui.Paint()..filterQuality = ui.FilterQuality.none;
@@ -36,11 +45,15 @@ class OutfitPalette {
     }
   }
 
+  bool get _heldBack => _slowRenderer && holdSlowRasters;
+
   /// Optional prewarm. Calls are deduplicated and raster jobs run serially to
   /// avoid twelve simultaneous atlas allocations/readbacks on mobile browsers.
   /// Errors leave source art in place and are available for diagnostics above.
   Future<void> prepare(ui.Image image, OutfitColor palette) {
-    if (_disposed || _compiledProgram == null) return Future<void>.value();
+    if (_disposed || _compiledProgram == null || _heldBack) {
+      return Future<void>.value();
+    }
     final key = (image, palette);
     final existing = _requests[key];
     if (existing != null) return existing;
@@ -51,7 +64,13 @@ class OutfitPalette {
         // Let the browser present source art between expensive atlas readbacks.
         await Future<void>.delayed(Duration.zero);
         if (_disposed) return;
+        if (_heldBack) {
+          _requests.remove(key);
+          return;
+        }
+        final clock = Stopwatch()..start();
         final raster = await _rasterize(retainedSource, palette);
+        if (clock.elapsed > slowRasterBudget) _slowRenderer = true;
         if (_disposed) {
           raster.dispose();
         } else {

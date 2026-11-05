@@ -28,13 +28,24 @@ class MusicFinish {
 /// call silence; only explicit pause, recovery, stop or external device loss do.
 /// Preload scores before calling handoff so resource loading cannot insert gaps.
 class TransitionConductor {
-  TransitionConductor(this.backend, {this.lookaheadSeconds = .12}) {
+  TransitionConductor(
+    this.backend, {
+    this.lookaheadSeconds = .12,
+    this.starvationGraceSeconds = .025,
+  }) {
     if (!lookaheadSeconds.isFinite || lookaheadSeconds <= 0) {
       throw ArgumentError.value(lookaheadSeconds, 'lookaheadSeconds');
+    }
+    if (!starvationGraceSeconds.isFinite || starvationGraceSeconds < 0) {
+      throw ArgumentError.value(
+        starvationGraceSeconds,
+        'starvationGraceSeconds',
+      );
     }
   }
   final MusicAudioBackend backend;
   final double lookaheadSeconds;
+  final double starvationGraceSeconds;
   List<MusicTransport> _transports = [];
   ConductorState _state = ConductorState.idle;
   double _pausedAtSeconds = 0;
@@ -101,6 +112,7 @@ class TransitionConductor {
         loop: loop,
         silenceOnCompletion: false,
         lookaheadSeconds: lookaheadSeconds,
+        starvationGraceSeconds: starvationGraceSeconds,
       );
 
   void _checkSource(MusicTransport source) {
@@ -137,7 +149,7 @@ class TransitionConductor {
       if (transport.state != TransportState.playing || transport.countingIn) {
         continue;
       }
-      if (now > transport.scheduledThroughSeconds + .025) {
+      if (now > transport.scheduledThroughSeconds + starvationGraceSeconds) {
         safeTime = math.min(safeTime, transport.scheduledThroughSeconds);
         starved = true;
       }

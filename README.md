@@ -33,6 +33,8 @@ node tool/prepare_preview.mjs  # also put standalone score room at /music/
 For the forge's working local preview, publish the root project with the
 managed Wrangler runtime. See [preview handoff](plan/session-garden.md) and
 [forge diagnostics](FORGE_DIAGNOSTICS.md) for the current dev-route issue.
+What this project learned, written for other projects, is in
+[LESSONS_LEARNED.md](LESSONS_LEARNED.md).
 The score room lets you play all five songs and change tiers independently.
 
 ```bash
