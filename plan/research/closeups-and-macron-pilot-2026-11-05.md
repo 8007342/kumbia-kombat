@@ -127,7 +127,7 @@ Sheets: `gk-fist.png`, `mc-fist.png`, `gulp-hands.png`, `plates.png`, `finished-
 | Bar plate from a CPU guide | Guide and words | 4 of 4 | Best plate of the run |
 | Garden plate, softer guide | Guide and words | 0 of 4 | Discs and foliage turned to blobs |
 
-Across the picks' routes (excluding the first wordings and the 1536 test), about 3 in 4 are usable. That counts only this session.
+*Measured*, on the routes that worked, after wording fixes: 33 of 40 usable (first wordings and the 1536 test excluded, so this flatters the route). Counting everything drawn except plates: 42 of 72.
 
 **Chaining** (*proven*, small sample): give the first pick as image 2 and ask for the moment before or after. Same fist each time, by eye, which is what separate drawings
 otherwise lose. The cost: pose change shrinks. *Measured* silhouette overlap with the key: chained Mācron 0.79 to 0.93, Gatekeeper approach 0.83 to 0.91. Only a recoil
