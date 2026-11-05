@@ -1,0 +1,124 @@
+{
+  "version": 1,
+  "status": "provisional first pass from drawn frames; names and tables may change after the dance teacher's interview",
+  "hit": {
+    "anticipation": "{limb}_prep",
+    "followThrough": "{limb}_follow",
+    "settle": "{limb}_return"
+  },
+  "inviteHoldBeats": 0.5,
+  "travelOutUntilYield": 0.75,
+  "clips": {
+    "groove_basic": {
+      "note": "Paso basico as drawn: down, replace, close, hip-pop hold on each side. One drawing per count.",
+      "beatsPerFrame": 1,
+      "frames": ["groove_down_l", "groove_pass_l", "groove_up_l", "groove_pass_l2", "groove_down_r", "groove_pass_r", "groove_up_r", "groove_pass_r2"]
+    },
+    "groove_double": {
+      "beatsPerFrame": 0.5,
+      "frames": ["groove_down_l", "groove_pass_l", "groove_up_l", "groove_pass_l2", "groove_down_r", "groove_pass_r", "groove_up_r", "groove_pass_r2"]
+    },
+    "hip_pops": {
+      "beatsPerFrame": 1,
+      "frames": ["groove_down_l", "groove_pass_l2", "groove_down_r", "groove_pass_r2"]
+    },
+    "step_touch": {
+      "beatsPerFrame": 0.5,
+      "frames": ["left_foot_prep", "left_foot_follow", "left_foot_return", "left_hand_return", "right_foot_prep", "right_foot_follow", "right_foot_return", "right_hand_return"]
+    },
+    "watch_sway": {
+      "beatsPerFrame": 1,
+      "frames": ["watch_shift_l", "watch_hold_l", "watch_shift_r", "watch_hold_r"]
+    },
+    "clap": {
+      "note": "Phase puts clap_contact exactly on the beat.",
+      "beatsPerFrame": 0.25,
+      "phase": 0.5,
+      "frames": ["clap_open", "clap_close", "clap_contact", "clap_release"]
+    },
+    "show_off": {
+      "beatsPerFrame": 0.5,
+      "frames": ["challenge_load", "challenge_offer", "challenge_proud", "challenge_return"]
+    },
+    "approval": {
+      "frames": ["approval_load", "approval_nod", "approval_release"],
+      "beats": [0.2, 0.35, 0.2]
+    },
+    "reassurance": {
+      "frames": ["reassurance_notice", "reassurance_open_hand", "reassurance_settle"],
+      "beats": [0.2, 0.35, 0.2]
+    },
+    "finish_turn": {
+      "beatsPerFrame": 0.5,
+      "frames": ["finish_turn_turn_out", "finish_turn_finish_a", "finish_turn_finish_b", "finish_turn_turn_in"]
+    },
+    "invite_onward": {
+      "beatsPerFrame": 1,
+      "frames": ["invite"]
+    },
+    "yield_out": {
+      "note": "Sidestep toward the sideline, keyed to floorYield so the feet follow the distance covered. Ends on the drawn hand-over.",
+      "frames": ["yield_side_contact_l", "yield_side_down_l", "yield_side_pass_r"]
+    }
+  },
+  "rules": {
+    "idle": "groove_basic",
+    "restByTier": ["groove_basic", "groove_basic", "groove_double", "groove_double", "groove_double"],
+    "finishByTier": ["finish_turn_finish_a", "finish_turn_finish_a", "finish_turn_finish_b", "finish_turn_finish_b", "finish_turn_finish_b"],
+    "responseCellBeats": 4,
+    "responseByTier": [
+      ["watch_sway", "groove_basic"],
+      ["groove_basic", "hip_pops"],
+      ["groove_double", "hip_pops"],
+      ["groove_double", "step_touch"],
+      ["step_touch", "show_off", "groove_double"]
+    ],
+    "accents": [
+      { "note": "Tier 4 brass stab in both current scores", "everyBeats": 16, "atBeat": 14.5, "minTier": 4, "clip": "clap" },
+      { "note": "Two-bar phrase downbeat", "everyBeats": 8, "atBeat": 0, "minTier": 1, "clip": "clap" },
+      { "everyBeats": 8, "atBeat": 2, "minTier": 2, "clip": "clap" }
+    ],
+    "approve": "approval",
+    "recover": "reassurance",
+    "celebrationIntro": [
+      { "clip": "approval", "beats": 0.75 },
+      { "clip": "finish_turn", "beats": 2 },
+      { "clip": "invite_onward", "beats": 1.25 }
+    ],
+    "celebrationLoop": [
+      { "clip": "clap", "beats": 4 },
+      { "clip": "groove_double", "beats": 4 }
+    ],
+    "reducedMotionHold": "watch_hold_l",
+    "reducedMotionCelebration": "finish_turn_finish_b"
+  },
+  "dancers": {
+    "gatekeeper": {},
+    "bartender": {
+      "note": "Every groove_* and challenge_* drawing holds the shaker and no other drawing does. These overrides keep it off screen until the owner decides. Delete this entry's clips and frames to give her the shared groove.",
+      "frames": {
+        "occupied": "watch_hold_l",
+        "ready": "reassurance_notice",
+        "invite": "reassurance_open_hand"
+      },
+      "clips": {
+        "groove_basic": {
+          "beatsPerFrame": 1,
+          "frames": ["left_foot_prep", "left_foot_follow", "left_foot_return", "watch_hold_l", "right_foot_prep", "right_foot_follow", "right_foot_return", "watch_hold_r"]
+        },
+        "groove_double": {
+          "beatsPerFrame": 0.5,
+          "frames": ["left_foot_prep", "left_foot_follow", "left_hand_prep", "left_foot_return", "right_foot_prep", "right_foot_follow", "right_hand_prep", "right_foot_return"]
+        },
+        "hip_pops": {
+          "beatsPerFrame": 1,
+          "frames": ["watch_shift_l", "left_foot_follow", "watch_shift_r", "right_foot_follow"]
+        },
+        "show_off": {
+          "beatsPerFrame": 0.5,
+          "frames": ["finish_turn_turn_out", "finish_turn_finish_a", "finish_turn_finish_b", "reassurance_open_hand"]
+        }
+      }
+    }
+  }
+}
