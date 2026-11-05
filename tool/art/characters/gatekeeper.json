@@ -83,6 +83,118 @@
   "set": "opponent-64",
   "overrides": {}
  },
+ "drawing": {
+  "noun": "man",
+  "fits": "hat, both shoes and both hands",
+  "look": "short, stocky, heavyset build, broad body, big round belly straining his shirt and overhanging his waistband, thick arms and legs, thick neck, wide round face with full cheeks, thin pencil mustache, black hair, panama hat with teal band, purple short-sleeved guayabera with collar, pockets and teal embroidered panels, cream pleated trousers, teal shoes and thick dark ink outline",
+  "extra": "His chin and cheeks are smooth and bare, the mustache his only facial hair. Both eyes are open. ",
+  "sheet": {
+   "views": {
+    "front": {
+     "image": "tool/art/references/gatekeeper/front.png"
+    }
+   }
+  },
+  "seed": 981000,
+  "skeletonOverrides": {
+   "clap.open": {
+    "3": [
+     225,
+     470
+    ],
+    "4": [
+     318,
+     405
+    ],
+    "6": [
+     545,
+     470
+    ],
+    "7": [
+     590,
+     540
+    ]
+   },
+   "clap.close": {
+    "3": [
+     235,
+     475
+    ],
+    "4": [
+     345,
+     425
+    ],
+    "6": [
+     545,
+     480
+    ],
+    "7": [
+     590,
+     550
+    ]
+   },
+   "clap.contact": {
+    "3": [
+     240,
+     495
+    ],
+    "4": [
+     384,
+     445
+    ],
+    "6": [
+     545,
+     500
+    ],
+    "7": [
+     590,
+     570
+    ]
+   },
+   "clap.release": {
+    "3": [
+     225,
+     480
+    ],
+    "4": [
+     330,
+     440
+    ],
+    "6": [
+     545,
+     485
+    ],
+    "7": [
+     590,
+     555
+    ]
+   },
+   "finish_turn.finish_a": {
+    "3": [
+     150,
+     390
+    ],
+    "4": [
+     195,
+     265
+    ]
+   },
+   "finish_turn.finish_b": {
+    "3": [
+     150,
+     345
+    ],
+    "4": [
+     262,
+     222
+    ]
+   }
+  },
+  "$comment": "Wording from d5eb822, the A8 build fix. It describes the build and bare chin because this model draws what a prompt names, even denied ('glasses-free' drew glasses). The candidate sheet is tool/art/references/gatekeeper/front-stocky.png: pass --sheet until the owner accepts it, then accept-sheet --view front.",
+  "buildReference": {
+   "image": "assets/art/garden/gatekeeper.png"
+  }
+ },
  "references": {
   "mode": "source",
   "sources": [

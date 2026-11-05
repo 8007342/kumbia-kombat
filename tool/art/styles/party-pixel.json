@@ -3,7 +3,7 @@
  "description": "Current working art direction for party characters. Not final: edit freely, and impact analysis reports every character affected.",
  "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background",
  "negative": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render",
- "backend": "sdxl-base-1",
+ "backend": "qwen-frame",
  "frame": {
   "margin": {
    "minClear": 0.03,

@@ -1,0 +1,69 @@
+{
+ "id": "macron-drawn",
+ "description": "Mācron's drawn clips (plan/research/level3-art-pipeline-2026-11-05.md). No rig and no OpenPose: each pose is a sheet view plus words. Directions and arms are named by picture side. Beat counts and events wait for the sequence player (plan/research/level3-engine-audit-2026-11-05.md, need 11).",
+ "human": false,
+ "poseTable": null,
+ "referencePose": "fist_bump.ready",
+ "pilot": ["rear34_walk", "fist_bump.contact"],
+ "clips": [
+  {"id": "fist_bump", "drawings": 3, "view": "front_3q", "loop": false, "note": "With the Gatekeeper at the level 1 to 2 transition. Drawn as a part and registered, so the contact height can be solved later: his fist reaches about 0.30 adult."},
+  {"id": "gulp", "drawings": 3, "view": "front", "loop": false, "note": "Motor oil. Full figure, at game scale. The probes proved this only as a chest-up close-up, and a close-up camera is the owner's call."},
+  {"id": "rear34_walk", "drawings": 4, "view": "rear_3q", "loop": true, "note": "Walking away towards the top right of the picture. DepartureFacing has no three-quarter value yet."},
+  {"id": "high_five", "drawings": 3, "view": "front_3q", "loop": false, "note": "The finale, kept distinct from the fist bump by an open palm."},
+  {"id": "signature_step", "status": "reserved", "drawings": 0, "loop": false, "note": "Reserved. The step comes from the salsa teacher; nothing is invented here. Add its poses when it arrives, and remove status."}
+ ],
+ "poses": {
+  "fist_bump.ready": {
+   "clip": "fist_bump", "phase": "anticipation", "view": "three_quarter_right",
+   "description": "standing on the ground, turned three-quarters towards the right of the picture, its arm on the right side of the picture drawn back beside its round body with a closed round fist, its other arm hanging relaxed, knees soft, head tipped slightly back"
+  },
+  "fist_bump.contact": {
+   "clip": "fist_bump", "phase": "contact", "view": "three_quarter_right",
+   "description": "standing on the ground, turned three-quarters towards the right of the picture. Its arm on the right side of the picture is raised forward and up with a closed round fist, knuckles forward, offering a fist bump. Its other arm hangs relaxed, slightly back"
+  },
+  "fist_bump.settle": {
+   "clip": "fist_bump", "phase": "settle", "view": "three_quarter_right",
+   "description": "standing on the ground, turned three-quarters towards the right of the picture, its arm on the right side of the picture lowering to chest height with the fist still closed, its other arm relaxed, the two cyan eyes on its screen squeezed into happy arcs, its antenna ball perked up"
+  },
+  "gulp.lift": {
+   "clip": "gulp", "phase": "anticipation", "view": "front",
+   "description": "standing on the ground facing the viewer, one round hand on the right side of the picture lifting a small glass of glossy dark amber motor oil to chest height, its other arm relaxed, the two cyan eyes on its dark screen looking at the glass"
+  },
+  "gulp.sip": {
+   "clip": "gulp", "phase": "contact", "view": "front",
+   "description": "standing on the ground, tilting its big rounded head back with delight, holding a small glass of glossy dark amber motor oil up to the bottom edge of its dark teal face screen, sipping, with one round hand on the right side of the picture. On the screen its two cyan eyes are happy closed arcs. There is no mouth: the screen stays flat. Its one small cyan antenna ball is perked up, and its other arm is relaxed"
+  },
+  "gulp.after": {
+   "clip": "gulp", "phase": "settle", "view": "front",
+   "description": "standing on the ground facing the viewer, the small empty glass lowered to its chest in one round hand on the right side of the picture, its other arm slightly out, the two cyan eyes on its screen wide happy arcs, its antenna ball perked up"
+  },
+  "rear34_walk.step_r": {
+   "clip": "rear34_walk", "phase": "contact", "view": "rear_three_quarter",
+   "description": "from behind and turned three-quarters, walking away from the viewer towards the top right of the picture: we see the back of its big head and its back, and only a sliver of its side. Its leg on the right side of the picture is stepping forward and its other leg is back, arms swinging opposite the legs. The face screen is not visible"
+  },
+  "rear34_walk.pass_r": {
+   "clip": "rear34_walk", "phase": "pass", "view": "rear_three_quarter",
+   "description": "from behind and turned three-quarters, walking away from the viewer towards the top right of the picture: we see the back of its big head and its back, and only a sliver of its side. Its feet are passing each other, its leg on the left side of the picture bent and lifting, arms close to its body. The face screen is not visible"
+  },
+  "rear34_walk.step_l": {
+   "clip": "rear34_walk", "phase": "contact", "view": "rear_three_quarter",
+   "description": "from behind and turned three-quarters, walking away from the viewer towards the top right of the picture: we see the back of its big head and its back, and only a sliver of its side. Its leg on the left side of the picture is stepping forward and its other leg is back, arms swinging opposite the legs. The face screen is not visible"
+  },
+  "rear34_walk.pass_l": {
+   "clip": "rear34_walk", "phase": "pass", "view": "rear_three_quarter",
+   "description": "from behind and turned three-quarters, walking away from the viewer towards the top right of the picture: we see the back of its big head and its back, and only a sliver of its side. Its feet are passing each other, its leg on the right side of the picture bent and lifting, arms close to its body. The face screen is not visible"
+  },
+  "high_five.ready": {
+   "clip": "high_five", "phase": "anticipation", "view": "three_quarter_right",
+   "description": "standing on the ground, turned three-quarters towards the right of the picture, knees bent and ready to spring, its arm on the right side of the picture swung low and back with an open round hand, its other arm out for balance, the two cyan eyes on its screen bright happy arcs"
+  },
+  "high_five.contact": {
+   "clip": "high_five", "phase": "contact", "view": "three_quarter_right",
+   "description": "stretching up on the ground, turned three-quarters towards the right of the picture, its arm on the right side of the picture raised as high as it reaches with an open round hand, palm forward, its other arm out for balance, its antenna ball perked up"
+  },
+  "high_five.after": {
+   "clip": "high_five", "phase": "settle", "view": "three_quarter_right",
+   "description": "standing on the ground, turned three-quarters towards the right of the picture, its arm on the right side of the picture coming down with an open round hand, its other arm relaxed, the two cyan eyes on its screen happy closed arcs"
+  }
+ }
+}

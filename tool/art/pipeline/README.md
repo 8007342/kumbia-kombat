@@ -1,79 +1,143 @@
 # Character-frame pipeline
 
-From a pose vocabulary to a reviewed in-game atlas, with every step scripted and
-every frame traceable to its rig pose, workflow, seed and animation principles.
-Contract: Tillandsias family spec `1935-k2ib/v1`.
+From a character definition to a reviewed in-game atlas, with every step scripted and every frame
+traceable to its prompt, skeleton, sheet and seed. Contract: Tillandsias family spec `1935-k2ib/v1`.
 
 ```
-tool/art/characters/<id>.json + tool/art/rig/poses.py ──standin.py──▶ art_runs/inputs/<family>/   pose/depth/lineart/regions, rig.json, poses.intent.json
-                                         │ check_poses.py (grounding, crossings, clearance)
-tool/art/references/animation-principles.json ─┐
-tool/art/families/<family>.json ◀──sync_family.py──┘   poses[], phases, profiles, animationReferences
-        │ studio.validate_family (MCP)
+tool/art/characters/<id>.json  (identity words, sheet, props, hand fixes, under `drawing`)
+tool/art/backends/qwen-frame.json  (prompt templates, workflow, cost per job)
+        │ art.py build <c> --dry-run [--prompts]     jobs, images, minutes; changes nothing
         ▼
-plan_jobs.py ──▶ art_runs/<run>/jobs.json + run.json ; inputs staged on /work/tmp/imagegen/kumbia/<run>/in
-        │ studio.run_workflow per job (MCP, GPU)  ── workflows: tool/art/workflows/character-frame-<profile>.api.json
+art.py build <c> --run <run> ──▶ jobs.sheet.json, then jobs.json ; per-pose workflows ; inputs on the lane
+        │ studio.run_workflow per job (MCP, GPU)     art.py accept-sheet after the owner approves a view
         ▼
-collect.py ──▶ art_runs/<run>/raw/<pose>/<k>.png + provenance ; studio.contact_sheet per clip (MCP)
-        │ review: pick one candidate per pose -> art_runs/<run>/selection.json
+collect_qwen.py ─▶ register_frames.py ─▶ character_check.py ─▶ score_frames.py ─▶ review by eye
+        │ studio.finish_pixels (MCP): native grid, locked palette, binary alpha
         ▼
-studio.finish_pixels (MCP) ──▶ art_runs/<run>/final/<pose>.png  (native grid, locked palette, binary alpha)
-        ▼
-pack_atlas.py ──▶ <target.out> atlas + .candidate.json (status: candidate)
+art.py ingest ─▶ art.py build ─▶ pack_atlas.py: atlas + .candidate.json
         │ human acceptance (requireHumanAcceptance)
         ▼
 promote.py ──▶ merges the candidate atlas block into assets/art/ensemble/manifest.json
 ```
 
-## Sheet-driven frames (Qwen)
+`.claude/skills/art-family/SKILL.md` is the step-by-step version.
 
-The rig gives Qwen only a skeleton, and the model sheet gives it the character:
-`plan_qwen_frames.py` → `studio.run_workflow` per job → `collect_qwen.py` →
-`register_frames.py` → `score_frames.py` → review → `studio.finish_pixels` → `pack_atlas.py`.
+## How a frame is planned
 
-- `score_frames.py` only ranks candidates. It can't see an extra arm, a lost hand or a goatee, so
-  look at every candidate. It also rewrites `selection.json`, so run it before picking by eye.
-- Where the rig's wrists stop short (hands meant to reach a hat brim, or to meet in a clap), move
-  them for the drawing in `art_runs/inputs/<family>/skeleton_overrides.json`.
-- Each pose's prompt is baked into `art_runs/<run>/workflows/<pose>.api.json`, because the host's
-  prompt override didn't reach this node (2001-stpr). Check a job with ComfyUI's `/history` if
-  results look unrelated to the prompt.
-- `mirror_half.py` builds a symmetric pose from one arm. Only the prompt-less Gatekeeper wave needed
-  it; with real prompts the model draws two hands meeting by itself.
+The rig gives Qwen only a skeleton, and the model sheet gives it the character.
+
+- **Prompts are generated**, from the character's `drawing` and the pose's words in the same motion data as
+  the skeleton. Each is baked into `art_runs/<run>/workflows/<pose>.api.json`, because the host's prompt
+  override didn't reach this node (2001-stpr). Check a job with ComfyUI's `/history` if results look
+  unrelated to the prompt.
+- **Hand fixes are data.** `drawing.poseOverrides` rewrites a pose's words (say `why`) when they disagree with
+  its skeleton, which otherwise draws both (A5). `drawing.skeletonOverrides` moves joints where the rig's
+  wrists stop short, such as a clap or a hat brim. An override for an unknown pose is refused.
+- **Props** carry a hand and clips. The prompt names the hand by picture side. Bartender's `wording: own-hand`
+  only keeps her accepted run reproducible, so leave it out of anything new.
+- **Accepted work costs nothing.** `drawing.accepted.run` names a run, and a pose whose generated prompt equals
+  the one baked there counts as drawn. That compares prompts, not skeletons, so clear it after a rig edit.
+- **The rig** renders when a character has none or its definition moved on from the last build. Without a build
+  record the committed rig stands, so pass `--render-rig` after a body or garment edit. Rendering needs the bpy venv.
+- **Keys** cover the prompt, sheet, skeleton, graph, seed and visible colours. One fix redraws one pose, and a
+  colour edit recolours with no GPU. The route has no masked pass.
+
+`art.py` dry-runs at 92 s a job and 4 images a job, from the backend file. Reproducibility:
+`test_qwen_route.py` holds all 64 Bartender prompts, the job args and the graph equal to the accepted run.
+
+## Review tools
+
+- `score_frames.py` only ranks candidates, and can't see an extra arm, a lost hand or a goatee, so look at every
+  candidate. It rewrites `selection.json`, so run it before picking by eye. A knee looks for its `trousers`
+  garment unless `drawing.score.knee` names others. It aborts, writing nothing, on missing poses (`--partial`
+  allows them), a colour found in no candidate, or uniform scores.
+- `character_check.py <c> --run <run> [--dir DIR]` compares build (central width over height) across the sheet,
+  the frames and `drawing.buildReference`, and names missing clips. Advisory, and `--strict` exits 1. Calibrated
+  on few frames: Gatekeeper v3 0.294 is flagged against sheet 0.396, the v4 pilot 0.363 and the Bartender's 0.221
+  against 0.216 aren't. It reads an arm touching the body as body, so it compares poses only roughly.
+- `mirror_half.py` builds a symmetric pose from one arm. Only the prompt-less Gatekeeper wave needed it; with real
+  prompts the model draws two hands meeting by itself.
 
 ## Characters as data
 
-`tool/art/characters/<id>.json`, `styles/<id>.json`, `backends/<id>.json` and
-`motion/<set>.json` are the authored source. The family spec and palette are generated.
-Edit a definition, then:
+`tool/art/characters/<id>.json`, `styles/<id>.json`, `backends/<id>.json` and `motion/<set>.json` are the authored
+source. The family spec and palette are generated. Edit a definition, then:
 
 ```bash
 PY=~/.cache/kumbia-art/bin/python
-$PY tool/art/pipeline/art.py build gatekeeper --dry-run         # every frame's action; changes nothing
-$PY tool/art/pipeline/art.py build gatekeeper                   # rig, spec, recolours, then jobs.json or the atlas
-#   run art_runs/<run>/jobs.json through studio.run_workflow, collect, select, finish into final/, then:
-$PY tool/art/pipeline/art.py ingest gatekeeper --run <run>      # store the frames; build again to pack
-$PY tool/art/pipeline/art.py accept-reference bartender --image <png>   # releases jobs a derived reference holds
-$PY tool/art/pipeline/definitions.py character gatekeeper      # refusals name the field
-$PY tool/art/pipeline/planner.py plan gatekeeper                # impact of the edit vs HEAD; changes nothing
-$PY tool/art/pipeline/planner.py plan-style party-pixel         # which characters a style edit reaches
-$PY tool/art/pipeline/compile_family.py gatekeeper              # family spec + palette (--backend <id> to switch)
-$PY tool/art/pipeline/ramps.py lut gatekeeper <variant>         # a colour-only variant's table
+$PY tool/art/pipeline/art.py build gatekeeper --dry-run --prompts   # every frame's action; changes nothing
+$PY tool/art/pipeline/art.py build gatekeeper --run <run>           # rig, spec, recolours, then the job lists or the atlas
+$PY tool/art/pipeline/art.py build gatekeeper --sheet <png> --only clap  # a pilot on a candidate sheet
+$PY tool/art/pipeline/art.py accept-sheet macron --view front --image <png>   # after the owner approves it
+$PY tool/art/pipeline/art.py ingest gatekeeper --run <run>          # store the frames; build again to pack
+$PY tool/art/pipeline/definitions.py character gatekeeper           # refusals name the field
+$PY tool/art/pipeline/planner.py plan gatekeeper                    # impact of the edit vs HEAD; changes nothing
+$PY tool/art/pipeline/planner.py plan-style party-pixel             # which characters a style edit reaches
+$PY tool/art/pipeline/compile_family.py gatekeeper                  # family spec + palette
+$PY tool/art/pipeline/ramps.py lut gatekeeper <variant>             # a colour-only variant's table
 ```
+
+A new character is one file and one command: `art.py build tool/art/tests/fixtures/trial-dancer.json --dry-run
+--prompts` needs no rig, Blender or GPU, and reports 65 jobs, 260 images and about 100 minutes. A new humanoid
+needs no code, though a skirt has no rig shape yet (`waist-apron` stands in, and only silhouettes notice).
 
 | Module | Stage |
 |---|---|
 | `art.py` | The whole chain: reuses stored frames, recolours without a GPU, and queues only what is left |
+| `plan_qwen_frames.py` | Prompts, per-pose workflows, staging and job lists |
 | `stages.py` | Content-addressed store; outputs keyed by the hash of their inputs. Root: `$KUMBIA_ART_CACHE`, else `~/.cache/tillandsias-project/kumbia-art` (a persistent per-project volume: it survives forge restarts, confirmed by macuahuitl-fedora 2026-11-03) |
-| `planner.py` | Per-frame update mode (`recolour`, `finish`, `masked`, `full`) and `frame_key`, which covers only what can show in that frame |
+| `planner.py` | Per-frame update mode and impact report. `art.py --dry-run` is the authority on what a Qwen run costs |
 | `selection.py` | `{pose: {k, key, accepted}}`; a changed key returns just that frame to review |
-| `masked.py` | Changed-region mask, masked job args, and the composite that keeps outside pixels byte-identical |
 | `colourmatch.py` | Per-region median match to the definition's colours, before the pixel finish |
 | `ramps.py` | Snaps each finished pixel to one ramp its region allows, flags off-ramp pixels, and builds recolour tables |
 | `pack_atlas.py` | Atlas plus 64 frames, 20 runtime aliases (`motion/<set>.json`), rig-derived `facing`, `ramps` and `variants` blocks |
 
-Tests: `$PY -m unittest discover -s tool/art/tests`; renderer tests run with the bpy venv
-from inside that folder: `~/.cache/kumbia-bpy/bin/python -m unittest test_rig`.
+Tests: `$PY -m unittest discover -s tool/art/tests`; renderer tests run with the bpy venv from inside that folder:
+`~/.cache/kumbia-bpy/bin/python -m unittest test_rig`.
+
+## Mācron
+
+He's non-human, so his route has no OpenPose. `characters/macron.json` is `status: drawn`, and
+`motion/macron-drawn.json` holds his clips. His rig stays for its pilot poses and plays no part here.
+
+1. **Sheet.** Six views drawn from `front_idle` in his accepted atlas, for the owner to approve with `accept-sheet`.
+2. **Pose.** A sheet view plus words, with one image and no second control. Chosen over a rendered rig silhouette
+   because a mannequin gets copied (A4), and the probes drew him on model this way
+   (`art_runs/level3-probes-20261105/sheets/cast-macron.png`). The fist, rear walk and sip wording come from them.
+3. **Registration.** `register_frames.py --character macron`: every frame 720 canvas px tall on one floor point, or
+   the pose's `heightScale`. `registration.json` gives the atlas's `pixelsPerUnit` (6.4865), so a standing frame
+   matches `front_idle`'s 37 world units. The game then draws him at stature 0.35 (`garden_scene.dart` `_addHero`).
+4. **Clips.** `fist_bump` 3, `gulp` 3, `rear34_walk` 4, `high_five` 3, and `signature_step`, reserved, with no poses
+   until the salsa teacher's step arrives. 19 jobs, 76 images, about 29 minutes. `pilot` lists what to try first, for `--only`.
+
+The plan is committed in `art_runs/macron-v1-planned/`, and a test holds it to the definition. To run it:
+`art.py build macron --run <run>`, which stages inputs, then `studio.run_workflow` on `jobs.sheet.json`.
+
+**Unproven until a GPU runs it:** whether a walk cycle holds together from words alone, the likeliest place for
+touch-up (only single poses were probed); full-figure gulp and high five (the gulp probe was chest-up, and the
+high five was never drawn); cuff side across views, which his current atlas doesn't keep on one arm either;
+whether registration by height holds when a raised arm passes his antenna. The owner hasn't yet said whether the
+probe views count as him.
+
+**Not built:** finish and pack. `studio.finish_pixels` takes a family spec, and `drawn` characters have none, nor
+a locked palette. Colours and a spec come once a reviewed wave exists.
+
+**What the game needs (`lib/`, not changed here):**
+
+- `party_sprites.dart`: `PartyAtlasDefinition` is one image, and `manifest.json`'s `atlases.hero` is the only source
+  of his frames, read by `requireFrames(heroFrameIds)`. `pack_atlas.py` writes the ensemble manifest, which he doesn't
+  read. So his clips need a second hero atlas, or a repack of `macron-dance-v1.png` that also holds them.
+- `heroSpriteFrame` picks one frame from gameplay state, with no notion of a clip. Fist bump, gulp and high five need
+  the beat-locked sequence player (engine audit, need 11). `rear34_walk` also needs a three-quarter `DepartureFacing`.
+- `_addHero` scales from `front_idle` in the same atlas, so a second atlas needs its own reference or the
+  `pixelsPerUnit` above. A fist bump needs a contact point (audit needs 12) and the signature step a level-brief field
+  (need 21).
+
+## The older SDXL route
+
+`art.py build <c> --backend sdxl-base-1` still plans 64 poses and 256 images with `plan_jobs.py`, `collect.py` and the
+multi-pass workflows. It made no accepted frames, so don't use it for new art. It has what Qwen doesn't: masked
+regeneration (`masked.py`) and derived references (`art.py accept-reference`).
 
 ## Where animation research enters
 
@@ -87,14 +151,14 @@ Simogo) as principles with phases, prompt fragments and rig checks.
 - `sync_family.py` tags every pose with its `animationPrinciples` by phase and
   writes the spec's `animationReferences` (registry, research docs, principles
   and sources used).
-- `plan_jobs.py` appends each principle's `promptFragment`/`negativeFragment`
-  to the pose prompt after the pose's plain-English `intent`.
+- On the SDXL route, `plan_jobs.py` appends each principle's `promptFragment`/`negativeFragment`
+  to the pose prompt after the pose's plain-English `intent`. The Qwen route doesn't use these.
 - `pack_atlas.py` writes the principles into every frame's provenance.
 
 Add an authority by adding a source and a principle to the registry, then re-run
 `sync_family.py`; nothing else changes.
 
-## Control profiles
+## Control profiles (SDXL route)
 
 Overrides only reach `$seed`, `$prompt` and `$negative_prompt`, so control
 strengths are baked per profile by `tool/art/workflows/build_workflows.py`
@@ -116,4 +180,4 @@ uv venv ~/.cache/kumbia-art && VIRTUAL_ENV=~/.cache/kumbia-art uv pip install pi
 ```
 
 `/work/tmp/imagegen/` is wiped on forge teardown; anything worth keeping is
-copied into `art_runs/<run>/` by `collect.py`.
+copied to the art cache by `collect_qwen.py`, so run that during a wave.

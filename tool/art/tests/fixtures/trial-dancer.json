@@ -1,0 +1,31 @@
+{
+ "$comment": "Throwaway, and not a cast member. It proves a new character is a definition and a dry run: art.py build tool/art/tests/fixtures/trial-dancer.json --dry-run --prompts. The rig has no skirt shape yet, so her wrap dress borrows waist-apron for its silhouette, and the score tolerance allows for the swing.",
+ "id": "trial-dancer",
+ "family": "trial-dancer-v1",
+ "style": "party-pixel",
+ "description": "Dry-run fixture for the Qwen route.",
+ "body": {"preset": "slim-adult"},
+ "pronouns": ["they", "them", "their"],
+ "skin": "#8A5A3A",
+ "traits": "tall adult dancer, calm elegant smile",
+ "garments": [
+  {"id": "hair", "shape": "puff", "region": "hair", "colour": "#C9C4BC"},
+  {"id": "top", "shape": "shirt-fitted", "region": "shirt", "colour": "#1F6B4A"},
+  {"id": "dress", "shape": "waist-apron", "region": "apron", "colour": "#1A5C40"},
+  {"id": "shoes", "shape": "shoes-flat", "region": "shoes", "colour": "#C89B3C"}
+ ],
+ "motion": {"set": "opponent-64", "overrides": {}},
+ "drawing": {
+  "noun": "person",
+  "fits": "hair, both shoes and both hands",
+  "look": "tall, long-limbed adult build, narrow face, calm smile, short cropped silver-grey natural hair, long-sleeved emerald green wrap dress falling below the knee, flat gold dance shoes and thick dark ink outline",
+  "sheet": {
+   "source": {"image": "tool/art/references/bartender/front.png", "styleOnly": true},
+   "views": {"front": {"image": "tool/art/references/trial-dancer/front.png", "description": "facing the viewer"}}
+  },
+  "score": {"knee": ["dress"], "silhouetteTolerance": 40}
+ },
+ "references": {"mode": "source", "sources": []},
+ "targets": [{"room": "bar", "atlas": "trial-dancer", "native": [256, 320], "pixelScale": 3}],
+ "seedBase": 990000
+}

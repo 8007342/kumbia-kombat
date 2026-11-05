@@ -80,6 +80,19 @@ def character_problems(c: dict, root: Path = ROOT) -> list[str]:
         for key in v.get("colours", {}):
             if key != "skin" and key not in seen and key not in {p["id"] for p in c.get("props", [])}:
                 out.append(f"variants.{vid}.colours.{key}: unknown garment or prop {key!r}")
+    drawing = c.get("drawing", {})
+    if "motion" in drawing and not (ART / "motion" / f"{drawing['motion']}.json").exists():
+        out.append(f"drawing.motion: unknown motion set {drawing['motion']!r}")
+    source = drawing.get("sheet", {}).get("source")
+    if source and not (root / source["image"]).exists():
+        out.append(f"drawing.sheet.source.image: missing file {source['image']!r}")
+    reference = drawing.get("buildReference")
+    if reference and not (root / reference["image"]).exists():
+        out.append(f"drawing.buildReference.image: missing file {reference['image']!r}")
+    if c.get("status") == "drawn":
+        for req in ("family", "pronouns", "drawing"):
+            if req not in c:
+                out.append(f"{req}: required for a drawn character")
     if c.get("status", "active") == "active":
         for req in ("family", "pronouns", "skin", "traits", "references", "targets", "seedBase"):
             if req not in c:
@@ -110,6 +123,16 @@ def _load(kind: str, folder: str, ident: str, problems) -> dict:
 
 
 def load_character(ident: str) -> dict:
+    """By id from tool/art/characters, or from a path ending .json, for a character on trial."""
+    if ident.endswith(".json"):
+        p = Path(ident)
+        if not p.exists():
+            raise DefinitionError([f"character: no definition {ident}"])
+        d = json.loads(p.read_text())
+        bad = character_problems(d)
+        if bad:
+            raise DefinitionError(bad)
+        return d
     return _load("character", "characters", ident, character_problems)
 
 

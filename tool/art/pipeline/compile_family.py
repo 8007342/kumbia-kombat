@@ -40,7 +40,10 @@ def character_prompt(c: dict) -> str:
     return ", ".join(parts)
 
 
-def workflow_path(backend_id: str, profile: str) -> str:
+def workflow_path(backend: dict, profile: str) -> str:
+    if backend.get("workflow"):
+        return backend["workflow"]
+    backend_id = backend["id"]
     per_backend = f"tool/art/workflows/{backend_id}/{profile}.api.json"
     return per_backend if (ROOT / per_backend).exists() else f"tool/art/workflows/character-frame-{profile}.api.json"
 
@@ -78,10 +81,10 @@ def compile_spec(c: dict, style: dict, motion: dict, backend: dict, ramps: dict,
         "character_prompt": character_prompt(c), "clips": motion["clips"],
         "generation": {"count_per_pose": gen.get("count_per_pose", 4), "seed_base": c["seedBase"],
                        "seed_policy": gen.get("seed_policy", ""), "backend": "comfyui-api",
-                       "workflow": workflow_path(backend["id"], motion["defaultProfile"]),
+                       "workflow": workflow_path(backend, motion["defaultProfile"]),
                        "tiers": {backend.get("tier", "I1"): {"model": backend.get("checkpoint", backend["id"]),
                                                              "steps": backend.get("sampler", {}).get("steps")}},
-                       "workflowsByProfile": {p: workflow_path(backend["id"], p) for p in PROFILES},
+                       "workflowsByProfile": {p: workflow_path(backend, p) for p in PROFILES},
                        "defaultProfile": motion["defaultProfile"], "profileRules": motion["profileRules"]},
         "qa": style.get("qa", {}), "targets": targets, "adapters": style.get("adapters"),
         "regionsRender": style.get("regionsRender"),
@@ -112,8 +115,8 @@ def compile_character(ident: str, backend_id: str | None = None) -> tuple[dict, 
 
 
 def compile_definition(c: dict, backend_id: str | None = None) -> tuple[dict, dict, dict]:
-    if c.get("status") == "rig-only":
-        raise D.DefinitionError([f"status: {c['id']} is rig-only and has no family spec yet"])
+    if c.get("status", "active") != "active":
+        raise D.DefinitionError([f"status: {c['id']} is {c['status']} and has no family spec yet"])
     style = D.load_style(c["style"])
     motion = D.load_motion(c["motion"]["set"])
     backend = D.resolve_backend(c, style, backend_id)

@@ -13,6 +13,13 @@
   "denoise": {"type": "number"},
   "loras": {"type": "array", "items": {"type": "object", "required": ["name", "weight"]}},
   "negatives": {"enum": ["effective", "ineffective"]},
-  "tier": {"type": "string"}
+  "tier": {"type": "string"},
+  "route": {"enum": ["sdxl", "qwen"]},
+  "workflow": {"type": "string"},
+  "promptNode": {"type": "string"},
+  "countPerPose": {"type": "integer", "minimum": 1},
+  "secondsPerJob": {"type": "number", "exclusiveMinimum": 0},
+  "skeletonScale": {"type": "number", "exclusiveMinimum": 0},
+  "prompts": {"type": "object", "additionalProperties": {"type": "string"}}
  }
 }

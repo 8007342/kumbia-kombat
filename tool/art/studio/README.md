@@ -9,7 +9,7 @@ survive it. Studio: `https://comfyui.kumbia-kombat.localhost:18443/` (from the f
 | `frame-multipass` | One frame in six passes: base, shirt, embroidery, hat, head, matte. Each pass saves its own output |
 | `model-sheet` | Front, 3/4 and rear reference for the owner's acceptance |
 | `parts-from-frame` | Cuts a frame into head, hat, shirt, arms and legs as RGBA layers on the rig masks |
-| `frame-from-sheet` | Experiment: draw the sheet's man in a rig pose. It fails today, see below |
+| `frame-from-sheet` | Early experiment with a flat proxy or line art, see below. Frames now come from `tool/art/workflows/qwen-frame.api.json` |
 
 `<name>.json` is the source: it's what you open in the studio. `<name>.api.json` is generated from
 it for `studio.run_workflow`, so never edit one by hand. `frame-multipass` also writes
@@ -113,7 +113,8 @@ Measured in `art_runs/studio-proof-20261104/`. Values not listed are the cheat s
   (`detail-variant/`) but gives smooth mannequin shapes, not v2's drawing.
 - **Consistency comes from what's composited.** The stitches and the face match across frames
   because they start as the same pixels; the sampler only blends them in.
-- **`frame-from-sheet` fails.** Given a flat proxy it returns the proxy; given line art it keeps the
-  pose but loses the man. `FluxKontextMultiReferenceLatentMethod`, which the template uses, is refused.
+- **`frame-from-sheet` is superseded.** Given a flat proxy it returned the proxy; given line art it kept the
+  pose but lost the man. A bare OpenPose skeleton is what worked: `tool/art/pipeline/README.md`.
+  `FluxKontextMultiReferenceLatentMethod` is no longer refused, and runs in `qwen-frame.api.json`.
 - **Partial assets:** only head-and-hat parts earn their place, in the same bucket of head angle.
   `parts/` has the numbers.

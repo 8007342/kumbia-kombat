@@ -12,7 +12,7 @@ sys.path.insert(0, str(WF))
 import build_workflows as B  # noqa: E402
 
 MODELS = json.loads((WF / "models.json").read_text())
-BACKENDS = [json.loads(p.read_text()) for p in sorted(B.BACKENDS.glob("*.json"))]
+BACKENDS = [b for b in (json.loads(p.read_text()) for p in sorted(B.BACKENDS.glob("*.json"))) if b.get("route") != "qwen"]
 
 
 def sampler(wf: dict) -> dict:

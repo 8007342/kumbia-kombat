@@ -32,6 +32,7 @@ class Chain(unittest.TestCase):
             (t / d).mkdir()
         cls.paths = A.Paths(store=Store(t / "store"), runs=t / "runs", lane=t / "lane", families=t / "fam", palettes=t / "pal", atlas_dir=t / "atlas")
         cls.c = D.load_character("gatekeeper")
+        cls.c["backend"] = "sdxl-base-1"  # this chain proves the older route stays selectable
         cls.style = D.load_style("party-pixel")
         cls.rig = json.loads((ROOT / "art_runs/inputs/gatekeeper-v3/rig.json").read_text())
         ramps = C.build_ramps(cls.c, cls.style)

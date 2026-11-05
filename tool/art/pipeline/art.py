@@ -1,15 +1,21 @@
 #!/usr/bin/env python3
 """One command from a character definition to a candidate atlas.
 
-  art.py build <character> [--backend ID] [--run ID] [--dry-run]
+  art.py build <character|file.json> [--dry-run] [--prompts] [--only clip,pose.id] [--run ID] [--sheet PNG] [--render-rig] [--no-stage] [--backend ID]
   art.py ingest <character> --run ID         after the GPU jobs and pixel finish
-  art.py accept-reference <character> --image PNG
+  art.py accept-sheet <character> --view V --image PNG   after the owner approves a sheet view
+  art.py accept-reference <character> --image PNG        (SDXL route)
 
 build chains definitions, rig, family spec, planner, stages and pack. Frames whose
 key is already in the store are reused, colour edits recolour without a GPU, and only
 what is left is queued in art_runs/<run>/jobs.json for studio.run_workflow (MCP).
-When nothing is left it packs the atlas. A definition using derived references holds
-its jobs until the current reference is accepted.
+When nothing is left it packs the atlas.
+
+The default route is Qwen (the style's backend, backends/qwen-frame.json): a pose whose
+generated prompt equals the one baked in the character's accepted run counts as drawn, and
+frames wait in jobs.held.json until every sheet view exists. --backend sdxl-base-1 selects the
+older SDXL route, where a definition using derived references holds its jobs until the
+current reference is accepted.
 
 State: art_runs/builds/<id>.json (last complete build), art_runs/selections/<id>.json,
 art_runs/references/<id>.json. Frames live in the content-addressed store (stages.py).
@@ -35,10 +41,11 @@ import compile_family as CF  # noqa: E402
 import definitions as D  # noqa: E402
 import masked as M  # noqa: E402
 import plan_jobs as PJ  # noqa: E402
+import plan_qwen_frames as Q  # noqa: E402
 import planner as P  # noqa: E402
 import ramps as R  # noqa: E402
 import selection as Sel  # noqa: E402
-from stages import Store, key_of  # noqa: E402
+from stages import Store, key_of, sha_file  # noqa: E402
 
 RIG_CODE = ("rig/poses.py", "rig/garments.py", "rig/prims.py", "rig/standin.py", "rig/bodies.json")
 GEOMETRY = ("shape", "region", "params", "secondaryMotion", "alsoIn")
@@ -209,12 +216,205 @@ def render_rig(c: dict, paths: Paths) -> tuple[Path, bool]:
     return dst, len(paths.store.ran) > ran_before
 
 
+def qwen_frame_key(c: dict, style: dict, backend: dict, pid: str, prompt: str, pose: dict, rig_pose: dict | None) -> str:
+    """Identity of one Qwen frame: everything the model or the finish sees for this pose."""
+    d = c["drawing"]
+    sheet = D.ROOT / d["sheet"]["views"][pose.get("view", "front")]["image"]
+    seen = P.visible_regions(rig_pose) if rig_pose else set()
+    return key_of({
+        "backend": backend["id"], "pose": pid, "prompt": prompt, "graph": sha_file(D.ROOT / backend["workflow"]),
+        "sheet": sha_file(sheet) if sheet.exists() else None,
+        "skeleton": (rig_pose or {}).get("openpose"), "moved": d.get("skeletonOverrides", {}).get(pid),
+        "scale": d.get("poseOverrides", {}).get(pid, {}).get("skeletonScale", d.get("skeletonScale", backend["skeletonScale"])),
+        "seed": d.get("seed", c.get("seedBase")), "count": d.get("count", backend["countPerPose"]),
+        "colours": [[p.get("id"), p.get("colour")] for p in P.visible_parts(c, seen)],
+        "targets": c.get("targets"),
+        "style": {k: style.get(k) for k in ("frame", "ramp", "outline", "reservedRamps")},
+    })
+
+
+def plan_qwen(c: dict, style: dict, backend: dict, rig: dict | None, record: dict | None, store: Store, only: set[str] | None = None) -> dict:
+    """Decide one action per frame on the Qwen route. Changes nothing."""
+    table = Q.pose_table(c)
+    prompts = Q.prompts(c, backend)
+    accepted = Q.accepted_prompts(c, backend)
+    if record and (record["backend"] != backend["id"] or "drawing" not in record["definition"]):
+        record = None  # built on another route: nothing here carries over
+    old_prompts = Q.prompts(record["definition"], backend) if record else {}
+    changes = P.diff_definitions(record["definition"], c) if record else []
+    restyled = bool(record) and record["styleKey"] != style_key(style)
+    rig_by_id = {p["id"]: p for p in (rig or {}).get("poses", [])}
+    frames = {}
+    for pid, pose in table.items():
+        rp = rig_by_id.get(pid)
+        key = qwen_frame_key(c, style, backend, pid, prompts[pid], pose, rp)
+        old = (record or {}).get("frameKeys", {}).get(pid)
+        if has_frame(store, key):
+            action, why = "reuse", []
+        elif accepted.get(pid) == prompts[pid]:
+            action, why = "accepted", []
+        elif not record or old is None:
+            action = "full"
+            why = ["prompt differs from the accepted run"] if pid in accepted else ["no accepted drawing of this pose"]
+        elif restyled:
+            action, why = "full", ["style changed"]
+        elif old_prompts.get(pid) != prompts[pid]:
+            action, why = "full", ["prompt changed"]
+        else:
+            action, why = P.frame_mode(changes, rp or {"id": pid}, rp)
+            if action in ("none", "masked"):  # the Qwen route has no masked pass
+                action, why = "full", why or ["frame key changed with no classified edit"]
+            have = has_frame(store, old)
+            needs = {"recolour": "final.png", "finish": "raw.png"}.get(action)
+            if needs and not (have and (frame_dir(store, old) / needs).exists()):
+                action, why = "full", [*why, "previous frame is not in the store"]
+        if only is not None and pid not in only and action in ("full", "finish", "recolour"):
+            action, why = "later", ["outside --only"]
+        frames[pid] = {"key": key, "previous": old, "action": action, "reasons": why, "prompt": prompts[pid]}
+    counts: dict[str, int] = {}
+    reasons: dict[str, int] = {}
+    for f in frames.values():
+        counts[f["action"]] = counts.get(f["action"], 0) + 1
+        if f["action"] == "full":
+            for r in f["reasons"]:
+                reasons[r] = reasons.get(r, 0) + 1
+    return {"character": c["id"], "frames": frames, "counts": counts, "changes": changes, "redrawReasons": reasons}
+
+
+def qwen_cost(backend: dict, c: dict, jobs: int) -> dict:
+    per_pose = c["drawing"].get("count", backend["countPerPose"])
+    return {"estimatedImages": jobs * per_pose, "estimatedMinutes": round(jobs * backend["secondsPerJob"] / 60, 1),
+            "secondsPerJob": backend["secondsPerJob"], "gpu": jobs > 0}
+
+
+def adopt_accepted(plan: dict, c: dict, store: Store) -> int:
+    """Accepted frames join the store under their key, so a mixed wave can pack them."""
+    run = c["drawing"]["accepted"]["run"] if plan["counts"].get("accepted") else None
+    n = 0
+    for pid, f in plan["frames"].items():
+        if f["action"] != "accepted":
+            continue
+
+        def work(out: Path, pid=pid) -> None:
+            shutil.copyfile(D.ROOT / "art_runs" / run / "final" / f"{pid}.png", out / "final.png")
+            _write(out / "provenance.json", {"mode": "accepted", "run": run, "pose": pid})
+
+        store.run("frame", {"frame": f["key"]}, work)
+        n += 1
+    return n
+
+
+def build_qwen(c: dict, style: dict, backend: dict, paths: Paths, *, run: str | None, dry_run: bool, rig: dict | None,
+               only: set[str] | None, stage: bool, show_prompts: bool, sheet: str | None = None, render: bool = False) -> dict:
+    drawn = Q.is_drawn(c)
+    record = _read(paths.runs / "builds" / f"{c['id']}.json")
+    key = rig_key(c)
+    rig_dir = paths.runs / "inputs" / c["family"]
+    if not (rig_dir / "rig.json").exists():
+        rig_dir = D.ROOT / "art_runs" / "inputs" / c["family"]
+    injected = rig is not None
+    have_rig = injected or (rig_dir / "rig.json").exists()
+    if not injected and have_rig and not drawn:
+        rig = json.loads((rig_dir / "rig.json").read_text())
+    plan = plan_qwen(c, style, backend, rig, record, paths.store, only)
+    needed = {p for p, f in plan["frames"].items() if f["action"] == "full"}
+    missing = [v for v in Q.missing_views(c) if not (sheet and v == "front")]
+    rendered = False
+    # A rig is only worth rendering for frames about to be drawn, or to have one at all. With no build
+    # record there's nothing to compare it to, so the committed rig stands unless --render-rig says otherwise.
+    stale_rig = render or bool(record and record["rigKey"] != key)
+    needs_render = not injected and not drawn and (not have_rig or (stale_rig and bool(needed)))
+    if needs_render and stage and not dry_run:
+        rig_dir, rendered = render_rig(c, paths)
+        rig = json.loads((rig_dir / "rig.json").read_text())
+        plan = plan_qwen(c, style, backend, rig, record, paths.store, only)
+    jobs_now = len(missing) if missing else len(needed)
+    report = {"character": c["id"], "route": backend["id"], "dryRun": dry_run, **plan, "frames": plan["frames"],
+              "jobs": {"sheet": len(missing), "frames": 0 if missing else len(needed), "held": len(needed) if missing else 0},
+              "jobsTotal": len(missing) + len(needed), "missingViews": missing, "reservedClips": Q.reserved_clips(c),
+              "acceptedRun": c["drawing"].get("accepted", {}).get("run"),
+              "rigRender": "none" if drawn else ("needed" if needs_render and dry_run else ("rendered" if rendered else "reused")),
+              **qwen_cost(backend, c, len(missing) + len(needed))}
+    first = sorted(needed)[0] if needed else next(iter(plan["frames"]))
+    report["samplePrompt"] = {first: plan["frames"][first]["prompt"]}
+    if show_prompts:
+        report["prompts"] = {p: f["prompt"] for p, f in plan["frames"].items()}
+    if dry_run:
+        return report
+    selection, returned = Sel.reconcile(_read(paths.runs / "selections" / f"{c['id']}.json", {}), {p: f["key"] for p, f in plan["frames"].items()})
+    report["returnToReview"] = returned
+    if not needed and not missing and set(plan["counts"]) <= {"accepted"}:
+        report.update(queued=0, held=0, finishQueued=0, packed=False, note="every frame is in the accepted run: nothing to draw or pack")
+        return report
+    if stage:
+        _write(paths.runs / "selections" / f"{c['id']}.json", selection)
+    report["recoloured"] = recolour_frames(plan, record, c, style, paths.store) if stage and plan["counts"].get("recolour") else 0
+    run = run or f"{c['family']}-{key_of(sorted(f['key'] for f in plan['frames'].values()))[:10]}"
+    report["run"] = run
+    finish = [p for p, f in plan["frames"].items() if f["action"] == "finish"]
+    spec = spec_path = None
+    if stage and c.get("status", "active") == "active":
+        spec, palette, motion = CF.compile_definition(c, backend["id"])
+        _, _, spec_path = CF.write_family(spec, palette, motion, paths.families, paths.palettes)
+    os.chdir(D.ROOT)
+    run_dir = paths.runs / run
+    if needed or finish or missing:
+        planned = Q.plan_run(c, backend, run, only=needed, runs_root=paths.runs, lane_root=paths.lane, rig_dir=rig_dir, stage=stage, sheet=sheet)
+        if planned["sheet"]:
+            _write(run_dir / "jobs.sheet.json", planned["sheet"])
+        name = "jobs.held.json" if missing else "jobs.json"
+        if planned["frames"]:
+            _write(run_dir / name, planned["frames"])
+        _write(run_dir / "pending.json", {p: plan["frames"][p]["key"] for p in sorted(needed | set(finish))})
+        if finish:
+            _write(run_dir / "finish.queue.json", {p: str(frame_dir(paths.store, plan["frames"][p]["previous"]) / "raw.png") for p in finish})
+        report.update(queued=0 if missing else len(planned["frames"]), held=len(planned["frames"]) if missing else 0,
+                      sheetQueued=len(planned["sheet"]), finishQueued=len(finish), packed=False)
+        return report
+    if spec_path is None:
+        report.update(queued=0, held=0, finishQueued=0, packed=False,
+                      note=f"nothing to draw; {c['id']} has no family spec here, so nothing packed" if stage else "nothing to draw")
+        return report
+    if plan["counts"].get("later"):
+        report.update(queued=0, held=0, finishQueued=0, packed=False, note="poses outside --only are still undrawn: nothing packed")
+        return report
+    adopt_accepted(plan, c, paths.store)
+    pack(spec_path, spec, plan, run, paths, selection)
+    _write(paths.runs / "builds" / f"{c['id']}.json", {
+        "definition": c, "style": {k: style.get(k) for k in ("prompt", "negative", "frame", "ramp", "outline", "reservedRamps", "generation")},
+        "styleKey": style_key(style), "backend": backend["id"], "rigKey": key,
+        "frameKeys": {p: f["key"] for p, f in plan["frames"].items()}, "run": run})
+    report.update(queued=0, held=0, finishQueued=0, packed=True)
+    return report
+
+
+def accept_sheet(c: dict, view: str, image: str) -> dict:
+    """Run only after the owner approves a view: frames then draw from this file."""
+    views = Q.drawing_of(c)["sheet"]["views"]
+    if view not in views:
+        raise D.DefinitionError([f"drawing.sheet.views.{view}: no such view (have {sorted(views)})"])
+    src, dst = Path(image), D.ROOT / views[view]["image"]
+    dst.parent.mkdir(parents=True, exist_ok=True)
+    shutil.copyfile(src, dst)
+    side = src.with_name(src.name + ".provenance.json")
+    if not side.exists():
+        side = src.with_suffix(".provenance.json")
+    if side.exists():
+        shutil.copyfile(side, dst.with_suffix(".provenance.json"))
+    return {"character": c["id"], "view": view, "image": str(dst.relative_to(D.ROOT)), "provenance": side.exists(),
+            "missingViews": Q.missing_views(c)}
+
+
 def build(c: dict, paths: Paths, *, backend_id: str | None = None, run: str | None = None, dry_run: bool = False,
-          rig: dict | None = None) -> dict:
+          rig: dict | None = None, only: set[str] | None = None, stage: bool = True, show_prompts: bool = False,
+          sheet: str | None = None, render: bool = False) -> dict:
     """rig= injects a rig and skips the render (tests, and dry runs over the committed rig)."""
     style = D.load_style(c["style"])
     backend = D.resolve_backend(c, style, backend_id)
-    C.build_ramps(c, style)  # gate refusals before any work
+    if c.get("status", "active") == "active":
+        C.build_ramps(c, style)  # gate refusals before any work
+    if backend.get("route") == "qwen":
+        return build_qwen(c, style, backend, paths, run=run, dry_run=dry_run, rig=rig, only=only, stage=stage, show_prompts=show_prompts, sheet=sheet, render=render)
     record = _read(paths.runs / "builds" / f"{c['id']}.json")
     key = rig_key(c)
     rig_dir = paths.runs / "inputs" / c["family"]
@@ -304,9 +504,18 @@ def main() -> None:
     b.add_argument("--backend")
     b.add_argument("--run")
     b.add_argument("--dry-run", action="store_true")
+    b.add_argument("--prompts", action="store_true", help="include every pose's prompt in the report")
+    b.add_argument("--only", default="", help="clips or pose ids to draw now, as a pilot")
+    b.add_argument("--no-stage", action="store_true", help="write workflows and jobs, leaving the lane and the rig alone")
+    b.add_argument("--sheet", help="front sheet to draw from, if not the accepted one")
+    b.add_argument("--render-rig", action="store_true", help="render the rig even if a committed one exists, after a body or garment edit")
     i = sub.add_parser("ingest")
     i.add_argument("character")
     i.add_argument("--run", required=True)
+    s = sub.add_parser("accept-sheet")
+    s.add_argument("character")
+    s.add_argument("--view", required=True)
+    s.add_argument("--image", required=True)
     r = sub.add_parser("accept-reference")
     r.add_argument("character")
     r.add_argument("--image", required=True)
@@ -315,10 +524,16 @@ def main() -> None:
     try:
         c = D.load_character(a.character)
         if a.cmd == "build":
-            rep = build(c, paths, backend_id=a.backend, run=a.run, dry_run=a.dry_run)
+            only = None
+            if a.only:
+                want = a.only.split(",")
+                only = {p for p in Q.pose_table(c) if p in want or p.split(".")[0] in want}
+            rep = build(c, paths, backend_id=a.backend, run=a.run, dry_run=a.dry_run, only=only, stage=not a.no_stage, show_prompts=a.prompts, sheet=a.sheet, render=a.render_rig)
             rep = {k: v for k, v in rep.items() if k != "frames"}
         elif a.cmd == "ingest":
             rep = ingest(c, a.run, paths)
+        elif a.cmd == "accept-sheet":
+            rep = accept_sheet(c, a.view, a.image)
         else:
             style = D.load_style(c["style"])
             rep = {"character": c["id"], "key": reference_key(c, style), "accepted": True, "image": a.image}
