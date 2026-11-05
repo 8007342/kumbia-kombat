@@ -263,7 +263,7 @@ void main() {
     test('the campaign refuses a level file it cannot find', () {
       expect(
         () => LevelRegistry.parse(
-          '{"campaign": [{"level": "pool-garden", "exitLine": "a", '
+          '{"campaign": [{"level": "no-such-level", "exitLine": "a", '
           '"nextLine": "b"}]}',
           _file,
         ),

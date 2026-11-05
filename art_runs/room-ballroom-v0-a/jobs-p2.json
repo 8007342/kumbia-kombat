@@ -1,0 +1,32 @@
+{
+ "room": "ballroom",
+ "run": "room-ballroom-v0-a",
+ "passNo": 2,
+ "steps": 4,
+ "promptSha256": "bc91307b5e63aa2cbad1065f9241a8d049537fca85dec4785f400d6468578eba",
+ "jobs": [
+  {
+   "name": "p2-p1-986000",
+   "workflow": "art_runs/room-ballroom-v0-a/workflows/p2.api.json",
+   "inputs": {
+    "base": "/work/tmp/imagegen/kumbia/room-ballroom-v0-a/in/p1-986000.png"
+   },
+   "overrides": {
+    "seed": 986100
+   },
+   "count": 2
+  },
+  {
+   "name": "p2-p1-986001",
+   "workflow": "art_runs/room-ballroom-v0-a/workflows/p2.api.json",
+   "inputs": {
+    "base": "/work/tmp/imagegen/kumbia/room-ballroom-v0-a/in/p1-986001.png"
+   },
+   "overrides": {
+    "seed": 986200
+   },
+   "count": 2
+  }
+ ],
+ "how": "Queue one studio.run_workflow per job, one at a time. Then: rooms.py collect --run room-ballroom-v0-a"
+}
