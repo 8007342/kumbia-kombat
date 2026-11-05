@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
 import 'dart:math' as math;
-import 'dart:ui' as ui;
 
 import 'package:flame/game.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -10,6 +9,8 @@ import 'package:kumbia_kombat/gameplay/garden_session.dart';
 import 'package:kumbia_kombat/gameplay/level_definition.dart';
 import 'package:kumbia_kombat/music/score.dart';
 import 'package:kumbia_kombat/music/transport.dart';
+
+import 'support/recording_canvas.dart';
 
 /// Before/after proof for the level registry. `goldens/levels_before.json` was
 /// written by this harness against the two-room code, before the registry
@@ -27,36 +28,6 @@ class _Audio implements MusicAudioBackend {
   void silence() {}
   @override
   void schedule(ScoreNote note, double atSeconds, double durationSeconds) {}
-}
-
-/// Records what the scene asks a canvas to draw, without drawing it. Colours
-/// and geometry are kept; images are identified only by their size because a
-/// wardrobe variant may or may not have finished preparing.
-class _RecordingCanvas implements ui.Canvas {
-  final calls = <String>[];
-
-  static String _round(double value) => value.toStringAsFixed(5);
-
-  static String _describe(Object? value) => switch (value) {
-    final double number => _round(number),
-    final int number => '$number',
-    final ui.Rect rect =>
-      '[${_round(rect.left)} ${_round(rect.top)} '
-          '${_round(rect.right)} ${_round(rect.bottom)}]',
-    final ui.Offset offset => '(${_round(offset.dx)} ${_round(offset.dy)})',
-    final ui.Image image => 'image:${image.width}x${image.height}',
-    final ui.Paint paint => 'paint:${paint.color.toARGB32()}',
-    _ => '${value.runtimeType}',
-  };
-
-  @override
-  dynamic noSuchMethod(Invocation invocation) {
-    final name = invocation.memberName.toString().split('"')[1];
-    calls.add(
-      '$name ${invocation.positionalArguments.map(_describe).join(' ')}',
-    );
-    return name == 'getSaveCount' ? 1 : null;
-  }
 }
 
 MusicScore _score(String id) => MusicScore.fromJson(
@@ -88,10 +59,10 @@ Future<Map<String, Object?>> _fingerprint(
 
   final samples = <String, Object?>{};
   void sample(String label) {
-    final canvas = _RecordingCanvas();
+    final canvas = RecordingCanvas();
     scene.render(canvas);
     samples[label] = {
-      'beat': _RecordingCanvas._round(session.positionBeats),
+      'beat': RecordingCanvas.round(session.positionBeats),
       'phase': session.phase.name,
       'tier': session.progress.tier,
       'crowd': [
