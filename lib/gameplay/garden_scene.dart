@@ -7,6 +7,7 @@ import 'package:flutter/painting.dart';
 import 'package:flutter/services.dart';
 
 import 'challenger_choreography.dart';
+import 'dance_grammar.dart';
 import 'ensemble_sprites.dart';
 import 'garden_session.dart';
 import 'outfit_palette.dart';
@@ -52,11 +53,13 @@ class GardenSceneGame extends FlameGame {
   double _resetBeat = -10;
   int _roomGeneration = 0;
   ChallengerChoreography? _choreography;
+  DanceGrammar? _grammar;
   GardenSession? _choreographySession;
   List<Limb>? _choreographyLimbs;
   List<double>? _choreographyOffsets;
 
   bool get isBar => _currentBackground.contains('bar');
+  String get _dancerId => isBar ? 'bartender' : 'gatekeeper';
   String get _roomId => isBar ? 'bar' : 'garden';
 
   void resetEntrance() => _resetBeat = session?.positionBeats ?? -10;
@@ -79,6 +82,18 @@ class GardenSceneGame extends FlameGame {
           await rootBundle.loadString('assets/art/ensemble/manifest.json'),
         ) as Map<String, dynamic>,
       );
+      final grammar = DanceGrammar.fromJson(
+        jsonDecode(
+          await rootBundle.loadString('assets/art/ensemble/choreography.json'),
+        ) as Map<String, dynamic>,
+      );
+      for (final dancer in const ['gatekeeper', 'bartender']) {
+        grammar.requireFrames(
+          dancer,
+          ensemble.atlases[dancer]!.art.frames.keys,
+        );
+      }
+      _grammar = grammar;
       final loaded = await Future.wait([
         images.load('party/${hero.image}'),
         for (final entry in ensemble.atlases.entries)
@@ -145,9 +160,15 @@ class GardenSceneGame extends FlameGame {
   ChallengerPose _challengerAt(double beat) {
     final s = session;
     if (s == null) {
-      return const ChallengerPose(
-        frameId: 'occupied',
-        state: ChallengerDanceState.occupied,
+      return _grammar!.dress(
+        const ChallengerPose(
+          frameId: 'occupied',
+          state: ChallengerDanceState.occupied,
+        ),
+        dancer: _dancerId,
+        beat: 0,
+        callStartBeat: 0,
+        reducedMotion: reducedMotion,
       );
     }
     if (_choreography == null ||
@@ -168,14 +189,27 @@ class GardenSceneGame extends FlameGame {
         ? null
         : s.lastOutcome != ChallengeOutcome.retry &&
               s.lastOutcome != ChallengeOutcome.entranceReset;
-    return _choreography!.sample(
+    final outcomeBeat = cleared ? s.completedAtBeat : s.lastOutcomeBeat;
+    final pose = _choreography!.sample(
       beat: beat,
       callStartBeat: s.callStartBeat,
       started: s.phase != GardenPhase.ready,
       reducedMotion: reducedMotion,
-      outcomeBeat: cleared ? s.completedAtBeat : s.lastOutcomeBeat,
+      outcomeBeat: outcomeBeat,
       passed: passed,
       cleared: cleared,
+    );
+    return _grammar!.dress(
+      pose,
+      dancer: _dancerId,
+      beat: beat,
+      callStartBeat: s.callStartBeat,
+      callBeats: s.chart.callBeats,
+      tier: s.transport.sections.isEmpty ? 0 : s.transport.tierAt(beat),
+      section: s.transport.score.sectionAt(beat),
+      // The phrase result, so a clearing approval runs on without restarting.
+      outcomeBeat: s.lastOutcomeBeat ?? outcomeBeat,
+      reducedMotion: reducedMotion,
     );
   }
 
@@ -519,7 +553,7 @@ class GardenSceneGame extends FlameGame {
     final floor = PartyPoint(.5 + .2 * pose.floorYield, isBar ? .45 : .53);
     final projected = viewport.project(floor);
     final height = _adultHeight(viewport, room, floor);
-    final atlas = _ensemble![isBar ? 'bartender' : 'gatekeeper']!;
+    final atlas = _ensemble![_dancerId]!;
     final scale = height / atlas.nativeHeight('ready');
     final ground = ui.Offset(
       projected.x + pose.rootOffsetX * scale,
