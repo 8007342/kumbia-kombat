@@ -1,0 +1,62 @@
+[
+ {
+  "pose": "left_hand.prep",
+  "args": {
+   "workflow": "tool/art/workflows/experiments/qwen-frame-lightning.api.json",
+   "tier": "I1",
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/gk-qwen-20261105b/in/sheet_front.png",
+    "pose_proxy": "/work/tmp/imagegen/kumbia/gk-qwen-20261105b/in/left_hand.prep.skeleton.png"
+   },
+   "overrides": {
+    "seed": 930000,
+    "prompt": "Image 2 is a coloured stick-figure pose skeleton. Draw the man from image 1 standing in that exact pose, at the same size and position in the frame as the skeleton, with empty background around him: his whole figure fits inside the frame, hat, both shoes and both hands fully visible with margin on every side. crouched low with weight on the bent right leg, right fist on the hip, left hand scooped down low in front of the left hip, torso turned away to his right, head glancing down at the left hand. Sides are his own: he faces the viewer, so his left is on the right of the picture. He keeps his short, stocky, broad body, big belly, face, thin pencil mustache, black hair, panama hat with teal band, purple short-sleeved guayabera with collar, pockets and teal embroidered panels, cream pleated trousers, teal shoes and thick dark ink outline, exactly as in image 1. Same pixel art style with crisp pixel clusters and cel shading. Do not draw the skeleton. Plain light grey background, full body."
+   }
+  }
+ },
+ {
+  "pose": "left_hand.peak",
+  "args": {
+   "workflow": "tool/art/workflows/experiments/qwen-frame-lightning.api.json",
+   "tier": "I1",
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/gk-qwen-20261105b/in/sheet_front.png",
+    "pose_proxy": "/work/tmp/imagegen/kumbia/gk-qwen-20261105b/in/left_hand.peak.skeleton.png"
+   },
+   "overrides": {
+    "seed": 930000,
+    "prompt": "Image 2 is a coloured stick-figure pose skeleton. Draw the man from image 1 standing in that exact pose, at the same size and position in the frame as the skeleton, with empty background around him: his whole figure fits inside the frame, hat, both shoes and both hands fully visible with margin on every side. weight on the straight right foot, right hip pushed out, right fist on the hip, body leaning toward his left so one long diagonal runs from the right foot to the left palm thrust high and out at about 45 degrees, left foot on its toe out to the side, head turned up toward the raised hand. Sides are his own: he faces the viewer, so his left is on the right of the picture. He keeps his short, stocky, broad body, big belly, face, thin pencil mustache, black hair, panama hat with teal band, purple short-sleeved guayabera with collar, pockets and teal embroidered panels, cream pleated trousers, teal shoes and thick dark ink outline, exactly as in image 1. Same pixel art style with crisp pixel clusters and cel shading. Do not draw the skeleton. Plain light grey background, full body."
+   }
+  }
+ },
+ {
+  "pose": "left_hand.follow",
+  "args": {
+   "workflow": "tool/art/workflows/experiments/qwen-frame-lightning.api.json",
+   "tier": "I1",
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/gk-qwen-20261105b/in/sheet_front.png",
+    "pose_proxy": "/work/tmp/imagegen/kumbia/gk-qwen-20261105b/in/left_hand.follow.skeleton.png"
+   },
+   "overrides": {
+    "seed": 930000,
+    "prompt": "Image 2 is a coloured stick-figure pose skeleton. Draw the man from image 1 standing in that exact pose, at the same size and position in the frame as the skeleton, with empty background around him: his whole figure fits inside the frame, hat, both shoes and both hands fully visible with margin on every side. same diagonal pushed further: left arm reaching higher and the palm rolling forward, torso leaning further toward his left, right elbow pushed back on the hip, left toe touch out wider, head following the hand. Sides are his own: he faces the viewer, so his left is on the right of the picture. He keeps his short, stocky, broad body, big belly, face, thin pencil mustache, black hair, panama hat with teal band, purple short-sleeved guayabera with collar, pockets and teal embroidered panels, cream pleated trousers, teal shoes and thick dark ink outline, exactly as in image 1. Same pixel art style with crisp pixel clusters and cel shading. Do not draw the skeleton. Plain light grey background, full body."
+   }
+  }
+ },
+ {
+  "pose": "left_hand.return",
+  "args": {
+   "workflow": "tool/art/workflows/experiments/qwen-frame-lightning.api.json",
+   "tier": "I1",
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/gk-qwen-20261105b/in/sheet_front.png",
+    "pose_proxy": "/work/tmp/imagegen/kumbia/gk-qwen-20261105b/in/left_hand.return.skeleton.png"
+   },
+   "overrides": {
+    "seed": 930000,
+    "prompt": "Image 2 is a coloured stick-figure pose skeleton. Draw the man from image 1 standing in that exact pose, at the same size and position in the frame as the skeleton, with empty background around him: his whole figure fits inside the frame, hat, both shoes and both hands fully visible with margin on every side. left arm sweeping down in an arc at shoulder height with the elbow bent, right hand low on the hip, both feet flat and close, torso returning upright. Sides are his own: he faces the viewer, so his left is on the right of the picture. He keeps his short, stocky, broad body, big belly, face, thin pencil mustache, black hair, panama hat with teal band, purple short-sleeved guayabera with collar, pockets and teal embroidered panels, cream pleated trousers, teal shoes and thick dark ink outline, exactly as in image 1. Same pixel art style with crisp pixel clusters and cel shading. Do not draw the skeleton. Plain light grey background, full body."
+   }
+  }
+ }
+]

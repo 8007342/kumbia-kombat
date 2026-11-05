@@ -1,0 +1,84 @@
+{
+  "schema": "tillandsias.provenance/v1",
+  "pipelineVersion": "56.11.4.2",
+  "engine": {
+    "name": "comfyui",
+    "ref": "v0.40.0",
+    "sha": "3541246a9c997f4b8c32f9f88f3c985d02021c79",
+    "nodes": [
+      {
+        "name": "ComfyUI-GGUF",
+        "commit": "6ea2651e7df66d7585f6ffee804b20e92fb38b8a"
+      },
+      {
+        "name": "ComfyUI-layerdiffuse",
+        "commit": "b4f6a9e024064a4489f774a8b91049ce0b606ea3"
+      },
+      {
+        "name": "ComfyUI_BiRefNet_ll",
+        "commit": "5443a2aa16cfbd98bb2f7dcc8bdcb70439e08529"
+      },
+      {
+        "name": "ComfyUI_IPAdapter_plus",
+        "commit": "a0f451a5113cf9becb0847b92884cb10cbdec0ef"
+      }
+    ]
+  },
+  "workflow": {
+    "path": "tool/art/workflows/experiments/qwen-frame-lightning.api.json",
+    "sha256": "a433494acd1781feda051a395e4bf3a99f11755d80bfd5db2ff19b4639fa95f3"
+  },
+  "models": [
+    {
+      "file": "qwen_image_edit_2511_fp8mixed.safetensors",
+      "repo": "Comfy-Org/Qwen-Image-Edit",
+      "revision": "f68ace85e60b4a02a323e394253731947657b7d2",
+      "sha256": "c9fdc158e46d3b61ef75f21ae866ca2fe808bf4a53643120d1c1e87c19280a4e",
+      "licence": "apache-2.0",
+      "consent": null
+    },
+    {
+      "file": "Qwen-Image-Edit-2509-Lightning-4steps-V1.0-bf16.safetensors",
+      "repo": "lightx2v/Qwen-Image-Lightning",
+      "revision": "d468c534b360e0754c6bf9e38ed49e1e09cd2e2a",
+      "sha256": "2a32ce938ec71db2b49a817b4844ae86995569518dea56ee0ddc209cbe8e1377",
+      "licence": "apache-2.0",
+      "consent": null
+    },
+    {
+      "file": "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+      "repo": "Comfy-Org/Qwen-Image",
+      "revision": "1f12b17be14c89b026c51a91d67c32f84bb047bc",
+      "sha256": "cb5636d852a0ea6a9075ab1bef496c0db7aef13c02350571e388aea959c5c0b4",
+      "licence": "apache-2.0",
+      "consent": null
+    },
+    {
+      "file": "qwen_image_vae.safetensors",
+      "repo": "Comfy-Org/Qwen-Image",
+      "revision": "1f12b17be14c89b026c51a91d67c32f84bb047bc",
+      "sha256": "a70580f0213e67967ee9c95f05bb400e8fb08307e017a924bf3441223e023d1f",
+      "licence": "apache-2.0",
+      "consent": null
+    }
+  ],
+  "cli": null,
+  "inputs": [
+    {
+      "name": "pose_proxy",
+      "path": "/work/tmp/imagegen/kumbia/gk-qwen-20261105a/in/groove.down_r.skeleton.png",
+      "sha256": "08e0f30be3e7becabf91558b50758f88311b4d1de317f2110a679cf6ea4f395b"
+    },
+    {
+      "name": "sheet_front",
+      "path": "/work/tmp/imagegen/kumbia/gk-qwen-20261105a/in/sheet_front.png",
+      "sha256": "32ddf66ce9e8eebc2760840c957825123e7eed1d35ccc5f3ee51cf92b14b107d"
+    }
+  ],
+  "seed": 930000,
+  "prompt": "Image 2 is a coloured stick-figure pose skeleton. Draw the man from image 1 standing in that exact pose, at the same size and position in the frame as the skeleton, with empty background around him: his whole figure fits inside the frame, hat, both shoes and both hands fully visible with margin on every side. weight sunk on his bent right knee, left foot stepped back on its ball with the heel raised, right hip high and pushed out, shoulders tilted the other way, right forearm swinging forward at belly height, left arm low and back, head level facing the viewer. Sides are his own: he faces the viewer, so his left is on the right of the picture. He keeps his short, stocky, broad body, big belly, face, thin pencil mustache, black hair, panama hat with teal band, purple short-sleeved guayabera with collar, pockets and teal embroidered panels, cream pleated trousers, teal shoes and thick dark ink outline, exactly as in image 1. Same pixel art style with crisp pixel clusters and cel shading. Do not draw the skeleton. Plain light grey background, full body.",
+  "negative_prompt": "",
+  "tier": "I1",
+  "placement": "cuda",
+  "family": null
+}
