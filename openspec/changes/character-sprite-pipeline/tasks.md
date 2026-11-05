@@ -47,9 +47,9 @@
 
 ## 6. Gatekeeper proof
 
-- [ ] 6.1 Build the model sheet reference through the pipeline and get owner acceptance
+- [x] 6.1 Build the model sheet reference through the pipeline and get owner acceptance (accepted 2026-11-04; rear view repaired with Qwen)
 - [ ] 6.2 Generate `groove` + `left_hand` (12 drawings) with the winning backend, plus the head detail pass; deliver GIFs at game size for owner review (2026-11-04: 12 drawings, 4 candidates each, in `art_runs/gatekeeper-v3-20261104a`; picked by eye, not through `suggest.py`; GIFs at 150 ms per drawing, 100 BPM at 4 drawings per beat; head detail pass not run; owner review pending)
-- [ ] 6.3 Apply review findings; run the full 64 drawings and verify all selection scores are real, with a candidate atlas and review gallery delivered
+- [ ] 6.3 Apply review findings; run the full 64 drawings and verify all selection scores are real, with a candidate atlas and review gallery delivered (2026-11-05: draft wave of 64 drawings in `art_runs/gatekeeper-v3-20261105a`, one candidate per pose, so no selection scores yet; owner: motion good enough, artwork lagging; rerun after rig enrichment)
 
 ## 7. Bartender: the generality test
 
