@@ -1,0 +1,244 @@
+{
+ "gk-approach": {
+  "w": 1024,
+  "h": 768,
+  "images": [
+   "gk"
+  ],
+  "matte": 1,
+  "prompt": "Extreme close-up of one single big fist of the man from image 1, drawn in crisp late 16-bit pixel art with very fine small pixels, high detail and a thick dark outline, like image 1. The fist is huge and fills most of the picture height, closed tight, warm brown skin with four thick fingers and a thumb, knuckles facing the left of the picture. His thick forearm runs from the wrist towards the right and continues off the right edge of the picture, so the picture's right edge cuts the arm. Near the right edge, the deep purple short sleeve of his guayabera with a teal embroidered trim covers the arm. The wrist is relaxed and slightly cocked back, the fist travelling towards the left, the sleeve loose. Plain light grey background, no text."
+ },
+ "gk-impact": {
+  "w": 1024,
+  "h": 768,
+  "images": [
+   "gk"
+  ],
+  "matte": 1,
+  "prompt": "Extreme close-up of one single big fist of the man from image 1, drawn in crisp late 16-bit pixel art with very fine small pixels, high detail and a thick dark outline, like image 1. The fist is huge and fills most of the picture height, closed tight, warm brown skin with four thick fingers and a thumb, knuckles facing the left of the picture. His thick forearm runs from the wrist towards the right and continues off the right edge of the picture, so the picture's right edge cuts the arm. Near the right edge, the deep purple short sleeve of his guayabera with a teal embroidered trim covers the arm. The fist is pressed hard forward against something at the left edge of its knuckles, the fingers squeezed and flattened a little at the front, the forearm tense, the sleeve rippling with the shock. Plain light grey background, no text."
+ },
+ "gk-recoil": {
+  "w": 1024,
+  "h": 768,
+  "images": [
+   "gk"
+  ],
+  "matte": 1,
+  "prompt": "Extreme close-up of one single big fist of the man from image 1, drawn in crisp late 16-bit pixel art with very fine small pixels, high detail and a thick dark outline, like image 1. The fist is huge and fills most of the picture height, closed tight, warm brown skin with four thick fingers and a thumb, knuckles facing the left of the picture. His thick forearm runs from the wrist towards the right and continues off the right edge of the picture, so the picture's right edge cuts the arm. Near the right edge, the deep purple short sleeve of his guayabera with a teal embroidered trim covers the arm. The fist has just bounced back: it tips up at the wrist, fingers beginning to loosen, knuckles facing up and towards the left, the sleeve settling. Plain light grey background, no text."
+ },
+ "mc-approach": {
+  "w": 768,
+  "h": 768,
+  "images": [
+   "mac"
+  ],
+  "matte": 1,
+  "prompt": "Extreme close-up of one single small arm of the robot from image 1, drawn in crisp late 16-bit pixel art with very fine small pixels, high detail and a thick dark outline, like image 1. At the top right of the picture is one small round fist made of dark teal steel, closed, with simple chunky segmented fingers and a highlight, knuckles facing up and towards the right of the picture. Below it the wrist is a teal ball joint, then a short ivory forearm shell with two cyan cuff bands. The forearm runs diagonally down and towards the left and continues off the bottom left corner of the picture, so the picture's corner cuts the arm. The arm is low and travelling up, the fist tipped slightly back. Plain light grey background, no text."
+ },
+ "mc-impact": {
+  "w": 768,
+  "h": 768,
+  "images": [
+   "mac"
+  ],
+  "matte": 1,
+  "prompt": "Extreme close-up of one single small arm of the robot from image 1, drawn in crisp late 16-bit pixel art with very fine small pixels, high detail and a thick dark outline, like image 1. At the top right of the picture is one small round fist made of dark teal steel, closed, with simple chunky segmented fingers and a highlight, knuckles facing up and towards the right of the picture. Below it the wrist is a teal ball joint, then a short ivory forearm shell with two cyan cuff bands. The forearm runs diagonally down and towards the left and continues off the bottom left corner of the picture, so the picture's corner cuts the arm. The fist is thrust hard forward and up against something at its knuckles, the steel plates pressed tight, the cuff bands jolted. Plain light grey background, no text."
+ },
+ "mc-recoil": {
+  "w": 768,
+  "h": 768,
+  "images": [
+   "mac"
+  ],
+  "matte": 1,
+  "prompt": "Extreme close-up of one single small arm of the robot from image 1, drawn in crisp late 16-bit pixel art with very fine small pixels, high detail and a thick dark outline, like image 1. At the top right of the picture is one small round fist made of dark teal steel, closed, with simple chunky segmented fingers and a highlight, knuckles facing up and towards the right of the picture. Below it the wrist is a teal ball joint, then a short ivory forearm shell with two cyan cuff bands. The forearm runs diagonally down and towards the left and continues off the bottom left corner of the picture, so the picture's corner cuts the arm. The fist has just bounced back: it tips away at the wrist, its fingers still closed. Plain light grey background, no text."
+ },
+ "gulp-glass": {
+  "w": 768,
+  "h": 960,
+  "images": [
+   "mac"
+  ],
+  "matte": 1,
+  "prompt": "Extreme close-up of a short straight-sided tumbler with a flat thick base, made of clear glass, holding glossy dark motor oil, brown-black with a thin amber edge where light passes through, drawn in crisp late 16-bit pixel art with very fine small pixels, high detail and a thick dark outline, like image 1, full to near the rim, a small ripple on the oil's surface because the glass is sliding towards the left of the picture. The whole glass stands in the middle of the picture, large, with margin on all sides. Plain light grey background, no text."
+ },
+ "gulp-hold": {
+  "w": 960,
+  "h": 960,
+  "images": [
+   "mac"
+  ],
+  "matte": 1,
+  "prompt": "Extreme close-up drawn in crisp late 16-bit pixel art with very fine small pixels, high detail and a thick dark outline, like image 1: one round dark teal steel hand of the robot from image 1 with chunky segmented fingers, a teal ball joint wrist, an ivory forearm shell with two cyan cuff bands; the forearm runs diagonally down and towards the left and continues off the bottom left corner of the picture, so the corner cuts the arm. The hand grips a short straight-sided tumbler with a flat thick base, made of clear glass, holding glossy dark motor oil, brown-black with a thin amber edge where light passes through, standing upright and full to near the rim. The glass is large, in the upper right of the picture. Plain light grey background, no text."
+ },
+ "gulp-tilt": {
+  "w": 960,
+  "h": 960,
+  "images": [
+   "mac"
+  ],
+  "matte": 1,
+  "prompt": "Extreme close-up drawn in crisp late 16-bit pixel art with very fine small pixels, high detail and a thick dark outline, like image 1: one round dark teal steel hand of the robot from image 1 with chunky segmented fingers, a teal ball joint wrist, an ivory forearm shell with two cyan cuff bands; the forearm runs diagonally down and towards the left and continues off the bottom left corner of the picture, so the corner cuts the arm. The hand grips and tilts a short thick-based drinking glass of glossy dark motor oil, brown-black with a thin amber edge where light passes through so the glass leans towards the right of the picture. The glass is half empty: the oil lies in its lower half and its surface stays level with the ground, while the upper half of the glass is clear. The glass is large, in the upper right of the picture. Plain light grey background, no text."
+ },
+ "gulp-low": {
+  "w": 960,
+  "h": 960,
+  "images": [
+   "mac"
+  ],
+  "matte": 1,
+  "prompt": "Extreme close-up drawn in crisp late 16-bit pixel art with very fine small pixels, high detail and a thick dark outline, like image 1: one round dark teal steel hand of the robot from image 1 with chunky segmented fingers, a teal ball joint wrist, an ivory forearm shell with two cyan cuff bands; the forearm runs diagonally down and towards the left and continues off the bottom left corner of the picture, so the corner cuts the arm. The hand grips and tilts far a short thick-based drinking glass of glossy dark motor oil, brown-black with a thin amber edge where light passes through so the glass leans strongly towards the right of the picture. Only a small pool of oil is left, lying in the lowest corner of the glass, its surface level with the ground, and the rest of the glass is clear with an oily film. The glass is large, in the upper right of the picture. Plain light grey background, no text."
+ },
+ "plate-garden": {
+  "w": 1168,
+  "h": 1648,
+  "images": [
+   "plate"
+  ],
+  "matte": 0,
+  "prompt": "Using only the colours and painting style of image 1, paint a new picture: a richly detailed late 16-bit pixel art night painting with very fine small pixels and high detail, moody low-key lighting, deep soft shadows, muted natural colours and warm amber lamp glow, not saturated and not cartoon. It is the far background of an extreme close-up: a dark night garden seen out of focus, near-black green foliage and a deep navy sky, with soft round bokeh discs of warm amber lantern light of several sizes scattered through the upper half. The lower half of the picture falls off into deep dark foliage. The scene is empty and calm. No text."
+ },
+ "plate-bar": {
+  "w": 1168,
+  "h": 1648,
+  "images": [
+   "plate"
+  ],
+  "matte": 0,
+  "prompt": "Using only the colours and painting style of image 1, paint a new picture: a richly detailed late 16-bit pixel art night painting with very fine small pixels and high detail, moody low-key lighting, deep soft shadows, muted natural colours and warm amber lamp glow, not saturated and not cartoon. It is an extreme close-up at the level of a bar top: a polished copper bar counter runs straight across the picture from edge to edge, its top surface filling the lower third of the picture with long warm reflections of lamp light along it, and its rounded front edge at the bottom. Behind the counter, filling the upper two thirds, the dark bar is out of focus: near-black wood and soft round bokeh discs of warm amber lamps. The counter top is clear and empty. No text."
+ },
+ "plate-garden2": {
+  "w": 1168,
+  "h": 1648,
+  "images": [
+   "guide"
+  ],
+  "matte": 0,
+  "prompt": "Image 1 is an unfinished background. Keep the composition of image 1 exactly: every amber disc stays at the same place and size. Repaint image 1 as a richly detailed late 16-bit pixel art night painting with very fine small pixels and high detail, moody low-key lighting, deep soft shadows, muted natural colours and warm amber lamp glow, not saturated and not cartoon. It is the far background of an extreme close-up: a dark night garden seen out of focus. The amber discs are soft round bokeh of distant warm lanterns, softly glowing, some overlapping. Between them are near-black green tropical leaves blurred by distance against a deep navy sky, with fine mottled pixel texture. The scene is calm and empty. No text."
+ },
+ "plate-bar2": {
+  "w": 1168,
+  "h": 1648,
+  "images": [
+   "guide"
+  ],
+  "matte": 0,
+  "prompt": "Image 1 is an unfinished background. Keep the composition of image 1 exactly: the copper band and its bright front edge stay at the same place and size, and every amber disc stays where it is. Repaint image 1 as a richly detailed late 16-bit pixel art night painting with very fine small pixels and high detail, moody low-key lighting, deep soft shadows, muted natural colours and warm amber lamp glow, not saturated and not cartoon. It is an extreme close-up at the level of a bar top: the copper band is the top of a polished copper bar counter, running straight across the picture from edge to edge, with hammered metal texture and long warm streaks of reflected lamp light along it. Above it the dark bar is out of focus: near-black wood with soft round bokeh of warm amber lamps. The counter top is bare. No text."
+ },
+ "gk-approach2": {
+  "w": 1024,
+  "h": 768,
+  "images": [
+   "gk",
+   "key"
+  ],
+  "matte": 1,
+  "prompt": "Image 1 shows the man. Image 2 is a finished close-up drawing of his fist, in crisp late 16-bit pixel art. Redraw image 2 as the moment just before: the fist is on its way towards the left of the picture, the wrist relaxed and bent slightly back, the fingers closed but looser, the sleeve loose. Keep the same fist, arm and sleeve as image 2: same size in the picture, same colours, same pixel size, same outline, and the arm leaves the picture at the same edge. Plain light grey background, no text."
+ },
+ "gk-recoil2": {
+  "w": 1024,
+  "h": 768,
+  "images": [
+   "gk",
+   "key"
+  ],
+  "matte": 1,
+  "prompt": "Image 1 shows the man. Image 2 is a finished close-up drawing of his fist, in crisp late 16-bit pixel art. Redraw image 2 as the moment just after: the fist has bounced back, tipped up at the wrist with the knuckles facing up and towards the left, the fingers beginning to loosen, the sleeve settling. Keep the same fist, arm and sleeve as image 2: same size in the picture, same colours, same pixel size, same outline, and the arm leaves the picture at the same edge. Plain light grey background, no text."
+ },
+ "mc-approach2": {
+  "w": 768,
+  "h": 768,
+  "images": [
+   "mac",
+   "key"
+  ],
+  "matte": 1,
+  "prompt": "Image 1 shows the small robot. Image 2 is a finished close-up drawing of its fist, in crisp late 16-bit pixel art. Redraw image 2 as the moment just before: the fist is lower and tipped slightly back at its ball joint wrist, travelling up towards the right of the picture. Keep the same fist, arm and sleeve as image 2: same size in the picture, same colours, same pixel size, same outline, and the arm leaves the picture at the same edge. Plain light grey background, no text."
+ },
+ "mc-recoil2": {
+  "w": 768,
+  "h": 768,
+  "images": [
+   "mac",
+   "key"
+  ],
+  "matte": 1,
+  "prompt": "Image 1 shows the small robot. Image 2 is a finished close-up drawing of its fist, in crisp late 16-bit pixel art. Redraw image 2 as the moment just after: the fist has bounced back and tips away at its ball joint wrist towards the upper left, still closed, the cuff bands settling. Keep the same fist, arm and sleeve as image 2: same size in the picture, same colours, same pixel size, same outline, and the arm leaves the picture at the same edge. Plain light grey background, no text."
+ },
+ "gulp-tilt2": {
+  "w": 960,
+  "h": 960,
+  "images": [
+   "mac",
+   "key"
+  ],
+  "matte": 1,
+  "prompt": "Image 1 shows the small robot. Image 2 is a finished close-up drawing of its hand holding a tumbler of dark motor oil, in crisp late 16-bit pixel art. Redraw image 2 with the glass tilted towards the right of the picture, leaning by about thirty degrees. The oil has gone down: it now fills only the lower half of the glass, its surface stays level with the ground, and the upper half of the glass is clear. Keep the same hand, forearm and glass as image 2: same size in the picture, same colours, same pixel size, same outline, and the forearm leaves the picture at the same corner. The hand still holds the glass. Plain light grey background, no text."
+ },
+ "gulp-low2": {
+  "w": 960,
+  "h": 960,
+  "images": [
+   "mac",
+   "key"
+  ],
+  "matte": 1,
+  "prompt": "Image 1 shows the small robot. Image 2 is a finished close-up drawing of its hand holding a tumbler of dark motor oil, in crisp late 16-bit pixel art. Redraw image 2 with the glass tilted far towards the right of the picture, leaning by about sixty degrees. Almost all the oil is gone: a small pool lies in the lowest corner of the glass, its surface level with the ground, and the rest of the glass is clear with an oily film. Keep the same hand, forearm and glass as image 2: same size in the picture, same colours, same pixel size, same outline, and the forearm leaves the picture at the same corner. The hand still holds the glass. Plain light grey background, no text."
+ },
+ "gk-recoil3": {
+  "w": 1024,
+  "h": 768,
+  "images": [
+   "gk",
+   "key"
+  ],
+  "matte": 1,
+  "prompt": "Image 1 shows the man. Image 2 is a finished close-up drawing of his fist, in crisp late 16-bit pixel art. Redraw image 2 as the moment just after: the fist has bounced back a little, tipped up slightly at the wrist, the knuckles facing up and towards the left, the fingers beginning to loosen. Keep the same fist as image 2: same size in the picture, same colours, same pixel size, same outline. The bare brown forearm is the same length as in image 2 and runs from the wrist to the right, and the purple sleeve with its teal trim stays at the right edge of the picture, far from the wrist, exactly as in image 2. Plain light grey background, no text."
+ },
+ "gulp-low3": {
+  "w": 960,
+  "h": 960,
+  "images": [
+   "mac",
+   "key"
+  ],
+  "matte": 1,
+  "prompt": "Image 1 shows the small robot. Image 2 is a finished close-up drawing of its hand holding a tumbler of dark motor oil, in crisp late 16-bit pixel art. Redraw image 2 with the glass tilted further towards the right of the picture, leaning by about forty degrees. The glass is nearly empty: all the oil left is a thin layer inside the glass, resting against the glass's lower side and base, held inside it. The rest of the glass is clean and clear, and the base of the glass is whole. Keep the same hand, forearm and glass as image 2: same size in the picture, same colours, same pixel size, same outline, and the forearm leaves the picture at the same corner. The hand still holds the glass. Plain light grey background, no text."
+ },
+ "gulp-glass2": {
+  "w": 768,
+  "h": 960,
+  "images": [
+   "mac"
+  ],
+  "matte": 1,
+  "prompt": "Extreme close-up of a short straight-sided tumbler with a flat thick base, made of clear glass, holding glossy dark motor oil, brown-black with a thin amber edge where light passes through, drawn in crisp late 16-bit pixel art with very fine small pixels, high detail and a thick dark outline, like image 1. It is full to near the rim. The oil's surface is flat, a smooth dark ellipse, and it leans a little, higher on the right side of the glass, because the glass is sliding towards the left of the picture. The whole glass stands in the middle of the picture, large, with margin on all sides. Plain light grey background, no text."
+ },
+ "gulp-glass3": {
+  "w": 768,
+  "h": 960,
+  "images": [
+   "mac"
+  ],
+  "matte": 1,
+  "prompt": "Extreme close-up of a short straight-sided tumbler with a flat thick base, made of clear glass, standing perfectly upright, holding glossy dark motor oil, brown-black with a thin amber edge where light passes through, drawn in crisp late 16-bit pixel art with very fine small pixels, high detail and a thick dark outline, like image 1. It is full to near the rim, and the oil's surface is one smooth dark ellipse with a single soft highlight. The whole glass stands in the middle of the picture, large, with margin on all sides. Plain light grey background, no text."
+ },
+ "plate-garden3": {
+  "w": 1168,
+  "h": 1648,
+  "images": [
+   "guide"
+  ],
+  "matte": 0,
+  "prompt": "Image 1 is an unfinished background. Keep the composition of image 1 exactly: every amber disc stays at the same place and size. Repaint image 1 as a richly detailed late 16-bit pixel art night painting with very fine small pixels and high detail, moody low-key lighting, deep soft shadows, muted natural colours and warm amber lamp glow, not saturated and not cartoon. It is the far background of an extreme close-up: a dark night garden seen out of focus. The dim amber discs are soft, out-of-focus round bokeh of distant warm lanterns, low in brightness, with blurred edges fading into the dark. Between them are near-black green tropical leaves blurred by distance against a deep navy sky, with fine mottled pixel texture. The scene is calm and empty. No text."
+ },
+ "gk-impact-1536": {
+  "w": 1536,
+  "h": 1152,
+  "images": [
+   "gk"
+  ],
+  "matte": 1,
+  "prompt": "Extreme close-up of one single big fist of the man from image 1, drawn in crisp late 16-bit pixel art with very fine small pixels, high detail and a thick dark outline, like image 1. The fist is huge and fills most of the picture height, closed tight, warm brown skin with four thick fingers and a thumb, knuckles facing the left of the picture. His thick forearm runs from the wrist towards the right and continues off the right edge of the picture, so the picture's right edge cuts the arm. Near the right edge, the deep purple short sleeve of his guayabera with a teal embroidered trim covers the arm. The fist is pressed hard forward against something at the left edge of its knuckles, the fingers squeezed and flattened a little at the front, the forearm tense, the sleeve rippling with the shock. Plain light grey background, no text."
+ }
+}
