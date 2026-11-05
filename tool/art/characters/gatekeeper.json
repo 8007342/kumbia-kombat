@@ -83,6 +83,115 @@
   "set": "opponent-64",
   "overrides": {}
  },
+ "drawing": {
+  "noun": "man",
+  "fits": "hat, both shoes and both hands",
+  "look": "short, stocky, broad body, big belly, face, thin pencil mustache, black hair, panama hat with teal band, purple short-sleeved guayabera with collar, pockets and teal embroidered panels, cream pleated trousers, teal shoes and thick dark ink outline",
+  "extra": "Clean-shaven apart from the mustache, no beard, no goatee. ",
+  "sheet": {
+   "views": {
+    "front": {
+     "image": "tool/art/references/gatekeeper/front.png"
+    }
+   }
+  },
+  "seed": 930000,
+  "skeletonOverrides": {
+   "clap.open": {
+    "3": [
+     225,
+     470
+    ],
+    "4": [
+     318,
+     405
+    ],
+    "6": [
+     545,
+     470
+    ],
+    "7": [
+     590,
+     540
+    ]
+   },
+   "clap.close": {
+    "3": [
+     235,
+     475
+    ],
+    "4": [
+     345,
+     425
+    ],
+    "6": [
+     545,
+     480
+    ],
+    "7": [
+     590,
+     550
+    ]
+   },
+   "clap.contact": {
+    "3": [
+     240,
+     495
+    ],
+    "4": [
+     384,
+     445
+    ],
+    "6": [
+     545,
+     500
+    ],
+    "7": [
+     590,
+     570
+    ]
+   },
+   "clap.release": {
+    "3": [
+     225,
+     480
+    ],
+    "4": [
+     330,
+     440
+    ],
+    "6": [
+     545,
+     485
+    ],
+    "7": [
+     590,
+     555
+    ]
+   },
+   "finish_turn.finish_a": {
+    "3": [
+     150,
+     390
+    ],
+    "4": [
+     195,
+     265
+    ]
+   },
+   "finish_turn.finish_b": {
+    "3": [
+     150,
+     345
+    ],
+    "4": [
+     262,
+     222
+    ]
+   }
+  },
+  "$comment": "Wording moved verbatim from CAST in plan_qwen_frames.py at 285ccff. Another agent is changing this entry on work/1839-intg for the A8 build fix: when that lands, its text goes in `look` and `extra` here, and CAST no longer exists to edit."
+ },
  "references": {
   "mode": "source",
   "sources": [

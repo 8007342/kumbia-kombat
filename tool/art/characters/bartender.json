@@ -77,7 +77,8 @@
    "clips": [
     "groove",
     "challenge"
-   ]
+   ],
+   "wording": "own-hand"
   }
  ],
  "motion": {
@@ -88,6 +89,129 @@
    },
    "finish_turn.finish_b": {
     "intent": "right fingertips touching the side of the hair puff in a courteous flourish, head dipped slightly, chest proud, left elbow out with the fist on the hip, left heel forward with the toe up"
+   }
+  }
+ },
+ "drawing": {
+  "noun": "woman",
+  "fits": "hair puff, both shoes and both hands",
+  "look": "slim adult build, face, warm smile, curly dark hair tied up in a rounded puff, gold hoop earrings, ivory shirt with rolled sleeves, deep teal waistcoat with gold buttons, plum apron tied at the waist, dark plum trousers, amber shoes and thick dark ink outline",
+  "extra": "Her shirt stays buttoned up to the closed collar and her waistcoat stays buttoned high, fully covering her chest. ",
+  "sheet": {
+   "views": {
+    "front": {
+     "image": "tool/art/references/bartender/front.png"
+    }
+   }
+  },
+  "seed": 950000,
+  "skeletonOverrides": {
+   "clap.open": {
+    "3": [
+     262,
+     462
+    ],
+    "4": [
+     328,
+     392
+    ],
+    "6": [
+     506,
+     462
+    ],
+    "7": [
+     440,
+     392
+    ]
+   },
+   "clap.close": {
+    "3": [
+     268,
+     466
+    ],
+    "4": [
+     352,
+     412
+    ],
+    "6": [
+     500,
+     466
+    ],
+    "7": [
+     416,
+     412
+    ]
+   },
+   "clap.contact": {
+    "3": [
+     272,
+     490
+    ],
+    "4": [
+     378,
+     432
+    ],
+    "6": [
+     496,
+     490
+    ],
+    "7": [
+     390,
+     432
+    ]
+   },
+   "clap.release": {
+    "3": [
+     262,
+     468
+    ],
+    "4": [
+     338,
+     430
+    ],
+    "6": [
+     506,
+     468
+    ],
+    "7": [
+     430,
+     430
+    ]
+   },
+   "finish_turn.finish_a": {
+    "3": [
+     175,
+     372
+    ],
+    "4": [
+     205,
+     265
+    ]
+   },
+   "finish_turn.finish_b": {
+    "3": [
+     168,
+     334
+    ],
+    "4": [
+     248,
+     225
+    ]
+   }
+  },
+  "accepted": {
+   "run": "bartender-v1-20261105q",
+   "note": "The owner accepted this run's frames on 2026-11-05. A pose whose generated prompt still equals the prompt baked in that run counts as drawn."
+  },
+  "poseOverrides": {
+   "clap.open": {
+    "why": "The pose table raises the forearms over a skeleton with arms down: all 4 candidates drew four arms (LESSONS_LEARNED A5). The words now match the skeleton.",
+    "description": "standing square and upright, both arms held out to the sides and angled down, elbows soft, both open hands at hip height away from the body, palms forward, chin up. Nothing in front of her chest or apron"
+   },
+   "groove.pass_l2": {
+    "why": "A forearm at hip height disagreed with the skeleton's outstretched arm, and 'her right hand' drew the shaker in the wrong hand. The prop is named by picture side.",
+    "description": "hip popped out to her right over the straight right leg, right hip high, right shoulder dipped, left knee bent with the left foot resting on its toe, right arm stretched out to the left side of the picture at chest height, left forearm bent across the belly, head tilted toward her left",
+    "props": "She holds a small silver cocktail shaker in the hand of the outstretched arm, on the left side of the picture; her other hand is empty. "
    }
   }
  },
