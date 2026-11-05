@@ -17,7 +17,9 @@ Already in a committed workflow or run record, so most likely pinned: `Checkpoin
 `VAEDecode`, `KSampler`, `SaveImage`, `JoinImageWithAlpha`, `LoadRembgByBiRefNetModel`,
 `RembgByBiRefNet`, `LayeredDiffusionApply`, `LayeredDiffusionDecode`.
 
-No edit-model or video class has run here yet.
+No video class has run here yet. `TextEncodeQwenImageEditPlus` has: the accepted character frames come
+from `tool/art/workflows/qwen-frame.api.json` (`tool/art/pipeline/README.md`). The SDXL recipes below
+describe the older route.
 
 **Source tags.** [doc] official docs or templates. [author] the tool's own source or card.
 [ours] measured or observed here. [guess] untested starting point.
@@ -26,11 +28,11 @@ No edit-model or video class has run here yet.
 
 | What | Value | Source |
 |---|---|---|
-| Native frame | 96x120 | ours |
-| Generation canvas | 768x960, exactly 8x | ours |
-| One native pixel | 8 canvas pixels, one SDXL latent cell | [author] LoRA card says 8x; grid offset measured (0,0) [ours] |
-| Face | about 15 x 10-13 native, or 120 x 100 canvas | [ours] |
-| Hat | about 31 x 10-14 native | [ours] |
+| Native frame | 256x320, `pixelScale` 3; the family spec is the authority | ours |
+| Generation canvas | 768x960, exactly 3x | ours |
+| One native pixel | 3 canvas pixels. On the older 96x120 SDXL frames: 8, one latent cell | [author] LoRA card says 8x; grid offset measured (0,0) [ours] |
+| Face, on the old 96x120 frame | about 15 x 10-13 native, or 120 x 100 canvas | [ours] |
+| Hat, on the old 96x120 frame | about 31 x 10-14 native | [ours] |
 | RGBA from LayerDiffuse | Dimensions must be multiples of 64 | [author] |
 | `attn_mask` | Same aspect ratio as the latent | [author] |
 
@@ -45,7 +47,7 @@ Tool defaults aren't tested recommendations. Everything needs confirming on our 
 | Region pass on canvas (hat, shirt) | 0.3-0.4 | 24, CFG 6 | [guess] the sibling workflow starts at 0.35 |
 | Head crop | 0.4-0.5 | 24, CFG 6 | ADetailer default 0.4, FaceDetailer default 0.5 [author] |
 | Second pass, hires style | Slider default 0.7 | n/a | A1111 [author]. Doesn't apply: no upscale stage for us |
-| Qwen-Image-Edit-2511 | 1.0 (edit, not img2img) | 40, CFG 3, `euler`/`simple`, shift 3.1, `CFGNorm` 1 | template [doc]; card says `true_cfg_scale` 4 [author] |
+| Qwen-Image-Edit-2511 | 1.0 (edit, not img2img) | 40, CFG 3, `euler`/`simple`, shift 3.1, `CFGNorm` 1. Ours: 4, CFG 1 with the 2509 Lightning LoRA | template [doc]; card says `true_cfg_scale` 4 [author]; ours in `qwen-frame.api.json` |
 | FLUX.2 klein 4B distilled | n/a | 4, CFG 1, `euler`, `Flux2Scheduler` | template [doc] |
 | Wan 2.1 VACE template | 1.0 | 4, CFG 1, `uni_pc`/`simple`, shift 8, strength 1 | template [doc]. **Not** our 2.2 Fun files, which have no template I could find |
 | Qwen-Image-Layered | n/a | 20, CFG 2.5, shift 1, 640 px | template [doc]; model not on disk |
@@ -257,7 +259,7 @@ New packs and models need host approval and a licence review. Worth asking for o
 
 | Item | Why | Licence | Core or repo alternative |
 |---|---|---|---|
-| `Qwen-Image-Edit-2511-Lightning-4steps` | 4 steps instead of 40 makes repairs and sheets cheap; won blind picks in one small test | Apache-2.0 (repo card; check the file) | 40 steps, on flagged frames only |
+| `Qwen-Image-Edit-2511-Lightning-4steps` | Not on disk. We run `Qwen-Image-Edit-2509-Lightning-4steps`, built for the older model and unproven on 2511; this would settle that | Apache-2.0 (repo card; check the file) | 40 steps, on flagged frames only |
 | `ip-adapter-plus-face_sdxl_vit-h` | Face-specific reference | Check on request | Head crop with the plus model |
 | Impact Pack | FaceDetailer, automatic SEGS | GPL-3.0 (from memory; check) | Rig masks do better for us, so **don't request** |
 | Crop and Stitch | Convenience | GPL-3.0 | Recipe 3 is enough, so **don't request** |

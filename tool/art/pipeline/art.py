@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """One command from a character definition to a candidate atlas.
 
-  art.py build <character|file.json> [--dry-run] [--prompts] [--only clip,pose.id] [--run ID] [--no-stage] [--backend ID]
+  art.py build <character|file.json> [--dry-run] [--prompts] [--only clip,pose.id] [--run ID] [--sheet PNG] [--render-rig] [--no-stage] [--backend ID]
   art.py ingest <character> --run ID         after the GPU jobs and pixel finish
   art.py accept-sheet <character> --view V --image PNG   after the owner approves a sheet view
   art.py accept-reference <character> --image PNG        (SDXL route)
@@ -305,7 +305,7 @@ def adopt_accepted(plan: dict, c: dict, store: Store) -> int:
 
 
 def build_qwen(c: dict, style: dict, backend: dict, paths: Paths, *, run: str | None, dry_run: bool, rig: dict | None,
-               only: set[str] | None, stage: bool, show_prompts: bool, sheet: str | None = None) -> dict:
+               only: set[str] | None, stage: bool, show_prompts: bool, sheet: str | None = None, render: bool = False) -> dict:
     drawn = Q.is_drawn(c)
     record = _read(paths.runs / "builds" / f"{c['id']}.json")
     key = rig_key(c)
@@ -320,8 +320,9 @@ def build_qwen(c: dict, style: dict, backend: dict, paths: Paths, *, run: str | 
     needed = {p for p, f in plan["frames"].items() if f["action"] == "full"}
     missing = [v for v in Q.missing_views(c) if not (sheet and v == "front")]
     rendered = False
-    # A rig is only worth rendering for frames about to be drawn, or to have one at all.
-    stale_rig = not record or record["rigKey"] != key
+    # A rig is only worth rendering for frames about to be drawn, or to have one at all. With no build
+    # record there's nothing to compare it to, so the committed rig stands unless --render-rig says otherwise.
+    stale_rig = render or bool(record and record["rigKey"] != key)
     needs_render = not injected and not drawn and (not have_rig or (stale_rig and bool(needed)))
     if needs_render and stage and not dry_run:
         rig_dir, rendered = render_rig(c, paths)
@@ -406,14 +407,14 @@ def accept_sheet(c: dict, view: str, image: str) -> dict:
 
 def build(c: dict, paths: Paths, *, backend_id: str | None = None, run: str | None = None, dry_run: bool = False,
           rig: dict | None = None, only: set[str] | None = None, stage: bool = True, show_prompts: bool = False,
-          sheet: str | None = None) -> dict:
+          sheet: str | None = None, render: bool = False) -> dict:
     """rig= injects a rig and skips the render (tests, and dry runs over the committed rig)."""
     style = D.load_style(c["style"])
     backend = D.resolve_backend(c, style, backend_id)
     if c.get("status", "active") == "active":
         C.build_ramps(c, style)  # gate refusals before any work
     if backend.get("route") == "qwen":
-        return build_qwen(c, style, backend, paths, run=run, dry_run=dry_run, rig=rig, only=only, stage=stage, show_prompts=show_prompts, sheet=sheet)
+        return build_qwen(c, style, backend, paths, run=run, dry_run=dry_run, rig=rig, only=only, stage=stage, show_prompts=show_prompts, sheet=sheet, render=render)
     record = _read(paths.runs / "builds" / f"{c['id']}.json")
     key = rig_key(c)
     rig_dir = paths.runs / "inputs" / c["family"]
@@ -507,6 +508,7 @@ def main() -> None:
     b.add_argument("--only", default="", help="clips or pose ids to draw now, as a pilot")
     b.add_argument("--no-stage", action="store_true", help="write workflows and jobs, leaving the lane and the rig alone")
     b.add_argument("--sheet", help="front sheet to draw from, if not the accepted one")
+    b.add_argument("--render-rig", action="store_true", help="render the rig even if a committed one exists, after a body or garment edit")
     i = sub.add_parser("ingest")
     i.add_argument("character")
     i.add_argument("--run", required=True)
@@ -526,7 +528,7 @@ def main() -> None:
             if a.only:
                 want = a.only.split(",")
                 only = {p for p in Q.pose_table(c) if p in want or p.split(".")[0] in want}
-            rep = build(c, paths, backend_id=a.backend, run=a.run, dry_run=a.dry_run, only=only, stage=not a.no_stage, show_prompts=a.prompts, sheet=a.sheet)
+            rep = build(c, paths, backend_id=a.backend, run=a.run, dry_run=a.dry_run, only=only, stage=not a.no_stage, show_prompts=a.prompts, sheet=a.sheet, render=a.render_rig)
             rep = {k: v for k, v in rep.items() if k != "frames"}
         elif a.cmd == "ingest":
             rep = ingest(c, a.run, paths)

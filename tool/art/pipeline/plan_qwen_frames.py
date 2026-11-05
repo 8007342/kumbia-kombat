@@ -161,7 +161,7 @@ def sheet_prompt(c: dict, backend: dict, view: str) -> str:
                            description=sheet["views"][view].get("description", "facing the viewer"), props="", **grammar(c))
 
 
-def missing_views(c: dict, table: dict | None = None) -> list[str]:
+def missing_views(c: dict) -> list[str]:
     """Sheet views frames depend on that aren't accepted yet. Frames wait for these."""
     return [v for v, spec in _sheet(c)["views"].items() if not (D.ROOT / spec["image"]).exists()]
 
