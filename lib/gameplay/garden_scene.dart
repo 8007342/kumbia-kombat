@@ -9,6 +9,7 @@ import 'package:flutter/services.dart';
 import 'challenger_choreography.dart';
 import 'ensemble_sprites.dart';
 import 'garden_session.dart';
+import 'level_definition.dart';
 import 'outfit_palette.dart';
 import 'party_layout.dart';
 import 'party_sprites.dart';
@@ -29,6 +30,10 @@ class _WorldDraw {
 /// Scenery, actors and furniture share a single source-image cover transform.
 /// Only music sampling controls the dance; the HUD stays outside this canvas.
 class GardenSceneGame extends FlameGame {
+  GardenSceneGame({required this.firstLevel});
+
+  /// Awaited while loading, so a bad level file is reported like missing art.
+  final Future<LevelDefinition> Function() firstLevel;
   GardenSession? session;
   bool reducedMotion = false;
   bool presentationPaused = false;
@@ -46,7 +51,7 @@ class GardenSceneGame extends FlameGame {
   Map<String, EnsembleAtlas>? _ensemble;
   OutfitPalette? _outfits;
   ui.Image? _background;
-  String _currentBackground = 'garden/garden-mansion.png';
+  LevelDefinition? _level;
   double _foregroundSeconds = 0;
   double _lastBeat = 0;
   double _resetBeat = -10;
@@ -55,9 +60,6 @@ class GardenSceneGame extends FlameGame {
   GardenSession? _choreographySession;
   List<Limb>? _choreographyLimbs;
   List<double>? _choreographyOffsets;
-
-  bool get isBar => _currentBackground.contains('bar');
-  String get _roomId => isBar ? 'bar' : 'garden';
 
   void resetEntrance() => _resetBeat = session?.positionBeats ?? -10;
 
@@ -91,20 +93,26 @@ class GardenSceneGame extends FlameGame {
           entry.key: EnsembleAtlas(entry.value, loaded[index++]),
       };
       _outfits = await OutfitPalette.load();
-      await showRoom('garden/garden-mansion.png', 'garden/gatekeeper.png');
+      await showLevel(await firstLevel());
     } catch (error) {
       artLoadError = 'Party character art could not load. Refresh to retry.';
       throw StateError('$artLoadError $error');
     }
   }
 
-  /// The second argument remains compatible with room/page handoffs. Challenger
-  /// animation comes exclusively from the ensemble atlas, never that old PNG.
-  Future<void> showRoom(String background, String challenger) async {
+  /// Challenger animation comes exclusively from the ensemble atlas.
+  Future<void> showLevel(LevelDefinition level) async {
+    for (final challenger in level.stage.challengers) {
+      if (!_ensemble!.containsKey(challenger.atlas)) {
+        throw StateError(
+          'Level ${level.id} names unknown atlas ${challenger.atlas}',
+        );
+      }
+    }
     final generation = ++_roomGeneration;
-    final loaded = await images.load(background);
+    final loaded = await images.load(level.background);
     if (generation != _roomGeneration) return;
-    _currentBackground = background;
+    _level = level;
     _background = loaded;
     presentationBeat = null;
     exitCodaBeat = null;
@@ -186,6 +194,7 @@ class GardenSceneGame extends FlameGame {
         _heroAtlas == null ||
         _ensemble == null ||
         _outfits == null ||
+        _level == null ||
         _background == null) {
       return;
     }
@@ -200,7 +209,7 @@ class GardenSceneGame extends FlameGame {
       sourceWidth: _background!.width.toDouble(),
       sourceHeight: _background!.height.toDouble(),
     );
-    final room = partyRoomLayouts[_roomId]!;
+    final room = _level!.layout;
     final backgroundRect = viewport.backgroundRect;
     canvas.save();
     canvas.scale(viewport.pixelsPerUnit);
@@ -429,8 +438,9 @@ class GardenSceneGame extends FlameGame {
     PartyRoomLayout room,
   ) {
     final life = _ensemble!['life']!;
-    for (var i = 0; i < 2; i++) {
-      final floor = PartyPoint(i == 0 ? .14 : .86, isBar ? .43 : .49);
+    final scenery = _level!.scenery;
+    for (var i = 0; i < scenery.plants.length; i++) {
+      final floor = scenery.plants[i];
       final projected = viewport.project(floor);
       final height = _adultHeight(viewport, room, floor) * .62;
       final frame = ensembleAmbientFrame(
@@ -450,10 +460,12 @@ class GardenSceneGame extends FlameGame {
         }),
       );
     }
+    final waiter = scenery.waiter;
+    if (waiter == null) return;
     final waiterX = reducedMotion
-        ? .51
-        : .51 + .055 * math.sin(_foregroundSeconds * .11);
-    final floor = PartyPoint(waiterX, isBar ? .345 : .385);
+        ? waiter.home.x
+        : waiter.home.x + waiter.swayX * math.sin(_foregroundSeconds * .11);
+    final floor = PartyPoint(waiterX, waiter.home.y);
     final projected = viewport.project(floor);
     final height = _adultHeight(viewport, room, floor);
     final frame = ensembleAmbientFrame(
@@ -477,19 +489,7 @@ class GardenSceneGame extends FlameGame {
 
   void _drawLampGlows(ui.Canvas canvas, PartyViewport viewport) {
     // Centers measured against the painted lamps, under the same cover crop.
-    final sources = isBar
-        ? const [
-            PartyPoint(.198, .204),
-            PartyPoint(.471, .204),
-            PartyPoint(.676, .204),
-            PartyPoint(.706, .082),
-          ]
-        : const [
-            PartyPoint(.177, .129),
-            PartyPoint(.856, .129),
-            PartyPoint(.205, .280),
-            PartyPoint(.796, .280),
-          ];
+    final sources = _level!.scenery.lamps;
     for (var i = 0; i < sources.length; i++) {
       final center = _point(viewport.project(sources[i]));
       final gain = partyAmbientAt(
@@ -516,10 +516,12 @@ class GardenSceneGame extends FlameGame {
     PartyRoomLayout room,
     ChallengerPose pose,
   ) {
-    final floor = PartyPoint(.5 + .2 * pose.floorYield, isBar ? .45 : .53);
+    // Levels may name several challengers; the scene draws the first for now.
+    final challenger = _level!.stage.challengers.first;
+    final floor = challenger.floorAt(pose.floorYield);
     final projected = viewport.project(floor);
     final height = _adultHeight(viewport, room, floor);
-    final atlas = _ensemble![isBar ? 'bartender' : 'gatekeeper']!;
+    final atlas = _ensemble![challenger.atlas]!;
     final scale = height / atlas.nativeHeight('ready');
     final ground = ui.Offset(
       projected.x + pose.rootOffsetX * scale,
@@ -542,23 +544,20 @@ class GardenSceneGame extends FlameGame {
   ) {
     final s = session;
     final entrance = s?.phase == GardenPhase.intro
-        ? (beat / 4).clamp(0.0, 1.0)
+        ? (beat / s!.chart.introBeats).clamp(0.0, 1.0)
         : 1.0;
     final resetAge = beat - _resetBeat;
     final retreat = resetAge >= 0 && resetAge < 2
         ? math.sin(resetAge / 2 * math.pi)
         : 0.0;
-    final departure = roomDepartures[_roomId]!.sample(
+    final level = _level!;
+    final departure = level.route.sample(
       exitTravel,
       reducedMotion: reducedMotion,
     );
-    final homeY = isBar ? .62 : .69;
-    final floor = PartyPoint(
-      exitTravel > 0 ? departure.x : .5,
-      exitTravel > 0
-          ? homeY + departure.y - .67
-          : homeY + (1 - entrance) * .07 + retreat * .04,
-    );
+    final floor = exitTravel > 0
+        ? level.heroExitFloor(departure)
+        : level.stage.heroFloor(entrance: entrance, retreat: retreat);
     final projected = viewport.project(floor);
     final height = _adultHeight(viewport, room, floor, stature: .35);
     final reference = _heroAtlas!.definition.frames['front_idle']!;

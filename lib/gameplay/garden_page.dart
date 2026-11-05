@@ -14,10 +14,10 @@ import '../music/transport.dart';
 import '../music/transition_conductor.dart';
 import 'garden_scene.dart';
 import 'garden_session.dart';
+import 'level_definition.dart';
 import 'party_autoplay.dart';
 import 'progression.dart';
 import 'rhythm.dart';
-import 'rooms.dart';
 import 'thumb_layout.dart';
 import 'touch_gesture.dart';
 
@@ -32,9 +32,12 @@ const _ink = Color(0xFF101F29);
 const _starvationGraceSeconds = 1.5;
 
 class GardenPage extends StatefulWidget {
-  const GardenPage({super.key, this.audioFactory});
+  const GardenPage({super.key, this.audioFactory, this.levels});
 
   final GameAudio Function()? audioFactory;
+
+  /// The campaign to play; the shipping `levels/` files unless a test says so.
+  final Future<LevelRegistry> Function()? levels;
 
   @override
   State<GardenPage> createState() => _GardenPageState();
@@ -42,7 +45,12 @@ class GardenPage extends StatefulWidget {
 
 class _GardenPageState extends State<GardenPage>
     with SingleTickerProviderStateMixin, WidgetsBindingObserver {
-  final _scene = GardenSceneGame();
+  late final Future<LevelRegistry> _levelsLoad =
+      (widget.levels ?? LevelRegistry.loadShipping)();
+  late final _scene = GardenSceneGame(
+    firstLevel: () async => (await _levelsLoad).first,
+  );
+  LevelRegistry? _levels;
   final _focus = FocusNode();
   final _touches = DanceTouchGestures();
   final _autoplay = PartyAutoplay();
@@ -57,7 +65,9 @@ class _GardenPageState extends State<GardenPage>
   int _roomIndex = 0;
   int _bankedPizazz = 0;
   int _bankedPerfects = 0;
-  PartyRoom get _room => partyRooms[_roomIndex];
+  LevelStep get _step => _levels!.campaign[_roomIndex];
+  LevelDefinition get _level => _step.level;
+  String get _levelNumber => (_roomIndex + 1).toString().padLeft(2, '0');
   final _exitScores = <String, MusicScore>{};
   TransitionConductor? _conductor;
   MusicHandoff? _handoff;
@@ -172,11 +182,11 @@ class _GardenPageState extends State<GardenPage>
       _resultSignature = signature;
       if (session.lastOutcome == ChallengeOutcome.entranceReset) {
         _scene.resetEntrance();
-        _showFeedback('BACK TO THE GATE', _gold);
+        _showFeedback(_level.copy.resetLine, _gold);
       } else if (session.lastOutcome == ChallengeOutcome.retry) {
         _showFeedback('FIND THE GROOVE', _cream);
       } else if (session.lastOutcome != null) {
-        _showFeedback('${_room.metric} +', _mint);
+        _showFeedback('${_metricLabel(_level)} +', _mint);
       }
     }
     if (session.phase == GardenPhase.paused ||
@@ -193,19 +203,23 @@ class _GardenPageState extends State<GardenPage>
 
   Future<void> _loadScore() async {
     try {
-      for (final room in partyRooms) {
+      final levels = await _levelsLoad;
+      if (!mounted) return;
+      setState(() => _levels = levels);
+      for (final id in levels.roomScoreIds) {
         final json = await rootBundle.loadString(
-          'assets/music/scores/${room.score}.json',
+          'assets/music/scores/$id.json',
         );
-        _roomScores[room.score] = jsonDecode(json) as Map<String, dynamic>;
+        _roomScores[id] = jsonDecode(json) as Map<String, dynamic>;
       }
-      final data = _roomScores[_room.score]!;
+      final data = _roomScores[_level.music.score]!;
       if (!mounted) return;
       _scoreData = data;
       _newSession();
       setState(() {});
       await _prepareExits();
     } catch (error) {
+      debugPrint('The campaign could not load: $error');
       if (mounted) {
         setState(() => _error = 'The garden could not load. Please refresh.');
       }
@@ -223,13 +237,8 @@ class _GardenPageState extends State<GardenPage>
       lookaheadSeconds: .3,
       starvationGraceSeconds: _starvationGraceSeconds,
     );
-    _audio.leadShape = _room.leadShape;
-    _session = GardenSession(
-      _transport!,
-      _audio,
-      definition: fights[_roomIndex],
-      chart: _roomIndex == 0 ? FightChart.garden : FightChart.bar,
-    );
+    _audio.leadShape = _level.music.leadShape;
+    _session = _level.newSession(_transport!, _audio);
     _scene.session = _session;
     _feedback = null;
     _resultSignature = '';
@@ -238,18 +247,16 @@ class _GardenPageState extends State<GardenPage>
 
   Future<void> _prepareExits() async {
     try {
-      for (final id in [
-        'garden_mojo_success',
-        'bar_swag_success',
-        'garden_to_bar',
-      ]) {
+      for (final id in _levels!.exitScoreIds) {
+        if (_exitScores.containsKey(id)) continue;
         final data = jsonDecode(
           await rootBundle.loadString('assets/music/scores/$id.json'),
         ) as Map<String, dynamic>;
         _exitScores[id] = MusicScore.fromJson(data);
       }
       await _scene.loaded;
-      await _scene.images.load(partyRooms[1].background);
+      final next = _step.next;
+      if (next != null) await _scene.images.load(next.background);
       if (mounted) setState(() => _exitReady = true);
     } catch (error) {
       // The current loop continues safely if the next room cannot be prepared.
@@ -269,19 +276,19 @@ class _GardenPageState extends State<GardenPage>
       lookaheadSeconds: .3,
       starvationGraceSeconds: _starvationGraceSeconds,
     );
-    if (_roomIndex + 1 < partyRooms.length) {
+    final step = _step;
+    final next = step.next;
+    if (next != null) {
       _handoff = _conductor!.handoff(
         source: _transport!,
-        success: _exitScores['${_room.score}_success']!,
-        bridge: _exitScores['garden_to_bar']!,
-        nextScore: MusicScore.fromJson(
-          _roomScores[partyRooms[_roomIndex + 1].score]!,
-        ),
+        success: _exitScores[step.level.music.successScore]!,
+        bridge: _exitScores[step.bridgeToNext!]!,
+        nextScore: MusicScore.fromJson(_roomScores[next.music.score]!),
       );
     } else {
       _finish = _conductor!.finish(
         source: _transport!,
-        success: _exitScores['${_room.score}_success']!,
+        success: _exitScores[step.level.music.successScore]!,
       );
     }
     _scene.exitCodaBeat = _transport!.beatAt(_transport!.retirementSeconds) + 4;
@@ -293,23 +300,15 @@ class _GardenPageState extends State<GardenPage>
     final nextIndex = _roomIndex + 1;
     final next = _handoff!.nextTransport;
     try {
-      await _scene.showRoom(
-        partyRooms[nextIndex].background,
-        partyRooms[nextIndex].challenger,
-      );
+      await _scene.showLevel(_step.next!);
       if (!mounted || !_foreground || _conductor?.isPaused == true) return;
       _bankedPizazz += _session!.pizazz;
       _bankedPerfects += _session!.perfects;
       _roomIndex = nextIndex;
-      _scoreData = _roomScores[_room.score];
+      _scoreData = _roomScores[_level.music.score];
       _transport = next;
-      _audio.leadShape = _room.leadShape;
-      _session = GardenSession(
-        next,
-        _audio,
-        definition: fights[_roomIndex],
-        chart: FightChart.bar,
-      )..start(startTransport: false);
+      _audio.leadShape = _level.music.leadShape;
+      _session = _level.newSession(next, _audio)..start(startTransport: false);
       _scene.session = _session;
       // Old decks have scheduled their own releases; never stop/silence them here.
       _handoff = null;
@@ -320,6 +319,9 @@ class _GardenPageState extends State<GardenPage>
       _styleDestination = null;
       _styleNote = null;
       _resultSignature = '';
+      // Ready this level's own exit: its bridge's next room is not loaded yet.
+      _exitReady = false;
+      unawaited(_prepareExits());
       setState(() {});
     } catch (error) {
       _conductor?.pause();
@@ -374,8 +376,8 @@ class _GardenPageState extends State<GardenPage>
         _roomIndex = 0;
         _bankedPizazz = 0;
         _bankedPerfects = 0;
-        _scoreData = _roomScores[_room.score];
-        await _scene.showRoom(_room.background, _room.challenger);
+        _scoreData = _roomScores[_level.music.score];
+        await _scene.showLevel(_level);
         if (!mounted || !_foreground || activationEpoch != _activationEpoch) {
           return;
         }
@@ -747,7 +749,9 @@ class _GardenPageState extends State<GardenPage>
           )
         else
           Text(
-            '${(_roomIndex + 1).toString().padLeft(2, '0')} / 05',
+            _levels == null
+                ? ''
+                : '$_levelNumber / ${_levels!.displayTotal.toString().padLeft(2, '0')}',
             style: const TextStyle(
               color: _cream,
               fontFamily: 'Kumbia',
@@ -784,12 +788,15 @@ class _GardenPageState extends State<GardenPage>
     ),
   );
 
+  String _metricLabel(LevelDefinition level) =>
+      level.rules.metric.toUpperCase();
+
   Widget _respect(GardenSession session) => Column(
     children: [
       Row(
         children: [
           Text(
-            _room.metric,
+            _metricLabel(_level),
             style: const TextStyle(
               color: _gold,
               fontWeight: FontWeight.w800,
@@ -1086,7 +1093,7 @@ class _GardenPageState extends State<GardenPage>
                 child: Column(
                   children: [
                     Text(
-                      _roomIndex == 0 ? 'MUCHO MOJO.' : 'PURO SWAG.',
+                      _level.copy.clearedShout,
                       style: const TextStyle(
                         color: _gold,
                         fontWeight: FontWeight.w900,
@@ -1112,9 +1119,7 @@ class _GardenPageState extends State<GardenPage>
                 left: 24,
                 right: 24,
                 child: Text(
-                  _roomIndex == 0
-                      ? 'FOLLOW THE GROOVE TO THE BAR'
-                      : 'THE CROWD IS NEXT',
+                  _step.exitLine,
                   textAlign: TextAlign.center,
                   style: const TextStyle(
                     color: _cream,
@@ -1154,7 +1159,7 @@ class _GardenPageState extends State<GardenPage>
                 const SizedBox(height: 14),
                 Text(
                   cleared
-                      ? (_roomIndex == 0 ? 'MUCHO\nMOJO.' : 'PURO\nSWAG.')
+                      ? _level.copy.clearedTitle
                       : paused
                       ? 'STILL\nGROOVIN’.'
                       : 'KUMBIA\nKOMBAT',
@@ -1173,12 +1178,12 @@ class _GardenPageState extends State<GardenPage>
                 const SizedBox(height: 18),
                 Text(
                   cleared
-                      ? (_roomIndex == 0
-                            ? 'THE GATE IS YOURS.'
-                            : 'THE BAR IS YOURS.')
+                      ? _level.copy.clearedClaim
                       : paused
                       ? 'Your groove will wait for you.'
-                      : '${(_roomIndex + 1).toString().padLeft(2, '0')}  /  ${_room.title}',
+                      : _levels == null
+                      ? ''
+                      : '$_levelNumber  /  ${_level.title}',
                   style: const TextStyle(
                     color: _gold,
                     fontSize: 10,
@@ -1197,7 +1202,7 @@ class _GardenPageState extends State<GardenPage>
                   ),
                 if (!cleared && !paused) ...[
                   Text(
-                    _room.invitation,
+                    _levels == null ? '' : _level.copy.invitation,
                     textAlign: TextAlign.center,
                     style: const TextStyle(color: _cream, fontSize: 13),
                   ),
@@ -1292,11 +1297,7 @@ class _GardenPageState extends State<GardenPage>
                   ),
                 const SizedBox(height: 16),
                 Text(
-                  cleared
-                      ? (_roomIndex == 0
-                            ? 'NEXT: SWAG AT THE BAR'
-                            : 'NEXT: FLOW IN THE CROWD')
-                      : 'A KUMBIA KOLISEUM NIGHT',
+                  cleared ? _step.nextLine : 'A KUMBIA KOLISEUM NIGHT',
                   style: TextStyle(
                     color: _cream.withValues(alpha: .4),
                     fontSize: 8,

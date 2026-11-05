@@ -1,0 +1,16 @@
+{
+  "displayTotal": 5,
+  "campaign": [
+    {
+      "level": "garden",
+      "bridgeToNext": "garden_to_bar",
+      "exitLine": "FOLLOW THE GROOVE TO THE BAR",
+      "nextLine": "NEXT: SWAG AT THE BAR"
+    },
+    {
+      "level": "bar",
+      "exitLine": "THE CROWD IS NEXT",
+      "nextLine": "NEXT: FLOW IN THE CROWD"
+    }
+  ]
+}

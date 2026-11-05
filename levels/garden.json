@@ -1,0 +1,78 @@
+{
+  "id": "garden",
+  "title": "THE GARDEN",
+  "background": "garden/garden-mansion.png",
+  "music": {
+    "score": "garden_mojo",
+    "successScore": "garden_mojo_success",
+    "leadShape": "triangle"
+  },
+  "rules": {
+    "metric": "Mojo",
+    "cleanSeconds": 60,
+    "successesPerTier": 1,
+    "finalChallenges": 2,
+    "resetAfterFailures": 5,
+    "earlyHitRatio": 0.75
+  },
+  "chart": {
+    "introBeats": 4,
+    "callBeats": 8,
+    "flourishDestination": "rightFoot",
+    "offsets": [0, 1, 2, 2.5, 4, 5, 6, 6.5],
+    "limbs": ["leftHand", "rightHand", "leftHand", "leftHand", "leftFoot", "rightFoot", "rightHand", "leftHand"],
+    "variants": [
+      ["leftFoot", "rightFoot", "leftHand", "rightHand", "leftFoot", "rightFoot", "rightHand", "leftHand"],
+      ["rightHand", "leftFoot", "leftHand", "rightFoot", "rightHand", "leftHand", "leftFoot", "rightFoot"],
+      ["leftHand", "rightHand", "rightFoot", "leftFoot", "rightHand", "leftHand", "leftFoot", "rightFoot"],
+      ["leftFoot", "rightHand", "rightFoot", "leftHand", "leftFoot", "rightFoot", "leftHand", "rightHand"],
+      ["rightHand", "leftHand", "leftFoot", "rightFoot", "leftHand", "rightHand", "rightFoot", "leftFoot"]
+    ]
+  },
+  "stage": {
+    "calibration": "inspectedStarter",
+    "floor": { "horizonY": 0.255, "referenceFootY": 0.40, "referenceHeight": 0.094 },
+    "heroHome": [0.50, 0.69],
+    "heroEntrance": [0.50, 0.76],
+    "heroRetreat": [0.50, 0.73],
+    "challengers": [
+      { "id": "gatekeeper", "atlas": "gatekeeper", "mark": [0.50, 0.53], "yieldMark": [0.70, 0.53] }
+    ]
+  },
+  "crowd": {
+    "budgets": { "interested": 3, "following": 2, "standing": 1, "cheering": 0 },
+    "guests": [
+      [0.20, 0.610], [0.80, 0.610],
+      [0.24, 0.460], [0.76, 0.460],
+      [0.31, 0.408], [0.69, 0.408],
+      [0.24, 0.360], [0.31, 0.360], [0.38, 0.360],
+      [0.62, 0.360], [0.69, 0.360], [0.76, 0.360]
+    ],
+    "props": [
+      { "id": "garden-table-left", "kind": "table", "at": [0.31, 0.370], "heightInAdults": 0.43, "widthInAdults": 0.9 },
+      { "id": "garden-table-right", "kind": "table", "at": [0.69, 0.370], "heightInAdults": 0.43, "widthInAdults": 0.9 },
+      { "id": "garden-umbrella-left", "kind": "umbrella", "at": [0.30, 0.350], "heightInAdults": 1.35, "widthInAdults": 1.5 },
+      { "id": "garden-umbrella-right", "kind": "umbrella", "at": [0.70, 0.350], "heightInAdults": 1.35, "widthInAdults": 1.5 }
+    ]
+  },
+  "scenery": {
+    "lamps": [[0.177, 0.129], [0.856, 0.129], [0.205, 0.280], [0.796, 0.280]],
+    "plants": [[0.14, 0.49], [0.86, 0.49]],
+    "waiter": { "home": [0.51, 0.385], "swayX": 0.055 }
+  },
+  "departure": {
+    "threshold": "copper garden door",
+    "originY": 0.67,
+    "waypoints": [
+      { "at": 0, "x": 0.50, "y": 0.67, "facing": "sideRight" },
+      { "at": 0.25, "x": 0.61, "y": 0.64, "facing": "rear" },
+      { "at": 1, "x": 0.64, "y": 0.39, "facing": "rear" }
+    ]
+  },
+  "copy": {
+    "invitation": "Mirror the rhythm. Earn your way in.",
+    "clearedTitle": "MUCHO\nMOJO.",
+    "clearedClaim": "THE GATE IS YOURS.",
+    "resetLine": "BACK TO THE GATE"
+  }
+}

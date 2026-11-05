@@ -7,8 +7,7 @@ import 'package:flame/game.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:kumbia_kombat/gameplay/garden_scene.dart';
 import 'package:kumbia_kombat/gameplay/garden_session.dart';
-import 'package:kumbia_kombat/gameplay/progression.dart';
-import 'package:kumbia_kombat/gameplay/rhythm.dart';
+import 'package:kumbia_kombat/gameplay/level_definition.dart';
 import 'package:kumbia_kombat/music/score.dart';
 import 'package:kumbia_kombat/music/transport.dart';
 
@@ -65,65 +64,26 @@ MusicScore _score(String id) => MusicScore.fromJson(
       as Map<String, dynamic>,
 );
 
-/// The only part of this harness that knows how a room is selected.
-class _Room {
-  _Room(
-    this.id,
-    this.score,
-    this.background,
-    this.challenger,
-    this.fight,
-    this.chart,
-  );
-  final String id, score, background, challenger;
-  final FightDefinition fight;
-  final FightChart chart;
-
-  Future<void> show(GardenSceneGame scene) =>
-      scene.showRoom(background, challenger);
-  GardenSession session(MusicTransport music, _Audio audio) =>
-      GardenSession(music, audio, definition: fight, chart: chart);
-}
-
-Future<GardenSceneGame> _loadScene() async {
-  final scene = GardenSceneGame();
+Future<GardenSceneGame> _loadScene(LevelRegistry levels) async {
+  final scene = GardenSceneGame(firstLevel: () async => levels.first);
   scene.onGameResize(Vector2(390, 844));
   await scene.onLoad();
   return scene;
 }
 
-List<_Room> _rooms() => [
-  _Room(
-    'garden',
-    'garden_mojo',
-    'garden/garden-mansion.png',
-    'garden/gatekeeper.png',
-    fights[0],
-    FightChart.garden,
-  ),
-  _Room(
-    'bar',
-    'bar_swag',
-    'bar/bar-interior.png',
-    'bar/bartender.png',
-    fights[1],
-    FightChart.bar,
-  ),
-];
-
 Future<Map<String, Object?>> _fingerprint(
   GardenSceneGame scene,
-  _Room room,
+  LevelDefinition level,
 ) async {
-  await room.show(scene);
+  await scene.showLevel(level);
   final audio = _Audio();
   final music = MusicTransport(
-    _score(room.score),
+    _score(level.music.score),
     audio,
     loop: true,
     lookaheadSeconds: .3,
   );
-  final session = room.session(music, audio);
+  final session = level.newSession(music, audio);
   scene.session = session;
 
   final samples = <String, Object?>{};
@@ -228,9 +188,11 @@ void main() {
   test(
     'both shipped rooms draw and score exactly as they did before',
     () async {
-      final scene = await _loadScene();
+      final levels = await LevelRegistry.loadShipping();
+      final scene = await _loadScene(levels);
       final actual = {
-        for (final room in _rooms()) room.id: await _fingerprint(scene, room),
+        for (final level in levels.levels)
+          level.id: await _fingerprint(scene, level),
       };
       final file = File(_goldenPath);
       if (const bool.fromEnvironment('UPDATE_LEVEL_GOLDEN')) {

@@ -45,9 +45,12 @@ class CrowdStageProfile {
   static const vip = CrowdStageProfile('vip', 12, 12, 12, 12);
   static const stages = [garden, bar, coolCrowd, restroom, vip];
 
+  /// The storyboard's budgets by room. A level file carries its own; an id
+  /// that is in neither is an error, never another room's numbers.
   static CrowdStageProfile forRoom(String id) => stages.firstWhere(
     (profile) => profile.roomId == id,
-    orElse: () => garden,
+    orElse: () =>
+        throw ArgumentError.value(id, 'id', 'No crowd profile for this room'),
   );
 
   CrowdGuestState ceiling(int rank, int count) {
@@ -150,10 +153,13 @@ class CrowdCheckpoint {
 }
 
 class CrowdInterestModel {
+  /// Budgets are written against this many guests, and layouts map onto them.
+  static const castSize = 12;
+
   CrowdInterestModel({
     required this.rampPhrases,
     this.profile = CrowdStageProfile.garden,
-    int guestCount = 12,
+    int guestCount = castSize,
   }) {
     if (rampPhrases <= 0 || guestCount <= 0) {
       throw ArgumentError('Crowd needs positive ramp and guest counts');
