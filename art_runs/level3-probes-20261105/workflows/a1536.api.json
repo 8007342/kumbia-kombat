@@ -1,0 +1,238 @@
+{
+ "10": {
+  "_meta": {
+   "title": "prompt, baked per pose by plan_qwen_frames"
+  },
+  "class_type": "TextEncodeQwenImageEditPlus",
+  "inputs": {
+   "clip": [
+    "6",
+    0
+   ],
+   "image1": [
+    "60",
+    0
+   ],
+   "image2": [
+    "61",
+    0
+   ],
+   "prompt": "Image 1 is a flat colour layout that fixes the exact composition. Image 2 shows the art style only. Repaint image 1 as one finished game background in the exact style, palette and lighting of image 2: strict 1980s arcade pixel art, crisp chunky square pixels, hard outlines, midnight navy, deep leaf teal, warm amber and ivory, wet stone reflecting warm lights. Keep every shape of image 1 in the same place and at the same size, including all perspective lines. It is the same mansion estate at night, seen from a raised angle. The tan area of image 1 is a wide dark stone paved walkway running diagonally from the bottom left of the picture to the top right, with the same paving grid lines as image 1, ending under a cream stone gateway at the top right. The green area is a manicured dark lawn. The dark green band along the right is a clipped hedge with small warm lanterns. At the top left is a classy covered indoor pool house: cream stone columns, a terracotta tiled hipped roof, tall glass panes on its right side, glowing warm from inside, and glowing turquoise pool water visible through the open arcade. The small white and orange shapes are small round cocktail tables with cream parasols standing on the lawn, each with a tiny candle. Warm string lights hang above the lawn. Behind everything are dark tropical trees and a starry night sky. The walkway in the lower half stays dark and uncluttered. No people, no characters, no text, no letters, no user interface. Do not copy the mansion, gate or layout of image 2.",
+   "vae": [
+    "7",
+    0
+   ]
+  }
+ },
+ "11": {
+  "_meta": {
+   "title": "negative"
+  },
+  "class_type": "TextEncodeQwenImageEditPlus",
+  "inputs": {
+   "clip": [
+    "6",
+    0
+   ],
+   "image1": [
+    "60",
+    0
+   ],
+   "image2": [
+    "61",
+    0
+   ],
+   "prompt": "",
+   "vae": [
+    "7",
+    0
+   ]
+  }
+ },
+ "12": {
+  "_meta": {
+   "title": "$seed"
+  },
+  "class_type": "KSampler",
+  "inputs": {
+   "cfg": 1.0,
+   "denoise": 1,
+   "latent_image": [
+    "8",
+    0
+   ],
+   "model": [
+    "5",
+    0
+   ],
+   "negative": [
+    "21",
+    0
+   ],
+   "positive": [
+    "20",
+    0
+   ],
+   "sampler_name": "euler",
+   "scheduler": "simple",
+   "seed": 930000,
+   "steps": 4
+  }
+ },
+ "13": {
+  "_meta": {
+   "title": "VAE Decode"
+  },
+  "class_type": "VAEDecode",
+  "inputs": {
+   "samples": [
+    "12",
+    0
+   ],
+   "vae": [
+    "7",
+    0
+   ]
+  }
+ },
+ "14": {
+  "_meta": {
+   "title": "save frame with matte"
+  },
+  "class_type": "SaveImage",
+  "inputs": {
+   "filename_prefix": "kk/l3probe-a1536",
+   "images": [
+    "13",
+    0
+   ]
+  }
+ },
+ "20": {
+  "_meta": {
+   "title": "reference latents: positive"
+  },
+  "class_type": "FluxKontextMultiReferenceLatentMethod",
+  "inputs": {
+   "conditioning": [
+    "10",
+    0
+   ],
+   "reference_latents_method": "index_timestep_zero"
+  }
+ },
+ "21": {
+  "_meta": {
+   "title": "reference latents: negative"
+  },
+  "class_type": "FluxKontextMultiReferenceLatentMethod",
+  "inputs": {
+   "conditioning": [
+    "11",
+    0
+   ],
+   "reference_latents_method": "index_timestep_zero"
+  }
+ },
+ "3": {
+  "_meta": {
+   "title": "Load Diffusion Model"
+  },
+  "class_type": "UNETLoader",
+  "inputs": {
+   "unet_name": "qwen_image_edit_2511_fp8mixed.safetensors",
+   "weight_dtype": "default"
+  }
+ },
+ "30": {
+  "_meta": {
+   "title": "Lightning 4-step (built for 2509; unproven on 2511)"
+  },
+  "class_type": "LoraLoaderModelOnly",
+  "inputs": {
+   "lora_name": "Qwen-Image-Edit-2509-Lightning-4steps-V1.0-bf16.safetensors",
+   "model": [
+    "4",
+    0
+   ],
+   "strength_model": 1.0
+  }
+ },
+ "4": {
+  "_meta": {
+   "title": "ModelSamplingAuraFlow"
+  },
+  "class_type": "ModelSamplingAuraFlow",
+  "inputs": {
+   "model": [
+    "3",
+    0
+   ],
+   "sampling": "flow",
+   "shift": 3.1
+  }
+ },
+ "5": {
+  "_meta": {
+   "title": "CFGNorm"
+  },
+  "class_type": "CFGNorm",
+  "inputs": {
+   "model": [
+    "30",
+    0
+   ],
+   "pre_cfg": false,
+   "strength": 1
+  }
+ },
+ "6": {
+  "_meta": {
+   "title": "Load CLIP"
+  },
+  "class_type": "CLIPLoader",
+  "inputs": {
+   "clip_name": "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+   "device": "default",
+   "type": "qwen_image"
+  }
+ },
+ "7": {
+  "_meta": {
+   "title": "Load VAE"
+  },
+  "class_type": "VAELoader",
+  "inputs": {
+   "vae_name": "qwen_image_vae.safetensors"
+  }
+ },
+ "8": {
+  "_meta": {
+   "title": "Empty Latent Image"
+  },
+  "class_type": "EmptyLatentImage",
+  "inputs": {
+   "batch_size": 1,
+   "height": 1536,
+   "width": 1024
+  }
+ },
+ "60": {
+  "_meta": {
+   "title": "$layout"
+  },
+  "class_type": "LoadImage",
+  "inputs": {
+   "image": "$layout"
+  }
+ },
+ "61": {
+  "_meta": {
+   "title": "$style"
+  },
+  "class_type": "LoadImage",
+  "inputs": {
+   "image": "$style"
+  }
+ }
+}

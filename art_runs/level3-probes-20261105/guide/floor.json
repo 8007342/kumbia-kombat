@@ -1,0 +1,49 @@
+{
+ "image": [
+  1024,
+  1536
+ ],
+ "horizonY": 0.20000000000000004,
+ "vanishingX": 0.9765625,
+ "eyeHeightAdults": 3.0,
+ "focalPx": 900.0,
+ "pathWidthAdults": 2.4,
+ "pathEndS": 11.0,
+ "standingHeightPerFootY": 0.3333333333333333,
+ "floorHomography_st_to_px": [
+  [
+   400.0824229297127,
+   249.00418745504544,
+   250.00000000000006
+  ],
+  [
+   122.9053203240078,
+   -66.64199590901747,
+   1536.0
+  ],
+  [
+   0.40008242292971263,
+   -0.21693358043299973,
+   1.0
+  ]
+ ],
+ "ids": {
+  "sky": 1,
+  "trees": 2,
+  "lawn": 3,
+  "path": 4,
+  "joint": 5,
+  "hedge": 6,
+  "wall": 7,
+  "roof": 8,
+  "glass": 9,
+  "inner": 10,
+  "water": 11,
+  "deck": 12,
+  "table": 13,
+  "parasol": 14,
+  "gate": 15,
+  "pot": 16
+ },
+ "note": "Adult height at foot y, as a fraction of image height: (y - horizonY) / eyeHeightAdults"
+}

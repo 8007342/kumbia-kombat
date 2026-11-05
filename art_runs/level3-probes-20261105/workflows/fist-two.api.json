@@ -1,0 +1,266 @@
+{
+ "10": {
+  "_meta": {
+   "title": "prompt, baked per pose by plan_qwen_frames"
+  },
+  "class_type": "TextEncodeQwenImageEditPlus",
+  "inputs": {
+   "clip": [
+    "6",
+    0
+   ],
+   "image1": [
+    "60",
+    0
+   ],
+   "image2": [
+    "61",
+    0
+   ],
+   "prompt": "Two characters together in one picture, drawn in the same crisp pixel art style with thick dark outlines. Image 1 shows the man. Image 2 shows the small robot. On the right side of the picture the man from image 1 is down on one knee and turned towards the left of the picture, keeping his short stocky broad body and big belly, face, thin pencil mustache, panama hat with teal band, purple guayabera with teal embroidered panels, cream trousers and teal shoes. He smiles and reaches his arm out low with a closed fist. On the left side of the picture the small robot from image 2 stands on the ground turned towards the right of the picture, keeping its big rounded ivory head, dark teal face screen with two cyan smiling arcs, one small cyan antenna ball, teal joints and short limbs. The robot is toy-sized: standing, its whole height reaches only up to the kneeling man's chest. The robot raises one short arm and its closed fist touches the man's closed fist exactly in the middle of the picture: a friendly fist bump. Each has exactly two arms. Both feet on the same floor line. Plain light grey background, nothing else, no text.",
+   "vae": [
+    "7",
+    0
+   ]
+  }
+ },
+ "11": {
+  "_meta": {
+   "title": "negative"
+  },
+  "class_type": "TextEncodeQwenImageEditPlus",
+  "inputs": {
+   "clip": [
+    "6",
+    0
+   ],
+   "image1": [
+    "60",
+    0
+   ],
+   "image2": [
+    "61",
+    0
+   ],
+   "prompt": "",
+   "vae": [
+    "7",
+    0
+   ]
+  }
+ },
+ "12": {
+  "_meta": {
+   "title": "$seed"
+  },
+  "class_type": "KSampler",
+  "inputs": {
+   "cfg": 1.0,
+   "denoise": 1,
+   "latent_image": [
+    "8",
+    0
+   ],
+   "model": [
+    "5",
+    0
+   ],
+   "negative": [
+    "21",
+    0
+   ],
+   "positive": [
+    "20",
+    0
+   ],
+   "sampler_name": "euler",
+   "scheduler": "simple",
+   "seed": 930000,
+   "steps": 4
+  }
+ },
+ "13": {
+  "_meta": {
+   "title": "VAE Decode"
+  },
+  "class_type": "VAEDecode",
+  "inputs": {
+   "samples": [
+    "12",
+    0
+   ],
+   "vae": [
+    "7",
+    0
+   ]
+  }
+ },
+ "14": {
+  "_meta": {
+   "title": "save frame with matte"
+  },
+  "class_type": "SaveImage",
+  "inputs": {
+   "filename_prefix": "kk/l3probe-fist-two",
+   "images": [
+    "41",
+    0
+   ]
+  }
+ },
+ "20": {
+  "_meta": {
+   "title": "reference latents: positive"
+  },
+  "class_type": "FluxKontextMultiReferenceLatentMethod",
+  "inputs": {
+   "conditioning": [
+    "10",
+    0
+   ],
+   "reference_latents_method": "index_timestep_zero"
+  }
+ },
+ "21": {
+  "_meta": {
+   "title": "reference latents: negative"
+  },
+  "class_type": "FluxKontextMultiReferenceLatentMethod",
+  "inputs": {
+   "conditioning": [
+    "11",
+    0
+   ],
+   "reference_latents_method": "index_timestep_zero"
+  }
+ },
+ "3": {
+  "_meta": {
+   "title": "Load Diffusion Model"
+  },
+  "class_type": "UNETLoader",
+  "inputs": {
+   "unet_name": "qwen_image_edit_2511_fp8mixed.safetensors",
+   "weight_dtype": "default"
+  }
+ },
+ "30": {
+  "_meta": {
+   "title": "Lightning 4-step (built for 2509; unproven on 2511)"
+  },
+  "class_type": "LoraLoaderModelOnly",
+  "inputs": {
+   "lora_name": "Qwen-Image-Edit-2509-Lightning-4steps-V1.0-bf16.safetensors",
+   "model": [
+    "4",
+    0
+   ],
+   "strength_model": 1.0
+  }
+ },
+ "4": {
+  "_meta": {
+   "title": "ModelSamplingAuraFlow"
+  },
+  "class_type": "ModelSamplingAuraFlow",
+  "inputs": {
+   "model": [
+    "3",
+    0
+   ],
+   "sampling": "flow",
+   "shift": 3.1
+  }
+ },
+ "40": {
+  "_meta": {
+   "title": "BiRefNet model"
+  },
+  "class_type": "LoadRembgByBiRefNetModel",
+  "inputs": {
+   "device": "AUTO",
+   "dtype": "float32",
+   "model": "model.safetensors",
+   "use_weight": false
+  }
+ },
+ "41": {
+  "_meta": {
+   "title": "BiRefNet matte"
+  },
+  "class_type": "RembgByBiRefNet",
+  "inputs": {
+   "images": [
+    "13",
+    0
+   ],
+   "model": [
+    "40",
+    0
+   ]
+  }
+ },
+ "5": {
+  "_meta": {
+   "title": "CFGNorm"
+  },
+  "class_type": "CFGNorm",
+  "inputs": {
+   "model": [
+    "30",
+    0
+   ],
+   "pre_cfg": false,
+   "strength": 1
+  }
+ },
+ "6": {
+  "_meta": {
+   "title": "Load CLIP"
+  },
+  "class_type": "CLIPLoader",
+  "inputs": {
+   "clip_name": "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+   "device": "default",
+   "type": "qwen_image"
+  }
+ },
+ "7": {
+  "_meta": {
+   "title": "Load VAE"
+  },
+  "class_type": "VAELoader",
+  "inputs": {
+   "vae_name": "qwen_image_vae.safetensors"
+  }
+ },
+ "8": {
+  "_meta": {
+   "title": "Empty Latent Image"
+  },
+  "class_type": "EmptyLatentImage",
+  "inputs": {
+   "batch_size": 1,
+   "height": 768,
+   "width": 1024
+  }
+ },
+ "60": {
+  "_meta": {
+   "title": "$gk"
+  },
+  "class_type": "LoadImage",
+  "inputs": {
+   "image": "$gk"
+  }
+ },
+ "61": {
+  "_meta": {
+   "title": "$mac"
+  },
+  "class_type": "LoadImage",
+  "inputs": {
+   "image": "$mac"
+  }
+ }
+}
