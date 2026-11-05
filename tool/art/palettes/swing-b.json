@@ -1,0 +1,65 @@
+{
+ "schema": "tillandsias.palette/v1",
+ "name": "swing-b",
+ "colours": [
+  "#1A1018",
+  "#875C3B",
+  "#B08260",
+  "#DDA982",
+  "#F9CBA9",
+  "#000000",
+  "#030102",
+  "#1E1619",
+  "#362E31",
+  "#891416",
+  "#B5423C",
+  "#E8655C",
+  "#FF8E83",
+  "#A09578",
+  "#C8BEA0",
+  "#F4E8C6",
+  "#FFFBDE",
+  "#680000",
+  "#950009",
+  "#C9202C",
+  "#E15955"
+ ],
+ "transparent": null,
+ "$provenance": {
+  "tool": "tool/art/pipeline/compile_family.py",
+  "definition": "tool/art/characters/swing-b.json",
+  "ramps": {
+   "skin": [
+    "#875C3B",
+    "#B08260",
+    "#DDA982",
+    "#F9CBA9"
+   ],
+   "hair": [
+    "#000000",
+    "#030102",
+    "#1E1619",
+    "#362E31"
+   ],
+   "blouse": [
+    "#891416",
+    "#B5423C",
+    "#E8655C",
+    "#FF8E83"
+   ],
+   "skirt": [
+    "#A09578",
+    "#C8BEA0",
+    "#F4E8C6",
+    "#FFFBDE"
+   ],
+   "shoes": [
+    "#680000",
+    "#950009",
+    "#C9202C",
+    "#E15955"
+   ]
+  },
+  "nudged": {}
+ }
+}

@@ -1,0 +1,47 @@
+[
+ {
+  "pose": "left_foot.peak",
+  "args": {
+   "workflow": "art_runs/swing-b-20261105a/workflows/left_foot.peak.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/swing-b-20261105a/in/sheet_front.png",
+    "pose_proxy": "/work/tmp/imagegen/kumbia/swing-b-20261105a/in/left_foot.peak.skeleton.png"
+   },
+   "overrides": {
+    "seed": 986000
+   }
+  }
+ },
+ {
+  "pose": "clap.contact",
+  "args": {
+   "workflow": "art_runs/swing-b-20261105a/workflows/clap.contact.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/swing-b-20261105a/in/sheet_front.png",
+    "pose_proxy": "/work/tmp/imagegen/kumbia/swing-b-20261105a/in/clap.contact.skeleton.png"
+   },
+   "overrides": {
+    "seed": 986000
+   }
+  }
+ },
+ {
+  "pose": "finish_turn.finish_b",
+  "args": {
+   "workflow": "art_runs/swing-b-20261105a/workflows/finish_turn.finish_b.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/swing-b-20261105a/in/sheet_front.png",
+    "pose_proxy": "/work/tmp/imagegen/kumbia/swing-b-20261105a/in/finish_turn.finish_b.skeleton.png"
+   },
+   "overrides": {
+    "seed": 986000
+   }
+  }
+ }
+]

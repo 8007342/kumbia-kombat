@@ -1,0 +1,16 @@
+[
+ {
+  "pose": "sheet.front",
+  "args": {
+   "workflow": "art_runs/swing-a-20261105a/workflows/sheet.front.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/swing-a-20261105a/in/sheet_source.png"
+   },
+   "overrides": {
+    "seed": 985000
+   }
+  }
+ }
+]
