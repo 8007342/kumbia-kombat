@@ -6,7 +6,7 @@ figure gets copied, shapes included (art_runs/qwen-trials-20261105/). The skelet
 down so the larger figure Qwen draws still fits the frame. register_frames.py puts each frame
 back on the rig's size and position afterwards.
 
-Usage: plan_qwen_frames.py <character> --run <run> [--only clip,pose.id] [--seed N] [--scale 0.8]
+Usage: plan_qwen_frames.py <character> --run <run> [--only clip,pose.id] [--seed N] [--scale 0.8] [--sheet PNG]
 Writes art_runs/<run>/jobs.json, staging inputs under /work/tmp/imagegen/kumbia/<run>/in/.
 
 Each pose gets its own workflow, art_runs/<run>/workflows/<pose>.api.json, with its prompt baked in:
@@ -49,11 +49,14 @@ CAST = {
         "noun": "man",
         "fits": "hat, both shoes and both hands",
         "look": (
-            "short, stocky, broad body, big belly, face, thin pencil mustache, black hair, panama hat "
-            "with teal band, purple short-sleeved guayabera with collar, pockets and teal embroidered "
-            "panels, cream pleated trousers, teal shoes and thick dark ink outline"
+            "short, stocky, heavyset build, broad body, big round belly straining his shirt and "
+            "overhanging his waistband, thick arms and legs, thick neck, wide round face with full "
+            "cheeks, thin pencil mustache, black hair, panama hat with teal band, purple short-sleeved "
+            "guayabera with collar, pockets and teal embroidered panels, cream pleated trousers, teal "
+            "shoes and thick dark ink outline"
         ),
-        "extra": "Clean-shaven apart from the mustache, no beard, no goatee. ",
+        # This model draws what a prompt names, even denied ("glasses-free" drew glasses): describe.
+        "extra": "His chin and cheeks are smooth and bare, the mustache his only facial hair. Both eyes are open. ",
     },
     "bartender": {
         "noun": "woman",
@@ -99,6 +102,7 @@ def main() -> None:
     ap.add_argument("--scale", type=float, default=0.8)
     ap.add_argument("--family", default="")
     ap.add_argument("--count", type=int, default=4, help="candidates per pose: seed, seed+1, ...")
+    ap.add_argument("--sheet", default="", help="model sheet, if not tool/art/references/<character>/front.png")
     a = ap.parse_args()
 
     family = a.family or {"gatekeeper": "gatekeeper-v3", "bartender": "bartender-v1"}[a.character]
@@ -122,7 +126,7 @@ def main() -> None:
     lane = STAGE / a.run / "in"
     lane.mkdir(parents=True, exist_ok=True)
     sheet = lane / "sheet_front.png"
-    shutil.copy(f"tool/art/references/{a.character}/front.png", sheet)
+    shutil.copy(a.sheet or f"tool/art/references/{a.character}/front.png", sheet)
 
     jobs = []
     for pid in ids:
