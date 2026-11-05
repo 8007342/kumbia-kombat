@@ -1,0 +1,258 @@
+{
+ "groove.down_l": {
+  "k": "981002",
+  "score": 8.8
+ },
+ "groove.pass_l": {
+  "k": "981003",
+  "score": 4.4
+ },
+ "groove.up_l": {
+  "k": "981000",
+  "score": 8.2
+ },
+ "groove.pass_l2": {
+  "k": "981001",
+  "score": 6.6
+ },
+ "groove.down_r": {
+  "k": "981001",
+  "score": 7.1
+ },
+ "groove.pass_r": {
+  "k": "981000",
+  "score": 7.4
+ },
+ "groove.up_r": {
+  "k": "981000",
+  "score": 15.6
+ },
+ "groove.pass_r2": {
+  "k": "981003",
+  "score": 6.9
+ },
+ "left_hand.prep": {
+  "k": "981003",
+  "score": 29.8
+ },
+ "left_hand.peak": {
+  "k": "981002",
+  "score": 10.1
+ },
+ "left_hand.follow": {
+  "k": "981002",
+  "score": 8.7
+ },
+ "left_hand.return": {
+  "k": "981000",
+  "score": 4.4
+ },
+ "right_hand.prep": {
+  "k": "981001",
+  "score": 17.5
+ },
+ "right_hand.peak": {
+  "k": "981000",
+  "score": 11.3
+ },
+ "right_hand.follow": {
+  "k": "981001",
+  "score": 9.4
+ },
+ "right_hand.return": {
+  "k": "981003",
+  "score": 13.4
+ },
+ "left_foot.prep": {
+  "k": "981002",
+  "score": 6.1
+ },
+ "left_foot.peak": {
+  "k": "981000",
+  "score": 8.2
+ },
+ "left_foot.follow": {
+  "k": "981002",
+  "score": 8.1
+ },
+ "left_foot.return": {
+  "k": "981003",
+  "score": 47.5
+ },
+ "right_foot.prep": {
+  "k": "981002",
+  "score": 9.8
+ },
+ "right_foot.peak": {
+  "k": "981000",
+  "score": 10.9
+ },
+ "right_foot.follow": {
+  "k": "981003",
+  "score": 8.1
+ },
+ "right_foot.return": {
+  "k": "981001",
+  "score": 32.7
+ },
+ "enter_forward.contact_l": {
+  "k": "981002",
+  "score": 5.1
+ },
+ "enter_forward.down_l": {
+  "k": "981003",
+  "score": 6.2
+ },
+ "enter_forward.pass_l": {
+  "k": "981003",
+  "score": 3.0
+ },
+ "enter_forward.contact_r": {
+  "k": "981002",
+  "score": 14.4
+ },
+ "enter_forward.down_r": {
+  "k": "981000",
+  "score": 4.6
+ },
+ "enter_forward.pass_r": {
+  "k": "981002",
+  "score": 7.1
+ },
+ "retreat_backward.contact_l": {
+  "k": "981000",
+  "score": 15.5
+ },
+ "retreat_backward.down_l": {
+  "k": "981002",
+  "score": 7.2
+ },
+ "retreat_backward.pass_l": {
+  "k": "981002",
+  "score": 2.9
+ },
+ "retreat_backward.contact_r": {
+  "k": "981001",
+  "score": 5.6
+ },
+ "retreat_backward.down_r": {
+  "k": "981003",
+  "score": 5.6
+ },
+ "retreat_backward.pass_r": {
+  "k": "981003",
+  "score": 9.0
+ },
+ "yield_side.contact_l": {
+  "k": "981002",
+  "score": 7.5
+ },
+ "yield_side.down_l": {
+  "k": "981000",
+  "score": 6.4
+ },
+ "yield_side.pass_l": {
+  "k": "981000",
+  "score": 4.5
+ },
+ "yield_side.contact_r": {
+  "k": "981002",
+  "score": 4.2
+ },
+ "yield_side.down_r": {
+  "k": "981000",
+  "score": 22.0
+ },
+ "yield_side.pass_r": {
+  "k": "982002",
+  "by": "eye review over the scorer"
+ },
+ "watch.shift_l": {
+  "k": "981002",
+  "score": 4.7
+ },
+ "watch.hold_l": {
+  "k": "981000",
+  "score": 9.0
+ },
+ "watch.shift_r": {
+  "k": "981001",
+  "score": 9.9
+ },
+ "watch.hold_r": {
+  "k": "981001",
+  "score": 10.4
+ },
+ "clap.open": {
+  "k": "982003",
+  "by": "eye review over the scorer"
+ },
+ "clap.close": {
+  "k": "982003",
+  "by": "eye review over the scorer"
+ },
+ "clap.contact": {
+  "k": "982001",
+  "by": "eye review over the scorer"
+ },
+ "clap.release": {
+  "k": "982000",
+  "by": "eye review over the scorer"
+ },
+ "challenge.load": {
+  "k": "981000",
+  "score": 10.5
+ },
+ "challenge.proud": {
+  "k": "981002",
+  "score": 14.0
+ },
+ "challenge.offer": {
+  "k": "981002",
+  "score": 12.4
+ },
+ "challenge.return": {
+  "k": "981001",
+  "score": 22.4
+ },
+ "approval.load": {
+  "k": "981002",
+  "score": 8.3
+ },
+ "approval.nod": {
+  "k": "982000",
+  "by": "eye review over the scorer"
+ },
+ "approval.release": {
+  "k": "981003",
+  "score": 7.4
+ },
+ "reassurance.notice": {
+  "k": "981001",
+  "score": 37.9
+ },
+ "reassurance.open_hand": {
+  "k": "981001",
+  "score": 13.9
+ },
+ "reassurance.settle": {
+  "k": "981000",
+  "score": 7.3
+ },
+ "finish_turn.finish_a": {
+  "k": "981001",
+  "score": 8.3
+ },
+ "finish_turn.finish_b": {
+  "k": "981000",
+  "by": "eye review over the scorer"
+ },
+ "finish_turn.turn_in": {
+  "k": "981000",
+  "score": 6.0
+ },
+ "finish_turn.turn_out": {
+  "k": "981002",
+  "score": 7.5
+ }
+}

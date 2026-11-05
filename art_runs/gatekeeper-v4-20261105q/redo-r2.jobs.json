@@ -1,0 +1,92 @@
+[
+ {
+  "pose": "clap.open",
+  "args": {
+   "workflow": "art_runs/gatekeeper-v4-20261105q/workflows/clap.open.r2.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/gatekeeper-v4-20261105q/in/sheet_front.png",
+    "pose_proxy": "/work/tmp/imagegen/kumbia/gatekeeper-v4-20261105q/in/redo/r2/clap.open.skeleton.png"
+   },
+   "overrides": {
+    "seed": 982000
+   }
+  }
+ },
+ {
+  "pose": "clap.close",
+  "args": {
+   "workflow": "art_runs/gatekeeper-v4-20261105q/workflows/clap.close.r2.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/gatekeeper-v4-20261105q/in/sheet_front.png",
+    "pose_proxy": "/work/tmp/imagegen/kumbia/gatekeeper-v4-20261105q/in/redo/r2/clap.close.skeleton.png"
+   },
+   "overrides": {
+    "seed": 982000
+   }
+  }
+ },
+ {
+  "pose": "clap.contact",
+  "args": {
+   "workflow": "art_runs/gatekeeper-v4-20261105q/workflows/clap.contact.r2.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/gatekeeper-v4-20261105q/in/sheet_front.png",
+    "pose_proxy": "/work/tmp/imagegen/kumbia/gatekeeper-v4-20261105q/in/redo/r2/clap.contact.skeleton.png"
+   },
+   "overrides": {
+    "seed": 982000
+   }
+  }
+ },
+ {
+  "pose": "clap.release",
+  "args": {
+   "workflow": "art_runs/gatekeeper-v4-20261105q/workflows/clap.release.r2.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/gatekeeper-v4-20261105q/in/sheet_front.png",
+    "pose_proxy": "/work/tmp/imagegen/kumbia/gatekeeper-v4-20261105q/in/redo/r2/clap.release.skeleton.png"
+   },
+   "overrides": {
+    "seed": 982000
+   }
+  }
+ },
+ {
+  "pose": "approval.nod",
+  "args": {
+   "workflow": "art_runs/gatekeeper-v4-20261105q/workflows/approval.nod.r2.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/gatekeeper-v4-20261105q/in/sheet_front.png",
+    "pose_proxy": "/work/tmp/imagegen/kumbia/gatekeeper-v4-20261105q/in/redo/r2/approval.nod.skeleton.png"
+   },
+   "overrides": {
+    "seed": 982000
+   }
+  }
+ },
+ {
+  "pose": "yield_side.pass_r",
+  "args": {
+   "workflow": "art_runs/gatekeeper-v4-20261105q/workflows/yield_side.pass_r.r2.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/gatekeeper-v4-20261105q/in/sheet_front.png",
+    "pose_proxy": "/work/tmp/imagegen/kumbia/gatekeeper-v4-20261105q/in/redo/r2/yield_side.pass_r.skeleton.png"
+   },
+   "overrides": {
+    "seed": 982000
+   }
+  }
+ }
+]
