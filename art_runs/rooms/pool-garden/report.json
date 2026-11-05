@@ -1,0 +1,33 @@
+{
+ "phoneVisibleX": [
+  0.153,
+  0.847
+ ],
+ "story": {
+  "pool": [
+   0.196,
+   0.23,
+   0.554,
+   0.285
+  ],
+  "pool.open": 0.697,
+  "pool-house": [
+   0.174,
+   0.09,
+   0.56,
+   0.342
+  ],
+  "path-end": [
+   0.56,
+   0.133,
+   0.825,
+   0.275
+  ]
+ },
+ "cast": {
+  "adultAtHeroMarkSourcePx": 392.2,
+  "heroAtMarkLogical": 34.8,
+  "heroAtMarkDp": 75.4,
+  "reference": "garden 38.4 logical (83 dp), bar 66.7 logical (145 dp) at the same phone"
+ }
+}

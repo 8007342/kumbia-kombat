@@ -1,0 +1,44 @@
+{
+  "id": "ballroom", "title": "THE BALLROOM", "styleRef": "bar",
+  "comment": "Second room, the test that a room is data: indoor, angled to the top left, no primitives of its own. From the probes' hall.",
+  "camera": { "horizonY": 0.16, "eyeHeightAdults": 1.85, "focalPx": 900, "vanishingX": 0.36, "originBottomX": 0.74 },
+  "phone": { "width": 390, "height": 844 },
+  "safe": { "x": [0.17, 0.83], "y": [0.17, 0.65] },
+  "tapBand": { "y": [0.65, 0.97], "allow": ["floor", "joint"] },
+  "cast": { "heroStature": 0.35, "minHeroLogical": 34 },
+  "walkable": ["floor", "joint"], "standable": ["floor", "joint"],
+  "paint": [
+    { "kind": "paving", "id": "floor", "s": [-4, 11], "t": [-3.1, 3.1], "every": 1.5, "lanes": 5 },
+    { "kind": "wall", "id": "panel", "a": [11, -3.1], "b": [11, 3.1], "z": [0, 4.2] },
+    { "kind": "wall", "id": "door", "a": [11, -0.9], "b": [11, 0.9], "z": [0, 2.6] },
+    { "kind": "wall", "id": "panel", "a": [-4, -3.1], "b": [11, -3.1], "z": [0, 4.2] },
+    { "kind": "wall", "id": "panel", "a": [-4, 3.1], "b": [11, 3.1], "z": [0, 4.2] },
+    { "kind": "repeat", "of": "wall", "count": 5, "start": 0, "step": 2, "id": "window", "a": [1.6, -3.1], "b": [2.8, -3.1], "z": [0.5, 3.5] },
+    { "kind": "repeat", "of": "wall", "count": 6, "start": 0, "step": 2, "id": "pilaster", "a": [1, 3.1], "b": [1.5, 3.1], "z": [0, 4.2] },
+    { "kind": "box", "id": "stage", "s": [8.4, 10.9], "t": [-1.9, 1.9], "z": [0, 0.7] },
+    { "kind": "discs", "id": "lamp", "at": [[3, -1.5, 3.4], [6, 1.5, 3.4], [9, -1, 3.4]], "r": 0.22 }
+  ],
+  "story": [
+    { "name": "stage", "ids": ["stage", "door"], "ignoreTop": true }
+  ],
+  "marks": {
+    "heroHome": [1.04, 0], "heroEntrance": [0.4, 0.05], "heroRetreat": [0.7, 0],
+    "challengers": [ { "id": "gatekeeper", "atlas": "gatekeeper", "mark": [2.1, 0], "yieldMark": [2.3, -0.7] } ],
+    "pathEnd": [7.8, 0],
+    "route": [[1.04, 0], [1.3, -0.3], [3.5, -0.2], [5.5, -0.1], [7.8, 0]],
+    "guests": [[3.5, 1.4], [3.5, 2.0], [5.5, 1.2], [5.5, 1.9]],
+    "plants": []
+  },
+  "props": [],
+  "scene": "It is the grand ballroom of the same mansion at night, seen at an angle.",
+  "keep": "every wall edge, window, pilaster, the far stage and doorway, every floor joint and the horizon",
+  "zones": {
+    "floor": { "layout": "a polished dark stone floor running diagonally from the bottom right to the top left, with the same grid as image 1.", "paint": "The floor is plain dark polished stone in large square slabs with thin straight joints, carrying long soft reflections of the warm lamps, reaching the bottom edge and lying open and clear." },
+    "panel": { "layout": "dark carved wood panelling.", "paint": "The walls are finely carved dark wood panelling and plaster." },
+    "door": { "layout": "a glowing doorway at the far end.", "paint": "A warm glowing doorway stands at the far end." },
+    "window": { "layout": "tall arched windows with moonlight on the left wall.", "paint": "Tall arched windows let in soft blue moonlight." },
+    "pilaster": { "layout": "carved pilasters on the right wall.", "paint": "Carved cream pilasters run along the right wall." },
+    "stage": { "layout": "a low stage at the far end.", "paint": "A low stage with velvet curtains waits at the far end." },
+    "lamp": { "layout": "glowing chandeliers hanging from the ceiling.", "paint": "Lantern chandeliers hang high in the air." }
+  }
+}

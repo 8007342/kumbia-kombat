@@ -1,0 +1,66 @@
+{
+  "id": "pool-garden", "title": "THE POOL GARDEN", "styleRef": "garden",
+  "comment": "Angled path to the top right, covered pool top left, lawn left and top, tap band all dark stone. Camera raised and horizon lifted so Mācron stays near garden size.",
+  "camera": { "horizonY": 0.16, "eyeHeightAdults": 1.9, "focalPx": 900, "vanishingX": 0.76, "originBottomX": 0.20 },
+  "phone": { "width": 390, "height": 844 },
+  "safe": { "x": [0.17, 0.83], "y": [0.17, 0.65] },
+  "tapBand": { "y": [0.65, 0.97], "allow": ["path", "joint"] },
+  "cast": { "heroStature": 0.35, "minHeroLogical": 34 },
+  "walkable": ["path", "joint"], "standable": ["lawn", "glow"],
+  "paint": [
+    { "kind": "backdrop", "id": "trees", "y": [0.10, 0.085, 0.10, 0.08, 0.095, 0.075, 0.09, 0.07, 0.085] },
+    { "kind": "field", "id": "lawn" },
+    { "kind": "wall", "id": "trees", "a": [10.6, -2.4], "b": [10.6, 12], "z": [0, 3.6] },
+    { "kind": "wall", "id": "inner", "a": [13.5, -5.3], "b": [13.5, -2.3], "z": [0, 2.2] },
+    { "kind": "wall", "id": "inner", "a": [7.2, -5.3], "b": [13.5, -5.3], "z": [0, 2.2] },
+    { "kind": "ground", "id": "deck", "s": [7.2, 13.5], "t": [-5.3, -2.3] },
+    { "kind": "ground", "id": "water", "s": [7.6, 13.0], "t": [-5.1, -2.7], "count": true },
+    { "kind": "arcade", "id": "wall", "a": [13.5, -2.3], "b": [7.2, -2.3], "bays": 4, "z": [1.1, 2.2] },
+    { "kind": "arcade", "id": "wall", "a": [7.2, -5.3], "b": [7.2, -2.3], "bays": 3, "z": [1.1, 2.2] },
+    { "kind": "wall", "id": "wall", "a": [7.2, -5.3], "b": [7.2, -2.3], "z": [2.2, 2.45] },
+    { "kind": "wall", "id": "wall", "a": [7.2, -2.3], "b": [13.5, -2.3], "z": [2.2, 2.45] },
+    { "kind": "hip", "id": "roof", "s": [7.2, 13.5], "t": [-5.3, -2.3], "z": 2.45, "rise": 0.9 },
+    { "kind": "pools", "id": "glow", "at": [[2.72, -1.67], [3.72, -2.3], [5.25, -1.95]], "r": 0.4 },
+    { "kind": "paving", "id": "path", "s": [-3, 9.2], "t": [-1.1, 1.1], "every": 1.5, "lanes": 3 },
+    { "kind": "box", "id": "hedge", "s": [-3, 9.2], "t": [1.3, 1.9], "z": [0, 0.8] },
+    { "kind": "gate", "id": "gate", "s": 9.2, "t": [-1.2, 1.2], "height": 2.0 },
+    { "kind": "lantern", "at": [8.6, -1.4], "height": 1.1 },
+    { "kind": "lantern", "at": [4.6, -1.3], "height": 1.1 },
+    { "kind": "string", "id": "lights", "a": [8.6, -1.4, 1.9], "b": [6.9, -5.3, 2.35], "sag": 0.25 }
+  ],
+  "story": [
+    { "name": "pool", "ids": ["water", "deck"], "minOpen": { "id": "water", "ratio": 0.55 } },
+    { "name": "pool-house", "ids": ["wall", "inner", "roof"], "ignoreTop": true },
+    { "name": "path-end", "ids": ["gate"], "ignoreTop": true }
+  ],
+  "marks": {
+    "heroHome": [1.02, 0.03], "heroEntrance": [0.45, -0.05], "heroRetreat": [0.72, 0],
+    "challengers": [ { "id": "gatekeeper", "atlas": "gatekeeper", "mark": [2.05, 0.06], "yieldMark": [2.35, 0.7] } ],
+    "pathEnd": [8.9, 0],
+    "route": [[1.02, 0.03], [1.35, 0.3], [3.0, 0.2], [5.0, 0.1], [7.0, 0.05], [8.9, 0]],
+    "guests": [[2.72, -1.35], [2.72, -1.98], [3.72, -1.95], [3.72, -2.65], [5.25, -1.65], [5.25, -2.28]],
+    "plants": []
+  },
+  "props": [
+    { "id": "pool-table-1", "kind": "table", "at": [2.72, -1.67], "heightInAdults": 0.43, "widthInAdults": 0.9 },
+    { "id": "pool-table-2", "kind": "table", "at": [3.72, -2.3], "heightInAdults": 0.43, "widthInAdults": 0.9 },
+    { "id": "pool-table-3", "kind": "table", "at": [5.25, -1.95], "heightInAdults": 0.43, "widthInAdults": 0.9 }
+  ],
+  "scene": "It is the back lawn of a mansion at night, seen from a raised angle.",
+  "keep": "every building edge, every arch and column, the gateway, the path edges, every paving joint and the horizon",
+  "zones": {
+    "path": { "layout": "a wide dark stone walkway running diagonally from the bottom left of the picture to the top right, with the same paving grid as image 1, ending under the gateway.", "paint": "The paved path is dark polished stone, wet after rain: its joints stay exactly where they are, and it carries long soft reflections of the warm lamps and of the turquoise pool, with fine mottled texture and faint leaf shadows, and it lies open and clear from end to end." },
+    "lawn": { "layout": "a manicured dark lawn.", "paint": "The lawn is deep dark green with fine grass texture." },
+    "glow": { "layout": "a soft pool of warm light on the bare grass.", "paint": "Soft round pools of warm lamplight lie on the open grass." },
+    "hedge": { "layout": "a clipped hedge along the right of the path.", "paint": "Dense tropical leaves fill the clipped hedge on the right." },
+    "trees": { "layout": "a dark wall of tropical trees behind the gateway and behind everything.", "paint": "Dense dark tropical trees and palm silhouettes stand against a starry navy sky, and the view through the gateway is deep dark foliage." },
+    "wall": { "layout": "the slender limestone columns and round arches of a classy covered pool house at the top left, wide open so the water shows through.", "paint": "The pool house is warm cream limestone, lit amber from inside, with slender columns, tall open round arches and finely carved ornament." },
+    "inner": { "layout": "the pool house's warm interior back walls.", "paint": "Its back walls glow softly amber." },
+    "roof": { "layout": "its tiled hipped roof.", "paint": "Its hipped roof is terracotta tile, dark with night." },
+    "deck": { "layout": "the stone deck around the pool.", "paint": "A pale stone deck rims the water." },
+    "water": { "layout": "glowing turquoise pool water seen through the arches.", "paint": "The pool water glows clear turquoise with fine ripples of light." },
+    "gate": { "layout": "a cream stone gateway at the far end of the path.", "paint": "The gateway at the end of the path is carved cream limestone." },
+    "lights": { "layout": "strings of small warm lights above the lawn.", "paint": "Strings of tiny warm lights hang above the lawn." },
+    "lamp": { "layout": "small lanterns on slim posts along the path.", "paint": "Small warm lanterns glow on slim posts." }
+  }
+}
