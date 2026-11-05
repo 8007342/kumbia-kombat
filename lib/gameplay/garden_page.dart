@@ -12,6 +12,7 @@ import '../music/game_audio.dart';
 import '../music/score.dart';
 import '../music/transport.dart';
 import '../music/transition_conductor.dart';
+import 'exit_shot.dart';
 import 'garden_scene.dart';
 import 'garden_session.dart';
 import 'level_definition.dart';
@@ -74,6 +75,7 @@ class _GardenPageState extends State<GardenPage>
   MusicFinish? _finish;
   bool _exitReady = false;
   bool _exitStarted = false;
+  bool _closeupShowing = false;
   bool _handoffPaused = false;
   bool _adoptingRoom = false;
   bool _starting = false;
@@ -134,9 +136,22 @@ class _GardenPageState extends State<GardenPage>
               : source.beatAt(exitAt) + successBeat + bridgeBeat;
           // Let applause breathe through the first bar, then settle by guest.
           final coda = ((successBeat - 4) / 4).clamp(0.0, 1.0);
+          final exitBeat = successBeat + bridgeBeat;
+          final shot = _level.exitShot;
           final travel = bridge == null
               ? 0.0
+              : shot != null
+              ? shot.routeAt(
+                  exitBeat,
+                  success.score.lengthBeats + bridge.score.lengthBeats,
+                )
               : (bridgeBeat / bridge.score.lengthBeats).clamp(0.0, 1.0);
+          if (_audio.nowSeconds >= exitAt) _scene.exitBeat = exitBeat;
+          final closeup = _scene.closeupShowing;
+          if (closeup != _closeupShowing) {
+            _closeupShowing = closeup;
+            if (mounted) setState(() {});
+          }
           _scene.warmDown = bridge == null ? coda : coda * .55 + travel * .45;
           _scene.exitTravel = travel;
         }
@@ -268,6 +283,27 @@ class _GardenPageState extends State<GardenPage>
     }
   }
 
+  /// The shot's hits, placed in whichever score is playing at their beat.
+  MusicScore _withCue(
+    LevelDefinition level,
+    MusicScore score,
+    double startBeat,
+  ) {
+    final cue = level.exitShot?.cue ?? const <ExitShotCue>[];
+    final notes = [
+      for (final hit in cue)
+        if (hit.beat >= startBeat && hit.beat - startBeat < score.lengthBeats)
+          ScoreNote(
+            track: hit.track,
+            beat: hit.beat - startBeat,
+            pitch: hit.pitch,
+            duration: .25,
+            velocity: hit.velocity,
+          ),
+    ];
+    return notes.isEmpty ? score : score.withNotes(notes);
+  }
+
   void _beginExit() {
     _exitStarted = true;
     _finish = null;
@@ -281,8 +317,16 @@ class _GardenPageState extends State<GardenPage>
     if (next != null) {
       _handoff = _conductor!.handoff(
         source: _transport!,
-        success: _exitScores[step.level.music.successScore]!,
-        bridge: _exitScores[step.bridgeToNext!]!,
+        success: _withCue(
+          step.level,
+          _exitScores[step.level.music.successScore]!,
+          0,
+        ),
+        bridge: _withCue(
+          step.level,
+          _exitScores[step.bridgeToNext!]!,
+          _exitScores[step.level.music.successScore]!.lengthBeats,
+        ),
         nextScore: MusicScore.fromJson(_roomScores[next.music.score]!),
       );
     } else {
@@ -315,6 +359,7 @@ class _GardenPageState extends State<GardenPage>
       _finish = null;
       _conductor = null;
       _exitStarted = false;
+      _closeupShowing = false;
       _feedback = null;
       _styleDestination = null;
       _styleNote = null;
@@ -1017,7 +1062,7 @@ class _GardenPageState extends State<GardenPage>
               ),
             ),
           ),
-        if (session.phase == GardenPhase.cleared)
+        if (session.phase == GardenPhase.cleared && !_closeupShowing)
           Positioned(
             top: size.height * .53,
             left: 20,
@@ -1081,6 +1126,7 @@ class _GardenPageState extends State<GardenPage>
   Widget _cover(GardenPhase phase, Size size) {
     final paused = phase == GardenPhase.paused;
     final cleared = phase == GardenPhase.cleared;
+    if (cleared && _closeupShowing) return const SizedBox.shrink();
     if (cleared && _conductor?.isPlaying == true) {
       return Positioned.fill(
         child: IgnorePointer(

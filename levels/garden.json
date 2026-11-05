@@ -74,5 +74,72 @@
     "clearedTitle": "MUCHO\nMOJO.",
     "clearedClaim": "THE GATE IS YOURS.",
     "resetLine": "BACK TO THE GATE"
+  },
+  "exitShot": {
+    "plate": "closeups/garden-plate.png",
+    "celebrateUntil": 4,
+    "walkFrom": 4,
+    "walkTo": 6.5,
+    "heroStep": [
+      0.57,
+      0.6
+    ],
+    "closeupFrom": 7,
+    "contactBeat": 8,
+    "closeupTo": 9.25,
+    "contactPoint": [
+      0.5,
+      0.34
+    ],
+    "actors": [
+      {
+        "approach": "closeups/mc-approach.png",
+        "impact": "closeups/mc-impact.png",
+        "contact": [
+          89,
+          34
+        ],
+        "scale": 0.75,
+        "entry": [
+          -110,
+          70
+        ],
+        "recoil": [
+          -5,
+          3
+        ]
+      },
+      {
+        "approach": "closeups/gk-approach.png",
+        "impact": "closeups/gk-impact.png",
+        "contact": [
+          7,
+          41
+        ],
+        "scale": 1.0,
+        "entry": [
+          120,
+          -12
+        ],
+        "recoil": [
+          7,
+          -1
+        ]
+      }
+    ],
+    "cue": [
+      {
+        "beat": 8,
+        "track": "pulse",
+        "pitch": 36,
+        "velocity": 127
+      },
+      {
+        "beat": 8,
+        "track": "pulse",
+        "pitch": 38,
+        "velocity": 120
+      }
+    ]
   }
 }

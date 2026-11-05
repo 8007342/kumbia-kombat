@@ -1,0 +1,55 @@
+{
+ "pieces": {
+  "gk-approach": {
+   "file": "gk-approach.png",
+   "size": [
+    128,
+    96
+   ],
+   "contact": [
+    7,
+    39
+   ]
+  },
+  "gk-impact": {
+   "file": "gk-impact.png",
+   "size": [
+    128,
+    96
+   ],
+   "contact": [
+    7,
+    41
+   ]
+  },
+  "mc-approach": {
+   "file": "mc-approach.png",
+   "size": [
+    96,
+    96
+   ],
+   "contact": [
+    86,
+    34
+   ]
+  },
+  "mc-impact": {
+   "file": "mc-impact.png",
+   "size": [
+    96,
+    96
+   ],
+   "contact": [
+    89,
+    34
+   ]
+  }
+ },
+ "plate": {
+  "file": "garden-plate.png",
+  "size": [
+   292,
+   412
+  ]
+ }
+}

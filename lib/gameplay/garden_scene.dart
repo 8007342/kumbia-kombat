@@ -9,6 +9,7 @@ import 'package:flutter/services.dart';
 import 'challenger_choreography.dart';
 import 'dance_grammar.dart';
 import 'ensemble_sprites.dart';
+import 'exit_shot.dart';
 import 'garden_session.dart';
 import 'level_definition.dart';
 import 'outfit_palette.dart';
@@ -46,6 +47,9 @@ class GardenSceneGame extends FlameGame {
   double exitTravel = 0;
   double? presentationBeat;
   double? exitCodaBeat;
+
+  /// Beats since the success score began, running on through the bridge.
+  double? exitBeat;
   double warmDown = 0;
   String? artLoadError;
   PartySpriteAtlas? _heroAtlas;
@@ -125,6 +129,9 @@ class GardenSceneGame extends FlameGame {
     }
     final generation = ++_roomGeneration;
     final loaded = await images.load(level.background);
+    for (final image in level.exitShot?.images ?? const <String>[]) {
+      await images.load(image);
+    }
     if (generation != _roomGeneration) return;
     _level = level;
     _background = loaded;
@@ -133,6 +140,7 @@ class GardenSceneGame extends FlameGame {
     warmDown = 0;
     _resetBeat = -10;
     exitTravel = 0;
+    exitBeat = null;
     actionBeat = -10;
     actionTargetBeat = null;
     nextRequiredBeat = null;
@@ -299,8 +307,69 @@ class GardenSceneGame extends FlameGame {
     for (final draw in draws) {
       draw.draw(canvas);
     }
+    _drawCloseup(canvas, bounds);
     canvas.restore();
     super.render(canvas);
+  }
+
+  /// True while a close-up covers the world, for the HUD to step aside.
+  bool get closeupShowing {
+    final shot = _level?.exitShot;
+    final at = exitBeat;
+    return shot != null && at != null && shot.closeupAt(at);
+  }
+
+  void _drawCloseup(ui.Canvas canvas, ui.Rect bounds) {
+    if (!closeupShowing) return;
+    final shot = _level!.exitShot!;
+    final at = exitBeat!;
+    final paint = ui.Paint()..filterQuality = ui.FilterQuality.none;
+    final plate = images.fromCache(shot.plate);
+    final cover = math.max(
+      bounds.width / plate.width,
+      bounds.height / plate.height,
+    );
+    final plateSize = ui.Size(plate.width * cover, plate.height * cover);
+    canvas.drawImageRect(
+      plate,
+      ui.Rect.fromLTWH(0, 0, plate.width.toDouble(), plate.height.toDouble()),
+      ui.Rect.fromCenter(
+        center: bounds.center,
+        width: plateSize.width,
+        height: plateSize.height,
+      ),
+      paint,
+    );
+    final meet = ui.Offset(
+      bounds.width * shot.contactPoint.dx,
+      bounds.height * shot.contactPoint.dy,
+    );
+    for (final place in shot.sample(at, reducedMotion: reducedMotion)) {
+      final art = images.fromCache(place.image);
+      final origin =
+          meet + place.offset - place.actor.contact * place.actor.scale;
+      canvas.drawImageRect(
+        art,
+        ui.Rect.fromLTWH(0, 0, art.width.toDouble(), art.height.toDouble()),
+        origin &
+            ui.Size(
+              art.width * place.actor.scale,
+              art.height * place.actor.scale,
+            ),
+        paint,
+      );
+    }
+    for (final mote in shot.motes(at, reducedMotion: reducedMotion)) {
+      canvas.drawRect(
+        ui.Rect.fromCenter(
+          center: meet + mote.offset,
+          width: mote.size,
+          height: mote.size,
+        ),
+        ui.Paint()
+          ..color = const Color(0xFFF4E3B2).withValues(alpha: mote.opacity),
+      );
+    }
   }
 
   double _adultHeight(
@@ -588,9 +657,30 @@ class GardenSceneGame extends FlameGame {
       exitTravel,
       reducedMotion: reducedMotion,
     );
-    final floor = exitTravel > 0
+    final shot = level.exitShot;
+    final shotBeat = exitBeat;
+    var floor = exitTravel > 0
         ? level.heroExitFloor(departure)
         : level.stage.heroFloor(entrance: entrance, retreat: retreat);
+    var shotWalking = false;
+    if (shot != null && s?.phase == GardenPhase.cleared) {
+      final home = level.stage.heroFloor(entrance: 1, retreat: 0);
+      final step = shotBeat == null ? 0.0 : shot.stepAt(shotBeat);
+      final at = PartyPoint(
+        home.x + (shot.heroStep.dx - home.x) * step,
+        home.y + (shot.heroStep.dy - home.y) * step,
+      );
+      // Ease from his step onto the route, instead of jumping to its start.
+      final onRoute = (exitTravel / .3).clamp(0.0, 1.0);
+      final blend = onRoute * onRoute * (3 - 2 * onRoute);
+      floor = exitTravel > 0
+          ? PartyPoint(
+              at.x + (floor.x - at.x) * blend,
+              at.y + (floor.y - at.y) * blend,
+            )
+          : at;
+      shotWalking = shotBeat != null && shot.walkingAt(shotBeat);
+    }
     final projected = viewport.project(floor);
     final height = _adultHeight(viewport, room, floor, stature: .35);
     final reference = _heroAtlas!.definition.frames['front_idle']!;
@@ -601,7 +691,11 @@ class GardenSceneGame extends FlameGame {
       phaseBeat: s?.phaseBeat ?? 0,
       front:
           s?.phase == GardenPhase.response || s?.phase == GardenPhase.cleared,
-      walking: s?.phase == GardenPhase.intro || exitTravel > 0 || retreat > 0,
+      walking:
+          s?.phase == GardenPhase.intro ||
+          exitTravel > 0 ||
+          retreat > 0 ||
+          shotWalking,
       sideOn: exitTravel > 0 && departure.facing == DepartureFacing.sideRight,
       reducedMotion: reducedMotion,
       action: action,
@@ -609,6 +703,24 @@ class GardenSceneGame extends FlameGame {
       flourishAge: beat - flourishBeat,
       stumbling: stumbleAge >= 0 && stumbleAge < 1.5,
     );
+    var hop = 0.0;
+    if (shot != null &&
+        s?.phase == GardenPhase.cleared &&
+        exitTravel == 0 &&
+        !shotWalking &&
+        beat - flourishBeat >= 1) {
+      if (shotBeat == null || shotBeat < shot.celebrateUntil) {
+        final party = Celebration.at(
+          beat - (s!.completedAtBeat ?? beat),
+          reducedMotion: reducedMotion,
+        );
+        frame = party.frame;
+        hop = party.hop;
+      } else {
+        // Facing the challenger, waiting for the fist.
+        frame = 'rear_idle';
+      }
+    }
     if (challenger.playerRole == PlayerDanceRole.ready &&
         s?.phase == GardenPhase.call &&
         beat - actionBeat > 1 &&
@@ -653,8 +765,13 @@ class GardenSceneGame extends FlameGame {
     }
     draws.add(
       _WorldDraw('macron', projected.y, 10, (canvas) {
-        _shadow(canvas, _point(projected), height);
-        _heroAtlas!.draw(canvas, frame, _point(projected), scale);
+        _shadow(canvas, _point(projected), height * (1 - hop * .5));
+        _heroAtlas!.draw(
+          canvas,
+          frame,
+          _point(projected).translate(0, -height * hop),
+          scale,
+        );
       }),
     );
   }

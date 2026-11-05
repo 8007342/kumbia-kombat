@@ -92,6 +92,17 @@ class MusicScore {
     return index;
   }
 
+  /// The same score with [extra] mixed in, for hits tied to the picture.
+  MusicScore withNotes(List<ScoreNote> extra) => MusicScore(
+    id: id,
+    beatsPerBar: beatsPerBar,
+    bars: bars,
+    phraseBars: phraseBars,
+    tempos: tempos,
+    notes: [...notes, ...extra]..sort((a, b) => a.beat.compareTo(b.beat)),
+    sectionBars: sectionBars,
+  );
+
   factory MusicScore.fromJson(Map<String, dynamic> json) {
     if (json['schemaVersion'] != 1) {
       throw const FormatException('Unsupported music score version');

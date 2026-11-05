@@ -1,3 +1,5 @@
+import 'dart:ui' as ui;
+
 import 'dart:convert';
 
 import 'package:flutter/services.dart';
@@ -8,6 +10,7 @@ import 'garden_session.dart';
 import 'party_layout.dart';
 import 'progression.dart';
 import 'rhythm.dart';
+import 'exit_shot.dart';
 import 'room_departure.dart';
 
 /// A level file or the campaign index is wrong. Thrown while loading, so a bad
@@ -227,6 +230,7 @@ class LevelDefinition {
     required this.route,
     required this.routeOriginY,
     required this.copy,
+    this.exitShot,
   });
 
   final String id;
@@ -245,6 +249,9 @@ class LevelDefinition {
   /// this, so an author can write absolute marks by setting it to home's y.
   final double routeOriginY;
   final LevelCopy copy;
+
+  /// The win's celebration and close-up. Levels without one walk straight out.
+  final ExitShot? exitShot;
 
   PartyPoint heroExitFloor(DeparturePose pose) =>
       PartyPoint(pose.x, stage.heroHome.y + pose.y - routeOriginY);
@@ -400,6 +407,9 @@ class LevelDefinition {
       resetLine: copyFields.text('resetLine'),
     );
     copyFields.finish();
+    final exitShot = fields.has('exitShot')
+        ? _exitShot(fields.child('exitShot'))
+        : null;
     fields.finish();
 
     return LevelDefinition(
@@ -422,7 +432,76 @@ class LevelDefinition {
       route: route,
       routeOriginY: routeOriginY,
       copy: copy,
+      exitShot: exitShot,
     );
+  }
+
+  static ExitShot _exitShot(_Fields fields) {
+    ui.Offset offset(_Fields from, String key) {
+      final point = from.list(key);
+      if (point.length != 2) {
+        throw LevelDataError(from.at(key), 'expected [x, y]');
+      }
+      return ui.Offset(
+        _number(from.at(key), point[0]),
+        _number(from.at(key), point[1]),
+      );
+    }
+
+    final actorsPath = fields.at('actors');
+    final actors = <ExitShotActor>[];
+    for (final (i, raw) in fields.list('actors').indexed) {
+      final actor = _Fields('$actorsPath[$i]', raw);
+      actors.add(
+        ExitShotActor(
+          approach: actor.text('approach'),
+          impact: actor.text('impact'),
+          contact: offset(actor, 'contact'),
+          scale: actor.number('scale', min: .1),
+          entry: offset(actor, 'entry'),
+          recoil: offset(actor, 'recoil'),
+        ),
+      );
+      actor.finish();
+    }
+    final cuePath = fields.at('cue');
+    final cue = <ExitShotCue>[];
+    for (final (i, raw) in fields.list('cue').indexed) {
+      final note = _Fields('$cuePath[$i]', raw);
+      cue.add(
+        ExitShotCue(
+          note.number('beat', min: 0),
+          note.text('track'),
+          note.whole('pitch', min: 0),
+          note.whole('velocity', min: 1),
+        ),
+      );
+      note.finish();
+    }
+    final shot = ExitShot(
+      plate: fields.text('plate'),
+      celebrateUntil: fields.number('celebrateUntil', min: 0),
+      walkFrom: fields.number('walkFrom', min: 0),
+      walkTo: fields.number('walkTo', min: 0),
+      heroStep: offset(fields, 'heroStep'),
+      closeupFrom: fields.number('closeupFrom', min: 0),
+      contactBeat: fields.number('contactBeat', min: 0),
+      closeupTo: fields.number('closeupTo', min: 0),
+      contactPoint: offset(fields, 'contactPoint'),
+      actors: List.unmodifiable(actors),
+      cue: List.unmodifiable(cue),
+    );
+    fields.finish();
+    if (!(shot.walkFrom < shot.walkTo &&
+        shot.walkTo <= shot.closeupFrom &&
+        shot.closeupFrom < shot.contactBeat &&
+        shot.contactBeat < shot.closeupTo)) {
+      throw LevelDataError(
+        fields.path,
+        'beats must run walk, close-up, contact',
+      );
+    }
+    return shot;
   }
 
   static FightChart _chart(_Fields fields) {
