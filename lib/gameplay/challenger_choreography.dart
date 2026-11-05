@@ -50,6 +50,8 @@ enum PlayerDanceRole {
   recovering,
 }
 
+const minimumRestBeats = .5;
+
 class ChallengerPose {
   const ChallengerPose({
     required this.frameId,
@@ -60,6 +62,7 @@ class ChallengerPose {
     this.noteIndex,
     this.movePhase = DanceMovePhase.idle,
     this.playerRole = PlayerDanceRole.waiting,
+    this.restBeats,
   });
 
   final String frameId;
@@ -75,9 +78,26 @@ class ChallengerPose {
   final int? noteIndex;
   final DanceMovePhase movePhase;
   final PlayerDanceRole playerRole;
+
+  /// Beats since a settle finished, when a rest of at least [minimumRestBeats]
+  /// remains before the next note's preparation. Null otherwise. The dance
+  /// grammar may groove here; a shorter gap would only flash a stray drawing.
+  final double? restBeats;
+
+  ChallengerPose withFrame(String frame) => ChallengerPose(
+    frameId: frame,
+    state: state,
+    floorYield: floorYield,
+    rootOffsetX: rootOffsetX,
+    limb: limb,
+    noteIndex: noteIndex,
+    movePhase: movePhase,
+    playerRole: playerRole,
+    restBeats: restBeats,
+  );
 }
 
-String _accent(Limb limb) => switch (limb) {
+String limbAccentFrame(Limb limb) => switch (limb) {
   Limb.leftHand => 'left_hand',
   Limb.rightHand => 'right_hand',
   Limb.leftFoot => 'left_foot',
@@ -279,7 +299,7 @@ class ChallengerChoreography {
     final foot = limb == Limb.leftFoot || limb == Limb.rightFoot;
     if (progress < .32) {
       return ChallengerPose(
-        frameId: _accent(limb),
+        frameId: limbAccentFrame(limb),
         state: ChallengerDanceState.demonstrate,
         rootOffsetX: !reducedMotion && foot ? side * .8 : 0,
         limb: limb,
@@ -306,6 +326,9 @@ class ChallengerChoreography {
       limb: limb,
       noteIndex: previous,
       movePhase: DanceMovePhase.settle,
+      restBeats: age > duration && gap - duration - .25 >= minimumRestBeats
+          ? age - duration
+          : null,
     );
   }
 }
@@ -347,7 +370,7 @@ PlayerMovePose playerMovePose({
       : (nextRequiredBeat - peak).clamp(.12, .65);
   final age = math.max(0.0, beat - peak);
   if (age < duration * .32) {
-    return PlayerMovePose(_accent(limb), DanceMovePhase.accent, peak);
+    return PlayerMovePose(limbAccentFrame(limb), DanceMovePhase.accent, peak);
   }
   if (age < duration * .70) {
     return PlayerMovePose(

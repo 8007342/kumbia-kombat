@@ -38,8 +38,10 @@ class MusicScore {
     required this.phraseBars,
     required List<double> tempos,
     required List<ScoreNote> notes,
+    List<int> sectionBars = const [],
   }) : tempos = List.unmodifiable(tempos),
-       notes = List.unmodifiable(notes) {
+       notes = List.unmodifiable(notes),
+       sectionBars = List.unmodifiable(sectionBars) {
     if (bars <= 0 ||
         beatsPerBar <= 0 ||
         phraseBars <= 0 ||
@@ -74,8 +76,21 @@ class MusicScore {
   final int phraseBars;
   final List<double> tempos;
   final List<ScoreNote> notes;
+
+  /// First bar of each named section, in score order. Empty when not authored.
+  final List<int> sectionBars;
   double get lengthBeats => (bars * beatsPerBar).toDouble();
   double get phraseBeats => (phraseBars * beatsPerBar).toDouble();
+
+  /// The section playing at an absolute beat, wrapping with the score's loop.
+  int sectionAt(double beat) {
+    var index = 0;
+    final bar = (beat % lengthBeats) / beatsPerBar;
+    for (var i = 0; i < sectionBars.length; i++) {
+      if (sectionBars[i] <= bar) index = i;
+    }
+    return index;
+  }
 
   factory MusicScore.fromJson(Map<String, dynamic> json) {
     if (json['schemaVersion'] != 1) {
@@ -92,6 +107,10 @@ class MusicScore {
       notes: (json['events'] as List)
           .map((n) => ScoreNote.fromJson(n as Map<String, dynamic>))
           .toList(),
+      sectionBars: [
+        for (final section in json['sections'] as List? ?? const [])
+          section['bar'] as int,
+      ],
     );
   }
 }
