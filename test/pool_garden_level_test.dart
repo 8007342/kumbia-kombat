@@ -78,9 +78,9 @@ void main() {
 
   test('the level file parses, and its floor is the compiled room\'s', () {
     final level = _campaign().byId('pool-garden');
-    final floor =
-        jsonDecode(File('art_runs/rooms/pool-garden/floor.json').readAsStringSync())
-            as Map<String, dynamic>;
+    final floor = jsonDecode(
+      File('art_runs/rooms/pool-garden/floor.json').readAsStringSync(),
+    ) as Map<String, dynamic>;
     final plane = level.layout.floor;
     expect(plane.horizonY, closeTo(floor['horizonY'] as double, 1e-4));
     final eye = (plane.referenceFootY - plane.horizonY) / plane.referenceHeight;
@@ -88,25 +88,28 @@ void main() {
     expect(level.stage.challengers.length, 2);
   });
 
-  test('Mācron reads near garden size and the dance stays above the thumbs', () {
-    final levels = _campaign();
-    final level = levels.byId('pool-garden');
-    final garden = levels.byId('garden');
-    final near = _heroLogical(level, level.stage.heroHome.y);
-    final gardenNear = _heroLogical(garden, garden.stage.heroHome.y);
-    expect(gardenNear, closeTo(38.4, .3));
-    expect(near, greaterThan(gardenNear * .88));
+  test(
+    'Mācron reads near garden size and the dance stays above the thumbs',
+    () {
+      final levels = _campaign();
+      final level = levels.byId('pool-garden');
+      final garden = levels.byId('garden');
+      final near = _heroLogical(level, level.stage.heroHome.y);
+      final gardenNear = _heroLogical(garden, garden.stage.heroHome.y);
+      expect(gardenNear, closeTo(38.4, .3));
+      expect(near, greaterThan(gardenNear * .88));
 
-    // Feet at home and the challenger's whole mark are above the tap band.
-    expect(thumbLimbAt(.5, level.stage.heroHome.y), isNull);
-    for (final challenger in level.stage.challengers) {
-      expect(thumbLimbAt(.5, challenger.mark.y), isNull);
-      expect(thumbLimbAt(.5, challenger.yieldMark.y), isNull);
-    }
-    // The route ends inside what a 390x844 phone shows (source x .153-.847).
-    final end = level.route.waypoints.last.pose;
-    expect(end.x, inInclusiveRange(.17, .83));
-  });
+      // Feet at home and the challenger's whole mark are above the tap band.
+      expect(thumbLimbAt(.5, level.stage.heroHome.y), isNull);
+      for (final challenger in level.stage.challengers) {
+        expect(thumbLimbAt(.5, challenger.mark.y), isNull);
+        expect(thumbLimbAt(.5, challenger.yieldMark.y), isNull);
+      }
+      // The route ends inside what a 390x844 phone shows (source x .153-.847).
+      final end = level.route.waypoints.last.pose;
+      expect(end.x, inInclusiveRange(.17, .83));
+    },
+  );
 
   test('a session clears on the real rules, on its own chart', () {
     final level = _campaign().byId('pool-garden');
@@ -127,20 +130,22 @@ void main() {
       }
     }
 
-    for (
-      var cycle = 0;
-      cycle < 60 && session.phase != GardenPhase.cleared;
-      cycle++
-    ) {
+    for (var cycle = 0; cycle < 60 && !session.progress.cleared; cycle++) {
       final start = session.chart.introBeats + cycle * session.chart.cycleBeats;
       for (var i = 0; i < session.activeLimbs.length; i++) {
         advance(
-          music.secondsAt(start + session.chart.callBeats + session.chart.offsets[i]),
+          music.secondsAt(
+            start + session.chart.callBeats + session.chart.offsets[i],
+          ),
         );
         expect(session.tap(session.activeLimbs[i]).note, isNotNull);
       }
       advance(music.secondsAt(start + session.chart.cycleBeats - .05));
     }
+    // At this tempo the last swipe's window outlasts the phrase, so the phase
+    // follows the verdict a moment later.
+    expect(session.progress.cleared, isTrue);
+    advance(audio.nowSeconds + 1);
     expect(session.phase, GardenPhase.cleared);
   });
 
@@ -167,7 +172,10 @@ void main() {
 
     final canvas = RecordingCanvas();
     scene.render(canvas);
-    expect(canvas.calls.where((c) => c.contains('image:1024x1536')), isNotEmpty);
+    expect(
+      canvas.calls.where((c) => c.contains('image:1024x1536')),
+      isNotEmpty,
+    );
     expect(
       canvas.calls.where((c) => c.startsWith('drawCircle ')).length,
       level.scenery.lamps.length,
