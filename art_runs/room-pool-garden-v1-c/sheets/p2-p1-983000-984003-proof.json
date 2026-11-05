@@ -1,0 +1,32 @@
+{
+ "cast": {
+  "heroNear": {
+   "sourcePx": 137.2,
+   "logical": 34.8,
+   "dp": 75.4
+  },
+  "heroFar": {
+   "sourcePx": 32.0,
+   "logical": 8.1,
+   "dp": 17.6
+  },
+  "challenger": {
+   "sourcePx": 274.9,
+   "logical": 69.7
+  },
+  "gardenHeroLogical": 38.4,
+  "barHeroLogical": 66.7
+ },
+ "metrics": {
+  "sat": 0.76,
+  "val": 0.23,
+  "bandLuma": 11.9,
+  "bandP98": 21.0,
+  "bandEdge": 0.7
+ },
+ "drift": {
+  "median": 19.0,
+  "p90": 36.0,
+  "n": 357
+ }
+}

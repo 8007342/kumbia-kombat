@@ -23,7 +23,7 @@ A level is one JSON file, `levels/<id>.json`, plus one entry in `levels/index.js
 
 **Needs assets, from a pipeline and a person's review:**
 
-- [ ] A background plate, with marks calibrated by eye against it. There's no calibration tool or path validator.
+- [ ] A background plate from a room spec, `tool/art/rooms/<id>.json` (see `tool/art/rooms/README.md`). The compiler refuses a layout that leaves the phone crop, puts story in the tap band, or sets a mark off walkable ground, and writes the level's floor and marks. A person still picks the plate by eye and checks the floor overlay. Lamps painted by the model differ from the spec's, so lamp glow marks need a look.
 - [ ] A room score and a success phrase. Listen to them.
 - [ ] Two bridges for an inserted level, or one for an appended level. Bridges go from one key to another, so each insertion orphans one.
 - [ ] A challenger atlas: 64 poses, about 98 minutes of GPU per character (audit Q4).

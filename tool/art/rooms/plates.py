@@ -5,7 +5,6 @@ Prompts are baked per workflow because $prompt overrides don't reach TextEncodeQ
 """
 from __future__ import annotations
 
-import colorsys  # noqa: F401
 import hashlib
 import json
 import shutil
@@ -14,7 +13,7 @@ from pathlib import Path
 import numpy as np
 from PIL import Image, ImageDraw
 
-from compiler import REPO, STYLE, RoomError, level_fragment, load_spec, compile_room, phone_crop
+from compiler import REPO, STYLE, RoomError, compile_room, level_fragment, load_spec, write_outputs
 
 CACHE = Path.home() / ".cache/tillandsias-project/kumbia-art"
 STAGE = Path("/work/tmp/imagegen/kumbia")
@@ -50,10 +49,8 @@ def bake_workflow(images, prompt, prefix, steps=4, size=(832, 1248)):
 
 def plan(room, run, pass_no, count, seed, steps=4, bases=(), name=None, append=""):
     spec = load_spec(room)
-    compile_room(spec)  # a refused layout plans nothing
     guide = ROOMS / spec["id"]
-    if not (guide / "floor.json").exists():
-        raise RoomError(f"{guide} has no compiled room: run compile first")
+    write_outputs(spec, guide)  # always from the current spec; a refused layout plans nothing
     text = (guide / f"prompt-pass{pass_no}.txt").read_text().strip()
     if append:
         text = f"{text} {append}"
@@ -146,12 +143,24 @@ def metrics(im, floor):
     H = im.height
     a = np.asarray(im.convert("HSV"), float) / 255
     upper = a[: int(.65 * H)]
-    band = spec_band = floor["tapBand"]["y"]
+    band = floor["tapBand"]["y"]
     b = np.asarray(im.convert("L"), float)[int(band[0] * H): int(band[1] * H), int(.153 * im.width): int(.847 * im.width)]
     gx, gy = np.abs(np.gradient(b, axis=1)), np.abs(np.gradient(b, axis=0))
-    del spec_band
     return dict(sat=round(float(upper[..., 1].mean()), 2), val=round(float(upper[..., 2].mean()), 2),
                 bandLuma=round(float(b.mean()), 1), bandP98=round(float(np.percentile(b, 98)), 1), bandEdge=round(float((gx + gy).mean()), 1))
+
+
+def water_hold(im, room_ids, floor):
+    """Did the model keep the water where the guide put it? IoU of cyan paint against the water zone. None if no water."""
+    if "water" not in floor["ids"]:
+        return None
+    want = room_ids == floor["ids"]["water"]
+    if not want.any():
+        return None
+    rgb = np.asarray(im.convert("RGB"), float)
+    R, G, B = rgb[..., 0], rgb[..., 1], rgb[..., 2]
+    got = (B > R + 40) & (G > R + 30) & (B > 90) & (G > 90)
+    return round(float((got & want).sum() / max(1, (got | want).sum())), 2)
 
 
 def drift(im, floor, search=40):
@@ -185,6 +194,7 @@ def drift(im, floor, search=40):
 def sheet(room, run, pattern, cols=8, out=None, height=844):
     """Accepted rooms first, then each candidate at phone crop, with its name and numbers printed under it."""
     spec = load_spec(room); floor = json.loads((ROOMS / spec["id"] / "floor.json").read_text())
+    ids = np.asarray(Image.open(ROOMS / spec["id"] / "ids.png"))
     files = sorted((CACHE / run).glob(pattern + ".png"))
     if not files:
         raise RoomError(f"nothing matches {pattern} in {CACHE / run}")
@@ -196,9 +206,9 @@ def sheet(room, run, pattern, cols=8, out=None, height=844):
     rows = []
     for f in files:
         im = _plate(f)
-        m = metrics(im, floor); d = drift(im, floor)
-        rows.append(dict(file=f.name, **m, drift=d))
-        cells.append((f.stem.split("-")[-1] + f" s{m['sat']} v{m['val']} d{d['median'] if d else '-'}", im))
+        m = metrics(im, floor); d = drift(im, floor); w = water_hold(im, ids, floor)
+        rows.append(dict(file=f.name, **m, drift=d, waterIoU=w))
+        cells.append((f.stem.split("-")[-1] + f" s{m['sat']} v{m['val']} d{d['median'] if d else '-'} w{w}", im))
     label = 22
     n = len(cells); nrows = (n + cols - 1) // cols
     S = Image.new("RGB", (cols * (cw + 6), nrows * (ch + label + 6)), (15, 15, 18))
@@ -207,7 +217,7 @@ def sheet(room, run, pattern, cols=8, out=None, height=844):
         x, y = (i % cols) * (cw + 6), (i // cols) * (ch + label + 6)
         S.paste(_phone(im).resize((cw, ch), Image.LANCZOS), (x, y + label))
         d.text((x + 3, y + 4), text, fill=(235, 235, 235))
-    out = Path(out) if out else REPO / "art_runs" / run / "sheets" / (pattern.replace("*", "") + "-phone.png").strip("-")
+    out = Path(out) if out else REPO / "art_runs" / run / "sheets" / (pattern.replace("*", "").strip("-") + "-phone.png")
     out.parent.mkdir(parents=True, exist_ok=True)
     S.save(out)
     (out.with_suffix(".json")).write_text(json.dumps(rows, indent=1) + "\n")
@@ -307,10 +317,13 @@ def proof(room, run, plate, out_dir=None):
     S.save(out / f"{tag}-phone-row.png")
 
     logical_h = 180 * 844 / 390
+
+    def sizes(px):
+        px = float(px)
+        return dict(sourcePx=round(px, 1), logical=round(px / H * logical_h, 1), dp=round(px / H * 844, 1))
+
     meas = dict(
-        heroNear=dict(sourcePx=round(adult(home[1]) * stature, 1), logical=round(adult(home[1]) * stature / H * logical_h, 1), dp=round(adult(home[1]) * stature / H * 844, 1)),
-        heroFar=dict(sourcePx=round(adult(far[1]) * stature, 1), logical=round(adult(far[1]) * stature / H * logical_h, 1), dp=round(adult(far[1]) * stature / H * 844, 1)),
-        challenger=dict(sourcePx=round(adult(near_gk[1]), 1), logical=round(adult(near_gk[1]) / H * logical_h, 1)),
+        heroNear=sizes(adult(home[1]) * stature), heroFar=sizes(adult(far[1]) * stature), challenger=sizes(adult(near_gk[1])),
         gardenHeroLogical=38.4, barHeroLogical=66.7,
     )
     im_rgb = im.convert("RGB")

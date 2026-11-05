@@ -1,0 +1,9 @@
+{
+  "status": "draft: picked by an agent, not accepted by the owner",
+  "file": "pool-garden-v1-draft.png",
+  "source": "~/.cache/tillandsias-project/kumbia-art/room-pool-garden-v1-d/p2-p1-983000-985003.png",
+  "scaledTo": "1024x1536, Lanczos, from 832x1248",
+  "route": "room-pool-garden-v1-c p1 seed 983000, then v1-d p2 seed 985003",
+  "why": "Water stays inside the arcade and in the safe box (waterIoU 0.48); carved interior and gateway; calm dark tap band; saturation 0.75 is within the proposed 0.8",
+  "knownFlaws": ["Model added lanterns, including one on the path's left edge", "A stray amber patch at the plate's right edge inside the tap band", "Floor lines sit a median 19 px off the guide, confirmed by eye on the overlay at about that size"]
+}

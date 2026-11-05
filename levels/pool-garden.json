@@ -1,0 +1,256 @@
+{
+  "id": "pool-garden",
+  "title": "THE POOL GARDEN",
+  "background": "pool-garden/pool-garden-v1-draft.png",
+  "music": {
+    "score": "bar_swag",
+    "successScore": "bar_swag_success",
+    "leadShape": "sine"
+  },
+  "rules": {
+    "metric": "Swag",
+    "cleanSeconds": 80,
+    "successesPerTier": 2,
+    "finalChallenges": 2,
+    "resetAfterFailures": 5,
+    "earlyHitRatio": 0.875
+  },
+  "chart": {
+    "introBeats": 4,
+    "callBeats": 8,
+    "flourishDestination": "leftHand",
+    "offsets": [
+      0,
+      1,
+      2,
+      2.5,
+      4,
+      5,
+      6,
+      6.5
+    ],
+    "limbs": [
+      "rightHand",
+      "leftHand",
+      "rightHand",
+      "rightFoot",
+      "leftFoot",
+      "rightHand",
+      "leftHand",
+      "rightFoot"
+    ],
+    "variants": [
+      [
+        "rightFoot",
+        "leftFoot",
+        "rightHand",
+        "leftHand",
+        "rightFoot",
+        "leftFoot",
+        "leftHand",
+        "rightHand"
+      ],
+      [
+        "leftHand",
+        "rightFoot",
+        "rightHand",
+        "leftFoot",
+        "leftHand",
+        "rightHand",
+        "rightFoot",
+        "leftFoot"
+      ],
+      [
+        "rightHand",
+        "leftHand",
+        "leftFoot",
+        "rightFoot",
+        "leftHand",
+        "rightHand",
+        "rightFoot",
+        "leftFoot"
+      ],
+      [
+        "rightFoot",
+        "leftHand",
+        "leftFoot",
+        "rightHand",
+        "rightFoot",
+        "leftFoot",
+        "rightHand",
+        "leftHand"
+      ],
+      [
+        "leftHand",
+        "rightHand",
+        "rightFoot",
+        "leftFoot",
+        "rightHand",
+        "leftHand",
+        "leftFoot",
+        "rightFoot"
+      ]
+    ]
+  },
+  "stage": {
+    "calibration": "unverifiedStoryboard",
+    "floor": {
+      "horizonY": 0.16,
+      "referenceFootY": 0.4,
+      "referenceHeight": 0.1263
+    },
+    "heroHome": [
+      0.449,
+      0.645
+    ],
+    "heroEntrance": [
+      0.315,
+      0.789
+    ],
+    "heroRetreat": [
+      0.392,
+      0.712
+    ],
+    "challengers": [
+      {
+        "id": "gatekeeper",
+        "atlas": "gatekeeper",
+        "mark": [
+          0.55,
+          0.5
+        ],
+        "yieldMark": [
+          0.73,
+          0.489
+        ]
+      }
+    ]
+  },
+  "crowd": {
+    "budgets": {
+      "interested": 5,
+      "following": 4,
+      "standing": 2,
+      "cheering": 1
+    },
+    "guests": [
+      [
+        0.301,
+        0.418
+      ],
+      [
+        0.191,
+        0.408
+      ],
+      [
+        0.296,
+        0.364
+      ],
+      [
+        0.198,
+        0.357
+      ],
+      [
+        0.403,
+        0.338
+      ],
+      [
+        0.327,
+        0.334
+      ]
+    ],
+    "props": [
+      {
+        "id": "pool-table-1",
+        "kind": "table",
+        "heightInAdults": 0.43,
+        "widthInAdults": 0.9,
+        "at": [
+          0.244,
+          0.413
+        ]
+      },
+      {
+        "id": "pool-table-2",
+        "kind": "table",
+        "heightInAdults": 0.43,
+        "widthInAdults": 0.9,
+        "at": [
+          0.246,
+          0.361
+        ]
+      },
+      {
+        "id": "pool-table-3",
+        "kind": "table",
+        "heightInAdults": 0.43,
+        "widthInAdults": 0.9,
+        "at": [
+          0.365,
+          0.336
+        ]
+      }
+    ]
+  },
+  "scenery": {
+    "lamps": [
+      [
+        0.5568,
+        0.207
+      ],
+      [
+        0.4433,
+        0.2368
+      ]
+    ],
+    "plants": []
+  },
+  "departure": {
+    "threshold": "the carved gateway at the top of the path",
+    "originY": 0.645,
+    "waypoints": [
+      {
+        "at": 0.0,
+        "x": 0.449,
+        "y": 0.645,
+        "facing": "sideRight"
+      },
+      {
+        "at": 0.053,
+        "x": 0.576,
+        "y": 0.599,
+        "facing": "rear"
+      },
+      {
+        "at": 0.26,
+        "x": 0.625,
+        "y": 0.429,
+        "facing": "rear"
+      },
+      {
+        "at": 0.511,
+        "x": 0.653,
+        "y": 0.343,
+        "facing": "rear"
+      },
+      {
+        "at": 0.762,
+        "x": 0.673,
+        "y": 0.299,
+        "facing": "rear"
+      },
+      {
+        "at": 1.0,
+        "x": 0.685,
+        "y": 0.273,
+        "facing": "rear"
+      }
+    ]
+  },
+  "copy": {
+    "invitation": "Two dancers hold the path. Answer them.",
+    "clearedTitle": "PASE,\nPASE.",
+    "clearedClaim": "THE PATH IS YOURS.",
+    "resetLine": "BACK DOWN THE PATH"
+  }
+}

@@ -20,7 +20,6 @@
     { "kind": "wall", "id": "wall", "a": [7.2, -5.3], "b": [7.2, -2.3], "z": [2.2, 2.45] },
     { "kind": "wall", "id": "wall", "a": [7.2, -2.3], "b": [13.5, -2.3], "z": [2.2, 2.45] },
     { "kind": "hip", "id": "roof", "s": [7.2, 13.5], "t": [-5.3, -2.3], "z": 2.45, "rise": 0.9 },
-    { "kind": "pools", "id": "glow", "at": [[2.72, -1.67], [3.72, -2.3], [5.25, -1.95]], "r": 0.4 },
     { "kind": "paving", "id": "path", "s": [-3, 9.2], "t": [-1.1, 1.1], "every": 1.5, "lanes": 3 },
     { "kind": "box", "id": "hedge", "s": [-3, 9.2], "t": [1.3, 1.9], "z": [0, 0.8] },
     { "kind": "gate", "id": "gate", "s": 9.2, "t": [-1.2, 1.2], "height": 2.0 },
@@ -38,27 +37,30 @@
     "challengers": [ { "id": "gatekeeper", "atlas": "gatekeeper", "mark": [2.05, 0.06], "yieldMark": [2.35, 0.7] } ],
     "pathEnd": [8.9, 0],
     "route": [[1.02, 0.03], [1.35, 0.3], [3.0, 0.2], [5.0, 0.1], [7.0, 0.05], [8.9, 0]],
-    "guests": [[2.72, -1.35], [2.72, -1.98], [3.72, -1.95], [3.72, -2.65], [5.25, -1.65], [5.25, -2.28]],
+    "guests": [[2.72, -1.35], [2.72, -1.98], [3.72, -1.95], [3.72, -2.65], [4.65, -1.62], [4.65, -2.22]],
     "plants": []
   },
   "props": [
     { "id": "pool-table-1", "kind": "table", "at": [2.72, -1.67], "heightInAdults": 0.43, "widthInAdults": 0.9 },
     { "id": "pool-table-2", "kind": "table", "at": [3.72, -2.3], "heightInAdults": 0.43, "widthInAdults": 0.9 },
-    { "id": "pool-table-3", "kind": "table", "at": [5.25, -1.95], "heightInAdults": 0.43, "widthInAdults": 0.9 }
+    { "id": "pool-table-3", "kind": "table", "at": [4.65, -1.92], "heightInAdults": 0.43, "widthInAdults": 0.9 }
   ],
+  "level": {
+    "threshold": "the carved gateway at the top of the path",
+    "copy": { "invitation": "Two dancers hold the path. Answer them.", "clearedTitle": "PASE,\nPASE.", "clearedClaim": "THE PATH IS YOURS.", "resetLine": "BACK DOWN THE PATH" }
+  },
   "scene": "It is the back lawn of a mansion at night, seen from a raised angle.",
   "keep": "every building edge, every arch and column, the gateway, the path edges, every paving joint and the horizon",
   "zones": {
-    "path": { "layout": "a wide dark stone walkway running diagonally from the bottom left of the picture to the top right, with the same paving grid as image 1, ending under the gateway.", "paint": "The paved path is dark polished stone, wet after rain: its joints stay exactly where they are, and it carries long soft reflections of the warm lamps and of the turquoise pool, with fine mottled texture and faint leaf shadows, and it lies open and clear from end to end." },
-    "lawn": { "layout": "a manicured dark lawn.", "paint": "The lawn is deep dark green with fine grass texture." },
-    "glow": { "layout": "a soft pool of warm light on the bare grass.", "paint": "Soft round pools of warm lamplight lie on the open grass." },
+    "path": { "layout": "a wide dark stone walkway running diagonally from the bottom left of the picture to the top right, with the same paving grid as image 1, ending under the gateway.", "paint": "The paved path is dark polished stone, wet after rain: its joints stay exactly where they are, and it carries long soft reflections of the warm lamps and of the turquoise pool, with fine mottled texture, and it lies open, calm and clear from end to end down to the bottom edge of the picture." },
+    "lawn": { "layout": "a manicured dark lawn.", "paint": "The lawn is deep dark green with fine grass texture, softly lit by the lanterns and the amber glow of the pool house." },
     "hedge": { "layout": "a clipped hedge along the right of the path.", "paint": "Dense tropical leaves fill the clipped hedge on the right." },
-    "trees": { "layout": "a dark wall of tropical trees behind the gateway and behind everything.", "paint": "Dense dark tropical trees and palm silhouettes stand against a starry navy sky, and the view through the gateway is deep dark foliage." },
-    "wall": { "layout": "the slender limestone columns and round arches of a classy covered pool house at the top left, wide open so the water shows through.", "paint": "The pool house is warm cream limestone, lit amber from inside, with slender columns, tall open round arches and finely carved ornament." },
-    "inner": { "layout": "the pool house's warm interior back walls.", "paint": "Its back walls glow softly amber." },
+    "trees": { "layout": "a dark wall of tropical trees behind the gateway and behind everything.", "paint": "Dense dark tropical trees and palm silhouettes stand against a starry navy sky, and the view through the gateway is deep dark foliage with one small distant warm lantern." },
+    "wall": { "layout": "the slender limestone columns and round arches of a classy covered pool house at the top left, wide open so the water shows through.", "paint": "The pool house keeps its exact size and place, warm cream limestone, lit amber from inside, with slender columns, tall open round arches and finely carved ornament." },
+    "inner": { "layout": "the pool house's warm interior back walls.", "paint": "Its back walls sit in soft shadow: dim carved panels with small warm wall sconces, a fine mosaic frieze and potted ferns, with amber light only near the lamps." },
     "roof": { "layout": "its tiled hipped roof.", "paint": "Its hipped roof is terracotta tile, dark with night." },
     "deck": { "layout": "the stone deck around the pool.", "paint": "A pale stone deck rims the water." },
-    "water": { "layout": "glowing turquoise pool water seen through the arches.", "paint": "The pool water glows clear turquoise with fine ripples of light." },
+    "water": { "layout": "glowing turquoise pool water seen through the arches.", "paint": "The pool water glows clear turquoise with fine ripples of light, and lies wholly under the roof, inside the arcade, exactly where image 1 has it." },
     "gate": { "layout": "a cream stone gateway at the far end of the path.", "paint": "The gateway at the end of the path is carved cream limestone." },
     "lights": { "layout": "strings of small warm lights above the lawn.", "paint": "Strings of tiny warm lights hang above the lawn." },
     "lamp": { "layout": "small lanterns on slim posts along the path.", "paint": "Small warm lanterns glow on slim posts." }

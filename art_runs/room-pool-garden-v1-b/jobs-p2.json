@@ -1,0 +1,54 @@
+{
+ "room": "pool-garden",
+ "run": "room-pool-garden-v1-b",
+ "passNo": 2,
+ "steps": 4,
+ "promptSha256": "f1642b3f13b23a228eaf52be82b6ec114c23c2477421ee4565cc1613f062401c",
+ "jobs": [
+  {
+   "name": "p2-p1-981000",
+   "workflow": "art_runs/room-pool-garden-v1-b/workflows/p2.api.json",
+   "inputs": {
+    "base": "/work/tmp/imagegen/kumbia/room-pool-garden-v1-b/in/p1-981000.png"
+   },
+   "overrides": {
+    "seed": 982000
+   },
+   "count": 4
+  },
+  {
+   "name": "p2-p1-981003",
+   "workflow": "art_runs/room-pool-garden-v1-b/workflows/p2.api.json",
+   "inputs": {
+    "base": "/work/tmp/imagegen/kumbia/room-pool-garden-v1-b/in/p1-981003.png"
+   },
+   "overrides": {
+    "seed": 982100
+   },
+   "count": 4
+  },
+  {
+   "name": "p2-p1-981004",
+   "workflow": "art_runs/room-pool-garden-v1-b/workflows/p2.api.json",
+   "inputs": {
+    "base": "/work/tmp/imagegen/kumbia/room-pool-garden-v1-b/in/p1-981004.png"
+   },
+   "overrides": {
+    "seed": 982200
+   },
+   "count": 4
+  },
+  {
+   "name": "p2-p1-981007",
+   "workflow": "art_runs/room-pool-garden-v1-b/workflows/p2.api.json",
+   "inputs": {
+    "base": "/work/tmp/imagegen/kumbia/room-pool-garden-v1-b/in/p1-981007.png"
+   },
+   "overrides": {
+    "seed": 982300
+   },
+   "count": 4
+  }
+ ],
+ "how": "Queue one studio.run_workflow per job, one at a time. Then: rooms.py collect --run room-pool-garden-v1-b"
+}

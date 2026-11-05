@@ -60,7 +60,7 @@ def main():
             out, rows = plates.sheet(a.room, a.run, a.glob, a.cols, a.out, a.height)
             print(out)
             for r in rows:
-                print(r["file"], "sat", r["sat"], "val", r["val"], "bandLuma", r["bandLuma"], "bandEdge", r["bandEdge"], "drift", r["drift"] and r["drift"]["median"])
+                print(r["file"], "sat", r["sat"], "val", r["val"], "bandLuma", r["bandLuma"], "bandEdge", r["bandEdge"], "drift", r["drift"] and r["drift"]["median"], "waterIoU", r["waterIoU"])
         elif a.cmd == "proof":
             import plates
             meas, out = plates.proof(a.room, a.run, a.plate)

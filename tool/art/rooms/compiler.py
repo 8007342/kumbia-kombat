@@ -495,6 +495,7 @@ def write_outputs(spec, out):
     texts = prompts(spec)
     frag = level_fragment(spec, cam, floor)
     out = Path(out); out.mkdir(parents=True, exist_ok=True)
+    (out / "REFUSED-overlay.png").unlink(missing_ok=True)
     p.col.save(out / "greybox-1024.png")
     gw, gh = spec.get("genSize", [832, 1248])
     p.col.resize((gw, gh), Image.LANCZOS).save(out / "greybox.png")
