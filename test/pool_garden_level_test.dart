@@ -142,8 +142,8 @@ void main() {
       }
       advance(music.secondsAt(start + session.chart.cycleBeats - .05));
     }
-    // At this tempo the last swipe's window outlasts the phrase, so the phase
-    // follows the verdict a moment later.
+    // At this tempo the last swipe's window outlasts the phrase, and the win
+    // must still land within a second, not after another whole call.
     expect(session.progress.cleared, isTrue);
     advance(audio.nowSeconds + 1);
     expect(session.phase, GardenPhase.cleared);

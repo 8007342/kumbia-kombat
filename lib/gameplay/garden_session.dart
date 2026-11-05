@@ -382,6 +382,17 @@ class GardenSession {
       pause();
       return;
     }
+    // The win is decided. At a fast tempo the last swipe's window outlasts the
+    // phrase, so settle it here, before the next cycle can replace the judge.
+    if (progress.cleared && _judge != null) {
+      if (_nowMs >
+          _judge!.notes.last.atMs +
+              RhythmJudge.goodWindowMs +
+              RhythmJudge.flourishWindowMs) {
+        phase = GardenPhase.cleared;
+      }
+      return;
+    }
     final beat = positionBeats;
     if (beat < chart.introBeats) {
       phase = GardenPhase.intro;
@@ -407,15 +418,6 @@ class GardenSession {
       _judge = _makeJudge();
     }
     final judge = _judge!;
-    if (progress.cleared) {
-      if (_nowMs >
-          judge.notes.last.atMs +
-              RhythmJudge.goodWindowMs +
-              RhythmJudge.flourishWindowMs) {
-        phase = GardenPhase.cleared;
-      }
-      return;
-    }
     if (judge.expire(_nowMs).isNotEmpty) {
       combo = 0;
     }
