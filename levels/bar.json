@@ -1,0 +1,73 @@
+{
+  "id": "bar",
+  "title": "THE BAR",
+  "background": "bar/bar-interior.png",
+  "music": {
+    "score": "bar_swag",
+    "successScore": "bar_swag_success",
+    "leadShape": "sine"
+  },
+  "rules": {
+    "metric": "Swag",
+    "cleanSeconds": 80,
+    "successesPerTier": 2,
+    "finalChallenges": 2,
+    "resetAfterFailures": 5,
+    "earlyHitRatio": 0.875
+  },
+  "chart": {
+    "introBeats": 4,
+    "callBeats": 8,
+    "flourishDestination": "leftHand",
+    "offsets": [0, 1, 2, 2.5, 4, 5, 6, 6.5],
+    "limbs": ["rightHand", "leftHand", "rightHand", "rightFoot", "leftFoot", "rightHand", "leftHand", "rightFoot"],
+    "variants": [
+      ["rightFoot", "leftFoot", "rightHand", "leftHand", "rightFoot", "leftFoot", "leftHand", "rightHand"],
+      ["leftHand", "rightFoot", "rightHand", "leftFoot", "leftHand", "rightHand", "rightFoot", "leftFoot"],
+      ["rightHand", "leftHand", "leftFoot", "rightFoot", "leftHand", "rightHand", "rightFoot", "leftFoot"],
+      ["rightFoot", "leftHand", "leftFoot", "rightHand", "rightFoot", "leftFoot", "rightHand", "leftHand"],
+      ["leftHand", "rightHand", "rightFoot", "leftFoot", "rightHand", "leftHand", "leftFoot", "rightFoot"]
+    ]
+  },
+  "stage": {
+    "calibration": "inspectedStarter",
+    "floor": { "horizonY": 0.205, "referenceFootY": 0.40, "referenceHeight": 0.23 },
+    "heroHome": [0.50, 0.62],
+    "heroEntrance": [0.50, 0.69],
+    "heroRetreat": [0.50, 0.66],
+    "challengers": [
+      { "id": "bartender", "atlas": "bartender", "mark": [0.50, 0.45], "yieldMark": [0.70, 0.45] }
+    ]
+  },
+  "crowd": {
+    "budgets": { "interested": 5, "following": 4, "standing": 2, "cheering": 1 },
+    "guests": [
+      [0.20, 0.480], [0.80, 0.480],
+      [0.23, 0.400], [0.77, 0.400],
+      [0.31, 0.370], [0.69, 0.370],
+      [0.23, 0.335], [0.32, 0.335], [0.41, 0.335],
+      [0.59, 0.335], [0.68, 0.335], [0.77, 0.335]
+    ],
+    "props": []
+  },
+  "scenery": {
+    "lamps": [[0.198, 0.204], [0.471, 0.204], [0.676, 0.204], [0.706, 0.082]],
+    "plants": [[0.14, 0.43], [0.86, 0.43]],
+    "waiter": { "home": [0.51, 0.345], "swayX": 0.055 }
+  },
+  "departure": {
+    "threshold": "counter-end passage",
+    "originY": 0.67,
+    "waypoints": [
+      { "at": 0, "x": 0.50, "y": 0.67, "facing": "sideRight" },
+      { "at": 0.65, "x": 0.82, "y": 0.64, "facing": "rear" },
+      { "at": 1, "x": 0.88, "y": 0.48, "facing": "rear" }
+    ]
+  },
+  "copy": {
+    "invitation": "The bartender has a rhythm of their own.",
+    "clearedTitle": "PURO\nSWAG.",
+    "clearedClaim": "THE BAR IS YOURS.",
+    "resetLine": "BACK TO THE GATE"
+  }
+}

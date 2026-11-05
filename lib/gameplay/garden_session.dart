@@ -44,6 +44,32 @@ class FightChart {
       ? limbs
       : variants[(tier == 4 ? 3 + peakPhrase : tier - 1) % variants.length];
   double get cycleBeats => callBeats * 2;
+
+  void validate() {
+    if (limbs.isEmpty ||
+        limbs.length != offsets.length ||
+        callBeats <= 0 ||
+        introBeats < 0 ||
+        !callBeats.isFinite ||
+        !introBeats.isFinite) {
+      throw ArgumentError('Invalid fight chart');
+    }
+    var previous = -1.0;
+    for (final offset in offsets) {
+      if (!offset.isFinite ||
+          offset < 0 ||
+          offset <= previous ||
+          offset >= callBeats) {
+        throw ArgumentError('Invalid chart offsets');
+      }
+      previous = offset;
+    }
+    if (variants.any((pattern) => pattern.length != limbs.length)) {
+      throw ArgumentError('Chart variants must preserve note count');
+    }
+  }
+
+  /// Frozen reference for `levels/garden.json`, which is what the game plays.
   static const garden = FightChart(
     limbs: [
       Limb.leftHand,
@@ -109,6 +135,8 @@ class FightChart {
       ],
     ],
   );
+
+  /// Frozen reference for `levels/bar.json`, which is what the game plays.
   static const bar = FightChart(
     flourishDestination: Limb.leftHand,
     limbs: [
@@ -187,33 +215,16 @@ class GardenSession {
     this.backend, {
     FightDefinition? definition,
     this.chart = FightChart.garden,
+    CrowdStageProfile? crowdProfile,
   }) : progress = FightProgress(definition ?? fights.first),
        crowd = CrowdInterestModel(
          rampPhrases: 4 * (definition ?? fights.first).successesPerTier,
-         profile: CrowdStageProfile.forRoom((definition ?? fights.first).id),
+         profile:
+             crowdProfile ??
+             CrowdStageProfile.forRoom((definition ?? fights.first).id),
        ),
        _cycleStart = chart.introBeats {
-    if (chart.limbs.isEmpty ||
-        chart.limbs.length != chart.offsets.length ||
-        chart.callBeats <= 0 ||
-        chart.introBeats < 0 ||
-        !chart.callBeats.isFinite ||
-        !chart.introBeats.isFinite) {
-      throw ArgumentError('Invalid fight chart');
-    }
-    var previous = -1.0;
-    for (final offset in chart.offsets) {
-      if (!offset.isFinite ||
-          offset < 0 ||
-          offset <= previous ||
-          offset >= chart.callBeats) {
-        throw ArgumentError('Invalid chart offsets');
-      }
-      previous = offset;
-    }
-    if (chart.variants.any((pattern) => pattern.length != chart.limbs.length)) {
-      throw ArgumentError('Chart variants must preserve note count');
-    }
+    chart.validate();
     _activeLimbs = chart.limbs;
   }
   final MusicTransport transport;

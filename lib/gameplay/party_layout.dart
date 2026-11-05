@@ -201,7 +201,7 @@ class PartyRoomLayout {
   }
 }
 
-List<PartyGuestSlot> _seatedGuests(String room, List<PartyPoint> anchors) =>
+List<PartyGuestSlot> seatedGuestSlots(String room, List<PartyPoint> anchors) =>
     List.unmodifiable([
       for (var i = 0; i < anchors.length; i++)
         PartyGuestSlot(
@@ -218,7 +218,7 @@ List<PartyGuestSlot> _seatedGuests(String room, List<PartyPoint> anchors) =>
         ),
     ]);
 
-final _gardenGuests = _seatedGuests('garden', const [
+final _gardenGuests = seatedGuestSlots('garden', const [
   // Foreground pair: allowed to crop at narrow edges, but their actual chair
   // and interest IDs remain the original slots 0–1.
   PartyPoint(.20, .610),
@@ -234,7 +234,7 @@ final _gardenGuests = _seatedGuests('garden', const [
   PartyPoint(.69, .360),
   PartyPoint(.76, .360),
 ]);
-final _barGuests = _seatedGuests('bar', const [
+final _barGuests = seatedGuestSlots('bar', const [
   // Match the bar's steeper floor without duplicating people or chairs.
   PartyPoint(.20, .480),
   PartyPoint(.80, .480),
@@ -250,7 +250,7 @@ final _barGuests = _seatedGuests('bar', const [
   PartyPoint(.77, .335),
 ]);
 
-List<PartyPropSlot> _chairsFor(List<PartyGuestSlot> guests) => [
+List<PartyPropSlot> chairSlotsFor(List<PartyGuestSlot> guests) => [
   for (final guest in guests)
     PartyPropSlot(
       guest.homePropId!,
@@ -263,6 +263,8 @@ List<PartyPropSlot> _chairsFor(List<PartyGuestSlot> guests) => [
     ),
 ];
 
+/// Storyboard layouts. The game reads layouts from `levels/*.json`; garden and
+/// bar stay here as the frozen reference they are compared with.
 final partyRoomLayouts = Map<String, PartyRoomLayout>.unmodifiable({
   'garden': PartyRoomLayout(
     id: 'garden',
@@ -274,7 +276,7 @@ final partyRoomLayouts = Map<String, PartyRoomLayout>.unmodifiable({
     ),
     guests: _gardenGuests,
     props: List.unmodifiable([
-      ..._chairsFor(_gardenGuests),
+      ...chairSlotsFor(_gardenGuests),
       const PartyPropSlot(
         'garden-table-left',
         PartyPropKind.table,
@@ -314,7 +316,7 @@ final partyRoomLayouts = Map<String, PartyRoomLayout>.unmodifiable({
       referenceHeight: .23,
     ),
     guests: _barGuests,
-    props: List.unmodifiable(_chairsFor(_barGuests)),
+    props: List.unmodifiable(chairSlotsFor(_barGuests)),
   ),
   // Future art contracts, not calibrated existing rooms.
   'cool-crowd': const PartyRoomLayout(

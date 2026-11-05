@@ -19,18 +19,9 @@ class DepartureWaypoint {
 
 /// Bridge progress comes from its transport beat / authored length. A renderer
 /// samples this model; it cannot advance music, award clearance, or move cues.
-class RoomDeparture {
-  const RoomDeparture({
-    required this.roomId,
-    required this.nextRoomId,
-    required this.bridgeScoreId,
-    required this.threshold,
-    required this.waypoints,
-  });
+class DepartureRoute {
+  const DepartureRoute({required this.threshold, required this.waypoints});
 
-  final String roomId;
-  final String nextRoomId;
-  final String bridgeScoreId;
   final String threshold;
   final List<DepartureWaypoint> waypoints;
 
@@ -62,8 +53,24 @@ class RoomDeparture {
   }
 }
 
-/// Only garden is currently connected to a playable destination. Later routes
-/// are storyboard data, not declarations that those rooms or sprite clips ship.
+/// A route together with the storyboard's planned neighbours.
+class RoomDeparture extends DepartureRoute {
+  const RoomDeparture({
+    required this.roomId,
+    required this.nextRoomId,
+    required this.bridgeScoreId,
+    required super.threshold,
+    required super.waypoints,
+  });
+
+  final String roomId;
+  final String nextRoomId;
+  final String bridgeScoreId;
+}
+
+/// Storyboard routes, not declarations that those rooms or sprite clips ship.
+/// The game reads routes from `levels/*.json`; garden and bar stay here as the
+/// frozen reference they are compared with.
 const roomDepartures = <String, RoomDeparture>{
   'garden': RoomDeparture(
     roomId: 'garden',

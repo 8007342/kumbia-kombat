@@ -5,8 +5,9 @@ class FightDefinition {
     this.cleanSeconds,
     this.successesPerTier,
     this.finalChallenges,
-    this.resetAfterFailures,
-  );
+    this.resetAfterFailures, {
+    this.earlyHitRatio = .875,
+  });
   final String id;
   final String metric;
   final int cleanSeconds;
@@ -14,15 +15,21 @@ class FightDefinition {
   final int finalChallenges;
   final int resetAfterFailures;
 
-  /// Forgiving early room, then one dropped note allowed per eight-note phrase.
+  /// Share of notes needed before the peak tier. A forgiving early room lowers
+  /// it; the peak always allows one dropped note per eight-note phrase.
+  final double earlyHitRatio;
+
   int requiredHits(int noteCount, {required bool atPeak}) {
-    final ratio = id == 'garden' && !atPeak ? .75 : .875;
+    final ratio = atPeak ? .875 : earlyHitRatio;
     return (noteCount * ratio).ceil().clamp(1, noteCount);
   }
 }
 
+/// The storyboard's five-room plan, kept as the frozen reference for garden and
+/// bar and as the only record of the planned rooms. The game reads rules from
+/// `levels/*.json`; add new levels there, not here.
 const fights = [
-  FightDefinition('garden', 'Mojo', 60, 1, 2, 5),
+  FightDefinition('garden', 'Mojo', 60, 1, 2, 5, earlyHitRatio: .75),
   FightDefinition('bar', 'Swag', 80, 2, 2, 5),
   FightDefinition('cool-crowd', 'Flow', 95, 2, 3, 4),
   FightDefinition('restroom', 'Nerve', 45, 1, 3, 4),
