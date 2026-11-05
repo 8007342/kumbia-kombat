@@ -25,10 +25,24 @@ String _read(String id) => File('levels/$id.json').readAsStringSync();
 LevelRegistry _campaign() => LevelRegistry.parse('''
 { "campaign": [
   { "level": "garden", "bridgeToNext": "garden_to_bar", "exitLine": "ONWARD", "nextLine": "NEXT: BAR" },
-  { "level": "bar", "bridgeToNext": "bar_to_crowd", "exitLine": "OUT TO THE LAWN", "nextLine": "NEXT: THE POOL GARDEN" },
+  { "level": "bar", "bridgeToNext": "bar_to_pool", "exitLine": "OUT TO THE LAWN", "nextLine": "NEXT: THE POOL LAWN" },
   { "level": "pool-garden", "exitLine": "ONWARD", "nextLine": "THAT IS ALL" }
 ] }
 ''', _read);
+
+/// The level names swing-a and swing-b, whose art does not exist yet. The scene
+/// refuses unknown atlases, so its test draws them with two that do exist.
+LevelDefinition _drawable() {
+  final raw = jsonDecode(_read('pool-garden')) as Map<String, dynamic>;
+  final stage = raw['stage'] as Map<String, dynamic>;
+  for (final (i, challenger) in (stage['challengers'] as List).indexed) {
+    (challenger as Map<String, dynamic>)['atlas'] = [
+      'gatekeeper',
+      'bartender',
+    ][i];
+  }
+  return LevelDefinition.fromJson(raw);
+}
 
 class _Audio implements MusicAudioBackend {
   @override
@@ -71,7 +85,7 @@ void main() {
     expect(plane.horizonY, closeTo(floor['horizonY'] as double, 1e-4));
     final eye = (plane.referenceFootY - plane.horizonY) / plane.referenceHeight;
     expect(eye, closeTo(floor['eyeHeightAdults'] as num, .01));
-    expect(level.stage.challengers.length, 1);
+    expect(level.stage.challengers.length, 2);
   });
 
   test('Mācron reads near garden size and the dance stays above the thumbs', () {
@@ -94,7 +108,7 @@ void main() {
     expect(end.x, inInclusiveRange(.17, .83));
   });
 
-  test('a session clears on the real rules, with the bar\'s chart for now', () {
+  test('a session clears on the real rules, on its own chart', () {
     final level = _campaign().byId('pool-garden');
     final audio = _Audio();
     final music = MusicTransport(
@@ -131,7 +145,7 @@ void main() {
   });
 
   test('the real scene draws the plate, cast and props from the level', () async {
-    final level = _campaign().byId('pool-garden');
+    final level = _drawable();
     final bytes = File(_plate).readAsBytesSync();
     final codec = await ui.instantiateImageCodec(Uint8List.fromList(bytes));
     final plate = (await codec.getNextFrame()).image;

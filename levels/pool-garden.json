@@ -1,19 +1,19 @@
 {
   "id": "pool-garden",
-  "title": "THE POOL GARDEN",
+  "title": "THE POOL LAWN",
   "background": "pool-garden/pool-garden-v1-draft.png",
   "music": {
-    "score": "bar_swag",
-    "successScore": "bar_swag_success",
-    "leadShape": "sine"
+    "score": "pool_swing",
+    "successScore": "pool_swing_success",
+    "leadShape": "square"
   },
   "rules": {
-    "metric": "Swag",
-    "cleanSeconds": 80,
+    "metric": "Grace",
+    "cleanSeconds": 70,
     "successesPerTier": 2,
     "finalChallenges": 2,
     "resetAfterFailures": 5,
-    "earlyHitRatio": 0.875
+    "earlyHitRatio": 0.75
   },
   "chart": {
     "introBeats": 4,
@@ -22,73 +22,73 @@
     "offsets": [
       0,
       1,
-      2,
-      2.5,
+      1.75,
+      3,
       4,
       5,
-      6,
-      6.5
+      5.75,
+      6.75
     ],
     "limbs": [
+      "leftHand",
       "rightHand",
       "leftHand",
       "rightHand",
-      "rightFoot",
-      "leftFoot",
+      "leftHand",
       "rightHand",
       "leftHand",
-      "rightFoot"
+      "rightHand"
     ],
     "variants": [
       [
+        "leftHand",
+        "rightHand",
+        "leftHand",
+        "rightHand",
+        "leftFoot",
         "rightFoot",
+        "leftFoot",
+        "rightFoot"
+      ],
+      [
         "leftFoot",
         "rightHand",
         "leftHand",
         "rightFoot",
+        "rightHand",
         "leftFoot",
+        "rightFoot",
+        "leftHand"
+      ],
+      [
+        "leftFoot",
+        "rightFoot",
+        "leftHand",
+        "rightHand",
+        "leftFoot",
+        "rightFoot",
         "leftHand",
         "rightHand"
       ],
       [
-        "leftHand",
-        "rightFoot",
-        "rightHand",
-        "leftFoot",
-        "leftHand",
-        "rightHand",
-        "rightFoot",
-        "leftFoot"
-      ],
-      [
-        "rightHand",
-        "leftHand",
         "leftFoot",
         "rightFoot",
-        "leftHand",
-        "rightHand",
-        "rightFoot",
-        "leftFoot"
-      ],
-      [
-        "rightFoot",
-        "leftHand",
         "leftFoot",
-        "rightHand",
         "rightFoot",
         "leftFoot",
-        "rightHand",
-        "leftHand"
-      ],
-      [
-        "leftHand",
-        "rightHand",
         "rightFoot",
-        "leftFoot",
-        "rightHand",
-        "leftHand",
         "leftFoot",
         "rightFoot"
+      ],
+      [
+        "rightHand",
+        "leftHand",
+        "rightHand",
+        "leftHand",
+        "rightHand",
+        "leftHand",
+        "rightHand",
+        "leftHand"
       ]
     ]
   },
@@ -113,15 +113,27 @@
     ],
     "challengers": [
       {
-        "id": "gatekeeper",
-        "atlas": "gatekeeper",
+        "id": "swing-a",
+        "atlas": "swing-a",
         "mark": [
-          0.55,
-          0.5
+          0.48,
+          0.54
         ],
         "yieldMark": [
-          0.73,
-          0.489
+          0.37,
+          0.5
+        ]
+      },
+      {
+        "id": "swing-b",
+        "atlas": "swing-b",
+        "mark": [
+          0.68,
+          0.47
+        ],
+        "yieldMark": [
+          0.76,
+          0.46
         ]
       }
     ]
@@ -248,9 +260,9 @@
     ]
   },
   "copy": {
-    "invitation": "Two dancers hold the path. Answer them.",
-    "clearedTitle": "PASE,\nPASE.",
-    "clearedClaim": "THE PATH IS YOURS.",
+    "invitation": "Two dancers hold the lawn. Answer them.",
+    "clearedTitle": "SUCH\nGRACE.",
+    "clearedClaim": "THE PATH IS OPEN.",
     "resetLine": "BACK DOWN THE PATH"
   }
 }
