@@ -179,9 +179,11 @@ class PartySpriteAtlas {
     ui.Offset ground,
     double scale, {
     bool flipX = false,
+    ui.FilterQuality filter = ui.FilterQuality.none,
   }) {
     final frame = definition.frames[frameId];
     if (frame == null) throw StateError('Missing party sprite $frameId');
+    _paint.filterQuality = filter;
     canvas.save();
     canvas.translate(ground.dx.roundToDouble(), ground.dy.roundToDouble());
     if (flipX) canvas.scale(-1, 1);

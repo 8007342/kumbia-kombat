@@ -278,8 +278,8 @@ void main() {
     expect(count(barCalls, 'drawCircle'), bar.scenery.lamps.length);
     expect(count(nightCalls, 'drawCircle'), night.scenery.lamps.length);
     // 4 guests, their chairs, the table and its candle, 1 plant, no waiter,
-    // the first challenger (only one drawn for now) and the hero.
-    expect(count(nightCalls, 'drawOval'), 4 + 1 + 1);
+    // both challengers and the hero.
+    expect(count(nightCalls, 'drawOval'), 4 + 2 + 1);
     expect(count(barCalls, 'drawOval'), 12 + 1 + 1 + 1);
     expect(nightCalls, isNot(barCalls));
     expect(nightCalls.length, lessThan(barCalls.length));

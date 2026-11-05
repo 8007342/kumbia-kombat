@@ -128,15 +128,40 @@ class LevelMusic {
   final String leadShape;
 }
 
-/// One dancer's marks. The scene draws the first challenger for now; the rest
-/// are validated so a two-dancer level can already be written down.
+/// A dancer's path over the floor, repeating every [beats]. Size follows it
+/// through the floor plane, so a move toward the viewer just grows.
+class FloorTrack {
+  const FloorTrack(this.beats, this.points);
+  final double beats;
+  final List<(double, PartyPoint)> points;
+
+  PartyPoint at(double beat) {
+    final t = beat % beats;
+    for (var i = 0; i < points.length; i++) {
+      final (from, a) = points[i];
+      final (to, b) = i + 1 < points.length
+          ? points[i + 1]
+          : (beats, points.first.$2);
+      if (t < to) {
+        final u = ((t - from) / (to - from)).clamp(0.0, 1.0);
+        final eased = u * u * (3 - 2 * u);
+        return PartyPoint(a.x + (b.x - a.x) * eased, a.y + (b.y - a.y) * eased);
+      }
+    }
+    return points.first.$2;
+  }
+}
+
+/// One dancer's marks. A level may name several, and the scene draws them all.
 class LevelChallenger {
   const LevelChallenger({
     required this.id,
     required this.atlas,
     required this.mark,
     required this.yieldMark,
+    this.track,
   });
+  final FloorTrack? track;
   final String id;
 
   /// Key in the ensemble manifest, which still lists a fixed set of atlases.
@@ -146,10 +171,14 @@ class LevelChallenger {
   /// Where this dancer stands once fully out of the hero's way.
   final PartyPoint yieldMark;
 
-  PartyPoint floorAt(double floorYield) => PartyPoint(
-    mark.x + (yieldMark.x - mark.x) * floorYield,
-    mark.y + (yieldMark.y - mark.y) * floorYield,
-  );
+  /// [beat] drives the track when there is one; yielding always wins over it.
+  PartyPoint floorAt(double floorYield, {double beat = 0}) {
+    final from = track?.at(beat) ?? mark;
+    return PartyPoint(
+      from.x + (yieldMark.x - from.x) * floorYield,
+      from.y + (yieldMark.y - from.y) * floorYield,
+    );
+  }
 }
 
 class LevelStage {
@@ -554,6 +583,9 @@ class LevelDefinition {
           atlas: fields.text('atlas'),
           mark: mark(fields, 'mark'),
           yieldMark: mark(fields, 'yieldMark'),
+          track: fields.has('floorTrack')
+              ? _floorTrack(fields.child('floorTrack'))
+              : null,
         ),
       );
       fields.finish();
@@ -565,6 +597,31 @@ class LevelDefinition {
       throw LevelDataError(path, 'challenger ids must be unique');
     }
     return List.unmodifiable(challengers);
+  }
+
+  static FloorTrack _floorTrack(_Fields fields) {
+    final beats = fields.number('beats', min: 1);
+    final path = fields.at('points');
+    final points = <(double, PartyPoint)>[];
+    var last = -1.0;
+    for (final (i, raw) in fields.list('points').indexed) {
+      final point = _Fields('$path[$i]', raw);
+      final at = point.number('at', min: 0, max: beats);
+      if (at <= last) {
+        throw LevelDataError('$path[$i]', 'points must run forward in time');
+      }
+      last = at;
+      points.add((at, point.point('floor')));
+      point.finish();
+    }
+    fields.finish();
+    if (points.length < 2 || points.first.$1 != 0) {
+      throw LevelDataError(
+        path,
+        'a track needs a start at beat 0 and a second point',
+      );
+    }
+    return FloorTrack(beats, List.unmodifiable(points));
   }
 
   static CrowdStageProfile _crowd(String id, _Fields fields) {

@@ -140,10 +140,18 @@ class EnsembleAtlas {
     bool flipX = false,
     OutfitPalette? outfits,
     OutfitColor? palette,
+    ui.FilterQuality filter = ui.FilterQuality.none,
   }) {
     final mirrored = definition.flipFor(frameId, facingFlip: flipX);
     if (outfits == null || palette == null) {
-      sprite.draw(canvas, frameId, ground, scale, flipX: mirrored);
+      sprite.draw(
+        canvas,
+        frameId,
+        ground,
+        scale,
+        flipX: mirrored,
+        filter: filter,
+      );
       return;
     }
     final frame = definition.art.frames[frameId];

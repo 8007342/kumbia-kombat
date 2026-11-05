@@ -61,9 +61,13 @@ class ExitShot {
         : ((beat - closeupFrom) / (contactBeat - closeupFrom)).clamp(0.0, 1.0);
     // Accelerate into the hit, then give a little back.
     final closing = 1 - approach * approach;
-    final recoil = after <= 0 || reducedMotion
+    // Hold the contact for a moment so the hit reads, then ease apart.
+    const hold = .25;
+    final recoil = after <= hold || reducedMotion
         ? 0.0
-        : _easeOut((after / (closeupTo - contactBeat)).clamp(0.0, 1.0));
+        : _easeOut(
+            ((after - hold) / (closeupTo - contactBeat - hold)).clamp(0.0, 1.0),
+          );
     final striking = after >= 0 && after < .4;
     return [
       for (final actor in actors)

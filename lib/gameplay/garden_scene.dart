@@ -172,7 +172,8 @@ class GardenSceneGame extends FlameGame {
     this.nextRequiredBeat = nextRequiredBeat;
   }
 
-  ChallengerPose _challengerAt(double beat) {
+  ChallengerPose _challengerAt(double beat, {String? dancer}) {
+    final atlas = dancer ?? _level!.stage.challengers.first.atlas;
     final s = session;
     if (s == null) {
       return _grammar!.dress(
@@ -180,7 +181,7 @@ class GardenSceneGame extends FlameGame {
           frameId: 'occupied',
           state: ChallengerDanceState.occupied,
         ),
-        dancer: _level!.stage.challengers.first.atlas,
+        dancer: atlas,
         beat: 0,
         callStartBeat: 0,
         reducedMotion: reducedMotion,
@@ -216,7 +217,7 @@ class GardenSceneGame extends FlameGame {
     );
     return _grammar!.dress(
       pose,
-      dancer: _level!.stage.challengers.first.atlas,
+      dancer: atlas,
       beat: beat,
       callStartBeat: s.callStartBeat,
       callBeats: s.chart.callBeats,
@@ -340,6 +341,8 @@ class GardenSceneGame extends FlameGame {
       ),
       paint,
     );
+    // Drop the plate back, so the fists are the only bright thing on screen.
+    canvas.drawRect(bounds, ui.Paint()..color = const Color(0x8C050A10));
     final meet = ui.Offset(
       bounds.width * shot.contactPoint.dx,
       bounds.height * shot.contactPoint.dy,
@@ -618,23 +621,36 @@ class GardenSceneGame extends FlameGame {
     PartyRoomLayout room,
     ChallengerPose pose,
   ) {
-    // Levels may name several challengers; the scene draws the first for now.
-    final challenger = _level!.stage.challengers.first;
-    final floor = challenger.floorAt(pose.floorYield);
-    final projected = viewport.project(floor);
-    final height = _adultHeight(viewport, room, floor);
-    final atlas = _ensemble![challenger.atlas]!;
-    final scale = height / atlas.nativeHeight('ready');
-    final ground = ui.Offset(
-      projected.x + pose.rootOffsetX * scale,
-      projected.y,
-    );
-    draws.add(
-      _WorldDraw('challenger', projected.y, 10, (canvas) {
-        _shadow(canvas, ground, height);
-        atlas.draw(canvas, pose.frameId, ground, scale);
-      }),
-    );
+    final challengers = _level!.stage.challengers;
+    final beat = _lastBeat;
+    final duet = challengers.length > 1;
+    for (final (i, challenger) in challengers.indexed) {
+      final dressed = i == 0
+          ? pose
+          : _challengerAt(beat, dancer: challenger.atlas);
+      final floor = challenger.floorAt(dressed.floorYield, beat: beat);
+      final projected = viewport.project(floor);
+      final height = _adultHeight(viewport, room, floor);
+      final atlas = _ensemble![challenger.atlas]!;
+      final scale = height / atlas.nativeHeight('ready');
+      final ground = ui.Offset(
+        projected.x + dressed.rootOffsetX * scale,
+        projected.y,
+      );
+      draws.add(
+        _WorldDraw('challenger', projected.y, 10, (canvas) {
+          _shadow(canvas, ground, height);
+          // Dancers who travel in depth scale smoothly, or their pixels crawl.
+          atlas.draw(
+            canvas,
+            dressed.frameId,
+            ground,
+            scale,
+            filter: duet ? ui.FilterQuality.low : ui.FilterQuality.none,
+          );
+        }),
+      );
+    }
   }
 
   void _addHero(
@@ -771,6 +787,8 @@ class GardenSceneGame extends FlameGame {
           frame,
           _point(projected).translate(0, -height * hop),
           scale,
+          // His art is far larger than he is drawn: mipmaps keep it steady.
+          filter: ui.FilterQuality.medium,
         );
       }),
     );

@@ -21,19 +21,30 @@ PIECES = {
 PLATE = "plate-garden2/990101"
 
 
-def reduce(path):
+def reduce(path, extend=0):
     im = Image.open(path).convert("RGBA")
     im = im.resize((im.width // BLOCK, im.height // BLOCK), Image.NEAREST)
     a = np.array(im)
     a[a[:, :, 3] < 128] = 0
     a[a[:, :, 3] >= 128, 3] = 255
+    if extend:
+        # Continue a forearm that leaves through the bottom edge: repeat its last
+        # row, sliding left, so the arm runs off the screen instead of ending.
+        h, w = a.shape[:2]
+        out = np.zeros((h + extend, w, 4), a.dtype)
+        out[:h] = a
+        last = a[h - 2]
+        for k in range(extend):
+            out[h + k] = np.roll(last, -(k + 2), axis=0)
+            out[h + k, w - (k + 2):] = 0
+        a = out
     return Image.fromarray(a)
 
 
 def main():
     meta = {"pieces": {}}
     for name, raw in PIECES.items():
-        im = reduce(RAW + raw + ".png")
+        im = reduce(RAW + raw + ".png", extend=48 if name.startswith("mc") else 0)
         a = np.array(im)[:, :, 3] > 0
         ys, xs = np.where(a)
         # The contact point: the fist's leading edge at the mean height of its leading column band.
