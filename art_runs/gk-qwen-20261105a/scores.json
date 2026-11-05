@@ -1,0 +1,154 @@
+{
+ "groove.down_l": {
+  "0": {
+   "score": 5.5,
+   "extra": 4.8,
+   "missing": 0.7,
+   "worst": "r_wri",
+   "errors": {
+    "r_wri": 0.0,
+    "l_wri": 0.0,
+    "r_elb": 0.0,
+    "l_elb": 0.0,
+    "r_kne": 0.0,
+    "l_kne": 0.0,
+    "r_ank": 0.0,
+    "l_ank": 0.0
+   },
+   "touchesFrame": false
+  }
+ },
+ "groove.pass_l": {
+  "0": {
+   "score": 4.0,
+   "extra": 3.4,
+   "missing": 0.6,
+   "worst": "r_wri",
+   "errors": {
+    "r_wri": 0.0,
+    "l_wri": 0.0,
+    "r_elb": 0.0,
+    "l_elb": 0.0,
+    "r_kne": 0.0,
+    "l_kne": 0.0,
+    "r_ank": 0.0,
+    "l_ank": 0.0
+   },
+   "touchesFrame": false
+  }
+ },
+ "groove.up_l": {
+  "0": {
+   "score": 3.0,
+   "extra": 2.2,
+   "missing": 0.8,
+   "worst": "r_wri",
+   "errors": {
+    "r_wri": 0.0,
+    "l_wri": 0.0,
+    "r_elb": 0.0,
+    "l_elb": 0.0,
+    "r_kne": 0.0,
+    "l_kne": 0.0,
+    "r_ank": 0.0,
+    "l_ank": 0.0
+   },
+   "touchesFrame": false
+  }
+ },
+ "groove.pass_l2": {
+  "0": {
+   "score": 7.4,
+   "extra": 6.7,
+   "missing": 0.7,
+   "worst": "r_wri",
+   "errors": {
+    "r_wri": 0.0,
+    "l_wri": 0.0,
+    "r_elb": 0.0,
+    "l_elb": 0.0,
+    "r_kne": 0.0,
+    "l_kne": 0.0,
+    "r_ank": 0.0,
+    "l_ank": 0.0
+   },
+   "touchesFrame": false
+  }
+ },
+ "groove.down_r": {
+  "0": {
+   "score": 7.2,
+   "extra": 4.8,
+   "missing": 0.8,
+   "worst": "r_ank",
+   "errors": {
+    "r_wri": 0.0,
+    "l_wri": 0.0,
+    "r_elb": 0.0,
+    "l_elb": 0.0,
+    "r_kne": 0.0,
+    "l_kne": 0.0,
+    "r_ank": 1.4,
+    "l_ank": 0.0
+   },
+   "touchesFrame": false
+  }
+ },
+ "groove.pass_r": {
+  "0": {
+   "score": 2.6,
+   "extra": 2.1,
+   "missing": 0.5,
+   "worst": "r_wri",
+   "errors": {
+    "r_wri": 0.0,
+    "l_wri": 0.0,
+    "r_elb": 0.0,
+    "l_elb": 0.0,
+    "r_kne": 0.0,
+    "l_kne": 0.0,
+    "r_ank": 0.0,
+    "l_ank": 0.0
+   },
+   "touchesFrame": false
+  }
+ },
+ "groove.up_r": {
+  "0": {
+   "score": 27.5,
+   "extra": 4.2,
+   "missing": 2.5,
+   "worst": "r_wri",
+   "errors": {
+    "r_wri": 17.0,
+    "l_wri": 12.8,
+    "r_elb": 0.0,
+    "l_elb": 0.0,
+    "r_kne": 0.0,
+    "l_kne": 0.0,
+    "r_ank": 0.0,
+    "l_ank": 0.0
+   },
+   "touchesFrame": false
+  }
+ },
+ "groove.pass_r2": {
+  "0": {
+   "score": 10.9,
+   "extra": 9.2,
+   "missing": 0.6,
+   "worst": "l_ank",
+   "errors": {
+    "r_wri": 0.0,
+    "l_wri": 0.0,
+    "r_elb": 0.0,
+    "l_elb": 0.0,
+    "r_kne": 0.0,
+    "l_kne": 0.0,
+    "r_ank": 0.0,
+    "l_ank": 1.0
+   },
+   "touchesFrame": false
+  }
+ }
+}

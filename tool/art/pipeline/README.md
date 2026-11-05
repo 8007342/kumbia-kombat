@@ -25,6 +25,20 @@ pack_atlas.py ──▶ <target.out> atlas + .candidate.json (status: candidate)
 promote: merge the candidate atlas block into assets/art/ensemble/manifest.json
 ```
 
+## Sheet-driven frames (Qwen)
+
+The rig gives Qwen only a skeleton, and the model sheet gives it the character:
+`plan_qwen_frames.py` → `studio.run_workflow` per job → `collect_qwen.py` →
+`register_frames.py` → `score_frames.py` → review → `studio.finish_pixels` → `pack_atlas.py`.
+
+- `score_frames.py` only ranks candidates. It can't see an extra arm, a lost hand or a goatee, so
+  look at every candidate. It also rewrites `selection.json`, so run it before picking by eye.
+- Qwen follows the skeleton over the prompt and copies the sheet's hanging arms. Where the rig's
+  wrists stop short (hands meant to reach a hat brim), move them for the drawing in
+  `art_runs/inputs/<family>/skeleton_overrides.json`.
+- It draws one forearm across the chest but not two. Build a symmetric pose such as a clap from one
+  arm with `mirror_half.py`, and record `"mirrored": true` in the selection.
+
 ## Characters as data
 
 `tool/art/characters/<id>.json`, `styles/<id>.json`, `backends/<id>.json` and

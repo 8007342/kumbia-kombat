@@ -2,7 +2,7 @@
  "atlas": "gatekeeper",
  "image": "gatekeeper-v3.png",
  "imageWidth": 1024,
- "imageHeight": 2465,
+ "imageHeight": 2457,
  "referenceFrame": "occupied",
  "family": "tool/art/families/gatekeeper-v3.json",
  "animationReferences": {
@@ -44,20 +44,20 @@
    "region": "skin",
    "alsoIn": [],
    "shades": [
-    "#5F1D00",
-    "#874219",
-    "#B5653A",
-    "#CE8864"
+    "#842800",
+    "#AF5000",
+    "#E0742B",
+    "#F89A63"
    ]
   },
   "hat": {
    "region": "hat",
    "alsoIn": [],
    "shades": [
-    "#9D8862",
-    "#C6B089",
-    "#F2D9AD",
-    "#FFF9D3"
+    "#A79A77",
+    "#D0C39E",
+    "#FCEDC4",
+    "#FFFBD8"
    ]
   },
   "band": {
@@ -108,10 +108,10 @@
    "region": "trousers",
    "alsoIn": [],
    "shades": [
-    "#91794D",
-    "#B9A073",
-    "#E5C996",
-    "#FFEABF"
+    "#A79A78",
+    "#D0C39F",
+    "#FCEDC5",
+    "#FFFBD9"
    ]
   },
   "shoes": {
@@ -128,14 +128,14 @@
  "frames": {
   "anticipate_left": {
    "rect": [
-    2,
-    1983,
-    128,
-    239
+    494,
+    1976,
+    125,
+    238
    ],
    "anchor": [
-    58.0,
-    236.4
+    59.0,
+    235.4
    ],
    "pixelsPerUnit": 6.0387,
    "facing": "front",
@@ -145,10 +145,12 @@
    "supportFoot": "right",
    "status": "candidate",
    "provenance": {
-    "run": "gatekeeper-v3-20261105a",
+    "run": "gatekeeper-v3-20261105q",
     "pose": "left_hand.prep",
-    "sha256": "ad54095f2a9cda6ab2c831495ec988f9f38cfd0207b8970dae4ce8566b0729cc",
-    "selected": null,
+    "sha256": "a2293e3c65559af9dc7dff4257eeb952d1de2ce551c07cb80b1f8ad8d59f03e3",
+    "selected": "930003",
+    "frameKey": null,
+    "accepted": false,
     "animationPrinciples": [
      "staging-silhouette",
      "contrapposto",
@@ -161,14 +163,14 @@
   },
   "anticipate_right": {
    "rect": [
-    737,
-    1496,
-    128,
-    240
+    621,
+    1976,
+    148,
+    238
    ],
    "anchor": [
-    70.0,
-    236.4
+    75.0,
+    235.4
    ],
    "pixelsPerUnit": 6.0387,
    "facing": "front",
@@ -178,10 +180,12 @@
    "supportFoot": "left",
    "status": "candidate",
    "provenance": {
-    "run": "gatekeeper-v3-20261105a",
+    "run": "gatekeeper-v3-20261105q",
     "pose": "right_hand.prep",
-    "sha256": "54becfe9f238e21a926d0c91a2814fc293d4a7c0586483d56906c47720a4f03d",
-    "selected": null,
+    "sha256": "42ca708b2b88d77c24c335695b3f15b58e78151ec1cdd6c8d01d06afde7f813a",
+    "selected": "930001",
+    "frameKey": null,
+    "accepted": false,
     "animationPrinciples": [
      "staging-silhouette",
      "contrapposto",
@@ -194,14 +198,14 @@
   },
   "approval_load": {
    "rect": [
-    657,
-    256,
-    144,
-    247
+    624,
+    2,
+    150,
+    248
    ],
    "anchor": [
-    73.0,
-    244.4
+    78.0,
+    245.4
    ],
    "pixelsPerUnit": 6.0387,
    "facing": "front",
@@ -211,10 +215,12 @@
    "supportFoot": "both",
    "status": "candidate",
    "provenance": {
-    "run": "gatekeeper-v3-20261105a",
+    "run": "gatekeeper-v3-20261105q",
     "pose": "approval.load",
-    "sha256": "763b10d23018e528e1fa4824eaee0d21c4465ebe7f12de4be81d9814d916351d",
-    "selected": null,
+    "sha256": "5b5f4e4c50626e495ececd945d71dffc5cbacd747b091d4976cae251a0542072",
+    "selected": "930001",
+    "frameKey": null,
+    "accepted": false,
     "animationPrinciples": [
      "staging-silhouette",
      "contrapposto",
@@ -227,14 +233,14 @@
   },
   "approval_nod": {
    "rect": [
-    783,
-    1983,
-    141,
-    239
+    124,
+    1733,
+    135,
+    241
    ],
    "anchor": [
-    58.0,
-    236.4
+    54.0,
+    237.4
    ],
    "pixelsPerUnit": 6.0387,
    "facing": "front",
@@ -250,10 +256,12 @@
    "supportFoot": "both",
    "status": "candidate",
    "provenance": {
-    "run": "gatekeeper-v3-20261105a",
+    "run": "gatekeeper-v3-20261105q",
     "pose": "approval.nod",
-    "sha256": "d15804e2d06c9c1b16cc1639efe4233cf106409e93080878d82fb2ce2c103872",
-    "selected": null,
+    "sha256": "4b48819845103fd8995c6baa822481d88f28eac383cdf0eced8c0e0e49179d09",
+    "selected": "930000",
+    "frameKey": null,
+    "accepted": false,
     "animationPrinciples": [
      "staging-silhouette",
      "line-of-action",
@@ -267,13 +275,13 @@
   },
   "approval_release": {
    "rect": [
-    803,
-    256,
-    159,
-    247
+    776,
+    2,
+    212,
+    248
    ],
    "anchor": [
-    98.0,
+    107.0,
     244.4
    ],
    "pixelsPerUnit": 6.0387,
@@ -284,10 +292,12 @@
    "supportFoot": "both",
    "status": "candidate",
    "provenance": {
-    "run": "gatekeeper-v3-20261105a",
+    "run": "gatekeeper-v3-20261105q",
     "pose": "approval.release",
-    "sha256": "7564771ee0a8c90c8f35c209bf98eeba95971391a0b6a6347d1146c5ec5bc616",
-    "selected": null,
+    "sha256": "cea9c12fe43aef151c91207e42ad28c8796ecac8ee76a92315cc6b27d37bbfe1",
+    "selected": "930003",
+    "frameKey": null,
+    "accepted": false,
     "animationPrinciples": [
      "staging-silhouette",
      "contrapposto",
@@ -300,14 +310,14 @@
   },
   "approve": {
    "rect": [
-    783,
-    1983,
-    141,
-    239
+    124,
+    1733,
+    135,
+    241
    ],
    "anchor": [
-    58.0,
-    236.4
+    54.0,
+    237.4
    ],
    "pixelsPerUnit": 6.0387,
    "facing": "front",
@@ -323,10 +333,12 @@
    "supportFoot": "both",
    "status": "candidate",
    "provenance": {
-    "run": "gatekeeper-v3-20261105a",
+    "run": "gatekeeper-v3-20261105q",
     "pose": "approval.nod",
-    "sha256": "d15804e2d06c9c1b16cc1639efe4233cf106409e93080878d82fb2ce2c103872",
-    "selected": null,
+    "sha256": "4b48819845103fd8995c6baa822481d88f28eac383cdf0eced8c0e0e49179d09",
+    "selected": "930000",
+    "frameKey": null,
+    "accepted": false,
     "animationPrinciples": [
      "staging-silhouette",
      "line-of-action",
@@ -341,13 +353,13 @@
   },
   "cede": {
    "rect": [
-    319,
-    754,
-    123,
+    269,
+    502,
+    151,
     246
    ],
    "anchor": [
-    61.0,
+    58.0,
     243.4
    ],
    "pixelsPerUnit": 6.0387,
@@ -358,10 +370,12 @@
    "supportFoot": "right",
    "status": "candidate",
    "provenance": {
-    "run": "gatekeeper-v3-20261105a",
+    "run": "gatekeeper-v3-20261105q",
     "pose": "yield_side.pass_r",
-    "sha256": "f674bb0b47a51ba79c4a804b8c33bfaf614ab183c7c2d3ef98aaade1e82e7ba8",
-    "selected": null,
+    "sha256": "b2e9bf80ae138fa4603c4b491cf3f59f8fe22ee8123c9afd1b8442a3fd765104",
+    "selected": "930000",
+    "frameKey": null,
+    "accepted": false,
     "animationPrinciples": [
      "staging-silhouette",
      "line-of-action",
@@ -376,14 +390,14 @@
   },
   "challenge_load": {
    "rect": [
-    653,
-    1983,
-    128,
-    239
+    2,
+    2217,
+    126,
+    238
    ],
    "anchor": [
     78.0,
-    236.4
+    235.4
    ],
    "pixelsPerUnit": 6.0387,
    "facing": "front",
@@ -393,10 +407,12 @@
    "supportFoot": "left",
    "status": "candidate",
    "provenance": {
-    "run": "gatekeeper-v3-20261105a",
+    "run": "gatekeeper-v3-20261105q",
     "pose": "challenge.load",
-    "sha256": "e88b5540386997aa14e01291e49c351bd084b6c00ea3dffee656adf56dad5414",
-    "selected": null,
+    "sha256": "830d79580a3a38db5c3800c3327bef224332b1250614be1dd06ca4114833f806",
+    "selected": "930000",
+    "frameKey": null,
+    "accepted": false,
     "animationPrinciples": [
      "staging-silhouette",
      "contrapposto",
@@ -408,14 +424,14 @@
   },
   "challenge_offer": {
    "rect": [
-    780,
-    1002,
-    176,
+    696,
+    750,
+    175,
     245
    ],
    "anchor": [
-    98.0,
-    241.4
+    102.0,
+    242.4
    ],
    "pixelsPerUnit": 6.0387,
    "facing": "front",
@@ -431,10 +447,12 @@
    "supportFoot": "right",
    "status": "candidate",
    "provenance": {
-    "run": "gatekeeper-v3-20261105a",
+    "run": "gatekeeper-v3-20261105q",
     "pose": "challenge.offer",
-    "sha256": "631c6a7abffdef7e5734b89f733c60532543eeff1fe30de5a7c62e1ae87f9343",
-    "selected": null,
+    "sha256": "fdf10c138b25e4015c7aa9e3d3673452ab48cded081e3127d4b1f66a1599c690",
+    "selected": "930000",
+    "frameKey": null,
+    "accepted": false,
     "animationPrinciples": [
      "staging-silhouette",
      "line-of-action",
@@ -447,13 +465,13 @@
   },
   "challenge_proud": {
    "rect": [
-    513,
-    256,
-    142,
+    537,
+    253,
+    135,
     247
    ],
    "anchor": [
-    63.0,
+    61.0,
     244.4
    ],
    "pixelsPerUnit": 6.0387,
@@ -464,10 +482,12 @@
    "supportFoot": "right",
    "status": "candidate",
    "provenance": {
-    "run": "gatekeeper-v3-20261105a",
+    "run": "gatekeeper-v3-20261105q",
     "pose": "challenge.proud",
-    "sha256": "544185b4881942ddc242c7dc61e1fd3e823e9a3e8213bade06d02ac608a25934",
-    "selected": null,
+    "sha256": "0c2c77911f2684dace4dd8e67096d714dfcb296d77c53690c7d2fce43216f1db",
+    "selected": "930000",
+    "frameKey": null,
+    "accepted": false,
     "animationPrinciples": [
      "staging-silhouette",
      "line-of-action",
@@ -480,14 +500,14 @@
   },
   "challenge_return": {
    "rect": [
-    813,
-    2,
+    544,
+    502,
     136,
-    248
+    246
    ],
    "anchor": [
-    75.0,
-    244.4
+    77.0,
+    243.4
    ],
    "pixelsPerUnit": 6.0387,
    "facing": "front",
@@ -497,10 +517,12 @@
    "supportFoot": "both",
    "status": "candidate",
    "provenance": {
-    "run": "gatekeeper-v3-20261105a",
+    "run": "gatekeeper-v3-20261105q",
     "pose": "challenge.return",
-    "sha256": "622b320c262a00c87a7e86b3015002849c2bac319d6c984dbbc32e0beb35ccda",
-    "selected": null,
+    "sha256": "655efe4729b821c26c59a9f9309f7169c4689eb639beb39d3ec1227709c4b9cc",
+    "selected": "930003",
+    "frameKey": null,
+    "accepted": false,
     "animationPrinciples": [
      "staging-silhouette",
      "contrapposto",
@@ -512,14 +534,14 @@
   },
   "clap_close": {
    "rect": [
-    667,
-    1002,
-    111,
-    245
+    419,
+    253,
+    116,
+    247
    ],
    "anchor": [
-    55.0,
-    242.4
+    58.0,
+    243.4
    ],
    "pixelsPerUnit": 6.0387,
    "facing": "front",
@@ -529,10 +551,12 @@
    "supportFoot": "both",
    "status": "candidate",
    "provenance": {
-    "run": "gatekeeper-v3-20261105a",
+    "run": "gatekeeper-v3-20261105q",
     "pose": "clap.close",
-    "sha256": "24db8a4c5034dc1dfd001b152b4d7daaa9754f12630f820ac15010cae1ae9b80",
-    "selected": null,
+    "sha256": "e210e4e9a2326b158bc0d5f433ca69400a0644711486109012661850bf39d4a1",
+    "selected": "930403",
+    "frameKey": null,
+    "accepted": false,
     "animationPrinciples": [
      "staging-silhouette",
      "contrapposto",
@@ -544,14 +568,14 @@
   },
   "clap_contact": {
    "rect": [
-    629,
-    1496,
-    106,
+    2,
+    1733,
+    120,
     241
    ],
    "anchor": [
-    53.0,
-    238.4
+    60.0,
+    237.4
    ],
    "pixelsPerUnit": 6.0387,
    "facing": "front",
@@ -567,10 +591,12 @@
    "supportFoot": "both",
    "status": "candidate",
    "provenance": {
-    "run": "gatekeeper-v3-20261105a",
+    "run": "gatekeeper-v3-20261105q",
     "pose": "clap.contact",
-    "sha256": "524baf9ecf921afe1b2ffe232ebc8b9c0de6194e2c9e4ac6c7d9cd58423a52a8",
-    "selected": null,
+    "sha256": "97976f45ad0d1c0b31b224f70519cc28c3a6bb35a42a7e8080510ae316510878",
+    "selected": "930401",
+    "frameKey": null,
+    "accepted": false,
     "animationPrinciples": [
      "staging-silhouette",
      "contrapposto",
@@ -583,14 +609,14 @@
   },
   "clap_open": {
    "rect": [
-    269,
-    256,
-    118,
-    247
+    502,
+    2,
+    120,
+    248
    ],
    "anchor": [
-    59.0,
-    244.4
+    60.0,
+    245.4
    ],
    "pixelsPerUnit": 6.0387,
    "facing": "front",
@@ -600,10 +626,12 @@
    "supportFoot": "both",
    "status": "candidate",
    "provenance": {
-    "run": "gatekeeper-v3-20261105a",
+    "run": "gatekeeper-v3-20261105q",
     "pose": "clap.open",
-    "sha256": "06aa9e6da9fae3a81466fa566a02ad07281e79da8fdeb19cd0629a0202640122",
-    "selected": null,
+    "sha256": "d085f81885b5ebb5f59b141b87a1f7f0615a68c2e7550cdc97084b1aa2d9d59a",
+    "selected": "930404",
+    "frameKey": null,
+    "accepted": false,
     "animationPrinciples": [
      "staging-silhouette",
      "contrapposto",
@@ -615,14 +643,14 @@
   },
   "clap_release": {
    "rect": [
-    389,
-    256,
-    122,
-    247
+    422,
+    502,
+    120,
+    246
    ],
    "anchor": [
-    61.0,
-    244.4
+    60.0,
+    243.4
    ],
    "pixelsPerUnit": 6.0387,
    "facing": "front",
@@ -632,10 +660,12 @@
    "supportFoot": "both",
    "status": "candidate",
    "provenance": {
-    "run": "gatekeeper-v3-20261105a",
+    "run": "gatekeeper-v3-20261105q",
     "pose": "clap.release",
-    "sha256": "f2249db3e6a13a7c46bb58263f5ae79ac1f1657a11b738a66ac1e8b4dc2c303d",
-    "selected": null,
+    "sha256": "7e33e1446165bf0af61aa5c2b718c21af13dc20d1308846af510831abcfa8a2c",
+    "selected": "930402",
+    "frameKey": null,
+    "accepted": false,
     "animationPrinciples": [
      "staging-silhouette",
      "contrapposto",
@@ -647,14 +677,14 @@
   },
   "enter_forward_contact_l": {
    "rect": [
-    524,
-    1741,
-    133,
-    240
+    303,
+    2217,
+    126,
+    237
    ],
    "anchor": [
-    70.8,
-    236.4
+    63.8,
+    233.4
    ],
    "pixelsPerUnit": 6.0387,
    "facing": "front_3q",
@@ -664,10 +694,12 @@
    "supportFoot": "both",
    "status": "candidate",
    "provenance": {
-    "run": "gatekeeper-v3-20261105a",
+    "run": "gatekeeper-v3-20261105q",
     "pose": "enter_forward.contact_l",
-    "sha256": "eeff2ae52ad161b2ef9981f6bc09789e1f26405d0cf676eb0c21fa9f3529895f",
-    "selected": null,
+    "sha256": "26cd47f218cd893d2bc174137c67a52f92712d1634cbe97bbf18ba63957dd4ff",
+    "selected": "930003",
+    "frameKey": null,
+    "accepted": false,
     "animationPrinciples": [
      "staging-silhouette",
      "contrapposto",
@@ -680,14 +712,14 @@
   },
   "enter_forward_contact_r": {
    "rect": [
-    161,
-    2224,
-    147,
-    237
+    431,
+    2217,
+    148,
+    236
    ],
    "anchor": [
-    68.6,
-    236.4
+    65.6,
+    233.4
    ],
    "pixelsPerUnit": 6.0387,
    "facing": "front_3q",
@@ -697,10 +729,12 @@
    "supportFoot": "both",
    "status": "candidate",
    "provenance": {
-    "run": "gatekeeper-v3-20261105a",
+    "run": "gatekeeper-v3-20261105q",
     "pose": "enter_forward.contact_r",
-    "sha256": "62b95afb155f5f8fc6ce9b0d5a0d711a7214c46a8e496b7e81110f3115b43eb0",
-    "selected": null,
+    "sha256": "e0cfe11c0b7457c4cd347c888780ad7257c9040a95f2720cd43c9f5fd7fefa6a",
+    "selected": "930000",
+    "frameKey": null,
+    "accepted": false,
     "animationPrinciples": [
      "staging-silhouette",
      "contrapposto",
@@ -713,14 +747,14 @@
   },
   "enter_forward_down_l": {
    "rect": [
-    179,
-    1002,
-    139,
-    245
+    299,
+    1489,
+    137,
+    242
    ],
    "anchor": [
-    89.0,
-    242.4
+    84.0,
+    239.4
    ],
    "pixelsPerUnit": 6.0387,
    "facing": "front_3q",
@@ -730,10 +764,12 @@
    "supportFoot": "left",
    "status": "candidate",
    "provenance": {
-    "run": "gatekeeper-v3-20261105a",
+    "run": "gatekeeper-v3-20261105q",
     "pose": "enter_forward.down_l",
-    "sha256": "3b58b86664e88bcb8a15ff18a874f0dafe1c77200c9f2e6dc1afdd7678e80fd1",
-    "selected": null,
+    "sha256": "0291369960b3d6ac10d79244223a8759b20974c7a0131e2548d9cac29dac6248",
+    "selected": "930003",
+    "frameKey": null,
+    "accepted": false,
     "animationPrinciples": [
      "staging-silhouette",
      "contrapposto",
@@ -745,13 +781,13 @@
   },
   "enter_forward_down_r": {
    "rect": [
-    2,
-    1496,
+    343,
+    1243,
     154,
     243
    ],
    "anchor": [
-    58.0,
+    56.0,
     239.4
    ],
    "pixelsPerUnit": 6.0387,
@@ -762,10 +798,12 @@
    "supportFoot": "right",
    "status": "candidate",
    "provenance": {
-    "run": "gatekeeper-v3-20261105a",
+    "run": "gatekeeper-v3-20261105q",
     "pose": "enter_forward.down_r",
-    "sha256": "ac97904d3344cff7fb27de6d7f74dd1cc881d441c142964a42c7e279c4fa231a",
-    "selected": null,
+    "sha256": "8d11e53c911bcafb58b4d0995f88511c393c171aa0c136a6cbbc4a46a3600944",
+    "selected": "930000",
+    "frameKey": null,
+    "accepted": false,
     "animationPrinciples": [
      "staging-silhouette",
      "contrapposto",
@@ -777,13 +815,13 @@
   },
   "enter_forward_pass_l": {
    "rect": [
-    431,
+    372,
     2,
-    131,
+    128,
     248
    ],
    "anchor": [
-    86.0,
+    83.0,
     244.4
    ],
    "pixelsPerUnit": 6.0387,
@@ -794,10 +832,12 @@
    "supportFoot": "left",
    "status": "candidate",
    "provenance": {
-    "run": "gatekeeper-v3-20261105a",
+    "run": "gatekeeper-v3-20261105q",
     "pose": "enter_forward.pass_l",
-    "sha256": "bfd2d1ffbe25b1b032d419d2bcb086653aeac0026ae40fd332f987fd835b983e",
-    "selected": null,
+    "sha256": "2460e349eb7c9be8d273fd3fcf70429c0d050e3ffa7eb4c522f1aea5fa00cfe5",
+    "selected": "930001",
+    "frameKey": null,
+    "accepted": false,
     "animationPrinciples": [
      "staging-silhouette",
      "contrapposto",
@@ -809,13 +849,13 @@
   },
   "enter_forward_pass_r": {
    "rect": [
-    564,
-    2,
-    141,
-    248
+    185,
+    253,
+    127,
+    247
    ],
    "anchor": [
-    58.0,
+    50.0,
     244.4
    ],
    "pixelsPerUnit": 6.0387,
@@ -826,10 +866,12 @@
    "supportFoot": "right",
    "status": "candidate",
    "provenance": {
-    "run": "gatekeeper-v3-20261105a",
+    "run": "gatekeeper-v3-20261105q",
     "pose": "enter_forward.pass_r",
-    "sha256": "25fa231911e90f3f901ed8614bf652f14cab2cbc8acc0d26449b26c2134efcf3",
-    "selected": null,
+    "sha256": "2e0f187880c033747604d87e1b2d6be838419539f8f54d64ed74d6d3b492b6e5",
+    "selected": "930002",
+    "frameKey": null,
+    "accepted": false,
     "animationPrinciples": [
      "staging-silhouette",
      "contrapposto",
@@ -841,9 +883,9 @@
   },
   "finish": {
    "rect": [
-    358,
-    1249,
-    146,
+    758,
+    997,
+    138,
     244
    ],
    "anchor": [
@@ -858,10 +900,12 @@
    "supportFoot": "right",
    "status": "candidate",
    "provenance": {
-    "run": "gatekeeper-v3-20261105a",
+    "run": "gatekeeper-v3-20261105q",
     "pose": "finish_turn.finish_b",
-    "sha256": "d88df6b4cf619e93c1511f0b48568b6ffe009a90e9c662944b478dc55767f749",
-    "selected": null,
+    "sha256": "b8588d141b62698f7226a6a66474466a2aadb0f6c1b27f0194e2c800ec4fb8a0",
+    "selected": "930404",
+    "frameKey": null,
+    "accepted": false,
     "animationPrinciples": [
      "staging-silhouette",
      "line-of-action",
@@ -875,13 +919,13 @@
   },
   "finish_turn_finish_a": {
    "rect": [
-    444,
-    754,
-    148,
+    682,
+    502,
+    144,
     246
    ],
    "anchor": [
-    70.0,
+    62.0,
     243.4
    ],
    "pixelsPerUnit": 6.0387,
@@ -892,10 +936,12 @@
    "supportFoot": "right",
    "status": "candidate",
    "provenance": {
-    "run": "gatekeeper-v3-20261105a",
+    "run": "gatekeeper-v3-20261105q",
     "pose": "finish_turn.finish_a",
-    "sha256": "d30636973da10fdb9f7f07372ff9ef4cc84c5228d83290066d55a65a5eb970b1",
-    "selected": null,
+    "sha256": "68a93e10f27870ac62ea8b4ec7551014b90fda41505d4329936b8b6149ee7f94",
+    "selected": "930405",
+    "frameKey": null,
+    "accepted": false,
     "animationPrinciples": [
      "staging-silhouette",
      "contrapposto",
@@ -907,9 +953,9 @@
   },
   "finish_turn_finish_b": {
    "rect": [
-    358,
-    1249,
-    146,
+    758,
+    997,
+    138,
     244
    ],
    "anchor": [
@@ -924,10 +970,12 @@
    "supportFoot": "right",
    "status": "candidate",
    "provenance": {
-    "run": "gatekeeper-v3-20261105a",
+    "run": "gatekeeper-v3-20261105q",
     "pose": "finish_turn.finish_b",
-    "sha256": "d88df6b4cf619e93c1511f0b48568b6ffe009a90e9c662944b478dc55767f749",
-    "selected": null,
+    "sha256": "b8588d141b62698f7226a6a66474466a2aadb0f6c1b27f0194e2c800ec4fb8a0",
+    "selected": "930404",
+    "frameKey": null,
+    "accepted": false,
     "animationPrinciples": [
      "staging-silhouette",
      "line-of-action",
@@ -940,13 +988,13 @@
   },
   "finish_turn_turn_in": {
    "rect": [
-    506,
-    1249,
-    167,
+    2,
+    1243,
+    172,
     244
    ],
    "anchor": [
-    56.0,
+    49.0,
     241.4
    ],
    "pixelsPerUnit": 6.0387,
@@ -957,10 +1005,12 @@
    "supportFoot": "both",
    "status": "candidate",
    "provenance": {
-    "run": "gatekeeper-v3-20261105a",
+    "run": "gatekeeper-v3-20261105q",
     "pose": "finish_turn.turn_in",
-    "sha256": "2aa8e3b1bc4d998c8559e6970b0cf0d16c33cb2ad50e193b1fca0873d026dcee",
-    "selected": null,
+    "sha256": "5fd4819e66110e079512458e978f8675c9dc8a870135ed4b466458d3d064b7db",
+    "selected": "930003",
+    "frameKey": null,
+    "accepted": false,
     "animationPrinciples": [
      "staging-silhouette",
      "contrapposto",
@@ -972,13 +1022,13 @@
   },
   "finish_turn_turn_out": {
    "rect": [
-    188,
-    1249,
-    168,
-    245
+    176,
+    1243,
+    165,
+    244
    ],
    "anchor": [
-    112.0,
+    118.0,
     241.4
    ],
    "pixelsPerUnit": 6.0387,
@@ -989,10 +1039,12 @@
    "supportFoot": "both",
    "status": "candidate",
    "provenance": {
-    "run": "gatekeeper-v3-20261105a",
+    "run": "gatekeeper-v3-20261105q",
     "pose": "finish_turn.turn_out",
-    "sha256": "2cafe2b9f0f8b5f91b1e5a4ca8782ed332ad1bc7467dfaa25814811478d2e375",
-    "selected": null,
+    "sha256": "09d03291ef0c21f5438887473c092799c66d864a9fe24a3bc857a58708f7fba8",
+    "selected": "930002",
+    "frameKey": null,
+    "accepted": false,
     "animationPrinciples": [
      "staging-silhouette",
      "contrapposto",
@@ -1004,13 +1056,13 @@
   },
   "follow_left": {
    "rect": [
-    675,
-    1249,
-    152,
-    243
+    2,
+    1489,
+    146,
+    242
    ],
    "anchor": [
-    50.0,
+    37.0,
     239.4
    ],
    "pixelsPerUnit": 6.0387,
@@ -1021,10 +1073,12 @@
    "supportFoot": "right",
    "status": "candidate",
    "provenance": {
-    "run": "gatekeeper-v3-20261105a",
+    "run": "gatekeeper-v3-20261105q",
     "pose": "left_hand.follow",
-    "sha256": "48c72cb845faa9482c19f668b50d55b6f4d6b78b2fc3740ec2dd6f251d8a6ab4",
-    "selected": null,
+    "sha256": "5493752a295ab3238598b123417d0a5ff736359e12d4ff312b49217a2404bb3e",
+    "selected": "930001",
+    "frameKey": null,
+    "accepted": false,
     "animationPrinciples": [
      "staging-silhouette",
      "contrapposto",
@@ -1037,13 +1091,13 @@
   },
   "follow_right": {
    "rect": [
-    829,
-    1249,
-    152,
-    243
+    150,
+    1489,
+    147,
+    242
    ],
    "anchor": [
-    102.0,
+    105.0,
     239.4
    ],
    "pixelsPerUnit": 6.0387,
@@ -1054,10 +1108,12 @@
    "supportFoot": "left",
    "status": "candidate",
    "provenance": {
-    "run": "gatekeeper-v3-20261105a",
+    "run": "gatekeeper-v3-20261105q",
     "pose": "right_hand.follow",
-    "sha256": "afffc2c639f947c93493d279247c87e7e9a336dd463cb3f233ae2453f15a8a85",
-    "selected": null,
+    "sha256": "f964d73317837afbb8bcec3e8eb1955289dbf5ea3a5709ec5f5d8fb2dd9ff4df",
+    "selected": "930001",
+    "frameKey": null,
+    "accepted": false,
     "animationPrinciples": [
      "staging-silhouette",
      "contrapposto",
@@ -1070,13 +1126,13 @@
   },
   "groove_down_l": {
    "rect": [
-    637,
-    2224,
-    165,
+    581,
+    2217,
+    186,
     234
    ],
    "anchor": [
-    115.0,
+    111.0,
     231.4
    ],
    "pixelsPerUnit": 6.0387,
@@ -1087,10 +1143,12 @@
    "supportFoot": "left",
    "status": "candidate",
    "provenance": {
-    "run": "gatekeeper-v3-20261105a",
+    "run": "gatekeeper-v3-20261105q",
     "pose": "groove.down_l",
-    "sha256": "bff44f7d3c690c3a0019ecc26d8beac53f2249448a6668fb884961ada86f8f47",
-    "selected": null,
+    "sha256": "fa0ec487731e5503af863d6200bcf3c5f34c7460a31b74ff79f6c213b14763b5",
+    "selected": "930003",
+    "frameKey": null,
+    "accepted": false,
     "animationPrinciples": [
      "staging-silhouette",
      "contrapposto",
@@ -1103,13 +1161,13 @@
   },
   "groove_down_r": {
    "rect": [
-    472,
-    2224,
-    163,
-    235
+    769,
+    2217,
+    185,
+    234
    ],
    "anchor": [
-    50.0,
+    78.0,
     231.4
    ],
    "pixelsPerUnit": 6.0387,
@@ -1120,10 +1178,12 @@
    "supportFoot": "right",
    "status": "candidate",
    "provenance": {
-    "run": "gatekeeper-v3-20261105a",
+    "run": "gatekeeper-v3-20261105q",
     "pose": "groove.down_r",
-    "sha256": "09533c22c4aef5f231b8b0ae3c3aba1a09849f662afd25961edc55589286cd4a",
-    "selected": null,
+    "sha256": "0d4ecbe02797d8da71ad59b4b6d5e195274640b50d67c0880595fe72c7ed0720",
+    "selected": "930001",
+    "frameKey": null,
+    "accepted": false,
     "animationPrinciples": [
      "staging-silhouette",
      "contrapposto",
@@ -1136,14 +1196,14 @@
   },
   "groove_pass_l": {
    "rect": [
-    2,
-    506,
-    155,
-    246
+    828,
+    502,
+    169,
+    245
    ],
    "anchor": [
-    97.0,
-    242.4
+    102.0,
+    241.4
    ],
    "pixelsPerUnit": 6.0387,
    "facing": "front",
@@ -1153,10 +1213,12 @@
    "supportFoot": "left",
    "status": "candidate",
    "provenance": {
-    "run": "gatekeeper-v3-20261105a",
+    "run": "gatekeeper-v3-20261105q",
     "pose": "groove.pass_l",
-    "sha256": "b3fee9c80eea9d6d93d8114b5d82b17854fb934de05da207a0442ce708a14523",
-    "selected": null,
+    "sha256": "8404452458a408fa1fc373fabfb9a6f73e6f55a419b8aef974834bedf64e9219",
+    "selected": "930001",
+    "frameKey": null,
+    "accepted": false,
     "animationPrinciples": [
      "staging-silhouette",
      "contrapposto",
@@ -1169,14 +1231,14 @@
   },
   "groove_pass_l2": {
    "rect": [
-    594,
-    754,
-    162,
-    245
+    2,
+    997,
+    196,
+    244
    ],
    "anchor": [
-    98.0,
-    242.4
+    100.0,
+    241.4
    ],
    "pixelsPerUnit": 6.0387,
    "facing": "front",
@@ -1186,10 +1248,12 @@
    "supportFoot": "right",
    "status": "candidate",
    "provenance": {
-    "run": "gatekeeper-v3-20261105a",
+    "run": "gatekeeper-v3-20261105q",
     "pose": "groove.pass_l2",
-    "sha256": "edece3a30224101aa90f1cb6c110b242a0556e4f2bb194759019a16cdee1a200",
-    "selected": null,
+    "sha256": "acfb75f2bdc4a2398c9b06af356c7d65e46edc4b9ada5b592f6aa8614e80adb7",
+    "selected": "930000",
+    "frameKey": null,
+    "accepted": false,
     "animationPrinciples": [
      "staging-silhouette",
      "line-of-action",
@@ -1204,14 +1268,14 @@
   },
   "groove_pass_r": {
    "rect": [
-    159,
-    506,
-    160,
-    246
+    2,
+    750,
+    158,
+    245
    ],
    "anchor": [
     61.0,
-    242.4
+    241.4
    ],
    "pixelsPerUnit": 6.0387,
    "facing": "front",
@@ -1221,10 +1285,12 @@
    "supportFoot": "right",
    "status": "candidate",
    "provenance": {
-    "run": "gatekeeper-v3-20261105a",
+    "run": "gatekeeper-v3-20261105q",
     "pose": "groove.pass_r",
-    "sha256": "3949f04dbf6db14bf751c3b68061b25489d1f448cd947ccd140d167dd540cad8",
-    "selected": null,
+    "sha256": "ef2581bff2300cb85b8619d900c2ff6d6422262850e3cd895e51b6dd9d19938a",
+    "selected": "930001",
+    "frameKey": null,
+    "accepted": false,
     "animationPrinciples": [
      "staging-silhouette",
      "contrapposto",
@@ -1237,14 +1303,14 @@
   },
   "groove_pass_r2": {
    "rect": [
-    758,
-    754,
-    160,
-    245
+    200,
+    997,
+    171,
+    244
    ],
    "anchor": [
-    62.0,
-    242.4
+    68.0,
+    241.4
    ],
    "pixelsPerUnit": 6.0387,
    "facing": "front",
@@ -1254,10 +1320,12 @@
    "supportFoot": "left",
    "status": "candidate",
    "provenance": {
-    "run": "gatekeeper-v3-20261105a",
+    "run": "gatekeeper-v3-20261105q",
     "pose": "groove.pass_r2",
-    "sha256": "473e55ec506146181e0b1b285fb43635260b4d4488e8e12b0621626e6d5ab18e",
-    "selected": null,
+    "sha256": "81995a2102d893c09cfe593b5e9ab12bb25955fca0d298ee45cb82b94986e97c",
+    "selected": "930001",
+    "frameKey": null,
+    "accepted": false,
     "animationPrinciples": [
      "staging-silhouette",
      "line-of-action",
@@ -1272,10 +1340,10 @@
   },
   "groove_up_l": {
    "rect": [
-    137,
+    135,
     2,
-    127,
-    249
+    129,
+    248
    ],
    "anchor": [
     66.0,
@@ -1289,10 +1357,12 @@
    "supportFoot": "both",
    "status": "candidate",
    "provenance": {
-    "run": "gatekeeper-v3-20261105a",
+    "run": "gatekeeper-v3-20261105q",
     "pose": "groove.up_l",
-    "sha256": "a771df27a5ce1b368601c05b2bf702059816fceac01aa7feb813247e6fb0b296",
-    "selected": null,
+    "sha256": "5f095fd8f808cb3ce25c888f0a1d1ed1bffde750b6fca6431a8c45deb02e7a29",
+    "selected": "930001",
+    "frameKey": null,
+    "accepted": false,
     "animationPrinciples": [
      "staging-silhouette",
      "contrapposto",
@@ -1305,14 +1375,14 @@
   },
   "groove_up_r": {
    "rect": [
-    137,
-    256,
-    130,
-    247
+    266,
+    2,
+    104,
+    248
    ],
    "anchor": [
-    64.0,
-    244.4
+    50.0,
+    245.4
    ],
    "pixelsPerUnit": 6.0387,
    "facing": "front",
@@ -1322,10 +1392,12 @@
    "supportFoot": "both",
    "status": "candidate",
    "provenance": {
-    "run": "gatekeeper-v3-20261105a",
+    "run": "gatekeeper-v3-20261105q",
     "pose": "groove.up_r",
-    "sha256": "41256809dfdf72e0671b72c553fdee1e4c03dfb1328bbb220c9e91c6002c1f71",
-    "selected": null,
+    "sha256": "a452163950d63f0ac9641068d6bc7571142c64fbf422a0e808c34dedeb370e2d",
+    "selected": "930000",
+    "frameKey": null,
+    "accepted": false,
     "animationPrinciples": [
      "staging-silhouette",
      "contrapposto",
@@ -1338,14 +1410,14 @@
   },
   "invite": {
    "rect": [
-    780,
-    1002,
-    176,
+    696,
+    750,
+    175,
     245
    ],
    "anchor": [
-    98.0,
-    241.4
+    102.0,
+    242.4
    ],
    "pixelsPerUnit": 6.0387,
    "facing": "front",
@@ -1361,10 +1433,12 @@
    "supportFoot": "right",
    "status": "candidate",
    "provenance": {
-    "run": "gatekeeper-v3-20261105a",
+    "run": "gatekeeper-v3-20261105q",
     "pose": "challenge.offer",
-    "sha256": "631c6a7abffdef7e5734b89f733c60532543eeff1fe30de5a7c62e1ae87f9343",
-    "selected": null,
+    "sha256": "fdf10c138b25e4015c7aa9e3d3673452ab48cded081e3127d4b1f66a1599c690",
+    "selected": "930000",
+    "frameKey": null,
+    "accepted": false,
     "animationPrinciples": [
      "staging-silhouette",
      "line-of-action",
@@ -1378,14 +1452,14 @@
   },
   "left_foot": {
    "rect": [
-    132,
-    1983,
-    173,
-    239
+    645,
+    1489,
+    193,
+    241
    ],
    "anchor": [
-    71.0,
-    236.4
+    99.0,
+    237.4
    ],
    "pixelsPerUnit": 6.0387,
    "facing": "front",
@@ -1401,10 +1475,12 @@
    "supportFoot": "right",
    "status": "candidate",
    "provenance": {
-    "run": "gatekeeper-v3-20261105a",
+    "run": "gatekeeper-v3-20261105q",
     "pose": "left_foot.peak",
-    "sha256": "43daf5c1924679ee4ad6029c5f06bfa9032476a0acf3de454cf0ad0c44d4f733",
-    "selected": null,
+    "sha256": "48361671832fb3b40fd4e5f53f910a2f7a3f4bc3abf0393c9a615da5f629cd2c",
+    "selected": "930000",
+    "frameKey": null,
+    "accepted": false,
     "animationPrinciples": [
      "staging-silhouette",
      "line-of-action",
@@ -1418,13 +1494,13 @@
   },
   "left_foot_follow": {
    "rect": [
-    167,
-    1741,
-    180,
-    240
+    801,
+    1733,
+    176,
+    239
    ],
    "anchor": [
-    65.0,
+    57.0,
     236.4
    ],
    "pixelsPerUnit": 6.0387,
@@ -1435,10 +1511,12 @@
    "supportFoot": "right",
    "status": "candidate",
    "provenance": {
-    "run": "gatekeeper-v3-20261105a",
+    "run": "gatekeeper-v3-20261105q",
     "pose": "left_foot.follow",
-    "sha256": "e740ed165b4881a9535251ff74ee1715e70d29c1343a0b96d25aab5bc44f8510",
-    "selected": null,
+    "sha256": "10ea4ff3cb48cf443ee07651fe438d205cfed7f63b03ca9b691741aa172140eb",
+    "selected": "930000",
+    "frameKey": null,
+    "accepted": false,
     "animationPrinciples": [
      "staging-silhouette",
      "contrapposto",
@@ -1450,14 +1528,14 @@
   },
   "left_foot_peak": {
    "rect": [
-    132,
-    1983,
-    173,
-    239
+    645,
+    1489,
+    193,
+    241
    ],
    "anchor": [
-    71.0,
-    236.4
+    99.0,
+    237.4
    ],
    "pixelsPerUnit": 6.0387,
    "facing": "front",
@@ -1473,10 +1551,12 @@
    "supportFoot": "right",
    "status": "candidate",
    "provenance": {
-    "run": "gatekeeper-v3-20261105a",
+    "run": "gatekeeper-v3-20261105q",
     "pose": "left_foot.peak",
-    "sha256": "43daf5c1924679ee4ad6029c5f06bfa9032476a0acf3de454cf0ad0c44d4f733",
-    "selected": null,
+    "sha256": "48361671832fb3b40fd4e5f53f910a2f7a3f4bc3abf0393c9a615da5f629cd2c",
+    "selected": "930000",
+    "frameKey": null,
+    "accepted": false,
     "animationPrinciples": [
      "staging-silhouette",
      "line-of-action",
@@ -1489,13 +1569,13 @@
   },
   "left_foot_prep": {
    "rect": [
-    2,
-    1741,
-    163,
+    261,
+    1733,
+    160,
     240
    ],
    "anchor": [
-    85.0,
+    87.0,
     236.4
    ],
    "pixelsPerUnit": 6.0387,
@@ -1506,10 +1586,12 @@
    "supportFoot": "right",
    "status": "candidate",
    "provenance": {
-    "run": "gatekeeper-v3-20261105a",
+    "run": "gatekeeper-v3-20261105q",
     "pose": "left_foot.prep",
-    "sha256": "47fba5092644656c65248bab96e3a7195bf7d375cfbcd67c2856e7fce49743e2",
-    "selected": null,
+    "sha256": "a425d093e22e32038b8deeafebc2e8c13efedc9b77c8a1775941ea4e245a3421",
+    "selected": "930003",
+    "frameKey": null,
+    "accepted": false,
     "animationPrinciples": [
      "staging-silhouette",
      "contrapposto",
@@ -1521,13 +1603,13 @@
   },
   "left_foot_return": {
    "rect": [
-    665,
-    506,
-    146,
-    246
+    332,
+    750,
+    151,
+    245
    ],
    "anchor": [
-    85.0,
+    86.0,
     242.4
    ],
    "pixelsPerUnit": 6.0387,
@@ -1538,10 +1620,12 @@
    "supportFoot": "both",
    "status": "candidate",
    "provenance": {
-    "run": "gatekeeper-v3-20261105a",
+    "run": "gatekeeper-v3-20261105q",
     "pose": "left_foot.return",
-    "sha256": "3d37140800c544ccf6ee979101fc7dbf99420ba081ade6af1738c2cd433702f0",
-    "selected": null,
+    "sha256": "eaa96ac9c600d9020f7237f1b18e2a68288663cd28ede956a1899beb1fc9454b",
+    "selected": "930000",
+    "frameKey": null,
+    "accepted": false,
     "animationPrinciples": [
      "staging-silhouette",
      "contrapposto",
@@ -1553,13 +1637,13 @@
   },
   "left_hand": {
    "rect": [
-    321,
-    506,
-    175,
-    246
+    162,
+    750,
+    168,
+    245
    ],
    "anchor": [
-    52.0,
+    41.0,
     242.4
    ],
    "pixelsPerUnit": 6.0387,
@@ -1576,10 +1660,12 @@
    "supportFoot": "right",
    "status": "candidate",
    "provenance": {
-    "run": "gatekeeper-v3-20261105a",
+    "run": "gatekeeper-v3-20261105q",
     "pose": "left_hand.peak",
-    "sha256": "c4c0a5188a14056fa94326244cf4a316abcbe418298f91599f7bb86284ebb6cf",
-    "selected": null,
+    "sha256": "92925934b1d0437493b4d6224b28802173bad986a9f49e770a632d7f5bf75866",
+    "selected": "930001",
+    "frameKey": null,
+    "accepted": false,
     "animationPrinciples": [
      "staging-silhouette",
      "line-of-action",
@@ -1593,13 +1679,13 @@
   },
   "left_hand_follow": {
    "rect": [
-    675,
-    1249,
-    152,
-    243
+    2,
+    1489,
+    146,
+    242
    ],
    "anchor": [
-    50.0,
+    37.0,
     239.4
    ],
    "pixelsPerUnit": 6.0387,
@@ -1610,10 +1696,12 @@
    "supportFoot": "right",
    "status": "candidate",
    "provenance": {
-    "run": "gatekeeper-v3-20261105a",
+    "run": "gatekeeper-v3-20261105q",
     "pose": "left_hand.follow",
-    "sha256": "48c72cb845faa9482c19f668b50d55b6f4d6b78b2fc3740ec2dd6f251d8a6ab4",
-    "selected": null,
+    "sha256": "5493752a295ab3238598b123417d0a5ff736359e12d4ff312b49217a2404bb3e",
+    "selected": "930001",
+    "frameKey": null,
+    "accepted": false,
     "animationPrinciples": [
      "staging-silhouette",
      "contrapposto",
@@ -1625,13 +1713,13 @@
   },
   "left_hand_peak": {
    "rect": [
-    321,
-    506,
-    175,
-    246
+    162,
+    750,
+    168,
+    245
    ],
    "anchor": [
-    52.0,
+    41.0,
     242.4
    ],
    "pixelsPerUnit": 6.0387,
@@ -1648,10 +1736,12 @@
    "supportFoot": "right",
    "status": "candidate",
    "provenance": {
-    "run": "gatekeeper-v3-20261105a",
+    "run": "gatekeeper-v3-20261105q",
     "pose": "left_hand.peak",
-    "sha256": "c4c0a5188a14056fa94326244cf4a316abcbe418298f91599f7bb86284ebb6cf",
-    "selected": null,
+    "sha256": "92925934b1d0437493b4d6224b28802173bad986a9f49e770a632d7f5bf75866",
+    "selected": "930001",
+    "frameKey": null,
+    "accepted": false,
     "animationPrinciples": [
      "staging-silhouette",
      "line-of-action",
@@ -1664,14 +1754,14 @@
   },
   "left_hand_prep": {
    "rect": [
-    2,
-    1983,
-    128,
-    239
+    494,
+    1976,
+    125,
+    238
    ],
    "anchor": [
-    58.0,
-    236.4
+    59.0,
+    235.4
    ],
    "pixelsPerUnit": 6.0387,
    "facing": "front",
@@ -1681,10 +1771,12 @@
    "supportFoot": "right",
    "status": "candidate",
    "provenance": {
-    "run": "gatekeeper-v3-20261105a",
+    "run": "gatekeeper-v3-20261105q",
     "pose": "left_hand.prep",
-    "sha256": "ad54095f2a9cda6ab2c831495ec988f9f38cfd0207b8970dae4ce8566b0729cc",
-    "selected": null,
+    "sha256": "a2293e3c65559af9dc7dff4257eeb952d1de2ce551c07cb80b1f8ad8d59f03e3",
+    "selected": "930003",
+    "frameKey": null,
+    "accepted": false,
     "animationPrinciples": [
      "staging-silhouette",
      "contrapposto",
@@ -1696,14 +1788,14 @@
   },
   "left_hand_return": {
    "rect": [
-    498,
-    506,
-    165,
-    246
+    2,
+    253,
+    181,
+    247
    ],
    "anchor": [
-    69.0,
-    242.4
+    68.0,
+    243.4
    ],
    "pixelsPerUnit": 6.0387,
    "facing": "front",
@@ -1713,10 +1805,12 @@
    "supportFoot": "both",
    "status": "candidate",
    "provenance": {
-    "run": "gatekeeper-v3-20261105a",
+    "run": "gatekeeper-v3-20261105q",
     "pose": "left_hand.return",
-    "sha256": "7a7becd97cff6a93e616dbc21c70adfb0b0dfb8b84f209931b0b687fa78c1a66",
-    "selected": null,
+    "sha256": "38545cad12e6375ab12b4872403f141495d0914bf5b3130a5341aafa00f55a05",
+    "selected": "930400",
+    "frameKey": null,
+    "accepted": false,
     "animationPrinciples": [
      "staging-silhouette",
      "contrapposto",
@@ -1728,13 +1822,13 @@
   },
   "occupied": {
    "rect": [
-    637,
-    2224,
-    165,
+    581,
+    2217,
+    186,
     234
    ],
    "anchor": [
-    115.0,
+    111.0,
     231.4
    ],
    "pixelsPerUnit": 6.0387,
@@ -1745,10 +1839,12 @@
    "supportFoot": "left",
    "status": "candidate",
    "provenance": {
-    "run": "gatekeeper-v3-20261105a",
+    "run": "gatekeeper-v3-20261105q",
     "pose": "groove.down_l",
-    "sha256": "bff44f7d3c690c3a0019ecc26d8beac53f2249448a6668fb884961ada86f8f47",
-    "selected": null,
+    "sha256": "fa0ec487731e5503af863d6200bcf3c5f34c7460a31b74ff79f6c213b14763b5",
+    "selected": "930003",
+    "frameKey": null,
+    "accepted": false,
     "animationPrinciples": [
      "staging-silhouette",
      "contrapposto",
@@ -1762,14 +1858,14 @@
   },
   "ready": {
    "rect": [
-    813,
-    2,
+    544,
+    502,
     136,
-    248
+    246
    ],
    "anchor": [
-    75.0,
-    244.4
+    77.0,
+    243.4
    ],
    "pixelsPerUnit": 6.0387,
    "facing": "front",
@@ -1779,10 +1875,12 @@
    "supportFoot": "both",
    "status": "candidate",
    "provenance": {
-    "run": "gatekeeper-v3-20261105a",
+    "run": "gatekeeper-v3-20261105q",
     "pose": "challenge.return",
-    "sha256": "622b320c262a00c87a7e86b3015002849c2bac319d6c984dbbc32e0beb35ccda",
-    "selected": null,
+    "sha256": "655efe4729b821c26c59a9f9309f7169c4689eb639beb39d3ec1227709c4b9cc",
+    "selected": "930003",
+    "frameKey": null,
+    "accepted": false,
     "animationPrinciples": [
      "staging-silhouette",
      "contrapposto",
@@ -1795,13 +1893,13 @@
   },
   "reassurance_notice": {
    "rect": [
-    2,
-    256,
-    133,
-    248
+    674,
+    253,
+    150,
+    247
    ],
    "anchor": [
-    66.0,
+    73.0,
     244.4
    ],
    "pixelsPerUnit": 6.0387,
@@ -1812,10 +1910,12 @@
    "supportFoot": "both",
    "status": "candidate",
    "provenance": {
-    "run": "gatekeeper-v3-20261105a",
+    "run": "gatekeeper-v3-20261105q",
     "pose": "reassurance.notice",
-    "sha256": "135777b70f96a8ae4129cfa9f45196f78f47ee28bc4a184641f89f72f8f33596",
-    "selected": null,
+    "sha256": "f78757ae05421863f447beacf64f54edac84ff04d5594932a641eb20891c63ce",
+    "selected": "930000",
+    "frameKey": null,
+    "accepted": false,
     "animationPrinciples": [
      "staging-silhouette",
      "contrapposto",
@@ -1827,14 +1927,14 @@
   },
   "reassurance_open_hand": {
    "rect": [
-    2,
-    1249,
-    184,
-    245
+    746,
+    1243,
+    197,
+    243
    ],
    "anchor": [
-    96.0,
-    242.4
+    104.0,
+    240.4
    ],
    "pixelsPerUnit": 6.0387,
    "facing": "front",
@@ -1850,10 +1950,12 @@
    "supportFoot": "both",
    "status": "candidate",
    "provenance": {
-    "run": "gatekeeper-v3-20261105a",
+    "run": "gatekeeper-v3-20261105q",
     "pose": "reassurance.open_hand",
-    "sha256": "eb0dc95b42bcd2299d35dca1e92a48a6593e61ebe2fd417615391c64e6ddeb2d",
-    "selected": null,
+    "sha256": "7241c27bbf12a23b1d9b7f6c790c0ddae3c176806c1d01f2947fea9209c8d88b",
+    "selected": "930001",
+    "frameKey": null,
+    "accepted": false,
     "animationPrinciples": [
      "staging-silhouette",
      "line-of-action",
@@ -1866,14 +1968,14 @@
   },
   "reassurance_settle": {
    "rect": [
-    2,
-    2224,
-    157,
-    239
+    130,
+    2217,
+    171,
+    238
    ],
    "anchor": [
     102.0,
-    236.4
+    235.4
    ],
    "pixelsPerUnit": 6.0387,
    "facing": "front",
@@ -1883,10 +1985,12 @@
    "supportFoot": "left",
    "status": "candidate",
    "provenance": {
-    "run": "gatekeeper-v3-20261105a",
+    "run": "gatekeeper-v3-20261105q",
     "pose": "reassurance.settle",
-    "sha256": "af5ef5548c4f8ca24a0f494e23b17660a70fb1ad4d256c7d96438d7aeab3ff77",
-    "selected": null,
+    "sha256": "312980b2868033a38f9a9543d254897c9983f46d061b049531e015169e8eb258",
+    "selected": "930003",
+    "frameKey": null,
+    "accepted": false,
     "animationPrinciples": [
      "staging-silhouette",
      "contrapposto",
@@ -1898,14 +2002,14 @@
   },
   "recover": {
    "rect": [
-    2,
-    1249,
-    184,
-    245
+    746,
+    1243,
+    197,
+    243
    ],
    "anchor": [
-    96.0,
-    242.4
+    104.0,
+    240.4
    ],
    "pixelsPerUnit": 6.0387,
    "facing": "front",
@@ -1921,10 +2025,12 @@
    "supportFoot": "both",
    "status": "candidate",
    "provenance": {
-    "run": "gatekeeper-v3-20261105a",
+    "run": "gatekeeper-v3-20261105q",
     "pose": "reassurance.open_hand",
-    "sha256": "eb0dc95b42bcd2299d35dca1e92a48a6593e61ebe2fd417615391c64e6ddeb2d",
-    "selected": null,
+    "sha256": "7241c27bbf12a23b1d9b7f6c790c0ddae3c176806c1d01f2947fea9209c8d88b",
+    "selected": "930001",
+    "frameKey": null,
+    "accepted": false,
     "animationPrinciples": [
      "staging-silhouette",
      "line-of-action",
@@ -1938,14 +2044,14 @@
   },
   "retreat_backward_contact_l": {
    "rect": [
-    2,
-    754,
-    86,
-    246
+    438,
+    1489,
+    100,
+    242
    ],
    "anchor": [
-    47.3,
-    242.4
+    52.3,
+    239.4
    ],
    "pixelsPerUnit": 6.0387,
    "facing": "front_3q",
@@ -1955,10 +2061,12 @@
    "supportFoot": "both",
    "status": "candidate",
    "provenance": {
-    "run": "gatekeeper-v3-20261105a",
+    "run": "gatekeeper-v3-20261105q",
     "pose": "retreat_backward.contact_l",
-    "sha256": "fad7adb515519077f0420691abe988bc81e6a2b2c80ea81e9b39fa356305f974",
-    "selected": null,
+    "sha256": "44b5db1e0eeb28338c29ab588f4fcaf6c39c6a4d3935993c64c14b4699761245",
+    "selected": "930002",
+    "frameKey": null,
+    "accepted": false,
     "animationPrinciples": [
      "staging-silhouette",
      "contrapposto",
@@ -1971,14 +2079,14 @@
   },
   "retreat_backward_contact_r": {
    "rect": [
-    320,
-    1002,
-    128,
-    245
+    499,
+    1243,
+    125,
+    243
    ],
    "anchor": [
-    71.4,
-    242.4
+    65.4,
+    239.4
    ],
    "pixelsPerUnit": 6.0387,
    "facing": "front_3q",
@@ -1988,10 +2096,12 @@
    "supportFoot": "both",
    "status": "candidate",
    "provenance": {
-    "run": "gatekeeper-v3-20261105a",
+    "run": "gatekeeper-v3-20261105q",
     "pose": "retreat_backward.contact_r",
-    "sha256": "565f8630da9edae9e6f41ba8365ece36fcd6b8a0f23ae75e96e7147c437680c9",
-    "selected": null,
+    "sha256": "9716c719c3907625478d1d79aef8cec4f9a4b65445442b4979343db2c6b2098d",
+    "selected": "930002",
+    "frameKey": null,
+    "accepted": false,
     "animationPrinciples": [
      "staging-silhouette",
      "contrapposto",
@@ -2004,14 +2114,14 @@
   },
   "retreat_backward_down_l": {
    "rect": [
-    90,
-    754,
-    123,
-    246
+    373,
+    997,
+    121,
+    244
    ],
    "anchor": [
-    81.0,
-    243.4
+    85.0,
+    241.4
    ],
    "pixelsPerUnit": 6.0387,
    "facing": "front_3q",
@@ -2021,10 +2131,12 @@
    "supportFoot": "left",
    "status": "candidate",
    "provenance": {
-    "run": "gatekeeper-v3-20261105a",
+    "run": "gatekeeper-v3-20261105q",
     "pose": "retreat_backward.down_l",
-    "sha256": "8777c105c3a0ac98508fb65428ec15c5716e9c66d452fc517059a71cb008b7b0",
-    "selected": null,
+    "sha256": "ba68586b802b53c6bae9ef5ef1191ed4bb7dfdfd1cb57ce94298fe7cb95cc2e1",
+    "selected": "930001",
+    "frameKey": null,
+    "accepted": false,
     "animationPrinciples": [
      "staging-silhouette",
      "contrapposto",
@@ -2036,14 +2148,14 @@
   },
   "retreat_backward_down_r": {
    "rect": [
-    158,
-    1496,
-    131,
-    243
+    496,
+    997,
+    144,
+    244
    ],
    "anchor": [
-    58.0,
-    242.4
+    61.0,
+    241.4
    ],
    "pixelsPerUnit": 6.0387,
    "facing": "front_3q",
@@ -2053,10 +2165,12 @@
    "supportFoot": "right",
    "status": "candidate",
    "provenance": {
-    "run": "gatekeeper-v3-20261105a",
+    "run": "gatekeeper-v3-20261105q",
     "pose": "retreat_backward.down_r",
-    "sha256": "1da78bc9cd5133980e4676c4e040078691b2fa7e202ad4b9d916b84b03d93ff9",
-    "selected": null,
+    "sha256": "bdcd1fd231a4aab0099b380fcbf1119007b788a0930a18126b3a4ef045ff07e0",
+    "selected": "930002",
+    "frameKey": null,
+    "accepted": false,
     "animationPrinciples": [
      "staging-silhouette",
      "contrapposto",
@@ -2068,14 +2182,14 @@
   },
   "retreat_backward_pass_l": {
    "rect": [
-    215,
-    754,
-    102,
+    158,
+    502,
+    109,
     246
    ],
    "anchor": [
-    72.0,
-    242.4
+    69.0,
+    243.4
    ],
    "pixelsPerUnit": 6.0387,
    "facing": "front_3q",
@@ -2085,10 +2199,12 @@
    "supportFoot": "left",
    "status": "candidate",
    "provenance": {
-    "run": "gatekeeper-v3-20261105a",
+    "run": "gatekeeper-v3-20261105q",
     "pose": "retreat_backward.pass_l",
-    "sha256": "8c68184651347b6c0121111352cdfeaaefe47c5d2adb331b75befda5e7d10260",
-    "selected": null,
+    "sha256": "1beade8dfe11dcae9fceba4acd4b7b8d3fc2efa0d0812af0ffcf121afd04332f",
+    "selected": "930000",
+    "frameKey": null,
+    "accepted": false,
     "animationPrinciples": [
      "staging-silhouette",
      "contrapposto",
@@ -2100,14 +2216,14 @@
   },
   "retreat_backward_pass_r": {
    "rect": [
-    707,
-    2,
-    104,
-    248
+    314,
+    253,
+    103,
+    247
    ],
    "anchor": [
-    45.0,
-    244.4
+    40.0,
+    243.4
    ],
    "pixelsPerUnit": 6.0387,
    "facing": "front_3q",
@@ -2117,10 +2233,12 @@
    "supportFoot": "right",
    "status": "candidate",
    "provenance": {
-    "run": "gatekeeper-v3-20261105a",
+    "run": "gatekeeper-v3-20261105q",
     "pose": "retreat_backward.pass_r",
-    "sha256": "abe4da91427fb647f06f2d488650cb8c994e9e1ae45811ae66c37c4c93bc08c5",
-    "selected": null,
+    "sha256": "1422c183683c1bf85c28f7e18a165539170ee48050fe4847ef6a5fc8091819b3",
+    "selected": "930002",
+    "frameKey": null,
+    "accepted": false,
     "animationPrinciples": [
      "staging-silhouette",
      "contrapposto",
@@ -2132,13 +2250,13 @@
   },
   "right_foot": {
    "rect": [
-    349,
-    1741,
-    173,
+    587,
+    1733,
+    212,
     240
    ],
    "anchor": [
-    102.0,
+    106.0,
     237.4
    ],
    "pixelsPerUnit": 6.0387,
@@ -2155,10 +2273,12 @@
    "supportFoot": "left",
    "status": "candidate",
    "provenance": {
-    "run": "gatekeeper-v3-20261105a",
+    "run": "gatekeeper-v3-20261105q",
     "pose": "right_foot.peak",
-    "sha256": "f8f81cddefb8190ac66efc90d2694a26fe8cb97b888072d922483d96bc685ac9",
-    "selected": null,
+    "sha256": "912293bfd83127a7d42d9edeb078d00a937a4d42a529aabc5c8e195d342a2070",
+    "selected": "930002",
+    "frameKey": null,
+    "accepted": false,
     "animationPrinciples": [
      "staging-silhouette",
      "line-of-action",
@@ -2172,13 +2292,13 @@
   },
   "right_foot_follow": {
    "rect": [
-    472,
-    1983,
-    179,
+    2,
+    1976,
+    180,
     239
    ],
    "anchor": [
-    113.0,
+    124.0,
     236.4
    ],
    "pixelsPerUnit": 6.0387,
@@ -2189,10 +2309,12 @@
    "supportFoot": "left",
    "status": "candidate",
    "provenance": {
-    "run": "gatekeeper-v3-20261105a",
+    "run": "gatekeeper-v3-20261105q",
     "pose": "right_foot.follow",
-    "sha256": "47f16af45609cf6cf0cbc07c3307b0667b658b264f8dd19cadd3abda3f726925",
-    "selected": null,
+    "sha256": "f1bd21faef31572828beef5b32a1e405805ae791c804fc501c784cd4b1ca59f8",
+    "selected": "930000",
+    "frameKey": null,
+    "accepted": false,
     "animationPrinciples": [
      "staging-silhouette",
      "contrapposto",
@@ -2204,13 +2326,13 @@
   },
   "right_foot_peak": {
    "rect": [
-    349,
-    1741,
-    173,
+    587,
+    1733,
+    212,
     240
    ],
    "anchor": [
-    102.0,
+    106.0,
     237.4
    ],
    "pixelsPerUnit": 6.0387,
@@ -2227,10 +2349,12 @@
    "supportFoot": "left",
    "status": "candidate",
    "provenance": {
-    "run": "gatekeeper-v3-20261105a",
+    "run": "gatekeeper-v3-20261105q",
     "pose": "right_foot.peak",
-    "sha256": "f8f81cddefb8190ac66efc90d2694a26fe8cb97b888072d922483d96bc685ac9",
-    "selected": null,
+    "sha256": "912293bfd83127a7d42d9edeb078d00a937a4d42a529aabc5c8e195d342a2070",
+    "selected": "930002",
+    "frameKey": null,
+    "accepted": false,
     "animationPrinciples": [
      "staging-silhouette",
      "line-of-action",
@@ -2243,13 +2367,13 @@
   },
   "right_foot_prep": {
    "rect": [
-    307,
-    1983,
-    163,
-    239
+    423,
+    1733,
+    162,
+    240
    ],
    "anchor": [
-    78.0,
+    75.0,
     236.4
    ],
    "pixelsPerUnit": 6.0387,
@@ -2260,10 +2384,12 @@
    "supportFoot": "left",
    "status": "candidate",
    "provenance": {
-    "run": "gatekeeper-v3-20261105a",
+    "run": "gatekeeper-v3-20261105q",
     "pose": "right_foot.prep",
-    "sha256": "0b475c3cb8a19a1ab2b8c453c6de239970373aa0b4ba623212f1727d42aae99a",
-    "selected": null,
+    "sha256": "409c93979056e81046c3f56e492c1e06efa29e9038d063f13255bcaa4afcc81d",
+    "selected": "930003",
+    "frameKey": null,
+    "accepted": false,
     "animationPrinciples": [
      "staging-silhouette",
      "contrapposto",
@@ -2275,13 +2401,13 @@
   },
   "right_foot_return": {
    "rect": [
-    813,
-    506,
-    147,
-    246
+    485,
+    750,
+    104,
+    245
    ],
    "anchor": [
-    64.0,
+    49.0,
     242.4
    ],
    "pixelsPerUnit": 6.0387,
@@ -2292,10 +2418,12 @@
    "supportFoot": "both",
    "status": "candidate",
    "provenance": {
-    "run": "gatekeeper-v3-20261105a",
+    "run": "gatekeeper-v3-20261105q",
     "pose": "right_foot.return",
-    "sha256": "c18191cad1758c0a0df4f5ff74b9140c26c5fc7a36e2f00623fd30b936f7355c",
-    "selected": null,
+    "sha256": "74af83db8d2e04c7d8078980dc5d415e54c40311fe46fdafc9790509a4948f76",
+    "selected": "930003",
+    "frameKey": null,
+    "accepted": false,
     "animationPrinciples": [
      "staging-silhouette",
      "contrapposto",
@@ -2307,13 +2435,13 @@
   },
   "right_hand": {
    "rect": [
-    2,
-    1002,
-    175,
-    245
+    826,
+    253,
+    170,
+    246
    ],
    "anchor": [
-    123.0,
+    124.0,
     242.4
    ],
    "pixelsPerUnit": 6.0387,
@@ -2330,10 +2458,12 @@
    "supportFoot": "left",
    "status": "candidate",
    "provenance": {
-    "run": "gatekeeper-v3-20261105a",
+    "run": "gatekeeper-v3-20261105q",
     "pose": "right_hand.peak",
-    "sha256": "d0cab4bac9c7b8d9add448fe0756bf55678ceb849093c01ba8f3bd6fde51679f",
-    "selected": null,
+    "sha256": "f98760c4ce8d8e5c0d0a66815939e0c9d765c346770a48708f0cbc5c53b7d123",
+    "selected": "930001",
+    "frameKey": null,
+    "accepted": false,
     "animationPrinciples": [
      "staging-silhouette",
      "line-of-action",
@@ -2347,13 +2477,13 @@
   },
   "right_hand_follow": {
    "rect": [
-    829,
-    1249,
-    152,
-    243
+    150,
+    1489,
+    147,
+    242
    ],
    "anchor": [
-    102.0,
+    105.0,
     239.4
    ],
    "pixelsPerUnit": 6.0387,
@@ -2364,10 +2494,12 @@
    "supportFoot": "left",
    "status": "candidate",
    "provenance": {
-    "run": "gatekeeper-v3-20261105a",
+    "run": "gatekeeper-v3-20261105q",
     "pose": "right_hand.follow",
-    "sha256": "afffc2c639f947c93493d279247c87e7e9a336dd463cb3f233ae2453f15a8a85",
-    "selected": null,
+    "sha256": "f964d73317837afbb8bcec3e8eb1955289dbf5ea3a5709ec5f5d8fb2dd9ff4df",
+    "selected": "930001",
+    "frameKey": null,
+    "accepted": false,
     "animationPrinciples": [
      "staging-silhouette",
      "contrapposto",
@@ -2379,13 +2511,13 @@
   },
   "right_hand_peak": {
    "rect": [
-    2,
-    1002,
-    175,
-    245
+    826,
+    253,
+    170,
+    246
    ],
    "anchor": [
-    123.0,
+    124.0,
     242.4
    ],
    "pixelsPerUnit": 6.0387,
@@ -2402,10 +2534,12 @@
    "supportFoot": "left",
    "status": "candidate",
    "provenance": {
-    "run": "gatekeeper-v3-20261105a",
+    "run": "gatekeeper-v3-20261105q",
     "pose": "right_hand.peak",
-    "sha256": "d0cab4bac9c7b8d9add448fe0756bf55678ceb849093c01ba8f3bd6fde51679f",
-    "selected": null,
+    "sha256": "f98760c4ce8d8e5c0d0a66815939e0c9d765c346770a48708f0cbc5c53b7d123",
+    "selected": "930001",
+    "frameKey": null,
+    "accepted": false,
     "animationPrinciples": [
      "staging-silhouette",
      "line-of-action",
@@ -2418,14 +2552,14 @@
   },
   "right_hand_prep": {
    "rect": [
-    737,
-    1496,
-    128,
-    240
+    621,
+    1976,
+    148,
+    238
    ],
    "anchor": [
-    70.0,
-    236.4
+    75.0,
+    235.4
    ],
    "pixelsPerUnit": 6.0387,
    "facing": "front",
@@ -2435,10 +2569,12 @@
    "supportFoot": "left",
    "status": "candidate",
    "provenance": {
-    "run": "gatekeeper-v3-20261105a",
+    "run": "gatekeeper-v3-20261105q",
     "pose": "right_hand.prep",
-    "sha256": "54becfe9f238e21a926d0c91a2814fc293d4a7c0586483d56906c47720a4f03d",
-    "selected": null,
+    "sha256": "42ca708b2b88d77c24c335695b3f15b58e78151ec1cdd6c8d01d06afde7f813a",
+    "selected": "930001",
+    "frameKey": null,
+    "accepted": false,
     "animationPrinciples": [
      "staging-silhouette",
      "contrapposto",
@@ -2450,14 +2586,14 @@
   },
   "right_hand_return": {
    "rect": [
-    266,
     2,
-    163,
-    248
+    502,
+    154,
+    246
    ],
    "anchor": [
-    96.0,
-    244.4
+    86.0,
+    243.4
    ],
    "pixelsPerUnit": 6.0387,
    "facing": "front",
@@ -2467,10 +2603,12 @@
    "supportFoot": "both",
    "status": "candidate",
    "provenance": {
-    "run": "gatekeeper-v3-20261105a",
+    "run": "gatekeeper-v3-20261105q",
     "pose": "right_hand.return",
-    "sha256": "3dafced09030c9dd500edd6cb725d2dc079c3a7a4559085e25f22fef05c97836",
-    "selected": null,
+    "sha256": "197c62f9a7ca98b808a829eb579e47ff72320bc47441ba12525a17b465b3a65a",
+    "selected": "930000",
+    "frameKey": null,
+    "accepted": false,
     "animationPrinciples": [
      "staging-silhouette",
      "contrapposto",
@@ -2482,14 +2620,14 @@
   },
   "settle": {
    "rect": [
-    498,
-    506,
-    165,
-    246
+    2,
+    253,
+    181,
+    247
    ],
    "anchor": [
-    69.0,
-    242.4
+    68.0,
+    243.4
    ],
    "pixelsPerUnit": 6.0387,
    "facing": "front",
@@ -2499,10 +2637,12 @@
    "supportFoot": "both",
    "status": "candidate",
    "provenance": {
-    "run": "gatekeeper-v3-20261105a",
+    "run": "gatekeeper-v3-20261105q",
     "pose": "left_hand.return",
-    "sha256": "7a7becd97cff6a93e616dbc21c70adfb0b0dfb8b84f209931b0b687fa78c1a66",
-    "selected": null,
+    "sha256": "38545cad12e6375ab12b4872403f141495d0914bf5b3130a5341aafa00f55a05",
+    "selected": "930400",
+    "frameKey": null,
+    "accepted": false,
     "animationPrinciples": [
      "staging-silhouette",
      "contrapposto",
@@ -2515,13 +2655,13 @@
   },
   "turn_in": {
    "rect": [
-    506,
-    1249,
-    167,
+    2,
+    1243,
+    172,
     244
    ],
    "anchor": [
-    56.0,
+    49.0,
     241.4
    ],
    "pixelsPerUnit": 6.0387,
@@ -2532,10 +2672,12 @@
    "supportFoot": "both",
    "status": "candidate",
    "provenance": {
-    "run": "gatekeeper-v3-20261105a",
+    "run": "gatekeeper-v3-20261105q",
     "pose": "finish_turn.turn_in",
-    "sha256": "2aa8e3b1bc4d998c8559e6970b0cf0d16c33cb2ad50e193b1fca0873d026dcee",
-    "selected": null,
+    "sha256": "5fd4819e66110e079512458e978f8675c9dc8a870135ed4b466458d3d064b7db",
+    "selected": "930003",
+    "frameKey": null,
+    "accepted": false,
     "animationPrinciples": [
      "staging-silhouette",
      "contrapposto",
@@ -2548,13 +2690,13 @@
   },
   "turn_out": {
    "rect": [
-    188,
-    1249,
-    168,
-    245
+    176,
+    1243,
+    165,
+    244
    ],
    "anchor": [
-    112.0,
+    118.0,
     241.4
    ],
    "pixelsPerUnit": 6.0387,
@@ -2565,10 +2707,12 @@
    "supportFoot": "both",
    "status": "candidate",
    "provenance": {
-    "run": "gatekeeper-v3-20261105a",
+    "run": "gatekeeper-v3-20261105q",
     "pose": "finish_turn.turn_out",
-    "sha256": "2cafe2b9f0f8b5f91b1e5a4ca8782ed332ad1bc7467dfaa25814811478d2e375",
-    "selected": null,
+    "sha256": "09d03291ef0c21f5438887473c092799c66d864a9fe24a3bc857a58708f7fba8",
+    "selected": "930002",
+    "frameKey": null,
+    "accepted": false,
     "animationPrinciples": [
      "staging-silhouette",
      "contrapposto",
@@ -2581,13 +2725,13 @@
   },
   "watch_hold_l": {
    "rect": [
-    405,
-    1496,
-    101,
+    540,
+    1489,
+    103,
     242
    ],
    "anchor": [
-    62.0,
+    65.0,
     239.4
    ],
    "pixelsPerUnit": 6.0387,
@@ -2598,10 +2742,12 @@
    "supportFoot": "left",
    "status": "candidate",
    "provenance": {
-    "run": "gatekeeper-v3-20261105a",
+    "run": "gatekeeper-v3-20261105q",
     "pose": "watch.hold_l",
-    "sha256": "bf4184447cefc4732ce7ad161fdf3622bd11edc0982c8184be72ecd8f6a120bc",
-    "selected": null,
+    "sha256": "0d275c333c2279b8a755caa08d4432996bd1e2d9a7f0a2a13aacb8f35ff4fb2b",
+    "selected": "930002",
+    "frameKey": null,
+    "accepted": false,
     "animationPrinciples": [
      "staging-silhouette",
      "contrapposto",
@@ -2614,14 +2760,14 @@
   },
   "watch_hold_r": {
    "rect": [
-    508,
-    1496,
+    840,
+    1489,
     119,
-    242
+    241
    ],
    "anchor": [
-    52.0,
-    239.4
+    47.0,
+    238.4
    ],
    "pixelsPerUnit": 6.0387,
    "facing": "front_3q",
@@ -2631,10 +2777,12 @@
    "supportFoot": "right",
    "status": "candidate",
    "provenance": {
-    "run": "gatekeeper-v3-20261105a",
+    "run": "gatekeeper-v3-20261105q",
     "pose": "watch.hold_r",
-    "sha256": "66c303c96b1147d77f5fbc40a9e91994a0dd566f211147c794aa5fca189e9c16",
-    "selected": null,
+    "sha256": "cdcd4be627e7d08d5869dfdd3e669ab1571b86c99edf46cc1444e73981148e8f",
+    "selected": "930001",
+    "frameKey": null,
+    "accepted": false,
     "animationPrinciples": [
      "staging-silhouette",
      "contrapposto",
@@ -2647,14 +2795,14 @@
   },
   "watch_left": {
    "rect": [
-    450,
-    1002,
-    100,
+    591,
+    750,
+    103,
     245
    ],
    "anchor": [
-    64.0,
-    242.4
+    63.0,
+    241.4
    ],
    "pixelsPerUnit": 6.0387,
    "facing": "front_3q",
@@ -2664,10 +2812,12 @@
    "supportFoot": "left",
    "status": "candidate",
    "provenance": {
-    "run": "gatekeeper-v3-20261105a",
+    "run": "gatekeeper-v3-20261105q",
     "pose": "watch.shift_l",
-    "sha256": "2837c8933270f7f7d027fd7c584952523a89f95d429648c17dbd22111f866f1d",
-    "selected": null,
+    "sha256": "e53d02b513efb2aeb70c9b9c88903c383d9ab6d02467eb4ea1d70bf99120abf6",
+    "selected": "930003",
+    "frameKey": null,
+    "accepted": false,
     "animationPrinciples": [
      "staging-silhouette",
      "contrapposto",
@@ -2681,14 +2831,14 @@
   },
   "watch_right": {
    "rect": [
-    552,
-    1002,
-    113,
-    245
+    642,
+    997,
+    114,
+    244
    ],
    "anchor": [
-    47.0,
-    242.4
+    42.0,
+    241.4
    ],
    "pixelsPerUnit": 6.0387,
    "facing": "front_3q",
@@ -2698,10 +2848,12 @@
    "supportFoot": "right",
    "status": "candidate",
    "provenance": {
-    "run": "gatekeeper-v3-20261105a",
+    "run": "gatekeeper-v3-20261105q",
     "pose": "watch.shift_r",
-    "sha256": "b4fec7266f7fd33162ae44b72c317238e6b1c88321d82e410bf36f1c5a02b47c",
-    "selected": null,
+    "sha256": "2a7bb6818a353dd768dcde87e6de0a4f129bc5da7fd3ce45d548f7a3c878cc6d",
+    "selected": "930003",
+    "frameKey": null,
+    "accepted": false,
     "animationPrinciples": [
      "staging-silhouette",
      "contrapposto",
@@ -2715,14 +2867,14 @@
   },
   "watch_shift_l": {
    "rect": [
-    450,
-    1002,
-    100,
+    591,
+    750,
+    103,
     245
    ],
    "anchor": [
-    64.0,
-    242.4
+    63.0,
+    241.4
    ],
    "pixelsPerUnit": 6.0387,
    "facing": "front_3q",
@@ -2732,10 +2884,12 @@
    "supportFoot": "left",
    "status": "candidate",
    "provenance": {
-    "run": "gatekeeper-v3-20261105a",
+    "run": "gatekeeper-v3-20261105q",
     "pose": "watch.shift_l",
-    "sha256": "2837c8933270f7f7d027fd7c584952523a89f95d429648c17dbd22111f866f1d",
-    "selected": null,
+    "sha256": "e53d02b513efb2aeb70c9b9c88903c383d9ab6d02467eb4ea1d70bf99120abf6",
+    "selected": "930003",
+    "frameKey": null,
+    "accepted": false,
     "animationPrinciples": [
      "staging-silhouette",
      "contrapposto",
@@ -2748,14 +2902,14 @@
   },
   "watch_shift_r": {
    "rect": [
-    552,
-    1002,
-    113,
-    245
+    642,
+    997,
+    114,
+    244
    ],
    "anchor": [
-    47.0,
-    242.4
+    42.0,
+    241.4
    ],
    "pixelsPerUnit": 6.0387,
    "facing": "front_3q",
@@ -2765,10 +2919,12 @@
    "supportFoot": "right",
    "status": "candidate",
    "provenance": {
-    "run": "gatekeeper-v3-20261105a",
+    "run": "gatekeeper-v3-20261105q",
     "pose": "watch.shift_r",
-    "sha256": "b4fec7266f7fd33162ae44b72c317238e6b1c88321d82e410bf36f1c5a02b47c",
-    "selected": null,
+    "sha256": "2a7bb6818a353dd768dcde87e6de0a4f129bc5da7fd3ce45d548f7a3c878cc6d",
+    "selected": "930003",
+    "frameKey": null,
+    "accepted": false,
     "animationPrinciples": [
      "staging-silhouette",
      "contrapposto",
@@ -2781,13 +2937,13 @@
   },
   "yield_side_contact_l": {
    "rect": [
-    310,
-    2224,
-    160,
-    237
+    184,
+    1976,
+    153,
+    239
    ],
    "anchor": [
-    93.6,
+    88.6,
     236.4
    ],
    "pixelsPerUnit": 6.0387,
@@ -2798,10 +2954,12 @@
    "supportFoot": "both",
    "status": "candidate",
    "provenance": {
-    "run": "gatekeeper-v3-20261105a",
+    "run": "gatekeeper-v3-20261105q",
     "pose": "yield_side.contact_l",
-    "sha256": "e9e686f887364a04066bcbed1aab144ca6c567626f79c699f25a07f920c2c768",
-    "selected": null,
+    "sha256": "0d019f3c6f3ea33d7d409b85bcf05b88b2276281d69bb7cbc20a66143fd613d7",
+    "selected": "930003",
+    "frameKey": null,
+    "accepted": false,
     "animationPrinciples": [
      "staging-silhouette",
      "contrapposto",
@@ -2814,14 +2972,14 @@
   },
   "yield_side_contact_r": {
    "rect": [
-    805,
-    1741,
-    120,
-    240
+    771,
+    1976,
+    127,
+    238
    ],
    "anchor": [
-    44.8,
-    236.4
+    45.8,
+    235.4
    ],
    "pixelsPerUnit": 6.0387,
    "facing": "front_3q",
@@ -2831,10 +2989,12 @@
    "supportFoot": "both",
    "status": "candidate",
    "provenance": {
-    "run": "gatekeeper-v3-20261105a",
+    "run": "gatekeeper-v3-20261105q",
     "pose": "yield_side.contact_r",
-    "sha256": "191f52f3476481048bec704ef33300d6aaa032072f43daab14ce093647445b6e",
-    "selected": null,
+    "sha256": "5ec694ee2bd6a132a4d532c9b4549132bb13843eb31844b607ad78272078a75a",
+    "selected": "930002",
+    "frameKey": null,
+    "accepted": false,
     "animationPrinciples": [
      "staging-silhouette",
      "contrapposto",
@@ -2847,14 +3007,14 @@
   },
   "yield_side_down_l": {
    "rect": [
-    659,
-    1741,
-    144,
-    240
+    339,
+    1976,
+    153,
+    239
    ],
    "anchor": [
-    75.0,
-    237.4
+    72.0,
+    236.4
    ],
    "pixelsPerUnit": 6.0387,
    "facing": "front_3q",
@@ -2864,10 +3024,12 @@
    "supportFoot": "left",
    "status": "candidate",
    "provenance": {
-    "run": "gatekeeper-v3-20261105a",
+    "run": "gatekeeper-v3-20261105q",
     "pose": "yield_side.down_l",
-    "sha256": "91482c01e7eb65eb72f851b232a644f7752a7d454522f5e5ee32eb5b1ffaae15",
-    "selected": null,
+    "sha256": "b6b30ebeee43b0173ac9c13a41086d291cfa210654b975797674cfcd9a55092b",
+    "selected": "930003",
+    "frameKey": null,
+    "accepted": false,
     "animationPrinciples": [
      "staging-silhouette",
      "contrapposto",
@@ -2879,14 +3041,14 @@
   },
   "yield_side_down_r": {
    "rect": [
-    291,
-    1496,
-    112,
-    242
+    626,
+    1243,
+    118,
+    243
    ],
    "anchor": [
     23.0,
-    241.4
+    240.4
    ],
    "pixelsPerUnit": 6.0387,
    "facing": "front_3q",
@@ -2896,10 +3058,12 @@
    "supportFoot": "right",
    "status": "candidate",
    "provenance": {
-    "run": "gatekeeper-v3-20261105a",
+    "run": "gatekeeper-v3-20261105q",
     "pose": "yield_side.down_r",
-    "sha256": "5dd47ea650d582f550509e76ee548c53f22107c1d498b999ec1079c18b4ad781",
-    "selected": null,
+    "sha256": "faa7fa2e52354d32ba57320677c1c778d18b7039f2a4077f59ba953144ccdbba",
+    "selected": "930003",
+    "frameKey": null,
+    "accepted": false,
     "animationPrinciples": [
      "staging-silhouette",
      "contrapposto",
@@ -2913,11 +3077,11 @@
    "rect": [
     2,
     2,
-    133,
-    252
+    131,
+    249
    ],
    "anchor": [
-    83.0,
+    77.0,
     244.4
    ],
    "pixelsPerUnit": 6.0387,
@@ -2928,10 +3092,12 @@
    "supportFoot": "left",
    "status": "candidate",
    "provenance": {
-    "run": "gatekeeper-v3-20261105a",
+    "run": "gatekeeper-v3-20261105q",
     "pose": "yield_side.pass_l",
-    "sha256": "73027b4ce969c951e7521bed463e3f20cacf12e8c361c39766906528ec62d66d",
-    "selected": null,
+    "sha256": "0af79124ce4dbaffdfdb40a82ff5be61e209ca79dc863e456213406b9a57ae0d",
+    "selected": "930000",
+    "frameKey": null,
+    "accepted": false,
     "animationPrinciples": [
      "staging-silhouette",
      "contrapposto",
@@ -2943,13 +3109,13 @@
   },
   "yield_side_pass_r": {
    "rect": [
-    319,
-    754,
-    123,
+    269,
+    502,
+    151,
     246
    ],
    "anchor": [
-    61.0,
+    58.0,
     243.4
    ],
    "pixelsPerUnit": 6.0387,
@@ -2960,10 +3126,12 @@
    "supportFoot": "right",
    "status": "candidate",
    "provenance": {
-    "run": "gatekeeper-v3-20261105a",
+    "run": "gatekeeper-v3-20261105q",
     "pose": "yield_side.pass_r",
-    "sha256": "f674bb0b47a51ba79c4a804b8c33bfaf614ab183c7c2d3ef98aaade1e82e7ba8",
-    "selected": null,
+    "sha256": "b2e9bf80ae138fa4603c4b491cf3f59f8fe22ee8123c9afd1b8442a3fd765104",
+    "selected": "930000",
+    "frameKey": null,
+    "accepted": false,
     "animationPrinciples": [
      "staging-silhouette",
      "line-of-action",

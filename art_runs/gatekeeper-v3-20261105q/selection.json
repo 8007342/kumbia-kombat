@@ -1,0 +1,262 @@
+{
+ "groove.down_l": {
+  "k": "930003",
+  "score": 4.1
+ },
+ "groove.pass_l": {
+  "k": "930001",
+  "score": 2.1
+ },
+ "groove.up_l": {
+  "k": "930001",
+  "score": 2.3
+ },
+ "groove.pass_l2": {
+  "k": "930000",
+  "by": "eye"
+ },
+ "groove.down_r": {
+  "k": "930001",
+  "by": "eye"
+ },
+ "groove.pass_r": {
+  "k": "930001",
+  "score": 1.5
+ },
+ "groove.up_r": {
+  "k": "930000",
+  "score": 26.1
+ },
+ "groove.pass_r2": {
+  "k": "930001",
+  "score": 6.0
+ },
+ "left_hand.prep": {
+  "k": "930003",
+  "score": 8.7
+ },
+ "left_hand.peak": {
+  "k": "930001",
+  "by": "eye"
+ },
+ "left_hand.follow": {
+  "k": "930001",
+  "by": "eye"
+ },
+ "left_hand.return": {
+  "k": "930400",
+  "by": "eye"
+ },
+ "right_hand.prep": {
+  "k": "930001",
+  "by": "eye"
+ },
+ "right_hand.peak": {
+  "k": "930001",
+  "by": "eye"
+ },
+ "right_hand.follow": {
+  "k": "930001",
+  "by": "eye"
+ },
+ "right_hand.return": {
+  "k": "930000",
+  "score": 2.7
+ },
+ "left_foot.prep": {
+  "k": "930003",
+  "score": 2.3
+ },
+ "left_foot.peak": {
+  "k": "930000",
+  "score": 7.8
+ },
+ "left_foot.follow": {
+  "k": "930000",
+  "by": "eye"
+ },
+ "left_foot.return": {
+  "k": "930000",
+  "score": 2.3
+ },
+ "right_foot.prep": {
+  "k": "930003",
+  "by": "eye"
+ },
+ "right_foot.peak": {
+  "k": "930002",
+  "score": 7.5
+ },
+ "right_foot.follow": {
+  "k": "930000",
+  "score": 10.8
+ },
+ "right_foot.return": {
+  "k": "930003",
+  "by": "eye"
+ },
+ "enter_forward.contact_l": {
+  "k": "930003",
+  "score": 2.2
+ },
+ "enter_forward.down_l": {
+  "k": "930003",
+  "score": 4.1
+ },
+ "enter_forward.pass_l": {
+  "k": "930001",
+  "score": 1.7
+ },
+ "enter_forward.contact_r": {
+  "k": "930000",
+  "score": 1.3
+ },
+ "enter_forward.down_r": {
+  "k": "930000",
+  "score": 1.7
+ },
+ "enter_forward.pass_r": {
+  "k": "930002",
+  "score": 1.1
+ },
+ "retreat_backward.contact_l": {
+  "k": "930002",
+  "score": 10.9
+ },
+ "retreat_backward.down_l": {
+  "k": "930001",
+  "by": "eye"
+ },
+ "retreat_backward.pass_l": {
+  "k": "930000",
+  "score": 7.5
+ },
+ "retreat_backward.contact_r": {
+  "k": "930002",
+  "score": 1.0
+ },
+ "retreat_backward.down_r": {
+  "k": "930002",
+  "score": 1.6
+ },
+ "retreat_backward.pass_r": {
+  "k": "930002",
+  "score": 12.7
+ },
+ "yield_side.contact_l": {
+  "k": "930003",
+  "score": 2.2
+ },
+ "yield_side.down_l": {
+  "k": "930003",
+  "score": 4.3
+ },
+ "yield_side.pass_l": {
+  "k": "930000",
+  "score": 2.0
+ },
+ "yield_side.contact_r": {
+  "k": "930002",
+  "score": 21.9
+ },
+ "yield_side.down_r": {
+  "k": "930003",
+  "score": 4.9
+ },
+ "yield_side.pass_r": {
+  "k": "930000",
+  "by": "eye"
+ },
+ "watch.shift_l": {
+  "k": "930003",
+  "score": 10.8
+ },
+ "watch.hold_l": {
+  "k": "930002",
+  "by": "eye"
+ },
+ "watch.shift_r": {
+  "k": "930003",
+  "by": "eye"
+ },
+ "watch.hold_r": {
+  "k": "930001",
+  "by": "eye"
+ },
+ "clap.open": {
+  "k": "930404",
+  "by": "eye",
+  "mirrored": true
+ },
+ "clap.close": {
+  "k": "930403",
+  "by": "eye",
+  "mirrored": true
+ },
+ "clap.contact": {
+  "k": "930401",
+  "by": "eye",
+  "mirrored": true
+ },
+ "clap.release": {
+  "k": "930402",
+  "by": "eye",
+  "mirrored": true
+ },
+ "challenge.load": {
+  "k": "930000",
+  "score": 2.1
+ },
+ "challenge.proud": {
+  "k": "930000",
+  "score": 2.3
+ },
+ "challenge.offer": {
+  "k": "930000",
+  "score": 24.0
+ },
+ "challenge.return": {
+  "k": "930003",
+  "score": 1.9
+ },
+ "approval.load": {
+  "k": "930001",
+  "score": 2.6
+ },
+ "approval.nod": {
+  "k": "930000",
+  "score": 2.8
+ },
+ "approval.release": {
+  "k": "930003",
+  "score": 7.8
+ },
+ "reassurance.notice": {
+  "k": "930000",
+  "score": 5.0
+ },
+ "reassurance.open_hand": {
+  "k": "930001",
+  "score": 3.5
+ },
+ "reassurance.settle": {
+  "k": "930003",
+  "score": 3.3
+ },
+ "finish_turn.finish_a": {
+  "k": "930405",
+  "by": "eye"
+ },
+ "finish_turn.finish_b": {
+  "k": "930404",
+  "by": "eye"
+ },
+ "finish_turn.turn_in": {
+  "k": "930003",
+  "score": 11.4
+ },
+ "finish_turn.turn_out": {
+  "k": "930002",
+  "score": 16.7
+ }
+}

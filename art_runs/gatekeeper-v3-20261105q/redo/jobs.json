@@ -1,0 +1,114 @@
+[
+ {
+  "pose": "left_hand.return",
+  "args": {
+   "workflow": "tool/art/workflows/qwen-frame.api.json",
+   "tier": "I1",
+   "count": 6,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105q/in/sheet_front.png",
+    "pose_proxy": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105q/in/left_hand.return.skeleton.png"
+   },
+   "overrides": {
+    "seed": 930400,
+    "prompt": "Image 2 is a coloured stick-figure pose skeleton. Draw the man from image 1 standing in that exact pose, at the same size and position in the frame as the skeleton, with empty background around him: his whole figure fits inside the frame, hat, both shoes and both hands fully visible with margin on every side. left arm sweeping down in an arc at shoulder height with the elbow bent, right hand low on the hip, both feet flat and close, torso returning upright. Sides are his own: he faces the viewer, so his left is on the right of the picture. He keeps his short, stocky, broad body, big belly, face, thin pencil mustache, black hair, panama hat with teal band, purple short-sleeved guayabera with collar, pockets and teal embroidered panels, cream pleated trousers, teal shoes and thick dark ink outline, exactly as in image 1. Same pixel art style with crisp pixel clusters and cel shading. He has exactly two arms and two hands, each hand complete with fingers. Clean-shaven apart from the mustache, no beard, no goatee. Do not draw the skeleton. Plain light grey background, full body."
+   }
+  }
+ },
+ {
+  "pose": "clap.open",
+  "args": {
+   "workflow": "tool/art/workflows/qwen-frame.api.json",
+   "tier": "I1",
+   "count": 6,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105q/in/sheet_front.png",
+    "pose_proxy": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105q/in/clap.open.skeleton.png"
+   },
+   "overrides": {
+    "seed": 930400,
+    "prompt": "Image 2 is a coloured stick-figure pose skeleton. Draw the man from image 1 standing in that exact pose, at the same size and position in the frame as the skeleton, with empty background around him: his whole figure fits inside the frame, hat, both shoes and both hands fully visible with margin on every side. standing square and upright, his right forearm raised in front of the chest with the elbow out, the left arm relaxed, chin up. Sides are his own: he faces the viewer, so his left is on the right of the picture. He keeps his short, stocky, broad body, big belly, face, thin pencil mustache, black hair, panama hat with teal band, purple short-sleeved guayabera with collar, pockets and teal embroidered panels, cream pleated trousers, teal shoes and thick dark ink outline, exactly as in image 1. Same pixel art style with crisp pixel clusters and cel shading. He has exactly two arms and two hands, each hand complete with fingers. Clean-shaven apart from the mustache, no beard, no goatee. Do not draw the skeleton. Plain light grey background, full body."
+   }
+  }
+ },
+ {
+  "pose": "clap.close",
+  "args": {
+   "workflow": "tool/art/workflows/qwen-frame.api.json",
+   "tier": "I1",
+   "count": 6,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105q/in/sheet_front.png",
+    "pose_proxy": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105q/in/clap.close.skeleton.png"
+   },
+   "overrides": {
+    "seed": 930400,
+    "prompt": "Image 2 is a coloured stick-figure pose skeleton. Draw the man from image 1 standing in that exact pose, at the same size and position in the frame as the skeleton, with empty background around him: his whole figure fits inside the frame, hat, both shoes and both hands fully visible with margin on every side. his right forearm crossing the front of the chest with the elbow out, the left arm relaxed, knees starting to bend, head starting to nod. Sides are his own: he faces the viewer, so his left is on the right of the picture. He keeps his short, stocky, broad body, big belly, face, thin pencil mustache, black hair, panama hat with teal band, purple short-sleeved guayabera with collar, pockets and teal embroidered panels, cream pleated trousers, teal shoes and thick dark ink outline, exactly as in image 1. Same pixel art style with crisp pixel clusters and cel shading. He has exactly two arms and two hands, each hand complete with fingers. Clean-shaven apart from the mustache, no beard, no goatee. Do not draw the skeleton. Plain light grey background, full body."
+   }
+  }
+ },
+ {
+  "pose": "clap.contact",
+  "args": {
+   "workflow": "tool/art/workflows/qwen-frame.api.json",
+   "tier": "I1",
+   "count": 6,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105q/in/sheet_front.png",
+    "pose_proxy": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105q/in/clap.contact.skeleton.png"
+   },
+   "overrides": {
+    "seed": 930400,
+    "prompt": "Image 2 is a coloured stick-figure pose skeleton. Draw the man from image 1 standing in that exact pose, at the same size and position in the frame as the skeleton, with empty background around him: his whole figure fits inside the frame, hat, both shoes and both hands fully visible with margin on every side. his right forearm across the front of the chest with the elbow out and the right hand at the very centre of the chest, the left arm relaxed, both knees dipped, head nodding down with a smile. Sides are his own: he faces the viewer, so his left is on the right of the picture. He keeps his short, stocky, broad body, big belly, face, thin pencil mustache, black hair, panama hat with teal band, purple short-sleeved guayabera with collar, pockets and teal embroidered panels, cream pleated trousers, teal shoes and thick dark ink outline, exactly as in image 1. Same pixel art style with crisp pixel clusters and cel shading. He has exactly two arms and two hands, each hand complete with fingers. Clean-shaven apart from the mustache, no beard, no goatee. Do not draw the skeleton. Plain light grey background, full body."
+   }
+  }
+ },
+ {
+  "pose": "clap.release",
+  "args": {
+   "workflow": "tool/art/workflows/qwen-frame.api.json",
+   "tier": "I1",
+   "count": 6,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105q/in/sheet_front.png",
+    "pose_proxy": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105q/in/clap.release.skeleton.png"
+   },
+   "overrides": {
+    "seed": 930400,
+    "prompt": "Image 2 is a coloured stick-figure pose skeleton. Draw the man from image 1 standing in that exact pose, at the same size and position in the frame as the skeleton, with empty background around him: his whole figure fits inside the frame, hat, both shoes and both hands fully visible with margin on every side. his right forearm in front of the chest with the elbow out, the left arm relaxed, knees rising, head level. Sides are his own: he faces the viewer, so his left is on the right of the picture. He keeps his short, stocky, broad body, big belly, face, thin pencil mustache, black hair, panama hat with teal band, purple short-sleeved guayabera with collar, pockets and teal embroidered panels, cream pleated trousers, teal shoes and thick dark ink outline, exactly as in image 1. Same pixel art style with crisp pixel clusters and cel shading. He has exactly two arms and two hands, each hand complete with fingers. Clean-shaven apart from the mustache, no beard, no goatee. Do not draw the skeleton. Plain light grey background, full body."
+   }
+  }
+ },
+ {
+  "pose": "finish_turn.finish_a",
+  "args": {
+   "workflow": "tool/art/workflows/qwen-frame.api.json",
+   "tier": "I1",
+   "count": 6,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105q/in/sheet_front.png",
+    "pose_proxy": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105q/in/finish_turn.finish_a.skeleton.png"
+   },
+   "overrides": {
+    "seed": 930400,
+    "prompt": "Image 2 is a coloured stick-figure pose skeleton. Draw the man from image 1 standing in that exact pose, at the same size and position in the frame as the skeleton, with empty background around him: his whole figure fits inside the frame, hat, both shoes and both hands fully visible with margin on every side. weight on the straight right leg, left heel set forward with the toe up, left fist on the hip, right hand rising beside the head on its way to the hat brim, chest proud, chin up. Sides are his own: he faces the viewer, so his left is on the right of the picture. He keeps his short, stocky, broad body, big belly, face, thin pencil mustache, black hair, panama hat with teal band, purple short-sleeved guayabera with collar, pockets and teal embroidered panels, cream pleated trousers, teal shoes and thick dark ink outline, exactly as in image 1. Same pixel art style with crisp pixel clusters and cel shading. He has exactly two arms and two hands, each hand complete with fingers. Clean-shaven apart from the mustache, no beard, no goatee. Do not draw the skeleton. Plain light grey background, full body."
+   }
+  }
+ },
+ {
+  "pose": "finish_turn.finish_b",
+  "args": {
+   "workflow": "tool/art/workflows/qwen-frame.api.json",
+   "tier": "I1",
+   "count": 6,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105q/in/sheet_front.png",
+    "pose_proxy": "/work/tmp/imagegen/kumbia/gatekeeper-v3-20261105q/in/finish_turn.finish_b.skeleton.png"
+   },
+   "overrides": {
+    "seed": 930400,
+    "prompt": "Image 2 is a coloured stick-figure pose skeleton. Draw the man from image 1 standing in that exact pose, at the same size and position in the frame as the skeleton, with empty background around him: his whole figure fits inside the frame, hat, both shoes and both hands fully visible with margin on every side. right fingertips touching the front of the hat brim in a courteous salute, the hat still on his head, head dipped slightly, chest proud, left elbow out with the fist on the hip, left heel forward with the toe up. Sides are his own: he faces the viewer, so his left is on the right of the picture. He keeps his short, stocky, broad body, big belly, face, thin pencil mustache, black hair, panama hat with teal band, purple short-sleeved guayabera with collar, pockets and teal embroidered panels, cream pleated trousers, teal shoes and thick dark ink outline, exactly as in image 1. Same pixel art style with crisp pixel clusters and cel shading. He has exactly two arms and two hands, each hand complete with fingers. Clean-shaven apart from the mustache, no beard, no goatee. Do not draw the skeleton. Plain light grey background, full body."
+   }
+  }
+ }
+]

@@ -39,6 +39,8 @@ import numpy as np
 from mathutils import Matrix, Vector
 from PIL import Image, ImageDraw, ImageFilter
 
+from openpose_draw import draw_openpose
+
 ROOT = Path(__file__).resolve().parents[3]
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 sys.path.insert(0, str(ROOT / "tool" / "art" / "pipeline"))
@@ -360,15 +362,6 @@ def project(points: dict) -> dict[str, tuple[float, float, float]]:
     return out
 
 
-# OpenPose COCO-18 (controlnet_aux convention).
-LIMBS = [(1, 2), (1, 5), (2, 3), (3, 4), (5, 6), (6, 7), (1, 8), (8, 9), (9, 10),
-         (1, 11), (11, 12), (12, 13), (1, 0), (0, 14), (14, 16), (0, 15), (15, 17)]
-COLORS = [(255, 0, 0), (255, 85, 0), (255, 170, 0), (255, 255, 0), (170, 255, 0),
-          (85, 255, 0), (0, 255, 0), (0, 255, 85), (0, 255, 170), (0, 255, 255),
-          (0, 170, 255), (0, 85, 255), (0, 0, 255), (85, 0, 255), (170, 0, 255),
-          (255, 0, 255), (255, 0, 170), (255, 0, 85)]
-
-
 def openpose_points(p: Proportions, j: dict) -> list[Vector | None]:
     hr: Matrix = j["_head_rot"]
     h = j["head"]
@@ -384,33 +377,6 @@ def openpose_points(p: Proportions, j: dict) -> list[Vector | None]:
     return [face["nose"], neck, j["r_sho"], j["r_elb"], j["r_wri"], j["l_sho"], j["l_elb"],
             j["l_wri"], j["r_hip"], j["r_kne"], j["r_ank"], j["l_hip"], j["l_kne"], j["l_ank"],
             face["r_eye"], face["l_eye"], face["r_ear"], face["l_ear"]], face
-
-
-def draw_openpose(path: Path, pts2d: list, visible: list[bool]) -> None:
-    W, H = CANVAS
-    stick = max(4, round(W / 128))
-    base = Image.new("RGB", CANVAS, (0, 0, 0))
-    for i, (a, b) in enumerate(LIMBS):
-        if not (visible[a] and visible[b]):
-            continue
-        layer = Image.new("RGB", CANVAS, (0, 0, 0))
-        d = ImageDraw.Draw(layer)
-        (x1, y1), (x2, y2) = pts2d[a][:2], pts2d[b][:2]
-        length = math.hypot(x2 - x1, y2 - y1)
-        ang = math.atan2(y2 - y1, x2 - x1)
-        cx, cy = (x1 + x2) / 2, (y1 + y2) / 2
-        poly = []
-        for t in range(0, 360, 10):
-            ex, ey = length / 2 * math.cos(math.radians(t)), stick * math.sin(math.radians(t))
-            poly.append((cx + ex * math.cos(ang) - ey * math.sin(ang), cy + ex * math.sin(ang) + ey * math.cos(ang)))
-        d.polygon(poly, fill=COLORS[i])
-        base = Image.blend(base, Image.composite(layer, base, layer.convert("L").point(lambda v: 255 if v else 0)), 0.6)
-    d = ImageDraw.Draw(base)
-    for i, pt in enumerate(pts2d):
-        if visible[i]:
-            x, y = pt[:2]
-            d.ellipse((x - stick, y - stick, x + stick, y + stick), fill=COLORS[i])
-    base.save(path)
 
 
 def finish_depth(path: Path) -> None:
@@ -506,7 +472,7 @@ def render_pose(rig: Rig, camera: str, pose_id: str, pose: Pose, support: str, o
             behind = w[2] > min(pel["p"][2], pel["c"][2]) + 0.05
             inside = abs(w[0] - (pel["p"][0] + pel["c"][0]) / 2) < p.limb_r["belly"] * px_per_m
             visible[idx] = not (behind and inside)
-        draw_openpose(out / f"{pose_id}.pose.png", pts2d, visible)
+        draw_openpose(out / f"{pose_id}.pose.png", pts2d, visible, CANVAS)
         rec["openpose"] = [[round(pt[0], 1), round(pt[1], 1), int(v)] for pt, v in zip(pts2d, visible)]
         rec["headWidthPx"] = round(2 * p.head_r * px_per_m, 1)
     return rec
