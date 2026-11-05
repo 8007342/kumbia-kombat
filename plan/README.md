@@ -51,6 +51,8 @@ lock, pixel finishing, mocap and model licences.
 - [session-handoff-2026-11-03.md](session-handoff-2026-11-03.md): asset pipeline state before the tray restart.
 `session-asset-pipeline.md` is the resume record for the pipeline coordination (peers, blockers, test steps).
 
+- [dance-richness-next.md](dance-richness-next.md): read first; the owner's next requests after accepting the v3 characters.
+
 Lessons and diagnostics: [`../LESSONS_LEARNED.md`](../LESSONS_LEARNED.md) distils what this project learned
 for other projects, including known-wrong records and what each unmerged branch still holds.
 [`../FORGE_DIAGNOSTICS.md`](../FORGE_DIAGNOSTICS.md) lists current known issues.
