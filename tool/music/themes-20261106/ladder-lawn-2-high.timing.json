@@ -1,0 +1,83 @@
+{
+ "seed52011.flac": {
+  "target_bpm": 160.0,
+  "measured_bpm": 163.02,
+  "error_pct": 1.89,
+  "clarity": 29.9,
+  "half_time_ratio": 0.03,
+  "wander_ms": 31.4,
+  "seconds": 81.0,
+  "passed": false,
+  "reasons": [
+   "tempo off by +1.89%"
+  ]
+ },
+ "seed52012.flac": {
+  "target_bpm": 160.0,
+  "measured_bpm": 161.55,
+  "error_pct": 0.97,
+  "clarity": 7.7,
+  "half_time_ratio": 0.4,
+  "wander_ms": 60.7,
+  "seconds": 81.0,
+  "passed": false,
+  "reasons": [
+   "beat wanders 61 ms"
+  ]
+ },
+ "seed52013.flac": {
+  "target_bpm": 160.0,
+  "measured_bpm": 154.08,
+  "error_pct": -3.7,
+  "clarity": 30.0,
+  "half_time_ratio": 0.02,
+  "wander_ms": 11.8,
+  "seconds": 81.0,
+  "passed": false,
+  "reasons": [
+   "tempo off by -3.70%"
+  ]
+ },
+ "seed52014.flac": {
+  "target_bpm": 160.0,
+  "measured_bpm": 169.24,
+  "error_pct": 5.77,
+  "clarity": 5.3,
+  "half_time_ratio": 0.11,
+  "wander_ms": 48.0,
+  "seconds": 81.0,
+  "passed": false,
+  "reasons": [
+   "tempo off by +5.77%",
+   "beat wanders 48 ms"
+  ]
+ },
+ "seed52015.flac": {
+  "target_bpm": 160.0,
+  "measured_bpm": 150.23,
+  "error_pct": -6.11,
+  "clarity": 5.5,
+  "half_time_ratio": 0.28,
+  "wander_ms": 37.9,
+  "seconds": 81.0,
+  "passed": false,
+  "reasons": [
+   "tempo off by -6.11%",
+   "beat wanders 38 ms"
+  ]
+ },
+ "seed52016.flac": {
+  "target_bpm": 160.0,
+  "measured_bpm": 148.95,
+  "error_pct": -6.91,
+  "clarity": 4.4,
+  "half_time_ratio": 0.3,
+  "wander_ms": 92.7,
+  "seconds": 81.0,
+  "passed": false,
+  "reasons": [
+   "tempo off by -6.91%",
+   "beat wanders 93 ms"
+  ]
+ }
+}

@@ -148,3 +148,5 @@ Ladder listening, the same day. Garden: "the ladder garden isgreat, transitions 
 
 Bar takes, blind, the same day: B is far ahead. "A, C, and D are awesome but too simple, they're plain background scores. B is lively and identifiable: B >> (A, C, D)." The owner's test for a level theme is that it is lively and identifiable, not just pleasant background. The answer key is in `~/.cache/tillandsias-project/kumbia-audio/themes-20261106/`.
 
+Indoor party takes, blind, the same day: A is far ahead, and A was seed53010. "B, C, and D are great background tracks, but A is richer and full of charisma and personality: A >> (B, C, D)". The Bar winner, B, was seed55005. Rich, charismatic and identifiable is what wins: three times out of four, generated takes that passed timing were only pleasant background.
+

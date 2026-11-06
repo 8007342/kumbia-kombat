@@ -1,0 +1,59 @@
+{
+ "low.flac": {
+  "bpm_asked": 128.0,
+  "heard": {
+   "onsets_per_beat": 1.828,
+   "onsets_per_sec": 3.9,
+   "spread_hz": 577.0,
+   "centroid_hz": 380.0,
+   "rms_db": -16.0,
+   "rms_range_db": 9.3
+  },
+  "whole": {
+   "onsets_per_beat": 1.756,
+   "onsets_per_sec": 3.75,
+   "spread_hz": 619.0,
+   "centroid_hz": 416.0,
+   "rms_db": -15.6,
+   "rms_range_db": 11.4
+  }
+ },
+ "mid.flac": {
+  "bpm_asked": 144.0,
+  "heard": {
+   "onsets_per_beat": 1.427,
+   "onsets_per_sec": 3.42,
+   "spread_hz": 746.0,
+   "centroid_hz": 605.0,
+   "rms_db": -14.3,
+   "rms_range_db": 6.6
+  },
+  "whole": {
+   "onsets_per_beat": 1.37,
+   "onsets_per_sec": 3.29,
+   "spread_hz": 721.0,
+   "centroid_hz": 556.0,
+   "rms_db": -14.8,
+   "rms_range_db": 10.1
+  }
+ },
+ "high.flac": {
+  "bpm_asked": 160.0,
+  "heard": {
+   "onsets_per_beat": 1.809,
+   "onsets_per_sec": 4.83,
+   "spread_hz": 746.0,
+   "centroid_hz": 652.0,
+   "rms_db": -14.5,
+   "rms_range_db": 6.9
+  },
+  "whole": {
+   "onsets_per_beat": 1.759,
+   "onsets_per_sec": 4.69,
+   "spread_hz": 768.0,
+   "centroid_hz": 661.0,
+   "rms_db": -14.5,
+   "rms_range_db": 8.9
+  }
+ }
+}

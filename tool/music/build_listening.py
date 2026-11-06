@@ -7,6 +7,10 @@ carry ladders: tiers of one level played in order under plain labels, not blind.
 key stays outside the served folder, so the page can't give it away.
 
   python3 -I tool/music/build_listening.py [--page pilot|themes] <run dir> <served dir>
+  python3 -I tool/music/build_listening.py --add-ladder <ladder> <run dir> <served dir>
+
+--add-ladder puts one more ladder from LADDERS into a built page, and changes nothing else:
+no letters, no other excerpts, no answer key. Use it while someone is still comparing the page.
 
 The run dir holds <room>/timing.json and takes from measure_takes.py, plus synth/<room>.wav
 for a room with a synth, and <ladder>/<tier>.flac with <tier>.timing.json for a ladder. Picks are by timing only,
@@ -42,6 +46,10 @@ PAGES = {
             "ladder-lawn": {"title": "Ladder: Pool lawn", "tiers": [("low", "128 BPM"), ("mid", "144 BPM"), ("high", "160 BPM")]},
         },
     },
+}
+# Added to a page already built, with --add-ladder.
+LADDERS = {
+    "ladder-lawn-2": {"title": "Pool lawn ladder, second try", "tiers": [("low", "128 BPM"), ("mid", "144 BPM"), ("high", "160 BPM")]},
 }
 SECONDS = 30
 LADDER_SECONDS = 40
@@ -124,12 +132,42 @@ document.querySelectorAll('button[data-order]').forEach(b=>b.addEventListener('c
 """
 
 
+def ladder_section(ladder, info, run, served):
+    folder = served / ladder
+    folder.mkdir(parents=True, exist_ok=True)
+    rows = []
+    for tier, note in info["tiers"]:
+        excerpt(run / ladder / f"{tier}.flac", TAKE_START, folder / f"{tier}.flac", seconds=LADDER_SECONDS)
+        # Not blind, so the page says what the filter measured: a model can miss the tempo it's asked for.
+        timing = json.loads((run / ladder / f"{tier}.timing.json").read_text())[f"{tier}.flac"]
+        note = f"{note} asked, {timing['measured_bpm']:.1f} measured"
+        rows.append(f'<div class="row"><b class="tier">{tier}</b><button type="button" data-src="{ladder}/{tier}.flac">Play</button><span>0:00</span><em>{note}</em></div>')
+    order = f'<button type="button" data-order="{ladder}">Play in order</button>'
+    return f"<h2>{info['title']}</h2><p>Not blind. 40 seconds of each tier from the same point in the take, at matched loudness, so any growth comes from the arrangement and tempo and not from volume. Does this read as one song growing, or as three songs?</p>{order}" + "".join(rows)
+
+
+def add_ladder(ladder, run, served):
+    index = served / "index.html"
+    page = index.read_text()
+    marker = f'data-order="{ladder}"'
+    if marker in page:
+        sys.exit(f"{ladder} is already on {index}")
+    section = ladder_section(ladder, LADDERS[ladder], run, served)
+    if page.count("</main>") != 1:
+        sys.exit(f"can't find where to add the section in {index}")
+    index.write_text(page.replace("</main>", section + "\n</main>"))
+    print("added", ladder, "to", index)
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("--page", choices=PAGES, default="pilot")
+    parser.add_argument("--add-ladder", choices=LADDERS)
     parser.add_argument("run", type=pathlib.Path)
     parser.add_argument("served", type=pathlib.Path)
     args = parser.parse_args()
+    if args.add_ladder:
+        return add_ladder(args.add_ladder, args.run, args.served)
     page, run, served = PAGES[args.page], args.run, args.served
     key = {}
     sections = []
@@ -149,17 +187,7 @@ def main():
             rows.append(f'<div class="row"><b>{letter}</b><button type="button" data-src="{room}/{letter}.flac">Play</button><span>0:00</span></div>')
         sections.append(f"<h2>{info['title']}</h2><p>{info['brief']}</p>" + "".join(rows))
     for ladder, info in page["ladders"].items():
-        folder = served / ladder
-        folder.mkdir(parents=True, exist_ok=True)
-        rows = []
-        for tier, note in info["tiers"]:
-            excerpt(run / ladder / f"{tier}.flac", TAKE_START, folder / f"{tier}.flac", seconds=LADDER_SECONDS)
-            # Not blind, so the page says what the filter measured: a model can miss the tempo it's asked for.
-            timing = json.loads((run / ladder / f"{tier}.timing.json").read_text())[f"{tier}.flac"]
-            note = f"{note} asked, {timing['measured_bpm']:.1f} measured"
-            rows.append(f'<div class="row"><b class="tier">{tier}</b><button type="button" data-src="{ladder}/{tier}.flac">Play</button><span>0:00</span><em>{note}</em></div>')
-        order = f'<button type="button" data-order="{ladder}">Play in order</button>'
-        sections.append(f"<h2>{info['title']}</h2><p>Not blind. 40 seconds of each tier from the same point in the take, at matched loudness, so any growth comes from the arrangement and tempo and not from volume. Does this read as one song growing, or as three songs?</p>{order}" + "".join(rows))
+        sections.append(ladder_section(ladder, info, run, served))
     html = PAGE.replace("{intro}", page["intro"]).replace("{sections}", "\n".join(sections))
     (served / "index.html").write_text(html)
     (run / "listening-key.json").write_text(json.dumps(key, indent=1) + "\n")

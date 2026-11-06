@@ -133,3 +133,64 @@ Nothing has been decided, and this needs phones nobody has yet:
 2. Each ladder: one song growing, or three songs? The gate in stage 4 applies. If the answer is three songs, that level moves to one tempo with layers cut from a single take.
 3. Is the lawn's high tier usable as it is, given it runs at 153.5 rather than 160?
 4. The Garden's mid tier isn't the winner. If it weakens the ladder, the winner itself could stand in at 88.2 s, slightly off a whole bar count.
+
+## Lawn ladder, second try
+
+The owner's verdict on the first ladders. Garden: "great, transitions are not clean but the music increases progressively in complexity, it feels like a livelier version." Lawn: "does not follow this pattern, the low section is livelier than mid at some points", and "the high section is higher but barely, the low composition is still much richer". The Garden stays as it is. The lawn's mid take, seed 52011, is the fixed centre: "nice and simple but properly elegant".
+
+**Chosen for the owner's ears: low seed 52015, high seed 52012.** Neither has been heard. The first lawn ladder stays on the page for comparison.
+
+### Settings
+
+Same workflow, key C major. Mid is unchanged (see above). Overrides were read back from ComfyUI `/history`.
+
+| Tier | Seeds | BPM | Bars | Seconds | `$node:94.tags` |
+|---|---|---|---|---|---|
+| Low | 52011-52016 | 128 | 44 | 82.5 | fast joyful swing for two dancers showing off, instrumental, sparse small trio, upright bass, brushed snare, solo clarinet, lots of space, few notes |
+| High | 52011-52016 | 160 | 54 | 81 | fast joyful swing for two dancers showing off, instrumental, full big band, brass section shouts, busy drums, walking upright bass, trumpets, trombones, saxophones, clarinet, piano |
+
+### Timing
+
+| Tier | Full filter | Within the 1.5% tempo limit |
+|---|---|---|
+| Low | 5 of 6 (52013 wanders 47 ms) | 6 of 6 |
+| High | **0 of 6** | **1 of 6** |
+
+High measured 163.02, 161.55, 154.08, 169.24, 150.23 and 148.95 BPM for seeds 52011 to 52016. Only 52012 is within the limit, at +0.97%. It still fails the full filter: its beat wanders 61 ms against a 35 ms limit. That is enough for this ear test but **not for play**, where charts need a steady beat. No limit was changed. The model drifted further at 160 with these tags than at the other tempos, and more seeds may be needed for a usable high tier.
+
+### Measures
+
+From `tool/music/ladder_measures.py`, which has a self-test. "Heard" is the 40 s from 15 s in. Onsets per beat is the fair comparison across tempos, since onsets per second rise with tempo alone.
+
+| Take | Onsets/beat heard (whole) | Onsets/s heard | Spread Hz heard (whole) | Centroid Hz heard | Level dB heard | Level range dB heard (whole) |
+|---|---|---|---|---|---|---|
+| Old low, 52011 at 128 | 1.83 (1.76) | 3.90 | 577 (619) | 380 | -16.0 | 9.3 (11.4) |
+| **New low, 52015** | **1.20 (1.13)** | 2.55 | **432 (392)** | 342 | -17.1 | 13.8 (16.4) |
+| Mid, 52011 at 144 | 1.43 (1.37) | 3.42 | 746 (721) | 605 | -14.3 | 6.6 (10.1) |
+| **New high, 52012** | **1.57 (1.47)** | 4.17 | **1067 (1009)** | 792 | -14.7 | 14.2 (15.7) |
+| Old high, 52011 at 160 | 1.81 (1.76) | 4.83 | 746 (768) | 652 | -14.5 | 6.9 (8.9) |
+
+Against mid, heard window: new low is -16% in onsets per beat and -42% in spread. New high is +10% and +43%. Over the whole take, new low is -17% and -46%, and new high is +7% and +40%.
+
+- **The old ladder fits the owner's words on some of this.** Old low has more onsets per beat than mid, and old high has the same heard spread as mid. That is one comparison after the fact, not validation. It also runs the other way in places: old high has more onsets per beat than mid and the owner still called it barely higher, and old low has less spread than mid and was still called richer.
+- **The high pair is thin on onsets.** +10% and +7% is a small margin, and new high has fewer onsets per beat than the old high, which the owner found barely higher. Its gain is in spread and centroid. New high also isn't louder than mid.
+- **Level range doesn't rank these.** Both new takes show more range than mid. It may mean gaps, dynamics or something else, so it wasn't used to choose.
+
+### How they were picked
+
+A low had to be below mid on onsets per beat and spread, in both windows, and pass the full timing filter. Seeds 52012, 52014, 52015 and 52016 qualified. 52015 has the steadiest beat (2.8 ms) and sits below mid on level as well. 52014 goes furthest (1.10 onsets per beat, 267 Hz) and is the alternate if 52015 isn't sparse enough. Same-seed low 52011 was disqualified: it measures 1.86 onsets per beat even with the sparse tags.
+
+A high had to be within the tempo limit and above mid on onsets per beat and spread. Only 52012 qualified. The margins were judged by eye after seeing the numbers, not set in advance.
+
+### Caveats
+
+- **The tiers no longer share a seed** (52015, 52011, 52012). The Garden ladder the owner liked did. The same-seed options failed here, low on density and high on tempo (+1.89%). Whether these three read as one song is exactly what the owner needs to judge, and the numbers can't say.
+- These measures count events and energy. They can't hear musical richness, which is the word the owner used.
+- Only keys requested, none measured. Six seeds per tier is a small sample.
+- The owner's "transitions are not clean" on the Garden hasn't been addressed. These excerpts are separate takes played in sequence, and the handoff belongs to runtime stage 5.
+
+### Page
+
+The section was added with `python3 -I tool/music/build_listening.py --add-ladder ladder-lawn-2 <run dir> <served dir>`, which changes nothing else. Checked by hash: the bar and party files and the answer key are unchanged, and the only difference in `index.html` is the added section. `build/web/listen/` and `listen-built/` in the cache are identical, so the restore command above still applies. An open page needs a reload to show it; the letters stay the same.
+
+Takes are in `~/.cache/tillandsias-project/kumbia-audio/themes-20261106/ladder-lawn-2/`. Timing and measures are in `tool/music/themes-20261106/`.
