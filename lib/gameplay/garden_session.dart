@@ -216,6 +216,7 @@ class GardenSession {
     FightDefinition? definition,
     this.chart = FightChart.garden,
     CrowdStageProfile? crowdProfile,
+    int guestCount = CrowdInterestModel.castSize,
   }) : progress = FightProgress(definition ?? fights.first),
        crowd = CrowdInterestModel(
          rampPhrases: 4 * (definition ?? fights.first).successesPerTier,
@@ -223,6 +224,7 @@ class GardenSession {
              4 * (definition ?? fights.first).successesPerTier +
              (definition ?? fights.first).finalChallenges,
          phraseBeats: chart.cycleBeats,
+         guestCount: guestCount,
          profile:
              crowdProfile ??
              CrowdStageProfile.forRoom((definition ?? fights.first).id),

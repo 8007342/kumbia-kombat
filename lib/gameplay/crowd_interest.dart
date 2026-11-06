@@ -32,9 +32,10 @@ class CrowdStageProfile {
   );
   final String roomId;
 
-  /// Cumulative budgets at a reference cast size of twelve. They cap what a
-  /// room's cast can do at all. Owner's ruling, 2026-11-06: every shipped room
-  /// can end fully engaged, so how far a run gets is decided by play
+  /// Cumulative budgets at a reference cast size of twelve, so each is a share of
+  /// the room: a budget of 12 is everyone in a room of six or of thirty. They cap
+  /// what a room's cast can do at all. Owner's ruling, 2026-11-06: every shipped
+  /// room can end fully engaged, so how far a run gets is decided by play
   /// ([CrowdEngagement]), and these stay as data for a later room to differ.
   final int interested;
   final int following;
@@ -119,9 +120,11 @@ enum PhraseGrade {
 }
 
 /// The owner's ruling: be lenient, because players should enjoy the game at full
-/// animations, and even a poor run that clears gets warm interest. What a room
-/// shows depends on the level's average phrase credit (a clean phrase 1, a loose
-/// one .75, a scrappy one .5, a failed one 0), for a cast of twelve:
+/// animations, and even a poor run that clears gets warm interest. The room is
+/// the meter, so a bigger room is a bigger reward: every line here is a share of
+/// the cast, whatever its size. What a room shows depends on the level's average
+/// phrase credit (a clean phrase 1, a loose one .75, a scrappy one .5, a failed
+/// one 0), written out for a cast of twelve:
 ///
 /// | Average | Example | The room at the clear |
 /// |---|---|---|
@@ -183,14 +186,25 @@ abstract final class CrowdEngagement {
   /// phrases are already worth 1, so ignoring optional moves locks nothing away.
   static const gestureCredit = .1;
 
-  /// The warm floor: this many of [CrowdInterestModel.castSize] guests dance at
+  /// The warm floor, in a cast of [CrowdInterestModel.castSize]: this many dance at
   /// any clear, however poor the run. Four leaves the room lopsided, because the
   /// order fills the left side first; the fifth guest balances it at three to two.
-  static const warmFloorGuests = 5;
+  /// A room of another size keeps the proportion: see [warmFloorOf].
+  static const warmFloorOfTwelve = 5;
 
   /// Where the floor's last guest falls in the order, 0 first to 1 last.
   static const warmFloorPosition =
-      (warmFloorGuests - 1) / (CrowdInterestModel.castSize - 1);
+      (warmFloorOfTwelve - 1) / (CrowdInterestModel.castSize - 1);
+
+  /// How many of a [guests] strong cast dance at any clear.
+  static int warmFloorOf(int guests) {
+    if (guests <= 1) return guests;
+    var count = 0;
+    for (var rank = 0; rank < guests; rank++) {
+      if (rank / (guests - 1) <= warmFloorPosition) count++;
+    }
+    return count;
+  }
 
   /// Everyone past the floor sits and follows at any clear, and nobody is left
   /// occupied. Above every guest's following line, under the .64 where a guest
@@ -407,8 +421,12 @@ class CrowdCheckpoint {
 }
 
 class CrowdInterestModel {
-  /// Budgets are written against this many guests, and layouts map onto them.
+  /// Budgets and the room's timing are written against this many guests. A cast
+  /// of any other size keeps their proportions: see [_referenceRank].
   static const castSize = 12;
+
+  /// The most guests a level may seat. A limit on phone drawing, not on the rules.
+  static const maxGuests = 48;
 
   CrowdInterestModel({
     required this.rampPhrases,
@@ -442,6 +460,12 @@ class CrowdInterestModel {
   double _support = 0;
   _RoomArc _arc = _RoomArc();
   int get guestCount => _guests.length;
+
+  /// Where this rank would fall in a cast of [castSize]. Everything that spreads
+  /// through the room in beats reads this, so a bigger room gets up in the same
+  /// time, with more people moving at once, and a run still lands before the clear.
+  double _referenceRank(int rank) =>
+      guestCount > 1 ? rank * (castSize - 1) / (guestCount - 1) : 0;
 
   /// The level's average phrase credit so far. Decides nothing but the room's look.
   double get averageCredit => _arc.average;
@@ -482,8 +506,9 @@ class CrowdInterestModel {
         : 0.0;
     if (exitBeat != null && beat >= exitBeat) {
       final atExit = _sample(index, exitBeat);
-      final escort = g.rank < 2 && atExit.state != CrowdGuestState.occupied;
-      final sitAt = exitBeat + 2 + g.rank * .47 + (escort ? 4 : 0);
+      final reference = _referenceRank(g.rank);
+      final escort = reference < 2 && atExit.state != CrowdGuestState.occupied;
+      final sitAt = exitBeat + 2 + reference * .47 + (escort ? 4 : 0);
       if (beat >= sitAt) {
         final duration = atExit.standing ? 2.0 : 1.0;
         pose = beat < sitAt + duration
@@ -689,30 +714,34 @@ class CrowdInterestModel {
       );
 
   void stumble(int index, double beat) {
-    for (final (i, loss) in [
-      (index % guestCount, .09),
-      ((index + 1) % guestCount, .035),
-    ]) {
+    // One guest takes it hardest, and the same share of the room notices.
+    final reach = math.min(guestCount, (2 * guestCount / castSize).ceil());
+    for (var neighbor = 0; neighbor < math.max(2, reach); neighbor++) {
+      final i = (index + neighbor) % guestCount;
       final g = _guests[i];
-      g.interest = math.max(0, g.interest - loss);
+      g.interest = math.max(0, g.interest - (neighbor == 0 ? .09 : .035));
       _change(i, beat);
     }
   }
 
   void adorn(int index, double beat, {int chain = 1}) {
     final bounded = chain.clamp(1, 4);
+    // The same share of the room looks over, in the same time.
+    final share = guestCount / castSize;
+    final reach = ((bounded >= 3 ? bounded : 2) * share).ceil();
     for (
       var neighbor = 0;
-      neighbor < math.min(guestCount, bounded >= 3 ? bounded : 2);
+      neighbor < math.min(guestCount, math.max(2, reach));
       neighbor++
     ) {
       final g = _guests[(index + neighbor) % guestCount];
-      g.styleBeat = beat + neighbor * .23;
+      final reference = neighbor / math.max(1.0, share);
+      g.styleBeat = beat + reference * .23;
       g.styleStrength = neighbor == 0
           ? 1
-          : neighbor == 1
+          : reference <= 1
           ? .45 + bounded * .15
-          : .5 - (neighbor - 2) * .15;
+          : .5 - (reference - 2) * .15;
       g.styleDuration = 3.0 + bounded;
     }
   }
@@ -783,13 +812,14 @@ class CrowdInterestModel {
   void _change(int index, double beat) {
     final g = _guests[index];
     final ceiling = profile.ceiling(g.rank, guestCount);
+    final reference = _referenceRank(g.rank);
     var next = g.interest >= .90
         ? CrowdGuestState.celebrating
         : g.interest >= .72
         ? CrowdGuestState.participating
-        : g.interest >= .38 + math.min(g.rank, 6) * .015
+        : g.interest >= .38 + math.min(reference, 6) * .015
         ? CrowdGuestState.following
-        : g.interest >= .15 + math.min(g.rank, 8) * .035
+        : g.interest >= .15 + math.min(reference, 8) * .035
         ? CrowdGuestState.curious
         : CrowdGuestState.occupied;
     if (next.index > ceiling.index) next = ceiling;
@@ -810,10 +840,10 @@ class CrowdInterestModel {
       g.base = g.motions.first.after;
       g.motions.removeAt(0);
     }
-    // Fractional delays spread twelve guests over about twelve beats; no more
-    // than four begin a reaction in any four-beat bar. The last guest's stand-up
-    // finishes inside the next phrase, ahead of a clear one phrase later.
-    var cursor = beat + .35 + g.rank * 1.1 + ((index * 7) % 5) * .07;
+    // Fractional delays spread the room over about twelve beats, whatever its size;
+    // about a third of it begins a reaction in any four-beat bar. The last guest's
+    // stand-up finishes inside the next phrase, ahead of a clear one phrase later.
+    var cursor = beat + .35 + reference * 1.1 + ((index * 7) % 5) * .07;
     var state = current.state;
     final retained = <_Motion>[];
     if (g.motions.isNotEmpty &&

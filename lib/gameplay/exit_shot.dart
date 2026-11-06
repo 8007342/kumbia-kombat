@@ -292,8 +292,12 @@ class Celebration {
 /// again before his first tap can land. 0 is home, 1 is the watching spot.
 class HeroWatch {
   const HeroWatch._();
-  static const stepOutBeats = 1.5;
-  static const stepInBeats = 1.25;
+
+  /// Back and then to the side, a leg each, the way an opponent leaves the floor.
+  static const stepOutBeats = 3.0;
+
+  /// The same two legs in reverse.
+  static const stepInBeats = 2.5;
 
   /// Home a little before the response, inside the earliest tap's window.
   static const homeBeforeResponse = .25;
@@ -303,21 +307,45 @@ class HeroWatch {
     return t * t * (3 - 2 * t);
   }
 
-  /// [t] counts from the call's first beat. The first call of a level has no
-  /// step out, because he walks straight onto the watching spot.
-  static double at(double t, double callBeats, {bool firstCall = false}) {
+  /// A short call fits the same route in the time it has.
+  static double _fit(double callBeats) {
+    final room = callBeats - homeBeforeResponse;
+    return room >= stepOutBeats + stepInBeats
+        ? 1
+        : room / (stepOutBeats + stepInBeats);
+  }
+
+  /// Each leg starts and stops, so the turn at the back mark reads as two steps.
+  static double _legs(double u) {
+    final t = u.clamp(0.0, 1.0);
+    return t < .5 ? _smooth(t * 2) * .5 : .5 + _smooth(t * 2 - 1) * .5;
+  }
+
+  /// How far along his route he is: 0 home, .5 on the back mark, 1 outside the
+  /// floor. [t] counts from the call's first beat. The first call of a level has
+  /// no step out, because he walks straight onto the outside mark. Reduced motion
+  /// cuts at the handoff, so he still leaves the floor without travelling.
+  static double at(
+    double t,
+    double callBeats, {
+    bool firstCall = false,
+    bool reducedMotion = false,
+  }) {
     if (t < 0 || t >= callBeats) return 0;
     final inEnd = callBeats - homeBeforeResponse;
-    final inStart = inEnd - stepInBeats;
-    if (t >= inStart) return 1 - _smooth((t - inStart) / stepInBeats);
-    return firstCall ? 1 : _smooth(t / stepOutBeats);
+    if (reducedMotion) return t < inEnd ? 1 : 0;
+    final fit = _fit(callBeats);
+    final inStart = inEnd - stepInBeats * fit;
+    if (t >= inStart) return _legs(1 - (t - inStart) / (stepInBeats * fit));
+    return firstCall ? 1 : _legs(t / (stepOutBeats * fit));
   }
 
   static bool walking(double t, double callBeats, {bool firstCall = false}) {
     if (t < 0 || t >= callBeats) return false;
     final inEnd = callBeats - homeBeforeResponse;
-    if (t >= inEnd - stepInBeats && t < inEnd) return true;
-    return !firstCall && t < stepOutBeats;
+    final fit = _fit(callBeats);
+    if (t >= inEnd - stepInBeats * fit && t < inEnd) return true;
+    return !firstCall && t < stepOutBeats * fit;
   }
 
   /// Keeps time on the spot, with more of him as the music and the party heat

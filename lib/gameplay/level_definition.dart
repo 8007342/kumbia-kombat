@@ -171,8 +171,13 @@ class LevelChallenger {
     required this.yieldMark,
     this.track,
     this.stature = 1,
+    this.meetMark,
   });
   final FloorTrack? track;
+
+  /// Where this dancer steps in to meet the hero when the level is won. Her
+  /// [yieldMark] is off the floor, too far for the shot's walk to reach.
+  final PartyPoint? meetMark;
 
   /// Height against an adult guest, so a pair can differ in size.
   final double stature;
@@ -202,8 +207,10 @@ class LevelStage {
     required this.heroRetreat,
     required this.challengers,
     PartyPoint? heroWatch,
+    PartyPoint? heroAside,
     this.duet,
-  }) : heroWatch = heroWatch ?? heroHome;
+  }) : heroWatch = heroWatch ?? heroHome,
+       heroAside = heroAside ?? heroWatch ?? heroHome;
   final PartyPoint heroHome;
 
   /// Where the hero starts walking in from during the intro.
@@ -212,12 +219,42 @@ class LevelStage {
   /// How far a stumble back to the entrance takes the hero, at its peak.
   final PartyPoint heroRetreat;
 
-  /// Where the hero steps back to and keeps time during the opponent's call.
+  /// The back mark: the hero's first step when the opponent's call starts.
   final PartyPoint heroWatch;
+
+  /// Off the dance floor, where he keeps time through the opponent's call. He gets
+  /// here from [heroWatch], and comes home the same way.
+  final PartyPoint heroAside;
   final List<LevelChallenger> challengers;
 
   /// A pair's floor pattern, turn by turn. Null for a lone challenger.
   final LevelDuet? duet;
+
+  /// A place along the hero's route off the floor, [along] as [HeroWatch.at]
+  /// gives it: 0 home, .5 the back mark, 1 outside.
+  PartyPoint heroOffFloor(double along) {
+    final u = along.clamp(0.0, 1.0);
+    final (from, to, t) = u < .5
+        ? (heroHome, heroWatch, u * 2)
+        : (heroWatch, heroAside, u * 2 - 1);
+    return PartyPoint(from.x + (to.x - from.x) * t, from.y + (to.y - from.y) * t);
+  }
+
+  /// Where the hero is [t] beats into a call. Pure, so a floor pattern can read it
+  /// to keep clear of him or to meet him: `duet_staging.dart` needs nothing else.
+  PartyPoint heroDuringCall(
+    double t,
+    double callBeats, {
+    bool firstCall = false,
+    bool reducedMotion = false,
+  }) => heroOffFloor(
+    HeroWatch.at(
+      t,
+      callBeats,
+      firstCall: firstCall,
+      reducedMotion: reducedMotion,
+    ),
+  );
 
   /// [entrance] runs 0 to 1 over the intro; [retreat] is 0 at home.
   PartyPoint heroFloor({required double entrance, required double retreat}) {
@@ -282,6 +319,7 @@ class LevelDefinition {
     required this.copy,
     this.exitShot,
     this.layers = const [],
+    this.propSet,
   });
 
   final String id;
@@ -307,6 +345,10 @@ class LevelDefinition {
   /// Props cut out of [background], which party up with the room.
   final List<RoomLayerProp> layers;
 
+  /// Which room's furniture, from `assets/art/props/manifest.json`: one set of
+  /// drawings, baked to each room's pixel size and light. Null uses the old atlas.
+  final String? propSet;
+
   PartyPoint heroExitFloor(DeparturePose pose) =>
       PartyPoint(pose.x, stage.heroHome.y + pose.y - routeOriginY);
 
@@ -319,6 +361,7 @@ class LevelDefinition {
     definition: rules,
     chart: chart,
     crowdProfile: crowd,
+    guestCount: layout.guests.length,
   );
 
   factory LevelDefinition.fromJson(Map<String, Object?> json, {String? path}) {
@@ -395,6 +438,9 @@ class LevelDefinition {
       heroWatch: stageFields.has('heroWatch')
           ? stageMark(stageFields, 'heroWatch')
           : null,
+      heroAside: stageFields.has('heroAside')
+          ? stageMark(stageFields, 'heroAside')
+          : null,
       challengers: challengers,
     );
     stageFields.finish();
@@ -402,24 +448,55 @@ class LevelDefinition {
     final crowdFields = fields.child('crowd');
     final crowd = _crowd(id, crowdFields.child('budgets'));
     final guestPath = crowdFields.at('guests');
+    final seat = crowdFields.has('seat')
+        ? crowdFields.named('seat', PartySeat.values)
+        : PartySeat.chair;
+    final propSet = crowdFields.has('propSet')
+        ? crowdFields.text('propSet')
+        : null;
+    final seats = <PartySeat>[];
     final anchors = [
       for (final (i, raw) in crowdFields.list('guests').indexed)
-        onFloor('$guestPath[$i]', _point('$guestPath[$i]', raw)),
+        () {
+          final path = '$guestPath[$i]';
+          // A bare point takes the room's seat; an object may name its own.
+          if (raw is List<Object?>) {
+            seats.add(seat);
+            return onFloor(path, _point(path, raw));
+          }
+          final guest = _Fields(path, raw);
+          seats.add(guest.named('seat', PartySeat.values));
+          final at = onFloor(guest.at('at'), guest.point('at'));
+          guest.finish();
+          return at;
+        }(),
     ];
-    if (anchors.isEmpty || anchors.length > CrowdInterestModel.castSize) {
+    if (anchors.isEmpty || anchors.length > CrowdInterestModel.maxGuests) {
       throw LevelDataError(
         guestPath,
-        'expected 1 to ${CrowdInterestModel.castSize} guests, '
+        'expected 1 to ${CrowdInterestModel.maxGuests} guests, '
         'found ${anchors.length}',
       );
     }
-    final guests = seatedGuestSlots(id, anchors);
+    // The feet decide it: a body rises away from the band, but furniture or feet
+    // inside it would sit right under the thumbs.
+    for (final (i, anchor) in anchors.indexed) {
+      if (anchor.y >= thumbBandTop) {
+        throw LevelDataError('$guestPath[$i]', 'is on the tap band');
+      }
+    }
+    final guests = seatedGuestSlots(id, anchors, seats: seats);
     final propPath = crowdFields.at('props');
-    final props = [
-      ...chairSlotsFor(guests),
+    final placed = [
       for (final (i, raw) in crowdFields.list('props').indexed)
         _prop(_Fields('$propPath[$i]', raw), onFloor),
     ];
+    for (final (i, prop) in placed.indexed) {
+      if (prop.floor.y >= thumbBandTop) {
+        throw LevelDataError('$propPath[$i]', '${prop.id} is on the tap band');
+      }
+    }
+    final props = [...chairSlotsFor(guests, seats: seats), ...placed];
     crowdFields.finish();
     final propIds = <String>{};
     for (final prop in props) {
@@ -502,6 +579,7 @@ class LevelDefinition {
       copy: copy,
       exitShot: exitShot,
       layers: layers,
+      propSet: propSet,
     );
   }
 
@@ -656,6 +734,7 @@ class LevelDefinition {
           stature: fields.has('stature')
               ? fields.number('stature', min: .1)
               : 1,
+          meetMark: fields.has('meetMark') ? mark(fields, 'meetMark') : null,
         ),
       );
       fields.finish();
@@ -834,9 +913,11 @@ class LevelDefinition {
     PartyPoint Function(String, PartyPoint) onFloor,
   ) {
     final kind = fields.named('kind', PartyPropKind.values);
-    if (kind == PartyPropKind.chair || kind == PartyPropKind.drink) {
-      // Chairs come with the guests; drinks belong to the seated poses. The
-      // scene would draw neither of these from a prop entry.
+    if (kind == PartyPropKind.chair ||
+        kind == PartyPropKind.stool ||
+        kind == PartyPropKind.drink) {
+      // Seats come with the guests; drinks belong to the tables and the seated
+      // poses. The scene would draw none of these from a prop entry.
       throw LevelDataError(fields.at('kind'), '${kind.name} cannot be placed');
     }
     final prop = PartyPropSlot(

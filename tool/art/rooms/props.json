@@ -1,0 +1,42 @@
+{
+  "masters": {
+    "chair_right": { "from": "assets/art/ensemble/furniture-v2.png", "crop": [289, 13, 317, 476] },
+    "chair_left": { "from": "assets/art/ensemble/furniture-v2.png", "crop": [930, 13, 317, 476] },
+    "stool": { "from": "art_runs/rooms/crowd-props/picks/stool.png" },
+    "table_a": { "from": "art_runs/rooms/crowd-props/picks/table_a.png" },
+    "table_b": { "from": "art_runs/rooms/crowd-props/picks/table_b.png" }
+  },
+  "frames": {
+    "chair_right": { "master": "chair_right", "heightInAdults": 0.80 },
+    "chair_left": { "master": "chair_left", "heightInAdults": 0.80 },
+    "stool": { "master": "stool", "heightInAdults": 0.39 },
+    "table_a": { "master": "table_a", "heightInAdults": 0.43 },
+    "table_b": { "master": "table_b", "heightInAdults": 0.43 }
+  },
+  "rooms": {
+    "garden": {
+      "plate": "assets/art/garden/garden-mansion-clean.png",
+      "plateHeight": 1536,
+      "floor": { "horizonY": 0.255, "referenceFootY": 0.40, "referenceHeight": 0.094 },
+      "midY": 0.45,
+      "cell": 3,
+      "light": { "gain": [0.62, 0.56, 0.60], "top": [1.0, 0.86, 0.72], "colours": 24 }
+    },
+    "bar": {
+      "plate": "assets/art/bar/bar-interior.png",
+      "plateHeight": 1536,
+      "floor": { "horizonY": 0.205, "referenceFootY": 0.40, "referenceHeight": 0.23 },
+      "midY": 0.42,
+      "cell": 5,
+      "light": { "gain": [0.72, 0.56, 0.52], "top": [1.05, 0.86, 0.66], "colours": 24 }
+    },
+    "pool-garden": {
+      "plate": "assets/art/pool-garden/pool-garden-v1-draft.png",
+      "plateHeight": 1536,
+      "floor": { "horizonY": 0.16, "referenceFootY": 0.40, "referenceHeight": 0.1263 },
+      "midY": 0.37,
+      "cell": 5,
+      "light": { "gain": [0.46, 0.50, 0.66], "top": [0.92, 0.82, 0.70], "colours": 20 }
+    }
+  }
+}

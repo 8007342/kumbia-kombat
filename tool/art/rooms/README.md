@@ -86,3 +86,21 @@ Mattes, seams, frames and sheets are CPU, seconds each.
 - Workflow paths from a worktree need the `.claude/worktrees/<name>/` prefix, and a job fails at once if its input isn't staged yet.
 
 **Reuse.** A level's `layers` block names each prop's atlas, position and motion; there's no kind switch, so a new prop needs no code. Levels can share an atlas. The loader refuses a prop that leaves the plate, reaches the tap band, or reaches the quiet area behind the opponent.
+
+## Furniture: one set of drawings, baked per room
+
+Stools, chairs and tables are sprites on the floor plane, sorted in depth with the guests. `props.py` keeps one drawing of each and bakes it to each room: `props.json` holds the room's pixel (`cell`, plate pixels, read off `props.py measure` and by eye), where its guests sit (`midY`) and its light (a gain, a warmer key from above, a colour count). `props.py masters`, then `bake`, writes `assets/art/props/<room>.png` and `manifest.json`; `sheet OUT` lays them on their plates. A level names its set and seat in `crowd.propSet` and `crowd.seat`, so a new room needs numbers, not drawings.
+
+**Drawn with** `art_runs/rooms/crowd-props/workflows/prop-edit.api.json`: Qwen edit with the 2511 Lightning LoRA, `furniture-v2.png` on grey as the one reference, BiRefNet for the cut. The chairs are still the old sheet's. The seat height is the contract: a stool's seat meets the chair's .37 of an adult, so every seated pose fits both and none had to be redrawn.
+
+**What it took:** 3 jobs, 6 images, about 40 s of GPU a job once it had the queue. `art_runs/rooms/crowd-props/picks/*.provenance.json` has each kept seed.
+
+| Try | Result |
+|---|---|
+| Stool, from words and the sheet | Both seeds usable first time. Kept the plainer one |
+| Table, the word "cafe" in the prompt | The model wrote CAFE across the table top, in both seeds |
+| Table, "plain wood top", "no letters, no words" | Clean. A mirror of the second seed makes the room's second table |
+
+**Laying out a crowd.** The first pass copied the rows further forward and made a wall: a guest's width grows with depth, so the front holds far fewer people than it looks. Keep every guest behind the opponent's mark, so the dancer is always the nearest adult. Thin out toward the viewer, and let the back carry the numbers. `test/crowd_staging_test.dart` holds guests and furniture off the tap band, the hero's marks and the dancers' floor, reading the level files, so moving a mark names any guest in the way. `test/room_stills_test.dart` writes phone-size pictures of each room to `build/stills/`.
+
+**Order in the file matters.** The crowd wakes in columns, every fourth guest first, so a guest's index decides when they get up. Lay the ranks out to alternate sides and mix depths, or the warm floor is all on one side.

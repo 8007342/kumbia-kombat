@@ -112,22 +112,8 @@ void main() {
           level.layout.floor.referenceHeight,
           layout.floor.referenceHeight,
         );
-        String guest(PartyGuestSlot g) =>
-            '${g.id} ${g.floor.x} ${g.floor.y} ${g.activity} ${g.archetype} '
-            '${g.interestIndex} ${g.homePropId} ${g.facingRight} ${g.stature} '
-            '${g.seatHeightInAdults} ${g.paletteIndex} ${g.chairIncluded}';
-        expect(
-          level.layout.guests.map(guest).toList(),
-          layout.guests.map(guest).toList(),
-        );
-        String prop(PartyPropSlot p) =>
-            '${p.id} ${p.kind} ${p.floor.x} ${p.floor.y} ${p.heightInAdults} '
-            '${p.widthInAdults} ${p.bakedIntoStarter}';
-        expect(
-          level.layout.props.map(prop).toList(),
-          layout.props.map(prop).toList(),
-          reason: 'Prop order also sets each ambient animation instance.',
-        );
+        // Who sits where left this comparison with the owner's tenth round: the
+        // rules for it are in crowd_staging_test.dart.
 
         final route = roomDepartures[id]!;
         expect(level.route.threshold, route.threshold);
@@ -144,8 +130,9 @@ void main() {
       final garden = levels.byId('garden');
       final bar = levels.byId('bar');
       for (final (level, homeY, challengerY, sideX, sideY) in [
-        (garden, .69, .53, .61, .52),
-        (bar, .62, .45, .60, .44),
+        // Forward and further aside since the owner's tenth round.
+        (garden, .69, .565, .70, .535),
+        (bar, .62, .48, .69, .455),
       ]) {
         for (final entrance in [0.0, .25, .6, 1.0]) {
           for (final retreat in [0.0, .5, 1.0]) {
@@ -406,9 +393,36 @@ void main() {
     refused('budgets that are not cumulative', 'crowd.budgets', (bar) {
       of(of(bar, 'crowd'), 'budgets')['following'] = 9;
     });
-    refused('more guests than the crowd model has', 'crowd.guests', (bar) {
-      final guests = of(bar, 'crowd')['guests'] as List;
-      guests.add(guests.first);
+    refused('more guests than a phone is asked to draw', 'crowd.guests', (bar) {
+      final crowd = of(bar, 'crowd');
+      crowd['guests'] = List.filled(CrowdInterestModel.maxGuests + 1, [.2, .4]);
+    });
+    refused('a guest on the tap band', 'crowd.guests[0]', (bar) {
+      of(bar, 'crowd')['guests'] = [
+        [.2, .7],
+      ];
+    });
+    refused('a table on the tap band', 'crowd.props[0]', (bar) {
+      of(bar, 'crowd')['props'] = [
+        {
+          'id': 'x',
+          'kind': 'table',
+          'at': [.2, .7],
+          'heightInAdults': .43,
+          'widthInAdults': .6,
+        },
+      ];
+    });
+    refused('a stool placed by hand', 'props[0].kind', (bar) {
+      of(bar, 'crowd')['props'] = [
+        {
+          'id': 'x',
+          'kind': 'stool',
+          'at': [.5, .5],
+          'heightInAdults': 1,
+          'widthInAdults': 1,
+        },
+      ];
     });
     refused('a chair placed by hand', 'props[0].kind', (bar) {
       of(bar, 'crowd')['props'] = [

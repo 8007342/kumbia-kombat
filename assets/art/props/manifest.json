@@ -1,0 +1,221 @@
+{
+ "version": 1,
+ "sets": {
+  "garden": {
+   "image": "garden.png",
+   "imageWidth": 135,
+   "imageHeight": 52,
+   "frames": {
+    "chair_right": {
+     "rect": [
+      0,
+      0,
+      34,
+      52
+     ],
+     "anchor": [
+      17.0,
+      52
+     ],
+     "pixelsPerUnit": 8.0
+    },
+    "chair_left": {
+     "rect": [
+      36,
+      0,
+      34,
+      52
+     ],
+     "anchor": [
+      17.0,
+      52
+     ],
+     "pixelsPerUnit": 8.0
+    },
+    "stool": {
+     "rect": [
+      72,
+      27,
+      17,
+      25
+     ],
+     "anchor": [
+      8.5,
+      25
+     ],
+     "pixelsPerUnit": 8.0
+    },
+    "table_a": {
+     "rect": [
+      91,
+      24,
+      21,
+      28
+     ],
+     "anchor": [
+      10.5,
+      28
+     ],
+     "pixelsPerUnit": 8.0
+    },
+    "table_b": {
+     "rect": [
+      114,
+      24,
+      21,
+      28
+     ],
+     "anchor": [
+      10.5,
+      28
+     ],
+     "pixelsPerUnit": 8.0
+    }
+   }
+  },
+  "bar": {
+   "image": "bar.png",
+   "imageWidth": 161,
+   "imageHeight": 62,
+   "frames": {
+    "chair_right": {
+     "rect": [
+      0,
+      0,
+      41,
+      62
+     ],
+     "anchor": [
+      20.5,
+      62
+     ],
+     "pixelsPerUnit": 8.0
+    },
+    "chair_left": {
+     "rect": [
+      43,
+      0,
+      41,
+      62
+     ],
+     "anchor": [
+      20.5,
+      62
+     ],
+     "pixelsPerUnit": 8.0
+    },
+    "stool": {
+     "rect": [
+      86,
+      32,
+      21,
+      30
+     ],
+     "anchor": [
+      10.5,
+      30
+     ],
+     "pixelsPerUnit": 8.0
+    },
+    "table_a": {
+     "rect": [
+      109,
+      29,
+      25,
+      33
+     ],
+     "anchor": [
+      12.5,
+      33
+     ],
+     "pixelsPerUnit": 8.0
+    },
+    "table_b": {
+     "rect": [
+      136,
+      29,
+      25,
+      33
+     ],
+     "anchor": [
+      12.5,
+      33
+     ],
+     "pixelsPerUnit": 8.0
+    }
+   }
+  },
+  "pool-garden": {
+   "image": "pool-garden.png",
+   "imageWidth": 76,
+   "imageHeight": 27,
+   "frames": {
+    "chair_right": {
+     "rect": [
+      0,
+      0,
+      18,
+      27
+     ],
+     "anchor": [
+      9.0,
+      27
+     ],
+     "pixelsPerUnit": 8.0
+    },
+    "chair_left": {
+     "rect": [
+      20,
+      0,
+      18,
+      27
+     ],
+     "anchor": [
+      9.0,
+      27
+     ],
+     "pixelsPerUnit": 8.0
+    },
+    "stool": {
+     "rect": [
+      40,
+      14,
+      9,
+      13
+     ],
+     "anchor": [
+      4.5,
+      13
+     ],
+     "pixelsPerUnit": 8.0
+    },
+    "table_a": {
+     "rect": [
+      51,
+      12,
+      12,
+      15
+     ],
+     "anchor": [
+      6.0,
+      15
+     ],
+     "pixelsPerUnit": 8.0
+    },
+    "table_b": {
+     "rect": [
+      65,
+      12,
+      11,
+      15
+     ],
+     "anchor": [
+      5.5,
+      15
+     ],
+     "pixelsPerUnit": 8.0
+    }
+   }
+  }
+ }
+}

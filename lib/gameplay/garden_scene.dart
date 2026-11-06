@@ -55,6 +55,8 @@ class GardenSceneGame extends FlameGame {
   String? artLoadError;
   PartySpriteAtlas? _heroAtlas;
   Map<String, EnsembleAtlas>? _ensemble;
+  Map<String, EnsembleAtlasDefinition>? _propSets;
+  EnsembleAtlas? _props;
   OutfitPalette? _outfits;
   ui.Image? _background;
   LevelDefinition? _level;
@@ -116,6 +118,15 @@ class GardenSceneGame extends FlameGame {
         for (final entry in ensemble.atlases.entries)
           entry.key: EnsembleAtlas(entry.value, loaded[index++]),
       };
+      final propSets =
+          jsonDecode(await rootBundle.loadString('assets/art/props/manifest.json'))
+              as Map<String, dynamic>;
+      _propSets = {
+        for (final entry in (propSets['sets'] as Map).entries)
+          entry.key as String: EnsembleAtlasDefinition.fromJson(
+            Map<String, dynamic>.from(entry.value as Map),
+          ),
+      };
       _outfits = await OutfitPalette.load();
       await showLevel(await firstLevel());
     } catch (error) {
@@ -150,7 +161,15 @@ class GardenSceneGame extends FlameGame {
     for (final prop in level.layers) {
       await images.load(prop.atlas);
     }
+    final propSet = level.propSet == null ? null : _propSets![level.propSet];
+    if (level.propSet != null && propSet == null) {
+      throw StateError('Level ${level.id} names unknown props ${level.propSet}');
+    }
+    final propImage = propSet == null
+        ? null
+        : await images.load('props/${propSet.art.image}');
     if (generation != _roomGeneration) return;
+    _props = propSet == null ? null : EnsembleAtlas(propSet, propImage!);
     _level = level;
     _background = loaded;
     presentationBeat = null;
@@ -522,7 +541,8 @@ class GardenSceneGame extends FlameGame {
     PartyRoomLayout room,
     double beat,
   ) {
-    final furniture = _ensemble!['furniture']!;
+    final baked = _props;
+    final furniture = baked ?? _ensemble!['furniture']!;
     final life = _ensemble!['life']!;
     for (var i = 0; i < room.props.length; i++) {
       final prop = room.props[i];
@@ -541,9 +561,18 @@ class GardenSceneGame extends FlameGame {
           atlas = furniture;
           frame = owner?.facingRight == false ? 'chair_left' : 'chair_right';
           reference = frame;
+        case PartyPropKind.stool:
+          final owner = room.guests
+              .where((g) => g.homePropId == prop.id)
+              .firstOrNull;
+          if (owner?.chairIncluded == true) continue;
+          atlas = baked ?? furniture;
+          frame = 'stool';
+          reference = frame;
         case PartyPropKind.table:
           atlas = furniture;
-          frame = 'table';
+          // The baked sets draw two tables, so a room isn't one table repeated.
+          frame = baked == null ? 'table' : (i.isEven ? 'table_a' : 'table_b');
           reference = frame;
         case PartyPropKind.umbrella:
           atlas = life;
@@ -678,6 +707,16 @@ class GardenSceneGame extends FlameGame {
         dressed.floorYield,
         beat: reducedMotion ? 0 : beat,
       );
+      // Mācron walks over for the shot, and a lone dancer comes in to meet him.
+      final shot = _level!.exitShot;
+      final meet = challenger.meetMark;
+      if (meet != null && shot != null && session?.phase == GardenPhase.cleared) {
+        final at = exitBeat == null ? 0.0 : shot.stepAt(exitBeat!);
+        floor = PartyPoint(
+          floor.x + (meet.x - floor.x) * at,
+          floor.y + (meet.y - floor.y) * at,
+        );
+      }
       var mirrored = false;
       final placed = _duetPlace(i, challenger.atlas, dressed, beat);
       if (placed != null) {
@@ -835,25 +874,34 @@ class GardenSceneGame extends FlameGame {
     var floor = exitTravel > 0
         ? level.heroExitFloor(departure)
         : level.stage.heroFloor(entrance: entrance, retreat: retreat);
-    // Off his turn he steps back from home; he walks in straight to that spot.
-    final watchSpot = level.stage.heroWatch;
+    // Off his turn he leaves the floor, back and then to the side, and comes home
+    // the same way. He walks in straight to where he waits. Reduced motion cuts
+    // to each place, so the floor still belongs to one dancer at a time.
     final callAge = s == null ? 0.0 : beat - s.callStartBeat;
     final firstCall = s != null && s.callStartBeat <= s.chart.introBeats;
     final inCall = s?.phase == GardenPhase.call && !reducedMotion;
-    final watching = reducedMotion || exitTravel > 0
-        ? 0.0
+    final home = level.stage.heroFloor(entrance: 1, retreat: 0);
+    final off = exitTravel > 0
+        ? home
         : s?.phase == GardenPhase.intro
-        ? entrance
-        : inCall
-        ? HeroWatch.at(callAge, s!.chart.callBeats, firstCall: firstCall)
-        : 0.0;
+        ? PartyPoint(
+            home.x + (level.stage.heroAside.x - home.x) * entrance,
+            home.y + (level.stage.heroAside.y - home.y) * entrance,
+          )
+        : s?.phase == GardenPhase.call
+        ? level.stage.heroDuringCall(
+            callAge,
+            s!.chart.callBeats,
+            firstCall: firstCall,
+            reducedMotion: reducedMotion,
+          )
+        : home;
     final watchWalking =
         inCall &&
         HeroWatch.walking(callAge, s!.chart.callBeats, firstCall: firstCall);
-    final home = level.stage.heroFloor(entrance: 1, retreat: 0);
     floor = PartyPoint(
-      floor.x + (watchSpot.x - home.x) * watching,
-      floor.y + (watchSpot.y - home.y) * watching,
+      floor.x + off.x - home.x,
+      floor.y + off.y - home.y,
     );
     var shotWalking = false;
     if (shot != null && s?.phase == GardenPhase.cleared) {
