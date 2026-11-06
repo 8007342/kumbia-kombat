@@ -11,7 +11,7 @@ push the player to the entrance of the current level.
 
 ## Product decisions
 
-- Mobile web first, portrait, lower-screen four-zone thumb controls, one finger.
+- Mobile web first, portrait, lower-screen four-ring thumb controls, one finger.
 - Pixel art, parallax, sprite animation and simulated camera depth; minimal text.
 - Narrative: garden/entrance → bar → cool crowd → short urgent restroom → VIP.
 - Final high five, “Chingón”, and a seat beside Tlatoāni, Covi and party guests.

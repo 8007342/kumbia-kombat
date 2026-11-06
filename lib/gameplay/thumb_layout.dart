@@ -14,7 +14,9 @@ bool limbIsLeft(Limb limb) => limb == Limb.leftHand || limb == Limb.leftFoot;
 
 bool limbIsUpper(Limb limb) => limb == Limb.leftHand || limb == Limb.rightHand;
 
-/// Logical input stays generous and stable while the beat moves visual markers.
+/// The pad's quadrant under a point. Tells which ring dents for a stray tap, and
+/// keeps each ring on its own side. Notes are judged near their ring instead:
+/// see `tap_resolution.dart`.
 Limb? thumbLimbAt(double x, double y) {
   if (!x.isFinite ||
       !y.isFinite ||

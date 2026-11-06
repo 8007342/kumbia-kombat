@@ -10,25 +10,35 @@ hard time limits or lengths enforced by the prototype model.
 
 ## Requirements
 
-### Requirement: Readable four-zone input
+### Requirement: Readable four-ring input
 
-The lower portrait viewport SHALL contain four generous nonoverlapping thumb
-regions in a 2×2 pad: LH/RH above LF/RF. This SHALL be the only layout;
-there is no corner mode. Matching SVG silhouettes identify each move.
-Required destinations SHALL vary modestly and deterministically by the note's
-beat and id, by bounded named amounts, and the whole ring SHALL stay within its
-stable region on every supported phone. The region still judges the tap; the
-ring shows where the note lands and never narrows that region. Each note's
-destination SHALL remain immutable from preview birth through judgment.
-Simultaneously visible notes MAY show separate destination rings, including
-doubles. Moving markers SHALL NOT shrink or move logical touch regions.
-No required chord or simultaneous fingers SHALL be authored.
+The lower portrait viewport SHALL show four rings in a 2×2 pad, each in its own
+quadrant: LH/RH above LF/RF. This SHALL be the only layout; there is no corner
+mode. Matching SVG silhouettes identify each move. Required destinations SHALL
+vary modestly and deterministically by the note's beat and id, by bounded named
+amounts, and the whole ring SHALL stay within its quadrant on every supported
+phone. A tap SHALL count for a note when it lands within a generous radius of
+that note's ring: at least 72 logical pixels, and a fifth of the screen width
+on wider phones. Those areas MAY overlap. Among notes whose timing window is
+open, a tap SHALL go to the nearest ring by distance, with equal distances going
+to the note closer in time. Each area SHALL stay reachable on every supported
+phone and clear of the pause and AutoPlay buttons. Each note's destination SHALL
+remain immutable from preview birth through judgment. Simultaneously visible
+notes MAY show separate destination rings, including doubles. Moving markers
+SHALL NOT shrink or move a ring's tap area. No required chord or simultaneous
+fingers SHALL be authored.
 
 #### Scenario: one-hand play
 
 - WHEN a phrase asks for left hand, right hand, left hand twice
 - THEN four distinct presses in their timing windows pass the phrase
 - AND holding, releasing, or optional swiping never creates another tap.
+
+#### Scenario: a tap outside every area
+
+- WHEN a tap lands outside the area of every note whose window is open
+- THEN it consumes no note, breaks no combo and fails nothing
+- AND inside the pad the ring on its side dents to show it was heard.
 
 ### Requirement: Predictable curved preview
 
@@ -57,7 +67,7 @@ Judgment SHALL use monotonic audible-song time, corrected for measured output
 and player input latency, never frame count. Perfect is absolute error ≤75 ms;
 Good is ≤180 ms; later notes expire only after their late Good boundary.
 A press SHALL consume at most one nearest unresolved matching-limb note.
-Wrong-zone presses SHALL not consume another limb's note. Every required note
+Presses nearer another limb's ring SHALL not consume this limb's note. Every required note
 in a response phrase SHALL receive Good or Perfect to pass. Stray presses MAY
 show feedback but SHALL not themselves fail an otherwise complete phrase.
 There SHALL be a 250 ms chart minimum interval between required presses,
@@ -138,7 +148,13 @@ and challenger stepping aside SHALL communicate progression.
 ### Requirement: Pause, timing, and finish
 
 Visibility loss, app background, audio suspension, and explicit pause SHALL
-save at the last safe phrase boundary. Resume SHALL use a silent/non-scoring
+save at the last safe phrase boundary. A paused run SHALL keep the game image
+visible and frozen under a wordless frame in the style of a paused videotape,
+with a big translucent pause icon. Tapping anywhere SHALL turn the icon into a
+play triangle that fades out. Errors SHALL still appear as words, and a screen
+reader SHALL still get a label. The frame's noise SHALL stay low contrast and
+change at no more than two steps a second; reduced motion SHALL remove its
+jitter and shorten the fade. Resume SHALL use a silent/non-scoring
 count-in and replay the interrupted phrase without adding misses. The local
 active-play timer SHALL exclude paused time. Ranked elapsed time SHALL use
 server elapsed time and include pauses, reloads, demonstrations, responses,

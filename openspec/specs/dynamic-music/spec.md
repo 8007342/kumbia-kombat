@@ -135,8 +135,11 @@ device is unavailable. Visibility loss, application suspension, audio focus loss
 or explicit pause SHALL freeze judgment and transport together. Pause SHALL cancel
 future attacks and release voices with a short clickless fade. Resume SHALL anchor
 the frozen beat to a new audio start time following a one-bar audiovisual count-in;
-no scoring is active during the count-in. Held notes cut by pause need not retrigger;
-the next written attack resumes. Pending tier intent SHALL be reconciled with the
+no scoring is active during the count-in. The picture's fade SHALL finish within the
+count-in. The music SHALL then swell from low volume to full, from the frozen beat's
+first note, and SHALL reach full before the next scored note's window opens; that
+fade SHALL change only volume, never a note's time. Held notes cut by pause need not
+retrigger; the next written attack resumes. Pending tier intent SHALL be reconciled with the
 gameplay snapshot before continuing. Room changes SHALL cancel old score and
 ornament voices, and a score-load generation token SHALL reject stale async loads.
 

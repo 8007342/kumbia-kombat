@@ -1,9 +1,10 @@
 import 'rhythm.dart';
 import 'thumb_layout.dart';
 
-/// Where a cue travels and lands. Presentation only: the session never reads
-/// this, and a tap is judged by its zone (`thumbLimbAt`), never by this point,
-/// so nothing here can move the music, the notes or the score.
+/// Where a cue travels and lands. The session never reads this. The page reads
+/// a landing to decide which limb a touch means (`tap_resolution.dart`), and the
+/// session then judges that limb by time as ever, so nothing here can move the
+/// music, the notes or the score.
 
 /// The most a note's landing spot may stray from its limb's home, as fractions
 /// of the screen. Every note's variation is bounded by these two numbers.
@@ -32,7 +33,8 @@ const cueBendJitter = .1;
 /// centre of the play area.
 const cueFadeInSpan = .3;
 
-/// The drawn landing ring's radius, in logical pixels. Kept inside its zone.
+/// The drawn landing ring's radius, in logical pixels. Kept inside its quadrant.
+/// The area a tap counts in is bigger: see `tapAreaRadius`.
 const cueRingRadius = 29.0;
 
 /// Drawn size of a moving cue, in logical pixels.
@@ -138,7 +140,7 @@ NotePoint cueHome(Limb limb, {required double width, required double height}) {
   return _insideZone(limb, home.x, home.y, width, height);
 }
 
-/// Keeps the whole ring inside the zone that judges it, whatever the screen.
+/// Keeps the whole ring inside its own quadrant, whatever the screen.
 NotePoint _insideZone(
   Limb limb,
   double x,
