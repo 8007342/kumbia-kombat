@@ -556,7 +556,7 @@ void main() {
                         dancerHand(1 - now.left, b, rightFloor, true)) *
                     px;
                 expect(gap.dx.abs(), lessThan(40), reason: '$a $b $gap at $middle');
-                expect(gap.dy.abs(), lessThan(22), reason: '$a $b $gap at $middle');
+                expect(gap.dy.abs(), lessThan(30), reason: '$a $b $gap at $middle');
               }
             }
           }

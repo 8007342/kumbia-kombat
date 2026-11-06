@@ -33,6 +33,8 @@ The owner's tenth round: "they should always dance in pair during their turn, th
 - **Overflow, as ruled.** A spin past the end of his answer finishes where it is. She then has `catchUpBeats` to rejoin the pair, and he finishes at home before stepping back to watch. The other dancer doesn't wait.
 - **`partnerGap` and `partnerUpstage` are from `heroHome`,** so she follows if his home moves. A test measures the hands at game size and fails if her step to reach him grows, which is the cue to retune these two.
 - **Puppet, not Qwen, for him.** `pair/scripts/puppet.py` keeps his accepted bodies with one arm erased, and re-attaches the raised arm from `arm_sweep`. The first try orbited him under the hand and the arm crossed his face. The arm now stays toward her and passes behind his head, and he turns on the spot.
+- **Hands are data.** Each holding drawing has a `hold` in the manifest. Swing-b is the shorter, so joining hands puts their feet up to 25 px apart on screen, and it changes a little with the drawings. That reads as a slight difference in depth and a small bob on the hits. Only stills have judged it.
+- **Seen, real renderer, stills only:** `test/lawn_pair_scene_test.dart` writes `build/pair-review/`; `pair/sheets/real-render-spin.png` and `real-render-overflow.png` are from it. Nobody has seen any of it moving, or tapped a chart over it.
 - **Qwen for them.** Asking her to reach for "a very tiny toy robot" gave the deep bend every time, on the first seeds, and drew a robot too. Asking for a partner's hand drew a dark sleeve. Both are erased by polygon in `pair/picks.json`.
 
 ## As built, 2026-11-06

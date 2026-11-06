@@ -8,6 +8,7 @@ Full generation prompts and cleanup intent are in `provenance.json`.
 - `macron-dance-v1.png`: transparent 1243×1265 source, 16 robot poses. Rear walk,
   front groove, anticipation, limb accents and four spin views are selected by
   the music-clock animator. The original concept sheet supplied identity only.
+- `macron-dance-v3.png`: the v2 sheet pixel for pixel, plus eight `held_*` frames below it, turning under a held hand. Puppeted from his own frames by `art_runs/duet-20261106/pair/scripts/puppet.py`. Each records `hold`, the hand, in the same pixels as `anchor`.
 - `guests-v1.png`: transparent 1536×1024 source, three distinct adult party guests,
   six poses each: occupied, notice/point, step left, step right, clap, cheer.
   An imagegen edit removed a translucent gradient from the original generation.

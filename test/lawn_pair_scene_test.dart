@@ -47,7 +47,7 @@ void main() {
   /// Plays [cycles] calls and answers, tapping every note on its beat. With
   /// [spinning], every answer lands a flourish on its third note, as far as the
   /// scene can tell. Returns what the player would be scored, and the frames.
-  Future<({String score, Set<String> heroRects, Set<double> reviewed})> play(
+  Future<({String score, Set<String> heroRects})> play(
     WidgetTester tester, {
     required bool spinning,
     int cycles = 3,
@@ -55,7 +55,6 @@ void main() {
   }) async {
     late String score;
     final rects = <String>{};
-    final reviewed = <double>{};
     await tester.runAsync(() async {
       final scene = GardenSceneGame(firstLevel: () async => level);
       scene.onGameResize(Vector2(390, 844));
@@ -85,7 +84,7 @@ void main() {
             final r = hero.frames[frame]!.source;
             final text =
                 '[${r.left.toStringAsFixed(5)} ${r.top.toStringAsFixed(5)} '
-                '${r.width.toStringAsFixed(5)} ${r.height.toStringAsFixed(5)}]';
+                '${r.right.toStringAsFixed(5)} ${r.bottom.toStringAsFixed(5)}]';
             if (call.contains(text)) rects.add(frame);
           }
         }
@@ -101,37 +100,53 @@ void main() {
 
       final chart = session.chart;
       final log = <String>[];
+      // Everything the music reaches, in order: taps, and looks at the picture.
+      final moments = <(double, void Function(), String?)>[];
       for (var cycle = 0; cycle < cycles; cycle++) {
         final start = chart.introBeats + cycle * chart.cycleBeats;
-        advance(music.secondsAt(start + 2));
-        if (cycle < 2) await look('c$cycle-call');
+        moments.add((start + 2, () {}, 'c$cycle-call'));
+        moments.add((start + chart.callBeats + 3.5, () {}, 'c$cycle-answer'));
         for (var i = 0; i < chart.offsets.length; i++) {
-          advance(music.secondsAt(start + chart.callBeats + chart.offsets[i]));
-          final note = session.tap(session.activeLimbs[i]);
-          log.add('$cycle/$i/${note.grade}');
-          if (i == 2 && spinning) {
-            scene.flourishBeat = session.positionBeats;
-            for (final after in [.25, .75, 1.25, 1.75]) {
-              final at = scene.flourishBeat + after;
-              if (at < start + chart.callBeats + chart.offsets[3]) {
-                advance(music.secondsAt(at));
-                await look('c$cycle-spin$after');
-                reviewed.add(after);
+          final at = start + chart.callBeats + chart.offsets[i];
+          moments.add((
+            at,
+            () => log.add('$cycle/$i/${session.tap(session.activeLimbs[i]).grade}'),
+            null,
+          ));
+          // The third note's flourish, then on the second turn the very last
+          // note's, which runs on into the next call.
+          if (spinning && (i == 2 || (i == chart.offsets.length - 1 && cycle == 1))) {
+            final tag = i == 2 ? 'c$cycle-spin' : 'c$cycle-overflow';
+            moments.add((at + 1e-6, () => scene.flourishBeat = at, null));
+            for (var after = .125; after < 2; after += .25) {
+              moments.add((at + after, () {}, '$tag$after'));
+            }
+            if (i != 2) {
+              for (final after in [2.25, 2.75, 3.5]) {
+                moments.add((at + after, () {}, '$tag$after'));
               }
             }
           }
         }
-        advance(music.secondsAt(start + chart.cycleBeats - .1));
-        await look('c$cycle-end');
-        log.add(
-          'perfects ${session.perfects} phase ${session.phase} '
-          'position ${session.positionBeats.toStringAsFixed(4)} '
-          'limbs ${session.activeLimbs} offsets ${session.activeOffsets}',
-        );
+        moments.add((
+          start + chart.cycleBeats - .1,
+          () => log.add(
+            'perfects ${session.perfects} phase ${session.phase} '
+            'position ${session.positionBeats.toStringAsFixed(4)} '
+            'limbs ${session.activeLimbs} offsets ${session.activeOffsets}',
+          ),
+          null,
+        ));
+      }
+      moments.sort((x, y) => x.$1.compareTo(y.$1));
+      for (final (beat, act, name) in moments) {
+        advance(music.secondsAt(beat));
+        act();
+        if (name != null) await look(name);
       }
       score = log.join('\n');
     });
-    return (score: score, heroRects: rects, reviewed: reviewed);
+    return (score: score, heroRects: rects);
   }
 
   testWidgets('a spin draws his held turn, and the score never knows', (
@@ -140,7 +155,11 @@ void main() {
     final plain = await play(tester, spinning: false);
     final spun = await play(tester, spinning: true, review: 'pair-review');
     expect(plain.heroRects, isEmpty, reason: 'no flourish, no spin');
-    expect(spun.heroRects, isNotEmpty, reason: 'a landed flourish shows');
+    expect(
+      spun.heroRects,
+      level.stage.duet!.spin.heroFrames.toSet(),
+      reason: 'a landed flourish plays his whole turn',
+    );
     expect(spun.score, plain.score);
   });
 }
