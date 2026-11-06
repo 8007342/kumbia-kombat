@@ -50,14 +50,15 @@ double _heroLogical(LevelDefinition level, double footY) {
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
-  test('the lawn follows the bar, over the bridge written for it', () {
+  test('the lawn follows the garden and leads to the bar, over bridges written for it', () {
     final levels = _campaign();
     expect(levels.campaign.map((s) => s.level.id), [
       'garden',
-      'bar',
       'pool-garden',
+      'bar',
     ]);
-    expect(levels.campaign[1].bridgeToNext, 'bar_to_pool');
+    expect(levels.campaign[0].bridgeToNext, 'garden_to_pool');
+    expect(levels.campaign[1].bridgeToNext, 'pool_to_bar');
     expect(levels.campaign.last.next, isNull);
   });
 

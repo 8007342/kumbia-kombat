@@ -4,7 +4,7 @@
   "background": "bar/bar-interior.png",
   "music": {
     "score": "bar_swag",
-    "successScore": "bar_swag_success",
+    "successScore": "bar_swag_finale",
     "leadShape": "sine"
   },
   "rules": {
@@ -20,14 +20,14 @@
     "callBeats": 8,
     "flourishDestination": "leftHand",
     "offsets": [
-      0,
+      0.5,
       1,
-      2,
-      2.5,
-      4,
-      5,
+      2.25,
+      3,
+      4.5,
+      5.25,
       6,
-      6.5
+      6.75
     ],
     "limbs": [
       "rightHand",
@@ -46,8 +46,8 @@
         "rightHand",
         "leftHand",
         "rightFoot",
-        "leftFoot",
         "leftHand",
+        "leftFoot",
         "rightHand"
       ],
       [

@@ -122,15 +122,17 @@ console.log('Transitions: pool_swing_success at',success.tiers[4].bpm,'BPM; bar_
 
 // ---- level file: the fields lib/gameplay/level_definition.dart reads, and no others
 const level=json('levels/pool-garden.json');
-assert.deepEqual(Object.keys(level).sort(),['background','chart','copy','crowd','departure','id','music','rules','scenery','stage','title'].sort());
+assert.deepEqual(Object.keys(level).sort(),['background','chart','copy','crowd','departure','exitShot','id','music','rules','scenery','stage','title'].sort());
 assert.deepEqual(Object.keys(level.chart).sort(),['callBeats','flourishDestination','introBeats','limbs','offsets','variants']);
 assert.deepEqual(Object.keys(level.music).sort(),['leadShape','score','successScore']);
 assert.deepEqual(Object.keys(level.rules).sort(),['cleanSeconds','earlyHitRatio','finalChallenges','metric','resetAfterFailures','successesPerTier']);
-assert.deepEqual(Object.keys(level.copy).sort(),['clearedClaim','clearedTitle','invitation','resetLine']);
+assert.deepEqual(Object.keys(level.copy).sort(),['clearedTitle','invitation']);
 assert.ok(['sine','square','sawtooth','triangle'].includes(level.music.leadShape));
 assert.equal(level.music.score,'pool_swing');assert.equal(level.music.successScore,'pool_swing_success');
 assert.equal(level.title,'THE POOL LAWN');assert.ok(['Sabor','Grace'].includes(level.rules.metric));
-assert.ok(!JSON.stringify(json('levels/index.json')).includes('pool-garden'),'still out of the campaign');
+const campaign=json('levels/index.json').campaign;
+assert.deepEqual(campaign.map(s=>s.level),['garden','pool-garden','bar'],'the owner\'s order, tenth round');
+assert.deepEqual(campaign.map(s=>s.bridgeToNext),['garden_to_pool','pool_to_bar',undefined]);
 const chart=level.chart, LIMBS=['leftHand','rightHand','leftFoot','rightFoot'];
 assert.equal(chart.callBeats,8);
 assert.equal(chart.offsets.length,chart.limbs.length);
