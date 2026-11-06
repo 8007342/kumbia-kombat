@@ -30,6 +30,9 @@ See the seventh round in `owner-rulings-2026-11-05.md`.
 
 ## Checks after the relaunch
 
+- `studio.models` `tray_build`: the old lane reports `56.11.6.1+6a509f720d853e8b`, a local build that shares its version label with the published release but lacks the ACE change. The new label must differ. Report it to macuahuitl-fedora. Then rerun `tool/music/workflows/ace-xl-turbo.api.json`, which this lane refused with `node_not_pinned`.
+- Baseline before the relaunch: 174 tests pass on `work/1841-toda`; `flutter analyze` shows 4 style notes in `battle_staging.dart`.
+- **Not yet seen on screen:** the mid-floor spin and the removed exit walk. Check whether the opponent crowds Mācron, the lost open-palm cue during the overflow, and the hard cut to the next room.
 - `studio.status`, `studio.models`: the ACE files and the 2511 Lightning LoRA should show `on_disk: true`. Report to macuahuitl-fedora if the LoRA doesn't.
 - 2001-stpr marker test: #937 should be in this build. Confirm at ComfyUI `/history`, not from a sidecar.
 - `flutter analyze` and `flutter test`: **no baseline yet.** Both were refused before the relaunch: `runtime_unavailable: podman did not answer (image exists)`, `refused:flutter:host-toolchain-unavailable`. Report it if it persists.
