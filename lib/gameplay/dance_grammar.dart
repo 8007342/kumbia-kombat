@@ -52,12 +52,28 @@ class DanceAccent {
 }
 
 class _Dancer {
-  _Dancer(this.clips, this.frames, this.accents);
+  _Dancer(this.clips, this.frames, this.accents, this.handoffMoves);
   final Map<String, DanceClip> clips;
   final Map<String, String> frames;
 
   /// This dancer's own flares. They come ahead of the shared accents.
   final List<DanceAccent> accents;
+
+  /// Finishes danced on the mark as the call ends, by the lowest tier for each.
+  final List<DanceHandoffMove> handoffMoves;
+
+  DanceClip? handoffClip(int tier) {
+    for (final move in handoffMoves) {
+      if (tier >= move.minTier) return clips[move.clip];
+    }
+    return null;
+  }
+}
+
+class DanceHandoffMove {
+  const DanceHandoffMove(this.minTier, this.clip);
+  final int minTier;
+  final String clip;
 }
 
 /// The art layer over the call: groove, accents, travel and celebration, read
@@ -105,6 +121,10 @@ class DanceGrammar {
         {...shared, ...clips(dancer['clips'] as Map?)},
         Map<String, String>.from(dancer['frames'] as Map? ?? const {}),
         _accentsFrom(dancer['accents'] as List? ?? const []),
+        [
+          for (final m in dancer['handoffMoves'] as List? ?? const [])
+            DanceHandoffMove(m['minTier'] as int, m['clip'] as String),
+        ],
       );
     }
     final grammar = DanceGrammar._(data, dancers);
@@ -134,7 +154,11 @@ class DanceGrammar {
       'return_in',
     };
     for (final dancer in _dancers.values) {
-      for (final name in [...named, ...dancer.accents.map((a) => a.clip)]) {
+      for (final name in [
+        ...named,
+        ...dancer.accents.map((a) => a.clip),
+        ...dancer.handoffMoves.map((m) => m.clip),
+      ]) {
         if (!dancer.clips.containsKey(name)) {
           throw FormatException('Choreography rule names missing clip $name');
         }
@@ -146,6 +170,11 @@ class DanceGrammar {
       }
     }
   }
+
+  /// How long [dancer] holds the mark past the call's last note at [tier], for
+  /// the sampler. Zero when this dancer has no finish for that tier.
+  double handoffBeats(String dancer, int tier) =>
+      _require(dancer).handoffClip(tier.clamp(0, 4))?.lengthBeats ?? 0;
 
   /// Every drawing this grammar can name for [dancer], before art lookups.
   Set<String> framesFor(String dancer) {
@@ -284,6 +313,8 @@ class DanceGrammar {
         return reduced
             ? pose.frameId
             : d.clips[rules['recover'] as String]!.once(outcomeAge ?? 0);
+      case ChallengerDanceState.handoffMove:
+        return d.handoffClip(tier)?.once(pose.moveAge) ?? pose.frameId;
       case ChallengerDanceState.watch:
         if (reduced) return rules['reducedMotionHold'] as String;
         final hold = (_data['inviteHoldBeats'] as num).toDouble();

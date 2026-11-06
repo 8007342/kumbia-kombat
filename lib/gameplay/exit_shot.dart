@@ -52,8 +52,8 @@ class ExitShot {
 
   bool walkingAt(double beat) => beat >= walkFrom && beat < walkTo;
 
-  /// Departure route progress: it starts once the close-up has returned to the
-  /// wide view, and finishes with the bridge at [endBeat].
+  /// How far the room has cooled after the close-up: it starts once the shot has
+  /// returned to the wide view, and finishes with the bridge at [endBeat].
   double routeAt(double beat, double endBeat) =>
       ((beat - closeupTo) / (endBeat - closeupTo)).clamp(0.0, 1.0);
 
@@ -168,6 +168,9 @@ class Celebration {
     'spin_front',
     'front_idle',
   ];
+
+  /// Where the cycle reaches its groove, skipping the crouch and the jumps.
+  static const grooveBeat = 5.0;
 
   /// [age] is beats since the win. Eight beats, then it repeats: a crouch, two
   /// jumps with the arms up, a full spin, then a groove to the side.

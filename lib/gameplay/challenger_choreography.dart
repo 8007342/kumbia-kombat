@@ -33,6 +33,7 @@ enum ChallengerDanceState {
   finish,
   cede,
   invite,
+  handoffMove,
   watch,
   approve,
   recover,
@@ -70,6 +71,7 @@ class ChallengerPose {
     this.movePhase = DanceMovePhase.idle,
     this.playerRole = PlayerDanceRole.waiting,
     this.restBeats,
+    this.moveAge = 0,
   });
 
   final String frameId;
@@ -91,6 +93,9 @@ class ChallengerPose {
   /// grammar may groove here; a shorter gap would only flash a stray drawing.
   final double? restBeats;
 
+  /// Beats into a [ChallengerDanceState.handoffMove], for the grammar's clip.
+  final double moveAge;
+
   ChallengerPose withFrame(String frame) => ChallengerPose(
     frameId: frame,
     state: state,
@@ -101,6 +106,7 @@ class ChallengerPose {
     movePhase: movePhase,
     playerRole: playerRole,
     restBeats: restBeats,
+    moveAge: moveAge,
   );
 }
 
@@ -161,6 +167,7 @@ class ChallengerChoreography {
     double? outcomeBeat,
     bool? passed,
     bool cleared = false,
+    double handoffMoveBeats = 0,
   }) {
     if (!beat.isFinite ||
         !callStartBeat.isFinite ||
@@ -223,6 +230,8 @@ class ChallengerChoreography {
         state: ChallengerDanceState.ready,
       );
     }
+    final move = reducedMotion ? null : _handoffMove(t, handoffMoveBeats);
+    if (move != null) return move;
     if (t < callBeats) return _call(t, reducedMotion);
 
     // The sidestep finishes on the response's first beat, so it never rushes.
@@ -258,6 +267,37 @@ class ChallengerChoreography {
       floorYield: 1,
       playerRole: PlayerDanceRole.responding,
     );
+  }
+
+  /// A showy finish on the demonstration mark. It may overflow into the player's
+  /// turn: only the drawing and the walk wait, never a note. Null outside it, or
+  /// when it wouldn't leave time to step away before the walk back.
+  ChallengerPose? _handoffMove(double t, double beats) {
+    if (beats <= 0) return null;
+    final start = offsets.last + math.min(.5, (callBeats - offsets.last) * .5);
+    final end = start + beats;
+    if (t < start || end + yieldSettleBeats > callBeats * 2 - returnBeats) {
+      return null;
+    }
+    if (t < end) {
+      return ChallengerPose(
+        frameId: 'invite',
+        state: ChallengerDanceState.handoffMove,
+        moveAge: t - start,
+        playerRole: t < callBeats
+            ? PlayerDanceRole.ready
+            : PlayerDanceRole.responding,
+      );
+    }
+    if (t < end + yieldSettleBeats) {
+      return ChallengerPose(
+        frameId: 'invite',
+        state: ChallengerDanceState.invite,
+        floorYield: _ease((t - end) / yieldSettleBeats),
+        playerRole: PlayerDanceRole.responding,
+      );
+    }
+    return null;
   }
 
   ChallengerPose _anticipation(int index, bool reducedMotion) => ChallengerPose(

@@ -262,8 +262,8 @@ void main() {
     expect(at(12.25, 1), 'clap_release');
     expect(at(14, 2), 'clap_contact');
     expect(at(14, 1), isNot(startsWith('clap')));
-    // A dancer's own spin takes this brass stab; the shared grammar still claps it.
-    expect(at(10.5, 4), startsWith('spin_'));
+    // The shared grammar claps the brass stab once the dancer reaches the sideline.
+    expect(at(10.5, 4), 'clap_contact');
     expect(at(10.5, 4, dancer: 'swing-a'), 'clap_contact');
     expect(at(12, 0), isNot(startsWith('clap')));
     // The offered palm holds as the player's first note lands.
@@ -463,30 +463,52 @@ void main() {
     }
   });
 
-  test('opponents spin and flare only on Mācron\'s turn, once it warms up', () {
-    const watching = ChallengerPose(
-      frameId: 'watch_left',
-      state: ChallengerDanceState.watch,
-      floorYield: 1,
-      playerRole: PlayerDanceRole.responding,
-    );
-    String at(String dancer, double beat, int tier) => grammar
-        .dress(
-          watching,
-          dancer: dancer,
-          beat: beat,
-          callStartBeat: beat - 12,
-          tier: tier,
-        )
-        .frameId;
-    for (final dancer in ['gatekeeper', 'bartender']) {
-      expect(at(dancer, 13, 0), isNot(startsWith('spin_')));
-      expect(at(dancer, 13, 1), startsWith('flare_'));
-      expect(at(dancer, 13, 2), 'spin_front');
-      expect(at(dancer, 14, 3), 'spin_back');
-      expect(at(dancer, 15.5, 4), startsWith('flare_'));
-    }
-    // The swing pair have no spin art yet, and keep the shared grammar.
-    expect(at('swing-a', 13, 4), isNot(startsWith('spin_')));
-  });
+  test(
+    'opponents finish on the mark as the call ends, never at the sideline',
+    () {
+      const watching = ChallengerPose(
+        frameId: 'watch_left',
+        state: ChallengerDanceState.watch,
+        floorYield: 1,
+        playerRole: PlayerDanceRole.responding,
+      );
+      String resting(String dancer, double beat, int tier) => grammar
+          .dress(
+            watching,
+            dancer: dancer,
+            beat: beat,
+            callStartBeat: beat - 12,
+            tier: tier,
+          )
+          .frameId;
+      String moving(String dancer, double age) => grammar
+          .dress(
+            ChallengerPose(
+              frameId: 'invite',
+              state: ChallengerDanceState.handoffMove,
+              moveAge: age,
+            ),
+            dancer: dancer,
+            beat: 100,
+            callStartBeat: 93,
+            tier: 1,
+          )
+          .frameId;
+      for (final dancer in ['gatekeeper', 'bartender']) {
+        expect(grammar.handoffBeats(dancer, 0), 1.5);
+        expect(grammar.handoffBeats(dancer, 1), 3);
+        expect(grammar.handoffBeats(dancer, 4), 3);
+        expect(moving(dancer, 0), 'spin_front');
+        expect(moving(dancer, 1), 'spin_back');
+        expect(moving(dancer, 2.5), startsWith('flare_'));
+        // Nothing showy is left for the sideline.
+        for (var beat = 0.0; beat < 16; beat += .25) {
+          expect(resting(dancer, beat, 4), isNot(startsWith('spin_')));
+          expect(resting(dancer, beat, 4), isNot(startsWith('flare_')));
+        }
+      }
+      // The swing pair have no spin art yet, and keep the shared grammar.
+      expect(grammar.handoffBeats('swing-a', 4), 0);
+    },
+  );
 }

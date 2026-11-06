@@ -296,18 +296,16 @@
           ]
         }
       },
-      "accents": [
+      "accents": [],
+      "handoffMoves": [
         {
-          "note": "Mācron's turn, right after the handover, in the gap before the shared downbeat claps. The spin takes over once the party warms up.",
-          "everyBeats": 16,
-          "atBeat": 13,
-          "minTier": 2,
+          "note": "Danced on the mark as the call ends, overflowing into Macron's turn, then the opponent steps away. The spin from the first warm tier.",
+          "minTier": 1,
           "clip": "spin_flare"
         },
         {
-          "everyBeats": 16,
-          "atBeat": 13,
-          "minTier": 1,
+          "note": "A cold room still gets a small flourish, so a move closes every call.",
+          "minTier": 0,
           "clip": "flare"
         }
       ]
@@ -399,18 +397,16 @@
           ]
         }
       },
-      "accents": [
+      "accents": [],
+      "handoffMoves": [
         {
-          "note": "Mācron's turn, right after the handover, in the gap before the shared downbeat claps. The spin takes over once the party warms up.",
-          "everyBeats": 16,
-          "atBeat": 13,
-          "minTier": 2,
+          "note": "Danced on the mark as the call ends, overflowing into Macron's turn, then the opponent steps away. The spin from the first warm tier.",
+          "minTier": 1,
           "clip": "spin_flare"
         },
         {
-          "everyBeats": 16,
-          "atBeat": 13,
-          "minTier": 1,
+          "note": "A cold room still gets a small flourish, so a move closes every call.",
+          "minTier": 0,
           "clip": "flare"
         }
       ]

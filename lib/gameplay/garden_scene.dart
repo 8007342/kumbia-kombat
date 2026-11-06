@@ -211,6 +211,7 @@ class GardenSceneGame extends FlameGame {
         : s.lastOutcome != ChallengeOutcome.retry &&
               s.lastOutcome != ChallengeOutcome.entranceReset;
     final outcomeBeat = cleared ? s.completedAtBeat : s.lastOutcomeBeat;
+    final tier = s.transport.sections.isEmpty ? 0 : s.transport.tierAt(beat);
     final pose = _choreography!.sample(
       beat: beat,
       callStartBeat: s.callStartBeat,
@@ -219,6 +220,7 @@ class GardenSceneGame extends FlameGame {
       outcomeBeat: outcomeBeat,
       passed: passed,
       cleared: cleared,
+      handoffMoveBeats: _grammar!.handoffBeats(atlas, tier),
     );
     return _grammar!.dress(
       pose,
@@ -226,7 +228,7 @@ class GardenSceneGame extends FlameGame {
       beat: beat,
       callStartBeat: s.callStartBeat,
       callBeats: s.chart.callBeats,
-      tier: s.transport.sections.isEmpty ? 0 : s.transport.tierAt(beat),
+      tier: tier,
       section: s.transport.score.sectionAt(beat),
       // The phrase result, so a clearing approval runs on without restarting.
       outcomeBeat: s.lastOutcomeBeat ?? outcomeBeat,
@@ -715,19 +717,11 @@ class GardenSceneGame extends FlameGame {
     var shotWalking = false;
     if (shot != null && s?.phase == GardenPhase.cleared) {
       final step = shotBeat == null ? 0.0 : shot.stepAt(shotBeat);
-      final at = PartyPoint(
+      // The cinematic is the way out, so he stays on this step afterwards.
+      floor = PartyPoint(
         home.x + (shot.heroStep.dx - home.x) * step,
         home.y + (shot.heroStep.dy - home.y) * step,
       );
-      // Ease from his step onto the route, instead of jumping to its start.
-      final onRoute = (exitTravel / .3).clamp(0.0, 1.0);
-      final blend = onRoute * onRoute * (3 - 2 * onRoute);
-      floor = exitTravel > 0
-          ? PartyPoint(
-              at.x + (floor.x - at.x) * blend,
-              at.y + (floor.y - at.y) * blend,
-            )
-          : at;
       shotWalking = shotBeat != null && shot.walkingAt(shotBeat);
     }
     final projected = viewport.project(floor);
@@ -762,6 +756,14 @@ class GardenSceneGame extends FlameGame {
       if (shotBeat == null || shotBeat < shot.celebrateUntil) {
         final party = Celebration.at(
           beat - (s!.completedAtBeat ?? beat),
+          reducedMotion: reducedMotion,
+        );
+        frame = party.frame;
+        hop = party.hop;
+      } else if (shotBeat >= shot.closeupTo) {
+        // Back from the close-up, dancing out the music's cool-down.
+        final party = Celebration.at(
+          shotBeat - shot.closeupTo + Celebration.grooveBeat,
           reducedMotion: reducedMotion,
         );
         frame = party.frame;

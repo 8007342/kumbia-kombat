@@ -153,7 +153,8 @@ class _GardenPageState extends State<GardenPage>
             if (mounted) setState(() {});
           }
           _scene.warmDown = bridge == null ? coda : coda * .55 + travel * .45;
-          _scene.exitTravel = travel;
+          // A cinematic replaces the walk out; the room still cools with travel.
+          _scene.exitTravel = shot == null ? travel : 0;
         }
       }
       if (next != null &&
