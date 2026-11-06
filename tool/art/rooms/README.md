@@ -35,3 +35,54 @@ Story elements outside the safe box, or a safe box outside the phone crop. Anyth
 - Glow discs on the lawn in the guide came back as glowing saucers, so light goes in the words and tables stay sprites.
 - Word the interior's detail, or it comes back as flat orange.
 - Pass 2 often moves the pool and sometimes the whole building. Expect about a third of the candidates to hold.
+
+## Layers: taking painted props out of a plate
+
+The garden is the pilot, because its plate is flat, has no id map, and is the first room anyone sees. Its umbrellas and tables were never painted: they're already sprites, so this route is for what is painted in.
+
+`layers.py <matte|plate|frames|sheet> <room>` reads `layers/<room>.json`. `frames` writes the atlas and the level's `layers` block; `sheet` writes `before-after.png` and `motion.gif` to the run's cache folder.
+
+**What worked**
+
+1. **Choose props a phone shows.** On a 390x844 phone only x 157-867 of a 1024 plate is in view. The garden's big potted plants and hanging baskets are almost entirely outside it, and guests cover much of the lower sides.
+2. **Matte by hand polygon, plus a colour rule where the backdrop allows.** Fronds against sky use `not-sky`. Flowers and lanterns are polygon only.
+3. **Fill with Qwen removal on a tight crop, one prop at a time,** then paste only under the matte. A crop about 130-140 px wide works, at 832x832. The prompt names what remains and forbids what the model wants to add: "Do not add any plant, bush or flowers."
+4. **Match the seam with a Poisson solve, with each edge difference clamped** (`edgeClamp`). 24 by default; 70 for a prop that lights its surroundings.
+5. **Bend the prop's own pixels into frames.** Frame "rest" is the painting, so at rest the room matches the original, and nothing appears: the layer is there from the first frame and only its range grows.
+6. **Behind glass, skip the plate.** Flames (`keepInside`) bend what's behind a pane and clip to it, so they need no fill or GPU. They change shape, not brightness.
+
+**What failed**
+
+| Try | Result |
+|---|---|
+| BiRefNet on a 320 px crop | Keyed the house, not the fronds or flowers. It finds the salient object, and a plate has no single one |
+| Qwen on a wide crop, 320 px | Sky was clean. On the pier it grew a new bush, with either wording |
+| Magenta-blanked props | Same bush. No better than asking in words |
+| A flat colour shift to match tone | Tinted the fill red beside a bright lantern |
+| An unclamped Poisson solve | Smeared any frond left at the mask's edge across the sky |
+| A colour rule for flowers | Took the lit wall and missed dark leaves |
+
+**GPU, one job at a time** (queue wait excluded; each job's first image includes about 10 s of model load)
+
+| Step | Images | Seconds |
+|---|---|---|
+| Wide crop removal, two wordings | 4 | 64 |
+| BiRefNet probe | 1 | 8 |
+| Tight pier crops, both sides | 6 | 87 |
+| Tight lantern crops, both sides | 4 | 70 |
+| Wide crop, right fronds | 2 | 34 |
+| **Total** | 17 | **263, about 4.4 minutes** |
+
+Mattes, seams, frames and sheets are CPU, seconds each.
+
+**Pitfalls**
+
+- A wide crop's fill is fine for sky, and no use where anything has an edge.
+- Qwen redraws a ledge a little wider and higher than the real one. `cap` discards its ledge and rebuilds that strip from clean stone just below the prop. Check the strip's rows against the matte, or the rest frame stops matching.
+- The dark part of a frond is close to the sky's colour. It left a ghost until near-black counted as frond.
+- Keep polygons a little generous, then read the `rest` comparison's blobs: they name the exact edge that's leaking.
+- **The clean plate is not meant to be seen alone.** The dance exposes 21-27% of the fill behind fronds and lanterns, and 3-4% behind flowers. Pier walls and caps behind the flowers are plain, and would need another pass if a level ever removed the flowers altogether.
+- `level_golden_test` leaves out layer draws. Its recorded file didn't change when the garden moved to the clean plate, which is the proof that the marks didn't move.
+- Workflow paths from a worktree need the `.claude/worktrees/<name>/` prefix, and a job fails at once if its input isn't staged yet.
+
+**Reuse.** A level's `layers` block names each prop's atlas, position and motion; there's no kind switch, so a new prop needs no code. Levels can share an atlas. The loader refuses a prop that leaves the plate, reaches the tap band, or reaches the quiet area behind the opponent.

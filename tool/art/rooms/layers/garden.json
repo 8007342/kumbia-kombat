@@ -1,0 +1,18 @@
+{
+  "room": "garden",
+  "run": "layers-garden-20261106",
+  "source": "assets/art/garden/garden-mansion.png",
+  "plate": "assets/art/garden/garden-mansion-clean.png",
+  "atlas": "assets/art/garden/garden-layers.png",
+  "level": "levels/garden.json",
+  "props": [
+    {"id": "fronds-left", "polygon": [[205, 0], [342, 0], [342, 112], [300, 112], [262, 90], [205, 40]], "rule": "not-sky", "fill": {"image": "crop-a-61000.png", "box": [150, 0, 470, 320], "dilate": 2}, "motion": "sway", "periodBeats": 2, "frames": 7, "instance": 1, "warp": {"pivot": [175, -20], "far": 170, "reachPx": 16, "power": 1.6}},
+    {"id": "fronds-right", "polygon": [[696, 50], [712, 100], [726, 152], [748, 152], [758, 116], [798, 124], [832, 97], [862, 82], [868, 50], [869, 0], [730, 0]], "rule": "not-sky", "fill": {"image": "top-right-62300.png", "box": [554, 0, 874, 320], "dilate": 2}, "motion": "sway", "periodBeats": 2, "frames": 7, "instance": 2, "warp": {"pivot": [880, -20], "far": 190, "reachPx": 16, "power": 1.6}},
+    {"id": "flowers-left", "polygon": [[240, 258], [246, 238], [252, 226], [266, 218], [283, 215], [298, 212], [314, 218], [328, 228], [339, 246], [347, 260], [328, 270], [250, 270]], "fill": {"image": "pier-left-62000.png", "box": [225, 194, 355, 324], "dilate": 1, "cap": {"top": 255, "box": [252, 255, 328, 271], "fromRow": 272}}, "motion": "pulse", "periodBeats": 1, "frames": 4, "instance": 3, "warp": {"pivot": [292, 270], "far": 55, "stretchPx": 8, "reachPx": 2, "power": 1.2}},
+    {"id": "flowers-right", "polygon": [[684, 256], [690, 232], [708, 216], [731, 211], [750, 214], [772, 226], [785, 248], [790, 260], [774, 270], [710, 270]], "fill": {"image": "pier-right-62200.png", "box": [670, 190, 800, 320], "dilate": 1, "cap": {"top": 255, "box": [701, 255, 775, 271], "fromRow": 272}}, "motion": "pulse", "periodBeats": 1, "frames": 4, "instance": 4, "warp": {"pivot": [737, 270], "far": 55, "stretchPx": 8, "reachPx": 2, "power": 1.2}},
+    {"id": "lantern-left", "polygon": [[181, 150], [186, 158], [200, 176], [200, 212], [191, 216], [183, 232], [179, 232], [171, 216], [161, 212], [161, 176], [176, 158]], "fill": {"image": "lantern-left-62100.png", "edgeClamp": 70, "box": [110, 120, 250, 260], "dilate": 2}, "motion": "sway", "periodBeats": 4, "frames": 7, "instance": 5, "warp": {"pivot": [181, 150], "far": 82, "reachPx": 13, "power": 1}},
+    {"id": "lantern-right", "polygon": [[876, 150], [881, 158], [895, 176], [895, 212], [887, 216], [878, 232], [874, 232], [866, 216], [856, 212], [856, 176], [871, 158]], "fill": {"image": "lantern-right-62400.png", "edgeClamp": 70, "box": [800, 120, 940, 260], "dilate": 2}, "motion": "sway", "periodBeats": 4, "frames": 7, "instance": 6, "warp": {"pivot": [876, 150], "far": 82, "reachPx": 13, "power": 1}},
+    {"id": "flame-left", "polygon": [[195, 416], [221, 416], [221, 452], [195, 452]], "keepInside": true, "motion": "pulse", "periodBeats": 1, "frames": 4, "instance": 7, "warp": {"pivot": [209, 456], "far": 40, "stretchPx": 9, "reachPx": 2, "power": 1.2}},
+    {"id": "flame-right", "polygon": [[807, 415], [832, 415], [832, 452], [807, 452]], "keepInside": true, "motion": "pulse", "periodBeats": 1, "frames": 4, "instance": 8, "warp": {"pivot": [819, 456], "far": 40, "stretchPx": 9, "reachPx": 2, "power": 1.2}}
+  ]
+}

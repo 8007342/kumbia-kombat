@@ -14,7 +14,7 @@ The owner's ruling (`owner-rulings-2026-11-05.md:139`) is in the game, as revise
 | #34 Full swing for skilful players | **Closed for what's drawn, and now lenient.** A level average of .80 or better, at the phrase before the clear, ends with every guest celebrating and the separately drawn umbrellas, plants, candles and waiter moving to the beat. A clean run reaches it. Props painted into the plates still wait on #37 |
 | #25 Phrase report | **Closed for the crowd.** `PhraseReport`: hits, perfects, gestures, timing spread |
 | #26 Skill measure | **Narrowed.** Phrase grades and a level-long average replace Sway and Heat for the crowd. Nothing yet carries between rooms, and #27 and #29 are still open |
-| #37 Everything parties up | **Narrowed.** Only the top of the ladder, on existing props. Every player's slow party-up by tier is still open |
+| #37 Everything parties up | **Narrowed, and the layer route is proven on the garden** (palm fronds, pier flowers, lanterns, flames; `tool/art/rooms/README.md`, "Layers"). Only the top of the ladder, on existing props. Every player's slow party-up by tier is still open |
 | #42 Identical outcomes | **Closed for the crowd and optional moves.** Scene effects on or off still has no test |
 | D9, D11, D12 | **Answered by the rulings:** a good average, with no gestures needed, though gestures can lift a scrappy or loose phrase; every clear ends warm; props dance only at the top |
 
