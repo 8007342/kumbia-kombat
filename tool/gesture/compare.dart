@@ -374,6 +374,8 @@ void main(List<String> args) {
   }
   final scribbles = Synth(seed + 4, Roughness.held);
   final scribbleSet = [for (var i = 0; i < 2000; i++) scribbles.scribble()];
+  final wild = Synth(seed + 6, Roughness.held);
+  final wildSet = [for (var i = 0; i < 2000; i++) wild.wildJitter()];
   final report = <Map<String, dynamic>>[];
   for (final (name, size, f) in candidates) {
     final held = evaluate(f, heldOut);
@@ -383,6 +385,7 @@ void main(List<String> args) {
       final k = f(s.xy);
       if (k != null && k != GestureKind.flick && k != GestureKind.spin) named++;
     }
+    final wildEarned = wildSet.where((s) => f(s.xy) != null).length;
     final micros = microsPerClassify(f, heldOut);
     report.add({
       'name': name,
@@ -390,6 +393,7 @@ void main(List<String> args) {
       'heldOut': held,
       'shifted': rough,
       'scribbleNamedShape': named / scribbleSet.length,
+      'wildJitterEarned': wildEarned / wildSet.length,
       'microseconds': micros,
     });
     String pct(Object? v) => (100 * (v as double)).toStringAsFixed(2);
@@ -398,6 +402,7 @@ void main(List<String> args) {
       'rough ${pct(rough['moveAccuracy'])}%  '
       'tapFP ${pct(held['tapFalsePositive'])}/'
       '${pct(rough['tapFalsePositive'])}%  '
+      'wild ${pct(wildEarned / wildSet.length)}%  '
       'scribble-named ${pct(named / scribbleSet.length)}%  '
       '${micros.toStringAsFixed(1)} us  [$size]',
     );

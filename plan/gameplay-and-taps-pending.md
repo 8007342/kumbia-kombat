@@ -36,6 +36,22 @@ A slip that leaves the average at .80 changes nothing. One that takes it below s
 
 Rules and numbers are named constants in `CrowdEngagement`, `lib/gameplay/crowd_interest.dart`. `?autoplay=flawless` shows the top of the ladder; plain AutoPlay stays imperfect and clears warm, short of the top.
 
+## Input and HUD work, built on `work/1852-gest`
+
+The owner's tenth-round notes on the halo, gestures, the pause band and AutoPlay, and the sixth round's moves. How the recogniser was chosen, with its numbers, is in `tool/gesture/README.md`.
+
+| Row | Status now |
+|---|---|
+| #7 Spin, #8 wave, #9 stomp | **Input done, and tested on synthetic strokes only.** Sideways spins, a semi-circle waves on a hand's last note from tier 1, up and down stomps on a foot's last note from tier 1, and a full circle on a hand's last note from tier 3. Any move on any eligible note counts. Wave and stomp reuse the limb accents: no new drawings yet, so #8 and #9 still want art |
+| #10 Seeing the path, #14 indicators, #16 AutoPlay's moves, #17 one path | **Done.** `onPointerMove`, a drawn path on each cue, a dotted guide and trail under the thumb, a flare or dust at the end. AutoPlay's thumb goes through the real recogniser. The destination route is gone from the judge |
+| #11 Late flicks, #30 recovering players' credit, #42 identical outcomes | **Closed for moves.** A ledger outlives the judge; the credit key adds the performance, keeping pause-replay protection; a test plays the same taps with moves ignored, performed and too late. Scene effects on or off still has no test |
+| #13 Animations match | **Partly.** Spin and circle spin, wave and stomp show the limb's accent twice. Legs don't trigger poses |
+| D2, D5 | D2 is built as recommended: a shape that falls short earns the flick. No simple-moves option yet, but plain flicks already count everywhere, so D5 is close to moot |
+
+Hook for anything that reacts to moves: `GardenSession.lastOptionalMove`, an `OptionalMove` with its `limb`, `kind`, `offered`, `direction`, `beat` and `credited`.
+
+Still needs real thumbs: see "What the numbers can't say" in `tool/gesture/README.md`. `?capture=gestures` records them.
+
 ## The short version
 
 - **The tap itself is solid. Almost everything the owner asked for on top of it isn't built.** Today's input is one tap, plus one flick that does the same spin in any direction.

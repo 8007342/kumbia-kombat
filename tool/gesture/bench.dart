@@ -1,7 +1,7 @@
 // Time per classification, compiled the way the game ships: `dart compile exe`
 // for a phone's native code and `dart compile js` for the web build. No phone
 // was available: multiply by a phone's slowdown. See README.md.
-// ignore_for_file: avoid_relative_lib_imports
+// ignore_for_file: avoid_relative_lib_imports, avoid_print
 import 'dart:math' as math;
 
 import '../../lib/gameplay/gesture_recognizer.dart';
@@ -49,7 +49,9 @@ void main() {
   }
   void time(String name, void Function(List<double>) f) {
     for (var warm = 0; warm < 20; warm++) {
-      strokes.forEach((s) => f(s.xy));
+      for (final s in strokes) {
+        f(s.xy);
+      }
     }
     final watch = Stopwatch()..start();
     var runs = 0;

@@ -277,6 +277,23 @@ class Synth {
     return Stroke('none', xy, const ['tap', 'roll', 'jitter', 'slide'][kind]);
   }
 
+  /// A shaky thumb wandering well past the touch slop, up to 40 pixels across. No
+  /// real press should be this bad, so it's the honest test of the slop line:
+  /// [negative] stays under the line by construction.
+  Stroke wildJitter() {
+    final xy = <double>[0, 0];
+    var (x, y) = (0.0, 0.0);
+    final bound = _between(12, 20);
+    for (var i = 0; i < 60; i++) {
+      x = (x + _gauss() * 3).clamp(-bound, bound);
+      y = (y + _gauss() * 3).clamp(-bound, bound);
+      xy
+        ..add(x)
+        ..add(y);
+    }
+    return Stroke('none', xy, 'wild');
+  }
+
   /// A long aimless scribble. It may earn the plain flick, never a named shape.
   Stroke scribble() {
     final xy = <double>[0, 0];
