@@ -188,6 +188,7 @@ class ExitShotActor {
     required this.entry,
     required this.recoil,
     this.frames = const [],
+    this.keepsReading = false,
   });
   final String approach;
   final String impact;
@@ -214,6 +215,10 @@ class ExitShotActor {
   final double scale;
   final ui.Offset entry;
   final ui.Offset recoil;
+
+  /// Lettering: when the whole close-up mirrors, this drawing lands in its
+  /// mirrored place but still reads the right way round.
+  final bool keepsReading;
 }
 
 class ExitShotPlacement {

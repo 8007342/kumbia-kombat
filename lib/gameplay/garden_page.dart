@@ -1078,20 +1078,6 @@ class _GardenPageState extends State<GardenPage>
                 right: 0,
                 child: _lamps(4, count, _gold, 12),
               ),
-            // At full support the room is at its peak, so only the finish phrases
-            // left can say how close the level is. The cheap fix the research kept.
-            if (finishing)
-              Positioned(
-                top: MediaQuery.paddingOf(context).top + 68,
-                left: 0,
-                right: 0,
-                child: _lamps(
-                  session.peakChallengesRemaining,
-                  session.peakChallengesRemaining,
-                  _mint,
-                  8,
-                ),
-              ),
           ],
         ),
       ),

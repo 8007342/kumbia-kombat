@@ -185,3 +185,5 @@ Difficulty, the same day: speed is one factor among several, so the lawn keeps i
 
 This replaces the plan's lead dancer and the foot-stamp cinematic. The left and right flankers can stay as the mixed-age circle.
 
+Polish, the same day. No finish lamps: "the party engagement and music are indicators enough for the player. We don't like unnecessary UX". The end screen stays as it is for now: "we'll be moving it a lot as we add levels, and figure out the final boss battle". Assets may spill off screen by design: "some of our assets will be placed intentionally at spilling over locations, we only need to see some of them". Cinematic transitions get their own style guide: "to stay consistent, and gently flow to the next room".
+

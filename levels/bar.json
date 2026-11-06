@@ -223,11 +223,28 @@
     ],
     "actors": [
       {
+        "approach": "closeups/oil-gulp-counter.png",
+        "impact": "closeups/oil-gulp-counter.png",
+        "contact": [
+          600,
+          -147
+        ],
+        "scale": 0.31,
+        "entry": [
+          0,
+          0
+        ],
+        "recoil": [
+          0,
+          0
+        ]
+      },
+      {
         "approach": "closeups/oil-gulp-bt-offer.png",
         "impact": "closeups/oil-gulp-bt-empty.png",
         "contact": [
-          126,
-          206
+          90,
+          169
         ],
         "scale": 0.31,
         "entry": [
@@ -240,54 +257,65 @@
         ]
       },
       {
-        "approach": "closeups/oil-gulp-mc2-reach.png",
-        "impact": "closeups/oil-gulp-mc2-gulp3.png",
+        "approach": "closeups/oil-gulp-mc3-reach.png",
+        "impact": "closeups/oil-gulp-mc3-gulp3.png",
         "frames": [
           {
+            "beat": 6,
+            "image": "closeups/oil-gulp-mc3-sway1.png"
+          },
+          {
+            "beat": 6.5,
+            "image": "closeups/oil-gulp-mc3-sway2.png"
+          },
+          {
+            "beat": 7,
+            "image": "closeups/oil-gulp-mc3-sway1.png"
+          },
+          {
+            "beat": 7.5,
+            "image": "closeups/oil-gulp-mc3-reach.png"
+          },
+          {
             "beat": 8,
-            "image": "closeups/oil-gulp-mc2-gulp1.png"
+            "image": "closeups/oil-gulp-mc3-gulp1.png"
           },
           {
             "beat": 8.5,
-            "image": "closeups/oil-gulp-mc2-gulp2.png"
+            "image": "closeups/oil-gulp-mc3-gulp2.png"
           },
           {
             "beat": 9,
-            "image": "closeups/oil-gulp-mc2-gulp3.png"
+            "image": "closeups/oil-gulp-mc3-gulp3.png"
           },
           {
             "beat": 9.5,
-            "image": "closeups/oil-gulp-mc2-gulp4.png"
+            "image": "closeups/oil-gulp-mc3-gulp4.png"
           },
           {
             "beat": 10,
-            "image": "closeups/oil-gulp-mc2-gulp5.png"
+            "image": "closeups/oil-gulp-mc3-gulp5.png"
           },
           {
             "beat": 10.5,
-            "image": "closeups/oil-gulp-mc2-relief.png"
+            "image": "closeups/oil-gulp-mc3-relief.png"
+          },
+          {
+            "beat": 10.75,
+            "image": "closeups/oil-gulp-mc3-wiggle1.png"
+          },
+          {
+            "beat": 11,
+            "image": "closeups/oil-gulp-mc3-wiggle2.png"
+          },
+          {
+            "beat": 11.25,
+            "image": "closeups/oil-gulp-mc3-hop.png"
           }
         ],
         "contact": [
-          300,
-          260
-        ],
-        "scale": 0.31,
-        "entry": [
-          -45,
-          0
-        ],
-        "recoil": [
-          -1,
-          -1
-        ]
-      },
-      {
-        "approach": "closeups/oil-gulp-counter.png",
-        "impact": "closeups/oil-gulp-counter.png",
-        "contact": [
-          600,
-          -147
+          298,
+          341
         ],
         "scale": 0.31,
         "entry": [

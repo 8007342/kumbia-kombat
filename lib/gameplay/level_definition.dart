@@ -623,6 +623,7 @@ class LevelDefinition {
           entry: offset(actor, 'entry'),
           recoil: offset(actor, 'recoil'),
           frames: frames,
+          keepsReading: actor.has('keepsReading') && actor.flag('keepsReading'),
         ),
       );
       actor.finish();

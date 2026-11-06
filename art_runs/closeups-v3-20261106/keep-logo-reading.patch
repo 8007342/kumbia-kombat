@@ -1,0 +1,72 @@
+Not applied: lib/ was out of this run's scope. When she wins on the right the whole kiss mirrors, and the mark on his belly reads backward.
+Apply with git apply, then add "keepsReading": true to the duet-macron-logo actor in levels/pool-garden.json.
+Tried once on this branch, then reverted: test/lawn_kiss_shot_test.dart passed and sheets/real-scene-mirrored-with-patch.png is what the real scene drew.
+
+diff --git a/lib/gameplay/exit_shot.dart b/lib/gameplay/exit_shot.dart
+index f82562c..261684c 100644
+--- a/lib/gameplay/exit_shot.dart
++++ b/lib/gameplay/exit_shot.dart
+@@ -188,6 +188,7 @@ class ExitShotActor {
+     required this.entry,
+     required this.recoil,
+     this.frames = const [],
++    this.keepsReading = false,
+   });
+   final String approach;
+   final String impact;
+@@ -214,6 +215,10 @@ class ExitShotActor {
+   final double scale;
+   final ui.Offset entry;
+   final ui.Offset recoil;
++
++  /// Lettering: when the whole close-up mirrors, this drawing lands in its
++  /// mirrored place but still reads the right way round.
++  final bool keepsReading;
+ }
+ 
+ class ExitShotPlacement {
+diff --git a/lib/gameplay/garden_scene.dart b/lib/gameplay/garden_scene.dart
+index e7766ac..3aa0fd0 100644
+--- a/lib/gameplay/garden_scene.dart
++++ b/lib/gameplay/garden_scene.dart
+@@ -383,16 +383,23 @@ class GardenSceneGame extends FlameGame {
+       final art = images.fromCache(place.image);
+       final origin =
+           meet + place.offset - place.actor.contact * place.actor.scale;
++      final size = ui.Size(
++        art.width * place.actor.scale,
++        art.height * place.actor.scale,
++      );
++      final unflip = mirror && place.actor.keepsReading;
++      if (unflip) {
++        canvas.save();
++        canvas.translate((origin.dx + size.width / 2) * 2, 0);
++        canvas.scale(-1, 1);
++      }
+       canvas.drawImageRect(
+         art,
+         ui.Rect.fromLTWH(0, 0, art.width.toDouble(), art.height.toDouble()),
+-        origin &
+-            ui.Size(
+-              art.width * place.actor.scale,
+-              art.height * place.actor.scale,
+-            ),
++        origin & size,
+         paint,
+       );
++      if (unflip) canvas.restore();
+     }
+     if (mirror) canvas.restore();
+     for (final mote in shot.motes(at, reducedMotion: reducedMotion)) {
+diff --git a/lib/gameplay/level_definition.dart b/lib/gameplay/level_definition.dart
+index 08de348..5066322 100644
+--- a/lib/gameplay/level_definition.dart
++++ b/lib/gameplay/level_definition.dart
+@@ -545,6 +545,7 @@ class LevelDefinition {
+           entry: offset(actor, 'entry'),
+           recoil: offset(actor, 'recoil'),
+           frames: frames,
++          keepsReading: actor.has('keepsReading') && actor.flag('keepsReading'),
+         ),
+       );
+       actor.finish();

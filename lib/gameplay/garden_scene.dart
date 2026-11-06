@@ -402,16 +402,23 @@ class GardenSceneGame extends FlameGame {
       final art = images.fromCache(place.image);
       final origin =
           meet + place.offset - place.actor.contact * place.actor.scale;
+      final size = ui.Size(
+        art.width * place.actor.scale,
+        art.height * place.actor.scale,
+      );
+      final unflip = mirror && place.actor.keepsReading;
+      if (unflip) {
+        canvas.save();
+        canvas.translate((origin.dx + size.width / 2) * 2, 0);
+        canvas.scale(-1, 1);
+      }
       canvas.drawImageRect(
         art,
         ui.Rect.fromLTWH(0, 0, art.width.toDouble(), art.height.toDouble()),
-        origin &
-            ui.Size(
-              art.width * place.actor.scale,
-              art.height * place.actor.scale,
-            ),
+        origin & size,
         paint,
       );
+      if (unflip) canvas.restore();
     }
     if (mirror) canvas.restore();
     for (final mote in shot.motes(at, reducedMotion: reducedMotion)) {
