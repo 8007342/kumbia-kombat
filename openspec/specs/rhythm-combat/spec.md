@@ -33,8 +33,8 @@ No required chord or simultaneous fingers SHALL be authored.
 ### Requirement: Predictable curved preview
 
 Notes SHALL appear at a varied, deterministic point near the center of the play
-area at least two beats before their hit, on their own limb's side of it, and
-SHALL fade in smoothly over the first part of that approach so that new notes
+area at least two beats before their hit, with a minimum 900 ms preview and
+maximum 1500 ms, on their own limb's side of it, and SHALL fade in smoothly over the first part of that approach so that new notes
 don't crowd the center. Their limb silhouette and previewed judgment ring SHALL
 be readable once faded in. A bounded curve whose bend follows the move, leaving
 sideways toward the limb's side and then rising into a hand's ring or dropping
