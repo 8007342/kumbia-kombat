@@ -1,0 +1,24 @@
+{
+  "schema": "tillandsias.finish/v1",
+  "output": "/work/tmp/imagegen/kumbia/swing-a-20261105a/finished/groove.pass_l.png",
+  "output_sha256": "9fd783eae4a6b6a3ff20bc427e11c46760b8d48afbbe71d61d0640043839b3d1",
+  "input": "/work/tmp/imagegen/kumbia/swing-a-20261105a/selected/groove.pass_l.png",
+  "input_sha256": "0879796c76c060bbce96fffcc8ea4f4db0f4820c7f4c1100a36fccb022f08429",
+  "matte": null,
+  "matte_sha256": null,
+  "family": "tool/art/families/swing-a-v1.json",
+  "family_sha256": "e919a92e86c2f3fdbc8acb02c9c26775b7287f6b9851ae1082adb30c40bd6058",
+  "palette": "tool/art/palettes/swing-a.json",
+  "palette_sha256": "d62ff4466ab68354211b5e5ab0fffc75b8349674ec8a43f64d912a869a111651",
+  "room": "pool-garden",
+  "params": {
+    "alpha": "engine",
+    "tolerance": 0,
+    "sample": "centre",
+    "dither": "none",
+    "native": [
+      256,
+      320
+    ]
+  }
+}

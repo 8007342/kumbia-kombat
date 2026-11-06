@@ -1,0 +1,322 @@
+{
+ "groove.down_l": {
+  "k": null,
+  "key": "a8a3b270df99ce852e534070c234decab633e6a24c4288974fff28b57eee28cc",
+  "accepted": false
+ },
+ "groove.pass_l": {
+  "k": null,
+  "key": "f0d9d1b5134b4d93eb37ec7d1ea3f5f7bea6a7a71e959a6273c70e45a2efcaa0",
+  "accepted": false
+ },
+ "groove.up_l": {
+  "k": null,
+  "key": "bce572aea34a4192b24caf203d2e8cc1bafdc0289008b9ebd792a4747a1ec2e0",
+  "accepted": false
+ },
+ "groove.pass_l2": {
+  "k": null,
+  "key": "98ba5e2c4116317beb412eb9e864786f4fddc74a24031f5109f20244aee9cc97",
+  "accepted": false
+ },
+ "groove.down_r": {
+  "k": null,
+  "key": "3f46c2e884f65d875b2bb5060b678e2f9c35edd4bf6214a4e9156e27c8ca38fe",
+  "accepted": false
+ },
+ "groove.pass_r": {
+  "k": null,
+  "key": "2d50a9b9ac42da0b80f8938dcba75b1594327fb87abc2d2fc049f0f8fc051fc5",
+  "accepted": false
+ },
+ "groove.up_r": {
+  "k": null,
+  "key": "c20a30c2ad14c7ba5aa5c5770196e54f7025288fa27c38906c3673f71e00eb2a",
+  "accepted": false
+ },
+ "groove.pass_r2": {
+  "k": null,
+  "key": "822d9ed24908f8c7bc8c13211899fc3f9bc04f8fc44fce6fff9533cee5252f3d",
+  "accepted": false
+ },
+ "left_hand.prep": {
+  "k": null,
+  "key": "9938ffc162a67e8e52598a61c0dced9f75179850ef0e5ab38dc9a871725d2987",
+  "accepted": false
+ },
+ "left_hand.peak": {
+  "k": null,
+  "key": "038c1f3994c10d5d0723db8ec2f99e1caadaed1ff88b804bf913d0bfececb287",
+  "accepted": false
+ },
+ "left_hand.follow": {
+  "k": null,
+  "key": "5dba1c3e0ee0670b9dcd822cabde21d206e421bb06b5a5274af48a5b90cd9fa0",
+  "accepted": false
+ },
+ "left_hand.return": {
+  "k": null,
+  "key": "ff10ce1b4c572acd47e4d6a32ba08898241cfc5dcf0f105e7b910ad51ed5c8c7",
+  "accepted": false
+ },
+ "right_hand.prep": {
+  "k": null,
+  "key": "1e96c01be2a1e91ffe3dca7bd7f1c0ff28aaf8f88cf73740a19e24211eafeb30",
+  "accepted": false
+ },
+ "right_hand.peak": {
+  "k": null,
+  "key": "3ef2cf1c748bcba5ef9cc5e4ef53daf9c8f41c0513203da9ace0ce6a6d058e9b",
+  "accepted": false
+ },
+ "right_hand.follow": {
+  "k": null,
+  "key": "64ff1fa8073e2cc0de1198e4a50bff2a1167db8a8a6a02257d097b006db493b9",
+  "accepted": false
+ },
+ "right_hand.return": {
+  "k": null,
+  "key": "29f200ec712e4f19951806afea3ee433b14c041b2756ce65c05245d9a55747ef",
+  "accepted": false
+ },
+ "left_foot.prep": {
+  "k": null,
+  "key": "7ff2b407e725bf7c188e01a4effa5ea640f59b6d9e965e92399689500c9bd869",
+  "accepted": false
+ },
+ "left_foot.peak": {
+  "k": null,
+  "key": "c227761146d7f3e01acb5b2efdb33f701bcaa77d4ff49334da2aff8f52f5ff67",
+  "accepted": false
+ },
+ "left_foot.follow": {
+  "k": null,
+  "key": "b718ebb2292536455f53e128ac8cc77509aaef9af9a003d6ca3f638a19bc49db",
+  "accepted": false
+ },
+ "left_foot.return": {
+  "k": null,
+  "key": "bd2f261f7a462974b43e9d60d2298aea4ae2116c6c6555dcfa93621822c22625",
+  "accepted": false
+ },
+ "right_foot.prep": {
+  "k": null,
+  "key": "5635e99e10699258d8137919a78b1b3884671b63a5785fd0a1b9594ececd5b44",
+  "accepted": false
+ },
+ "right_foot.peak": {
+  "k": null,
+  "key": "a391e8007d2879e4b7ddd7c80110107491fd035e056249d63736cb7876026344",
+  "accepted": false
+ },
+ "right_foot.follow": {
+  "k": null,
+  "key": "85af46a976e78082313724518f243f448b20a846d7f66fd468209015c7caefb1",
+  "accepted": false
+ },
+ "right_foot.return": {
+  "k": null,
+  "key": "79b22bb856af537214fe1c27d46603f7dd185fb1844acab27c6a865cde25669b",
+  "accepted": false
+ },
+ "enter_forward.contact_l": {
+  "k": null,
+  "key": "4cee151f11584228bef81a1a2f16251290a949ec5d8d4b048db98ee93b78e019",
+  "accepted": false
+ },
+ "enter_forward.down_l": {
+  "k": null,
+  "key": "f3d0a2bdb3c18102222890a8d54bca6bc778d07c62a56c476f3e259820b29158",
+  "accepted": false
+ },
+ "enter_forward.pass_l": {
+  "k": null,
+  "key": "431ec7ff25d737776072bddcba120da5351c0b2bb5eb4a325f974393d0219147",
+  "accepted": false
+ },
+ "enter_forward.contact_r": {
+  "k": null,
+  "key": "48d0df6f2ff9add4fd71043acfd09bed013c3f3c2b535df120595c9f5f966746",
+  "accepted": false
+ },
+ "enter_forward.down_r": {
+  "k": null,
+  "key": "1ac321b64903560bd64e21f807957adc9cf700d4a90f6e7d2d345163218c2685",
+  "accepted": false
+ },
+ "enter_forward.pass_r": {
+  "k": null,
+  "key": "42b3658cb8a03d08169aebdc84f5285bcfa5d36171f1b1c680f218334804b453",
+  "accepted": false
+ },
+ "retreat_backward.contact_l": {
+  "k": null,
+  "key": "82813e60ed006d731a01b099695d5480bdb12914e469f238cb1825b892c8f5f0",
+  "accepted": false
+ },
+ "retreat_backward.down_l": {
+  "k": null,
+  "key": "effe944f458ef4d3c477403c209019f67f2379eb252bc4b08b26f146b87c2f64",
+  "accepted": false
+ },
+ "retreat_backward.pass_l": {
+  "k": null,
+  "key": "adf5a4c737868adf977f175235a09e4cd04f6156d57aa9b555fef425e07d4001",
+  "accepted": false
+ },
+ "retreat_backward.contact_r": {
+  "k": null,
+  "key": "08241fe2990f1b6827c8db2fae94341c82e9abeba56ac34dcfe75d10ae974a3c",
+  "accepted": false
+ },
+ "retreat_backward.down_r": {
+  "k": null,
+  "key": "2d518cb8001284b130301628b7275d3b41b7114fc3c53528aa14495da0cd6dbe",
+  "accepted": false
+ },
+ "retreat_backward.pass_r": {
+  "k": null,
+  "key": "6980b24f1a6905b722b162191a8878ccb2e737232f27ccad3d8349910f6c48a4",
+  "accepted": false
+ },
+ "yield_side.contact_l": {
+  "k": null,
+  "key": "44bbf1eb8049f392b03fb6932ee37c2910311ff493f72c8362448c137e4cd088",
+  "accepted": false
+ },
+ "yield_side.down_l": {
+  "k": null,
+  "key": "f5bbd85b45bb11adb8626eb0c68f74c701d5ec52ca2b4f6d64dd3b2ea6cd7c15",
+  "accepted": false
+ },
+ "yield_side.pass_l": {
+  "k": null,
+  "key": "420c83741bedd1ff1cf26ffe9ef024525de4a99af939c7bf929f7054b62c2e5b",
+  "accepted": false
+ },
+ "yield_side.contact_r": {
+  "k": null,
+  "key": "696afb9c28a52ff95a44809344c1c2c99b6db6bb4a25995c078c0a8433a0c714",
+  "accepted": false
+ },
+ "yield_side.down_r": {
+  "k": null,
+  "key": "270be2df5078f562bf34d5fe3a72e82b0ea892df16de00e80027395e23fb9124",
+  "accepted": false
+ },
+ "yield_side.pass_r": {
+  "k": null,
+  "key": "7069e07c6782eed1dea42d95598e9cb060ea3564f87f43750a77698420158c48",
+  "accepted": false
+ },
+ "watch.shift_l": {
+  "k": null,
+  "key": "d0d48a9f4e71f696db83f0c2e054ddd6079b7c12da1f07e49abcf58af63d7eb4",
+  "accepted": false
+ },
+ "watch.hold_l": {
+  "k": null,
+  "key": "cb976bc9abb63f4da38359568c38e7bc290ee2abaf888f427fbe26c648b5ef50",
+  "accepted": false
+ },
+ "watch.shift_r": {
+  "k": null,
+  "key": "c4e7e9466f226a44640834488dd661a5ed8cc7f31926792ea2ae66420cb4458a",
+  "accepted": false
+ },
+ "watch.hold_r": {
+  "k": null,
+  "key": "87418007383524d7f062170a3d5907dc1b9488fd7d3300135d6566e937f1ce45",
+  "accepted": false
+ },
+ "clap.open": {
+  "k": null,
+  "key": "118f310c7d9d508c9c9ba7852e345da37c21b4234f617fa9e89937b4a7986188",
+  "accepted": false
+ },
+ "clap.close": {
+  "k": null,
+  "key": "82d51a379c29d7c414018028d08ad971032245b1c63bd3bdd1ede2e355454ba8",
+  "accepted": false
+ },
+ "clap.contact": {
+  "k": null,
+  "key": "2109c6dc863ff5981fdd43f8d5e01794789ce92fb6536c62e0a14770dd93bf3b",
+  "accepted": false
+ },
+ "clap.release": {
+  "k": null,
+  "key": "0810cde80c7c0954344027816dd6d4d137af64ee94e8ffb634daa123a38e0a83",
+  "accepted": false
+ },
+ "challenge.load": {
+  "k": null,
+  "key": "dba996b923c7df163f68388980a9824c7992d368214cfac24bd5cd6890175b74",
+  "accepted": false
+ },
+ "challenge.proud": {
+  "k": null,
+  "key": "e3950e16bdc32b005f4c66ac07badbec0b3efca0143f5b8aa265e1e2ddbcddc2",
+  "accepted": false
+ },
+ "challenge.offer": {
+  "k": null,
+  "key": "d0f768326f794e4477f9c257959355baba0d0ef0ca48f39f4efa68bd36110948",
+  "accepted": false
+ },
+ "challenge.return": {
+  "k": null,
+  "key": "95807e7a0974a43f4b6a35b7f16554ce66de767b8f4e7986e7b274e2d6a73b83",
+  "accepted": false
+ },
+ "approval.load": {
+  "k": null,
+  "key": "13bfe3618f72e5ada38d98088ad2b00d294ce1625db556cb08b85a570471cb90",
+  "accepted": false
+ },
+ "approval.nod": {
+  "k": null,
+  "key": "ff57281544fa021020dd531c634bc64626d448a9aa2b05ccb68337514af16ea3",
+  "accepted": false
+ },
+ "approval.release": {
+  "k": null,
+  "key": "9aa451bb9fa29618b5a20c2a54448bb167365121bc89d9370470ba15d693749d",
+  "accepted": false
+ },
+ "reassurance.notice": {
+  "k": null,
+  "key": "fb9722960d1e91d47da1e7aaa1f62b623ac21b45d3e2089302da2ed58657d231",
+  "accepted": false
+ },
+ "reassurance.open_hand": {
+  "k": null,
+  "key": "9c2cea9a751cefb300e57b749f6a0b970d20781276e5f4b6358b218b14ed1910",
+  "accepted": false
+ },
+ "reassurance.settle": {
+  "k": null,
+  "key": "692503a0377fcba343ec4dbefd1db86ed2981ef29df685be6968fdfed83a4f51",
+  "accepted": false
+ },
+ "finish_turn.finish_a": {
+  "k": null,
+  "key": "1828976736e82997950eba3eb5aa38e41afc6fde3600e365bd41cf90f2991271",
+  "accepted": false
+ },
+ "finish_turn.finish_b": {
+  "k": null,
+  "key": "30c5556ffff7194b59347239192325ae4b096fca5ced593af8be3ce9ee86f419",
+  "accepted": false
+ },
+ "finish_turn.turn_in": {
+  "k": null,
+  "key": "71c38fa8d929de984169ee3a8f49ffbb8f8f6ffa7287da8e7ac75659ea475436",
+  "accepted": false
+ },
+ "finish_turn.turn_out": {
+  "k": null,
+  "key": "9931694ef05229aa1fb7bb7f3d498d0132ccf2ae0b8e8c0a8facf08346104052",
+  "accepted": false
+ }
+}

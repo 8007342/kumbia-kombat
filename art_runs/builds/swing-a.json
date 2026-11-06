@@ -1,0 +1,665 @@
+{
+ "definition": {
+  "id": "swing-a",
+  "family": "swing-a-v1",
+  "style": "party-pixel",
+  "description": "Draft pool-garden dancer A, the tall one of the swing pair (plan/levels/pool-garden.md, plan/duet-foundations.md). Draft identity: the owner has not ruled on casting.",
+  "body": {
+   "preset": "slim-adult"
+  },
+  "pronouns": [
+   "she",
+   "her",
+   "her"
+  ],
+  "skin": "#AA5422",
+  "traits": "tall graceful woman of about fifty with deep brown skin, warm confident smile, fully dressed",
+  "demeanor": "joyful skilled swing dancer, classy and warm",
+  "garments": [
+   {
+    "id": "hair",
+    "shape": "puff",
+    "region": "hair",
+    "colour": "#B9BABE",
+    "text": "short cropped silver-grey natural hair"
+   },
+   {
+    "id": "bodice",
+    "shape": "shirt-fitted",
+    "region": "shirt",
+    "colour": "#0F7A50",
+    "text": "long-sleeved emerald green wrap dress bodice"
+   },
+   {
+    "id": "dress",
+    "shape": "waist-apron",
+    "region": "apron",
+    "colour": "#0F7A50",
+    "text": "emerald green skirt of the dress, falling below the knee",
+    "params": {
+     "length": 1.3
+    },
+    "secondaryMotion": "lag-1"
+   },
+   {
+    "id": "shoes",
+    "shape": "shoes-heeled",
+    "region": "shoes",
+    "colour": "#D9A92C",
+    "text": "low gold dance shoes, matching her gold belt and earrings"
+   }
+  ],
+  "props": [],
+  "motion": {
+   "set": "opponent-64",
+   "overrides": {
+    "groove.down_l": {
+     "intent": "weight sunk on {his} bent picture-right knee, picture-left foot stepped back on its ball with the heel raised, shoulders tilted the other way, picture-right forearm swinging forward at belly height, picture-left arm low and back, head level facing the viewer"
+    },
+    "groove.pass_l": {
+     "intent": "weight rolling forward onto the picture-right foot, knees softening upward, picture-left foot still slightly back on its ball, arms loose and low swinging back toward the body"
+    },
+    "groove.up_l": {
+     "intent": "both feet together and flat, legs nearly straight in a small rise, chin lifted proudly, arms relaxed low at the sides with elbows soft"
+    },
+    "groove.pass_l2": {
+     "intent": "weight settled over the straight picture-left leg, picture-left shoulder dipped, picture-right knee bent with the picture-right foot resting on its toe, picture-left forearm lifted out at hip height in a wrist roll, picture-right forearm across the belly, head tilted toward the picture-right side"
+    },
+    "groove.down_r": {
+     "intent": "weight sunk on {his} bent picture-left knee, picture-right foot stepped back on its ball with the heel raised, shoulders tilted the other way, picture-left forearm swinging forward at belly height, picture-right arm low and back, head level facing the viewer"
+    },
+    "groove.pass_r": {
+     "intent": "weight rolling forward onto the picture-left foot, knees softening upward, picture-right foot still slightly back on its ball, arms loose and low swinging back toward the body"
+    },
+    "groove.up_r": {
+     "intent": "both feet together and flat, legs nearly straight in a small rise, chin lifted proudly, arms relaxed low at the sides with elbows soft"
+    },
+    "groove.pass_r2": {
+     "intent": "weight settled over the straight picture-right leg, picture-right shoulder dipped, picture-left knee bent with the picture-left foot resting on its toe, picture-right forearm lifted out at hip height in a wrist roll, picture-left forearm across the belly, head tilted toward the picture-left side"
+    },
+    "left_hand.prep": {
+     "intent": "crouched low with weight on the bent picture-left leg, picture-left fist on the hip, picture-right hand scooped down low in front of the picture-right hip, torso turned away to the picture-left side, head glancing down at the picture-right hand"
+    },
+    "left_hand.peak": {
+     "intent": "weight on the straight picture-left foot, picture-left fist on the hip, body leaning toward the picture-right side so one long diagonal runs from the picture-left foot to the picture-right palm thrust high and out at about 45 degrees, picture-right foot on its toe out to the side, head turned up toward the raised hand"
+    },
+    "left_hand.follow": {
+     "intent": "same diagonal pushed further: picture-right arm reaching higher and the palm rolling forward, torso leaning further toward the picture-right side, picture-left elbow pushed back on the hip, picture-right toe touch out wider, head following the hand"
+    },
+    "left_hand.return": {
+     "intent": "picture-right arm sweeping down in an arc at shoulder height with the elbow bent, picture-left hand low on the hip, both feet flat and close, torso returning upright"
+    },
+    "right_hand.prep": {
+     "intent": "crouched low with weight on the bent picture-right leg, picture-right fist on the hip, picture-left hand scooped down low in front of the picture-left hip, torso turned away to the picture-right side, head glancing down at the picture-left hand"
+    },
+    "right_hand.peak": {
+     "intent": "weight on the straight picture-right foot, picture-right fist on the hip, body leaning toward the picture-left side so one long diagonal runs from the picture-right foot to the picture-left palm thrust high and out at about 45 degrees, picture-left foot on its toe out to the side, head turned up toward the raised hand"
+    },
+    "right_hand.follow": {
+     "intent": "same diagonal pushed further: picture-left arm reaching higher and the palm rolling forward, torso leaning further toward the picture-left side, picture-right elbow pushed back on the hip, picture-left toe touch out wider, head following the hand"
+    },
+    "right_hand.return": {
+     "intent": "picture-left arm sweeping down in an arc at shoulder height with the elbow bent, picture-right hand low on the hip, both feet flat and close, torso returning upright"
+    },
+    "left_foot.prep": {
+     "intent": "weight on the bent picture-left leg, picture-right foot lifted a little off the floor with the toe pointing down, picture-right fist on the hip, picture-left arm low and out for balance, head looking down at the picture-right foot"
+    },
+    "left_foot.peak": {
+     "intent": "heel dig: picture-right leg stretched out on a forward diagonal with the picture-right heel on the floor and the toe up, weight on the bent picture-left leg, shoulders back, leaning back slightly, picture-left fist on the hip, picture-right arm low and back, head turned toward the picture-right foot"
+    },
+    "left_foot.follow": {
+     "intent": "picture-right heel still dug in on the diagonal, weight over the picture-left foot, shoulders tilted, picture-left elbow pushed back on the hip, picture-right arm low and out, head on the picture-right foot"
+    },
+    "left_foot.return": {
+     "intent": "picture-right foot dragged back along the floor to close beside the picture-left, both feet flat, knees soft, arms relaxed low at the sides"
+    },
+    "right_foot.prep": {
+     "intent": "weight on the bent picture-right leg, picture-left foot lifted a little off the floor with the toe pointing down, picture-left fist on the hip, picture-right arm low and out for balance, head looking down at the picture-left foot"
+    },
+    "right_foot.peak": {
+     "intent": "heel dig: picture-left leg stretched out on a forward diagonal with the picture-left heel on the floor and the toe up, weight on the bent picture-right leg, shoulders back, leaning back slightly, picture-right fist on the hip, picture-left arm low and back, head turned toward the picture-left foot"
+    },
+    "right_foot.follow": {
+     "intent": "picture-left heel still dug in on the diagonal, weight over the picture-right foot, shoulders tilted, picture-right elbow pushed back on the hip, picture-left arm low and out, head on the picture-left foot"
+    },
+    "right_foot.return": {
+     "intent": "picture-left foot dragged back along the floor to close beside the picture-right, both feet flat, knees soft, arms relaxed low at the sides"
+    },
+    "enter_forward.contact_l": {
+     "intent": "bouncy dance walk toward the viewer on a slight diagonal, picture-right heel landing in front, picture-left foot behind on its toe, picture-left fist on the hip, picture-right arm swinging back, chin up"
+    },
+    "enter_forward.down_l": {
+     "intent": "weight dropping into the bent picture-right knee, picture-left foot pushing off behind on its toe, picture-left fist on the hip, picture-right arm swinging, head dipping on the beat"
+    },
+    "enter_forward.pass_l": {
+     "intent": "standing tall on the straight picture-right leg, picture-left knee swinging forward past it, picture-left fist on the hip, picture-right arm relaxed at the side, chin up"
+    },
+    "enter_forward.contact_r": {
+     "intent": "bouncy dance walk toward the viewer on a slight diagonal, picture-left heel landing in front, picture-right foot behind on its toe, picture-left fist on the hip, picture-right arm swinging forward, chin up"
+    },
+    "enter_forward.down_r": {
+     "intent": "weight dropping into the bent picture-left knee, picture-right foot pushing off behind on its toe, picture-left fist on the hip, picture-right arm swinging forward, head dipping on the beat"
+    },
+    "enter_forward.pass_r": {
+     "intent": "standing tall on the straight picture-left leg, picture-right knee swinging forward past it, picture-left fist on the hip, picture-right arm relaxed at the side, chin up"
+    },
+    "retreat_backward.contact_l": {
+     "intent": "stepping backward while still facing the viewer, picture-right foot reaching back onto its ball, weight still on the flat picture-left foot, picture-right hand behind the back, picture-left arm low and loose"
+    },
+    "retreat_backward.down_l": {
+     "intent": "weight rolled back onto the bent picture-right leg, picture-left foot in front with the toe lifted, picture-right hand behind the back, picture-left arm low and forward, head nodding"
+    },
+    "retreat_backward.pass_l": {
+     "intent": "picture-left foot dragged back along the floor past the straight picture-right leg, picture-right hand behind the back, picture-left arm hanging loose, chin up"
+    },
+    "retreat_backward.contact_r": {
+     "intent": "stepping backward while still facing the viewer, picture-left foot reaching back onto its ball, weight still on the flat picture-right foot, picture-right hand behind the back, picture-left arm low and loose"
+    },
+    "retreat_backward.down_r": {
+     "intent": "weight rolled back onto the bent picture-left leg, picture-right foot in front with the toe lifted, picture-right hand behind the back, picture-left arm low, head nodding"
+    },
+    "retreat_backward.pass_r": {
+     "intent": "picture-right foot dragged back along the floor past the straight picture-left leg, picture-right hand behind the back, picture-left arm hanging loose, chin up"
+    },
+    "yield_side.contact_l": {
+     "intent": "side-step toward the sideline: picture-right leg reaching out sideways with the foot landing, weight still on the bent picture-left leg, picture-left fist on the hip, picture-right arm out low"
+    },
+    "yield_side.down_l": {
+     "intent": "weight shifted onto the bent picture-right leg, picture-left foot trailing on its toe, picture-left fist on the hip, head nodding"
+    },
+    "yield_side.pass_l": {
+     "intent": "picture-left foot dragged in along the floor to close beside the straight picture-right leg, picture-left fist on the hip, picture-right arm relaxed at the side"
+    },
+    "yield_side.contact_r": {
+     "intent": "picture-left foot stepping back on a diagonal onto its ball, picture-right knee bent, arms low and loose, torso turning open"
+    },
+    "yield_side.down_r": {
+     "intent": "weight settled onto the bent picture-left leg, picture-right foot in front with the toe lifted, picture-left forearm coming forward at waist height"
+    },
+    "yield_side.pass_r": {
+     "intent": "standing on the picture-left leg, picture-right fist on the hip, picture-left arm held out low and wide with the palm open and up toward the empty floor, head turned toward the open palm with a slight bow, offering the floor"
+    },
+    "watch.shift_l": {
+     "intent": "relaxed stance turned slightly to the picture-right side, hands clasped behind the back, weight on the picture-right foot with the picture-left knee soft, head turned to watch the other dancer"
+    },
+    "watch.hold_l": {
+     "intent": "hands clasped behind the back, weight sunk on the picture-right foot with both knees softer, head nodding along to the music while watching"
+    },
+    "watch.shift_r": {
+     "intent": "relaxed stance turned slightly to the picture-right side, hands clasped behind the back, weight on the picture-left foot with the picture-right knee soft, head turned to watch the other dancer"
+    },
+    "watch.hold_r": {
+     "intent": "hands clasped behind the back, weight sunk on the picture-left foot with both knees softer, head tilted with a small nod while watching"
+    },
+    "clap.open": {
+     "intent": "standing square and upright, both forearms raised in front of the chest with the palms apart and facing each other, elbows out, chin up"
+    },
+    "clap.close": {
+     "intent": "both hands swinging together in front of the chest, elbows out, knees starting to bend, head starting to nod"
+    },
+    "clap.contact": {
+     "intent": "hands meeting in a clap in front of the chest with the fingertips tilted outward, elbows out to the sides, both knees dipped, looking at the viewer with a big smile"
+    },
+    "clap.release": {
+     "intent": "hands bouncing apart in front of the chest, elbows out, knees rising, head level"
+    },
+    "challenge.load": {
+     "intent": "bounce step: weight sunk on the bent picture-right leg, picture-left foot back on its ball, torso leaning forward, both hands travelling toward the hips, head lowered"
+    },
+    "challenge.proud": {
+     "intent": "proud stance: both fists on the hips with the elbows out, shoulders back, leaning back slightly, chin raised, weight on the straight picture-left leg, picture-right heel set forward with the toe up"
+    },
+    "challenge.offer": {
+     "intent": "courteous invitation: weight on the picture-left leg, picture-right fist on the hip, picture-left arm sweeping out low and forward with the palm open and up toward the floor, torso bowing slightly forward, head bowed toward the open hand"
+    },
+    "challenge.return": {
+     "intent": "both feet flat, standing easy, picture-left forearm relaxed in front, picture-right hand low near the hip, body upright"
+    },
+    "approval.load": {
+     "intent": "small inhale: shoulders lifted and leaning back slightly, chin raised, weight on the picture-left foot, arms loose and slightly away from the body"
+    },
+    "approval.nod": {
+     "intent": "picture-left palm pressed flat to the chest, a deep nod with the head bowed, both knees dipped, picture-right arm low and out at the side"
+    },
+    "approval.release": {
+     "intent": "picture-right fist on the hip, picture-left arm held out forward at waist height with the palm open toward the viewer, head tilted warmly"
+    },
+    "reassurance.notice": {
+     "intent": "head tilted to the picture-left side with a soft warm look, weight on the picture-right foot, arms relaxed low, picture-left forearm slightly forward"
+    },
+    "reassurance.open_hand": {
+     "intent": "small friendly shrug: both forearms out at waist height with the palms open and up, the picture-left hand a little higher, both knees softly bent, head tilted"
+    },
+    "reassurance.settle": {
+     "intent": "a small rock step on the spot: weight on the bent picture-right knee, picture-left foot back on its ball, picture-right forearm forward, picture-left arm low and back, inviting the rhythm back"
+    },
+    "finish_turn.finish_a": {
+     "intent": "weight on the straight picture-left leg, picture-right heel set forward with the toe up, picture-right fist on the hip, picture-left hand rising beside the head with the fingers open, shoulders back, chin up"
+    },
+    "finish_turn.finish_b": {
+     "intent": "picture-left hand raised beside the head in a small cheerful wave with the fingers open, head dipped slightly, shoulders back, picture-right elbow out with the fist on the hip, picture-right heel forward with the toe up"
+    },
+    "finish_turn.turn_in": {
+     "intent": "body turned about 30 degrees toward the picture-right side on a heel pivot, leaning a little into the turn, picture-right arm open out to the side at hip height, picture-left fist on the hip"
+    },
+    "finish_turn.turn_out": {
+     "intent": "body turned about 30 degrees toward the picture-left side on a heel pivot, leaning a little into the turn, picture-left arm open out to the side at hip height, picture-right fist on the hip"
+    }
+   }
+  },
+  "drawing": {
+   "noun": "woman",
+   "fits": "hair, both shoes and both hands",
+   "look": "tall, long-limbed adult build, narrow face, warm smile, deep brown skin, short cropped silver-grey natural hair, gold hoop earrings, long-sleeved emerald green wrap dress with a gold belt, full swinging skirt falling below the knee, low gold dance shoes and thick dark ink outline",
+   "extra": "Both eyes are open. She is a grown woman of about fifty. Her dress closes high at the collarbone, its sleeves reach her wrists, and its full skirt swings with the movement and covers her to below the knee. ",
+   "sheet": {
+    "source": {
+     "image": "tool/art/references/swing-a/probe-source.png"
+    },
+    "views": {
+     "front": {
+      "image": "tool/art/references/swing-a/front.png",
+      "description": "standing square and upright facing the viewer, feet a little apart, both arms relaxed and held a little away from the body, both open hands visible"
+     }
+    }
+   },
+   "seed": 985000,
+   "score": {
+    "knee": [
+     "dress"
+    ],
+    "silhouetteTolerance": 40
+   },
+   "skeletonOverrides": {
+    "clap.open": {
+     "3": [
+      262,
+      462
+     ],
+     "4": [
+      328,
+      392
+     ],
+     "6": [
+      506,
+      462
+     ],
+     "7": [
+      440,
+      392
+     ]
+    },
+    "clap.close": {
+     "3": [
+      268,
+      466
+     ],
+     "4": [
+      350,
+      430
+     ],
+     "6": [
+      500,
+      466
+     ],
+     "7": [
+      418,
+      430
+     ]
+    },
+    "clap.contact": {
+     "3": [
+      272,
+      490
+     ],
+     "4": [
+      378,
+      432
+     ],
+     "6": [
+      496,
+      490
+     ],
+     "7": [
+      390,
+      432
+     ]
+    },
+    "clap.release": {
+     "3": [
+      262,
+      468
+     ],
+     "4": [
+      335,
+      430
+     ],
+     "6": [
+      506,
+      468
+     ],
+     "7": [
+      433,
+      430
+     ]
+    },
+    "finish_turn.finish_a": {
+     "3": [
+      175,
+      372
+     ],
+     "4": [
+      205,
+      265
+     ]
+    },
+    "finish_turn.finish_b": {
+     "3": [
+      168,
+      334
+     ],
+     "4": [
+      248,
+      225
+     ]
+    }
+   },
+   "poseOverrides": {
+    "right_hand.peak": {
+     "why": "All candidates of both dancers kept this hand on the hip or raised the other one. The words now lean on the picture side.",
+     "description": "weight on the straight picture-right foot, body leaning toward the picture-left side, the arm on the left side of the picture reaches high up and outward at about 45 degrees with an open palm, the hand on the right side of the picture rests on the hip, picture-left foot on its toe out to the side, head turned toward the raised hand on the left of the picture"
+    },
+    "clap.close": {
+     "why": "Hands fell to the belt in the first wave, breaking the clap's motion. Words and skeleton now keep them at chest height.",
+     "description": "both forearms raised in front of the chest, palms facing each other with a small gap between the hands, about to clap, elbows out to the sides, knees starting to bend, looking at the viewer with a big smile"
+    },
+    "clap.release": {
+     "why": "Hands fell to the skirt or flew overhead in the first wave, breaking the clap's motion. Words and skeleton now keep them at chest height.",
+     "description": "both forearms raised in front of the chest, the hands bouncing a little apart after a clap with the palms facing each other, elbows out to the sides, knees rising, looking at the viewer with a big smile"
+    },
+    "groove.pass_r2": {
+     "why": "All 4 first-wave candidates raised both arms overhead or drew a second head. Named as the Bartender's pass_l2 fix.",
+     "description": "weight settled over the straight picture-right leg, picture-right shoulder dipped, picture-left knee bent with the picture-left foot resting on its toe, the arm on the right side of the picture stretched out sideways at chest height, the forearm on the left side of the picture bent across the belly, head tilted toward the picture-left side"
+    }
+   }
+  },
+  "references": {
+   "mode": "source",
+   "sources": []
+  },
+  "targets": [
+   {
+    "room": "pool-garden",
+    "atlas": "swing-a",
+    "out": "assets/art/ensemble/swing-a-v1.png",
+    "native": [
+     256,
+     320
+    ],
+    "pixelScale": 3,
+    "camera": "floor-perspective"
+   }
+  ],
+  "seedBase": 985000,
+  "variants": {},
+  "$comment": "Skeletons are borrowed: art_runs/inputs/swing-a-v1 is a copy of art_runs/inputs/bartender-v1 (slim-adult), because the rig could not render (the bpy venv's Python 3.13 is gone and uv python install failed: invalid peer certificate: BadSignature). Height contrast therefore comes from the sheet, and the game needs a stature per challenger. Motion overrides reword the cumbia pose table for this cast: no hat, no hip or chest emphasis, feet low, and every side named by the picture because B raised the wrong arm when sides were her own."
+ },
+ "style": {
+  "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background",
+  "negative": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render",
+  "frame": {
+   "margin": {
+    "minClear": 0.03,
+    "units": "fraction-of-generation-canvas",
+    "failOnBorderTouch": true
+   },
+   "units": "native-px",
+   "generationCanvas": {
+    "width": 768,
+    "height": 960
+   },
+   "camera": "floor-perspective"
+  },
+  "ramp": {
+   "shades": 4
+  },
+  "outline": "#1A1018",
+  "reservedRamps": [
+   {
+    "id": "kumbia-outfit",
+    "appliesToRegions": [
+     "cloth"
+    ],
+    "recolor": false,
+    "$comment": "Gates from shaders/party_palette.frag on unpremultiplied RGB 0-1; matches if ANY gate's ALL conditions hold. Structured, never eval'd: lhs is a channel or {sub:[a,b]}, rhs a literal or {mul:[k,channel]}.",
+    "gates": [
+     {
+      "id": "cool",
+      "all": [
+       {
+        "lhs": "b",
+        "op": ">=",
+        "rhs": 0.12
+       },
+       {
+        "lhs": "r",
+        "op": ">=",
+        "rhs": {
+         "mul": [
+          0.7,
+          "b"
+         ]
+        }
+       },
+       {
+        "lhs": "b",
+        "op": ">=",
+        "rhs": {
+         "mul": [
+          0.99,
+          "r"
+         ]
+        }
+       },
+       {
+        "lhs": "g",
+        "op": ">=",
+        "rhs": {
+         "mul": [
+          0.2,
+          "b"
+         ]
+        }
+       },
+       {
+        "lhs": "g",
+        "op": "<=",
+        "rhs": {
+         "mul": [
+          0.66,
+          "b"
+         ]
+        }
+       }
+      ]
+     },
+     {
+      "id": "plum",
+      "all": [
+       {
+        "lhs": "r",
+        "op": ">=",
+        "rhs": 0.392157
+       },
+       {
+        "lhs": "r",
+        "op": ">=",
+        "rhs": {
+         "mul": [
+          0.7,
+          "b"
+         ]
+        }
+       },
+       {
+        "lhs": "b",
+        "op": ">=",
+        "rhs": {
+         "mul": [
+          0.32,
+          "r"
+         ]
+        }
+       },
+       {
+        "lhs": "g",
+        "op": "<=",
+        "rhs": {
+         "mul": [
+          0.55,
+          "b"
+         ]
+        }
+       },
+       {
+        "lhs": {
+         "sub": [
+          "b",
+          "g"
+         ]
+        },
+        "op": ">=",
+        "rhs": 0.047059
+       }
+      ]
+     },
+     {
+      "id": "pink",
+      "all": [
+       {
+        "lhs": "r",
+        "op": ">=",
+        "rhs": 0.705882
+       },
+       {
+        "lhs": "r",
+        "op": ">=",
+        "rhs": {
+         "mul": [
+          0.7,
+          "b"
+         ]
+        }
+       },
+       {
+        "lhs": "b",
+        "op": ">=",
+        "rhs": {
+         "mul": [
+          0.32,
+          "r"
+         ]
+        }
+       },
+       {
+        "lhs": "g",
+        "op": "<=",
+        "rhs": {
+         "mul": [
+          0.86,
+          "b"
+         ]
+        }
+       },
+       {
+        "lhs": {
+         "sub": [
+          "b",
+          "g"
+         ]
+        },
+        "op": ">=",
+        "rhs": 0.047059
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  "generation": {
+   "count_per_pose": 4,
+   "seed_policy": "seed = seed_base + 100*pose_index + k; fixed per pose while tuning",
+   "tier": "I1"
+  }
+ },
+ "styleKey": "678ab4fca1ded9f95c38fad960356fa18d5651aea6ef3a4346ae687ff556ec48",
+ "backend": "qwen-frame",
+ "rigKey": "a3e2dd771a471180989b4d4dbbdb50a2eeab003ab62522a6b923f55ba7e87ab0",
+ "frameKeys": {
+  "groove.down_l": "e14cb0a9bacbeead5a6fc59613f63c73e06f4e4a91b408d869d4bcbf6548f386",
+  "groove.pass_l": "b15121fa2db07b0dfe3c7e62f147f25d4ac3243c46b9156096e30db4d144e4ee",
+  "groove.up_l": "1728e4dd79ab0853902a2516899e8b4f3f93834f3f90b95b37118ca06b5fa7d6",
+  "groove.pass_l2": "2b0132bf8c5cecf6db68880ca73d1d88179f30d34f4d00a3184b877a4dff9821",
+  "groove.down_r": "5724418aeba9d6ec9f15ed9268d642817f17b4b4fa934aa80ee6df79e644d249",
+  "groove.pass_r": "a4e1a1cbbc799276e8ec017d4ed4d54ab74ac8f8a71fdfbcc49fea3024953f95",
+  "groove.up_r": "ff40c26689a33512e0a10b3800e9af3c6e9449fec43e487f1d1357cb4e6b6952",
+  "groove.pass_r2": "c4d657722f99ee222c75a5352459e847fdd75a8101008845ebab567b4f05b6de",
+  "left_hand.prep": "467a20ac5538120f0754cff6f2b3df27741557e2ea3d6409623a4bca814f116c",
+  "left_hand.peak": "4a007c28056115699b6c0a45f16c560083d0fc08dae6f8ad0d5f52f4f0066022",
+  "left_hand.follow": "5a3d9cc527ab83edc83520cfcc84a93bd3d455f74b398237229a6e68e9d932d4",
+  "left_hand.return": "821e1195bea5fc7b3698e2965a56b45f68506c5ee37c5eaca531b495d94105bf",
+  "right_hand.prep": "38edc04af7ca8743a912108389c4966e0c2dcaa2d64c5a6d5fa72bfdf6eca8bf",
+  "right_hand.peak": "e30bc9c85f0150dd871e652e4dc50dd701d8aeae05febfda0dd2152642ea8830",
+  "right_hand.follow": "4d95ca02e780f9d4ccc6eae17be54fbf5342bf1fdf68744bfcf3876a869994ca",
+  "right_hand.return": "810d725f23c5f75ac46a7bfbc7d49668cbe686c51adad32feb43e0e276429c73",
+  "left_foot.prep": "608f5387b0da6f0558293f017301687dabbed165092a79e37d43de6acaec5105",
+  "left_foot.peak": "9764ecdceacd81ab0a0ca4d810f233325ffe84bf41e5894fe28d097de41a438d",
+  "left_foot.follow": "f0033527ae808a6bce8a2c7cf4f47266cc0e43fcc9fbd163496cf80f3931bd67",
+  "left_foot.return": "5c40fd9ff92a45a309a7acd78c164c472618810bcc4228e3d29e298bf9ae3a55",
+  "right_foot.prep": "ec047121f34d582f4d5e4224ee007cd7fff946350a890ebd2054c168716ef414",
+  "right_foot.peak": "88f06c07745eafd3bb9954f26de4c935f6221909f16bfe4341410adaeb8ba88e",
+  "right_foot.follow": "8a9199629abe421e5e911515c23aada2ce0907ee01e4ea13684130d137423a37",
+  "right_foot.return": "60997dd2f29a2bcceba253249ef45450414bd2e9278556a1f0e1735c61c8da55",
+  "enter_forward.contact_l": "a7f5ae7661f0c53d30f8898cea3ca4dccf3b250d482f1ab8829abcd77dae739f",
+  "enter_forward.down_l": "125e3dcbdff2251a7774f515df5b2480dd3d1f7ab0707325926b62199dea1f5f",
+  "enter_forward.pass_l": "a0b55e0848eac14c13ad8608268e460d7852b20b4a77fd6bfe24cf2c0442d079",
+  "enter_forward.contact_r": "d1b7ea78e410693af84c633b5b9c2abdda9d22ea22815d2db994108a2eb95a56",
+  "enter_forward.down_r": "aa99a13011ea801372be97e50c848e872c3ad879494cf722892c0c72059d28cf",
+  "enter_forward.pass_r": "2275ea3899e91ef6b7f0cfaa98a3992cbdfbdecd081223eda62df190e62ec4e8",
+  "retreat_backward.contact_l": "0faa28ba412dd5e9563594aeef6246b9eeda498db96093e641154254c0a6e70c",
+  "retreat_backward.down_l": "26495f2d971f41cc8cc2250b7ec8f614d1db6b64f3dfc62c4c6c92cee0e4e35f",
+  "retreat_backward.pass_l": "b6788025cd9e67a484ec9e6a893abe2d6db3a3b66a34e606fb92a90609120795",
+  "retreat_backward.contact_r": "0c5cc39a0c579288016854ed7a17a1078718badc629d30b7b4a8bceb8a3f46be",
+  "retreat_backward.down_r": "44cd5349e54bf3943b71b2262956588604bd60de4e9736c88ab855dede67eb29",
+  "retreat_backward.pass_r": "e8f4f534ad9a1122ade2753e262699d9b1215f0d96e58d5ff192e23a23962725",
+  "yield_side.contact_l": "8b2a206544ea69e5456396c16240f9699dfed08e0e71924c571339b18d0daff5",
+  "yield_side.down_l": "6f43cbc80bd378bdd012666d71373a639b9609cab49cbc6dfe743eef792623dc",
+  "yield_side.pass_l": "4d292f85b79cef350b715e1f7d48b1faad97f27758ece3bf514cea6c177efb5e",
+  "yield_side.contact_r": "d05099be1c8692e82905cc5b6765da9ba92ad046c620180a31c950366193762d",
+  "yield_side.down_r": "deaaedb0868bfebd0d09b3fa0db4401b7443914e7f3312f16498dbdca7fadb6a",
+  "yield_side.pass_r": "bff6df891c19fb2081bf734dc91bd95c54930ad673e018e9b7af83c073077bf5",
+  "watch.shift_l": "d8f384a3725f9407739871a25f53940c18f5952a443adc6ae0185d7ae6057ec8",
+  "watch.hold_l": "f37ba9aafc3f6c3b48bc779d396b90e830bbd553bf1a66fa66578205e0773705",
+  "watch.shift_r": "ec960295f8f9511e923155b0d9891030d7f9dbb099c0fab571098a630cd877ec",
+  "watch.hold_r": "83ef6c5ad77e68b6b5445fd26e4c76fb9d553b9e8b61c8df87f01967aacf4a63",
+  "clap.open": "6f2053017dbfebdf8308f55a72f9a27880aa5bca0e6f1b7d58d83d0b78d871b1",
+  "clap.close": "007452f7dcc26f82ba34caefe82dd0de5dbc66ef133d8f106a2eec0837d91280",
+  "clap.contact": "2fbc943f679963dd26baef5710a3f788339429e27504224da226d31400ea5cdf",
+  "clap.release": "a687348bcc2b9ec275ca6fd55ca0a8bdad499e1c9430364c691518b296271a06",
+  "challenge.load": "5538a499c12bb2866c9b6caad55621c7d084ec53cb2a5d9485931cb4e1b83c53",
+  "challenge.proud": "627fb2162f6d5efab8a4e56381ed5898cd05626a621e2bdb71771046059d1ac7",
+  "challenge.offer": "80ceca9b2b76d9fee059e1ac1b4b4bed3c4e1a5a867c0afd927425acd4a799cb",
+  "challenge.return": "12816c36ccdfe1770d9417383f52449d755a4b31204ff48bc42d03cc18ed02dd",
+  "approval.load": "2023ecc5088e40cfb87205525b3fd04143f98ea36b795a100d7db3ac8ca0dc65",
+  "approval.nod": "e6b86365b9c67225d4c2f8a1c429d56d6ef78247b59be4616fe789c8b496fab5",
+  "approval.release": "69d9a47d30785e2b0883617e67821d26c73ee11abe72c630a99fe25adaef0f89",
+  "reassurance.notice": "3dced24a29efa430c38a949af7957ea9318a740e28ab7a4d42e07bd537809b2c",
+  "reassurance.open_hand": "17ddb9c4d48034f4f078abae6ea7e0e83bb1b9809b62a7d6de0c2183d749e6a0",
+  "reassurance.settle": "c3a42c2db4075b1bffc6e1383f09e95bd9676e685510092b4f251c4370f614b9",
+  "finish_turn.finish_a": "da43ccdcb22b810bda532bf9febd85ffb36ae5525d408a1d3a5a609208e157d9",
+  "finish_turn.finish_b": "482469542155ee90d15e2831157b12e8500c35df307def3a6b88eb85e2066b42",
+  "finish_turn.turn_in": "c09abb5c8fec150f4d255a631425ae4884742bd860b6aeaf615970c253746223",
+  "finish_turn.turn_out": "3f967e47e0b55ed459e060ca95db3615431774e1924fd1324a7b9ca01c469381"
+ },
+ "run": "swing-a-20261105a"
+}

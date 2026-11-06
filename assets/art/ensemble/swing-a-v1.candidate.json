@@ -1,0 +1,3113 @@
+{
+ "atlas": "swing-a",
+ "image": "swing-a-v1.png",
+ "imageWidth": 1024,
+ "imageHeight": 2204,
+ "referenceFrame": "occupied",
+ "family": "/home/forge/src/kumbia-kombat/tool/art/families/swing-a-v1.json",
+ "animationReferences": {
+  "registry": "tool/art/references/animation-principles.json",
+  "research": [
+   "plan/research/gatekeeper-dance-2026-11-02.md",
+   "plan/dance-fluidity-pass.md",
+   "plan/opponent-depth-staging-pass.md"
+  ],
+  "principlesUsed": [
+   "anticipation",
+   "contrapposto",
+   "exaggeration-accent",
+   "follow-through",
+   "line-of-action",
+   "no-twinning",
+   "planted-pivot",
+   "secondary-action",
+   "staging-silhouette",
+   "timing-on-beat"
+  ],
+  "sourcesUsed": [
+   "cartwright-gdc2014",
+   "contrapposto-fonseca",
+   "dead-cells-pipeline",
+   "disney-process",
+   "illusion-of-life",
+   "silhouette-test",
+   "simogo-bsb",
+   "slynyrd-53",
+   "slynyrd-55",
+   "twinning",
+   "ubisoft-foot-ik",
+   "williams-survival-kit"
+  ]
+ },
+ "ramps": {
+  "skin": {
+   "region": "skin",
+   "alsoIn": [],
+   "shades": [
+    "#540700",
+    "#7C3100",
+    "#AA5422",
+    "#C37750"
+   ]
+  },
+  "hair": {
+   "region": "hair",
+   "alsoIn": [],
+   "shades": [
+    "#6A6B6F",
+    "#919295",
+    "#B9BABE",
+    "#D9DADE"
+   ]
+  },
+  "bodice": {
+   "region": "shirt",
+   "alsoIn": [],
+   "shades": [
+    "#00300F",
+    "#00532F",
+    "#0F7A50",
+    "#4B9670"
+   ]
+  },
+  "dress": {
+   "region": "apron",
+   "alsoIn": [],
+   "shades": [
+    "#003010",
+    "#005330",
+    "#0F7A51",
+    "#4B9671"
+   ]
+  },
+  "shoes": {
+   "region": "shoes",
+   "alsoIn": [],
+   "shades": [
+    "#845B00",
+    "#AC8200",
+    "#D9A92C",
+    "#F4CB6D"
+   ]
+  }
+ },
+ "frames": {
+  "anticipate_left": {
+   "rect": [
+    609,
+    1726,
+    150,
+    236
+   ],
+   "anchor": [
+    61.8,
+    234.4
+   ],
+   "pixelsPerUnit": 6.0387,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [],
+   "supportFoot": "right",
+   "status": "candidate",
+   "provenance": {
+    "run": "/home/forge/src/kumbia-kombat/art_runs/swing-a-20261105a",
+    "pose": "left_hand.prep",
+    "sha256": "728d7c318f9398df5fed7fa2242a3d641c1e9bb63162329d30a564d03f9ee2e1",
+    "selected": null,
+    "frameKey": "467a20ac5538120f0754cff6f2b3df27741557e2ea3d6409623a4bca814f116c",
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "anticipation",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   },
+   "aliasOf": "left_hand_prep"
+  },
+  "anticipate_right": {
+   "rect": [
+    761,
+    1726,
+    127,
+    236
+   ],
+   "anchor": [
+    75.2,
+    234.4
+   ],
+   "pixelsPerUnit": 6.0387,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [],
+   "supportFoot": "left",
+   "status": "candidate",
+   "provenance": {
+    "run": "/home/forge/src/kumbia-kombat/art_runs/swing-a-20261105a",
+    "pose": "right_hand.prep",
+    "sha256": "fa173b72ea60bc55fe37d2d13010e66927a118e2dc97a37254147d338d1b0ac7",
+    "selected": null,
+    "frameKey": "38edc04af7ca8743a912108389c4966e0c2dcaa2d64c5a6d5fa72bfdf6eca8bf",
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "anticipation",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   },
+   "aliasOf": "right_hand_prep"
+  },
+  "approval_load": {
+   "rect": [
+    424,
+    750,
+    116,
+    244
+   ],
+   "anchor": [
+    63.0,
+    242.4
+   ],
+   "pixelsPerUnit": 6.0387,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "/home/forge/src/kumbia-kombat/art_runs/swing-a-20261105a",
+    "pose": "approval.load",
+    "sha256": "bfaf5bb87562002c9222f20783362a98d203fd7b155613763b8175ed4e7bcb17",
+    "selected": null,
+    "frameKey": "2023ecc5088e40cfb87205525b3fd04143f98ea36b795a100d7db3ac8ca0dc65",
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "anticipation",
+     "secondary-action",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "approval_nod": {
+   "rect": [
+    729,
+    1484,
+    133,
+    239
+   ],
+   "anchor": [
+    64.0,
+    237.4
+   ],
+   "pixelsPerUnit": 6.0387,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [
+    {
+     "beat": 0.333,
+     "type": "accent",
+     "drawing": "nod"
+    }
+   ],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "/home/forge/src/kumbia-kombat/art_runs/swing-a-20261105a",
+    "pose": "approval.nod",
+    "sha256": "ac0aa0f107a42e154290686f78624d15e1db0b7c1775972bfdfaba835df8cb33",
+    "selected": null,
+    "frameKey": "e6b86365b9c67225d4c2f8a1c429d56d6ef78247b59be4616fe789c8b496fab5",
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "line-of-action",
+     "contrapposto",
+     "exaggeration-accent",
+     "secondary-action",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "approval_release": {
+   "rect": [
+    119,
+    501,
+    148,
+    247
+   ],
+   "anchor": [
+    94.0,
+    245.4
+   ],
+   "pixelsPerUnit": 6.0387,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "/home/forge/src/kumbia-kombat/art_runs/swing-a-20261105a",
+    "pose": "approval.release",
+    "sha256": "160921d9550eb439e295f219511dd832f4f8c3ade527eb9083bc622bb2394a72",
+    "selected": null,
+    "frameKey": "69d9a47d30785e2b0883617e67821d26c73ee11abe72c630a99fe25adaef0f89",
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "follow-through",
+     "secondary-action",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "approve": {
+   "rect": [
+    729,
+    1484,
+    133,
+    239
+   ],
+   "anchor": [
+    64.0,
+    237.4
+   ],
+   "pixelsPerUnit": 6.0387,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [
+    {
+     "beat": 0.333,
+     "type": "accent",
+     "drawing": "nod"
+    }
+   ],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "/home/forge/src/kumbia-kombat/art_runs/swing-a-20261105a",
+    "pose": "approval.nod",
+    "sha256": "ac0aa0f107a42e154290686f78624d15e1db0b7c1775972bfdfaba835df8cb33",
+    "selected": null,
+    "frameKey": "e6b86365b9c67225d4c2f8a1c429d56d6ef78247b59be4616fe789c8b496fab5",
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "line-of-action",
+     "contrapposto",
+     "exaggeration-accent",
+     "secondary-action",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   },
+   "aliasOf": "approval_nod"
+  },
+  "cede": {
+   "rect": [
+    229,
+    2,
+    140,
+    248
+   ],
+   "anchor": [
+    48.8,
+    246.4
+   ],
+   "pixelsPerUnit": 6.0387,
+   "facing": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "right",
+   "status": "candidate",
+   "provenance": {
+    "run": "/home/forge/src/kumbia-kombat/art_runs/swing-a-20261105a",
+    "pose": "yield_side.pass_r",
+    "sha256": "13aa442ddadeb00d4e94cd82f17804e72382276027318853ceef4c47d46b0a4c",
+    "selected": null,
+    "frameKey": "bff6df891c19fb2081bf734dc91bd95c54930ad673e018e9b7af83c073077bf5",
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "line-of-action",
+     "contrapposto",
+     "exaggeration-accent",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   },
+   "aliasOf": "yield_side_pass_r"
+  },
+  "challenge_load": {
+   "rect": [
+    296,
+    1966,
+    137,
+    236
+   ],
+   "anchor": [
+    82.2,
+    234.4
+   ],
+   "pixelsPerUnit": 6.0387,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "left",
+   "status": "candidate",
+   "provenance": {
+    "run": "/home/forge/src/kumbia-kombat/art_runs/swing-a-20261105a",
+    "pose": "challenge.load",
+    "sha256": "fef5055e7de964195e73fd2a6d004e5912ea3b7c443183d446fac0c3cf611ff1",
+    "selected": null,
+    "frameKey": "5538a499c12bb2866c9b6caad55621c7d084ec53cb2a5d9485931cb4e1b83c53",
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "anticipation",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "challenge_offer": {
+   "rect": [
+    624,
+    996,
+    182,
+    242
+   ],
+   "anchor": [
+    106.8,
+    240.4
+   ],
+   "pixelsPerUnit": 6.0387,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 2.0,
+   "events": [
+    {
+     "beat": 1.0,
+     "type": "accent",
+     "drawing": "offer"
+    }
+   ],
+   "supportFoot": "right",
+   "status": "candidate",
+   "provenance": {
+    "run": "/home/forge/src/kumbia-kombat/art_runs/swing-a-20261105a",
+    "pose": "challenge.offer",
+    "sha256": "a354b9b24ecfc8d7ab16186fe7878726414f5dad29b84ea7704a99978003b69b",
+    "selected": null,
+    "frameKey": "80ceca9b2b76d9fee059e1ac1b4b4bed3c4e1a5a867c0afd927425acd4a799cb",
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "line-of-action",
+     "contrapposto",
+     "exaggeration-accent",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "challenge_proud": {
+   "rect": [
+    489,
+    996,
+    133,
+    242
+   ],
+   "anchor": [
+    54.8,
+    240.4
+   ],
+   "pixelsPerUnit": 6.0387,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "right",
+   "status": "candidate",
+   "provenance": {
+    "run": "/home/forge/src/kumbia-kombat/art_runs/swing-a-20261105a",
+    "pose": "challenge.proud",
+    "sha256": "d124cd0b81ca34ec1c2b5714110912be884ab491230f17948b93f2230a120329",
+    "selected": null,
+    "frameKey": "627fb2162f6d5efab8a4e56381ed5898cd05626a621e2bdb71771046059d1ac7",
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "line-of-action",
+     "contrapposto",
+     "exaggeration-accent",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "challenge_return": {
+   "rect": [
+    624,
+    2,
+    106,
+    248
+   ],
+   "anchor": [
+    56.0,
+    246.4
+   ],
+   "pixelsPerUnit": 6.0387,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "/home/forge/src/kumbia-kombat/art_runs/swing-a-20261105a",
+    "pose": "challenge.return",
+    "sha256": "5ebad05859b970bad90ddf4dad1c6e81df233ee5e7946c77d067ef00cd904139",
+    "selected": null,
+    "frameKey": "12816c36ccdfe1770d9417383f52449d755a4b31204ff48bc42d03cc18ed02dd",
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "follow-through",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "clap_close": {
+   "rect": [
+    2,
+    501,
+    115,
+    247
+   ],
+   "anchor": [
+    57.0,
+    245.4
+   ],
+   "pixelsPerUnit": 6.0387,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "/home/forge/src/kumbia-kombat/art_runs/swing-a-20261105a",
+    "pose": "clap.close",
+    "sha256": "f297293aea07fdc5537dae4ac4c2bae02c329e7abc2b3f41bd26b48fe470a65a",
+    "selected": null,
+    "frameKey": "007452f7dcc26f82ba34caefe82dd0de5dbc66ef133d8f106a2eec0837d91280",
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  },
+  "clap_contact": {
+   "rect": [
+    135,
+    1726,
+    105,
+    238
+   ],
+   "anchor": [
+    53.0,
+    236.4
+   ],
+   "pixelsPerUnit": 6.0387,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [
+    {
+     "beat": 0.5,
+     "type": "accent",
+     "drawing": "contact"
+    }
+   ],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "/home/forge/src/kumbia-kombat/art_runs/swing-a-20261105a",
+    "pose": "clap.contact",
+    "sha256": "f5f927bdc89039c0ae7b1a8443010071c3d3496abf9d57a4cf31bf0a99f5028f",
+    "selected": null,
+    "frameKey": "2fbc943f679963dd26baef5710a3f788339429e27504224da226d31400ea5cdf",
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "anticipation",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  },
+  "clap_open": {
+   "rect": [
+    371,
+    2,
+    134,
+    248
+   ],
+   "anchor": [
+    67.0,
+    246.4
+   ],
+   "pixelsPerUnit": 6.0387,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "/home/forge/src/kumbia-kombat/art_runs/swing-a-20261105a",
+    "pose": "clap.open",
+    "sha256": "eebdf5bfc38b08aeec488fabebb2db50b0d0e614626239c40f7d6bc31eafdfcc",
+    "selected": null,
+    "frameKey": "6f2053017dbfebdf8308f55a72f9a27880aa5bca0e6f1b7d58d83d0b78d871b1",
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "anticipation",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "clap_release": {
+   "rect": [
+    507,
+    2,
+    115,
+    248
+   ],
+   "anchor": [
+    59.0,
+    246.4
+   ],
+   "pixelsPerUnit": 6.0387,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "/home/forge/src/kumbia-kombat/art_runs/swing-a-20261105a",
+    "pose": "clap.release",
+    "sha256": "e27b8c73c4296a764cd4a72e28637d0c710852b82d9e3e035d7080e40564a6e1",
+    "selected": null,
+    "frameKey": "a687348bcc2b9ec275ca6fd55ca0a8bdad499e1c9430364c691518b296271a06",
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "follow-through",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "enter_forward_contact_l": {
+   "rect": [
+    365,
+    1726,
+    117,
+    237
+   ],
+   "anchor": [
+    57.9,
+    235.4
+   ],
+   "pixelsPerUnit": 6.0387,
+   "facing": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "/home/forge/src/kumbia-kombat/art_runs/swing-a-20261105a",
+    "pose": "enter_forward.contact_l",
+    "sha256": "05b1fe4bcfcfa39fadebe731a1adef19e3b0f2e169551c1e77a5e879d518f296",
+    "selected": null,
+    "frameKey": "a7f5ae7661f0c53d30f8898cea3ca4dccf3b250d482f1ab8829abcd77dae739f",
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "anticipation",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  },
+  "enter_forward_contact_r": {
+   "rect": [
+    484,
+    1726,
+    123,
+    237
+   ],
+   "anchor": [
+    57.0,
+    235.4
+   ],
+   "pixelsPerUnit": 6.0387,
+   "facing": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "/home/forge/src/kumbia-kombat/art_runs/swing-a-20261105a",
+    "pose": "enter_forward.contact_r",
+    "sha256": "0d7035b0a94dcb877caa1ac8fac92b1df8b7b4cc60cefa306f9f51533857bdb5",
+    "selected": null,
+    "frameKey": "d1b7ea78e410693af84c633b5b9c2abdda9d22ea22815d2db994108a2eb95a56",
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "anticipation",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  },
+  "enter_forward_down_l": {
+   "rect": [
+    2,
+    1241,
+    112,
+    241
+   ],
+   "anchor": [
+    75.2,
+    239.4
+   ],
+   "pixelsPerUnit": 6.0387,
+   "facing": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "left",
+   "status": "candidate",
+   "provenance": {
+    "run": "/home/forge/src/kumbia-kombat/art_runs/swing-a-20261105a",
+    "pose": "enter_forward.down_l",
+    "sha256": "193a487f552ba649fb0768ae077b12b64867656a09321c0f4b19561f687be443",
+    "selected": null,
+    "frameKey": "125e3dcbdff2251a7774f515df5b2480dd3d1f7ab0707325926b62199dea1f5f",
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  },
+  "enter_forward_down_r": {
+   "rect": [
+    116,
+    1241,
+    150,
+    241
+   ],
+   "anchor": [
+    47.8,
+    239.4
+   ],
+   "pixelsPerUnit": 6.0387,
+   "facing": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "right",
+   "status": "candidate",
+   "provenance": {
+    "run": "/home/forge/src/kumbia-kombat/art_runs/swing-a-20261105a",
+    "pose": "enter_forward.down_r",
+    "sha256": "cc6b3bf0cdb8aa19167d087cde1fc91045a9a0821634aee749d372711541f109",
+    "selected": null,
+    "frameKey": "aa99a13011ea801372be97e50c848e872c3ad879494cf722892c0c72059d28cf",
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  },
+  "enter_forward_pass_l": {
+   "rect": [
+    500,
+    252,
+    109,
+    247
+   ],
+   "anchor": [
+    68.2,
+    245.4
+   ],
+   "pixelsPerUnit": 6.0387,
+   "facing": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "left",
+   "status": "candidate",
+   "provenance": {
+    "run": "/home/forge/src/kumbia-kombat/art_runs/swing-a-20261105a",
+    "pose": "enter_forward.pass_l",
+    "sha256": "cef47c9a53b9977f0ca440c62ca10818a57e5648ae88c15e9a971da7e36aaec9",
+    "selected": null,
+    "frameKey": "a0b55e0848eac14c13ad8608268e460d7852b20b4a77fd6bfe24cf2c0442d079",
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  },
+  "enter_forward_pass_r": {
+   "rect": [
+    2,
+    2,
+    117,
+    248
+   ],
+   "anchor": [
+    46.8,
+    246.4
+   ],
+   "pixelsPerUnit": 6.0387,
+   "facing": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "right",
+   "status": "candidate",
+   "provenance": {
+    "run": "/home/forge/src/kumbia-kombat/art_runs/swing-a-20261105a",
+    "pose": "enter_forward.pass_r",
+    "sha256": "0c05dbfbddec56c22d6cc856c8247622f819cee555f48627d806555b89d2d115",
+    "selected": null,
+    "frameKey": "2275ea3899e91ef6b7f0cfaa98a3992cbdfbdecd081223eda62df190e62ec4e8",
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  },
+  "finish": {
+   "rect": [
+    542,
+    750,
+    121,
+    244
+   ],
+   "anchor": [
+    53.8,
+    242.4
+   ],
+   "pixelsPerUnit": 6.0387,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "right",
+   "status": "candidate",
+   "provenance": {
+    "run": "/home/forge/src/kumbia-kombat/art_runs/swing-a-20261105a",
+    "pose": "finish_turn.finish_b",
+    "sha256": "491cf5c9966bb620fd3556bb3a5920f062211d5800fed92bd8288634a7401a9c",
+    "selected": null,
+    "frameKey": "482469542155ee90d15e2831157b12e8500c35df307def3a6b88eb85e2066b42",
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "line-of-action",
+     "contrapposto",
+     "exaggeration-accent",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   },
+   "aliasOf": "finish_turn_finish_b"
+  },
+  "finish_turn_finish_a": {
+   "rect": [
+    859,
+    501,
+    116,
+    245
+   ],
+   "anchor": [
+    50.8,
+    243.4
+   ],
+   "pixelsPerUnit": 6.0387,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "right",
+   "status": "candidate",
+   "provenance": {
+    "run": "/home/forge/src/kumbia-kombat/art_runs/swing-a-20261105a",
+    "pose": "finish_turn.finish_a",
+    "sha256": "d351696e915772d0fff756fc92d598fccce32df83dabfd9ce2c95bb9f5ce7c00",
+    "selected": null,
+    "frameKey": "da43ccdcb22b810bda532bf9febd85ffb36ae5525d408a1d3a5a609208e157d9",
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "exaggeration-accent",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "finish_turn_finish_b": {
+   "rect": [
+    542,
+    750,
+    121,
+    244
+   ],
+   "anchor": [
+    53.8,
+    242.4
+   ],
+   "pixelsPerUnit": 6.0387,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "right",
+   "status": "candidate",
+   "provenance": {
+    "run": "/home/forge/src/kumbia-kombat/art_runs/swing-a-20261105a",
+    "pose": "finish_turn.finish_b",
+    "sha256": "491cf5c9966bb620fd3556bb3a5920f062211d5800fed92bd8288634a7401a9c",
+    "selected": null,
+    "frameKey": "482469542155ee90d15e2831157b12e8500c35df307def3a6b88eb85e2066b42",
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "line-of-action",
+     "contrapposto",
+     "exaggeration-accent",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "finish_turn_turn_in": {
+   "rect": [
+    665,
+    750,
+    153,
+    244
+   ],
+   "anchor": [
+    49.0,
+    242.4
+   ],
+   "pixelsPerUnit": 6.0387,
+   "facing": "front_3q",
+   "loop": false,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "/home/forge/src/kumbia-kombat/art_runs/swing-a-20261105a",
+    "pose": "finish_turn.turn_in",
+    "sha256": "2ce045dac87c22718f23124c9b02412a9085ccaadef5dc6136fca24be2459f2d",
+    "selected": null,
+    "frameKey": "c09abb5c8fec150f4d255a631425ae4884742bd860b6aeaf615970c253746223",
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  },
+  "finish_turn_turn_out": {
+   "rect": [
+    820,
+    750,
+    170,
+    244
+   ],
+   "anchor": [
+    120.0,
+    242.4
+   ],
+   "pixelsPerUnit": 6.0387,
+   "facing": "front_3q",
+   "loop": false,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "/home/forge/src/kumbia-kombat/art_runs/swing-a-20261105a",
+    "pose": "finish_turn.turn_out",
+    "sha256": "623e5e28175e22316fb979bd599e120d31bf608a42dc56be24defb000d223bd4",
+    "selected": null,
+    "frameKey": "3f967e47e0b55ed459e060ca95db3615431774e1924fd1324a7b9ca01c469381",
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  },
+  "follow_left": {
+   "rect": [
+    864,
+    1484,
+    156,
+    238
+   ],
+   "anchor": [
+    46.8,
+    236.4
+   ],
+   "pixelsPerUnit": 6.0387,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [],
+   "supportFoot": "right",
+   "status": "candidate",
+   "provenance": {
+    "run": "/home/forge/src/kumbia-kombat/art_runs/swing-a-20261105a",
+    "pose": "left_hand.follow",
+    "sha256": "25ae20b4c737a73425d88bb46a5fb7392b5b12c9d7c86ca6e1f1740bc737d04d",
+    "selected": null,
+    "frameKey": "5a3d9cc527ab83edc83520cfcc84a93bd3d455f74b398237229a6e68e9d932d4",
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "follow-through",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   },
+   "aliasOf": "left_hand_follow"
+  },
+  "follow_right": {
+   "rect": [
+    2,
+    1726,
+    131,
+    238
+   ],
+   "anchor": [
+    90.2,
+    236.4
+   ],
+   "pixelsPerUnit": 6.0387,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [],
+   "supportFoot": "left",
+   "status": "candidate",
+   "provenance": {
+    "run": "/home/forge/src/kumbia-kombat/art_runs/swing-a-20261105a",
+    "pose": "right_hand.follow",
+    "sha256": "c805cdd02c2a4ea05f7d8be5f26e1d15772e06d51a794137243ee96184029265",
+    "selected": null,
+    "frameKey": "4d95ca02e780f9d4ccc6eae17be54fbf5342bf1fdf68744bfcf3876a869994ca",
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "follow-through",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   },
+   "aliasOf": "right_hand_follow"
+  },
+  "groove_down_l": {
+   "rect": [
+    435,
+    1966,
+    125,
+    234
+   ],
+   "anchor": [
+    78.2,
+    232.4
+   ],
+   "pixelsPerUnit": 6.0387,
+   "facing": "front",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "left",
+   "status": "candidate",
+   "provenance": {
+    "run": "/home/forge/src/kumbia-kombat/art_runs/swing-a-20261105a",
+    "pose": "groove.down_l",
+    "sha256": "bdbf09962cf4e5927ad7133f4e140333cc300bc5838c354b724058b2e9311611",
+    "selected": null,
+    "frameKey": "e14cb0a9bacbeead5a6fc59613f63c73e06f4e4a91b408d869d4bcbf6548f386",
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "secondary-action",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  },
+  "groove_down_r": {
+   "rect": [
+    562,
+    1966,
+    151,
+    234
+   ],
+   "anchor": [
+    50.8,
+    232.4
+   ],
+   "pixelsPerUnit": 6.0387,
+   "facing": "front",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "right",
+   "status": "candidate",
+   "provenance": {
+    "run": "/home/forge/src/kumbia-kombat/art_runs/swing-a-20261105a",
+    "pose": "groove.down_r",
+    "sha256": "6717bddb820c3811636b0d43d6f4abf113cd233fd27473511aa28e1dbd19d174",
+    "selected": null,
+    "frameKey": "5724418aeba9d6ec9f15ed9268d642817f17b4b4fa934aa80ee6df79e644d249",
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "secondary-action",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  },
+  "groove_pass_l": {
+   "rect": [
+    376,
+    501,
+    111,
+    246
+   ],
+   "anchor": [
+    71.2,
+    244.4
+   ],
+   "pixelsPerUnit": 6.0387,
+   "facing": "front",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "left",
+   "status": "candidate",
+   "provenance": {
+    "run": "/home/forge/src/kumbia-kombat/art_runs/swing-a-20261105a",
+    "pose": "groove.pass_l",
+    "sha256": "9fd783eae4a6b6a3ff20bc427e11c46760b8d48afbbe71d61d0640043839b3d1",
+    "selected": null,
+    "frameKey": "b15121fa2db07b0dfe3c7e62f147f25d4ac3243c46b9156096e30db4d144e4ee",
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "secondary-action",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  },
+  "groove_pass_l2": {
+   "rect": [
+    715,
+    501,
+    142,
+    245
+   ],
+   "anchor": [
+    76.8,
+    243.4
+   ],
+   "pixelsPerUnit": 6.0387,
+   "facing": "front",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "right",
+   "status": "candidate",
+   "provenance": {
+    "run": "/home/forge/src/kumbia-kombat/art_runs/swing-a-20261105a",
+    "pose": "groove.pass_l2",
+    "sha256": "ffe14db2cf54e07c40d6758c8c5426d396fc479aadd605629599bb0631486ccb",
+    "selected": null,
+    "frameKey": "2b0132bf8c5cecf6db68880ca73d1d88179f30d34f4d00a3184b877a4dff9821",
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "line-of-action",
+     "contrapposto",
+     "exaggeration-accent",
+     "secondary-action",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  },
+  "groove_pass_r": {
+   "rect": [
+    489,
+    501,
+    118,
+    246
+   ],
+   "anchor": [
+    40.8,
+    244.4
+   ],
+   "pixelsPerUnit": 6.0387,
+   "facing": "front",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "right",
+   "status": "candidate",
+   "provenance": {
+    "run": "/home/forge/src/kumbia-kombat/art_runs/swing-a-20261105a",
+    "pose": "groove.pass_r",
+    "sha256": "bd6998b36826bb577c4fa993a36cc5521374f96667a552ad7ee0bdb94cfd69b6",
+    "selected": null,
+    "frameKey": "a4e1a1cbbc799276e8ec017d4ed4d54ab74ac8f8a71fdfbcc49fea3024953f95",
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "secondary-action",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  },
+  "groove_pass_r2": {
+   "rect": [
+    2,
+    750,
+    195,
+    244
+   ],
+   "anchor": [
+    91.2,
+    242.4
+   ],
+   "pixelsPerUnit": 6.0387,
+   "facing": "front",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "left",
+   "status": "candidate",
+   "provenance": {
+    "run": "/home/forge/src/kumbia-kombat/art_runs/swing-a-20261105a",
+    "pose": "groove.pass_r2",
+    "sha256": "2087981f6b461b58411bf3679ae0e429cf49f1c9b71eef779af8d314ecc19491",
+    "selected": null,
+    "frameKey": "c4d657722f99ee222c75a5352459e847fdd75a8101008845ebab567b4f05b6de",
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "line-of-action",
+     "contrapposto",
+     "exaggeration-accent",
+     "secondary-action",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  },
+  "groove_up_l": {
+   "rect": [
+    732,
+    2,
+    106,
+    247
+   ],
+   "anchor": [
+    54.0,
+    245.4
+   ],
+   "pixelsPerUnit": 6.0387,
+   "facing": "front",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "/home/forge/src/kumbia-kombat/art_runs/swing-a-20261105a",
+    "pose": "groove.up_l",
+    "sha256": "9130ecdba4c4413937838f8fd472c25ec3ccb418c8487f40e1d253994d6ddd2b",
+    "selected": null,
+    "frameKey": "1728e4dd79ab0853902a2516899e8b4f3f93834f3f90b95b37118ca06b5fa7d6",
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "secondary-action",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  },
+  "groove_up_r": {
+   "rect": [
+    840,
+    2,
+    108,
+    247
+   ],
+   "anchor": [
+    53.0,
+    245.4
+   ],
+   "pixelsPerUnit": 6.0387,
+   "facing": "front",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "/home/forge/src/kumbia-kombat/art_runs/swing-a-20261105a",
+    "pose": "groove.up_r",
+    "sha256": "6065d5a7f50ae5b7a650ae949759facc48cc35200d2579c1cd29bf5a3be3142f",
+    "selected": null,
+    "frameKey": "ff40c26689a33512e0a10b3800e9af3c6e9449fec43e487f1d1357cb4e6b6952",
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "secondary-action",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  },
+  "invite": {
+   "rect": [
+    624,
+    996,
+    182,
+    242
+   ],
+   "anchor": [
+    106.8,
+    240.4
+   ],
+   "pixelsPerUnit": 6.0387,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 2.0,
+   "events": [
+    {
+     "beat": 1.0,
+     "type": "accent",
+     "drawing": "offer"
+    }
+   ],
+   "supportFoot": "right",
+   "status": "candidate",
+   "provenance": {
+    "run": "/home/forge/src/kumbia-kombat/art_runs/swing-a-20261105a",
+    "pose": "challenge.offer",
+    "sha256": "a354b9b24ecfc8d7ab16186fe7878726414f5dad29b84ea7704a99978003b69b",
+    "selected": null,
+    "frameKey": "80ceca9b2b76d9fee059e1ac1b4b4bed3c4e1a5a867c0afd927425acd4a799cb",
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "line-of-action",
+     "contrapposto",
+     "exaggeration-accent",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   },
+   "aliasOf": "challenge_offer"
+  },
+  "left_foot": {
+   "rect": [
+    203,
+    1484,
+    131,
+    239
+   ],
+   "anchor": [
+    52.8,
+    237.4
+   ],
+   "pixelsPerUnit": 6.0387,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [
+    {
+     "beat": 0.25,
+     "type": "accent",
+     "drawing": "peak"
+    }
+   ],
+   "supportFoot": "right",
+   "status": "candidate",
+   "provenance": {
+    "run": "/home/forge/src/kumbia-kombat/art_runs/swing-a-20261105a",
+    "pose": "left_foot.peak",
+    "sha256": "1361080feafb24a44cf9daaa8f0d2d152fb4d6b4cd5688ecab33918ae5c71cfa",
+    "selected": null,
+    "frameKey": "9764ecdceacd81ab0a0ca4d810f233325ffe84bf41e5894fe28d097de41a438d",
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "line-of-action",
+     "contrapposto",
+     "exaggeration-accent",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   },
+   "aliasOf": "left_foot_peak"
+  },
+  "left_foot_follow": {
+   "rect": [
+    505,
+    1241,
+    173,
+    240
+   ],
+   "anchor": [
+    57.8,
+    238.4
+   ],
+   "pixelsPerUnit": 6.0387,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [],
+   "supportFoot": "right",
+   "status": "candidate",
+   "provenance": {
+    "run": "/home/forge/src/kumbia-kombat/art_runs/swing-a-20261105a",
+    "pose": "left_foot.follow",
+    "sha256": "090e9ed57077a448fa1ebe0c5b1779db221898b3f98cd4485a31efe83c8cc129",
+    "selected": null,
+    "frameKey": "f0033527ae808a6bce8a2c7cf4f47266cc0e43fcc9fbd163496cf80f3931bd67",
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "follow-through",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "left_foot_peak": {
+   "rect": [
+    203,
+    1484,
+    131,
+    239
+   ],
+   "anchor": [
+    52.8,
+    237.4
+   ],
+   "pixelsPerUnit": 6.0387,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [
+    {
+     "beat": 0.25,
+     "type": "accent",
+     "drawing": "peak"
+    }
+   ],
+   "supportFoot": "right",
+   "status": "candidate",
+   "provenance": {
+    "run": "/home/forge/src/kumbia-kombat/art_runs/swing-a-20261105a",
+    "pose": "left_foot.peak",
+    "sha256": "1361080feafb24a44cf9daaa8f0d2d152fb4d6b4cd5688ecab33918ae5c71cfa",
+    "selected": null,
+    "frameKey": "9764ecdceacd81ab0a0ca4d810f233325ffe84bf41e5894fe28d097de41a438d",
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "line-of-action",
+     "contrapposto",
+     "exaggeration-accent",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "left_foot_prep": {
+   "rect": [
+    2,
+    1966,
+    145,
+    236
+   ],
+   "anchor": [
+    77.8,
+    234.4
+   ],
+   "pixelsPerUnit": 6.0387,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [],
+   "supportFoot": "right",
+   "status": "candidate",
+   "provenance": {
+    "run": "/home/forge/src/kumbia-kombat/art_runs/swing-a-20261105a",
+    "pose": "left_foot.prep",
+    "sha256": "c58ffc2125063a930be15451a399f92b6935522491b8002aa8bc8d5b652f8db0",
+    "selected": null,
+    "frameKey": "608f5387b0da6f0558293f017301687dabbed165092a79e37d43de6acaec5105",
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "anticipation",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "left_foot_return": {
+   "rect": [
+    283,
+    252,
+    105,
+    247
+   ],
+   "anchor": [
+    55.0,
+    245.4
+   ],
+   "pixelsPerUnit": 6.0387,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "/home/forge/src/kumbia-kombat/art_runs/swing-a-20261105a",
+    "pose": "left_foot.return",
+    "sha256": "b8289fbec8e2d7e5a5f974de088abb61cb03198007f26533f1584595fc0b84e3",
+    "selected": null,
+    "frameKey": "5c40fd9ff92a45a309a7acd78c164c472618810bcc4228e3d29e298bf9ae3a55",
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "follow-through",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "left_hand": {
+   "rect": [
+    808,
+    996,
+    169,
+    241
+   ],
+   "anchor": [
+    51.8,
+    239.4
+   ],
+   "pixelsPerUnit": 6.0387,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [
+    {
+     "beat": 0.25,
+     "type": "accent",
+     "drawing": "peak"
+    }
+   ],
+   "supportFoot": "right",
+   "status": "candidate",
+   "provenance": {
+    "run": "/home/forge/src/kumbia-kombat/art_runs/swing-a-20261105a",
+    "pose": "left_hand.peak",
+    "sha256": "6e95bd31a74bde94a8d01aad369b0c65084b95e55ce032693e58b2137cbf7a5a",
+    "selected": null,
+    "frameKey": "4a007c28056115699b6c0a45f16c560083d0fc08dae6f8ad0d5f52f4f0066022",
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "line-of-action",
+     "contrapposto",
+     "exaggeration-accent",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   },
+   "aliasOf": "left_hand_peak"
+  },
+  "left_hand_follow": {
+   "rect": [
+    864,
+    1484,
+    156,
+    238
+   ],
+   "anchor": [
+    46.8,
+    236.4
+   ],
+   "pixelsPerUnit": 6.0387,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [],
+   "supportFoot": "right",
+   "status": "candidate",
+   "provenance": {
+    "run": "/home/forge/src/kumbia-kombat/art_runs/swing-a-20261105a",
+    "pose": "left_hand.follow",
+    "sha256": "25ae20b4c737a73425d88bb46a5fb7392b5b12c9d7c86ca6e1f1740bc737d04d",
+    "selected": null,
+    "frameKey": "5a3d9cc527ab83edc83520cfcc84a93bd3d455f74b398237229a6e68e9d932d4",
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "follow-through",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "left_hand_peak": {
+   "rect": [
+    808,
+    996,
+    169,
+    241
+   ],
+   "anchor": [
+    51.8,
+    239.4
+   ],
+   "pixelsPerUnit": 6.0387,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [
+    {
+     "beat": 0.25,
+     "type": "accent",
+     "drawing": "peak"
+    }
+   ],
+   "supportFoot": "right",
+   "status": "candidate",
+   "provenance": {
+    "run": "/home/forge/src/kumbia-kombat/art_runs/swing-a-20261105a",
+    "pose": "left_hand.peak",
+    "sha256": "6e95bd31a74bde94a8d01aad369b0c65084b95e55ce032693e58b2137cbf7a5a",
+    "selected": null,
+    "frameKey": "4a007c28056115699b6c0a45f16c560083d0fc08dae6f8ad0d5f52f4f0066022",
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "line-of-action",
+     "contrapposto",
+     "exaggeration-accent",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "left_hand_prep": {
+   "rect": [
+    609,
+    1726,
+    150,
+    236
+   ],
+   "anchor": [
+    61.8,
+    234.4
+   ],
+   "pixelsPerUnit": 6.0387,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [],
+   "supportFoot": "right",
+   "status": "candidate",
+   "provenance": {
+    "run": "/home/forge/src/kumbia-kombat/art_runs/swing-a-20261105a",
+    "pose": "left_hand.prep",
+    "sha256": "728d7c318f9398df5fed7fa2242a3d641c1e9bb63162329d30a564d03f9ee2e1",
+    "selected": null,
+    "frameKey": "467a20ac5538120f0754cff6f2b3df27741557e2ea3d6409623a4bca814f116c",
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "anticipation",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "left_hand_return": {
+   "rect": [
+    2,
+    252,
+    133,
+    247
+   ],
+   "anchor": [
+    57.0,
+    245.4
+   ],
+   "pixelsPerUnit": 6.0387,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "/home/forge/src/kumbia-kombat/art_runs/swing-a-20261105a",
+    "pose": "left_hand.return",
+    "sha256": "b32b147bb6af9c36289d3720a4eebb89eaf05be23db195bf3025cd01e251ce9d",
+    "selected": null,
+    "frameKey": "821e1195bea5fc7b3698e2965a56b45f68506c5ee37c5eaca531b495d94105bf",
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "follow-through",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "occupied": {
+   "rect": [
+    435,
+    1966,
+    125,
+    234
+   ],
+   "anchor": [
+    78.2,
+    232.4
+   ],
+   "pixelsPerUnit": 6.0387,
+   "facing": "front",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "left",
+   "status": "candidate",
+   "provenance": {
+    "run": "/home/forge/src/kumbia-kombat/art_runs/swing-a-20261105a",
+    "pose": "groove.down_l",
+    "sha256": "bdbf09962cf4e5927ad7133f4e140333cc300bc5838c354b724058b2e9311611",
+    "selected": null,
+    "frameKey": "e14cb0a9bacbeead5a6fc59613f63c73e06f4e4a91b408d869d4bcbf6548f386",
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "secondary-action",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   },
+   "aliasOf": "groove_down_l"
+  },
+  "ready": {
+   "rect": [
+    624,
+    2,
+    106,
+    248
+   ],
+   "anchor": [
+    56.0,
+    246.4
+   ],
+   "pixelsPerUnit": 6.0387,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "/home/forge/src/kumbia-kombat/art_runs/swing-a-20261105a",
+    "pose": "challenge.return",
+    "sha256": "5ebad05859b970bad90ddf4dad1c6e81df233ee5e7946c77d067ef00cd904139",
+    "selected": null,
+    "frameKey": "12816c36ccdfe1770d9417383f52449d755a4b31204ff48bc42d03cc18ed02dd",
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "follow-through",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   },
+   "aliasOf": "challenge_return"
+  },
+  "reassurance_notice": {
+   "rect": [
+    269,
+    501,
+    105,
+    247
+   ],
+   "anchor": [
+    47.0,
+    245.4
+   ],
+   "pixelsPerUnit": 6.0387,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.5,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "/home/forge/src/kumbia-kombat/art_runs/swing-a-20261105a",
+    "pose": "reassurance.notice",
+    "sha256": "2427802d3135f045543abc9d66a6ff82f2427e7b362388750033d55353891eb7",
+    "selected": null,
+    "frameKey": "3dced24a29efa430c38a949af7957ea9318a740e28ab7a4d42e07bd537809b2c",
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "anticipation",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "reassurance_open_hand": {
+   "rect": [
+    2,
+    1484,
+    199,
+    240
+   ],
+   "anchor": [
+    101.0,
+    238.4
+   ],
+   "pixelsPerUnit": 6.0387,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.5,
+   "events": [
+    {
+     "beat": 0.5,
+     "type": "accent",
+     "drawing": "open_hand"
+    }
+   ],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "/home/forge/src/kumbia-kombat/art_runs/swing-a-20261105a",
+    "pose": "reassurance.open_hand",
+    "sha256": "1bfbff0cbf5ce4dca2e5aab7fb8c4afeadf616a67f2ae47a2f81c81144786a29",
+    "selected": null,
+    "frameKey": "17ddb9c4d48034f4f078abae6ea7e0e83bb1b9809b62a7d6de0c2183d749e6a0",
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "line-of-action",
+     "contrapposto",
+     "exaggeration-accent",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "reassurance_settle": {
+   "rect": [
+    242,
+    1726,
+    121,
+    238
+   ],
+   "anchor": [
+    73.2,
+    236.4
+   ],
+   "pixelsPerUnit": 6.0387,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.5,
+   "events": [],
+   "supportFoot": "left",
+   "status": "candidate",
+   "provenance": {
+    "run": "/home/forge/src/kumbia-kombat/art_runs/swing-a-20261105a",
+    "pose": "reassurance.settle",
+    "sha256": "afba24a81b7a4444f63dd6e9d788a7fcdc86815843ea09c4d50f9a0042b0887b",
+    "selected": null,
+    "frameKey": "c3a42c2db4075b1bffc6e1383f09e95bd9676e685510092b4f251c4370f614b9",
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "follow-through",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "recover": {
+   "rect": [
+    2,
+    1484,
+    199,
+    240
+   ],
+   "anchor": [
+    101.0,
+    238.4
+   ],
+   "pixelsPerUnit": 6.0387,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.5,
+   "events": [
+    {
+     "beat": 0.5,
+     "type": "accent",
+     "drawing": "open_hand"
+    }
+   ],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "/home/forge/src/kumbia-kombat/art_runs/swing-a-20261105a",
+    "pose": "reassurance.open_hand",
+    "sha256": "1bfbff0cbf5ce4dca2e5aab7fb8c4afeadf616a67f2ae47a2f81c81144786a29",
+    "selected": null,
+    "frameKey": "17ddb9c4d48034f4f078abae6ea7e0e83bb1b9809b62a7d6de0c2183d749e6a0",
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "line-of-action",
+     "contrapposto",
+     "exaggeration-accent",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   },
+   "aliasOf": "reassurance_open_hand"
+  },
+  "retreat_backward_contact_l": {
+   "rect": [
+    2,
+    996,
+    97,
+    243
+   ],
+   "anchor": [
+    47.2,
+    241.4
+   ],
+   "pixelsPerUnit": 6.0387,
+   "facing": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "/home/forge/src/kumbia-kombat/art_runs/swing-a-20261105a",
+    "pose": "retreat_backward.contact_l",
+    "sha256": "17d61f2ffa15b2f30d9abd57136405b0fa3b7a5d27463d4b6efcd1e29f836fc9",
+    "selected": null,
+    "frameKey": "0faa28ba412dd5e9563594aeef6246b9eeda498db96093e641154254c0a6e70c",
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "anticipation",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  },
+  "retreat_backward_contact_r": {
+   "rect": [
+    101,
+    996,
+    105,
+    243
+   ],
+   "anchor": [
+    42.6,
+    241.4
+   ],
+   "pixelsPerUnit": 6.0387,
+   "facing": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "/home/forge/src/kumbia-kombat/art_runs/swing-a-20261105a",
+    "pose": "retreat_backward.contact_r",
+    "sha256": "c5866598776d16f850d77e8d91a1ca2d026190389eae1c95e17cc6b24521d261",
+    "selected": null,
+    "frameKey": "0c5cc39a0c579288016854ed7a17a1078718badc629d30b7b4a8bceb8a3f46be",
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "anticipation",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  },
+  "retreat_backward_down_l": {
+   "rect": [
+    199,
+    750,
+    100,
+    244
+   ],
+   "anchor": [
+    59.2,
+    242.4
+   ],
+   "pixelsPerUnit": 6.0387,
+   "facing": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "left",
+   "status": "candidate",
+   "provenance": {
+    "run": "/home/forge/src/kumbia-kombat/art_runs/swing-a-20261105a",
+    "pose": "retreat_backward.down_l",
+    "sha256": "01df63f5be548486e2d0229e26499f0529fb7ea903cf19b4e4654b419a5bd9df",
+    "selected": null,
+    "frameKey": "26495f2d971f41cc8cc2250b7ec8f614d1db6b64f3dfc62c4c6c92cee0e4e35f",
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  },
+  "retreat_backward_down_r": {
+   "rect": [
+    301,
+    750,
+    121,
+    244
+   ],
+   "anchor": [
+    34.8,
+    242.4
+   ],
+   "pixelsPerUnit": 6.0387,
+   "facing": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "right",
+   "status": "candidate",
+   "provenance": {
+    "run": "/home/forge/src/kumbia-kombat/art_runs/swing-a-20261105a",
+    "pose": "retreat_backward.down_r",
+    "sha256": "526a58c6418c49721b33d8be29891572acdf11e90805823da83b122c5c98554f",
+    "selected": null,
+    "frameKey": "44cd5349e54bf3943b71b2262956588604bd60de4e9736c88ab855dede67eb29",
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  },
+  "retreat_backward_pass_l": {
+   "rect": [
+    611,
+    252,
+    107,
+    247
+   ],
+   "anchor": [
+    64.2,
+    245.4
+   ],
+   "pixelsPerUnit": 6.0387,
+   "facing": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "left",
+   "status": "candidate",
+   "provenance": {
+    "run": "/home/forge/src/kumbia-kombat/art_runs/swing-a-20261105a",
+    "pose": "retreat_backward.pass_l",
+    "sha256": "924adcd6ef11847f2f4aaa18d6f8ddf875696fdadceb8af74051876d1bfedba8",
+    "selected": null,
+    "frameKey": "b6788025cd9e67a484ec9e6a893abe2d6db3a3b66a34e606fb92a90609120795",
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  },
+  "retreat_backward_pass_r": {
+   "rect": [
+    720,
+    252,
+    110,
+    247
+   ],
+   "anchor": [
+    40.8,
+    245.4
+   ],
+   "pixelsPerUnit": 6.0387,
+   "facing": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "right",
+   "status": "candidate",
+   "provenance": {
+    "run": "/home/forge/src/kumbia-kombat/art_runs/swing-a-20261105a",
+    "pose": "retreat_backward.pass_r",
+    "sha256": "3799a36ee701c6a2fa1b347a3e828465ec3d61e1dfcdeb9f154ead16f6d846a0",
+    "selected": null,
+    "frameKey": "e8f4f534ad9a1122ade2753e262699d9b1215f0d96e58d5ff192e23a23962725",
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  },
+  "right_foot": {
+   "rect": [
+    336,
+    1484,
+    125,
+    239
+   ],
+   "anchor": [
+    65.2,
+    237.4
+   ],
+   "pixelsPerUnit": 6.0387,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [
+    {
+     "beat": 0.25,
+     "type": "accent",
+     "drawing": "peak"
+    }
+   ],
+   "supportFoot": "left",
+   "status": "candidate",
+   "provenance": {
+    "run": "/home/forge/src/kumbia-kombat/art_runs/swing-a-20261105a",
+    "pose": "right_foot.peak",
+    "sha256": "cc33f77c3f625bdd0da1220517bd75550b5c41c6c9197085a0a22b56393d0aa9",
+    "selected": null,
+    "frameKey": "88f06c07745eafd3bb9954f26de4c935f6221909f16bfe4341410adaeb8ba88e",
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "line-of-action",
+     "contrapposto",
+     "exaggeration-accent",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   },
+   "aliasOf": "right_foot_peak"
+  },
+  "right_foot_follow": {
+   "rect": [
+    680,
+    1241,
+    176,
+    240
+   ],
+   "anchor": [
+    113.2,
+    238.4
+   ],
+   "pixelsPerUnit": 6.0387,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [],
+   "supportFoot": "left",
+   "status": "candidate",
+   "provenance": {
+    "run": "/home/forge/src/kumbia-kombat/art_runs/swing-a-20261105a",
+    "pose": "right_foot.follow",
+    "sha256": "caa08ce4ef692389a07249480fffe8ffc61429c0930b99420622f37d8a33f60f",
+    "selected": null,
+    "frameKey": "8a9199629abe421e5e911515c23aada2ce0907ee01e4ea13684130d137423a37",
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "follow-through",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "right_foot_peak": {
+   "rect": [
+    336,
+    1484,
+    125,
+    239
+   ],
+   "anchor": [
+    65.2,
+    237.4
+   ],
+   "pixelsPerUnit": 6.0387,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [
+    {
+     "beat": 0.25,
+     "type": "accent",
+     "drawing": "peak"
+    }
+   ],
+   "supportFoot": "left",
+   "status": "candidate",
+   "provenance": {
+    "run": "/home/forge/src/kumbia-kombat/art_runs/swing-a-20261105a",
+    "pose": "right_foot.peak",
+    "sha256": "cc33f77c3f625bdd0da1220517bd75550b5c41c6c9197085a0a22b56393d0aa9",
+    "selected": null,
+    "frameKey": "88f06c07745eafd3bb9954f26de4c935f6221909f16bfe4341410adaeb8ba88e",
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "line-of-action",
+     "contrapposto",
+     "exaggeration-accent",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "right_foot_prep": {
+   "rect": [
+    149,
+    1966,
+    145,
+    236
+   ],
+   "anchor": [
+    71.2,
+    234.4
+   ],
+   "pixelsPerUnit": 6.0387,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [],
+   "supportFoot": "left",
+   "status": "candidate",
+   "provenance": {
+    "run": "/home/forge/src/kumbia-kombat/art_runs/swing-a-20261105a",
+    "pose": "right_foot.prep",
+    "sha256": "69f6f917949fe268abf922571007fa36629f35e3ff5ddd42976caa5b42e02669",
+    "selected": null,
+    "frameKey": "ec047121f34d582f4d5e4224ee007cd7fff946350a890ebd2054c168716ef414",
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "anticipation",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "right_foot_return": {
+   "rect": [
+    390,
+    252,
+    108,
+    247
+   ],
+   "anchor": [
+    51.0,
+    245.4
+   ],
+   "pixelsPerUnit": 6.0387,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "/home/forge/src/kumbia-kombat/art_runs/swing-a-20261105a",
+    "pose": "right_foot.return",
+    "sha256": "850bdae02207bf9043e90cd75da5197509ba4e387b7cd5d121c416d5d4715799",
+    "selected": null,
+    "frameKey": "60997dd2f29a2bcceba253249ef45450414bd2e9278556a1f0e1735c61c8da55",
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "follow-through",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "right_hand": {
+   "rect": [
+    315,
+    996,
+    172,
+    242
+   ],
+   "anchor": [
+    123.2,
+    240.4
+   ],
+   "pixelsPerUnit": 6.0387,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [
+    {
+     "beat": 0.25,
+     "type": "accent",
+     "drawing": "peak"
+    }
+   ],
+   "supportFoot": "left",
+   "status": "candidate",
+   "provenance": {
+    "run": "/home/forge/src/kumbia-kombat/art_runs/swing-a-20261105a",
+    "pose": "right_hand.peak",
+    "sha256": "d4748e2b9c16bb0ad93f915892f26157b9e375fa5496fcb470d9bf6a11e87d25",
+    "selected": null,
+    "frameKey": "e30bc9c85f0150dd871e652e4dc50dd701d8aeae05febfda0dd2152642ea8830",
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "line-of-action",
+     "contrapposto",
+     "exaggeration-accent",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   },
+   "aliasOf": "right_hand_peak"
+  },
+  "right_hand_follow": {
+   "rect": [
+    2,
+    1726,
+    131,
+    238
+   ],
+   "anchor": [
+    90.2,
+    236.4
+   ],
+   "pixelsPerUnit": 6.0387,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [],
+   "supportFoot": "left",
+   "status": "candidate",
+   "provenance": {
+    "run": "/home/forge/src/kumbia-kombat/art_runs/swing-a-20261105a",
+    "pose": "right_hand.follow",
+    "sha256": "c805cdd02c2a4ea05f7d8be5f26e1d15772e06d51a794137243ee96184029265",
+    "selected": null,
+    "frameKey": "4d95ca02e780f9d4ccc6eae17be54fbf5342bf1fdf68744bfcf3876a869994ca",
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "follow-through",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "right_hand_peak": {
+   "rect": [
+    315,
+    996,
+    172,
+    242
+   ],
+   "anchor": [
+    123.2,
+    240.4
+   ],
+   "pixelsPerUnit": 6.0387,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [
+    {
+     "beat": 0.25,
+     "type": "accent",
+     "drawing": "peak"
+    }
+   ],
+   "supportFoot": "left",
+   "status": "candidate",
+   "provenance": {
+    "run": "/home/forge/src/kumbia-kombat/art_runs/swing-a-20261105a",
+    "pose": "right_hand.peak",
+    "sha256": "d4748e2b9c16bb0ad93f915892f26157b9e375fa5496fcb470d9bf6a11e87d25",
+    "selected": null,
+    "frameKey": "e30bc9c85f0150dd871e652e4dc50dd701d8aeae05febfda0dd2152642ea8830",
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "line-of-action",
+     "contrapposto",
+     "exaggeration-accent",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "right_hand_prep": {
+   "rect": [
+    761,
+    1726,
+    127,
+    236
+   ],
+   "anchor": [
+    75.2,
+    234.4
+   ],
+   "pixelsPerUnit": 6.0387,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [],
+   "supportFoot": "left",
+   "status": "candidate",
+   "provenance": {
+    "run": "/home/forge/src/kumbia-kombat/art_runs/swing-a-20261105a",
+    "pose": "right_hand.prep",
+    "sha256": "fa173b72ea60bc55fe37d2d13010e66927a118e2dc97a37254147d338d1b0ac7",
+    "selected": null,
+    "frameKey": "38edc04af7ca8743a912108389c4966e0c2dcaa2d64c5a6d5fa72bfdf6eca8bf",
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "anticipation",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "right_hand_return": {
+   "rect": [
+    137,
+    252,
+    144,
+    247
+   ],
+   "anchor": [
+    86.0,
+    245.4
+   ],
+   "pixelsPerUnit": 6.0387,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "/home/forge/src/kumbia-kombat/art_runs/swing-a-20261105a",
+    "pose": "right_hand.return",
+    "sha256": "8edc4817c35c16ac0be7a4588a09b47b3e5ee5bc3db07e453ceb91b9506ad6db",
+    "selected": null,
+    "frameKey": "810d725f23c5f75ac46a7bfbc7d49668cbe686c51adad32feb43e0e276429c73",
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "follow-through",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "settle": {
+   "rect": [
+    2,
+    252,
+    133,
+    247
+   ],
+   "anchor": [
+    57.0,
+    245.4
+   ],
+   "pixelsPerUnit": 6.0387,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "/home/forge/src/kumbia-kombat/art_runs/swing-a-20261105a",
+    "pose": "left_hand.return",
+    "sha256": "b32b147bb6af9c36289d3720a4eebb89eaf05be23db195bf3025cd01e251ce9d",
+    "selected": null,
+    "frameKey": "821e1195bea5fc7b3698e2965a56b45f68506c5ee37c5eaca531b495d94105bf",
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "follow-through",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   },
+   "aliasOf": "left_hand_return"
+  },
+  "turn_in": {
+   "rect": [
+    665,
+    750,
+    153,
+    244
+   ],
+   "anchor": [
+    49.0,
+    242.4
+   ],
+   "pixelsPerUnit": 6.0387,
+   "facing": "front_3q",
+   "loop": false,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "/home/forge/src/kumbia-kombat/art_runs/swing-a-20261105a",
+    "pose": "finish_turn.turn_in",
+    "sha256": "2ce045dac87c22718f23124c9b02412a9085ccaadef5dc6136fca24be2459f2d",
+    "selected": null,
+    "frameKey": "c09abb5c8fec150f4d255a631425ae4884742bd860b6aeaf615970c253746223",
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   },
+   "aliasOf": "finish_turn_turn_in"
+  },
+  "turn_out": {
+   "rect": [
+    820,
+    750,
+    170,
+    244
+   ],
+   "anchor": [
+    120.0,
+    242.4
+   ],
+   "pixelsPerUnit": 6.0387,
+   "facing": "front_3q",
+   "loop": false,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "/home/forge/src/kumbia-kombat/art_runs/swing-a-20261105a",
+    "pose": "finish_turn.turn_out",
+    "sha256": "623e5e28175e22316fb979bd599e120d31bf608a42dc56be24defb000d223bd4",
+    "selected": null,
+    "frameKey": "3f967e47e0b55ed459e060ca95db3615431774e1924fd1324a7b9ca01c469381",
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   },
+   "aliasOf": "finish_turn_turn_out"
+  },
+  "watch_hold_l": {
+   "rect": [
+    268,
+    1241,
+    106,
+    241
+   ],
+   "anchor": [
+    60.2,
+    239.4
+   ],
+   "pixelsPerUnit": 6.0387,
+   "facing": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "left",
+   "status": "candidate",
+   "provenance": {
+    "run": "/home/forge/src/kumbia-kombat/art_runs/swing-a-20261105a",
+    "pose": "watch.hold_l",
+    "sha256": "e4a69849a697e8d204de35590ca4bbdfe9cd4f810bfee429d6ad24e7e26cc13b",
+    "selected": null,
+    "frameKey": "f37ba9aafc3f6c3b48bc779d396b90e830bbd553bf1a66fa66578205e0773705",
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "follow-through",
+     "secondary-action",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "watch_hold_r": {
+   "rect": [
+    376,
+    1241,
+    127,
+    241
+   ],
+   "anchor": [
+    55.8,
+    239.4
+   ],
+   "pixelsPerUnit": 6.0387,
+   "facing": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "right",
+   "status": "candidate",
+   "provenance": {
+    "run": "/home/forge/src/kumbia-kombat/art_runs/swing-a-20261105a",
+    "pose": "watch.hold_r",
+    "sha256": "cbacaad86a9d2b48e1791ca73164813ea7b4ce1bdc4fabced4c338cfb511b85d",
+    "selected": null,
+    "frameKey": "83ef6c5ad77e68b6b5445fd26e4c76fb9d553b9e8b61c8df87f01967aacf4a63",
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "follow-through",
+     "secondary-action",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "watch_left": {
+   "rect": [
+    609,
+    501,
+    104,
+    246
+   ],
+   "anchor": [
+    65.2,
+    244.4
+   ],
+   "pixelsPerUnit": 6.0387,
+   "facing": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "left",
+   "status": "candidate",
+   "provenance": {
+    "run": "/home/forge/src/kumbia-kombat/art_runs/swing-a-20261105a",
+    "pose": "watch.shift_l",
+    "sha256": "4466f71237579448ced93d15bbba392a403819efb29eef2504850ab67636bb3a",
+    "selected": null,
+    "frameKey": "d8f384a3725f9407739871a25f53940c18f5952a443adc6ae0185d7ae6057ec8",
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "secondary-action",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   },
+   "aliasOf": "watch_shift_l"
+  },
+  "watch_right": {
+   "rect": [
+    832,
+    252,
+    112,
+    247
+   ],
+   "anchor": [
+    43.8,
+    245.4
+   ],
+   "pixelsPerUnit": 6.0387,
+   "facing": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "right",
+   "status": "candidate",
+   "provenance": {
+    "run": "/home/forge/src/kumbia-kombat/art_runs/swing-a-20261105a",
+    "pose": "watch.shift_r",
+    "sha256": "0b54bd9830d043d5a411ed5931041ba0a2d4e52c71ec698cf2e3727433f2eb67",
+    "selected": null,
+    "frameKey": "ec960295f8f9511e923155b0d9891030d7f9dbb099c0fab571098a630cd877ec",
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "secondary-action",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   },
+   "aliasOf": "watch_shift_r"
+  },
+  "watch_shift_l": {
+   "rect": [
+    609,
+    501,
+    104,
+    246
+   ],
+   "anchor": [
+    65.2,
+    244.4
+   ],
+   "pixelsPerUnit": 6.0387,
+   "facing": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "left",
+   "status": "candidate",
+   "provenance": {
+    "run": "/home/forge/src/kumbia-kombat/art_runs/swing-a-20261105a",
+    "pose": "watch.shift_l",
+    "sha256": "4466f71237579448ced93d15bbba392a403819efb29eef2504850ab67636bb3a",
+    "selected": null,
+    "frameKey": "d8f384a3725f9407739871a25f53940c18f5952a443adc6ae0185d7ae6057ec8",
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "secondary-action",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  },
+  "watch_shift_r": {
+   "rect": [
+    832,
+    252,
+    112,
+    247
+   ],
+   "anchor": [
+    43.8,
+    245.4
+   ],
+   "pixelsPerUnit": 6.0387,
+   "facing": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "right",
+   "status": "candidate",
+   "provenance": {
+    "run": "/home/forge/src/kumbia-kombat/art_runs/swing-a-20261105a",
+    "pose": "watch.shift_r",
+    "sha256": "0b54bd9830d043d5a411ed5931041ba0a2d4e52c71ec698cf2e3727433f2eb67",
+    "selected": null,
+    "frameKey": "ec960295f8f9511e923155b0d9891030d7f9dbb099c0fab571098a630cd877ec",
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "secondary-action",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  },
+  "yield_side_contact_l": {
+   "rect": [
+    858,
+    1241,
+    113,
+    240
+   ],
+   "anchor": [
+    71.9,
+    238.4
+   ],
+   "pixelsPerUnit": 6.0387,
+   "facing": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "/home/forge/src/kumbia-kombat/art_runs/swing-a-20261105a",
+    "pose": "yield_side.contact_l",
+    "sha256": "dfe2ff6456ec656e494285b20204dee17aeeb2509ec029bf48fe0c31de801e47",
+    "selected": null,
+    "frameKey": "8b2a206544ea69e5456396c16240f9699dfed08e0e71924c571339b18d0daff5",
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "anticipation",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  },
+  "yield_side_contact_r": {
+   "rect": [
+    618,
+    1484,
+    109,
+    239
+   ],
+   "anchor": [
+    42.1,
+    237.4
+   ],
+   "pixelsPerUnit": 6.0387,
+   "facing": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "/home/forge/src/kumbia-kombat/art_runs/swing-a-20261105a",
+    "pose": "yield_side.contact_r",
+    "sha256": "52e52fa7c9c32f954dec911fe4684fd6d2fb63db3d53707980da69beb9029d3b",
+    "selected": null,
+    "frameKey": "d05099be1c8692e82905cc5b6765da9ba92ad046c620180a31c950366193762d",
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "anticipation",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  },
+  "yield_side_down_l": {
+   "rect": [
+    463,
+    1484,
+    153,
+    239
+   ],
+   "anchor": [
+    72.2,
+    237.4
+   ],
+   "pixelsPerUnit": 6.0387,
+   "facing": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "left",
+   "status": "candidate",
+   "provenance": {
+    "run": "/home/forge/src/kumbia-kombat/art_runs/swing-a-20261105a",
+    "pose": "yield_side.down_l",
+    "sha256": "1256a5fbe07f27195f72c2e1011468192cdffc5264e40eed68a84686f8fb297d",
+    "selected": null,
+    "frameKey": "6f43cbc80bd378bdd012666d71373a639b9609cab49cbc6dfe743eef792623dc",
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  },
+  "yield_side_down_r": {
+   "rect": [
+    208,
+    996,
+    105,
+    243
+   ],
+   "anchor": [
+    27.8,
+    241.4
+   ],
+   "pixelsPerUnit": 6.0387,
+   "facing": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "right",
+   "status": "candidate",
+   "provenance": {
+    "run": "/home/forge/src/kumbia-kombat/art_runs/swing-a-20261105a",
+    "pose": "yield_side.down_r",
+    "sha256": "8b4866a95898973733e5e47906f3f6cb1067a5dfb3198d07c6a4fbdcaa0cacfd",
+    "selected": null,
+    "frameKey": "deaaedb0868bfebd0d09b3fa0db4401b7443914e7f3312f16498dbdca7fadb6a",
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  },
+  "yield_side_pass_l": {
+   "rect": [
+    121,
+    2,
+    106,
+    248
+   ],
+   "anchor": [
+    64.2,
+    245.4
+   ],
+   "pixelsPerUnit": 6.0387,
+   "facing": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "left",
+   "status": "candidate",
+   "provenance": {
+    "run": "/home/forge/src/kumbia-kombat/art_runs/swing-a-20261105a",
+    "pose": "yield_side.pass_l",
+    "sha256": "baa6998b2324a186df4ce578a331d4a0e1dfd74be6678b62856ddd97332917e7",
+    "selected": null,
+    "frameKey": "4d292f85b79cef350b715e1f7d48b1faad97f27758ece3bf514cea6c177efb5e",
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  },
+  "yield_side_pass_r": {
+   "rect": [
+    229,
+    2,
+    140,
+    248
+   ],
+   "anchor": [
+    48.8,
+    246.4
+   ],
+   "pixelsPerUnit": 6.0387,
+   "facing": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "right",
+   "status": "candidate",
+   "provenance": {
+    "run": "/home/forge/src/kumbia-kombat/art_runs/swing-a-20261105a",
+    "pose": "yield_side.pass_r",
+    "sha256": "13aa442ddadeb00d4e94cd82f17804e72382276027318853ceef4c47d46b0a4c",
+    "selected": null,
+    "frameKey": "bff6df891c19fb2081bf734dc91bd95c54930ad673e018e9b7af83c073077bf5",
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "line-of-action",
+     "contrapposto",
+     "exaggeration-accent",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  }
+ }
+}

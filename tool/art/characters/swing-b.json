@@ -11,7 +11,7 @@
   "her",
   "her"
  ],
- "skin": "#DDA982",
+ "skin": "#F8AC74",
  "traits": "short round cheerful woman in her forties with fair olive skin, round glasses, big laughing smile, fully dressed",
  "demeanor": "joyful skilled swing dancer, classy and warm",
  "garments": [
@@ -290,20 +290,20 @@
    },
    "clap.close": {
     "3": [
-     235,
-     475
+     240,
+     495
     ],
     "4": [
-     345,
-     425
+     350,
+     445
     ],
     "6": [
-     533,
-     475
+     528,
+     495
     ],
     "7": [
-     423,
-     425
+     418,
+     445
     ]
    },
    "clap.contact": {
@@ -327,19 +327,19 @@
    "clap.release": {
     "3": [
      225,
-     480
+     490
     ],
     "4": [
      330,
-     440
+     445
     ],
     "6": [
      543,
-     480
+     490
     ],
     "7": [
      438,
-     440
+     445
     ]
    },
    "finish_turn.finish_a": {
@@ -348,8 +348,8 @@
      390
     ],
     "4": [
-     195,
-     265
+     160,
+     262
     ]
    },
    "finish_turn.finish_b": {
@@ -361,6 +361,24 @@
      262,
      222
     ]
+   }
+  },
+  "poseOverrides": {
+   "right_hand.peak": {
+    "why": "All candidates of both dancers kept this hand on the hip or raised the other one. The words now lean on the picture side.",
+    "description": "weight on the straight picture-right foot, body leaning toward the picture-left side, the arm on the left side of the picture reaches high up and outward at about 45 degrees with an open palm, the hand on the right side of the picture rests on the hip, picture-left foot on its toe out to the side, head turned toward the raised hand on the left of the picture"
+   },
+   "clap.close": {
+    "why": "Hands fell to the belt in the first wave, breaking the clap's motion. Words and skeleton now keep them at chest height.",
+    "description": "both forearms raised in front of the chest, palms facing each other with a small gap between the hands, about to clap, elbows out to the sides, knees starting to bend, looking at the viewer with a big smile"
+   },
+   "clap.release": {
+    "why": "Hands fell to the skirt or flew overhead in the first wave, breaking the clap's motion. Words and skeleton now keep them at chest height.",
+    "description": "both forearms raised in front of the chest, the hands bouncing a little apart after a clap with the palms facing each other, elbows out to the sides, knees rising, looking at the viewer with a big smile"
+   },
+   "finish_turn.finish_a": {
+    "why": "All 4 first-wave candidates raised the hand on the wrong side, away from the ponytail. The wrist moved out from the head and the words name the side.",
+    "description": "the hand on the left side of the picture raised high beside the head with the fingers open, the fist on the right side of the picture rests on the hip, picture-right heel forward with the toe up, shoulders back, chin up"
    }
   }
  },

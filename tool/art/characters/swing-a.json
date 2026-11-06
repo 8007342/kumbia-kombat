@@ -11,7 +11,7 @@
   "her",
   "her"
  ],
- "skin": "#6E4228",
+ "skin": "#AA5422",
  "traits": "tall graceful woman of about fifty with deep brown skin, warm confident smile, fully dressed",
  "demeanor": "joyful skilled swing dancer, classy and warm",
  "garments": [
@@ -294,16 +294,16 @@
      466
     ],
     "4": [
-     352,
-     412
+     350,
+     430
     ],
     "6": [
      500,
      466
     ],
     "7": [
-     416,
-     412
+     418,
+     430
     ]
    },
    "clap.contact": {
@@ -330,7 +330,7 @@
      468
     ],
     "4": [
-     338,
+     335,
      430
     ],
     "6": [
@@ -338,7 +338,7 @@
      468
     ],
     "7": [
-     430,
+     433,
      430
     ]
    },
@@ -361,6 +361,24 @@
      248,
      225
     ]
+   }
+  },
+  "poseOverrides": {
+   "right_hand.peak": {
+    "why": "All candidates of both dancers kept this hand on the hip or raised the other one. The words now lean on the picture side.",
+    "description": "weight on the straight picture-right foot, body leaning toward the picture-left side, the arm on the left side of the picture reaches high up and outward at about 45 degrees with an open palm, the hand on the right side of the picture rests on the hip, picture-left foot on its toe out to the side, head turned toward the raised hand on the left of the picture"
+   },
+   "clap.close": {
+    "why": "Hands fell to the belt in the first wave, breaking the clap's motion. Words and skeleton now keep them at chest height.",
+    "description": "both forearms raised in front of the chest, palms facing each other with a small gap between the hands, about to clap, elbows out to the sides, knees starting to bend, looking at the viewer with a big smile"
+   },
+   "clap.release": {
+    "why": "Hands fell to the skirt or flew overhead in the first wave, breaking the clap's motion. Words and skeleton now keep them at chest height.",
+    "description": "both forearms raised in front of the chest, the hands bouncing a little apart after a clap with the palms facing each other, elbows out to the sides, knees rising, looking at the viewer with a big smile"
+   },
+   "groove.pass_r2": {
+    "why": "All 4 first-wave candidates raised both arms overhead or drew a second head. Named as the Bartender's pass_l2 fix.",
+    "description": "weight settled over the straight picture-right leg, picture-right shoulder dipped, picture-left knee bent with the picture-left foot resting on its toe, the arm on the right side of the picture stretched out sideways at chest height, the forearm on the left side of the picture bent across the belly, head tilted toward the picture-left side"
    }
   }
  },
