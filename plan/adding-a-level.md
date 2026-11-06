@@ -68,3 +68,7 @@ The pipelines are Python and write JSON already, git shows each decision as a da
 ## For the level brief
 
 `level-production-pipeline` D1 should change before anyone writes briefs against it. A brief's `opponent` and flat `room` should compile to this file's `stage.challengers` (plural), `stage` marks and `scenery`. Its `bridge` belongs on the campaign entry, not the level. Camera and posture have no slot yet, because nothing in the game reads them.
+
+## A pair of opponents
+
+Add `stage.duet` to a level with two challengers: named `marks`, a list of `turns` that alternate leads, `offClip`, `partnerClip`, and an `exit`. Each dancer in `assets/art/ensemble/choreography.json` needs the two clips, reaching toward the picture's left in `partnerClip`. An example is the lawn, and the rules are in `test/duet_staging_test.dart`.

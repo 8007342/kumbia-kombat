@@ -94,7 +94,7 @@ void main() {
     });
 
     test('they land on the contact, not before, and hold long enough', () {
-      for (final id in ['garden', 'bar']) {
+      for (final id in ['garden', 'bar', 'pool-garden']) {
         final shot = step(id).level.exitShot!;
         expect(
           shot.titleAt(shot.contactBeat - .01, reducedMotion: false),

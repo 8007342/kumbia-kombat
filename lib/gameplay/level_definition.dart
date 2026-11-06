@@ -11,8 +11,10 @@ import 'garden_session.dart';
 import 'party_layout.dart';
 import 'progression.dart';
 import 'rhythm.dart';
+import 'duet_staging.dart';
 import 'exit_shot.dart';
 import 'room_departure.dart';
+import 'thumb_layout.dart';
 
 /// A level file or the campaign index is wrong. Thrown while loading, so a bad
 /// file stops the game at the door instead of playing as some other room.
@@ -65,6 +67,12 @@ class _Fields {
   }
 
   PartyPoint point(String key) => _point(at(key), _take(key));
+
+  bool flag(String key) {
+    final value = _take(key);
+    if (value is bool) return value;
+    throw LevelDataError(at(key), 'expected true or false, found $value');
+  }
 
   List<Object?> list(String key) {
     final value = _take(key);
@@ -193,6 +201,7 @@ class LevelStage {
     required this.heroRetreat,
     required this.challengers,
     PartyPoint? heroWatch,
+    this.duet,
   }) : heroWatch = heroWatch ?? heroHome;
   final PartyPoint heroHome;
 
@@ -205,6 +214,9 @@ class LevelStage {
   /// Where the hero steps back to and keeps time during the opponent's call.
   final PartyPoint heroWatch;
   final List<LevelChallenger> challengers;
+
+  /// A pair's floor pattern, turn by turn. Null for a lone challenger.
+  final LevelDuet? duet;
 
   /// [entrance] runs 0 to 1 over the intro; [retreat] is 0 at home.
   PartyPoint heroFloor({required double entrance, required double retreat}) {
@@ -367,14 +379,18 @@ class LevelDefinition {
 
     PartyPoint stageMark(_Fields from, String key) =>
         onFloor(from.at(key), from.point(key));
+    final challengers = _challengers(stageFields, stageMark);
     final stage = LevelStage(
+      duet: stageFields.has('duet')
+          ? _duet(stageFields.child('duet'), challengers, chart.cycleBeats)
+          : null,
       heroHome: stageMark(stageFields, 'heroHome'),
       heroEntrance: stageMark(stageFields, 'heroEntrance'),
       heroRetreat: stageMark(stageFields, 'heroRetreat'),
       heroWatch: stageFields.has('heroWatch')
           ? stageMark(stageFields, 'heroWatch')
           : null,
-      challengers: _challengers(stageFields, stageMark),
+      challengers: challengers,
     );
     stageFields.finish();
 
@@ -557,6 +573,10 @@ class LevelDefinition {
       impactBeats: fields.has('impactBeats')
           ? fields.number('impactBeats', min: .1)
           : .4,
+      heroWaitFrame: fields.has('heroWaitFrame')
+          ? fields.text('heroWaitFrame')
+          : 'rear_idle',
+      throwsDust: fields.has('dust') ? fields.flag('dust') : true,
     );
     fields.finish();
     if (!(shot.walkFrom < shot.walkTo &&
@@ -638,6 +658,112 @@ class LevelDefinition {
       throw LevelDataError(path, 'challenger ids must be unique');
     }
     return List.unmodifiable(challengers);
+  }
+
+  /// Refuses a pattern the scene couldn't keep: a dancer on the tap band or past
+  /// a phone's edge, a turn that repeats a lead, or an end mark like her last.
+  static LevelDuet _duet(
+    _Fields fields,
+    List<LevelChallenger> challengers,
+    double cycleBeats,
+  ) {
+    final path = fields.path;
+    if (challengers.length != 2) {
+      throw LevelDataError(path, 'a duet needs exactly two challengers');
+    }
+    final markFields = fields.child('marks');
+    final marks = <String, PartyPoint>{};
+    PartyPoint mark(_Fields from, String key) {
+      final name = from.text(key);
+      if (!marks.containsKey(name)) {
+        marks[name] = markFields.point(name);
+      }
+      final point = marks[name]!;
+      if (point.y >= thumbBandTop || point.x < .17 || point.x > .83) {
+        throw LevelDataError(from.at(key), '$name is off the dance floor');
+      }
+      return point;
+    }
+
+    final outgoing = fields.number('outgoingBeats', min: .25);
+    final incoming = fields.number('incomingBeats', min: .25);
+    final turnsPath = fields.at('turns');
+    final turns = <DuetTurn>[];
+    for (final (i, raw) in fields.list('turns').indexed) {
+      final turn = _Fields('$turnsPath[$i]', raw);
+      final lead = turn.text('lead');
+      final index = challengers.indexWhere((c) => c.id == lead);
+      if (index < 0) {
+        throw LevelDataError(turn.at('lead'), 'no such challenger: $lead');
+      }
+      final steps = <DuetOffStep>[];
+      var last = 0.0;
+      for (final (j, rawStep) in turn.list('offSteps').indexed) {
+        final step = _Fields('${turn.at('offSteps')}[$j]', rawStep);
+        final at = step.number('at', min: 0, max: cycleBeats - incoming);
+        if (at <= last) {
+          throw LevelDataError(step.path, 'steps must run forward in time');
+        }
+        last = at;
+        steps.add(DuetOffStep(at, mark(step, 'to')));
+        step.finish();
+      }
+      turns.add(
+        DuetTurn(
+          lead: index,
+          call: mark(turn, 'call'),
+          dance: mark(turn, 'dance'),
+          end: mark(turn, 'end'),
+          offSteps: List.unmodifiable(steps),
+        ),
+      );
+      turn.finish();
+    }
+    if (turns.length.isOdd || turns.isEmpty) {
+      throw LevelDataError(turnsPath, 'turns alternate, so they come in pairs');
+    }
+    for (var i = 0; i < turns.length; i++) {
+      final next = turns[(i + 1) % turns.length];
+      final again = turns[(i + 2) % turns.length];
+      if (turns[i].lead == next.lead) {
+        throw LevelDataError('$turnsPath[$i]', 'the lead must alternate');
+      }
+      if (turns.length > 2 && identical(turns[i].end, again.end)) {
+        throw LevelDataError(
+          '$turnsPath[$i]',
+          'she must end somewhere new each turn',
+        );
+      }
+    }
+    final exitFields = fields.child('exit');
+    final exit = DuetExit(
+      left: mark(exitFields, 'left'),
+      right: mark(exitFields, 'right'),
+      leftReach: mark(exitFields, 'leftReach'),
+      rightReach: mark(exitFields, 'rightReach'),
+      sideBeats: exitFields.number('sideBeats', min: .25),
+      reachFrom: exitFields.number('reachFrom', min: 0),
+      reachTo: exitFields.number('reachTo', min: 0),
+      reachFrame: exitFields.text('reachFrame'),
+    );
+    exitFields.finish();
+    if (exit.reachFrom >= exit.reachTo || exit.sideBeats > exit.reachFrom) {
+      throw LevelDataError(
+        exitFields.path,
+        'beats must run to the sides, then reach',
+      );
+    }
+    final duet = LevelDuet(
+      turns: List.unmodifiable(turns),
+      offClip: fields.text('offClip'),
+      partnerClip: fields.text('partnerClip'),
+      outgoingBeats: outgoing,
+      incomingBeats: incoming,
+      exit: exit,
+    );
+    markFields.finish();
+    fields.finish();
+    return duet;
   }
 
   static FloorTrack _floorTrack(_Fields fields) {

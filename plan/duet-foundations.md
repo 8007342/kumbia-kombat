@@ -22,6 +22,17 @@ Scale from `levels/pool-garden.json`, in pixels of an 844-tall screen before vie
 Their current mark is y 0.50. Mācron's home is y 0.645 and the tap band starts at 0.65, so a dance moving between about
 0.42 and 0.58 changes size by about 60%. That range is striking, and the room allows it.
 
+## As built, 2026-11-06
+
+The owner's ninth round settled the mechanic: one dancer has each turn, and the other steps slowly at the side. `stage.duet` in the level file holds it, and `lib/gameplay/duet_staging.dart` reads it. The table below and "Proposed mechanic" are the earlier thinking, and where they disagree this section wins.
+
+- A turn names its lead, where the call is shown, where the lead dances with Mācron during the answer, and where the lead ends. The next turn starts from there, so nobody jumps and a loop closes by itself. The parser refuses a repeated lead, a repeated end mark, a mark on the tap band or past a phone's edge.
+- The other dancer's slow steps are data too. Two turns in six cross to the other side, upstage of everyone, while the lead is on the way to the side that dancer is leaving.
+- The sampler's yield still drives the move from call to partner mark, so a spin that overflows the call finishes mid-floor before anyone steps away. Floor positions come from the music beat and the turn. The session never reads them.
+- Turns count calls on the beat grid, so a retry moves on to the next dancer too. The owner may prefer the same dancer showing it again.
+- `floorTrack` still works in the parser, but the lawn no longer uses it.
+- Art route: `art_runs/duet-20261106/`, words only, on the 2511 LoRA. "Hand on the back" first came out as a hand on the hip. It took naming the arm's side as the model draws it and saying the forearm and hand are hidden behind the waist. The other hand's folds are two drawings and their flips, four frames each, and walking uses the existing clips.
+
 ## What's missing
 
 | Gap | Evidence | Plan |

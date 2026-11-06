@@ -1,0 +1,62 @@
+[
+ {
+  "pose": "a.skirt_sway2",
+  "args": {
+   "workflow": ".claude/worktrees/agent-a7f90526599320155/art_runs/duet-20261106/workflows/a.skirt_sway2.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/duet-20261106/in/a_front.png"
+   },
+   "overrides": {
+    "seed": 1846200,
+    "$node:30.lora_name": "Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors"
+   }
+  }
+ },
+ {
+  "pose": "a.skirt_pass2",
+  "args": {
+   "workflow": ".claude/worktrees/agent-a7f90526599320155/art_runs/duet-20261106/workflows/a.skirt_pass2.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/duet-20261106/in/a_front.png"
+   },
+   "overrides": {
+    "seed": 1846300,
+    "$node:30.lora_name": "Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors"
+   }
+  }
+ },
+ {
+  "pose": "b.skirt_sway2",
+  "args": {
+   "workflow": ".claude/worktrees/agent-a7f90526599320155/art_runs/duet-20261106/workflows/b.skirt_sway2.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/duet-20261106/in/b_front.png"
+   },
+   "overrides": {
+    "seed": 1847200,
+    "$node:30.lora_name": "Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors"
+   }
+  }
+ },
+ {
+  "pose": "b.skirt_pass2",
+  "args": {
+   "workflow": ".claude/worktrees/agent-a7f90526599320155/art_runs/duet-20261106/workflows/b.skirt_pass2.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/duet-20261106/in/b_front.png"
+   },
+   "overrides": {
+    "seed": 1847300,
+    "$node:30.lora_name": "Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors"
+   }
+  }
+ }
+]

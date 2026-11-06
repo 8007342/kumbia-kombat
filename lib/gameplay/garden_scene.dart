@@ -8,6 +8,7 @@ import 'package:flutter/services.dart';
 
 import 'challenger_choreography.dart';
 import 'dance_grammar.dart';
+import 'duet_staging.dart';
 import 'ensemble_sprites.dart';
 import 'exit_shot.dart';
 import 'garden_session.dart';
@@ -130,6 +131,15 @@ class GardenSceneGame extends FlameGame {
         throw StateError(
           'Level ${level.id} names unknown atlas ${challenger.atlas}',
         );
+      }
+      final duet = level.stage.duet;
+      if (duet != null) {
+        _grammar!.requireClips(challenger.atlas, [
+          duet.offClip,
+          duet.partnerClip,
+          'yield_out',
+          'return_in',
+        ]);
       }
     }
     final generation = ++_roomGeneration;
@@ -354,6 +364,17 @@ class GardenSceneGame extends FlameGame {
       bounds.width * shot.contactPoint.dx,
       bounds.height * shot.contactPoint.dy,
     );
+    final duet = _level!.stage.duet;
+    final s = session;
+    final mirror =
+        duet != null &&
+        s != null &&
+        _duetWinFloors(duet, s, s.completedAtBeat ?? at).mirrored;
+    if (mirror) {
+      canvas.save();
+      canvas.translate(meet.dx * 2, 0);
+      canvas.scale(-1, 1);
+    }
     for (final place in shot.sample(at, reducedMotion: reducedMotion)) {
       final art = images.fromCache(place.image);
       final origin =
@@ -369,6 +390,7 @@ class GardenSceneGame extends FlameGame {
         paint,
       );
     }
+    if (mirror) canvas.restore();
     for (final mote in shot.motes(at, reducedMotion: reducedMotion)) {
       canvas.drawRect(
         ui.Rect.fromCenter(
@@ -615,14 +637,21 @@ class GardenSceneGame extends FlameGame {
     final beat = _lastBeat;
     final duet = challengers.length > 1;
     for (final (i, challenger) in challengers.indexed) {
-      final dressed = i == 0
+      var dressed = i == 0
           ? pose
           : _challengerAt(beat, dancer: challenger.atlas);
       // Calm camera keeps the pair on their marks; yielding still moves them.
-      final floor = challenger.floorAt(
+      var floor = challenger.floorAt(
         dressed.floorYield,
         beat: reducedMotion ? 0 : beat,
       );
+      var mirrored = false;
+      final placed = _duetPlace(i, challenger.atlas, dressed, beat);
+      if (placed != null) {
+        floor = placed.floor;
+        mirrored = placed.mirrored;
+        dressed = placed.frame == null ? dressed : dressed.withFrame(placed.frame!);
+      }
       final projected = viewport.project(floor);
       final height = _adultHeight(
         viewport,
@@ -645,11 +674,107 @@ class GardenSceneGame extends FlameGame {
             dressed.frameId,
             ground,
             scale,
+            flipX: mirrored,
             filter: duet ? ui.FilterQuality.low : ui.FilterQuality.none,
           );
         }),
       );
     }
+  }
+
+  /// A pair's place and drawing from the level's floor pattern, or null when the
+  /// level has none. Reads the beat and the pose only: art can't move the music.
+  ({PartyPoint floor, String? frame, bool mirrored})? _duetPlace(
+    int dancer,
+    String atlas,
+    ChallengerPose pose,
+    double beat,
+  ) {
+    final level = _level!;
+    final duet = level.stage.duet;
+    final s = session;
+    if (duet == null || s == null) return null;
+    final chart = s.chart;
+    final heroX = level.stage.heroHome.x;
+    if (s.phase == GardenPhase.cleared) {
+      final won = s.completedAtBeat ?? beat;
+      final wins = _duetWinFloors(duet, s, won);
+      final onLeft = dancer == 0 ? !wins.mirrored : wins.mirrored;
+      final out = duet.exitSample(
+        onLeft: onLeft,
+        from: dancer == 0 ? wins.first : wins.second,
+        e: exitBeat ?? 0,
+        reducedMotion: reducedMotion,
+      );
+      return (
+        floor: out.floor,
+        frame: out.reaching ? duet.exit.reachFrame : null,
+        mirrored: out.mirrored,
+      );
+    }
+    final turn = duet.turnIndex(
+      s.callStartBeat,
+      chart.introBeats,
+      chart.cycleBeats,
+    );
+    // Once the win is decided they hold there until the shot takes them to the
+    // sides, so the walk out starts from where they are seen to be.
+    final place = duet.sample(
+      dancer: dancer,
+      turn: turn,
+      t: (s.completedAtBeat ?? beat) - s.callStartBeat,
+      callBeats: chart.callBeats,
+      floorYield: pose.floorYield,
+      heroX: heroX,
+      reducedMotion: reducedMotion,
+    );
+    final grammar = _grammar!;
+    final String? frame = switch (place.role) {
+      DuetRole.lead => null,
+      DuetRole.partner when pose.state != ChallengerDanceState.watch => null,
+      DuetRole.partner =>
+        reducedMotion ? null : grammar.clipFrame(atlas, duet.partnerClip, beat),
+      DuetRole.offTurn when s.phase == GardenPhase.ready => null,
+      DuetRole.offTurn =>
+        reducedMotion
+            ? grammar.calmFrame(atlas)
+            : grammar.clipFrame(atlas, duet.offClip, beat),
+      // The phrase's approval or recovery still reads, on the way out.
+      DuetRole.outgoing
+          when pose.state == ChallengerDanceState.approve ||
+              pose.state == ChallengerDanceState.recover =>
+        null,
+      DuetRole.outgoing => grammar.clipAlong(atlas, 'yield_out', place.travel),
+      DuetRole.incoming => grammar.clipAlong(atlas, 'return_in', place.travel),
+    };
+    return (floor: place.floor, frame: frame, mirrored: place.mirrored);
+  }
+
+  ({PartyPoint first, PartyPoint second, bool mirrored}) _duetWinFloors(
+    LevelDuet duet,
+    GardenSession s,
+    double won,
+  ) {
+    final chart = s.chart;
+    final turn = duet.turnIndex(
+      s.callStartBeat,
+      chart.introBeats,
+      chart.cycleBeats,
+    );
+    PartyPoint at(int dancer) => duet.floorAtWin(
+      dancer: dancer,
+      turn: turn,
+      t: won - s.callStartBeat,
+      callBeats: chart.callBeats,
+      heroX: _level!.stage.heroHome.x,
+    );
+    final first = at(0);
+    final second = at(1);
+    return (
+      first: first,
+      second: second,
+      mirrored: LevelDuet.closeupMirrored(first.x, second.x),
+    );
   }
 
   void _addHero(
@@ -752,8 +877,8 @@ class GardenSceneGame extends FlameGame {
         frame = party.frame;
         hop = party.hop;
       } else {
-        // Facing the challenger, waiting for the fist.
-        frame = 'rear_idle';
+        // Waiting for the close-up: facing the challenger for a fist, by default.
+        frame = shot.heroWaitFrame;
       }
     }
     if (inCall &&

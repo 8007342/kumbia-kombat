@@ -134,6 +134,8 @@ Durability, the same day: "make the results durable and push to remote work bran
 | Music | New models make themes for the levels, and the old levels start being rewritten into high-definition compressed music | "start rewriting the old levels into high definition compressed music" |
 | Forge disk | `src_mb = 4096` committed | "yes, commit the 4 GB src_mb setting" |
 
+Status, 2026-11-06: the lawn duet, its cinematic and QUÉ FINO are on `work/1846-duet` as candidates, not yet merged or reviewed moving.
+
 The owner approved "the changes and recommendations" in the same message. It is not clear which report that covers beyond the on-screen review, so `plan/gameplay-and-taps-pending.md` marks the touch report's decisions as needing confirmation.
 
 Crowd and scoring, the same day: this settles how engaged a cleared room looks and what earns full swing. A clean run ends with the room fully engaged, unskilful play costs the crowd's interest, a level can pass with the party not fully engaged, and flawless play is rewarded with a fully engaged party. The owner's words: "Let's end up with a room fully egaged for all players, and the penalty for unskillful players is that the crowd loses interest", "let a non-fully engaged party pass, but reward flawless play with a fully engaged party". The scoring should value this using the gameflow research on tension and relaxation.

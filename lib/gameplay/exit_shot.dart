@@ -20,6 +20,8 @@ class ExitShot {
     required this.actors,
     required this.cue,
     this.impactBeats = .4,
+    this.heroWaitFrame = 'rear_idle',
+    this.throwsDust = true,
   });
 
   final String plate;
@@ -40,6 +42,12 @@ class ExitShot {
 
   /// How long the actors hold their impact drawings from the contact.
   final double impactBeats;
+
+  /// Mācron's drawing from the end of his dance until the close-up cuts in.
+  final String heroWaitFrame;
+
+  /// Whether the contact throws dust. A fist does; a kiss on the cheek doesn't.
+  final bool throwsDust;
 
   Iterable<String> get images => [
     plate,
@@ -141,7 +149,7 @@ class ExitShot {
   /// Dust thrown at the contact: four art pixels flying out for half a beat.
   List<ExitShotMote> motes(double beat, {required bool reducedMotion}) {
     final age = beat - contactBeat;
-    if (age < 0 || age >= .5 || reducedMotion) return const [];
+    if (!throwsDust || age < 0 || age >= .5 || reducedMotion) return const [];
     final t = age / .5;
     const headings = [-2.5, -1.2, .9, 2.2];
     return [

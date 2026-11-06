@@ -1,0 +1,266 @@
+import 'dart:convert';
+import 'dart:io';
+import 'dart:typed_data';
+import 'dart:ui' as ui;
+
+import 'package:flame/game.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:kumbia_kombat/gameplay/exit_shot.dart';
+import 'package:kumbia_kombat/gameplay/garden_scene.dart';
+import 'package:kumbia_kombat/gameplay/garden_session.dart';
+import 'package:kumbia_kombat/gameplay/level_definition.dart';
+import 'package:kumbia_kombat/music/accent_voice.dart';
+import 'package:kumbia_kombat/music/score.dart';
+import 'package:kumbia_kombat/music/transport.dart';
+
+/// The lawn's way out: the two dancers kiss Mācron's cheeks. It is the last level
+/// for now, so the whole shot has to fit in the 8 beats of its success score.
+String _read(String id) => File('levels/$id.json').readAsStringSync();
+
+MusicScore _score(String id) => MusicScore.fromJson(
+  jsonDecode(File('assets/music/scores/$id.json').readAsStringSync())
+      as Map<String, dynamic>,
+);
+
+class _Audio implements MusicAudioBackend {
+  @override
+  double nowSeconds = 0;
+  @override
+  bool ready = true;
+  @override
+  void silence() {}
+  @override
+  void schedule(ScoreNote note, double atSeconds, double durationSeconds) {}
+}
+
+void main() {
+  TestWidgetsFlutterBinding.ensureInitialized();
+  final levels = LevelRegistry.parse(
+    File('levels/index.json').readAsStringSync(),
+    _read,
+  );
+  final level = levels.byId('pool-garden');
+  final shot = level.exitShot!;
+  final macron = shot.actors.first;
+  final dancers = shot.actors.sublist(1, 3);
+
+  String imageAt(ExitShotActor actor, double beat) => shot
+      .sample(beat, reducedMotion: false)
+      .firstWhere((p) => identical(p.actor, actor))
+      .image;
+
+  test('every image is a real file, small enough to commit', () {
+    for (final image in shot.images.toSet()) {
+      final file = File('assets/art/$image');
+      expect(file.existsSync(), isTrue, reason: image);
+      expect(file.lengthSync(), lessThan(400 * 1024), reason: image);
+    }
+    // The body ends behind the hedge, the last thing drawn, so no cut edge shows.
+    expect(shot.actors.last.approach, 'closeups/duet-hedge.png');
+    expect(shot.actors.length, 4);
+  });
+
+  test('it fits the 8-beat score, with no bridge needed but room for one', () {
+    final step = levels.campaign.singleWhere((s) => s.level.id == level.id);
+    final length = _score(level.music.successScore).lengthBeats;
+    expect(length, 8);
+    expect(shot.closeupTo, lessThan(length));
+    expect(shot.titleUntil, lessThanOrEqualTo(length));
+    for (final hit in shot.cue) {
+      expect(hit.beat, lessThan(length));
+    }
+    // Nothing here names a next room, so a bridge can be added to the campaign
+    // alone, and routeAt still cools the room down over whatever music follows.
+    expect(step.next, isNull);
+    expect(shot.routeAt(shot.closeupTo, length + 8), 0);
+    expect(shot.routeAt(length + 8, length + 8), 1);
+  });
+
+  test('both kisses land together, on the contact beat', () {
+    final atContact = shot.sample(shot.contactBeat, reducedMotion: false);
+    for (final dancer in dancers) {
+      final place = atContact.firstWhere((p) => identical(p.actor, dancer));
+      expect(place.image, dancer.impact, reason: dancer.impact);
+      expect(place.offset, ui.Offset.zero);
+    }
+    // The same drawings change at the same beats on both sides.
+    expect(
+      dancers.first.frames.map((f) => f.beat),
+      dancers.last.frames.map((f) => f.beat),
+    );
+    expect(dancers.first.entry.dx, -dancers.last.entry.dx);
+    // The contact point is the middle of the picture, so the pair sit either side.
+    expect(shot.contactPoint.dx, .5);
+  });
+
+  test('his round eyes turn to arcs, and the blush comes after', () {
+    expect(imageAt(macron, shot.closeupFrom), contains('round'));
+    expect(imageAt(macron, shot.contactBeat), contains('wide'));
+    final afterwards = [
+      for (var beat = shot.contactBeat; beat < shot.closeupTo; beat += .25)
+        imageAt(macron, beat),
+    ];
+    final arc = afterwards.indexWhere((i) => i.endsWith('-arc.png'));
+    final blush = afterwards.indexWhere((i) => i.endsWith('-arc-blush.png'));
+    expect(arc, greaterThan(0));
+    expect(blush, greaterThan(arc));
+    expect(afterwards.last, endsWith('-arc-blush.png'));
+    // Every drawing has its turn before the close-up ends.
+    expect(macron.frames.last.beat, lessThan(shot.closeupTo));
+  });
+
+  test('the drawings differ only in the eyes and blush', () async {
+    Future<(int, int, ByteData)> pixels(String image) async {
+      final bytes = File('assets/art/$image').readAsBytesSync();
+      final codec = await ui.instantiateImageCodec(Uint8List.fromList(bytes));
+      final art = (await codec.getNextFrame()).image;
+      return (
+        art.width,
+        art.height,
+        (await art.toByteData(format: ui.ImageByteFormat.rawRgba))!,
+      );
+    }
+
+    final (w, h, round) = await pixels('closeups/duet-macron-round.png');
+    for (final name in ['wide', 'squash', 'arc', 'arc-blush']) {
+      final (w2, h2, other) = await pixels('closeups/duet-macron-$name.png');
+      expect((w2, h2), (w, h), reason: name);
+      // Nothing outside the face and cheeks moves, so his head can't flicker.
+      for (var y = 0; y < h; y += 3) {
+        for (var x = 0; x < w; x += 3) {
+          if (y >= 95 && y <= 215) continue;
+          final at = (y * w + x) * 4;
+          expect(
+            other.getUint32(at),
+            round.getUint32(at),
+            reason: '$name at $x,$y',
+          );
+        }
+      }
+    }
+  });
+
+  test('calm camera holds one clear picture: kiss, arcs and blush', () {
+    for (var beat = shot.closeupFrom; beat < shot.closeupTo; beat += .25) {
+      final places = shot.sample(beat, reducedMotion: true);
+      expect(places.first.image, endsWith('-arc-blush.png'));
+      for (final place in places) {
+        expect(place.offset, ui.Offset.zero);
+      }
+      expect(places[1].image, contains('-kiss'));
+      expect(places[2].image, contains('-kiss'));
+    }
+  });
+
+  test('QUÉ FINO lands on the contact, and it is the only text', () {
+    expect(level.copy.titleWords, ['QUÉ', 'FINO']);
+    expect(shot.titleAt(shot.contactBeat - .01, reducedMotion: false), isNull);
+    final hit = shot.titleAt(shot.contactBeat, reducedMotion: false)!;
+    expect(hit.scale, greaterThan(1));
+    expect(shot.titleUntil - shot.contactBeat, greaterThanOrEqualTo(3));
+    expect(shot.titleUntil, shot.closeupTo);
+  });
+
+  test('a soft sound lands on the contact, and moves nothing in the music', () {
+    final peck = shot.cue.first;
+    expect(peck.track, 'peck');
+    expect(peck.beat, shot.contactBeat);
+    expect(isCueTrack('peck'), isTrue);
+    // Softer than the fist bump: this is a tender moment.
+    expect(accentPeak('peck', 127), lessThan(accentPeak('bump', 127)));
+    final score = _score(level.music.successScore);
+    final mixed = shot.mixCue(score, 0);
+    expect(mixed.tempos, score.tempos);
+    expect(mixed.lengthBeats, score.lengthBeats);
+    expect(mixed.notes.length, score.notes.length + shot.cue.length);
+    // Still heard over what the score plays on that beat.
+    final under = score.notes
+        .where((note) => note.beat == peck.beat)
+        .fold(0.0, (sum, n) => sum + n.velocity / 127 * .18 * .32 * 1.3);
+    expect(accentPeak('peck', peck.velocity), greaterThan(under * 1.5));
+  });
+
+  test('no dust flies at a kiss, though a fist bump keeps its own', () {
+    expect(shot.motes(shot.contactBeat, reducedMotion: false), isEmpty);
+    expect(
+      levels.byId('garden').exitShot!.motes(
+        levels.byId('garden').exitShot!.contactBeat,
+        reducedMotion: false,
+      ),
+      isNotEmpty,
+    );
+    expect(shot.heroWaitFrame, 'front_idle');
+    expect(levels.byId('garden').exitShot!.heroWaitFrame, 'rear_idle');
+  });
+
+  testWidgets('the real scene plays the whole level and then the shot', (
+    tester,
+  ) async {
+    await tester.runAsync(() async {
+      final scene = GardenSceneGame(firstLevel: () async => level);
+      scene.onGameResize(Vector2(390, 844));
+      await scene.onLoad();
+      final audio = _Audio();
+      final music = MusicTransport(
+        _score(level.music.score),
+        audio,
+        loop: true,
+        lookaheadSeconds: .3,
+      );
+      final session = level.newSession(music, audio)..start();
+      scene.session = session;
+      final directory = Directory('build/duet-review')
+        ..createSync(recursive: true);
+
+      Future<void> save(String name) async {
+        final recorder = ui.PictureRecorder();
+        scene.render(ui.Canvas(recorder));
+        final image = await recorder.endRecording().toImage(390, 844);
+        final png = await image.toByteData(format: ui.ImageByteFormat.png);
+        File('${directory.path}/$name.png')
+            .writeAsBytesSync(png!.buffer.asUint8List());
+      }
+
+      void advance(double target) {
+        while (audio.nowSeconds < target - 1e-6) {
+          audio.nowSeconds = (audio.nowSeconds + .02).clamp(0, target);
+          music.pump();
+          session.advance();
+        }
+      }
+
+      final chart = session.chart;
+      for (var cycle = 0; cycle < 60 && !session.progress.cleared; cycle++) {
+        final start = chart.introBeats + cycle * chart.cycleBeats;
+        // Stills and taps, in the order the music reaches them.
+
+
+        final moments = <(double, int?)>[
+          for (final beat in [1.0, 5.0, 8.5, 11.0, 13.0, 15.0]) (beat, null),
+          for (var i = 0; i < chart.offsets.length; i++) (chart.callBeats + chart.offsets[i], i),
+        ]..sort((x, y) => x.$1.compareTo(y.$1));
+        for (final (beat, note) in moments) {
+          advance(music.secondsAt(start + beat));
+          if (note != null) {
+            session.tap(session.activeLimbs[note]);
+          } else if (cycle < 6) {
+            await save('turn$cycle-beat${beat.toStringAsFixed(1)}');
+          } else {
+            scene.render(ui.Canvas(ui.PictureRecorder()));
+          }
+        }
+        advance(music.secondsAt(start + chart.cycleBeats - .05));
+      }
+      expect(session.progress.cleared, isTrue);
+      advance(audio.nowSeconds + 1);
+      expect(session.phase, GardenPhase.cleared);
+      for (var beat = 0.0; beat < 8; beat += .25) {
+        scene.exitBeat = beat;
+        scene.render(ui.Canvas(ui.PictureRecorder()));
+        if (beat == beat.floorToDouble() || beat == 4.5 || beat == 2.75) {
+          await save('exit-beat${beat.toStringAsFixed(2)}');
+        }
+      }
+    });
+  });
+}

@@ -61,49 +61,38 @@ void main() {
     expect(levels.campaign.last.next, isNull);
   });
 
-  test('the pair swap places, in depth, without touching the thumbs', () {
+  test('the pair travel in depth, without touching the thumbs', () {
+    // The turn by turn rules are in duet_staging_test.dart. This keeps the owner's
+    // older ruling: they move toward and away from the viewer, at the floor's size.
     final level = _campaign().byId('pool-garden');
     final [a, b] = level.stage.challengers;
     expect(b.stature, lessThan(a.stature));
+    final duet = level.stage.duet!;
     final plane = level.layout.floor;
     final heights = <double>[];
-    for (var beat = 0.0; beat <= 32; beat += .25) {
-      final pa = a.floorAt(0, beat: beat);
-      final pb = b.floorAt(0, beat: beat);
-      // Never on one spot, and always behind Mācron and above the tap band.
-      expect(
-        (pa.x - pb.x).abs() + (pa.y - pb.y).abs(),
-        greaterThan(.05),
-        reason: 'beat $beat',
-      );
-      for (final p in [pa, pb]) {
-        expect(p.y, lessThan(level.stage.heroHome.y));
-        expect(thumbLimbAt(.5, p.y), isNull);
+    for (var turn = 0; turn < duet.turns.length; turn++) {
+      for (var t = 0.0; t < level.chart.cycleBeats; t += .25) {
+        final yielded = t >= level.chart.callBeats ? 1.0 : 0.0;
+        for (final dancer in [0, 1]) {
+          final p = duet
+              .sample(
+                dancer: dancer,
+                turn: turn,
+                t: t,
+                callBeats: level.chart.callBeats,
+                floorYield: yielded,
+                heroX: level.stage.heroHome.x,
+              )
+              .floor;
+          expect(p.y, lessThan(level.stage.heroHome.y));
+          expect(thumbLimbAt(.5, p.y), isNull);
+          heights.add(plane.standingHeightAt(p.y));
+        }
       }
-      heights.add(plane.standingHeightAt(pa.y));
     }
-    // They really do come closer and go farther, and size follows the floor.
     final nearest = heights.reduce((x, y) => x > y ? x : y);
     final farthest = heights.reduce((x, y) => x < y ? x : y);
     expect(nearest / farthest, greaterThan(1.3));
-    expect(a.floorAt(0, beat: 7).x, closeTo(b.mark.x, 1e-9));
-    expect(b.floorAt(0, beat: 7).x, closeTo(a.mark.x, 1e-9));
-    // The yield blends from the track to a mark on the dancer's own side. If
-    // the pair were still swapped at the handoff, it would throw them across
-    // the floor in a moment, so the circle must close before the call ends.
-    final call = level.chart.introBeats;
-    final handoff = call + level.chart.offsets.last;
-    expect(call, 4);
-    for (final cycle in [0, 1, 2, 7]) {
-      final at = handoff + cycle * level.chart.cycleBeats;
-      for (final dancer in [a, b]) {
-        expect(dancer.floorAt(0, beat: at).x, closeTo(dancer.mark.x, 1e-9));
-        expect(
-          dancer.floorAt(0, beat: at + level.chart.callBeats).x,
-          closeTo(dancer.mark.x, 1e-9),
-        );
-      }
-    }
   });
 
   test('the level file parses, and its floor is the compiled room\'s', () {
