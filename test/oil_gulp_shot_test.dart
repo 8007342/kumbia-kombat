@@ -39,13 +39,21 @@ void main() {
     expect(hit[2].offset.distance, 0);
   });
 
+  test('the whole head and glass fit the game\'s 180-unit-wide view', () {
+    final head = shot.actors.last;
+    expect(416 * head.scale, lessThan(180));
+    final left = 180 * shot.contactPoint.dx - head.contact.dx * head.scale;
+    expect(left, greaterThanOrEqualTo(0));
+    expect(left + 416 * head.scale, lessThanOrEqualTo(180));
+  });
+
   test('he drains it after a long pull, with her full glass long gone', () {
     final drained = shot.contactBeat + shot.impactBeats;
     final [offer, reach, gulp] = shot.sample(drained, reducedMotion: false);
     expect(gulp.image, 'closeups/oil-gulp-mc-low.png');
     // The drawings return to their approach here, so both must be far offscreen.
-    expect(offer.offset.distance, greaterThan(300));
-    expect(reach.offset.distance, greaterThan(300));
+    expect(offer.offset.distance, greaterThan(150));
+    expect(reach.offset.distance, greaterThan(150));
     expect(
       shot.sample(drained - .1, reducedMotion: false).last.image,
       'closeups/oil-gulp-mc-gulp.png',

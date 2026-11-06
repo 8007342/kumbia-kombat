@@ -259,7 +259,59 @@
     "reducedMotionCelebration": "finish_turn_finish_b"
   },
   "dancers": {
-    "gatekeeper": {},
+    "gatekeeper": {
+      "clips": {
+        "spin_flare": {
+          "note": "A full turn in two beats, ending on a held flare.",
+          "frames": [
+            "spin_front",
+            "spin_34_r",
+            "spin_side_r",
+            "spin_back34_r",
+            "spin_back",
+            "spin_back34_l",
+            "spin_side_l",
+            "spin_34_l",
+            "flare_open"
+          ],
+          "beats": [
+            0.25,
+            0.25,
+            0.25,
+            0.25,
+            0.25,
+            0.25,
+            0.25,
+            0.25,
+            1
+          ]
+        },
+        "flare": {
+          "note": "A quick show-off on its own.",
+          "frames": [
+            "flare_hat"
+          ],
+          "beats": [
+            1.5
+          ]
+        }
+      },
+      "accents": [
+        {
+          "note": "Mācron's turn, right after the handover, in the gap before the shared downbeat claps. The spin takes over once the party warms up.",
+          "everyBeats": 16,
+          "atBeat": 13,
+          "minTier": 2,
+          "clip": "spin_flare"
+        },
+        {
+          "everyBeats": 16,
+          "atBeat": 13,
+          "minTier": 1,
+          "clip": "flare"
+        }
+      ]
+    },
     "bartender": {
       "note": "Every groove_* and challenge_* drawing holds the shaker and no other drawing does. These overrides keep it off screen until the owner decides. Delete this entry's clips and frames to give her the shared groove.",
       "frames": {
@@ -311,8 +363,57 @@
             "finish_turn_finish_b",
             "reassurance_open_hand"
           ]
+        },
+        "spin_flare": {
+          "note": "A full turn in two beats, ending on a held flare.",
+          "frames": [
+            "spin_front",
+            "spin_34_r",
+            "spin_side_r",
+            "spin_back34_r",
+            "spin_back",
+            "spin_back34_l",
+            "spin_side_l",
+            "spin_34_l",
+            "flare_high"
+          ],
+          "beats": [
+            0.25,
+            0.25,
+            0.25,
+            0.25,
+            0.25,
+            0.25,
+            0.25,
+            0.25,
+            1
+          ]
+        },
+        "flare": {
+          "note": "A quick show-off on its own.",
+          "frames": [
+            "flare_dip"
+          ],
+          "beats": [
+            1.5
+          ]
         }
-      }
+      },
+      "accents": [
+        {
+          "note": "Mācron's turn, right after the handover, in the gap before the shared downbeat claps. The spin takes over once the party warms up.",
+          "everyBeats": 16,
+          "atBeat": 13,
+          "minTier": 2,
+          "clip": "spin_flare"
+        },
+        {
+          "everyBeats": 16,
+          "atBeat": 13,
+          "minTier": 1,
+          "clip": "flare"
+        }
+      ]
     },
     "swing-a": {},
     "swing-b": {}

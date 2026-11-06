@@ -1,475 +1,544 @@
 {
-  "version": 1,
-  "status": "runtime preview; production pixel-grid and continuity cleanup pending",
-  "atlases": {
-    "hero": {
-      "image": "macron-dance-v1.png",
-      "imageWidth": 1243,
-      "imageHeight": 1265,
-      "frames": {
-        "rear_idle": {
-          "rect": [
-            33,
-            13,
-            211,
-            316
-          ],
-          "anchor": [
-            122,
-            314
-          ],
-          "pixelsPerUnit": 8.0
-        },
-        "rear_walk_left": {
-          "rect": [
-            366,
-            12,
-            207,
-            318
-          ],
-          "anchor": [
-            99,
-            316
-          ],
-          "pixelsPerUnit": 8.0
-        },
-        "rear_walk_right": {
-          "rect": [
-            669,
-            12,
-            205,
-            317
-          ],
-          "anchor": [
-            106,
-            315
-          ],
-          "pixelsPerUnit": 8.0
-        },
-        "rear_turn": {
-          "rect": [
-            989,
-            10,
-            192,
-            320
-          ],
-          "anchor": [
-            96,
-            318
-          ],
-          "pixelsPerUnit": 8.0
-        },
-        "front_idle": {
-          "rect": [
-            41,
-            337,
-            223,
-            296
-          ],
-          "anchor": [
-            114,
-            294
-          ],
-          "pixelsPerUnit": 8.0
-        },
-        "groove_left": {
-          "rect": [
-            357,
-            345,
-            226,
-            292
-          ],
-          "anchor": [
-            108,
-            290
-          ],
-          "pixelsPerUnit": 8.0
-        },
-        "groove_right": {
-          "rect": [
-            650,
-            345,
-            244,
-            291
-          ],
-          "anchor": [
-            125,
-            289
-          ],
-          "pixelsPerUnit": 8.0
-        },
-        "anticipate": {
-          "rect": [
-            994,
-            351,
-            198,
-            282
-          ],
-          "anchor": [
-            91,
-            280
-          ],
-          "pixelsPerUnit": 8.0
-        },
-        "left_hand": {
-          "rect": [
-            650,
-            345,
-            244,
-            291
-          ],
-          "anchor": [
-            125,
-            289
-          ],
-          "pixelsPerUnit": 8.0
-        },
-        "right_hand": {
-          "rect": [
-            354,
-            655,
-            221,
-            281
-          ],
-          "anchor": [
-            111,
-            279
-          ],
-          "pixelsPerUnit": 8.0
-        },
-        "left_foot": {
-          "rect": [
-            643,
-            648,
-            264,
-            288
-          ],
-          "anchor": [
-            132,
-            286
-          ],
-          "pixelsPerUnit": 8.0
-        },
-        "right_foot": {
-          "rect": [
-            965,
-            650,
-            257,
-            285
-          ],
-          "anchor": [
-            120,
-            283
-          ],
-          "pixelsPerUnit": 8.0
-        },
-        "spin_front": {
-          "rect": [
-            23,
-            937,
-            278,
-            305
-          ],
-          "anchor": [
-            132,
-            303
-          ],
-          "pixelsPerUnit": 8.0
-        },
-        "profile": {
-          "rect": [
-            366,
-            941,
-            212,
-            301
-          ],
-          "anchor": [
-            99,
-            299
-          ],
-          "pixelsPerUnit": 8.0
-        },
-        "spin_rear": {
-          "rect": [
-            638,
-            939,
-            255,
-            303
-          ],
-          "anchor": [
-            137,
-            301
-          ],
-          "pixelsPerUnit": 8.0
-        },
-        "rear_finish": {
-          "rect": [
-            944,
-            941,
-            276,
-            300
-          ],
-          "anchor": [
-            141,
-            298
-          ],
-          "pixelsPerUnit": 8.0
-        },
-        "arm_sweep": {
-          "rect": [
-            48,
-            646,
-            218,
-            289
-          ],
-          "anchor": [
-            107,
-            287
-          ],
-          "pixelsPerUnit": 8.0
-        }
-      }
+ "version": 1,
+ "status": "runtime preview; production pixel-grid and continuity cleanup pending",
+ "atlases": {
+  "hero": {
+   "image": "macron-dance-v2.png",
+   "imageWidth": 1243,
+   "imageHeight": 1610,
+   "frames": {
+    "rear_idle": {
+     "rect": [
+      33,
+      13,
+      211,
+      316
+     ],
+     "anchor": [
+      122,
+      314
+     ],
+     "pixelsPerUnit": 8.0
     },
-    "crowd": {
-      "image": "guests-v1.png",
-      "imageWidth": 1536,
-      "imageHeight": 1024,
-      "frames": {
-        "guest0_occupied": {
-          "rect": [
-            50,
-            12,
-            162,
-            316
-          ],
-          "anchor": [
-            78,
-            314
-          ],
-          "pixelsPerUnit": 8.5
-        },
-        "guest0_notice": {
-          "rect": [
-            308,
-            12,
-            218,
-            318
-          ],
-          "anchor": [
-            76,
-            316
-          ],
-          "pixelsPerUnit": 8.5
-        },
-        "guest0_step_left": {
-          "rect": [
-            579,
-            17,
-            181,
-            313
-          ],
-          "anchor": [
-            61,
-            311
-          ],
-          "pixelsPerUnit": 8.5
-        },
-        "guest0_step_right": {
-          "rect": [
-            814,
-            20,
-            188,
-            311
-          ],
-          "anchor": [
-            82,
-            309
-          ],
-          "pixelsPerUnit": 8.5
-        },
-        "guest0_clap": {
-          "rect": [
-            1073,
-            18,
-            179,
-            311
-          ],
-          "anchor": [
-            79,
-            309
-          ],
-          "pixelsPerUnit": 8.5
-        },
-        "guest0_cheer": {
-          "rect": [
-            1330,
-            9,
-            159,
-            321
-          ],
-          "anchor": [
-            78,
-            319
-          ],
-          "pixelsPerUnit": 8.5
-        },
-        "guest1_occupied": {
-          "rect": [
-            52,
-            338,
-            160,
-            353
-          ],
-          "anchor": [
-            76,
-            351
-          ],
-          "pixelsPerUnit": 8.5
-        },
-        "guest1_notice": {
-          "rect": [
-            295,
-            345,
-            234,
-            346
-          ],
-          "anchor": [
-            89,
-            344
-          ],
-          "pixelsPerUnit": 8.5
-        },
-        "guest1_step_left": {
-          "rect": [
-            570,
-            351,
-            180,
-            341
-          ],
-          "anchor": [
-            70,
-            339
-          ],
-          "pixelsPerUnit": 8.5
-        },
-        "guest1_step_right": {
-          "rect": [
-            819,
-            354,
-            182,
-            339
-          ],
-          "anchor": [
-            77,
-            337
-          ],
-          "pixelsPerUnit": 8.5
-        },
-        "guest1_clap": {
-          "rect": [
-            1094,
-            343,
-            158,
-            349
-          ],
-          "anchor": [
-            58,
-            347
-          ],
-          "pixelsPerUnit": 8.5
-        },
-        "guest1_cheer": {
-          "rect": [
-            1347,
-            335,
-            136,
-            358
-          ],
-          "anchor": [
-            61,
-            356
-          ],
-          "pixelsPerUnit": 8.5
-        },
-        "guest2_occupied": {
-          "rect": [
-            40,
-            704,
-            182,
-            305
-          ],
-          "anchor": [
-            88,
-            303
-          ],
-          "pixelsPerUnit": 8.5
-        },
-        "guest2_notice": {
-          "rect": [
-            283,
-            711,
-            251,
-            299
-          ],
-          "anchor": [
-            101,
-            297
-          ],
-          "pixelsPerUnit": 8.5
-        },
-        "guest2_step_left": {
-          "rect": [
-            564,
-            717,
-            201,
-            293
-          ],
-          "anchor": [
-            76,
-            291
-          ],
-          "pixelsPerUnit": 8.5
-        },
-        "guest2_step_right": {
-          "rect": [
-            805,
-            716,
-            215,
-            293
-          ],
-          "anchor": [
-            91,
-            291
-          ],
-          "pixelsPerUnit": 8.5
-        },
-        "guest2_clap": {
-          "rect": [
-            1101,
-            718,
-            160,
-            294
-          ],
-          "anchor": [
-            51,
-            292
-          ],
-          "pixelsPerUnit": 8.5
-        },
-        "guest2_cheer": {
-          "rect": [
-            1333,
-            702,
-            157,
-            309
-          ],
-          "anchor": [
-            75,
-            307
-          ],
-          "pixelsPerUnit": 8.5
-        }
-      }
+    "rear_walk_left": {
+     "rect": [
+      366,
+      12,
+      207,
+      318
+     ],
+     "anchor": [
+      99,
+      316
+     ],
+     "pixelsPerUnit": 8.0
+    },
+    "rear_walk_right": {
+     "rect": [
+      669,
+      12,
+      205,
+      317
+     ],
+     "anchor": [
+      106,
+      315
+     ],
+     "pixelsPerUnit": 8.0
+    },
+    "rear_turn": {
+     "rect": [
+      989,
+      10,
+      192,
+      320
+     ],
+     "anchor": [
+      96,
+      318
+     ],
+     "pixelsPerUnit": 8.0
+    },
+    "front_idle": {
+     "rect": [
+      41,
+      337,
+      223,
+      296
+     ],
+     "anchor": [
+      114,
+      294
+     ],
+     "pixelsPerUnit": 8.0
+    },
+    "groove_left": {
+     "rect": [
+      357,
+      345,
+      226,
+      292
+     ],
+     "anchor": [
+      108,
+      290
+     ],
+     "pixelsPerUnit": 8.0
+    },
+    "groove_right": {
+     "rect": [
+      650,
+      345,
+      244,
+      291
+     ],
+     "anchor": [
+      125,
+      289
+     ],
+     "pixelsPerUnit": 8.0
+    },
+    "anticipate": {
+     "rect": [
+      994,
+      351,
+      198,
+      282
+     ],
+     "anchor": [
+      91,
+      280
+     ],
+     "pixelsPerUnit": 8.0
+    },
+    "left_hand": {
+     "rect": [
+      650,
+      345,
+      244,
+      291
+     ],
+     "anchor": [
+      125,
+      289
+     ],
+     "pixelsPerUnit": 8.0
+    },
+    "right_hand": {
+     "rect": [
+      354,
+      655,
+      221,
+      281
+     ],
+     "anchor": [
+      111,
+      279
+     ],
+     "pixelsPerUnit": 8.0
+    },
+    "left_foot": {
+     "rect": [
+      643,
+      648,
+      264,
+      288
+     ],
+     "anchor": [
+      132,
+      286
+     ],
+     "pixelsPerUnit": 8.0
+    },
+    "right_foot": {
+     "rect": [
+      965,
+      650,
+      257,
+      285
+     ],
+     "anchor": [
+      120,
+      283
+     ],
+     "pixelsPerUnit": 8.0
+    },
+    "spin_front": {
+     "rect": [
+      23,
+      937,
+      278,
+      305
+     ],
+     "anchor": [
+      132,
+      303
+     ],
+     "pixelsPerUnit": 8.0
+    },
+    "profile": {
+     "rect": [
+      366,
+      941,
+      212,
+      301
+     ],
+     "anchor": [
+      99,
+      299
+     ],
+     "pixelsPerUnit": 8.0
+    },
+    "spin_rear": {
+     "rect": [
+      638,
+      939,
+      255,
+      303
+     ],
+     "anchor": [
+      137,
+      301
+     ],
+     "pixelsPerUnit": 8.0
+    },
+    "rear_finish": {
+     "rect": [
+      944,
+      941,
+      276,
+      300
+     ],
+     "anchor": [
+      141,
+      298
+     ],
+     "pixelsPerUnit": 8.0
+    },
+    "arm_sweep": {
+     "rect": [
+      48,
+      646,
+      218,
+      289
+     ],
+     "anchor": [
+      107,
+      287
+     ],
+     "pixelsPerUnit": 8.0
+    },
+    "clap_apart": {
+     "rect": [
+      2,
+      1267,
+      283,
+      316
+     ],
+     "anchor": [
+      153.7,
+      314
+     ],
+     "pixelsPerUnit": 8.0,
+     "status": "candidate",
+     "facing": "rear",
+     "provenance": {
+      "run": "spin-20261106a",
+      "raw": "mc.clap_apart2",
+      "seed": 992400,
+      "sha256": "44c3738bdae7ca0c492278bf78eaaa3f078e1f5964488eeb7b0df5534df9f04a",
+      "selectedBy": "agent's eye",
+      "accepted": false
+     }
+    },
+    "clap_release": {
+     "rect": [
+      483,
+      1267,
+      218,
+      316
+     ],
+     "anchor": [
+      120.7,
+      314
+     ],
+     "pixelsPerUnit": 8.0,
+     "status": "candidate",
+     "facing": "rear",
+     "provenance": {
+      "run": "spin-20261106a",
+      "raw": "mc.clap_release",
+      "seed": 992703,
+      "sha256": "f1ed89fec4b1ba38c0d13a0bf5cfe45ee350be36220e196dea74efcc7d7faa72",
+      "selectedBy": "agent's eye",
+      "accepted": false
+     }
+    },
+    "clap_together": {
+     "rect": [
+      287,
+      1267,
+      194,
+      315
+     ],
+     "anchor": [
+      106.6,
+      313
+     ],
+     "pixelsPerUnit": 8.0,
+     "status": "candidate",
+     "facing": "rear",
+     "provenance": {
+      "run": "spin-20261106a",
+      "raw": "mc.clap_chest2",
+      "seed": 992603,
+      "sha256": "4536a4c7c611e0a0ac8dafb8f70a56f982ede259b7226fd5cd5d75a6450756d8",
+      "selectedBy": "agent's eye",
+      "accepted": false
+     }
     }
+   }
+  },
+  "crowd": {
+   "image": "guests-v1.png",
+   "imageWidth": 1536,
+   "imageHeight": 1024,
+   "frames": {
+    "guest0_occupied": {
+     "rect": [
+      50,
+      12,
+      162,
+      316
+     ],
+     "anchor": [
+      78,
+      314
+     ],
+     "pixelsPerUnit": 8.5
+    },
+    "guest0_notice": {
+     "rect": [
+      308,
+      12,
+      218,
+      318
+     ],
+     "anchor": [
+      76,
+      316
+     ],
+     "pixelsPerUnit": 8.5
+    },
+    "guest0_step_left": {
+     "rect": [
+      579,
+      17,
+      181,
+      313
+     ],
+     "anchor": [
+      61,
+      311
+     ],
+     "pixelsPerUnit": 8.5
+    },
+    "guest0_step_right": {
+     "rect": [
+      814,
+      20,
+      188,
+      311
+     ],
+     "anchor": [
+      82,
+      309
+     ],
+     "pixelsPerUnit": 8.5
+    },
+    "guest0_clap": {
+     "rect": [
+      1073,
+      18,
+      179,
+      311
+     ],
+     "anchor": [
+      79,
+      309
+     ],
+     "pixelsPerUnit": 8.5
+    },
+    "guest0_cheer": {
+     "rect": [
+      1330,
+      9,
+      159,
+      321
+     ],
+     "anchor": [
+      78,
+      319
+     ],
+     "pixelsPerUnit": 8.5
+    },
+    "guest1_occupied": {
+     "rect": [
+      52,
+      338,
+      160,
+      353
+     ],
+     "anchor": [
+      76,
+      351
+     ],
+     "pixelsPerUnit": 8.5
+    },
+    "guest1_notice": {
+     "rect": [
+      295,
+      345,
+      234,
+      346
+     ],
+     "anchor": [
+      89,
+      344
+     ],
+     "pixelsPerUnit": 8.5
+    },
+    "guest1_step_left": {
+     "rect": [
+      570,
+      351,
+      180,
+      341
+     ],
+     "anchor": [
+      70,
+      339
+     ],
+     "pixelsPerUnit": 8.5
+    },
+    "guest1_step_right": {
+     "rect": [
+      819,
+      354,
+      182,
+      339
+     ],
+     "anchor": [
+      77,
+      337
+     ],
+     "pixelsPerUnit": 8.5
+    },
+    "guest1_clap": {
+     "rect": [
+      1094,
+      343,
+      158,
+      349
+     ],
+     "anchor": [
+      58,
+      347
+     ],
+     "pixelsPerUnit": 8.5
+    },
+    "guest1_cheer": {
+     "rect": [
+      1347,
+      335,
+      136,
+      358
+     ],
+     "anchor": [
+      61,
+      356
+     ],
+     "pixelsPerUnit": 8.5
+    },
+    "guest2_occupied": {
+     "rect": [
+      40,
+      704,
+      182,
+      305
+     ],
+     "anchor": [
+      88,
+      303
+     ],
+     "pixelsPerUnit": 8.5
+    },
+    "guest2_notice": {
+     "rect": [
+      283,
+      711,
+      251,
+      299
+     ],
+     "anchor": [
+      101,
+      297
+     ],
+     "pixelsPerUnit": 8.5
+    },
+    "guest2_step_left": {
+     "rect": [
+      564,
+      717,
+      201,
+      293
+     ],
+     "anchor": [
+      76,
+      291
+     ],
+     "pixelsPerUnit": 8.5
+    },
+    "guest2_step_right": {
+     "rect": [
+      805,
+      716,
+      215,
+      293
+     ],
+     "anchor": [
+      91,
+      291
+     ],
+     "pixelsPerUnit": 8.5
+    },
+    "guest2_clap": {
+     "rect": [
+      1101,
+      718,
+      160,
+      294
+     ],
+     "anchor": [
+      51,
+      292
+     ],
+     "pixelsPerUnit": 8.5
+    },
+    "guest2_cheer": {
+     "rect": [
+      1333,
+      702,
+      157,
+      309
+     ],
+     "anchor": [
+      75,
+      307
+     ],
+     "pixelsPerUnit": 8.5
+    }
+   }
   }
+ }
 }

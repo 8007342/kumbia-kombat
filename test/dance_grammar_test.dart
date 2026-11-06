@@ -242,7 +242,7 @@ void main() {
   });
 
   test('clap contact lands on the phrase beat; tier 0 stays quiet', () {
-    String at(double t, int tier) => grammar
+    String at(double t, int tier, {String dancer = 'gatekeeper'}) => grammar
         .dress(
           const ChallengerPose(
             frameId: 'watch_left',
@@ -250,7 +250,7 @@ void main() {
             floorYield: 1,
             playerRole: PlayerDanceRole.responding,
           ),
-          dancer: 'gatekeeper',
+          dancer: dancer,
           beat: 20 + t,
           callStartBeat: 20,
           tier: tier,
@@ -262,7 +262,9 @@ void main() {
     expect(at(12.25, 1), 'clap_release');
     expect(at(14, 2), 'clap_contact');
     expect(at(14, 1), isNot(startsWith('clap')));
-    expect(at(10.5, 4), 'clap_contact');
+    // A dancer's own spin takes this brass stab; the shared grammar still claps it.
+    expect(at(10.5, 4), startsWith('spin_'));
+    expect(at(10.5, 4, dancer: 'swing-a'), 'clap_contact');
     expect(at(12, 0), isNot(startsWith('clap')));
     // The offered palm holds as the player's first note lands.
     expect(at(8.2, 3), 'invite');
@@ -459,5 +461,32 @@ void main() {
         play(dressed: false, sloppy: sloppy),
       );
     }
+  });
+
+  test('opponents spin and flare only on Mācron\'s turn, once it warms up', () {
+    const watching = ChallengerPose(
+      frameId: 'watch_left',
+      state: ChallengerDanceState.watch,
+      floorYield: 1,
+      playerRole: PlayerDanceRole.responding,
+    );
+    String at(String dancer, double beat, int tier) => grammar
+        .dress(
+          watching,
+          dancer: dancer,
+          beat: beat,
+          callStartBeat: beat - 12,
+          tier: tier,
+        )
+        .frameId;
+    for (final dancer in ['gatekeeper', 'bartender']) {
+      expect(at(dancer, 13, 0), isNot(startsWith('spin_')));
+      expect(at(dancer, 13, 1), startsWith('flare_'));
+      expect(at(dancer, 13, 2), 'spin_front');
+      expect(at(dancer, 14, 3), 'spin_back');
+      expect(at(dancer, 15.5, 4), startsWith('flare_'));
+    }
+    // The swing pair have no spin art yet, and keep the shared grammar.
+    expect(at('swing-a', 13, 4), isNot(startsWith('spin_')));
   });
 }

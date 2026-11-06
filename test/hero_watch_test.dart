@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:kumbia_kombat/gameplay/exit_shot.dart';
 
@@ -30,13 +33,29 @@ void main() {
     expect(HeroWatch.walking(0, call), isTrue);
   });
 
-  test('keeping time speeds up and lifts with the music', () {
+  test('he taps at first, then claps on two and four, then on every beat', () {
     expect(HeroWatch.tapAlong(0, 0).frame, HeroWatch.tapAlong(1.5, 0).frame);
-    expect(
-      HeroWatch.tapAlong(0, 2).frame,
-      isNot(HeroWatch.tapAlong(1, 2).frame),
-    );
+    expect(HeroWatch.tapAlong(0, 0).frame, startsWith('rear_walk'));
+    expect(HeroWatch.tapAlong(1, 1).frame, 'clap_together');
+    expect(HeroWatch.tapAlong(3, 2).frame, 'clap_together');
+    expect(HeroWatch.tapAlong(2, 2).frame, 'clap_apart');
+    expect(HeroWatch.tapAlong(2, 3).frame, 'clap_together');
     expect(HeroWatch.tapAlong(.5, 2).hop, 0);
     expect(HeroWatch.tapAlong(.5, 3).hop, greaterThan(0));
+  });
+
+  test('every frame he keeps time with is in his atlas', () {
+    final hero =
+        (jsonDecode(
+                  File('assets/art/party/manifest.json').readAsStringSync(),
+                )['atlases']
+                as Map)['hero']
+            as Map;
+    final frames = hero['frames'] as Map;
+    for (var tier = 0; tier < 5; tier++) {
+      for (var beat = 0.0; beat < 8; beat += .125) {
+        expect(frames, contains(HeroWatch.tapAlong(beat, tier).frame));
+      }
+    }
   });
 }

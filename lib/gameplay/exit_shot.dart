@@ -229,15 +229,23 @@ class HeroWatch {
     return !firstCall && t < stepOutBeats;
   }
 
-  /// Keeps time on the spot: weight shifts every other beat, then every beat
-  /// and with a lift once the music and the party heat up.
+  /// Keeps time on the spot, with more of him as the music and the party heat
+  /// up: a weight shift, then claps on two and four, then every beat with a lift.
   static ({String frame, double hop}) tapAlong(double beat, int tier) {
-    final rate = tier >= 2 ? 1.0 : 2.0;
-    final step = (beat / rate).floor();
-    final frame = step.isEven ? 'rear_walk_left' : 'rear_walk_right';
+    if (tier == 0) {
+      final frame = (beat / 2).floor().isEven
+          ? 'rear_walk_left'
+          : 'rear_walk_right';
+      return (frame: frame, hop: 0);
+    }
+    final since = tier >= 3 ? beat % 1 : (beat - 1) % 2;
+    final frame = since < .25
+        ? 'clap_together'
+        : since < .5
+        ? 'clap_release'
+        : 'clap_apart';
     if (tier < 3) return (frame: frame, hop: 0);
-    final phase = beat - beat.floorToDouble();
-    final lift = phase < .5 ? phase * 2 : 2 - phase * 2;
+    final lift = since < .5 ? since * 2 : 2 - since * 2;
     return (frame: frame, hop: .035 * lift);
   }
 }

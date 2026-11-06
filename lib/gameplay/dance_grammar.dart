@@ -52,9 +52,12 @@ class DanceAccent {
 }
 
 class _Dancer {
-  _Dancer(this.clips, this.frames);
+  _Dancer(this.clips, this.frames, this.accents);
   final Map<String, DanceClip> clips;
   final Map<String, String> frames;
+
+  /// This dancer's own flares. They come ahead of the shared accents.
+  final List<DanceAccent> accents;
 }
 
 /// The art layer over the call: groove, accents, travel and celebration, read
@@ -68,8 +71,8 @@ class DanceGrammar {
   final Map<String, _Dancer> _dancers;
 
   Map<String, dynamic> get _rules => _data['rules'] as Map<String, dynamic>;
-  late final List<DanceAccent> _accents = [
-    for (final a in _rules['accents'] as List)
+  static List<DanceAccent> _accentsFrom(List raw) => [
+    for (final a in raw)
       DanceAccent(
         (a['everyBeats'] as num).toDouble(),
         (a['atBeat'] as num).toDouble(),
@@ -77,6 +80,9 @@ class DanceGrammar {
         a['clip'] as String,
       ),
   ];
+  late final List<DanceAccent> _accents = _accentsFrom(
+    _rules['accents'] as List,
+  );
   List<DanceAccent> get accents => _accents;
 
   factory DanceGrammar.fromJson(Map<String, dynamic> data) {
@@ -95,10 +101,11 @@ class DanceGrammar {
     final dancers = <String, _Dancer>{};
     for (final entry in raw.entries) {
       final dancer = Map<String, dynamic>.from(entry.value as Map);
-      dancers[entry.key as String] = _Dancer({
-        ...shared,
-        ...clips(dancer['clips'] as Map?),
-      }, Map<String, String>.from(dancer['frames'] as Map? ?? const {}));
+      dancers[entry.key as String] = _Dancer(
+        {...shared, ...clips(dancer['clips'] as Map?)},
+        Map<String, String>.from(dancer['frames'] as Map? ?? const {}),
+        _accentsFrom(dancer['accents'] as List? ?? const []),
+      );
     }
     final grammar = DanceGrammar._(data, dancers);
     grammar._checkRules();
@@ -127,7 +134,7 @@ class DanceGrammar {
       'return_in',
     };
     for (final dancer in _dancers.values) {
-      for (final name in named) {
+      for (final name in [...named, ...dancer.accents.map((a) => a.clip)]) {
         if (!dancer.clips.containsKey(name)) {
           throw FormatException('Choreography rule names missing clip $name');
         }
@@ -281,7 +288,7 @@ class DanceGrammar {
         if (reduced) return rules['reducedMotionHold'] as String;
         final hold = (_data['inviteHoldBeats'] as num).toDouble();
         if (responseAge >= 0 && responseAge < hold) return 'invite';
-        for (final accent in accents) {
+        for (final accent in [...d.accents, ...accents]) {
           if (tier < accent.minTier) continue;
           final clip = d.clips[accent.clip]!;
           // The clip's phase is the lead-in to its beat.
