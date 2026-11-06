@@ -5,6 +5,11 @@ import 'rhythm.dart';
 /// A deliberately imperfect spectator mode. Every action uses normal judgment.
 /// State is bounded to one response and one pending optional flick.
 class PartyAutoplay {
+  PartyAutoplay({this.flawless = false});
+
+  /// Plays every note on time, so the owner can watch what a flawless run earns.
+  /// The default stays imperfect on purpose, and so shows a partly engaged room.
+  final bool flawless;
   bool _enabled = false;
   bool get enabled => _enabled;
   set enabled(bool value) {
@@ -77,8 +82,11 @@ class PartyAutoplay {
 
     // Two early setbacks let viewers see the crowd recover. Later responses
     // succeed consistently, so a demonstration cannot get stuck retrying.
-    final failPhrase = _responseOrdinal == 2 || _responseOrdinal == 6;
-    final dropCount = failPhrase
+    final failPhrase =
+        !flawless && (_responseOrdinal == 2 || _responseOrdinal == 6);
+    final dropCount = flawless
+        ? 0
+        : failPhrase
         ? session.activeLimbs.length - session.requiredHits + 1
         : _responseOrdinal % 3 == 1
         ? 1
@@ -96,7 +104,7 @@ class PartyAutoplay {
       final noteAt = transport.secondsAt(cue.beat);
       final key = '${(noteAt * 1000).round()}:${cue.id}';
       if (_attempted.contains(key)) continue;
-      final offset = index == 0
+      final offset = flawless || index == 0
           ? .025
           : const [.025, .105, -.09, .035][(index + _responseOrdinal) % 4];
       if (now < noteAt + offset) continue;

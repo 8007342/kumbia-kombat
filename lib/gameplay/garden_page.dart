@@ -55,7 +55,10 @@ class _GardenPageState extends State<GardenPage>
   LevelRegistry? _levels;
   final _focus = FocusNode();
   final _touches = DanceTouchGestures();
-  final _autoplay = PartyAutoplay();
+  // `?autoplay=flawless` shows the top of the crowd ladder.
+  final _autoplay = PartyAutoplay(
+    flawless: Uri.base.queryParameters['autoplay'] == 'flawless',
+  );
   bool _usedAutoplay = false;
   late final GameAudio _audio;
   late final Ticker _ticker;
@@ -304,7 +307,8 @@ class _GardenPageState extends State<GardenPage>
       _handoff = _conductor!.handoff(
         source: _transport!,
         success: success,
-        bridge: shot?.mixCue(bridgeScore, successScore.lengthBeats) ?? bridgeScore,
+        bridge:
+            shot?.mixCue(bridgeScore, successScore.lengthBeats) ?? bridgeScore,
         nextScore: MusicScore.fromJson(_roomScores[next.music.score]!),
       );
     } else {

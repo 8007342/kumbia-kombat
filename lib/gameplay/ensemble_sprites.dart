@@ -228,6 +228,44 @@ String ensembleAmbientFrame(
   return '${kind}_${const ['a', 'b', 'c', 'd', 'c', 'b'][index]}';
 }
 
+/// The top of the ladder: props stop drifting on the wall clock and dance on the
+/// music beat. [swing] is `CrowdInterestModel.partySwing`, already slow and
+/// quintic. It only ever picks frames, so it can't reach the music or the score.
+/// Each prop wakes at its own point and its range grows after that, so nothing
+/// switches on at full size. Every prop shares the beat's phase, because a left
+/// or right prop moving alone could read as a call.
+String ensemblePartyFrame(
+  String kind,
+  double seconds, {
+  required double beat,
+  required double swing,
+  int instance = 0,
+  bool reducedMotion = false,
+}) {
+  final ambient = ensembleAmbientFrame(
+    kind,
+    seconds,
+    instance: instance,
+    reducedMotion: reducedMotion,
+  );
+  if (reducedMotion || swing <= 0 || !beat.isFinite || beat < 0) return ambient;
+  final wake = (instance * .371 % 1) * .35;
+  final strength = ((swing - wake) / (1 - wake)).clamp(0.0, 1.0);
+  if (strength <= 0) return ambient;
+  final periodBeats = switch (kind) {
+    'umbrella' => 4.0,
+    'candle' => 1.0,
+    _ => 2.0,
+  };
+  final frames = strength < .4
+      ? const ['a', 'b']
+      : strength < .75
+      ? const ['a', 'b', 'c', 'b']
+      : const ['a', 'b', 'c', 'd', 'c', 'b'];
+  final phase = (beat / periodBeats) % 1;
+  return '${kind}_${frames[(phase * frames.length).floor()]}';
+}
+
 /// The response's existing final rest holds a finish, turns, then watches.
 /// Accepted moves and flourishes own the body until their recovery completes.
 String? ensembleHeroHandoverFrame({
