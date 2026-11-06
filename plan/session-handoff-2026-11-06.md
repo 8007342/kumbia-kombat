@@ -24,7 +24,7 @@ See the seventh round in `owner-rulings-2026-11-05.md`.
 
 1. Done: `game` fast-forwarded to `589b9f8` with the research docs.
 2. After the relaunch, run the checks below.
-3. Fourth-round fixes, no GPU: remove the exit walk-through after cinematics, let opponent spins finish mid-floor before stepping away, and play cinematics over the music's cool-down.
+3. Fourth-round fixes, no GPU: code done and pushed in `a7aedba`, not yet seen on screen. Cinematics already play over the cool-down, so that needed no change.
 4. Music pilot, `music-rebuild.md` stage 2: 12 takes each for Garden and the lawn, timing filter, then the owner listens blind to the best 3 per level against the synth.
 5. Art between music runs, one GPU job at a time: oil gulp redraw, then one room split into layers with shared props.
 
@@ -35,12 +35,12 @@ See the seventh round in `owner-rulings-2026-11-05.md`.
 - **Not yet seen on screen:** the mid-floor spin and the removed exit walk. Check whether the opponent crowds Mācron, the lost open-palm cue during the overflow, and the hard cut to the next room.
 - `studio.status`, `studio.models`: the ACE files and the 2511 Lightning LoRA should show `on_disk: true`. Report to macuahuitl-fedora if the LoRA doesn't.
 - 2001-stpr marker test: #937 should be in this build. Confirm at ComfyUI `/history`, not from a sidecar.
-- `flutter analyze` and `flutter test`: **no baseline yet.** Both were refused before the relaunch: `runtime_unavailable: podman did not answer (image exists)`, `refused:flutter:host-toolchain-unavailable`. Report it if it persists.
+- `flutter analyze` and `flutter test`: an early refusal, `podman did not answer`, came from host image builds and cleared by itself. Rerun them against the baseline above.
 - macuahuitl-fedora's checklist: WebGL renderer and fps against the old 7-9, `uv python install 3.13`, and whether the cache survived (`~/.cache/tillandsias-project/kumbia-art`, 1.1 GB before the relaunch). `cloud.usage` and `cloudflare.scope_probe` should work again.
 
 ## Where the fourth-round fixes live
 
-Read so far, nothing changed:
+Changed in `a7aedba`, except the level data and `room_departure.dart`:
 
 - `lib/gameplay/exit_shot.dart`: `ExitShot` data, with `walkFrom`/`walkTo`, close-up beats, and `routeAt`, the departure progress after the close-up.
 - `lib/gameplay/room_departure.dart`: the departure routes per room.
