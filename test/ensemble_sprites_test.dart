@@ -70,7 +70,7 @@ void main() {
           as Map<String, dynamic>;
 
   test(
-    'all nine actual sheets supply 456 explicit bounded transparent frames',
+    'all nine actual sheets supply 466 explicit bounded transparent frames',
     () async {
       final manifest = EnsembleManifest.fromJson(json());
       expect(manifest.atlases.keys, containsAll(EnsembleManifest.atlasIds));
@@ -79,7 +79,7 @@ void main() {
           0,
           (count, atlas) => count + atlas.art.frames.length,
         ),
-        456,
+        466,
       );
       for (final definition in manifest.atlases.values) {
         final codec = await ui.instantiateImageCodec(
