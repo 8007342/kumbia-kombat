@@ -17,6 +17,7 @@ class ExitShot {
     required this.contactPoint,
     required this.actors,
     required this.cue,
+    this.impactBeats = .4,
   });
 
   final String plate;
@@ -34,6 +35,9 @@ class ExitShot {
   final ui.Offset contactPoint;
   final List<ExitShotActor> actors;
   final List<ExitShotCue> cue;
+
+  /// How long the actors hold their impact drawings from the contact.
+  final double impactBeats;
 
   Iterable<String> get images => [
     plate,
@@ -68,7 +72,7 @@ class ExitShot {
         : _easeOut(
             ((after - hold) / (closeupTo - contactBeat - hold)).clamp(0.0, 1.0),
           );
-    final striking = after >= 0 && after < .4;
+    final striking = after >= 0 && after < impactBeats;
     return [
       for (final actor in actors)
         ExitShotPlacement(

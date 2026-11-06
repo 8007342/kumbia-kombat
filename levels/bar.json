@@ -65,6 +65,97 @@
       { "at": 1, "x": 0.88, "y": 0.48, "facing": "rear" }
     ]
   },
+  "exitShot": {
+    "plate": "closeups/oil-gulp-plate.png",
+    "celebrateUntil": 3.5,
+    "walkFrom": 3.5,
+    "walkTo": 5.75,
+    "heroStep": [
+      0.44,
+      0.52
+    ],
+    "closeupFrom": 6,
+    "contactBeat": 8,
+    "closeupTo": 11,
+    "contactPoint": [
+      0.5,
+      0.32
+    ],
+    "actors": [
+      {
+        "approach": "closeups/oil-gulp-bt-offer.png",
+        "impact": "closeups/oil-gulp-bt-empty.png",
+        "contact": [
+          126,
+          206
+        ],
+        "scale": 0.6667,
+        "entry": [
+          175,
+          -6
+        ],
+        "recoil": [
+          500,
+          -60
+        ]
+      },
+      {
+        "approach": "closeups/oil-gulp-mc-reach.png",
+        "impact": "closeups/oil-gulp-empty.png",
+        "contact": [
+          370,
+          118
+        ],
+        "scale": 0.6667,
+        "entry": [
+          -210,
+          130
+        ],
+        "recoil": [
+          -500,
+          200
+        ]
+      },
+      {
+        "approach": "closeups/oil-gulp-mc-low.png",
+        "impact": "closeups/oil-gulp-mc-gulp.png",
+        "contact": [
+          294,
+          260
+        ],
+        "scale": 0.6667,
+        "entry": [
+          -24000,
+          8000
+        ],
+        "recoil": [
+          -5,
+          -7
+        ]
+      }
+    ],
+    "cue": [
+      {
+        "beat": 8,
+        "track": "pulse",
+        "pitch": 75,
+        "velocity": 127
+      },
+      {
+        "beat": 8.5,
+        "track": "pulse",
+        "pitch": 60,
+        "velocity": 96
+      },
+      {
+        "beat": 9.5,
+        "track": "pulse",
+        "pitch": 60,
+        "velocity": 96
+      }
+    ],
+    "impactBeats": 1.5
+  },
   "copy": {
     "invitation": "The bartender has a rhythm of their own.",
     "clearedTitle": "PURO\nSWAG.",

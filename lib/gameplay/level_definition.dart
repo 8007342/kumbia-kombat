@@ -530,6 +530,9 @@ class LevelDefinition {
       contactPoint: offset(fields, 'contactPoint'),
       actors: List.unmodifiable(actors),
       cue: List.unmodifiable(cue),
+      impactBeats: fields.has('impactBeats')
+          ? fields.number('impactBeats', min: .1)
+          : .4,
     );
     fields.finish();
     if (!(shot.walkFrom < shot.walkTo &&
