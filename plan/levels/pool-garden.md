@@ -2,6 +2,13 @@
 
 **Draft, 2026-11-05. Not approved.** Items marked "teacher" wait for the dance teacher's interview. The evidence is in `plan/research/level3-design-research-2026-11-05.md`, `level3-art-pipeline-2026-11-05.md` and `level3-engine-audit-2026-11-05.md`.
 
+**In the campaign as a draft, 2026-11-06.** The level plays third, after the bar, with the draft plate and the candidate atlases `swing-a` and `swing-b`. The owner asked for a draft level 3 but has not accepted its art, music or cast. What the draft does not do yet:
+
+- The pair dance in unison. Partner work, hand connection and swing-outs wait on `plan/duet-foundations.md`.
+- They glide along their 16-beat floor tracks, with no travelling steps in the art.
+- Both skeletons are borrowed from the bartender and Gatekeeper, because the rig would not run in the forge.
+- All atlases still load at startup, so the dancers cost memory in the first two rooms.
+
 | Field | Draft |
 |---|---|
 | Id, slot | `pool-garden`, proposed after `bar` and before `cool-crowd` |

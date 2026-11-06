@@ -633,7 +633,11 @@ class GardenSceneGame extends FlameGame {
       final dressed = i == 0
           ? pose
           : _challengerAt(beat, dancer: challenger.atlas);
-      final floor = challenger.floorAt(dressed.floorYield, beat: beat);
+      // Calm camera keeps the pair on their marks; yielding still moves them.
+      final floor = challenger.floorAt(
+        dressed.floorYield,
+        beat: reducedMotion ? 0 : beat,
+      );
       final projected = viewport.project(floor);
       final height = _adultHeight(
         viewport,

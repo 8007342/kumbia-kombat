@@ -86,8 +86,24 @@ void main() {
     final nearest = heights.reduce((x, y) => x > y ? x : y);
     final farthest = heights.reduce((x, y) => x < y ? x : y);
     expect(nearest / farthest, greaterThan(1.3));
-    expect(a.floorAt(0, beat: 8).x, closeTo(b.mark.x, 1e-9));
-    expect(b.floorAt(0, beat: 8).x, closeTo(a.mark.x, 1e-9));
+    expect(a.floorAt(0, beat: 7).x, closeTo(b.mark.x, 1e-9));
+    expect(b.floorAt(0, beat: 7).x, closeTo(a.mark.x, 1e-9));
+    // The yield blends from the track to a mark on the dancer's own side. If
+    // the pair were still swapped at the handoff, it would throw them across
+    // the floor in a moment, so the circle must close before the call ends.
+    final call = level.chart.introBeats;
+    final handoff = call + level.chart.offsets.last;
+    expect(call, 4);
+    for (final cycle in [0, 1, 2, 7]) {
+      final at = handoff + cycle * level.chart.cycleBeats;
+      for (final dancer in [a, b]) {
+        expect(dancer.floorAt(0, beat: at).x, closeTo(dancer.mark.x, 1e-9));
+        expect(
+          dancer.floorAt(0, beat: at + level.chart.callBeats).x,
+          closeTo(dancer.mark.x, 1e-9),
+        );
+      }
+    }
   });
 
   test('the level file parses, and its floor is the compiled room\'s', () {
