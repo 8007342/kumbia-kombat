@@ -219,6 +219,10 @@ class GardenSession {
   }) : progress = FightProgress(definition ?? fights.first),
        crowd = CrowdInterestModel(
          rampPhrases: 4 * (definition ?? fights.first).successesPerTier,
+         arcPhrases:
+             4 * (definition ?? fights.first).successesPerTier +
+             (definition ?? fights.first).finalChallenges,
+         phraseBeats: chart.cycleBeats,
          profile:
              crowdProfile ??
              CrowdStageProfile.forRoom((definition ?? fights.first).id),
@@ -262,6 +266,9 @@ class GardenSession {
   RhythmJudge? _judge;
   bool _resolved = false;
   int _hits = 0;
+  int _phrasePerfects = 0;
+  int _phraseGestures = 0;
+  final List<int> _phraseDeltasMs = [];
   int _responseTier = 0;
   int _phraseTier = 0;
   int _responseSequence = 0;
@@ -299,6 +306,9 @@ class GardenSession {
     _judge = null;
     _resolved = false;
     _hits = 0;
+    _phrasePerfects = 0;
+    _phraseGestures = 0;
+    _phraseDeltasMs.clear();
     _hit.clear();
     _phraseTier = progress.tier;
     _activeLimbs = List.unmodifiable(
@@ -438,6 +448,13 @@ class GardenSession {
         passed: passed,
         beat: resolvedBeat,
         cleared: progress.cleared,
+        report: PhraseReport(
+          notes: _activeLimbs.length,
+          hits: _hits,
+          perfects: _phrasePerfects,
+          gestures: _phraseGestures,
+          spreadMs: PhraseReport.spreadOf(_phraseDeltasMs),
+        ),
       );
       if (!passed) {
         lastStumbleBeat = resolvedBeat;
@@ -485,6 +502,8 @@ class GardenSession {
       _hits++;
       combo++;
       _hit.add(result.note!.id);
+      _phraseDeltasMs.add(result.deltaMs);
+      if (result.grade == TapGrade.perfect) _phrasePerfects++;
       if (result.grade == TapGrade.perfect &&
           _perfectCredited.add(result.note!.id)) {
         perfects++;
@@ -521,6 +540,18 @@ class GardenSession {
     bool accepted, {
     FlourishDirection? direction,
   }) {
+    if (accepted) {
+      // Counted per phrase, so a replay rebuilds it from nothing and the crowd
+      // can't be farmed; the Pizazz ledger below keeps its own stricter key.
+      if (!_resolved) {
+        _phraseGestures++;
+      } else if (crowd.gestureAfterPhrase(
+        sequence: _responseSequence,
+        beat: positionBeats,
+      )) {
+        _crowdCheckpoint = crowd.checkpoint();
+      }
+    }
     if (accepted && _credited.add('${progress.definition.id}:$noteId')) {
       pizazz += 100;
       final elapsed = positionBeats - _lastStyleBeat;

@@ -4,6 +4,24 @@ Audit, 2026-11-06. Nothing here is built by this document. One agent read the li
 
 "Read" below means I read the code and didn't run it. Nothing was tried on a phone. Another agent is removing on-screen text in parallel, so the text and meter rows describe this commit, not that work.
 
+## Crowd engagement ruling, built on `work/1844-crow`
+
+The owner's ruling (`owner-rulings-2026-11-05.md:139`) is in the game. Closed or narrowed by this work:
+
+| Row | Status now |
+|---|---|
+| #32 Crowd arc | **Closed.** Every shipped room's budget is 12, so the arc runs from occupied to all guests on their feet by the phrase before a clean clear |
+| #34 Full swing for skilful players | **Closed for what's drawn.** Flawless play ends with every guest celebrating and the separately drawn umbrellas, plants, candles and waiter moving to the beat. Props painted into the plates still wait on #37 |
+| #25 Phrase report | **Closed for the crowd.** `PhraseReport`: hits, perfects, gestures, timing spread |
+| #26 Skill measure | **Narrowed.** Phrase grades and a level-long average replace Sway and Heat for the crowd. Nothing yet carries between rooms, and #27 and #29 are still open |
+| #37 Everything parties up | **Narrowed.** Only the top of the ladder, on existing props. Every player's slow party-up by tier is still open |
+| #42 Identical outcomes | **Closed for the crowd and optional moves.** Scene effects on or off still has no test |
+| D9, D11, D12 | **Answered by the ruling:** excellent taps or gestures; a clean run ends fully engaged; props dance only at the top |
+
+Still open from this area: #33 pointing, #35 sound rewards, #30 the Pizazz credit key. A recovering player's flick now counts for the crowd but still earns no points.
+
+Rules and numbers are named constants in `CrowdEngagement`, `lib/gameplay/crowd_interest.dart`. `?autoplay=flawless` shows the top of the ladder; plain AutoPlay stays imperfect and clears partly engaged.
+
 ## The short version
 
 - **The tap itself is solid. Almost everything the owner asked for on top of it isn't built.** Today's input is one tap, plus one flick that does the same spin in any direction.

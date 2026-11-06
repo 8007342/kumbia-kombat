@@ -305,9 +305,9 @@ class GardenSceneGame extends FlameGame {
 
     _drawLampGlows(canvas, viewport);
     final draws = <_WorldDraw>[];
-    _addFurniture(draws, viewport, room);
+    _addFurniture(draws, viewport, room, beat);
     _addGuests(draws, viewport, room, beat);
-    _addLife(draws, viewport, room);
+    _addLife(draws, viewport, room, beat);
     final challenger = _challengerAt(beat);
     _addChallenger(draws, viewport, room, challenger);
     _addHero(draws, viewport, room, beat, challenger);
@@ -450,10 +450,22 @@ class GardenSceneGame extends FlameGame {
     }
   }
 
+  /// The crowd's flawless reveal, easing back out as the room cools at the win.
+  String _propFrame(String kind, int instance, double beat) =>
+      ensemblePartyFrame(
+        kind,
+        _foregroundSeconds,
+        beat: beat,
+        swing: (session?.crowd.partySwing(beat) ?? 0) * (1 - warmDown),
+        instance: instance,
+        reducedMotion: reducedMotion,
+      );
+
   void _addFurniture(
     List<_WorldDraw> draws,
     PartyViewport viewport,
     PartyRoomLayout room,
+    double beat,
   ) {
     final furniture = _ensemble!['furniture']!;
     final life = _ensemble!['life']!;
@@ -481,30 +493,15 @@ class GardenSceneGame extends FlameGame {
         case PartyPropKind.umbrella:
           atlas = life;
           reference = 'umbrella_a';
-          frame = ensembleAmbientFrame(
-            'umbrella',
-            _foregroundSeconds,
-            instance: i,
-            reducedMotion: reducedMotion,
-          );
+          frame = _propFrame('umbrella', i, beat);
         case PartyPropKind.plant:
           atlas = life;
           reference = 'plant_a';
-          frame = ensembleAmbientFrame(
-            'plant',
-            _foregroundSeconds,
-            instance: i,
-            reducedMotion: reducedMotion,
-          );
+          frame = _propFrame('plant', i, beat);
         case PartyPropKind.candle:
           atlas = life;
           reference = 'candle_a';
-          frame = ensembleAmbientFrame(
-            'candle',
-            _foregroundSeconds,
-            instance: i,
-            reducedMotion: reducedMotion,
-          );
+          frame = _propFrame('candle', i, beat);
         case PartyPropKind.drink:
           continue; // Drinks belong to the authored seated poses.
       }
@@ -520,12 +517,7 @@ class GardenSceneGame extends FlameGame {
         }),
       );
       if (prop.kind == PartyPropKind.table) {
-        final candle = ensembleAmbientFrame(
-          'candle',
-          _foregroundSeconds,
-          instance: i,
-          reducedMotion: reducedMotion,
-        );
+        final candle = _propFrame('candle', i, beat);
         final candleGround = ui.Offset(
           projected.x,
           projected.y - adult * prop.heightInAdults * .92,
@@ -548,6 +540,7 @@ class GardenSceneGame extends FlameGame {
     List<_WorldDraw> draws,
     PartyViewport viewport,
     PartyRoomLayout room,
+    double beat,
   ) {
     final life = _ensemble!['life']!;
     final scenery = _level!.scenery;
@@ -555,12 +548,7 @@ class GardenSceneGame extends FlameGame {
       final floor = scenery.plants[i];
       final projected = viewport.project(floor);
       final height = _adultHeight(viewport, room, floor) * .62;
-      final frame = ensembleAmbientFrame(
-        'plant',
-        _foregroundSeconds,
-        instance: i + 21,
-        reducedMotion: reducedMotion,
-      );
+      final frame = _propFrame('plant', i + 21, beat);
       draws.add(
         _WorldDraw('plant-$i', projected.y, 0, (canvas) {
           life.draw(
@@ -580,12 +568,7 @@ class GardenSceneGame extends FlameGame {
     final floor = PartyPoint(waiterX, waiter.home.y);
     final projected = viewport.project(floor);
     final height = _adultHeight(viewport, room, floor);
-    final frame = ensembleAmbientFrame(
-      'waiter',
-      _foregroundSeconds,
-      instance: 4,
-      reducedMotion: reducedMotion,
-    );
+    final frame = _propFrame('waiter', 4, beat);
     draws.add(
       _WorldDraw('waiter', projected.y, 10, (canvas) {
         _shadow(canvas, _point(projected), height);

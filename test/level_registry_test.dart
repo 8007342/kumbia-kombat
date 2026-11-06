@@ -401,7 +401,7 @@ void main() {
       dancers.add(dancers.first);
     });
     refused('budgets that are not cumulative', 'crowd.budgets', (bar) {
-      of(of(bar, 'crowd'), 'budgets')['cheering'] = 9;
+      of(of(bar, 'crowd'), 'budgets')['following'] = 9;
     });
     refused('more guests than the crowd model has', 'crowd.guests', (bar) {
       final guests = of(bar, 'crowd')['guests'] as List;
