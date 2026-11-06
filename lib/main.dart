@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'gameplay/garden_page.dart';
+import 'gameplay/gesture_capture_page.dart';
 
 void main() {
   runApp(const KumbiaKombatApp());
@@ -22,7 +23,10 @@ class KumbiaKombatApp extends StatelessWidget {
         ),
         useMaterial3: true,
       ),
-      home: const GardenPage(),
+      // `?capture=gestures` records real thumbs for the recogniser's tools.
+      home: Uri.base.queryParameters['capture'] == 'gestures'
+          ? const GestureCapturePage()
+          : const GardenPage(),
     );
   }
 }

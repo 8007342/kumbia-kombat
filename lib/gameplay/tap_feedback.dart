@@ -276,23 +276,20 @@ class FeedbackPainter extends CustomPainter {
   bool shouldRepaint(FeedbackPainter oldDelegate) => true;
 }
 
-/// Whose turn it is, shown by the tap band's light and rings rather than a label.
+/// Whose turn it is, shown by the rings alone: there's no light across the band.
 class TurnLook {
-  const TurnLook(this.color, this.glow, this.ring);
+  const TurnLook(this.color, this.ring);
 
-  /// How long a failed phrase dulls the band.
+  /// How long a failed phrase dulls the rings.
   static const sagSeconds = .6;
 
   final Color color;
 
-  /// How strongly the band lights up from the bottom of the screen.
-  final double glow;
-
   /// How strongly the resting rings show.
   final double ring;
 
-  /// [beat] pulses the band no faster than the beat, the limit for a large area.
-  /// [flow] is steps in a row: a player in flow gets a fuller band.
+  /// [beat] pulses the rings no faster than the beat, as it does for a large area.
+  /// [flow] is steps in a row: a player in flow gets a little more ring.
   factory TurnLook.of(
     GardenPhase phase, {
     required double beat,
@@ -300,20 +297,16 @@ class TurnLook {
     required bool reducedMotion,
     bool sagging = false,
   }) {
-    if (sagging) return const TurnLook(_cream, .06, .22);
+    if (sagging) return const TurnLook(_cream, .22);
     final since = beat - beat.floorToDouble();
     final pulse = reducedMotion ? 0.0 : (1 - since) * (1 - since);
     return switch (phase) {
       // Feel the pulse: the rings breathe with the beat before there's anything to do.
-      GardenPhase.intro => TurnLook(_cream, .06 + .08 * pulse, .3 + .35 * pulse),
-      // Watch: the band dims and takes the demonstration's colour.
-      GardenPhase.call => const TurnLook(_gold, .08, .18),
-      // Your turn: bright, in the response cues' colour, and fuller as flow builds.
-      _ => TurnLook(
-        _mint,
-        .18 + .05 * pulse + .02 * math.min(flow, 8),
-        .5 + .15 * pulse,
-      ),
+      GardenPhase.intro => TurnLook(_cream, .3 + .35 * pulse),
+      // Watch: the rings dim and take the demonstration's colour.
+      GardenPhase.call => const TurnLook(_gold, .18),
+      // Your turn: bright, in the response cues' colour, breathing with the beat.
+      _ => TurnLook(_mint, .5 + .15 * pulse + .02 * math.min(flow, 8)),
     };
   }
 }

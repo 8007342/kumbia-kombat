@@ -1,55 +1,104 @@
 import '../music/transport.dart';
 import 'garden_session.dart';
+import 'gesture_shapes.dart';
 import 'rhythm.dart';
+import 'touch_gesture.dart';
 
-/// A deliberately imperfect spectator mode. Every action uses normal judgment.
-/// State is bounded to one response and one pending optional flick.
+/// The AutoPlay button's three states, in the order a press moves through them.
+enum AutoplayMode {
+  off,
+
+  /// Deliberately imperfect, so it shows a partly engaged room.
+  withErrors,
+
+  /// Every note on time and every offered move, so the owner can watch what a
+  /// flawless run earns.
+  flawless,
+}
+
+/// The pointer AutoPlay's thumb uses. Real pointers are never negative.
+const autoplayPointer = -1;
+
+/// A spectator mode. Every action uses normal judgment, and every move goes
+/// through the same recogniser a thumb does. State is bounded to one response
+/// and one stroke in the air.
 class PartyAutoplay {
-  PartyAutoplay({this.flawless = false});
+  PartyAutoplay({bool flawless = false, this.startFlawless = false})
+    : _style = flawless ? AutoplayMode.flawless : AutoplayMode.withErrors;
 
-  /// Plays every note on time, so the owner can watch what a flawless run earns.
-  /// The default stays imperfect on purpose, and so shows a partly engaged room.
-  final bool flawless;
+  /// `?autoplay=flawless`: a press goes to flawless first.
+  final bool startFlawless;
+  AutoplayMode _style;
   bool _enabled = false;
+
   bool get enabled => _enabled;
+  bool get flawless => _style == AutoplayMode.flawless;
+  AutoplayMode get mode => _enabled ? _style : AutoplayMode.off;
+
   set enabled(bool value) {
     _enabled = value;
     if (!value) suspend();
   }
 
+  set mode(AutoplayMode value) {
+    if (value != AutoplayMode.off) _style = value;
+    enabled = value != AutoplayMode.off;
+  }
+
+  /// Off, then on with errors, then flawless, then off again.
+  AutoplayMode get nextMode => switch (mode) {
+    AutoplayMode.off =>
+      startFlawless ? AutoplayMode.flawless : AutoplayMode.withErrors,
+    AutoplayMode.withErrors =>
+      startFlawless ? AutoplayMode.off : AutoplayMode.flawless,
+    AutoplayMode.flawless =>
+      startFlawless ? AutoplayMode.withErrors : AutoplayMode.off,
+  };
+
   GardenSession? _owner;
   int? _window;
   double? _responseBeat;
   int _responseOrdinal = -1;
-  int _flourishes = 0;
   final Set<String> _attempted = {};
-  _PendingFlick? _pending;
+  _AutoStroke? _stroke;
+  final _ownTouches = DanceTouchGestures();
+  DanceTouchGestures? _strokeTouches;
 
   /// Pausing/off/doorways cancel future actions without changing game state.
   /// The resumed audio anchor identifies the replay as a fresh input window.
-  void suspend() => _pending = null;
+  void suspend() {
+    _strokeTouches?.cancel(autoplayPointer);
+    _stroke = null;
+  }
 
+  /// [touches] and [origin] let a host see the stroke: it draws the same trail a
+  /// thumb leaves. Without them it still runs, for tests and headless shows.
   void pump(
     GardenSession session, {
     TapResult Function(Limb limb)? onTap,
     void Function(FlourishDirection direction)? onFlourish,
+    void Function(OptionalMove move)? onMove,
+    DanceTouchGestures? touches,
+    (double, double) Function(RhythmNote note)? origin,
   }) {
     final transport = session.transport;
     if (!_enabled ||
         transport.state != TransportState.playing ||
-        transport.countingIn ||
-        session.phase != GardenPhase.response) {
+        transport.countingIn) {
       suspend();
       return;
     }
+    final now = session.backend.nowSeconds;
+    // A stroke in the air outlives the turn, as a late thumb's does.
+    _drawStroke(session, now, onFlourish, onMove);
+    if (session.phase != GardenPhase.response) return;
     if (!identical(_owner, session)) {
       _owner = session;
       _window = null;
       _responseBeat = null;
       _responseOrdinal = -1;
-      _flourishes = 0;
       _attempted.clear();
-      _pending = null;
+      suspend();
     }
 
     final chart = session.chart;
@@ -61,21 +110,9 @@ class PartyAutoplay {
     if (_window != window) {
       _window = window;
       _attempted.clear();
-      _pending = null;
       if (_responseBeat != responseBeat) {
         _responseOrdinal++;
         _responseBeat = responseBeat;
-      }
-    }
-
-    final now = session.backend.nowSeconds;
-    final pending = _pending;
-    if (pending != null && now >= pending.atSeconds) {
-      _pending = null;
-      if (now <= pending.expiresAt &&
-          session.flourishGesture(pending.noteId, pending.direction)) {
-        _flourishes++;
-        onFlourish?.call(pending.direction);
       }
     }
     if (session.progress.cleared) return;
@@ -114,29 +151,89 @@ class PartyAutoplay {
         continue;
       }
       final result = (onTap ?? session.tap)(cue.limb);
-      if (result.note?.flourishTo != null &&
-          (_responseOrdinal + index) % 4 != 0) {
-        _pending = _PendingFlick(
-          result.note!.id,
-          FlourishDirection.values[_flourishes %
-              FlourishDirection.values.length],
-          now + .13,
-          now + RhythmJudge.flourishWindowMs / 1000,
-        );
+      final note = result.note;
+      if (note?.flourishTo != null &&
+          (flawless || (_responseOrdinal + index) % 4 != 0)) {
+        _startStroke(note!, now, touches ?? _ownTouches, origin);
       }
+    }
+  }
+
+  void _startStroke(
+    RhythmNote note,
+    double now,
+    DanceTouchGestures touches,
+    (double, double) Function(RhythmNote note)? origin,
+  ) {
+    suspend();
+    _ownTouches.clear();
+    final kind = note.offer ?? GestureKind.spin;
+    final (x, y) = origin?.call(note) ?? (0.0, 0.0);
+    _strokeTouches = touches;
+    touches.begin(pointer: autoplayPointer, x: x, y: y, acceptedNote: note);
+    _stroke = _AutoStroke(
+      // Heading toward the screen's middle, as a thumb most comfortably would.
+      idealStroke(
+        kind,
+        flip: note.limb == Limb.rightHand || note.limb == Limb.rightFoot,
+      ),
+      x,
+      y,
+      now,
+      switch (kind) {
+        GestureKind.spin || GestureKind.flick => .2,
+        GestureKind.stomp => .34,
+        GestureKind.wave => .36,
+        GestureKind.circle => .6,
+      },
+      kind == GestureKind.spin ? 72 : 64,
+    );
+  }
+
+  void _drawStroke(
+    GardenSession session,
+    double now,
+    void Function(FlourishDirection direction)? onFlourish,
+    void Function(OptionalMove move)? onMove,
+  ) {
+    final stroke = _stroke;
+    final touches = _strokeTouches;
+    if (stroke == null || touches == null) return;
+    final done = now >= stroke.endsAt;
+    DanceStrokeResult? result;
+    while (result == null) {
+      final (x, y, more) = stroke.next(now);
+      if (!more) break;
+      result = touches.move(pointer: autoplayPointer, x: x, y: y);
+    }
+    if (result == null && done) {
+      result = touches.settle(autoplayPointer);
+      _stroke = null;
+    }
+    if (result == null) return;
+    _stroke = null;
+    final move = landStroke(session, result);
+    if (move != null) {
+      onFlourish?.call(move.direction);
+      onMove?.call(move);
     }
   }
 }
 
-class _PendingFlick {
-  const _PendingFlick(
-    this.noteId,
-    this.direction,
-    this.atSeconds,
-    this.expiresAt,
-  );
-  final String noteId;
-  final FlourishDirection direction;
-  final double atSeconds;
-  final double expiresAt;
+/// AutoPlay's thumb: an ideal path, walked at a steady pace.
+class _AutoStroke {
+  _AutoStroke(this.path, this.x, this.y, this.startedAt, this.seconds, this.size);
+  final List<(double, double)> path;
+  final double x, y, startedAt, seconds, size;
+  int _next = 1;
+  double get endsAt => startedAt + seconds;
+
+  /// The next point due by [now], with false when none is.
+  (double, double, bool) next(double now) {
+    if (_next >= path.length) return (0, 0, false);
+    final due = startedAt + seconds * _next / (path.length - 1);
+    if (now < due) return (0, 0, false);
+    final (px, py) = path[_next++];
+    return (x + px * size, y + py * size, true);
+  }
 }

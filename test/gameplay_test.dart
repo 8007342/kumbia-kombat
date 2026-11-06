@@ -44,19 +44,6 @@ void main() {
     expect(doubles.tap(Limb.leftHand, 1250).note, isNull);
   });
 
-  test('flourish follows success once and cannot consume a future tap', () {
-    final judge = RhythmJudge([
-      const RhythmNote('a', Limb.leftHand, 1000, flourishTo: Limb.rightFoot),
-      const RhythmNote('b', Limb.rightFoot, 1600),
-    ]);
-    expect(judge.flourish('a', Limb.rightFoot, 1050), isFalse);
-    expect(judge.tap(Limb.leftHand, 1110).grade, TapGrade.good);
-    expect(judge.flourish('a', Limb.rightFoot, 1410), isTrue);
-    expect(judge.flourish('a', Limb.rightFoot, 1410), isFalse);
-    expect(judge.pizazz, 100);
-    expect(judge.tap(Limb.rightFoot, 1600).grade, TapGrade.perfect);
-  });
-
   test('VIP needs full-tier sustain and failure clears the streak', () {
     final fight = FightProgress(fights.last);
     for (var i = 0; i < 12; i++) {

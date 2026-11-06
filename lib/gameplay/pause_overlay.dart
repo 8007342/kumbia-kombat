@@ -26,14 +26,20 @@ const resumeDoubleTapGuardSeconds = .35;
 /// guidance allows.
 const vcrNoiseStepsPerSecond = 2.0;
 
-/// The most any noise mark covers the picture. At this strength it can't make
-/// the 10% luminance swing that safety guidance counts as a flash at any rate.
-const vcrNoisePeakOpacity = .09;
-const vcrBandFillOpacity = .035;
+/// The most any noise mark covers the picture, at a band's middle. Even where two
+/// wide bands overlap, a streak can't make the 10% luminance swing that safety
+/// guidance counts as a flash at any rate.
+const vcrNoisePeakOpacity = .045;
+const vcrBandFillOpacity = .03;
 const vcrScanlineOpacity = .07;
 
 /// Sideways slip of the noise, in logical pixels. None under reduced motion.
 const vcrJitterPixels = 1.5;
+
+/// How tall the moving band is, in screen heights. Its edges fade to nothing, so
+/// it reads as a soft swell rolling through the picture rather than a stripe.
+const vcrMovingBandHeight = .46;
+const vcrSecondBandHeight = .22;
 
 /// Screen heights a second. A slow roll, never a flicker.
 const vcrBandDriftPerSecond = .012;
@@ -100,8 +106,8 @@ VcrNoiseFrame vcrNoiseAt(double seconds, {required bool reducedMotion}) {
     step,
     reducedMotion ? 0 : (step.isEven ? 1 : -1) * vcrJitterPixels,
     [
-      VcrBand((.22 + t * vcrBandDriftPerSecond) % 1, .06),
-      VcrBand((.68 + t * vcrBandDriftPerSecond * 1.5) % 1, .035),
+      VcrBand((.18 + t * vcrBandDriftPerSecond) % 1, vcrMovingBandHeight),
+      VcrBand((.72 + t * vcrBandDriftPerSecond * 1.5) % 1, vcrSecondBandHeight),
       // A tape's picture always frays along the bottom edge.
       const VcrBand(.965, .035),
     ],
@@ -253,8 +259,8 @@ class VcrFramePainter extends CustomPainter {
   bool shouldRepaint(VcrFramePainter oldDelegate) => false;
 }
 
-/// Tracking noise: pale bands of short streaks, faint and slow. See the safety
-/// limits at the top of this file.
+/// Tracking noise: wide, pale bands of short streaks, faint and slow, fading out
+/// toward both edges. See the safety limits at the top of this file.
 class VcrNoisePainter extends CustomPainter {
   VcrNoisePainter(this.seconds, {required this.reducedMotion})
     : super(repaint: seconds);
@@ -265,26 +271,51 @@ class VcrNoisePainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final frame = vcrNoiseAt(seconds.value, reducedMotion: reducedMotion);
-    final fill = Paint()..color = _cream.withValues(alpha: vcrBandFillOpacity);
-    final streak = Paint()
-      ..color = _cream.withValues(alpha: vcrNoisePeakOpacity);
     for (final (index, band) in frame.bands.indexed) {
-      final top = band.top * size.height;
-      final height = band.height * size.height;
-      canvas.drawRect(Rect.fromLTWH(0, top, size.width, height), fill);
-      final draw = math.Random(frame.step * 7 + index);
-      final streaks = (size.width / 22).ceil();
-      for (var i = 0; i < streaks; i++) {
-        canvas.drawRect(
-          Rect.fromLTWH(
-            draw.nextDouble() * size.width + frame.jitter,
-            top + draw.nextDouble() * height,
-            8 + draw.nextDouble() * 46,
-            1.5,
-          ),
-          streak,
-        );
+      // A band that rolls off the bottom comes back in at the top, unbroken.
+      for (final top in [band.top, band.top - 1]) {
+        if (top + band.height <= 0 || top >= 1) continue;
+        _band(canvas, size, frame, band, top, index);
       }
+    }
+  }
+
+  void _band(
+    Canvas canvas,
+    Size size,
+    VcrNoiseFrame frame,
+    VcrBand band,
+    double topShare,
+    int index,
+  ) {
+    final top = topShare * size.height;
+    final height = band.height * size.height;
+    final box = Rect.fromLTWH(0, top, size.width, height);
+    canvas.drawRect(
+      box,
+      Paint()
+        ..shader = LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [
+            _cream.withValues(alpha: 0),
+            _cream.withValues(alpha: vcrBandFillOpacity),
+            _cream.withValues(alpha: 0),
+          ],
+        ).createShader(box),
+    );
+    final draw = math.Random(frame.step * 7 + index);
+    // The same density of streaks as ever, over a much wider band.
+    final streaks = (size.width * band.height / 1.4).ceil();
+    final streak = Paint();
+    for (var i = 0; i < streaks; i++) {
+      final along = draw.nextDouble();
+      final x = draw.nextDouble() * size.width + frame.jitter;
+      final length = 8 + draw.nextDouble() * 46;
+      // Faint at the edges, strongest in the middle, and never above the peak.
+      final soft = math.sin(math.pi * along);
+      streak.color = _cream.withValues(alpha: vcrNoisePeakOpacity * soft * soft);
+      canvas.drawRect(Rect.fromLTWH(x, top + along * height, length, 1.5), streak);
     }
   }
 

@@ -389,7 +389,7 @@ void main() {
         id = garden.tap(garden.activeLimbs[i]).note!.id;
       }
       at(18.6);
-      expect(garden.flourish(id, Limb.rightFoot), isTrue);
+      expect(garden.flourishGesture(id, FlourishDirection.right), isTrue);
       return id;
     }
 
@@ -424,7 +424,7 @@ void main() {
       expect(garden.phase, GardenPhase.response);
       expect(garden.tap(Limb.leftHand).note, isNull);
       at(start + 7); // 250 ms after the final accepted press.
-      expect(garden.flourish(lastId, Limb.rightFoot), isTrue);
+      expect(garden.flourishGesture(lastId, FlourishDirection.right), isTrue);
       expect(garden.pizazz, 100);
       expect(garden.completedAtSeconds, approvalAt);
       at(start + 7.9);

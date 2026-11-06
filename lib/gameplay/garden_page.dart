@@ -14,6 +14,8 @@ import '../music/transport.dart';
 import '../music/transition_conductor.dart';
 import 'garden_scene.dart';
 import 'garden_session.dart';
+import 'gesture_glyph.dart';
+import 'gesture_shapes.dart';
 import 'level_definition.dart';
 import 'party_autoplay.dart';
 import 'pause_overlay.dart';
@@ -56,12 +58,16 @@ class _GardenPageState extends State<GardenPage>
   );
   LevelRegistry? _levels;
   final _focus = FocusNode();
-  final _touches = DanceTouchGestures();
-  // `?autoplay=flawless` shows the top of the crowd ladder.
+  late final _touches = DanceTouchGestures(clock: () => _audio.nowSeconds);
+  // `?autoplay=flawless` makes flawless the first press: the top of the ladder.
   final _autoplay = PartyAutoplay(
-    flawless: Uri.base.queryParameters['autoplay'] == 'flawless',
+    startFlawless: Uri.base.queryParameters['autoplay'] == 'flawless',
   );
   bool _usedAutoplay = false;
+
+  /// AutoPlay was pressed before the campaign finished loading. A press isn't
+  /// dropped just because it came early: it's kept, and the run starts on load.
+  bool _startWhenLoaded = false;
   late final GameAudio _audio;
   late final Ticker _ticker;
   Timer? _pump;
@@ -88,10 +94,7 @@ class _GardenPageState extends State<GardenPage>
   int _activationEpoch = 0;
   bool _reducedMotion = false;
   String? _error;
-  Limb? _styleDestination;
   String? _styleNote;
-  double _styleBeat = 0;
-  double _styleUntil = 0;
   String _resultSignature = '';
   final _marks = <FeedbackMark>[];
   final _pressedAt = <Limb, double>{};
@@ -191,7 +194,17 @@ class _GardenPageState extends State<GardenPage>
       _autoplay.pump(
         session,
         onTap: _tap,
-        onFlourish: (direction) => _ornament(direction.name),
+        onMove: _moveLanded,
+        touches: _touches,
+        origin: (note) {
+          final at = _anchor(
+            note.limb,
+            _stage,
+            _transport!.beatAt(note.atMs / 1000),
+            note.id,
+          );
+          return (at.dx, at.dy);
+        },
       );
     } else {
       _autoplay.suspend();
@@ -211,16 +224,35 @@ class _GardenPageState extends State<GardenPage>
         _addMark(FeedbackMark(MarkKind.phrase, _bandCentre));
       }
     }
+    _settleStrokes(session);
     if (session.phase == GardenPhase.paused ||
         session.phase == GardenPhase.cleared) {
       if (session.phase == GardenPhase.paused) {
         _scene.presentationPaused = true;
       }
       _touches.clear();
-      _styleDestination = null;
       _styleNote = null;
       if (mounted) setState(() {});
     }
+  }
+
+  /// A thumb held past its time, or still drawing as the room is won, is read as
+  /// it stands: holding on a moment too long must not lose a finished shape.
+  void _settleStrokes(GardenSession session) {
+    final over = session.phase == GardenPhase.cleared;
+    for (final stroke in _touches.live.toList()) {
+      if (stroke.pointer == autoplayPointer && !over) continue;
+      final ends = session.moveEndsAt(stroke.noteId);
+      if (!over && ends != null && _audio.nowSeconds <= ends) continue;
+      final result = _touches.settle(stroke.pointer);
+      if (result != null) _land(session, result);
+    }
+    _touches.prune();
+  }
+
+  void _land(GardenSession session, DanceStrokeResult result) {
+    final move = landStroke(session, result);
+    if (move != null) _moveLanded(move);
   }
 
   Future<void> _loadScore() async {
@@ -239,6 +271,8 @@ class _GardenPageState extends State<GardenPage>
       _scoreData = data;
       _newSession();
       setState(() {});
+      if (_startWhenLoaded && _autoplay.enabled) unawaited(_start());
+      _startWhenLoaded = false;
       await _prepareExits();
     } catch (error) {
       debugPrint('The campaign could not load: $error');
@@ -342,7 +376,6 @@ class _GardenPageState extends State<GardenPage>
       _conductor = null;
       _exitStarted = false;
       _marks.clear();
-      _styleDestination = null;
       _styleNote = null;
       _resultSignature = '';
       // Ready this level's own exit: its bridge's next room is not loaded yet.
@@ -442,7 +475,6 @@ class _GardenPageState extends State<GardenPage>
       _session?.pause();
     }
     _touches.clear();
-    _styleDestination = null;
     _styleNote = null;
     setState(() {});
   }
@@ -481,17 +513,25 @@ class _GardenPageState extends State<GardenPage>
     }
   }
 
-  void _toggleAutoplay() {
+  /// Off, on with errors, flawless, off.
+  void _cycleAutoplay() {
     setState(() {
-      _autoplay.enabled = !_autoplay.enabled;
+      _autoplay.mode = _autoplay.nextMode;
       if (_autoplay.enabled) _usedAutoplay = true;
       _touches.clear();
-      _styleDestination = null;
       _styleNote = null;
     });
-    if (_autoplay.enabled &&
-        _session?.phase == GardenPhase.ready &&
-        !_starting) {
+    if (!_autoplay.enabled) {
+      _startWhenLoaded = false;
+      return;
+    }
+    if (_session == null) {
+      _startWhenLoaded = true;
+      // The browser unlocks sound only inside this press, so ask for it now.
+      unawaited(_audio.activate().catchError((Object _) {}));
+      return;
+    }
+    if (_session!.phase == GardenPhase.ready && !_starting) {
       // Activate sound in this same user gesture on desktop browsers.
       unawaited(_start());
     }
@@ -569,18 +609,15 @@ class _GardenPageState extends State<GardenPage>
         targetBeat: targetBeat,
         nextRequiredBeat: futureBeats.isEmpty ? null : futureBeats.first,
       );
-      _styleDestination = result.note!.flourishTo == null ? null : limb;
       _styleNote = result.note!.flourishTo == null ? null : result.note!.id;
-      _styleBeat = _transport!.beatAt(result.note!.atMs / 1000);
-      _styleUntil = _audio.nowSeconds + RhythmJudge.flourishWindowMs / 1000;
       _lastTapLimb = limb;
-      _lastTapBeat = _styleBeat;
+      _lastTapBeat = targetBeat;
       _lastTapNote = result.note!.id;
       if (result.timing != null) {
         _addMark(
           FeedbackMark.tap(
             result.timing!,
-            _anchor(limb, _stage, _styleBeat, result.note!.id),
+            _anchor(limb, _stage, targetBeat, result.note!.id),
             deltaMs: result.deltaMs,
             combo: _session!.combo,
           ),
@@ -633,6 +670,13 @@ class _GardenPageState extends State<GardenPage>
     return Offset(at.x, at.y);
   }
 
+  /// A move landed: the music answers, the trail flares, and Mācron does it.
+  void _moveLanded(OptionalMove move) {
+    _ornament(move.direction.name);
+    _scene.flourishMove = move.kind;
+    _scene.flourishLimb = move.limb;
+  }
+
   void _ornament(String gesture) {
     final transport = _transport!;
     final data = (_scoreData!['adornments'] as List).firstWhere(
@@ -649,7 +693,6 @@ class _GardenPageState extends State<GardenPage>
         transport.secondsAt(nextBeat + note.beat + note.duration) - at,
       );
     }
-    _styleDestination = null;
     _styleNote = null;
     _scene.flourishBeat = _session!.positionBeats;
     final limb = _lastTapLimb;
@@ -697,12 +740,19 @@ class _GardenPageState extends State<GardenPage>
             LogicalKeyboardKey.arrowDown: FlourishDirection.down,
             LogicalKeyboardKey.arrowLeft: FlourishDirection.left,
           }[event.logicalKey];
-          if (direction != null &&
-              _styleNote != null &&
-              _audio.nowSeconds <= _styleUntil &&
-              session!.flourishGesture(_styleNote!, direction)) {
-            _ornament(direction.name);
-            return;
+          if (direction != null && _styleNote != null) {
+            final move = session!.optionalMove(
+              _styleNote!,
+              direction == FlourishDirection.left ||
+                      direction == FlourishDirection.right
+                  ? GestureKind.spin
+                  : GestureKind.flick,
+              direction,
+            );
+            if (move != null) {
+              _moveLanded(move);
+              return;
+            }
           }
           final limb = {
             LogicalKeyboardKey.keyQ: Limb.leftHand,
@@ -752,24 +802,24 @@ class _GardenPageState extends State<GardenPage>
                             pointer: event.pointer,
                             x: event.localPosition.dx,
                             y: event.localPosition.dy,
-                            at: event.timeStamp,
                             acceptedNote: limb == null ? null : _tap(limb).note,
                           );
                         },
-                        onPointerUp: (event) {
-                          final flick = _touches.end(
+                        onPointerMove: (event) {
+                          final done = _touches.move(
                             pointer: event.pointer,
                             x: event.localPosition.dx,
                             y: event.localPosition.dy,
-                            at: event.timeStamp,
                           );
-                          if (flick != null &&
-                              session.flourishGesture(
-                                flick.noteId,
-                                flick.direction,
-                              )) {
-                            _ornament(flick.direction.name);
-                          }
+                          if (done != null) _land(session, done);
+                        },
+                        onPointerUp: (event) {
+                          final done = _touches.end(
+                            pointer: event.pointer,
+                            x: event.localPosition.dx,
+                            y: event.localPosition.dy,
+                          );
+                          if (done != null) _land(session, done);
                         },
                         onPointerCancel: (event) =>
                             _touches.cancel(event.pointer),
@@ -784,9 +834,6 @@ class _GardenPageState extends State<GardenPage>
                               _target(cue.limb, size, cue),
                             for (final cue in session.visibleCues)
                               _cue(cue, size),
-                            if (_styleDestination != null &&
-                                _audio.nowSeconds < _styleUntil)
-                              _styleHint(_styleDestination!, size),
                           ],
                         ),
                       ),
@@ -866,29 +913,64 @@ class _GardenPageState extends State<GardenPage>
               fontSize: 11,
             ),
           ),
-        Semantics(
-          toggled: _autoplay.enabled,
-          label: 'AutoPlay',
-          child: IconButton(
-            onPressed: _session == null ? null : _toggleAutoplay,
-            tooltip: _autoplay.enabled
-                ? 'Turn off AutoPlay'
-                : 'AutoPlay · watch the party',
-            // Lit while on, and faintly lit for the rest of a run it played in.
-            color: _autoplay.enabled
-                ? _mint
-                : _usedAutoplay
-                ? _mint.withValues(alpha: .55)
-                : _cream.withValues(alpha: .65),
-            iconSize: 20,
-            icon: Icon(
-              _autoplay.enabled ? Icons.smart_toy : Icons.smart_toy_outlined,
-            ),
-          ),
-        ),
+        _autoplayButton(),
       ],
     ),
   );
+
+  /// A press is never ignored, even before the campaign has loaded: it's kept.
+  Widget _autoplayButton() {
+    final mode = _autoplay.mode;
+    final describe = switch (mode) {
+      AutoplayMode.off => 'AutoPlay off',
+      AutoplayMode.withErrors => 'AutoPlay on, with mistakes',
+      AutoplayMode.flawless => 'AutoPlay flawless',
+    };
+    final next = switch (_autoplay.nextMode) {
+      AutoplayMode.off => 'turn it off',
+      AutoplayMode.withErrors => 'watch it with mistakes',
+      AutoplayMode.flawless => 'watch it flawless',
+    };
+    final color = switch (mode) {
+      AutoplayMode.flawless => _gold,
+      AutoplayMode.withErrors => _mint,
+      // Faintly lit for the rest of a run it played in.
+      AutoplayMode.off =>
+        _usedAutoplay
+            ? _mint.withValues(alpha: .55)
+            : _cream.withValues(alpha: .65),
+    };
+    return Semantics(
+      toggled: _autoplay.enabled,
+      label: describe,
+      child: IconButton(
+        key: const ValueKey('autoplay'),
+        onPressed: _cycleAutoplay,
+        tooltip: '$describe. Tap to $next.',
+        color: color,
+        iconSize: 20,
+        icon: Stack(
+          clipBehavior: Clip.none,
+          children: [
+            Icon(
+              mode == AutoplayMode.off
+                  ? Icons.smart_toy_outlined
+                  : Icons.smart_toy,
+              color: color,
+              size: 20,
+            ),
+            // Shape as well as colour says flawless: gold reads poorly for some.
+            if (mode == AutoplayMode.flawless)
+              const Positioned(
+                right: -7,
+                top: -7,
+                child: Icon(Icons.star_rounded, color: _gold, size: 13),
+              ),
+          ],
+        ),
+      ),
+    );
+  }
 
   TurnLook _turnLook(GardenSession session) => TurnLook.of(
     session.phase,
@@ -949,6 +1031,7 @@ class _GardenPageState extends State<GardenPage>
             height: extent,
             child: Stack(
               alignment: Alignment.center,
+              clipBehavior: Clip.none,
               children: [
                 SizedBox.expand(
                   child: cue.demo
@@ -972,36 +1055,27 @@ class _GardenPageState extends State<GardenPage>
                   padding: const EdgeInsets.all(9),
                   child: _limbIcon(cue.limb, color),
                 ),
-                if (cue.flourishTo != null)
-                  const Positioned(
-                    right: 0,
-                    bottom: 0,
-                    child: Icon(Icons.open_with, color: _mint, size: 16),
+                // The path itself, from where the thumb lands: press, then this.
+                if (cue.offer != null)
+                  Semantics(
+                    label: 'Optional ${cue.offer!.name}',
+                    child: SizedBox.expand(
+                      child: CustomPaint(
+                        painter: GestureGlyphPainter(
+                          cue.offer!,
+                          color: color,
+                          flip: !limbIsLeft(cue.limb),
+                          pose: GlyphPose.ofCue(
+                            cue.progress,
+                            reducedMotion: _calmPause,
+                          ),
+                        ),
+                      ),
+                    ),
                   ),
               ],
             ),
           ),
-        ),
-      ),
-    );
-  }
-
-  Widget _styleHint(Limb limb, Size size) {
-    final at = _path(limb, _styleBeat, _styleNote ?? '', size).landing;
-    return Positioned(
-      left: at.x - 36,
-      top: at.y - 36,
-      child: IgnorePointer(
-        child: Container(
-          width: 72,
-          height: 72,
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            color: _mint.withValues(alpha: .1),
-            border: Border.all(color: _mint.withValues(alpha: .7)),
-          ),
-          padding: const EdgeInsets.all(23),
-          child: const Icon(Icons.open_with, color: _mint, size: 26),
         ),
       ),
     );
@@ -1020,7 +1094,6 @@ class _GardenPageState extends State<GardenPage>
 
   /// Everything a label used to say in play. The words stay for screen readers.
   Widget _playSignals(GardenSession session, Size size) {
-    final look = _turnLook(session);
     final countingIn = _transport!.countingIn;
     final untilStart =
         _transport!.secondsAt(_transport!.positionBeats) - _audio.nowSeconds;
@@ -1046,29 +1119,19 @@ class _GardenPageState extends State<GardenPage>
         child: Stack(
           fit: StackFit.expand,
           children: [
-            Positioned(
-              left: 0,
-              right: 0,
-              top: size.height * .62,
-              bottom: 0,
-              child: DecoratedBox(
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [
-                      look.color.withValues(alpha: 0),
-                      look.color.withValues(alpha: look.glow),
-                    ],
-                  ),
-                ),
-              ),
-            ),
             CustomPaint(
               painter: FeedbackPainter(
                 _marks,
                 _audio.nowSeconds,
                 reducedMotion: _reducedMotion,
+              ),
+            ),
+            CustomPaint(
+              painter: StrokeTrailPainter(
+                _touches.strokes.toList(),
+                now: _audio.nowSeconds,
+                reducedMotion: _calmPause,
+                flipOf: (stroke) => !limbIsLeft(stroke.limb),
               ),
             ),
             if (countingIn)
@@ -1240,28 +1303,43 @@ class _GardenPageState extends State<GardenPage>
                     style: const TextStyle(color: _cream, fontSize: 13),
                   ),
                   const SizedBox(height: 12),
+                  // A tap, then the four invitations, drawn just as a cue draws them.
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      for (final limb in [
-                        Limb.leftHand,
-                        Limb.rightHand,
-                        Limb.leftHand,
-                        Limb.leftHand,
+                      SizedBox(
+                        width: 20,
+                        height: 25,
+                        child: _limbIcon(Limb.leftHand, _mint),
+                      ),
+                      for (final kind in const [
+                        GestureKind.spin,
+                        GestureKind.wave,
+                        GestureKind.stomp,
+                        GestureKind.circle,
                       ])
                         Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 10),
+                          padding: const EdgeInsets.only(left: 18),
                           child: SizedBox(
-                            width: 20,
+                            width: 25,
                             height: 25,
-                            child: _limbIcon(limb, _mint),
+                            child: CustomPaint(
+                              painter: GestureGlyphPainter(
+                                kind,
+                                color: _mint,
+                                flip: false,
+                                size: 22,
+                                centred: true,
+                                pose: const GlyphPose(1, null),
+                              ),
+                            ),
                           ),
                         ),
                     ],
                   ),
                   const SizedBox(height: 12),
                   Text(
-                    'Tap near the matching ring.\nFour-arrow cues invite a short flick for style.\nTaps alone keep the party going.',
+                    'Tap near the matching ring.\nDrag along a drawn path for style.\nTaps alone keep the party going.',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: _cream.withValues(alpha: .6),

@@ -365,7 +365,7 @@ void main() {
     expect(find.text('01 / 02'), findsOneWidget);
 
     // AUTO starts the run from the same gesture, then plays through real input.
-    await tester.tap(find.byTooltip('AutoPlay · watch the party'));
+    await tester.tap(find.byKey(const ValueKey('autoplay')));
     await tester.pump();
     final game = tester.widget<GameWidget<GardenSceneGame>>(
       find.byType(GameWidget<GardenSceneGame>),
