@@ -1,0 +1,100 @@
+{
+ "$comment": "The owner's indoor-party opponent, eleventh round: a male dancer with lots of bling, facing away until Macron enters, chains swinging as he dances. Violet jacket over a guayabera is the approved default for this room's lead. The chains are drawn at rest here; their swing is planned as a beat-driven puppet layer, which the pipeline has not done yet.",
+ "id": "blinblin",
+ "family": "blinblin-v1",
+ "style": "party-pixel",
+ "description": "Indoor party opponent, the BlinBlin dancer: a confident adult man dripping in gold, who starts with his back to the room.",
+ "body": {
+  "preset": "slim-adult"
+ },
+ "pronouns": [
+  "he",
+  "him",
+  "his"
+ ],
+ "skin": "#B0713F",
+ "traits": "lean confident adult man of about forty-five, slow unimpressed half smile, layered gold chains",
+ "demeanor": "cool, unhurried and unimpressed, until he is impressed",
+ "garments": [
+  {
+   "id": "hair",
+   "shape": "puff",
+   "region": "hair",
+   "colour": "#1C1412",
+   "text": "short slicked-back black hair"
+  },
+  {
+   "id": "shirt",
+   "shape": "shirt-fitted",
+   "region": "shirt",
+   "colour": "#EFE4C8",
+   "text": "cream guayabera shirt, open at the neck"
+  },
+  {
+   "id": "jacket",
+   "shape": "waistcoat-fitted",
+   "region": "cloth",
+   "colour": "#3A1F6B",
+   "text": "long open midnight-violet jacket",
+   "secondaryMotion": "lag-1"
+  },
+  {
+   "id": "trousers",
+   "shape": "trousers",
+   "region": "trousers",
+   "colour": "#1E1B28",
+   "text": "slim dark trousers"
+  },
+  {
+   "id": "shoes",
+   "shape": "shoes-flat",
+   "region": "shoes",
+   "colour": "#D8C9A0",
+   "text": "polished two-tone cream and dark shoes"
+  }
+ ],
+ "motion": {
+  "set": "opponent-64",
+  "overrides": {}
+ },
+ "drawing": {
+  "noun": "man",
+  "fits": "hair, both shoes and both hands",
+  "look": "tall, lean, angular adult build, narrow face with a trimmed goatee, easy sly half smile with kind, amused eyes, warm brown skin, short slicked-back black hair, several thick gold rope chains of different lengths hanging over his chest down to his belly with one large gold medallion, gold rings on his fingers, a chunky gold wristwatch, gold hoop earring, cream guayabera shirt open at the neck, long open midnight-violet jacket, slim dark trousers, polished two-tone cream and dark shoes and thick dark ink outline",
+  "extra": "Both eyes are open. He is a grown man of about forty-five. The gold chains are big, bright and easy to see, lying on top of the shirt. ",
+  "sheet": {
+   "source": {
+    "image": "tool/art/references/blinblin/front-draft-f2.png"
+   },
+   "views": {
+    "front": {
+     "image": "tool/art/references/blinblin/front.png",
+     "description": "standing square and upright facing the viewer, feet a little apart, both arms relaxed and held a little away from the body, both open hands visible"
+    },
+    "back": {
+     "image": "tool/art/references/blinblin/back.png",
+     "description": "seen from directly behind, his back to the viewer, standing upright with feet a little apart, both arms relaxed, the plain back of his long jacket and the back of his head, a thin gold chain at the nape of his neck",
+     "look": "tall, lean, angular adult build, warm brown skin, short slicked-back black hair, thin gold chain at the nape of his neck, gold rings on his fingers, a chunky gold wristwatch, long midnight-violet jacket with a plain back and a centre vent, slim dark trousers, polished two-tone cream and dark shoes and thick dark ink outline"
+    }
+   }
+  },
+  "seed": 987000
+ },
+ "references": {
+  "mode": "source",
+  "sources": []
+ },
+ "targets": [
+  {
+   "room": "cool-crowd",
+   "atlas": "blinblin",
+   "out": "assets/art/ensemble/blinblin-v1.png",
+   "native": [
+    256,
+    320
+   ],
+   "pixelScale": 3
+  }
+ ],
+ "seedBase": 987000
+}
