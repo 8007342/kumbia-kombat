@@ -115,3 +115,23 @@ The owner listened blind to 30-second excerpts. Generated takes beat the synth i
 A and B, the ones the owner called old, were the synth in those rooms. Unblinded, the winners are Garden seed 51002 and lawn seed 52011.
 
 Durability, the same day: "make the results durable and push to remote work branches".
+
+## Ninth round, 2026-11-06: only cinematic text, the duet, the campaign order
+
+| Topic | Ruling | Owner's words |
+|---|---|---|
+| Text | Text appears only in the cinematic highlight, as a simple two-word message whose second word comes from the party and music theme | "ONLY TEXT FOR THE CINEMATIC HIGHLIGHT, where we get our simple 2 word messages", examples "MUCHO MOJO" "MUY SUAVE" "QUÉ FINO" |
+| Accents | The fist bump gets a sound accent, and the oil gulp gets one too | "with the sound accent with the fistbump, and some sound accent for the oil gulp" |
+| Lawn duet | The dancers end at different positions after their turns. Off turn they step slowly, playing with their skirts with one hand on the back, even switching sides. Mācron dances with one of them each turn | "dance and step slowly playing with their skirts with one hand on the back, even switching sides while they're off-turn", "have Mācron dance with one of the girs on each turn" |
+| Lawn cinematic | On success they keep dancing at the sides as Mācron dances between them, then reach down quickly: a kiss on each cheek at the same time. His big round eyes turn to smiling arcs, with a small blush | "the two girls giving Mācron a kiss on each cheek at the same time", "big round eyes turn to smiling arcs and a small blush" |
+| Cues | Moves start somewhere random-ish near the centre of the play area, curve to their spots matching the move's direction, and fade in | "take curves to their final spots that match the direction of the dance move" |
+| Tap area | Tap buttons sit slightly farther from their centre, with a little more variation in where taps appear and are required | "their location is great they just need a larger play area" |
+| WebGL | Smooth with sound in Chromium windows, as smooth as the host browser. The one window without sound was my muted measuring run | "as smooth as the host browser" |
+| Level names | Old level numbers are dropped. Levels go by "next level" as they get built | "let's ignore old level numbering, and just go by the organic \"next level\" nomenclature" |
+| Bathroom rush | A late level with more levels before it, and possibly a boss battle: defeat every earlier opponent in their hardest combo to switch places in the bathroom queue. It should stress the pipelines and specs to the maximum | "defeat every previous opponent in their hardest dance combo to switch places in the bathroom queue", "properly epic" |
+| Order | Possibly garden, then pool party, then bar, then into the indoor party | "perhaps we should show the pool party first, then the bar, so past the bar we walk into the indoor party scene" |
+| Music | New models make themes for the levels, and the old levels start being rewritten into high-definition compressed music | "start rewriting the old levels into high definition compressed music" |
+| Forge disk | `src_mb = 4096` committed | "yes, commit the 4 GB src_mb setting" |
+
+The owner approved "the changes and recommendations" in the same message. It is not clear which report that covers beyond the on-screen review, so `plan/gameplay-and-taps-pending.md` marks the touch report's decisions as needing confirmation.
+
