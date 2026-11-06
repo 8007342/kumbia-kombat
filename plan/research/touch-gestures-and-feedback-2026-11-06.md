@@ -18,9 +18,9 @@ Many pages failed to load (connection resets): Sekaipedia, Iwata Asks, the Unive
 
 - **The tap never waits.** A required tap is judged the instant the thumb lands, as it is today. Everything else is a decoration on that same touch, so a misread gesture can never cost a required note. [O, J]
 - **The last note of a phrase is the stage.** On the lawn, notes are 281 to 586 ms apart, which leaves no room for anything mid-phrase. Only the last note has room, because the next required tap is 3.5 to 4.3 seconds away. [C]
-- **The note tells you the move.** A hand note offers a wave (a semi-circle). A foot note offers a stomp (up and down). Any note can spin (sideways). Nothing to memorise.
+- **The note tells you the move.** A hand note offers a wave (a semi-circle). A foot note offers a stomp (up and down). A sideways drag spins. Each note offers one shape, shown as a glyph on the cue, so there's nothing to memorise. A stroke that falls short of the shape still earns what a plain flick earns.
 - **Each shape is a list of headings,** not a template match. The game knows which shape it offered, so it only asks "did this stroke do that?", and can light each leg of the shape as the thumb finishes it.
-- **Gestures score pass or nothing.** Timing precision stays with the tap. Every touch rhythm game I could check does some version of this.
+- **Gestures score pass or nothing.** Timing precision stays with the tap. Project Sekai, Arcaea, Cytus II and Phigros all judge their gesture notes more coarsely than their taps.
 - **The W needs its own moment.** My rough estimate is 1.1 to 2.5 beats at 160 BPM, so it spills over the start of the next call. The clean answer is a "break phrase", the opponent's solo answered by the player's, which changes the required chart. That's the owner's decision.
 - **Timing feedback uses the ring's own shape.** The approach ring already works like a clock. Early leaves it visibly unfinished and shrinking; late overshoots it with a tail, swelling outward; perfect closes it with a star. All three remain distinct without colour.
 - **Almost all gameplay text can go.** The list and replacements are in Part 6. What stays: the big end-of-level word (the owner's answer), errors, the wordmark, numbers, and hidden labels for screen readers.
@@ -86,7 +86,7 @@ All three levels get a mix of hands and feet, so wave and stomp both come up wit
 **Weak evidence, so treat these as a starting guess to measure.** The usual model is CLC ([Cao and Zhai 2007](https://dl.acm.org/doi/pdf/10.1145/1240624.1240850)): add up the time for each straight line, T = 68.8 · L^0.469, and for each curve; corners cost nothing of their own. The constants come from an excerpt of [Cao's later review](https://caoxiang.net/papers/fthci_GestureReview.pdf). I'm assuming L is in millimetres. [X] Its limits are:
 
 - It was fitted to **pens, not thumbs**.
-- It ranked gestures well (R² above .90) but [was off by 30%, and over-predicted practised unistrokes by more than 40%](https://gery.casiez.net/publications/Interact2011-vatavu.pdf). [X]
+- It ranked gestures well (R² above .90) but was off by 30%, and over-predicted practised unistrokes by more than 40%, per an excerpt crediting Vatavu and colleagues ([likely this paper](https://gery.casiez.net/publications/Interact2011-vatavu.pdf)). [X]
 - A later hand-gesture study reported that [corners do cost time](https://link.springer.com/chapter/10.1007/978-3-319-22698-9_38). [X]
 
 Scale: a phone 390 logical pixels wide is roughly 65-70 mm, so about 0.17 mm per pixel. [J] My range is the model's figure × 0.6 to × 1.3.
@@ -96,8 +96,8 @@ Scale: a phone 390 logical pixels wide is roughly 65-70 mm, so about 0.17 mm per
 | Spin: one sideways leg | 40 px, 7 mm | 171 ms | 100-220 ms | 0.2-0.5 | 0.3-0.6 |
 | Stomp: up and down | Two legs of 30 px, 5 mm | 292 ms | 175-380 ms | 0.4-0.8 | 0.5-1.0 |
 | Wave: semi-circle | 94 px path, 16 mm | 252 ms as a line; curves run slower | 150-500 ms | 0.3-1.1 | 0.4-1.3 |
-| Zigzag of three legs | Legs of 45 px, 8 mm | 534 ms | 320-700 ms | 0.7-1.5 | 0.9-1.9 |
-| **W: four legs** | Legs of 45 px, 8 mm | 712 ms | **430-930 ms** | 0.9-2.0 | **1.1-2.5** |
+| Zigzag of three legs | Legs of 45 px, 7.7 mm | 534 ms | 320-700 ms | 0.7-1.5 | 0.9-1.9 |
+| **W: four legs** | Legs of 45 px, 7.7 mm | 712 ms | **430-930 ms** | 0.9-2.0 | **1.1-2.5** |
 
 ### What this means [J]
 
@@ -109,7 +109,7 @@ Scale: a phone 390 logical pixels wide is roughly 65-70 mm, so about 0.17 mm per
 | Garden and bar, mid-phrase | The flick stays where it is (notes 3 and 7). Longer shapes on the last note only, to keep one simple rule |
 | Later levels | The owner wants tempo to keep rising. Time in beats grows with tempo, so the W only gets harder |
 
-Running into the next call costs nothing in score. It does cost attention, because the call's first note arrives 1.25 beats after the last response note, and its cue appears 2 beats early. So the player is watching a thumb while the next call begins. Skilled players can choose that for a stomp. A W takes up about the first three of the call's eight notes' worth of time, which is why it needs the break phrase (Part 5).
+Running into the next call costs nothing in score. It does cost attention, because the call's first note arrives 1.25 beats after the last response note, and its cue appears 2 beats early. So the player is watching a thumb while the next call begins. Skilled players can choose that for a stomp. A W with a 3-beat limit runs through the call's first two notes and reaches its third, which is why it needs the break phrase (Part 5).
 
 The same problem applies to the opponent's demonstration, and is worse. A W shown on the call's last note runs into the player's first required taps. **The opponent can't show a W in the normal chart without overlapping the player's turn.** The owner's fourth round accepted a spin overflowing the turn, but a spin doesn't have to be read and copied.
 
@@ -123,10 +123,10 @@ The same problem applies to the opponent's demonstration, and is worse. A W show
 | **Arcaea** | Arcs are held and followed | Tap: [shiny Pure ≤25, Pure ≤50, Far ≤100 ms](https://arcaea.miraheze.org/wiki/Gameplay_and_scoring), with [early or late named inside the grade](https://en.namu.wiki/w/%ED%8C%90%EC%A0%95(%EB%A6%AC%EB%93%AC%20%EA%B2%8C%EC%9E%84)). [Arcs only Pure or Lost](https://arcaea.fandom.com/wiki/Scoring) | X | Precision for taps, pass or fail for paths |
 | **Cytus II** | [Drag: head note with arrow, small follow-up notes. Flick: tap then horizontal movement](https://cytus.fandom.com/wiki/Cytus_II). Flicks are held back to harder difficulties | [Drag and flick only Perfect or Miss](https://en.namu.wiki/w/Cytus%20II) | X | New shapes appear only at higher difficulty |
 | **Phigros** | Tap, hold, flick and drag | [Perfect ±80 ms, Good ±160, Bad ±180. Flick and drag only Perfect or Miss](https://phigros.fandom.com/wiki/Game_Mechanics). One source says you ["don't have to worry too much about timing"](https://en.namu.wiki/w/Phigros/%EC%8B%9C%EC%8A%A4%ED%85%9C) on flicks. Sources disagree on drag | X | Windows very close to ours; generous for a shipped game |
-| **Deemo** | [Yellow slide notes register only by motion; a still finger doesn't count. Top grade shows an orange glow](https://deemo.fandom.com/wiki/Gameplay) | Tiers by closeness | X | Colour and glow can carry the grade |
+| **Deemo** | [Yellow slide notes register only by motion; a still finger doesn't count. Top grade shows an orange glow](https://deemo.fandom.com/wiki/Gameplay) | Tiers by closeness | X | A glow can mark the top grade |
 | **VOEZ** | [Swipe notes: large blue arrow, swipe that way. A wiki says a tap or flick counts as a hit, so a swipe can't be missed by flicking](https://en.namu.wiki/w/VOEZ/%EC%8B%9C%EC%8A%A4%ED%85%9C) | Pre-release: Perfect, Great, Ok, Miss | X | Forgiving |
 | **osu!** (nothing specific to osu!droid was found) | [Slider: tap the head, then keep inside a follow circle larger than the ball](https://osu.ppy.sh/wiki/en/Gameplay/Hit_object/Slider) | 300, 100, 50 | X | The tolerance around a path is bigger than what's drawn |
-| **Muse Dash** | Two lanes | [Perfect about ±50 ms, Great to about ±130 in a fan mod's measure](https://github.com/Azn9/MDAccuracyIndicatorMod). [Early/late shown on Greats, never on Misses; finer grading is opt-in](https://steamcommunity.com/sharedfiles/filedetails/?id=2331971286) | X | Show early and late only when they're useful. Don't explain a miss |
+| **Muse Dash** | Two lanes | [Perfect about ±50 ms, Great to about ±130 in a fan mod's measure](https://github.com/Azn9/MDAccuracyIndicatorMod). Early/late shown on Greats, never on Misses, and finer grading is opt-in (excerpts from [a Steam guide](https://steamcommunity.com/sharedfiles/filedetails/?id=2331971286) and [the mod's page](https://github.com/Azn9/MDAccuracyIndicatorMod); I couldn't separate which said what) | X | Show early and late only when they're useful. Don't explain a miss |
 | **Elite Beat Agents** | [Ring closes on a marker. Phrase markers: tap the head, hold and follow a ball along a trail; an arrow marks a turnaround. Spin markers fill a meter](https://strategywiki.org/wiki/Elite_Beat_Agents/Gameplay) | 300, 100, 50 | X | A moving ball shows the speed as well as the path. Best teaching model for a trace |
 | **Project Diva f (Vita)** | [Star notes: swipe anywhere on the screen. The note's shape names the input](https://projectdiva.wiki/wiki/Introduction_to_Project_DIVA). Players [couldn't change it, and a help item allowing any button capped the rank](https://gamefaqs.gamespot.com/vita/668736-hatsune-miku-project-diva-f/answers/367661-can-you-change-from-the-touch-screen-controls). In Mega Mix+, [early/late is a subtle lighting tilt that players find hard to notice](https://steamcommunity.com/app/1761390/discussions/0/3422185980116444483) | Cool, Fine and lower | X | Location-free swipes work. Subtle early/late cues fail |
 | **Rhythm Heaven (DS)** | Tap, hold, flick, slide. [The team tried an edge tap first, judged it too hard, moved to the flick, and found the sound gave a good sense of timing](https://iwataasks.nintendo.com/interviews/ds/rhythm-heaven/0/2/). [About 2-3 months of research and 6 of adapting](https://en.wikipedia.org/wiki/Rhythm_Heaven_(video_game)), from a garbled excerpt | Reviews: [picky about registering a flick; movements under a certain speed don't count; "is your rhythm off, or did the game not pick up your flick?"](http://www.honestgamers.com/12135/ds/rhythm-heaven/review.html) | X | **The strongest warning here.** Players must be able to tell "the game didn't hear me" from "I was off" |
@@ -143,6 +143,7 @@ The same problem applies to the opponent's demonstration, and is worse. A W show
 3. **Tolerance is bigger than what's drawn.** osu!, Wizards Unite and Sekai's leaning diagonals.
 4. **Complex gestures arrive with higher difficulty,** not all at once.
 5. **The failure to avoid is Rhythm Heaven DS's:** a silent non-registration that looks like a timing error.
+6. **Reading at speed.** At a 281 ms gap no one reads a word, and I found no study of grade marks at speed. What's shipped is short-lived shapes near the input, and sound carrying the rest. That's the basis for the marks in Part 6.
 
 I found no game that asks for a W-like trace from a thumb on a fixed zone in a rhythm game at 160 BPM. **The W has no precedent I can point to.** Elite Beat Agents' turnarounds, with a stylus on a dedicated marker, are the closest.
 
@@ -152,7 +153,7 @@ The owner wants players to "improve by feel". The research I found is adjacent, 
 
 | Finding | Source | Grade |
 |---|---|---|
-| Tapping to sound is more accurate than tapping to flashes. **Moving visuals pace far better than static flashes** | [Repp and Su review](https://link.springer.com/article/10.3758/s13423-012-0371-2), [Comstock et al.](https://www.researchgate.net/publication/325927835_Sensorimotor_synchronization_to_auditory_and_visual_rhythms_behavioral_and_neural_differences) | X |
+| Tapping to sound is more accurate than tapping to flashes. **Moving visuals pace far better than static flashes** | [Repp and Su's review](https://link.springer.com/article/10.3758/s13423-012-0371-2), [a study of auditory and visual rhythms](https://www.researchgate.net/publication/325927835_Sensorimotor_synchronization_to_auditory_and_visual_rhythms_behavioral_and_neural_differences) | X |
 | Learning from visual feedback fell away more when feedback was removed; audio-based learning lasted better. The authors say modality and information type were confounded earlier | [Bimanual coordination study](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4764518/) | X, not rhythm tapping as such |
 | Feedback should fade so learners build their own timing | [A study guide](https://fiveable.me/motor-learning-control/unit-13/timing-rhythm-movement/study-guide/c7p0yizjBMUTcWF5), a general claim | X, weak |
 | Keep the signed error for feedback, don't silently change windows | [Developer article](https://dev.to/skywalker_2de7de5f97df567/building-fair-rhythm-game-judgement-windows-in-javascript-1og9) | X, weak |
@@ -202,19 +203,22 @@ Other reasons:
 | A leg starts | After 18 px of travel | Flutter's slop |
 | Heading | Four 90° sectors, so ±45° around a direction, with hysteresis at the boundary | Sekai accepts leaning swipes [X] |
 | A new leg | The direction changes by more than 60° and holds for 12 px | Ignores thumb wobble |
+| Credit moment | **As soon as the shape is complete.** Lifting isn't required | Today credit waits for the lift, so a thumb held a moment too long fails silently |
 | Spin | One sideways leg, at least 24 px, allowed to curve | A thumb moving sideways swings in an arc, so it mustn't be judged as a straight line |
 | Stomp | Two opposite vertical legs, each at least 18 px. Either order | Up first is natural from a foot zone near the bottom |
 | Wave | Heading keeps turning the same way through at least 120°, path at least 48 px. Either rotation | Must exceed the thumb's natural curve when moving sideways, which I'd guess is 30-60° |
-| W or zigzag | Four alternating vertical legs with net sideways travel. Either sideways direction | Left-handed and one-handed players |
-| Deadline | In **beats** from the accepted tap: spin as today's 400 ms, stomp and wave 2 beats, W 3 beats | |
+| Vee | Two legs: out on a diagonal, and back | For the Charleston kick candidate |
+| Shake | Four alternating vertical legs. Sideways drift doesn't matter | For the bar's candidate |
+| W | Four alternating vertical legs with net sideways travel of at least 48 px. Either sideways direction | Left-handed and one-handed players |
+| Deadline | From the accepted tap. Mid-phrase flick or spin: today's 400 ms. On a last note, in **beats:** spin, stomp, wave and vee 2, shake 2.5, W 3 | Scales with tempo; a slow drag gets real time on the last note |
 | Stops being tracked | Pointer up, cancel or deadline | |
 
 ### Thumb reach
 
 | Evidence | Grade |
 |---|---|
-| [Of 780 people touching a phone: 49% one-handed, 36% cradled, 15% two hands. People change grip often](https://www.uxmatters.com/mt/archives/2014/09/insights-on-switching-centering-and-gestures-for-touchscreens.php) (Hoober, 2013, figures quoted by several secondary sources) | X |
-| Trudeau et al.: [sideways-swinging thumb movement (adduction and abduction) beat bending movement (flexion and extension). Outward beat inward. Smaller phones did better](https://journals.sagepub.com/doi/10.1177/0018720811423660). This was reciprocal tapping with 20 people, not drawing | X |
+| [Of 780 people touching a phone: 49% one-handed, 36% cradled, 15% two hands](https://medium.com/@tbrekanayake/how-do-users-really-hold-mobile-devices-326f4dbb4c8f). [People change grip often](https://alistapart.com/article/how-we-hold-our-gadgets/) (Hoober, 2013, quoted by secondary sources; the original wasn't read). These are everyday phone uses, not games | X |
+| Trudeau et al.: [sideways-swinging thumb movement (adduction and abduction) beat bending movement (flexion and extension). Outward beat inward. Smaller phones did better](https://www.microsoft.com/en-us/research/publication/thumb-motor-performance-varies-by-movement-orientation-direction-and-device-size-during-single-handed-mobile-phone-use/). This was reciprocal tapping with 20 people, not drawing | P, abstract only |
 | Trudeau and Dennerlein: [deep thumb flexion is the main cause of poor performance. Frequent targets should sit away from the base of the thumb](https://stacks.cdc.gov/view/cdc/224411) | X |
 | [Thumb reach is predictable from device size, grip and hand](https://www.researchgate.net/publication/266655612_Modeling_the_functional_area_of_the_thumb_on_mobile_touchscreen_surfaces) (Bergstrom-Lehtovirta and Oulasvirta, 2014), and [comfortable reach differs from maximum reach](https://nhenze.net/uploads/Fingers%E2%80%99-Range-and-Comfortable-Area-for-One-Handed-Smartphone-Interaction-Beyond-the-Touchscreen.pdf) | X, **no millimetre figures obtained** |
 | Vibration: [no iOS Safari version supports it](https://caniuse.com/mdn-api_navigator_vibrate). Haptics can't carry feedback | X |
@@ -254,7 +258,7 @@ Lowest first. Each rung is a shape; what it means comes from the limb and the le
 | Rung | Gesture | Dance meaning | Who | Where | Art needed |
 |---|---|---|---|---|---|
 | 0 | **Tap** on a required note | Limb move | Everyone | All notes | Exists |
-| 1 | **Optional tap** (grace note) | Small clap or stamp | Anyone | Garden and bar's low tiers only. **None on the lawn** per the progression report's table | 0, plus small sounds |
+| 1 | **Optional tap** (grace note) | Small clap or stamp | Anyone | The garden, and the bar with fewer slots as it speeds up. **None on the lawn** per the progression report's table | 0, plus small sounds |
 | 2 | **Sideways drag** (today's flick) | **Spin.** Left or right chooses the way | Anyone | Any note already eligible | **0 frames for Mācron** (`spin_front`, `profile`, `spin_rear`), opponents use `turn_in`, `turn_out` |
 | 3 | **Up and down,** from a foot note | **Stomp** | Warmed-up players, tier 1+ | Last note | Mācron 2 (knee up, impact), opponents 2 each. Could reuse `left_foot`, `right_foot` for the first pass |
 | 3 | **Semi-circle,** from a hand note | **Hand wave** | Warmed-up players, tier 1+ | Last note | Mācron 2-3 per hand, opponents 2-3 |
@@ -264,7 +268,11 @@ Lowest first. Each rung is a shape; what it means comes from the limb and the le
 
 **Why a sideways drag and a flick are the same input.** Physically they're one movement at different speeds. If flick and drag were separate, players would have to guess which one they did. So every rung 2 stroke is the same recognizer: a short fast one and a slow one both count, as long as they end before the deadline.
 
-**Today's up and down flicks** on mid-phrase notes still work and still earn credit. Up-and-down *flicks* give an ornament. Up-and-down *both ways* gives a stomp.
+**Today's up and down flicks** on mid-phrase notes still work and still earn credit. A single upward stroke is a flick with an ornament; up then down, where a stomp is offered, is the stomp.
+
+**A note only ever offers one shape.** A style move replaces that limb's default on that note. So the garden's arrastre (a long sideways stroke on a foot note) and a spin never compete: a sideways stroke performs whatever the glyph showed.
+
+**The ladder falls back.** A stroke that doesn't complete the offered shape but travels 24 px earns the plain flick. Only a stroke that doesn't reach even that crumbles to nothing.
 
 **Rule for animations ("Animations match the gesture").** Mācron's tap move starts at the press, as now. Each finished leg triggers its pose, so a W produces four visible beats of motion. On success the pose resolves into the finish. On failure he simply finishes his tap move. [J]
 
@@ -315,12 +323,13 @@ At 160 BPM four beats is 1,500 ms, which covers my W range. Lindy Hop's breakawa
 | Next required tap comes during a gesture | A second thumb's tap is judged as normal. With one thumb, lifting ends the gesture. A partly finished gesture gets nothing, and no penalty |
 | Grading | **Pass or nothing.** No "good" and "perfect" gesture. Timing precision belongs to the tap. Pattern 1 above |
 | Spin direction | Free, as today, and it chooses the look and the ornament |
-| Wrong shape on an offered note | A sideways drag on a stomp offer is still a plain flick if the note qualifies, and earns the flick reward. Sekai's example: wrong answers get a smaller reward, not a miss |
+| Wrong or unfinished shape | Earns the plain flick if it travelled 24 px and the note qualifies, as last notes always do. Sekai's example: wrong answers get a smaller reward, not a miss |
 | Points | Placeholder for the owner: 100 for a spin, as now; 150 for stomp or wave; 300 for style moves; 500 for the W. Never needed for clearing, the top grade or a gate |
 | Replay | Same dedupe key as flicks. The progression report's `_phraseIdentity` bug should be fixed first, or a recovering player's gesture gets no credit |
 | Style chain | Extend "different direction" to "different shape" |
-| Party | A success drives the crowd reactions the owner listed: points, cheers, whistles, clapping. It raises Sway under the existing rule. Crowd pointing is reserved for this and for uninterested-to-interested |
-| Ledger | Gestures live in their own small record that outlives `_judge`, fixing the late-flick bug in Part 1 |
+| Party | A success drives the crowd reactions the owner listed: cheers, whistles, clapping. Crowd pointing is reserved for this and for uninterested-to-interested. It only ever adds to the room: a failed gesture doesn't cool it, so the room stays honest as the meter |
+| Full swing | **Open question,** decision 8. The owner wants full swing for skilful players only. The older rule says no top grade may depend on optional play. I'd let the room reach full swing through excellent taps **or** gestures, so gestures speed the climb but ignoring them doesn't lock it |
+| Ledger | Gestures live in their own small record that outlives `_judge`, fixing the late-flick bug in Part 1. The `Listener` adds a pointer-move handler, and the two code paths (`flourish`, `flourishGesture`) become one |
 
 **A test can prove the safety rule:** the same taps, with gestures on, off, succeeded or failed, must produce the same `hits`, `combo`, `progress`, tier sequence and elapsed time. The progression report already calls for this.
 
@@ -393,9 +402,9 @@ The loader should reject:
 **At our tempos** [C, J]:
 
 - The lawn's fastest notes are 3.6 per second. A bright per-note flash can pass 3 per second, so it relies on the **area** escape. A 58 px ring is about 2,600 px². Even a 120 px burst is about 11,300 px². Both are far under the limit.
-- WCAG's pixel figure assumes a desktop setup, and a phone is held closer. I'd keep the combined flashing area under about 20,000 px² as a margin. That's my number, not WCAG's.
+- WCAG says CSS pixels remain a consistent basis on a phone, but that it [can't account for viewing distance, and that people sitting closer may be affected by flashes that technically pass](https://www.w3.org/WAI/WCAG22/Understanding/three-flashes-or-below-threshold.html). [P] Phones are held close, so I'd keep the combined flashing area under about 20,000 px² as a margin. That's my number, not WCAG's.
 - The beat itself at 160 BPM is 2.67 per second. A whole-screen pulse on every beat stays under 3. **Eighth notes would be 5.3, which fails.** So full-room light can't pulse faster than the beat, and no red.
-- **Trust a check, not arithmetic,** before release. W3C points to [PEAT](https://www.w3.org/WAI/WCAG22/Understanding/three-flashes-or-below-threshold.html) for this.
+- **Trust a check, not arithmetic,** before release. W3C lists [PEAT, and says tools can analyse a screen capture](https://www.w3.org/WAI/WCAG22/Understanding/three-flashes-or-below-threshold.html). [P] A capture of the fullest party at 160 BPM is the case to test.
 
 ### Colour-blind check of today's colours [C]
 
@@ -460,58 +469,59 @@ From `lib/gameplay/garden_page.dart` unless noted. [O]
 
 | Line | Text | When | Replacement |
 |---|---|---|---|
-| 536 | `PERFECT` | Tap | Star on closed ring |
-| 538 | `GOOD · a little early` | Tap | Short ring, shrinking |
-| 540 | `GOOD · a little late` | Tap | Tailed ring, swelling |
-| 543 | `KEEP THE PULSE` | Stray tap | Dent only |
-| 609-612 | `¡PIZAZZ!`, `¡STYLE ×n!` | Flick | Spark stream. Chain shown by more sparks and guests. Sound |
+| 552 | `PERFECT` | Tap | Star on closed ring |
+| 554 | `GOOD · a little early` | Tap | Short ring, shrinking |
+| 556 | `GOOD · a little late` | Tap | Tailed ring, swelling |
+| 559 | `KEEP THE PULSE` | Stray tap | Dent only |
+| 611-612 | `¡PIZAZZ!`, `¡STYLE ×n!` | Flick | Spark stream. Chain shown by more sparks and guests. Sound |
 | 200 | `level.copy.resetLine`: `BACK TO THE GATE` | Reset | Mācron's walk back already shows it |
 | 202 | `FIND THE GROOVE` | Failed phrase | Mācron's recover pose, opponent repeats |
 | 204 | `MOJO +` | Passed phrase | Room warms; a guest reacts |
-| 758 | `K / K` | Header | Keep as the small logo, or drop in play |
-| 771 | `KUMBIA KOLISEUM` | Header | Drop in play; keep on title |
-| 781 | `AUTOMATIC RUN` | Autoplay used | Robot icon stays lit |
+| 759 | `K / K` | Header | Keep as the small logo, or drop in play |
+| 772 | `KUMBIA KOLISEUM` | Header | Drop in play; keep on title |
+| 782 | `AUTOMATIC RUN` | Autoplay used | Robot icon stays lit |
 | 791 | Tooltip `Pause` | Header | Keep as tooltip and screen-reader label; not shown on a phone |
 | 799, 1232 | `01 / 05`, `01 / THE GARDEN` | Header, cover | N doors or lamps, one lit per room; number OK |
 | 808, 811 | `AutoPlay`, tooltips | Button | Keep for screen readers |
-| 824 | `AUTO` | Under robot icon | Drop |
-| 843 | `MOJO`, `GRACE` | Top bar | **Removed with the progress bar,** per the owner |
-| 853 | `n PIZAZZ` | Top bar | Small sparkle plus number, or end only. Owner's call |
-| 862-875 | Progress bar | Top | Removed. The room is the meter |
-| 881 | `FULL SUPPORT · n FINISH PHRASES` | Tier 4 | Room at peak; one lamp per finish phrase, or none |
-| 983 | `FLICK FOR STYLE` | After tap | Glyph and guide |
-| 1020-1026 | `READY n` | Count-in | Four pulsing beat lamps, with the count-in clicks |
-| 1022 | `FEEL THE PULSE` | Intro | Zones pulse to the beat |
-| 1023 | `WATCH THE CALL` | Call | Spotlight on opponent, zones dim, diamond cues (already distinct) |
-| 1026 | `YOUR TURN` | Response | Opponent's existing `invite` pose, spotlight to Mācron, zones brighten, ring cues |
-| 1025 | `PEAK GROOVE · n TO GO` | Tier 4 | Room at peak, finish lamps |
-| 1053 | `n STEPS IN FLOW` | Combo | Trail of small lights at Mācron's feet, or sparks growing |
-| 1071 | `RESPECT EARNED. KEEP DANCING.` | Clear | Opponent's `approve` and the room |
-| 1108 | `LOOK. LISTEN. REPEAT.`, `TAP WHEN THE ICON LANDS.` | Bottom | Drop. Cues teach it |
-| 1141, 1206 | `clearedTitle`: `MUCHO MOJO.` | Clear | **Stays.** The owner's answer: the big word is a consistent theme |
-| 1152 | `OK, YOU COOL.` | Clear | Opponent nods, or a speech bubble's icon. The owner may want it spoken. Ties to the spec's text |
-| 1167 | `exitLine`: `OUT TO THE LAWN` | Exit | The camera and path already do this |
-| 1191 | `RESPECT EARNED`, `TAKE A BREATH`, `A LITTLE ROBOT. A BIG NIGHT.` | Cover | Drop; title screen has art. Pause: a pause icon |
-| 1208 | `STILL GROOVIN'.` | Pause | Pause icon |
-| 1208 | `KUMBIA KOMBAT` | Title | **Stays:** wordmark |
+| 825 | `AUTO` | Under robot icon | Drop |
+| 843 | `MOJO`, `SWAG`, `GRACE` | Top bar | **Removed with the progress bar,** per the owner |
+| 854 | `n PIZAZZ` | Top bar | Small sparkle plus number, or end only. Owner's call |
+| 866-877 | Progress bar | Top | Removed. The room is the meter |
+| 882 | `FULL SUPPORT · n FINISH PHRASES` | Tier 4 | Room at peak; one lamp per finish phrase, or none |
+| 984 | `FLICK FOR STYLE` | After tap | Glyph and guide |
+| 1016 | `READY n` | Count-in | Four pulsing beat lamps, with the count-in clicks |
+| 1018 | `FEEL THE PULSE` | Intro | Zones pulse to the beat |
+| 1019 | `WATCH THE CALL` | Call | Spotlight on opponent, zones dim, diamond cues (already distinct) |
+| 1023 | `YOUR TURN` | Response | Opponent's existing `invite` pose, spotlight to Mācron, zones brighten, ring cues |
+| 1022 | `PEAK GROOVE · n TO GO` | Tier 4 | Room at peak, finish lamps |
+| 1054 | `n STEPS IN FLOW` | Combo | Trail of small lights at Mācron's feet, or sparks growing |
+| 1072 | `RESPECT EARNED. KEEP DANCING.` | Clear | Opponent's `approve` and the room |
+| 1110-1111 | `LOOK. LISTEN. REPEAT.`, `TAP WHEN THE ICON LANDS.` | Bottom | Drop. Cues teach it |
+| 1142, 1208 | `clearedTitle`: `MUCHO MOJO.` | Clear | **Stays.** The owner's answer: the big word is a consistent theme |
+| 1153 | `OK, YOU COOL.` | Clear | Opponent nods, or a speech bubble's icon. The owner may want it spoken. Ties to the spec's text |
+| 1168 | `exitLine`: `OUT TO THE LAWN` | Exit | The camera and path already do this |
+| 1193-1197 | `RESPECT EARNED`, `TAKE A BREATH`, `A LITTLE ROBOT. A BIG NIGHT.` | Cover | Drop; title screen has art. Pause: a pause icon |
+| 1210 | `STILL GROOVIN'.` | Pause | Pause icon |
+| 1211 | `KUMBIA KOMBAT` | Title | **Stays:** wordmark |
 | 1227 | `clearedClaim`: `THE GATE IS YOURS.` | Clear | Gate opens on screen |
 | 1229 | `Your groove will wait for you.` | Pause | Drop |
-| 1241 | `n PERFECT · n PIZAZZ` | Clear | Star plus number, sparkle plus number |
+| 1242 | `n PERFECT · n PIZAZZ` | Clear | Star plus number, sparkle plus number |
 | 1251 | `invitation`: `Mirror the rhythm...` | Cover | Drop; opponent's gesture |
 | 1277 | `Tap anywhere in the matching zone...` | Cover | Drop; a silent looping demo of a tap, maybe |
-| 1310-1316 | `ENTRA AL RITMO >`, `SEGUIMOS >`, `OTRA VUELTA >`, `WAKING THE MUSIC…`, `FOLLOW THE GROOVE` | Button | Play icon, resume icon, replay icon, spinner, walking icon. Keep the words as hidden labels |
-| 1336, 1367 | `+/- CALM CAMERA` | Option | Icon toggle with hidden label. See below |
-| 1345 | `nextLine`, `A KUMBIA KOLISEUM NIGHT` | Cover | Drop; next-room lamp |
-| 1007 | `semanticsLabel: limb.name` | Hidden | Keep, and say it properly: "left hand" |
-| 674, 239, 280, 376, 443-445; `garden_scene.dart` 121 | Load and sound-permission errors | Failure | **Stays as text,** with an icon. A failure explanation can't be drawn |
+| 1312-1319 | `ENTRA AL RITMO >`, `SEGUIMOS >`, `OTRA VUELTA >`, `WAKING THE MUSIC…`, `FOLLOW THE GROOVE` | Button | Play icon, resume icon, replay icon, spinner, walking icon. Keep the words as hidden labels |
+| 1335, 1367 | `+/- CALM CAMERA` | Option | Icon toggle with hidden label. See below |
+| 1346 | `nextLine`, `A KUMBIA KOLISEUM NIGHT` | Cover | Drop; next-room lamp |
+| 1005 | `semanticsLabel: limb.name` | Hidden | Keep, and say it properly: "left hand" |
+| 239, 280, 376, 445, 674; `garden_scene.dart` 121 | Load and sound-permission errors | Failure | **Stays as text,** with an icon. A failure explanation can't be drawn |
 | `lib/landing/landing_page.dart` | `KumbiaKombat` | Unused by `main.dart` | No change |
+| `lib/main.dart`, `web/index.html` | App title, page title, description | Browser tab, sharing | **Stays.** Not shown in play |
 | `levels/*.json`, `levels/index.json` | `invitation`, `clearedClaim`, `resetLine`, `exitLine`, `nextLine`, `metric` label | | Stop showing them. They may stay as hidden labels |
 
 ### What must stay as text
 
 | What | Why | Evidence |
 |---|---|---|
-| Hidden labels on all controls and cues | Screen readers need them. The page can look text-free and still be labelled. Only 1 `Semantics` widget and one `semanticsLabel` exist today [O], so **this needs adding** | Xbox 107; [J] |
+| Hidden labels on all controls and cues | Screen readers need them. The page can look text-free and still be labelled. Only 1 `Semantics` widget and one `semanticsLabel` exist today, and visible `Text` is doing the rest of that job implicitly [O, J]. **Removing the text removes those labels, so they must be added in the same change** | Xbox 107; [J] |
 | Load, audio-permission and connection errors | Only words can say "tap to allow sound" | [J] |
 | The big word at the end of a level | Owner's answer, 2026-11-06 | [O] |
 | The wordmark, and numbers | Logo, not message. Digits read in any language | [J] |
@@ -520,6 +530,8 @@ From `lib/gameplay/garden_page.dart` unless noted. [O]
 | Leaderboard and names | Player-created | [O, spec] |
 
 Also, an option to turn on word labels would cost little, for players who struggle with icons. Owner's call. The calm-camera toggle should start from the player's system setting.
+
+**One risk from removing the bar and the words together.** With no bar, no "N TO GO" and no labels, the room alone must say how far a player has come. Tier 4's finish phrases are the place where this matters most, which is why the table keeps small finish lamps there. If first-time players can't tell, those lamps are the cheap fix. Test it.
 
 ## Part 7: rules this overturns or changes
 
@@ -534,13 +546,14 @@ Also, an option to turn on word labels would cost little, for players who strugg
 | "Optional adornments never supply required taps, tier credit or clearance" | `plan/input-crowd-research.md` | **Keep** | |
 | "Pizazz remains 100 per newly credited adornment" | Same, and the spec | **Must change** if shapes pay more | Owner's call on values |
 | Style chain counts directions | Same, `garden_session.dart` | **Extend** | Counts shapes |
-| "Minimal approvals (for example 'OK, you cool')" | Spec line 124 | **Change** | Pose or sound; the title of that requirement already agrees |
+| "Minimal approvals (for example 'OK, you cool')" | Spec line 125 | **Change** | Pose or sound; the title of that requirement already agrees |
 | "Charts and judgment stay fixed" | `plan/party-overhaul-research.md` line 59 | **Reworded earlier to "required notes"** for optional taps. Break phrases break even that | Only if the owner approves breaks |
 | "Chart variants must preserve note count" | `FightChart.validate` | **Must change** for break phrases only | |
 | One-thumb controls | `openspec/specs/kumbiakombat/spec.md`, rhythm-combat | **Keep for required play** | Every shape can be done with one thumb, though two may be easier for the W |
 | `requireFrames` reserves accent drawings from grooves | `dance_grammar.dart` | **Extend** | Also to gestures, per the progression report |
-| Level `copy` fields required by the loader | `level_definition.dart` line 447 | **Change** | Mostly optional, hidden labels |
+| Level `copy` fields required by the loader; `exitLine`, `nextLine` required too | `level_definition.dart` lines 444-447, 752-753 | **Change** | Mostly optional, hidden labels |
 | Widget tests assert on text | `test/widget_test.dart`, `test/garden_lifecycle_test.dart`, `test/level_fake_test.dart`, `test/level_registry_test.dart` | **Must change** | Find by key or hidden label |
+| No top grade or required gate depends on dares | Progression report | **Keep,** subject to decision 8 | Full swing is the case to settle |
 | Roadmap item 09, "color-independent cues" | `plan/roadmap.md` | **Advanced** | This design does it, pending the device pass |
 
 ## Decisions for the owner
@@ -552,6 +565,7 @@ Also, an option to turn on word labels would cost little, for players who strugg
 5. **`OK, YOU COOL.`:** does it stay as a word, become a nod, or become a voice?
 6. **Pizazz during play:** a number on screen, or end of level only?
 7. **Should a simple-moves option** let any flick stand in for a shape, with full reward? Xbox 107 argues for it. It's cheap. I'd say yes.
+8. **Does full swing need gestures?** I'd say no: excellent taps or gestures both get there. Otherwise "ignoring costs nothing" isn't quite true.
 
 ## What's weak in this report
 
