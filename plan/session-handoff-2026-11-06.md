@@ -1,5 +1,9 @@
 # Session handoff, 2026-11-06
 
+**Latest, end of 2026-11-06 session.** All on `work/1841-toda`; not merged to `game`. Merged and tested: cinematic titles, text-free play, sound accents, curved cues, taps near rings, VCR pause, lenient crowd scoring, gulp redraw, lawn duet and kiss, garden layers. Agents' branches `work/1842` to `work/1848` are all included.
+
+Next: owner plays the build and judges the accents, gulp glass, dancers' look in the close-up, and the second lawn ladder. Music winners: Garden 51002, lawn 52011, bar 55005, indoor party 53010. Then: level order and its speed dip, indoor party defaults and one more plate try (`plan/levels/next-level-plan.md`), slow party-up by tier for every player (layers only move at full swing), rendered music in the game (needs phones), and layers for other rooms. `src_mb = 4096` is committed and takes effect at the next launch; check `df` then. Listening page restore: `plan/music-themes-2026-11-06.md`.
+
 **Update, later on 2026-11-06.** The relaunch checks and the music pilot are done. Results: `plan/music-pilot-2026-11-06.md`. Checklist: `plan/relaunch-report-2026-11-06.md`, delivered to macuahuitl-fedora over Remote Control once it appeared in `ListAgents`, and answered: no restart needed. It will say when a relaunch would bring the XL base pin. Next are the art items. Music stage 3 needs the owner's phones.
 
 **Seen on screen, Garden on autoplay, from 4 frames a second, muted:**
