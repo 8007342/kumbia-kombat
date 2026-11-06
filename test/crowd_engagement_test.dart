@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'dart:math' as math;
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:kumbia_kombat/gameplay/crowd_interest.dart';
@@ -57,6 +58,25 @@ final _failing = _Player((phrase, note, session) {
 /// Everything right, until one dropped note in the middle of the run.
 final _oneSlip = _Player(
   (phrase, note, _) => phrase == 2 && note == 3 ? null : 0,
+);
+
+/// A good player's run: one dropped note, and timing that wanders on one phrase.
+final _goodRun = _Player((phrase, note, _) {
+  if (phrase == 1 && note == 3) return null;
+  if (phrase == 3) return note.isEven ? 150 : -150;
+  return 0;
+});
+
+/// Starts with two scraped phrases, then settles down.
+final _recovering = _Player((phrase, note, session) {
+  if (phrase >= 2) return 0;
+  if (note >= session.requiredHits) return null;
+  return note.isEven ? 140 : -140;
+});
+
+/// Fails the opening phrase, then plays cleanly from there.
+final _failsThenRecovers = _Player(
+  (phrase, note, session) => phrase == 0 && note >= 2 ? null : _lagged,
 );
 
 class _Run {
@@ -173,57 +193,72 @@ void main() {
     );
 
     group('$room run', () {
-      test('a poor run clears with a partly engaged room', () {
+      test('a poor run clears warm: five dancing, the rest following', () {
         for (final player in [_poor, _failing]) {
           final poor = run(player);
           expect(poor.celebrating, 0);
-          expect(poor.standing, 0, reason: 'nobody on their feet');
-          expect(poor.occupied, lessThan(12), reason: 'not an empty room');
+          expect(poor.standing, CrowdEngagement.warmFloorGuests);
+          expect(poor.occupied, 0, reason: 'nobody is indifferent at a clear');
+          expect(
+            poor.cast.where((g) => g.state == CrowdGuestState.following).length,
+            12 - CrowdEngagement.warmFloorGuests,
+          );
           expect(poor.swing, 0);
-          expect(poor.session.crowd.flawless, isFalse);
         }
       });
 
-      test('sloppy timing clears warm: a few on their feet, nothing more', () {
+      test('sloppy timing clears with everyone up and half celebrating', () {
         final sloppy = run(_sloppy);
         expect(sloppy.phrases, clean, reason: 'timing never costs a pass');
-        expect(sloppy.standing, inInclusiveRange(1, 6));
-        expect(sloppy.celebrating, 0);
+        expect(sloppy.session.crowd.averageCredit, .75);
+        expect(sloppy.standing, 12);
+        expect(sloppy.celebrating, 6);
+        expect(sloppy.swing, 0, reason: 'just short of the top');
       });
 
-      test('a clean run ends with every guest fully engaged', () {
+      test('a clean run reaches full swing, with no PERFECT or gesture', () {
         final tidy = run(_laggedClean);
         expect(tidy.phrases, clean);
-        expect(tidy.standing, 12);
-        expect(
-          tidy.cast.every((g) => g.state == CrowdGuestState.participating),
-          isTrue,
-        );
-        expect(tidy.swing, 0, reason: 'the top slice stays out of reach');
+        expect(tidy.session.perfects, 0);
+        expect(tidy.celebrating, 12);
+        expect(tidy.swing, 1);
+        // It has arrived before the clear, and the exit shot samples it there.
+        final last = tidy.session.crowd.guest(11, tidy.clearBeat - .01);
+        expect(last.state, CrowdGuestState.celebrating);
       });
 
       test('steady lag is not sloppiness: latency is not calibrated yet', () {
-        expect(run(_laggedClean).standing, run(_flawlessTaps).standing);
+        final lagged = run(_laggedClean);
+        final onTime = run(_flawlessTaps);
+        expect(lagged.celebrating, onTime.celebrating);
+        expect(lagged.swing, onTime.swing);
       });
 
-      test('a flawless run reaches the top, by taps or by gestures', () {
-        for (final player in [_flawlessTaps, _laggedWithFlicks]) {
-          final best = run(player);
-          expect(best.session.crowd.flawless, isTrue);
-          expect(best.celebrating, 12);
-          expect(best.swing, 1);
-          // It has arrived before the clear, and the exit shot samples it there.
-          final last = best.session.crowd.guest(11, best.clearBeat - .01);
-          expect(last.state, CrowdGuestState.celebrating);
+      test('poor play still cools the room against good play', () {
+        final poor = run(_poor);
+        final sloppy = run(_sloppy);
+        final tidy = run(_laggedClean);
+        expect(poor.standing, lessThan(sloppy.standing));
+        expect(poor.celebrating, lessThan(sloppy.celebrating));
+        expect(sloppy.celebrating, lessThan(tidy.celebrating));
+        expect(sloppy.swing, lessThan(tidy.swing));
+      });
+
+      test('slips and a dropped note still reach full swing', () {
+        for (final player in [_oneSlip, _goodRun]) {
+          final good = run(player);
+          expect(good.session.crowd.averageCredit, lessThan(1));
+          expect(good.celebrating, 12);
+          expect(good.swing, 1);
         }
       });
 
-      test('one slip keeps full guests but loses the top', () {
-        final slip = run(_oneSlip);
-        expect(slip.session.crowd.flawless, isFalse);
-        expect(slip.standing, 12);
-        expect(slip.celebrating, lessThan(12));
-        expect(slip.swing, lessThan(1));
+      test('a rough start can recover to full swing', () {
+        for (final player in [_recovering, _failsThenRecovers]) {
+          final back = run(player);
+          expect(back.celebrating, 12);
+          expect(back.swing, 1);
+        }
       });
 
       test('ignoring every optional move costs nothing', () {
@@ -234,9 +269,10 @@ void main() {
         expect(ignored.swing, flicked.swing);
         expect(flicked.session.pizazz, greaterThan(0));
         expect(ignored.session.pizazz, 0);
-        // A plain clean run ends just as engaged as anyone's guests.
+        // A plain clean run with no extras gets the same top.
         final tidy = run(_laggedClean);
-        expect(tidy.standing, 12);
+        expect(tidy.celebrating, flicked.celebrating);
+        expect(tidy.swing, flicked.swing);
       });
 
       test('optional moves can add interest, never take it', () {
@@ -340,7 +376,92 @@ void main() {
       expect(failures, greaterThan(2), reason: 'the room cools over phrases');
     });
 
-    test('flaws hold the top slice shut for the rest of the level', () {
+    test('the ladder, by average, on twelve guests', () {
+      int standing(double average) => [
+        for (var rank = 0; rank < 12; rank++)
+          if (average >= CrowdEngagement.standsAt(rank / 11)) rank,
+      ].length;
+      int celebrating(double average) => [
+        for (var rank = 0; rank < 12; rank++)
+          if (average >= CrowdEngagement.celebratesAt(rank / 11)) rank,
+      ].length;
+      expect(standing(0), 5);
+      expect(standing(.5), 5);
+      expect(standing(.6), 8);
+      expect(standing(.7), 12);
+      expect(celebrating(.69), 0);
+      expect(celebrating(.75), 6);
+      expect(celebrating(.79), 10);
+      expect(celebrating(.8), 12);
+    });
+
+    test('a warm clear, whatever the mix of grades, and full swing for good '
+        'averages', () {
+      const reports = [
+        PhraseReport(notes: 8, hits: 8, perfects: 8),
+        PhraseReport(notes: 8, hits: 8, perfects: 0),
+        PhraseReport(notes: 8, hits: 8, perfects: 0, spreadMs: 100),
+        PhraseReport(notes: 8, hits: 7, perfects: 0),
+      ];
+      final random = math.Random(1847);
+      var topped = 0;
+      for (final definition in fights) {
+        final arc =
+            4 * definition.successesPerTier + definition.finalChallenges;
+        for (var run = 0; run < 400; run++) {
+          // Each run has its own appetite for failures and for each grade.
+          final failure = random.nextDouble() * .4;
+          final skill = random.nextDouble();
+          final progress = FightProgress(definition);
+          final crowd = CrowdInterestModel(rampPhrases: arc, arcPhrases: arc);
+          var sequence = 0;
+          var beat = 16.0;
+          var averageBefore = 0.0;
+          while (!progress.cleared && sequence < 400) {
+            final passed = random.nextDouble() >= failure;
+            progress.resolve(passed: passed);
+            if (progress.cleared) averageBefore = crowd.averageCredit;
+            crowd.resolvePhrase(
+              sequence: sequence++,
+              passed: passed,
+              beat: beat,
+              report: passed
+                  ? reports[random.nextDouble() < skill
+                        ? random.nextInt(2)
+                        : 2 + random.nextInt(2)]
+                  : const PhraseReport(notes: 8, hits: 2, perfects: 0),
+            );
+            beat += 16;
+          }
+          if (!progress.cleared) continue;
+          final clear = beat - 16;
+          final cast = List.generate(12, (i) => crowd.guest(i, clear));
+          final why = '${definition.id} run $run, $sequence phrases';
+          expect(
+            cast.where((g) => g.standing).length,
+            greaterThanOrEqualTo(CrowdEngagement.warmFloorGuests),
+            reason: why,
+          );
+          expect(
+            cast.where((g) => g.state == CrowdGuestState.occupied),
+            isEmpty,
+            reason: why,
+          );
+          if (averageBefore >= CrowdEngagement.fullSwingAverage) {
+            topped++;
+            expect(
+              cast.where((g) => g.state == CrowdGuestState.celebrating).length,
+              12,
+              reason: '$why, average before the clear $averageBefore',
+            );
+            expect(crowd.partySwing(clear), 1, reason: why);
+          }
+        }
+      }
+      expect(topped, greaterThan(100), reason: 'the top must be exercised');
+    });
+
+    test('a slip does not shut the top, and a drop can be recovered from', () {
       final crowd = CrowdInterestModel(rampPhrases: 4);
       const best = PhraseReport(notes: 8, hits: 8, perfects: 8);
       crowd.resolvePhrase(
@@ -349,7 +470,8 @@ void main() {
         beat: 16,
         report: const PhraseReport(notes: 8, hits: 7, perfects: 7),
       );
-      for (var phrase = 1; phrase < 40; phrase++) {
+      expect(crowd.fullSwingEarned, isFalse);
+      for (var phrase = 1; phrase < 6; phrase++) {
         crowd.resolvePhrase(
           sequence: phrase,
           passed: true,
@@ -357,18 +479,53 @@ void main() {
           report: best,
         );
       }
-      expect(crowd.flawless, isFalse);
-      expect(crowd.partySwing(5000), 0);
+      expect(crowd.fullSwingEarned, isTrue);
+      expect(crowd.partySwing(1000), 1);
       expect(
-        List.generate(12, (i) => crowd.guest(i, 5000)).every(
-          (g) =>
-              g.standing &&
-              g.state == CrowdGuestState.participating &&
-              g.interest <= CrowdEngagement.cleanCeiling,
-        ),
+        List.generate(
+          12,
+          (i) => crowd.guest(i, 1000),
+        ).every((g) => g.state == CrowdGuestState.celebrating),
         isTrue,
-        reason: 'recovering earns the full room, not the top',
       );
+    });
+
+    test('an optional move can lift a phrase, and only once', () {
+      const loose = PhraseReport(notes: 8, hits: 8, perfects: 0, spreadMs: 100);
+      const flicked = PhraseReport(
+        notes: 8,
+        hits: 8,
+        perfects: 0,
+        gestures: 1,
+        spreadMs: 100,
+      );
+      expect(CrowdEngagement.credit(PhraseGrade.clean, gesture: true), 1);
+      final plain = CrowdInterestModel(rampPhrases: 4);
+      final moved = CrowdInterestModel(rampPhrases: 4);
+      for (var phrase = 0; phrase < 6; phrase++) {
+        plain.resolvePhrase(
+          sequence: phrase,
+          passed: true,
+          beat: 16.0 * phrase,
+          report: loose,
+        );
+        moved.resolvePhrase(
+          sequence: phrase,
+          passed: true,
+          beat: 16.0 * phrase,
+          report: flicked,
+        );
+      }
+      expect(plain.fullSwingEarned, isFalse);
+      expect(moved.fullSwingEarned, isTrue, reason: 'loose with flicks: .85');
+      // A flick after the phrase resolved counts the same, once.
+      final late = CrowdInterestModel(rampPhrases: 4)
+        ..resolvePhrase(sequence: 0, passed: true, beat: 16, report: loose);
+      expect(late.averageCredit, .75);
+      expect(late.gestureAfterPhrase(sequence: 0, beat: 16.2), isTrue);
+      expect(late.averageCredit, closeTo(.85, 1e-9));
+      expect(late.gestureAfterPhrase(sequence: 0, beat: 16.3), isFalse);
+      expect(late.averageCredit, closeTo(.85, 1e-9));
     });
 
     test('grades read the report and ignore gestures for the floor', () {
@@ -407,11 +564,10 @@ void main() {
     test('a flick landing after the phrase resolved counts, once', () {
       final crowd = CrowdInterestModel(rampPhrases: 4);
       crowd.resolvePhrase(sequence: 0, passed: true, beat: 16);
-      expect(crowd.flawless, isFalse);
       expect(crowd.lastGrade, PhraseGrade.clean);
       final before = crowd.guest(0, 16).interest;
       expect(crowd.gestureAfterPhrase(sequence: 0, beat: 16.2), isTrue);
-      expect(crowd.flawless, isTrue);
+      expect(crowd.lastGrade, PhraseGrade.excellent);
       final after = crowd.guest(0, 16.2).interest;
       expect(after, greaterThan(before));
       expect(crowd.gestureAfterPhrase(sequence: 0, beat: 16.3), isFalse);
@@ -426,9 +582,9 @@ void main() {
       final checkpoint = crowd.checkpoint();
       crowd.resolvePhrase(sequence: 1, passed: true, beat: 32, report: best);
       crowd.resolvePhrase(sequence: 2, passed: false, beat: 48);
-      expect(crowd.flawless, isFalse);
+      expect(crowd.averageCredit, lessThan(1));
       crowd.restore(checkpoint);
-      expect(crowd.flawless, isTrue);
+      expect(crowd.averageCredit, 1);
       expect(crowd.partySwing(40), 0);
     });
   });
@@ -452,15 +608,38 @@ void main() {
         previous = value;
       }
       expect(crowd.partySwing(80), 1, reason: 'a phrase before the clear');
+      // A dropped note leaves the average high, and nothing changes.
       crowd.resolvePhrase(
         sequence: 2,
         passed: true,
         beat: 80,
         report: const PhraseReport(notes: 8, hits: 7, perfects: 7),
       );
-      expect(crowd.partySwing(80), 1);
-      expect(crowd.partySwing(80 + 24), closeTo(.5, .001));
-      expect(crowd.partySwing(80 + 48), 0);
+      expect(crowd.fullSwingEarned, isTrue);
+      expect(crowd.partySwing(104), 1);
+      // Only falling below the top starts the fade, and it's slow.
+      crowd.resolvePhrase(sequence: 3, passed: false, beat: 104);
+      expect(crowd.fullSwingEarned, isFalse);
+      expect(crowd.partySwing(104), 1);
+      expect(crowd.partySwing(104 + 24), closeTo(.5, .001));
+      expect(crowd.partySwing(104 + 48), 0);
+      // Recovery brings it back, slowly again.
+      for (final (sequence, beat) in [
+        (4, 152.0),
+        (5, 168.0),
+        (6, 184.0),
+        (7, 200.0),
+      ]) {
+        crowd.resolvePhrase(
+          sequence: sequence,
+          passed: true,
+          beat: beat,
+          report: best,
+        );
+      }
+      expect(crowd.fullSwingEarned, isTrue);
+      expect(crowd.partySwing(200), 0);
+      expect(crowd.partySwing(216), 1);
     });
 
     test('below the top, props stay exactly as they were', () {
@@ -603,7 +782,7 @@ void main() {
     }
 
     test(
-      'every shipped level: flawless tops out, imperfect stays partial',
+      'every shipped level: flawless tops out, the default show stays warm',
       () async {
         final levels = await LevelRegistry.loadShipping();
         expect(levels.levels, isNotEmpty);
@@ -613,11 +792,16 @@ void main() {
           expect(swing, 1, reason: level.id);
           final (imperfect, none) = show(level, flawless: false);
           final states = imperfect.split(',');
-          expect(states, isNot(contains('celebrating')), reason: level.id);
-          expect(states, contains('following'), reason: level.id);
+          expect(states, isNot(contains('occupied')), reason: level.id);
           expect(
-            states.where((s) => s == 'participating').length,
+            states.where((s) => s == 'celebrating').length,
             lessThan(12),
+            reason: level.id,
+          );
+          expect(
+            states.where((s) => s != 'following').length,
+            greaterThanOrEqualTo(CrowdEngagement.warmFloorGuests),
+            reason: level.id,
           );
           expect(none, 0, reason: level.id);
         }
@@ -673,12 +857,18 @@ void main() {
       }
     });
 
-    test('the default imperfect show clears partly engaged', () {
+    test('the default imperfect show clears warm, short of the top', () {
       final (cast, swing, _) = watch(flawless: false);
-      expect(cast.where((g) => g.startsWith('celebrating')), isEmpty);
+      expect(
+        cast.where((g) => g.startsWith('celebrating')).length,
+        lessThan(12),
+      );
       expect(swing, 0);
-      expect(cast.where((g) => !g.startsWith('occupied')), isNotEmpty);
-      expect(cast.where((g) => !g.startsWith('participating')), isNotEmpty);
+      expect(cast.where((g) => g.startsWith('occupied')), isEmpty);
+      expect(
+        cast.where((g) => !g.startsWith('following')).length,
+        greaterThanOrEqualTo(CrowdEngagement.warmFloorGuests),
+      );
     });
 
     test('the flawless show reaches the top, for the owner to watch', () {
