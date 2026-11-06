@@ -167,6 +167,8 @@ every object bounce to every beat. Ambient activity continues without player
 success but cannot increase earned crowd interest. Start with reactive details
 triggered by dance, not new prop-tapping demands over the thumb controls.
 
+> **Superseded in part by the owner, 2026-11-06.** Backgrounds, the party and other cosmetic assets SHALL be affected by the music score, by design. Plants, umbrellas, waiters, flames and other background items join in, and the whole scene slowly parties up as the music grows. This replaces "Avoid making every object bounce to every beat" above. See `plan/owner-rulings-2026-11-05.md`.
+
 A small presentation director schedules focal reactions at safe musical gaps,
 limits concurrent gestures, and allows settling between peaks. Call phases
 prioritize the challenger's readable demonstration; dense responses suppress

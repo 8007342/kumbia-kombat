@@ -61,3 +61,11 @@ Status, 2026-11-06: the handoff, Mācron's clap, opponent spins and the oil gulp
 | Music direction | Research local audio models that output composable looping segments, crossfaded at runtime from compressed files | "composable segments that loop, that you could then crossfade at runtime" |
 | Music freedom | The current scores no longer limit the music. Audio models may reimagine each level's music from its concept | "give the new models free reign to reimplement the concept of the music in the levels" |
 | Audio in git | Never commit WAV to the remote, only MP3 and other compressed formats | "be mindful not to commit WAV files to remote" |
+
+## Fifth round, 2026-11-06: everything parties up
+
+Backgrounds, the party and other cosmetic assets SHALL be affected by the music score. This is intended by design, and the older specs that said otherwise are obsolete.
+
+As the game progresses, the music gains complexity and the party stands up and dances, the plants, umbrellas, waiters, fire flames and other background items also dance to the beat: "everything should slowly party up".
+
+The method comes from sibling project ranitas: movement introduced without players noticing. See its `docs/quiet-awakening.md` and `docs/research.md` (slow change blindness, Simons, Franconeri & Reimer 2000; Frey et al. 2024). Its own limits carry over: slow changes can escape attention, but nothing guarantees every player misses them, and its timings are artistic choices, not study results. New layers fade in at their final anchors, movement amplitude grows separately, entrances use quintic smootherstep, and motion is never switched on at full speed. Reduced motion still applies.
