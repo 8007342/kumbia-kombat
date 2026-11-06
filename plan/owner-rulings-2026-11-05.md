@@ -150,3 +150,24 @@ Bar takes, blind, the same day: B is far ahead. "A, C, and D are awesome but too
 
 Indoor party takes, blind, the same day: A is far ahead, and A was seed53010. "B, C, and D are great background tracks, but A is richer and full of charisma and personality: A >> (B, C, D)". The Bar winner, B, was seed55005. Rich, charismatic and identifiable is what wins: three times out of four, generated takes that passed timing were only pleasant background.
 
+## Tenth round, 2026-11-06, after playing the merged build
+
+| Topic | Ruling | Owner's words |
+|---|---|---|
+| Fist bump | Works | "The fist bump works nicely" |
+| Bar crowd | Too crowded. Keep the large layer at the bar at the back, with 2 layers of people in front, on stools rather than chairs | "let's have just 2 layers of people on the front, and use stools instead of chairs to reduce clutter" |
+| Garden and lawn crowd | Undercrowded. Many more people sprinkled around, with chairs and tables with drinks | "they could use a lot more people sprinkled around, with chairs and tables with drinks" |
+| Lawn duet | The two always dance as a pair on their turn. On Mācron's turn one of them dances with him, alternating. Spinning needs held hands, so they spin Mācron on the flourishes | "they should always dance in pair during their turn, then alternate one of them dancing with Mācron", "we'll have them spin our cutest tiny Mācron on those flourishes" |
+| Kiss | Needs Mācron's body, showing the "āi" logo on his belly in close-ups | "The Mācron kiss needs a Mācron body, to display its \"āi\" logo on its belly" |
+| Gulp art | Better composed, but the drawing doesn't honour the sprites | "the artwork is still a bit lazy, it doesn't honor the adorable little sprites as Mācron dances" |
+| Mācron's retreat | Back and then to the side, as opponents do. Non-dancers stay outside | "have him step to the side, back and then to the side", "when not dancing non-dancers stay outside" |
+| Opponents | Step forward a little more, with larger sprites, to stand out from the party people | "step forward a little more and increase their sprites a little more" |
+| Turn light | Remove the blue halo at the bottom on the player's turn | "it doesn't add and it's quite confusing, better remove it" |
+| Tap and drag | Still unclear. Lines, semi-circles and full circles should be easy to detect, with a small trained model like sibling project atrapa if needed | "if you need to train a little JEV as our sibling project \"atrapa\" to tell if the input is correct then do it" |
+| Pause | Keep it, with the moving noise band much wider and softer | "The play screen was awesome, let's make the moving noise band much wider but softer" |
+| AutoPlay | Three states: off, on with errors, flawless with a gold icon | "off, on-with-errors, and flawless, with a gold icon" |
+| Four arrows | Remove that requirement in favour of the latest research | "remove the four arrouws requiremn in favor of our latest research" |
+| Pending work | Approved | "I approve the pending work" |
+
+That approval is taken to cover the recommendations awaiting an answer: the level order garden, pool party, bar, indoor party, with the lawn slowed so the speed keeps building; the indoor party defaults; building ladders from the bar and party winners; layers for the other rooms and party-up for every player. Merging to `game` waits until these fixes land.
+
