@@ -1,0 +1,150 @@
+{
+ "garden-51002": {
+  "seconds": 88.2,
+  "master_bytes": 10115214,
+  "cutoff_khz": 20.0,
+  "formats": {
+   "opus128": {
+    "bytes": 1616409,
+    "kbps": 146.6,
+    "extra_samples": 0,
+    "cutoff_khz": 19.9
+   },
+   "opus160": {
+    "bytes": 2016979,
+    "kbps": 182.9,
+    "extra_samples": 0,
+    "cutoff_khz": 19.9
+   },
+   "aac128": {
+    "bytes": 1473959,
+    "kbps": 133.7,
+    "extra_samples": 0,
+    "cutoff_khz": 17.2
+   },
+   "aac160": {
+    "bytes": 1847279,
+    "kbps": 167.6,
+    "extra_samples": 0,
+    "cutoff_khz": 18.0
+   },
+   "mp3v4": {
+    "bytes": 1900148,
+    "kbps": 172.3,
+    "extra_samples": 0,
+    "cutoff_khz": 16.9
+   }
+  }
+ },
+ "garden-51003": {
+  "seconds": 88.2,
+  "master_bytes": 11715611,
+  "cutoff_khz": 24.0,
+  "formats": {
+   "opus128": {
+    "bytes": 1617203,
+    "kbps": 146.7,
+    "extra_samples": 0,
+    "cutoff_khz": 20.5
+   },
+   "opus160": {
+    "bytes": 2003255,
+    "kbps": 181.7,
+    "extra_samples": 0,
+    "cutoff_khz": 20.5
+   },
+   "aac128": {
+    "bytes": 1457451,
+    "kbps": 132.2,
+    "extra_samples": 0,
+    "cutoff_khz": 18.1
+   },
+   "aac160": {
+    "bytes": 1808935,
+    "kbps": 164.1,
+    "extra_samples": 0,
+    "cutoff_khz": 18.1
+   },
+   "mp3v4": {
+    "bytes": 1958468,
+    "kbps": 177.6,
+    "extra_samples": 0,
+    "cutoff_khz": 17.5
+   }
+  }
+ },
+ "lawn-52011": {
+  "seconds": 80.0,
+  "master_bytes": 8677276,
+  "cutoff_khz": 19.4,
+  "formats": {
+   "opus128": {
+    "bytes": 1440163,
+    "kbps": 144.0,
+    "extra_samples": 0,
+    "cutoff_khz": 20.0
+   },
+   "opus160": {
+    "bytes": 1780167,
+    "kbps": 178.0,
+    "extra_samples": 0,
+    "cutoff_khz": 19.4
+   },
+   "aac128": {
+    "bytes": 1304315,
+    "kbps": 130.4,
+    "extra_samples": 0,
+    "cutoff_khz": 16.7
+   },
+   "aac160": {
+    "bytes": 1632216,
+    "kbps": 163.2,
+    "extra_samples": 0,
+    "cutoff_khz": 17.6
+   },
+   "mp3v4": {
+    "bytes": 1611692,
+    "kbps": 161.2,
+    "extra_samples": 0,
+    "cutoff_khz": 16.0
+   }
+  }
+ },
+ "lawn-52007": {
+  "seconds": 80.0,
+  "master_bytes": 8444181,
+  "cutoff_khz": 19.4,
+  "formats": {
+   "opus128": {
+    "bytes": 1388304,
+    "kbps": 138.8,
+    "extra_samples": 0,
+    "cutoff_khz": 19.1
+   },
+   "opus160": {
+    "bytes": 1726791,
+    "kbps": 172.7,
+    "extra_samples": 0,
+    "cutoff_khz": 19.4
+   },
+   "aac128": {
+    "bytes": 1307542,
+    "kbps": 130.8,
+    "extra_samples": 0,
+    "cutoff_khz": 16.7
+   },
+   "aac160": {
+    "bytes": 1641428,
+    "kbps": 164.1,
+    "extra_samples": 0,
+    "cutoff_khz": 16.7
+   },
+   "mp3v4": {
+    "bytes": 1544468,
+    "kbps": 154.4,
+    "extra_samples": 0,
+    "cutoff_khz": 15.9
+   }
+  }
+ }
+}

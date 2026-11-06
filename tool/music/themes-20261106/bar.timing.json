@@ -1,0 +1,145 @@
+{
+ "seed55000.flac": {
+  "target_bpm": 106.0,
+  "measured_bpm": 107.41,
+  "error_pct": 1.33,
+  "clarity": 20.5,
+  "half_time_ratio": 0.11,
+  "wander_ms": 18.5,
+  "seconds": 86.04,
+  "passed": true,
+  "reasons": []
+ },
+ "seed55001.flac": {
+  "target_bpm": 106.0,
+  "measured_bpm": 106.21,
+  "error_pct": 0.2,
+  "clarity": 7.5,
+  "half_time_ratio": 0.5,
+  "wander_ms": 74.1,
+  "seconds": 86.04,
+  "passed": false,
+  "reasons": [
+   "beat wanders 74 ms"
+  ]
+ },
+ "seed55002.flac": {
+  "target_bpm": 106.0,
+  "measured_bpm": 105.98,
+  "error_pct": -0.02,
+  "clarity": 19.9,
+  "half_time_ratio": 0.83,
+  "wander_ms": 12.1,
+  "seconds": 86.04,
+  "passed": false,
+  "reasons": [
+   "half-time (0.83)"
+  ]
+ },
+ "seed55003.flac": {
+  "target_bpm": 106.0,
+  "measured_bpm": 108.01,
+  "error_pct": 1.9,
+  "clarity": 16.7,
+  "half_time_ratio": 0.03,
+  "wander_ms": 11.6,
+  "seconds": 86.04,
+  "passed": false,
+  "reasons": [
+   "tempo off by +1.90%"
+  ]
+ },
+ "seed55004.flac": {
+  "target_bpm": 106.0,
+  "measured_bpm": 106.99,
+  "error_pct": 0.93,
+  "clarity": 45.0,
+  "half_time_ratio": 0.09,
+  "wander_ms": 10.4,
+  "seconds": 86.04,
+  "passed": true,
+  "reasons": []
+ },
+ "seed55005.flac": {
+  "target_bpm": 106.0,
+  "measured_bpm": 106.03,
+  "error_pct": 0.03,
+  "clarity": 28.5,
+  "half_time_ratio": 0.1,
+  "wander_ms": 23.7,
+  "seconds": 86.04,
+  "passed": true,
+  "reasons": []
+ },
+ "seed55006.flac": {
+  "target_bpm": 106.0,
+  "measured_bpm": 105.84,
+  "error_pct": -0.15,
+  "clarity": 19.9,
+  "half_time_ratio": 0.2,
+  "wander_ms": 71.0,
+  "seconds": 86.04,
+  "passed": false,
+  "reasons": [
+   "beat wanders 71 ms"
+  ]
+ },
+ "seed55007.flac": {
+  "target_bpm": 106.0,
+  "measured_bpm": 105.72,
+  "error_pct": -0.26,
+  "clarity": 7.6,
+  "half_time_ratio": 0.7,
+  "wander_ms": 40.7,
+  "seconds": 86.04,
+  "passed": false,
+  "reasons": [
+   "half-time (0.70)",
+   "beat wanders 41 ms"
+  ]
+ },
+ "seed55008.flac": {
+  "target_bpm": 106.0,
+  "measured_bpm": 105.9,
+  "error_pct": -0.1,
+  "clarity": 18.4,
+  "half_time_ratio": 0.24,
+  "wander_ms": 6.6,
+  "seconds": 86.04,
+  "passed": true,
+  "reasons": []
+ },
+ "seed55009.flac": {
+  "target_bpm": 106.0,
+  "measured_bpm": 107.09,
+  "error_pct": 1.03,
+  "clarity": 20.9,
+  "half_time_ratio": 0.08,
+  "wander_ms": 19.5,
+  "seconds": 86.04,
+  "passed": true,
+  "reasons": []
+ },
+ "seed55010.flac": {
+  "target_bpm": 106.0,
+  "measured_bpm": 106.98,
+  "error_pct": 0.92,
+  "clarity": 29.4,
+  "half_time_ratio": 0.12,
+  "wander_ms": 18.9,
+  "seconds": 86.04,
+  "passed": true,
+  "reasons": []
+ },
+ "seed55011.flac": {
+  "target_bpm": 106.0,
+  "measured_bpm": 106.31,
+  "error_pct": 0.3,
+  "clarity": 31.8,
+  "half_time_ratio": 0.27,
+  "wander_ms": 5.9,
+  "seconds": 86.04,
+  "passed": true,
+  "reasons": []
+ }
+}
