@@ -12,6 +12,15 @@
 6. Deploys: Cloudflare Workers Builds only triggers on `main`, so `game` doesn't reach kumbias.tlatoani.net. Production is still `6f0b862`. Promoting to `main` is the owner's call.
 7. `ListAgents` lists macuahuitl-fedora when it's on Remote Control; `SendMessage` by that name. The owner asked for occasional status and any shortcomings.
 
+## Latest, late 2026-11-06, on work refs, not yet in `game`
+
+- `work/1853-ordr`: campaign order garden, pool party, bar. New bridges `garden_to_pool` and `pool_to_bar`. The bar is last for now, so `bar_swag_finale` carries the gulp; when the indoor party ships, point `bar.json` back at `bar_swag_success` and use `bar_to_crowd`. The bar's chart sits on its syncopated melody. Rooms now dissolve in 1.2 s (`room_dissolve.dart`). Fuller lows are at the bottom of the listening page. 457 tests pass, and a flawless muted run reached the end screen at 60 fps with no errors. Nobody has played or heard it.
+- `work/1854-blin`: the BlinBlin definition and draft sheets, waiting for the owner to pick a front and a back. Then `art.py accept-sheet`, pilot, wave. `KUMBIA_BPY_PYTHON=~/.cache/tillandsias-project/venvs/kumbia-bpy/bin/python`, and run `uv python install 3.13` first after a relaunch: `~/.local/share/uv` doesn't survive it, which leaves the Blender venv's python dangling. The kumbia-art venv is at `~/.cache/tillandsias-project/venvs/kumbia-art/bin/python`, not the path in the art-family skill.
+- Tier bridges are blocked on 2018-auin: macuahuitl-fedora pins `LoadAudio` and friends and has `inputs` bind audio, then a relaunch. Draft workflow: `tool/music/workflows/ace-xl-bridge.api.json`. Its input is a tempo-matched join of low and mid, built with ffmpeg. Rebuild it, since the scratchpad doesn't survive, and don't use the upload route.
+- For the owner's eye: about 5 s after the lawn's kiss, while the 100 BPM bridge plays, the wide shot looks almost still. The bridge used to be faster. Extending the close-up into the bridge is the likely fix.
+- Still to do: one style guide with a cinematic section; slow party-up by tier for everyone; layers for the other rooms; indoor plate with the floor painted separately; named hardest combos.
+- Browser checks: `browser.screenshot` output lands in a file as JSON with base64 `data`, so decode it and read the PNG. Set device scale 1 or it's refused. Flutter's canvas is in a shadow root, so hook `getContext` to find it, and draw frames to an overlay contact sheet to review a long run in one screenshot. `browser.eval` times out on a 6 s promise.
+
 ## Working notes
 
 - Agent worktrees have started on `main`: tell agents to `git fetch origin && git switch -c <ref> origin/game`. Filed as 2017-wtbr.
