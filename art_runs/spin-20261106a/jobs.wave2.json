@@ -1,0 +1,44 @@
+[
+ {
+  "pose": "bt.spin_34b",
+  "args": {
+   "workflow": "art_runs/spin-20261106a/workflows/bt.spin_34b.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/spin-20261106a/in/bt_front.png"
+   },
+   "overrides": {
+    "seed": 991700
+   }
+  }
+ },
+ {
+  "pose": "bt.flare_high2",
+  "args": {
+   "workflow": "art_runs/spin-20261106a/workflows/bt.flare_high2.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/spin-20261106a/in/bt_front.png"
+   },
+   "overrides": {
+    "seed": 991800
+   }
+  }
+ },
+ {
+  "pose": "mc.clap_release",
+  "args": {
+   "workflow": "art_runs/spin-20261106a/workflows/mc.clap_release.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "sheet_rear": "/work/tmp/imagegen/kumbia/spin-20261106a/in/mc_rear.png"
+   },
+   "overrides": {
+    "seed": 992700
+   }
+  }
+ }
+]

@@ -1,0 +1,133 @@
+{
+ "status": "candidate for review, not accepted, not promoted; picks by agent's eye",
+ "atlas": "hero-rear-clap",
+ "image": "hero-rear-clap-candidate.png",
+ "imageWidth": 1024,
+ "imageHeight": 345,
+ "referenceFrame": "clap_apart",
+ "clips": {
+  "rear_clap": {
+   "order": [
+    "clap_apart",
+    "clap_together",
+    "clap_release"
+   ],
+   "loop": true,
+   "note": "clap_together lands on the beat; clap_release is optional, and rear_idle can stand in for it"
+  },
+  "rear_clap_high_alternate": {
+   "order": [
+    "clap_apart",
+    "clap_high_alt"
+   ],
+   "note": "arms longer than his model; owner's call"
+  }
+ },
+ "matchesLive": {
+  "frame": "rear_idle",
+  "rect": [
+   33,
+   13,
+   211,
+   316
+  ],
+  "anchor": [
+   122,
+   314
+  ]
+ },
+ "frames": {
+  "clap_apart": {
+   "rect": [
+    2,
+    2,
+    283,
+    316
+   ],
+   "anchor": [
+    153.7,
+    314
+   ],
+   "pixelsPerUnit": 8.0,
+   "status": "candidate",
+   "facing": "rear",
+   "provenance": {
+    "run": "spin-20261106a",
+    "raw": "mc.clap_apart2",
+    "seed": 992400,
+    "sha256": "44c3738bdae7ca0c492278bf78eaaa3f078e1f5964488eeb7b0df5534df9f04a",
+    "selectedBy": "agent's eye",
+    "accepted": false
+   }
+  },
+  "clap_together": {
+   "rect": [
+    287,
+    2,
+    194,
+    315
+   ],
+   "anchor": [
+    106.6,
+    313
+   ],
+   "pixelsPerUnit": 8.0,
+   "status": "candidate",
+   "facing": "rear",
+   "provenance": {
+    "run": "spin-20261106a",
+    "raw": "mc.clap_chest2",
+    "seed": 992603,
+    "sha256": "4536a4c7c611e0a0ac8dafb8f70a56f982ede259b7226fd5cd5d75a6450756d8",
+    "selectedBy": "agent's eye",
+    "accepted": false
+   }
+  },
+  "clap_release": {
+   "rect": [
+    483,
+    2,
+    218,
+    316
+   ],
+   "anchor": [
+    120.7,
+    314
+   ],
+   "pixelsPerUnit": 8.0,
+   "status": "candidate",
+   "facing": "rear",
+   "provenance": {
+    "run": "spin-20261106a",
+    "raw": "mc.clap_release",
+    "seed": 992703,
+    "sha256": "f1ed89fec4b1ba38c0d13a0bf5cfe45ee350be36220e196dea74efcc7d7faa72",
+    "selectedBy": "agent's eye",
+    "accepted": false
+   }
+  },
+  "clap_high_alt": {
+   "rect": [
+    703,
+    2,
+    195,
+    341
+   ],
+   "anchor": [
+    109.2,
+    339
+   ],
+   "pixelsPerUnit": 8.0,
+   "status": "candidate",
+   "facing": "rear",
+   "provenance": {
+    "run": "spin-20261106a",
+    "raw": "mc.clap_together_over",
+    "seed": 992302,
+    "sha256": "5f20d251a7cc26c47f361f83de97afddc15b0ff0def211a241368160fd49f9e4",
+    "selectedBy": "agent's eye",
+    "accepted": false
+   }
+  }
+ }
+}

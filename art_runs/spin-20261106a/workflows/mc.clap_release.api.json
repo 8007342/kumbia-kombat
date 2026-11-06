@@ -1,0 +1,249 @@
+{
+ "10": {
+  "_meta": {
+   "title": "prompt, baked per pose by plan_qwen_frames"
+  },
+  "class_type": "TextEncodeQwenImageEditPlus",
+  "inputs": {
+   "clip": [
+    "6",
+    0
+   ],
+   "prompt": "Draw the small robot from image 1 seen from directly behind, standing on the ground, feet apart. Both short arms have just opened outward from a clap, held out at the sides at waist height, elbows slightly bent, the two smooth round teal mitten hands low and clear of its round body, below the head. The forearm on the left side of the picture has cyan bands, and the other forearm is plain ivory. Keep exactly the same small robot seen from behind: big rounded ivory head seen from the back with one vertical seam and a round teal ear disc on each side, one small cyan antenna ball on a thin stem, round ivory body, teal ball joints, short ivory limbs with dark teal mitten hands, thick dark outline, same flat colours and same pixel art style. Exactly two arms and two legs. The whole robot visible with margin on all sides, antenna ball and both feet inside the frame. Plain light grey background, no text.",
+   "vae": [
+    "7",
+    0
+   ],
+   "image1": [
+    "60",
+    0
+   ]
+  }
+ },
+ "11": {
+  "_meta": {
+   "title": "negative"
+  },
+  "class_type": "TextEncodeQwenImageEditPlus",
+  "inputs": {
+   "clip": [
+    "6",
+    0
+   ],
+   "prompt": "",
+   "vae": [
+    "7",
+    0
+   ],
+   "image1": [
+    "60",
+    0
+   ]
+  }
+ },
+ "12": {
+  "_meta": {
+   "title": "$seed"
+  },
+  "class_type": "KSampler",
+  "inputs": {
+   "cfg": 1,
+   "denoise": 1,
+   "latent_image": [
+    "8",
+    0
+   ],
+   "model": [
+    "5",
+    0
+   ],
+   "negative": [
+    "21",
+    0
+   ],
+   "positive": [
+    "20",
+    0
+   ],
+   "sampler_name": "euler",
+   "scheduler": "simple",
+   "seed": 930000,
+   "steps": 4
+  }
+ },
+ "13": {
+  "_meta": {
+   "title": "VAE Decode"
+  },
+  "class_type": "VAEDecode",
+  "inputs": {
+   "samples": [
+    "12",
+    0
+   ],
+   "vae": [
+    "7",
+    0
+   ]
+  }
+ },
+ "14": {
+  "_meta": {
+   "title": "save frame with matte"
+  },
+  "class_type": "SaveImage",
+  "inputs": {
+   "filename_prefix": "kk/spin-mc.clap_release",
+   "images": [
+    "41",
+    0
+   ]
+  }
+ },
+ "20": {
+  "_meta": {
+   "title": "reference latents: positive"
+  },
+  "class_type": "FluxKontextMultiReferenceLatentMethod",
+  "inputs": {
+   "conditioning": [
+    "10",
+    0
+   ],
+   "reference_latents_method": "index_timestep_zero"
+  }
+ },
+ "21": {
+  "_meta": {
+   "title": "reference latents: negative"
+  },
+  "class_type": "FluxKontextMultiReferenceLatentMethod",
+  "inputs": {
+   "conditioning": [
+    "11",
+    0
+   ],
+   "reference_latents_method": "index_timestep_zero"
+  }
+ },
+ "3": {
+  "_meta": {
+   "title": "Load Diffusion Model"
+  },
+  "class_type": "UNETLoader",
+  "inputs": {
+   "unet_name": "qwen_image_edit_2511_fp8mixed.safetensors",
+   "weight_dtype": "default"
+  }
+ },
+ "30": {
+  "_meta": {
+   "title": "Lightning 4-step (built for 2509; unproven on 2511)"
+  },
+  "class_type": "LoraLoaderModelOnly",
+  "inputs": {
+   "lora_name": "Qwen-Image-Edit-2509-Lightning-4steps-V1.0-bf16.safetensors",
+   "model": [
+    "4",
+    0
+   ],
+   "strength_model": 1.0
+  }
+ },
+ "4": {
+  "_meta": {
+   "title": "ModelSamplingAuraFlow"
+  },
+  "class_type": "ModelSamplingAuraFlow",
+  "inputs": {
+   "model": [
+    "3",
+    0
+   ],
+   "sampling": "flow",
+   "shift": 3.1
+  }
+ },
+ "40": {
+  "_meta": {
+   "title": "BiRefNet model"
+  },
+  "class_type": "LoadRembgByBiRefNetModel",
+  "inputs": {
+   "device": "AUTO",
+   "dtype": "float32",
+   "model": "model.safetensors",
+   "use_weight": false
+  }
+ },
+ "41": {
+  "_meta": {
+   "title": "BiRefNet matte"
+  },
+  "class_type": "RembgByBiRefNet",
+  "inputs": {
+   "images": [
+    "13",
+    0
+   ],
+   "model": [
+    "40",
+    0
+   ]
+  }
+ },
+ "5": {
+  "_meta": {
+   "title": "CFGNorm"
+  },
+  "class_type": "CFGNorm",
+  "inputs": {
+   "model": [
+    "30",
+    0
+   ],
+   "pre_cfg": false,
+   "strength": 1
+  }
+ },
+ "6": {
+  "_meta": {
+   "title": "Load CLIP"
+  },
+  "class_type": "CLIPLoader",
+  "inputs": {
+   "clip_name": "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+   "device": "default",
+   "type": "qwen_image"
+  }
+ },
+ "7": {
+  "_meta": {
+   "title": "Load VAE"
+  },
+  "class_type": "VAELoader",
+  "inputs": {
+   "vae_name": "qwen_image_vae.safetensors"
+  }
+ },
+ "8": {
+  "_meta": {
+   "title": "Empty Latent Image"
+  },
+  "class_type": "EmptyLatentImage",
+  "inputs": {
+   "batch_size": 1,
+   "height": 960,
+   "width": 768
+  }
+ },
+ "60": {
+  "_meta": {
+   "title": "$sheet_rear"
+  },
+  "class_type": "LoadImage",
+  "inputs": {
+   "image": "$sheet_rear"
+  }
+ }
+}

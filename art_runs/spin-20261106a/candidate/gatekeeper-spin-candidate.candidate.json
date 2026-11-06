@@ -1,0 +1,264 @@
+{
+ "status": "candidate for review, not accepted, not promoted; picks by agent's eye",
+ "atlas": "gatekeeper-spin",
+ "image": "gatekeeper-spin-candidate.png",
+ "imageWidth": 1024,
+ "imageHeight": 500,
+ "referenceFrame": "spin_front",
+ "clips": {
+  "spin": {
+   "order": [
+    "spin_front",
+    "spin_34_r",
+    "spin_side_r",
+    "spin_back34_r",
+    "spin_back",
+    "spin_back34_l",
+    "spin_side_l",
+    "spin_34_l"
+   ],
+   "loop": true,
+   "note": "continuous turn; reverse it for the other direction"
+  },
+  "flare": [
+   "flare_hat",
+   "flare_open"
+  ]
+ },
+ "family": "tool/art/families/gatekeeper-v3.json",
+ "frames": {
+  "spin_front": {
+   "rect": [
+    2,
+    2,
+    125,
+    244
+   ],
+   "anchor": [
+    60,
+    241.4
+   ],
+   "pixelsPerUnit": 6.0645,
+   "status": "candidate",
+   "facing": "front",
+   "provenance": {
+    "run": "spin-20261106a",
+    "raw": "gk.spin_front",
+    "seed": 990301,
+    "sha256": "480c627900322ddc1b4fae03fa8b97e6d8fc44227d7a7604e8b1035f749ec160",
+    "selectedBy": "agent's eye",
+    "accepted": false
+   }
+  },
+  "spin_34_r": {
+   "rect": [
+    129,
+    2,
+    141,
+    244
+   ],
+   "anchor": [
+    59,
+    241.4
+   ],
+   "pixelsPerUnit": 6.0645,
+   "status": "candidate",
+   "facing": "front_3q",
+   "provenance": {
+    "run": "spin-20261106a",
+    "raw": "gk.spin_34",
+    "seed": 990401,
+    "sha256": "ac27d288ab839b58e477792cba1350390986f7e785b37665904bd71d87ea3406",
+    "selectedBy": "agent's eye",
+    "accepted": false
+   }
+  },
+  "spin_side_r": {
+   "rect": [
+    272,
+    2,
+    88,
+    244
+   ],
+   "anchor": [
+    39,
+    241.4
+   ],
+   "pixelsPerUnit": 6.0645,
+   "status": "candidate",
+   "facing": "profile",
+   "provenance": {
+    "run": "spin-20261106a",
+    "raw": "gk.spin_side2",
+    "seed": 990203,
+    "sha256": "25187e04553267fb9bd2e3fc5432a5249537dbed4146b67a0cf4e11666e06c33",
+    "selectedBy": "agent's eye",
+    "accepted": false
+   }
+  },
+  "spin_back34_r": {
+   "rect": [
+    362,
+    2,
+    142,
+    244
+   ],
+   "anchor": [
+    65,
+    241.4
+   ],
+   "pixelsPerUnit": 6.0645,
+   "status": "candidate",
+   "facing": "rear_3q",
+   "provenance": {
+    "run": "spin-20261106a",
+    "raw": "gk.spin_back34",
+    "seed": 990503,
+    "sha256": "7c37b9ba49a83af6c58263817c5c121381592cc0cc3d7b8406563edbb710c5f2",
+    "selectedBy": "agent's eye",
+    "accepted": false
+   }
+  },
+  "spin_back": {
+   "rect": [
+    506,
+    2,
+    194,
+    244
+   ],
+   "anchor": [
+    97,
+    241.4
+   ],
+   "pixelsPerUnit": 6.0645,
+   "status": "candidate",
+   "facing": "rear",
+   "provenance": {
+    "run": "spin-20261106a",
+    "raw": "gk.spin_back",
+    "seed": 990103,
+    "sha256": "3e1724152bf33eb752058508e4a731bdab41ba4938297f3ce4d9dc96804268a7",
+    "selectedBy": "agent's eye",
+    "accepted": false
+   }
+  },
+  "spin_back34_l": {
+   "rect": [
+    702,
+    2,
+    142,
+    244
+   ],
+   "anchor": [
+    77,
+    241.4
+   ],
+   "pixelsPerUnit": 6.0645,
+   "status": "candidate",
+   "facing": "rear_3q",
+   "provenance": {
+    "run": "spin-20261106a",
+    "raw": "gk.spin_back34",
+    "seed": 990503,
+    "sha256": "37cb3fbd54a9de38123847918760a9a2afbaa64b2681cbc367688959545d6aad",
+    "selectedBy": "agent's eye",
+    "accepted": false
+   },
+   "mirrorOf": "spin_back34_r"
+  },
+  "spin_side_l": {
+   "rect": [
+    846,
+    2,
+    88,
+    244
+   ],
+   "anchor": [
+    49,
+    241.4
+   ],
+   "pixelsPerUnit": 6.0645,
+   "status": "candidate",
+   "facing": "profile",
+   "provenance": {
+    "run": "spin-20261106a",
+    "raw": "gk.spin_side2",
+    "seed": 990203,
+    "sha256": "9d1daafda6ed22c24eeab01aba83ca6bede7bcfd6bf61923a37b147a78bc1f71",
+    "selectedBy": "agent's eye",
+    "accepted": false
+   },
+   "mirrorOf": "spin_side_r"
+  },
+  "spin_34_l": {
+   "rect": [
+    2,
+    248,
+    141,
+    244
+   ],
+   "anchor": [
+    82,
+    241.4
+   ],
+   "pixelsPerUnit": 6.0645,
+   "status": "candidate",
+   "facing": "front_3q",
+   "provenance": {
+    "run": "spin-20261106a",
+    "raw": "gk.spin_34",
+    "seed": 990401,
+    "sha256": "cb4b42326936d027f046f3de1046afb45830bc4980a67a1ce2b806f161941b6f",
+    "selectedBy": "agent's eye",
+    "accepted": false
+   },
+   "mirrorOf": "spin_34_r"
+  },
+  "flare_hat": {
+   "rect": [
+    145,
+    248,
+    130,
+    250
+   ],
+   "anchor": [
+    54,
+    247.4
+   ],
+   "pixelsPerUnit": 6.0645,
+   "status": "candidate",
+   "facing": "front",
+   "provenance": {
+    "run": "spin-20261106a",
+    "raw": "gk.flare_hat",
+    "seed": 990603,
+    "sha256": "6528737eb162c8257a9437be8fb752584b814f4cbbeaeb6de5741cf379bd4b5a",
+    "selectedBy": "agent's eye",
+    "accepted": false
+   }
+  },
+  "flare_open": {
+   "rect": [
+    277,
+    248,
+    197,
+    245
+   ],
+   "anchor": [
+    103,
+    242.4
+   ],
+   "pixelsPerUnit": 6.0645,
+   "status": "candidate",
+   "facing": "front",
+   "provenance": {
+    "run": "spin-20261106a",
+    "raw": "gk.flare_open",
+    "seed": 990701,
+    "sha256": "a8022f831ea91a3de2ab4bb2a2bbcbf1f0584f02a366a15086fd40ca43796045",
+    "selectedBy": "agent's eye",
+    "accepted": false
+   }
+  }
+ }
+}

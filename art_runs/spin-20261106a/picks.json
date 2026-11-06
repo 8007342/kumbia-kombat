@@ -1,0 +1,28 @@
+{
+ "gatekeeper": {"family": "tool/art/families/gatekeeper-v3.json", "shirt": "5f1f5f", "floor": 298, "height": 244, "groundY": 295.4,
+  "poses": {
+   "spin_front":   {"raw": "gk.spin_front",  "seed": 990301},
+   "spin_34_r":    {"raw": "gk.spin_34",     "seed": 990401},
+   "spin_side_r":  {"raw": "gk.spin_side2",  "seed": 990203},
+   "spin_back34_r":{"raw": "gk.spin_back34", "seed": 990503},
+   "spin_back":    {"raw": "gk.spin_back",   "seed": 990103},
+   "flare_hat":    {"raw": "gk.flare_hat",   "seed": 990603, "headTop": 179, "height": 205},
+   "flare_open":   {"raw": "gk.flare_open",  "seed": 990701, "headTop": 64,  "height": 235}
+  }},
+ "bartender": {"family": "tool/art/families/bartender-v1.json", "shirt": "0f5458", "floor": 297, "height": 242, "groundY": 295.4,
+  "poses": {
+   "spin_front":   {"raw": "bt.spin_front",  "seed": 991200},
+   "spin_34_r":    {"raw": "bt.spin_34b",    "seed": 991701},
+   "spin_side_r":  {"raw": "bt.spin_side",   "seed": 991002},
+   "spin_back34_r":{"raw": "bt.spin_back34", "seed": 991400},
+   "spin_back":    {"raw": "bt.spin_back",   "seed": 991101},
+   "flare_high":   {"raw": "bt.flare_high2", "seed": 991801, "headTop": 56, "height": 240},
+   "flare_dip":    {"raw": "bt.flare_dip",   "seed": 991601, "headTop": 46, "height": 234}
+  }},
+ "macron": {"native": 316, "poses": {
+   "clap_apart":    {"raw": "mc.clap_apart2",  "seed": 992400},
+   "clap_together": {"raw": "mc.clap_chest2",  "seed": 992603},
+   "clap_release":  {"raw": "mc.clap_release", "seed": 992703},
+   "clap_high_alt": {"raw": "mc.clap_together_over", "seed": 992302}
+  }}
+}
