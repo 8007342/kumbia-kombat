@@ -69,3 +69,5 @@ Backgrounds, the party and other cosmetic assets SHALL be affected by the music 
 As the game progresses, the music gains complexity and the party stands up and dances, the plants, umbrellas, waiters, fire flames and other background items also dance to the beat: "everything should slowly party up".
 
 The method comes from sibling project ranitas: movement introduced without players noticing. See its `docs/quiet-awakening.md` and `docs/research.md` (slow change blindness, Simons, Franconeri & Reimer 2000; Frey et al. 2024). Its own limits carry over: slow changes can escape attention, but nothing guarantees every player misses them, and its timings are artistic choices, not study results. New layers fade in at their final anchors, movement amplitude grows separately, entrances use quintic smootherstep, and motion is never switched on at full speed. Reduced motion still applies.
+
+Layers, the same day: backgrounds and some assets may be regenerated into layers. Party members, umbrellas, cups with straws that dance at full swing, plants, candles and lights can be shared between levels, so they are worth the compute. "it's fine to spend some compute on them"
