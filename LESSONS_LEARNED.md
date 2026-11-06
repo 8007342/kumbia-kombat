@@ -310,7 +310,7 @@ Nothing is ahead of this branch on `work/1824-kumb`, `1825-gard`, `1826-time`, `
 
 ## What I could not determine
 
-- Whether a current build fixes 2001-stpr. The marker test is still to be re-run after a relaunch.
+- Resolved 2026-11-06: tray `56.11.6.2+8ab23b59434614e2` fixes 2001-stpr, proven by the marker test at ComfyUI `/history`.
 - Whether the 2509 Lightning LoRA harms quality on 2511, and whether mannequin copying survives real prompts.
 - Why Gatekeeper came out thin: rig, registration or the baked prompt.
 - Whether anyone has listened to the candidate scores since 2026-11-03, or how the phone playtest behind `caacc6b` went.

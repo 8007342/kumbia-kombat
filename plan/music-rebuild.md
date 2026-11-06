@@ -1,6 +1,6 @@
 # Rebuilding the music for the existing levels
 
-**Draft plan, 2026-11-06. Nothing has been generated or heard yet.** The owner accepted about 3.3 to 6.4 MB of music per level and asked for this plan. Models get free rein over each level's music ("reimplement the concept"), so the current scores don't constrain them. Evidence: `plan/research/local-music-models-2026-11-06.md`, `plan/research/runtime-music-assembly-2026-11-06.md`.
+**Plan, 2026-11-06. Stage 2 passed the same day: the owner preferred generated takes to the synth in both rooms, see `plan/music-pilot-2026-11-06.md`. Stages 3 to 6 have not started.** The owner accepted about 3.3 to 6.4 MB of music per level and asked for this plan. Models get free rein over each level's music ("reimplement the concept"), so the current scores don't constrain them. Evidence: `plan/research/local-music-models-2026-11-06.md`, `plan/research/runtime-music-assembly-2026-11-06.md`.
 
 ## The idea
 
@@ -25,7 +25,7 @@ The briefs are starting points for the owner to change. Prompts use genre and in
 ## Stages, each with a gate
 
 1. **Host setup (after the restart).** Pin ACE-Step XL weights, install the forge tools.
-2. **Style pilot.** 12 takes each for the Garden and the lawn, the two extremes. Gate: at least 3 of 12 pass timing. Then the owner listens blind against the synth. **This decides the whole plan.** No test of cumbia or swing on any of these models was found, and ACE-Step is reported weak in jazz. Failing a style means trying Stable Audio 3 once.
+2. **Style pilot. Done 2026-11-06:** Garden 6 of 12 and lawn 7 of 12 passed timing; the owner ranked generated takes above the synth in both rooms. Results in `plan/music-pilot-2026-11-06.md`. Gate: at least 3 of 12 pass timing, then the owner listens blind against the synth. ACE-Step had been reported weak in jazz, and the lawn winner still won clearly. Stable Audio 3 is not needed for these two styles.
 3. **Device truth.** A bare test page with wrapped loops in MP3, AAC and Opus, on a real iPhone, an Android phone and the host browser. The two reports disagree on MP3: one says it works with wrapped loops and a measured offset, the other says to avoid it for loop points. This test settles it.
 4. **Ladder test.** Garden only, tiers 0, 2 and 4. Gate: the owner hears one song growing, not three songs. If not, that level uses one tempo with layers cut from a single take.
 5. **Runtime prototype.** `MusicScore.fromManifest`, a transport listener, a minimal stem deck and lazy per-level loading, behind a hidden added level. Gate: autoplay runs through it, audio stays within 5 ms of the clock on a phone by loopback, pause and resume land on the right beat, and the handoff has no gap. Check decoded memory (47 to 93 MB).

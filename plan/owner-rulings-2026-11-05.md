@@ -102,3 +102,16 @@ Answers the same day: the big end-of-level word stays as a consistent theme, eac
 | Infrastructure | Model and pin requests go to macuahuitl-fedora, the agent on the host | "which can fix your infra" |
 
 So the gulp's job is also to leave a repeatable route for later transition moments. Write down what the wiring needed and what went wrong.
+
+## Eighth round, 2026-11-06: the blind music test
+
+The owner listened blind to 30-second excerpts. Generated takes beat the synth in both rooms. Full table, seeds and caveats: `plan/music-pilot-2026-11-06.md`.
+
+| Room | Result, as heard | Owner's words |
+|---|---|---|
+| Garden | C, then B closely, then D, with A out | "the garden option C is the best, then followed closely by B", "D has some slow interesting progressions but it's too slow and not up to par", "A is clearly the old horrible version" |
+| Pool lawn | A, far ahead, then C, D, B | "A >> C > D > B", "option A is nice and simple but properly elegant", "Option C has more adournments but its melody seems simpler most of the time, option D is even simpler", B "the oldest simplest" |
+
+A and B, the ones the owner called old, were the synth in those rooms. Unblinded, the winners are Garden seed 51002 and lawn seed 52011.
+
+Durability, the same day: "make the results durable and push to remote work branches".

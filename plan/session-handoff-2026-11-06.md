@@ -1,5 +1,7 @@
 # Session handoff, 2026-11-06
 
+**Update, later on 2026-11-06.** The relaunch checks and the music pilot are done. Results: `plan/music-pilot-2026-11-06.md`. Checklist for macuahuitl-fedora: `plan/relaunch-report-2026-11-06.md`, **not delivered**, because that session wasn't reachable and this lane has no fleet address for it. Still to do from below: see the mid-floor spin, exit walk and hard cut on screen, then the art items. Music stage 3 needs the owner's phones. The rest of this file is the plan as written before the relaunch.
+
 Read this first after the relaunch. Work branch: `work/1841-toda`, based on `game` at `589b9f8`.
 
 ## Why the relaunch

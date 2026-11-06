@@ -14,7 +14,7 @@ Python: `~/.cache/tillandsias-project/venvs/kumbia-art/bin/python`. All commands
 6. **Proof:** `rooms.py proof <room> --run R --plate P` writes the phone row beside the accepted rooms, floor overlay and cast proof.
 7. **Level:** `rooms.py level <room> --out levels/<id>.json --background <path>`, then `rooms.py check <room> --level levels/<id>.json`. Music, rules and chart come from `--base` (default the bar) or the spec's `level` block, until a person writes them.
 
-Outputs land in `~/.cache/tillandsias-project/kumbia-art/<run>/`, because `/work/tmp/imagegen` goes with the forge. Workflows and sheets stay in `art_runs/<run>/`. A prompt change means a new plan and new workflow, because prompts are baked into each one (host bug 2001-stpr). When the override fix is proven, baking can go.
+Outputs land in `~/.cache/tillandsias-project/kumbia-art/<run>/`, because `/work/tmp/imagegen` goes with the forge. Workflows and sheets stay in `art_runs/<run>/`. A prompt change means a new plan and new workflow, because prompts are baked into each one (host bug 2001-stpr). The override fix was proven on 2026-11-06, tray 56.11.6.2, so new work can use `$prompt` on a node with that title. Existing workflows stay baked until someone changes them.
 
 ## What the compiler refuses
 

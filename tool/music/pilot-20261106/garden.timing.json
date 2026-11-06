@@ -1,0 +1,149 @@
+{
+ "0000_00001.flac": {
+  "target_bpm": 98.0,
+  "measured_bpm": 98.04,
+  "error_pct": 0.04,
+  "clarity": 17.4,
+  "half_time_ratio": 0.22,
+  "wander_ms": 27.0,
+  "seconds": 88.2,
+  "passed": true,
+  "reasons": []
+ },
+ "0001_00001.flac": {
+  "target_bpm": 98.0,
+  "measured_bpm": 95.0,
+  "error_pct": -3.06,
+  "clarity": 11.4,
+  "half_time_ratio": 0.04,
+  "wander_ms": 23.4,
+  "seconds": 88.2,
+  "passed": false,
+  "reasons": [
+   "tempo off by -3.06%"
+  ]
+ },
+ "0002_00001.flac": {
+  "target_bpm": 98.0,
+  "measured_bpm": 98.02,
+  "error_pct": 0.02,
+  "clarity": 25.6,
+  "half_time_ratio": 0.11,
+  "wander_ms": 10.8,
+  "seconds": 88.2,
+  "passed": true,
+  "reasons": []
+ },
+ "0003_00001.flac": {
+  "target_bpm": 98.0,
+  "measured_bpm": 97.92,
+  "error_pct": -0.08,
+  "clarity": 12.1,
+  "half_time_ratio": 0.26,
+  "wander_ms": 30.2,
+  "seconds": 88.2,
+  "passed": true,
+  "reasons": []
+ },
+ "0004_00001.flac": {
+  "target_bpm": 98.0,
+  "measured_bpm": 97.96,
+  "error_pct": -0.04,
+  "clarity": 18.9,
+  "half_time_ratio": 0.19,
+  "wander_ms": 34.8,
+  "seconds": 88.2,
+  "passed": true,
+  "reasons": []
+ },
+ "0005_00001.flac": {
+  "target_bpm": 98.0,
+  "measured_bpm": 97.0,
+  "error_pct": -1.02,
+  "clarity": 17.1,
+  "half_time_ratio": 0.09,
+  "wander_ms": 14.1,
+  "seconds": 88.2,
+  "passed": true,
+  "reasons": []
+ },
+ "0006_00001.flac": {
+  "target_bpm": 98.0,
+  "measured_bpm": 96.51,
+  "error_pct": -1.52,
+  "clarity": 14.6,
+  "half_time_ratio": 0.04,
+  "wander_ms": 11.1,
+  "seconds": 88.2,
+  "passed": false,
+  "reasons": [
+   "tempo off by -1.52%"
+  ]
+ },
+ "0007_00001.flac": {
+  "target_bpm": 98.0,
+  "measured_bpm": 97.97,
+  "error_pct": -0.03,
+  "clarity": 5.3,
+  "half_time_ratio": 0.35,
+  "wander_ms": 44.5,
+  "seconds": 88.2,
+  "passed": false,
+  "reasons": [
+   "beat wanders 44 ms"
+  ]
+ },
+ "0008_00001.flac": {
+  "target_bpm": 98.0,
+  "measured_bpm": 96.79,
+  "error_pct": -1.24,
+  "clarity": 5.1,
+  "half_time_ratio": 0.53,
+  "wander_ms": 67.7,
+  "seconds": 88.2,
+  "passed": false,
+  "reasons": [
+   "beat wanders 68 ms"
+  ]
+ },
+ "0009_00001.flac": {
+  "target_bpm": 98.0,
+  "measured_bpm": 104.03,
+  "error_pct": 6.15,
+  "clarity": 2.9,
+  "half_time_ratio": 1.12,
+  "wander_ms": 100.6,
+  "seconds": 88.2,
+  "passed": false,
+  "reasons": [
+   "tempo off by +6.15%",
+   "no clear pulse (2.9)",
+   "half-time (1.12)",
+   "beat wanders 101 ms"
+  ]
+ },
+ "0010_00001.flac": {
+  "target_bpm": 98.0,
+  "measured_bpm": 96.96,
+  "error_pct": -1.06,
+  "clarity": 8.5,
+  "half_time_ratio": 0.04,
+  "wander_ms": 25.4,
+  "seconds": 88.2,
+  "passed": true,
+  "reasons": []
+ },
+ "0011_00001.flac": {
+  "target_bpm": 98.0,
+  "measured_bpm": 98.06,
+  "error_pct": 0.06,
+  "clarity": 10.4,
+  "half_time_ratio": 0.15,
+  "wander_ms": 112.8,
+  "seconds": 88.2,
+  "passed": false,
+  "reasons": [
+   "beat wanders 113 ms"
+  ]
+ }
+}

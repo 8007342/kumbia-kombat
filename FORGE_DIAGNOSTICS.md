@@ -13,8 +13,11 @@ and any long session log in `plan/diagnostics/`.
 
 | Issue | Workaround | Status |
 |---|---|---|
-| **2001-stpr.** `studio.run_workflow` prompt overrides don't reach `TextEncodeQwenImageEditPlus`, and provenance records them anyway | Bake one prompt per pose per workflow (`plan_qwen_frames.py` does). Check inputs at ComfyUI `/history`. Don't trust a sidecar's `prompt` | A host fix exists, but the lane still ran the old build. Re-run the marker test after a forge relaunch |
-| **2001-bwgl.** Visible browser windows get `/dev/nvidia*` and `renderD128`, but the image has only Mesa. The GPU process crashes on llvmpipe and WebGL is disabled, so the game runs on software CanvasKit | Play and judge performance in a host browser. Read `chrome://gpu` before trusting a measurement. Headless has SwiftShader WebGL, so it behaves differently | Filed. Owner asked for hardware acceleration in future browser containers |
+| **2001-stpr.** `studio.run_workflow` prompt overrides didn't reach `TextEncodeQwenImageEditPlus`, and provenance recorded them anyway | None needed on 56.11.6.2. Older baked workflows still run. Runs made before the fix keep their false provenance | Fixed: marker test passed at ComfyUI `/history`, 2026-11-06, tray `56.11.6.2+8ab23b59434614e2` |
+| **2001-bwgl.** Visible browser windows had no hardware WebGL, so the game ran on software CanvasKit at 7-9 fps | None needed on 56.11.6.2. Headless still has SwiftShader WebGL, so measure in a visible window | Fixed: ANGLE on the NVIDIA RTX A5000, 60 fps over about 26 s of Garden autoplay, 2026-11-06 |
+| Before a visible window has focus, `requestAnimationFrame` barely runs (1 frame in 32 s) although `visibilityState` says visible | Click the window, or send CDP `Emulation.setFocusEmulationEnabled`, before measuring. Discard earlier readings | Open, reported to macuahuitl-fedora in `plan/relaunch-report-2026-11-06.md`, not yet delivered |
+| The first `studio.run_workflow` with newly pinned ACE-Step files spent 452 s in the `fetch` stage although they were `on_disk` | Allow for about 8 minutes on first use. Later runs showed 0 ms | Seen once, cause unknown |
+| An MCP result over 4 MiB per line is refused with `ResponseTooLarge` | Keep browser eval results under about 3 MB. Larger ones under the cap are saved to a file you can decode | Seen 2026-11-06 |
 | A tray restart doesn't replace a running forge's lane process | Tool-server fixes need a forge relaunch | Open |
 | Git mirror says "expired or unavailable while auto-auth re-authenticates" (Vault Agent token expiry) | Restart the mirror | Seen 2026-11-05 |
 | `/work/tmp/imagegen/` dies with the forge | Copy studio outputs to `~/.cache/tillandsias-project` during a wave, and commit what matters | By design |
@@ -57,7 +60,7 @@ The first two rows were last seen on 2026-10-18, and nobody has re-tested them s
 - Treat prompts and provenance in `art_runs/gatekeeper-v3-20261105q/` as false (`PROMPTS-NOT-APPLIED.md`).
 - `.claude/skills/art-family/SKILL.md` and `styles/party-pixel.json` still describe the SDXL route. Current
   frames come from the Qwen route in `tool/art/pipeline/README.md`.
-- Without WebGL the game still runs at about 7-9 fps. It no longer pauses itself on those stalls, but it
+- On a host without hardware WebGL the game runs at about 7-9 fps. It no longer pauses itself on those stalls, but it
   looks choppy and taps can score late.
 
 ## Fixed since the old logs
