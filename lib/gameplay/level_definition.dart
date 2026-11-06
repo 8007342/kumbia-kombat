@@ -4,6 +4,7 @@ import 'dart:convert';
 
 import 'package:flutter/services.dart';
 
+import '../music/accent_voice.dart';
 import '../music/transport.dart';
 import 'crowd_interest.dart';
 import 'garden_session.dart';
@@ -239,15 +240,14 @@ class LevelCopy {
   const LevelCopy({
     required this.invitation,
     required this.clearedTitle,
-    required this.clearedClaim,
-    required this.resetLine,
   });
   final String invitation;
 
-  /// May hold a line break for the large results title.
+  /// The level's two big words, one to a line: the only text during a run. An
+  /// exit shot shows them at its highlight. A level with no exit shot has no
+  /// highlight, so they wait for the end screen if it's the last level.
   final String clearedTitle;
-  final String clearedClaim;
-  final String resetLine;
+  List<String> get titleWords => clearedTitle.split('\n');
   String get clearedShout => clearedTitle.replaceAll('\n', ' ');
 }
 
@@ -443,10 +443,14 @@ class LevelDefinition {
     final copy = LevelCopy(
       invitation: copyFields.text('invitation'),
       clearedTitle: copyFields.text('clearedTitle'),
-      clearedClaim: copyFields.text('clearedClaim'),
-      resetLine: copyFields.text('resetLine'),
     );
     copyFields.finish();
+    if (!RegExp(r'^\S+\n\S+$').hasMatch(copy.clearedTitle)) {
+      throw LevelDataError(
+        copyFields.at('clearedTitle'),
+        'expected two words, one to a line: ${copy.clearedTitle}',
+      );
+    }
     final exitShot = fields.has('exitShot')
         ? _exitShot(fields.child('exitShot'))
         : null;
@@ -508,10 +512,14 @@ class LevelDefinition {
     final cue = <ExitShotCue>[];
     for (final (i, raw) in fields.list('cue').indexed) {
       final note = _Fields('$cuePath[$i]', raw);
+      final track = note.text('track');
+      if (!isCueTrack(track)) {
+        throw LevelDataError(note.at('track'), 'no such sound: $track');
+      }
       cue.add(
         ExitShotCue(
           note.number('beat', min: 0),
-          note.text('track'),
+          track,
           note.whole('pitch', min: 0),
           note.whole('velocity', min: 1),
         ),
@@ -741,22 +749,18 @@ class LevelDefinition {
   }
 }
 
-/// A level's place in the campaign and what links it to the next. Bridges and
-/// "next" lines are written from one level to another, so they live here:
+/// A level's place in the campaign and what links it to the next. Bridges are
+/// written from one level to another, so they live here:
 /// adding a level changes this list and leaves its neighbours' files alone.
 class LevelStep {
   const LevelStep({
     required this.level,
     required this.next,
     required this.bridgeToNext,
-    required this.exitLine,
-    required this.nextLine,
   });
   final LevelDefinition level;
   final LevelDefinition? next;
   final String? bridgeToNext;
-  final String exitLine;
-  final String nextLine;
 }
 
 /// The ordered campaign, and the single source of level order.
@@ -838,8 +842,6 @@ class LevelRegistry {
           level: levels[i],
           next: last ? null : levels[i + 1],
           bridgeToNext: last ? null : entry.text('bridgeToNext'),
-          exitLine: entry.text('exitLine'),
-          nextLine: entry.text('nextLine'),
         ),
       );
       entry.finish();

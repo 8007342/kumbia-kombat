@@ -12,7 +12,6 @@ import '../music/game_audio.dart';
 import '../music/score.dart';
 import '../music/transport.dart';
 import '../music/transition_conductor.dart';
-import 'exit_shot.dart';
 import 'garden_scene.dart';
 import 'garden_session.dart';
 import 'level_definition.dart';
@@ -20,6 +19,7 @@ import 'party_autoplay.dart';
 import 'progression.dart';
 import 'rhythm.dart';
 import 'cue_path.dart';
+import 'tap_feedback.dart';
 import 'thumb_layout.dart';
 import 'touch_gesture.dart';
 
@@ -76,7 +76,6 @@ class _GardenPageState extends State<GardenPage>
   MusicFinish? _finish;
   bool _exitReady = false;
   bool _exitStarted = false;
-  bool _closeupShowing = false;
   bool _handoffPaused = false;
   bool _adoptingRoom = false;
   bool _starting = false;
@@ -84,14 +83,18 @@ class _GardenPageState extends State<GardenPage>
   int _activationEpoch = 0;
   bool _reducedMotion = false;
   String? _error;
-  String? _feedback;
   Limb? _styleDestination;
   String? _styleNote;
   double _styleBeat = 0;
   double _styleUntil = 0;
-  double _feedbackUntil = 0;
-  Color _feedbackColor = _cream;
   String _resultSignature = '';
+  final _marks = <FeedbackMark>[];
+  final _pressedAt = <Limb, double>{};
+  double _sagUntil = 0;
+  Size _stage = Size.zero;
+  Limb? _lastTapLimb;
+  double _lastTapBeat = 0;
+  String _lastTapNote = '';
 
   @override
   void initState() {
@@ -148,11 +151,6 @@ class _GardenPageState extends State<GardenPage>
                 )
               : (bridgeBeat / bridge.score.lengthBeats).clamp(0.0, 1.0);
           if (_audio.nowSeconds >= exitAt) _scene.exitBeat = exitBeat;
-          final closeup = _scene.closeupShowing;
-          if (closeup != _closeupShowing) {
-            _closeupShowing = closeup;
-            if (mounted) setState(() {});
-          }
           _scene.warmDown = bridge == null ? coda : coda * .55 + travel * .45;
           // A cinematic replaces the walk out; the room still cools with travel.
           _scene.exitTravel = shot == null ? travel : 0;
@@ -198,12 +196,13 @@ class _GardenPageState extends State<GardenPage>
     if (signature != _resultSignature) {
       _resultSignature = signature;
       if (session.lastOutcome == ChallengeOutcome.entranceReset) {
+        // His walk back says it all, and the band goes dull behind him.
         _scene.resetEntrance();
-        _showFeedback(_level.copy.resetLine, _gold);
+        _sagUntil = _audio.nowSeconds + TurnLook.sagSeconds;
       } else if (session.lastOutcome == ChallengeOutcome.retry) {
-        _showFeedback('FIND THE GROOVE', _cream);
+        _sagUntil = _audio.nowSeconds + TurnLook.sagSeconds;
       } else if (session.lastOutcome != null) {
-        _showFeedback('${_metricLabel(_level)} +', _mint);
+        _addMark(FeedbackMark(MarkKind.phrase, _bandCentre));
       }
     }
     if (session.phase == GardenPhase.paused ||
@@ -257,7 +256,7 @@ class _GardenPageState extends State<GardenPage>
     _audio.leadShape = _level.music.leadShape;
     _session = _level.newSession(_transport!, _audio);
     _scene.session = _session;
-    _feedback = null;
+    _marks.clear();
     _resultSignature = '';
     _exitStarted = false;
   }
@@ -285,57 +284,31 @@ class _GardenPageState extends State<GardenPage>
     }
   }
 
-  /// The shot's hits, placed in whichever score is playing at their beat.
-  MusicScore _withCue(
-    LevelDefinition level,
-    MusicScore score,
-    double startBeat,
-  ) {
-    final cue = level.exitShot?.cue ?? const <ExitShotCue>[];
-    final notes = [
-      for (final hit in cue)
-        if (hit.beat >= startBeat && hit.beat - startBeat < score.lengthBeats)
-          ScoreNote(
-            track: hit.track,
-            beat: hit.beat - startBeat,
-            pitch: hit.pitch,
-            duration: .25,
-            velocity: hit.velocity,
-          ),
-    ];
-    return notes.isEmpty ? score : score.withNotes(notes);
-  }
-
   void _beginExit() {
     _exitStarted = true;
     _finish = null;
     _conductor = TransitionConductor(
       _audio,
-      lookaheadSeconds: .3,
+      // Queued further ahead than play, so a stalled frame at the very moment of
+      // contact can't drop the hit: the transport never plays a note late.
+      lookaheadSeconds: .6,
       starvationGraceSeconds: _starvationGraceSeconds,
     );
     final step = _step;
     final next = step.next;
+    final shot = step.level.exitShot;
+    final successScore = _exitScores[step.level.music.successScore]!;
+    final success = shot?.mixCue(successScore, 0) ?? successScore;
     if (next != null) {
+      final bridgeScore = _exitScores[step.bridgeToNext!]!;
       _handoff = _conductor!.handoff(
         source: _transport!,
-        success: _withCue(
-          step.level,
-          _exitScores[step.level.music.successScore]!,
-          0,
-        ),
-        bridge: _withCue(
-          step.level,
-          _exitScores[step.bridgeToNext!]!,
-          _exitScores[step.level.music.successScore]!.lengthBeats,
-        ),
+        success: success,
+        bridge: shot?.mixCue(bridgeScore, successScore.lengthBeats) ?? bridgeScore,
         nextScore: MusicScore.fromJson(_roomScores[next.music.score]!),
       );
     } else {
-      _finish = _conductor!.finish(
-        source: _transport!,
-        success: _exitScores[step.level.music.successScore]!,
-      );
+      _finish = _conductor!.finish(source: _transport!, success: success);
     }
     _scene.exitCodaBeat = _transport!.beatAt(_transport!.retirementSeconds) + 4;
     if (mounted) setState(() {});
@@ -361,8 +334,7 @@ class _GardenPageState extends State<GardenPage>
       _finish = null;
       _conductor = null;
       _exitStarted = false;
-      _closeupShowing = false;
-      _feedback = null;
+      _marks.clear();
       _styleDestination = null;
       _styleNote = null;
       _resultSignature = '';
@@ -527,14 +499,22 @@ class _GardenPageState extends State<GardenPage>
     super.dispose();
   }
 
-  void _showFeedback(String text, Color color) {
-    _feedback = text;
-    _feedbackColor = color;
-    _feedbackUntil = _audio.nowSeconds + .65;
+  void _addMark(FeedbackMark mark) {
+    final now = _audio.nowSeconds;
+    _marks
+      ..removeWhere(
+        (old) => now - (old.bornAt ?? now) >= FeedbackMark.lifeSeconds,
+      )
+      ..add(mark..bornAt = now);
   }
+
+  /// Low in the middle of the tap band, where a passed phrase sprays up from.
+  Offset get _bandCentre => Offset(_stage.width / 2, _stage.height * .8);
 
   TapResult _tap(Limb limb) {
     final result = _session!.tap(limb);
+    // Heard, before any judgment: a stray tap gets this and nothing else.
+    _pressedAt[limb] = _audio.nowSeconds;
     if (result.note != null) {
       final targetBeat = _transport!.beatAt(result.note!.atMs / 1000);
       final futureBeats = [
@@ -550,21 +530,31 @@ class _GardenPageState extends State<GardenPage>
       _styleNote = result.note!.flourishTo == null ? null : result.note!.id;
       _styleBeat = _transport!.beatAt(result.note!.atMs / 1000);
       _styleUntil = _audio.nowSeconds + RhythmJudge.flourishWindowMs / 1000;
-      if (result.timing == TapTiming.perfect) {
-        _showFeedback('PERFECT', _gold);
-      } else if (result.timing == TapTiming.early) {
-        _showFeedback('GOOD · a little early', const Color(0xFF72DDF7));
-      } else {
-        _showFeedback('GOOD · a little late', const Color(0xFFFF9E79));
+      _lastTapLimb = limb;
+      _lastTapBeat = _styleBeat;
+      _lastTapNote = result.note!.id;
+      if (result.timing != null) {
+        _addMark(
+          FeedbackMark.tap(
+            result.timing!,
+            _anchor(limb, _stage, _styleBeat, result.note!.id),
+            deltaMs: result.deltaMs,
+            combo: _session!.combo,
+          ),
+        );
       }
-    } else {
-      _showFeedback('KEEP THE PULSE', _cream);
     }
     return result;
   }
 
   Limb? _limbAt(Offset point, Size size) =>
       thumbLimbAt(point.dx / size.width, point.dy / size.height);
+
+  /// Where a note's feedback belongs: the spot its ring landed on.
+  Offset _anchor(Limb limb, Size size, double beat, String id) {
+    final landing = _path(limb, beat, id, size).landing;
+    return Offset(landing.x, landing.y);
+  }
 
   CuePath _path(Limb limb, double beat, String id, Size size) => cuePath(
     limb: limb,
@@ -599,12 +589,16 @@ class _GardenPageState extends State<GardenPage>
     _styleDestination = null;
     _styleNote = null;
     _scene.flourishBeat = _session!.positionBeats;
-    _showFeedback(
-      _session!.styleCombo > 1
-          ? '¡STYLE ×${_session!.styleCombo}!'
-          : '¡PIZAZZ!',
-      _mint,
-    );
+    final limb = _lastTapLimb;
+    if (limb != null) {
+      _addMark(
+        FeedbackMark(
+          MarkKind.flourish,
+          _anchor(limb, _stage, _lastTapBeat, _lastTapNote),
+          chain: _session!.styleCombo,
+        ),
+      );
+    }
   }
 
   @override
@@ -653,6 +647,7 @@ class _GardenPageState extends State<GardenPage>
             child: LayoutBuilder(
               builder: (context, constraints) {
                 final size = constraints.biggest;
+                _stage = size;
                 return Stack(
                   fit: StackFit.expand,
                   children: [
@@ -722,16 +717,13 @@ class _GardenPageState extends State<GardenPage>
                         ),
                       ),
                     if (active)
-                      IgnorePointer(child: _fightLabels(session!, size)),
+                      IgnorePointer(child: _playSignals(session!, size)),
                     if (!active) _cover(phase, size),
-                    _header(active || _conductor?.isPlaying == true),
-                    if (active)
-                      Positioned(
-                        top: MediaQuery.paddingOf(context).top + 68,
-                        left: 20,
-                        right: 20,
-                        child: _respect(session!),
-                      ),
+                    _header(
+                      active ||
+                          _conductor?.isPlaying == true ||
+                          (phase == GardenPhase.cleared && !_exitStarted),
+                    ),
                   ],
                 );
               },
@@ -748,35 +740,28 @@ class _GardenPageState extends State<GardenPage>
     right: 14,
     child: Row(
       children: [
-        const Text(
-          'K / K',
-          style: TextStyle(
-            color: _gold,
-            fontWeight: FontWeight.w900,
-            fontSize: 20,
-            letterSpacing: -1,
-          ),
-        ),
-        const SizedBox(width: 10),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text(
-              'KUMBIA KOLISEUM',
-              style: TextStyle(
-                color: _cream,
-                fontSize: 9,
-                letterSpacing: 2,
-                fontWeight: FontWeight.w600,
-              ),
+        // The wordmark belongs to the cover. In play the room has the screen.
+        if (!active) ...[
+          const Text(
+            'K / K',
+            style: TextStyle(
+              color: _gold,
+              fontWeight: FontWeight.w900,
+              fontSize: 20,
+              letterSpacing: -1,
             ),
-            if (_usedAutoplay)
-              const Text(
-                'AUTOMATIC RUN',
-                style: TextStyle(color: _mint, fontSize: 8, letterSpacing: 1),
-              ),
-          ],
-        ),
+          ),
+          const SizedBox(width: 10),
+          const Text(
+            'KUMBIA KOLISEUM',
+            style: TextStyle(
+              color: _cream,
+              fontSize: 9,
+              letterSpacing: 2,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+        ],
         const Spacer(),
         if (active)
           IconButton(
@@ -804,21 +789,15 @@ class _GardenPageState extends State<GardenPage>
             tooltip: _autoplay.enabled
                 ? 'Turn off AutoPlay'
                 : 'AutoPlay · watch the party',
-            color: _autoplay.enabled ? _mint : _cream.withValues(alpha: .65),
+            // Lit while on, and faintly lit for the rest of a run it played in.
+            color: _autoplay.enabled
+                ? _mint
+                : _usedAutoplay
+                ? _mint.withValues(alpha: .55)
+                : _cream.withValues(alpha: .65),
             iconSize: 20,
-            icon: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Icon(
-                  _autoplay.enabled
-                      ? Icons.smart_toy
-                      : Icons.smart_toy_outlined,
-                ),
-                const Text(
-                  'AUTO',
-                  style: TextStyle(fontSize: 7, letterSpacing: .6),
-                ),
-              ],
+            icon: Icon(
+              _autoplay.enabled ? Icons.smart_toy : Icons.smart_toy_outlined,
             ),
           ),
         ),
@@ -826,78 +805,42 @@ class _GardenPageState extends State<GardenPage>
     ),
   );
 
-  String _metricLabel(LevelDefinition level) =>
-      level.rules.metric.toUpperCase();
-
-  Widget _respect(GardenSession session) => Column(
-    children: [
-      Row(
-        children: [
-          Text(
-            _metricLabel(_level),
-            style: const TextStyle(
-              color: _gold,
-              fontWeight: FontWeight.w800,
-              letterSpacing: 3,
-              fontSize: 11,
-            ),
-          ),
-          const Spacer(),
-          Text(
-            '${_bankedPizazz + session.pizazz} PIZAZZ',
-            style: const TextStyle(
-              color: _mint,
-              fontFamily: 'Kumbia',
-              fontSize: 10,
-              letterSpacing: 1,
-            ),
-          ),
-        ],
-      ),
-      const SizedBox(height: 8),
-      Row(
-        children: List.generate(
-          5,
-          (i) => Expanded(
-            child: Container(
-              height: 3,
-              margin: const EdgeInsets.symmetric(horizontal: 2),
-              color: i <= session.progress.tier
-                  ? _gold
-                  : _cream.withValues(alpha: .18),
-            ),
-          ),
-        ),
-      ),
-      if (session.progress.tier == 4) ...[
-        const SizedBox(height: 6),
-        Text(
-          'FULL SUPPORT · ${session.peakChallengesRemaining} FINISH PHRASES',
-          style: const TextStyle(color: _mint, fontSize: 9, letterSpacing: 1),
-        ),
-      ],
-    ],
+  TurnLook _turnLook(GardenSession session) => TurnLook.of(
+    session.phase,
+    beat: _transport!.positionBeats,
+    flow: session.combo,
+    reducedMotion: _reducedMotion,
+    sagging: _audio.nowSeconds < _sagUntil,
   );
 
   Widget _target(Limb limb, Size size, [GardenCue? cue]) {
     final at = cue == null
         ? cueHome(limb, width: size.width, height: size.height)
         : _path(limb, cue.beat, cue.id, size).landing;
+    final look = _turnLook(_session!);
+    // The ring dents the moment a thumb lands, whatever the judge says next.
+    final pressed = _audio.nowSeconds - (_pressedAt[limb] ?? -1) < .09;
     return Positioned(
       left: at.x - cueRingRadius,
       top: at.y - cueRingRadius,
       child: IgnorePointer(
         child: Opacity(
-          opacity: .30,
-          child: Container(
-            width: 58,
-            height: 58,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              border: Border.all(color: _cream, width: 1),
+          opacity: pressed ? .85 : look.ring,
+          child: Transform.scale(
+            scale: pressed && !_reducedMotion ? .92 : 1,
+            child: Container(
+              width: 58,
+              height: 58,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                border: Border.all(
+                  color: pressed ? _cream : look.color,
+                  width: 1,
+                ),
+              ),
+              padding: const EdgeInsets.all(14),
+              child: _limbIcon(limb, pressed ? _cream : look.color),
             ),
-            padding: const EdgeInsets.all(14),
-            child: _limbIcon(limb, _cream),
           ),
         ),
       ),
@@ -964,28 +907,16 @@ class _GardenPageState extends State<GardenPage>
       left: at.x - 36,
       top: at.y - 36,
       child: IgnorePointer(
-        child: Column(
-          children: [
-            Container(
-              width: 72,
-              height: 72,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: _mint.withValues(alpha: .1),
-                border: Border.all(color: _mint.withValues(alpha: .7)),
-              ),
-              padding: const EdgeInsets.all(23),
-              child: const Icon(Icons.open_with, color: _mint, size: 26),
-            ),
-            Text(
-              'FLICK FOR STYLE',
-              style: const TextStyle(
-                color: _mint,
-                fontSize: 8,
-                letterSpacing: 1,
-              ),
-            ),
-          ],
+        child: Container(
+          width: 72,
+          height: 72,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: _mint.withValues(alpha: .1),
+            border: Border.all(color: _mint.withValues(alpha: .7)),
+          ),
+          padding: const EdgeInsets.all(23),
+          child: const Icon(Icons.open_with, color: _mint, size: 26),
         ),
       ),
     );
@@ -1002,179 +933,166 @@ class _GardenPageState extends State<GardenPage>
     semanticsLabel: limb.name,
   );
 
-  Widget _fightLabels(GardenSession session, Size size) {
+  /// Everything a label used to say in play. The words stay for screen readers.
+  Widget _playSignals(GardenSession session, Size size) {
+    final look = _turnLook(session);
+    final countingIn = _transport!.countingIn;
     final untilStart =
         _transport!.secondsAt(_transport!.positionBeats) - _audio.nowSeconds;
     final count =
         (untilStart / (60 / _transport!.score.tempos[_transport!.currentTier]))
             .ceil()
             .clamp(1, 4);
-    final label = _transport!.countingIn
-        ? 'READY  $count'
+    final turn = countingIn
+        ? 'Ready, $count'
         : switch (session.phase) {
-            GardenPhase.intro => 'FEEL THE PULSE',
-            GardenPhase.call => 'WATCH THE CALL',
-            _ =>
-              session.progress.tier == 4
-                  ? 'PEAK GROOVE · ${session.peakChallengesRemaining} TO GO'
-                  : 'YOUR TURN',
+            GardenPhase.intro => 'Feel the pulse',
+            GardenPhase.call => 'Watch the call',
+            _ => 'Your turn',
           };
-    return Stack(
-      children: [
-        Positioned(
-          top: size.height * .29,
-          left: 20,
-          right: 20,
-          child: Center(
-            child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-              color: _ink.withValues(alpha: .80),
-              child: Text(
-                label,
-                style: TextStyle(
-                  color: session.phase == GardenPhase.call ? _gold : _mint,
-                  fontSize: 10,
-                  letterSpacing: 2.3,
-                  fontWeight: FontWeight.w800,
+    final finishing = session.progress.tier == 4;
+    return Semantics(
+      label: turn,
+      value: finishing
+          ? 'Full support, ${session.peakChallengesRemaining} finish phrases'
+          : 'Level ${session.progress.tier + 1} of 5',
+      liveRegion: true,
+      child: ExcludeSemantics(
+        child: Stack(
+          fit: StackFit.expand,
+          children: [
+            Positioned(
+              left: 0,
+              right: 0,
+              top: size.height * .62,
+              bottom: 0,
+              child: DecoratedBox(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [
+                      look.color.withValues(alpha: 0),
+                      look.color.withValues(alpha: look.glow),
+                    ],
+                  ),
                 ),
               ),
             ),
+            CustomPaint(
+              painter: FeedbackPainter(
+                _marks,
+                _audio.nowSeconds,
+                reducedMotion: _reducedMotion,
+              ),
+            ),
+            if (countingIn)
+              Positioned(
+                top: size.height * .29,
+                left: 0,
+                right: 0,
+                child: _lamps(4, count, _gold, 12),
+              ),
+            // At full support the room is at its peak, so only the finish phrases
+            // left can say how close the level is. The cheap fix the research kept.
+            if (finishing)
+              Positioned(
+                top: MediaQuery.paddingOf(context).top + 68,
+                left: 0,
+                right: 0,
+                child: _lamps(
+                  session.peakChallengesRemaining,
+                  session.peakChallengesRemaining,
+                  _mint,
+                  8,
+                ),
+              ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  /// [lit] of [total] small round lamps in a centred row.
+  Widget _lamps(int total, int lit, Color color, double extent) => Row(
+    mainAxisAlignment: MainAxisAlignment.center,
+    children: [
+      for (var i = 0; i < total; i++)
+        Container(
+          width: extent,
+          height: extent,
+          margin: EdgeInsets.symmetric(horizontal: extent * .4),
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: i < lit ? color : color.withValues(alpha: .15),
+            border: Border.all(color: _ink.withValues(alpha: .7)),
           ),
         ),
-        if (session.combo >= 2 && session.phase == GardenPhase.response)
-          Positioned(
-            top: size.height * .53,
-            left: 20,
-            right: 20,
-            child: Center(
-              child: Text(
-                '${session.combo} STEPS IN FLOW',
-                style: const TextStyle(
-                  color: _gold,
-                  letterSpacing: 2,
-                  fontSize: 10,
-                  fontWeight: FontWeight.w800,
-                  shadows: [Shadow(blurRadius: 6, color: _ink)],
-                ),
-              ),
-            ),
-          ),
-        if (session.phase == GardenPhase.cleared && !_closeupShowing)
-          Positioned(
-            top: size.height * .53,
-            left: 20,
-            right: 20,
-            child: const Center(
-              child: Text(
-                'RESPECT EARNED. KEEP DANCING.',
-                style: TextStyle(
-                  color: _mint,
-                  letterSpacing: 2.5,
-                  fontSize: 11,
-                  fontWeight: FontWeight.w900,
-                  shadows: [Shadow(blurRadius: 8, color: _ink)],
-                ),
-              ),
-            ),
-          ),
-        if (_feedback != null && _audio.nowSeconds < _feedbackUntil)
-          Positioned(
-            top: size.height * .57,
-            left: 20,
-            right: 20,
-            child: Center(
-              child: Text(
-                _feedback!,
-                style: TextStyle(
-                  color: _feedbackColor,
-                  letterSpacing: 3,
-                  fontSize: 14,
-                  fontWeight: FontWeight.w900,
-                  shadows: const [Shadow(blurRadius: 8, color: _ink)],
-                ),
-              ),
-            ),
-          ),
-        Positioned(
-          bottom: MediaQuery.paddingOf(context).bottom + 18,
-          left: 20,
-          right: 20,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                session.phase == GardenPhase.call
-                    ? 'LOOK. LISTEN. REPEAT.'
-                    : 'TAP WHEN THE ICON LANDS.',
-                style: TextStyle(
-                  color: _cream.withValues(alpha: .6),
-                  letterSpacing: 1.6,
-                  fontSize: 8,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-            ],
-          ),
-        ),
+    ],
+  );
+
+  /// The level's two big words, the only text in a run. It lands with the hit.
+  Widget _cinematicTitle(Size size) {
+    final shot = _level.exitShot;
+    final beat = _scene.exitBeat;
+    final pose = shot == null || beat == null
+        ? null
+        : shot.titleAt(beat, reducedMotion: _reducedMotion);
+    if (pose == null) return const SizedBox.shrink();
+    final words = _level.copy.titleWords;
+    final fontSize = math.min(size.width * .21, 104.0);
+    TextStyle style(Color color) => TextStyle(
+      color: color,
+      height: 1,
+      fontSize: fontSize,
+      letterSpacing: -2,
+      fontWeight: FontWeight.w900,
+      shadows: const [
+        Shadow(color: _ink, offset: Offset(3, 4)),
+        Shadow(color: _ink, blurRadius: 12),
       ],
+    );
+    return Positioned(
+      // Under the contact point, in the band the close-up keeps clear for this.
+      top: size.height * .58,
+      left: 16,
+      right: 16,
+      height: size.height * .3,
+      child: IgnorePointer(
+        child: Semantics(
+          label: _level.copy.clearedShout,
+          liveRegion: true,
+          child: ExcludeSemantics(
+            child: Opacity(
+              opacity: pose.opacity,
+              child: Transform.scale(
+                scale: pose.scale,
+                child: FittedBox(
+                  fit: BoxFit.scaleDown,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(words.first, style: style(_cream)),
+                      Text(words.last, style: style(_gold)),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
     );
   }
 
   Widget _cover(GardenPhase phase, Size size) {
     final paused = phase == GardenPhase.paused;
     final cleared = phase == GardenPhase.cleared;
-    if (cleared && _closeupShowing) return const SizedBox.shrink();
-    if (cleared && _conductor?.isPlaying == true) {
-      return Positioned.fill(
-        child: IgnorePointer(
-          child: Stack(
-            children: [
-              Positioned(
-                top: size.height * .18,
-                left: 24,
-                right: 24,
-                child: Column(
-                  children: [
-                    Text(
-                      _level.copy.clearedShout,
-                      style: const TextStyle(
-                        color: _gold,
-                        fontWeight: FontWeight.w900,
-                        fontSize: 32,
-                        letterSpacing: -1,
-                        shadows: [Shadow(color: _ink, blurRadius: 12)],
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    const Text(
-                      'OK, YOU COOL.',
-                      style: TextStyle(
-                        color: _mint,
-                        fontSize: 10,
-                        letterSpacing: 3,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Positioned(
-                bottom: size.height * .12,
-                left: 24,
-                right: 24,
-                child: Text(
-                  _step.exitLine,
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    color: _cream,
-                    fontSize: 10,
-                    letterSpacing: 2,
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-      );
+    // The picture and the music carry a level's end. Only a failure to load the
+    // next room, or the end of the campaign, brings the cover back.
+    if (cleared && _conductor?.isPlaying == true) return _cinematicTitle(size);
+    if (cleared && !_exitStarted && _error == null) {
+      return const SizedBox.shrink();
     }
     return Positioned.fill(
       child: ColoredBox(
@@ -1187,7 +1105,7 @@ class _GardenPageState extends State<GardenPage>
                 SizedBox(height: math.max(58, size.height * .13)),
                 Text(
                   cleared
-                      ? 'RESPECT EARNED'
+                      ? ''
                       : paused
                       ? 'TAKE A BREATH'
                       : 'A LITTLE ROBOT. A BIG NIGHT.',
@@ -1221,7 +1139,7 @@ class _GardenPageState extends State<GardenPage>
                 const SizedBox(height: 18),
                 Text(
                   cleared
-                      ? _level.copy.clearedClaim
+                      ? ''
                       : paused
                       ? 'Your groove will wait for you.'
                       : _levels == null
@@ -1235,13 +1153,11 @@ class _GardenPageState extends State<GardenPage>
                 ),
                 const Spacer(),
                 if (cleared)
-                  Text(
-                    '${_bankedPerfects + _session!.perfects} PERFECT  ·  ${_bankedPizazz + _session!.pizazz} PIZAZZ',
-                    style: const TextStyle(
-                      color: _cream,
-                      fontFamily: 'Kumbia',
-                      fontSize: 11,
-                    ),
+                  Semantics(
+                    label:
+                        '${_bankedPerfects + _session!.perfects} perfect, '
+                        '${_bankedPizazz + _session!.pizazz} pizazz',
+                    child: const SizedBox.shrink(),
                   ),
                 if (!cleared && !paused) ...[
                   Text(
@@ -1307,8 +1223,6 @@ class _GardenPageState extends State<GardenPage>
                     child: Text(
                       _starting
                           ? 'WAKING THE MUSIC…'
-                          : _conductor?.isPlaying == true
-                          ? 'FOLLOW THE GROOVE'
                           : cleared
                           ? 'OTRA VUELTA  >'
                           : paused
@@ -1340,7 +1254,7 @@ class _GardenPageState extends State<GardenPage>
                   ),
                 const SizedBox(height: 16),
                 Text(
-                  cleared ? _step.nextLine : 'A KUMBIA KOLISEUM NIGHT',
+                  cleared ? '' : 'A KUMBIA KOLISEUM NIGHT',
                   style: TextStyle(
                     color: _cream.withValues(alpha: .4),
                     fontSize: 8,

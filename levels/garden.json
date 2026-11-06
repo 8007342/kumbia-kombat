@@ -72,9 +72,7 @@
   },
   "copy": {
     "invitation": "Mirror the rhythm. Earn your way in.",
-    "clearedTitle": "MUCHO\nMOJO.",
-    "clearedClaim": "THE GATE IS YOURS.",
-    "resetLine": "BACK TO THE GATE"
+    "clearedTitle": "MUCHO\nMOJO"
   },
   "exitShot": {
     "plate": "closeups/garden-plate.png",
@@ -129,18 +127,7 @@
       }
     ],
     "cue": [
-      {
-        "beat": 8,
-        "track": "pulse",
-        "pitch": 36,
-        "velocity": 127
-      },
-      {
-        "beat": 8,
-        "track": "pulse",
-        "pitch": 38,
-        "velocity": 120
-      }
+      { "beat": 8, "track": "bump", "pitch": 60, "velocity": 127 }
     ]
   }
 }

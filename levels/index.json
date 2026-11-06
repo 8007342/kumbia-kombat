@@ -3,20 +3,14 @@
   "campaign": [
     {
       "level": "garden",
-      "bridgeToNext": "garden_to_bar",
-      "exitLine": "FOLLOW THE GROOVE TO THE BAR",
-      "nextLine": "NEXT: SWAG AT THE BAR"
+      "bridgeToNext": "garden_to_bar"
     },
     {
       "level": "bar",
-      "exitLine": "OUT TO THE LAWN",
-      "nextLine": "NEXT: GRACE ON THE LAWN",
       "bridgeToNext": "bar_to_pool"
     },
     {
-      "level": "pool-garden",
-      "exitLine": "THE MANSION IS NEXT",
-      "nextLine": "MORE ROOMS COMING"
+      "level": "pool-garden"
     }
   ]
 }

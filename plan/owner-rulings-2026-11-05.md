@@ -121,6 +121,7 @@ Durability, the same day: "make the results durable and push to remote work bran
 | Topic | Ruling | Owner's words |
 |---|---|---|
 | Text | Text appears only in the cinematic highlight, as a simple two-word message whose second word comes from the party and music theme | "ONLY TEXT FOR THE CINEMATIC HIGHLIGHT, where we get our simple 2 word messages", examples "MUCHO MOJO" "MUY SUAVE" "QUÉ FINO" |
+| Titles | Garden, bar and lawn each get their own | "MUCHO MOJO", "MUY SUAVE", "QUÉ FINO" |
 | Accents | The fist bump gets a sound accent, and the oil gulp gets one too | "with the sound accent with the fistbump, and some sound accent for the oil gulp" |
 | Lawn duet | The dancers end at different positions after their turns. Off turn they step slowly, playing with their skirts with one hand on the back, even switching sides. Mācron dances with one of them each turn | "dance and step slowly playing with their skirts with one hand on the back, even switching sides while they're off-turn", "have Mācron dance with one of the girs on each turn" |
 | Lawn cinematic | On success they keep dancing at the sides as Mācron dances between them, then reach down quickly: a kiss on each cheek at the same time. His big round eyes turn to smiling arcs, with a small blush | "the two girls giving Mācron a kiss on each cheek at the same time", "big round eyes turn to smiling arcs and a small blush" |
@@ -134,4 +135,6 @@ Durability, the same day: "make the results durable and push to remote work bran
 | Forge disk | `src_mb = 4096` committed | "yes, commit the 4 GB src_mb setting" |
 
 The owner approved "the changes and recommendations" in the same message. It is not clear which report that covers beyond the on-screen review, so `plan/gameplay-and-taps-pending.md` marks the touch report's decisions as needing confirmation.
+
+Crowd and scoring, the same day: this settles how engaged a cleared room looks and what earns full swing. A clean run ends with the room fully engaged, unskilful play costs the crowd's interest, a level can pass with the party not fully engaged, and flawless play is rewarded with a fully engaged party. The owner's words: "Let's end up with a room fully egaged for all players, and the penalty for unskillful players is that the crowd loses interest", "let a non-fully engaged party pass, but reward flawless play with a fully engaged party". The scoring should value this using the gameflow research on tension and relaxation.
 

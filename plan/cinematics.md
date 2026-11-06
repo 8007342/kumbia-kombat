@@ -35,8 +35,27 @@ code. We have not watched it play.
 4. **The tap band stays where it is**, dimmed and inactive. Shots use the top area. Nothing jumps when play resumes.
 5. **Same pixel size as the world.** Mixed pixel sizes are the flaw that already made the draft pool room look blocky.
    Paint a close-up at the logical size it fills, divided by the room's pixel scale. Exact number to be measured.
-6. **No text baked into art.** Captions stay in the UI.
+6. **No text baked into art.** The level's two big words, `copy.clearedTitle`, are the only text in a run, drawn by the UI from the contact beat. See "Titles and accents" below.
 7. **Glint is reserved** for the finale's high five (from `plan/storyboard.md`).
+
+## Titles and accents, as built
+
+The owner, 2026-11-06: "ONLY TEXT FOR THE CINEMATIC HIGHLIGHT, where we get our simple 2 word messages, where the second word is one of the semantic pop culture for the party and music theme."
+
+**Title.** `copy.clearedTitle` holds two words, one to a line, and the level file is refused otherwise. `ExitShot.titleAt` puts it up from `contactBeat` for at least 3 beats, because the garden's close-up lasts only 1.25 beats after contact. It can outlast the close-up and sit over the wide shot. A level with no `exitShot` shows no title in its transition; if it's the last level, the end screen still shows the words.
+
+**Accents.** A `cue` entry's `track` can name a one-shot patch from `lib/music/accent_voice.dart`: `bump`, `glug` or `clink`. `pitch` transposes it around 60, and `velocity` scales it. Any other track must be one of the score's voices, and the level file is refused otherwise.
+
+What the wiring needed, and what went wrong when we traced it, for the next custom moment:
+
+| Finding | What it did | Now |
+|---|---|---|
+| Cues did reach the backend, on time | Mixed into the success score or bridge, then queued by the transport like any note | Unchanged, and a test follows them through the real conductor to the device time |
+| They were built from the song's own drum voices, at the song's level | The garden's hit was a kick and snare, on a beat where the bridge plays its own kick. The kick is a 110 Hz sine falling to 50 Hz, which a phone can't play. The gulps were 160 Hz sines falling to 72 Hz | Own patches on their own louder bus, each with energy a phone can play. Levels are computed, not yet heard |
+| A last level's score never got its cue | `finish()` was handed the bare success score | Mixed in, as for a handoff |
+| A cue within a quarter beat of a score's end would crash the win | `MusicScore` refuses a note that runs past its end | Clipped |
+| A stalled frame over the contact drops the hit | The transport never plays a note late, and a browser without WebGL can stall for a second | The exit queues .6 s ahead instead of .3 s. A longer stall still drops it |
+| On a last level, a close-up past the end of the success score never closes | The beat clock stops with the music. The score is 8 beats on the lawn | A test on shipped levels fails if `closeupTo`, `titleUntil` or a cue runs past the music. **A lawn shot must fit in 8 beats** |
 
 ## Proposed format
 

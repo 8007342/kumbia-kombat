@@ -9,6 +9,7 @@ import 'package:kumbia_kombat/gameplay/garden_page.dart';
 import 'package:kumbia_kombat/gameplay/garden_scene.dart';
 import 'package:kumbia_kombat/gameplay/garden_session.dart';
 import 'package:kumbia_kombat/gameplay/level_definition.dart';
+import 'package:kumbia_kombat/music/accent_voice.dart';
 import 'package:kumbia_kombat/music/game_audio.dart';
 import 'package:kumbia_kombat/music/score.dart';
 import 'package:kumbia_kombat/music/transport.dart';
@@ -20,7 +21,11 @@ import 'support/recording_canvas.dart';
 /// borrows the bar's art and score, and differs from the bar in every number
 /// so that anything still hard-wired to a room shows up. Not in the shipping
 /// list. Its intro is 12 beats, three times the two shipped rooms'.
-String _nightBar({String id = 'night-bar', String title = 'THE NIGHT BAR'}) =>
+String _nightBar({
+  String id = 'night-bar',
+  String title = 'THE NIGHT BAR',
+  String exitShot = '',
+}) =>
     '''
 {
   "id": "$id",
@@ -56,7 +61,7 @@ String _nightBar({String id = 'night-bar', String title = 'THE NIGHT BAR'}) =>
       { "at": 1, "x": 0.80, "y": 0.34, "facing": "rear" }
     ]
   },
-  "copy": { "invitation": "Glow or go home.", "clearedTitle": "PURO\\nGLOW.", "clearedClaim": "THE NIGHT IS YOURS.", "resetLine": "BACK TO THE DOOR" }
+  "copy": { "invitation": "Glow or go home.", "clearedTitle": "PURO\\nGLOW" }$exitShot
 }
 ''';
 
@@ -65,10 +70,10 @@ String _nightBar({String id = 'night-bar', String title = 'THE NIGHT BAR'}) =>
 LevelRegistry _extended() {
   const index = '''
 { "campaign": [
-  { "level": "garden", "bridgeToNext": "garden_to_bar", "exitLine": "ONWARD", "nextLine": "NEXT: BAR" },
-  { "level": "bar", "bridgeToNext": "bar_to_crowd", "exitLine": "TO THE NIGHT BAR", "nextLine": "NEXT: NIGHT" },
-  { "level": "night-bar", "bridgeToNext": "crowd_to_restroom", "exitLine": "ONE MORE ROOM", "nextLine": "NEXT: AFTER HOURS" },
-  { "level": "after-hours", "exitLine": "GOOD NIGHT", "nextLine": "THAT IS ALL" }
+  { "level": "garden", "bridgeToNext": "garden_to_bar" },
+  { "level": "bar", "bridgeToNext": "bar_to_crowd" },
+  { "level": "night-bar", "bridgeToNext": "crowd_to_restroom" },
+  { "level": "after-hours" }
 ] }
 ''';
   return LevelRegistry.parse(
@@ -156,8 +161,35 @@ class _PageAudio implements GameAudio {
   @override
   void silence() {}
   @override
-  void schedule(ScoreNote note, double atSeconds, double durationSeconds) {}
+  void schedule(ScoreNote note, double atSeconds, double durationSeconds) {
+    if (isAccentTrack(note.track)) {
+      accents.add(note.track);
+    }
+  }
+
+  final accents = <String>[];
 }
+
+String _exitShot({
+  required double contact,
+  required double closeupTo,
+  required String hit,
+}) =>
+    '''
+,
+  "exitShot": {
+    "plate": "closeups/garden-plate.png",
+    "celebrateUntil": 1, "walkFrom": 1, "walkTo": 2,
+    "heroStep": [0.5, 0.6],
+    "closeupFrom": ${contact - 1}, "contactBeat": $contact, "closeupTo": $closeupTo,
+    "contactPoint": [0.5, 0.32],
+    "actors": [
+      { "approach": "closeups/mc-approach.png", "impact": "closeups/mc-impact.png",
+        "contact": [89, 34], "scale": 1.1, "entry": [-130, 90], "recoil": [-5, 3] }
+    ],
+    "cue": [{ "beat": $contact, "track": "$hit", "pitch": 60, "velocity": 127 }]
+  }
+''';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
@@ -290,15 +322,21 @@ void main() {
   ) async {
     const index = '''
 { "campaign": [
-  { "level": "night-bar", "bridgeToNext": "bar_to_crowd", "exitLine": "ONE MORE ROOM", "nextLine": "NEXT: AFTER HOURS" },
-  { "level": "after-hours", "exitLine": "GOOD NIGHT", "nextLine": "THAT IS ALL" }
+  { "level": "night-bar", "bridgeToNext": "bar_to_crowd" },
+  { "level": "after-hours" }
 ] }
 ''';
     final levels = LevelRegistry.parse(
       index,
       (id) => id == 'night-bar'
-          ? _nightBar()
-          : _nightBar(id: id, title: 'AFTER HOURS'),
+          // Contact on the bridge's downbeat, as the shipped rooms have it.
+          ? _nightBar(exitShot: _exitShot(contact: 8, closeupTo: 10, hit: 'bump'))
+          // The last level has no bridge, so its shot must fit the success score.
+          : _nightBar(
+              id: id,
+              title: 'AFTER HOURS',
+              exitShot: _exitShot(contact: 4, closeupTo: 6, hit: 'glug'),
+            ),
     );
     final audio = _PageAudio();
     await tester.pumpWidget(
@@ -334,27 +372,18 @@ void main() {
     );
     await settle(() => game.game!.session?.phase != GardenPhase.ready);
 
-    final seen = <String>{};
-    final screens = <String, String>{
-      'exit shout': 'PURO GLOW.',
-      'exit line': 'ONE MORE ROOM',
-      'reward': 'GLOW +',
-      'meter': 'GLOW',
-    };
+    // From the first beat to the end screen, the only words on screen are the
+    // two big ones at each room's highlight.
+    final words = <String>{};
+    bool ended() => find.text('OTRA VUELTA  >').evaluate().isNotEmpty;
     // Two levels of up to about 90 s each, plus one transition.
-    for (var frame = 0; frame < 15000; frame++) {
+    for (var frame = 0; frame < 15000 && !ended(); frame++) {
       audio.nowSeconds += .02;
       await tester.pump(const Duration(milliseconds: 20));
-      if (frame.isEven) {
-        for (final entry in screens.entries) {
-          if (find.text(entry.value).evaluate().isNotEmpty) seen.add(entry.key);
+      if (!ended()) {
+        for (final text in tester.widgetList<Text>(find.byType(Text))) {
+          words.add(text.data ?? '');
         }
-      }
-      final session = game.game!.session!;
-      if (session.progress.definition.id == 'after-hours' &&
-          session.phase == GardenPhase.cleared &&
-          find.text('RESPECT EARNED').evaluate().isNotEmpty) {
-        break;
       }
     }
 
@@ -363,11 +392,14 @@ void main() {
     expect(session.chart, same(levels.byId('after-hours').chart));
     expect(session.crowd.profile, same(levels.byId('after-hours').crowd));
     expect(session.phase, GardenPhase.cleared);
-    expect(seen, screens.keys.toSet());
-    expect(find.text('RESPECT EARNED'), findsOneWidget);
-    expect(find.text('PURO\nGLOW.'), findsOneWidget);
-    expect(find.text('THE NIGHT IS YOURS.'), findsOneWidget);
-    expect(find.text('THAT IS ALL'), findsOneWidget);
+    expect(words, {'PURO', 'GLOW'});
+    // The room with a bridge and the last room without one both sound their hit.
+    expect(audio.accents, ['bump', 'glug']);
+    // The end screen keeps the big words and a way to go again, and that's all.
+    expect(find.text('PURO\nGLOW'), findsOneWidget);
+    expect(find.text('OTRA VUELTA  >'), findsOneWidget);
+    expect(find.text('RESPECT EARNED'), findsNothing);
+    expect(find.textContaining('PIZAZZ'), findsNothing);
     expect(audio.leadShape, 'square');
     expect(tester.takeException(), isNull);
     await tester.pumpWidget(const SizedBox.shrink());
