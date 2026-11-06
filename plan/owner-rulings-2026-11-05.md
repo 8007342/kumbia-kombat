@@ -46,3 +46,5 @@ salsa teacher. Swing isn't that teacher's stated field, so swing vocabulary need
 | Handoff | The opponent stays on the main dance area during Mācron's turn, and doesn't hide back in the party | "remain somewhat on the main dance area, even for Mācron's turn" |
 | Mācron off turn | He takes a few steps back and claps or taps along, depending on the music and the party's excitement | "take a few steps back, and clap along, and/or tap along" |
 | Opponent flares | The Gatekeeper and bartender get spins and optional flares, as Mācron has | "might need to also do some spins and optional flares" |
+
+Status, 2026-11-06: the handoff, Mācron's clap, opponent spins and the oil gulp are in the game as candidates on `work/1839-intg`, not yet merged. The fist bump's lightning face-off and wink aren't started.
