@@ -31,6 +31,7 @@ The owner's ninth round settled the mechanic: one dancer has each turn, and the 
 - The sampler's yield still drives the move from call to partner mark, so a spin that overflows the call finishes mid-floor before anyone steps away. Floor positions come from the music beat and the turn. The session never reads them.
 - Turns count calls on the beat grid, so a retry moves on to the next dancer too. The owner may prefer the same dancer showing it again.
 - `floorTrack` still works in the parser, but the lawn no longer uses it.
+- Art route: `art_runs/duet-20261106/`, words only, on the 2511 LoRA. "Hand on the back" first came out as a hand on the hip. It took naming the arm's side as the model draws it and saying the forearm and hand are hidden behind the waist. The other hand's folds are two drawings and their flips, four frames each, and walking uses the existing clips.
 
 ## What's missing
 

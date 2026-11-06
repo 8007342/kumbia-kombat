@@ -1,9 +1,9 @@
 {
   "schema": "tillandsias.finish/v1",
   "output": "/work/tmp/imagegen/kumbia/duet-20261106/finished/swing-a.skirt_sway_r.png",
-  "output_sha256": "ba9301034c1d322dabf878d1c5498fc5b30ff088ff09cbceacc4354e9f07f730",
+  "output_sha256": "132326114498d34cb25a038bcc753c333d981b8045030d8c93c1dec716dd1c6e",
   "input": "/work/tmp/imagegen/kumbia/duet-20261106/selected/swing-a.skirt_sway_r.png",
-  "input_sha256": "e037e1435698c08ca91f7e7e4166a23ba4dfcdbc28b9958043afc4d80eaed57b",
+  "input_sha256": "923a22f3cbde1cea44dd046026b98742f0b154879795b521be2455810822bc63",
   "tool": "studio.finish_pixels",
   "parents": [],
   "matte": null,

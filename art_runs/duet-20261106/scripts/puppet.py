@@ -69,7 +69,10 @@ def dancer(tag, pick, name, flip=False):
     """Qwen art to the puppet's grid and her atlas palette, cut off above the chest: nothing below the collar and shoulder line stays."""
     im = Image.open(HOME / pick["pose"] / f"{pick['seed']}.png").convert("RGBA")
     k = pick["fit"] / 1024; im = im.resize((round(im.width * k), round(im.height * k)), Image.LANCZOS)
-    w, h = im.size; a = np.array(im); a[pick["cutY"]:] = 0; a[..., 3] = (a[..., 3] >= 128) * 255; im = Image.fromarray(a, "RGBA")
+    w, h = im.size; a = np.array(im); a[pick["cutY"]:] = 0
+    if "closeCollarY" in pick:  # her collar closes high: below this line skin-coloured pixels are the dress
+        y = pick["closeCollarY"]; rgb = a[y:, :, :3].astype(int); skin = (rgb[..., 0] > rgb[..., 1] + 25) & (rgb[..., 1] > rgb[..., 2]); a[y:, :, :3][skin] = (15, 122, 80)
+    a[..., 3] = (a[..., 3] >= 128) * 255; im = Image.fromarray(a, "RGBA")
     im = snap(im); im = im.quantize(colors=48, method=Image.FASTOCTREE, dither=Image.NONE).convert("RGBA")
     im.save(OUT / f"duet-{tag}-{name}.png", optimize=True); return im.size
 

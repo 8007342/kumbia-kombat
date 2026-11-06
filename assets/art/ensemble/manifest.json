@@ -11011,11 +11011,11 @@
      "rect": [
       2,
       2206,
-      134,
+      164,
       245
      ],
      "anchor": [
-      54,
+      83,
       244.4
      ],
      "pixelsPerUnit": 6.0387,
@@ -11023,22 +11023,22 @@
      "facing": "front",
      "provenance": {
       "run": "duet-20261106",
-      "raw": "a.skirt_sway",
-      "seed": 1846000,
-      "sha256": "ba9301034c1d322dabf878d1c5498fc5b30ff088ff09cbceacc4354e9f07f730",
+      "raw": "a.skirt_sway2",
+      "seed": 1846201,
+      "sha256": "132326114498d34cb25a038bcc753c333d981b8045030d8c93c1dec716dd1c6e",
       "selectedBy": "agent's eye",
       "accepted": false
      }
     },
     "skirt_sway_l": {
      "rect": [
-      138,
+      168,
       2206,
-      134,
+      164,
       245
      ],
      "anchor": [
-      80,
+      81,
       244.4
      ],
      "pixelsPerUnit": 6.0387,
@@ -11047,22 +11047,22 @@
      "mirrorOf": "skirt_sway_r",
      "provenance": {
       "run": "duet-20261106",
-      "raw": "a.skirt_sway",
-      "seed": 1846000,
-      "sha256": "ba9301034c1d322dabf878d1c5498fc5b30ff088ff09cbceacc4354e9f07f730",
+      "raw": "a.skirt_sway2",
+      "seed": 1846201,
+      "sha256": "132326114498d34cb25a038bcc753c333d981b8045030d8c93c1dec716dd1c6e",
       "selectedBy": "agent's eye",
       "accepted": false
      }
     },
     "skirt_pass_r": {
      "rect": [
-      274,
+      334,
       2206,
-      109,
+      115,
       245
      ],
      "anchor": [
-      49,
+      50,
       244.4
      ],
      "pixelsPerUnit": 6.0387,
@@ -11070,22 +11070,22 @@
      "facing": "front",
      "provenance": {
       "run": "duet-20261106",
-      "raw": "a.skirt_pass",
-      "seed": 1846101,
-      "sha256": "f03e9f3ea61279243429c39b31d443b3e5a46e2ebb4225610fd3cfd546964964",
+      "raw": "a.skirt_pass2",
+      "seed": 1846301,
+      "sha256": "2a98440a71f1aa4c7ec6d3b7434e9f949b943b58c60151a7f282eb614b894c62",
       "selectedBy": "agent's eye",
       "accepted": false
      }
     },
     "skirt_pass_l": {
      "rect": [
-      385,
+      451,
       2206,
-      109,
+      115,
       245
      ],
      "anchor": [
-      60,
+      65,
       244.4
      ],
      "pixelsPerUnit": 6.0387,
@@ -11094,9 +11094,9 @@
      "mirrorOf": "skirt_pass_r",
      "provenance": {
       "run": "duet-20261106",
-      "raw": "a.skirt_pass",
-      "seed": 1846101,
-      "sha256": "f03e9f3ea61279243429c39b31d443b3e5a46e2ebb4225610fd3cfd546964964",
+      "raw": "a.skirt_pass2",
+      "seed": 1846301,
+      "sha256": "2a98440a71f1aa4c7ec6d3b7434e9f949b943b58c60151a7f282eb614b894c62",
       "selectedBy": "agent's eye",
       "accepted": false
      }
@@ -14182,7 +14182,7 @@
      "rect": [
       2,
       2214,
-      142,
+      139,
       242
      ],
      "anchor": [
@@ -14194,22 +14194,22 @@
      "facing": "front",
      "provenance": {
       "run": "duet-20261106",
-      "raw": "b.skirt_sway",
-      "seed": 1847001,
-      "sha256": "676f6c2b6aa7279baa76aae34e6ca01f49c2c74281846cb48b72011ec125e59d",
+      "raw": "b.skirt_sway2",
+      "seed": 1847202,
+      "sha256": "63bedf8571c9e4ff94c9b1c8a2c0c556375d8d700104ef3169d6ab67377fe24c",
       "selectedBy": "agent's eye",
       "accepted": false
      }
     },
     "skirt_sway_l": {
      "rect": [
-      146,
+      143,
       2214,
-      142,
+      139,
       242
      ],
      "anchor": [
-      83,
+      80,
       241.4
      ],
      "pixelsPerUnit": 6.0387,
@@ -14218,22 +14218,22 @@
      "mirrorOf": "skirt_sway_r",
      "provenance": {
       "run": "duet-20261106",
-      "raw": "b.skirt_sway",
-      "seed": 1847001,
-      "sha256": "676f6c2b6aa7279baa76aae34e6ca01f49c2c74281846cb48b72011ec125e59d",
+      "raw": "b.skirt_sway2",
+      "seed": 1847202,
+      "sha256": "63bedf8571c9e4ff94c9b1c8a2c0c556375d8d700104ef3169d6ab67377fe24c",
       "selectedBy": "agent's eye",
       "accepted": false
      }
     },
     "skirt_pass_r": {
      "rect": [
-      290,
+      284,
       2214,
-      107,
+      110,
       242
      ],
      "anchor": [
-      52,
+      53,
       241.4
      ],
      "pixelsPerUnit": 6.0387,
@@ -14241,22 +14241,22 @@
      "facing": "front",
      "provenance": {
       "run": "duet-20261106",
-      "raw": "b.skirt_pass",
-      "seed": 1847101,
-      "sha256": "d4bb08feb462ffa354e64a90ba664e882530ee024b8b348e6af9c6d3f3eecb2b",
+      "raw": "b.skirt_pass2",
+      "seed": 1847301,
+      "sha256": "175f4bc1e22a41a11d865d066c21b75b8db3ed2bd85a511e827d81612e2c1cdc",
       "selectedBy": "agent's eye",
       "accepted": false
      }
     },
     "skirt_pass_l": {
      "rect": [
-      399,
+      396,
       2214,
-      107,
+      110,
       242
      ],
      "anchor": [
-      55,
+      57,
       241.4
      ],
      "pixelsPerUnit": 6.0387,
@@ -14265,9 +14265,9 @@
      "mirrorOf": "skirt_pass_r",
      "provenance": {
       "run": "duet-20261106",
-      "raw": "b.skirt_pass",
-      "seed": 1847101,
-      "sha256": "d4bb08feb462ffa354e64a90ba664e882530ee024b8b348e6af9c6d3f3eecb2b",
+      "raw": "b.skirt_pass2",
+      "seed": 1847301,
+      "sha256": "175f4bc1e22a41a11d865d066c21b75b8db3ed2bd85a511e827d81612e2c1cdc",
       "selectedBy": "agent's eye",
       "accepted": false
      }

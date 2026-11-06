@@ -9,12 +9,12 @@
    "groundY": 296.4,
    "poses": {
     "skirt_sway_r": {
-     "raw": "a.skirt_sway",
-     "seed": 1846000
+     "raw": "a.skirt_sway2",
+     "seed": 1846201
     },
     "skirt_pass_r": {
-     "raw": "a.skirt_pass",
-     "seed": 1846101
+     "raw": "a.skirt_pass2",
+     "seed": 1846301
     }
    }
   },
@@ -26,12 +26,12 @@
    "groundY": 297.4,
    "poses": {
     "skirt_sway_r": {
-     "raw": "b.skirt_sway",
-     "seed": 1847001
+     "raw": "b.skirt_sway2",
+     "seed": 1847202
     },
     "skirt_pass_r": {
-     "raw": "b.skirt_pass",
-     "seed": 1847101
+     "raw": "b.skirt_pass2",
+     "seed": 1847301
     }
    }
   }
@@ -42,13 +42,15 @@
     "pose": "ka.kiss",
     "seed": 1848000,
     "fit": 336,
-    "cutY": 250
+    "cutY": 250,
+    "closeCollarY": 168
    },
    "smile": {
     "pose": "ka.smile",
     "seed": 1848101,
     "fit": 336,
-    "cutY": 250
+    "cutY": 250,
+    "closeCollarY": 168
    },
    "lips": [
     241,
