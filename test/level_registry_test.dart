@@ -203,8 +203,9 @@ void main() {
           'bar_to_pool',
           'pool_swing_success',
         });
-        expect(garden.level.copy.clearedShout, 'MUCHO MOJO.');
-        expect(bar.level.copy.clearedShout, 'PURO SWAG.');
+        expect(garden.level.copy.clearedShout, 'MUCHO MOJO');
+        expect(bar.level.copy.clearedShout, 'MUY SUAVE');
+        expect(lawn.level.copy.clearedShout, 'QUÉ FINO');
         expect(garden.level.rules.metric.toUpperCase(), 'MOJO');
         expect(bar.level.rules.metric.toUpperCase(), 'SWAG');
       },
@@ -281,8 +282,7 @@ void main() {
     test('the campaign refuses a level file it cannot find', () {
       expect(
         () => LevelRegistry.parse(
-          '{"campaign": [{"level": "no-such-level", "exitLine": "a", '
-          '"nextLine": "b"}]}',
+          '{"campaign": [{"level": "no-such-level"}]}',
           _file,
         ),
         throwsA(isA<PathNotFoundException>()),
@@ -357,6 +357,18 @@ void main() {
       of(bar, 'stage')['heroHomee'] = [.5, .5];
     });
     refused('a missing section', 'level.copy', (bar) => bar.remove('copy'));
+    refused('a title that is one word', 'copy.clearedTitle', (bar) {
+      of(bar, 'copy')['clearedTitle'] = 'SUAVE';
+    });
+    refused('a title of three words', 'copy.clearedTitle', (bar) {
+      of(bar, 'copy')['clearedTitle'] = 'MUY\nMUY SUAVE';
+    });
+    refused('a text line the game no longer shows', 'copy', (bar) {
+      of(bar, 'copy')['clearedClaim'] = 'THE BAR IS YOURS.';
+    });
+    refused('a cue with no such sound', 'cue[0].track', (bar) {
+      ((of(bar, 'exitShot')['cue'] as List)[0] as Map)['track'] = 'kazoo';
+    });
     refused('a limb that does not exist', 'chart.limbs[0]', (bar) {
       (of(bar, 'chart')['limbs'] as List)[0] = 'tail';
     });
@@ -422,13 +434,12 @@ void main() {
 
     String index(List<Map<String, Object?>> campaign, {int? total}) =>
         jsonEncode({'displayTotal': ?total, 'campaign': campaign});
-    const lines = {'exitLine': 'a', 'nextLine': 'b'};
 
     test('a file holding a different level', () {
       expect(
         () => LevelRegistry.parse(
           index([
-            {'level': 'bar', ...lines},
+            {'level': 'bar'},
           ]),
           (_) => _file('garden'),
         ),
@@ -439,8 +450,8 @@ void main() {
       expect(
         () => LevelRegistry.parse(
           index([
-            {'level': 'bar', 'bridgeToNext': 'x', ...lines},
-            {'level': 'bar', ...lines},
+            {'level': 'bar', 'bridgeToNext': 'x'},
+            {'level': 'bar'},
           ]),
           _file,
         ),
@@ -451,8 +462,8 @@ void main() {
       expect(
         () => LevelRegistry.parse(
           index([
-            {'level': 'garden', ...lines},
-            {'level': 'bar', ...lines},
+            {'level': 'garden'},
+            {'level': 'bar'},
           ]),
           _file,
         ),
@@ -463,7 +474,7 @@ void main() {
       expect(
         () => LevelRegistry.parse(
           index([
-            {'level': 'bar', 'bridgeToNext': 'x', ...lines},
+            {'level': 'bar', 'bridgeToNext': 'x'},
           ]),
           _file,
         ),
@@ -480,8 +491,8 @@ void main() {
       expect(
         () => LevelRegistry.parse(
           index([
-            {'level': 'garden', 'bridgeToNext': 'x', ...lines},
-            {'level': 'bar', ...lines},
+            {'level': 'garden', 'bridgeToNext': 'x'},
+            {'level': 'bar'},
           ], total: 1),
           _file,
         ),
@@ -491,7 +502,7 @@ void main() {
     test('the display total defaults to the campaign length', () {
       final levels = LevelRegistry.parse(
         index([
-          {'level': 'bar', ...lines},
+          {'level': 'bar'},
         ]),
         _file,
       );

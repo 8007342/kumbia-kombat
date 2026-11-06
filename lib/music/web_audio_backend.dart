@@ -1,6 +1,7 @@
 // Web-only adapter. Import conditionally when integrating native targets.
 import 'dart:js_interop';
 import 'dart:math' as math;
+import 'accent_voice.dart';
 import 'score.dart';
 import 'game_audio_contract.dart';
 
@@ -80,6 +81,7 @@ class WebAudioMusicBackend implements GameAudio {
   String leadShape;
   _Context? _context;
   _Gain? _master;
+  _Gain? _accents;
   _Buffer? _noise;
   final List<_Voice> _voices = [];
   int stolenVoices = 0;
@@ -91,8 +93,10 @@ class WebAudioMusicBackend implements GameAudio {
     if (_disposed) throw StateError('Audio backend has been disposed');
     if (_context == null) {
       final context = _context = _Context();
-      _master = context.createGain()..gain.value = .32;
+      _master = context.createGain()..gain.value = musicMasterGain;
       _master!.connect(context.destination);
+      _accents = context.createGain()..gain.value = accentBusGain;
+      _accents!.connect(context.destination);
       final noise = _noise = context.createBuffer(
         1,
         context.sampleRate.toInt(),
@@ -123,6 +127,8 @@ class WebAudioMusicBackend implements GameAudio {
     _context = null;
     _master?.disconnect();
     _master = null;
+    _accents?.disconnect();
+    _accents = null;
     _noise = null;
     if (context != null) await context.close().toDart;
   }
@@ -141,6 +147,11 @@ class WebAudioMusicBackend implements GameAudio {
   void schedule(ScoreNote note, double atSeconds, double durationSeconds) {
     if (!ready) throw StateError('Activate audio from a user gesture first');
     _collect();
+    final accent = accentPatches[note.track];
+    if (accent != null) {
+      _playAccent(accent, note, math.max(atSeconds, nowSeconds));
+      return;
+    }
     if (_voices.length >= 96) {
       stolenVoices++;
       return;
@@ -154,7 +165,7 @@ class WebAudioMusicBackend implements GameAudio {
     final noisy = drum && [38, 73, 75].contains(note.pitch);
     late _Source source;
     var length = math.max(.025, durationSeconds);
-    var gain = note.velocity / 127 * .18;
+    var gain = note.velocity / 127 * musicVoiceGain;
     if (noisy) {
       final noise = context.createBufferSource()
         ..buffer = _noise!
@@ -215,6 +226,49 @@ class WebAudioMusicBackend implements GameAudio {
     source.start(when);
     source.stop(end);
     _voices.add(_Voice(source, envelope, [source, filter, envelope], end));
+  }
+
+  /// A cinematic hit: never stolen by the song, and its length is its own, so
+  /// the end of a score can't cut it short. Bounded by the shot's short cue list.
+  void _playAccent(List<AccentLayer> layers, ScoreNote note, double when) {
+    final context = _context!;
+    final transpose = accentTranspose(note.pitch);
+    for (final layer in layers) {
+      late _Source source;
+      if (layer.noise) {
+        source = context.createBufferSource()
+          ..buffer = _noise!
+          ..loop = true;
+      } else {
+        final oscillator = context.createOscillator()..type = layer.shape;
+        oscillator.frequency.setValueAtTime(layer.fromHz * transpose, when);
+        oscillator.frequency.exponentialRampToValueAtTime(
+          layer.toHz * transpose,
+          when + layer.sweep,
+        );
+        source = oscillator;
+      }
+      final filter = context.createBiquadFilter()..type = layer.filter;
+      filter.frequency.value = layer.filterHz;
+      filter.Q.value = layer.q;
+      final envelope = context.createGain();
+      final gain = layer.gain * note.velocity / 127;
+      final end = when + layer.seconds;
+      envelope.gain.setValueAtTime(.0001, when);
+      envelope.gain.linearRampToValueAtTime(gain, when + .002);
+      envelope.gain.exponentialRampToValueAtTime(.0001, end);
+      source.connect(filter);
+      filter.connect(envelope);
+      envelope.connect(_accents!);
+      source.onended = (() {
+        source.disconnect();
+        filter.disconnect();
+        envelope.disconnect();
+      }).toJS;
+      source.start(when);
+      source.stop(end);
+      _voices.add(_Voice(source, envelope, [source, filter, envelope], end));
+    }
   }
 
   @override

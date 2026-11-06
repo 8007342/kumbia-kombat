@@ -132,31 +132,15 @@
       }
     ],
     "cue": [
-      {
-        "beat": 8,
-        "track": "pulse",
-        "pitch": 75,
-        "velocity": 127
-      },
-      {
-        "beat": 8.5,
-        "track": "pulse",
-        "pitch": 60,
-        "velocity": 96
-      },
-      {
-        "beat": 9.5,
-        "track": "pulse",
-        "pitch": 60,
-        "velocity": 96
-      }
+      { "beat": 8, "track": "clink", "pitch": 60, "velocity": 127 },
+      { "beat": 8.5, "track": "glug", "pitch": 57, "velocity": 120 },
+      { "beat": 9, "track": "glug", "pitch": 60, "velocity": 120 },
+      { "beat": 9.5, "track": "glug", "pitch": 64, "velocity": 127 }
     ],
     "impactBeats": 1.5
   },
   "copy": {
     "invitation": "The bartender has a rhythm of their own.",
-    "clearedTitle": "PURO\nSWAG.",
-    "clearedClaim": "THE BAR IS YOURS.",
-    "resetLine": "BACK TO THE GATE"
+    "clearedTitle": "MUY\nSUAVE"
   }
 }

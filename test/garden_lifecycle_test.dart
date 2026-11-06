@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:kumbia_kombat/gameplay/garden_page.dart';
+import 'package:kumbia_kombat/gameplay/tap_feedback.dart';
 import 'package:kumbia_kombat/music/game_audio.dart';
 import 'package:kumbia_kombat/music/score.dart';
 
@@ -58,7 +59,13 @@ void main() {
     audio.activation.complete();
     await tester.pump(const Duration(milliseconds: 100));
     expect(audio.scheduled, 0);
-    expect(find.text('YOUR TURN'), findsNothing);
+    // No run began: the signals that replace the old labels never came up.
+    expect(
+      find.byWidgetPredicate(
+        (widget) => widget is CustomPaint && widget.painter is FeedbackPainter,
+      ),
+      findsNothing,
+    );
     expect(find.text('ENTRA AL RITMO  >'), findsOneWidget);
 
     tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.resumed);

@@ -1,6 +1,8 @@
 import 'dart:math' as math;
 import 'dart:ui' as ui;
 
+import '../music/score.dart';
+
 /// Data for the moment a level is won: Mācron's celebration, his walk to the
 /// challenger and a close-up on the beat. Beats count from the first beat of
 /// the success score and run on into the bridge, so nothing here can move music.
@@ -86,6 +88,46 @@ class ExitShot {
     ];
   }
 
+  /// This shot's hits that fall inside a score starting at [startBeat], mixed in
+  /// as ordinary notes. Beats here are shot beats, so a hit lands in whichever
+  /// score is playing then: the success score or the bridge after it.
+  MusicScore mixCue(MusicScore score, double startBeat) {
+    final notes = [
+      for (final hit in cue)
+        if (hit.beat >= startBeat && hit.beat - startBeat < score.lengthBeats)
+          ScoreNote(
+            track: hit.track,
+            beat: hit.beat - startBeat,
+            pitch: hit.pitch,
+            // A score refuses a note that runs past its end.
+            duration: math.min(
+              .25,
+              score.lengthBeats - (hit.beat - startBeat),
+            ),
+            velocity: hit.velocity,
+          ),
+    ];
+    return notes.isEmpty ? score : score.withNotes(notes);
+  }
+
+  /// How long the level's big two words stay up, from the contact. It can outlast
+  /// a short close-up, because a word needs longer to read than a fist to land.
+  static const titleBeats = 3.0;
+  static const _titleSlamBeats = .3;
+  static const _titleFadeBeats = .5;
+
+  double get titleUntil => math.max(closeupTo, contactBeat + titleBeats);
+
+  /// The title at [beat], or null when it isn't up. It slams in on the contact,
+  /// with the accent, and clears before the room moves on. No text before that.
+  ExitTitlePose? titleAt(double beat, {required bool reducedMotion}) {
+    if (beat < contactBeat || beat >= titleUntil) return null;
+    if (reducedMotion) return const ExitTitlePose(1, 1);
+    final slam = ((beat - contactBeat) / _titleSlamBeats).clamp(0.0, 1.0);
+    final fade = ((titleUntil - beat) / _titleFadeBeats).clamp(0.0, 1.0);
+    return ExitTitlePose(1 + .7 * (1 - _easeOut(slam)), fade);
+  }
+
   /// Dust thrown at the contact: four art pixels flying out for half a beat.
   List<ExitShotMote> motes(double beat, {required bool reducedMotion}) {
     final age = beat - contactBeat;
@@ -105,6 +147,12 @@ class ExitShot {
 
   static double _smooth(double t) => t * t * (3 - 2 * t);
   static double _easeOut(double t) => 1 - (1 - t) * (1 - t);
+}
+
+class ExitTitlePose {
+  const ExitTitlePose(this.scale, this.opacity);
+  final double scale;
+  final double opacity;
 }
 
 class ExitShotActor {

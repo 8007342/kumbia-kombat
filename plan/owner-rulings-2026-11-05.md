@@ -115,3 +115,11 @@ The owner listened blind to 30-second excerpts. Generated takes beat the synth i
 A and B, the ones the owner called old, were the synth in those rooms. Unblinded, the winners are Garden seed 51002 and lawn seed 52011.
 
 Durability, the same day: "make the results durable and push to remote work branches".
+
+## Ninth round, 2026-11-06: text only at the highlight
+
+| Topic | Ruling | Owner's words |
+|---|---|---|
+| Text | The only text is at the cinematic highlight: two words, the second from the party and music theme | "ONLY TEXT FOR THE CINEMATIC HIGHLIGHT, where we get our simple 2 word messages" |
+| Titles | Garden, bar and lawn each get their own | "MUCHO MOJO", "MUY SUAVE", "QUÉ FINO" |
+| Sound | The fist bump and the oil gulp each get an accent | "the sound accent with the fistbump, and some sound accent for the oil gulp" |
