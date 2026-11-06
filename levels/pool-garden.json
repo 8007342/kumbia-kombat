@@ -575,8 +575,8 @@
           }
         ],
         "contact": [
-          165,
-          138
+          200,
+          165
         ],
         "scale": 0.36,
         "entry": [
@@ -606,7 +606,7 @@
           }
         ],
         "contact": [
-          326,
+          346,
           113
         ],
         "scale": 0.36,
@@ -637,7 +637,7 @@
           }
         ],
         "contact": [
-          -29,
+          -49,
           119
         ],
         "scale": 0.36,
@@ -656,6 +656,54 @@
         "contact": [
           350,
           -97
+        ],
+        "scale": 0.36,
+        "entry": [
+          0,
+          0
+        ],
+        "recoil": [
+          0,
+          0
+        ]
+      },
+      {
+        "approach": "closeups/duet-macron-body-rest.png",
+        "impact": "closeups/duet-macron-body-shy.png",
+        "frames": [
+          {
+            "beat": 3.5,
+            "image": "closeups/duet-macron-body-rest.png"
+          },
+          {
+            "beat": 4.5,
+            "image": "closeups/duet-macron-body-kiss.png"
+          },
+          {
+            "beat": 5.5,
+            "image": "closeups/duet-macron-body-shy.png"
+          }
+        ],
+        "contact": [
+          200,
+          165
+        ],
+        "scale": 0.36,
+        "entry": [
+          0,
+          0
+        ],
+        "recoil": [
+          0,
+          0
+        ]
+      },
+      {
+        "approach": "closeups/duet-macron-logo.png",
+        "impact": "closeups/duet-macron-logo.png",
+        "contact": [
+          200,
+          165
         ],
         "scale": 0.36,
         "entry": [

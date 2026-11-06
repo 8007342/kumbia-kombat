@@ -55,9 +55,7 @@ void main() {
       expect(file.existsSync(), isTrue, reason: image);
       expect(file.lengthSync(), lessThan(400 * 1024), reason: image);
     }
-    // The body ends behind the hedge, the last thing drawn, so no cut edge shows.
-    expect(shot.actors.last.approach, 'closeups/duet-hedge.png');
-    expect(shot.actors.length, 4);
+    expect(shot.actors.length, 6);
   });
 
   test('it fits the 8-beat score, with no bridge needed but room for one', () {
@@ -74,6 +72,29 @@ void main() {
     expect(step.next, isNull);
     expect(shot.routeAt(shot.closeupTo, length + 8), 0);
     expect(shot.routeAt(length + 8, length + 8), 1);
+  });
+
+  test('his whole body shows: head under the kisses, the rest over the hedge', () {
+    final body = shot.actors[4];
+    final logo = shot.actors[5];
+    // The hedge hides where the dancers are cut off, and he stands in front of it.
+    expect(shot.actors[3].approach, 'closeups/duet-hedge.png');
+    expect(body.approach, contains('duet-macron-body'));
+    expect(logo.approach, 'closeups/duet-macron-logo.png');
+    // One figure: the three layers line up to the pixel, and none of them moves.
+    for (final part in [body, logo]) {
+      expect(part.contact, macron.contact);
+      expect(part.scale, macron.scale);
+      expect(part.entry, ui.Offset.zero);
+      expect(part.recoil, ui.Offset.zero);
+    }
+    // The art is 400 by 440 with his soles at 425. All of it fits the 180-unit
+    // view, and his feet stop above the title's band, at 58% of a 390-unit height.
+    final left = 180 * shot.contactPoint.dx - macron.contact.dx * macron.scale;
+    expect(left, greaterThanOrEqualTo(0));
+    expect(left + 400 * macron.scale, lessThanOrEqualTo(180));
+    final bottom = 390 * shot.contactPoint.dy + (440 - macron.contact.dy) * macron.scale;
+    expect(bottom, lessThan(390 * .58));
   });
 
   test('both kisses land together, on the contact beat', () {
@@ -128,7 +149,8 @@ void main() {
       // Nothing outside the face and cheeks moves, so his head can't flicker.
       for (var y = 0; y < h; y += 3) {
         for (var x = 0; x < w; x += 3) {
-          if (y >= 95 && y <= 215) continue;
+          // The screen and the cheeks below it.
+          if (y >= 95 && y <= 250) continue;
           final at = (y * w + x) * 4;
           expect(
             other.getUint32(at),
