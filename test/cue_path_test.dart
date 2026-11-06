@@ -187,7 +187,7 @@ void main() {
   });
 
   group('fair on every phone', () {
-    test('the whole ring is inside the zone that judges it', () {
+    test('the whole ring is inside its own quadrant', () {
       for (final screen in _screens) {
         final (w, h) = screen;
         for (final (limb, beat, id) in _notes()) {

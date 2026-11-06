@@ -16,10 +16,12 @@ import 'garden_scene.dart';
 import 'garden_session.dart';
 import 'level_definition.dart';
 import 'party_autoplay.dart';
+import 'pause_overlay.dart';
 import 'progression.dart';
 import 'rhythm.dart';
 import 'cue_path.dart';
 import 'tap_feedback.dart';
+import 'tap_resolution.dart';
 import 'thumb_layout.dart';
 import 'touch_gesture.dart';
 
@@ -98,6 +100,7 @@ class _GardenPageState extends State<GardenPage>
   Limb? _lastTapLimb;
   double _lastTapBeat = 0;
   String _lastTapNote = '';
+  final _resumeFade = ResumeFade();
 
   @override
   void initState() {
@@ -385,6 +388,7 @@ class _GardenPageState extends State<GardenPage>
             4 * 60 / _transport!.score.tempos[_transport!.currentTier];
         _conductor!.resume(leadSeconds: barSeconds);
         _playCountIn(barSeconds);
+        _beginResumeFade(_audio.nowSeconds + barSeconds);
         _handoffPaused = false;
         return;
       }
@@ -408,9 +412,9 @@ class _GardenPageState extends State<GardenPage>
       }
       if (_session!.phase == GardenPhase.paused) {
         _session!.resume();
-        _playCountIn(
-          _transport!.secondsAt(_transport!.positionBeats) - _audio.nowSeconds,
-        );
+        final anchor = _transport!.secondsAt(_transport!.positionBeats);
+        _playCountIn(anchor - _audio.nowSeconds);
+        _beginResumeFade(anchor);
       } else {
         _session!.start();
       }
@@ -441,6 +445,40 @@ class _GardenPageState extends State<GardenPage>
     _styleDestination = null;
     _styleNote = null;
     setState(() {});
+  }
+
+  /// Only while paused. A second tap can arrive after the resume and before the
+  /// next frame takes this callback away, and it must not start anything.
+  void _resumeFromPause() {
+    if (_handoffPaused || _session?.phase == GardenPhase.paused) {
+      unawaited(_start());
+    }
+  }
+
+  /// A second tap right after a resume is one thumb, not a wish to pause again.
+  void _pauseFromButton() {
+    if (!_resumeFade.guardsPauseAt(_audio.nowSeconds)) _pause();
+  }
+
+  bool get _calmPause =>
+      _reducedMotion || MediaQuery.disableAnimationsOf(context);
+
+  /// Volume and opacity only: the transport has already anchored the music, and
+  /// this reads that time without being able to change it.
+  void _beginResumeFade(double anchor) {
+    final calm = _calmPause;
+    _resumeFade.begin(
+      now: _audio.nowSeconds,
+      anchor: anchor,
+      reducedMotion: calm,
+    );
+    final Object audio = _audio;
+    if (audio is MusicFader) {
+      audio.fadeMusicIn(
+        atSeconds: anchor,
+        seconds: calm ? musicFadeSecondsCalm : musicFadeSeconds,
+      );
+    }
   }
 
   void _toggleAutoplay() {
@@ -483,7 +521,8 @@ class _GardenPageState extends State<GardenPage>
     _foreground =
         state == AppLifecycleState.resumed ||
         state == AppLifecycleState.inactive;
-    _scene.presentationPaused = !_foreground;
+    _scene.presentationPaused =
+        !_foreground || _handoffPaused || _session?.phase == GardenPhase.paused;
     if (!_foreground) _activationEpoch++;
     if (!_foreground &&
         (_session?.running == true || _conductor?.isPlaying == true)) {
@@ -551,8 +590,28 @@ class _GardenPageState extends State<GardenPage>
     return result;
   }
 
-  Limb? _limbAt(Offset point, Size size) =>
-      thumbLimbAt(point.dx / size.width, point.dy / size.height);
+  /// The limb of the nearest ring with an open note whose area holds the point.
+  Limb? _resolveTap(GardenSession session, Offset point, Size size) {
+    session.advance();
+    return resolveTap(
+      x: point.dx,
+      y: point.dy,
+      radius: tapAreaRadius(size.width),
+      candidates: openTapCandidates(
+        cues: session.visibleCues,
+        nowMs: (_audio.nowSeconds * 1000).round(),
+        secondsAt: _transport!.secondsAt,
+        landing: (cue) => _path(cue.limb, cue.beat, cue.id, size).landing,
+      ),
+    )?.limb;
+  }
+
+  /// A stray tap in the pad is heard, like a wrong-quadrant tap always was: the
+  /// ring on its side dents, and it costs nothing.
+  void _strayTap(Offset point, Size size) {
+    final limb = thumbLimbAt(point.dx / size.width, point.dy / size.height);
+    if (limb != null) _pressedAt[limb] = _audio.nowSeconds;
+  }
 
   /// Where a note's feedback belongs: the spot its ring landed on.
   Offset _anchor(Limb limb, Size size, double beat, String id) {
@@ -612,6 +671,8 @@ class _GardenPageState extends State<GardenPage>
     final phase = _handoffPaused
         ? GardenPhase.paused
         : session?.phase ?? GardenPhase.ready;
+    final paused = phase == GardenPhase.paused;
+    final pauseVeil = paused ? 1.0 : _resumeFade.opacityAt(_audio.nowSeconds);
     return Scaffold(
       backgroundColor: _ink,
       body: KeyboardListener(
@@ -621,6 +682,12 @@ class _GardenPageState extends State<GardenPage>
           if (event is! KeyDownEvent) return;
           if (event.logicalKey == LogicalKeyboardKey.escape && active) {
             _pause();
+            return;
+          }
+          if (paused &&
+              (event.logicalKey == LogicalKeyboardKey.enter ||
+                  event.logicalKey == LogicalKeyboardKey.space)) {
+            _resumeFromPause();
             return;
           }
           if (!active) return;
@@ -675,15 +742,18 @@ class _GardenPageState extends State<GardenPage>
                       Listener(
                         behavior: HitTestBehavior.opaque,
                         onPointerDown: (event) {
-                          final limb = _limbAt(event.localPosition, size);
-                          if (limb == null) return;
-                          final result = _tap(limb);
+                          final limb = _resolveTap(
+                            session,
+                            event.localPosition,
+                            size,
+                          );
+                          if (limb == null) _strayTap(event.localPosition, size);
                           _touches.begin(
                             pointer: event.pointer,
                             x: event.localPosition.dx,
                             y: event.localPosition.dy,
                             at: event.timeStamp,
-                            acceptedNote: result.note,
+                            acceptedNote: limb == null ? null : _tap(limb).note,
                           );
                         },
                         onPointerUp: (event) {
@@ -722,11 +792,22 @@ class _GardenPageState extends State<GardenPage>
                       ),
                     if (active)
                       IgnorePointer(child: _playSignals(session!, size)),
-                    if (!active) _cover(phase, size),
+                    if (!active && !paused) _cover(phase, size),
+                    if (pauseVeil > 0)
+                      Positioned.fill(
+                        child: VcrPauseOverlay(
+                          showPlay: !paused || _starting,
+                          opacity: pauseVeil,
+                          reducedMotion: _calmPause,
+                          onResume: paused ? _resumeFromPause : null,
+                          message: paused ? _error : null,
+                        ),
+                      ),
                     _header(
                       active ||
                           _conductor?.isPlaying == true ||
                           (phase == GardenPhase.cleared && !_exitStarted),
+                      paused: paused,
                     ),
                   ],
                 );
@@ -738,14 +819,14 @@ class _GardenPageState extends State<GardenPage>
     );
   }
 
-  Widget _header(bool active) => Positioned(
+  Widget _header(bool active, {required bool paused}) => Positioned(
     top: MediaQuery.paddingOf(context).top + 14,
     left: 20,
     right: 14,
     child: Row(
       children: [
         // The wordmark belongs to the cover. In play the room has the screen.
-        if (!active) ...[
+        if (!active && !paused) ...[
           const Text(
             'K / K',
             style: TextStyle(
@@ -769,12 +850,12 @@ class _GardenPageState extends State<GardenPage>
         const Spacer(),
         if (active)
           IconButton(
-            onPressed: _pause,
+            onPressed: _pauseFromButton,
             tooltip: 'Pause',
             color: _cream,
             icon: const Icon(Icons.pause_rounded),
           )
-        else
+        else if (!paused)
           Text(
             _levels == null
                 ? ''
@@ -1090,7 +1171,6 @@ class _GardenPageState extends State<GardenPage>
   }
 
   Widget _cover(GardenPhase phase, Size size) {
-    final paused = phase == GardenPhase.paused;
     final cleared = phase == GardenPhase.cleared;
     // The picture and the music carry a level's end. Only a failure to load the
     // next room, or the end of the campaign, brings the cover back.
@@ -1100,7 +1180,7 @@ class _GardenPageState extends State<GardenPage>
     }
     return Positioned.fill(
       child: ColoredBox(
-        color: _ink.withValues(alpha: paused ? .82 : .38),
+        color: _ink.withValues(alpha: .38),
         child: SafeArea(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 30),
@@ -1108,11 +1188,7 @@ class _GardenPageState extends State<GardenPage>
               children: [
                 SizedBox(height: math.max(58, size.height * .13)),
                 Text(
-                  cleared
-                      ? ''
-                      : paused
-                      ? 'TAKE A BREATH'
-                      : 'A LITTLE ROBOT. A BIG NIGHT.',
+                  cleared ? '' : 'A LITTLE ROBOT. A BIG NIGHT.',
                   textAlign: TextAlign.center,
                   style: const TextStyle(
                     color: _mint,
@@ -1123,11 +1199,7 @@ class _GardenPageState extends State<GardenPage>
                 ),
                 const SizedBox(height: 14),
                 Text(
-                  cleared
-                      ? _level.copy.clearedTitle
-                      : paused
-                      ? 'STILL\nGROOVIN’.'
-                      : 'KUMBIA\nKOMBAT',
+                  cleared ? _level.copy.clearedTitle : 'KUMBIA\nKOMBAT',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: _cream,
@@ -1144,8 +1216,6 @@ class _GardenPageState extends State<GardenPage>
                 Text(
                   cleared
                       ? ''
-                      : paused
-                      ? 'Your groove will wait for you.'
                       : _levels == null
                       ? ''
                       : '$_levelNumber  /  ${_level.title}',
@@ -1163,7 +1233,7 @@ class _GardenPageState extends State<GardenPage>
                         '${_bankedPizazz + _session!.pizazz} pizazz',
                     child: const SizedBox.shrink(),
                   ),
-                if (!cleared && !paused) ...[
+                if (!cleared) ...[
                   Text(
                     _levels == null ? '' : _level.copy.invitation,
                     textAlign: TextAlign.center,
@@ -1191,7 +1261,7 @@ class _GardenPageState extends State<GardenPage>
                   ),
                   const SizedBox(height: 12),
                   Text(
-                    'Tap anywhere in the matching zone.\nFour-arrow cues invite a short flick for style.\nTaps alone keep the party going.',
+                    'Tap near the matching ring.\nFour-arrow cues invite a short flick for style.\nTaps alone keep the party going.',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: _cream.withValues(alpha: .6),
@@ -1229,8 +1299,6 @@ class _GardenPageState extends State<GardenPage>
                           ? 'WAKING THE MUSIC…'
                           : cleared
                           ? 'OTRA VUELTA  >'
-                          : paused
-                          ? 'SEGUIMOS  >'
                           : 'ENTRA AL RITMO  >',
                       style: const TextStyle(
                         fontWeight: FontWeight.w900,
@@ -1241,21 +1309,20 @@ class _GardenPageState extends State<GardenPage>
                   ),
                 ),
                 const SizedBox(height: 10),
-                if (!paused)
-                  Wrap(
-                    alignment: WrapAlignment.center,
-                    spacing: 6,
-                    children: [
-                      _option(
-                        'CALM CAMERA',
-                        _reducedMotion,
-                        () => setState(() {
-                          _reducedMotion = !_reducedMotion;
-                          _scene.reducedMotion = _reducedMotion;
-                        }),
-                      ),
-                    ],
-                  ),
+                Wrap(
+                  alignment: WrapAlignment.center,
+                  spacing: 6,
+                  children: [
+                    _option(
+                      'CALM CAMERA',
+                      _reducedMotion,
+                      () => setState(() {
+                        _reducedMotion = !_reducedMotion;
+                        _scene.reducedMotion = _reducedMotion;
+                      }),
+                    ),
+                  ],
+                ),
                 const SizedBox(height: 16),
                 Text(
                   cleared ? '' : 'A KUMBIA KOLISEUM NIGHT',

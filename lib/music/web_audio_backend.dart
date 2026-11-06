@@ -75,7 +75,7 @@ class _Voice {
 
 /// Sample-free subtractive synth for the original scores. Percussion noise is
 /// generated in memory; no recorded stems or third-party soundfonts are loaded.
-class WebAudioMusicBackend implements GameAudio {
+class WebAudioMusicBackend implements GameAudio, MusicFader {
   WebAudioMusicBackend({this.leadShape = 'triangle'});
   @override
   String leadShape;
@@ -86,6 +86,9 @@ class WebAudioMusicBackend implements GameAudio {
   final List<_Voice> _voices = [];
   int stolenVoices = 0;
   bool _disposed = false;
+
+  /// Where a resume's swell starts, as a share of full volume.
+  static const _fadeFloor = .12;
 
   /// Invoke from a user gesture. Keep one AudioContext for this backend's life.
   @override
@@ -268,6 +271,24 @@ class WebAudioMusicBackend implements GameAudio {
       source.start(when);
       source.stop(end);
       _voices.add(_Voice(source, envelope, [source, filter, envelope], end));
+    }
+  }
+
+  @override
+  void fadeMusicIn({required double atSeconds, required double seconds}) {
+    if (_context == null) return;
+    final now = nowSeconds;
+    final at = math.max(now, atSeconds);
+    for (final (bus, full) in [
+      (_master, musicMasterGain),
+      (_accents, accentBusGain),
+    ]) {
+      final gain = bus?.gain;
+      if (gain == null) continue;
+      gain.cancelScheduledValues(now);
+      gain.setValueAtTime(full, now);
+      gain.setValueAtTime(full * _fadeFloor, at);
+      gain.linearRampToValueAtTime(full, at + seconds);
     }
   }
 

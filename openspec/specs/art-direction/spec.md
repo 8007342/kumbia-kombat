@@ -7,7 +7,7 @@ Define recognizable pixel characters, readable controls, beat-driven cameras and
 ## Requirements
 
 ### Requirement: readable retro identity
-The game SHALL use 80s pixel art, portrait composition, nearest-neighbor sampling and a nominal 180×320 art viewport. UI SHALL respect safe areas independently of that viewport. Integer scaling is preferred; fractional letterboxing is allowed. Raster sheets SHALL have transparent gutters, consistent pivots and documented frame rectangles. Camera transforms SHALL never move input zones or judgment cues.
+The game SHALL use 80s pixel art, portrait composition, nearest-neighbor sampling and a nominal 180×320 art viewport. UI SHALL respect safe areas independently of that viewport. Integer scaling is preferred; fractional letterboxing is allowed. Raster sheets SHALL have transparent gutters, consistent pivots and documented frame rectangles. Camera transforms SHALL never move tap areas or judgment cues.
 
 Mācron SHALL be a toy-sized ivory robot: compact rounded shell, dark screen, cyan facial indicators, two arms, short legs, one small antenna orb, subtle modular right-arm cuff. Mācron SHALL remain much smaller than Tlatoāni. Tlatoāni SHALL be a friendly warm-pink axolotl with coral external gills, one tail, cream clothing and teal accents, no facial hair. Costume changes SHALL preserve silhouettes. The reference art outranks approximate palette values. Pixel translation is authorized by the project's requested retro style.
 
