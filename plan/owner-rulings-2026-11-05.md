@@ -48,3 +48,15 @@ salsa teacher. Swing isn't that teacher's stated field, so swing vocabulary need
 | Opponent flares | The Gatekeeper and bartender get spins and optional flares, as Mācron has | "might need to also do some spins and optional flares" |
 
 Status, 2026-11-06: the handoff, Mācron's clap, opponent spins and the oil gulp are in the game as candidates on `work/1839-intg`, not yet merged. The fist bump's lightning face-off and wink aren't started.
+
+## Fourth round, 2026-11-06, after playing the merged build's candidate
+
+| Topic | Ruling | Owner's words |
+|---|---|---|
+| Oil gulp | Timing is great. The art needs direction: arm and head need a body, and the gulp should take a few sub-second transitions | "the arm and head might need a body", "a few sub-second transitions" |
+| Exit walk | Remove the walk-through after the cinematics: Mācron walks through the Gatekeeper | "that walking through is no longer needed if we use the cinematic transitions" |
+| Transition music | Cinematics can play while the previous level's music is still cooling down | "while the music is still cooling down from the previous level" |
+| Spin timing | Spins must not end the opponent's turn at their resting place. Let the animation finish even if it overflows the turn, then step away, so the full spin happens mid-floor. They can also come a little more often | "let the animation of the opponent end even if it overflows their turn, and step away afterwards" |
+| Skill reward | Optional adornments appear more often and become more rewarding for players doing well, with music, audience and dance moves; opponents gain adornments as challenges for skilled players | "more popular if the player is doing well" |
+| Music direction | Research local audio models that output composable looping segments, crossfaded at runtime from compressed files | "composable segments that loop, that you could then crossfade at runtime" |
+| Audio in git | Never commit WAV to the remote, only MP3 and other compressed formats | "be mindful not to commit WAV files to remote" |

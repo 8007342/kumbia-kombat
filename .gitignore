@@ -58,3 +58,9 @@ node_modules/
 
 # Raw studio candidates (~140 MB per run); kept on disk, summarised by raw/index.json + scores.json
 art_runs/*/raw/*/
+
+# Music masters stay out of git: commit only compressed audio.
+*.wav
+*.flac
+*.aif
+*.aiff
