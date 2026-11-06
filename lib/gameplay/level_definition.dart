@@ -160,8 +160,12 @@ class LevelChallenger {
     required this.mark,
     required this.yieldMark,
     this.track,
+    this.stature = 1,
   });
   final FloorTrack? track;
+
+  /// Height against an adult guest, so a pair can differ in size.
+  final double stature;
   final String id;
 
   /// Key in the ensemble manifest, which still lists a fixed set of atlases.
@@ -586,6 +590,9 @@ class LevelDefinition {
           track: fields.has('floorTrack')
               ? _floorTrack(fields.child('floorTrack'))
               : null,
+          stature: fields.has('stature')
+              ? fields.number('stature', min: .1)
+              : 1,
         ),
       );
       fields.finish();

@@ -92,7 +92,12 @@ class GardenSceneGame extends FlameGame {
           await rootBundle.loadString('assets/art/ensemble/choreography.json'),
         ) as Map<String, dynamic>,
       );
-      for (final dancer in const ['gatekeeper', 'bartender']) {
+      for (final dancer in const [
+        'gatekeeper',
+        'bartender',
+        'swing-a',
+        'swing-b',
+      ]) {
         grammar.requireFrames(
           dancer,
           ensemble.atlases[dancer]!.art.frames.keys,
@@ -630,7 +635,12 @@ class GardenSceneGame extends FlameGame {
           : _challengerAt(beat, dancer: challenger.atlas);
       final floor = challenger.floorAt(dressed.floorYield, beat: beat);
       final projected = viewport.project(floor);
-      final height = _adultHeight(viewport, room, floor);
+      final height = _adultHeight(
+        viewport,
+        room,
+        floor,
+        stature: challenger.stature,
+      );
       final atlas = _ensemble![challenger.atlas]!;
       final scale = height / atlas.nativeHeight('ready');
       final ground = ui.Offset(

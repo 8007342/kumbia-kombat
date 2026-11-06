@@ -95,6 +95,8 @@ class EnsembleManifest {
     'guest2',
     'gatekeeper',
     'bartender',
+    'swing-a',
+    'swing-b',
     'life',
     'furniture',
   ];
@@ -113,7 +115,10 @@ class EnsembleManifest {
       );
       definition.art.requireFrames(switch (id) {
         'guest0' || 'guest1' || 'guest2' => ensembleGuestFrameIds,
-        'gatekeeper' || 'bartender' => challengerFrameIds,
+        'gatekeeper' ||
+        'bartender' ||
+        'swing-a' ||
+        'swing-b' => challengerFrameIds,
         'life' => ensembleLifeFrameIds,
         _ => ensembleFurnitureFrameIds,
       });

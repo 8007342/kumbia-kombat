@@ -9,8 +9,14 @@
     },
     {
       "level": "bar",
-      "exitLine": "THE CROWD IS NEXT",
-      "nextLine": "NEXT: FLOW IN THE CROWD"
+      "exitLine": "OUT TO THE LAWN",
+      "nextLine": "NEXT: GRACE ON THE LAWN",
+      "bridgeToNext": "bar_to_pool"
+    },
+    {
+      "level": "pool-garden",
+      "exitLine": "THE MANSION IS NEXT",
+      "nextLine": "MORE ROOMS COMING"
     }
   ]
 }

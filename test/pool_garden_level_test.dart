@@ -15,34 +15,13 @@ import 'package:kumbia_kombat/music/transport.dart';
 
 import 'support/recording_canvas.dart';
 
-/// The draft pool garden, on real game code, without shipping it. Its plate
-/// lives in art_runs/ until the owner accepts it, so this test hands the plate
-/// to the scene's image cache itself, and the level is in a test-only campaign.
-const _plate = 'art_runs/room-pool-garden-v1-d/plate/pool-garden-v1-draft.png';
+/// The draft pool lawn, on real game code, as the campaign's third level.
+const _plate = 'assets/art/pool-garden/pool-garden-v1-draft.png';
 
 String _read(String id) => File('levels/$id.json').readAsStringSync();
 
-LevelRegistry _campaign() => LevelRegistry.parse('''
-{ "campaign": [
-  { "level": "garden", "bridgeToNext": "garden_to_bar", "exitLine": "ONWARD", "nextLine": "NEXT: BAR" },
-  { "level": "bar", "bridgeToNext": "bar_to_pool", "exitLine": "OUT TO THE LAWN", "nextLine": "NEXT: THE POOL LAWN" },
-  { "level": "pool-garden", "exitLine": "ONWARD", "nextLine": "THAT IS ALL" }
-] }
-''', _read);
-
-/// The level names swing-a and swing-b, whose art does not exist yet. The scene
-/// refuses unknown atlases, so its test draws them with two that do exist.
-LevelDefinition _drawable() {
-  final raw = jsonDecode(_read('pool-garden')) as Map<String, dynamic>;
-  final stage = raw['stage'] as Map<String, dynamic>;
-  for (final (i, challenger) in (stage['challengers'] as List).indexed) {
-    (challenger as Map<String, dynamic>)['atlas'] = [
-      'gatekeeper',
-      'bartender',
-    ][i];
-  }
-  return LevelDefinition.fromJson(raw);
-}
+LevelRegistry _campaign() =>
+    LevelRegistry.parse(File('levels/index.json').readAsStringSync(), _read);
 
 class _Audio implements MusicAudioBackend {
   @override
@@ -71,9 +50,44 @@ double _heroLogical(LevelDefinition level, double footY) {
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
-  test('the draft stays out of the shipping campaign', () {
-    final shipping = jsonDecode(File('levels/index.json').readAsStringSync());
-    expect(jsonEncode(shipping), isNot(contains('pool-garden')));
+  test('the lawn follows the bar, over the bridge written for it', () {
+    final levels = _campaign();
+    expect(levels.campaign.map((s) => s.level.id), [
+      'garden',
+      'bar',
+      'pool-garden',
+    ]);
+    expect(levels.campaign[1].bridgeToNext, 'bar_to_pool');
+    expect(levels.campaign.last.next, isNull);
+  });
+
+  test('the pair swap places, in depth, without touching the thumbs', () {
+    final level = _campaign().byId('pool-garden');
+    final [a, b] = level.stage.challengers;
+    expect(b.stature, lessThan(a.stature));
+    final plane = level.layout.floor;
+    final heights = <double>[];
+    for (var beat = 0.0; beat <= 32; beat += .25) {
+      final pa = a.floorAt(0, beat: beat);
+      final pb = b.floorAt(0, beat: beat);
+      // Never on one spot, and always behind Mācron and above the tap band.
+      expect(
+        (pa.x - pb.x).abs() + (pa.y - pb.y).abs(),
+        greaterThan(.05),
+        reason: 'beat $beat',
+      );
+      for (final p in [pa, pb]) {
+        expect(p.y, lessThan(level.stage.heroHome.y));
+        expect(thumbLimbAt(.5, p.y), isNull);
+      }
+      heights.add(plane.standingHeightAt(pa.y));
+    }
+    // They really do come closer and go farther, and size follows the floor.
+    final nearest = heights.reduce((x, y) => x > y ? x : y);
+    final farthest = heights.reduce((x, y) => x < y ? x : y);
+    expect(nearest / farthest, greaterThan(1.3));
+    expect(a.floorAt(0, beat: 8).x, closeTo(b.mark.x, 1e-9));
+    expect(b.floorAt(0, beat: 8).x, closeTo(a.mark.x, 1e-9));
   });
 
   test('the level file parses, and its floor is the compiled room\'s', () {
@@ -150,7 +164,7 @@ void main() {
   });
 
   test('the real scene draws the plate, cast and props from the level', () async {
-    final level = _drawable();
+    final level = _campaign().byId('pool-garden');
     final bytes = File(_plate).readAsBytesSync();
     final codec = await ui.instantiateImageCodec(Uint8List.fromList(bytes));
     final plate = (await codec.getNextFrame()).image;

@@ -164,7 +164,10 @@ void main() {
           final mark = level.stage.challengers.single.floorAt(yielded);
           // Moved from x .70 on 2026-11-05: a seated guest hid the dancer there.
           expect(mark.x, closeTo(.5 + (sideX - .5) * yielded, 1e-9));
-          expect(mark.y, closeTo(challengerY + (sideY - challengerY) * yielded, 1e-9));
+          expect(
+            mark.y,
+            closeTo(challengerY + (sideY - challengerY) * yielded, 1e-9),
+          );
         }
         for (final travel in [0.0, .1, .5, .9, 1.0]) {
           final pose = level.route.sample(travel);
@@ -180,17 +183,25 @@ void main() {
     test(
       'order, bridge, count and copy are what the page used to hard-code',
       () {
-        expect(levels.levels.map((level) => level.id), ['garden', 'bar']);
+        expect(levels.levels.map((level) => level.id), [
+          'garden',
+          'bar',
+          'pool-garden',
+        ]);
         expect(levels.displayTotal, 5);
-        final [garden, bar] = levels.campaign;
+        final [garden, bar, lawn] = levels.campaign;
         expect(garden.next, same(bar.level));
         expect(garden.bridgeToNext, 'garden_to_bar');
-        expect(bar.next, isNull);
-        expect(bar.bridgeToNext, isNull);
+        expect(bar.next, same(lawn.level));
+        expect(bar.bridgeToNext, 'bar_to_pool');
+        expect(lawn.next, isNull);
+        expect(lawn.bridgeToNext, isNull);
         expect(levels.exitScoreIds, {
           'garden_mojo_success',
           'garden_to_bar',
           'bar_swag_success',
+          'bar_to_pool',
+          'pool_swing_success',
         });
         expect(garden.level.copy.clearedShout, 'MUCHO MOJO.');
         expect(bar.level.copy.clearedShout, 'PURO SWAG.');
@@ -231,7 +242,7 @@ void main() {
   group('unknown ids fail loudly instead of becoming the garden', () {
     test('crowd lookup has no fallback room', () {
       expect(
-        () => CrowdStageProfile.forRoom('pool-garden'),
+        () => CrowdStageProfile.forRoom('no-such-room'),
         throwsArgumentError,
       );
     });
@@ -250,14 +261,21 @@ void main() {
         () => GardenSession(
           music,
           audio,
-          definition: const FightDefinition('pool-garden', 'Cool', 60, 1, 2, 5),
+          definition: const FightDefinition(
+            'no-such-room',
+            'Cool',
+            60,
+            1,
+            2,
+            5,
+          ),
         ),
         throwsArgumentError,
       );
     });
 
     test('registry lookup names the missing level', () {
-      expect(() => _shipping().byId('pool-garden'), throwsArgumentError);
+      expect(() => _shipping().byId('no-such-room'), throwsArgumentError);
     });
 
     test('the campaign refuses a level file it cannot find', () {
