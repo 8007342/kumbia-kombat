@@ -191,7 +191,8 @@ class LevelStage {
     required this.heroEntrance,
     required this.heroRetreat,
     required this.challengers,
-  });
+    PartyPoint? heroWatch,
+  }) : heroWatch = heroWatch ?? heroHome;
   final PartyPoint heroHome;
 
   /// Where the hero starts walking in from during the intro.
@@ -199,6 +200,9 @@ class LevelStage {
 
   /// How far a stumble back to the entrance takes the hero, at its peak.
   final PartyPoint heroRetreat;
+
+  /// Where the hero steps back to and keeps time during the opponent's call.
+  final PartyPoint heroWatch;
   final List<LevelChallenger> challengers;
 
   /// [entrance] runs 0 to 1 over the intro; [retreat] is 0 at home.
@@ -367,6 +371,9 @@ class LevelDefinition {
       heroHome: stageMark(stageFields, 'heroHome'),
       heroEntrance: stageMark(stageFields, 'heroEntrance'),
       heroRetreat: stageMark(stageFields, 'heroRetreat'),
+      heroWatch: stageFields.has('heroWatch')
+          ? stageMark(stageFields, 'heroWatch')
+          : null,
       challengers: _challengers(stageFields, stageMark),
     );
     stageFields.finish();

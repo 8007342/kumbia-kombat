@@ -35,8 +35,9 @@
     "heroHome": [0.50, 0.62],
     "heroEntrance": [0.50, 0.69],
     "heroRetreat": [0.50, 0.66],
+    "heroWatch": [0.50, 0.655],
     "challengers": [
-      { "id": "bartender", "atlas": "bartender", "mark": [0.50, 0.45], "yieldMark": [0.60, 0.42] }
+      { "id": "bartender", "atlas": "bartender", "mark": [0.50, 0.45], "yieldMark": [0.60, 0.44] }
     ]
   },
   "crowd": {

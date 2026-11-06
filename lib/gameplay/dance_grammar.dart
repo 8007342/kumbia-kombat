@@ -124,6 +124,7 @@ class DanceGrammar {
       for (final s in rules['celebrationIntro'] as List) s['clip'],
       for (final s in rules['celebrationLoop'] as List) s['clip'],
       'yield_out',
+      'return_in',
     };
     for (final dancer in _dancers.values) {
       for (final name in named) {
@@ -264,7 +265,9 @@ class DanceGrammar {
         }
         return pose.frameId;
       case ChallengerDanceState.ready:
-        // No drawn step heads back, so the return stays the sampler's turn.
+        if (!reduced && pose.floorYield > 0) {
+          return d.clips['return_in']!.along(1 - pose.floorYield);
+        }
         return pose.frameId;
       case ChallengerDanceState.approve:
         return reduced

@@ -692,9 +692,28 @@ class GardenSceneGame extends FlameGame {
     var floor = exitTravel > 0
         ? level.heroExitFloor(departure)
         : level.stage.heroFloor(entrance: entrance, retreat: retreat);
+    // Off his turn he steps back from home; he walks in straight to that spot.
+    final watchSpot = level.stage.heroWatch;
+    final callAge = s == null ? 0.0 : beat - s.callStartBeat;
+    final firstCall = s != null && s.callStartBeat <= s.chart.introBeats;
+    final inCall = s?.phase == GardenPhase.call && !reducedMotion;
+    final watching = reducedMotion || exitTravel > 0
+        ? 0.0
+        : s?.phase == GardenPhase.intro
+        ? entrance
+        : inCall
+        ? HeroWatch.at(callAge, s!.chart.callBeats, firstCall: firstCall)
+        : 0.0;
+    final watchWalking =
+        inCall &&
+        HeroWatch.walking(callAge, s!.chart.callBeats, firstCall: firstCall);
+    final home = level.stage.heroFloor(entrance: 1, retreat: 0);
+    floor = PartyPoint(
+      floor.x + (watchSpot.x - home.x) * watching,
+      floor.y + (watchSpot.y - home.y) * watching,
+    );
     var shotWalking = false;
     if (shot != null && s?.phase == GardenPhase.cleared) {
-      final home = level.stage.heroFloor(entrance: 1, retreat: 0);
       final step = shotBeat == null ? 0.0 : shot.stepAt(shotBeat);
       final at = PartyPoint(
         home.x + (shot.heroStep.dx - home.x) * step,
@@ -725,7 +744,8 @@ class GardenSceneGame extends FlameGame {
           s?.phase == GardenPhase.intro ||
           exitTravel > 0 ||
           retreat > 0 ||
-          shotWalking,
+          shotWalking ||
+          watchWalking,
       sideOn: exitTravel > 0 && departure.facing == DepartureFacing.sideRight,
       reducedMotion: reducedMotion,
       action: action,
@@ -751,11 +771,15 @@ class GardenSceneGame extends FlameGame {
         frame = 'rear_idle';
       }
     }
-    if (challenger.playerRole == PlayerDanceRole.ready &&
-        s?.phase == GardenPhase.call &&
+    if (inCall &&
+        !watchWalking &&
+        retreat == 0 &&
         beat - actionBeat > 1 &&
-        beat - flourishBeat > 1) {
-      frame = challenger.floorYield < .5 ? 'rear_turn' : 'profile';
+        beat - flourishBeat > 1 &&
+        stumbleAge >= 1.5) {
+      final time = HeroWatch.tapAlong(beat, s!.transport.tierAt(beat));
+      frame = time.frame;
+      hop = time.hop;
     }
     var activeMove =
         action != null && beat - actionBeat >= 0 && beat - actionBeat < .65;

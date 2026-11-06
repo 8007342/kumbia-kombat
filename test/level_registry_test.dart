@@ -144,8 +144,8 @@ void main() {
       final garden = levels.byId('garden');
       final bar = levels.byId('bar');
       for (final (level, homeY, challengerY, sideX, sideY) in [
-        (garden, .69, .53, .61, .49),
-        (bar, .62, .45, .60, .42),
+        (garden, .69, .53, .61, .52),
+        (bar, .62, .45, .60, .44),
       ]) {
         for (final entrance in [0.0, .25, .6, 1.0]) {
           for (final retreat in [0.0, .5, 1.0]) {

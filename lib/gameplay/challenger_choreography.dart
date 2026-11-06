@@ -52,6 +52,13 @@ enum PlayerDanceRole {
 
 const minimumRestBeats = .5;
 
+/// How far the sidestep has gone when the call ends, and how long it then takes.
+const yieldByHandoff = .45;
+const yieldSettleBeats = 1.0;
+
+/// The walk back to the demonstration mark, ending as the next call starts.
+const returnBeats = 1.25;
+
 class ChallengerPose {
   const ChallengerPose({
     required this.frameId,
@@ -218,14 +225,28 @@ class ChallengerChoreography {
     }
     if (t < callBeats) return _call(t, reducedMotion);
 
+    // The sidestep finishes on the response's first beat, so it never rushes.
+    if (!reducedMotion && t < callBeats + yieldSettleBeats) {
+      return ChallengerPose(
+        frameId: 'invite',
+        state: ChallengerDanceState.invite,
+        floorYield:
+            yieldByHandoff +
+            (1 - yieldByHandoff) * _ease((t - callBeats) / yieldSettleBeats),
+        playerRole: PlayerDanceRole.responding,
+      );
+    }
+
     // Watch the response quietly, then turn back within its existing final rest.
     // The session replaces this chart at its boundary; this does not add time.
-    final returnStart = callBeats * 2 - .75;
+    final returnStart = callBeats * 2 - returnBeats;
     if (t >= returnStart) {
       return ChallengerPose(
         frameId: 'turn_in',
         state: ChallengerDanceState.ready,
-        floorYield: reducedMotion ? 1 : 1 - _ease((t - returnStart) / .75),
+        floorYield: reducedMotion
+            ? 1
+            : 1 - _ease((t - returnStart) / returnBeats),
         playerRole: PlayerDanceRole.waiting,
       );
     }
@@ -277,7 +298,7 @@ class ChallengerChoreography {
       final handoff = (age - duration) / (gap - duration);
       final yield = reducedMotion
           ? (handoff >= .5 ? 1.0 : 0.0)
-          : _ease((handoff - .25) / .75);
+          : yieldByHandoff * _ease((handoff - .25) / .75);
       return ChallengerPose(
         frameId: handoff < .25
             ? 'finish'

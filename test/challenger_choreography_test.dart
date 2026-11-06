@@ -80,9 +80,12 @@ void main() {
       expect(at(7.4).state, ChallengerDanceState.cede);
       expect(at(7.7).state, ChallengerDanceState.invite);
       expect(at(7.7).playerRole, PlayerDanceRole.ready);
-      expect(at(8).state, ChallengerDanceState.watch);
-      expect(at(8).floorYield, 1);
+      // The sidestep eases on through the response's first beat.
+      expect(at(8).state, ChallengerDanceState.invite);
+      expect(at(8).floorYield, closeTo(yieldByHandoff, 1e-9));
       expect(at(8).playerRole, PlayerDanceRole.responding);
+      expect(at(9).state, ChallengerDanceState.watch);
+      expect(at(9).floorYield, 1);
       // Invitation precedes the first accepted early tap even at the faster bar tempo.
       expect(at(8 - .18 * 112 / 60).state, ChallengerDanceState.invite);
       expect(at(15.8).state, ChallengerDanceState.ready);
@@ -105,7 +108,8 @@ void main() {
     );
     expect(result(.1).frameId, 'approve');
     expect(result(.1, passed: false).frameId, 'recover');
-    expect(result(1, passed: false).state, ChallengerDanceState.watch);
+    // By now the walk back to the mark has begun, ahead of the next call.
+    expect(result(1, passed: false).state, ChallengerDanceState.ready);
     expect(result(.6, cleared: true).frameId, 'turn_out');
     expect(result(.9, cleared: true).frameId, 'cede');
     expect(result(1.1, cleared: true).frameId, 'invite');

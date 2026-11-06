@@ -192,3 +192,48 @@ class Celebration {
     return Celebration('arm_sweep', arc(7, 1, .16));
   }
 }
+
+/// Mācron's off-turn: he steps back as the call starts, keeps time, and is home
+/// again before his first tap can land. 0 is home, 1 is the watching spot.
+class HeroWatch {
+  const HeroWatch._();
+  static const stepOutBeats = 1.5;
+  static const stepInBeats = 1.25;
+
+  /// Home a little before the response, inside the earliest tap's window.
+  static const homeBeforeResponse = .25;
+
+  static double _smooth(double u) {
+    final t = u.clamp(0.0, 1.0);
+    return t * t * (3 - 2 * t);
+  }
+
+  /// [t] counts from the call's first beat. The first call of a level has no
+  /// step out, because he walks straight onto the watching spot.
+  static double at(double t, double callBeats, {bool firstCall = false}) {
+    if (t < 0 || t >= callBeats) return 0;
+    final inEnd = callBeats - homeBeforeResponse;
+    final inStart = inEnd - stepInBeats;
+    if (t >= inStart) return 1 - _smooth((t - inStart) / stepInBeats);
+    return firstCall ? 1 : _smooth(t / stepOutBeats);
+  }
+
+  static bool walking(double t, double callBeats, {bool firstCall = false}) {
+    if (t < 0 || t >= callBeats) return false;
+    final inEnd = callBeats - homeBeforeResponse;
+    if (t >= inEnd - stepInBeats && t < inEnd) return true;
+    return !firstCall && t < stepOutBeats;
+  }
+
+  /// Keeps time on the spot: weight shifts every other beat, then every beat
+  /// and with a lift once the music and the party heat up.
+  static ({String frame, double hop}) tapAlong(double beat, int tier) {
+    final rate = tier >= 2 ? 1.0 : 2.0;
+    final step = (beat / rate).floor();
+    final frame = step.isEven ? 'rear_walk_left' : 'rear_walk_right';
+    if (tier < 3) return (frame: frame, hop: 0);
+    final phase = beat - beat.floorToDouble();
+    final lift = phase < .5 ? phase * 2 : 2 - phase * 2;
+    return (frame: frame, hop: .035 * lift);
+  }
+}

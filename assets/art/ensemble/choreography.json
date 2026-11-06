@@ -133,6 +133,35 @@
         "yield_side_down_l",
         "yield_side_pass_r"
       ]
+    },
+    "return_in": {
+      "note": "Steps back to the mark on the drawn forward walk, keyed to floorYield so the feet follow the distance covered.",
+      "frames": [
+        "enter_forward_contact_l",
+        "enter_forward_down_l",
+        "enter_forward_pass_l",
+        "enter_forward_contact_r",
+        "enter_forward_down_r",
+        "enter_forward_pass_r"
+      ]
+    },
+    "promenade": {
+      "note": "Walks in place while Mācron dances, forward then back, on the drawn walk cycles.",
+      "beatsPerFrame": 0.5,
+      "frames": [
+        "enter_forward_contact_l",
+        "enter_forward_down_l",
+        "enter_forward_pass_l",
+        "enter_forward_contact_r",
+        "enter_forward_down_r",
+        "enter_forward_pass_r",
+        "retreat_backward_contact_l",
+        "retreat_backward_down_l",
+        "retreat_backward_pass_l",
+        "retreat_backward_contact_r",
+        "retreat_backward_down_r",
+        "retreat_backward_pass_r"
+      ]
     }
   },
   "rules": {
@@ -159,15 +188,18 @@
       ],
       [
         "groove_basic",
-        "hip_pops"
+        "hip_pops",
+        "promenade"
       ],
       [
         "groove_double",
-        "hip_pops"
+        "hip_pops",
+        "promenade"
       ],
       [
         "groove_double",
-        "step_touch"
+        "step_touch",
+        "promenade"
       ],
       [
         "step_touch",
