@@ -116,127 +116,293 @@
         "id": "swing-a",
         "atlas": "swing-a",
         "mark": [
-          0.48,
+          0.47,
           0.54
         ],
         "yieldMark": [
           0.37,
           0.53
         ],
-        "stature": 1,
-        "floorTrack": {
-          "beats": 16,
-          "points": [
-            {
-              "at": 0,
-              "floor": [
-                0.48,
-                0.54
-              ]
-            },
-            {
-              "at": 4,
-              "floor": [
-                0.48,
-                0.54
-              ]
-            },
-            {
-              "at": 5.5,
-              "floor": [
-                0.58,
-                0.56
-              ]
-            },
-            {
-              "at": 7,
-              "floor": [
-                0.68,
-                0.47
-              ]
-            },
-            {
-              "at": 8.75,
-              "floor": [
-                0.58,
-                0.44
-              ]
-            },
-            {
-              "at": 10.5,
-              "floor": [
-                0.48,
-                0.54
-              ]
-            }
-          ]
-        }
+        "stature": 1
       },
       {
         "id": "swing-b",
         "atlas": "swing-b",
         "mark": [
-          0.68,
+          0.74,
           0.47
         ],
         "yieldMark": [
           0.77,
           0.47
         ],
-        "stature": 0.9,
-        "floorTrack": {
-          "beats": 16,
-          "points": [
-            {
-              "at": 0,
-              "floor": [
-                0.68,
-                0.47
-              ]
-            },
-            {
-              "at": 4,
-              "floor": [
-                0.68,
-                0.47
-              ]
-            },
-            {
-              "at": 5.5,
-              "floor": [
-                0.58,
-                0.44
-              ]
-            },
-            {
-              "at": 7,
-              "floor": [
-                0.48,
-                0.54
-              ]
-            },
-            {
-              "at": 8.75,
-              "floor": [
-                0.58,
-                0.56
-              ]
-            },
-            {
-              "at": 10.5,
-              "floor": [
-                0.68,
-                0.47
-              ]
-            }
-          ]
-        }
+        "stature": 0.9
       }
     ],
     "heroWatch": [
       0.41,
       0.69
-    ]
+    ],
+    "duet": {
+      "marks": {
+        "call0": [
+          0.47,
+          0.54
+        ],
+        "call1": [
+          0.56,
+          0.52
+        ],
+        "call2": [
+          0.4,
+          0.56
+        ],
+        "call3": [
+          0.44,
+          0.52
+        ],
+        "call4": [
+          0.54,
+          0.55
+        ],
+        "call5": [
+          0.48,
+          0.5
+        ],
+        "danceLeft": [
+          0.29,
+          0.59
+        ],
+        "danceRight": [
+          0.63,
+          0.59
+        ],
+        "aEnd0": [
+          0.25,
+          0.5
+        ],
+        "aEnd2": [
+          0.66,
+          0.5
+        ],
+        "aEnd4": [
+          0.77,
+          0.52
+        ],
+        "bEnd1": [
+          0.76,
+          0.53
+        ],
+        "bEnd3": [
+          0.22,
+          0.51
+        ],
+        "bEnd5": [
+          0.74,
+          0.47
+        ],
+        "rightSway1": [
+          0.7,
+          0.51
+        ],
+        "rightSway2": [
+          0.72,
+          0.49
+        ],
+        "rightSway3": [
+          0.72,
+          0.47
+        ],
+        "rightSway4": [
+          0.69,
+          0.5
+        ],
+        "leftSway1": [
+          0.3,
+          0.47
+        ],
+        "leftSway2": [
+          0.26,
+          0.49
+        ],
+        "leftSway3": [
+          0.25,
+          0.5
+        ],
+        "leftArrive": [
+          0.27,
+          0.48
+        ],
+        "backRight": [
+          0.72,
+          0.46
+        ],
+        "backRight2": [
+          0.74,
+          0.46
+        ],
+        "crossRight": [
+          0.6,
+          0.43
+        ],
+        "crossLeft": [
+          0.45,
+          0.43
+        ],
+        "crossRightHigh": [
+          0.6,
+          0.42
+        ],
+        "crossLeftHigh": [
+          0.44,
+          0.42
+        ],
+        "exitLeft": [
+          0.31,
+          0.56
+        ],
+        "exitRight": [
+          0.59,
+          0.56
+        ],
+        "reachLeft": [
+          0.37,
+          0.585
+        ],
+        "reachRight": [
+          0.53,
+          0.585
+        ]
+      },
+      "offClip": "skirt_play",
+      "partnerClip": "dance_with",
+      "outgoingBeats": 2,
+      "incomingBeats": 2.5,
+      "turns": [
+        {
+          "lead": "swing-a",
+          "call": "call0",
+          "dance": "danceLeft",
+          "end": "aEnd0",
+          "offSteps": [
+            {
+              "at": 5,
+              "to": "rightSway1"
+            },
+            {
+              "at": 12,
+              "to": "rightSway2"
+            }
+          ]
+        },
+        {
+          "lead": "swing-b",
+          "call": "call1",
+          "dance": "danceRight",
+          "end": "bEnd1",
+          "offSteps": [
+            {
+              "at": 5,
+              "to": "leftSway1"
+            },
+            {
+              "at": 12,
+              "to": "leftSway2"
+            }
+          ]
+        },
+        {
+          "lead": "swing-a",
+          "call": "call2",
+          "dance": "danceRight",
+          "end": "aEnd2",
+          "offSteps": [
+            {
+              "at": 2.5,
+              "to": "backRight"
+            },
+            {
+              "at": 6.5,
+              "to": "crossRight"
+            },
+            {
+              "at": 10,
+              "to": "crossLeft"
+            },
+            {
+              "at": 13.5,
+              "to": "leftArrive"
+            }
+          ]
+        },
+        {
+          "lead": "swing-b",
+          "call": "call3",
+          "dance": "danceLeft",
+          "end": "bEnd3",
+          "offSteps": [
+            {
+              "at": 5,
+              "to": "rightSway3"
+            },
+            {
+              "at": 12,
+              "to": "rightSway4"
+            }
+          ]
+        },
+        {
+          "lead": "swing-a",
+          "call": "call4",
+          "dance": "danceRight",
+          "end": "aEnd4",
+          "offSteps": [
+            {
+              "at": 5,
+              "to": "leftSway1"
+            },
+            {
+              "at": 12,
+              "to": "leftSway3"
+            }
+          ]
+        },
+        {
+          "lead": "swing-b",
+          "call": "call5",
+          "dance": "danceRight",
+          "end": "bEnd5",
+          "offSteps": [
+            {
+              "at": 2.5,
+              "to": "backRight2"
+            },
+            {
+              "at": 6.5,
+              "to": "crossRightHigh"
+            },
+            {
+              "at": 10,
+              "to": "crossLeftHigh"
+            },
+            {
+              "at": 13.5,
+              "to": "leftArrive"
+            }
+          ]
+        }
+      ],
+      "exit": {
+        "left": "exitLeft",
+        "right": "exitRight",
+        "leftReach": "reachLeft",
+        "rightReach": "reachRight",
+        "sideBeats": 1.5,
+        "reachFrom": 2.75,
+        "reachTo": 3.5,
+        "reachFrame": "left_hand_prep"
+      }
+    }
   },
   "crowd": {
     "budgets": {
@@ -362,5 +528,159 @@
   "copy": {
     "invitation": "Two dancers hold the lawn. Answer them.",
     "clearedTitle": "QUÉ\nFINO"
+  },
+  "exitShot": {
+    "plate": "closeups/duet-plate.png",
+    "celebrateUntil": 3,
+    "walkFrom": 0.5,
+    "walkTo": 1.25,
+    "heroStep": [
+      0.45,
+      0.605
+    ],
+    "heroWaitFrame": "front_idle",
+    "dust": false,
+    "closeupFrom": 3.5,
+    "contactBeat": 4.5,
+    "closeupTo": 7.75,
+    "contactPoint": [
+      0.5,
+      0.29
+    ],
+    "impactBeats": 1,
+    "actors": [
+      {
+        "approach": "closeups/duet-macron-round.png",
+        "impact": "closeups/duet-macron-arc-blush.png",
+        "frames": [
+          {
+            "beat": 3.5,
+            "image": "closeups/duet-macron-round.png"
+          },
+          {
+            "beat": 4.5,
+            "image": "closeups/duet-macron-wide.png"
+          },
+          {
+            "beat": 4.75,
+            "image": "closeups/duet-macron-squash.png"
+          },
+          {
+            "beat": 5,
+            "image": "closeups/duet-macron-arc.png"
+          },
+          {
+            "beat": 5.5,
+            "image": "closeups/duet-macron-arc-blush.png"
+          }
+        ],
+        "contact": [
+          165,
+          138
+        ],
+        "scale": 0.36,
+        "entry": [
+          0,
+          0
+        ],
+        "recoil": [
+          0,
+          0
+        ]
+      },
+      {
+        "approach": "closeups/duet-a-smile.png",
+        "impact": "closeups/duet-a-kiss.png",
+        "frames": [
+          {
+            "beat": 3.5,
+            "image": "closeups/duet-a-smile.png"
+          },
+          {
+            "beat": 4.25,
+            "image": "closeups/duet-a-kiss.png"
+          },
+          {
+            "beat": 5.5,
+            "image": "closeups/duet-a-smile.png"
+          }
+        ],
+        "contact": [
+          326,
+          113
+        ],
+        "scale": 0.36,
+        "entry": [
+          -70,
+          8
+        ],
+        "recoil": [
+          -13,
+          2
+        ]
+      },
+      {
+        "approach": "closeups/duet-b-smile.png",
+        "impact": "closeups/duet-b-kiss.png",
+        "frames": [
+          {
+            "beat": 3.5,
+            "image": "closeups/duet-b-smile.png"
+          },
+          {
+            "beat": 4.25,
+            "image": "closeups/duet-b-kiss.png"
+          },
+          {
+            "beat": 5.5,
+            "image": "closeups/duet-b-smile.png"
+          }
+        ],
+        "contact": [
+          -29,
+          119
+        ],
+        "scale": 0.36,
+        "entry": [
+          70,
+          8
+        ],
+        "recoil": [
+          13,
+          2
+        ]
+      },
+      {
+        "approach": "closeups/duet-hedge.png",
+        "impact": "closeups/duet-hedge.png",
+        "contact": [
+          350,
+          -97
+        ],
+        "scale": 0.36,
+        "entry": [
+          0,
+          0
+        ],
+        "recoil": [
+          0,
+          0
+        ]
+      }
+    ],
+    "cue": [
+      {
+        "beat": 4.5,
+        "track": "peck",
+        "pitch": 60,
+        "velocity": 120
+      },
+      {
+        "beat": 5.25,
+        "track": "peck",
+        "pitch": 72,
+        "velocity": 70
+      }
+    ]
   }
 }

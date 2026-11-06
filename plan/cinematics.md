@@ -137,3 +137,18 @@ The owner asked for the gulp to leave a repeatable route for later moments.
 - **LoRA:** the 2511 Lightning LoRA drew crisper pixels than 2509 on the same seeds, in 2 seeds each, judged by eye.
 
 `tool/art/closeups/pack_oil_gulp.py` describes the old pieces and no longer matches. Nothing has played this in a browser yet.
+
+## Lawn kiss: what the wiring taught, 2026-11-06
+
+The owner: "the two girls giving Mācron a kiss on each cheek at the same time, we see Mācrons big round eyes turn to smiling arcs and a small blush." The dancers are adults, and this stays warm: a friendly peck on a little robot's cheeks, with heads, collars and shoulders only in frame.
+
+Beats, inside the 8-beat success score: to the sides by 1.5, Mācron dancing between the two until 3, a quick reach from 2.75, close-up from 3.5, contact and QUÉ FINO on 4.5, eyes to arcs by 5, blush growing to 5.5, back to wide at 7.75. Nothing names a next room, so a bridge can be added to the campaign without touching the shot.
+
+- **Puppet again, with less cutting.** Mācron is one drawing with code-drawn eyes and blush, so only those change. A test holds every pixel outside the face and cheeks equal between his frames.
+- **Qwen could hold this one.** From the kiss drawing as its only reference, it changed eye and mouth to a smile and left the head within a few pixels, measured by the outline, so the swap should barely show. Nobody has seen it moving. It held for one change, not for a chain. The 2511 LoRA and `$node:30.lora_name` worked as noted.
+- **A whole close-up can mirror.** Each dancer keeps the side she won on, so nobody crosses to reach the shot. The art is drawn with swing-a on the left, and the scene flips the actors about the contact point when she won on the right. This only works because Mācron's face is near symmetrical and there is no text in the art.
+- **A plate and a foreground from the room's own painting** cost no GPU and keep the palette: the pavilion crop behind, the hedge in front. The hedge hides where his body ends. A body that ran below it showed a stray cream block, so the drawing stops above the hedge's bottom edge.
+- **New fields.** `heroWaitFrame`, what he shows between his dance and the cut, since `rear_idle` means facing a challenger; and `dust: false`, because a kiss doesn't throw dust.
+- **`titleUntil` is the later of the close-up's end and contact + 3 beats.** Here that is the close-up's end.
+
+Nothing here has played moving, or with sound, in a browser.

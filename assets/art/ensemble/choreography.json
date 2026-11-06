@@ -411,7 +411,59 @@
         }
       ]
     },
-    "swing-a": {},
-    "swing-b": {}
+    "swing-a": {
+      "note": "One hand on the back and the other playing with the skirt, while the other dancer has the turn. Mirrors are flips of two drawings. dance_with reaches toward the picture's left; the scene mirrors it when she is on Macron's left.",
+      "clips": {
+        "skirt_play": {
+          "beatsPerFrame": 1,
+          "frames": [
+            "skirt_sway_r",
+            "skirt_pass_r",
+            "skirt_sway_l",
+            "skirt_pass_l"
+          ]
+        },
+        "dance_with": {
+          "beatsPerFrame": 1,
+          "frames": [
+            "challenge_offer",
+            "groove_pass_l",
+            "approval_release",
+            "groove_pass_l2",
+            "right_hand_return",
+            "groove_down_l",
+            "challenge_offer",
+            "watch_shift_l"
+          ]
+        }
+      }
+    },
+    "swing-b": {
+      "note": "One hand on the back and the other playing with the skirt, while the other dancer has the turn. Mirrors are flips of two drawings. dance_with reaches toward the picture's left; the scene mirrors it when she is on Macron's left.",
+      "clips": {
+        "skirt_play": {
+          "beatsPerFrame": 1,
+          "frames": [
+            "skirt_sway_r",
+            "skirt_pass_r",
+            "skirt_sway_l",
+            "skirt_pass_l"
+          ]
+        },
+        "dance_with": {
+          "beatsPerFrame": 1,
+          "frames": [
+            "challenge_offer",
+            "groove_pass_l",
+            "approval_release",
+            "groove_pass_l2",
+            "right_hand_return",
+            "groove_down_l",
+            "challenge_offer",
+            "watch_shift_l"
+          ]
+        }
+      }
+    }
   }
 }

@@ -1,0 +1,32 @@
+[
+ {
+  "pose": "ka.smile",
+  "args": {
+   "workflow": ".claude/worktrees/agent-a7f90526599320155/art_runs/duet-20261106/workflows/ka.smile.api.json",
+   "tier": "I1",
+   "count": 3,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/duet-20261106/in/ka_kiss.png"
+   },
+   "overrides": {
+    "seed": 1848100,
+    "$node:30.lora_name": "Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors"
+   }
+  }
+ },
+ {
+  "pose": "kb.smile",
+  "args": {
+   "workflow": ".claude/worktrees/agent-a7f90526599320155/art_runs/duet-20261106/workflows/kb.smile.api.json",
+   "tier": "I1",
+   "count": 3,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/duet-20261106/in/kb_kiss.png"
+   },
+   "overrides": {
+    "seed": 1849100,
+    "$node:30.lora_name": "Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors"
+   }
+  }
+ }
+]

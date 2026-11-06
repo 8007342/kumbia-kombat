@@ -176,6 +176,33 @@ class DanceGrammar {
   double handoffBeats(String dancer, int tier) =>
       _require(dancer).handoffClip(tier.clamp(0, 4))?.lengthBeats ?? 0;
 
+  /// A named clip's drawing at [beat], looped from the absolute beat.
+  String clipFrame(String dancer, String clip, double beat) {
+    final d = _require(dancer);
+    return _alias(d, _requireClip(d, clip).loop(beat));
+  }
+
+  /// A named clip's drawing, [progress] of the way along, for a walk.
+  String clipAlong(String dancer, String clip, double progress) {
+    final d = _require(dancer);
+    return _alias(d, _requireClip(d, clip).along(progress));
+  }
+
+  /// The one still drawing for someone standing by under reduced motion.
+  String calmFrame(String dancer) =>
+      _alias(_require(dancer), _rules['reducedMotionHold'] as String);
+
+  /// Fails closed when a level names a clip this dancer doesn't have.
+  void requireClips(String dancer, Iterable<String> clips) {
+    final d = _require(dancer);
+    for (final clip in clips) {
+      _requireClip(d, clip);
+    }
+  }
+
+  DanceClip _requireClip(_Dancer d, String clip) =>
+      d.clips[clip] ?? (throw StateError('No dance clip $clip'));
+
   /// Every drawing this grammar can name for [dancer], before art lookups.
   Set<String> framesFor(String dancer) {
     final d = _require(dancer);

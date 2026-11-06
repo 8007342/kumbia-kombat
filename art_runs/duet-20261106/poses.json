@@ -1,0 +1,88 @@
+{
+ "a.skirt_sway": {
+  "seed": 1846000,
+  "images": {
+   "sheet_front": "a_front.png"
+  },
+  "words": "stepping slowly and playfully in a gentle dance, facing the viewer, weight on her straight picture-right leg and her picture-left foot stepping out to the side on its toe. Her picture-right arm is bent behind her with that hand resting on the small of her back: the hand is hidden behind her waist and only the elbow shows, pointing out to the side. Her picture-left hand holds a fold of her skirt at the side of her thigh and sweeps it outward, so the skirt fans out on that side like a wave, still covering her legs to below the knee. Head tilted a little, warm amused smile."
+ },
+ "a.skirt_pass": {
+  "seed": 1846100,
+  "images": {
+   "sheet_front": "a_front.png"
+  },
+  "words": "stepping slowly and playfully in a gentle dance, facing the viewer, feet close together and knees soft as she passes from one step to the next. Her picture-right arm is bent behind her with that hand resting on the small of her back: the hand is hidden behind her waist and only the elbow shows, pointing out to the side. Her picture-left hand holds a fold of her skirt low at the side of her thigh, the fold gathered close to the leg, the skirt hanging straight and covering her legs to below the knee. Chin lifted, warm amused smile."
+ },
+ "b.skirt_sway": {
+  "seed": 1847000,
+  "images": {
+   "sheet_front": "b_front.png"
+  },
+  "words": "stepping slowly and playfully in a gentle dance, facing the viewer, weight on her straight picture-right leg and her picture-left foot stepping out to the side on its toe. Her picture-right arm is bent behind her with that hand resting on the small of her back: the hand is hidden behind her waist and only the elbow shows, pointing out to the side. Her picture-left hand holds a fold of her skirt at the side of her thigh and sweeps it outward, so the skirt fans out on that side like a wave, still covering her legs to below the knee. Head tilted a little, big laughing smile."
+ },
+ "b.skirt_pass": {
+  "seed": 1847100,
+  "images": {
+   "sheet_front": "b_front.png"
+  },
+  "words": "stepping slowly and playfully in a gentle dance, facing the viewer, feet close together and knees soft as she passes from one step to the next. Her picture-right arm is bent behind her with that hand resting on the small of her back: the hand is hidden behind her waist and only the elbow shows, pointing out to the side. Her picture-left hand holds a fold of her skirt low at the side of her thigh, the fold gathered close to the leg, the skirt hanging straight and covering her legs to below the knee. Chin lifted, big laughing smile."
+ },
+ "ka.kiss": {
+  "seed": 1848000,
+  "images": {
+   "sheet_front": "a_front.png"
+  },
+  "words": "in a friendly head-and-shoulders close-up, her head in full side profile facing the right of the picture, leaning forward a little to give a small friendly peck on the cheek, as an aunt would to a favourite toy. We see one closed eye with a happy curved lid, her nose and small puckered lips pointing right, one gold hoop earring. Her shoulder and long emerald sleeve run off the left and bottom edges of the picture. The collar of her dress is closed high at the collarbone."
+ },
+ "kb.kiss": {
+  "seed": 1849000,
+  "images": {
+   "sheet_front": "b_front.png"
+  },
+  "words": "in a friendly head-and-shoulders close-up, her head in full side profile facing the left of the picture, leaning forward a little to give a small friendly peck on the cheek, as an aunt would to a favourite toy. We see one closed eye with a happy curved lid behind her round glasses, her nose and small puckered lips pointing left, her ponytail with its red ribbon behind her. Her shoulder and coral elbow-length sleeve run off the right and bottom edges of the picture. Her high gathered collar is closed at the neck."
+ },
+ "ka.smile": {
+  "seed": 1848100,
+  "images": {
+   "sheet_front": "ka_kiss.png"
+  },
+  "count": 3,
+  "words": "in exactly the same side-profile head-and-shoulders view and the same size and position in the frame, facing the right of the picture. The only change: one eye now open and bright, looking warmly to the right, her lips together in a big kind smile, no longer puckered. Same hair, earring and collar."
+ },
+ "kb.smile": {
+  "seed": 1849100,
+  "images": {
+   "sheet_front": "kb_kiss.png"
+  },
+  "count": 3,
+  "words": "in exactly the same side-profile head-and-shoulders view and the same size and position in the frame, facing the left of the picture. The only change: one eye now open and bright behind her round glasses, looking warmly to the left, her lips together in a big kind smile, no longer puckered. Same hair, ribbon, glasses and collar."
+ },
+ "a.skirt_sway2": {
+  "seed": 1846200,
+  "images": {
+   "sheet_front": "a_front.png"
+  },
+  "words": "stepping slowly and playfully in a gentle dance, facing the viewer, weight on her straight picture-left leg and her picture-right foot stepping out to the side on its toe. Her picture-left arm goes behind her back: the upper arm slopes back, the elbow points out to the side and the forearm and hand are completely hidden behind her waist, so no fingers show on that side. Her picture-right hand holds a fold of her skirt at the side of her thigh and sweeps it outward, so the skirt fans out on that side like a wave, its hem no higher than her knee. The wrap neckline of her dress is closed high at the collarbone. Head tilted a little, warm amused smile."
+ },
+ "a.skirt_pass2": {
+  "seed": 1846300,
+  "images": {
+   "sheet_front": "a_front.png"
+  },
+  "words": "stepping slowly and playfully in a gentle dance, facing the viewer, feet close together and knees soft as she passes from one step to the next. Her picture-left arm goes behind her back: the upper arm slopes back, the elbow points out to the side and the forearm and hand are completely hidden behind her waist, so no fingers show on that side. Her picture-right hand holds a fold of her skirt low at the side of her thigh, the fold gathered close to the leg, the skirt hanging straight and covering her legs to below the knee. The wrap neckline of her dress is closed high at the collarbone. Chin lifted, warm amused smile."
+ },
+ "b.skirt_sway2": {
+  "seed": 1847200,
+  "images": {
+   "sheet_front": "b_front.png"
+  },
+  "words": "stepping slowly and playfully in a gentle dance, facing the viewer, weight on her straight picture-left leg and her picture-right foot stepping out to the side on its toe. Her picture-left arm goes behind her back: the upper arm slopes back, the elbow points out to the side and the forearm and hand are completely hidden behind her waist, so no fingers show on that side. Her picture-right hand holds a fold of her skirt at the side of her thigh and sweeps it outward, so the skirt fans out on that side like a wave, its hem no higher than her knee. Head tilted a little, big laughing smile."
+ },
+ "b.skirt_pass2": {
+  "seed": 1847300,
+  "images": {
+   "sheet_front": "b_front.png"
+  },
+  "words": "stepping slowly and playfully in a gentle dance, facing the viewer, feet close together and knees soft as she passes from one step to the next. Her picture-left arm goes behind her back: the upper arm slopes back, the elbow points out to the side and the forearm and hand are completely hidden behind her waist, so no fingers show on that side. Her picture-right hand holds a fold of her skirt low at the side of her thigh, the fold gathered close to the leg, the skirt hanging straight and covering her legs to below the knee. Chin lifted, big laughing smile."
+ }
+}

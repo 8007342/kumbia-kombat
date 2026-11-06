@@ -1,0 +1,77 @@
+{
+ "note": "Picks by agent's eye at full and game size, from raw/<pose>/sheet.png in the art cache. Draft: not yet accepted by the owner.",
+ "skirt": {
+  "swing-a": {
+   "family": "tool/art/families/swing-a-v1.json",
+   "shirt": "0F7A50",
+   "floor": 297,
+   "height": 245,
+   "groundY": 296.4,
+   "poses": {
+    "skirt_sway_r": {
+     "raw": "a.skirt_sway",
+     "seed": 1846000
+    },
+    "skirt_pass_r": {
+     "raw": "a.skirt_pass",
+     "seed": 1846101
+    }
+   }
+  },
+  "swing-b": {
+   "family": "tool/art/families/swing-b-v1.json",
+   "shirt": "E8655C",
+   "floor": 298,
+   "height": 242,
+   "groundY": 297.4,
+   "poses": {
+    "skirt_sway_r": {
+     "raw": "b.skirt_sway",
+     "seed": 1847001
+    },
+    "skirt_pass_r": {
+     "raw": "b.skirt_pass",
+     "seed": 1847101
+    }
+   }
+  }
+ },
+ "closeup": {
+  "a": {
+   "kiss": {
+    "pose": "ka.kiss",
+    "seed": 1848000,
+    "fit": 336,
+    "cutY": 250
+   },
+   "smile": {
+    "pose": "ka.smile",
+    "seed": 1848101,
+    "fit": 336,
+    "cutY": 250
+   },
+   "lips": [
+    241,
+    131
+   ]
+  },
+  "b": {
+   "kiss": {
+    "pose": "kb.kiss",
+    "seed": 1849001,
+    "fit": 250,
+    "cutY": 240
+   },
+   "smile": {
+    "pose": "kb.smile",
+    "seed": 1849100,
+    "fit": 250,
+    "cutY": 240
+   },
+   "lips": [
+    56,
+    137
+   ]
+  }
+ }
+}

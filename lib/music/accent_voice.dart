@@ -114,6 +114,39 @@ const accentPatches = <String, List<AccentLayer>>{
       filterHz: 2200,
     ),
   ],
+  // A peck on a cheek: a small round pop that lifts, and a warm trace after it.
+  // Well under the others, since this is a tender moment and not a hit.
+  'peck': [
+    AccentLayer(
+      shape: 'sine',
+      fromHz: 620,
+      toHz: 980,
+      sweep: .05,
+      seconds: .09,
+      gain: .45,
+      filter: 'lowpass',
+      filterHz: 2400,
+    ),
+    AccentLayer(
+      shape: 'noise',
+      fromHz: 0,
+      toHz: 0,
+      seconds: .025,
+      gain: .1,
+      filter: 'bandpass',
+      filterHz: 3000,
+      q: .9,
+    ),
+    AccentLayer(
+      shape: 'sine',
+      fromHz: 1760,
+      toHz: 1760,
+      seconds: .28,
+      gain: .08,
+      filter: 'lowpass',
+      filterHz: 4000,
+    ),
+  ],
   // A glass changing hands: two high partials that don't share a pitch, and a tick.
   'clink': [
     AccentLayer(
