@@ -17,6 +17,11 @@ import 'support/recording_canvas.dart';
 /// existed (`flutter test --dart-define=UPDATE_LEVEL_GOLDEN=true` on this file).
 /// It records every canvas call the real scene makes for both rooms, plus the
 /// crowd numbers and clear times, so a difference in any mark shows up here.
+///
+/// Rewritten for the owner's tenth round, which moved people on purpose. Comparing
+/// the two files: every clear time, score and tier held, and the bar's twelve
+/// guests kept the same crowd numbers. Only canvas calls and the garden's bigger
+/// cast moved.
 const _goldenPath = 'test/goldens/levels_before.json';
 
 class _Audio implements MusicAudioBackend {

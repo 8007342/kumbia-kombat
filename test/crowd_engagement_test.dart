@@ -197,11 +197,11 @@ void main() {
         for (final player in [_poor, _failing]) {
           final poor = run(player);
           expect(poor.celebrating, 0);
-          expect(poor.standing, CrowdEngagement.warmFloorGuests);
+          expect(poor.standing, CrowdEngagement.warmFloorOfTwelve);
           expect(poor.occupied, 0, reason: 'nobody is indifferent at a clear');
           expect(
             poor.cast.where((g) => g.state == CrowdGuestState.following).length,
-            12 - CrowdEngagement.warmFloorGuests,
+            12 - CrowdEngagement.warmFloorOfTwelve,
           );
           expect(poor.swing, 0);
         }
@@ -439,7 +439,7 @@ void main() {
           final why = '${definition.id} run $run, $sequence phrases';
           expect(
             cast.where((g) => g.standing).length,
-            greaterThanOrEqualTo(CrowdEngagement.warmFloorGuests),
+            greaterThanOrEqualTo(CrowdEngagement.warmFloorOfTwelve),
             reason: why,
           );
           expect(
@@ -800,7 +800,7 @@ void main() {
           );
           expect(
             states.where((s) => s != 'following').length,
-            greaterThanOrEqualTo(CrowdEngagement.warmFloorGuests),
+            greaterThanOrEqualTo(CrowdEngagement.warmFloorOfTwelve),
             reason: level.id,
           );
           expect(none, 0, reason: level.id);
@@ -867,7 +867,7 @@ void main() {
       expect(cast.where((g) => g.startsWith('occupied')), isEmpty);
       expect(
         cast.where((g) => !g.startsWith('following')).length,
-        greaterThanOrEqualTo(CrowdEngagement.warmFloorGuests),
+        greaterThanOrEqualTo(CrowdEngagement.warmFloorOfTwelve),
       );
     });
 

@@ -95,7 +95,10 @@ class PartyFloorPlane {
 
 enum PartyActivity { seatedChat, seatedDrink, standingChat, sipping, waiting }
 
-enum PartyPropKind { chair, table, umbrella, drink, candle, plant }
+enum PartyPropKind { chair, stool, table, umbrella, drink, candle, plant }
+
+/// What a guest sits on. [painted] is part of the plate, so nothing is drawn.
+enum PartySeat { chair, stool, painted }
 
 enum PartyCalibration { inspectedStarter, unverifiedStoryboard }
 
@@ -201,7 +204,11 @@ class PartyRoomLayout {
   }
 }
 
-List<PartyGuestSlot> seatedGuestSlots(String room, List<PartyPoint> anchors) =>
+List<PartyGuestSlot> seatedGuestSlots(
+  String room,
+  List<PartyPoint> anchors, {
+  List<PartySeat>? seats,
+}) =>
     List.unmodifiable([
       for (var i = 0; i < anchors.length; i++)
         PartyGuestSlot(
@@ -215,6 +222,7 @@ List<PartyGuestSlot> seatedGuestSlots(String room, List<PartyPoint> anchors) =>
           paletteIndex: i ~/ 3,
           homePropId: '$room-chair-$i',
           facingRight: anchors[i].x < .5,
+          chairIncluded: seats?[i] == PartySeat.painted,
         ),
     ]);
 
@@ -250,17 +258,31 @@ final _barGuests = seatedGuestSlots('bar', const [
   PartyPoint(.77, .335),
 ]);
 
-List<PartyPropSlot> chairSlotsFor(List<PartyGuestSlot> guests) => [
-  for (final guest in guests)
-    PartyPropSlot(
-      guest.homePropId!,
-      PartyPropKind.chair,
-      guest.floor,
-      // Reviewed high-back source: 476 px tall, 317 px wide; its seat is
-      // ~219 px above the floor. At .80 adult heights the seat sits at .368.
-      heightInAdults: .80,
-      widthInAdults: .53,
-    ),
+List<PartyPropSlot> chairSlotsFor(
+  List<PartyGuestSlot> guests, {
+  List<PartySeat>? seats,
+}) => [
+  for (final (i, guest) in guests.indexed)
+    if (seats != null && seats[i] != PartySeat.chair)
+      PartyPropSlot(
+        guest.homePropId!,
+        PartyPropKind.stool,
+        guest.floor,
+        // Its seat meets the same .37 as a chair's, so the seated poses need no
+        // new drawings: only the back goes, which is the clutter.
+        heightInAdults: .39,
+        widthInAdults: .3,
+      )
+    else
+      PartyPropSlot(
+        guest.homePropId!,
+        PartyPropKind.chair,
+        guest.floor,
+        // Reviewed high-back source: 476 px tall, 317 px wide; its seat is
+        // ~219 px above the floor. At .80 adult heights the seat sits at .368.
+        heightInAdults: .80,
+        widthInAdults: .53,
+      ),
 ];
 
 /// Storyboard layouts. The game reads layouts from `levels/*.json`; garden and
