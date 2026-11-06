@@ -123,3 +123,17 @@ It needs a story decision first: what Mācron wants, and whether the player lear
 | Close-up plates | One per room, from the room's palette. Not started |
 | One-shot sound cues on their own bus | Not built. `lib/music/web_audio_backend.dart` to be extended |
 | Style guide section for close-ups | Not written; depends on the first pilot |
+
+## Oil gulp redraw: what the wiring taught, 2026-11-06
+
+The owner asked for the gulp to leave a repeatable route for later moments.
+
+- **Sub-second moments use `frames`.** An actor can list `{beat, image}` drawings, which replace approach and impact, with `impact` as the one still under calm camera. Put a frame on each sound accent.
+- **Qwen can't drive a chain of moments here.** From a key frame plus a layout it kept the robot consistent, which is good, but clung to the key's glass: tilt and oil barely changed, and it left stray shapes.
+- **So puppet it.** `art_runs/oil-gulp-v2-20261106/scripts/puppet.py` cuts head, torso and arm from one clean Qwen drawing, and draws the glass and oil by code, so nothing flickers and the oil's volume falls exactly. Snap to one pixel grid by majority colour, then tidy the edge teeth, or rotated parts look fuzzy. The arm goes behind the glass and only the mitten in front, or it hides what the shot is about.
+- **A body needs somewhere to end.** A close-up with a torso shows a cut edge, so a foreground actor (the counter) covers it.
+- **The close-up's view is 180 units wide,** not screen pixels. Check `scale` against that.
+- **Pitfall:** the first guide drew almost no oil at the start, because the glass tilts before the oil reaches the rim. Set the fill by volume, not by a y value.
+- **LoRA:** the 2511 Lightning LoRA drew crisper pixels than 2509 on the same seeds, in 2 seeds each, judged by eye.
+
+`tool/art/closeups/pack_oil_gulp.py` describes the old pieces and no longer matches. Nothing has played this in a browser yet.

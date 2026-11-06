@@ -43,7 +43,11 @@ class ExitShot {
 
   Iterable<String> get images => [
     plate,
-    for (final actor in actors) ...[actor.approach, actor.impact],
+    for (final actor in actors) ...[
+      actor.approach,
+      actor.impact,
+      for (final frame in actor.frames) frame.image,
+    ],
   ];
 
   bool closeupAt(double beat) => beat >= closeupFrom && beat < closeupTo;
@@ -79,7 +83,13 @@ class ExitShot {
       for (final actor in actors)
         ExitShotPlacement(
           actor,
-          striking || reducedMotion ? actor.impact : actor.approach,
+          reducedMotion
+              ? actor.impact
+              : actor.frames.isNotEmpty
+              ? actor.frameAt(beat)
+              : striking
+              ? actor.impact
+              : actor.approach,
           ui.Offset(
             actor.entry.dx * closing + actor.recoil.dx * recoil,
             actor.entry.dy * closing + actor.recoil.dy * recoil,
@@ -155,6 +165,12 @@ class ExitTitlePose {
   final double opacity;
 }
 
+class ExitShotFrame {
+  const ExitShotFrame(this.beat, this.image);
+  final double beat;
+  final String image;
+}
+
 class ExitShotActor {
   const ExitShotActor({
     required this.approach,
@@ -163,9 +179,25 @@ class ExitShotActor {
     required this.scale,
     required this.entry,
     required this.recoil,
+    this.frames = const [],
   });
   final String approach;
   final String impact;
+
+  /// Optional drawings by beat, for sub-second moments such as a gulp. When set
+  /// they replace approach and impact, except that [approach] shows until the
+  /// first frame and [impact] is the one still drawing under reduced motion.
+  final List<ExitShotFrame> frames;
+
+  /// The frame showing at [beat]: the last one that has started.
+  String frameAt(double beat) {
+    var image = approach;
+    for (final frame in frames) {
+      if (frame.beat > beat) break;
+      image = frame.image;
+    }
+    return image;
+  }
 
   /// The art pixel that meets the other actor.
   final ui.Offset contact;

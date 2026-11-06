@@ -10,12 +10,12 @@ void main() {
         as Map<String, dynamic>,
   );
   final shot = level.exitShot!;
+  final macron = shot.actors[1];
 
-  test('every drawing the gulp names ships, and the gulp draws on top', () {
+  test('every drawing the gulp names ships', () {
     for (final image in shot.images) {
       expect(File('assets/art/$image').existsSync(), isTrue, reason: image);
     }
-    expect(shot.actors.last.impact, 'closeups/oil-gulp-mc-gulp.png');
   });
 
   test('the glass changes hands on the contact beat, the bridge downbeat', () {
@@ -24,45 +24,58 @@ void main() {
     ) as Map<String, dynamic>;
     final length = (score['bars'] as int) * (score['beatsPerBar'] as int);
     expect(shot.contactBeat, length);
-    final [offer, reach, gulp] = shot.sample(
-      shot.contactBeat - .5,
-      reducedMotion: false,
-    );
-    expect(offer.image, 'closeups/oil-gulp-bt-offer.png');
-    expect(reach.image, 'closeups/oil-gulp-mc-reach.png');
-    expect(gulp.offset.distance, greaterThan(1000), reason: 'still offscreen');
-
+    final before = shot.sample(shot.contactBeat - .5, reducedMotion: false);
+    expect(before[0].image, 'closeups/oil-gulp-bt-offer.png');
+    expect(before[1].image, 'closeups/oil-gulp-mc2-reach.png');
     final hit = shot.sample(shot.contactBeat, reducedMotion: false);
     expect(hit[0].image, 'closeups/oil-gulp-bt-empty.png');
-    expect(hit[1].image, 'closeups/oil-gulp-empty.png');
-    expect(hit[2].image, 'closeups/oil-gulp-mc-gulp.png');
-    expect(hit[2].offset.distance, 0);
+    expect(hit[1].image, 'closeups/oil-gulp-mc2-gulp1.png');
+    expect(hit[1].offset.distance, 0);
   });
 
-  test('the whole head and glass fit the game\'s 180-unit-wide view', () {
-    final head = shot.actors.last;
-    expect(416 * head.scale, lessThan(180));
-    final left = 180 * shot.contactPoint.dx - head.contact.dx * head.scale;
+  test('he drains it in sub-second steps, each on an accent or between them', () {
+    expect(macron.frames.map((f) => f.image.split('-').last), [
+      'gulp1.png',
+      'gulp2.png',
+      'gulp3.png',
+      'gulp4.png',
+      'gulp5.png',
+      'relief.png',
+    ]);
+    for (var i = 1; i < macron.frames.length; i++) {
+      expect(macron.frames[i].beat - macron.frames[i - 1].beat, .5);
+    }
+    for (final cue in shot.cue.where((c) => c.track == 'glug')) {
+      expect(macron.frames.any((f) => f.beat == cue.beat), isTrue);
+    }
+    expect(macron.frames.last.beat, lessThan(shot.closeupTo));
+  });
+
+  test('frameAt holds each drawing until the next starts', () {
+    expect(macron.frameAt(shot.closeupFrom), macron.approach);
+    expect(macron.frameAt(8.25), 'closeups/oil-gulp-mc2-gulp1.png');
+    expect(macron.frameAt(8.5), 'closeups/oil-gulp-mc2-gulp2.png');
+    expect(macron.frameAt(11), 'closeups/oil-gulp-mc2-relief.png');
+  });
+
+  test('Mācron fits the game\'s 180-unit-wide view', () {
+    expect(416 * macron.scale, lessThan(180));
+    final left = 180 * shot.contactPoint.dx - macron.contact.dx * macron.scale;
     expect(left, greaterThanOrEqualTo(0));
-    expect(left + 416 * head.scale, lessThanOrEqualTo(180));
+    expect(left + 416 * macron.scale, lessThanOrEqualTo(180));
   });
 
-  test('he drains it after a long pull, with her full glass long gone', () {
-    final drained = shot.contactBeat + shot.impactBeats;
-    final [offer, reach, gulp] = shot.sample(drained, reducedMotion: false);
-    expect(gulp.image, 'closeups/oil-gulp-mc-low.png');
-    // The drawings return to their approach here, so both must be far offscreen.
-    expect(offer.offset.distance, greaterThan(150));
-    expect(reach.offset.distance, greaterThan(150));
-    expect(
-      shot.sample(drained - .1, reducedMotion: false).last.image,
-      'closeups/oil-gulp-mc-gulp.png',
-    );
+  test('the counter hides the bottom edge of his torso', () {
+    final counter = shot.actors.last;
+    final torsoBottom = (416 - macron.contact.dy) * macron.scale;
+    final counterTop = -counter.contact.dy * counter.scale;
+    expect(counterTop, lessThanOrEqualTo(torsoBottom));
+    expect(counter.entry.distance, 0, reason: 'the counter stays put');
   });
 
-  test('calm camera holds one still, the gulp', () {
+  test('calm camera holds one still, mid-gulp', () {
     final places = shot.sample(shot.closeupFrom, reducedMotion: true);
-    expect(places.last.image, 'closeups/oil-gulp-mc-gulp.png');
-    expect(places.last.offset.distance, 0);
+    expect(places[1].image, 'closeups/oil-gulp-mc2-gulp3.png');
+    expect(places[1].offset.distance, 0);
   });
 }

@@ -19,50 +19,235 @@
     "introBeats": 4,
     "callBeats": 8,
     "flourishDestination": "leftHand",
-    "offsets": [0, 1, 2, 2.5, 4, 5, 6, 6.5],
-    "limbs": ["rightHand", "leftHand", "rightHand", "rightFoot", "leftFoot", "rightHand", "leftHand", "rightFoot"],
+    "offsets": [
+      0,
+      1,
+      2,
+      2.5,
+      4,
+      5,
+      6,
+      6.5
+    ],
+    "limbs": [
+      "rightHand",
+      "leftHand",
+      "rightHand",
+      "rightFoot",
+      "leftFoot",
+      "rightHand",
+      "leftHand",
+      "rightFoot"
+    ],
     "variants": [
-      ["rightFoot", "leftFoot", "rightHand", "leftHand", "rightFoot", "leftFoot", "leftHand", "rightHand"],
-      ["leftHand", "rightFoot", "rightHand", "leftFoot", "leftHand", "rightHand", "rightFoot", "leftFoot"],
-      ["rightHand", "leftHand", "leftFoot", "rightFoot", "leftHand", "rightHand", "rightFoot", "leftFoot"],
-      ["rightFoot", "leftHand", "leftFoot", "rightHand", "rightFoot", "leftFoot", "rightHand", "leftHand"],
-      ["leftHand", "rightHand", "rightFoot", "leftFoot", "rightHand", "leftHand", "leftFoot", "rightFoot"]
+      [
+        "rightFoot",
+        "leftFoot",
+        "rightHand",
+        "leftHand",
+        "rightFoot",
+        "leftFoot",
+        "leftHand",
+        "rightHand"
+      ],
+      [
+        "leftHand",
+        "rightFoot",
+        "rightHand",
+        "leftFoot",
+        "leftHand",
+        "rightHand",
+        "rightFoot",
+        "leftFoot"
+      ],
+      [
+        "rightHand",
+        "leftHand",
+        "leftFoot",
+        "rightFoot",
+        "leftHand",
+        "rightHand",
+        "rightFoot",
+        "leftFoot"
+      ],
+      [
+        "rightFoot",
+        "leftHand",
+        "leftFoot",
+        "rightHand",
+        "rightFoot",
+        "leftFoot",
+        "rightHand",
+        "leftHand"
+      ],
+      [
+        "leftHand",
+        "rightHand",
+        "rightFoot",
+        "leftFoot",
+        "rightHand",
+        "leftHand",
+        "leftFoot",
+        "rightFoot"
+      ]
     ]
   },
   "stage": {
     "calibration": "inspectedStarter",
-    "floor": { "horizonY": 0.205, "referenceFootY": 0.40, "referenceHeight": 0.23 },
-    "heroHome": [0.50, 0.62],
-    "heroEntrance": [0.50, 0.69],
-    "heroRetreat": [0.50, 0.66],
-    "heroWatch": [0.50, 0.655],
+    "floor": {
+      "horizonY": 0.205,
+      "referenceFootY": 0.4,
+      "referenceHeight": 0.23
+    },
+    "heroHome": [
+      0.5,
+      0.62
+    ],
+    "heroEntrance": [
+      0.5,
+      0.69
+    ],
+    "heroRetreat": [
+      0.5,
+      0.66
+    ],
+    "heroWatch": [
+      0.5,
+      0.655
+    ],
     "challengers": [
-      { "id": "bartender", "atlas": "bartender", "mark": [0.50, 0.45], "yieldMark": [0.60, 0.44] }
+      {
+        "id": "bartender",
+        "atlas": "bartender",
+        "mark": [
+          0.5,
+          0.45
+        ],
+        "yieldMark": [
+          0.6,
+          0.44
+        ]
+      }
     ]
   },
   "crowd": {
-    "budgets": { "interested": 5, "following": 4, "standing": 2, "cheering": 1 },
+    "budgets": {
+      "interested": 5,
+      "following": 4,
+      "standing": 2,
+      "cheering": 1
+    },
     "guests": [
-      [0.20, 0.480], [0.80, 0.480],
-      [0.23, 0.400], [0.77, 0.400],
-      [0.31, 0.370], [0.69, 0.370],
-      [0.23, 0.335], [0.32, 0.335], [0.41, 0.335],
-      [0.59, 0.335], [0.68, 0.335], [0.77, 0.335]
+      [
+        0.2,
+        0.48
+      ],
+      [
+        0.8,
+        0.48
+      ],
+      [
+        0.23,
+        0.4
+      ],
+      [
+        0.77,
+        0.4
+      ],
+      [
+        0.31,
+        0.37
+      ],
+      [
+        0.69,
+        0.37
+      ],
+      [
+        0.23,
+        0.335
+      ],
+      [
+        0.32,
+        0.335
+      ],
+      [
+        0.41,
+        0.335
+      ],
+      [
+        0.59,
+        0.335
+      ],
+      [
+        0.68,
+        0.335
+      ],
+      [
+        0.77,
+        0.335
+      ]
     ],
     "props": []
   },
   "scenery": {
-    "lamps": [[0.198, 0.204], [0.471, 0.204], [0.676, 0.204], [0.706, 0.082]],
-    "plants": [[0.14, 0.43], [0.86, 0.43]],
-    "waiter": { "home": [0.51, 0.345], "swayX": 0.055 }
+    "lamps": [
+      [
+        0.198,
+        0.204
+      ],
+      [
+        0.471,
+        0.204
+      ],
+      [
+        0.676,
+        0.204
+      ],
+      [
+        0.706,
+        0.082
+      ]
+    ],
+    "plants": [
+      [
+        0.14,
+        0.43
+      ],
+      [
+        0.86,
+        0.43
+      ]
+    ],
+    "waiter": {
+      "home": [
+        0.51,
+        0.345
+      ],
+      "swayX": 0.055
+    }
   },
   "departure": {
     "threshold": "counter-end passage",
     "originY": 0.67,
     "waypoints": [
-      { "at": 0, "x": 0.50, "y": 0.67, "facing": "sideRight" },
-      { "at": 0.65, "x": 0.82, "y": 0.64, "facing": "rear" },
-      { "at": 1, "x": 0.88, "y": 0.48, "facing": "rear" }
+      {
+        "at": 0,
+        "x": 0.5,
+        "y": 0.67,
+        "facing": "sideRight"
+      },
+      {
+        "at": 0.65,
+        "x": 0.82,
+        "y": 0.64,
+        "facing": "rear"
+      },
+      {
+        "at": 1,
+        "x": 0.88,
+        "y": 0.48,
+        "facing": "rear"
+      }
     ]
   },
   "exitShot": {
@@ -76,8 +261,11 @@
     ],
     "closeupFrom": 6,
     "contactBeat": 8,
-    "closeupTo": 11,
-    "contactPoint": [0.52, 0.36],
+    "closeupTo": 11.5,
+    "contactPoint": [
+      0.52,
+      0.36
+    ],
     "actors": [
       {
         "approach": "closeups/oil-gulp-bt-offer.png",
@@ -97,45 +285,91 @@
         ]
       },
       {
-        "approach": "closeups/oil-gulp-mc-reach.png",
-        "impact": "closeups/oil-gulp-empty.png",
-        "contact": [
-          370,
-          118
+        "approach": "closeups/oil-gulp-mc2-reach.png",
+        "impact": "closeups/oil-gulp-mc2-gulp3.png",
+        "frames": [
+          {
+            "beat": 8,
+            "image": "closeups/oil-gulp-mc2-gulp1.png"
+          },
+          {
+            "beat": 8.5,
+            "image": "closeups/oil-gulp-mc2-gulp2.png"
+          },
+          {
+            "beat": 9,
+            "image": "closeups/oil-gulp-mc2-gulp3.png"
+          },
+          {
+            "beat": 9.5,
+            "image": "closeups/oil-gulp-mc2-gulp4.png"
+          },
+          {
+            "beat": 10,
+            "image": "closeups/oil-gulp-mc2-gulp5.png"
+          },
+          {
+            "beat": 10.5,
+            "image": "closeups/oil-gulp-mc2-relief.png"
+          }
         ],
-        "scale": 0.31,
-        "entry": [
-          -98,
-          60
-        ],
-        "recoil": [
-          -240,
-          100
-        ]
-      },
-      {
-        "approach": "closeups/oil-gulp-mc-low.png",
-        "impact": "closeups/oil-gulp-mc-gulp.png",
         "contact": [
-          294,
+          300,
           260
         ],
         "scale": 0.31,
         "entry": [
-          -24000,
-          8000
+          -45,
+          0
         ],
         "recoil": [
-          -2,
-          -3
+          -1,
+          -1
+        ]
+      },
+      {
+        "approach": "closeups/oil-gulp-counter.png",
+        "impact": "closeups/oil-gulp-counter.png",
+        "contact": [
+          600,
+          -147
+        ],
+        "scale": 0.31,
+        "entry": [
+          0,
+          0
+        ],
+        "recoil": [
+          0,
+          0
         ]
       }
     ],
     "cue": [
-      { "beat": 8, "track": "clink", "pitch": 60, "velocity": 127 },
-      { "beat": 8.5, "track": "glug", "pitch": 57, "velocity": 120 },
-      { "beat": 9, "track": "glug", "pitch": 60, "velocity": 120 },
-      { "beat": 9.5, "track": "glug", "pitch": 64, "velocity": 127 }
+      {
+        "beat": 8,
+        "track": "clink",
+        "pitch": 60,
+        "velocity": 127
+      },
+      {
+        "beat": 8.5,
+        "track": "glug",
+        "pitch": 57,
+        "velocity": 120
+      },
+      {
+        "beat": 9,
+        "track": "glug",
+        "pitch": 60,
+        "velocity": 120
+      },
+      {
+        "beat": 9.5,
+        "track": "glug",
+        "pitch": 64,
+        "velocity": 127
+      }
     ],
     "impactBeats": 1.5
   },

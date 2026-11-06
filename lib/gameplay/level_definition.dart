@@ -496,6 +496,21 @@ class LevelDefinition {
     final actors = <ExitShotActor>[];
     for (final (i, raw) in fields.list('actors').indexed) {
       final actor = _Fields('$actorsPath[$i]', raw);
+      final frames = <ExitShotFrame>[];
+      if (actor.has('frames')) {
+        final framesPath = actor.at('frames');
+        var previous = double.negativeInfinity;
+        for (final (j, rawFrame) in actor.list('frames').indexed) {
+          final frame = _Fields('$framesPath[$j]', rawFrame);
+          final beat = frame.number('beat');
+          if (beat <= previous) {
+            throw FormatException('$framesPath[$j] must start after the frame before it');
+          }
+          previous = beat;
+          frames.add(ExitShotFrame(beat, frame.text('image')));
+          frame.finish();
+        }
+      }
       actors.add(
         ExitShotActor(
           approach: actor.text('approach'),
@@ -504,6 +519,7 @@ class LevelDefinition {
           scale: actor.number('scale', min: .1),
           entry: offset(actor, 'entry'),
           recoil: offset(actor, 'recoil'),
+          frames: frames,
         ),
       );
       actor.finish();
