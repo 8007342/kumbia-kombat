@@ -1,12 +1,30 @@
 # Session handoff, 2026-11-06
 
-**Latest, 2026-11-06, all on `work/1841-toda`, not merged to `game`.** A flawless run through all three levels in a real browser, muted: no errors, 60 fps median, 58 lowest second, about 4.6 minutes. Merged: cinematic titles, text-free play, accents, curved cues, taps near rings, VCR pause, lenient crowd scoring, close-ups as the sprite grown large with the real āi logo, fuller rooms, stools at the bar, opponents larger, Mācron's retreat, the Girls as a pair with spins, gesture moves, garden layers. Branches `work/1842` to `work/1852` are all included.
+**Read this first after the relaunch.** `game` holds all merged work. Start the next work ref from `origin/game`, for example `git switch -c work/1853-ordr origin/game`; ref grammar is `work/[0-9]{3,4}-[a-z0-9]{4}`.
 
-Music winners: Garden 51002, lawn 52011, bar 55005, indoor party 53010. Waiting on the owner's ears: second lawn ladder (candidate high 52019), bar and party ladders. Garden's ladder is approved in principle.
+## First, after the relaunch
+
+1. `df -h /home/forge/src` should show about 4 GB, from `src_mb = 4096`. macuahuitl-fedora read that in the code, and it had never run on a real relaunch. Report the result to it.
+2. `studio.status`, `studio.start`, `studio.models`: tray build differs from `56.11.6.2+8ab23b59434614e2`, and the XL base file shows `on_disk: true`. Report the build label and the result to macuahuitl-fedora. Its first GPU use may spend minutes in the `fetch` stage.
+3. Check `flutter analyze` (4 style notes in `battle_staging.dart`) and `flutter test` (453 passing at merge time). A first refusal `podman failed at step source (timeout)` clears on retry.
+4. Build and preview: `flutter build web --release --no-web-resources-cdn --no-pub`, `preview.publish {category: WEB, app_dir: build/web, runtime: static}`, then restore the listening page: `mkdir -p build/web/listen && cp -a ~/.cache/tillandsias-project/kumbia-audio/themes-20261106/listen-built/. build/web/listen/`. Don't rerun the builder without `--add-ladder`: it reshuffles the letters.
+5. `ListAgents` lists macuahuitl-fedora when it's on Remote Control; `SendMessage` by that name. The owner asked for occasional status and any shortcomings.
+
+## Working notes
+
+- Agent worktrees have started on `main`: tell agents to `git fetch origin && git switch -c <ref> origin/game`. Filed as 2017-wtbr.
+- Flutter only runs under the checkout. Filed as 2017-flwt. Worktrees cost about 300 MB each; `git sparse-checkout set --no-cone '/*' '!/art_runs/' '/art_runs/rooms/'` drops old art runs and keeps the floor file a test needs. Evict merged worktrees. `/work/tmp/imagegen` doesn't survive the forge, so copy keepers to the cache.
+- Browser checks: send CDP `Emulation.setFocusEmulationEnabled` first, since frames barely run before focus. To stay silent and capture frames, add a script with `Page.addScriptToEvaluateOnNewDocument` that routes the audio destination through a zero gain and samples the largest canvas. Results over 4 MiB per line are refused, so take frames in slices. Close-ups draw in a 180-unit-wide view.
+- Art: `$prompt` overrides work (2001-stpr fixed). Pass `$node:30.lora_name` = `Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors`; workflows still load 2509. Qwen won't hold chains of moments; use a code rig or puppet (`art_runs/closeups-v3-20261106/scripts/rig.py`, `plan/cinematics.md`).
+- Music: timing passing doesn't mean a take is good. The owner's test is "lively and identifiable". Compare decoded audio, not FLAC hashes.
+
+**Latest, 2026-11-06, merged to `game`.** A flawless run through all three levels in a real browser, muted: no errors, 60 fps median, 58 lowest second, about 4.6 minutes. Merged: cinematic titles, text-free play, accents, curved cues, taps near rings, VCR pause, lenient crowd scoring, close-ups as the sprite grown large with the real āi logo, fuller rooms, stools at the bar, opponents larger, Mācron's retreat, the Girls as a pair with spins, gesture moves, garden layers. Branches `work/1842` to `work/1852` are all included.
+
+Music winners: Garden 51002, lawn 52011, bar 55005, indoor party 53010. The owner heard the ladders: the progression is right, but lows are too quiet and thin, the lawn low too slow, and joins don't crossfade cleanly. Next steps are in `plan/music-rebuild.md`, "Ladder notes". Lawn high candidate: seed 52019, which passes timing and isn't on the page yet.
 
 Next batch, approved: level order garden, pool party, bar, indoor party, with the bar's chart the more complex; a single style guide including a cinematic style guide, and a gentle flow into the next room in place of the hard cut; model sheets for the BlinBlin dancer; slow party-up by tier for every player; layers for other rooms; indoor plate with the floor painted separately, since words failed twice. Later: the PoolPlayer dancer and billiards room, rendered music in the game (needs phones), and the late bathroom boss, so every opponent needs a named hardest combo.
 
-Relaunch: `src_mb = 4096` and the XL base pin take effect at the next launch. Check `df -h /home/forge/src` and `studio.models` after. Restore the listening page with the command in `plan/music-themes-2026-11-06.md`. FLAC masters and art raws are in `~/.cache/tillandsias-project/`, on this machine only.
+FLAC masters and art raws are in `~/.cache/tillandsias-project/`, on this machine only.
 
 **Update, later on 2026-11-06.** The relaunch checks and the music pilot are done. Results: `plan/music-pilot-2026-11-06.md`. Checklist: `plan/relaunch-report-2026-11-06.md`, delivered to macuahuitl-fedora over Remote Control once it appeared in `ListAgents`, and answered: no restart needed. It will say when a relaunch would bring the XL base pin. Next are the art items. Music stage 3 needs the owner's phones.
 

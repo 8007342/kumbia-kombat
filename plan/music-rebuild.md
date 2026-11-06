@@ -52,3 +52,13 @@ Stage 5 waits for stage 2, so the runtime isn't built for music that fails the e
 2. Are the concept briefs above right, especially a distinct style for the bar?
 3. Copyright: raw generated audio may not be protected, and others could reuse it. Is human selection and arrangement of takes enough?
 4. If the pilot ends up needing Stable Audio 3: it requires registration, and it's capped at $1M yearly revenue. MiniMax Music 3 requires an on-screen credit.
+
+## Ladder notes from the owner's listening, 2026-11-06
+
+- **Low tiers are too quiet and thin.** The pattern heard is LOW << MID < HIGH, on the lawn, indoor party and the other ladders. Aim for LOW < MID < HIGH with smaller steps. The lawn's low also feels too slow, so try 136 BPM there. The page matches mean loudness across excerpts, so what's heard is density and energy, not level: regenerate lows with fuller words, and don't just raise gain. Mix level per tier is still a separate choice in the runtime.
+- **Transitions don't crossfade cleanly.** Tiers share themes but are separate takes, with different tempos and harmony at any moment. Options for the runtime stage, none tried yet, cheapest first:
+  1. Switch on a phrase boundary with a short crossfade of 1-2 beats, after time-stretching the outgoing take's last bar to the new tempo, and a fill or stinger on top to hide the join. Needs takes cut on bars in the same key: request the same key per level, and measure it.
+  2. Generate a short bridge per pair of tiers, by feeding the outgoing take's end to ACE-Step's audio-to-audio or extend mode, if the pinned workflow nodes allow it. Check that first; it's the most musical if it works.
+  3. One long take that already grows from sparse to full, cut into tiers, so they share a recording. The plan's fallback for stage 4, and it solves the join but ties each tier to one tempo unless stretched.
+- **Recommendation:** test 2 on one join, with 1 as the fallback, using the Garden ladder, which the owner likes.
+

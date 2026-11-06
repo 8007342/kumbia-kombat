@@ -187,3 +187,5 @@ This replaces the plan's lead dancer and the foot-stamp cinematic. The left and 
 
 Polish, the same day. No finish lamps: "the party engagement and music are indicators enough for the player. We don't like unnecessary UX". The end screen stays as it is for now: "we'll be moving it a lot as we add levels, and figure out the final boss battle". Assets may spill off screen by design: "some of our assets will be placed intentionally at spilling over locations, we only need to see some of them". Cinematic transitions get their own style guide: "to stay consistent, and gently flow to the next room".
 
+Ladders, the same day: progression is right, but the low tiers are too quiet and, on the lawn, too slow. "the low level of the second try lawn pool level is a bit too slow, but the progression is great", "its LOW << MID < HIGH, the low tier is much more quieter in comparison with the mid and high tiers. We need to spike up a little more those low levels." Tiers share themes but "won't crossfade cleanly", so transitions must be made smooth. The implementation is open.
+
