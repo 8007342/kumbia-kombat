@@ -328,3 +328,13 @@ Not asked here, though still open: the campaign's length and acts (`plan/campaig
 - **`cover` from a ComfyUI node.** The research's preferred anchor ladder needs it, and the current workflow doesn't use it. I didn't test whether the studio exposes it.
 - **Stale notes I left alone**, as asked: `plan/adding-a-level.md:42` says later challengers aren't drawn; `plan/comfyui-cheatsheet.md:262` says the 2511 LoRA isn't on disk; the runtime section of `plan/level-3-readiness.md` predates the level registry.
 - **No phone evidence.** None of this has been played, heard or seen on a real phone.
+
+## Plate proof result, 2026-11-06
+
+Not passed, after 40 images and 761 s of GPU over three rounds. `tool/art/rooms/cool-crowd.json` now holds the last round's words, stage block and guest marks, so section 3.3 no longer matches it. Prompts for each round are in `art_runs/room-cool-crowd-v1-a/workflows/`.
+
+- **Fixed:** the hard diagonal wedge fell from 8 of 8 first passes to 0 of 8 after pass 2, after dropping "running diagonally". The guide and colour words changed in the same run, so that isn't proof. Dropping "curtains" and "moonlight" removed the canopies and moon patches. Naming the left wall kept the windows there.
+- **Not fixed:** colour swung from too dark (floor luma 5-12) to pale and flat (59-69), against 15-34 for the neighbours. The bandstand paints past its guide on all 40. Extra lanterns and plain yellow lamp balls keep appearing.
+- **Next try, about 5 minutes:** keep the last pass 1 floor wording and the arch, pull the pass 2 floor and wall words about halfway back, and move two guest marks clear of the platform.
+
+Sheet: `~/.cache/tillandsias-project/kumbia-art/room-cool-crowd-v1-a/sheets/review-phone-final.png`. A person has not accepted a layout or a plate yet.

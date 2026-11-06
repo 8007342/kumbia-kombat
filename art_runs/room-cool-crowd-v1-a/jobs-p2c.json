@@ -1,0 +1,32 @@
+{
+ "room": "cool-crowd",
+ "run": "room-cool-crowd-v1-a",
+ "passNo": 2,
+ "steps": 4,
+ "promptSha256": "776783fe8cb094b416080c6122207f8bc1e8198734307d7d7eebe77df7233780",
+ "jobs": [
+  {
+   "name": "p2c-p1c-987000",
+   "workflow": "art_runs/room-cool-crowd-v1-a/workflows/p2c.api.json",
+   "inputs": {
+    "base": "/work/tmp/imagegen/kumbia/room-cool-crowd-v1-a/in/p1c-987000.png"
+   },
+   "overrides": {
+    "seed": 987100
+   },
+   "count": 4
+  },
+  {
+   "name": "p2c-p1c-987005",
+   "workflow": "art_runs/room-cool-crowd-v1-a/workflows/p2c.api.json",
+   "inputs": {
+    "base": "/work/tmp/imagegen/kumbia/room-cool-crowd-v1-a/in/p1c-987005.png"
+   },
+   "overrides": {
+    "seed": 987200
+   },
+   "count": 4
+  }
+ ],
+ "how": "Queue one studio.run_workflow per job, one at a time. Then: rooms.py collect --run room-cool-crowd-v1-a"
+}
