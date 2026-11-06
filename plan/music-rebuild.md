@@ -8,6 +8,8 @@ Each level gets a ladder of five whole takes, one per tier, each at its own temp
 
 ACE-Step 1.5 XL generates. Exact loops come from a repo-owned post step, since no model promises exact tempo or bar counts: measure beats, reject half-time takes, stretch slightly to the grid, gate, cut, wrap the seam, set loudness, encode.
 
+For the pilot, corrections stay small (under about 1.5%) and use ffmpeg, either `atempo` or plain resampling. `rubberband` is GPL, so whether it can be used is the owner's call; pedalboard is GPL as well and waits for the same decision.
+
 Stems locked across separate generations are out for now: the only measurement found was 20 to 80 ms off.
 
 ## What each level needs
