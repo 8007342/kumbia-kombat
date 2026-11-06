@@ -91,3 +91,14 @@ Layers, the same day: backgrounds and some assets may be regenerated into layers
 This settles the progression report's decisions: no Heat meter, every room can reach full swing, and optional taps and drags are wanted, so flicks alone are no longer the plan. The report's safety rule still applies: ignoring optional play costs nothing. Mācron's own signature step still comes from the salsa teacher.
 
 Answers the same day: the big end-of-level word stays as a consistent theme, each level a synonym or near meaning of cool, swag, mojo or suave. Early and late differ in shape, motion and effects, whatever research shows helps players improve by feel. The owner will ask the salsa teacher for signature moves, on video. See `plan/signature-moves-footage.md`.
+
+## Seventh round, 2026-11-06: music briefs and the purpose of the oil gulp
+
+| Topic | Ruling | Owner's words |
+|---|---|---|
+| Music briefs | The concept briefs in `plan/music-rebuild.md` stand, including a distinct style for the bar | "the music briefs look correct" |
+| Oil gulp | A proof of concept for wiring. Several transitions will need custom moments, so learn the wiring and its pitfalls early | "just a proof of concept for our wiring", "learn to wire them and the pitfalls early on" |
+| Session plan | Approved: relaunch for the pins, fourth-round fixes, music pilot, art between runs | "I approve the plan for today's session" |
+| Infrastructure | Model and pin requests go to macuahuitl-fedora, the agent on the host | "which can fix your infra" |
+
+So the gulp's job is also to leave a repeatable route for later transition moments. Write down what the wiring needed and what went wrong.
