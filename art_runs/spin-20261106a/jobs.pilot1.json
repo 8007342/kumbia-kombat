@@ -1,0 +1,114 @@
+[
+ {
+  "pose": "gk.spin_side",
+  "args": {
+   "workflow": "art_runs/spin-20261106a/workflows/gk.spin_side.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/spin-20261106a/in/gk_front.png"
+   },
+   "overrides": {
+    "seed": 990000
+   }
+  }
+ },
+ {
+  "pose": "gk.spin_back",
+  "args": {
+   "workflow": "art_runs/spin-20261106a/workflows/gk.spin_back.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/spin-20261106a/in/gk_front.png"
+   },
+   "overrides": {
+    "seed": 990100
+   }
+  }
+ },
+ {
+  "pose": "bt.spin_side",
+  "args": {
+   "workflow": "art_runs/spin-20261106a/workflows/bt.spin_side.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/spin-20261106a/in/bt_front.png"
+   },
+   "overrides": {
+    "seed": 991000
+   }
+  }
+ },
+ {
+  "pose": "bt.spin_back",
+  "args": {
+   "workflow": "art_runs/spin-20261106a/workflows/bt.spin_back.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/spin-20261106a/in/bt_front.png"
+   },
+   "overrides": {
+    "seed": 991100
+   }
+  }
+ },
+ {
+  "pose": "mc.clap_apart",
+  "args": {
+   "workflow": "art_runs/spin-20261106a/workflows/mc.clap_apart.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "sheet_rear": "/work/tmp/imagegen/kumbia/spin-20261106a/in/mc_rear.png"
+   },
+   "overrides": {
+    "seed": 992000
+   }
+  }
+ },
+ {
+  "pose": "mc.clap_together_front",
+  "args": {
+   "workflow": "art_runs/spin-20261106a/workflows/mc.clap_together_front.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "sheet_rear": "/work/tmp/imagegen/kumbia/spin-20261106a/in/mc_rear.png"
+   },
+   "overrides": {
+    "seed": 992100
+   }
+  }
+ },
+ {
+  "pose": "mc.clap_together_side",
+  "args": {
+   "workflow": "art_runs/spin-20261106a/workflows/mc.clap_together_side.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "sheet_rear": "/work/tmp/imagegen/kumbia/spin-20261106a/in/mc_rear.png"
+   },
+   "overrides": {
+    "seed": 992200
+   }
+  }
+ },
+ {
+  "pose": "mc.clap_together_over",
+  "args": {
+   "workflow": "art_runs/spin-20261106a/workflows/mc.clap_together_over.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "sheet_rear": "/work/tmp/imagegen/kumbia/spin-20261106a/in/mc_rear.png"
+   },
+   "overrides": {
+    "seed": 992300
+   }
+  }
+ }
+]

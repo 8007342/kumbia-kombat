@@ -1,0 +1,198 @@
+[
+ {
+  "pose": "mc.clap_apart2",
+  "args": {
+   "workflow": "art_runs/spin-20261106a/workflows/mc.clap_apart2.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "sheet_rear": "/work/tmp/imagegen/kumbia/spin-20261106a/in/mc_rear.png"
+   },
+   "overrides": {
+    "seed": 992400
+   }
+  }
+ },
+ {
+  "pose": "mc.clap_over2",
+  "args": {
+   "workflow": "art_runs/spin-20261106a/workflows/mc.clap_over2.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "sheet_rear": "/work/tmp/imagegen/kumbia/spin-20261106a/in/mc_rear.png"
+   },
+   "overrides": {
+    "seed": 992500
+   }
+  }
+ },
+ {
+  "pose": "mc.clap_chest2",
+  "args": {
+   "workflow": "art_runs/spin-20261106a/workflows/mc.clap_chest2.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "sheet_rear": "/work/tmp/imagegen/kumbia/spin-20261106a/in/mc_rear.png"
+   },
+   "overrides": {
+    "seed": 992600
+   }
+  }
+ },
+ {
+  "pose": "gk.spin_side2",
+  "args": {
+   "workflow": "art_runs/spin-20261106a/workflows/gk.spin_side2.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/spin-20261106a/in/gk_front.png"
+   },
+   "overrides": {
+    "seed": 990200
+   }
+  }
+ },
+ {
+  "pose": "gk.spin_front",
+  "args": {
+   "workflow": "art_runs/spin-20261106a/workflows/gk.spin_front.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/spin-20261106a/in/gk_front.png"
+   },
+   "overrides": {
+    "seed": 990300
+   }
+  }
+ },
+ {
+  "pose": "gk.spin_34",
+  "args": {
+   "workflow": "art_runs/spin-20261106a/workflows/gk.spin_34.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/spin-20261106a/in/gk_front.png"
+   },
+   "overrides": {
+    "seed": 990400
+   }
+  }
+ },
+ {
+  "pose": "gk.spin_back34",
+  "args": {
+   "workflow": "art_runs/spin-20261106a/workflows/gk.spin_back34.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/spin-20261106a/in/gk_front.png"
+   },
+   "overrides": {
+    "seed": 990500
+   }
+  }
+ },
+ {
+  "pose": "gk.flare_hat",
+  "args": {
+   "workflow": "art_runs/spin-20261106a/workflows/gk.flare_hat.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/spin-20261106a/in/gk_front.png"
+   },
+   "overrides": {
+    "seed": 990600
+   }
+  }
+ },
+ {
+  "pose": "gk.flare_open",
+  "args": {
+   "workflow": "art_runs/spin-20261106a/workflows/gk.flare_open.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/spin-20261106a/in/gk_front.png"
+   },
+   "overrides": {
+    "seed": 990700
+   }
+  }
+ },
+ {
+  "pose": "bt.spin_front",
+  "args": {
+   "workflow": "art_runs/spin-20261106a/workflows/bt.spin_front.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/spin-20261106a/in/bt_front.png"
+   },
+   "overrides": {
+    "seed": 991200
+   }
+  }
+ },
+ {
+  "pose": "bt.spin_34",
+  "args": {
+   "workflow": "art_runs/spin-20261106a/workflows/bt.spin_34.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/spin-20261106a/in/bt_front.png"
+   },
+   "overrides": {
+    "seed": 991300
+   }
+  }
+ },
+ {
+  "pose": "bt.spin_back34",
+  "args": {
+   "workflow": "art_runs/spin-20261106a/workflows/bt.spin_back34.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/spin-20261106a/in/bt_front.png"
+   },
+   "overrides": {
+    "seed": 991400
+   }
+  }
+ },
+ {
+  "pose": "bt.flare_high",
+  "args": {
+   "workflow": "art_runs/spin-20261106a/workflows/bt.flare_high.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/spin-20261106a/in/bt_front.png"
+   },
+   "overrides": {
+    "seed": 991500
+   }
+  }
+ },
+ {
+  "pose": "bt.flare_dip",
+  "args": {
+   "workflow": "art_runs/spin-20261106a/workflows/bt.flare_dip.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/spin-20261106a/in/bt_front.png"
+   },
+   "overrides": {
+    "seed": 991600
+   }
+  }
+ }
+]
