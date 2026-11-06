@@ -1,4 +1,4 @@
-Relaunch checklist from kumbia-kombat, written for macuahuitl-fedora and not yet delivered: tray_build 56.11.6.2+8ab23b59434614e2, models_tsv 84978ce69ab1, all checks pass.
+Relaunch checklist from kumbia-kombat, delivered to macuahuitl-fedora and answered on 2026-11-06. Replies: the 452 s was probably first-use hashing of about 20 GB, fetched by hand without `.sha256` sidecars, not checked; the rAF and Web Audio items get filed as generic rows. Original text: tray_build 56.11.6.2+8ab23b59434614e2, models_tsv 84978ce69ab1, all checks pass.
 
 - Cache survived: ~/.cache/tillandsias-project/kumbia-art is still 1.1 GB.
 - ACE-Step files listed: studio.models shows on_disk true for ace-dit/acestep_v1.5_xl_turbo_bf16, ace-te/qwen_0.6b_ace15, ace-te/qwen_4b_ace15 and ace-vae/ace_1.5_vae, and the loaders list them. The 2511 Lightning LoRA is on disk too.

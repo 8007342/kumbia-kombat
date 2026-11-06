@@ -73,6 +73,8 @@ The score room has no offline render. The capture page, a temporary copy of `too
 
 In a visible window, Web Audio rendered 44.26 s of `garden_mojo` in 45 s of wall clock, and `MediaRecorder` gave 44.16 s of 45.07 s. The transport itself kept time, at 73.5 beats in 45 s. `pool_swing` didn't show it. The cause isn't traced, and whether it happens in the game isn't known. It matters less if the rendered music replaces the synth, but the synth stays for count-ins, hit cues and fallback.
 
+Measured in the game the same day: the AudioContext clock tracked wall time over 122 s of Garden on autoplay into the bar, ratio 1.0001, worst one-second gap 13 ms, muted through a zero gain. So the game shows no drift by that measure on this host. That doesn't rule out dropped audio, and it doesn't explain the capture shortfall, which may come from the capture itself. Phones are untested.
+
 ## Next
 
 Stage 3 in `plan/music-rebuild.md`: wrapped loops in MP3, AAC and Opus on a real iPhone, an Android phone and the host browser. That needs the owner's devices. The owner hasn't yet said whether these winners are the final takes or only prove the style.

@@ -1,6 +1,13 @@
 # Session handoff, 2026-11-06
 
-**Update, later on 2026-11-06.** The relaunch checks and the music pilot are done. Results: `plan/music-pilot-2026-11-06.md`. Checklist for macuahuitl-fedora: `plan/relaunch-report-2026-11-06.md`, **not delivered**, because that session wasn't reachable and this lane has no fleet address for it. Still to do from below: see the mid-floor spin, exit walk and hard cut on screen, then the art items. Music stage 3 needs the owner's phones. The rest of this file is the plan as written before the relaunch.
+**Update, later on 2026-11-06.** The relaunch checks and the music pilot are done. Results: `plan/music-pilot-2026-11-06.md`. Checklist: `plan/relaunch-report-2026-11-06.md`, delivered to macuahuitl-fedora over Remote Control once it appeared in `ListAgents`, and answered: no restart needed. It will say when a relaunch would bring the XL base pin. Next are the art items. Music stage 3 needs the owner's phones.
+
+**Seen on screen, Garden on autoplay, from 4 frames a second, muted:**
+- Spin: the opponent turns through side, back and front on centre floor and finishes arms up, then moves right. It runs about 1 s into `YOUR TURN`.
+- Crowding: Mācron stays well clear during play. After the fist bump he stands right beside the opponent, under his feet, without overlapping.
+- Exit: `MUCHO MOJO`, Mācron steps in, fist-bump close-up, then about 4 s back in the garden with no walk out.
+- Hard cut: confirmed. The garden changes to the bar between two frames, with no transition.
+- Not judged: the lost open-palm cue during the overflow, which the frames can't settle. These are for the owner's eye. The rest of this file is the plan as written before the relaunch.
 
 Read this first after the relaunch. Work branch: `work/1841-toda`, based on `game` at `589b9f8`.
 
