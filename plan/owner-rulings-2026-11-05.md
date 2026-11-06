@@ -33,3 +33,16 @@ calls, pending research and the teacher's interview.
 
 This replaces the desk recommendation of cha-cha-chá for this level's music. Mācron's signature step still comes from the
 salsa teacher. Swing isn't that teacher's stated field, so swing vocabulary needs its own reviewer.
+
+## Third round, 2026-11-06, after watching the autoplay build
+
+| Topic | Ruling | Owner's words |
+|---|---|---|
+| Fist bump | Loved. Later: better timing and a lightning face-off with a winking eye, so it clearly reads as approval | "that fistbump was epic", "we'll add sugar later" |
+| Bar to lawn | The cutscene between the bartender and the pool is missing | "We're also missing the cutscene between the bartender and the pool" |
+| Lawn draft | The background and dancers are a strong first run | "fantastic for a first run" |
+| Gatekeeper | v4's build and moves are right. Read as acceptance, so v4 and its stocky front sheet are promoted | "The gatekeeper is chubby again ;) and its moves are much better" |
+| Unused moves | Use the drawn moves the game still leaves out | "there might be a few more animations not being used" |
+| Handoff | The opponent stays on the main dance area during Mācron's turn, and doesn't hide back in the party | "remain somewhat on the main dance area, even for Mācron's turn" |
+| Mācron off turn | He takes a few steps back and claps or taps along, depending on the music and the party's excitement | "take a few steps back, and clap along, and/or tap along" |
+| Opponent flares | The Gatekeeper and bartender get spins and optional flares, as Mācron has | "might need to also do some spins and optional flares" |
