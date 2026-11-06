@@ -1,0 +1,78 @@
+{
+ "pieces": {
+  "bt-offer": {
+   "file": "oil-gulp-bt-offer.png",
+   "size": [
+    439,
+    384
+   ],
+   "contact": [
+    126,
+    207
+   ]
+  },
+  "bt-empty": {
+   "file": "oil-gulp-bt-empty.png",
+   "size": [
+    439,
+    384
+   ],
+   "contact": [
+    126,
+    207
+   ]
+  },
+  "mc-reach": {
+   "file": "oil-gulp-mc-reach.png",
+   "size": [
+    336,
+    288
+   ],
+   "contact": [
+    370,
+    118
+   ]
+  },
+  "mc-gulp": {
+   "file": "oil-gulp-mc-gulp.png",
+   "size": [
+    416,
+    416
+   ],
+   "contact": [
+    294,
+    260
+   ]
+  },
+  "mc-low": {
+   "file": "oil-gulp-mc-low.png",
+   "size": [
+    416,
+    416
+   ],
+   "contact": [
+    294,
+    260
+   ]
+  },
+  "empty": {
+   "file": "oil-gulp-empty.png",
+   "size": [
+    1,
+    1
+   ],
+   "contact": [
+    0,
+    0
+   ]
+  }
+ },
+ "notes": "contact is the art pixel that should land on the shot's contactPoint",
+ "plate": {
+  "file": "oil-gulp-plate.png",
+  "size": [
+   468,
+   660
+  ]
+ }
+}

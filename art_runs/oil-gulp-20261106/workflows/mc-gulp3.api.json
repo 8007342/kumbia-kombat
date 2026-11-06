@@ -1,0 +1,266 @@
+{
+ "10": {
+  "_meta": {
+   "title": "prompt, baked per pose by plan_qwen_frames"
+  },
+  "class_type": "TextEncodeQwenImageEditPlus",
+  "inputs": {
+   "clip": [
+    "6",
+    0
+   ],
+   "image1": [
+    "60",
+    0
+   ],
+   "image2": [
+    "61",
+    0
+   ],
+   "prompt": "Image 1 shows a small ivory robot from the front. Image 2 is a rough flat layout: copy its composition exactly, with the same positions, sizes and angles of every part, and redraw it as a finished picture in crisp late 16-bit pixel art with extremely fine tiny pixels, about three hundred pixels across the whole picture, high detail, smooth curved outlines with tiny steps, in the colours and shading of the robot in image 1. It shows the head of this robot in extreme close-up, drinking from a glass. Its wide ivory head is a soft rounded rectangle, wider than tall, like image 2, with a wide dark teal face screen, two bright glowing cyan eye arcs curved like happy closed eyes, teal ear panels at the sides, a small cyan ball antenna. It has no mouth and no nose. Its arm: a short smooth ivory forearm shell with two cyan bands near its end and a dark teal ball joint at the wrist, runs in a straight line to the left edge of the picture, and it ends in a single plain rounded dark teal mitten like a smooth ball, exactly as on the robot in the images: no fingers, no thumb, no joints, no knuckles, no lines on it, one smooth shape with one soft highlight, pressed against the lower side of a short straight-sided tumbler with a flat thick base, made of clear glass, holding glossy dark motor oil, brown-black with a thin amber edge where light passes through. The whole glass leans over by fifty degrees exactly as in image 2, with its open rim against the robot's chin under the face screen and its base out to the lower right, far from the head. The oil's surface is horizontal as in image 2. A small smear of dark oil on the ivory chin. The picture holds only one head, one arm and one glass: no torso, no shoulder, no second arm. Nothing lies under the glass: no spill, no drops, no shadow, no surface. Plain light grey background, no text.",
+   "vae": [
+    "7",
+    0
+   ]
+  }
+ },
+ "11": {
+  "_meta": {
+   "title": "negative"
+  },
+  "class_type": "TextEncodeQwenImageEditPlus",
+  "inputs": {
+   "clip": [
+    "6",
+    0
+   ],
+   "image1": [
+    "60",
+    0
+   ],
+   "image2": [
+    "61",
+    0
+   ],
+   "prompt": "",
+   "vae": [
+    "7",
+    0
+   ]
+  }
+ },
+ "12": {
+  "_meta": {
+   "title": "$seed"
+  },
+  "class_type": "KSampler",
+  "inputs": {
+   "cfg": 1,
+   "denoise": 1,
+   "latent_image": [
+    "8",
+    0
+   ],
+   "model": [
+    "5",
+    0
+   ],
+   "negative": [
+    "21",
+    0
+   ],
+   "positive": [
+    "20",
+    0
+   ],
+   "sampler_name": "euler",
+   "scheduler": "simple",
+   "seed": 930000,
+   "steps": 4
+  }
+ },
+ "13": {
+  "_meta": {
+   "title": "VAE Decode"
+  },
+  "class_type": "VAEDecode",
+  "inputs": {
+   "samples": [
+    "12",
+    0
+   ],
+   "vae": [
+    "7",
+    0
+   ]
+  }
+ },
+ "14": {
+  "_meta": {
+   "title": "save frame with matte"
+  },
+  "class_type": "SaveImage",
+  "inputs": {
+   "filename_prefix": "kk/oil-gulp-mc-gulp3",
+   "images": [
+    "41",
+    0
+   ]
+  }
+ },
+ "20": {
+  "_meta": {
+   "title": "reference latents: positive"
+  },
+  "class_type": "FluxKontextMultiReferenceLatentMethod",
+  "inputs": {
+   "conditioning": [
+    "10",
+    0
+   ],
+   "reference_latents_method": "index_timestep_zero"
+  }
+ },
+ "21": {
+  "_meta": {
+   "title": "reference latents: negative"
+  },
+  "class_type": "FluxKontextMultiReferenceLatentMethod",
+  "inputs": {
+   "conditioning": [
+    "11",
+    0
+   ],
+   "reference_latents_method": "index_timestep_zero"
+  }
+ },
+ "3": {
+  "_meta": {
+   "title": "Load Diffusion Model"
+  },
+  "class_type": "UNETLoader",
+  "inputs": {
+   "unet_name": "qwen_image_edit_2511_fp8mixed.safetensors",
+   "weight_dtype": "default"
+  }
+ },
+ "30": {
+  "_meta": {
+   "title": "Lightning 4-step (built for 2509; unproven on 2511)"
+  },
+  "class_type": "LoraLoaderModelOnly",
+  "inputs": {
+   "lora_name": "Qwen-Image-Edit-2509-Lightning-4steps-V1.0-bf16.safetensors",
+   "model": [
+    "4",
+    0
+   ],
+   "strength_model": 1.0
+  }
+ },
+ "4": {
+  "_meta": {
+   "title": "ModelSamplingAuraFlow"
+  },
+  "class_type": "ModelSamplingAuraFlow",
+  "inputs": {
+   "model": [
+    "3",
+    0
+   ],
+   "sampling": "flow",
+   "shift": 3.1
+  }
+ },
+ "40": {
+  "_meta": {
+   "title": "BiRefNet model"
+  },
+  "class_type": "LoadRembgByBiRefNetModel",
+  "inputs": {
+   "device": "AUTO",
+   "dtype": "float32",
+   "model": "model.safetensors",
+   "use_weight": false
+  }
+ },
+ "41": {
+  "_meta": {
+   "title": "BiRefNet matte"
+  },
+  "class_type": "RembgByBiRefNet",
+  "inputs": {
+   "images": [
+    "13",
+    0
+   ],
+   "model": [
+    "40",
+    0
+   ]
+  }
+ },
+ "5": {
+  "_meta": {
+   "title": "CFGNorm"
+  },
+  "class_type": "CFGNorm",
+  "inputs": {
+   "model": [
+    "30",
+    0
+   ],
+   "pre_cfg": false,
+   "strength": 1
+  }
+ },
+ "6": {
+  "_meta": {
+   "title": "Load CLIP"
+  },
+  "class_type": "CLIPLoader",
+  "inputs": {
+   "clip_name": "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+   "device": "default",
+   "type": "qwen_image"
+  }
+ },
+ "7": {
+  "_meta": {
+   "title": "Load VAE"
+  },
+  "class_type": "VAELoader",
+  "inputs": {
+   "vae_name": "qwen_image_vae.safetensors"
+  }
+ },
+ "8": {
+  "_meta": {
+   "title": "Empty Latent Image"
+  },
+  "class_type": "EmptyLatentImage",
+  "inputs": {
+   "batch_size": 1,
+   "height": 1664,
+   "width": 1664
+  }
+ },
+ "60": {
+  "_meta": {
+   "title": "$mac"
+  },
+  "class_type": "LoadImage",
+  "inputs": {
+   "image": "$mac"
+  }
+ },
+ "61": {
+  "_meta": {
+   "title": "$gd"
+  },
+  "class_type": "LoadImage",
+  "inputs": {
+   "image": "$gd"
+  }
+ }
+}

@@ -1,0 +1,69 @@
+{
+ "bt-offer2": {
+  "w": 1536,
+  "h": 1536,
+  "images": [
+   "bt"
+  ],
+  "matte": 1,
+  "prompt": "Image 1 shows a woman bartender. Extreme close-up of one single forearm and hand of this woman, drawn in crisp late 16-bit pixel art with very fine small pixels, high detail and a thick dark outline, like image 1: medium warm tan skin with the same shading, an ivory shirt sleeve rolled to below the elbow. The forearm comes in from the right: it runs horizontally from the right edge of the picture towards the left, and the right edge of the picture cuts the arm, with the rolled ivory sleeve at the right edge. Her hand is at the middle of the picture, five slim natural fingers curled around a short straight-sided tumbler with a flat thick base, made of clear glass, holding glossy dark motor oil, brown-black with a thin amber edge where light passes through. The glass stands perfectly upright, full to near the rim, large, in the middle of the left half of the picture, and the oil's surface is one smooth dark ellipse with a single soft highlight. Her fingers wrap the glass from the right side. No ring, no shaker, no bottle. Plain light grey background, no text."
+ },
+ "mc-reach2": {
+  "w": 1344,
+  "h": 1152,
+  "images": [
+   "mac",
+   "gd"
+  ],
+  "matte": 1,
+  "prompt": "Image 1 shows a small ivory robot. Image 2 is a rough flat layout: copy its composition exactly, with the same positions, sizes and angles of every part, and redraw it as a finished picture drawn in crisp late 16-bit pixel art with very fine small pixels, high detail and a thick dark outline, in the colours and shading of the robot in image 1. It shows one single arm of this robot in extreme close-up: a short smooth ivory forearm shell with two cyan bands near its end and a dark teal ball joint at the wrist, ending in a single plain rounded dark teal mitten like a smooth ball, exactly as on the robot in the images: no fingers, no thumb, no joints, no knuckles, no lines on it, one smooth shape with one soft highlight. The forearm leaves the picture at the left edge. Nothing else in the picture: no head, no body, no glass. Plain light grey background, no text."
+ },
+ "mc-gulp2": {
+  "w": 1664,
+  "h": 1664,
+  "images": [
+   "mac",
+   "gd"
+  ],
+  "matte": 1,
+  "prompt": "Image 1 shows a small ivory robot from the front. Image 2 is a rough flat layout: copy its composition exactly, with the same positions, sizes and angles of every part, and redraw it as a finished picture drawn in crisp late 16-bit pixel art with very fine small pixels, high detail and a thick dark outline, in the colours and shading of the robot in image 1. It shows this robot in extreme close-up drinking from a glass. Its big round soft ivory head at the upper left, with soft fully rounded corners, a wide dark teal face screen, two bright glowing cyan eye arcs curved like happy closed eyes, teal ear discs, a small cyan ball antenna. It has no mouth and no nose. Its arm: a short smooth ivory forearm shell with two cyan bands near its end and a dark teal ball joint at the wrist, leaves the picture at the left edge, and it ends in a single plain rounded dark teal mitten like a smooth ball, exactly as on the robot in the images: no fingers, no thumb, no joints, no knuckles, no lines on it, one smooth shape with one soft highlight, pressed against the lower side of a short straight-sided tumbler with a flat thick base, made of clear glass, holding glossy dark motor oil, brown-black with a thin amber edge where light passes through. The glass leans far over as in image 2, with its open rim resting against the robot's chin under the face screen and its base out to the lower right. The oil's surface stays level with the ground as in image 2 and reaches the rim at the chin. A small smear of dark oil on the ivory chin. Plain light grey background, no text."
+ },
+ "mc-gulp3": {
+  "w": 1664,
+  "h": 1664,
+  "images": [
+   "mac",
+   "gd"
+  ],
+  "matte": 1,
+  "prompt": "Image 1 shows a small ivory robot from the front. Image 2 is a rough flat layout: copy its composition exactly, with the same positions, sizes and angles of every part, and redraw it as a finished picture in crisp late 16-bit pixel art with extremely fine tiny pixels, about three hundred pixels across the whole picture, high detail, smooth curved outlines with tiny steps, in the colours and shading of the robot in image 1. It shows the head of this robot in extreme close-up, drinking from a glass. Its wide ivory head is a soft rounded rectangle, wider than tall, like image 2, with a wide dark teal face screen, two bright glowing cyan eye arcs curved like happy closed eyes, teal ear panels at the sides, a small cyan ball antenna. It has no mouth and no nose. Its arm: a short smooth ivory forearm shell with two cyan bands near its end and a dark teal ball joint at the wrist, runs in a straight line to the left edge of the picture, and it ends in a single plain rounded dark teal mitten like a smooth ball, exactly as on the robot in the images: no fingers, no thumb, no joints, no knuckles, no lines on it, one smooth shape with one soft highlight, pressed against the lower side of a short straight-sided tumbler with a flat thick base, made of clear glass, holding glossy dark motor oil, brown-black with a thin amber edge where light passes through. The whole glass leans over by fifty degrees exactly as in image 2, with its open rim against the robot's chin under the face screen and its base out to the lower right, far from the head. The oil's surface is horizontal as in image 2. A small smear of dark oil on the ivory chin. The picture holds only one head, one arm and one glass: no torso, no shoulder, no second arm. Nothing lies under the glass: no spill, no drops, no shadow, no surface. Plain light grey background, no text."
+ },
+ "refine": {
+  "w": 1664,
+  "h": 1664,
+  "images": [
+   "key"
+  ],
+  "matte": 1,
+  "prompt": "Redraw image 1 exactly: the same robot, the same pose, the same position and size of every part, the same colours. Change only the pixel size: draw it in crisp late 16-bit pixel art with extremely fine tiny pixels, about three hundred pixels across the whole picture, high detail, smooth curved outlines with tiny steps, with far smaller pixels than image 1 and finer shading on the head, the arm and the glass. Plain light grey background, no text."
+ },
+ "mc-low": {
+  "w": 1664,
+  "h": 1664,
+  "images": [
+   "key",
+   "gd"
+  ],
+  "matte": 1,
+  "prompt": "Image 1 is a finished close-up drawing of a small robot's head, arm and a tumbler of dark motor oil, in crisp late 16-bit pixel art. Image 2 is a rough flat layout of the next moment: copy its positions and angles. Redraw image 1 with the glass leaning further over as in image 2, and nearly drained: only a thin layer of dark oil is left, lying level in the lowest corner of the glass by its base, as in image 2, and the rest of the glass is clear and clean. Two small dark oil smears on the ivory chin under the face screen and one small drop just below them. The two cyan eye arcs are thicker and brighter than in image 1. Keep the same head, ear panels, antenna, arm, round mitten with no fingers, and glass as image 1: same colours, same pixel size, same outline, and the forearm leaves the picture at the same place on the left edge. The picture holds only one head, one arm and one glass: no torso, no shoulder, no second arm. Nothing lies under the glass: no spill, no drops, no shadow, no surface. Plain light grey background, no text."
+ },
+ "bt-empty": {
+  "w": 1536,
+  "h": 1536,
+  "images": [
+   "key"
+  ],
+  "matte": 1,
+  "prompt": "Image 1 is a finished close-up drawing of a woman's forearm and hand holding a tumbler, in crisp late 16-bit pixel art. Redraw image 1 with the tumbler gone and the hand opening: the same forearm, the same rolled ivory sleeve at the right edge of the picture, the same skin colours, same pixel size and same outline, in the same place. The hand is open and relaxed, the palm facing up and to the left, five slim fingers slightly spread, holding nothing. Nothing else in the picture: no glass, no oil, no shadow. Plain light grey background, no text."
+ }
+}
