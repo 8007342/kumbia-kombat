@@ -52,6 +52,10 @@ LADDERS = {
     "ladder-lawn-2": {"title": "Pool lawn ladder, second try", "tiers": [("low", "128 BPM"), ("mid", "144 BPM"), ("high", "160 BPM")]},
     "ladder-bar": {"title": "Ladder: Bar", "tiers": [("low", "100 BPM"), ("mid", "106 BPM"), ("high", "112 BPM")]},
     "ladder-party": {"title": "Ladder: Indoor party", "tiers": [("low", "112 BPM"), ("mid", "124 BPM"), ("high", "136 BPM")]},
+    "lows-garden": {"title": "New low: Garden", "tiers": [("low", "92 BPM"), ("mid", "98 BPM"), ("high", "104 BPM")]},
+    "lows-lawn": {"title": "New low: Pool lawn, faster", "tiers": [("low", "136 BPM"), ("mid", "144 BPM"), ("high", "160 BPM")]},
+    "lows-bar": {"title": "New low: Bar", "tiers": [("low", "100 BPM"), ("mid", "106 BPM"), ("high", "112 BPM")]},
+    "lows-party": {"title": "New low: Indoor party", "tiers": [("low", "112 BPM"), ("mid", "124 BPM"), ("high", "136 BPM")]},
 }
 SECONDS = 30
 LADDER_SECONDS = 40

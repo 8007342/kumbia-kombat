@@ -262,3 +262,28 @@ Against mid, heard (whole): bar low -31% (-21%) onsets, -37% (-20%) spread. Bar 
 Takes: `ladder-bar/`, `ladder-party/`, `ladder-lawn-3/` in the cache folder, which now holds 849 MB. Tier files are `low.flac`, `mid.flac`, `high.flac` beside `low/` and `high/`. Timing and measures are in `tool/music/themes-20261106/ladder-{bar,party,lawn-3}-*`. Checksums added to `SHA256SUMS` in both places.
 
 Each batch of six took about 75 s of GPU, plus queue waits of up to 4.4 minutes behind other jobs.
+
+## New lows, for the owner's ears
+
+The owner, on the ladders: low tiers too quiet and thin, and the lawn's low too slow. The earlier lows asked for "sparse", "lots of space" and "few notes", so this batch asks for a lively band and a full sound instead. Nobody has heard these. Timing and measures: `tool/music/lows-20261106/`. Takes: `~/.cache/tillandsias-project/kumbia-audio/lows-20261106/`, 6 per batch. Same workflow, `ace-xl-turbo`.
+
+| Ladder | Seeds | BPM | `$node:94.tags` |
+|---|---|---|---|
+| Garden | 51002-51007 | 92 | warm night cumbia at the mansion gates, inviting, instrumental, lively small band, accordion melody, guira, steady congas, driving bass, full warm sound |
+| Lawn, fuller words | 52011-52016 | 136 | fast joyful swing for two dancers showing off, instrumental, lively swinging combo, driving upright bass, snappy drums, bright clarinet melody, rolling piano, full warm sound |
+| Lawn, plain words | 52021-52026 | 136 | the old low's words: fast joyful swing for two dancers showing off, instrumental, small combo, upright bass, brushed drums, clarinet, piano |
+| Bar | 55005-55010 | 100 | cool swaggering indoor cumbia under lanterns, instrumental, lively tight band, characterful lead melody on twangy electric guitar, rounded driving bass, steady congas, guira, electric keys, full warm sound |
+| Party | 53010-53015 | 112 | cool midnight Latin boogaloo for a circle of dancers, instrumental, lively tight combo, characterful flute lead melody, walking upright bass, steady congas, piano montuno, handclaps on the backbeat, full warm sound |
+
+Picked by the full timing filter, then by closeness to mid. Heard window, onsets per beat and spread in Hz:
+
+| Ladder | New low | Old low | Mid | Concern |
+|---|---|---|---|---|
+| Bar | 55006: 2.67, 479 | 1.80, 406 | 2.59, 643 | The cleanest result: onsets reach mid, spread stays under it |
+| Garden | 51005: 3.07, 1321 | not measured here | 3.40, 648 | Spread is twice mid's. The only one of six to pass timing |
+| Party | 53015: 3.01, 775 | 1.97, 336 | 3.06, 552 | Spread is above mid's. The only one of six to pass timing |
+| Lawn | 52024: 1.97, 586 | 1.83, 577 | 1.43, 746 | The lawn's mid has fewer onsets per beat than every low measured, so the fix may belong in mid |
+
+The fuller lawn words overshot, up to 2.25 onsets and 1271 Hz, which is what the owner disliked in the first place, so the page carries plain words at the faster tempo. The lawn's section uses high seed 52019, which passes the filter, in place of the second try's 52012. These numbers count events. They can't say whether a take is lively or still sounds like its mid.
+
+Page: `--add-ladder lows-garden`, `lows-lawn`, `lows-bar`, `lows-party`, at the bottom of the listening page. Earlier sections are unchanged.
