@@ -89,3 +89,5 @@ Layers, the same day: backgrounds and some assets may be regenerated into layers
 | Full swing | Every room can reach full swing, for skilful players only. Average players get a warm-ish party with some people dancing, but staff, umbrellas and plants don't dance | "average players should get just a warm-ish party", "skillful play should be clearly rewarded" |
 
 This settles the progression report's decisions: no Heat meter, every room can reach full swing, and optional taps and drags are wanted, so flicks alone are no longer the plan. The report's safety rule still applies: ignoring optional play costs nothing. Mācron's own signature step still comes from the salsa teacher.
+
+Answers the same day: the big end-of-level word stays as a consistent theme, each level a synonym or near meaning of cool, swag, mojo or suave. Early and late differ in shape, motion and effects, whatever research shows helps players improve by feel. The owner will ask the salsa teacher for signature moves, on video. See `plan/signature-moves-footage.md`.
