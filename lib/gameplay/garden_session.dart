@@ -1,9 +1,86 @@
 import '../music/transport.dart';
 import 'crowd_interest.dart';
+import 'gesture_shapes.dart';
 import 'progression.dart';
 import 'rhythm.dart';
 
 enum GardenPhase { ready, intro, call, response, paused, cleared }
+
+/// What a note invites after its tap. A sideways drag everywhere at first, and
+/// from tier 1 a phrase's last note, the only one with room for a longer shape,
+/// asks for its limb's own move: a hand waves, a foot stomps. A full circle comes
+/// last. Each is only an invitation: any move drawn on any eligible note counts.
+GestureKind gestureOffer({
+  required Limb limb,
+  required bool lastNote,
+  required int tier,
+}) {
+  if (!lastNote || tier == 0) return GestureKind.spin;
+  if (limb == Limb.leftFoot || limb == Limb.rightFoot) return GestureKind.stomp;
+  return tier >= 3 ? GestureKind.circle : GestureKind.wave;
+}
+
+/// How long a phrase's last note leaves for its move, in beats from the press,
+/// so a fast room isn't harder than the shape asks. Mid-phrase notes get
+/// [RhythmJudge.flourishWindowMs], which their clearance rule was built around.
+const lastNoteMoveBeats = 2.0;
+const lastNoteCircleBeats = 2.5;
+
+/// A stroke judged on the frame after its deadline still counts: its points came
+/// in time, and a stalled frame isn't the player's fault.
+const moveDeadlineGraceMs = 100;
+
+/// An optional move that landed. This is the hook for anything that reacts to
+/// one, such as a partner on the floor: read [GardenSession.lastOptionalMove].
+/// Nothing here feeds back into notes, timing or clearing.
+class OptionalMove {
+  const OptionalMove({
+    required this.noteId,
+    required this.limb,
+    required this.kind,
+    required this.offered,
+    required this.direction,
+    required this.beat,
+    required this.credited,
+  });
+  final String noteId;
+  final Limb limb;
+
+  /// What the thumb actually drew.
+  final GestureKind kind;
+
+  /// What the note invited. It may differ from [kind]; both count.
+  final GestureKind? offered;
+
+  /// Which way it went: picks the ornament and the look.
+  final FlourishDirection direction;
+
+  /// When it landed, on the transport's beat.
+  final double beat;
+
+  /// False when this exact performance was already paid for, as after a pause.
+  final bool credited;
+}
+
+/// One accepted tap's chance at a move. It outlives the judge, because at speed
+/// a late tap's move can still be in the air when the phrase rolls over.
+class _OpenMove {
+  _OpenMove(
+    this.limb,
+    this.offered,
+    this.tappedMs,
+    this.endsMs,
+    this.sequence,
+    this.creditKey,
+  );
+  final Limb limb;
+  final GestureKind? offered;
+  final int tappedMs;
+  final int endsMs;
+  final int sequence;
+  final String creditKey;
+  bool landed = false;
+}
 
 class GardenCue {
   const GardenCue({
@@ -13,6 +90,7 @@ class GardenCue {
     required this.progress,
     required this.demonstration,
     this.flourishTo,
+    this.offer,
   });
   final String id;
   final Limb limb;
@@ -21,6 +99,9 @@ class GardenCue {
   final bool demonstration;
   bool get demo => demonstration;
   final Limb? flourishTo;
+
+  /// The move this note invites: what its glyph draws.
+  final GestureKind? offer;
 }
 
 /// Two-bar demonstrations and responses. Bar currently runs about 90–95 s
@@ -257,7 +338,7 @@ class GardenSession {
   double? lastOutcomeBeat;
   int pizazz = 0;
   int styleCombo = 0;
-  FlourishDirection? _lastStyleDirection;
+  String? _lastStyleMove;
   double _lastStyleBeat = -100;
   int perfects = 0;
   int combo = 0;
@@ -274,6 +355,16 @@ class GardenSession {
   int _responseTier = 0;
   int _phraseTier = 0;
   int _responseSequence = 0;
+
+  /// Bumps only when the music reaches a new performance of a phrase, never for
+  /// a pause's replay. A recovering player's retry is new; a replay isn't.
+  int _performance = 0;
+  final Map<String, _OpenMove> _openMoves = {};
+
+  /// The latest optional move that landed, by touch, key or AutoPlay. Stable for
+  /// anything that reacts to moves: compare it by identity each frame, and use
+  /// [OptionalMove.limb] and [OptionalMove.kind]. Null again after a pause.
+  OptionalMove? lastOptionalMove;
   CrowdCheckpoint? _crowdCheckpoint;
   final Set<String> _credited = {};
   final Set<String> _perfectCredited = {};
@@ -330,8 +421,17 @@ class GardenSession {
                 1000)
             .round(),
         flourishTo: _flourishDestination(i),
+        offer: _offerAt(i),
       ),
   ]);
+
+  GestureKind? _offerAt(int index) => _flourishDestination(index) == null
+      ? null
+      : gestureOffer(
+          limb: _activeLimbs[index],
+          lastNote: index == _activeLimbs.length - 1,
+          tier: _phraseTier,
+        );
 
   Limb? _flourishDestination(int index) {
     if (index == _activeLimbs.length - 1) return chart.flourishDestination;
@@ -375,6 +475,7 @@ class GardenSession {
               progress: ((beat - target + 2) / 2).clamp(0, 1),
               demonstration: demonstration,
               flourishTo: _flourishDestination(i),
+              offer: _offerAt(i),
             ),
           );
         }
@@ -417,6 +518,7 @@ class GardenSession {
     }
     if (beat >= _cycleStart + chart.cycleBeats) {
       _cycleStart += chart.cycleBeats;
+      _performance++;
       _prepareCycle(newOccurrence: true);
     }
     // Use the same millisecond precision as judgment. At a handoff the beat
@@ -505,6 +607,7 @@ class GardenSession {
       combo++;
       _hit.add(result.note!.id);
       _phraseDeltasMs.add(result.deltaMs);
+      _openMove(result.note!);
       if (result.grade == TapGrade.perfect) _phrasePerfects++;
       if (result.grade == TapGrade.perfect &&
           _perfectCredited.add(result.note!.id)) {
@@ -514,65 +617,112 @@ class GardenSession {
     return result;
   }
 
-  /// Host verifies same pointer and minimum swipe distance before invoking.
-  bool flourish(String noteId, Limb destination) {
-    if ((phase != GardenPhase.response && phase != GardenPhase.call) ||
-        transport.countingIn ||
-        _judge == null) {
-      return false;
+  void _openMove(RhythmNote note) {
+    _openMoves.removeWhere(
+      (_, open) => _nowMs > open.endsMs + moveDeadlineGraceMs,
+    );
+    if (note.flourishTo == null) return;
+    final last = identical(note, _judge!.notes.last);
+    var windowMs = RhythmJudge.flourishWindowMs;
+    if (last) {
+      final beats = note.offer == GestureKind.circle
+          ? lastNoteCircleBeats
+          : lastNoteMoveBeats;
+      final beat = transport.beatAt(note.atMs / 1000);
+      final ms =
+          ((transport.secondsAt(beat + beats) - transport.secondsAt(beat)) *
+                  1000)
+              .round();
+      if (ms > windowMs) windowMs = ms;
     }
-    final accepted = _judge!.flourish(noteId, destination, _nowMs);
-    _creditFlourish(noteId, accepted);
-    return accepted;
+    _openMoves[note.id] = _OpenMove(
+      note.limb,
+      note.offer,
+      _nowMs,
+      _nowMs + windowMs,
+      _responseSequence,
+      '${progress.definition.id}:${note.id}:$_performance',
+    );
   }
 
-  bool flourishGesture(String noteId, FlourishDirection direction) {
-    if ((phase != GardenPhase.response && phase != GardenPhase.call) ||
-        transport.countingIn ||
-        _judge == null) {
-      return false;
-    }
-    final accepted = _judge!.flourishGesture(noteId, _nowMs);
-    _creditFlourish(noteId, accepted, direction: direction);
-    return accepted;
+  /// When the note's chance at a move ends, in audio seconds, or null if none.
+  double? moveEndsAt(String noteId) {
+    final open = _openMoves[noteId];
+    return open == null || open.landed ? null : open.endsMs / 1000;
   }
 
-  void _creditFlourish(
+  /// The one route for every optional move: touch, keyboard and AutoPlay. Touches
+  /// nothing a required note reads: not hits, combo, grades, tier or the clock.
+  OptionalMove? optionalMove(
     String noteId,
-    bool accepted, {
-    FlourishDirection? direction,
-  }) {
-    if (accepted) {
-      // Counted per phrase, so a replay rebuilds it from nothing and the crowd
-      // can't be farmed; the Pizazz ledger below keeps its own stricter key.
-      if (!_resolved) {
-        _phraseGestures++;
-      } else if (crowd.gestureAfterPhrase(
-        sequence: _responseSequence,
-        beat: positionBeats,
-      )) {
-        _crowdCheckpoint = crowd.checkpoint();
-      }
+    GestureKind kind,
+    FlourishDirection direction,
+  ) {
+    if (phase == GardenPhase.ready ||
+        phase == GardenPhase.paused ||
+        transport.countingIn) {
+      return null;
     }
-    if (accepted && _credited.add('${progress.definition.id}:$noteId')) {
+    final open = _openMoves[noteId];
+    if (open == null ||
+        open.landed ||
+        _nowMs <= open.tappedMs ||
+        _nowMs > open.endsMs + moveDeadlineGraceMs) {
+      return null;
+    }
+    open.landed = true;
+    // Counted per phrase, so a replay rebuilds it from nothing and the crowd
+    // can't be farmed; the Pizazz ledger below keeps its own stricter key.
+    if (open.sequence == _responseSequence && !_resolved) {
+      _phraseGestures++;
+    } else if (crowd.gestureAfterPhrase(
+      sequence: open.sequence,
+      beat: positionBeats,
+    )) {
+      _crowdCheckpoint = crowd.checkpoint();
+    }
+    final credited = _credited.add(open.creditKey);
+    if (credited) {
       pizazz += 100;
       final elapsed = positionBeats - _lastStyleBeat;
+      final move = '${kind.name}:${direction.name}';
       final varied =
-          direction != null &&
-          _lastStyleDirection != null &&
-          direction != _lastStyleDirection &&
+          _lastStyleMove != null &&
+          move != _lastStyleMove &&
           elapsed >= 0 &&
           elapsed <= styleChainWindowBeats;
       styleCombo = varied ? (styleCombo + 1).clamp(1, 4) : 1;
-      _lastStyleDirection = direction;
+      _lastStyleMove = move;
       _lastStyleBeat = positionBeats;
       crowd.adorn(
-        _responseSequence % crowd.guestCount,
+        open.sequence % crowd.guestCount,
         positionBeats,
         chain: styleCombo,
       );
     }
+    return lastOptionalMove = OptionalMove(
+      noteId: noteId,
+      limb: open.limb,
+      kind: kind,
+      offered: open.offered,
+      direction: direction,
+      beat: positionBeats,
+      credited: credited,
+    );
   }
+
+  /// A plain directional flick: sideways is a spin, and up or down the flick.
+  /// This is what the arrow keys perform.
+  bool flourishGesture(String noteId, FlourishDirection direction) =>
+      optionalMove(
+        noteId,
+        direction == FlourishDirection.left ||
+                direction == FlourishDirection.right
+            ? GestureKind.spin
+            : GestureKind.flick,
+        direction,
+      ) !=
+      null;
 
   void pause() {
     if (phase == GardenPhase.ready ||
@@ -587,7 +737,9 @@ class GardenSession {
     _prepareCycle(newOccurrence: _resolved);
     lastStumbleBeat = -100;
     styleCombo = 0;
-    _lastStyleDirection = null;
+    _lastStyleMove = null;
+    _openMoves.clear();
+    lastOptionalMove = null;
     _lastStyleBeat = -100;
     phase = GardenPhase.paused;
     combo = 0;

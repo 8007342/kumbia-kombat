@@ -227,11 +227,24 @@ void main() {
       expect(vcrNoisePeakOpacity, lessThan(.1));
       expect(vcrBandFillOpacity, lessThan(.1));
       expect(vcrBandDriftPerSecond, lessThan(.05));
+      // Two wide bands can overlap: a streak over both still isn't a flash.
+      expect(1 - (1 - vcrNoisePeakOpacity) * (1 - vcrNoisePeakOpacity), lessThan(.1));
       final steps = <int>{
         for (var i = 0; i < 1000; i++)
           vcrNoiseAt(i / 100, reducedMotion: false).step,
       };
       expect(steps.length, lessThanOrEqualTo(10 * vcrNoiseStepsPerSecond + 1));
+    });
+
+    test('the moving band is wide, and comes round again unbroken', () {
+      final bands = vcrNoiseAt(0, reducedMotion: false).bands;
+      expect(bands.first.height, greaterThanOrEqualTo(.4));
+      expect(bands.first.height, greaterThan(bands.last.height * 10));
+      // A band's top wraps, so no moment can leave it stuck off the screen.
+      for (var i = 0; i < 400; i++) {
+        final band = vcrNoiseAt(i * 2.0, reducedMotion: false).bands.first;
+        expect(band.top, inInclusiveRange(0, 1));
+      }
     });
 
     test('the same moment always draws the same frame', () {
@@ -307,7 +320,7 @@ void main() {
       expect(find.byType(FilledButton), findsNothing);
       // The game stays there under it, and AutoPlay stays reachable above it.
       expect(find.byType(GameWidget<GardenSceneGame>), findsOneWidget);
-      expect(find.byTooltip('AutoPlay · watch the party'), findsOneWidget);
+      expect(find.byKey(const ValueKey('autoplay')), findsOneWidget);
 
       final semantics = tester.ensureSemantics();
       await tester.pump();
@@ -319,10 +332,37 @@ void main() {
     testWidgets('AutoPlay can be toggled without resuming', (tester) async {
       final run = await _startRun(tester);
       await run.pauseButton();
-      await tester.tap(find.byTooltip('AutoPlay · watch the party'));
+      await tester.tap(find.byKey(const ValueKey('autoplay')));
       await tester.pump();
       expect(run.session.phase, GardenPhase.paused);
-      expect(find.byTooltip('Turn off AutoPlay'), findsOneWidget);
+      expect(find.byTooltip('AutoPlay on, with mistakes. Tap to watch it flawless.'), findsOneWidget);
+      await _end(tester);
+    });
+
+    testWidgets('AutoPlay goes round three states, and flawless is gold', (
+      tester,
+    ) async {
+      final run = await _startRun(tester);
+      final button = find.byKey(const ValueKey('autoplay'));
+      Icon robot() => tester.widget<Icon>(
+        find.descendant(of: button, matching: find.byType(Icon)).first,
+      );
+      final off = robot().color;
+      expect(find.byTooltip('AutoPlay off. Tap to watch it with mistakes.'), findsOneWidget);
+      await tester.tap(button);
+      await tester.pump();
+      expect(find.byTooltip('AutoPlay on, with mistakes. Tap to watch it flawless.'), findsOneWidget);
+      expect(robot().color, isNot(off));
+      await tester.tap(button);
+      await tester.pump();
+      expect(find.byTooltip('AutoPlay flawless. Tap to turn it off.'), findsOneWidget);
+      expect(robot().color, const Color(0xFFFFC35F));
+      expect(find.byIcon(Icons.star_rounded), findsOneWidget);
+      await tester.tap(button);
+      await tester.pump();
+      expect(find.byTooltip('AutoPlay off. Tap to watch it with mistakes.'), findsOneWidget);
+      expect(find.byIcon(Icons.star_rounded), findsNothing);
+      expect(run.session.phase, isNot(GardenPhase.paused));
       await _end(tester);
     });
 
@@ -506,7 +546,7 @@ void main() {
       tester,
     ) async {
       final run = await _startRun(tester);
-      await tester.tap(find.byTooltip('AutoPlay · watch the party'));
+      await tester.tap(find.byKey(const ValueKey('autoplay')));
       // The exit waits on the next room's art, which needs real time to load.
       for (var i = 0; i < 20000 && run.scene.exitCodaBeat == null; i++) {
         await run.play(.02);

@@ -80,27 +80,69 @@ No narrower mandatory window SHALL be used for enthusiast difficulty.
 - THEN judgments still compare event timestamps to audible song time
 - AND missed notes are expired once, independently of the visual frame rate.
 
-### Requirement: Optional after-tap flourishes
+### Requirement: Optional moves after a tap
 
-An authored tap MAY offer a destination swipe. A successful tap SHALL resolve
-its required note immediately. A subsequent drag from that same pointer ending
-in the indicated destination within 300 ms earns 100 Pizazz, once per authored
-note per run. Credit SHALL be deduplicated by run, level, phrase, and note
-identity across retries, entrance resets, reloads, and resume. Repeating an
-already credited flourish MAY still trigger its musical ornament but SHALL
-award no further Pizazz.
-The gesture recognizer SHALL require at least 36 logical pixels displacement
-and SHALL suppress release-generated taps. Optional swipes SHALL not overlap
-the next required tap window; authors SHALL leave at least 500 ms before the
-next required press. Missing, reversing, or declining a swipe SHALL never
-reduce respect, complexity, or required tap accuracy. A flourish SHALL request
-an authored musical ornament at the next safe musical subdivision, never
-interrupting the pulse or delaying input feedback.
+A required tap's judged time SHALL be the press, and which ring it belongs to
+SHALL be decided at the press, by the near-ring rule. A note MAY invite an
+optional move drawn by the same pointer after an accepted tap:
 
-#### Scenario: flourish without a successful tap
+- a sideways drag for a spin, which MAY curve;
+- a semi-circle for a hand wave, on a phrase's last hand note from tier 1;
+- up and down, in either order, for a foot stomp, on a phrase's last foot note
+  from tier 1;
+- a full circle, on a phrase's last hand note from tier 3.
 
-- WHEN a player swipes a missed or unresolved note
+Any move drawn on an eligible note SHALL count, whichever was invited, and a
+stroke that is no shape in particular SHALL earn the plain flick if it travelled
+past the touch slop. There SHALL be no requirement to draw in one of four
+directions. Moves are pass or nothing: timing precision belongs to the tap.
+
+A note SHALL be eligible only if the next required note leaves clearance for the
+late tap, the move and the next early tap, as the chart's rule defines, or if it
+is the phrase's last note. A mid-phrase move SHALL have 400 ms from the press. A
+last note's move SHALL have 2 beats from the press, or 2.5 for a full circle,
+and never less than 400 ms. These chances SHALL outlive the phrase's judge, so a
+late tap's move crossing into the next call still counts. A move SHALL land as
+soon as the invited shape is complete, without waiting for the lift, and a thumb
+held past the deadline SHALL be read as drawn so far.
+
+Each performance earns 100 Pizazz once: a retry of a failed phrase is a new
+performance, and a pause's replay is not. Holding, releasing, or drawing SHALL
+never create another tap. Missing, reversing, declining or fumbling a move SHALL
+never change hits, combo, grades, tier, tempo, the clock, respect or required tap
+accuracy. A cancelled pointer SHALL void the stroke with no visible failure. A
+move SHALL request an authored musical ornament at the next safe musical
+subdivision, never interrupting the pulse or delaying input feedback.
+
+The recogniser's numbers SHALL be generated data, not constants edited in runtime
+code, and it SHALL run within a frame on a phone and on Flutter web with no native
+plugin.
+
+#### Scenario: move without a successful tap
+
+- WHEN a player draws on a missed or unresolved note
 - THEN no Pizazz is awarded and the required note remains unresolved.
+
+#### Scenario: move ignored or fumbled
+
+- WHEN the same taps are played with moves ignored, performed, or too late
+- THEN hits, combo, grades, tier, results and elapsed time are identical.
+
+#### Scenario: late tap at the fastest tempo
+
+- WHEN a last note is tapped 180 ms late at 160 BPM and its move lands after the
+  phrase has rolled over
+- THEN the move still counts, against the phrase it belongs to.
+
+### Requirement: Moves are invited by drawing them
+
+A cue that invites a move SHALL draw its path, from the point where the thumb
+lands, with no words: a dot, the path, and an arrowhead for direction. While the
+thumb is down after an accepted tap, the rest of the shape SHALL show as a dotted
+guide from wherever it landed, under the thumb's own trail. A move that lands SHALL
+flare, and one that doesn't SHALL fade silently, with no miss shown. Under reduced
+motion the path SHALL show whole and still. AutoPlay SHALL perform moves by feeding
+a stroke through the same recogniser.
 
 ### Requirement: Five progressively consequential fights
 
@@ -174,7 +216,7 @@ Pizazz descending for exact ties; arcade entry SHALL accept three letters.
 ## Implementation status
 
 `lib/gameplay/rhythm.dart` implements tap judgment, note expiry, optional
-flourish credit, and normalized preview paths. `progression.dart` implements
+optional move credit, and normalized preview paths. `progression.dart` implements
 fight tier and reset rules. Flame input, charts, transport synchronization,
 persistence, gestures, SVG HUD, camera choreography, and leaderboard wiring
 are subsequent integration work. These models do not yet create a playable

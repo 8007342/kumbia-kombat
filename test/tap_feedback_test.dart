@@ -89,18 +89,24 @@ void main() {
     TurnLook look(GardenPhase phase, {double beat = 0, int flow = 0}) =>
         TurnLook.of(phase, beat: beat, flow: flow, reducedMotion: false);
 
-    test('the band dims for the call and lights for the response', () {
+    test('the rings dim for the call and light for the response', () {
       final call = look(GardenPhase.call);
       final response = look(GardenPhase.response);
       expect(call.color, isNot(response.color));
-      expect(response.glow, greaterThan(call.glow));
       expect(response.ring, greaterThan(call.ring));
     });
 
-    test('flow fills the band', () {
+    test('flow lifts the rings a little', () {
       expect(
-        look(GardenPhase.response, flow: 6).glow,
-        greaterThan(look(GardenPhase.response).glow),
+        look(GardenPhase.response, flow: 6).ring,
+        greaterThan(look(GardenPhase.response).ring),
+      );
+    });
+
+    test('the player\'s turn breathes with the beat', () {
+      expect(
+        look(GardenPhase.response).ring,
+        greaterThan(look(GardenPhase.response, beat: .75).ring),
       );
     });
 
@@ -125,7 +131,7 @@ void main() {
       );
     });
 
-    test('a failed phrase dulls the band', () {
+    test('a failed phrase dulls the rings', () {
       final dull = TurnLook.of(
         GardenPhase.response,
         beat: 0,
@@ -133,7 +139,7 @@ void main() {
         reducedMotion: false,
         sagging: true,
       );
-      expect(dull.glow, lessThan(look(GardenPhase.call).glow));
+      expect(dull.ring, lessThan(look(GardenPhase.response).ring));
     });
   });
 }

@@ -12,6 +12,7 @@ import 'duet_staging.dart';
 import 'ensemble_sprites.dart';
 import 'exit_shot.dart';
 import 'garden_session.dart';
+import 'gesture_shapes.dart';
 import 'level_definition.dart';
 import 'outfit_palette.dart';
 import 'party_layout.dart';
@@ -45,6 +46,10 @@ class GardenSceneGame extends FlameGame {
   double? actionTargetBeat;
   double? nextRequiredBeat;
   double flourishBeat = -10;
+
+  /// Which move the flourish is, so what he does matches what the thumb drew.
+  GestureKind flourishMove = GestureKind.spin;
+  Limb flourishLimb = Limb.rightHand;
   double exitTravel = 0;
   double? presentationBeat;
   double? exitCodaBeat;
@@ -1072,6 +1077,8 @@ class GardenSceneGame extends FlameGame {
       action: action,
       actionAge: beat - actionBeat,
       flourishAge: beat - flourishBeat,
+      flourishMove: flourishMove,
+      flourishLimb: flourishLimb,
       stumbling: stumbleAge >= 0 && stumbleAge < 1.5,
     );
     var hop = 0.0;
