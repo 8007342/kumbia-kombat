@@ -19,6 +19,7 @@ import 'level_definition.dart';
 import 'party_autoplay.dart';
 import 'progression.dart';
 import 'rhythm.dart';
+import 'cue_path.dart';
 import 'thumb_layout.dart';
 import 'touch_gesture.dart';
 
@@ -565,27 +566,18 @@ class _GardenPageState extends State<GardenPage>
   Limb? _limbAt(Offset point, Size size) =>
       thumbLimbAt(point.dx / size.width, point.dy / size.height);
 
-  Offset _anchor(Limb limb, Size size, [double hitBeat = 0]) {
-    final point = thumbAnchor(limb, hitBeat);
-    return Offset(point.x * size.width, point.y * size.height);
-  }
+  CuePath _path(Limb limb, double beat, String id, Size size) => cuePath(
+    limb: limb,
+    beat: beat,
+    id: id,
+    width: size.width,
+    height: size.height,
+    reducedMotion: _reducedMotion,
+  );
 
   Offset _cuePosition(GardenCue cue, Size size) {
-    final path = tornadoPosition(
-      cue.limb,
-      cue.progress,
-      reducedMotion: _reducedMotion,
-    );
-    final target = _anchor(cue.limb, size, cue.beat);
-    final left = cue.limb == Limb.leftHand || cue.limb == Limb.leftFoot;
-    final upper = cue.limb == Limb.leftHand || cue.limb == Limb.rightHand;
-    final tx = ((path.x - .5) / (left ? -.41 : .41)).clamp(0.0, 1.0);
-    final ty = ((path.y - .5) / (upper ? -.40 : .40)).clamp(0.0, 1.0);
-    final origin = Offset(size.width * .5, size.height * .47);
-    return Offset(
-      origin.dx + (target.dx - origin.dx) * tx,
-      origin.dy + (target.dy - origin.dy) * ty,
-    );
+    final at = _path(cue.limb, cue.beat, cue.id, size).at(cue.progress);
+    return Offset(at.x, at.y);
   }
 
   void _ornament(String gesture) {
@@ -720,7 +712,7 @@ class _GardenPageState extends State<GardenPage>
                               ))
                                 _target(limb, size),
                             for (final cue in session!.visibleCues)
-                              _target(cue.limb, size, cue.beat),
+                              _target(cue.limb, size, cue),
                             for (final cue in session.visibleCues)
                               _cue(cue, size),
                             if (_styleDestination != null &&
@@ -887,11 +879,13 @@ class _GardenPageState extends State<GardenPage>
     ],
   );
 
-  Widget _target(Limb limb, Size size, [double hitBeat = 0]) {
-    final at = _anchor(limb, size, hitBeat);
+  Widget _target(Limb limb, Size size, [GardenCue? cue]) {
+    final at = cue == null
+        ? cueHome(limb, width: size.width, height: size.height)
+        : _path(limb, cue.beat, cue.id, size).landing;
     return Positioned(
-      left: at.dx - 29,
-      top: at.dy - 29,
+      left: at.x - cueRingRadius,
+      top: at.y - cueRingRadius,
       child: IgnorePointer(
         child: Opacity(
           opacity: .30,
@@ -912,14 +906,16 @@ class _GardenPageState extends State<GardenPage>
 
   Widget _cue(GardenCue cue, Size size) {
     final at = _cuePosition(cue, size);
-    final extent = 25 + cue.progress * 21;
+    final extent = cueExtent(cue.progress);
     final color = cue.demo ? _gold : _mint;
     return Positioned(
       left: at.dx - extent / 2,
       top: at.dy - extent / 2,
       child: IgnorePointer(
         child: Opacity(
-          opacity: cue.demo ? .45 + cue.progress * .25 : .6 + cue.progress * .4,
+          opacity:
+              cueFadeIn(cue.progress) *
+              (cue.demo ? .45 + cue.progress * .25 : .6 + cue.progress * .4),
           child: SizedBox(
             width: extent,
             height: extent,
@@ -963,10 +959,10 @@ class _GardenPageState extends State<GardenPage>
   }
 
   Widget _styleHint(Limb limb, Size size) {
-    final at = _anchor(limb, size, _styleBeat);
+    final at = _path(limb, _styleBeat, _styleNote ?? '', size).landing;
     return Positioned(
-      left: at.dx - 36,
-      top: at.dy - 36,
+      left: at.x - 36,
+      top: at.y - 36,
       child: IgnorePointer(
         child: Column(
           children: [

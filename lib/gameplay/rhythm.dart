@@ -1,5 +1,3 @@
-import 'dart:math' as math;
-
 enum Limb { leftHand, rightHand, leftFoot, rightFoot }
 
 enum TapGrade { perfect, good, miss }
@@ -104,23 +102,4 @@ class NotePoint {
   const NotePoint(this.x, this.y);
   final double x;
   final double y;
-}
-
-/// Normalized screen coordinates. A bounded curve cannot cross into another
-/// quadrant: the destination remains readable even while the trail twists.
-NotePoint tornadoPosition(
-  Limb limb,
-  double progress, {
-  bool reducedMotion = false,
-}) {
-  final t = progress.clamp(0.0, 1.0);
-  final left = limb == Limb.leftHand || limb == Limb.leftFoot;
-  final upper = limb == Limb.leftHand || limb == Limb.rightHand;
-  final twist = reducedMotion ? 0.0 : math.sin(t * math.pi * 2) * .025;
-  final dx = .05 + .36 * t;
-  final dy = .05 + .35 * t;
-  return NotePoint(
-    .5 + (left ? -dx : dx) + twist,
-    .5 + (upper ? -dy : dy) - twist,
-  );
 }

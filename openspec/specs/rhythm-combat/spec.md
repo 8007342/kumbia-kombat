@@ -15,9 +15,11 @@ hard time limits or lengths enforced by the prototype model.
 The lower portrait viewport SHALL contain four generous nonoverlapping thumb
 regions in a 2×2 pad: LH/RH above LF/RF. This SHALL be the only layout;
 there is no corner mode. Matching SVG silhouettes identify each move.
-Required destinations SHALL vary modestly by authored hit beat within their
-stable region, closer to the pad center than the old corner targets. Each
-note's destination SHALL remain immutable from preview birth through judgment.
+Required destinations SHALL vary modestly and deterministically by the note's
+beat and id, by bounded named amounts, and the whole ring SHALL stay within its
+stable region on every supported phone. The region still judges the tap; the
+ring shows where the note lands and never narrows that region. Each note's
+destination SHALL remain immutable from preview birth through judgment.
 Simultaneously visible notes MAY show separate destination rings, including
 doubles. Moving markers SHALL NOT shrink or move logical touch regions.
 No required chord or simultaneous fingers SHALL be authored.
@@ -28,15 +30,18 @@ No required chord or simultaneous fingers SHALL be authored.
 - THEN four distinct presses in their timing windows pass the phrase
 - AND holding, releasing, or optional swiping never creates another tap.
 
-### Requirement: Predictable tornado preview
+### Requirement: Predictable curved preview
 
-Notes SHALL appear near center at least two beats before their hit, with a
-minimum 900 ms preview and maximum 1500 ms. At their birth their limb silhouette
-and destination SHALL be recognizable; opacity SHALL never make that essential
-information invisible. A bounded curling trajectory SHALL remain within its
-destination region and end at its own previewed judgment ring. A final half-beat radial ring
-SHALL communicate the exact hit moment. Reduced motion SHALL replace curling
-with a straight path and disable camera turns/zooms. Camera motion SHALL never
+Notes SHALL appear at a varied, deterministic point near the center of the play
+area at least two beats before their hit, on their own limb's side of it, and
+SHALL fade in smoothly over the first part of that approach so that new notes
+don't crowd the center. Their limb silhouette and previewed judgment ring SHALL
+be readable once faded in. A bounded curve whose bend follows the move, leaving
+sideways toward the limb's side and then rising into a hand's ring or dropping
+onto a foot's, SHALL stay within its own quadrant of the play area and end at
+its own previewed judgment ring. A final half-beat radial ring
+SHALL communicate the exact hit moment. Reduced motion SHALL replace the curve
+with a straight path to the limb's home, without variation, and disable camera turns/zooms. Camera motion SHALL never
 move HUD targets or affect judging. The pure Dart curve is an initial visual
 model; device playtests determine density and final opacity.
 

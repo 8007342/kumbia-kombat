@@ -86,16 +86,4 @@ void main() {
     expect(fight.entranceResets, 1);
     expect(fight.tier, 0);
   });
-
-  test('tornado notes stay inside readable destination quadrants', () {
-    for (final limb in Limb.values) {
-      for (var i = 0; i <= 100; i++) {
-        final point = tornadoPosition(limb, i / 100);
-        final left = limb == Limb.leftHand || limb == Limb.leftFoot;
-        final upper = limb == Limb.leftHand || limb == Limb.rightHand;
-        expect(left ? point.x < .5 : point.x > .5, isTrue);
-        expect(upper ? point.y < .5 : point.y > .5, isTrue);
-      }
-    }
-  });
 }
