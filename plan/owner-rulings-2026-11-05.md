@@ -144,3 +144,5 @@ Leniency and layers, the same day, after the crowd scoring was built: full swing
 
 Ladder listening, the same day. Garden: "the ladder garden isgreat, transitions are not clean but the music increases progressively in complexity, it feels like a livelier version". Pool lawn: "does not follow this pattern, the low section is livelier than mid at some points", "the high section is higher but barely, the low composition is still much richer and some ways".
 
+Bar takes, blind, the same day: B is far ahead. "A, C, and D are awesome but too simple, they're plain background scores. B is lively and identifiable: B >> (A, C, D)." The owner's test for a level theme is that it is lively and identifiable, not just pleasant background. The answer key is in `~/.cache/tillandsias-project/kumbia-audio/themes-20261106/`.
+
