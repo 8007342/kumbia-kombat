@@ -140,3 +140,7 @@ Crowd and scoring, the same day: this settles how engaged a cleared room looks a
 
 Taps and pause, the same day: taps count near their ring, with a generous area so play stays fair for clumsy thumbs. "Let's try to have taps end near its ring, since we'll be moving the rings around alittle. Just give them a generous surrounding area". The pause screen becomes a transparent frame like an old VCR's paused picture with a big translucent PAUSE icon. "tapping it turns it into play, then it has a smooth fade out with music fade in into restored playstate".
 
+Leniency and layers, the same day, after the crowd scoring was built: full swing should be easy to reach, and even a poor run that clears should feel warm. "we want to be lenient when letting players reach full swing, we want them to enjoy the game at full animations", "A poor run that succeeds still gets some warm-ish interest, we want the players to feel progression rewarding, an uninterested crowd is not rewarding, even on a successful run". Splitting rooms into layers is approved, and props may get their own: "Yes I approve to separating the rooms in layers, even some of the props might need their own layers".
+
+Ladder listening, the same day. Garden: "the ladder garden isgreat, transitions are not clean but the music increases progressively in complexity, it feels like a livelier version". Pool lawn: "does not follow this pattern, the low section is livelier than mid at some points", "the high section is higher but barely, the low composition is still much richer and some ways".
+
