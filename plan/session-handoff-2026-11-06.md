@@ -8,7 +8,9 @@
 2. `studio.status`, `studio.start`, `studio.models`: tray build differs from `56.11.6.2+8ab23b59434614e2`, and the XL base file shows `on_disk: true`. Report the build label and the result to macuahuitl-fedora. Its first GPU use may spend minutes in the `fetch` stage.
 3. Check `flutter analyze` (4 style notes in `battle_staging.dart`) and `flutter test` (453 passing at merge time). A first refusal `podman failed at step source (timeout)` clears on retry.
 4. Build and preview: `flutter build web --release --no-web-resources-cdn --no-pub`, `preview.publish {category: WEB, app_dir: build/web, runtime: static}`, then restore the listening page: `mkdir -p build/web/listen && cp -a ~/.cache/tillandsias-project/kumbia-audio/themes-20261106/listen-built/. build/web/listen/`. Don't rerun the builder without `--add-ladder`: it reshuffles the letters.
-5. `ListAgents` lists macuahuitl-fedora when it's on Remote Control; `SendMessage` by that name. The owner asked for occasional status and any shortcomings.
+5. Wait for macuahuitl-fedora's word before relaunching: it installs the XL base build after its land gate and verifies the pin first. Bridges between tiers: try ACE-Step extend or repaint nodes on our side; if one returns `node_not_pinned`, send it the class name, since a core ComfyUI node is a small addition.
+6. Deploys: Cloudflare Workers Builds only triggers on `main`, so `game` doesn't reach kumbias.tlatoani.net. Production is still `6f0b862`. Promoting to `main` is the owner's call.
+7. `ListAgents` lists macuahuitl-fedora when it's on Remote Control; `SendMessage` by that name. The owner asked for occasional status and any shortcomings.
 
 ## Working notes
 
