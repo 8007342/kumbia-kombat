@@ -149,61 +149,53 @@
     ],
     "duet": {
       "marks": {
-        "call0": [
-          0.47,
+        "pair0From": [
+          0.45,
+          0.5
+        ],
+        "pair0To": [
+          0.54,
+          0.46
+        ],
+        "pair1From": [
+          0.5,
+          0.47
+        ],
+        "pair1To": [
+          0.4,
           0.54
         ],
-        "call1": [
-          0.56,
-          0.52
-        ],
-        "call2": [
-          0.4,
-          0.56
-        ],
-        "call3": [
+        "pair2From": [
           0.44,
           0.52
         ],
-        "call4": [
-          0.54,
-          0.55
+        "pair2To": [
+          0.52,
+          0.56
         ],
-        "call5": [
-          0.48,
+        "pair3From": [
+          0.53,
           0.5
         ],
-        "danceLeft": [
-          0.29,
-          0.59
+        "pair3To": [
+          0.42,
+          0.46
         ],
-        "danceRight": [
-          0.63,
-          0.59
-        ],
-        "aEnd0": [
-          0.25,
+        "pair4From": [
+          0.46,
           0.5
         ],
-        "aEnd2": [
-          0.66,
-          0.5
+        "pair4To": [
+          0.56,
+          0.54
         ],
-        "aEnd4": [
-          0.77,
-          0.52
-        ],
-        "bEnd1": [
-          0.76,
+        "pair5From": [
+          0.5,
           0.53
         ],
-        "bEnd3": [
-          0.22,
-          0.51
-        ],
-        "bEnd5": [
-          0.74,
-          0.47
+        "pair5To": [
+          0.43,
+          0.48
         ],
         "rightSway1": [
           0.7,
@@ -221,6 +213,10 @@
           0.69,
           0.5
         ],
+        "backRight": [
+          0.74,
+          0.46
+        ],
         "leftSway1": [
           0.3,
           0.47
@@ -237,28 +233,20 @@
           0.27,
           0.48
         ],
-        "backRight": [
-          0.72,
-          0.46
-        ],
-        "backRight2": [
-          0.74,
-          0.46
+        "crossLeft": [
+          0.45,
+          0.43
         ],
         "crossRight": [
           0.6,
           0.43
         ],
-        "crossLeft": [
-          0.45,
-          0.43
+        "crossLeftHigh": [
+          0.44,
+          0.42
         ],
         "crossRightHigh": [
           0.6,
-          0.42
-        ],
-        "crossLeftHigh": [
-          0.44,
           0.42
         ],
         "exitLeft": [
@@ -280,117 +268,133 @@
       },
       "offClip": "skirt_play",
       "partnerClip": "dance_with",
-      "outgoingBeats": 2,
+      "outgoingBeats": 1.25,
       "incomingBeats": 2.5,
+      "partnerGap": 0.137,
+      "partnerUpstage": 0.012,
+      "spread": 0.095,
+      "pairFrames": {
+        "rest": [
+          "pair_rest_a",
+          "pair_rest_b"
+        ],
+        "arm": "pair_arm",
+        "kick": "pair_kick"
+      },
+      "spin": {
+        "beats": 2,
+        "reachFrame": "spin_reach",
+        "catchUpBeats": 1,
+        "heroFrames": [
+          "held_front",
+          "held_front34",
+          "held_side",
+          "held_rear34",
+          "held_rear",
+          "held_rear34b",
+          "held_sideb",
+          "held_front34b"
+        ]
+      },
       "turns": [
         {
-          "lead": "swing-a",
-          "call": "call0",
-          "dance": "danceLeft",
-          "end": "aEnd0",
+          "partner": "swing-a",
+          "left": "swing-a",
+          "from": "pair0From",
+          "to": "pair0To",
+          "off": "rightSway1",
           "offSteps": [
             {
-              "at": 5,
+              "at": 11,
+              "to": "rightSway2"
+            },
+            {
+              "at": 13,
+              "to": "backRight"
+            }
+          ]
+        },
+        {
+          "partner": "swing-b",
+          "left": "swing-a",
+          "from": "pair1From",
+          "to": "pair1To",
+          "off": "leftSway1",
+          "offSteps": [
+            {
+              "at": 11,
+              "to": "crossLeft"
+            },
+            {
+              "at": 13.5,
+              "to": "crossRight"
+            }
+          ]
+        },
+        {
+          "partner": "swing-a",
+          "left": "swing-b",
+          "from": "pair2From",
+          "to": "pair2To",
+          "off": "leftSway2",
+          "offSteps": [
+            {
+              "at": 11,
+              "to": "leftArrive"
+            },
+            {
+              "at": 13,
+              "to": "leftSway1"
+            }
+          ]
+        },
+        {
+          "partner": "swing-b",
+          "left": "swing-b",
+          "from": "pair3From",
+          "to": "pair3To",
+          "off": "rightSway3",
+          "offSteps": [
+            {
+              "at": 11,
+              "to": "crossRightHigh"
+            },
+            {
+              "at": 13.5,
+              "to": "crossLeftHigh"
+            }
+          ]
+        },
+        {
+          "partner": "swing-a",
+          "left": "swing-a",
+          "from": "pair4From",
+          "to": "pair4To",
+          "off": "rightSway4",
+          "offSteps": [
+            {
+              "at": 11,
               "to": "rightSway1"
             },
             {
-              "at": 12,
+              "at": 13,
               "to": "rightSway2"
             }
           ]
         },
         {
-          "lead": "swing-b",
-          "call": "call1",
-          "dance": "danceRight",
-          "end": "bEnd1",
+          "partner": "swing-b",
+          "left": "swing-a",
+          "from": "pair5From",
+          "to": "pair5To",
+          "off": "leftSway3",
           "offSteps": [
             {
-              "at": 5,
-              "to": "leftSway1"
-            },
-            {
-              "at": 12,
+              "at": 11,
               "to": "leftSway2"
-            }
-          ]
-        },
-        {
-          "lead": "swing-a",
-          "call": "call2",
-          "dance": "danceRight",
-          "end": "aEnd2",
-          "offSteps": [
-            {
-              "at": 2.5,
-              "to": "backRight"
             },
             {
-              "at": 6.5,
-              "to": "crossRight"
-            },
-            {
-              "at": 10,
-              "to": "crossLeft"
-            },
-            {
-              "at": 13.5,
-              "to": "leftArrive"
-            }
-          ]
-        },
-        {
-          "lead": "swing-b",
-          "call": "call3",
-          "dance": "danceLeft",
-          "end": "bEnd3",
-          "offSteps": [
-            {
-              "at": 5,
-              "to": "rightSway3"
-            },
-            {
-              "at": 12,
-              "to": "rightSway4"
-            }
-          ]
-        },
-        {
-          "lead": "swing-a",
-          "call": "call4",
-          "dance": "danceRight",
-          "end": "aEnd4",
-          "offSteps": [
-            {
-              "at": 5,
-              "to": "leftSway1"
-            },
-            {
-              "at": 12,
-              "to": "leftSway3"
-            }
-          ]
-        },
-        {
-          "lead": "swing-b",
-          "call": "call5",
-          "dance": "danceRight",
-          "end": "bEnd5",
-          "offSteps": [
-            {
-              "at": 2.5,
-              "to": "backRight2"
-            },
-            {
-              "at": 6.5,
-              "to": "crossRightHigh"
-            },
-            {
-              "at": 10,
-              "to": "crossLeftHigh"
-            },
-            {
-              "at": 13.5,
+              "at": 13,
               "to": "leftArrive"
             }
           ]

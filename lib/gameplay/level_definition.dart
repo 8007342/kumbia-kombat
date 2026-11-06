@@ -430,7 +430,12 @@ class LevelDefinition {
     final challengers = _challengers(stageFields, stageMark);
     final stage = LevelStage(
       duet: stageFields.has('duet')
-          ? _duet(stageFields.child('duet'), challengers, chart.cycleBeats)
+          ? _duet(
+              stageFields.child('duet'),
+              challengers,
+              chart.cycleBeats,
+              stageMark(stageFields, 'heroHome'),
+            )
           : null,
       heroHome: stageMark(stageFields, 'heroHome'),
       heroEntrance: stageMark(stageFields, 'heroEntrance'),
@@ -755,6 +760,7 @@ class LevelDefinition {
     _Fields fields,
     List<LevelChallenger> challengers,
     double cycleBeats,
+    PartyPoint heroHome,
   ) {
     final path = fields.path;
     if (challengers.length != 2) {
@@ -776,20 +782,36 @@ class LevelDefinition {
 
     final outgoing = fields.number('outgoingBeats', min: .25);
     final incoming = fields.number('incomingBeats', min: .25);
+    final gap = fields.number('partnerGap', min: .05, max: .6);
+    final upstage = fields.number('partnerUpstage', min: 0, max: .2);
+    PartyPoint beside(bool left) {
+      final point = PartyPoint(heroHome.x + (left ? -gap : gap), heroHome.y - upstage);
+      if (point.y >= thumbBandTop || point.x < .17 || point.x > .83) {
+        throw LevelDataError(fields.at('partnerGap'), 'beside Mācron is off the dance floor');
+      }
+      return point;
+    }
+
+    int dancerOf(_Fields from, String key) {
+      final id = from.text(key);
+      final index = challengers.indexWhere((c) => c.id == id);
+      if (index < 0) {
+        throw LevelDataError(from.at(key), 'no such challenger: $id');
+      }
+      return index;
+    }
+
     final turnsPath = fields.at('turns');
     final turns = <DuetTurn>[];
     for (final (i, raw) in fields.list('turns').indexed) {
       final turn = _Fields('$turnsPath[$i]', raw);
-      final lead = turn.text('lead');
-      final index = challengers.indexWhere((c) => c.id == lead);
-      if (index < 0) {
-        throw LevelDataError(turn.at('lead'), 'no such challenger: $lead');
-      }
+      final partner = dancerOf(turn, 'partner');
+      final left = dancerOf(turn, 'left');
       final steps = <DuetOffStep>[];
       var last = 0.0;
       for (final (j, rawStep) in turn.list('offSteps').indexed) {
         final step = _Fields('${turn.at('offSteps')}[$j]', rawStep);
-        final at = step.number('at', min: 0, max: cycleBeats - incoming);
+        final at = step.number('at', min: cycleBeats / 2, max: cycleBeats - incoming);
         if (at <= last) {
           throw LevelDataError(step.path, 'steps must run forward in time');
         }
@@ -799,10 +821,13 @@ class LevelDefinition {
       }
       turns.add(
         DuetTurn(
-          lead: index,
-          call: mark(turn, 'call'),
-          dance: mark(turn, 'dance'),
-          end: mark(turn, 'end'),
+          partner: partner,
+          left: left,
+          from: mark(turn, 'from'),
+          to: mark(turn, 'to'),
+          // She steps out from the pair on the side she was already on.
+          dance: beside(partner == left),
+          off: mark(turn, 'off'),
           offSteps: List.unmodifiable(steps),
         ),
       );
@@ -814,15 +839,46 @@ class LevelDefinition {
     for (var i = 0; i < turns.length; i++) {
       final next = turns[(i + 1) % turns.length];
       final again = turns[(i + 2) % turns.length];
-      if (turns[i].lead == next.lead) {
-        throw LevelDataError('$turnsPath[$i]', 'the lead must alternate');
+      if (turns[i].partner == next.partner) {
+        throw LevelDataError('$turnsPath[$i]', 'his partner must alternate');
       }
-      if (turns.length > 2 && identical(turns[i].end, again.end)) {
+      if (turns.length > 2 && identical(turns[i].to, again.to)) {
         throw LevelDataError(
           '$turnsPath[$i]',
-          'she must end somewhere new each turn',
+          'the pair must end somewhere new each turn',
         );
       }
+    }
+    final pairFields = fields.child('pairFrames');
+    final pairFrames = DuetPairFrames(
+      rest: List.unmodifiable([
+        for (final (j, frame) in pairFields.list('rest').indexed)
+          frame is String && frame.isNotEmpty
+              ? frame
+              : throw LevelDataError('${pairFields.at('rest')}[$j]', 'a drawing name'),
+      ]),
+      arm: pairFields.text('arm'),
+      kick: pairFields.text('kick'),
+    );
+    pairFields.finish();
+    if (pairFrames.rest.isEmpty) {
+      throw LevelDataError(pairFields.at('rest'), 'a pair needs a resting drawing');
+    }
+    final spinFields = fields.child('spin');
+    final spin = DuetSpinSpec(
+      beats: spinFields.number('beats', min: .25),
+      reachFrame: spinFields.text('reachFrame'),
+      heroFrames: List.unmodifiable([
+        for (final (j, frame) in spinFields.list('heroFrames').indexed)
+          frame is String && frame.isNotEmpty
+              ? frame
+              : throw LevelDataError('${spinFields.at('heroFrames')}[$j]', 'a drawing name'),
+      ]),
+      catchUpBeats: spinFields.number('catchUpBeats', min: .25),
+    );
+    spinFields.finish();
+    if (spin.heroFrames.isEmpty) {
+      throw LevelDataError(spinFields.at('heroFrames'), 'a spin needs drawings');
     }
     final exitFields = fields.child('exit');
     final exit = DuetExit(
@@ -848,6 +904,9 @@ class LevelDefinition {
       partnerClip: fields.text('partnerClip'),
       outgoingBeats: outgoing,
       incomingBeats: incoming,
+      spread: fields.number('spread', min: .01, max: .2),
+      pairFrames: pairFrames,
+      spin: spin,
       exit: exit,
     );
     markFields.finish();

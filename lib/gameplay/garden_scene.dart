@@ -151,6 +151,13 @@ class GardenSceneGame extends FlameGame {
           'yield_out',
           'return_in',
         ]);
+        _ensemble![challenger.atlas]!.definition.art.requireFrames([
+          ...duet.pairFrames.rest,
+          duet.pairFrames.arm,
+          duet.pairFrames.kick,
+          duet.spin.reachFrame,
+        ]);
+        _heroAtlas!.definition.requireFrames(duet.spin.heroFrames);
       }
     }
     final generation = ++_roomGeneration;
@@ -705,6 +712,7 @@ class GardenSceneGame extends FlameGame {
     final challengers = _level!.stage.challengers;
     final beat = _lastBeat;
     final duet = challengers.length > 1;
+    final placements = <_DancerPlacement>[];
     for (final (i, challenger) in challengers.indexed) {
       var dressed = i == 0
           ? pose
@@ -725,10 +733,12 @@ class GardenSceneGame extends FlameGame {
         );
       }
       var mirrored = false;
+      DuetRole? role;
       final placed = _duetPlace(i, challenger.atlas, dressed, beat);
       if (placed != null) {
         floor = placed.floor;
         mirrored = placed.mirrored;
+        role = placed.role;
         dressed = placed.frame == null ? dressed : dressed.withFrame(placed.frame!);
       }
       final projected = viewport.project(floor);
@@ -740,20 +750,34 @@ class GardenSceneGame extends FlameGame {
       );
       final atlas = _ensemble![challenger.atlas]!;
       final scale = height / atlas.nativeHeight('ready');
-      final ground = ui.Offset(
-        projected.x + dressed.rootOffsetX * scale,
-        projected.y,
+      placements.add(
+        _DancerPlacement(
+          atlas: atlas,
+          frame: dressed.frameId,
+          ground: ui.Offset(
+            projected.x + dressed.rootOffsetX * scale,
+            projected.y,
+          ),
+          footY: projected.y,
+          height: height,
+          scale: scale,
+          mirrored: mirrored,
+          role: role,
+        ),
       );
+    }
+    _joinHands(placements, viewport, room, beat);
+    for (final dancer in placements) {
       draws.add(
-        _WorldDraw('challenger', projected.y, 10, (canvas) {
-          _shadow(canvas, ground, height);
+        _WorldDraw('challenger', dancer.footY, 10, (canvas) {
+          _shadow(canvas, dancer.ground, dancer.height);
           // Dancers who travel in depth scale smoothly, or their pixels crawl.
-          atlas.draw(
+          dancer.atlas.draw(
             canvas,
-            dressed.frameId,
-            ground,
-            scale,
-            flipX: mirrored,
+            dancer.frame,
+            dancer.ground,
+            dancer.scale,
+            flipX: dancer.mirrored,
             filter: duet ? ui.FilterQuality.low : ui.FilterQuality.none,
           );
         }),
@@ -761,9 +785,91 @@ class GardenSceneGame extends FlameGame {
     }
   }
 
+  /// Closes whatever gap depth and drawing leave, so held hands meet on screen.
+  /// Only where each stands is drawn differently: nothing here reads back.
+  void _joinHands(
+    List<_DancerPlacement> dancers,
+    PartyViewport viewport,
+    PartyRoomLayout room,
+    double beat,
+  ) {
+    if (dancers.length != 2) return;
+    final [a, b] = dancers;
+    if (a.role == DuetRole.pair && b.role == DuetRole.pair) {
+      final (handA, handB) = (a.hand, b.hand);
+      if (handA == null || handB == null) return;
+      final half = (handB - handA) / 2;
+      a.ground += half;
+      b.ground -= half;
+      return;
+    }
+    final turning = _heroSpinNow(beat);
+    if (turning == null) return;
+    final held = _heroHandDuring(turning, viewport, room);
+    final dancer = dancers[turning.spin.dancer];
+    final hand = dancer.hand;
+    if (held != null && hand != null && dancer.role == DuetRole.spinning) {
+      dancer.ground += held - hand;
+    }
+  }
+
+  /// The spin in progress, or null. Reads the music's beat and the beat the last
+  /// flourish landed on, nothing else; calm camera has no spin.
+  DuetSpin? _spinNow(double beat) {
+    final duet = _level!.stage.duet;
+    final s = session;
+    if (duet == null ||
+        s == null ||
+        reducedMotion ||
+        s.phase == GardenPhase.cleared ||
+        (beat >= _resetBeat && beat - _resetBeat < 2)) {
+      return null;
+    }
+    return duet.spinFrom(
+      flourishBeat: flourishBeat,
+      beat: beat,
+      callStartBeat: s.callStartBeat,
+      introBeats: s.chart.introBeats,
+      callBeats: s.chart.callBeats,
+    );
+  }
+
+  /// Mācron's drawing while he is turning, or null when he isn't.
+  ({DuetSpin spin, String frame, bool flip})? _heroSpinNow(double beat) {
+    final spin = _spinNow(beat);
+    if (spin == null) return null;
+    final t = beat - session!.callStartBeat;
+    if (!spin.isTurning(t)) return null;
+    final spec = _level!.stage.duet!.spin;
+    final index = ((t - spin.from) / spec.beats * spec.heroFrames.length).floor();
+    return (
+      spin: spin,
+      frame: spec.heroFrames[index.clamp(0, spec.heroFrames.length - 1)],
+      flip: spin.floor.x > _level!.stage.heroHome.x,
+    );
+  }
+
+  /// Where his held hand is. He stays home through a spin.
+  ui.Offset? _heroHandDuring(
+    ({DuetSpin spin, String frame, bool flip}) turning,
+    PartyViewport viewport,
+    PartyRoomLayout room,
+  ) {
+    final floor = _level!.stage.heroFloor(entrance: 1, retreat: 0);
+    final projected = viewport.project(floor);
+    final height = _adultHeight(viewport, room, floor, stature: .35);
+    final reference = _heroAtlas!.definition.frames['front_idle']!;
+    final scale = height / (reference.source.height / reference.pixelsPerUnit);
+    return _heroAtlas!.definition.frames[turning.frame]?.holdAt(
+      _point(projected),
+      scale,
+      flipX: turning.flip,
+    );
+  }
+
   /// A pair's place and drawing from the level's floor pattern, or null when the
   /// level has none. Reads the beat and the pose only: art can't move the music.
-  ({PartyPoint floor, String? frame, bool mirrored})? _duetPlace(
+  ({PartyPoint floor, String? frame, bool mirrored, DuetRole? role})? _duetPlace(
     int dancer,
     String atlas,
     ChallengerPose pose,
@@ -789,6 +895,7 @@ class GardenSceneGame extends FlameGame {
         floor: out.floor,
         frame: out.reaching ? duet.exit.reachFrame : null,
         mirrored: out.mirrored,
+        role: null,
       );
     }
     final turn = duet.turnIndex(
@@ -805,28 +912,41 @@ class GardenSceneGame extends FlameGame {
       callBeats: chart.callBeats,
       floorYield: pose.floorYield,
       heroX: heroX,
+      spin: s.completedAtBeat == null ? _spinNow(beat) : null,
       reducedMotion: reducedMotion,
     );
     final grammar = _grammar!;
+    final telling =
+        pose.state == ChallengerDanceState.approve ||
+        pose.state == ChallengerDanceState.recover;
     final String? frame = switch (place.role) {
-      DuetRole.lead => null,
+      DuetRole.pair when s.phase == GardenPhase.ready || telling => null,
+      DuetRole.pair => duet.pairFrame(
+        onLeft: place.onLeft,
+        limb: pose.limb,
+        phase: pose.movePhase,
+        beat: reducedMotion ? 0 : beat,
+      ),
       DuetRole.partner when pose.state != ChallengerDanceState.watch => null,
       DuetRole.partner =>
         reducedMotion ? null : grammar.clipFrame(atlas, duet.partnerClip, beat),
+      DuetRole.spinning => duet.spin.reachFrame,
       DuetRole.offTurn when s.phase == GardenPhase.ready => null,
       DuetRole.offTurn =>
         reducedMotion
             ? grammar.calmFrame(atlas)
             : grammar.clipFrame(atlas, duet.offClip, beat),
-      // The phrase's approval or recovery still reads, on the way out.
-      DuetRole.outgoing
-          when pose.state == ChallengerDanceState.approve ||
-              pose.state == ChallengerDanceState.recover =>
-        null,
-      DuetRole.outgoing => grammar.clipAlong(atlas, 'yield_out', place.travel),
+      // The phrase's approval or recovery still reads, on the way back.
+      DuetRole.incoming when telling => null,
       DuetRole.incoming => grammar.clipAlong(atlas, 'return_in', place.travel),
     };
-    return (floor: place.floor, frame: frame, mirrored: place.mirrored);
+    final held = place.role == DuetRole.pair && telling;
+    return (
+      floor: place.floor,
+      frame: frame,
+      mirrored: held ? false : place.mirrored,
+      role: place.role,
+    );
   }
 
   ({PartyPoint first, PartyPoint second, bool mirrored}) _duetWinFloors(
@@ -884,7 +1004,18 @@ class GardenSceneGame extends FlameGame {
     // Off his turn he leaves the floor, back and then to the side, and comes home
     // the same way. He walks in straight to where he waits. Reduced motion cuts
     // to each place, so the floor still belongs to one dancer at a time.
-    final callAge = s == null ? 0.0 : beat - s.callStartBeat;
+    var callAge = s == null ? 0.0 : beat - s.callStartBeat;
+    // A spin that overflowed into the call: he finishes it at home, then steps out.
+    final duetSpin = level.stage.duet?.spin;
+    if (duetSpin != null &&
+        s != null &&
+        !reducedMotion &&
+        flourishBeat < s.callStartBeat) {
+      final heldUntil = flourishBeat + duetSpin.beats - s.callStartBeat;
+      if (heldUntil > 0 && callAge < heldUntil + HeroWatch.stepOutBeats) {
+        callAge = math.max(0, callAge - heldUntil);
+      }
+    }
     final firstCall = s != null && s.callStartBeat <= s.chart.introBeats;
     final inCall = s?.phase == GardenPhase.call && !reducedMotion;
     final home = level.stage.heroFloor(entrance: 1, retreat: 0);
@@ -1015,6 +1146,13 @@ class GardenSceneGame extends FlameGame {
             frame;
       }
     }
+    // Turning under her hand. It plays over his moves for its length: the taps
+    // and their marks carry on below, untouched, and nothing here reads back.
+    final turning = _heroSpinNow(beat);
+    if (turning != null) {
+      frame = turning.frame;
+      hop = 0;
+    }
     draws.add(
       _WorldDraw('macron', projected.y, 10, (canvas) {
         _shadow(canvas, _point(projected), height * (1 - hop * .5));
@@ -1023,10 +1161,37 @@ class GardenSceneGame extends FlameGame {
           frame,
           _point(projected).translate(0, -height * hop),
           scale,
+          flipX: turning?.flip ?? false,
           // His art is far larger than he is drawn: mipmaps keep it steady.
           filter: ui.FilterQuality.medium,
         );
       }),
     );
   }
+}
+
+/// One dancer of a pair, placed for this frame, before her hand is joined.
+class _DancerPlacement {
+  _DancerPlacement({
+    required this.atlas,
+    required this.frame,
+    required this.ground,
+    required this.footY,
+    required this.height,
+    required this.scale,
+    required this.mirrored,
+    required this.role,
+  });
+  final EnsembleAtlas atlas;
+  final String frame;
+  ui.Offset ground;
+  final double footY, height, scale;
+  final bool mirrored;
+  final DuetRole? role;
+
+  ui.Offset? get hand => atlas.definition.art.frames[frame]?.holdAt(
+    ground,
+    scale,
+    flipX: atlas.definition.flipFor(frame, facingFlip: mirrored),
+  );
 }

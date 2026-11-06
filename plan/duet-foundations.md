@@ -22,6 +22,21 @@ Scale from `levels/pool-garden.json`, in pixels of an 844-tall screen before vie
 Their current mark is y 0.50. Mācron's home is y 0.645 and the tap band starts at 0.65, so a dance moving between about
 0.42 and 0.58 changes size by about 60%. That range is striking, and the room allows it.
 
+## As built: the pair, 2026-11-06
+
+The owner's tenth round: "they should always dance in pair during their turn, then alternate one of them dancing with Mācron during Mācron's turn, since this is a dance where spinning requires them holding hands, we'll have them spin our cutest tiny Mācron on those flourishes." Where this disagrees with the sections below, this one wins. `stage.duet` and `lib/gameplay/duet_staging.dart` hold it. Art route: `art_runs/duet-20261106/pair/`.
+
+- **The call.** Both dance as one figure, inner hands joined, drifting from a turn's `from` to its `to`. Every turn ends somewhere new. The scene closes the last few pixels between the hands from each drawing's `hold`, so they meet at any depth.
+- **The chart reads by side.** A limb on the picture's left is the left dancer's outer limb, and on the right the right dancer's: arm thrown up for a hand, a low kick for a foot. Exactly one of them shows each note, on the side a solo dancer would, and the inner hands never let go. `LevelDuet.pairFrame` is that rule. Nobody has yet judged this against real play.
+- **His turn.** `partner` alternates, and she steps out on the side she danced the call on. The other goes to `off`, a side mark upstage, and keeps the skirt clip and the slow steps. Two turns in six she crosses behind everyone to the other side, which is also how the two change places in the pair: `left` flips on the next call.
+- **The spin.** A landed flourish starts it, read from `flourishBeat` and the music's beat alone. For `spin.beats` he plays the held frames and she plays the reach, her hand on his. He stays on his floor point. Taps go on being judged and marked below it, though the spin's drawings replace his tap poses while it runs. A missed flourish sets no beat, so nothing shows. Calm camera has no spin.
+- **Overflow, as ruled.** A spin past the end of his answer finishes where it is. She then has `catchUpBeats` to rejoin the pair, and he finishes at home before stepping back to watch. The other dancer doesn't wait.
+- **`partnerGap` and `partnerUpstage` are from `heroHome`,** so she follows if his home moves. A test measures the hands at game size and fails if her step to reach him grows, which is the cue to retune these two.
+- **Puppet, not Qwen, for him.** `pair/scripts/puppet.py` keeps his accepted bodies with one arm erased, and re-attaches the raised arm from `arm_sweep`. The first try orbited him under the hand and the arm crossed his face. The arm now stays toward her and passes behind his head, and he turns on the spot.
+- **Hands are data.** Each holding drawing has a `hold` in the manifest. Swing-b is the shorter, so joining hands puts their feet up to 25 px apart on screen, and it changes a little with the drawings. That reads as a slight difference in depth and a small bob on the hits. Only stills have judged it.
+- **Seen, real renderer, stills only:** `test/lawn_pair_scene_test.dart` writes `build/pair-review/`; `pair/sheets/real-render-spin.png` and `real-render-overflow.png` are from it. Nobody has seen any of it moving, or tapped a chart over it.
+- **Qwen for them.** Asking her to reach for "a very tiny toy robot" gave the deep bend every time, on the first seeds, and drew a robot too. Asking for a partner's hand drew a dark sleeve. Both are erased by polygon in `pair/picks.json`.
+
 ## As built, 2026-11-06
 
 The owner's ninth round settled the mechanic: one dancer has each turn, and the other steps slowly at the side. `stage.duet` in the level file holds it, and `lib/gameplay/duet_staging.dart` reads it. The table below and "Proposed mechanic" are the earlier thinking, and where they disagree this section wins.

@@ -33,10 +33,28 @@ const guestPoseIds = [
 /// Rectangles and anchors are measured from reviewed art, never inferred from
 /// an AI-generated contact sheet's nominal row or column count.
 class PartySpriteFrame {
-  const PartySpriteFrame(this.source, this.anchor, this.pixelsPerUnit);
+  const PartySpriteFrame(
+    this.source,
+    this.anchor,
+    this.pixelsPerUnit, {
+    this.hold,
+  });
   final ui.Rect source;
   final ui.Offset anchor;
   final double pixelsPerUnit;
+
+  /// Where this drawing's holding hand is, in the same pixels as [anchor]. Only
+  /// the drawings that hold a partner's hand have one.
+  final ui.Offset? hold;
+
+  /// The holding hand on screen, for a drawing placed at [ground].
+  ui.Offset? holdAt(ui.Offset ground, double scale, {bool flipX = false}) {
+    final at = hold;
+    if (at == null) return null;
+    final factor = scale / pixelsPerUnit;
+    final across = (at.dx - anchor.dx) * factor;
+    return ground.translate(flipX ? -across : across, (at.dy - anchor.dy) * factor);
+  }
 
   ui.Rect destination(ui.Offset ground, double scale) {
     final factor = scale / pixelsPerUnit;
@@ -117,7 +135,18 @@ class PartyAtlasDefinition {
           pivot.dy > source.height) {
         throw FormatException('Party sprite $id extends beyond its image');
       }
-      frames[id] = PartySpriteFrame(source, pivot, units.toDouble());
+      final hold = frame['hold'];
+      if (hold != null && !numbers(hold, 2)) {
+        throw FormatException('Invalid hold for party sprite $id');
+      }
+      frames[id] = PartySpriteFrame(
+        source,
+        pivot,
+        units.toDouble(),
+        hold: hold == null
+            ? null
+            : ui.Offset((hold[0] as num).toDouble(), (hold[1] as num).toDouble()),
+      );
     }
     return PartyAtlasDefinition._(
       image,

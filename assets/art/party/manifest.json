@@ -3,9 +3,9 @@
  "status": "runtime preview; production pixel-grid and continuity cleanup pending",
  "atlases": {
   "hero": {
-   "image": "macron-dance-v2.png",
+   "image": "macron-dance-v3.png",
    "imageWidth": 1243,
-   "imageHeight": 1610,
+   "imageHeight": 2193,
    "frames": {
     "rear_idle": {
      "rect": [
@@ -296,6 +296,142 @@
       "selectedBy": "agent's eye",
       "accepted": false
      }
+    },
+    "held_front": {
+     "rect": [
+      2,
+      1587,
+      226,
+      285
+     ],
+     "anchor": [
+      118,
+      284
+     ],
+     "hold": [
+      18,
+      89
+     ],
+     "pixelsPerUnit": 8.0
+    },
+    "held_front34": {
+     "rect": [
+      230,
+      1587,
+      276,
+      301
+     ],
+     "anchor": [
+      125,
+      300
+     ],
+     "hold": [
+      25,
+      105
+     ],
+     "pixelsPerUnit": 8.0
+    },
+    "held_side": {
+     "rect": [
+      508,
+      1587,
+      232,
+      298
+     ],
+     "anchor": [
+      121,
+      297
+     ],
+     "hold": [
+      21,
+      102
+     ],
+     "pixelsPerUnit": 8.0
+    },
+    "held_rear34": {
+     "rect": [
+      742,
+      1587,
+      237,
+      299
+     ],
+     "anchor": [
+      121,
+      298
+     ],
+     "hold": [
+      21,
+      103
+     ],
+     "pixelsPerUnit": 8.0
+    },
+    "held_rear": {
+     "rect": [
+      981,
+      1587,
+      254,
+      296
+     ],
+     "anchor": [
+      121,
+      295
+     ],
+     "hold": [
+      21,
+      100
+     ],
+     "pixelsPerUnit": 8.0
+    },
+    "held_rear34b": {
+     "rect": [
+      2,
+      1890,
+      256,
+      299
+     ],
+     "anchor": [
+      122,
+      298
+     ],
+     "hold": [
+      22,
+      103
+     ],
+     "pixelsPerUnit": 8.0
+    },
+    "held_sideb": {
+     "rect": [
+      260,
+      1890,
+      220,
+      298
+     ],
+     "anchor": [
+      124,
+      297
+     ],
+     "hold": [
+      24,
+      102
+     ],
+     "pixelsPerUnit": 8.0
+    },
+    "held_front34b": {
+     "rect": [
+      482,
+      1890,
+      268,
+      301
+     ],
+     "anchor": [
+      117,
+      300
+     ],
+     "hold": [
+      17,
+      105
+     ],
+     "pixelsPerUnit": 8.0
     }
    }
   },
