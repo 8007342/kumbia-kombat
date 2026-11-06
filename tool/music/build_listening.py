@@ -50,6 +50,8 @@ PAGES = {
 # Added to a page already built, with --add-ladder.
 LADDERS = {
     "ladder-lawn-2": {"title": "Pool lawn ladder, second try", "tiers": [("low", "128 BPM"), ("mid", "144 BPM"), ("high", "160 BPM")]},
+    "ladder-bar": {"title": "Ladder: Bar", "tiers": [("low", "100 BPM"), ("mid", "106 BPM"), ("high", "112 BPM")]},
+    "ladder-party": {"title": "Ladder: Indoor party", "tiers": [("low", "112 BPM"), ("mid", "124 BPM"), ("high", "136 BPM")]},
 }
 SECONDS = 30
 LADDER_SECONDS = 40

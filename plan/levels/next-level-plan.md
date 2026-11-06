@@ -342,3 +342,5 @@ Not passed, after 40 images and 761 s of GPU over three rounds. `tool/art/rooms/
 - **Next try, about 5 minutes:** keep the last pass 1 floor wording and the arch, pull the pass 2 floor and wall words about halfway back, and move two guest marks clear of the platform.
 
 Sheet: `~/.cache/tillandsias-project/kumbia-art/room-cool-crowd-v1-a/sheets/review-phone-final.png`. A person has not accepted a layout or a plate yet.
+
+Fourth round, 2026-11-06: not passed. Walls now come close to the bar's richness, with no people invented. Door holds on 2 of 6, the bandstand on 0 of 6, and the floor still fails on tone (luma 46-59) and calm (hard bands, amber discs). Words have failed on the floor twice, so stop rewording. Next route to try: paint the floor separately and composite it under the walls, or ask about 40 steps. Sheet: `art_runs/room-cool-crowd-v1-a/sheets/review-p2d.png`.

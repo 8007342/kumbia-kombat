@@ -1,0 +1,21 @@
+{
+ "mid.flac": {
+  "bpm_asked": 124.0,
+  "heard": {
+   "onsets_per_beat": 3.06,
+   "onsets_per_sec": 6.33,
+   "spread_hz": 552.0,
+   "centroid_hz": 417.0,
+   "rms_db": -14.5,
+   "rms_range_db": 11.5
+  },
+  "whole": {
+   "onsets_per_beat": 2.875,
+   "onsets_per_sec": 5.94,
+   "spread_hz": 637.0,
+   "centroid_hz": 516.0,
+   "rms_db": -15.2,
+   "rms_range_db": 15.3
+  }
+ }
+}

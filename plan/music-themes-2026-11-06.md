@@ -194,3 +194,71 @@ A high had to be within the tempo limit and above mid on onsets per beat and spr
 The section was added with `python3 -I tool/music/build_listening.py --add-ladder ladder-lawn-2 <run dir> <served dir>`, which changes nothing else. Checked by hash: the bar and party files and the answer key are unchanged, and the only difference in `index.html` is the added section. `build/web/listen/` and `listen-built/` in the cache are identical, so the restore command above still applies. An open page needs a reload to show it; the letters stay the same.
 
 Takes are in `~/.cache/tillandsias-project/kumbia-audio/themes-20261106/ladder-lawn-2/`. Timing and measures are in `tool/music/themes-20261106/`.
+
+## Ladders for the bar and party winners
+
+The owner's blind winners are fixed as the mid tiers: bar seed 55005, party seed 53010. Their reasons: "B is lively and identifiable", while the rest were "awesome but too simple, they're plain background scores"; "A is richer and full of charisma and personality". The Garden ladder's verdict stands as the pattern to match: "the music increases progressively in complexity". **Nobody has heard these outer tiers.**
+
+**Chosen for the owner's ears: bar low 55005, high 55007; party low 53014, high 53010.** The party's high tier **does not meet the filter**: see below.
+
+### Settings
+
+Same workflow. Mids are copies of the winners, not new runs, so decoded audio is the same by construction (MD5 `51795bc1f7485fd36016d40defa97eb7` bar, `0bdbdca0ba63d901aea19b980484b4ef` party, each checked against the winner). Their settings are in the first table above. Tags, BPM, key, duration, seconds and both seed nodes were read back from ComfyUI `/history` for all 30 new takes. Words are genre and instrument terms, with no artist or song names. "Lively, identifiable" went in the high tags only, and low got "characterful", since the lawn's low tier failed by being too lively.
+
+| Ladder, tier | Seeds | BPM | Key | Bars | Seconds | `$node:94.tags` |
+|---|---|---|---|---|---|---|
+| Bar low | 55005-55010 | 100 | C minor | 36 | 86.4 | cool swaggering indoor cumbia under lanterns, instrumental, sparse small trio, characterful lead melody on twangy electric guitar, rounded bass, soft congas, guira, lots of space, few notes |
+| Bar high | 55005-55010 | 112 | C minor | 40 | 85.71 | cool swaggering indoor cumbia under lanterns, instrumental, full band, lively identifiable lead melody on twangy electric guitar and muted trumpet, brass section answers, electric keys, walking rounded bass, busy congas, timbales, guira, handclaps |
+| Party low | 53010-53015 | 112 | D minor | 40 | 85.71 | cool midnight Latin boogaloo for a circle of dancers, instrumental, sparse small combo, characterful flute lead melody, upright bass, soft congas, lots of space, few notes |
+| Party high | 53010-53015 | 136 | D minor | 48 | 84.71 | cool midnight Latin boogaloo with a salsa-disco lift for a circle of dancers, instrumental, full salsa orchestra, lively identifiable lead melody on marimba and flute, brass section shouts, trumpets, trombones, saxophones, walking upright bass, piano montuno, congas, timbales, cowbell, handclaps on the backbeat |
+| Lawn high, third try | 52017-52022 | 160 | C major | 54 | 81 | second-try high tags, word for word |
+
+### Results
+
+| Batch | Full filter | Within tempo limit | Full filter and on the right side of mid |
+|---|---|---|---|
+| Bar low | 3 of 6 | 6 of 6 | 1: 55005 |
+| Bar high | 4 of 6 | 5 of 6 | 2: 55007, 55009 |
+| Party low | 3 of 6 | 5 of 6 | 3: 53012, 53014, 53015 |
+| Party high | 5 of 6 | 6 of 6 | **0** |
+| Lawn high, third try | **2 of 6** | 2 of 6 | 2 (see below) |
+
+"Right side" means below or above mid on onsets per beat and spread, heard and whole, the same test as the lawn's second try. No limit was changed, and both self-tests pass.
+
+| Take | Measured BPM | Error | Half-time | Wander | Onsets/beat heard (whole) | Spread Hz heard (whole) | Centroid Hz heard | Level dB heard |
+|---|---|---|---|---|---|---|---|---|
+| Bar low, 55005 | 100.02 | +0.02% | 0.21 | 6.8 ms | 1.80 (1.97) | 406 (452) | 388 | -15.0 |
+| **Bar mid, 55005** | 106.03 | +0.03% | 0.10 | 23.7 ms | 2.59 (2.49) | 643 (568) | 553 | -15.2 |
+| Bar high, 55007 | 110.97 | -0.92% | 0.12 | 12.3 ms | 2.96 (2.77) | 995 (952) | 883 | -19.2 |
+| Party low, 53014 | 110.75 | -1.11% | 0.12 | 13.8 ms | 1.97 (1.85) | 336 (363) | 308 | -16.8 |
+| **Party mid, 53010** | 124.99 | +0.80% | 0.23 | 7.2 ms | 3.06 (2.88) | 552 (637) | 417 | -14.5 |
+| Party high, 53010 | 135.99 | -0.01% | 0.48 | 23.4 ms | **2.66 (2.56)** | 821 (768) | 778 | -15.5 |
+
+Against mid, heard (whole): bar low -31% (-21%) onsets, -37% (-20%) spread. Bar high +14% (+11%), +55% (+68%). Party low -36% (-36%), -39% (-43%). Party high **-13% (-11%)** onsets, +49% (+21%) spread.
+
+- **The party winner is already dense, and no high take beat it on onsets.** The best of six was 2.68 per beat against 3.06, and the same holds per second (53015 at 6.08, mid at 6.33). 53010 was put on the page as the closest take with a clear lift in spread and centroid, and because it shares the winner's seed. That is a failed filter and a judgment call. More seeds or fuller tags may not help, since the mid may simply be near what this model does at this density.
+- **Bar high is quiet before matching:** -19.2 dB against mid's -15.2, and the page matches level anyway. It also runs 1 BPM under what was asked, like much of the bar. 55009 is the alternate: +5% onsets, +43% spread, -17.1 dB.
+- **Party low alternates:** 53015 has the steadiest beat (5.6 ms) but a smaller spread drop (-7% heard, -17% whole). 53012 sits at -21.5 dB. Same-seed 53010 failed, half-time at 0.83 and wandering 55 ms.
+- **Only some tiers share a seed.** Bar low and mid do, and party mid and high do. Bar high (55007) and party low (53014) don't. Same-seed bar high failed on tempo at -1.73%.
+- **The sparse words don't reliably reduce the count.** Three of the six bar lows have more onsets per beat than mid, with "few notes" in their tags. Seed still decides a lot.
+- **The measures can't test what won.** They count events and energy. They don't say whether a take is lively, identifiable or one song with its mid, and those are the words that won the blind round.
+
+### Lawn high, third try
+
+**Two takes pass the full filter, the first at this tier.** Neither is on the page yet, and the second-try section is unchanged.
+
+| Seed | Measured BPM | Error | Wander | Onsets/beat heard (whole) | Spread Hz heard (whole) |
+|---|---|---|---|---|---|
+| **52019** | 162.02 | +1.26% | 9.5 ms | 1.67 (1.48) | 979 (1036) |
+| 52022 | 161.10 | +0.69% | 11.3 ms | 1.69 (1.59) | 753 (748) |
+| Mid, 52011 at 144 | 143.92 | -0.05% | 14.4 ms | 1.43 (1.37) | 746 (721) |
+
+52019 is +17% (+8%) on onsets and +31% (+44%) on spread against mid, and it clears both tests in a way second-try 52012 didn't: 52012 wanders 61 ms. 52022 is +18% (+16%) on onsets, with spread only +1% (+4%). The other four missed tempo: +2.62%, +2.50%, +3.69% and -6.25%, and 52020 also has no clear pulse. With the second try, that is 2 full passes in 12 at this tempo and these tags.
+
+### Page and storage
+
+`python3 -I tool/music/build_listening.py --add-ladder ladder-bar <run dir> <served dir>`, and the same with `ladder-party`, into the cached `listen-built/`, then copied to `build/web/listen/` with the restore command above. Both new entries are in `LADDERS`. Checked by hash: all earlier excerpts and the answer key are unchanged, and `index.html` differs only by the added sections. Both copies match. An open page needs a reload. Each excerpt measures within 0.1 dB of the others, -18.1 to -18.2.
+
+Takes: `ladder-bar/`, `ladder-party/`, `ladder-lawn-3/` in the cache folder, which now holds 849 MB. Tier files are `low.flac`, `mid.flac`, `high.flac` beside `low/` and `high/`. Timing and measures are in `tool/music/themes-20261106/ladder-{bar,party,lawn-3}-*`. Checksums added to `SHA256SUMS` in both places.
+
+Each batch of six took about 75 s of GPU, plus queue waits of up to 4.4 minutes behind other jobs.
