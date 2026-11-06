@@ -118,10 +118,26 @@ enum PhraseGrade {
   excellent,
 }
 
-/// The owner's ruling: a clean run ends with the room fully engaged, unskilful
-/// play costs the crowd's interest and nothing else, and flawless play earns the
-/// top of the ladder. This reads the score and never changes it. The numbers are
-/// artistic starting values for tuning, not findings.
+/// The owner's ruling: be lenient, because players should enjoy the game at full
+/// animations, and even a poor run that clears gets warm interest. What a room
+/// shows depends on the level's average phrase credit (a clean phrase 1, a loose
+/// one .75, a scrappy one .5, a failed one 0), for a cast of twelve:
+///
+/// | Average | Example | The room at the clear |
+/// |---|---|---|
+/// | Below .50 | Failures and scrapes | 5 dancing, 7 seated and following |
+/// | .50 | A scrape on every phrase | The same 5 and 7 |
+/// | .60 | Eight scrapes and two clean, of ten | 8 dancing, 4 following |
+/// | .70 | Six scrapes and four clean, of ten | All 12 dancing |
+/// | .75 | Every phrase loose | All 12 dancing, 6 of them celebrating |
+/// | .80 | Two drops, of six; or four, of ten | Full swing: 12 celebrating, props on the beat |
+/// | 1.0 | Every phrase clean | Full swing |
+///
+/// The average that counts is the one at the phrase before the clear, because
+/// movement takes a phrase to land.
+///
+/// This reads the score and never changes it. The numbers are artistic starting
+/// values for tuning, not findings.
 abstract final class CrowdEngagement {
   /// Timing spread that makes a fully hit phrase [PhraseGrade.loose]. Taps
   /// scattered evenly over +/-140 ms give about this; a steady player sits well
@@ -132,8 +148,8 @@ abstract final class CrowdEngagement {
   /// The same line as the progression report's "at least half PERFECT".
   static const excellentPerfectShare = .5;
 
-  /// A guest stands at .72; clean gain is sized to pass that with the least
-  /// receptive guest, in the phrases set by [phrasesToFull].
+  /// Gains scale a guest's clean step, which is sized to bring the least receptive
+  /// guest to this interest in the phrases set by [phrasesToFull].
   static const engagedInterest = .74;
   static const leastReceptive = .94;
 
@@ -142,50 +158,100 @@ abstract final class CrowdEngagement {
   /// room and every reaction lands before the exit shot samples the guests.
   static const firstGuestArcShare = .5;
 
-  static const scrappyGain = .35;
-  static const looseGain = .6;
-  static const cleanGain = 1.0;
+  /// How fast guests climb to what the average allows. They barely differ, because
+  /// the ceilings below are what cool the room, not the pace. Sized so that a run
+  /// reaching [fullSwingAverage] late has the last guest on their feet already,
+  /// with time to celebrate before the clear.
+  static const scrappyGain = 1.1;
+  static const looseGain = 1.2;
+  static const cleanGain = 1.35;
 
-  /// Sized so an all-excellent run takes the last guest past .90, celebrating.
-  static const excellentGain = 1.25;
+  /// Faster than clean, and never needed: a clean run gets to the same place.
+  static const excellentGain = 1.5;
 
-  /// An optional move on a phrase that isn't clean still adds this much.
+  /// An optional move on a phrase that isn't clean still adds this much interest.
   static const gestureFlair = .15;
 
-  /// What each phrase is worth to the room's standing, averaged over every phrase
-  /// played in the level. It's an average so that retrying can't buy the room back:
-  /// a poor run lasts longer, and would otherwise climb on length alone.
+  /// What each phrase is worth to the room, averaged over every phrase played in
+  /// the level. It's an average so that retrying can't buy the room back: a poor
+  /// run lasts longer, and would otherwise climb on length alone.
   static const failedCredit = 0.0;
   static const scrappyCredit = .5;
   static const looseCredit = .75;
 
-  /// Guests stand at this interest, the first in once the average reaches
-  /// [firstGuestStandsAt] and the last once it reaches [lastGuestStandsAt].
-  static const standingInterest = .72;
-  static const firstGuestStandsAt = .65;
-  static const lastGuestStandsAt = .90;
+  /// An optional move lifts a scrappy or loose phrase's credit by this much. Clean
+  /// phrases are already worth 1, so ignoring optional moves locks nothing away.
+  static const gestureCredit = .1;
 
-  /// A run that isn't flawless stops here: everyone up, nobody celebrating, and
-  /// under the .82 floor where a celebrating guest settles back.
-  static const cleanCeiling = .80;
+  /// The warm floor: this many of [CrowdInterestModel.castSize] guests dance at
+  /// any clear, however poor the run. Four leaves the room lopsided, because the
+  /// order fills the left side first; the fifth guest balances it at three to two.
+  static const warmFloorGuests = 5;
+
+  /// Where the floor's last guest falls in the order, 0 first to 1 last.
+  static const warmFloorPosition =
+      (warmFloorGuests - 1) / (CrowdInterestModel.castSize - 1);
+
+  /// Everyone past the floor sits and follows at any clear, and nobody is left
+  /// occupied. Above every guest's following line, under the .64 where a guest
+  /// who has stood sits back down.
+  static const warmFollowingInterest = .60;
+
+  /// From this average the guests past the floor start to stand, one after
+  /// another, until every guest is up at [allStandingAverage].
+  static const warmAverage = .5;
+  static const allStandingAverage = .70;
+
+  /// Guests who may stand stop here: on their feet, not celebrating, and under the
+  /// .82 where a celebrating guest settles back. High enough that one failed phrase
+  /// doesn't seat them.
+  static const standingCeiling = .80;
+
+  /// From this average guests begin to celebrate, one after another, until every
+  /// guest is celebrating at [fullSwingAverage].
+  static const firstGuestCelebratesAt = .70;
+
+  /// The top: the whole room celebrating, and the props dancing on the beat. A
+  /// clean run is 1.0. On six phrases this allows two drops, or a failure and a
+  /// loose phrase. On ten, four drops. Every phrase loose is .75, just short of it.
+  static const fullSwingAverage = .80;
+
+  /// Where a guest allowed to celebrate gets to, clear of the .90 line.
+  static const celebratingInterest = .95;
 
   /// Per phrase, on guests above what the room's average supports. Slow on purpose,
   /// and each state's floor adds hysteresis on top.
   static const overCeilingDrain = .04;
   static const failedRoomDrain = .05;
 
-  /// The flawless reveal starts once this share of a clean run has been played.
+  /// The props' reveal can start once this share of a clean run's passes is in.
   static const swingStartShare = 1 / 3;
 
-  /// How long props take to settle back once a run stops being flawless.
+  /// How long props take to settle back if the average falls below the top.
   static const swingFadeBeats = 48.0;
 
-  static double credit(PhraseGrade grade) => switch (grade) {
-    PhraseGrade.failed => failedCredit,
-    PhraseGrade.scrappy => scrappyCredit,
-    PhraseGrade.loose => looseCredit,
-    PhraseGrade.clean || PhraseGrade.excellent => 1.0,
-  };
+  static double credit(PhraseGrade grade, {bool gesture = false}) {
+    final flair = gesture ? gestureCredit : 0.0;
+    return switch (grade) {
+      PhraseGrade.failed => failedCredit,
+      PhraseGrade.scrappy => scrappyCredit + flair,
+      PhraseGrade.loose => looseCredit + flair,
+      PhraseGrade.clean || PhraseGrade.excellent => 1.0,
+    };
+  }
+
+  /// The average at which this guest may stand, [position] 0 first in to 1 last.
+  /// Zero for the warm floor's guests, who may stand at any average.
+  static double standsAt(double position) {
+    if (position <= warmFloorPosition) return 0;
+    final t = (position - warmFloorPosition) / (1 - warmFloorPosition);
+    return warmAverage + (allStandingAverage - warmAverage) * t;
+  }
+
+  /// The average at which this guest may celebrate.
+  static double celebratesAt(double position) =>
+      firstGuestCelebratesAt +
+      (fullSwingAverage - firstGuestCelebratesAt) * position;
 
   static PhraseGrade grade(bool passed, PhraseReport report) {
     if (!passed) return PhraseGrade.failed;
@@ -214,21 +280,17 @@ abstract final class CrowdEngagement {
 
 /// Room-level state of the arc, saved and restored with the crowd checkpoint.
 class _RoomArc {
-  int flaws = 0;
-  int excellent = 0;
   int phrases = 0;
+  int passes = 0;
   double credit = 0;
-
-  /// A clean phrase becomes a flaw only at the next phrase, because the last
-  /// note's flick can land just after its phrase resolves.
-  bool pendingFlaw = false;
   PhraseGrade? lastGrade;
   bool lastHadGesture = false;
-  bool swingStarted = false;
   double swingFrom = 0;
   double swingTo = 0;
   double swingStart = 0;
   double swingBeats = 1;
+
+  double get average => phrases == 0 ? 0 : credit / phrases;
 
   double swingAt(double beat) =>
       swingFrom +
@@ -243,14 +305,11 @@ class _RoomArc {
   }
 
   _RoomArc copy() => _RoomArc()
-    ..flaws = flaws
-    ..excellent = excellent
     ..phrases = phrases
+    ..passes = passes
     ..credit = credit
-    ..pendingFlaw = pendingFlaw
     ..lastGrade = lastGrade
     ..lastHadGesture = lastHadGesture
-    ..swingStarted = swingStarted
     ..swingFrom = swingFrom
     ..swingTo = swingTo
     ..swingStart = swingStart
@@ -384,9 +443,11 @@ class CrowdInterestModel {
   _RoomArc _arc = _RoomArc();
   int get guestCount => _guests.length;
 
-  /// Every phrase so far excellent, with at least one played. Decides nothing
-  /// but the room's look.
-  bool get flawless => _arc.phrases > 0 && _arc.flaws == 0 && !_arc.pendingFlaw;
+  /// The level's average phrase credit so far. Decides nothing but the room's look.
+  double get averageCredit => _arc.average;
+
+  /// Whether the average is at the top right now.
+  bool get fullSwingEarned => _arc.average >= CrowdEngagement.fullSwingAverage;
   PhraseGrade? get lastGrade => _arc.lastGrade;
 
   /// How far the top of the ladder has arrived, 0 to 1: staff and props dancing.
@@ -501,24 +562,12 @@ class CrowdInterestModel {
     _support = (_support + (passed ? 1 / rampPhrases : -.035)).clamp(0.0, 1.0);
     final phrase = report ?? PhraseReport.plain;
     final grade = CrowdEngagement.grade(passed, phrase);
-    if (_arc.pendingFlaw) {
-      _arc.pendingFlaw = false;
-      _addFlaw(beat);
-    }
     _arc.phrases++;
-    _arc.credit += CrowdEngagement.credit(grade);
+    if (passed) _arc.passes++;
     _arc.lastGrade = grade;
     _arc.lastHadGesture = phrase.gestures > 0;
-    switch (grade) {
-      case PhraseGrade.excellent:
-        _creditExcellent(beat);
-      case PhraseGrade.clean:
-        if (_arc.flaws == 0) _arc.pendingFlaw = true;
-      case PhraseGrade.failed:
-      case PhraseGrade.scrappy:
-      case PhraseGrade.loose:
-        _addFlaw(beat);
-    }
+    _arc.credit += CrowdEngagement.credit(grade, gesture: _arc.lastHadGesture);
+    _moveSwing(beat);
     final flair = _arc.lastHadGesture ? CrowdEngagement.gestureFlair : 0.0;
     _moveGuests(beat, grade, switch (grade) {
       PhraseGrade.failed => 0,
@@ -545,9 +594,7 @@ class CrowdInterestModel {
     _arc.lastHadGesture = true;
     switch (grade) {
       case PhraseGrade.clean:
-        _arc.pendingFlaw = false;
         _arc.lastGrade = PhraseGrade.excellent;
-        _creditExcellent(beat);
         _moveGuests(
           beat,
           PhraseGrade.excellent,
@@ -555,6 +602,8 @@ class CrowdInterestModel {
         );
       case PhraseGrade.scrappy:
       case PhraseGrade.loose:
+        _arc.credit += CrowdEngagement.gestureCredit;
+        _moveSwing(beat);
         _moveGuests(beat, grade, CrowdEngagement.gestureFlair, drain: false);
       case PhraseGrade.excellent:
       case PhraseGrade.failed:
@@ -563,22 +612,24 @@ class CrowdInterestModel {
     return true;
   }
 
-  void _addFlaw(double beat) {
-    _arc.flaws++;
-    if (_arc.swingStarted && _arc.swingTo > 0) {
-      _arc.moveSwing(beat, 0, CrowdEngagement.swingFadeBeats);
+  /// Props follow the average. A slip that leaves it at the top changes nothing.
+  /// One that takes it below starts a slow fade, and climbing back reverses it.
+  void _moveSwing(double beat) {
+    if (!fullSwingEarned) {
+      if (_arc.swingTo > 0) {
+        _arc.moveSwing(beat, 0, CrowdEngagement.swingFadeBeats);
+      }
+      return;
     }
-  }
-
-  void _creditExcellent(double beat) {
-    if (_arc.flaws > 0) return;
-    _arc.excellent++;
     final start = (arcPhrases * CrowdEngagement.swingStartShare).ceil();
-    if (_arc.swingStarted || _arc.excellent < start) return;
-    _arc.swingStarted = true;
+    if (_arc.swingTo >= 1 || _arc.passes < start) return;
     // One long entrance timed to arrive a phrase before the clear, so the last
     // proof phrase is the moment a player looks up and finds it all dancing.
-    _arc.moveSwing(beat, 1, math.max(1, arcPhrases - 1 - start) * phraseBeats);
+    _arc.moveSwing(
+      beat,
+      1,
+      math.max(1, arcPhrases - 1 - _arc.passes) * phraseBeats,
+    );
   }
 
   void _moveGuests(
@@ -602,31 +653,40 @@ class CrowdInterestModel {
       var next = g.interest;
       if (grade == PhraseGrade.failed) {
         next -= CrowdEngagement.failedRoomDrain;
-      } else if (next < limit) {
-        next = math.min(limit, next + cleanStep * gain);
-      } else if (drain) {
-        next = math.max(limit, next - CrowdEngagement.overCeilingDrain);
+      } else {
+        if (next < limit) {
+          next = math.min(limit, next + cleanStep * gain);
+        } else if (drain) {
+          next = math.max(limit, next - CrowdEngagement.overCeilingDrain);
+        }
+        next = math.max(next, _earned(position, limit));
       }
       g.interest = next.clamp(0.0, maxInterest);
       _change(i, beat);
     }
   }
 
-  /// How high this guest can go. Only an unbroken run can hold the top slice;
-  /// otherwise the level's average so far decides who stays on their feet.
+  /// How high this guest can go, from the level's average so far.
   double _ceiling(double position) {
-    if (_arc.flaws == 0) return 1;
-    final average = _arc.credit / _arc.phrases;
-    final standsAt =
-        CrowdEngagement.firstGuestStandsAt +
-        (CrowdEngagement.lastGuestStandsAt -
-                CrowdEngagement.firstGuestStandsAt) *
-            position;
-    return (CrowdEngagement.standingInterest + average - standsAt).clamp(
-      0.0,
-      CrowdEngagement.cleanCeiling,
-    );
+    final average = _arc.average;
+    if (average >= CrowdEngagement.celebratesAt(position)) return 1;
+    return average >= CrowdEngagement.standsAt(position)
+        ? CrowdEngagement.standingCeiling
+        : CrowdEngagement.warmFollowingInterest;
   }
+
+  /// The least a guest holds after a pass: their ceiling, earned one pass at a time
+  /// over the arc. This is what makes the ladder hold at the clear, however the
+  /// run got there. Failures can't hold a guest under it for long, because a clear
+  /// takes at least [arcPhrases] passes, and a failure leaves at least two passes
+  /// to go, so one can't land right before the exit shot. A late recovery catches
+  /// up here too.
+  double _earned(double position, double ceiling) =>
+      math.min(ceiling, CrowdEngagement.celebratingInterest) *
+      math.min(
+        1.0,
+        _arc.passes / CrowdEngagement.phrasesToFull(position, arcPhrases),
+      );
 
   void stumble(int index, double beat) {
     for (final (i, loss) in [

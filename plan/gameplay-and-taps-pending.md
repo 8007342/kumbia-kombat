@@ -6,27 +6,41 @@ Audit, 2026-11-06. Nothing here is built by this document. One agent read the li
 
 ## Crowd engagement ruling, built on `work/1844-crow`
 
-The owner's ruling (`owner-rulings-2026-11-05.md:139`) is in the game. Closed or narrowed by this work:
+The owner's ruling (`owner-rulings-2026-11-05.md:139`) is in the game, as revised by the leniency ruling (`:143`) on `work/1847-lenn`. Closed or narrowed by this work:
 
 | Row | Status now |
 |---|---|
-| #32 Crowd arc | **Closed.** Every shipped room's budget is 12, so the arc runs from occupied to all guests on their feet by the phrase before a clean clear |
-| #34 Full swing for skilful players | **Closed for what's drawn.** Flawless play ends with every guest celebrating and the separately drawn umbrellas, plants, candles and waiter moving to the beat. Props painted into the plates still wait on #37 |
+| #32 Crowd arc | **Closed.** Every shipped room's budget is 12. Every clear ends warm: at least 5 of 12 dancing and nobody left occupied. A clean run has everyone up and celebrating by the phrase before the clear |
+| #34 Full swing for skilful players | **Closed for what's drawn, and now lenient.** A level average of .80 or better, at the phrase before the clear, ends with every guest celebrating and the separately drawn umbrellas, plants, candles and waiter moving to the beat. A clean run reaches it. Props painted into the plates still wait on #37 |
 | #25 Phrase report | **Closed for the crowd.** `PhraseReport`: hits, perfects, gestures, timing spread |
 | #26 Skill measure | **Narrowed.** Phrase grades and a level-long average replace Sway and Heat for the crowd. Nothing yet carries between rooms, and #27 and #29 are still open |
 | #37 Everything parties up | **Narrowed.** Only the top of the ladder, on existing props. Every player's slow party-up by tier is still open |
 | #42 Identical outcomes | **Closed for the crowd and optional moves.** Scene effects on or off still has no test |
-| D9, D11, D12 | **Answered by the ruling:** excellent taps or gestures; a clean run ends fully engaged; props dance only at the top |
+| D9, D11, D12 | **Answered by the rulings:** a good average, with no gestures needed, though gestures can lift a scrappy or loose phrase; every clear ends warm; props dance only at the top |
 
 Still open from this area: #33 pointing, #35 sound rewards, #30 the Pizazz credit key. A recovering player's flick now counts for the crowd but still earns no points.
 
-Rules and numbers are named constants in `CrowdEngagement`, `lib/gameplay/crowd_interest.dart`. `?autoplay=flawless` shows the top of the ladder; plain AutoPlay stays imperfect and clears partly engaged.
+Who gets what, by the level's average phrase credit (clean or excellent 1, loose .75, scrappy .5, failed 0; an optional move adds .1 to a loose or scrappy phrase):
+
+| Average | Example | The room at the clear |
+|---|---|---|
+| Below .50 | Failures and scrapes | 5 dancing, 7 seated and following |
+| .50 | A scrape on every phrase | The same 5 and 7 |
+| .60 | Eight scrapes and two clean, of ten | 8 dancing, 4 following |
+| .70 | Six scrapes and four clean, of ten | All 12 dancing |
+| .75 | Every phrase loose | All 12 dancing, 6 celebrating, props still |
+| .80 | Two drops, of six; or four, of ten | Full swing: 12 celebrating, props on the beat |
+| 1.0 | Every phrase clean | Full swing |
+
+A slip that leaves the average at .80 changes nothing. One that takes it below starts a 48-beat fade, and climbing back reverses it. These are artistic starting values, not findings.
+
+Rules and numbers are named constants in `CrowdEngagement`, `lib/gameplay/crowd_interest.dart`. `?autoplay=flawless` shows the top of the ladder; plain AutoPlay stays imperfect and clears warm, short of the top.
 
 ## The short version
 
 - **The tap itself is solid. Almost everything the owner asked for on top of it isn't built.** Today's input is one tap, plus one flick that does the same spin in any direction.
 - **Do these next:** fix two small credit bugs and add the safety test, then build the shared drag recogniser with sideways spins. Details are under "Recommended order".
-- **Three things need the owner soon:** what makes a player count as skilful for full swing, how engaged a cleared room must look, and whether the "Yes I approve" covers the touch report's recommendations.
+- **One thing needs the owner soon:** whether the "Yes I approve" covers the touch report's recommendations. What makes a player skilful and how engaged a cleared room must look are now ruled, above.
 
 ## What counts as approved
 
