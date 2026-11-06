@@ -71,3 +71,21 @@ As the game progresses, the music gains complexity and the party stands up and d
 The method comes from sibling project ranitas: movement introduced without players noticing. See its `docs/quiet-awakening.md` and `docs/research.md` (slow change blindness, Simons, Franconeri & Reimer 2000; Frey et al. 2024). Its own limits carry over: slow changes can escape attention, but nothing guarantees every player misses them, and its timings are artistic choices, not study results. New layers fade in at their final anchors, movement amplitude grows separately, entrances use quintic smootherstep, and motion is never switched on at full speed. Reduced motion still applies.
 
 Layers, the same day: backgrounds and some assets may be regenerated into layers. Party members, umbrellas, cups with straws that dance at full swing, plants, candles and lights can be shared between levels, so they are worth the compute. "it's fine to spend some compute on them"
+
+## Sixth round, 2026-11-06: the room is the meter, and dance input grows
+
+| Topic | Ruling | Owner's words |
+|---|---|---|
+| Tempo | Tiers keep speeding up | "Let's try to keep the speed up" |
+| Music styles | Each level has its own style, with more variety later | "different musical styles for each level are fine" |
+| Meter | The room is the meter. The top progress bar can go | "we'll use the room as the meter, we can even remove the progress bar from the top" |
+| Sound rewards | Cheers, whistles or clapping answer flourishes and optional arrangements | "add the cheers, whistling, or clapping sounds" |
+| Crowd pointing | Reserved for successful flourishes, or for the change from uninterested to interested | "uninterested->oh!_look!(*points)->now_interested" |
+| Crowd arc | The party starts uninterested and is engaged by the time a level clears | "should start uninterested and be engaged by the tame we clear a level" |
+| Input | Optional taps and tap+drag gestures: sideways for spins, a semi-circle for a hand wave, up and down for a foot stomp. Complex traces for skilled players later, such as a left hand tap then a W to the right. Animations match the gesture | "tap+drag sideways for spins, then tap+semi-circle for a handhave, or tap+up_and_down for a foot stomp" |
+| Signature moves | Each dance style has signature moves, made intuitive by its gesture, with fast precise ones in advanced levels such as swing | "signature moves for each kind of dance" |
+| Opponent | The opponent's dance composition grows to match the player's skill, and the player answers it | "shall increase its dance compositions to match the player skill" |
+| Feedback | Get rid of text messages everywhere. Iconography for taps; colours and highlights for early, late and perfect; colours, highlights and sparks for follow-throughs and adornments. Tap+drag gets its own indicators | "let's try to get rid of text messages everywhere" |
+| Full swing | Every room can reach full swing, for skilful players only. Average players get a warm-ish party with some people dancing, but staff, umbrellas and plants don't dance | "average players should get just a warm-ish party", "skillful play should be clearly rewarded" |
+
+This settles the progression report's decisions: no Heat meter, every room can reach full swing, and optional taps and drags are wanted, so flicks alone are no longer the plan. The report's safety rule still applies: ignoring optional play costs nothing. Mācron's own signature step still comes from the salsa teacher.
