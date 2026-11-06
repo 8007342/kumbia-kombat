@@ -169,5 +169,7 @@ Indoor party takes, blind, the same day: A is far ahead, and A was seed53010. "B
 | Four arrows | Remove that requirement in favour of the latest research | "remove the four arrouws requiremn in favor of our latest research" |
 | Pending work | Approved | "I approve the pending work" |
 
-That approval is taken to cover the recommendations awaiting an answer: the level order garden, pool party, bar, indoor party, with the lawn slowed so the speed keeps building; the indoor party defaults; building ladders from the bar and party winners; layers for the other rooms and party-up for every player. Merging to `game` waits until these fixes land.
+That approval is taken to cover the recommendations awaiting an answer: the level order garden, pool party, bar, indoor party; the indoor party defaults; building ladders from the bar and party winners; layers for the other rooms and party-up for every player. Merging to `game` waits until these fixes land.
+
+Difficulty, the same day: speed is one factor among several, so the lawn keeps its tempos and the dip after it is fine. Levels can be fast and simple, or slow and complex, so long as play complexity keeps rising through the game. "Speed isn't the only factor in level difficulty, we can have fast simple levels, and slow complex levels. Don't worry about reduced speed, as long as the level play complexity increases linearly with gamplay we can get away with this. These soundtracks are complex enough for us to develop gameplay accordingly". So moving the lawn before the bar means the bar's chart has to be the more complex one.
 
