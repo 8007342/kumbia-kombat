@@ -14,7 +14,7 @@ The owner's ruling (`owner-rulings-2026-11-05.md:139`) is in the game. Closed or
 | #34 Full swing for skilful players | **Closed for what's drawn.** Flawless play ends with every guest celebrating and the separately drawn umbrellas, plants, candles and waiter moving to the beat. Props painted into the plates still wait on #37 |
 | #25 Phrase report | **Closed for the crowd.** `PhraseReport`: hits, perfects, gestures, timing spread |
 | #26 Skill measure | **Narrowed.** Phrase grades and a level-long average replace Sway and Heat for the crowd. Nothing yet carries between rooms, and #27 and #29 are still open |
-| #37 Everything parties up | **Narrowed.** Only the top of the ladder, on existing props. Every player's slow party-up by tier is still open |
+| #37 Everything parties up | **Narrowed, and the layer route is proven on the garden** (palm fronds, pier flowers, lanterns, flames; `tool/art/rooms/README.md`, "Layers"). Only the top of the ladder, on existing props. Every player's slow party-up by tier is still open |
 | #42 Identical outcomes | **Closed for the crowd and optional moves.** Scene effects on or off still has no test |
 | D9, D11, D12 | **Answered by the ruling:** excellent taps or gestures; a clean run ends fully engaged; props dance only at the top |
 

@@ -17,6 +17,30 @@
       "notes": "No baked UI or characters; genuine separated parallax layers pending"
     },
     {
+      "id": "garden.background.clean",
+      "file": "garden-mansion-clean.png",
+      "width": 1024,
+      "height": 1536,
+      "format": "RGB PNG",
+      "status": "runtime-candidate-owner-review",
+      "sampling": "nearest",
+      "anchor": [
+        0.5,
+        0.5
+      ],
+      "provenance": "garden-mansion.png with props removed by tool/art/rooms/layers.py; Qwen fills, run layers-garden-20261106",
+      "notes": "Shown under garden-layers.png, not alone; the dance exposes only part of the fill"
+    },
+    {
+      "id": "garden.layers",
+      "file": "garden-layers.png",
+      "format": "RGBA PNG",
+      "status": "runtime-candidate-owner-review",
+      "sampling": "nearest",
+      "provenance": "The painting's own pixels, bent by tool/art/rooms/layers.py; rest frames match it",
+      "notes": "Rows and frames are listed in levels/garden.json, under layers"
+    },
+    {
       "id": "garden.gatekeeper.source",
       "file": "gatekeeper.png",
       "width": 1024,

@@ -1,7 +1,7 @@
 {
   "id": "garden",
   "title": "THE GARDEN",
-  "background": "garden/garden-mansion.png",
+  "background": "garden/garden-mansion-clean.png",
   "music": {
     "score": "garden_mojo",
     "successScore": "garden_mojo_success",
@@ -128,6 +128,20 @@
     ],
     "cue": [
       { "beat": 8, "track": "bump", "pitch": 60, "velocity": 127 }
+    ]
+  },
+  "layers": {
+    "plateWidth": 1024,
+    "plateHeight": 1536,
+    "props": [
+      {"id": "fronds-left", "atlas": "garden/garden-layers.png", "atlasY": 0, "left": 202, "top": 0, "width": 143, "height": 124, "frames": 7, "motion": "sway", "periodBeats": 2, "instance": 1},
+      {"id": "fronds-right", "atlas": "garden/garden-layers.png", "atlasY": 126, "left": 700, "top": 0, "width": 172, "height": 162, "frames": 7, "motion": "sway", "periodBeats": 2, "instance": 2},
+      {"id": "flowers-left", "atlas": "garden/garden-layers.png", "atlasY": 290, "left": 240, "top": 204, "width": 108, "height": 68, "frames": 4, "motion": "pulse", "periodBeats": 1, "instance": 3},
+      {"id": "flowers-right", "atlas": "garden/garden-layers.png", "atlasY": 360, "left": 684, "top": 202, "width": 107, "height": 70, "frames": 4, "motion": "pulse", "periodBeats": 1, "instance": 4},
+      {"id": "lantern-left", "atlas": "garden/garden-layers.png", "atlasY": 432, "left": 151, "top": 150, "width": 60, "height": 83, "frames": 7, "motion": "sway", "periodBeats": 4, "instance": 5},
+      {"id": "lantern-right", "atlas": "garden/garden-layers.png", "atlasY": 517, "left": 846, "top": 150, "width": 60, "height": 83, "frames": 7, "motion": "sway", "periodBeats": 4, "instance": 6},
+      {"id": "flame-left", "atlas": "garden/garden-layers.png", "atlasY": 602, "left": 195, "top": 416, "width": 27, "height": 37, "frames": 4, "motion": "pulse", "periodBeats": 1, "instance": 7},
+      {"id": "flame-right", "atlas": "garden/garden-layers.png", "atlasY": 641, "left": 807, "top": 415, "width": 26, "height": 38, "frames": 4, "motion": "pulse", "periodBeats": 1, "instance": 8}
     ]
   }
 }

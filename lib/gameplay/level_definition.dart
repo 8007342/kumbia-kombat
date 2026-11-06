@@ -13,6 +13,7 @@ import 'progression.dart';
 import 'rhythm.dart';
 import 'exit_shot.dart';
 import 'room_departure.dart';
+import 'room_layers.dart';
 
 /// A level file or the campaign index is wrong. Thrown while loading, so a bad
 /// file stops the game at the door instead of playing as some other room.
@@ -268,6 +269,7 @@ class LevelDefinition {
     required this.routeOriginY,
     required this.copy,
     this.exitShot,
+    this.layers = const [],
   });
 
   final String id;
@@ -289,6 +291,9 @@ class LevelDefinition {
 
   /// The win's celebration and close-up. Levels without one walk straight out.
   final ExitShot? exitShot;
+
+  /// Props cut out of [background], which party up with the room.
+  final List<RoomLayerProp> layers;
 
   PartyPoint heroExitFloor(DeparturePose pose) =>
       PartyPoint(pose.x, stage.heroHome.y + pose.y - routeOriginY);
@@ -454,6 +459,9 @@ class LevelDefinition {
     final exitShot = fields.has('exitShot')
         ? _exitShot(fields.child('exitShot'))
         : null;
+    final layers = fields.has('layers')
+        ? _layers(fields.child('layers'))
+        : const <RoomLayerProp>[];
     fields.finish();
 
     return LevelDefinition(
@@ -477,6 +485,7 @@ class LevelDefinition {
       routeOriginY: routeOriginY,
       copy: copy,
       exitShot: exitShot,
+      layers: layers,
     );
   }
 
@@ -713,6 +722,44 @@ class LevelDefinition {
     );
     fields.finish();
     return prop;
+  }
+
+  static List<RoomLayerProp> _layers(_Fields fields) {
+    final plateWidth = fields.whole('plateWidth', min: 1);
+    final plateHeight = fields.whole('plateHeight', min: 1);
+    final propsPath = fields.at('props');
+    final ids = <String>{};
+    final props = [
+      for (final (i, raw) in fields.list('props').indexed)
+        () {
+          final path = '$propsPath[$i]';
+          final prop = _Fields(path, raw);
+          final layer = RoomLayerProp(
+            id: prop.text('id'),
+            atlas: prop.text('atlas'),
+            atlasY: prop.whole('atlasY', min: 0),
+            left: prop.whole('left', min: 0),
+            top: prop.whole('top', min: 0),
+            width: prop.whole('width', min: 1),
+            height: prop.whole('height', min: 1),
+            frames: prop.whole('frames', min: 2),
+            motion: prop.named('motion', RoomLayerMotion.values),
+            periodBeats: prop.number('periodBeats', min: .25),
+            instance: prop.whole('instance', min: 0),
+          );
+          prop.finish();
+          if (!ids.add(layer.id)) {
+            throw LevelDataError(path, 'duplicate layer id ${layer.id}');
+          }
+          final problem = layer.placementProblem(plateWidth, plateHeight);
+          if (problem != null) {
+            throw LevelDataError(path, '${layer.id} $problem');
+          }
+          return layer;
+        }(),
+    ];
+    fields.finish();
+    return List.unmodifiable(props);
   }
 
   static LevelWaiter _waiter(

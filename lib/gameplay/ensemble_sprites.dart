@@ -228,6 +228,14 @@ String ensembleAmbientFrame(
   return '${kind}_${const ['a', 'b', 'c', 'd', 'c', 'b'][index]}';
 }
 
+/// How far this prop's dance has arrived, 0 to 1, for a crowd swing of [swing].
+/// Each prop wakes at its own point and its range grows from there.
+double partyPropStrength(double swing, int instance) {
+  if (swing <= 0) return 0;
+  final wake = (instance * .371 % 1) * .35;
+  return ((swing - wake) / (1 - wake)).clamp(0.0, 1.0);
+}
+
 /// The top of the ladder: props stop drifting on the wall clock and dance on the
 /// music beat. [swing] is `CrowdInterestModel.partySwing`, already slow and
 /// quintic. It only ever picks frames, so it can't reach the music or the score.
@@ -249,8 +257,7 @@ String ensemblePartyFrame(
     reducedMotion: reducedMotion,
   );
   if (reducedMotion || swing <= 0 || !beat.isFinite || beat < 0) return ambient;
-  final wake = (instance * .371 % 1) * .35;
-  final strength = ((swing - wake) / (1 - wake)).clamp(0.0, 1.0);
+  final strength = partyPropStrength(swing, instance);
   if (strength <= 0) return ambient;
   final periodBeats = switch (kind) {
     'umbrella' => 4.0,

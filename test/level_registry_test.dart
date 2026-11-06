@@ -226,6 +226,9 @@ void main() {
       for (final step in levels.campaign) {
         final level = step.level;
         expect(File('assets/art/${level.background}').existsSync(), isTrue);
+        for (final prop in level.layers) {
+          expect(File('assets/art/${prop.atlas}').existsSync(), isTrue);
+        }
         for (final score in [
           level.music.score,
           level.music.successScore,

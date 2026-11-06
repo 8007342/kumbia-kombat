@@ -57,10 +57,20 @@ Future<Map<String, Object?>> _fingerprint(
   final session = level.newSession(music, audio);
   scene.session = session;
 
+  // Layers are the one thing added since this was recorded, and have their own
+  // tests. Leaving them out proves everything else is still where it was.
+  final layerDraws = {
+    for (final prop in level.layers)
+      () {
+        final atlas = scene.images.fromCache(prop.atlas);
+        return 'drawImageRect image:${atlas.width}x${atlas.height} ';
+      }(),
+  };
   final samples = <String, Object?>{};
   void sample(String label) {
     final canvas = RecordingCanvas();
     scene.render(canvas);
+    canvas.calls.removeWhere((call) => layerDraws.any(call.startsWith));
     samples[label] = {
       'beat': RecordingCanvas.round(session.positionBeats),
       'phase': session.phase.name,

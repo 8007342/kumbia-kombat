@@ -137,6 +137,9 @@ class GardenSceneGame extends FlameGame {
     for (final image in level.exitShot?.images ?? const <String>[]) {
       await images.load(image);
     }
+    for (final prop in level.layers) {
+      await images.load(prop.atlas);
+    }
     if (generation != _roomGeneration) return;
     _level = level;
     _background = loaded;
@@ -286,6 +289,7 @@ class GardenSceneGame extends FlameGame {
       ),
       ui.Paint()..filterQuality = ui.FilterQuality.none,
     );
+    _drawRoomLayers(canvas, viewport, beat);
     final bounds = ui.Rect.fromLTWH(
       0,
       0,
@@ -451,12 +455,41 @@ class GardenSceneGame extends FlameGame {
   }
 
   /// The crowd's flawless reveal, easing back out as the room cools at the win.
+  double _partySwing(double beat) =>
+      (session?.crowd.partySwing(beat) ?? 0) * (1 - warmDown);
+
+  /// Props cut out of the plate. They sit on it, under the shading and all the
+  /// people, exactly as they did when they were painted into it.
+  void _drawRoomLayers(ui.Canvas canvas, PartyViewport viewport, double beat) {
+    final swing = _partySwing(beat);
+    final paint = ui.Paint()..filterQuality = ui.FilterQuality.none;
+    for (final prop in _level!.layers) {
+      final frame = prop.frameAt(
+        beat: beat,
+        swing: swing,
+        reducedMotion: reducedMotion,
+      );
+      final at = prop.screenRect(viewport);
+      canvas.drawImageRect(
+        images.fromCache(prop.atlas),
+        ui.Rect.fromLTWH(
+          prop.atlasX(frame).toDouble(),
+          prop.atlasY.toDouble(),
+          prop.width.toDouble(),
+          prop.height.toDouble(),
+        ),
+        ui.Rect.fromLTWH(at.left, at.top, at.width, at.height),
+        paint,
+      );
+    }
+  }
+
   String _propFrame(String kind, int instance, double beat) =>
       ensemblePartyFrame(
         kind,
         _foregroundSeconds,
         beat: beat,
-        swing: (session?.crowd.partySwing(beat) ?? 0) * (1 - warmDown),
+        swing: _partySwing(beat),
         instance: instance,
         reducedMotion: reducedMotion,
       );
