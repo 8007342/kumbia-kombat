@@ -85,6 +85,6 @@ for(const entry of all){
 }
 assert.equal(signatures.size,6,'All room lead compositions differ');
 assert.equal(transitionSignatures.size,14,'Every success and bridge has distinct composed content');
-assert.equal(readdirSync(resolve(root,'assets/music/midi')).filter(f=>f.endsWith('.mid')).length,41);
+assert.equal(readdirSync(resolve(root,'assets/music/midi')).filter(f=>f.endsWith('.mid')).length,44);
 assert.equal(readdirSync(resolve(root,'assets/music/scores')).filter(f=>f.endsWith('.json')).length,17);
 console.log(`PASS: 6 room scores + 7 successes + 7 bridges, ${notes} valid notes; ${midiCount} MIDI files parsed with balanced attacks/releases; distinct transition phrases and pitched destination pickups`);
