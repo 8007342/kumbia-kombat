@@ -2,6 +2,8 @@
 
 **Draft, 2026-11-06, for the owner. Nothing here is approved yet.**
 
+**Defaults approved by the owner, 2026-11-06:** QUÉ FLOW, soft moving light on walls and windows with no mirror ball yet, the lead's violet jacket over a guayabera, top tempo 136 with 124 as the fallback, and shipping without the signature step if the video is late.
+
 **Owner's answer, the same day:** old level numbers are dropped and levels go by "next level". This room is the next level, the indoor party, after the garden, pool party and bar. Section 1's question is settled. The bathroom rush moves late, with more levels before it, possibly as a boss battle: "defeat every previous opponent in their hardest dance combo to switch places in the bathroom queue". So every opponent built from here on should have a named hardest combo in its data, ready for that level. `plan/owner-rulings-2026-11-05.md`, ninth round.
 
 Labels: **[F]** fact, checked in the repo or a tool. **[P]** my proposal. **[E]** my estimate, built from the measured number it names.
