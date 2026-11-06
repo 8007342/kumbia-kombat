@@ -2,6 +2,8 @@
 
 **Draft, 2026-11-06, for the owner. Nothing here is approved yet.**
 
+**Owner's cast decision, 2026-11-06, overrides the lead dancer and earned moment below:** the opponent is the BlinBlin dancer, a man with lots of bling whose chains swing as he dances. He dances backwards, facing away, until Mācron enters. On defeat he takes an arms-crossed stance and gives one approving nod; Mācron takes the same stance on the other side of the shot and nods as coolly. So the close-up beat is the matched nod, with the title on it, not a foot stamp. Chains need secondary motion, which the pipeline hasn't done yet: treat them as a puppeted layer driven by the beat. Name a hardest combo for him for the late bathroom boss. The level after this is a billiards room where people play pool, uninterested, in the background, with the PoolPlayer dancer using a cue stick as a dancing prop.
+
 **Defaults approved by the owner, 2026-11-06:** QUÉ FLOW, soft moving light on walls and windows with no mirror ball yet, the lead's violet jacket over a guayabera, top tempo 136 with 124 as the fallback, and shipping without the signature step if the video is late.
 
 **Owner's answer, the same day:** old level numbers are dropped and levels go by "next level". This room is the next level, the indoor party, after the garden, pool party and bar. Section 1's question is settled. The bathroom rush moves late, with more levels before it, possibly as a boss battle: "defeat every previous opponent in their hardest dance combo to switch places in the bathroom queue". So every opponent built from here on should have a named hardest combo in its data, ready for that level. `plan/owner-rulings-2026-11-05.md`, ninth round.

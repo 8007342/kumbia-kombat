@@ -173,3 +173,15 @@ That approval is taken to cover the recommendations awaiting an answer: the leve
 
 Difficulty, the same day: speed is one factor among several, so the lawn keeps its tempos and the dip after it is fine. Levels can be fast and simple, or slow and complex, so long as play complexity keeps rising through the game. "Speed isn't the only factor in level difficulty, we can have fast simple levels, and slow complex levels. Don't worry about reduced speed, as long as the level play complexity increases linearly with gamplay we can get away with this. These soundtracks are complex enough for us to develop gameplay accordingly". So moving the lawn before the bar means the bar's chart has to be the more complex one.
 
+## Eleventh round, 2026-11-06: the next two opponents
+
+| Topic | Ruling | Owner's words |
+|---|---|---|
+| Cast names | The GateKeeper, The Bartender, The Girls, the BlinBlin dancer, the PoolPlayer dancer. "The Girls" is respectful, for women of any age, and a mix of ages is welcome | "they're \"the girls\" respectfully", "mixed age works great" |
+| Indoor party opponent | A male dancer with lots of bling, dancing backwards until Mācron enters. His chains swing as he dances | "a male dancer with lots of blin'-blin', initially dancing backwards, until Mācron enters the scene", "whose chains shall swing around as he dances" |
+| Indoor party cinematic | On defeat he takes an arms-crossed stance with an approving nod. Mācron takes a similar stance on the other side of the shot, nods just as coolly and gets his approval | "will do an arms crossed stance with an approvatory head knod, with Mācron doing a similiar stance on the other side of the cinematic transition" |
+| Level after it | A billiards room. People play pool in the background, uninterested, and a PoolPlayer dancer stops Mācron, using the cue stick as a dancing artifact | "our next levels grow in complexity" |
+| Working style | Push durable work often, tell macuahuitl-fedora about shortcomings, and send it occasional status updates | "push durable work to remote often", "let macuahuitl-fedora of any shortcomings" |
+
+This replaces the plan's lead dancer and the foot-stamp cinematic. The left and right flankers can stay as the mixed-age circle.
+
