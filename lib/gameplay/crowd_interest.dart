@@ -186,6 +186,10 @@ abstract final class CrowdEngagement {
   /// phrases are already worth 1, so ignoring optional moves locks nothing away.
   static const gestureCredit = .1;
 
+  /// How much of a band's sense of the player's form the latest phrase replaces.
+  /// A clean run reaches .9 in about eight phrases of a level's eleven.
+  static const formWeight = .25;
+
   /// The warm floor, in a cast of [CrowdInterestModel.castSize]: this many dance at
   /// any clear, however poor the run. Four leaves the room lopsided, because the
   /// order fills the left side first; the fifth guest balances it at three to two.
@@ -297,6 +301,10 @@ class _RoomArc {
   int phrases = 0;
   int passes = 0;
   double credit = 0;
+
+  /// The player's recent form, 0 to 1: unlike [average], it forgets, so a player
+  /// who improves shows it. Only a band reads it.
+  double form = 0;
   PhraseGrade? lastGrade;
   bool lastHadGesture = false;
   double swingFrom = 0;
@@ -322,6 +330,7 @@ class _RoomArc {
     ..phrases = phrases
     ..passes = passes
     ..credit = credit
+    ..form = form
     ..lastGrade = lastGrade
     ..lastHadGesture = lastHadGesture
     ..swingFrom = swingFrom
@@ -470,6 +479,9 @@ class CrowdInterestModel {
   /// The level's average phrase credit so far. Decides nothing but the room's look.
   double get averageCredit => _arc.average;
 
+  /// How well the last few phrases went, 0 to 1. Decides nothing but a band's look.
+  double get recentForm => _arc.form;
+
   /// Whether the average is at the top right now.
   bool get fullSwingEarned => _arc.average >= CrowdEngagement.fullSwingAverage;
   PhraseGrade? get lastGrade => _arc.lastGrade;
@@ -591,7 +603,9 @@ class CrowdInterestModel {
     if (passed) _arc.passes++;
     _arc.lastGrade = grade;
     _arc.lastHadGesture = phrase.gestures > 0;
-    _arc.credit += CrowdEngagement.credit(grade, gesture: _arc.lastHadGesture);
+    final credit = CrowdEngagement.credit(grade, gesture: _arc.lastHadGesture);
+    _arc.credit += credit;
+    _arc.form += (credit - _arc.form) * CrowdEngagement.formWeight;
     _moveSwing(beat);
     final flair = _arc.lastHadGesture ? CrowdEngagement.gestureFlair : 0.0;
     _moveGuests(beat, grade, switch (grade) {

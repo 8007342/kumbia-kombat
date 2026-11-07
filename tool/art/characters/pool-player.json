@@ -1,16 +1,16 @@
 {
- "$comment": "DRAFT for the owner, 2026-11-07: the PoolPlayer dancer of the billiards room, who stops Macron and dances with a cue stick. Age, look and pronouns are proposals. They/them until the owner states otherwise. The cue is in the sheet's words for now: the frames stage still needs a prop kind for it, since the pipeline refuses 'cue'.",
+ "$comment": "The Pool Player, the billiards room opponent. The owner accepted sheets 989001 (front) and 989101 and 989103 (back; the second is back-alt.png) on 2026-11-07. The cue is in the words only: the pipeline needs a cue prop kind before any frames.",
  "id": "pool-player",
  "family": "pool-player-v1",
  "style": "party-pixel",
- "description": "Billiards room opponent, the PoolPlayer dancer: an elegant adult of about sixty, a player of long standing who uses a cue stick as a dancing prop.",
+ "description": "Billiards room opponent, The Pool Player: an elegant adult of about sixty, a player of long standing who uses a cue stick as a dancing prop.",
  "body": {
   "preset": "slim-adult"
  },
  "pronouns": [
-  "they",
-  "them",
-  "their"
+  "she",
+  "her",
+  "her"
  ],
  "skin": "#8C5A3C",
  "traits": "elegant upright adult woman of about sixty, a calm knowing smile, silver hair in a neat bob",

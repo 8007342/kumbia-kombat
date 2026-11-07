@@ -6,7 +6,9 @@ import 'package:flutter/services.dart';
 
 import '../music/accent_voice.dart';
 import '../music/transport.dart';
+import 'band.dart';
 import 'crowd_interest.dart';
+import 'dance_floor.dart';
 import 'garden_session.dart';
 import 'gesture_shapes.dart';
 import 'party_layout.dart';
@@ -174,8 +176,12 @@ class LevelChallenger {
     this.track,
     this.stature = 1,
     this.meetMark,
+    this.facingAway,
   });
   final FloorTrack? track;
+
+  /// Dancing with their back to the room until the first call, if they do.
+  final FacingAway? facingAway;
 
   /// Where this dancer steps in to meet the hero when the level is won. Her
   /// [yieldMark] is off the floor, too far for the shot's walk to reach.
@@ -202,6 +208,37 @@ class LevelChallenger {
   }
 }
 
+/// A dancer who starts with their back to the room, then turns to face it just
+/// as the first call starts. Reads the music's beat, and only picks a drawing.
+class FacingAway {
+  const FacingAway({
+    required this.back,
+    required this.turn,
+    required this.turnBeats,
+  });
+  final FloorClip back;
+
+  /// The turn, in order, ending just before they face front.
+  final List<String> turn;
+  final double turnBeats;
+
+  Iterable<String> get frames => [...back.frames, ...turn];
+
+  /// Their drawing during the intro, or null once they've turned around.
+  /// Reduced motion keeps their back to the room, then cuts to the front.
+  String? frameAt(double beat, double introBeats, {bool reducedMotion = false}) {
+    if (beat >= introBeats) return null;
+    final into = beat - (introBeats - turnBeats);
+    if (into < 0 || reducedMotion) {
+      return back.at(beat, reducedMotion: reducedMotion);
+    }
+    return turn[(into / turnBeats * turn.length).floor().clamp(
+      0,
+      turn.length - 1,
+    )];
+  }
+}
+
 class LevelStage {
   const LevelStage({
     required this.heroHome,
@@ -211,9 +248,13 @@ class LevelStage {
     PartyPoint? heroWatch,
     PartyPoint? heroAside,
     this.duet,
+    this.heroEntersAt = 0,
   }) : heroWatch = heroWatch ?? heroHome,
        heroAside = heroAside ?? heroWatch ?? heroHome;
   final PartyPoint heroHome;
+
+  /// The beat he starts walking in, so a room can be seen without him first.
+  final double heroEntersAt;
 
   /// Where the hero starts walking in from during the intro.
   final PartyPoint heroEntrance;
@@ -275,12 +316,30 @@ class LevelWaiter {
   final double swayX;
 }
 
+/// Soft light moving slowly over walls and windows, on the music's beat. Clipped
+/// to [zones], which can't reach the tap band or the quiet area behind the
+/// opponent. Never a flash: its brightness only follows the room's waking.
+class WallLight {
+  const WallLight({required this.zones, required this.periodBeats});
+  final List<List<PartyPoint>> zones;
+  final double periodBeats;
+}
+
 class LevelScenery {
   const LevelScenery({
     required this.lamps,
     required this.plants,
     required this.waiter,
+    this.platform,
+    this.band,
+    this.wallLight,
   });
+
+  /// A raised floor painted into the plate, which nobody may stand in front of
+  /// as if it weren't there.
+  final RoomPlatform? platform;
+  final LevelBand? band;
+  final WallLight? wallLight;
 
   /// Glow centres, measured against the lamps painted on the background.
   final List<PartyPoint> lamps;
@@ -323,7 +382,11 @@ class LevelDefinition {
     this.layers = const [],
     this.propSet,
     this.hardestCombo,
+    this.floorDance,
   });
+
+  /// What this room's standing guests dance, if it has any.
+  final FloorDance? floorDance;
 
   final String id;
   final String title;
@@ -412,6 +475,9 @@ class LevelDefinition {
     final horizonY = floorFields.number('horizonY', min: 0, max: 1);
     final referenceFootY = floorFields.number('referenceFootY', max: 1);
     final referenceHeight = floorFields.number('referenceHeight', min: .001);
+    final vanishingX = floorFields.has('vanishingX')
+        ? floorFields.number('vanishingX', min: 0, max: 1)
+        : .5;
     floorFields.finish();
     if (horizonY >= referenceFootY) {
       throw LevelDataError(
@@ -423,6 +489,7 @@ class LevelDefinition {
       horizonY: horizonY,
       referenceFootY: referenceFootY,
       referenceHeight: referenceHeight,
+      vanishingX: vanishingX,
     );
     // A mark on or above the horizon would throw on every painted frame.
     PartyPoint onFloor(String path, PartyPoint mark) {
@@ -453,6 +520,9 @@ class LevelDefinition {
       heroAside: stageFields.has('heroAside')
           ? stageMark(stageFields, 'heroAside')
           : null,
+      heroEntersAt: stageFields.has('heroEntersAt')
+          ? stageFields.number('heroEntersAt', min: 0, max: chart.introBeats)
+          : 0,
       challengers: challengers,
     );
     stageFields.finish();
@@ -467,6 +537,7 @@ class LevelDefinition {
         ? crowdFields.text('propSet')
         : null;
     final seats = <PartySeat>[];
+    final partTo = <PartyPoint?>[];
     final anchors = [
       for (final (i, raw) in crowdFields.list('guests').indexed)
         () {
@@ -474,11 +545,19 @@ class LevelDefinition {
           // A bare point takes the room's seat; an object may name its own.
           if (raw is List<Object?>) {
             seats.add(seat);
+            partTo.add(null);
             return onFloor(path, _point(path, raw));
           }
           final guest = _Fields(path, raw);
-          seats.add(guest.named('seat', PartySeat.values));
+          seats.add(
+            guest.has('seat') ? guest.named('seat', PartySeat.values) : seat,
+          );
           final at = onFloor(guest.at('at'), guest.point('at'));
+          partTo.add(
+            guest.has('partTo')
+                ? onFloor(guest.at('partTo'), guest.point('partTo'))
+                : null,
+          );
           guest.finish();
           return at;
         }(),
@@ -497,7 +576,38 @@ class LevelDefinition {
         throw LevelDataError('$guestPath[$i]', 'is on the tap band');
       }
     }
-    final guests = seatedGuestSlots(id, anchors, seats: seats);
+    for (final (i, to) in partTo.indexed) {
+      if (to != null && to.y >= thumbBandTop) {
+        throw LevelDataError('$guestPath[$i]', 'parts onto the tap band');
+      }
+    }
+    final floorDance = crowdFields.has('floorDance')
+        ? _floorDance(crowdFields.child('floorDance'), chart.introBeats)
+        : null;
+    if (seats.contains(PartySeat.standing) && floorDance == null) {
+      throw LevelDataError(guestPath, 'standing guests need crowd.floorDance');
+    }
+    for (final (i, to) in partTo.indexed) {
+      if (to == null) continue;
+      if (seats[i] != PartySeat.standing || floorDance?.parting == null) {
+        throw LevelDataError(
+          '$guestPath[$i]',
+          'partTo needs a standing guest and crowd.floorDance.parting',
+        );
+      }
+    }
+    final guests = seatedGuestSlots(
+      id,
+      anchors,
+      seats: seats,
+      partTo: partTo,
+      partDelays: _partDelays(
+        anchors,
+        partTo,
+        stage.challengers.first.mark,
+        floorDance?.parting?.stagger ?? 0,
+      ),
+    );
     final propPath = crowdFields.at('props');
     final placed = [
       for (final (i, raw) in crowdFields.list('props').indexed)
@@ -518,6 +628,9 @@ class LevelDefinition {
     }
 
     final sceneryFields = fields.child('scenery');
+    final platformBuilt = sceneryFields.has('platform')
+        ? _platform(sceneryFields.child('platform'), floor)
+        : null;
     final lampPath = sceneryFields.at('lamps');
     final plantPath = sceneryFields.at('plants');
     final scenery = LevelScenery(
@@ -532,8 +645,25 @@ class LevelDefinition {
       waiter: sceneryFields.has('waiter')
           ? _waiter(sceneryFields.child('waiter'), onFloor)
           : null,
+      platform: platformBuilt,
+      band: sceneryFields.has('band')
+          ? _band(sceneryFields.child('band'), onFloor, platformBuilt)
+          : null,
+      wallLight: sceneryFields.has('wallLight')
+          ? _wallLight(sceneryFields.child('wallLight'))
+          : null,
     );
     sceneryFields.finish();
+    final platform = scenery.platform;
+    if (platform != null) {
+      for (final (i, anchor) in anchors.indexed) {
+        for (final place in [anchor, ?partTo[i]]) {
+          if (platform.covers(place)) {
+            throw LevelDataError('$guestPath[$i]', 'is on the platform');
+          }
+        }
+      }
+    }
 
     final departureFields = fields.child('departure');
     final routeOriginY = departureFields.number('originY', min: 0, max: 1);
@@ -597,7 +727,205 @@ class LevelDefinition {
       layers: layers,
       propSet: propSet,
       hardestCombo: hardestCombo,
+      floorDance: floorDance,
     );
+  }
+
+  static FloorClip _floorClip(_Fields fields) {
+    final path = fields.at('frames');
+    final frames = [
+      for (final (i, raw) in fields.list('frames').indexed)
+        raw is String && raw.isNotEmpty
+            ? raw
+            : throw LevelDataError('$path[$i]', 'a drawing name'),
+    ];
+    if (frames.isEmpty) throw LevelDataError(path, 'needs a drawing');
+    final clip = FloorClip(
+      List.unmodifiable(frames),
+      fields.number('beatsPerFrame', min: .125),
+    );
+    fields.finish();
+    return clip;
+  }
+
+  static FloorDance _floorDance(_Fields fields, double introBeats) {
+    final ownThing = _floorClip(fields.child('ownThing'));
+    final glance = _floorClip(fields.child('glance'));
+    CrowdParting? parting;
+    if (fields.has('parting')) {
+      final part = fields.child('parting');
+      parting = CrowdParting(
+        from: part.number('from', min: 0),
+        beats: part.number('beats', min: .5),
+        stagger: part.number('stagger', min: 0),
+        slowTo: part.number('slowTo', min: .1, max: 1),
+      );
+      part.finish();
+      // The fight's first call has to be readable from its first beat.
+      if (parting.end > introBeats) {
+        throw LevelDataError(
+          part.path,
+          'the floor must be open by beat $introBeats, not ${parting.end}',
+        );
+      }
+    }
+    fields.finish();
+    return FloorDance(ownThing: ownThing, glance: glance, parting: parting);
+  }
+
+  /// Those nearest the dancer move first, as if the fight pushed the floor open.
+  static List<double> _partDelays(
+    List<PartyPoint> anchors,
+    List<PartyPoint?> partTo,
+    PartyPoint heart,
+    double stagger,
+  ) {
+    double distance(PartyPoint p) =>
+        (p.x - heart.x).abs() + (p.y - heart.y).abs();
+    final moving = [
+      for (final (i, anchor) in anchors.indexed)
+        if (partTo[i] != null) distance(anchor),
+    ];
+    if (moving.isEmpty) return List.filled(anchors.length, 0);
+    final near = moving.reduce((a, b) => a < b ? a : b);
+    final far = moving.reduce((a, b) => a > b ? a : b);
+    return [
+      for (final anchor in anchors)
+        far == near ? 0 : stagger * (distance(anchor) - near) / (far - near),
+    ];
+  }
+
+  static List<PartyPoint> _outline(_Fields fields, String key) {
+    final path = fields.at(key);
+    final points = [
+      for (final (i, raw) in fields.list(key).indexed) _point('$path[$i]', raw),
+    ];
+    if (points.length < 3) throw LevelDataError(path, 'needs three corners');
+    return List.unmodifiable(points);
+  }
+
+  /// A platform's corners may run off the plate, so these aren't held to 0..1.
+  static RoomPlatform _platform(_Fields fields, PartyFloorPlane floor) {
+    final path = fields.at('deck');
+    final deck = <PartyPoint>[];
+    for (final (i, raw) in fields.list('deck').indexed) {
+      if (raw is! List<Object?> || raw.length != 2) {
+        throw LevelDataError('$path[$i]', 'expected [x, y]');
+      }
+      deck.add(PartyPoint(_number('$path[$i]', raw[0]), _number('$path[$i]', raw[1])));
+    }
+    if (deck.length < 3) throw LevelDataError(path, 'needs three corners');
+    final lift = fields.number('lift', min: 0, max: 1);
+    fields.finish();
+    return RoomPlatform(
+      lift: lift,
+      deck: List.unmodifiable(deck),
+      horizonY: floor.horizonY,
+      // The same eye the floor plane's numbers come from.
+      eyeHeightAdults:
+          (floor.referenceFootY - floor.horizonY) / floor.referenceHeight,
+    );
+  }
+
+  static LevelBand _band(
+    _Fields fields,
+    PartyPoint Function(String, PartyPoint) onFloor,
+    RoomPlatform? platform,
+  ) {
+    final standIn = fields.flag('standIn');
+    final laddersFields = fields.child('ladders');
+    final ladders = <String, List<BandRung>>{};
+    List<BandRung> ladder(_Fields from, String key) {
+      final name = from.text(key);
+      return ladders[name] ??= () {
+        final path = laddersFields.at(name);
+        final rungs = <BandRung>[];
+        for (final (i, raw) in laddersFields.list(name).indexed) {
+          final rung = _Fields('$path[$i]', raw);
+          final input = rung.named('input', BandInput.values);
+          final fromValue = rung.number('from', min: 0);
+          final clipFields = _Fields(rung.path, {
+            'frames': rung.list('frames'),
+            'beatsPerFrame': rung.number('beatsPerFrame', min: .125),
+          });
+          rungs.add(
+            BandRung(clip: _floorClip(clipFields), input: input, from: fromValue),
+          );
+          rung.finish();
+        }
+        if (rungs.isEmpty) throw LevelDataError(path, 'needs a rung');
+        if (rungs.first.from != 0) {
+          throw LevelDataError('$path[0]', 'the first rung is where they start');
+        }
+        return List<BandRung>.unmodifiable(rungs);
+      }();
+    }
+
+    final path = fields.at('players');
+    final players = [
+      for (final (i, raw) in fields.list('players').indexed)
+        () {
+          final player = _Fields('$path[$i]', raw);
+          final feet = player.point('feet');
+          if (platform != null && !platform.holds(feet)) {
+            throw LevelDataError(player.at('feet'), 'is off the platform');
+          }
+          final parsed = BandPlayer(
+            id: player.text('id'),
+            atlas: player.text('atlas'),
+            feet: feet,
+            at: onFloor(player.at('feet'), platform?.groundUnder(feet) ?? feet),
+            ladder: ladder(player, 'ladder'),
+            reference: player.text('reference'),
+            palette: player.has('palette')
+                ? player.whole('palette', min: 0)
+                : null,
+            stature: player.has('stature')
+                ? player.number('stature', min: .1)
+                : 1,
+            flipX: player.has('flipX') && player.flag('flipX'),
+            beatOffset: player.has('beatOffset')
+                ? player.number('beatOffset', min: 0)
+                : 0,
+            lateBy: player.has('lateBy') ? player.number('lateBy', min: 0) : 0,
+          );
+          player.finish();
+          return parsed;
+        }(),
+    ];
+    if (players.isEmpty) throw LevelDataError(path, 'a band needs a player');
+    laddersFields.finish();
+    fields.finish();
+    return LevelBand(players: List.unmodifiable(players), standIn: standIn);
+  }
+
+  static WallLight _wallLight(_Fields fields) {
+    final path = fields.at('zones');
+    final zones = <List<PartyPoint>>[];
+    for (final (i, raw) in fields.list('zones').indexed) {
+      final zone = _Fields('$path[$i]', raw);
+      final points = _outline(zone, 'outline');
+      zone.finish();
+      for (final point in points) {
+        if (point.y >= thumbBandTop) {
+          throw LevelDataError(zone.path, 'reaches the tap band');
+        }
+        if (point.x > roomLayerQuietLeft &&
+            point.x < roomLayerQuietRight &&
+            point.y > roomLayerQuietTop &&
+            point.y < roomLayerQuietBottom) {
+          throw LevelDataError(zone.path, 'reaches the quiet area');
+        }
+      }
+      zones.add(points);
+    }
+    if (zones.isEmpty) throw LevelDataError(path, 'needs a zone');
+    final light = WallLight(
+      zones: List.unmodifiable(zones),
+      periodBeats: fields.number('periodBeats', min: 4),
+    );
+    fields.finish();
+    return light;
   }
 
   static ExitShot _exitShot(_Fields fields) {
@@ -826,6 +1154,9 @@ class LevelDefinition {
               ? fields.number('stature', min: .1)
               : 1,
           meetMark: fields.has('meetMark') ? mark(fields, 'meetMark') : null,
+          facingAway: fields.has('facingAway')
+              ? _facingAway(fields.child('facingAway'))
+              : null,
         ),
       );
       fields.finish();
@@ -837,6 +1168,24 @@ class LevelDefinition {
       throw LevelDataError(path, 'challenger ids must be unique');
     }
     return List.unmodifiable(challengers);
+  }
+
+  static FacingAway _facingAway(_Fields fields) {
+    final path = fields.at('turn');
+    final turn = [
+      for (final (i, raw) in fields.list('turn').indexed)
+        raw is String && raw.isNotEmpty
+            ? raw
+            : throw LevelDataError('$path[$i]', 'a drawing name'),
+    ];
+    if (turn.isEmpty) throw LevelDataError(path, 'a turn needs drawings');
+    final away = FacingAway(
+      back: _floorClip(fields.child('back')),
+      turn: List.unmodifiable(turn),
+      turnBeats: fields.number('turnBeats', min: .5),
+    );
+    fields.finish();
+    return away;
   }
 
   /// Refuses a pattern the scene couldn't keep: a dancer on the tap band or past
@@ -1329,7 +1678,12 @@ class LevelStep {
 
 /// The ordered campaign, and the single source of level order.
 class LevelRegistry {
-  LevelRegistry._(this.campaign, this.displayTotal, this.upcomingOpponents);
+  LevelRegistry._(
+    this.campaign,
+    this.displayTotal,
+    this.upcomingOpponents, [
+    this.reviewLevels = const {},
+  ]);
 
   static const folder = 'levels';
 
@@ -1340,6 +1694,29 @@ class LevelRegistry {
 
   /// Opponents with no level yet, so the boss can count on them from the start.
   final List<UpcomingOpponent> upcomingOpponents;
+
+  /// Levels not in the campaign yet, reachable only from a review link. Checked
+  /// like any other, so one that goes bad fails at the door.
+  final Map<String, LevelDefinition> reviewLevels;
+
+  /// This campaign, or for a review link's [id] that one level alone: a level on
+  /// its own has no bridge and ends on its end screen. A level joining the
+  /// campaign needs no change here. An unknown id is an error, never another room.
+  LevelRegistry reviewing(String? id) {
+    if (id == null || id.isEmpty) return this;
+    final level =
+        reviewLevels[id] ?? levels.where((l) => l.id == id).firstOrNull;
+    if (level == null) {
+      throw ArgumentError.value(id, 'level', 'No such level');
+    }
+    return LevelRegistry._(
+      List.unmodifiable([
+        LevelStep(level: level, next: null, bridgeToNext: null),
+      ]),
+      1,
+      upcomingOpponents,
+    );
+  }
 
   Iterable<LevelDefinition> get levels => campaign.map((step) => step.level);
   LevelDefinition get first => campaign.first.level;
@@ -1443,11 +1820,29 @@ class LevelRegistry {
         entry.finish();
       }
     }
+    final review = <String, LevelDefinition>{};
+    if (index.has('review')) {
+      final reviewPath = index.at('review');
+      for (final (i, raw) in index.list('review').indexed) {
+        if (raw is! String || levels.any((l) => l.id == raw)) {
+          throw LevelDataError('$reviewPath[$i]', 'not a level off the campaign: $raw');
+        }
+        final parsed = jsonDecode(readLevel(raw));
+        if (parsed is! Map<String, Object?>) {
+          throw LevelDataError('$raw.json', 'expected an object');
+        }
+        review[raw] = LevelDefinition.fromJson(parsed, path: '$raw.json');
+        if (review[raw]!.id != raw) {
+          throw LevelDataError('$raw.json', 'holds level "${review[raw]!.id}"');
+        }
+      }
+    }
     index.finish();
     return LevelRegistry._(
       List.unmodifiable(steps),
       displayTotal,
       List.unmodifiable(upcoming),
+      Map.unmodifiable(review),
     );
   }
 
@@ -1462,6 +1857,12 @@ class LevelRegistry {
         if (id is String) {
           texts[id] = await bundle.loadString('$folder/$id.json');
         }
+      }
+    }
+    final review = index is Map<String, Object?> ? index['review'] : null;
+    if (review is List<Object?>) {
+      for (final id in review.whereType<String>()) {
+        texts[id] = await bundle.loadString('$folder/$id.json');
       }
     }
     return LevelRegistry.parse(indexText, (id) => texts[id]!);
