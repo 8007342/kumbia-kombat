@@ -1,0 +1,541 @@
+{
+ "atlas": "pool-bg-c",
+ "image": "pool-bg-c-v1.png",
+ "imageWidth": 1024,
+ "imageHeight": 496,
+ "referenceFrame": "idle_stand",
+ "family": "tool/art/families/pool-bg-c-v1.json",
+ "animationReferences": {
+  "registry": "tool/art/references/animation-principles.json",
+  "research": [
+   "plan/research/gatekeeper-dance-2026-11-02.md",
+   "plan/dance-fluidity-pass.md",
+   "plan/opponent-depth-staging-pass.md"
+  ],
+  "principlesUsed": [
+   "contrapposto",
+   "exaggeration-accent",
+   "line-of-action",
+   "no-twinning",
+   "secondary-action",
+   "staging-silhouette",
+   "timing-on-beat"
+  ],
+  "sourcesUsed": [
+   "cartwright-gdc2014",
+   "contrapposto-fonseca",
+   "disney-process",
+   "illusion-of-life",
+   "silhouette-test",
+   "simogo-bsb",
+   "slynyrd-53",
+   "twinning",
+   "ubisoft-foot-ik",
+   "williams-survival-kit"
+  ]
+ },
+ "ramps": {
+  "skin": {
+   "region": "skin",
+   "alsoIn": [],
+   "shades": [
+    "#845937",
+    "#AC7F5C",
+    "#D9A67E",
+    "#F5C8A5"
+   ]
+  },
+  "beard": {
+   "region": "hair",
+   "alsoIn": [],
+   "shades": [
+    "#2B0000",
+    "#501E02",
+    "#7A3F22",
+    "#935F46"
+   ]
+  },
+  "shirt": {
+   "region": "shirt",
+   "alsoIn": [
+    "prop"
+   ],
+   "shades": [
+    "#490000",
+    "#730009",
+    "#A32A2A",
+    "#BC554F"
+   ]
+  },
+  "trousers": {
+   "region": "trousers",
+   "alsoIn": [],
+   "shades": [
+    "#000112",
+    "#0F1A32",
+    "#2C3A58",
+    "#485570"
+   ]
+  },
+  "shoes": {
+   "region": "shoes",
+   "alsoIn": [],
+   "shades": [
+    "#573000",
+    "#7D532A",
+    "#A8784A",
+    "#C39871"
+   ]
+  },
+  "cue_shaft": {
+   "region": "prop",
+   "alsoIn": [
+    "skin",
+    "shirt",
+    "cloth",
+    "trousers"
+   ],
+   "shades": [
+    "#754C00",
+    "#9D722F",
+    "#C9984F",
+    "#E4B97D"
+   ]
+  },
+  "cue_butt": {
+   "region": "prop_dark",
+   "alsoIn": [
+    "skin",
+    "trousers",
+    "shoes"
+   ],
+   "shades": [
+    "#150000",
+    "#371303",
+    "#5E3320",
+    "#775040"
+   ]
+  },
+  "chalk": {
+   "region": "accessory",
+   "alsoIn": [
+    "skin",
+    "prop"
+   ],
+   "shades": [
+    "#004083",
+    "#1B67AD",
+    "#3E8EDE",
+    "#6CAEF3"
+   ]
+  }
+ },
+ "frames": {
+  "chalk_a": {
+   "rect": [
+    255,
+    2,
+    148,
+    247
+   ],
+   "anchor": [
+    84.0,
+    244.4
+   ],
+   "pixelsPerUnit": 5.8065,
+   "facing": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "pool-bg-c-v1-final",
+    "pose": "chalk.a",
+    "sha256": "8f1ac1cf4db320b5d4b5b9ded453fecf1bcc4e6ebe0d00e37e32c7ae749bf249",
+    "selected": 989601,
+    "frameKey": null,
+    "accepted": true,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "chalk_b": {
+   "rect": [
+    405,
+    2,
+    148,
+    246
+   ],
+   "anchor": [
+    84.0,
+    243.4
+   ],
+   "pixelsPerUnit": 5.8065,
+   "facing": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "pool-bg-c-v1-final",
+    "pose": "chalk.b",
+    "sha256": "7ea9e7472f0597446d47fe528dd9adb74661cb807f6f178ae96bc7a198b5b2a6",
+    "selected": "derived from chalk.a",
+    "frameKey": null,
+    "accepted": true,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "clap_a": {
+   "rect": [
+    2,
+    2,
+    138,
+    298
+   ],
+   "anchor": [
+    55.0,
+    295.4
+   ],
+   "pixelsPerUnit": 5.8065,
+   "facing": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "pool-bg-c-v1-final",
+    "pose": "clap.a",
+    "sha256": "6006f760c6f293d0ca1abe84fc33635e39e09b2607e7b3db1662df3fe9338f29",
+    "selected": 989600,
+    "frameKey": null,
+    "accepted": true,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "clap_b": {
+   "rect": [
+    142,
+    2,
+    111,
+    274
+   ],
+   "anchor": [
+    56.0,
+    271.4
+   ],
+   "pixelsPerUnit": 5.8065,
+   "facing": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "pool-bg-c-v1-final",
+    "pose": "clap.b",
+    "sha256": "c685f0dec1781b81cb7c37fc7e841908461d88330abdbbd66d89a9d03d19cf4c",
+    "selected": 989600,
+    "frameKey": null,
+    "accepted": true,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "line-of-action",
+     "contrapposto",
+     "exaggeration-accent",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "idle_stand": {
+   "rect": [
+    735,
+    2,
+    112,
+    225
+   ],
+   "anchor": [
+    63.0,
+    222.4
+   ],
+   "pixelsPerUnit": 5.8065,
+   "facing": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "pool-bg-c-v1-final",
+    "pose": "idle.stand",
+    "sha256": "08b518292acb6f7b80c892e6b2e45f16c82885a8648d71a94aee99154c47b659",
+    "selected": "989600f",
+    "frameKey": null,
+    "accepted": true,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "lean_a": {
+   "rect": [
+    2,
+    302,
+    217,
+    192
+   ],
+   "anchor": [
+    110.0,
+    189.4
+   ],
+   "pixelsPerUnit": 5.8065,
+   "facing": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "pool-bg-c-v1-final",
+    "pose": "lean.a",
+    "sha256": "2e1984e5989a608da4ca658eeddcef0a1b00e7747d3e2adb17451b2d274c5a30",
+    "selected": 989600,
+    "frameKey": null,
+    "accepted": true,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "lean_b": {
+   "rect": [
+    221,
+    302,
+    230,
+    192
+   ],
+   "anchor": [
+    113.0,
+    189.4
+   ],
+   "pixelsPerUnit": 5.8065,
+   "facing": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "pool-bg-c-v1-final",
+    "pose": "lean.b",
+    "sha256": "195e46dde7aa7aa2997d31c115e0d7da5e421f0a5f11276fc238f6bab0db4411",
+    "selected": 989600,
+    "frameKey": null,
+    "accepted": true,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "lean_stroke": {
+   "rect": [
+    453,
+    302,
+    243,
+    192
+   ],
+   "anchor": [
+    115.0,
+    189.4
+   ],
+   "pixelsPerUnit": 5.8065,
+   "facing": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "pool-bg-c-v1-final",
+    "pose": "lean.stroke",
+    "sha256": "9a006f1325c4ee6d70662e5f8bdb3928a72044d8c737966de5de1509e7a415ef",
+    "selected": 989600,
+    "frameKey": null,
+    "accepted": true,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "line-of-action",
+     "contrapposto",
+     "exaggeration-accent",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "stand": {
+   "rect": [
+    735,
+    2,
+    112,
+    225
+   ],
+   "anchor": [
+    63.0,
+    222.4
+   ],
+   "pixelsPerUnit": 5.8065,
+   "facing": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "pool-bg-c-v1-final",
+    "pose": "idle.stand",
+    "sha256": "08b518292acb6f7b80c892e6b2e45f16c82885a8648d71a94aee99154c47b659",
+    "selected": "989600f",
+    "frameKey": null,
+    "accepted": true,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   },
+   "aliasOf": "idle_stand"
+  },
+  "stroke": {
+   "rect": [
+    453,
+    302,
+    243,
+    192
+   ],
+   "anchor": [
+    115.0,
+    189.4
+   ],
+   "pixelsPerUnit": 5.8065,
+   "facing": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "pool-bg-c-v1-final",
+    "pose": "lean.stroke",
+    "sha256": "9a006f1325c4ee6d70662e5f8bdb3928a72044d8c737966de5de1509e7a415ef",
+    "selected": 989600,
+    "frameKey": null,
+    "accepted": true,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "line-of-action",
+     "contrapposto",
+     "exaggeration-accent",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   },
+   "aliasOf": "lean_stroke"
+  },
+  "watch_a": {
+   "rect": [
+    646,
+    2,
+    87,
+    226
+   ],
+   "anchor": [
+    36.0,
+    222.4
+   ],
+   "pixelsPerUnit": 5.8065,
+   "facing": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "pool-bg-c-v1-final",
+    "pose": "watch.a",
+    "sha256": "6de0890dc23df516b0654cd120ce047317d82f089c25b8cfb94ed9738bbeeccb",
+    "selected": 989600,
+    "frameKey": null,
+    "accepted": true,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "secondary-action",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "watch_b": {
+   "rect": [
+    555,
+    2,
+    89,
+    246
+   ],
+   "anchor": [
+    29.0,
+    243.4
+   ],
+   "pixelsPerUnit": 5.8065,
+   "facing": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "pool-bg-c-v1-final",
+    "pose": "watch.b",
+    "sha256": "971df976472d9c3d79c6ce3c60ea20868501cdc55ffe8c1b570012ea9bc2d19f",
+    "selected": 989600,
+    "frameKey": null,
+    "accepted": true,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "secondary-action",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  }
+ }
+}
