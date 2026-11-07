@@ -193,10 +193,11 @@ Presses a second rise at every tier, and the top is above the lawn's 3.68 and th
 |---|---|---|
 | BlinBlin, in play | Bartender atlas | `blinblin` atlas, `work/1860-blwv` |
 | BlinBlin, close-up | `oil-gulp-bt-offer.png`, which is a hand holding a glass and looks wrong | `nod-bb-*` |
-| Band | Bass, congas and trumpet are real, on the `form` ladder. Marimba is still a guest, and off a phone's screen | `band-marimba`, `work/1864-band` |
 | Crowd | guest0-2, flipped `step_touch` | guest3-6, `work/1868-gues` |
 
-Mācron's close-up is real: `nod-mc-*`, taken from `work/1860-blwv`.
+Mācron's close-up is real: `nod-mc-*`, taken from `work/1860-blwv`. All four band players are real, from `work/1864-band`, on the `form` ladder.
+
+**One change from the first version of this note:** under reduced motion, the band's foot-tap rung now holds the same drawing as its calm rung, `relaxed_a`, because the art reuses that drawing so the arms stay continuous between rungs. So reduced motion shows two states, calm and swinging, not three. [F, tested]
 
 ## What was checked, and how
 
@@ -216,6 +217,8 @@ Mācron's close-up is real: `nod-mc-*`, taken from `work/1860-blwv`.
 
 - [ ] Do couples read as couples, absorbed in each other? Only judge this once guest3-6 are cast.
 - [ ] The clean plate has a small smudge at the arch's keystone, where the middle lantern's tip was. It's covered at rest. Does it show at full swing?
+- [ ] The band's foot tap, swing and bass rock. Does the trumpet player seem to hop with the near foot lifted? BAND says the far foot stays put; nobody has seen it move.
+- [ ] On a wide screen, does the marimba player look small? His measured height includes his afro, so his head sits lower than the others'. Raising his size is a data edit.
 - [ ] Lantern swing, on the beat, against the moving wall light.
 - [ ] The two nods' timing, and whether `nod` can be heard over the rendered tag. Nobody here can hear.
 - [ ] On a wide screen, Mācron stands visible at his entrance mark before beat 6. A phone crops him out.

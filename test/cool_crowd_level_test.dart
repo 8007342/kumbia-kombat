@@ -498,7 +498,11 @@ void main() {
     test('stands on the deck, every player with a ladder to climb', () {
       final level = _level();
       expect(band.players.length, greaterThanOrEqualTo(3));
-      expect(band.standIn, isTrue, reason: 'their art is owed: see the plan note');
+      expect(band.standIn, isFalse);
+      expect(
+        band.players.map((p) => p.atlas).toSet(),
+        {'band-trumpet', 'band-bass', 'band-congas', 'band-marimba'},
+      );
       for (final p in band.players) {
         expect(level.scenery.platform!.holds(p.feet), isTrue, reason: p.id);
         expect(p.ladder.length, greaterThanOrEqualTo(3));
@@ -584,6 +588,16 @@ void main() {
       expect(proposal.rungFor(const BandInputs(form: 1)), 0);
       expect(proposal.rungFor(const BandInputs(tier: 2)), 1);
       expect(proposal.rungFor(const BandInputs(tier: 2, partySwing: .5)), 2);
+    });
+
+    test('under reduced motion the top rung still looks different', () {
+      for (final player in band.players) {
+        expect(
+          player.ladder.last.clip.at(0, reducedMotion: true),
+          isNot(player.ladder.first.clip.at(0, reducedMotion: true)),
+          reason: player.id,
+        );
+      }
     });
 
     test('they liven one at a time', () {

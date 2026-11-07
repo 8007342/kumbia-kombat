@@ -559,41 +559,8 @@
    ]
   },
   "band": {
-   "standIn": true,
+   "standIn": false,
    "ladders": {
-    "standIn": [
-     {
-      "input": "form",
-      "from": 0,
-      "frames": [
-       "standing_idle_a",
-       "standing_idle_b"
-      ],
-      "beatsPerFrame": 1
-     },
-     {
-      "input": "form",
-      "from": 0.3,
-      "frames": [
-       "standing_idle_a",
-       "step_touch_a",
-       "standing_idle_b",
-       "step_touch_c"
-      ],
-      "beatsPerFrame": 0.5
-     },
-     {
-      "input": "form",
-      "from": 0.75,
-      "frames": [
-       "step_touch_a",
-       "step_touch_d",
-       "step_touch_c",
-       "step_touch_d"
-      ],
-      "beatsPerFrame": 0.5
-     }
-    ],
     "instrument": [
      {
       "input": "form",
@@ -656,11 +623,10 @@
     },
     {
      "id": "marimba",
-     "atlas": "guest0",
-     "reference": "standing_idle_a",
-     "palette": 2,
+     "atlas": "band-marimba",
+     "reference": "relaxed_a",
      "feet": [0.034, 0.438],
-     "ladder": "standIn",
+     "ladder": "instrument",
      "lateBy": 0.05,
      "beatOffset": 1
     }

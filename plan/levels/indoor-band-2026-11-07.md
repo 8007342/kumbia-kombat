@@ -159,3 +159,65 @@ Read from the code, not tried on a frame. Nothing here has been drawn.
 2. Four players, with marimba off a phone's screen, or three?
 3. Should a player whose instrument isn't in the music yet wait? The draft ladder has the marimba from tier 1 and brass from tier 3 (`plan/levels/next-level-plan.md`). Holding the horn down until then costs one or two more drawings. Nobody here can hear whether the rendered tiers match those words, so this one needs your ears.
 4. Is big hand motion acceptable as "swinging" for the congas and marimba?
+
+## 8. What was built, 2026-11-07
+
+Everything here is a choice made under the owner's delegation, and any of it can be reversed. Nobody has seen the band moving on a phone yet. The PARTY agent has seen three players as stills in the real scene.
+
+### The angle
+
+Each player has a `front_3q` view drawn from the approved front, and frames draw from that view. They face toward picture right, and the plate's crowd is on that side.
+
+| Player | Front (owner approved) | `front_3q` take |
+|---|---|---|
+| Upright bass | B3 | 989511, run `band-bass-3q-20261107b` |
+| Congas | B2 | 989623, run `band-congas-3q-20261107c` |
+| Trumpet | B0 | 989712, run `band-trumpet-3q-20261107b` |
+| Marimba | D1 | 989813, run `band-marimba-3q-20261107b` |
+
+### Did Qwen keep the instrument? Only with the right wording
+
+This took five rounds, so it's worth recording:
+
+1. **Skeleton much smaller than the sheet:** the instrument was perfect, because the model copied image 1 and ignored the pose.
+2. **Skeleton the sheet's size, with "the bass tipped twenty degrees":** the bass went horizontal and was held like a guitar. A music stand and a second hand appeared.
+3. **The same, with "leaning a little" and strong words about facing:** half the takes lost the bass, turned away, or held it like a guitar. The strong facing words were the cause.
+4. **"Seen from exactly the same angle as image 1" and "the bass exactly where it is in image 1", skeleton at .92:** stable on all four players, and hands follow the skeleton.
+5. **Left to Qwen:** a small foot lift doesn't show, and "tapping" draws motion lines. The bass doesn't rock.
+
+So hands and arms are drawn, and the foot and the rock are done in code.
+
+### What is drawn and what is code
+
+| Frame | Source |
+|---|---|
+| `relaxed_a`, `relaxed_b`, `swing_a`, `swing_c` | Drawn. 2 candidates a pose, per the GPU budget |
+| `swing_b` | Drawn, except congas: `relaxed_a` again, because both takes grew a third hand |
+| `tap_up_a`, `tap_up_b`, `swing_d` | `relaxed_a`, `relaxed_b`, `swing_b` with the foot lifted by `band_tap.py` |
+| Bass rock in `swing_a`, `swing_c` | Those drawings sheared by 7 native px at the top, about the floor, so she and the bass lean together |
+
+Saving: 5 drawings a player rather than 8. On congas the shoe is mostly behind the drum, so the tap barely shows.
+
+**Against the style guide's "authored key poses":** the lift and the shear aren't drawn poses. They're small, and the alternative was an instrument that wanders. Reverse this if it looks stiff on a phone.
+
+**Marimba:** the accepted view ran to the picture's edge, so its frames draw from that view staged at .82 (`stageScale`), and the right end of the bars now shows, which is the part a phone might catch. Its bars' width still differs about 5% in `relaxed_a`, since I locked him by his height, not the bars.
+
+**Picks** are in `tool/art/pipeline/band_finish.py`: bass seed 989511, congas 989620, trumpet 989710, marimba 989810. Review image: `art_runs/band-sheet-20261107/clips-review.png`.
+
+### Finish
+
+- `band_finish.py` locks each frame to its player's `relaxed.a` by what must not move: the instrument, or a trumpeter's leg length. `register_frames.py` scales by the whole figure, so a raised bell shrank the trumpeter.
+- It finishes as `finish_local.py` does, with extra rules: blue counts triple, orange pixels can't take brass, and skin can't take drum red. Plain nearest colour painted brass patches on the trumpeter's face, as the PARTY agent spotted. **So these frames aren't the host finisher's bytes.** The conga player's shadows are still a bit rosy.
+- `band_pack.py` gives all of an atlas's frames one anchor under the feet, sets `pixelsPerUnit` from the player's height, writes `playerHeightPx`, and grows a rect over empty atlas where the anchor would fall outside it.
+
+The trumpeter's `tap_up` frames don't float, though the PARTY agent asked. With the near foot lifted, the lowest pixel is the far foot, which sits higher in the picture and hasn't moved. Those frames differ from `relaxed` only inside the foot's box, by construction.
+
+### What the local vision model did
+
+40 candidates, hands and instruments counted, about 2 questions each. 30 came back 2 and 1, 8 came back blank when the GPU was busy, and 2 said 4 hands. Its "4 hands" on conga `swing.b` led me to the third-hand fault's frame family, though the true count there is 3. Its "4 hands" on conga `relaxed.a` was wrong, since that frame has 2. It reported 2 hands on bass and trumpet frames, which matched by eye. It wasn't asked about bows, stands or a wandering instrument. Those came from eyes on contact sheets.
+
+### Open for the owner
+
+- Whether players wait for their instrument's entry in the music (question 3). Everyone plays from tier 0 for now.
+- Trumpeter's and bassist's relative size: set by the level's `height`, and only moving looks can judge it.
+- The people dancing around the band are the INDOOR and PARTY agents' work.

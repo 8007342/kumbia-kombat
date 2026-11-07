@@ -14637,7 +14637,7 @@
       2,
       2,
       122,
-      248
+      249
      ],
      "anchor": [
       27.0,
@@ -14671,7 +14671,7 @@
       746,
       2,
       122,
-      246
+      247
      ],
      "anchor": [
       27.0,
@@ -14705,7 +14705,7 @@
       373,
       2,
       123,
-      247
+      248
      ],
      "anchor": [
       26.0,
@@ -14740,7 +14740,7 @@
       498,
       2,
       122,
-      247
+      248
      ],
      "anchor": [
       27.0,
@@ -14774,7 +14774,7 @@
       250,
       2,
       121,
-      248
+      249
      ],
      "anchor": [
       27.0,
@@ -14809,7 +14809,7 @@
       622,
       2,
       122,
-      247
+      248
      ],
      "anchor": [
       27.0,
@@ -14843,7 +14843,7 @@
       126,
       2,
       122,
-      248
+      249
      ],
      "anchor": [
       27.0,
@@ -14877,7 +14877,7 @@
       870,
       2,
       122,
-      246
+      247
      ],
      "anchor": [
       27.0,
@@ -15012,7 +15012,7 @@
       258,
       2,
       127,
-      225
+      226
      ],
      "anchor": [
       31.0,
@@ -15046,7 +15046,7 @@
       774,
       2,
       124,
-      223
+      224
      ],
      "anchor": [
       30.0,
@@ -15080,7 +15080,7 @@
       2,
       2,
       127,
-      232
+      233
      ],
      "anchor": [
       32.0,
@@ -15115,7 +15115,7 @@
       516,
       2,
       127,
-      225
+      226
      ],
      "anchor": [
       31.0,
@@ -15149,7 +15149,7 @@
       131,
       2,
       125,
-      231
+      232
      ],
      "anchor": [
       30.0,
@@ -15184,7 +15184,7 @@
       645,
       2,
       127,
-      225
+      226
      ],
      "anchor": [
       31.0,
@@ -15218,7 +15218,7 @@
       387,
       2,
       127,
-      225
+      226
      ],
      "anchor": [
       31.0,
@@ -15252,7 +15252,7 @@
       900,
       2,
       124,
-      223
+      224
      ],
      "anchor": [
       30.0,
@@ -15377,7 +15377,7 @@
       117,
       2,
       121,
-      249
+      250
      ],
      "anchor": [
       31.0,
@@ -15411,7 +15411,7 @@
       365,
       2,
       123,
-      248
+      249
      ],
      "anchor": [
       33.0,
@@ -15445,7 +15445,7 @@
       2,
       2,
       113,
-      292
+      293
      ],
      "anchor": [
       36.0,
@@ -15480,7 +15480,7 @@
       240,
       2,
       123,
-      249
+      250
      ],
      "anchor": [
       32.0,
@@ -15514,7 +15514,7 @@
       490,
       2,
       110,
-      248
+      249
      ],
      "anchor": [
       28.0,
@@ -15549,7 +15549,7 @@
       725,
       2,
       123,
-      249
+      250
      ],
      "anchor": [
       32.0,
@@ -15583,7 +15583,7 @@
       602,
       2,
       121,
-      249
+      250
      ],
      "anchor": [
       31.0,
@@ -15617,7 +15617,7 @@
       850,
       2,
       123,
-      248
+      249
      ],
      "anchor": [
       33.0,
@@ -15808,6 +15808,381 @@
      "measureOnly": true
     }
    }
+  },
+  "band-marimba": {
+   "image": "band-marimba-v1.png",
+   "imageWidth": 1024,
+   "imageHeight": 505,
+   "referenceFrame": "relaxed_a",
+   "ramps": {
+    "skin": {
+     "region": "skin",
+     "alsoIn": [],
+     "shades": [
+      "#3B1300",
+      "#603513",
+      "#8A5733",
+      "#A47758"
+     ]
+    },
+    "hair": {
+     "region": "hair",
+     "alsoIn": [],
+     "shades": [
+      "#000000",
+      "#020100",
+      "#191312",
+      "#302B2A"
+     ]
+    },
+    "shirt": {
+     "region": "shirt",
+     "alsoIn": [],
+     "shades": [
+      "#9B927A",
+      "#C4BAA1",
+      "#EFE4C8",
+      "#FFFBE3"
+     ]
+    },
+    "jacket": {
+     "region": "cloth",
+     "alsoIn": [],
+     "shades": [
+      "#968D74",
+      "#BFB59B",
+      "#EADFC2",
+      "#FFFBE2"
+     ]
+    },
+    "lapels": {
+     "region": "apron",
+     "alsoIn": [],
+     "shades": [
+      "#05001D",
+      "#1B0041",
+      "#3A1F6B",
+      "#524081"
+     ]
+    },
+    "trousers": {
+     "region": "trousers",
+     "alsoIn": [],
+     "shades": [
+      "#000001",
+      "#09070D",
+      "#26232C",
+      "#3F3C45"
+     ]
+    },
+    "shoes": {
+     "region": "shoes",
+     "alsoIn": [],
+     "shades": [
+      "#867956",
+      "#ADA07C",
+      "#D8C9A0",
+      "#F7EAC6"
+     ]
+    },
+    "bars": {
+     "region": "prop",
+     "alsoIn": [],
+     "shades": [
+      "#74110C",
+      "#9E3C32",
+      "#CF5F52",
+      "#E88578"
+     ]
+    },
+    "tubes": {
+     "region": "accessory",
+     "alsoIn": [],
+     "shades": [
+      "#765500",
+      "#9D7B14",
+      "#C9A23A",
+      "#E5C371"
+     ]
+    }
+   },
+   "frames": {
+    "relaxed_a": {
+     "rect": [
+      220,
+      2,
+      221,
+      250
+     ],
+     "anchor": [
+      93.0,
+      249.0
+     ],
+     "pixelsPerUnit": 6.7097,
+     "facing": "front_3q",
+     "loop": true,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "both",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/band/art_runs/band-marimba-v1-0c2fafb8bc",
+      "pose": "relaxed.a",
+      "sha256": "c817661970b01d7102768e808c51c1d59809e1dc51728b3ba5042e18c889dcf2",
+      "selected": null,
+      "frameKey": "243e35cfcb871ab7329b6dc9ddcd835f4cdee915758bab7170d90e9b2c3d3a8e",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "contrapposto",
+       "follow-through",
+       "no-twinning",
+       "timing-on-beat"
+      ]
+     }
+    },
+    "relaxed_b": {
+     "rect": [
+      443,
+      2,
+      213,
+      250
+     ],
+     "anchor": [
+      90.0,
+      249.0
+     ],
+     "pixelsPerUnit": 6.7097,
+     "facing": "front_3q",
+     "loop": true,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "both",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/band/art_runs/band-marimba-v1-0c2fafb8bc",
+      "pose": "relaxed.b",
+      "sha256": "63926638e76e123b1b77f058182e7d23481d1ae478721661b566e6f49d04d3f4",
+      "selected": null,
+      "frameKey": "25e653cda21c9f64fd7ac6e3719ebd1fae951395546c563ba631f41b4e7fccbe",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "contrapposto",
+       "follow-through",
+       "no-twinning",
+       "timing-on-beat"
+      ]
+     }
+    },
+    "swing_a": {
+     "rect": [
+      2,
+      2,
+      216,
+      250
+     ],
+     "anchor": [
+      92.0,
+      249.0
+     ],
+     "pixelsPerUnit": 6.7097,
+     "facing": "front_3q",
+     "loop": true,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "both",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/band/art_runs/band-marimba-v1-0c2fafb8bc",
+      "pose": "swing.a",
+      "sha256": "dc28a2f0500717a9ce8ef5f9ea94c5ee5b0e004b980cad92f057334d8aab6374",
+      "selected": null,
+      "frameKey": "7f6f8be508d9b50d17a54752d2a36d42b6351d5ff58df652615181e6f90827c9",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "line-of-action",
+       "contrapposto",
+       "exaggeration-accent",
+       "no-twinning",
+       "timing-on-beat"
+      ]
+     }
+    },
+    "swing_b": {
+     "rect": [
+      217,
+      254,
+      213,
+      250
+     ],
+     "anchor": [
+      90.0,
+      249.0
+     ],
+     "pixelsPerUnit": 6.7097,
+     "facing": "front_3q",
+     "loop": true,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "both",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/band/art_runs/band-marimba-v1-0c2fafb8bc",
+      "pose": "swing.b",
+      "sha256": "ae4d9d0c3f76f8c1b87f16fe120abd8088a83072c3337e3d6ea76f0685d81b70",
+      "selected": null,
+      "frameKey": "e3deb7eaf64e492c5f8d5c985ceba3ef17acf7a91e90c07c08eca29343e58b1b",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "contrapposto",
+       "no-twinning",
+       "timing-on-beat",
+       "planted-pivot"
+      ]
+     }
+    },
+    "swing_c": {
+     "rect": [
+      432,
+      254,
+      212,
+      250
+     ],
+     "anchor": [
+      91.0,
+      249.0
+     ],
+     "pixelsPerUnit": 6.7097,
+     "facing": "front_3q",
+     "loop": true,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "both",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/band/art_runs/band-marimba-v1-0c2fafb8bc",
+      "pose": "swing.c",
+      "sha256": "2ac04cedacd8024bb11a42b36618fc27a236189377a68609d90001c5afd017d4",
+      "selected": null,
+      "frameKey": "3e98a78ce654b97bf4ed5bcbf9be8b68ca7345caf580c32db212956dd399bf82",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "line-of-action",
+       "contrapposto",
+       "exaggeration-accent",
+       "no-twinning",
+       "timing-on-beat"
+      ]
+     }
+    },
+    "swing_d": {
+     "rect": [
+      646,
+      254,
+      213,
+      250
+     ],
+     "anchor": [
+      90.0,
+      249.0
+     ],
+     "pixelsPerUnit": 6.7097,
+     "facing": "front_3q",
+     "loop": true,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "left",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/band/art_runs/band-marimba-v1-0c2fafb8bc",
+      "pose": "swing.d",
+      "sha256": "d8bff2746290a4eb2b4fa1fcd62bd1d145a0c3a254c7205ae5e6bfeec64a3e27",
+      "selected": null,
+      "frameKey": "e46ed23427b9edb377dc13d882c18bf01c9d2bba05227107ac36996c849736fd",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "contrapposto",
+       "no-twinning",
+       "timing-on-beat",
+       "planted-pivot"
+      ]
+     }
+    },
+    "tap_up_a": {
+     "rect": [
+      658,
+      2,
+      221,
+      250
+     ],
+     "anchor": [
+      93.0,
+      249.0
+     ],
+     "pixelsPerUnit": 6.7097,
+     "facing": "front_3q",
+     "loop": true,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "left",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/band/art_runs/band-marimba-v1-0c2fafb8bc",
+      "pose": "tap.up_a",
+      "sha256": "3898d8405d90fe296deb97780b4beb290f1ac6c062404e651c259bfb112723f7",
+      "selected": null,
+      "frameKey": "8f6450b01144e8436ee9c8a69767ff73f45dbf0d1caeee2fa68702dfbecd31aa",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "contrapposto",
+       "no-twinning",
+       "timing-on-beat",
+       "planted-pivot"
+      ]
+     }
+    },
+    "tap_up_b": {
+     "rect": [
+      2,
+      254,
+      213,
+      250
+     ],
+     "anchor": [
+      90.0,
+      249.0
+     ],
+     "pixelsPerUnit": 6.7097,
+     "facing": "front_3q",
+     "loop": true,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "left",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/band/art_runs/band-marimba-v1-0c2fafb8bc",
+      "pose": "tap.up_b",
+      "sha256": "32c88805da130ecd84f35ecd8da50fcbb478494cec4b8c4b05f87fe16d7b494c",
+      "selected": null,
+      "frameKey": "62c3c122013be84b213099c2b7429a54fab1caf637f0bb2873dcea4dbbe7ea2e",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "contrapposto",
+       "no-twinning",
+       "timing-on-beat",
+       "planted-pivot"
+      ]
+     }
+    }
+   },
+   "playerHeightPx": 260
   }
  }
 }

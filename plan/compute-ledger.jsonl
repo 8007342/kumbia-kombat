@@ -74,3 +74,5 @@
 {"ts": "2026-11-07T05:08:40Z", "agent": "band", "what": "989810.png", "kind": "local-vision", "seconds": 4.61, "count": 1, "model": "qwen2.5vl:7b", "load_s": 3.28, "eval_tokens": 2}
 {"ts": "2026-11-07T05:08:44Z", "agent": "band", "what": "989811.png", "kind": "local-vision", "seconds": 4.17, "count": 1, "model": "qwen2.5vl:7b", "load_s": 3.16, "eval_tokens": 2}
 {"ts": "2026-11-07T05:09:03Z", "agent": "band", "what": "989811.png", "kind": "local-vision", "seconds": 18.81, "count": 1, "model": "qwen2.5vl:7b", "load_s": 13.5, "eval_tokens": 2}
+{"agent": "band", "what": "band sheets, three-quarter views and frames (seconds estimated from about 20.5 s an image measured on studio jobs, not summed)", "kind": "gpu-image", "seconds": 3854, "count": 188}
+{"agent": "band", "what": "band rig renders, 4 players about 10 times (estimate)", "kind": "cpu", "seconds": 400, "count": 40}

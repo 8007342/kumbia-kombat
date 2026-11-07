@@ -15,8 +15,26 @@ import argparse
 import json
 from pathlib import Path
 
+import numpy as np
+from PIL import Image
+
 ROOT = Path(__file__).resolve().parents[3]
 WORLD_HEIGHT = 38.75
+
+
+def settle_rects(doc: dict) -> None:
+    """The loader refuses an anchor outside a frame's rect. With a near foot lifted, a frame's lowest pixel is the far
+    foot, which sits higher in the picture, so the anchor falls below the crop. Grow the rect down over empty atlas."""
+    alpha = np.asarray(Image.open(ROOT / "assets/art/ensemble" / doc["image"]).convert("RGBA"))[..., 3]
+    for fid, f in doc["frames"].items():
+        x, y, w, h = f["rect"]
+        need = int(np.ceil(f["anchor"][1])) + 1
+        if need > h:
+            if alpha[y + h:y + need, x:x + w].any() or y + need > alpha.shape[0]:
+                raise SystemExit(f"{fid}: no empty atlas under its rect for the anchor")
+            f["rect"][3] = need
+        if not (0 <= f["anchor"][0] <= f["rect"][2]):
+            raise SystemExit(f"{fid}: anchor x {f['anchor'][0]} is outside its rect")
 
 
 def main() -> None:
@@ -38,6 +56,7 @@ def main() -> None:
         top = p["groundY"] / 3 - f["anchor"][1]
         f["anchor"] = [round(ref["pivotX"] / 3 - left, 1), round(a.floor - top, 1)]
         f["pixelsPerUnit"] = round(height / WORLD_HEIGHT, 4)
+    settle_rects(doc)
     doc["playerHeightPx"] = height
     cand.write_text(json.dumps(doc, indent=1, ensure_ascii=False) + "\n")
     print(a.atlas, "player height", height, "ppu", round(height / WORLD_HEIGHT, 4), {k: v["anchor"] for k, v in doc["frames"].items()})
