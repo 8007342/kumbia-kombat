@@ -91,9 +91,13 @@ def albedo(spec, cam, s, t, texture=None):
         colour = base[None, None, :] * tone[..., None]
     else:
         tx = np.asarray(texture).astype(float)
+        tx[..., 1] = np.minimum(tx[..., 1], tx[..., 0] * .9)  # cyan belongs to light on glass in this room, not to stone
+        tx = tx.mean(axis=(0, 1)) + (tx - tx.mean(axis=(0, 1))) * look["textureContrast"]
         span = look["textureSpan"]
-        channels = [sample_world(tx[..., c], s, t, span) for c in range(3)]
-        colour = np.stack(channels, axis=2) * tone[..., None]
+        # each slab is cut from its own place in the stone, and the joints hide the changes
+        cut_s, cut_t = rng.random((97, 89))[i % 97, j % 89] * span, rng.random((89, 97))[j % 89, i % 97] * span
+        channels = [sample_world(tx[..., c], s + cut_s, t + cut_t, span) for c in range(3)]
+        colour = np.stack(channels, axis=2) * tone[..., None] * look["textureGain"]
     return colour
 
 
@@ -177,7 +181,7 @@ def paint(room, plate, texture=None, name=None):
     near = ndimage.zoom(ndimage.minimum_filter(joints(spec, s, t), 2)[::2, ::2], 2, order=0)[:H, :W]
     line = np.zeros((H, W, 1)); line[:near.shape[0], :near.shape[1], 0] = near < look["jointWidth"]
     lit = np.exp(-(np.mgrid[0:H, 0:W][0] - cam.hz) / look["jointFall"])[..., None]
-    shade = floor * look["jointDark"] + np.array(look["jointGlint"], float) * (.25 + .75 * lit)
+    shade = floor * look["jointDark"] + np.array(look["jointGlint"], float) * (.45 + .55 * lit)
     floor = floor * (1 - line) + shade * line
     edge = ndimage.gaussian_filter(mask.astype(float), .6)[..., None]
     full = full * (1 - edge) + floor * edge

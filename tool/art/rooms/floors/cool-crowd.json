@@ -42,14 +42,16 @@
   "contactReach": 16,
   "calmFrom": 0.62,
   "calmTo": 0.85,
-  "calm": 0.5,
-  "calmTone": 0.92,
+  "calm": 0.25,
+  "calmTone": 1,
   "cell": 5,
   "colours": 40,
-  "textureSpan": 6,
+  "textureSpan": 2.6,
   "hdr": 7,
   "jointWidth": 1.0,
-  "jointFall": 420
+  "jointFall": 420,
+  "textureContrast": 2.2,
+  "textureGain": 1.05
  },
  "plates": {
   "987500": {
