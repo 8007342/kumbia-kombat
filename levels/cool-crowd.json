@@ -13,7 +13,7 @@
   "successesPerTier": 2,
   "finalChallenges": 3,
   "resetAfterFailures": 5,
-  "earlyHitRatio": 0.875
+  "earlyHitRatio": 0.75
  },
  "chart": {
   "introBeats": 12,
@@ -101,13 +101,47 @@
     "phraseEndMs": 100
    },
    "patterns": {
+    "0": [
+     {
+      "at": 0,
+      "limb": "leftFoot"
+     },
+     {
+      "at": 1.5,
+      "limb": "leftHand"
+     },
+     {
+      "at": 2.5,
+      "limb": "rightFoot"
+     },
+     {
+      "at": 3.5,
+      "limb": "rightHand"
+     },
+     {
+      "at": 4.5,
+      "limb": "leftFoot"
+     },
+     {
+      "at": 5.5,
+      "limb": "leftHand"
+     },
+     {
+      "at": 6,
+      "limb": "rightFoot"
+     },
+     {
+      "at": 6.75,
+      "limb": "rightHand"
+     }
+    ],
     "1": [
      {
       "at": 0,
       "limb": "rightFoot"
      },
      {
-      "at": 1.5,
+      "at": 1,
       "limb": "leftHand",
       "move": "pair",
       "with": "rightHand"
@@ -156,7 +190,7 @@
       "gap": 0.5
      },
      {
-      "at": 2.75,
+      "at": 3,
       "limb": "leftHand"
      },
      {
@@ -210,7 +244,7 @@
       "limb": "rightHand"
      },
      {
-      "at": 4.75,
+      "at": 5,
       "limb": "leftHand",
       "move": "pair",
       "with": "rightHand"

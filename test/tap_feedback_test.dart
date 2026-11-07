@@ -39,7 +39,7 @@ void main() {
         for (final kind in MarkKind.values)
           if (kind != MarkKind.phrase) FeedbackMark(kind, Offset.zero).color,
       };
-      expect(colours, hasLength(4));
+      expect(colours, hasLength(5));
     });
 
     test('the further off, the bigger the gap or the tail', () {

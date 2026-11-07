@@ -19,6 +19,10 @@ class FakeAudio implements MusicAudioBackend {
   }
 }
 
+/// Beats at the tests' 120 BPM, just past the judge's good window: when a phrase
+/// whose last note is at [beat] has been decided.
+double pastGood(double beat) => beat + RhythmJudge.lateWindowMs / 500 + .02;
+
 void main() {
   late FakeAudio audio;
   late MusicTransport transport;
@@ -44,7 +48,7 @@ void main() {
       expect(garden.tap(limbs[i]).grade, TapGrade.perfect);
     }
     // The bar's last note lands later than the garden's, so its phrase resolves later.
-    at(start + (garden.progress.cleared ? 7.9 : offsets.last + .4));
+    at(start + (garden.progress.cleared ? 7.9 : pastGood(offsets.last)));
     if (garden.progress.cleared && garden.phase != GardenPhase.cleared) {
       at(start + 7.9);
     }
@@ -96,7 +100,7 @@ void main() {
 
   test('missing phrases retries then entrance reset without game over', () {
     for (var cycle = 0; cycle < 5; cycle++) {
-      at(18.9 + cycle * 16);
+      at(pastGood(18.5) + cycle * 16);
     }
     expect(garden.progress.entranceResets, 1);
     expect(garden.progress.tier, 0);
@@ -113,7 +117,7 @@ void main() {
     expect(garden.combo, 6);
     expect(garden.crowd.peakSupported, isFalse);
     expect(garden.crowd.guests.every((g) => g.interest < .1), isTrue);
-    at(18.9);
+    at(pastGood(18.5));
     expect(garden.progress.tier, 1);
     expect(garden.passedPhrases, 1);
     expect(garden.crowd.peakSupported, isFalse);
@@ -123,10 +127,13 @@ void main() {
       at(28 + garden.activeOffsets[i]);
       garden.tap(garden.activeLimbs[i]);
     }
-    at(34.9);
+    at(pastGood(34.5));
     expect(garden.lastOutcome, ChallengeOutcome.retry);
     expect(garden.passedPhrases, 1);
-    expect(garden.lastStumbleBeat, closeTo(34.86, .001));
+    expect(
+      garden.lastStumbleBeat,
+      closeTo(34.5 + RhythmJudge.lateWindowMs / 500, .001),
+    );
   });
 
   test(
@@ -145,7 +152,7 @@ void main() {
         at(76 + garden.activeOffsets[i]);
         garden.tap(garden.activeLimbs[i]);
       }
-      at(82.9);
+      at(pastGood(82.5));
       expect(garden.progress.fullTierSuccesses, 1);
       expect(garden.progress.cleared, isFalse);
       expect(garden.activeLimbs, firstPeak, reason: 'The phrase stays frozen.');
@@ -170,7 +177,7 @@ void main() {
       playResponse(12 + cycle * 16);
     }
     expect(garden.progress.fullTierSuccesses, 1);
-    at(12 + 9 * 16 + FightChart.bar.offsets.last + .4);
+    at(pastGood(12 + 9 * 16 + FightChart.bar.offsets.last));
     expect(garden.progress.fullTierSuccesses, 0);
     expect(garden.progress.tier, 3);
     expect(garden.progress.cleared, isFalse);
@@ -191,7 +198,7 @@ void main() {
         at(12 + garden.activeOffsets[i]);
         garden.tap(garden.activeLimbs[i]);
       }
-      at(18.9);
+      at(pastGood(18.5));
       final interest = garden.crowd.guests.map((g) => g.interest).toList();
       expect(garden.passedPhrases, 1);
       garden.pause();
@@ -327,16 +334,17 @@ void main() {
     () {
       at(4);
       expect(garden.tap(Limb.leftHand).note, isNull);
-      at(11.638); // 181 ms early at 120 BPM.
+      // One millisecond more than the good window early, at 120 BPM, then exactly.
+      at(12 - (RhythmJudge.earlyWindowMs + 1) / 500);
       expect(garden.tap(Limb.leftHand).note, isNull);
-      at(11.64); // Exactly 180 ms early.
+      at(12 - RhythmJudge.earlyWindowMs / 500);
       expect(garden.phase, GardenPhase.call);
       expect(garden.tap(Limb.leftHand).grade, TapGrade.good);
       for (var i = 1; i < garden.activeLimbs.length; i++) {
         at(12 + garden.chart.offsets[i]);
         garden.tap(garden.activeLimbs[i]);
       }
-      at(18.9);
+      at(pastGood(18.5));
       expect(garden.progress.tier, 1);
       expect(garden.passedPhrases, 1);
     },
@@ -423,7 +431,7 @@ void main() {
         at(start + garden.chart.offsets[i]);
         lastId = garden.tap(garden.activeLimbs[i]).note!.id;
       }
-      at(start + 6.9);
+      at(pastGood(start + 6.5));
       final approvalAt = garden.completedAtSeconds;
       expect(approvalAt, isNotNull);
       expect(garden.phase, GardenPhase.response);
@@ -438,4 +446,26 @@ void main() {
       expect(transport.state, TransportState.playing);
     },
   );
+
+  test('a review start at a tier judges the first phrase at that tier', () {
+    final fresh = MusicTransport(
+      MusicScore(
+        id: 'garden',
+        beatsPerBar: 4,
+        bars: 4,
+        phraseBars: 1,
+        tempos: [120, 120, 120, 120, 120],
+        notes: [],
+      ),
+      audio,
+      loop: true,
+    );
+    final session = GardenSession(fresh, audio)..start(tier: 3);
+    expect(session.progress.tier, 3);
+    expect(fresh.currentTier, 3);
+    expect(
+      () => GardenSession(fresh, audio).start(tier: 5),
+      throwsRangeError,
+    );
+  });
 }

@@ -200,9 +200,9 @@
   {
    "id": "billiards",
    "key": "G minor",
-   "next": null,
+   "next": "salon",
    "successBars": 4,
-   "successFinal": true,
+   "successFinal": false,
    "gridTier": "mid",
    "layerFadeBeats": 1,
    "tiers": [
@@ -238,6 +238,55 @@
      "layer": [
       {
        "source": "pipeline-20261107/chains/billiards/parent.flac",
+       "part": "percussive",
+       "db": -6
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "salon",
+   "key": "D minor",
+   "successKey": "F major",
+   "next": null,
+   "successBars": 4,
+   "successFinal": true,
+   "gridTier": "mid",
+   "layerFadeBeats": 1,
+   "tiers": [
+    {
+     "name": "low",
+     "source": "pipeline-20261107/chains/salon/lowC.flac",
+     "bpm": 108,
+     "loopBars": 24,
+     "targetLufs": -16.5,
+     "eq": [
+      {
+       "type": "highshelf",
+       "freq": 1500,
+       "gain": -3
+      }
+     ]
+    },
+    {
+     "name": "mid",
+     "source": "pipeline-20261107/chains/salon/parent.flac",
+     "bpm": 116,
+     "loopBars": 24,
+     "targetLufs": -16,
+     "eq": []
+    },
+    {
+     "name": "high",
+     "source": "pipeline-20261107/chains/salon/highE.flac",
+     "bpm": 124,
+     "loopBars": 24,
+     "targetLufs": -15,
+     "eq": [],
+     "layer": [
+      {
+       "source": "pipeline-20261107/chains/salon/parent.flac",
        "part": "percussive",
        "db": -6
       }

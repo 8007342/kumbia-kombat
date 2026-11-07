@@ -1,0 +1,292 @@
+{
+ "$comment": "The salon's trio (bongos), 2026-11-07, plan/levels/salon-art-2026-11-07.md. Same route as the indoor party's band: drawn at an angle toward the room, from a front_3q view drawn first from words; the instrument is a mask-only garment.",
+ "id": "band-bongos",
+ "family": "band-bongos-v1",
+ "style": "party-pixel",
+ "description": "Salon trio, bongos: a compact, broad-shouldered person of about forty-five, shaved head and short grey beard.",
+ "body": {
+  "preset": "stocky-adult"
+ },
+ "pronouns": [
+  "they",
+  "them",
+  "their"
+ ],
+ "skin": "#6E4126",
+ "traits": "compact, broad-shouldered person of about forty-five with a smooth shaved head and a short grey beard",
+ "demeanor": "the timekeeper: a small, knowing smile, nodding on every beat",
+ "garments": [
+  {
+   "id": "hair",
+   "shape": "short-hair-moustache",
+   "region": "hair",
+   "colour": "#8D8A86",
+   "text": "smooth shaved head and a short neat grey beard"
+  },
+  {
+   "id": "shirt",
+   "shape": "shirt-fitted",
+   "region": "shirt",
+   "colour": "#EFE7D6",
+   "text": "closed white dress shirt with a small champagne-gold bow tie"
+  },
+  {
+   "id": "jacket",
+   "shape": "waistcoat-fitted",
+   "region": "cloth",
+   "colour": "#1E1B22",
+   "text": "long-sleeved black dinner jacket"
+  },
+  {
+   "id": "lapels",
+   "shape": "jacket-lapels",
+   "region": "apron",
+   "colour": "#C9A85C",
+   "text": "narrow champagne-gold satin lapels"
+  },
+  {
+   "id": "trousers",
+   "shape": "trousers",
+   "region": "trousers",
+   "colour": "#17151B",
+   "text": "slim black trousers"
+  },
+  {
+   "id": "shoes",
+   "shape": "shoes-flat",
+   "region": "shoes",
+   "colour": "#141216",
+   "text": "polished black shoes"
+  },
+  {
+   "id": "bongos",
+   "shape": "bongo-pair",
+   "region": "prop",
+   "colour": "#B07A3E",
+   "text": "a pair of small joined honey-wood bongo drums with cream heads on a thin black stand"
+  }
+ ],
+ "motion": {
+  "set": "band-loop",
+  "overrides": {
+   "relaxed.a": {
+    "pose": {
+     "twist": 0,
+     "l_arm": [
+      24,
+      10
+     ],
+     "l_fore": [
+      -20,
+      70
+     ],
+     "r_arm": [
+      12,
+      20
+     ],
+     "r_fore": [
+      1,
+      31
+     ]
+    },
+    "intent": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, both feet flat on the floor, the hand on the left of the picture flat on its bongo drum, the hand on the right of the picture lifted a little above the other drum"
+   },
+   "relaxed.b": {
+    "pose": {
+     "twist": 0,
+     "l_arm": [
+      12,
+      20
+     ],
+     "l_fore": [
+      1,
+      31
+     ],
+     "r_arm": [
+      24,
+      10
+     ],
+     "r_fore": [
+      -20,
+      70
+     ]
+    },
+    "intent": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, both feet flat on the floor, the hand on the right of the picture flat on its bongo drum, the hand on the left of the picture lifted a little above the other drum"
+   },
+   "tap.up_a": {
+    "pose": {
+     "twist": 0,
+     "l_arm": [
+      24,
+      10
+     ],
+     "l_fore": [
+      -20,
+      70
+     ],
+     "r_arm": [
+      12,
+      20
+     ],
+     "r_fore": [
+      1,
+      31
+     ]
+    },
+    "intent": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, both feet flat on the floor, the hand on the left of the picture on its bongo drum, the other lifted a little"
+   },
+   "tap.up_b": {
+    "pose": {
+     "twist": 0,
+     "l_arm": [
+      12,
+      20
+     ],
+     "l_fore": [
+      1,
+      31
+     ],
+     "r_arm": [
+      24,
+      10
+     ],
+     "r_fore": [
+      -20,
+      70
+     ]
+    },
+    "intent": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, both feet flat on the floor, the hand on the right of the picture on its bongo drum, the other lifted a little"
+   },
+   "swing.a": {
+    "pose": {
+     "twist": 8,
+     "l_arm": [
+      24,
+      10
+     ],
+     "l_fore": [
+      -20,
+      70
+     ],
+     "r_arm": [
+      32,
+      10
+     ],
+     "r_fore": [
+      -7,
+      132
+     ]
+    },
+    "intent": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, both feet flat on the floor, the hand on the left of the picture lifted up to the height of the shoulder, palm open, about to strike, the other hand on its drum, shoulders rolling"
+   },
+   "swing.b": {
+    "pose": {
+     "twist": 0,
+     "l_arm": [
+      24,
+      10
+     ],
+     "l_fore": [
+      -20,
+      70
+     ],
+     "r_arm": [
+      12,
+      20
+     ],
+     "r_fore": [
+      1,
+      31
+     ]
+    },
+    "intent": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, both feet flat on the floor, both hands low over the two small drums, between strokes"
+   },
+   "swing.c": {
+    "pose": {
+     "twist": -8,
+     "l_arm": [
+      32,
+      10
+     ],
+     "l_fore": [
+      -7,
+      132
+     ],
+     "r_arm": [
+      24,
+      10
+     ],
+     "r_fore": [
+      -20,
+      70
+     ]
+    },
+    "intent": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, both feet flat on the floor, the hand on the right of the picture lifted up to the height of the shoulder, palm open, about to strike, the other hand on its drum, shoulders rolling"
+   },
+   "swing.d": {
+    "pose": {
+     "twist": 0,
+     "l_arm": [
+      12,
+      20
+     ],
+     "l_fore": [
+      1,
+      31
+     ],
+     "r_arm": [
+      24,
+      10
+     ],
+     "r_fore": [
+      -20,
+      70
+     ]
+    },
+    "intent": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, both feet flat on the floor, both hands low over the two small drums, between strokes"
+   }
+  }
+ },
+ "drawing": {
+  "noun": "person",
+  "fits": "their head, both shoes, both hands and both bongo drums",
+  "look": "compact, broad-shouldered adult build, strong forearms, a round face with a small knowing smile, deep brown skin, a smooth shaved head and a short neat grey beard, long-sleeved black dinner jacket buttoned closed, its narrow champagne-gold satin lapels lying flat on the chest, a small champagne-gold bow tie at a closed white shirt collar, slim black trousers and polished black shoes, and thick dark ink outline, behind a pair of small joined honey-wood bongo drums with cream heads on a thin black stand at the height of their waist",
+  "extra": "They are a grown adult of about forty-five. ",
+  "sheet": {
+   "source": {
+    "image": "tool/art/references/band-congas/front_3q.png",
+    "styleOnly": true
+   },
+   "views": {
+    "front_3q": {
+     "image": "tool/art/references/band-bongos/front_3q.png",
+     "description": "standing behind the pair of small bongo drums on their stand, body and face turned three-quarters toward the right side of the picture, playing out toward a crowd on that side, feet apart, both open hands on the cream drumheads",
+     "extra": "They are a grown adult of about forty-five. There is exactly one pair of small bongo drums, joined side by side on one thin stand at waist height, the larger drum on the left of the picture. The drums stay exactly where image 1 shows them, and only the player moves. "
+    }
+   }
+  },
+  "score": {
+   "silhouetteTolerance": 60
+  },
+  "skeletonScale": 0.92,
+  "seed": 990700,
+  "count": 2
+ },
+ "references": {
+  "mode": "source",
+  "sources": []
+ },
+ "targets": [
+  {
+   "room": "salon",
+   "atlas": "band-bongos",
+   "out": "assets/art/ensemble/band-bongos-v1.png",
+   "native": [
+    256,
+    320
+   ],
+   "pixelScale": 3
+  }
+ ],
+ "seedBase": 990700
+}

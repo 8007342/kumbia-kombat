@@ -8,7 +8,7 @@
  },
  "shapes": ["brimmed-hat", "hat-band", "short-hair-moustache", "puff", "guayabera-stripes", "shirt-stocky", "shirt-fitted",
             "waistcoat-fitted", "sleeve-rolled", "waist-apron", "trousers", "shoes-flat", "shoes-heeled",
-            "gold-chains", "cue-shaft", "cue-butt", "waistcoat-buttons", "palette-only", "upright-bass", "trumpet-horn", "conga-shells", "conga-bands", "marimba-bars", "marimba-tubes", "jacket-lapels", "macron-body"],
+            "gold-chains", "cue-shaft", "cue-butt", "waistcoat-buttons", "palette-only", "upright-bass", "trumpet-horn", "conga-shells", "conga-bands", "marimba-bars", "marimba-tubes", "violin-body", "violin-bow", "bongo-pair", "jacket-lapels", "macron-body"],
  "props": ["shaker", "bottle", "glass"],
  "secondaryMotion": {"values": ["lag-1"], "shapes": ["waist-apron", "shirt-fitted", "shirt-stocky", "waistcoat-fitted"]}
 }

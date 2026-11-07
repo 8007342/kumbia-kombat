@@ -131,8 +131,8 @@ assert.ok(['sine','square','sawtooth','triangle'].includes(level.music.leadShape
 assert.equal(level.music.score,'pool_swing');assert.equal(level.music.successScore,'pool_swing_success');
 assert.equal(level.title,'THE POOL LAWN');assert.ok(['Sabor','Grace'].includes(level.rules.metric));
 const campaign=json('levels/index.json').campaign;
-assert.deepEqual(campaign.map(s=>s.level),['garden','pool-garden','bar','cool-crowd','billiards'],'the owner\'s order, tenth round, then the party and billiards');
-assert.deepEqual(campaign.map(s=>s.bridgeToNext),['garden_to_pool','pool_to_bar','bar_to_crowd','crowd_to_restroom',undefined]);
+assert.deepEqual(campaign.map(s=>s.level),['garden','pool-garden','bar','cool-crowd','billiards','salon'],'the owner\'s order, tenth round, then the party, billiards and the salon');
+assert.deepEqual(campaign.map(s=>s.bridgeToNext),['garden_to_pool','pool_to_bar','bar_to_crowd','crowd_to_restroom','billiards_to_salon',undefined]);
 const chart=level.chart, LIMBS=['leftHand','rightHand','leftFoot','rightFoot'];
 assert.equal(chart.callBeats,8);
 assert.equal(chart.offsets.length,chart.limbs.length);
@@ -186,10 +186,13 @@ for(const {tier,index} of patterns){
  chartRows.push({tier,bpm,steps:steps(index).length,presses:list.length,rich:list.length-steps(index).length,spotMs:Math.round(spot),limbMs:Math.round(limb),hopMs:Math.round(hop),crossMs:Math.round(cross),pressesPerSec:(list.length/(8*beatMs/1000)).toFixed(2),cueLeadMs:Math.round(2*beatMs)});
 }
 console.log('Base chart',JSON.stringify(chart.offsets));console.table(chartRows);
-const richAt=t=>Math.min(...chartRows.filter(r=>r.tier===t).map(r=>r.rich));
+// A third final challenge wraps round to variants[0], tier 1's pattern, at the top tier's tempo.
+// It is still held to the limits above at that tempo, but a replay isn't the tier's own step up.
+const own=t=>patterns.filter((p,i)=>p.tier===t&&!patterns.slice(0,i).some(q=>q.tier<t&&q.index===p.index)).map(p=>p.index);
+const richAt=t=>Math.min(...chartRows.filter((r,i)=>r.tier===t&&own(t).includes(patterns[i].index)).map(r=>r.rich));
 assert.equal(richAt(0),0,'the first tier stays plain');
 for(let t=1;t<5;t++)assert.ok(richAt(t)>=richAt(t-1),'rich moves never fall as tiers rise');
-assert.ok(chartRows.filter(r=>r.tier<4).every(r=>r.presses<Math.min(...chartRows.filter(q=>q.tier===4).map(q=>q.presses))),'the top tier asks for the most presses');
+assert.ok(chartRows.filter(r=>r.tier<4).every(r=>r.presses<Math.min(...chartRows.filter((q,i)=>q.tier===4&&own(4).includes(patterns[i].index)).map(q=>q.presses))),'the top tier asks for the most presses');
 // Swung plain notes against the score they sit on. A split's second press at half a
 // beat isn't on the synth's swing: plan/double-moves-2026-11-07.md has what the
 // rendered takes do there.

@@ -1,0 +1,496 @@
+{
+ "definition": {
+  "$comment": "The salon's trio (bongos), 2026-11-07, plan/levels/salon-art-2026-11-07.md. Same route as the indoor party's band: drawn at an angle toward the room, from a front_3q view drawn first from words; the instrument is a mask-only garment.",
+  "id": "band-bongos",
+  "family": "band-bongos-v1",
+  "style": "party-pixel",
+  "description": "Salon trio, bongos: a compact, broad-shouldered person of about forty-five, shaved head and short grey beard.",
+  "body": {
+   "preset": "stocky-adult"
+  },
+  "pronouns": [
+   "they",
+   "them",
+   "their"
+  ],
+  "skin": "#6E4126",
+  "traits": "compact, broad-shouldered person of about forty-five with a smooth shaved head and a short grey beard",
+  "demeanor": "the timekeeper: a small, knowing smile, nodding on every beat",
+  "garments": [
+   {
+    "id": "hair",
+    "shape": "short-hair-moustache",
+    "region": "hair",
+    "colour": "#8D8A86",
+    "text": "smooth shaved head and a short neat grey beard"
+   },
+   {
+    "id": "shirt",
+    "shape": "shirt-fitted",
+    "region": "shirt",
+    "colour": "#EFE7D6",
+    "text": "closed white dress shirt with a small champagne-gold bow tie"
+   },
+   {
+    "id": "jacket",
+    "shape": "waistcoat-fitted",
+    "region": "cloth",
+    "colour": "#1E1B22",
+    "text": "long-sleeved black dinner jacket"
+   },
+   {
+    "id": "lapels",
+    "shape": "jacket-lapels",
+    "region": "apron",
+    "colour": "#C9A85C",
+    "text": "narrow champagne-gold satin lapels"
+   },
+   {
+    "id": "trousers",
+    "shape": "trousers",
+    "region": "trousers",
+    "colour": "#17151B",
+    "text": "slim black trousers"
+   },
+   {
+    "id": "shoes",
+    "shape": "shoes-flat",
+    "region": "shoes",
+    "colour": "#141216",
+    "text": "polished black shoes"
+   },
+   {
+    "id": "bongos",
+    "shape": "bongo-pair",
+    "region": "prop",
+    "colour": "#B07A3E",
+    "text": "a pair of small joined honey-wood bongo drums with cream heads on a thin black stand"
+   }
+  ],
+  "motion": {
+   "set": "band-loop",
+   "overrides": {
+    "relaxed.a": {
+     "pose": {
+      "twist": 0,
+      "l_arm": [
+       24,
+       10
+      ],
+      "l_fore": [
+       -20,
+       70
+      ],
+      "r_arm": [
+       12,
+       20
+      ],
+      "r_fore": [
+       1,
+       31
+      ]
+     },
+     "intent": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, both feet flat on the floor, the hand on the left of the picture flat on its bongo drum, the hand on the right of the picture lifted a little above the other drum"
+    },
+    "relaxed.b": {
+     "pose": {
+      "twist": 0,
+      "l_arm": [
+       12,
+       20
+      ],
+      "l_fore": [
+       1,
+       31
+      ],
+      "r_arm": [
+       24,
+       10
+      ],
+      "r_fore": [
+       -20,
+       70
+      ]
+     },
+     "intent": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, both feet flat on the floor, the hand on the right of the picture flat on its bongo drum, the hand on the left of the picture lifted a little above the other drum"
+    },
+    "tap.up_a": {
+     "pose": {
+      "twist": 0,
+      "l_arm": [
+       24,
+       10
+      ],
+      "l_fore": [
+       -20,
+       70
+      ],
+      "r_arm": [
+       12,
+       20
+      ],
+      "r_fore": [
+       1,
+       31
+      ]
+     },
+     "intent": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, both feet flat on the floor, the hand on the left of the picture on its bongo drum, the other lifted a little"
+    },
+    "tap.up_b": {
+     "pose": {
+      "twist": 0,
+      "l_arm": [
+       12,
+       20
+      ],
+      "l_fore": [
+       1,
+       31
+      ],
+      "r_arm": [
+       24,
+       10
+      ],
+      "r_fore": [
+       -20,
+       70
+      ]
+     },
+     "intent": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, both feet flat on the floor, the hand on the right of the picture on its bongo drum, the other lifted a little"
+    },
+    "swing.a": {
+     "pose": {
+      "twist": 8,
+      "l_arm": [
+       24,
+       10
+      ],
+      "l_fore": [
+       -20,
+       70
+      ],
+      "r_arm": [
+       32,
+       10
+      ],
+      "r_fore": [
+       -7,
+       132
+      ]
+     },
+     "intent": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, both feet flat on the floor, the hand on the left of the picture lifted up to the height of the shoulder, palm open, about to strike, the other hand on its drum, shoulders rolling"
+    },
+    "swing.b": {
+     "pose": {
+      "twist": 0,
+      "l_arm": [
+       24,
+       10
+      ],
+      "l_fore": [
+       -20,
+       70
+      ],
+      "r_arm": [
+       12,
+       20
+      ],
+      "r_fore": [
+       1,
+       31
+      ]
+     },
+     "intent": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, both feet flat on the floor, both hands low over the two small drums, between strokes"
+    },
+    "swing.c": {
+     "pose": {
+      "twist": -8,
+      "l_arm": [
+       32,
+       10
+      ],
+      "l_fore": [
+       -7,
+       132
+      ],
+      "r_arm": [
+       24,
+       10
+      ],
+      "r_fore": [
+       -20,
+       70
+      ]
+     },
+     "intent": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, both feet flat on the floor, the hand on the right of the picture lifted up to the height of the shoulder, palm open, about to strike, the other hand on its drum, shoulders rolling"
+    },
+    "swing.d": {
+     "pose": {
+      "twist": 0,
+      "l_arm": [
+       12,
+       20
+      ],
+      "l_fore": [
+       1,
+       31
+      ],
+      "r_arm": [
+       24,
+       10
+      ],
+      "r_fore": [
+       -20,
+       70
+      ]
+     },
+     "intent": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, both feet flat on the floor, both hands low over the two small drums, between strokes"
+    }
+   }
+  },
+  "drawing": {
+   "noun": "person",
+   "fits": "their head, both shoes, both hands and both bongo drums",
+   "look": "compact, broad-shouldered adult build, strong forearms, a round face with a small knowing smile, deep brown skin, a smooth shaved head and a short neat grey beard, long-sleeved black dinner jacket buttoned closed, its narrow champagne-gold satin lapels lying flat on the chest, a small champagne-gold bow tie at a closed white shirt collar, slim black trousers and polished black shoes, and thick dark ink outline, behind a pair of small joined honey-wood bongo drums with cream heads on a thin black stand at the height of their waist",
+   "extra": "They are a grown adult of about forty-five. ",
+   "sheet": {
+    "source": {
+     "image": "tool/art/references/band-congas/front_3q.png",
+     "styleOnly": true
+    },
+    "views": {
+     "front_3q": {
+      "image": "tool/art/references/band-bongos/front_3q.png",
+      "description": "standing behind the pair of small bongo drums on their stand, body and face turned three-quarters toward the right side of the picture, playing out toward a crowd on that side, feet apart, both open hands on the cream drumheads",
+      "extra": "They are a grown adult of about forty-five. There is exactly one pair of small bongo drums, joined side by side on one thin stand at waist height, the larger drum on the left of the picture. The drums stay exactly where image 1 shows them, and only the player moves. "
+     }
+    }
+   },
+   "score": {
+    "silhouetteTolerance": 60
+   },
+   "skeletonScale": 0.92,
+   "seed": 990700,
+   "count": 2
+  },
+  "references": {
+   "mode": "source",
+   "sources": []
+  },
+  "targets": [
+   {
+    "room": "salon",
+    "atlas": "band-bongos",
+    "out": "assets/art/ensemble/band-bongos-v1.png",
+    "native": [
+     256,
+     320
+    ],
+    "pixelScale": 3
+   }
+  ],
+  "seedBase": 990700
+ },
+ "style": {
+  "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background",
+  "negative": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render",
+  "frame": {
+   "margin": {
+    "minClear": 0.03,
+    "units": "fraction-of-generation-canvas",
+    "failOnBorderTouch": true
+   },
+   "units": "native-px",
+   "generationCanvas": {
+    "width": 768,
+    "height": 960
+   },
+   "camera": "floor-perspective"
+  },
+  "ramp": {
+   "shades": 4
+  },
+  "outline": "#1A1018",
+  "reservedRamps": [
+   {
+    "id": "kumbia-outfit",
+    "appliesToRegions": [
+     "cloth"
+    ],
+    "recolor": false,
+    "$comment": "Gates from shaders/party_palette.frag on unpremultiplied RGB 0-1; matches if ANY gate's ALL conditions hold. Structured, never eval'd: lhs is a channel or {sub:[a,b]}, rhs a literal or {mul:[k,channel]}.",
+    "gates": [
+     {
+      "id": "cool",
+      "all": [
+       {
+        "lhs": "b",
+        "op": ">=",
+        "rhs": 0.12
+       },
+       {
+        "lhs": "r",
+        "op": ">=",
+        "rhs": {
+         "mul": [
+          0.7,
+          "b"
+         ]
+        }
+       },
+       {
+        "lhs": "b",
+        "op": ">=",
+        "rhs": {
+         "mul": [
+          0.99,
+          "r"
+         ]
+        }
+       },
+       {
+        "lhs": "g",
+        "op": ">=",
+        "rhs": {
+         "mul": [
+          0.2,
+          "b"
+         ]
+        }
+       },
+       {
+        "lhs": "g",
+        "op": "<=",
+        "rhs": {
+         "mul": [
+          0.66,
+          "b"
+         ]
+        }
+       }
+      ]
+     },
+     {
+      "id": "plum",
+      "all": [
+       {
+        "lhs": "r",
+        "op": ">=",
+        "rhs": 0.392157
+       },
+       {
+        "lhs": "r",
+        "op": ">=",
+        "rhs": {
+         "mul": [
+          0.7,
+          "b"
+         ]
+        }
+       },
+       {
+        "lhs": "b",
+        "op": ">=",
+        "rhs": {
+         "mul": [
+          0.32,
+          "r"
+         ]
+        }
+       },
+       {
+        "lhs": "g",
+        "op": "<=",
+        "rhs": {
+         "mul": [
+          0.55,
+          "b"
+         ]
+        }
+       },
+       {
+        "lhs": {
+         "sub": [
+          "b",
+          "g"
+         ]
+        },
+        "op": ">=",
+        "rhs": 0.047059
+       }
+      ]
+     },
+     {
+      "id": "pink",
+      "all": [
+       {
+        "lhs": "r",
+        "op": ">=",
+        "rhs": 0.705882
+       },
+       {
+        "lhs": "r",
+        "op": ">=",
+        "rhs": {
+         "mul": [
+          0.7,
+          "b"
+         ]
+        }
+       },
+       {
+        "lhs": "b",
+        "op": ">=",
+        "rhs": {
+         "mul": [
+          0.32,
+          "r"
+         ]
+        }
+       },
+       {
+        "lhs": "g",
+        "op": "<=",
+        "rhs": {
+         "mul": [
+          0.86,
+          "b"
+         ]
+        }
+       },
+       {
+        "lhs": {
+         "sub": [
+          "b",
+          "g"
+         ]
+        },
+        "op": ">=",
+        "rhs": 0.047059
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  "generation": {
+   "count_per_pose": 4,
+   "seed_policy": "seed = seed_base + 100*pose_index + k; fixed per pose while tuning",
+   "tier": "I1"
+  }
+ },
+ "styleKey": "678ab4fca1ded9f95c38fad960356fa18d5651aea6ef3a4346ae687ff556ec48",
+ "backend": "qwen-frame",
+ "rigKey": "d76fad8c66943d0e31b73ca471303820c3a9e537cdd5f464ecf53bba45be0286",
+ "frameKeys": {
+  "relaxed.a": "d453e77c91d89a39de057a6aa1e0fb67880813cda74a42d4fb4f52efefec10fc",
+  "relaxed.b": "3104f188215183039e3f7a4d9f2fd9656bf44d34eaf7e4ecab1e87c007be961e",
+  "tap.up_a": "898c3a56be50f8a010048fb0cb1238929c69e6f80d01af89408a2b443deb7d48",
+  "tap.up_b": "3765bd1ef2bcfdc2f1c326e939ae5ac58c901c684078589313a2b282ca227a3b",
+  "swing.a": "62e5e0945c27c5b42ed11b1b9e55ea99a4889524d0c12e1563ff70d7b09137b4",
+  "swing.b": "e4a98154319ec8836fa423e2697c77dae864597969673c3416881b9c40ef1cf1",
+  "swing.c": "503adf4f6fe49585196bca053537dce7e72e27ef85fc2ca8d9ee5c9802866b0a",
+  "swing.d": "24436310a3a9bc188d5d3798caf0d238d5d91a4695214af8d0e7c752162db030"
+ },
+ "run": "band-bongos-v1-20261107a"
+}

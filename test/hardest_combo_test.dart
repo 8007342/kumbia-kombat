@@ -46,6 +46,7 @@ void main() {
         'bar': 'Last Call',
         'cool-crowd': 'All That Glitters',
         'billiards': 'Tres Bandas',
+        'salon': 'EL GIRO DE TERCIOPELO',
       });
       expect(registry.upcomingOpponents, isEmpty);
       for (final combo in registry.levels.map((l) => l.hardestCombo!)) {

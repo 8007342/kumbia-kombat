@@ -401,6 +401,158 @@ function composeBarFinale(success,to){
   events:events.sort((a,b)=>a.beat-b.beat||a.track.localeCompare(b.track)||a.pitch-b.pitch)};
  return result;
 }
+// The salon: "Terciopelo", an original 32-bar bolero-cha in D minor. A cha-cha-chá
+// groove (güiro long-long-long-short-short, congas on the "cha-cha" of beat 4,
+// a tumbao-like bass with the 4-and pickup) under a sung bolero line for violin,
+// answered by flute. The B section turns to F major, the relative major, which
+// the success tag resolves to. Its five tiers run 108 to 124 BPM in 4 BPM steps,
+// so tiers 0, 2 and 4 are the rendered low, mid and high tempos.
+const boleroKinds={m:[0,3,7],M:[0,4,7],'7':[0,4,7,10],m7b5:[0,3,6,10]};
+const boleroChords={Dm:[0,'m'],Gm:[5,'m'],A7:[7,'7'],Bb:[8,'M'],Em7b5:[2,'m7b5'],F:[3,'M'],C7:[10,'7']};
+const boleroForm=[
+ ['Dm'],['Dm'],['Gm'],['Gm'],['A7'],['A7'],['Dm'],['Dm','A7'],
+ ['Dm'],['Dm'],['Gm'],['Gm'],['Bb'],['Em7b5','A7'],['Dm'],['Dm'],
+ ['F'],['F'],['C7'],['C7'],['Gm'],['Gm'],['A7'],['A7'],
+ ['Dm'],['Gm'],['Bb'],['A7'],['Dm'],['Gm'],['A7'],['Dm'],
+];
+// [beat, semitones above D4, length]. Long notes and sighs: a bolero is sung.
+const bP1=[[0,7,1.5],[1.5,8,.5],[2,7,1],[3,5,1],[4,3,1.5],[5.5,2,.5],[6,3,1.5]];
+const bP2=[[0,10,1.5],[1.5,12,.5],[2,10,1],[3,8,.5],[3.5,7,.5],[4,5,2],[6,3,1],[7,2,1]];
+const bP3=[[0,7,1],[1,11,1],[2,14,1.5],[3.5,17,.5],[4,15,1],[5,14,1],[6,11,1.5],[7.5,7,.5]];
+const bP4=[[0,12,1.5],[1.5,10,.5],[2,8,1],[3,7,1],[4,3,1],[5,2,1],[6,0,2]];
+const bP7=[[0,8,1.5],[1.5,10,.5],[2,12,1],[3,8,1],[4,5,1],[5,8,.5],[5.5,7,.5],[6,11,1],[7,7,1]];
+const bP9=[[0,15,1.5],[1.5,14,.5],[2,12,1],[3,10,1],[4,7,2],[6,10,1],[7,12,1]];
+const bP10=[[0,14,1.5],[1.5,15,.5],[2,17,1],[3,14,1],[4,10,1.5],[5.5,8,.5],[6,10,2]];
+const bP11=[[0,17,1.5],[1.5,15,.5],[2,14,1],[3,12,1],[4,10,2],[6,8,1],[7,7,1]];
+const bP12=[[0,7,.5],[.5,11,.5],[1,14,.5],[1.5,17,1.5],[3,14,1],[4,11,2],[6,7,2]];
+const bP13=[[0,7,1.5],[1.5,8,.5],[2,7,1],[3,3,1],[4,5,1.5],[5.5,7,.5],[6,10,2]];
+const bP14=[[0,8,1.5],[1.5,10,.5],[2,8,1],[3,5,1],[4,7,1],[5,11,1],[6,14,2]];
+const bP15=[[0,15,1.5],[1.5,14,.5],[2,12,1],[3,10,1],[4,10,1],[5,8,1],[6,7,2]];
+const bP16=[[0,14,1],[1,11,1],[2,7,1],[3,11,1],[4,12,3.5]];
+const boleroPhrases=[bP1,bP2,bP3,bP4,bP1,bP2,bP7,bP4,bP9,bP10,bP11,bP12,bP13,bP14,bP15,bP16];
+const boleroPieces=[{id:'salon_bolero',title:'Terciopelo',stat:'Charm',bars:32,bpms:[108,112,116,120,124],root:62,mode:'minor',
+ motif:bP1,program:40,color:'singing violin lead, flute answers, montuno keys, soft round bass, güiro and congas on the cha-cha-chá, string swells at the top'}];
+const boleroChordAt=(bar,beat)=>{const c=boleroForm[bar%boleroForm.length];return boleroChords[c[c.length>1&&beat>=2?1:0]]};
+const boleroTone=(root,[semis,kind],index,low)=>{
+ const tones=boleroKinds[kind];const pc=(root+semis+tones[index%tones.length])%12;
+ return low+((pc-low)%12+12)%12;
+};
+// One bar of the cha-cha-chá groove, shared by the score, the tag and the bridge.
+function chachaPercussion(note,b,tier){
+ // Güiro: three long strokes, then the short-short "cha-cha" on 4 and 4-and.
+ for(const [x,d,v] of [[0,.4,44],[1,.4,38],[2,.4,40],[3,.18,46],[3.5,.18,50]])note('pulse',b+x,73,d,v,tier);
+ for(const x of [0,2])note('pulse',b+x,36,.14,x===0?70:58,tier);
+}
+function composeBolero(p){
+ const events=[], note=(track,beat,pitch,duration,velocity,minTier=0,maxTier=4)=>events.push({track,beat,pitch,duration,velocity,minTier,maxTier});
+ for(let bar=0;bar<p.bars;bar++){
+  const b=bar*4, chord=boleroChordAt(bar,0), late=boleroChordAt(bar,2);
+  chachaPercussion(note,b,0);
+  // Tier 1: congas, a slap on 2 and open tones on the cha-cha of 4.
+  note('pulse',b+1,63,.12,52,1);
+  for(const x of [3,3.5])note('pulse',b+x,64,.14,58,1);
+  // Tier 3: a soft cha-cha bell on each beat.
+  for(const x of [0,1,2,3])note('pulse',b+x,75,.08,x===0?40:32,3);
+  // Tier 4: a short timbale run into each four-bar phrase.
+  if(bar%4===3)for(const [x,pitch,v] of [[2.5,65,50],[2.75,64,54],[3,60,58],[3.25,60,62]])note('pulse',b+x,pitch,.1,v,4);
+  // Bass: root and fifth, then the 4-and pickup from tier 1.
+  note('bass',b,boleroTone(p.root,chord,0,38),1.4,84);
+  note('bass',b+2,boleroTone(p.root,late,2,38),.9,74);
+  note('bass',b+3,boleroTone(p.root,late,0,38),.4,64,1);
+  note('bass',b+3.5,boleroTone(p.root,late,0,38),.4,70,1);
+  // Montuno: sparse off-beat dyads, then the full syncopated figure at tier 2.
+  for(const x of [1.5,3])for(const i of [1,2])note('guitar',b+x,boleroTone(p.root,boleroChordAt(bar,x),i,57),.3,40,0,1);
+  for(const [x,i] of [[.5,0],[1,1],[1.5,2],[2.5,0],[3,1],[3.5,2]]){
+   const c=boleroChordAt(bar,x);
+   note('guitar',b+x,boleroTone(p.root,c,i,57),.24,x%1?46:40,2);
+   note('guitar',b+x,boleroTone(p.root,c,i+1,57),.24,x%1?40:34,2);
+  }
+  // Tier 4: strings swell under each bar, louder into the phrase's second bar.
+  for(const i of [0,1,2])note('brass',b,boleroTone(p.root,chord,i,62),late===chord?3.8:1.9,bar%2?44:34,4);
+  if(late!==chord)for(const i of [0,1,2])note('brass',b+2,boleroTone(p.root,late,i,62),1.8,bar%2?46:36,4);
+ }
+ for(const [phrase,line] of boleroPhrases.entries()){
+  const base=phrase*8;
+  for(const [i,[offset,interval,duration]] of line.entries()){
+   note('lead',base+offset,p.root+interval,Math.min(duration,p.bars*4-base-offset),74,3);
+   if(i%2===0||i===1||i===line.length-1)note('lead',base+offset,p.root+interval,Math.min(duration*.85,p.bars*4-base-offset),56,0,2);
+   if(offset<6)note('answer',base+offset,p.root+interval+12,Math.min(duration*.8,p.bars*4-base-offset),34,4);
+  }
+  // Flute answers in the lead's long last note, from tier 2.
+  const last=line[line.length-1];
+  if(last[0]<=6.5&&base+7.5<=p.bars*4)for(const [j,step] of [7,5,3].entries())note('answer',base+6.5+j*.5,p.root+12+step,.4,44,2);
+ }
+ events.sort((a,c)=>a.beat-c.beat||a.track.localeCompare(c.track)||a.pitch-c.pitch);
+ const adornments=[
+  {id:'spark',gesture:'up',quantizeBeats:.25,events:[[0,12,.12],[.25,15,.12],[.5,19,.25]]},
+  {id:'dip',gesture:'down',quantizeBeats:.25,events:[[0,12,.16],[.25,7,.16],[.5,0,.3]]},
+  {id:'slide',gesture:'left',quantizeBeats:.25,events:[[0,8,.2],[.25,7,.2],[.5,5,.2],[.75,3,.2]]},
+  {id:'shine',gesture:'right',quantizeBeats:.25,events:[[0,0,.2],[.25,7,.2],[.5,15,.4]]},
+ ].map(a=>({...a,events:a.events.map(([beat,pitch,duration])=>({track:'answer',beat,pitch:p.root+pitch,duration,velocity:62,minTier:0}))}));
+ return {schemaVersion:1,id:p.id,title:p.title,stat:p.stat,composer:'Kumbia Kombat original project score',
+  license:'See assets/music/LICENSE.md',ppq:PPQ,beatsPerBar:4,bars:p.bars,phraseBars:2,
+  key:{midiTonic:p.root,mode:p.mode},style:'Original synth bolero-cha instrumental',color:p.color,tierBpms:p.bpms,
+  tiers:p.bpms.map((bpm,tier)=>({tier,bpm,name:['Güiro and bass','Congas join','Montuno and flute','Violin sings','Strings swell'][tier]})),
+  sections:Array.from({length:p.bars/8},(_,i)=>({bar:i*8,bars:8,name:['Invitation','Answer','Lift','Approval'][i]})),
+  tracks:tracks.map(t=>({...t,program:t.id==='lead'?p.program:t.id==='brass'?48:t.program})),events,adornments,
+  gameplayReference:{authority:'levels/salon.json; score EOF does not approve an opponent',
+   phrasePassesPerTier:2,fullTierChallengePasses:2,cleanTargetSeconds:110},
+  transition:{cadenceBars:2,nextLevelCountInBars:1}};
+}
+function composeBoleroSuccess(p){
+ const events=[], note=(track,beat,pitch,duration,velocity)=>events.push({track,beat,pitch,duration,velocity,minTier:0,maxTier:4});
+ // Four bars, the salon ends the night: the opening call over D minor, then
+ // B-flat, C7 and home to F major, the relative major. Bars three and four thin out.
+ const plan=[['Dm',0],['Bb',4],['C7',8],['F',12]];
+ for(const [name,b] of plan){
+  const chord=boleroChords[name], settle=b>=8;
+  for(const [x,d,v] of [[0,.4,44],[1,.4,38],[2,.4,40],[3,.18,46],[3.5,.18,50]])if(!settle||x<3||b===8)note('pulse',b+x,73,d,settle?v-12:v);
+  for(const x of [0,2])note('pulse',b+x,36,.14,settle?52:70);
+  if(!settle)for(const x of [3,3.5])note('pulse',b+x,64,.14,58);
+  note('bass',b,boleroTone(p.root,chord,0,38),b===12?3.8:1.4,settle?70:84);
+  if(b<12)note('bass',b+2,boleroTone(p.root,chord,2,38),.9,settle?60:74);
+  const comp=settle?[[1.5,1]]:[[.5,0],[1,1],[1.5,2],[2.5,0],[3,1],[3.5,2]];
+  if(b<12)for(const [x,i] of comp)note('guitar',b+x,boleroTone(p.root,chord,i,57),.24,settle?36:44);
+ }
+ for(const [x,interval,duration] of [[0,7,1.5],[1.5,8,.5],[2,7,1],[3,5,1],[4,8,1.5],[5.5,10,.5],[6,12,1],[7,10,1],[8,14,1.5],[9.5,12,.5],[10,10,1],[11,8,1],[12,7,3.75]])
+  note('lead',x,p.root+interval,duration,x>=8?58:72);
+ for(const [x,interval,duration] of [[6.5,22,.4],[7,19,.4],[7.5,17,.4],[12,15,3.75]])note('answer',x,p.root+interval,duration,x>=8?44:50);
+ // The last chord: F major, held by the strings and the montuno.
+ for(const interval of [3,7,10,15])note('brass',12,p.root+interval,3.75,40);
+ for(const interval of [3,7,10])note('guitar',12,p.root-12+interval+12,1.8,40);
+ note('pulse',12,36,.14,48);
+ const result=transitionBase(p.id+'_success',p.title+' — Room Approval',p,p.bpms,events,'success');
+ result.bars=4;result.phraseBars=4;result.style='Original synth bolero-cha instrumental';result.parentScore=p.id;result.tierBpms=p.bpms;
+ result.sections=[{bar:0,bars:2,name:'Recognition'},{bar:2,bars:2,name:'Resolution to the relative major'}];
+ result.tracks=result.tracks.map(t=>t.id==='brass'?{...t,program:48}:t);
+ result.resolvesTo={midiTonic:p.root+3,mode:'major'};
+ result.musicalIntent='Quote the salon\'s call over D minor, then B-flat and C7 carry it home to F major, the relative major, and the band thins as it lands.';
+ return result;
+}
+function composeBilliardsToSalon(to){
+ const events=[], note=(track,beat,pitch,duration,velocity)=>events.push({track,beat,pitch,duration,velocity,minTier:0,maxTier:4});
+ // Bar one is the cha-cha-chá on percussion alone, at the salon's base tempo.
+ // Bar two: G minor, home of the billiard room and iv of D minor, then A7, so the
+ // salon's downbeat lands as the tonic. The flute quotes the salon's call.
+ for(const [x,d,v] of [[0,.4,44],[1,.4,38],[2,.4,40],[3,.18,46],[3.5,.18,50]])note('pulse',x,73,d,v);
+ for(const x of [0,2])note('pulse',x,36,.14,70);
+ note('pulse',1,63,.12,52);
+ for(const x of [3,3.5])note('pulse',x,64,.14,58);
+ for(const [x,d,v] of [[4,.4,44],[5,.4,38],[6,.4,40],[7,.18,46],[7.5,.18,50]])note('pulse',x,73,d,v);
+ for(const x of [4,6])note('pulse',x,36,.14,66);
+ note('bass',4,boleroTone(to.root,boleroChords.Gm,0,38),1.4,80);
+ note('bass',6,boleroTone(to.root,boleroChords.A7,0,38),.9,76);
+ note('bass',7.5,boleroTone(to.root,boleroChords.A7,0,38),.4,70);
+ for(const [x,name] of [[4.5,'Gm'],[5,'Gm'],[5.5,'Gm'],[6.5,'A7'],[7,'A7']])for(const i of [0,1])note('guitar',x,boleroTone(to.root,boleroChords[name],i+(x%1?1:0),57),.24,44);
+ for(const [offset,interval,duration] of to.motif.filter(n=>n[0]<3.5))note('answer',4+offset,to.root+interval+12,Math.min(duration,3.75-offset),66);
+ note('pulse',7.75,65,.12,70);
+ const result=transitionBase('billiards_to_salon','Through the Mirrored Doors',to,to.bpms[0],events,'bridge');
+ result.style='Original synth bolero-cha instrumental';result.fromScore='crowd_duende';result.toScore=to.id;
+ result.fromLevel='billiards';result.toLevel='salon';
+ result.musicalIntent='The billiard room\'s G minor gives way to a bar of güiro and congas; G minor turns to A7, the dominant of the salon\'s D minor, while the flute quotes its call.';
+ result.tempoIntent='Takes the salon\'s base tempo, 108, at its downbeat, as every bridge does. No pitch or time crossfade.';
+ return result;
+}
 function variable(n){const a=[n&127];while(n>>=7)a.unshift((n&127)|128);return Buffer.from(a)}
 const u16=n=>{const b=Buffer.alloc(2);b.writeUInt16BE(n);return b};
 const u32=n=>{const b=Buffer.alloc(4);b.writeUInt32BE(n);return b};
@@ -475,5 +627,22 @@ for(const piece of swingPieces){
  writeFileSync(resolve(root,'assets/music/midi/'+finale.id+'.mid'),midi(finale,4));
  manifest.transitions.successes.push({id:finale.id,title:finale.title,bars:4,baseBpm:finale.tiers[0].bpm,fullBpm:finale.tiers[4].bpm,parentScore:'bar_swag',path:'assets/music/scores/'+finale.id+'.json',midiPath:'assets/music/midi/'+finale.id+'.mid'});
  console.log(finale.id+': the bar\'s tag with room for the gulp');
+}
+for(const piece of boleroPieces){
+ const score=composeBolero(piece);
+ writeFileSync(resolve(root,`assets/music/scores/${piece.id}.json`),JSON.stringify(score)+'\n');
+ for(let tier=0;tier<5;tier++)writeFileSync(resolve(root,`assets/music/midi/${piece.id}_tier${tier}.mid`),midi(score,tier));
+ manifest.scores.push({id:score.id,title:score.title,path:`assets/music/scores/${score.id}.json`,bars:score.bars,baseBpm:score.tiers[0].bpm,fullBpm:score.tiers[4].bpm});
+ console.log(`${score.id}: ${score.events.length} notes, ${score.bars} bars, five MIDI arrangements`);
+ const success=composeBoleroSuccess(piece);
+ writeFileSync(resolve(root,'assets/music/scores/'+success.id+'.json'),JSON.stringify(success)+'\n');
+ writeFileSync(resolve(root,'assets/music/midi/'+success.id+'.mid'),midi(success,4));
+ manifest.transitions.successes.push({id:success.id,title:success.title,bars:4,baseBpm:success.tiers[0].bpm,fullBpm:success.tiers[4].bpm,parentScore:piece.id,path:'assets/music/scores/'+success.id+'.json',midiPath:'assets/music/midi/'+success.id+'.mid'});
+ console.log(success.id+': four-bar tag resolving to the relative major');
+ const bridge=composeBilliardsToSalon(piece);
+ writeFileSync(resolve(root,'assets/music/scores/'+bridge.id+'.json'),JSON.stringify(bridge)+'\n');
+ writeFileSync(resolve(root,'assets/music/midi/'+bridge.id+'.mid'),midi(bridge,0));
+ manifest.transitions.bridges.push({id:bridge.id,title:bridge.title,bars:2,baseBpm:bridge.tiers[0].bpm,fullBpm:bridge.tiers[4].bpm,fromScore:bridge.fromScore,toScore:bridge.toScore,path:'assets/music/scores/'+bridge.id+'.json',midiPath:'assets/music/midi/'+bridge.id+'.mid'});
+ console.log(bridge.id+': original two-bar percussion pivot and pickup');
 }
 writeFileSync(resolve(root,'assets/music/manifest.json'),JSON.stringify(manifest,null,2)+'\n');

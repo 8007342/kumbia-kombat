@@ -11,9 +11,9 @@
     "metric": "Swag",
     "cleanSeconds": 80,
     "successesPerTier": 2,
-    "finalChallenges": 2,
+    "finalChallenges": 3,
     "resetAfterFailures": 5,
-    "earlyHitRatio": 0.875
+    "earlyHitRatio": 0.75
   },
   "chart": {
     "introBeats": 4,
@@ -94,22 +94,32 @@
     "rich": {
       "limits": {"pairToleranceMs": 80, "sameSpotMs": 285, "thumbHopMs": 330, "crossThumbMs": 170, "sameLimbMs": 400, "phraseEndMs": 100},
       "patterns": {
+        "0": [
+          {"at": 0.5, "limb": "rightHand"},
+          {"at": 1, "limb": "leftHand"},
+          {"at": 2, "limb": "rightHand"},
+          {"at": 3, "limb": "rightFoot"},
+          {"at": 4.5, "limb": "leftFoot"},
+          {"at": 5.5, "limb": "rightHand"},
+          {"at": 6, "limb": "leftHand"},
+          {"at": 6.5, "limb": "rightFoot"}
+        ],
         "1": [
           {"at": 0.5, "limb": "rightFoot"},
           {"at": 1.5, "limb": "leftHand", "move": "pair", "with": "rightHand"},
           {"at": 2.5, "limb": "leftFoot"},
-          {"at": 3.25, "limb": "leftHand", "move": "pair", "with": "rightHand"},
+          {"at": 3.5, "limb": "leftHand", "move": "pair", "with": "rightHand"},
           {"at": 4.25, "limb": "leftFoot"},
           {"at": 4.75, "limb": "rightFoot"},
           {"at": 5.5, "limb": "rightHand"},
-          {"at": 6.25, "limb": "leftHand"}
+          {"at": 6.5, "limb": "leftHand"}
         ],
         "2": [
           {"at": 0, "limb": "rightFoot", "move": "split", "with": "leftFoot", "gap": 0.5},
-          {"at": 1.25, "limb": "leftHand", "move": "pair", "with": "rightHand"},
-          {"at": 2.25, "limb": "leftFoot"},
-          {"at": 3.25, "limb": "rightFoot"},
-          {"at": 3.75, "limb": "leftFoot"},
+          {"at": 1.5, "limb": "leftHand", "move": "pair", "with": "rightHand"},
+          {"at": 2.5, "limb": "leftFoot"},
+          {"at": 3, "limb": "rightFoot"},
+          {"at": 4, "limb": "leftFoot"},
           {"at": 4.5, "limb": "rightHand"},
           {"at": 5.5, "limb": "rightFoot"},
           {"at": 6.5, "limb": "leftHand", "move": "pair", "with": "rightHand"}
@@ -117,7 +127,7 @@
         "3": [
           {"at": 0, "limb": "leftFoot"},
           {"at": 0.5, "limb": "rightFoot", "move": "split", "with": "leftHand", "gap": 0.5},
-          {"at": 1.75, "limb": "rightHand"},
+          {"at": 2, "limb": "rightHand"},
           {"at": 3, "limb": "leftFoot", "move": "doubleTap", "gap": 0.75},
           {"at": 4.5, "limb": "leftHand", "move": "pair", "with": "rightHand"},
           {"at": 5.5, "limb": "rightFoot"},
@@ -130,8 +140,8 @@
           {"at": 2.25, "limb": "leftHand", "move": "pair", "with": "rightHand"},
           {"at": 3, "limb": "rightFoot", "move": "doubleTap", "gap": 0.75},
           {"at": 4.5, "limb": "leftHand", "move": "pair", "with": "rightHand"},
-          {"at": 5.25, "limb": "leftFoot"},
-          {"at": 6.25, "limb": "leftHand"},
+          {"at": 5.5, "limb": "leftFoot"},
+          {"at": 6.5, "limb": "leftHand"},
           {"at": 7, "limb": "rightFoot"}
         ],
         "5": [
@@ -140,9 +150,9 @@
           {"at": 2.5, "limb": "leftHand", "move": "pair", "with": "rightHand"},
           {"at": 3.5, "limb": "rightFoot"},
           {"at": 4, "limb": "leftHand", "move": "split", "with": "rightHand", "gap": 0.5},
-          {"at": 5.25, "limb": "rightFoot", "move": "split", "with": "leftHand", "gap": 0.5},
+          {"at": 5.5, "limb": "rightFoot", "move": "split", "with": "leftHand", "gap": 0.5},
           {"at": 6.5, "limb": "rightHand"},
-          {"at": 7.25, "limb": "leftFoot"}
+          {"at": 7, "limb": "leftFoot"}
         ]
       }
     }

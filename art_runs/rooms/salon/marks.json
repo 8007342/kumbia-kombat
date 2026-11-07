@@ -1,0 +1,298 @@
+{
+ "comment": "SALONART -> LEVEL, 2026-11-07. Everything as plate fractions of assets/art/salon/salon-room.png (832x1248, the clean plate from accepted 991002). Camera refit to the paint: tool/art/rooms/salon.json. Proposals; LEVEL may move marks, but keep them inside 'floor'.",
+ "plate": "salon/salon-room.png",
+ "plateSize": [
+  832,
+  1248
+ ],
+ "floorCamera": {
+  "horizonY": 0.27,
+  "eyeHeightAdults": 1.0,
+  "vanishingX": 0.505,
+  "referenceFootY": 0.6,
+  "referenceHeight": 0.33,
+  "note": "Standing adult height at foot y = (y - 0.27) / 1.0, as a fraction of plate height. Mācron at heroHome is 45 logical px (garden 38, billiards 38)."
+ },
+ "floor": {
+  "outline": [
+   [
+    0.385,
+    0.38
+   ],
+   [
+    0.83,
+    0.38
+   ],
+   [
+    1.0,
+    0.425
+   ],
+   [
+    1.0,
+    1.0
+   ],
+   [
+    0.0,
+    1.0
+   ],
+   [
+    0.0,
+    0.58
+   ],
+   [
+    0.375,
+    0.58
+   ],
+   [
+    0.385,
+    0.4
+   ]
+  ],
+  "note": "Hand-traced on the plate. Left of x .385 between y .40 and .58 is the dais (top y .40-.465, front face down to .575). The far wall's foot is y .38; the doors are x .42-.60."
+ },
+ "marks": {
+  "heroHome": [
+   0.5,
+   0.6
+  ],
+  "heroEntrance": [
+   0.3,
+   0.64
+  ],
+  "heroRetreat": [
+   0.5,
+   0.625
+  ],
+  "heroAside": [
+   0.38,
+   0.61
+  ],
+  "heroWatch": [
+   0.5,
+   0.625
+  ],
+  "challenger": {
+   "id": "don-terciopelo",
+   "mark": [
+    0.5,
+    0.5
+   ],
+   "yieldMark": [
+    0.62,
+    0.5
+   ],
+   "meetMark": [
+    0.57,
+    0.52
+   ]
+  },
+  "exit": {
+   "route": [
+    [
+     0.5,
+     0.6
+    ],
+    [
+     0.53,
+     0.52
+    ],
+    [
+     0.52,
+     0.44
+    ],
+    [
+     0.51,
+     0.395
+    ]
+   ],
+   "threshold": [
+    0.51,
+    0.383
+   ],
+   "doors": [
+    [
+     0.42,
+     0.187
+    ],
+    [
+     0.6,
+     0.38
+    ]
+   ],
+   "note": "Mācron walks up the centre joint to the double doors. Their leaves are x .42-.60, top .187, foot .38. He'd be about 0.12 of plate height tall there in floor terms; at the threshold he passes behind nothing."
+  }
+ },
+ "guests": {
+  "note": "Couples dance on the right side and at the back; the left side is the dais and the trio. Couples are .42 adult apart (GUESTS' reach). All behind the challenger's mark. Reusing guest3-6 in evening wear (amber gold dress, lavender shirt and bow tie, plum wrap dress, amber jacket), the party's casting.",
+  "couples": [
+   {
+    "name": "right-back",
+    "a": {
+     "at": [
+      0.765,
+      0.388
+     ],
+     "atlas": "guest5",
+     "faces": "right"
+    },
+    "b": {
+     "at": [
+      0.84,
+      0.388
+     ],
+     "atlas": "guest6",
+     "faces": "left"
+    }
+   },
+   {
+    "name": "right-far",
+    "a": {
+     "at": [
+      0.62,
+      0.4
+     ],
+     "atlas": "guest4",
+     "faces": "right"
+    },
+    "b": {
+     "at": [
+      0.7,
+      0.4
+     ],
+     "atlas": "guest3",
+     "faces": "left"
+    }
+   },
+   {
+    "name": "right-mid",
+    "a": {
+     "at": [
+      0.67,
+      0.455
+     ],
+     "atlas": "guest6",
+     "faces": "right"
+    },
+    "b": {
+     "at": [
+      0.78,
+      0.455
+     ],
+     "atlas": "guest5",
+     "faces": "left"
+    }
+   }
+  ],
+  "rejected": "Tried on a staging proof: a pair at y .56 on the right (in front of Don's line, and huge at the phone's edge) and a pair at y .395 in front of the left door leaf (read as standing on the dais beside the violinist). Both dropped."
+ },
+ "trio": {
+  "note": "On the dais top, no platform lift: the painted dais and piano are drawn at about the floor's scale at their image y, so size the players by the floor plane at their feet (stature 1). Ladder: copy cool-crowd's 'instrument' ladder (relaxed / tap / swing frames). The pianist sits in the plate's own bench; her atlas is 1:1 with the plate at those feet. Bongos and violin at stature .85: at 1.0 they dwarf the painted piano and the seated pianist (checked on a composite proof).",
+  "players": [
+   {
+    "id": "piano",
+    "atlas": "band-piano",
+    "reference": "relaxed_a",
+    "feet": [
+     0.1322,
+     0.4503
+    ],
+    "ladder": "instrument",
+    "note": "feet are her anchor on the plate (110, 562 px); don't move her or she leaves her bench"
+   },
+   {
+    "id": "bongos",
+    "atlas": "band-bongos",
+    "reference": "relaxed_a",
+    "feet": [
+     0.245,
+     0.455
+    ],
+    "ladder": "instrument",
+    "beatOffset": 1,
+    "lateBy": 0.05,
+    "stature": 0.85
+   },
+   {
+    "id": "violin",
+    "atlas": "band-violin",
+    "reference": "relaxed_a",
+    "feet": [
+     0.335,
+     0.452
+    ],
+    "ladder": "instrument",
+    "lateBy": 0.1,
+    "stature": 0.85
+   }
+  ]
+ },
+ "occluders": {
+  "note": "The piano is painted behind every trio player and nobody stands behind it, so no occluder is needed. If a guest is ever placed behind the dais, use this:",
+  "dais": {
+   "frontY": 0.58,
+   "outline": [
+    [
+     0.0,
+     0.4
+    ],
+    [
+     0.385,
+     0.4
+    ],
+    [
+     0.375,
+     0.58
+    ],
+    [
+     0.0,
+     0.58
+    ]
+   ]
+  }
+ },
+ "layers": {
+  "atlas": "salon/salon-layers.png",
+  "chandeliers": [
+   "chandelier-left",
+   "chandelier-middle",
+   "chandelier-right"
+  ],
+  "kind": "hanging",
+  "note": "block written by tool/art/rooms/layers.py frames to art_runs/rooms/salon/layers-level.json; copy its 'layers' into the level"
+ },
+ "glow": {
+  "chandeliers": [
+   [
+    0.254,
+    0.15
+   ],
+   [
+    0.511,
+    0.148
+   ],
+   [
+    0.767,
+    0.152
+   ]
+  ],
+  "sconces": [
+   [
+    0.11,
+    0.245
+   ],
+   [
+    0.4,
+    0.245
+   ],
+   [
+    0.62,
+    0.245
+   ],
+   [
+    0.91,
+    0.245
+   ]
+  ],
+  "note": "Chandelier centres (the candle ring) for the outro's flare; the four wall sconces beside the windows and doors."
+ }
+}

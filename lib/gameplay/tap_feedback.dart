@@ -8,13 +8,18 @@ import 'rhythm.dart';
 /// What the player sees instead of words. Each mark reads by shape and motion as
 /// well as colour, because gold and orange are close under colour blindness. See
 /// Part 6 of `plan/research/touch-gestures-and-feedback-2026-11-06.md`.
-enum MarkKind { perfect, early, late, flourish, phrase }
+///
+/// [outOfTurn] is a tap while the challenger dances: a cross, and nothing else.
+enum MarkKind { perfect, early, late, flourish, phrase, outOfTurn }
 
 const _gold = Color(0xFFFFC35F);
 const _mint = Color(0xFF7CE2C4);
 const _cream = Color(0xFFFFF0D1);
 const _ink = Color(0xFF101F29);
 const _blue = Color(0xFF72DDF7);
+
+/// Dull on purpose: an out-of-turn tap isn't a failure, only a no.
+const _slate = Color(0xFFB4C0CC);
 
 /// Moved redder than the old orange to part from gold, short of saturated red.
 const _ember = Color(0xFFFF7F5C);
@@ -52,7 +57,9 @@ class FeedbackMark {
     required int deltaMs,
     int combo = 0,
   }) {
-    const span = RhythmJudge.goodWindowMs - RhythmJudge.perfectWindowMs;
+    final span =
+        (deltaMs < 0 ? RhythmJudge.earlyWindowMs : RhythmJudge.lateWindowMs) -
+        RhythmJudge.perfectWindowMs;
     final miss = ((deltaMs.abs() - RhythmJudge.perfectWindowMs) / span).clamp(
       0.0,
       1.0,
@@ -67,8 +74,20 @@ class FeedbackMark {
   /// Gone before the next note, even at the lawn's 281 ms gap.
   static const lifeSeconds = .27;
 
-  /// Above the touch, because the thumb covers the ring it's pressing.
-  static const liftAboveTouch = 70.0;
+  /// A cross stays longer: there's no next note to make room for in a call.
+  static const crossLifeSeconds = .45;
+
+  /// How long this mark shows.
+  double get life => kind == MarkKind.outOfTurn ? crossLifeSeconds : lifeSeconds;
+
+  /// The halo's radius round the touch: outside the pad of a thumb, which is
+  /// about 10 to 14 mm across, some 40 to 55 logical pixels, so it rings the
+  /// finger instead of sitting under it. Owner's phone test, 2026-11-07.
+  static const haloRadius = 38.0;
+
+  /// How far above the touch the grade mark sits, clear of the halo and of the
+  /// thumb, which comes up from below and covers what's under and behind it.
+  static const liftAboveTouch = 78.0;
 
   final MarkKind kind;
   final Offset point;
@@ -85,21 +104,26 @@ class FeedbackMark {
     MarkKind.early => _blue,
     MarkKind.late => _ember,
     MarkKind.flourish => _mint,
+    MarkKind.outOfTurn => _slate,
   };
 
   /// Marks with a ring say how the tap landed. The others are only sparks.
   bool get hasRing =>
       kind == MarkKind.perfect || kind == MarkKind.early || kind == MarkKind.late;
 
+  /// Ringed and crossed marks are drawn round the touch and lifted above it.
+  bool get hasHalo => hasRing || kind == MarkKind.outOfTurn;
+
   int get sparkCount => switch (kind) {
     MarkKind.perfect => 3 + math.min(chain, 5),
     MarkKind.early || MarkKind.late => 2,
     MarkKind.flourish => 6 + 3 * math.min(chain, 4),
     MarkKind.phrase => 10,
+    MarkKind.outOfTurn => 0,
   };
 
   MarkPose pose(double age, {required bool reducedMotion}) {
-    final t = (age / lifeSeconds).clamp(0.0, 1.0);
+    final t = (age / life).clamp(0.0, 1.0);
     final sweep = switch (kind) {
       MarkKind.early => .88 - .28 * miss,
       MarkKind.late => 1.12 + .28 * miss,
@@ -112,6 +136,8 @@ class FeedbackMark {
     final scale = switch (kind) {
       MarkKind.early => 1 - .3 * eased,
       MarkKind.late => 1 + .35 * eased,
+      // A cross pops in and settles: a shake of the head, not a flourish.
+      MarkKind.outOfTurn => 1.2 - .2 * eased,
       _ => 1 + .1 * eased,
     };
     return MarkPose(
@@ -159,6 +185,7 @@ class FeedbackMark {
             3,
             fade,
           ),
+          MarkKind.outOfTurn => const MarkSpark(Offset.zero, 0, 0),
         },
     ];
   }
@@ -175,16 +202,69 @@ class FeedbackPainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     for (final mark in marks) {
       final age = now - (mark.bornAt ?? now);
-      if (age < 0 || age >= FeedbackMark.lifeSeconds) continue;
+      if (age < 0 || age >= mark.life) continue;
       final pose = mark.pose(age, reducedMotion: reducedMotion);
-      final at = mark.hasRing
+      // The halo rings the thumb, and what it says sits above it.
+      final at = mark.hasHalo
           ? mark.point.translate(0, -FeedbackMark.liftAboveTouch)
           : mark.point;
+      if (mark.hasHalo) _halo(canvas, mark, pose);
       for (final spark in pose.sparks) {
         _spark(canvas, mark, at + spark.offset, spark);
       }
       if (mark.hasRing) _ring(canvas, mark, at, pose);
+      if (mark.kind == MarkKind.outOfTurn) _cross(canvas, mark, at, pose);
     }
+  }
+
+  /// A full ring just outside the thumb, in the mark's colour, opening a little
+  /// as it fades. It never covers the spot the thumb pressed.
+  void _halo(Canvas canvas, FeedbackMark mark, MarkPose pose) {
+    final grow = reducedMotion ? 1.0 : 1 + .12 * (1 - pose.opacity);
+    final radius = FeedbackMark.haloRadius * grow;
+    final strength = mark.kind == MarkKind.outOfTurn ? .55 : .8;
+    canvas.drawCircle(
+      mark.point,
+      radius,
+      Paint()
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = 6
+        ..color = _ink.withValues(alpha: .5 * pose.opacity),
+    );
+    canvas.drawCircle(
+      mark.point,
+      radius,
+      Paint()
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = 3
+        ..color = mark.color.withValues(alpha: strength * pose.opacity),
+    );
+  }
+
+  /// Not your turn: a plain cross, on a dark outline like the rest.
+  void _cross(Canvas canvas, FeedbackMark mark, Offset at, MarkPose pose) {
+    final arm = 13 * pose.scale;
+    final cross = Path()
+      ..moveTo(at.dx - arm, at.dy - arm)
+      ..lineTo(at.dx + arm, at.dy + arm)
+      ..moveTo(at.dx + arm, at.dy - arm)
+      ..lineTo(at.dx - arm, at.dy + arm);
+    canvas.drawPath(
+      cross,
+      Paint()
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = 9
+        ..strokeCap = StrokeCap.round
+        ..color = _ink.withValues(alpha: .8 * pose.opacity),
+    );
+    canvas.drawPath(
+      cross,
+      Paint()
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = 5
+        ..strokeCap = StrokeCap.round
+        ..color = mark.color.withValues(alpha: pose.opacity),
+    );
   }
 
   void _spark(Canvas canvas, FeedbackMark mark, Offset at, MarkSpark spark) {

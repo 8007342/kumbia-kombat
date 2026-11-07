@@ -1,0 +1,22 @@
+{
+ "room": "salon",
+ "run": "rooms/salon/run-a",
+ "passNo": 1,
+ "steps": 4,
+ "promptSha256": "88ac36a8531cbcebdf7bc965314f70e64043892d4c5eaa506ff20ece97d7c64e",
+ "jobs": [
+  {
+   "name": "p1",
+   "workflow": "art_runs/rooms/salon/run-a/workflows/p1.api.json",
+   "inputs": {
+    "layout": "/work/tmp/imagegen/kumbia/rooms/salon/run-a/in/greybox.png",
+    "style": "/work/tmp/imagegen/kumbia/rooms/salon/run-a/in/style.png"
+   },
+   "overrides": {
+    "seed": 990100
+   },
+   "count": 6
+  }
+ ],
+ "how": "Queue one studio.run_workflow per job, one at a time. Then: rooms.py collect --run rooms/salon/run-a"
+}

@@ -1,0 +1,12 @@
+{
+  "background": "salon/salon-room.png",
+  "layers": {
+    "plateWidth": 832,
+    "plateHeight": 1248,
+    "props": [
+      {"id": "chandelier-left", "atlas": "salon/salon-layers.png", "atlasY": 0, "left": 164, "top": 119, "width": 95, "height": 107, "frames": 7, "motion": "sway", "periodBeats": 4, "instance": 1, "kind": "hanging"},
+      {"id": "chandelier-middle", "atlas": "salon/salon-layers.png", "atlasY": 109, "left": 377, "top": 119, "width": 97, "height": 104, "frames": 7, "motion": "sway", "periodBeats": 4, "instance": 2, "kind": "hanging"},
+      {"id": "chandelier-right", "atlas": "salon/salon-layers.png", "atlasY": 215, "left": 583, "top": 119, "width": 99, "height": 114, "frames": 7, "motion": "sway", "periodBeats": 4, "instance": 3, "kind": "hanging"}
+    ]
+  }
+}

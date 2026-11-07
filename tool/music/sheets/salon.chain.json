@@ -1,0 +1,52 @@
+{
+ "level": "salon",
+ "note": "Parent is candidate seed 58001, tag set A, of 12 (tool/music/sheets/salon.candidates.json). Tiers are re-sampled from its latent in one graph.",
+ "parent": {
+  "seed": 58001,
+  "bpm": 116,
+  "key": "D minor",
+  "seconds": 74.5,
+  "tags": "elegant romantic bolero-cha, cha-cha-cha rhythm, instrumental, violin and flute carry a sung bolero melody, piano montuno, nylon string guitar, guiro, congas, soft bass, velvet ballroom, unhurried"
+ },
+ "children": [
+  {
+   "name": "lowB",
+   "tags": "elegant romantic bolero-cha, cha-cha-cha rhythm, instrumental, intimate trio, violin carries a sung bolero melody, nylon string guitar, piano montuno, guiro, soft bass, warm and close, nothing else",
+   "denoise": 0.6,
+   "codes": false
+  },
+  {
+   "name": "lowC",
+   "tags": "elegant romantic bolero-cha, cha-cha-cha rhythm, instrumental, intimate trio, violin carries a sung bolero melody, nylon string guitar, piano montuno, guiro, soft bass, warm and close, nothing else",
+   "denoise": 0.7,
+   "codes": false
+  },
+  {
+   "name": "highB",
+   "tags": "elegant romantic bolero-cha, cha-cha-cha rhythm, instrumental, full charanga orchestra, violin and flute carry a sung bolero melody, lush string section swelling, piano montuno, nylon string guitar, guiro, congas, timbales, soft bass, velvet ballroom, grand",
+   "denoise": 0.6,
+   "codes": false
+  },
+  {
+   "name": "highC",
+   "tags": "elegant romantic bolero-cha, cha-cha-cha rhythm, instrumental, full charanga orchestra, violin and flute carry a sung bolero melody, lush string section swelling, piano montuno, nylon string guitar, guiro, congas, timbales, soft bass, velvet ballroom, grand",
+   "denoise": 0.6,
+   "parent": "highB",
+   "codes": false
+  },
+  {
+   "name": "highD",
+   "tags": "elegant romantic bolero-cha, cha-cha-cha rhythm, instrumental, full charanga orchestra, violin and flute carry a sung bolero melody, lush string section swelling, piano montuno, nylon string guitar, guiro, congas, timbales, soft bass, velvet ballroom, grand",
+   "denoise": 0.6,
+   "parent": "highC",
+   "codes": false
+  },
+  {
+   "name": "highE",
+   "tags": "elegant romantic bolero-cha, cha-cha-cha rhythm, instrumental, full charanga orchestra, violin and flute carry a sung bolero melody, lush string section swelling, piano montuno, nylon string guitar, guiro, congas, timbales, soft bass, velvet ballroom, grand",
+   "denoise": 0.6,
+   "parent": "highD",
+   "codes": false
+  }
+ ]
+}

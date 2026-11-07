@@ -1137,8 +1137,47 @@ class LevelDefinition {
           ? fields.text('heroWaitFrame')
           : 'rear_idle',
       throwsDust: fields.has('dust') ? fields.flag('dust') : true,
+      opponent: [
+        for (final (i, raw) in fields.list('opponent', optional: true).indexed)
+          _shotClip(_Fields('${fields.at('opponent')}[$i]', raw)),
+      ],
+      flare: fields.has('flare') ? _flare(fields.child('flare')) : null,
+      applause: fields.has('applause')
+          ? _shotClip(fields.child('applause'))
+          : null,
+      keepsake: fields.has('keepsake')
+          ? _keepsake(fields.child('keepsake'), offset)
+          : null,
+      walkOut: fields.has('walkOut') ? _walkOut(fields.child('walkOut')) : null,
     );
     fields.finish();
+    for (var i = 1; i < shot.opponent.length; i++) {
+      if (shot.opponent[i].from <= shot.opponent[i - 1].from) {
+        throw LevelDataError(
+          '${fields.at('opponent')}[$i]',
+          'must start after the clip before it',
+        );
+      }
+    }
+    final walkOut = shot.walkOut;
+    if (walkOut != null &&
+        !(walkOut.from >= shot.closeupTo && walkOut.from < walkOut.to)) {
+      throw LevelDataError(
+        fields.at('walkOut'),
+        'starts after the close-up and before it ends',
+      );
+    }
+    final flare = shot.flare;
+    if (flare != null && flare.from < shot.closeupTo) {
+      throw LevelDataError(fields.at('flare'), 'belongs to the wide shot');
+    }
+    final keepsake = shot.keepsake;
+    if (keepsake != null && keepsake.from > shot.closeupTo) {
+      throw LevelDataError(
+        fields.at('keepsake'),
+        'is his from the close-up, so it starts by the cut out',
+      );
+    }
     if (!(shot.walkFrom < shot.walkTo &&
         shot.walkTo <= shot.closeupFrom &&
         shot.closeupFrom < shot.contactBeat &&
@@ -1149,6 +1188,66 @@ class LevelDefinition {
       );
     }
     return shot;
+  }
+
+  static ExitShotClip _shotClip(_Fields fields) {
+    final path = fields.at('frames');
+    final frames = [
+      for (final (i, raw) in fields.list('frames').indexed)
+        raw is String && raw.isNotEmpty
+            ? raw
+            : throw LevelDataError('$path[$i]', 'a drawing name'),
+    ];
+    if (frames.isEmpty) throw LevelDataError(path, 'needs a drawing');
+    final clip = ExitShotClip(
+      from: fields.number('from', min: 0),
+      frames: List.unmodifiable(frames),
+      beatsPerFrame: fields.number('beatsPerFrame', min: .125),
+      loop: fields.has('loop') && fields.flag('loop'),
+    );
+    fields.finish();
+    return clip;
+  }
+
+  static ExitShotFlare _flare(_Fields fields) {
+    final flare = ExitShotFlare(
+      from: fields.number('from', min: 0),
+      beats: fields.number('beats', min: 1),
+      rise: fields.has('rise') ? fields.number('rise', min: .25) : 1,
+      gain: fields.has('gain') ? fields.number('gain', min: 0, max: 1.5) : 1,
+    );
+    fields.finish();
+    if (flare.rise >= flare.beats) {
+      throw LevelDataError(fields.at('rise'), 'must leave time to settle');
+    }
+    return flare;
+  }
+
+  static ExitShotKeepsake _keepsake(
+    _Fields fields,
+    ui.Offset Function(_Fields, String) offset,
+  ) {
+    final keepsake = ExitShotKeepsake(
+      image: fields.text('image'),
+      from: fields.number('from', min: 0),
+      at: offset(fields, 'at'),
+      anchor: offset(fields, 'anchor'),
+      height: fields.number('height', min: .02, max: .6),
+    );
+    fields.finish();
+    return keepsake;
+  }
+
+  static ExitShotWalkOut _walkOut(_Fields fields) {
+    final walk = ExitShotWalkOut(
+      from: fields.number('from', min: 0),
+      to: fields.number('to', min: 0),
+      fadeBeats: fields.has('fadeBeats')
+          ? fields.number('fadeBeats', min: .25)
+          : 1,
+    );
+    fields.finish();
+    return walk;
   }
 
   static ExitShotSway _sway(_Fields fields) {
