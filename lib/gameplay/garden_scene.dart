@@ -726,8 +726,9 @@ class GardenSceneGame extends FlameGame {
             reducedMotion: reducedMotion,
           );
           final cupGround = ui.Offset(
-            projected.x + adult * (i.isEven ? .16 : -.16),
-            projected.y - adult * prop.heightInAdults * .94,
+            projected.x + adult * (i.isEven ? .11 : -.11),
+            // The table's drawing is taller than its top, by the drinks on it.
+            projected.y - adult * prop.heightInAdults * .72,
           );
           draws.add(
             _WorldDraw('${prop.id}-cup', projected.y, 2, (canvas) {
@@ -735,7 +736,7 @@ class GardenSceneGame extends FlameGame {
                 canvas,
                 cup,
                 cupGround,
-                adult * .24 / baked.nativeHeight('cup_2'),
+                adult * .2 / baked.nativeHeight('cup_2'),
               );
             }),
           );
