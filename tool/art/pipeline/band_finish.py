@@ -16,7 +16,7 @@ from band_tap import lift_foot
 from finish_local import palette_of
 
 
-def finish(src, palette, scale=3):
+def finish(src, palette, scale=3, keep_off_brass=True):
     """finish_local.finish, with blue counting triple. Warm skin and brass differ mostly in blue, and with plain
     distance a lit face snapped to the brass ramp, which read as yellow patches on the face."""
     a = np.asarray(Image.open(src).convert("RGBA")).astype(np.int64)
@@ -28,7 +28,8 @@ def finish(src, palette, scale=3):
     p = palette.astype(float)
     brass = (p[:, 2] < p[:, 0] * 0.35) & (p[:, 0] > 100) & (p[:, 1] > p[:, 0] * 0.6)
     orange = s[..., 1] < s[..., 0] * 0.72
-    d[orange[..., None] & brass[None, None]] = np.iinfo(np.int64).max
+    if keep_off_brass:  # the bass has no brass, and its amber would count as brass here
+        d[orange[..., None] & brass[None, None]] = np.iinfo(np.int64).max
     # And it may not take a drum's or a marimba bar's red: those are far less green than any skin.
     red = (p[:, 0] > 80) & (p[:, 1] < p[:, 0] * 0.5)
     greener = s[..., 1][..., None] > (p[:, 1] / np.maximum(p[:, 0], 1) + 0.2)[None, None] * s[..., 0][..., None]
@@ -95,6 +96,11 @@ def shear(a, top_shift):
     return out
 n = sys.argv[1]; c = PICKS[n]; run = c['run']
 fam = f'band-{n}-v1'; pal = palette_of(f'tool/art/palettes/band-{n}.json')
+# Two players' skin as drawn is more orange than the definition's ramp, so a face fell between the ramp and the
+# brass: the conga player's read flat yellow on a phone. Sampled from relaxed.a.
+EXTRA = {'congas': [(185, 99, 49), (219, 132, 72), (229, 146, 86)], 'trumpet': [(126, 88, 57), (215, 131, 76), (231, 148, 90)]}
+if n in EXTRA:
+    pal = np.vstack([pal, np.array(EXTRA[n], np.int64)])
 final = Path('art_runs') / run / 'final'; final.mkdir(parents=True, exist_ok=True)
 sel = {}
 for pose, pick in c['seeds'].items():
@@ -107,7 +113,7 @@ for pose, pick in c['seeds'].items():
     locked, info = lock(Image.open(K / r / 'raw' / pose / f'{seed}.png').convert('RGBA'), ref, LOCK[n])
     lp = K / run / 'locked' / f'{pose}.png'; lp.parent.mkdir(exist_ok=True, parents=True); locked.save(lp)
     print(pose, info, measure(locked, LOCK[n]))
-    im = finish(lp, pal)
+    im = finish(lp, pal, keep_off_brass=n != 'bass')
     a = np.asarray(im)
     if pose in c['shear']:
         a = shear(a, c['shear'][pose])

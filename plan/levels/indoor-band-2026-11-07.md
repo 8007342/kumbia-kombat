@@ -207,10 +207,14 @@ Saving: 5 drawings a player rather than 8. On congas the shoe is mostly behind t
 ### Finish
 
 - `band_finish.py` locks each frame to its player's `relaxed.a` by what must not move: the instrument, or a trumpeter's leg length. `register_frames.py` scales by the whole figure, so a raised bell shrank the trumpeter.
-- It finishes as `finish_local.py` does, with extra rules: blue counts triple, orange pixels can't take brass, and skin can't take drum red. Plain nearest colour painted brass patches on the trumpeter's face, as the PARTY agent spotted. **So these frames aren't the host finisher's bytes.** The conga player's shadows are still a bit rosy.
+- It finishes as `finish_local.py` does, with extra rules: blue counts triple, orange pixels can't take brass, and skin can't take drum red. Plain nearest colour painted brass patches on the trumpeter's face, as the PARTY agent spotted. **So these frames aren't the host finisher's bytes.**
 - `band_pack.py` gives all of an atlas's frames one anchor under the feet, sets `pixelsPerUnit` from the player's height, writes `playerHeightPx`, and grows a rect over empty atlas where the anchor would fall outside it.
 
 The trumpeter's `tap_up` frames don't float, though the PARTY agent asked. With the near foot lifted, the lowest pixel is the far foot, which sits higher in the picture and hasn't moved. Those frames differ from `relaxed` only inside the foot's box, by construction.
+
+**A mistake of mine, caught by the PARTY agent:** I first said three atlases were re-finished at `8c0bc64`, but their PNGs hadn't changed. `art.py ingest` doesn't overwrite a frame key already in the store, and `art.py build` then copies the store's old frame back over `final/`, and my attempt to clear the store used the wrong path, so my crops of `final/` looked fixed and the packed atlas wasn't. Fixed after that commit, and this time I checked the pixels by reading them back out of the atlas PNG. Anyone re-finishing frames must delete `frame/<key_of({"frame": key})>` first.
+
+**Conga face:** the yellow on a phone came from old pixels plus a skin ramp that doesn't match the drawing. The approved drawing's skin is more orange than the definition's `#B5804F`, so `band_finish.py` adds three sampled shades to his palette, and the trumpeter's too. Those aren't in `tool/art/palettes/`, so the host finisher can't reproduce those two.
 
 ### What the local vision model did
 
