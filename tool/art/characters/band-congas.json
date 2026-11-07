@@ -1,0 +1,171 @@
+{
+ "$comment": "The indoor party's band (congas), owner's ruling 2026-11-07. Sheet stage only: the instrument lives in the sheet's words because the rig has no instrument props yet, and motion.set is a placeholder that only supplies a skeleton to override, until the band-loop set in plan/levels/indoor-band-2026-11-07.md exists. Do not plan frames from this set.",
+ "id": "band-congas",
+ "family": "band-congas-v1",
+ "style": "party-pixel",
+ "description": "Indoor party band, congas: short, stocky, barrel-chested man of about fifty-five, thick grey moustache, smooth bald head.",
+ "body": {
+  "preset": "stocky-adult"
+ },
+ "pronouns": [
+  "he",
+  "him",
+  "his"
+ ],
+ "skin": "#B5804F",
+ "traits": "short, stocky, barrel-chested man of about fifty-five, thick grey moustache, smooth bald head",
+ "demeanor": "the joker of the band: grinning, eyes on the dancers",
+ "garments": [
+  {
+   "id": "hair",
+   "shape": "short-hair-moustache",
+   "region": "hair",
+   "colour": "#8C8782",
+   "text": "smooth bald head with a thick neat grey moustache"
+  },
+  {
+   "id": "shirt",
+   "shape": "shirt-stocky",
+   "region": "shirt",
+   "colour": "#EFE4C8",
+   "text": "closed cream shirt with a small midnight-violet bow tie"
+  },
+  {
+   "id": "jacket",
+   "shape": "waistcoat-fitted",
+   "region": "cloth",
+   "colour": "#EADFC2",
+   "text": "long-sleeved cream dinner jacket with midnight-violet shawl lapels"
+  },
+  {
+   "id": "trousers",
+   "shape": "trousers",
+   "region": "trousers",
+   "colour": "#26232C",
+   "text": "slim dark charcoal trousers"
+  },
+  {
+   "id": "shoes",
+   "shape": "shoes-flat",
+   "region": "shoes",
+   "colour": "#D8C9A0",
+   "text": "polished two-tone cream and dark shoes"
+  }
+ ],
+ "motion": {
+  "set": "opponent-64",
+  "overrides": {}
+ },
+ "drawing": {
+  "noun": "man",
+  "fits": "his head, both shoes, both hands and both drums",
+  "look": "short, stocky, barrel-chested adult build, round belly, thick arms, short neck, round cheerful face with crinkled eyes and a wide open grin, warm tan skin, smooth bald head, thick neat grey moustache, long-sleeved cream dinner jacket buttoned closed with glossy midnight-violet satin shawl lapels, a small midnight-violet bow tie at a closed cream shirt collar, slim dark charcoal trousers and polished two-tone cream and dark shoes, and thick dark ink outline, behind a pair of tall barrel-shaped conga drums of dark reddish wood with cream drumheads and brass bands",
+  "extra": "He is a grown man of about fifty-five. The two conga drums stand on the floor in front of him, one toward each side of the picture, their cream heads at the height of his hips, with his legs and both shoes showing in the gap between them. ",
+  "skeletonOverrides": {
+   "groove.down_l": {
+    "0": [
+     384,
+     342
+    ],
+    "1": [
+     384,
+     418
+    ],
+    "2": [
+     299,
+     414
+    ],
+    "3": [
+     255,
+     490
+    ],
+    "4": [
+     285,
+     575
+    ],
+    "5": [
+     469,
+     414
+    ],
+    "6": [
+     513,
+     490
+    ],
+    "7": [
+     483,
+     575
+    ],
+    "8": [
+     334,
+     575
+    ],
+    "9": [
+     332,
+     722
+    ],
+    "10": [
+     329,
+     855
+    ],
+    "11": [
+     434,
+     575
+    ],
+    "12": [
+     436,
+     722
+    ],
+    "13": [
+     439,
+     855
+    ],
+    "14": [
+     369,
+     327
+    ],
+    "15": [
+     399,
+     327
+    ],
+    "16": [
+     339,
+     330
+    ],
+    "17": [
+     429,
+     330
+    ]
+   }
+  },
+  "sheet": {
+   "source": {
+    "image": "tool/art/references/bartender/front.png",
+    "styleOnly": true
+   },
+   "views": {
+    "front": {
+     "image": "tool/art/references/band-congas/front.png",
+     "description": "standing square facing the viewer behind the two conga drums, feet apart, elbows out, one open palm resting on the head of each drum"
+    }
+   }
+  },
+  "seed": 989100
+ },
+ "references": {
+  "mode": "source",
+  "sources": []
+ },
+ "targets": [
+  {
+   "room": "cool-crowd",
+   "atlas": "band-congas",
+   "out": "assets/art/ensemble/band-congas-v1.png",
+   "native": [
+    256,
+    320
+   ],
+   "pixelScale": 3
+  }
+ ],
+ "seedBase": 989100
+}
