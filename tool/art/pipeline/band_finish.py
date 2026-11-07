@@ -13,7 +13,29 @@ import numpy as np
 from PIL import Image
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from band_tap import lift_foot
-from finish_local import finish, palette_of
+from finish_local import palette_of
+
+
+def finish(src, palette, scale=3):
+    """finish_local.finish, with blue counting triple. Warm skin and brass differ mostly in blue, and with plain
+    distance a lit face snapped to the brass ramp, which read as yellow patches on the face."""
+    a = np.asarray(Image.open(src).convert("RGBA")).astype(np.int64)
+    h, w = a.shape[0] // scale, a.shape[1] // scale
+    s = a[np.ix_(np.arange(h) * scale + scale // 2, np.arange(w) * scale + scale // 2)]
+    diff = s[:, :, None, :3] - palette[None, None]
+    d = ((diff * np.array([1, 1, 3])) ** 2).sum(-1)
+    # Skin's shadows still reach brass that way. Brass is yellower, so an orange pixel may not take a brass colour.
+    p = palette.astype(float)
+    brass = (p[:, 2] < p[:, 0] * 0.35) & (p[:, 0] > 100) & (p[:, 1] > p[:, 0] * 0.6)
+    orange = s[..., 1] < s[..., 0] * 0.72
+    d[orange[..., None] & brass[None, None]] = np.iinfo(np.int64).max
+    # And it may not take a drum's or a marimba bar's red: those are far less green than any skin.
+    red = (p[:, 0] > 80) & (p[:, 1] < p[:, 0] * 0.5)
+    greener = s[..., 1][..., None] > (p[:, 1] / np.maximum(p[:, 0], 1) + 0.2)[None, None] * s[..., 0][..., None]
+    d[greener & red[None, None]] = np.iinfo(np.int64).max
+    rgb = palette[d.argmin(-1)]
+    alpha = np.where(s[..., 3] >= 128, 255, 0)
+    return Image.fromarray(np.dstack([np.where(alpha[..., None] > 0, rgb, 0), alpha]).astype(np.uint8), "RGBA")
 
 # RGB boxes for the part each player's frames are locked to, measured on the matted raw frames.
 LOCK = {
@@ -57,7 +79,7 @@ PICKS = {
  'bass': dict(run='band-bass-v1-20261107d', seeds={p: 989511 for p in ('relaxed.a', 'relaxed.b', 'swing.a', 'swing.b', 'swing.c')}, foot=None, shear={'swing.a': 7, 'swing.c': -7}),
  'congas': dict(run='band-congas-v1-20261107d', seeds={'relaxed.a': 989620, 'relaxed.b': 989620, 'swing.a': ('band-congas-v1-20261107f', 989620), 'swing.c': 989620}, foot=None, shear={}, alias={'swing.b': 'relaxed.a'}),
  'trumpet': dict(run='band-trumpet-v1-20261107d', seeds={p: 989710 for p in ('relaxed.a', 'relaxed.b', 'swing.a', 'swing.b', 'swing.c')}, foot=None, shear={}),
- 'marimba': dict(run='band-marimba-v1-20261107d', seeds={p: 989810 for p in ('relaxed.a', 'relaxed.b', 'swing.a', 'swing.b', 'swing.c')}, foot=None, shear={}),
+ 'marimba': dict(run='band-marimba-v1-20261107e', seeds={p: 989810 for p in ('relaxed.a', 'relaxed.b', 'swing.a', 'swing.b', 'swing.c')}, foot=None, shear={}),
 }
 FEET = {'bass': [100, 280, 119, 298, 8], 'trumpet': [98, 277, 120, 298, 8], 'marimba': [102, 278, 133, 298, 8], 'congas': [108, 274, 121, 296, 6]}  # native px: x0, y0, x1, y1, lift
 FOOT = json.loads(os.environ.get('FOOT') or json.dumps(FEET))
