@@ -89,6 +89,16 @@
     "leftHand",
     "rightFoot",
     "rightHand"
+   ],
+   [
+    "rightFoot",
+    "leftFoot",
+    "rightFoot",
+    "rightHand",
+    "rightFoot",
+    "leftFoot",
+    "rightFoot",
+    "rightHand"
    ]
   ],
   "rich": {
@@ -372,6 +382,55 @@
       "limb": "rightHand",
       "offer": "spin"
      }
+    ],
+    "6": [
+     {
+      "at": 0,
+      "limb": "rightFoot",
+      "move": "pair",
+      "with": "leftHand"
+     },
+     {
+      "at": 1,
+      "limb": "leftFoot",
+      "move": "pair",
+      "with": "rightHand"
+     },
+     {
+      "at": 2,
+      "limb": "rightFoot",
+      "move": "split",
+      "with": "leftFoot",
+      "gap": 0.5
+     },
+     {
+      "at": 3,
+      "limb": "rightHand"
+     },
+     {
+      "at": 4,
+      "limb": "rightFoot",
+      "move": "pair",
+      "with": "leftHand"
+     },
+     {
+      "at": 5,
+      "limb": "leftFoot",
+      "move": "pair",
+      "with": "rightHand"
+     },
+     {
+      "at": 6,
+      "limb": "rightFoot",
+      "move": "split",
+      "with": "leftFoot",
+      "gap": 0.5
+     },
+     {
+      "at": 7,
+      "limb": "rightHand",
+      "offer": "spin"
+     }
     ]
    }
   }
@@ -407,7 +466,7 @@
   ],
   "challengers": [
    {
-    "id": "gatekeeper",
+    "id": "terciopelo",
     "atlas": "gatekeeper",
     "mark": [
      0.5,
@@ -832,23 +891,23 @@
  "hardestCombo": {
   "name": "EL GIRO DE TERCIOPELO",
   "status": "proposal",
-  "note": "STAND-IN until TERCIOPELO sends his: a spin into a held line, then a double-time cha-cha-chá. Uses the stand-in dancer's clips.",
+  "note": "Proposal, from the art agent, timed by the wiring agent. A spin into a held line with a cha-cha-chá: one and a half turns on the hands, the fan line lands on the left foot, then two cha-cha-chá triples in the feet (3, 3.5, 4 and 5, 5.5, 6), and the held line closes it with a circle. The art agent's quarter-beat double-time triples are 121 ms apart at 124 BPM, under the 230 ms good window a combo's notes must keep, so they are half beats here. Uses only his atlas's clips. The owner hasn't seen or played it.",
   "callBeats": 8,
   "moves": [
    {
     "at": 0,
-    "beats": 2,
-    "clip": "finish_turn"
+    "beats": 3,
+    "clip": "giro"
    },
    {
-    "at": 2,
-    "beats": 2,
-    "clip": "show_off"
-   },
-   {
-    "at": 4,
+    "at": 3,
     "beats": 4,
     "clip": "groove_double"
+   },
+   {
+    "at": 7,
+    "beats": 1,
+    "clip": "flare"
    }
   ],
   "notes": [
@@ -857,23 +916,27 @@
     "limb": "rightHand"
    },
    {
-    "at": 1,
+    "at": 0.75,
     "limb": "leftHand"
    },
    {
-    "at": 2,
+    "at": 1.5,
     "limb": "rightHand"
    },
    {
-    "at": 3,
-    "limb": "leftHand"
-   },
-   {
-    "at": 4,
+    "at": 2,
     "limb": "leftFoot"
    },
    {
-    "at": 4.5,
+    "at": 3,
+    "limb": "rightFoot"
+   },
+   {
+    "at": 3.5,
+    "limb": "leftFoot"
+   },
+   {
+    "at": 4,
     "limb": "rightFoot"
    },
    {
@@ -881,17 +944,17 @@
     "limb": "leftFoot"
    },
    {
-    "at": 6,
+    "at": 5.5,
     "limb": "rightFoot"
    },
    {
-    "at": 6.5,
+    "at": 6,
     "limb": "leftFoot"
    },
    {
     "at": 7,
-    "limb": "rightFoot",
-    "move": "stomp"
+    "limb": "leftHand",
+    "move": "circle"
    }
   ]
  },
