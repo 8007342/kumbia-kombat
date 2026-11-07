@@ -1,8 +1,8 @@
 {
  "id": "salon",
  "title": "EL SALÓN DE ESPEJOS",
- "styleRef": "cool-crowd",
- "comment": "Forked from ballroom.json, 2026-11-07, for the salon level (plan/levels/salon-2026-11-07.md). Seen straight down the hall from the pool room's doors: arched windows on the left wall, arched mirrors facing them on the right, gilded mirror panels between, a low dais with the grand piano at the far left, double doors in the middle of the far wall. Ids reuse the compiler's zones: pilaster = gilded mirror panel, glass = tall arched mirror, stage = dais with piano.",
+ "styleRef": "billiards",
+ "comment": "Forked from ballroom.json, 2026-11-07, for the salon level (plan/levels/salon-2026-11-07.md). Seen straight down the hall from the pool room's doors: arched windows on the left wall, arched mirrors facing them on the right, gilded mirror panels between, a low dais with the grand piano at the far left, double doors in the middle of the far wall. Ids reuse the compiler's zones: pilaster = gilded mirror panel, glass = tall arched mirror, stage = dais with piano. run-b: styleRef billiards (fewer lamps than the party room), a bigger dais, and only the far floor reflecting.",
  "camera": {
   "horizonY": 0.27,
   "eyeHeightAdults": 1.35,
@@ -273,16 +273,16 @@
    "kind": "box",
    "id": "stage",
    "s": [
-    6.7,
+    6.2,
     8.6
    ],
    "t": [
-    -2.25,
-    -0.85
+    -2.05,
+    -0.8
    ],
    "z": [
     0,
-    0.35
+    0.4
    ]
   },
   {
@@ -419,11 +419,11 @@
  "zones": {
   "floor": {
    "layout": "a polished parquet floor running straight away from the viewer, with the same grid as image 1.",
-   "paint": "The floor is warm brown polished parquet laid in a fine, even herringbone, one calm tone across its whole area, softly mirroring the candle-gold chandeliers in long dim streaks, reaching the bottom edge and lying open and clear."
+   "paint": "The floor is warm brown polished parquet laid in a fine, even herringbone, one calm dim tone across its whole area. Only the far half of the floor carries soft, faint reflections of the chandeliers, and the near half is plain, even and dark, reaching the bottom edge and lying open and clear."
   },
   "panel": {
    "layout": "deep emerald walls with gilded mouldings and a deep gilded cornice.",
-   "paint": "The walls are deep emerald silk panels framed in thin champagne-gold mouldings, under a deep gilded cornice and a dark coffered ceiling."
+   "paint": "The walls are deep emerald silk panels framed in thin champagne-gold mouldings, under a deep gilded cornice and a dark coffered ceiling, lit only by the chandeliers."
   },
   "door": {
    "layout": "tall closed double doors at the far end.",
@@ -443,7 +443,7 @@
   },
   "stage": {
    "layout": "a low wooden dais at the far left with a black grand piano on it.",
-   "paint": "A low dark wooden dais at the far left, the size of the block in image 1, holds a black grand piano with its lid raised, its keyboard facing the middle of the room."
+   "paint": "A wide low dark wooden dais at the far left, the size of the block in image 1, holds a black grand piano with its lid raised, its keyboard facing the middle of the room, with open space beside it for two musicians to stand."
   },
   "lamp": {
    "layout": "a row of three crystal chandeliers hanging across the hall.",

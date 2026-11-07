@@ -1,0 +1,299 @@
+{
+ "$comment": "The salon's trio (violin), 2026-11-07, plan/levels/salon-art-2026-11-07.md. Same route as the indoor party's band: drawn at an angle toward the room, from a front_3q view drawn first from words; the instrument is a mask-only garment.",
+ "id": "band-violin",
+ "family": "band-violin-v1",
+ "style": "party-pixel",
+ "description": "Salon trio, violin: a tall, lean man of about thirty-five with dark wavy hair tied back.",
+ "body": {
+  "preset": "slim-adult"
+ },
+ "pronouns": [
+  "he",
+  "him",
+  "his"
+ ],
+ "skin": "#C08A5E",
+ "traits": "tall, lean man of about thirty-five with dark wavy hair tied back in a short tail and a neat short beard",
+ "demeanor": "the romantic of the trio: eyes half closed, lost in the melody",
+ "garments": [
+  {
+   "id": "hair",
+   "shape": "short-hair-moustache",
+   "region": "hair",
+   "colour": "#2A1C16",
+   "text": "dark wavy hair tied back in a short tail and a neat short dark beard"
+  },
+  {
+   "id": "shirt",
+   "shape": "shirt-fitted",
+   "region": "shirt",
+   "colour": "#EFE7D6",
+   "text": "closed white dress shirt with a small champagne-gold bow tie"
+  },
+  {
+   "id": "jacket",
+   "shape": "waistcoat-fitted",
+   "region": "cloth",
+   "colour": "#1E1B22",
+   "text": "long-sleeved black dinner jacket"
+  },
+  {
+   "id": "lapels",
+   "shape": "jacket-lapels",
+   "region": "apron",
+   "colour": "#C9A85C",
+   "text": "narrow champagne-gold satin lapels"
+  },
+  {
+   "id": "trousers",
+   "shape": "trousers",
+   "region": "trousers",
+   "colour": "#17151B",
+   "text": "slim black trousers"
+  },
+  {
+   "id": "shoes",
+   "shape": "shoes-flat",
+   "region": "shoes",
+   "colour": "#141216",
+   "text": "polished black shoes"
+  },
+  {
+   "id": "violin",
+   "shape": "violin-body",
+   "region": "prop",
+   "colour": "#9A4E22",
+   "text": "warm reddish-brown varnished violin"
+  },
+  {
+   "id": "bow",
+   "shape": "violin-bow",
+   "region": "accessory",
+   "colour": "#D9CBA6",
+   "text": "thin pale violin bow"
+  }
+ ],
+ "motion": {
+  "set": "band-loop",
+  "overrides": {
+   "relaxed.a": {
+    "pose": {
+     "twist": 0,
+     "l_arm": [
+      30,
+      80
+     ],
+     "l_fore": [
+      60,
+      75
+     ],
+     "r_arm": [
+      40,
+      40
+     ],
+     "r_fore": [
+      -60,
+      70
+     ]
+    },
+    "intent": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, both feet flat on the floor, the violin held under his chin on the shoulder on the right of the picture, the hand on the right of the picture holding its neck, the bow in the other hand drawn out across the strings to the left of the picture"
+   },
+   "relaxed.b": {
+    "pose": {
+     "twist": 0,
+     "l_arm": [
+      30,
+      80
+     ],
+     "l_fore": [
+      60,
+      75
+     ],
+     "r_arm": [
+      20,
+      55
+     ],
+     "r_fore": [
+      -95,
+      55
+     ]
+    },
+    "intent": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, both feet flat on the floor, the violin held under his chin on the shoulder on the right of the picture, the hand on the right of the picture holding its neck, the bow in the other hand pushed in close to the strings"
+   },
+   "tap.up_a": {
+    "pose": {
+     "twist": 0,
+     "l_arm": [
+      30,
+      80
+     ],
+     "l_fore": [
+      60,
+      75
+     ],
+     "r_arm": [
+      40,
+      40
+     ],
+     "r_fore": [
+      -60,
+      70
+     ]
+    },
+    "intent": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, both feet flat on the floor, the violin held under his chin, the bow drawn out to the left of the picture"
+   },
+   "tap.up_b": {
+    "pose": {
+     "twist": 0,
+     "l_arm": [
+      30,
+      80
+     ],
+     "l_fore": [
+      60,
+      75
+     ],
+     "r_arm": [
+      20,
+      55
+     ],
+     "r_fore": [
+      -95,
+      55
+     ]
+    },
+    "intent": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, both feet flat on the floor, the violin held under his chin, the bow pushed in close to the strings"
+   },
+   "swing.a": {
+    "pose": {
+     "twist": 8,
+     "l_arm": [
+      30,
+      80
+     ],
+     "l_fore": [
+      60,
+      75
+     ],
+     "r_arm": [
+      60,
+      30
+     ],
+     "r_fore": [
+      -30,
+      60
+     ]
+    },
+    "intent": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, both feet flat on the floor, the violin held under his chin with his head tipped onto it, the bow drawn far out to the left of the picture in a long sweeping stroke, his body swaying with it"
+   },
+   "swing.b": {
+    "pose": {
+     "twist": 0,
+     "l_arm": [
+      30,
+      80
+     ],
+     "l_fore": [
+      60,
+      75
+     ],
+     "r_arm": [
+      30,
+      48
+     ],
+     "r_fore": [
+      -75,
+      62
+     ]
+    },
+    "intent": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, both feet flat on the floor, the violin held under his chin, the bow at the middle of a stroke"
+   },
+   "swing.c": {
+    "pose": {
+     "twist": -8,
+     "l_arm": [
+      30,
+      80
+     ],
+     "l_fore": [
+      60,
+      75
+     ],
+     "r_arm": [
+      15,
+      60
+     ],
+     "r_fore": [
+      -105,
+      50
+     ]
+    },
+    "intent": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, both feet flat on the floor, the violin held under his chin with his head tipped onto it, the bow pushed in close to the strings at the end of a stroke, his body swaying the other way"
+   },
+   "swing.d": {
+    "pose": {
+     "twist": 0,
+     "l_arm": [
+      30,
+      80
+     ],
+     "l_fore": [
+      60,
+      75
+     ],
+     "r_arm": [
+      30,
+      48
+     ],
+     "r_fore": [
+      -75,
+      62
+     ]
+    },
+    "intent": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, both feet flat on the floor, the violin held under his chin, the bow at the middle of a stroke"
+   }
+  }
+ },
+ "drawing": {
+  "noun": "man",
+  "fits": "his head, both shoes, both hands, the whole violin and the whole bow",
+  "look": "tall, lean, long-limbed adult build, narrow shoulders, a long face with a calm dreamy expression, light brown skin, dark wavy hair tied back in a short tail and a neat short dark beard, long-sleeved black dinner jacket buttoned closed, its narrow champagne-gold satin lapels lying flat on the chest, a small champagne-gold bow tie at a closed white shirt collar, slim black trousers and polished black shoes, and thick dark ink outline, playing a warm reddish-brown varnished violin with a thin pale bow",
+  "extra": "He is a grown man of about thirty-five. ",
+  "sheet": {
+   "source": {
+    "image": "tool/art/references/band-congas/front_3q.png",
+    "styleOnly": true
+   },
+   "views": {
+    "front_3q": {
+     "image": "tool/art/references/band-violin/front_3q.png",
+     "description": "standing, body and face turned three-quarters toward the right side of the picture, playing out toward a crowd on that side, feet a little apart, the violin tucked under his chin on the shoulder on the right of the picture, the hand on the right of the picture holding the violin's neck, the bow in the other hand resting across the strings",
+     "extra": "He is a grown man of about thirty-five. There is exactly one violin and one bow. The violin rests between his chin and shoulder, its neck pointing out toward the right of the picture. "
+    }
+   }
+  },
+  "score": {
+   "silhouetteTolerance": 60
+  },
+  "skeletonScale": 0.92,
+  "seed": 990500,
+  "count": 2
+ },
+ "references": {
+  "mode": "source",
+  "sources": []
+ },
+ "targets": [
+  {
+   "room": "salon",
+   "atlas": "band-violin",
+   "out": "assets/art/ensemble/band-violin-v1.png",
+   "native": [
+    256,
+    320
+   ],
+   "pixelScale": 3
+  }
+ ],
+ "seedBase": 990500
+}

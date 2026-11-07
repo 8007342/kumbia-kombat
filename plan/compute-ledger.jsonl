@@ -377,3 +377,4 @@
 {"ts": "2026-11-07T20:49:35Z", "agent": "SALONART", "what": "p1-990104.png", "kind": "local-vision", "seconds": 3.97, "count": 1, "model": "qwen2.5vl:7b", "load_s": 2.87, "eval_tokens": 28}
 {"ts": "2026-11-07T20:49:38Z", "agent": "SALONART", "what": "p1-990105.png", "kind": "local-vision", "seconds": 3.8, "count": 1, "model": "qwen2.5vl:7b", "load_s": 2.71, "eval_tokens": 28}
 {"ts": "2026-11-07T20:52:00Z", "agent": "SALONART", "what": "salon room plate pass 1, 6 candidates (rooms/salon/run-a p1)", "kind": "gpu-image", "seconds": 135.6, "count": 6}
+{"ts": "2026-11-07T21:05:00Z", "agent": "SALONART", "what": "salon room plate pass 2, 9 candidates from 3 first passes (rooms/salon/run-a p2)", "kind": "gpu-image", "seconds": 299.3, "count": 9}
