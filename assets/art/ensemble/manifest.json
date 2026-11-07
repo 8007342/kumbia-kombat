@@ -27003,6 +27003,211 @@
     }
    },
    "playerHeightPx": 227
+  },
+  "band-piano": {
+   "image": "band-piano-v1.png",
+   "imageWidth": 366,
+   "imageHeight": 151,
+   "referenceFrame": "relaxed_a",
+   "playerHeightPx": 225,
+   "frames": {
+    "relaxed_a": {
+     "rect": [
+      2,
+      2,
+      89,
+      147
+     ],
+     "anchor": [
+      42,
+      144
+     ],
+     "pixelsPerUnit": 5.8065,
+     "facing": "back",
+     "loop": true,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "both",
+     "status": "candidate",
+     "provenance": {
+      "run": "rooms/salon/pianist",
+      "drawing": "relaxed_a",
+      "route": "in-place edit of the plate, tool/art/rooms/pianist.py"
+     }
+    },
+    "relaxed_b": {
+     "rect": [
+      93,
+      2,
+      89,
+      147
+     ],
+     "anchor": [
+      42,
+      144
+     ],
+     "pixelsPerUnit": 5.8065,
+     "facing": "back",
+     "loop": true,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "both",
+     "status": "candidate",
+     "provenance": {
+      "run": "rooms/salon/pianist",
+      "drawing": "relaxed_b",
+      "route": "in-place edit of the plate, tool/art/rooms/pianist.py"
+     }
+    },
+    "swing_a": {
+     "rect": [
+      184,
+      2,
+      89,
+      147
+     ],
+     "anchor": [
+      42,
+      144
+     ],
+     "pixelsPerUnit": 5.8065,
+     "facing": "back",
+     "loop": true,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "both",
+     "status": "candidate",
+     "provenance": {
+      "run": "rooms/salon/pianist",
+      "drawing": "swing_a",
+      "route": "in-place edit of the plate, tool/art/rooms/pianist.py"
+     }
+    },
+    "swing_c": {
+     "rect": [
+      275,
+      2,
+      89,
+      147
+     ],
+     "anchor": [
+      42,
+      144
+     ],
+     "pixelsPerUnit": 5.8065,
+     "facing": "back",
+     "loop": true,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "both",
+     "status": "candidate",
+     "provenance": {
+      "run": "rooms/salon/pianist",
+      "drawing": "swing_c",
+      "route": "in-place edit of the plate, tool/art/rooms/pianist.py"
+     }
+    },
+    "tap_up_a": {
+     "rect": [
+      2,
+      2,
+      89,
+      147
+     ],
+     "anchor": [
+      42,
+      144
+     ],
+     "pixelsPerUnit": 5.8065,
+     "facing": "back",
+     "loop": true,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "both",
+     "status": "candidate",
+     "provenance": {
+      "run": "rooms/salon/pianist",
+      "drawing": "relaxed_a",
+      "route": "in-place edit of the plate, tool/art/rooms/pianist.py",
+      "puppet": "same drawing as relaxed_a"
+     }
+    },
+    "tap_up_b": {
+     "rect": [
+      93,
+      2,
+      89,
+      147
+     ],
+     "anchor": [
+      42,
+      144
+     ],
+     "pixelsPerUnit": 5.8065,
+     "facing": "back",
+     "loop": true,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "both",
+     "status": "candidate",
+     "provenance": {
+      "run": "rooms/salon/pianist",
+      "drawing": "relaxed_b",
+      "route": "in-place edit of the plate, tool/art/rooms/pianist.py",
+      "puppet": "same drawing as relaxed_b"
+     }
+    },
+    "swing_b": {
+     "rect": [
+      2,
+      2,
+      89,
+      147
+     ],
+     "anchor": [
+      42,
+      144
+     ],
+     "pixelsPerUnit": 5.8065,
+     "facing": "back",
+     "loop": true,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "both",
+     "status": "candidate",
+     "provenance": {
+      "run": "rooms/salon/pianist",
+      "drawing": "relaxed_a",
+      "route": "in-place edit of the plate, tool/art/rooms/pianist.py",
+      "puppet": "same drawing as relaxed_a"
+     }
+    },
+    "swing_d": {
+     "rect": [
+      93,
+      2,
+      89,
+      147
+     ],
+     "anchor": [
+      42,
+      144
+     ],
+     "pixelsPerUnit": 5.8065,
+     "facing": "back",
+     "loop": true,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "both",
+     "status": "candidate",
+     "provenance": {
+      "run": "rooms/salon/pianist",
+      "drawing": "relaxed_b",
+      "route": "in-place edit of the plate, tool/art/rooms/pianist.py",
+      "puppet": "same drawing as relaxed_b"
+     }
+    }
+   }
   }
  }
 }

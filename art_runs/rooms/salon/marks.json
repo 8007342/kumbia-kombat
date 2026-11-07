@@ -126,6 +126,25 @@
   "note": "Couples dance on the right side and at the back; the left side is the dais and the trio. Couples are .42 adult apart (GUESTS' reach). All behind the challenger's mark. Reusing guest3-6 in evening wear (amber gold dress, lavender shirt and bow tie, plum wrap dress, amber jacket), the party's casting.",
   "couples": [
    {
+    "name": "right-back",
+    "a": {
+     "at": [
+      0.765,
+      0.388
+     ],
+     "atlas": "guest5",
+     "faces": "right"
+    },
+    "b": {
+     "at": [
+      0.84,
+      0.388
+     ],
+     "atlas": "guest6",
+     "faces": "left"
+    }
+   },
+   {
     "name": "right-far",
     "a": {
      "at": [
@@ -162,48 +181,9 @@
      "atlas": "guest5",
      "faces": "left"
     }
-   },
-   {
-    "name": "right-near-wide",
-    "a": {
-     "at": [
-      0.84,
-      0.56
-     ],
-     "atlas": "guest4",
-     "faces": "right"
-    },
-    "b": {
-     "at": [
-      0.95,
-      0.56
-     ],
-     "atlas": "guest5",
-     "faces": "left"
-    },
-    "note": "mostly off a 390x844 phone (x > .847); for wider screens"
-   },
-   {
-    "name": "left-back-optional",
-    "a": {
-     "at": [
-      0.395,
-      0.395
-     ],
-     "atlas": "guest3",
-     "faces": "right"
-    },
-    "b": {
-     "at": [
-      0.47,
-      0.395
-     ],
-     "atlas": "guest6",
-     "faces": "left"
-    },
-    "note": "in front of the doors' left leaf; drop it if it crowds the doors or Don"
    }
-  ]
+  ],
+  "rejected": "Tried on a staging proof: a pair at y .56 on the right (in front of Don's line, and huge at the phone's edge) and a pair at y .395 in front of the left door leaf (read as standing on the dais beside the violinist). Both dropped."
  },
  "trio": {
   "note": "On the dais top, no platform lift: the painted dais and piano are drawn at about the floor's scale at their image y, so size the players by the floor plane at their feet (stature 1). Ladder: copy cool-crowd's 'instrument' ladder (relaxed / tap / swing frames). The pianist sits in the plate's own bench; her atlas is 1:1 with the plate at those feet.",

@@ -388,3 +388,4 @@
 {"ts": "2026-11-07T21:40:00Z", "agent": "SALONART", "what": "band-bongos front_3q sheet, 4 takes (wall time incl. queue)", "kind": "gpu-image", "seconds": 351, "count": 4}
 {"ts": "2026-11-07T22:05:00Z", "agent": "SALONART", "what": "band-violin frames, 5 poses x 2 (wall time incl. queue)", "kind": "gpu-image", "seconds": 905, "count": 10}
 {"ts": "2026-11-07T22:05:00Z", "agent": "SALONART", "what": "salon pianist in-place key, 4 takes on a plate crop", "kind": "gpu-image", "seconds": 170.6, "count": 4}
+{"ts": "2026-11-07T22:40:00Z", "agent": "SALONART", "what": "salon pianist in-place frame edits, 3 poses x 2", "kind": "gpu-image", "seconds": 567.9, "count": 6}

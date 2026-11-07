@@ -2,6 +2,41 @@
  "_note": "First match wins, shell-style globs on paths under the repo root. Add a line when new art or audio lands; anything unmatched is reported as unclassified. local-model = made by a model on this GPU (ComfyUI or ACE-Step). local-edit-of-imagegen = a built-in imagegen plate changed by a local model. builtin-imagegen = the chat tool's image generation in earlier sessions, not this GPU. Classification is by run and commit, not per pixel.",
  "rules": [
   {
+   "glob": "assets/art/salon/*",
+   "class": "local-model",
+   "evidence": "Qwen-Image-Edit plate 991002 (art_runs/rooms/salon/run-b), its chandelier layers and reflection fills (tool/art/rooms/layers/salon.json), plan/levels/salon-art-2026-11-07.md"
+  },
+  {
+   "glob": "assets/art/ensemble/band-violin-*",
+   "class": "local-model",
+   "evidence": "ComfyUI Qwen frames, art_runs/band-violin-v1-20261107a, plan/levels/salon-art-2026-11-07.md"
+  },
+  {
+   "glob": "assets/art/ensemble/band-bongos-*",
+   "class": "local-model",
+   "evidence": "ComfyUI Qwen frames, art_runs/band-bongos-v1-20261107a, plan/levels/salon-art-2026-11-07.md"
+  },
+  {
+   "glob": "assets/art/ensemble/band-piano-*",
+   "class": "local-model",
+   "evidence": "Qwen edits of plate 991002's dais, art_runs/rooms/salon/pianist, tool/art/rooms/pianist.py, plan/levels/salon-art-2026-11-07.md"
+  },
+  {
+   "glob": "tool/art/references/band-violin/*",
+   "class": "local-model",
+   "evidence": "ComfyUI Qwen sheet, art_runs/band-violin-sheet-20261107a"
+  },
+  {
+   "glob": "tool/art/references/band-bongos/*",
+   "class": "local-model",
+   "evidence": "ComfyUI Qwen sheet, art_runs/band-bongos-sheet-20261107a"
+  },
+  {
+   "glob": "art_runs/rooms/salon/*",
+   "class": "local-model",
+   "evidence": "rooms.py runs run-a and run-b, plan/levels/salon-art-2026-11-07.md"
+  },
+  {
    "glob": "assets/art/billiards/*",
    "class": "local-model",
    "evidence": "Qwen-Image-Edit plate 989601 and its layers, plan/levels/billiards-2026-11-07.md"

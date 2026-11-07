@@ -75,11 +75,28 @@ def stage(which):
     print(f, len(jobs), "jobs")
 
 
+def polygon_box(polygon):
+    xs, ys = [p[0] for p in polygon], [p[1] for p in polygon]
+    return min(xs), min(ys), max(xs), max(ys)
+
+
 def layer_of(drawn, plate_crop, polygon, thresh):
     """Her pixels: where the drawing differs from the plate, inside her polygon, at plate resolution."""
     from PIL import ImageDraw
-    small = np.asarray(drawn.convert("RGB").resize(plate_crop.size, Image.BOX), float)
     base = np.asarray(plate_crop, float)
+    # Qwen nudges the whole crop by a pixel or two between edits: undo it first, at 3x, against the plate outside her
+    # polygon, so the piano doesn't step at the polygon's edge.
+    big = np.asarray(drawn.convert("RGB"), float)
+    ref = np.asarray(plate_crop.resize(drawn.size, Image.NEAREST), float)
+    outside = np.ones(base.shape[:2], bool)
+    outside[max(0, polygon_box(polygon)[1] - 4):polygon_box(polygon)[3] + 4, max(0, polygon_box(polygon)[0] - 4):polygon_box(polygon)[2] + 4] = False
+    outside = np.kron(outside, np.ones((SCALE, SCALE), bool))[:big.shape[0], :big.shape[1]]
+    def err(dy, dx):
+        return float(np.abs(np.roll(big, (dy, dx), axis=(0, 1)) - ref).sum(-1)[outside][::7].mean())
+    best = min((err(dy, dx), dy, dx) for dy in range(-30, 31, 3) for dx in range(-30, 31, 3))
+    best = min((err(dy, dx), dy, dx) for dy in range(best[1] - 2, best[1] + 3) for dx in range(best[2] - 2, best[2] + 3))
+    big = np.roll(big, best[1:], axis=(0, 1))
+    small = np.asarray(Image.fromarray(big.astype(np.uint8)).resize(plate_crop.size, Image.BOX), float)
     diff = np.abs(small - base).sum(-1)
     area = Image.new("L", plate_crop.size, 0)
     ImageDraw.Draw(area).polygon([tuple(p) for p in polygon], fill=255)
@@ -90,6 +107,7 @@ def layer_of(drawn, plate_crop, polygon, thresh):
     if n:
         sizes = ndimage.sum(m, lab, range(1, n + 1))
         m = lab == (1 + int(np.argmax(sizes)))
+    print("  shift", best[1:], "residual", round(float(best[0]), 1))
     return small.astype(np.uint8), m
 
 
