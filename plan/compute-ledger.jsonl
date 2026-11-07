@@ -1,3 +1,21 @@
 {"ts": "2026-11-07T02:30:37Z", "agent": "ledger", "what": "first test: pass1-review", "kind": "local-vision", "seconds": 11.11, "count": 1, "model": "qwen2.5vl:7b", "load_s": 0.01, "eval_tokens": 83}
 {"ts": "2026-11-07T02:33:33Z", "agent": "ledger", "what": "vision trial: extra limbs, facing, crossed legs, pointing", "kind": "local-vision", "seconds": 113.63, "count": 43, "model": "qwen2.5vl:7b", "load_s": 0.03, "eval_tokens": 996}
 {"ts": "2026-11-07T02:35:03Z", "agent": "ledger", "what": "vision trial: counting heads and hands", "kind": "local-vision", "seconds": 10.78, "count": 14, "model": "qwen2.5vl:7b", "load_s": 0, "eval_tokens": 26}
+{"ts": "2026-11-07T10:24:42Z", "agent": "blinblin", "what": "one-down-987600.png", "kind": "local-vision", "seconds": 14.29, "count": 1, "model": "qwen2.5vl:7b", "load_s": 13.44, "eval_tokens": 2}
+{"ts": "2026-11-07T10:24:47Z", "agent": "blinblin", "what": "one-down-987600.png", "kind": "local-vision", "seconds": 3.98, "count": 1, "model": "qwen2.5vl:7b", "load_s": 3.19, "eval_tokens": 2}
+{"ts": "2026-11-07T10:24:50Z", "agent": "blinblin", "what": "one-down-987600.png", "kind": "local-vision", "seconds": 3.1, "count": 1, "model": "qwen2.5vl:7b", "load_s": 2.32, "eval_tokens": 2}
+{"ts": "2026-11-07T10:24:53Z", "agent": "blinblin", "what": "one-down-987601.png", "kind": "local-vision", "seconds": 3.08, "count": 1, "model": "qwen2.5vl:7b", "load_s": 2.31, "eval_tokens": 2}
+{"ts": "2026-11-07T10:24:56Z", "agent": "blinblin", "what": "one-down-987601.png", "kind": "local-vision", "seconds": 3.06, "count": 1, "model": "qwen2.5vl:7b", "load_s": 2.29, "eval_tokens": 2}
+{"ts": "2026-11-07T10:24:59Z", "agent": "blinblin", "what": "one-down-987601.png", "kind": "local-vision", "seconds": 3.12, "count": 1, "model": "qwen2.5vl:7b", "load_s": 2.35, "eval_tokens": 2}
+{"ts": "2026-11-07T10:25:02Z", "agent": "blinblin", "what": "one-down-987602.png", "kind": "local-vision", "seconds": 3.06, "count": 1, "model": "qwen2.5vl:7b", "load_s": 2.28, "eval_tokens": 2}
+{"ts": "2026-11-07T10:25:06Z", "agent": "blinblin", "what": "one-down-987602.png", "kind": "local-vision", "seconds": 3.15, "count": 1, "model": "qwen2.5vl:7b", "load_s": 2.37, "eval_tokens": 2}
+{"ts": "2026-11-07T10:25:09Z", "agent": "blinblin", "what": "one-down-987602.png", "kind": "local-vision", "seconds": 3.13, "count": 1, "model": "qwen2.5vl:7b", "load_s": 2.36, "eval_tokens": 2}
+{"ts": "2026-11-07T10:25:12Z", "agent": "blinblin", "what": "one-down-987603.png", "kind": "local-vision", "seconds": 3.07, "count": 1, "model": "qwen2.5vl:7b", "load_s": 2.27, "eval_tokens": 2}
+{"ts": "2026-11-07T10:25:15Z", "agent": "blinblin", "what": "one-down-987603.png", "kind": "local-vision", "seconds": 3.18, "count": 1, "model": "qwen2.5vl:7b", "load_s": 2.38, "eval_tokens": 2}
+{"ts": "2026-11-07T10:25:18Z", "agent": "blinblin", "what": "one-down-987603.png", "kind": "local-vision", "seconds": 3.15, "count": 1, "model": "qwen2.5vl:7b", "load_s": 2.36, "eval_tokens": 2}
+{"agent": "blinblin", "what": "BlinBlin wave, 82 poses (78 jobs; 2 or 4 candidates), run blinblin-v1-20261107c; seconds are wall time per job including queue waits behind other agents", "kind": "gpu-image", "seconds": 21283, "count": 75}
+{"agent": "blinblin", "what": "BlinBlin redraws of 6 weak poses, run blinblin-v1-20261107d", "kind": "gpu-image", "seconds": 630, "count": 6}
+{"agent": "blinblin", "what": "BlinBlin pilot, runs blinblin-v1-20261107a and b; seconds not logged, estimated at 92 s a job", "kind": "gpu-image", "seconds": 920, "count": 10}
+{"agent": "blinblin", "what": "BlinBlin nod close-up: rest bust and bowed head, 4 candidates each; the bowed head's elapsed_s 85.9, the rest estimated", "kind": "gpu-image", "seconds": 172, "count": 2}
+{"agent": "blinblin", "what": "BlinBlin first-pass curation: heads and hands counted per cropped candidate with qwen2.5vl:7b", "kind": "local-vision", "seconds": 184.0, "count": 238}
+{"agent": "blinblin", "what": "BlinBlin rig render, register, score, finish and pack (CPU)", "kind": "cpu", "seconds": 240, "count": 1}
