@@ -15,7 +15,7 @@ These can't be judged from measurements:
 
 ## What was measured
 
-Desktop Chromium through the preview, audio routed through a zero gain, Opus unless stated.
+Desktop Chromium through the preview, audio routed through a zero gain, Opus unless stated. These runs used build `041ba62`, before the richer charts and the rule that a tier always runs at its own tempo. That rule only changes what happens when a take isn't ready, and it has fake-clock tests but no browser run of its own. The forced-failure row below predates it.
 
 | Check | Result |
 |---|---|
