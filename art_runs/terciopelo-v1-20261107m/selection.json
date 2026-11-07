@@ -1,0 +1,346 @@
+{
+ "groove.down_l": {
+  "k": "991000",
+  "accepted": true
+ },
+ "groove.pass_l": {
+  "k": "991001",
+  "accepted": true
+ },
+ "groove.up_l": {
+  "k": "991001",
+  "accepted": true
+ },
+ "groove.pass_l2": {
+  "k": "991000",
+  "accepted": true
+ },
+ "groove.down_r": {
+  "k": "991001",
+  "accepted": true
+ },
+ "groove.pass_r": {
+  "k": "991001",
+  "accepted": true
+ },
+ "groove.up_r": {
+  "k": "991001",
+  "accepted": true
+ },
+ "groove.pass_r2": {
+  "k": "991001",
+  "accepted": true
+ },
+ "left_hand.prep": {
+  "k": "991000",
+  "accepted": true
+ },
+ "left_hand.peak": {
+  "k": "991000",
+  "accepted": true
+ },
+ "left_hand.follow": {
+  "k": "991000",
+  "accepted": true
+ },
+ "left_hand.return": {
+  "k": "991001",
+  "accepted": true
+ },
+ "right_hand.prep": {
+  "k": "991000",
+  "accepted": true
+ },
+ "right_hand.peak": {
+  "k": "991000",
+  "accepted": true
+ },
+ "right_hand.follow": {
+  "k": "991001",
+  "accepted": true
+ },
+ "right_hand.return": {
+  "k": "991001",
+  "accepted": true
+ },
+ "left_foot.prep": {
+  "k": "991000",
+  "accepted": true
+ },
+ "left_foot.peak": {
+  "k": "991001",
+  "accepted": true
+ },
+ "left_foot.follow": {
+  "k": "991000",
+  "accepted": true
+ },
+ "left_foot.return": {
+  "k": "991001",
+  "accepted": true
+ },
+ "right_foot.prep": {
+  "k": "991001",
+  "accepted": true
+ },
+ "right_foot.peak": {
+  "k": "991001",
+  "accepted": true
+ },
+ "right_foot.follow": {
+  "k": "991000",
+  "accepted": true
+ },
+ "right_foot.return": {
+  "k": "991000",
+  "accepted": true
+ },
+ "enter_forward.contact_l": {
+  "k": "991000",
+  "accepted": true
+ },
+ "enter_forward.down_l": {
+  "k": "991000",
+  "accepted": true
+ },
+ "enter_forward.pass_l": {
+  "k": "991000",
+  "accepted": true
+ },
+ "enter_forward.contact_r": {
+  "k": "991001",
+  "accepted": true
+ },
+ "enter_forward.down_r": {
+  "k": "991001",
+  "accepted": true
+ },
+ "enter_forward.pass_r": {
+  "k": "991000",
+  "accepted": true
+ },
+ "retreat_backward.contact_l": {
+  "k": "991001",
+  "accepted": true
+ },
+ "retreat_backward.down_l": {
+  "k": "991001",
+  "accepted": true
+ },
+ "retreat_backward.pass_l": {
+  "k": "991001",
+  "accepted": true
+ },
+ "retreat_backward.contact_r": {
+  "k": "991001",
+  "accepted": true
+ },
+ "retreat_backward.down_r": {
+  "k": "991001",
+  "accepted": true
+ },
+ "retreat_backward.pass_r": {
+  "k": "991001",
+  "accepted": true
+ },
+ "yield_side.contact_l": {
+  "k": "991001",
+  "accepted": true
+ },
+ "yield_side.down_l": {
+  "k": "991001",
+  "accepted": true
+ },
+ "yield_side.pass_l": {
+  "k": "991001",
+  "accepted": true
+ },
+ "yield_side.contact_r": {
+  "k": "991000",
+  "accepted": true
+ },
+ "yield_side.down_r": {
+  "k": "991001",
+  "accepted": true
+ },
+ "yield_side.pass_r": {
+  "k": "991001",
+  "accepted": true
+ },
+ "watch.shift_l": {
+  "k": "991000",
+  "accepted": true
+ },
+ "watch.hold_l": {
+  "k": "991001",
+  "accepted": true
+ },
+ "watch.shift_r": {
+  "k": "991000",
+  "accepted": true
+ },
+ "watch.hold_r": {
+  "k": "991001",
+  "accepted": true
+ },
+ "clap.open": {
+  "k": "991001",
+  "accepted": true
+ },
+ "clap.close": {
+  "k": "991001",
+  "accepted": true
+ },
+ "clap.contact": {
+  "k": "991001",
+  "accepted": true
+ },
+ "clap.release": {
+  "k": "991001",
+  "accepted": true
+ },
+ "challenge.load": {
+  "k": "991001",
+  "accepted": true
+ },
+ "challenge.proud": {
+  "k": "991000",
+  "accepted": true
+ },
+ "challenge.offer": {
+  "k": "991001",
+  "accepted": true
+ },
+ "challenge.return": {
+  "k": "991001",
+  "accepted": true
+ },
+ "approval.load": {
+  "k": "991001",
+  "accepted": true
+ },
+ "approval.nod": {
+  "k": "991000",
+  "accepted": true
+ },
+ "approval.release": {
+  "k": "991001",
+  "accepted": true
+ },
+ "reassurance.notice": {
+  "k": "991000",
+  "accepted": true
+ },
+ "reassurance.open_hand": {
+  "k": "991001",
+  "accepted": true
+ },
+ "reassurance.settle": {
+  "k": "991000",
+  "accepted": true
+ },
+ "finish_turn.finish_a": {
+  "k": "991000",
+  "accepted": true
+ },
+ "finish_turn.finish_b": {
+  "k": "991000",
+  "accepted": true
+ },
+ "finish_turn.turn_in": {
+  "k": "991001",
+  "accepted": true
+ },
+ "finish_turn.turn_out": {
+  "k": "991000",
+  "accepted": true
+ },
+ "spin.front": {
+  "k": "991001",
+  "accepted": true
+ },
+ "spin.34_r": {
+  "k": "991001",
+  "accepted": true
+ },
+ "spin.side_r": {
+  "k": "991001",
+  "accepted": true
+ },
+ "spin.back34_r": {
+  "k": "991000",
+  "accepted": true
+ },
+ "spin.back": {
+  "k": "991000",
+  "accepted": true
+ },
+ "spin.back34_l": {
+  "k": "991000",
+  "accepted": true
+ },
+ "spin.side_l": {
+  "k": "991000",
+  "accepted": true
+ },
+ "spin.34_l": {
+  "k": "991001",
+  "accepted": true
+ },
+ "flare.line": {
+  "k": "991000",
+  "accepted": true
+ },
+ "moustache.a": {
+  "k": "991000",
+  "accepted": true
+ },
+ "moustache.b": {
+  "k": "991000",
+  "accepted": true
+ },
+ "glance.a": {
+  "k": "991000",
+  "accepted": true
+ },
+ "glance.b": {
+  "k": "991000",
+  "accepted": true
+ },
+ "offer_hand.a": {
+  "k": "991000",
+  "accepted": true
+ },
+ "offer_hand.b": {
+  "k": "991000",
+  "accepted": true
+ },
+ "bow.a": {
+  "k": "991000",
+  "accepted": true
+ },
+ "bow.b": {
+  "k": "991001",
+  "accepted": true
+ },
+ "bow.hold": {
+  "k": "991000",
+  "accepted": true
+ },
+ "sweep.a": {
+  "k": "991000",
+  "accepted": true
+ },
+ "sweep.b": {
+  "k": "991000",
+  "accepted": true
+ },
+ "rose.pluck": {
+  "k": "991001",
+  "accepted": true
+ },
+ "rose.offer": {
+  "k": "991000",
+  "accepted": true
+ }
+}

@@ -218,6 +218,20 @@ void main() {
       }
     });
 
+    test('he bows toward Mācron, who stands on his picture-right', () {
+      // His bow is drawn facing left; the atlas mirrors it, so it faces right.
+      final frames =
+          (_atlases()['terciopelo'] as Map)['frames'] as Map<String, dynamic>;
+      final bow = shot.opponent.firstWhere((c) => c.frames.contains('bow_a'));
+      for (final frame in bow.frames.toSet()) {
+        expect((frames[frame] as Map)['mirror'], isTrue, reason: frame);
+      }
+      expect(
+        shot.heroStep.dx,
+        greaterThan(level.stage.challengers.single.meetMark!.x),
+      );
+    });
+
     test('the story runs in order: bow, close-up, flare and applause, the walk out', () {
       final bow = shot.opponent.firstWhere((c) => c.from > 0);
       expect(bow.from + bow.lengthBeats, lessThanOrEqualTo(shot.closeupFrom));
