@@ -371,3 +371,4 @@
 {"agent": "blinblin", "what": "BlinBlin first-pass curation: heads and hands counted per cropped candidate with qwen2.5vl:7b", "kind": "local-vision", "seconds": 184.0, "count": 238}
 {"agent": "blinblin", "what": "BlinBlin rig render, register, score, finish and pack (CPU)", "kind": "cpu", "seconds": 240, "count": 1}
 {"agent":"FEEL","what":"flutter test and analyze runs for timing, difficulty and tap-mark changes","kind":"cpu","seconds":520,"count":9}
+{"agent":"ALIGN","what":"mixrs salience on 16 rendered takes (5 levels + salon) and chart searches","kind":"cpu","seconds":15,"count":16}

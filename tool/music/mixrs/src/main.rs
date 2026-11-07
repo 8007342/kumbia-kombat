@@ -1,6 +1,7 @@
 //! mixrs: the heavy parts of tool/music/mix/mix.py, without holding whole spectrograms.
 //! mix.py writes a job file, calls a subcommand, and reads JSON back from stdout.
 
+mod align;
 mod analysis;
 mod audio;
 mod np;
@@ -54,6 +55,18 @@ enum Cmd {
     VerifySegment { #[arg(long)] file: PathBuf, #[arg(long)] bpm: f64, #[arg(long)] start: usize, #[arg(long)] end: usize },
     /// Beat and key measures of any audio file, for checking against the Python.
     Analyze { #[arg(long)] file: PathBuf, #[arg(long)] bpm: f64 },
+    /// Onset salience and lag by band on a beat grid, for chart alignment.
+    Salience {
+        #[arg(long)] file: PathBuf,
+        #[arg(long)] bpm: f64,
+        /// Seconds of the file where beat 0 sits (a take's loopStartSeconds).
+        #[arg(long, default_value_t = 0.25)] start: f64,
+        #[arg(long)] beats: usize,
+        /// Grid points per beat. 12 holds sixteenths and triplets.
+        #[arg(long, default_value_t = 12)] div: usize,
+        /// How far from a grid point to look for an attack, in ms.
+        #[arg(long, default_value_t = 60.0)] reach_ms: f64,
+    },
 }
 
 fn read_json(path: &Path) -> Value {
@@ -85,6 +98,10 @@ fn main() {
         Cmd::WriteAsset { audio, base, job, scratch } => tier::write_asset(&audio, &base, &read_json(&job)["cfg"], &scratch),
         Cmd::VerifyTake { file, bpm, bars, start, end } => verify::verify_take(&file, bpm, bars, start, end),
         Cmd::VerifySegment { file, bpm, start, end } => verify::verify_segment(&file, bpm, start, end),
+        Cmd::Salience { file, bpm, start, beats, div, reach_ms } => {
+            let mono = audio::decode_mono(&file, RATE as u32);
+            align::salience(&mono, bpm, start, beats, div, reach_ms)
+        }
         Cmd::Analyze { file, bpm } => {
             let mono = audio::decode_mono(&file, RATE as u32);
             let fit = analysis::beat_times(&mono, bpm);
