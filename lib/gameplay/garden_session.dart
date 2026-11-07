@@ -5,6 +5,7 @@ import 'crowd_interest.dart';
 import 'gesture_shapes.dart';
 import 'progression.dart';
 import 'rhythm.dart';
+import 'sync_calibration.dart';
 import 'thumb_layout.dart';
 
 enum GardenPhase { ready, intro, call, response, paused, cleared }
@@ -705,9 +706,28 @@ class GardenSession {
   /// What the player is hearing now, in audio-clock seconds.
   double get audibleSeconds => backend.nowSeconds - _latencyMs / 1000;
 
+  int _calibrationMs = 0;
+
+  /// What this device's tap-along calibration measured on top of the latency
+  /// estimate: positive when taps land late. Judging only.
+  int get calibrationMs => _calibrationMs;
+  set calibrationMs(int value) => _calibrationMs = value.clamp(
+    -SyncCalibration.maxOffsetMs,
+    SyncCalibration.maxOffsetMs,
+  );
+
+  /// When set, each decided phrase may nudge judging toward where the player's
+  /// taps sit, a little and capped. Shared between a run's sessions.
+  AutoNudge? autoNudge;
+
   /// The time, in the judge's milliseconds, a tap arriving now is judged at: the
-  /// audible clock, less the touch delay.
-  int get judgedNowMs => _nowMs - _latencyMs - _inputLatencyMs;
+  /// audible clock, less the touch delay, the calibration and any nudge.
+  int get judgedNowMs =>
+      _nowMs -
+      _latencyMs -
+      _inputLatencyMs -
+      _calibrationMs -
+      (autoNudge?.offsetMs ?? 0);
 
   /// The latest a response can be decided, on the audio clock: the chart's
   /// phrase-end margin before the next call. A phone's latency, or the last
@@ -891,13 +911,13 @@ class GardenSession {
       // Full-arrangement sustain cannot score while its request is pending.
       if (passed && progress.tier == 4 && _responseTier < 4) return;
       lastOutcome = progress.resolve(passed: passed);
+      autoNudge?.phrase(_phraseDeltasMs);
       if (passed) passedPhrases++;
       final resolvedBeat = transport.beatAt(
         math.min(
               judge.notes.last.atMs +
                   RhythmJudge.lateWindowMs +
-                  _latencyMs +
-                  _inputLatencyMs,
+                  (_nowMs - judgedNowMs),
               _decideByMs,
             ) /
             1000,
@@ -944,11 +964,17 @@ class GardenSession {
     return judgedNowMs < firstResponseMs - RhythmJudge.earlyWindowMs;
   }
 
+  /// A touch event older than this is a stale time stamp, not a slow frame.
+  static const maxTapAgeMs = 150;
+
   /// The latest tap came during [opponentsTurn]. It was ignored, never a miss.
   bool lastTapOutOfTurn = false;
 
-  TapResult tap(Limb limb) {
+  /// [ageMs] is how long ago the touch happened, by the touch event's own time
+  /// stamp: a busy frame mustn't make a tap late.
+  TapResult tap(Limb limb, {int ageMs = 0}) {
     advance();
+    final judgedAt = judgedNowMs - ageMs.clamp(0, maxTapAgeMs);
     lastTapOutOfTurn = opponentsTurn;
     if (transport.countingIn) {
       return const TapResult(TapGrade.miss, null);
@@ -958,8 +984,8 @@ class GardenSession {
         : 0;
     final earlyResponse =
         phase == GardenPhase.call &&
-        judgedNowMs >= firstResponseMs - RhythmJudge.earlyWindowMs &&
-        judgedNowMs < firstResponseMs;
+        judgedAt >= firstResponseMs - RhythmJudge.earlyWindowMs &&
+        judgedAt < firstResponseMs;
     if ((phase != GardenPhase.response && !earlyResponse) ||
         _resolved ||
         progress.cleared) {
@@ -969,7 +995,7 @@ class GardenSession {
       _responseTier = transport.currentTier;
       _judge = _makeJudge();
     }
-    final result = _togetherGrade(_judge!.tap(limb, judgedNowMs));
+    final result = _togetherGrade(_judge!.tap(limb, judgedAt));
     lastGrade = result.grade;
     lastTiming = result.timing;
     lastDeltaMs = result.deltaMs;

@@ -15,6 +15,11 @@ abstract interface class AudioLatency {
   /// What the browser reports, in seconds, or null when it reports nothing:
   /// Web Audio's `outputLatency` and `baseLatency`, each null when missing.
   ({double? output, double? base}) get reportedLatency;
+
+  /// How long ago a pointer event happened, from its time stamp, in seconds,
+  /// or null when the stamp can't be read against this clock. On the web a
+  /// pointer's stamp is the DOM event's, on the page's `performance.now()`.
+  double? eventAgeSeconds(Duration timeStamp);
 }
 
 /// When a browser reports no latency at all. Phones commonly play 50 to 150 ms

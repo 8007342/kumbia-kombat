@@ -24,6 +24,9 @@ import 'party_autoplay.dart';
 import 'pause_overlay.dart';
 import 'progression.dart';
 import 'rhythm.dart';
+import 'sync_calibration.dart';
+import 'sync_overlay.dart';
+import 'sync_store.dart';
 import 'cue_links.dart';
 import 'cue_path.dart';
 import 'tap_feedback.dart';
@@ -149,21 +152,76 @@ class _GardenPageState extends State<GardenPage>
     return ms == null ? null : ms / 1000;
   }();
 
+  /// This device's tap-along result, if it has one. See `sync_overlay.dart`.
+  int? _syncOffsetMs = loadSyncOffsetMs();
+  bool _calibrating = false;
+
+  /// For a player who hasn't calibrated: a small capped nudge from their own
+  /// play. Shared by the run's rooms. A proposal: see `plan/feel-2026-11-07.md`.
+  final _autoNudge = AutoNudge();
+
+  /// Output latency and touch delay, as the game estimates them now, in seconds.
+  /// Zero where there's no browser to ask, as in tests.
+  (double, double) _latencyEstimate() {
+    final Object audio = _audio;
+    if (audio is! AudioLatency && _latencyOverride == null) return (0, 0);
+    final reported = audio is AudioLatency ? audio.reportedLatency : null;
+    return (
+      chooseOutputLatency(
+        output: reported?.output,
+        base: reported?.base,
+        override: _latencyOverride,
+      ),
+      _latencyOverride == null ? defaultTouchLatencySeconds : 0,
+    );
+  }
+
   /// Re-read between responses, never inside one: Chrome reports 0 until the
   /// first sound, and a mid-phrase change would move the notes under a thumb.
   void _syncLatency(GardenSession session) {
-    final Object audio = _audio;
-    if (audio is! AudioLatency && _latencyOverride == null) return;
-    final reported = audio is AudioLatency ? audio.reportedLatency : null;
-    session.outputLatencySeconds = chooseOutputLatency(
-      output: reported?.output,
-      base: reported?.base,
-      override: _latencyOverride,
-    );
-    session.inputLatencySeconds = _latencyOverride == null
-        ? defaultTouchLatencySeconds
-        : 0;
+    final (output, touch) = _latencyEstimate();
+    session.outputLatencySeconds = output;
+    session.inputLatencySeconds = touch;
+    // `?latency=` is one number for everything, so it sets calibration aside.
+    final calibrated = _latencyOverride == null ? _syncOffsetMs : null;
+    session.calibrationMs = calibrated ?? 0;
+    session.autoNudge =
+        calibrated == null && _latencyOverride == null ? _autoNudge : null;
   }
+
+  /// How old a pointer event is, by its own stamp, in milliseconds.
+  int _eventAgeMs(Duration timeStamp) {
+    final Object audio = _audio;
+    if (audio is! AudioLatency) return 0;
+    return ((audio.eventAgeSeconds(timeStamp) ?? 0) * 1000).round();
+  }
+
+  Widget _syncOverlay() => SyncCalibrationOverlay(
+    activate: _audio.activate,
+    nowMs: () => (_audio.nowSeconds * 1000).round(),
+    judgeOffsetMs: () {
+      final (output, touch) = _latencyEstimate();
+      return ((output + touch) * 1000).round();
+    },
+    eventAgeMs: _eventAgeMs,
+    click: (atSeconds, {required bool accent}) => _audio.schedule(
+      ScoreNote(
+        track: 'pulse',
+        beat: 0,
+        pitch: accent ? 79 : 76,
+        duration: .045,
+        velocity: accent ? 70 : 55,
+      ),
+      atSeconds,
+      .045,
+    ),
+    saved: _syncOffsetMs,
+    onSave: (offsetMs) {
+      saveSyncOffsetMs(offsetMs);
+      setState(() => _syncOffsetMs = offsetMs);
+    },
+    onClose: () => setState(() => _calibrating = false),
+  );
 
   void _pumpGame() {
     final session = _session;
@@ -762,9 +820,9 @@ class _GardenPageState extends State<GardenPage>
 
   /// [touch] is where the thumb landed, when a thumb did: marks ring it. A key
   /// press has none, so its marks ring the note's landing spot.
-  TapResult _tap(Limb limb, {Offset? touch}) {
+  TapResult _tap(Limb limb, {Offset? touch, int ageMs = 0}) {
     final richBefore = _session!.richStepsCompleted;
-    final result = _session!.tap(limb);
+    final result = _session!.tap(limb, ageMs: ageMs);
     // Heard, before any judgment: a stray tap gets this and nothing else.
     _pressedAt[limb] = _audio.nowSeconds;
     if (result.note == null && _session!.lastTapOutOfTurn) {
@@ -1039,7 +1097,11 @@ class _GardenPageState extends State<GardenPage>
                             y: event.localPosition.dy,
                             acceptedNote: limb == null
                                 ? null
-                                : _tap(limb, touch: event.localPosition).note,
+                                : _tap(
+                                    limb,
+                                    touch: event.localPosition,
+                                    ageMs: _eventAgeMs(event.timeStamp),
+                                  ).note,
                           );
                         },
                         onPointerMove: (event) {
@@ -1091,6 +1153,7 @@ class _GardenPageState extends State<GardenPage>
                     if (active)
                       IgnorePointer(child: _playSignals(session!, size)),
                     if (!active && !paused) _cover(phase, size),
+                    if (_calibrating && !active) _syncOverlay(),
                     if (pauseVeil > 0)
                       Positioned.fill(
                         child: VcrPauseOverlay(
@@ -1674,6 +1737,12 @@ class _GardenPageState extends State<GardenPage>
                   alignment: WrapAlignment.center,
                   spacing: 6,
                   children: [
+                    if (!cleared)
+                      _option(
+                        _syncOffsetMs == null ? 'SYNC' : 'SYNCED',
+                        _syncOffsetMs != null,
+                        () => setState(() => _calibrating = true),
+                      ),
                     _option(
                       'CALM CAMERA',
                       _reducedMotion,

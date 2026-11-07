@@ -47,9 +47,10 @@ class RhythmJudge {
   static const earlyWindowMs = 180;
 
   /// How late a tap may come and still count. Past it the note is missed. Was
-  /// 180. The extra 50 ms covers what the latency estimate gets wrong (browsers
-  /// report it roughly, some not at all) until there is a tap calibration.
-  static const lateWindowMs = 230;
+  /// 180. The extra 20 ms is the small late allowance the research suggests
+  /// while a player hasn't calibrated: browsers report latency roughly, and
+  /// some not at all. See `plan/research/rhythm-music-engagement-2026-11-07.md`.
+  static const lateWindowMs = 200;
 
   /// The wider side of the good window: how long a note stays open after its
   /// beat, and the most either side that any tap is judged against it.

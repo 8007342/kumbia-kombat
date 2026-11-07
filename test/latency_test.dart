@@ -1,6 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:kumbia_kombat/gameplay/garden_session.dart';
 import 'package:kumbia_kombat/gameplay/rhythm.dart';
+import 'package:kumbia_kombat/gameplay/sync_calibration.dart';
 import 'package:kumbia_kombat/music/game_audio_contract.dart';
 import 'package:kumbia_kombat/music/score.dart';
 import 'package:kumbia_kombat/music/transport.dart';
@@ -139,6 +140,36 @@ void main() {
       at(heard(18.5) + RhythmJudge.lateWindowMs / 500 + .02);
       expect(garden.passedPhrases, 1);
       expect(garden.combo, 8);
+    });
+
+    test('a tap is judged when its touch happened, not when it arrived', () {
+      at(heard(12) + .06 * 2);
+      final result = garden.tap(garden.activeLimbs.first, ageMs: 60);
+      expect(result.deltaMs, 0);
+      // A stamp older than any frame is no stamp: it can't make a tap early.
+      at(heard(12 + garden.activeOffsets[1]));
+      final stale = garden.tap(garden.activeLimbs[1], ageMs: 5000);
+      expect(stale.deltaMs, -GardenSession.maxTapAgeMs);
+    });
+
+    test('calibration and the nudge move judging only', () {
+      garden.calibrationMs = 50;
+      garden.autoNudge = AutoNudge()..offsetMs = 20;
+      at(heard(12) + .07 * 2);
+      final cue = garden.visibleCues.where((c) => !c.demo && c.beat == 12);
+      expect(cue, isNotEmpty);
+      expect(garden.tap(garden.activeLimbs.first).deltaMs, 0);
+    });
+
+    test('a steady lean nudges judging at the phrase end, when it is on', () {
+      garden.autoNudge = AutoNudge();
+      for (var i = 0; i < garden.activeLimbs.length; i++) {
+        at(heard(12 + garden.activeOffsets[i]) + .12 * 2);
+        garden.tap(garden.activeLimbs[i]);
+      }
+      at(heard(18.5) + RhythmJudge.lateWindowMs / 500 + .02 + .24);
+      expect(garden.passedPhrases, 1);
+      expect(garden.autoNudge!.offsetMs, 60);
     });
 
     test('latency never pushes the decision past the phrase end margin', () {
