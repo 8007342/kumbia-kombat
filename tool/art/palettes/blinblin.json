@@ -1,0 +1,75 @@
+{
+ "schema": "tillandsias.palette/v1",
+ "name": "blinblin",
+ "colours": [
+  "#1A1018",
+  "#5C2900",
+  "#844D1E",
+  "#B0713F",
+  "#CA9269",
+  "#000000",
+  "#030100",
+  "#1C1412",
+  "#342C2A",
+  "#9B927A",
+  "#C4BAA1",
+  "#EFE4C8",
+  "#FFFBE3",
+  "#05001D",
+  "#1B0041",
+  "#3A1F6B",
+  "#524081",
+  "#000001",
+  "#040209",
+  "#1E1B28",
+  "#363440",
+  "#867956",
+  "#ADA07C",
+  "#D8C9A0",
+  "#F7EAC6"
+ ],
+ "transparent": null,
+ "$provenance": {
+  "tool": "tool/art/pipeline/compile_family.py",
+  "definition": "tool/art/characters/blinblin.json",
+  "ramps": {
+   "skin": [
+    "#5C2900",
+    "#844D1E",
+    "#B0713F",
+    "#CA9269"
+   ],
+   "hair": [
+    "#000000",
+    "#030100",
+    "#1C1412",
+    "#342C2A"
+   ],
+   "shirt": [
+    "#9B927A",
+    "#C4BAA1",
+    "#EFE4C8",
+    "#FFFBE3"
+   ],
+   "jacket": [
+    "#05001D",
+    "#1B0041",
+    "#3A1F6B",
+    "#524081"
+   ],
+   "trousers": [
+    "#000001",
+    "#040209",
+    "#1E1B28",
+    "#363440"
+   ],
+   "shoes": [
+    "#867956",
+    "#ADA07C",
+    "#D8C9A0",
+    "#F7EAC6"
+   ]
+  },
+  "nudged": {}
+ }
+}
