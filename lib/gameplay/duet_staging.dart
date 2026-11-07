@@ -128,6 +128,8 @@ class DuetExit {
     required this.reachFrom,
     required this.reachTo,
     required this.reachFrame,
+    required this.backBeats,
+    required this.danceClip,
   });
   final PartyPoint left, right, leftReach, rightReach;
 
@@ -137,6 +139,12 @@ class DuetExit {
 
   /// A drawing that leans toward the picture's left; mirrored on the left side.
   final String reachFrame;
+
+  /// Beats to step back out to the side marks once the wide shot returns.
+  final double backBeats;
+
+  /// What they dance at the sides, either side of the kiss. It faces Mācron.
+  final String danceClip;
 }
 
 class DuetSample {
@@ -163,9 +171,17 @@ class DuetSample {
 }
 
 class DuetExitSample {
-  const DuetExitSample({required this.floor, this.reaching = false, this.mirrored = false});
+  const DuetExitSample({
+    required this.floor,
+    this.reaching = false,
+    this.dancing = false,
+    this.mirrored = false,
+  });
   final PartyPoint floor;
   final bool reaching;
+
+  /// On her side, dancing the exit's clip rather than the win's own pose.
+  final bool dancing;
   final bool mirrored;
 }
 
@@ -449,15 +465,25 @@ class LevelDuet {
   ).floor;
 
   /// [e] counts beats from the shot's start. [from] is where she was at the win.
+  /// [closeupTo] is when the wide shot returns: she steps back out from the reach
+  /// and keeps dancing, as the owner ruled, instead of holding the reach to the end.
   DuetExitSample exitSample({
     required bool onLeft,
     required PartyPoint from,
     required double e,
+    double closeupTo = double.infinity,
     bool reducedMotion = false,
   }) {
     final side = onLeft ? exit.left : exit.right;
     final reach = onLeft ? exit.leftReach : exit.rightReach;
     if (reducedMotion) return DuetExitSample(floor: side);
+    if (e >= closeupTo) {
+      return DuetExitSample(
+        floor: _lerp(reach, side, _ease((e - closeupTo) / exit.backBeats)),
+        dancing: true,
+        mirrored: onLeft,
+      );
+    }
     if (e >= exit.reachFrom) {
       return DuetExitSample(
         floor: _lerp(
@@ -468,6 +494,9 @@ class LevelDuet {
         reaching: true,
         mirrored: onLeft,
       );
+    }
+    if (e >= exit.sideBeats) {
+      return DuetExitSample(floor: side, dancing: true, mirrored: onLeft);
     }
     return DuetExitSample(floor: _lerp(from, side, _ease(e / exit.sideBeats)));
   }

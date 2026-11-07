@@ -629,6 +629,7 @@ class LevelDefinition {
           recoil: offset(actor, 'recoil'),
           frames: frames,
           keepsReading: actor.has('keepsReading') && actor.flag('keepsReading'),
+          sway: actor.has('sway') ? _sway(actor.child('sway')) : null,
         ),
       );
       actor.finish();
@@ -666,6 +667,9 @@ class LevelDefinition {
       impactBeats: fields.has('impactBeats')
           ? fields.number('impactBeats', min: .1)
           : .4,
+      recoilBeats: fields.has('recoilBeats')
+          ? fields.number('recoilBeats', min: .5)
+          : null,
       heroWaitFrame: fields.has('heroWaitFrame')
           ? fields.text('heroWaitFrame')
           : 'rear_idle',
@@ -682,6 +686,23 @@ class LevelDefinition {
       );
     }
     return shot;
+  }
+
+  static ExitShotSway _sway(_Fields fields) {
+    final by = fields.list('by');
+    if (by.length != 2) {
+      throw LevelDataError(fields.at('by'), 'expected [x, y]');
+    }
+    final sway = ExitShotSway(
+      from: fields.number('from', min: 0),
+      beats: fields.number('beats', min: .5),
+      by: ui.Offset(
+        _number(fields.at('by'), by[0]),
+        _number(fields.at('by'), by[1]),
+      ),
+    );
+    fields.finish();
+    return sway;
   }
 
   static FightChart _chart(_Fields fields) {
@@ -890,6 +911,8 @@ class LevelDefinition {
       reachFrom: exitFields.number('reachFrom', min: 0),
       reachTo: exitFields.number('reachTo', min: 0),
       reachFrame: exitFields.text('reachFrame'),
+      backBeats: exitFields.number('backBeats', min: .25),
+      danceClip: exitFields.text('danceClip'),
     );
     exitFields.finish();
     if (exit.reachFrom >= exit.reachTo || exit.sideBeats > exit.reachFrom) {

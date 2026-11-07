@@ -17,7 +17,7 @@ A level is one JSON file, `levels/<id>.json`, plus one entry in `levels/index.js
   - `crowd`: budgets, guest marks and props. Each guest gets a chair
   - `scenery`: lamps and plants, and an optional waiter
   - `departure`: exit route. Waypoint y is relative to `originY`, so set `originY` to the hero's home y to write absolute marks
-  - `copy`: the invitation for the title screen, and `clearedTitle`: two words, one to a line, the second from the party and music theme. It's the only text in a run, shown from an exit shot's contact. A level with no `exitShot` shows it only on the end screen, if it's the last level. Sounds for an exit shot's `cue` are in `plan/cinematics.md`
+  - `copy`: the invitation for the title screen, and `clearedTitle`: two words, one to a line, the second from the party and music theme. It's the only text in a run, shown from an exit shot's contact. A level with no `exitShot` shows it only on the end screen, if it's the last level. An exit shot's fields, sounds and rules are in `assets/art/STYLEGUIDE.md`, section 8
 - [ ] `levels/index.json`: add the level where it belongs. That entry and the one before it hold the bridge. Neighbouring level files don't change.
 - [ ] `displayTotal`: the HUD's "/ 05". It's a stated number today, not the level count, because the HUD showed 05 with two levels. Remove the field to show the real count.
 
