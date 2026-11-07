@@ -11,6 +11,11 @@ the GPU when it answers. It shares the GPU with ComfyUI, so call it between jobs
 Appends one line to plan/compute-ledger.jsonl in the git checkout you run it
 from (or KUMBIA_COMPUTE_LEDGER). Set KUMBIA_AGENT, or pass --agent, to name
 yourself. Stdlib only.
+
+How to ask, from the trial in plan/compute-ledger-2026-11-07.md: crop to one
+figure, never a whole sheet, and ask it to count ("How many separate human heads
+are drawn in this image? Reply with only a number."; the same for hands). Asked
+"is there a fault?" it mostly says NO. A NO or a clean count isn't a pass.
 """
 import argparse
 import base64
