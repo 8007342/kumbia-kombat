@@ -141,6 +141,24 @@ def guayabera_stripes(c: Ctx) -> None:
         add_capsule(mid, low, r, c.region, c.regions)
 
 
+def gold_chains(c: Ctx) -> None:
+    """Rope chains hanging in nested Vs from the neck over the chest, down to the belly.
+
+    Only a mask: Qwen draws the chains from the sheet. The mask gives gold a region and a place, and
+    the depth test hides it from behind. Params: depths, fractions of the way from chest to pelvis.
+    """
+    up, _ = _torso_axes(c.j)
+    R = c.p.limb_r
+    side = (c.j["l_sho"] - c.j["r_sho"]).normalized()
+    front = side.cross(up).normalized()  # his own front, which faces away from the camera in a rear view
+    r = c.params.get("radius", 0.012)
+    top = c.j["chest"] + up * 0.1 + front * R["torso"] * 0.9
+    for depth in c.params.get("depths", (0.25, 0.55, 0.85)):
+        low = c.j["chest"].lerp(c.j["pelvis"], depth) + front * R["torso"] * 1.08
+        for sign in (-1, 1):
+            add_capsule(top + side * sign * R["torso"] * 0.5, low, r, c.region, c.regions)
+
+
 def shirt_fitted(c: Ctx) -> None:
     """Slim torso with a closed collar; sleeves come from sleeve-rolled."""
     up, tr = _torso_axes(c.j)
@@ -249,7 +267,8 @@ SHAPES = {
     "brimmed-hat": brimmed_hat, "hat-band": hat_band, "short-hair-moustache": short_hair_moustache,
     "puff": puff, "guayabera-stripes": guayabera_stripes, "shirt-stocky": shirt_stocky, "shirt-fitted": shirt_fitted,
     "waistcoat-fitted": waistcoat_fitted, "sleeve-rolled": sleeve_rolled, "waist-apron": waist_apron,
-    "trousers": trousers, "shoes-flat": shoes_flat, "shoes-heeled": shoes_heeled, "macron-body": macron_body,
+    "trousers": trousers, "shoes-flat": shoes_flat, "shoes-heeled": shoes_heeled, "gold-chains": gold_chains,
+    "macron-body": macron_body,
 }
 
 

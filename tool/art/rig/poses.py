@@ -475,7 +475,50 @@ MACRON_PILOT = {
     "proud_finish": MACRON_FINISH,
 }
 
-MOTION_SETS = {"opponent-64": OPPONENT_64, "macron-pilot": MACRON_PILOT}
+# ---------------------------------------------------------------- facing away
+# Motion set opponent-facing-away: all 64 drawings plus what the BlinBlin dancer needs (owner, eleventh
+# round): he dances with his back to the room until Mācron enters, turns to face him, and on defeat
+# folds his arms and gives one approving nod. The rear clips are the same dance turned 180 degrees, so the
+# weight and timing stay those of the groove. Sides stay anatomical: from behind his left is picture left.
+
+def turned_away(clip: dict) -> dict:
+    return {name: (replace(pose, yaw=pose.yaw + 180), sup) for name, (pose, sup) in clip.items()}
+
+
+BACK_GROOVE = turned_away(GROOVE)
+BACK_ACCENT = turned_away({"arm_l": LEFT_HAND["peak"], "arm_r": RIGHT_HAND["peak"]})
+
+# The turn: a glance over the shoulder while still facing away, then the body follows the head round. Yaw falls
+# from 180 to 0, about the midpoint between the feet, arms loose, ending at the front stance of crossed.settle.
+_TURN_LEGS = dict(l_thigh=(4, 6), l_shin=(3, -3), r_thigh=(8, 12), r_shin=(5, -7), pin="mid")
+REVEAL = {
+    "glance": (Pose(yaw=180, head_turn=-48, head_nod=-2, side_bend=3, pelvis_x=0.02, pelvis_roll=3,
+                    l_arm=(16, 4), l_fore=(14, 22), r_arm=(18, 8), r_fore=(16, 28), **_TURN_LEGS), "both"),
+    "rear_3q": (Pose(yaw=135, head_turn=-30, head_nod=-2, lean=1,
+                     l_arm=(22, 10), l_fore=(20, 30), r_arm=(24, -6), r_fore=(20, 18), **_TURN_LEGS), "both"),
+    "profile": (Pose(yaw=90, head_turn=-20, head_nod=-4, lean=2,
+                     l_arm=(14, 24), l_fore=(12, 40), r_arm=(14, -16), r_fore=(12, 6), **_TURN_LEGS), "both"),
+    "front_3q": (Pose(yaw=40, head_turn=-14, head_nod=-6,
+                      l_arm=(20, 10), l_fore=(14, 34), r_arm=(22, 6), r_fore=(18, 30), **_TURN_LEGS), "both"),
+}
+
+# Defeat: the arms fold high across the chest, his right forearm over his left, then one slow nod. Weight
+# stays easy on the right leg with a little contrapposto. Mācron mirrors this across the shot.
+_CROSS_LEGS = dict(side_bend=-2, pelvis_x=-0.03, pelvis_roll=-4, pin="r",
+                   r_thigh=(4, 6), r_shin=(3, -3), l_thigh=(10, 10), l_shin=(6, -6))
+_CROSS_ARMS = dict(l_arm=(18, 30), l_fore=(-102, 20), r_arm=(18, 34), r_fore=(-94, 32))
+CROSSED = {
+    "settle": (Pose(lean=1, head_nod=-2, head_side=2, l_arm=(30, 22), l_fore=(-44, 66),
+                    r_arm=(30, 26), r_fore=(-40, 72), **_CROSS_LEGS), "both"),
+    "hold": (Pose(lean=-3, head_nod=-8, head_side=3, **_CROSS_ARMS, **_CROSS_LEGS), "both"),
+    "nod_down": (Pose(lean=2, head_nod=24, head_side=1, **_CROSS_ARMS, **_CROSS_LEGS), "both"),
+    "nod_up": (Pose(lean=-1, head_nod=2, head_side=4, **_CROSS_ARMS, **_CROSS_LEGS), "both"),
+}
+
+OPPONENT_FACING_AWAY = {**OPPONENT_64, "back_groove": BACK_GROOVE, "back_accent": BACK_ACCENT,
+                        "reveal": REVEAL, "crossed": CROSSED}
+
+MOTION_SETS = {"opponent-64": OPPONENT_64, "opponent-facing-away": OPPONENT_FACING_AWAY, "macron-pilot": MACRON_PILOT}
 
 assert sum(len(v) for v in OPPONENT_64.values()) == 64, "opponent target is 64 drawings"
 
@@ -552,7 +595,32 @@ OPPONENT_64_INTENT = {
     "finish_turn.turn_out": ("pass (turn)", "body turned about 30 degrees toward {his} right on a heel pivot, leaning into the turn, right arm open out to the side at hip height, left fist on the hip"),
 }
 
-INTENT_BY_SET = {"opponent-64": OPPONENT_64_INTENT}
+_BEHIND = "seen from directly behind, {his} back to the viewer and only the back of {his} head showing: "
+FACING_AWAY_INTENT = {
+    "back_groove.down_l": ("down (beat 1, back-step)", _BEHIND + "weight sunk on {his} bent left knee, right foot stepped back on its ball with the heel raised, left hip high and pushed out, shoulders tilted the other way, left arm low, right arm low and out"),
+    "back_groove.pass_l": ("pass (beat 2, replace)", _BEHIND + "weight rolling onto the left foot, knees softening upward, right foot still on its ball, hips easing toward level, arms loose and low"),
+    "back_groove.up_l": ("up (beat 3, close)", _BEHIND + "both feet together and flat, legs nearly straight in a small rise, hips almost level, head high, arms relaxed low at the sides"),
+    "back_groove.pass_l2": ("accent (beat 4, the hold)", _BEHIND + "hip popped out to {his} right over the straight right leg, right hip high, right shoulder dipped, left knee bent with the left foot resting on its toe, right arm lifted out at hip height, head tilted toward {his} left"),
+    "back_groove.down_r": ("down (beat 1, back-step)", _BEHIND + "weight sunk on {his} bent right knee, left foot stepped back on its ball with the heel raised, right hip high and pushed out, shoulders tilted the other way, right arm low, left arm low and out"),
+    "back_groove.pass_r": ("pass (beat 2, replace)", _BEHIND + "weight rolling onto the right foot, knees softening upward, left foot still on its ball, hips easing toward level, arms loose and low"),
+    "back_groove.up_r": ("up (beat 3, close)", _BEHIND + "both feet together and flat, legs nearly straight in a small rise, hips almost level, head high, arms relaxed low at the sides"),
+    "back_groove.pass_r2": ("accent (beat 4, the hold)", _BEHIND + "hip popped out to {his} left over the straight left leg, left hip high, left shoulder dipped, right knee bent with the right foot resting on its toe, left arm lifted out at hip height, head tilted toward {his} right"),
+    "back_accent.arm_l": ("accent", _BEHIND + "weight on the straight right foot, body leaning toward {his} left so one long diagonal runs from the right foot to the left hand thrust high and out at about 45 degrees, right fist on the hip with the elbow out, left foot on its toe out to the side"),
+    "back_accent.arm_r": ("accent", _BEHIND + "weight on the straight left foot, body leaning toward {his} right so one long diagonal runs from the left foot to the right hand thrust high and out at about 45 degrees, left fist on the hip with the elbow out, right foot on its toe out to the side"),
+    "reveal.glance": ("anticipation", "seen from behind, {his} back still to the viewer, head turned to look back over {his} shoulder so {his} cheek, goatee and one eye show, a sly half smile, arms relaxed low, feet a little apart"),
+    "reveal.rear_3q": ("pass (turn)", "seen from behind at three quarters, {his} body starting to turn toward the viewer on the spot, head turned further so most of {his} face shows, arms relaxed low, feet a little apart"),
+    "reveal.profile": ("pass (turn)", "seen in side profile, turning on the spot toward the viewer, head turned a little ahead of {his} body, the gold chains hanging at {his} chest, one arm slightly forward and one slightly back, feet a little apart"),
+    "reveal.front_3q": ("settle (turn)", "three-quarter view from the front, finishing a turn toward the viewer, chin lifted, the gold chains hanging over {his} chest, arms relaxed low, feet a little apart"),
+    "crossed.settle": ("anticipation", "facing the viewer, both forearms rising toward each other in front of {his} belly on their way to folding, elbows close to the body, weight on the right leg, chin level, unimpressed look"),
+    "crossed.hold": ("settle (the stance)", "arms firmly crossed high over {his} chest with each hand tucked under the other arm, both elbows at {his} sides, chest proud and leaning back slightly, chin lifted, weight on the right leg with the left foot relaxed out, a cool half smile"),
+    "crossed.nod_down": ("accent (the nod)", "arms firmly crossed high over {his} chest with each hand tucked under the other arm, head bowed forward in a slow approving nod with the chin dropped and eyes looking down, weight on the right leg, a small approving smile"),
+    "crossed.nod_up": ("follow-through", "arms firmly crossed high over {his} chest with each hand tucked under the other arm, head coming back up from a nod, eyes on the viewer, weight on the right leg, an approving half smile"),
+}
+OPPONENT_FACING_AWAY_INTENT = {**OPPONENT_64_INTENT, **FACING_AWAY_INTENT}
+
+INTENT_BY_SET = {"opponent-64": OPPONENT_64_INTENT, "opponent-facing-away": OPPONENT_FACING_AWAY_INTENT}
+
+assert set(OPPONENT_FACING_AWAY_INTENT) == {f"{c}.{n}" for c, d in OPPONENT_FACING_AWAY.items() for n in d}, "intent ids != pose ids"
 
 assert set(OPPONENT_64_INTENT) == {f"{c}.{n}" for c, d in OPPONENT_64.items() for n in d}, "intent ids != pose ids"
 
