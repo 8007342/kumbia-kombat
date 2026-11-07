@@ -1,0 +1,453 @@
+{
+ "id": "salon",
+ "title": "EL SALÓN DE ESPEJOS",
+ "styleRef": "cool-crowd",
+ "comment": "Forked from ballroom.json, 2026-11-07, for the salon level (plan/levels/salon-2026-11-07.md). Seen straight down the hall from the pool room's doors: arched windows on the left wall, arched mirrors facing them on the right, gilded mirror panels between, a low dais with the grand piano at the far left, double doors in the middle of the far wall. Ids reuse the compiler's zones: pilaster = gilded mirror panel, glass = tall arched mirror, stage = dais with piano.",
+ "camera": {
+  "horizonY": 0.27,
+  "eyeHeightAdults": 1.35,
+  "focalPx": 1200,
+  "vanishingX": 0.5,
+  "originBottomX": 0.5
+ },
+ "phone": {
+  "width": 390,
+  "height": 844
+ },
+ "safe": {
+  "x": [
+   0.17,
+   0.83
+  ],
+  "y": [
+   0.17,
+   0.65
+  ]
+ },
+ "tapBand": {
+  "y": [
+   0.65,
+   0.97
+  ],
+  "allow": [
+   "floor",
+   "joint"
+  ]
+ },
+ "cast": {
+  "heroStature": 0.35,
+  "minHeroLogical": 34
+ },
+ "walkable": [
+  "floor",
+  "joint"
+ ],
+ "standable": [
+  "floor",
+  "joint"
+ ],
+ "paint": [
+  {
+   "kind": "paving",
+   "id": "floor",
+   "s": [
+    -2,
+    8.6
+   ],
+   "t": [
+    -2.7,
+    2.7
+   ],
+   "every": 1.0,
+   "lanes": 6
+  },
+  {
+   "kind": "wall",
+   "id": "panel",
+   "a": [
+    8.6,
+    -2.7
+   ],
+   "b": [
+    8.6,
+    2.7
+   ],
+   "z": [
+    0,
+    3.9
+   ]
+  },
+  {
+   "kind": "wall",
+   "id": "door",
+   "a": [
+    8.6,
+    -0.75
+   ],
+   "b": [
+    8.6,
+    0.75
+   ],
+   "z": [
+    0,
+    2.5
+   ]
+  },
+  {
+   "kind": "wall",
+   "id": "panel",
+   "a": [
+    -2,
+    -2.7
+   ],
+   "b": [
+    8.6,
+    -2.7
+   ],
+   "z": [
+    0,
+    3.9
+   ]
+  },
+  {
+   "kind": "wall",
+   "id": "panel",
+   "a": [
+    -2,
+    2.7
+   ],
+   "b": [
+    8.6,
+    2.7
+   ],
+   "z": [
+    0,
+    3.9
+   ]
+  },
+  {
+   "kind": "repeat",
+   "of": "wall",
+   "count": 4,
+   "start": 0,
+   "step": 2.1,
+   "id": "window",
+   "a": [
+    0.9,
+    -2.7
+   ],
+   "b": [
+    2.0,
+    -2.7
+   ],
+   "z": [
+    0.35,
+    3.3
+   ]
+  },
+  {
+   "kind": "repeat",
+   "of": "wall",
+   "count": 3,
+   "start": 0,
+   "step": 2.1,
+   "id": "pilaster",
+   "a": [
+    2.35,
+    -2.7
+   ],
+   "b": [
+    2.65,
+    -2.7
+   ],
+   "z": [
+    0.35,
+    3.3
+   ]
+  },
+  {
+   "kind": "repeat",
+   "of": "wall",
+   "count": 4,
+   "start": 0,
+   "step": 2.1,
+   "id": "glass",
+   "a": [
+    0.9,
+    2.7
+   ],
+   "b": [
+    2.0,
+    2.7
+   ],
+   "z": [
+    0.35,
+    3.3
+   ]
+  },
+  {
+   "kind": "repeat",
+   "of": "wall",
+   "count": 3,
+   "start": 0,
+   "step": 2.1,
+   "id": "pilaster",
+   "a": [
+    2.35,
+    2.7
+   ],
+   "b": [
+    2.65,
+    2.7
+   ],
+   "z": [
+    0.35,
+    3.3
+   ]
+  },
+  {
+   "kind": "wall",
+   "id": "window",
+   "a": [
+    8.6,
+    -2.35
+   ],
+   "b": [
+    8.6,
+    -1.15
+   ],
+   "z": [
+    0.9,
+    3.2
+   ]
+  },
+  {
+   "kind": "wall",
+   "id": "glass",
+   "a": [
+    8.6,
+    1.15
+   ],
+   "b": [
+    8.6,
+    2.35
+   ],
+   "z": [
+    0.6,
+    3.2
+   ]
+  },
+  {
+   "kind": "wall",
+   "id": "pilaster",
+   "a": [
+    8.6,
+    -1.0
+   ],
+   "b": [
+    8.6,
+    -0.85
+   ],
+   "z": [
+    0.3,
+    3.3
+   ]
+  },
+  {
+   "kind": "wall",
+   "id": "pilaster",
+   "a": [
+    8.6,
+    0.85
+   ],
+   "b": [
+    8.6,
+    1.0
+   ],
+   "z": [
+    0.3,
+    3.3
+   ]
+  },
+  {
+   "kind": "box",
+   "id": "stage",
+   "s": [
+    6.7,
+    8.6
+   ],
+   "t": [
+    -2.25,
+    -0.85
+   ],
+   "z": [
+    0,
+    0.35
+   ]
+  },
+  {
+   "kind": "discs",
+   "id": "lamp",
+   "at": [
+    [
+     5.6,
+     -1.5,
+     2.65
+    ],
+    [
+     5.6,
+     0,
+     2.75
+    ],
+    [
+     5.6,
+     1.5,
+     2.65
+    ]
+   ],
+   "r": 0.2
+  }
+ ],
+ "story": [
+  {
+   "name": "far-doors",
+   "ids": [
+    "door"
+   ],
+   "ignoreTop": true
+  },
+  {
+   "name": "dais",
+   "ids": [
+    "stage"
+   ],
+   "ignoreTop": true
+  }
+ ],
+ "marks": {
+  "heroHome": [
+   1.4,
+   0
+  ],
+  "heroEntrance": [
+   0.6,
+   0.05
+  ],
+  "heroRetreat": [
+   1.15,
+   0
+  ],
+  "challengers": [
+   {
+    "id": "don-terciopelo",
+    "atlas": "don-terciopelo",
+    "mark": [
+     2.75,
+     0
+    ],
+    "yieldMark": [
+     3.0,
+     0.6
+    ]
+   }
+  ],
+  "pathEnd": [
+   8.3,
+   0
+  ],
+  "route": [
+   [
+    1.4,
+    0
+   ],
+   [
+    1.8,
+    0.25
+   ],
+   [
+    3.6,
+    0.2
+   ],
+   [
+    6.0,
+    0.05
+   ],
+   [
+    8.3,
+    0
+   ]
+  ],
+  "guests": [
+   [
+    4.2,
+    -1.55
+   ],
+   [
+    4.2,
+    -1.1
+   ],
+   [
+    4.6,
+    1.65
+   ],
+   [
+    4.6,
+    1.2
+   ],
+   [
+    5.8,
+    -1.95
+   ],
+   [
+    5.8,
+    -1.5
+   ],
+   [
+    6.3,
+    1.95
+   ],
+   [
+    6.3,
+    1.5
+   ]
+  ],
+  "plants": []
+ },
+ "props": [],
+ "scene": "It is the mansion's grand ballroom at night, the hall of mirrors, seen straight down its length from the doorway: an elegant, romantic room of champagne gold, deep emerald and burgundy velvet.",
+ "keep": "every wall edge, every arched window and arched mirror on the side walls and the far wall, the gilded panels between them, the low dais with the grand piano at the far left, the double doors in the middle of the far wall, the row of three chandeliers, every floor joint and the horizon",
+ "zones": {
+  "floor": {
+   "layout": "a polished parquet floor running straight away from the viewer, with the same grid as image 1.",
+   "paint": "The floor is warm brown polished parquet laid in a fine, even herringbone, one calm tone across its whole area, softly mirroring the candle-gold chandeliers in long dim streaks, reaching the bottom edge and lying open and clear."
+  },
+  "panel": {
+   "layout": "deep emerald walls with gilded mouldings and a deep gilded cornice.",
+   "paint": "The walls are deep emerald silk panels framed in thin champagne-gold mouldings, under a deep gilded cornice and a dark coffered ceiling."
+  },
+  "door": {
+   "layout": "tall closed double doors at the far end.",
+   "paint": "Tall closed double doors of dark wood with gilded panels stand at the far end, the same width and height as in image 1 with their foot on the same line."
+  },
+  "window": {
+   "layout": "tall arched windows on the left wall and one behind the dais, looking out onto the night garden.",
+   "paint": "Tall arched windows on the left wall look out onto the dark night garden and its distant lanterns, each hung with heavy burgundy velvet drapes tied back at the sides."
+  },
+  "pilaster": {
+   "layout": "narrow gilded mirror panels between the arches.",
+   "paint": "Narrow gilded mirror panels stand between the arches, catching the candle light."
+  },
+  "glass": {
+   "layout": "tall arched mirrors in gilded frames on the right wall and on the far wall, facing the windows.",
+   "paint": "Tall arched mirrors in carved gilded frames line the right wall and the far wall, facing the windows and softly repeating the chandeliers' warm glow."
+  },
+  "stage": {
+   "layout": "a low wooden dais at the far left with a black grand piano on it.",
+   "paint": "A low dark wooden dais at the far left, the size of the block in image 1, holds a black grand piano with its lid raised, its keyboard facing the middle of the room."
+  },
+  "lamp": {
+   "layout": "a row of three crystal chandeliers hanging across the hall.",
+   "paint": "A row of three crystal chandeliers hangs across the hall, glowing in warm candle-gold light."
+  }
+ }
+}
