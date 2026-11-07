@@ -1,0 +1,17 @@
+[
+ {
+  "pose": "ck.reach",
+  "args": {
+   "workflow": "art_runs/pool-closeup-20261107a/workflows/ck.reach.api.json",
+   "tier": "I1",
+   "count": 3,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/pool-closeup-20261107a/in/wink.png",
+    "pose_proxy": "/work/tmp/imagegen/kumbia/pool-closeup-20261107a/in/ck.reach.skeleton.png"
+   },
+   "overrides": {
+    "seed": 989730
+   }
+  }
+ }
+]
