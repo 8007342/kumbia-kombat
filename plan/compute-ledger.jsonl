@@ -370,3 +370,10 @@
 {"agent": "blinblin", "what": "BlinBlin nod close-up: rest bust and bowed head, 4 candidates each; the bowed head's elapsed_s 85.9, the rest estimated", "kind": "gpu-image", "seconds": 172, "count": 2}
 {"agent": "blinblin", "what": "BlinBlin first-pass curation: heads and hands counted per cropped candidate with qwen2.5vl:7b", "kind": "local-vision", "seconds": 184.0, "count": 238}
 {"agent": "blinblin", "what": "BlinBlin rig render, register, score, finish and pack (CPU)", "kind": "cpu", "seconds": 240, "count": 1}
+{"ts": "2026-11-07T20:49:16Z", "agent": "SALONART", "what": "p1-990100.png", "kind": "local-vision", "seconds": 18.53, "count": 1, "model": "qwen2.5vl:7b", "load_s": 8.27, "eval_tokens": 28}
+{"ts": "2026-11-07T20:49:22Z", "agent": "SALONART", "what": "p1-990101.png", "kind": "local-vision", "seconds": 6.14, "count": 1, "model": "qwen2.5vl:7b", "load_s": 5.02, "eval_tokens": 28}
+{"ts": "2026-11-07T20:49:26Z", "agent": "SALONART", "what": "p1-990102.png", "kind": "local-vision", "seconds": 4.15, "count": 1, "model": "qwen2.5vl:7b", "load_s": 3.03, "eval_tokens": 28}
+{"ts": "2026-11-07T20:49:31Z", "agent": "SALONART", "what": "p1-990103.png", "kind": "local-vision", "seconds": 4.13, "count": 1, "model": "qwen2.5vl:7b", "load_s": 3.03, "eval_tokens": 28}
+{"ts": "2026-11-07T20:49:35Z", "agent": "SALONART", "what": "p1-990104.png", "kind": "local-vision", "seconds": 3.97, "count": 1, "model": "qwen2.5vl:7b", "load_s": 2.87, "eval_tokens": 28}
+{"ts": "2026-11-07T20:49:38Z", "agent": "SALONART", "what": "p1-990105.png", "kind": "local-vision", "seconds": 3.8, "count": 1, "model": "qwen2.5vl:7b", "load_s": 2.71, "eval_tokens": 28}
+{"ts": "2026-11-07T20:52:00Z", "agent": "SALONART", "what": "salon room plate pass 1, 6 candidates (rooms/salon/run-a p1)", "kind": "gpu-image", "seconds": 135.6, "count": 6}
