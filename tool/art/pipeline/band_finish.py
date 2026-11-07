@@ -90,7 +90,7 @@ PICKS = {
  'violin': dict(run='band-violin-v1-20261107a', seeds={p: 990501 for p in ('relaxed.a', 'relaxed.b', 'swing.a', 'swing.b', 'swing.c')}, foot=None, shear={}, shirt='1E1B22'),
  'bongos': dict(run='band-bongos-v1-20261107a', seeds={p: 990700 for p in ('relaxed.a', 'relaxed.b', 'swing.a', 'swing.b', 'swing.c')}, foot=None, shear={}, shirt='1E1B22'),
 }
-FEET = {'violin': [101, 278, 121, 298, 7], 'bass': [100, 280, 119, 298, 8], 'trumpet': [98, 277, 120, 298, 8], 'marimba': [104, 276, 135, 298, 8], 'congas': [108, 274, 121, 296, 6]}  # native px: x0, y0, x1, y1, lift
+FEET = {'violin': [101, 278, 121, 298, 7], 'bongos': [100, 278, 126, 298, 6], 'bass': [100, 280, 119, 298, 8], 'trumpet': [98, 277, 120, 298, 8], 'marimba': [104, 276, 135, 298, 8], 'congas': [108, 274, 121, 296, 6]}  # native px: x0, y0, x1, y1, lift
 FOOT = json.loads(os.environ.get('FOOT') or json.dumps(FEET))
 def shear(a, top_shift):
     ys = np.where(a[..., 3].any(axis=1))[0]

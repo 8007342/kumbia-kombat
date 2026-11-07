@@ -186,7 +186,7 @@
   "rejected": "Tried on a staging proof: a pair at y .56 on the right (in front of Don's line, and huge at the phone's edge) and a pair at y .395 in front of the left door leaf (read as standing on the dais beside the violinist). Both dropped."
  },
  "trio": {
-  "note": "On the dais top, no platform lift: the painted dais and piano are drawn at about the floor's scale at their image y, so size the players by the floor plane at their feet (stature 1). Ladder: copy cool-crowd's 'instrument' ladder (relaxed / tap / swing frames). The pianist sits in the plate's own bench; her atlas is 1:1 with the plate at those feet.",
+  "note": "On the dais top, no platform lift: the painted dais and piano are drawn at about the floor's scale at their image y, so size the players by the floor plane at their feet (stature 1). Ladder: copy cool-crowd's 'instrument' ladder (relaxed / tap / swing frames). The pianist sits in the plate's own bench; her atlas is 1:1 with the plate at those feet. Bongos and violin at stature .85: at 1.0 they dwarf the painted piano and the seated pianist (checked on a composite proof).",
   "players": [
    {
     "id": "piano",
@@ -204,23 +204,25 @@
     "atlas": "band-bongos",
     "reference": "relaxed_a",
     "feet": [
-     0.215,
+     0.245,
      0.455
     ],
     "ladder": "instrument",
     "beatOffset": 1,
-    "lateBy": 0.05
+    "lateBy": 0.05,
+    "stature": 0.85
    },
    {
     "id": "violin",
     "atlas": "band-violin",
     "reference": "relaxed_a",
     "feet": [
-     0.31,
+     0.335,
      0.452
     ],
     "ladder": "instrument",
-    "lateBy": 0.1
+    "lateBy": 0.1,
+    "stature": 0.85
    }
   ]
  },

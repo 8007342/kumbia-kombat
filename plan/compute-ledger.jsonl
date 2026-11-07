@@ -389,3 +389,11 @@
 {"ts": "2026-11-07T22:05:00Z", "agent": "SALONART", "what": "band-violin frames, 5 poses x 2 (wall time incl. queue)", "kind": "gpu-image", "seconds": 905, "count": 10}
 {"ts": "2026-11-07T22:05:00Z", "agent": "SALONART", "what": "salon pianist in-place key, 4 takes on a plate crop", "kind": "gpu-image", "seconds": 170.6, "count": 4}
 {"ts": "2026-11-07T22:40:00Z", "agent": "SALONART", "what": "salon pianist in-place frame edits, 3 poses x 2", "kind": "gpu-image", "seconds": 567.9, "count": 6}
+{"ts": "2026-11-07T21:36:04Z", "agent": "SALONART", "what": "990700.png", "kind": "local-vision", "seconds": 35.87, "count": 1, "model": "qwen2.5vl:7b", "load_s": 10.81, "eval_tokens": 5}
+{"ts": "2026-11-07T21:36:08Z", "agent": "SALONART", "what": "990700.png", "kind": "local-vision", "seconds": 4.03, "count": 1, "model": "qwen2.5vl:7b", "load_s": 3.12, "eval_tokens": 5}
+{"ts": "2026-11-07T21:36:14Z", "agent": "SALONART", "what": "990700.png", "kind": "local-vision", "seconds": 5.44, "count": 1, "model": "qwen2.5vl:7b", "load_s": 3.9, "eval_tokens": 5}
+{"ts": "2026-11-07T21:36:19Z", "agent": "SALONART", "what": "990700.png", "kind": "local-vision", "seconds": 5.28, "count": 1, "model": "qwen2.5vl:7b", "load_s": 3.67, "eval_tokens": 5}
+{"ts": "2026-11-07T21:37:04Z", "agent": "SALONART", "what": "990700.png", "kind": "local-vision", "seconds": 44.27, "count": 1, "model": "qwen2.5vl:7b", "load_s": 9.96, "eval_tokens": 5}
+{"ts": "2026-11-07T23:00:00Z", "agent": "SALONART", "what": "salon layer fills: 3 chandeliers and 3 floor reflections, 2 seeds each", "kind": "gpu-image", "seconds": 989.6, "count": 12}
+{"ts": "2026-11-07T23:00:00Z", "agent": "SALONART", "what": "band-bongos frames, 5 poses x 2 (wall time incl. queue)", "kind": "gpu-image", "seconds": 939, "count": 10}
+{"ts": "2026-11-07T23:00:00Z", "agent": "SALONART", "what": "salon plate fills, layers, finish, pack, proofs (layers.py, band_finish.py, pianist.py)", "kind": "cpu", "seconds": 120, "count": 1}
