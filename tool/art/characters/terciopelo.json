@@ -1,5 +1,5 @@
 {
- "$comment": "The salon's opponent, Don Terciopelo (plan/levels/salon-2026-11-07.md): an older ballroom gentleman who has owned this floor for forty years. A tall narrow vertical, the opposite of the stocky Gatekeeper and the wide BlinBlin dancer. The rose in his lapel is his one red accent. He dances the cha-cha-chá (motion set opponent-chacha). The coordinator delegated acceptance of his sheet to this agent on 2026-11-07, as a choice the owner can reverse.",
+ "$comment": "The salon's opponent, Don Terciopelo (plan/levels/salon-2026-11-07.md): an older ballroom gentleman who has owned this floor for forty years. A tall narrow vertical, the opposite of the stocky Gatekeeper and the wide BlinBlin dancer. The rose in his lapel is his one red accent. He dances the cha-cha-chá (motion set opponent-chacha). The coordinator delegated acceptance of his sheet to this agent on 2026-11-07, as a choice the owner can reverse. Sheets accepted by this agent, 2026-11-07: front is pass 2 seed 991000 and back is pass 2 seed 991000 (art_runs/terciopelo-sheet-20261107b). Garment colours are the accepted front's medians, with the jacket held just off pure white.",
  "id": "terciopelo",
  "family": "terciopelo-v1",
  "style": "party-pixel",
@@ -12,7 +12,7 @@
   "him",
   "his"
  ],
- "skin": "#C08563",
+ "skin": "#B07E58",
  "traits": "tall slim upright gentleman of about seventy, swept-back silver hair, pencil moustache, poised and elegantly unimpressed",
  "demeanor": "absurdly poised, gallant and elegantly unimpressed, until he is won over",
  "garments": [
@@ -27,14 +27,14 @@
    "id": "shirt",
    "shape": "shirt-fitted",
    "region": "shirt",
-   "colour": "#F2EEE4",
+   "colour": "#F4F2EC",
    "text": "white dress shirt"
   },
   {
    "id": "jacket",
    "shape": "waistcoat-fitted",
    "region": "cloth",
-   "colour": "#EDE4CF",
+   "colour": "#F0EDE6",
    "text": "white dinner jacket with shawl lapels",
    "secondaryMotion": "lag-1"
   },
@@ -42,14 +42,14 @@
    "id": "lapels",
    "shape": "jacket-lapels",
    "region": "cloth",
-   "colour": "#EDE4CF",
+   "colour": "#F0EDE6",
    "text": "shawl lapels"
   },
   {
    "id": "velvet",
    "shape": "palette-only",
    "region": "accessory",
-   "colour": "#701C2A",
+   "colour": "#5A0C22",
    "alsoIn": [
     "shirt",
     "cloth",
@@ -61,7 +61,7 @@
    "id": "rose",
    "shape": "palette-only",
    "region": "accessory",
-   "colour": "#C41E2E",
+   "colour": "#C2141A",
    "alsoIn": [
     "cloth",
     "skin",
@@ -70,17 +70,29 @@
    "text": "a red rose in his left lapel"
   },
   {
+   "id": "rose_leaf",
+   "shape": "palette-only",
+   "region": "accessory",
+   "colour": "#2E7038",
+   "alsoIn": [
+    "cloth",
+    "skin",
+    "shirt"
+   ],
+   "text": "the rose's green stem and leaf"
+  },
+  {
    "id": "trousers",
    "shape": "trousers",
    "region": "trousers",
-   "colour": "#16161C",
+   "colour": "#14151A",
    "text": "black dress trousers"
   },
   {
    "id": "shoes",
    "shape": "shoes-flat",
    "region": "shoes",
-   "colour": "#EDE4CF",
+   "colour": "#F0EDE6",
    "alsoIn": [
     "trousers"
    ],
@@ -103,7 +115,8 @@
    "views": {
     "front": {
      "image": "tool/art/references/terciopelo/front.png",
-     "description": "standing tall, square and very upright facing the viewer, feet a little apart, both arms relaxed and held a little away from the body, both open hands visible"
+     "description": "standing tall, square and very upright facing the viewer, feet a little apart, both arms relaxed and held a little away from the body, both open hands visible",
+     "stageScale": 0.84
     },
     "back": {
      "image": "tool/art/references/terciopelo/back.png",
