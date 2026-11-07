@@ -20,7 +20,7 @@
   "side": "left",
   "framing": "bust: the canvas bottom cuts his belly",
   "rose": "in his lapel in rest and pluck, held out toward the picture's right edge in offer, gone in empty",
-  "source": "art_runs/salon-closeups-20261107/scripts/salon_bust.py from Qwen drawings 991500, 991510, 991541 (seed 991530 of the offer redraw) and 991530 in art_runs/salon-closeups-20261107/source/; words in scripts/bust_jobs.py",
+  "source": "art_runs/salon-closeups-20261107/scripts/salon_bust.py from Qwen drawings 991500, 991510, offer2-991531 (the offer redraw, whose seed repeated the empty job's 991530 by a bug in bust_jobs.py, since fixed) and 991530 in art_runs/salon-closeups-20261107/source/; words in scripts/bust_jobs.py",
   "cell": 2
  },
  "macron": {

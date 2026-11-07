@@ -27,6 +27,8 @@ WORDS = {
     "offer2": "His hand on the right side of the picture holds the single red rose by its stem, the arm reaching out to the right of the picture at chest height so the rose is held out near the right edge of the picture, offering it to someone there. The lapel is bare, with no rose. His other arm hangs below the frame. His head is inclined toward the rose in a slight gallant bow, with a warm closed-mouth smile.",
     "empty": "The lapel is bare, with no rose. His hand on the left side of the picture is open in front of his chest with the palm up, just after giving something away, and his other arm hangs below the frame. A warm, won-over smile, eyes toward the right of the picture.",
 }
+# offer2 was first run with 991530, the same seed as empty, by a bug in an earlier version of this script.
+SEEDS = {"rest": 991500, "pluck": 991510, "offer": 991520, "empty": 991530, "offer2": 991540}
 TAIL = " Plain light grey background, no text."
 
 
@@ -49,7 +51,7 @@ def run(names):
     for i, name in enumerate(names):
         args = {"workflow": R.GRAPH, "tier": "I1", "count": 2,
                 "inputs": {"sheet_front": str(CROP), "pose_proxy": str(CROP)},
-                "overrides": {"seed": SEED + 10 * list(WORDS).index(name), "$node:30.lora_name": R.LORA, "$node:10.prompt": BASE + WORDS[name] + TAIL}}
+                "overrides": {"seed": SEEDS[name], "$node:30.lora_name": R.LORA, "$node:10.prompt": BASE + WORDS[name] + TAIL}}
         t = time.time(); res = lane.call("studio.run_workflow", args)
         print(name, "error" if res.get("isError") else "ok", f"{time.time() - t:.0f}s", json.dumps(res)[:300], flush=True)
 
