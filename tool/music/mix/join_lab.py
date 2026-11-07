@@ -101,7 +101,11 @@ def run(level_id, manifest_path, root):
     result = {"keys": {n: t.key[0] for n, t in takes.items()},
               "bpm": {n: t.bpm for n, t in takes.items()}, "joins": {}}
     base = {n: baseline(t) for n, t in takes.items()}
-    for join in entry.get("transitions", []):
+    pairs = entry.get("transitions", []) or entry.get("cuts", [])
+    if entry.get("gridTier"):
+        order = list(dict.fromkeys(entry["tierTakes"]))
+        pairs = [{"from": a, "to": z} for a, z in zip(order, order[1:])]
+    for join in pairs:
         a, z = join["from"], join["to"]
         out, into = takes[a], takes[z]
         rows = {}
@@ -112,6 +116,11 @@ def run(level_id, manifest_path, root):
             entered = [seam(out, b, clip, 0) for b in range(0, out.bars, 2)]
             rows["clipEntry"] = summarise(entered, base[a])
             rows["clipLanding"] = summarise([seam(clip, 0, into, join["entryBar"])], base[z])
+        if entry.get("gridTier"):
+            rows["sameBar"] = summarise([seam(out, b, into, b) for b in range(0, out.bars, 2)], pair_base)
+            rows["tempoStepPct"] = round((into.bpm / out.bpm - 1) * 100, 2)
+            result["joins"][f"{a}>{z}"] = rows
+            continue
         table = best_entries(out, into)
         rows["bestEntryTable"] = summarise(
             [seam(out, 2 * i, into, e) for i, e in enumerate(table)], pair_base)

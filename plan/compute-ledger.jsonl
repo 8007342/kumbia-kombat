@@ -1,0 +1,4 @@
+{"ts": "2026-11-07T04:00:00Z", "agent": "music", "what": "chained-latent tests, bar sweeps and structure-tag takes (ACE XL turbo); seconds are sampler time, excluding queue waits", "kind": "gpu-audio", "seconds": 225, "count": 27}
+{"ts": "2026-11-07T04:00:00Z", "agent": "music", "what": "billiards themes, 4 styles of 6 seeds (ACE XL turbo); first style measured 72 s, others assumed alike", "kind": "gpu-audio", "seconds": 288, "count": 24}
+{"ts": "2026-11-07T04:00:00Z", "agent": "music", "what": "billiards trial on ACE XL base, 40 steps, cfg 4", "kind": "gpu-audio", "seconds": 61, "count": 2}
+{"ts": "2026-11-07T04:00:00Z", "agent": "music", "what": "one-performance ladders for 4 levels, 8 takes each; garden measured 47 s, others assumed alike", "kind": "gpu-audio", "seconds": 188, "count": 32}
