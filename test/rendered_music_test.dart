@@ -559,10 +559,7 @@ void main() {
         // Garden declares no limits of its own. Its plain chart is as it was, at
         // the tempos it always had, including 326 ms for one limb at 92 BPM.
         if (level.chart.richPatterns.isEmpty) continue;
-        // Billiards' takes land from the music agent; test/rich_moves_test.dart
-        // holds its chart at 104 BPM until then.
-        final tempos = manifest.levels[level.id]?.tempos;
-        if (tempos == null) continue;
+        final tempos = manifest.levels[level.id]!.tempos;
         for (var tier = 0; tier < 5; tier++) {
           final peaks = tier == 4 ? level.rules.finalChallenges : 1;
           for (var peak = 0; peak < peaks; peak++) {

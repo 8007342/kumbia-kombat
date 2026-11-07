@@ -6,12 +6,12 @@ It is wired as the last level, after the indoor party. `?level=billiards` opens 
 
 ## Still stand-ins, and how to swap them
 
+All art and music are now the real thing. What's left is in the table below, if anything.
+
 Each swap is a data edit.
 
 | Where | Today | Replace with | From |
 |---|---|---|---|
-| Music | `crowd_duende`, with `bar_swag_finale` as the 16-beat success | The rendered `billiards` key, about 100 BPM, 16-beat final success. Then drop the guard in `rendered_music_test.dart` | MUSIC |
-| Bridge from the party | `crowd_to_restroom` in `index.json`, as the synth fallback | Rendered `cool-crowd.bridge`, 8 beats, read by the runtime | MUSIC |
 
 ## Room
 
@@ -42,8 +42,8 @@ Each swap is a data edit.
 | 5 | 4, second | 14 | 6 |
 
 - 25 richer steps against the party's 24 and the bar's 18. Offbeat share 79.5% against the party's 79.2%, a hair over, and only because the test asks. Both are held by `play complexity rises`. [F]
-- **Fairness:** held at 104 BPM, the top of what MUSIC plans (96 to 104), with the same limits as the bar. Five of the six doubles use half a beat: 288 ms at 104 BPM, 3 ms over the guess of 285. **That margin is thin, and depends on the final tempo.** [F]
-- **How it was written:** by a random search over the real `fairnessProblems` and cue-separation functions, with stroke steps and move kinds fixed by hand. It finds what is legal, not what is musical. It has never been laid against the billiards melody, because the music doesn't exist yet. **Re-check it when the take lands.** [F]
+- **Fairness:** held at every tier's real tempo, read from the manifest: 96, 96, 100, 100 and 104 BPM. `rich_moves_test` also holds them, with the same limits as the bar. Five of the six doubles use half a beat. In tiers 2 and 3 that is 300 ms, and in tier 4, at 104 BPM, it is 288 ms, 3 ms over the guess of 285. **That margin is thin.** [F]
+- **How it was written:** by a random search over the real `fairnessProblems` and cue-separation functions, with stroke steps and move kinds fixed by hand. It finds what is legal, not what is musical. It has not been laid against the billiards melody: the takes landed after the chart, and nobody here can hear. **A person should play it against the music.** [F]
 - **Rules:** 2 phrases a tier, 2 final challenges, metric "Finesse". [P]
 
 ## Cue stroke
@@ -55,6 +55,8 @@ Tap, then drag straight up the floor, as if shooting up the table. It's the exis
 - **Not done:** she doesn't sight down the cue in the call on that note, so the call doesn't teach it. Only the glyph does.
 
 ## Sound
+
+- **Music:** the rendered `billiards` takes, G minor, layered so a tier change stays on the bar: low 96, mid 100, high 104 BPM. The 16-beat final success settles to silence over its last 4 beats, and the shot is back to wide at 11.5. Entry is `cool-crowd.bridge`, 2 bars at 96. `music.score` still names `crowd_duende` and the success `bar_swag_finale`, as the synth fallback if the takes can't load, and `crowd_to_restroom` stands for the synth bridge in `index.json`. [F]
 
 - `clack`: ball on ball, 2.5 kHz and 1.1 kHz partials and a noise tick. Plays when a move or a richer step lands, from `music.moveAccent`. A page test proves a richer step sends it to audio. [F]
 - `chalk`: a dry rasp at 3.4 kHz, on the dab and softly on the chalking.
