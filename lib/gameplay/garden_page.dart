@@ -9,6 +9,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../music/game_audio.dart';
+import '../music/rendered_library.dart';
+import '../music/rendered_music.dart';
 import '../music/score.dart';
 import '../music/transport.dart';
 import '../music/transition_conductor.dart';
@@ -17,6 +19,7 @@ import 'garden_session.dart';
 import 'gesture_glyph.dart';
 import 'gesture_shapes.dart';
 import 'level_definition.dart';
+import 'music_mixer.dart';
 import 'party_autoplay.dart';
 import 'pause_overlay.dart';
 import 'progression.dart';
@@ -83,6 +86,14 @@ class _GardenPageState extends State<GardenPage>
   LevelDefinition get _level => _step.level;
   String get _levelNumber => (_roomIndex + 1).toString().padLeft(2, '0');
   final _exitScores = <String, MusicScore>{};
+
+  /// Null when this backend has no rendered audio: the synth plays everything.
+  RenderedLibrary? _library;
+  RenderedMix _mix = const RenderedMix();
+  bool _mixEdited = false;
+
+  /// The rendered exit has been decoded, or has failed and the synth will do.
+  bool _exitMusicSettled = true;
   TransitionConductor? _conductor;
   MusicHandoff? _handoff;
   MusicFinish? _finish;
@@ -180,7 +191,10 @@ class _GardenPageState extends State<GardenPage>
     } else if (_transport!.state == TransportState.playing) {
       _transport!.pump();
     }
-    if (session.phase == GardenPhase.cleared && !_exitStarted && _exitReady) {
+    if (session.phase == GardenPhase.cleared &&
+        !_exitStarted &&
+        _exitReady &&
+        _exitMusicSettled) {
       _beginExit();
     }
     if (!session.running) {
@@ -261,6 +275,8 @@ class _GardenPageState extends State<GardenPage>
       final levels = await _levelsLoad;
       if (!mounted) return;
       setState(() => _levels = levels);
+      await _loadRenderedManifest();
+      if (!mounted) return;
       for (final id in levels.roomScoreIds) {
         final json = await rootBundle.loadString(
           'assets/music/scores/$id.json',
@@ -271,6 +287,8 @@ class _GardenPageState extends State<GardenPage>
       if (!mounted) return;
       _scoreData = data;
       _newSession();
+      // Compressed bytes need no permission, so the first press finds them here.
+      unawaited(_library?.fetchLevel(_level.id));
       setState(() {});
       if (_startWhenLoaded && _autoplay.enabled) unawaited(_start());
       _startWhenLoaded = false;
@@ -283,16 +301,78 @@ class _GardenPageState extends State<GardenPage>
     }
   }
 
+  /// A bad manifest costs the rendered music, never the game.
+  Future<void> _loadRenderedManifest() async {
+    final Object audio = _audio;
+    if (audio is! RenderedAudio) return;
+    try {
+      final manifest = RenderedManifest.fromJson(
+        jsonDecode(
+          await rootBundle.loadString('assets/music/rendered/manifest.json'),
+        ),
+      );
+      _library = RenderedLibrary(audio, manifest);
+      _applyMix();
+    } catch (error) {
+      debugPrint('Rendered music is off: $error');
+    }
+  }
+
+  void _applyMix() {
+    final library = _library;
+    if (library == null) return;
+    // What the owner has set by ear outlasts a room change, until the page reloads.
+    if (!_mixEdited) _mix = library.manifest.mixFor(_level.id);
+    library.audio.setMix(_mix);
+  }
+
+  /// The room's song, on its takes' tempos if it has any.
+  MusicScore _roomScore(LevelDefinition level) {
+    final score = MusicScore.fromJson(_roomScores[level.music.score]!);
+    final music = _library?.level(level.id);
+    return music == null ? score : score.withTempos(music.tempos);
+  }
+
+  RenderedPlan? _ladderPlan(LevelDefinition level, {int entryBar = 0}) {
+    final library = _library;
+    final music = library?.level(level.id);
+    if (library == null || music == null) return null;
+    return RenderedPlan.ladder(music, library.audio, entryBar: entryBar);
+  }
+
+  /// Everything past the first beat, in the background and one at a time. The
+  /// exit isn't taken until this settles; the loop just goes round meanwhile.
+  Future<void> _warmRenderedMusic() async {
+    final library = _library;
+    if (library == null) return;
+    final level = _level;
+    final next = _step.next;
+    _exitMusicSettled = false;
+    try {
+      if (next != null) unawaited(library.fetchLevel(next.id));
+      // The exit first: nothing may keep a level from ending, and a tier change
+      // can wait for its take where a level's end has nowhere to wait.
+      await library.decodeExit(level.id, nextId: next?.id);
+      _exitMusicSettled = true;
+      await library.decodeRest(level.id);
+    } catch (error) {
+      debugPrint('Rendered exit is off: $error');
+    } finally {
+      if (identical(level, _level)) _exitMusicSettled = true;
+    }
+  }
+
   void _newSession() {
     _autoplay.suspend();
     _usedAutoplay = _autoplay.enabled;
     _transport?.stop();
     _transport = MusicTransport(
-      MusicScore.fromJson(_scoreData!),
+      _roomScore(_level),
       _audio,
       loop: true,
       lookaheadSeconds: .3,
       starvationGraceSeconds: _starvationGraceSeconds,
+      rendered: _ladderPlan(_level),
     );
     _audio.leadShape = _level.music.leadShape;
     _session = _level.newSession(_transport!, _audio);
@@ -338,23 +418,58 @@ class _GardenPageState extends State<GardenPage>
     final step = _step;
     final next = step.next;
     final shot = step.level.exitShot;
-    final successScore = _exitScores[step.level.music.successScore]!;
+    final library = _library;
+    final music = library?.level(step.level.id);
+    final successClip = _readyClip(music?.success);
+    final successScore = successClip == null
+        ? _exitScores[step.level.music.successScore]!
+        : _clipScore(successClip);
     final success = shot?.mixCue(successScore, 0) ?? successScore;
+    final successPlan = successClip == null
+        ? null
+        : RenderedPlan.single(successClip, library!.audio);
     if (next != null) {
-      final bridgeScore = _exitScores[step.bridgeToNext!]!;
+      final bridgeClip = music?.bridgeTo == next.id
+          ? _readyClip(music?.bridge)
+          : null;
+      final bridgeScore = bridgeClip == null
+          ? _exitScores[step.bridgeToNext!]!
+          : _clipScore(bridgeClip);
       _handoff = _conductor!.handoff(
         source: _transport!,
         success: success,
         bridge:
             shot?.mixCue(bridgeScore, successScore.lengthBeats) ?? bridgeScore,
-        nextScore: MusicScore.fromJson(_roomScores[next.music.score]!),
+        nextScore: _roomScore(next),
+        successPlan: successPlan,
+        bridgePlan: bridgeClip == null
+            ? null
+            : RenderedPlan.single(bridgeClip, library!.audio),
+        nextPlan: _ladderPlan(
+          next,
+          entryBar: bridgeClip == null ? 0 : music!.bridgeEntryBar,
+        ),
       );
     } else {
-      _finish = _conductor!.finish(source: _transport!, success: success);
+      _finish = _conductor!.finish(
+        source: _transport!,
+        success: success,
+        successPlan: successPlan,
+      );
     }
     _scene.exitCodaBeat = _transport!.beatAt(_transport!.retirementSeconds) + 4;
     if (mounted) setState(() {});
   }
+
+  RenderedClip? _readyClip(RenderedClip? clip) =>
+      clip != null && _library!.audio.clipReady(clip) ? clip : null;
+
+  MusicScore _clipScore(RenderedClip clip) => MusicScore.silent(
+    id: clip.id,
+    beatsPerBar: clip.beatsPerBar,
+    bars: clip.bars,
+    bpm: clip.bpm,
+  );
 
   Future<void> _adoptNextRoom() async {
     _adoptingRoom = true;
@@ -365,7 +480,11 @@ class _GardenPageState extends State<GardenPage>
       if (!mounted || !_foreground || _conductor?.isPaused == true) return;
       _bankedPizazz += _session!.pizazz;
       _bankedPerfects += _session!.perfects;
+      final leftLevel = _level.id;
       _roomIndex = nextIndex;
+      // The next room's first take is playing, so the old room's audio can go.
+      _library?.releaseLevel(leftLevel, keep: _level.id);
+      _applyMix();
       _scoreData = _roomScores[_level.music.score];
       _transport = next;
       _audio.leadShape = _level.music.leadShape;
@@ -382,6 +501,7 @@ class _GardenPageState extends State<GardenPage>
       // Ready this level's own exit: its bridge's next room is not loaded yet.
       _exitReady = false;
       unawaited(_prepareExits());
+      unawaited(_warmRenderedMusic());
       setState(() {});
     } catch (error) {
       _conductor?.pause();
@@ -418,8 +538,7 @@ class _GardenPageState extends State<GardenPage>
       }
       _scene.presentationPaused = false;
       if (_handoffPaused) {
-        final barSeconds =
-            4 * 60 / _transport!.score.tempos[_transport!.currentTier];
+        final barSeconds = 4 * 60 / _transport!.currentBpm;
         _conductor!.resume(leadSeconds: barSeconds);
         _playCountIn(barSeconds);
         _beginResumeFade(_audio.nowSeconds + barSeconds);
@@ -450,7 +569,15 @@ class _GardenPageState extends State<GardenPage>
         _playCountIn(anchor - _audio.nowSeconds);
         _beginResumeFade(anchor);
       } else {
+        // Bounded: if the take isn't decoded in time, the run starts on the synth
+        // at the same tempo, and the take joins at a phrase boundary.
+        await _library?.decodeStart(_level.id, tier: 0);
+        if (!mounted || !_foreground || activationEpoch != _activationEpoch) {
+          return;
+        }
+        _applyMix();
         _session!.start();
+        unawaited(_warmRenderedMusic());
       }
       _focus.requestFocus();
     } catch (error) {
@@ -882,6 +1009,38 @@ class _GardenPageState extends State<GardenPage>
                           (phase == GardenPhase.cleared && !_exitStarted),
                       paused: paused,
                     ),
+                    if (musicMixerRequested && _library != null)
+                      Positioned(
+                        top: 60,
+                        left: 8,
+                        bottom: 60,
+                        child: Align(
+                          alignment: Alignment.topLeft,
+                          child: MusicMixerPanel(
+                            audio: _library!.audio,
+                            library: _library!,
+                            levelId: _level.id,
+                            transport: () => _handoff?.success.state ==
+                                    TransportState.playing
+                                ? _handoff!.success
+                                : _finish?.success.state ==
+                                      TransportState.playing
+                                ? _finish!.success
+                                : _handoff?.bridge.state ==
+                                      TransportState.playing
+                                ? _handoff!.bridge
+                                : _transport,
+                            mix: _mix,
+                            onMix: (mix) {
+                              setState(() {
+                                _mix = mix;
+                                _mixEdited = true;
+                              });
+                              _library!.audio.setMix(mix);
+                            },
+                          ),
+                        ),
+                      ),
                   ],
                 );
               },
@@ -1138,7 +1297,7 @@ class _GardenPageState extends State<GardenPage>
     final untilStart =
         _transport!.secondsAt(_transport!.positionBeats) - _audio.nowSeconds;
     final count =
-        (untilStart / (60 / _transport!.score.tempos[_transport!.currentTier]))
+        (untilStart / (60 / _transport!.currentBpm))
             .ceil()
             .clamp(1, 4);
     final turn = countingIn
