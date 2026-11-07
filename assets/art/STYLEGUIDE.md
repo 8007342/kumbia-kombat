@@ -32,13 +32,15 @@ Before spending GPU time, write these down for the level: the opponent's silhoue
 - **The room is the meter.** No progress bar, no finish lamps. "The party engagement and music are indicators enough."
 - **Text appears only in the cinematic highlight** (section 8.4). Feedback uses icons, colour, highlights and sparks.
 - **Warm and nonviolent.** Fighting is dance, timing and social play: no damage, humiliation or weapons. Restroom humour is a pictogram and relieved movement.
-- **Levels go by "next level".** Old level numbers are dropped. Campaign order lives in `levels/index.json` (garden, pool party, bar, then the indoor party). Add levels, never replace them.
+- **Levels go by "next level".** Old level numbers are dropped. Campaign order lives in `levels/index.json` (garden, pool party, bar, the indoor party, the billiard room, then El Salón de Espejos). Add levels, never replace them.
 
 ## 3. People
 
 **Canon.** Mācron, Tlatoāni and the rule against inventing Covi are in the spec. Keep them there.
 
-**Names.** The GateKeeper, The Bartender, The Girls, the BlinBlin dancer, the PoolPlayer dancer. "The Girls" is respectful, for women of any age, and a mix of ages is welcome. Use they/them for anyone whose pronouns aren't stated.
+**Names.** The GateKeeper, The Bartender, The Girls, the BlinBlin dancer, the PoolPlayer dancer, Don Terciopelo. "The Girls" is respectful, for women of any age, and a mix of ages is welcome. Use they/them for anyone whose pronouns aren't stated.
+
+**Don Terciopelo** (he), the salon's opponent: an older ballroom gentleman who has owned this floor for forty years. **Silhouette:** a tall, narrow vertical, very upright, the opposite of the stocky GateKeeper and the wide BlinBlin dancer; check them side by side at native size. Swept-back silver hair, a pencil moustache, a white dinner jacket, a burgundy velvet bow tie, black trousers and two-tone spectator shoes. **The red rose in his lapel is his one red accent**, and the outro's prop, so nothing else on him is red: the bow tie stays burgundy. Charisma comes from poise, not size: the cha-cha-chá triple step, a hip lead, long arm lines, a moustache smoothed between phrases. Elegantly unimpressed, never mean (`plan/levels/salon-2026-11-07.md`).
 
 **Mācron's own step** comes from the salsa teacher. Don't invent one (`plan/signature-moves-footage.md`).
 
@@ -57,7 +59,7 @@ Before spending GPU time, write these down for the level: the opponent's silhoue
 
 **A room that's already dancing.** The indoor party starts with people on their feet in the middle of the floor. The same crowd model runs, so all of the above holds, but uninterested means turned away, in small steps, on their own. Those in the middle slow down and move aside before the first call, and everyone stays on their feet through the win (`plan/levels/indoor-party-2026-11-07.md`).
 
-**How much crowd.** Bar: the large layer at the back with two layers of people in front, on stools. Garden and lawn: many more people sprinkled around, with chairs and tables with drinks. Non-dancers stay outside the dance floor.
+**How much crowd.** Bar: the large layer at the back with two layers of people in front, on stools. Garden and lawn: many more people sprinkled around, with chairs and tables with drinks. Salon: a few couples in evening dress doing a slow cha-cha around the edges of the parquet, and a trio on the dais; the middle of the floor stays open for the fight. Non-dancers stay outside the dance floor.
 
 ## 4. Props
 
@@ -76,6 +78,15 @@ Before spending GPU time, write these down for the level: the opponent's silhoue
 **Check per room:** a phone-crop sheet beside the accepted rooms, a floor overlay, and a cast proof with an adult, Mācron at .35 and a prop at near and far marks. Check several screen shapes.
 
 **Layers** are approved: "Yes I approve to separating the rooms in layers, even some of the props might need their own layers". The garden is the pilot, and its route is in that README. Choose props a phone actually shows. Matte by polygon, fill on a tight crop, one prop at a time. This route is for props painted into a plate, since seats and tables are already sprites.
+
+**The rooms.** Each accepted room's spec is `tool/art/rooms/<id>.json` and its plate note is in `plan/levels/`. One line each for what a room must keep:
+
+| Room | Lamp light | The one idea |
+|---|---|---|
+| Billiard room | Low green-glass lamps over two tables, bottle-green walls, black ceiling and floor reflections for depth | A grown-up, intimate room lit low |
+| El Salón de Espejos (`salon`) | Candle-gold from three crystal chandeliers, pooling on the parquet; the mirrors carry soft doubled highlights | The mirrors repeat the chandeliers' glow, so a small room of light reads as a grand one |
+
+**The salon in detail** (`tool/art/rooms/salon.json`, `plan/levels/salon-art-2026-11-07.md`). The mansion's grand ballroom, seen straight down its length from the pool room's doors. Tall arched windows onto the night garden on the left, tall arched mirrors facing them on the right, narrow gilded mirror panels between, burgundy velvet drapes at the windows, warm herringbone parquet, a low dais at the far left with a black grand piano, and double doors in the middle of the far wall: the way out. **Palette:** champagne gold, deep emerald, burgundy velvet, warm parquet brown, near-black shadows. Moonlit blue stays in the windows only, so the room's warmth isn't split. Burgundy belongs to the drapes and the opponent's bow tie; the rose is the only true red on screen. The floor in the tap band stays one calm tone: herringbone is fine, bright streaks and gold flecks are not, because they read as cues.
 
 **Words that failed:** the indoor plate's separate floor failed twice in words alone. Glow discs in a guide came back as glowing saucers, so light goes in the words. Plates pass through a person's eye, with lamp marks checked against the painted lamps.
 
@@ -223,6 +234,7 @@ Beats 0 to 8 are the success score, except the bar's 16; 8 to 16 are the bridge.
 - **Indoor party:** on defeat the BlinBlin dancer takes an arms-crossed stance with an approving nod. Mācron takes a similar stance on the other side of the shot, nods just as coolly and gets approval.
 - **Fist bump sugar, later:** better timing and a lightning face-off with a winking eye.
 - **Finale:** `plan/storyboard.md` shots E01 to E05, the high five. Should fit the same data, unproven.
+- **Salon:** Don Terciopelo stops mid-turn, sees Mācron in the mirror, and gives a deep, slow bow. Close-up: he offers the rose from his lapel and Mācron tucks it behind his antenna, QUÉ / ELEGANCIA on the handoff (one idea: the gift). Back to wide, the chandeliers flare softly and the couples applaud; he sweeps an arm toward the far doors. A last level, so the shot fits its success score (`plan/levels/salon-2026-11-07.md`).
 - **Opening:** undecided. Needs a story decision first.
 
 ## 9. Where this came from

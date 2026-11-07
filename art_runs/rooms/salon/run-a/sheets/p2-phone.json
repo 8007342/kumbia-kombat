@@ -1,0 +1,128 @@
+[
+ {
+  "file": "p2-p1-990100-990500.png",
+  "sat": 0.85,
+  "val": 0.3,
+  "bandLuma": 48.2,
+  "bandP98": 189.0,
+  "bandEdge": 3.5,
+  "drift": {
+   "median": 21.0,
+   "p90": 37.0,
+   "n": 487
+  },
+  "waterIoU": null
+ },
+ {
+  "file": "p2-p1-990100-990501.png",
+  "sat": 0.75,
+  "val": 0.29,
+  "bandLuma": 55.0,
+  "bandP98": 155.0,
+  "bandEdge": 2.6,
+  "drift": {
+   "median": 20.0,
+   "p90": 37.0,
+   "n": 480
+  },
+  "waterIoU": null
+ },
+ {
+  "file": "p2-p1-990100-990502.png",
+  "sat": 0.8,
+  "val": 0.28,
+  "bandLuma": 54.5,
+  "bandP98": 152.0,
+  "bandEdge": 2.4,
+  "drift": {
+   "median": 19.0,
+   "p90": 36.1,
+   "n": 470
+  },
+  "waterIoU": null
+ },
+ {
+  "file": "p2-p1-990103-990300.png",
+  "sat": 0.74,
+  "val": 0.32,
+  "bandLuma": 59.3,
+  "bandP98": 142.0,
+  "bandEdge": 2.3,
+  "drift": {
+   "median": 21.0,
+   "p90": 38.7,
+   "n": 444
+  },
+  "waterIoU": null
+ },
+ {
+  "file": "p2-p1-990103-990301.png",
+  "sat": 0.78,
+  "val": 0.34,
+  "bandLuma": 60.1,
+  "bandP98": 137.0,
+  "bandEdge": 3.0,
+  "drift": {
+   "median": 20.0,
+   "p90": 37.0,
+   "n": 485
+  },
+  "waterIoU": null
+ },
+ {
+  "file": "p2-p1-990103-990302.png",
+  "sat": 0.74,
+  "val": 0.34,
+  "bandLuma": 51.4,
+  "bandP98": 151.0,
+  "bandEdge": 2.8,
+  "drift": {
+   "median": 18.0,
+   "p90": 37.0,
+   "n": 465
+  },
+  "waterIoU": null
+ },
+ {
+  "file": "p2-p1-990104-990400.png",
+  "sat": 0.78,
+  "val": 0.32,
+  "bandLuma": 63.9,
+  "bandP98": 165.0,
+  "bandEdge": 3.1,
+  "drift": {
+   "median": 21.0,
+   "p90": 37.0,
+   "n": 473
+  },
+  "waterIoU": null
+ },
+ {
+  "file": "p2-p1-990104-990401.png",
+  "sat": 0.76,
+  "val": 0.3,
+  "bandLuma": 60.2,
+  "bandP98": 173.0,
+  "bandEdge": 4.3,
+  "drift": {
+   "median": 22.0,
+   "p90": 38.0,
+   "n": 481
+  },
+  "waterIoU": null
+ },
+ {
+  "file": "p2-p1-990104-990402.png",
+  "sat": 0.75,
+  "val": 0.33,
+  "bandLuma": 76.1,
+  "bandP98": 135.0,
+  "bandEdge": 2.4,
+  "drift": {
+   "median": 21.0,
+   "p90": 37.0,
+   "n": 465
+  },
+  "waterIoU": null
+ }
+]

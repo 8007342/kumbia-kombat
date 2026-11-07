@@ -1,0 +1,42 @@
+{
+ "room": "salon",
+ "run": "rooms/salon/pianist",
+ "passNo": 2,
+ "steps": 4,
+ "jobs": [
+  {
+   "name": "relaxed_b",
+   "workflow": "art_runs/rooms/salon/pianist/workflows/relaxed_b.api.json",
+   "inputs": {
+    "base": "/work/tmp/imagegen/kumbia/rooms/salon/pianist/in/key.png"
+   },
+   "overrides": {
+    "seed": 991500
+   },
+   "count": 2
+  },
+  {
+   "name": "swing_a",
+   "workflow": "art_runs/rooms/salon/pianist/workflows/swing_a.api.json",
+   "inputs": {
+    "base": "/work/tmp/imagegen/kumbia/rooms/salon/pianist/in/key.png"
+   },
+   "overrides": {
+    "seed": 991600
+   },
+   "count": 2
+  },
+  {
+   "name": "swing_c",
+   "workflow": "art_runs/rooms/salon/pianist/workflows/swing_c.api.json",
+   "inputs": {
+    "base": "/work/tmp/imagegen/kumbia/rooms/salon/pianist/in/key.png"
+   },
+   "overrides": {
+    "seed": 991700
+   },
+   "count": 2
+  }
+ ],
+ "how": "tool/art/rooms/run_room_jobs.py --jobs <this file>"
+}

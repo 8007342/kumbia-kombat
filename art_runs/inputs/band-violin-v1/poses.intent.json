@@ -1,0 +1,54 @@
+{
+ "character": "band-violin",
+ "note": "Sides are the character's own; he faces the viewer, so his left is on screen right.",
+ "poses": {
+  "relaxed.a": {
+   "clip": "relaxed",
+   "phase": "settle",
+   "support": "both",
+   "description": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, both feet flat on the floor, the violin held under his chin on the shoulder on the right of the picture, the hand on the right of the picture holding its neck, the bow in the other hand drawn out across the strings to the left of the picture"
+  },
+  "relaxed.b": {
+   "clip": "relaxed",
+   "phase": "settle",
+   "support": "both",
+   "description": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, both feet flat on the floor, the violin held under his chin on the shoulder on the right of the picture, the hand on the right of the picture holding its neck, the bow in the other hand pushed in close to the strings"
+  },
+  "tap.up_a": {
+   "clip": "tap",
+   "phase": "pass",
+   "support": "left",
+   "description": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, both feet flat on the floor, the violin held under his chin, the bow drawn out to the left of the picture"
+  },
+  "tap.up_b": {
+   "clip": "tap",
+   "phase": "pass",
+   "support": "left",
+   "description": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, both feet flat on the floor, the violin held under his chin, the bow pushed in close to the strings"
+  },
+  "swing.a": {
+   "clip": "swing",
+   "phase": "accent",
+   "support": "both",
+   "description": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, both feet flat on the floor, the violin held under his chin with his head tipped onto it, the bow drawn far out to the left of the picture in a long sweeping stroke, his body swaying with it"
+  },
+  "swing.b": {
+   "clip": "swing",
+   "phase": "pass",
+   "support": "both",
+   "description": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, both feet flat on the floor, the violin held under his chin, the bow at the middle of a stroke"
+  },
+  "swing.c": {
+   "clip": "swing",
+   "phase": "accent",
+   "support": "both",
+   "description": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, both feet flat on the floor, the violin held under his chin with his head tipped onto it, the bow pushed in close to the strings at the end of a stroke, his body swaying the other way"
+  },
+  "swing.d": {
+   "clip": "swing",
+   "phase": "pass",
+   "support": "left",
+   "description": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, both feet flat on the floor, the violin held under his chin, the bow at the middle of a stroke"
+  }
+ }
+}
