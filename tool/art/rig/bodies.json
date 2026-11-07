@@ -15,6 +15,14 @@
   "thigh": 0.46, "shin": 0.43, "foot": 0.22, "ankle_h": 0.07,
   "limb_r": {"torso": 0.165, "belly": 0.15, "arm": 0.07, "fore": 0.06, "hand": 0.068, "thigh": 0.092, "shin": 0.068, "brim": 0.28, "crown": 0.14}
  },
+ "tall-slim-adult": {
+  "$comment": "Tall, slim, very upright older gentleman (Don Terciopelo): longer legs and neck, narrower shoulders and hips than slim-adult, a smaller head for the height. A tall narrow vertical, the opposite of stocky-adult.",
+  "human": true, "orthoScale": 2.6, "centerZ": 1.10,
+  "hip_height": 1.02, "torso": 0.50, "neck": 0.08, "head_r": 0.15,
+  "shoulder_half": 0.17, "hip_half": 0.10, "upper_arm": 0.30, "forearm": 0.27,
+  "thigh": 0.50, "shin": 0.46, "foot": 0.22, "ankle_h": 0.07,
+  "limb_r": {"torso": 0.15, "belly": 0.13, "arm": 0.062, "fore": 0.054, "hand": 0.066, "thigh": 0.082, "shin": 0.062, "brim": 0.28, "crown": 0.14}
+ },
  "macron": {
   "$comment": "Toy robot, about .35 adult stature. Authored at adult scale; final stature comes from the game's floor projection.",
   "human": false, "orthoScale": 1.8, "centerZ": 0.74,

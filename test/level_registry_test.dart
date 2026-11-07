@@ -91,6 +91,15 @@ void main() {
     // simple levels, and slow complex levels".
     expect(rich(charts[4]), greaterThan(rich(charts[3])));
     expect(offbeat(charts[4]), greaterThan(offbeat(charts[3])));
+    // The salon is a cha-cha: its triple lands its chá on the beat, so the
+    // offbeat share drops on purpose. It grows by richer steps instead, and asks
+    // more presses a second at its top tier than the billiard room, being faster.
+    // A proposal, from the wiring agent (plan/levels/salon-wiring-2026-11-07.md).
+    expect(rich(charts[5]), greaterThan(rich(charts[4])));
+    double topRate(FightChart chart, double bpm) =>
+        chart.pattern(chart.variants.length).offsets.length /
+        (chart.callBeats * 60 / bpm);
+    expect(topRate(charts[5], 124), greaterThan(topRate(charts[4], 104)));
     // Its signature: a cue stroke offered in every pattern.
     for (var i = 0; i <= charts[4].variants.length; i++) {
       expect(charts[4].pattern(i).offers.whereType<GestureKind>(), isNotEmpty);
@@ -223,9 +232,10 @@ void main() {
           'bar',
           'cool-crowd',
           'billiards',
+          'salon',
         ]);
-        expect(levels.displayTotal, 5);
-        final [garden, lawn, bar, party, billiards] = levels.campaign;
+        expect(levels.displayTotal, 6);
+        final [garden, lawn, bar, party, billiards, salon] = levels.campaign;
         expect(garden.next, same(lawn.level));
         expect(garden.bridgeToNext, 'garden_to_pool');
         expect(lawn.next, same(bar.level));
@@ -234,8 +244,10 @@ void main() {
         expect(bar.bridgeToNext, 'bar_to_crowd');
         expect(party.next, same(billiards.level));
         expect(party.bridgeToNext, 'crowd_to_restroom');
-        expect(billiards.next, isNull);
-        expect(billiards.bridgeToNext, isNull);
+        expect(billiards.next, same(salon.level));
+        expect(billiards.bridgeToNext, 'billiards_to_salon');
+        expect(salon.next, isNull);
+        expect(salon.bridgeToNext, isNull);
         expect(levels.exitScoreIds, {
           'garden_mojo_success',
           'garden_to_pool',
@@ -245,7 +257,8 @@ void main() {
           'bar_to_crowd',
           'crowd_duende_success',
           'crowd_to_restroom',
-          'bar_swag_finale',
+          'billiards_to_salon',
+          'salon_bolero_success',
         });
         expect(garden.level.copy.clearedShout, 'MUCHO MOJO');
         expect(bar.level.copy.clearedShout, 'MUY SUAVE');

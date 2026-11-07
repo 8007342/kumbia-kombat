@@ -248,6 +248,88 @@ void main() {
     await _end(tester);
   }, timeout: const Timeout(Duration(minutes: 5)));
 
+  testWidgets(
+    'the real billiard room hands to the real salon, which walks out to the end',
+    (tester) async {
+      tester.view.physicalSize = const Size(500, 900);
+      tester.view.devicePixelRatio = 1;
+      addTearDown(tester.view.reset);
+      Flame.images.clearCache();
+      rootBundle.clear();
+      final audio = _Audio();
+      final levels = LevelRegistry.parse(
+        '{ "campaign": [ { "level": "billiards", "bridgeToNext": "billiards_to_salon" }, { "level": "salon" } ] }',
+        (id) => File('levels/$id.json').readAsStringSync(),
+      );
+      await tester.pumpWidget(
+        MaterialApp(
+          home: GardenPage(audioFactory: () => audio, levels: () async => levels),
+        ),
+      );
+      for (var i = 0; i < 400; i++) {
+        final button = find.byType(FilledButton);
+        if (button.evaluate().isNotEmpty &&
+            tester.widget<FilledButton>(button).onPressed != null) {
+          break;
+        }
+        await tester.runAsync(
+          () => Future<void>.delayed(const Duration(milliseconds: 20)),
+        );
+        await tester.pump();
+      }
+      await tester.tap(find.byKey(const ValueKey('autoplay')));
+      await tester.pump();
+      final game = tester
+          .widget<GameWidget<GardenSceneGame>>(
+            find.byType(GameWidget<GardenSceneGame>),
+          )
+          .game!;
+      for (var i = 0; i < 300 && game.session?.phase == GardenPhase.ready; i++) {
+        await tester.runAsync(
+          () => Future<void>.delayed(const Duration(milliseconds: 20)),
+        );
+        await tester.pump();
+      }
+      bool ended() => find.text('OTRA VUELTA  >').evaluate().isNotEmpty;
+      var reachedSalon = false;
+      var sawWalkOut = false;
+      for (var frame = 0; frame < 30000 && !ended(); frame++) {
+        audio.nowSeconds += .02;
+        await tester.pump(const Duration(milliseconds: 20));
+        if (frame % 50 == 0) {
+          await tester.runAsync(
+            () => Future<void>.delayed(const Duration(milliseconds: 20)),
+          );
+        }
+        final session = game.session;
+        if (session?.progress.definition.id == 'salon') reachedSalon = true;
+        final walk = levels.byId('salon').exitShot!.walkOut!;
+        final beat = game.exitBeat;
+        if (reachedSalon && beat != null && walk.walkingAt(beat)) {
+          sawWalkOut = true;
+        }
+      }
+      expect(
+        ended(),
+        isTrue,
+        reason:
+            '${game.session?.progress.definition.id} ${game.session?.phase} '
+            '${game.session?.positionBeats} ${audio.nowSeconds}',
+      );
+      expect(reachedSalon, isTrue);
+      expect(sawWalkOut, isTrue, reason: 'the win walks out before the end');
+      final clips = audio.voices.map((v) => v.clip.id).toList();
+      expect(clips, contains('billiards/bridge'));
+      expect(clips, contains('salon/low'));
+      expect(clips, contains('salon/success'));
+      final accents = audio.notes.map((n) => n.track).where(isAccentTrack).toList();
+      expect(accents, containsAllInOrder(['chalk', 'nod', 'peck', 'peck']));
+      expect(find.text('QUÉ\nELEGANCIA'), findsWidgets);
+      await _end(tester);
+    },
+    timeout: const Timeout(Duration(minutes: 6)),
+  );
+
   testWidgets('the indoor party plays its own takes, not the synth', (
     tester,
   ) async {

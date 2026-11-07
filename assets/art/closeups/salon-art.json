@@ -1,0 +1,69 @@
+{
+ "$comment": "The rose handoff close-up: Don Terciopelo on the picture's left, Mācron on the right, as in the nod. Every canvas is 400x440 and transparent, and nothing is mirrored. His four drawings are four Qwen edits of one bust crop of his accepted front sheet, scaled and placed by the bow tie so the head and shoulders hold still between cuts; the jacket's folds and the arm change. Mācron's are drawn from parts: only his picture-left arm, his eyes and the rose change. The rose is on Mācron's antenna from tuck on. Proposals by the art agent, 2026-11-07.",
+ "canvas": [
+  400,
+  440
+ ],
+ "order": [
+  "rest",
+  "pluck",
+  "offer",
+  "empty"
+ ],
+ "terciopelo": {
+  "drawings": {
+   "rest": "salon-dt-rest.png",
+   "pluck": "salon-dt-pluck.png",
+   "offer": "salon-dt-offer.png",
+   "empty": "salon-dt-empty.png"
+  },
+  "side": "left",
+  "framing": "bust: the canvas bottom cuts his belly",
+  "rose": "in his lapel in rest and pluck, held out toward the picture's right edge in offer, gone in empty",
+  "source": "art_runs/salon-closeups-20261107/scripts/salon_bust.py from Qwen drawings 991500, 991510, offer2-991531 (the offer redraw, whose seed repeated the empty job's 991530 by a bug in bust_jobs.py, since fixed) and 991530 in art_runs/salon-closeups-20261107/source/; words in scripts/bust_jobs.py",
+  "cell": 2
+ },
+ "macron": {
+  "drawings": {
+   "reach": "salon-mc-reach.png",
+   "take": "salon-mc-take.png",
+   "tuck": "salon-mc-tuck.png",
+   "rest": "salon-mc-rest.png"
+  },
+  "side": "right",
+  "framing": "to the knees: the canvas bottom cuts his boots",
+  "floor": [
+   200,
+   470
+  ],
+  "K": 1.4,
+  "rose": {
+   "tuck": [
+    166,
+    103
+   ],
+   "rest": [
+    166,
+    103
+   ],
+   "take": [
+    60,
+    210
+   ]
+  },
+  "source": "art_runs/salon-closeups-20261107/scripts/salon_macron.py, drawn from parts by art_runs/closeups-v3-20261106/scripts/rig.py",
+  "cell": 2
+ },
+ "wideRose": {
+  "image": "salon-rose.png",
+  "size": [
+   8,
+   9
+  ],
+  "anchor": [
+   3,
+   8
+  ],
+  "note": "Native pixels for Mācron's atlas scale. The anchor is the stem's bottom pixel; place it just left of his antenna stem, under the orb, from the close-up's end."
+ }
+}

@@ -372,11 +372,6 @@
 {"agent": "blinblin", "what": "BlinBlin rig render, register, score, finish and pack (CPU)", "kind": "cpu", "seconds": 240, "count": 1}
 {"agent":"FEEL","what":"flutter test and analyze runs for timing, difficulty and tap-mark changes","kind":"cpu","seconds":520,"count":9}
 {"agent":"ALIGN","what":"mixrs salience on 16 rendered takes (5 levels + salon) and chart searches","kind":"cpu","seconds":15,"count":16}
-{"agent":"CONSOLE","what":"flutter test full suite x2, focused runs, zxing QR decode","kind":"cpu","seconds":260,"count":12}
-{"agent":"BOLERO","what":"salon bolero-cha candidates, 3 tag sets x 4 seeds, ACE-Step XL turbo","kind":"gpu-audio","seconds":249.93,"count":12}
-{"agent":"BOLERO","what":"salon chain (parent + 6 re-sampled tiers); first run had the wrong parent tags and was discarded","kind":"gpu-audio","seconds":150.4,"count":2}
-{"agent":"BOLERO","what":"salon reproduction checks, single takes to test seed and batch behaviour","kind":"gpu-audio","seconds":74.62,"count":2}
-{"agent":"BOLERO","what":"salon timing, character, chord-ear and grid measures; mixrs builds of salon (4) and billiards (1); verify","kind":"cpu","seconds":180,"count":12}
 {"ts": "2026-11-07T20:49:16Z", "agent": "SALONART", "what": "p1-990100.png", "kind": "local-vision", "seconds": 18.53, "count": 1, "model": "qwen2.5vl:7b", "load_s": 8.27, "eval_tokens": 28}
 {"ts": "2026-11-07T20:49:22Z", "agent": "SALONART", "what": "p1-990101.png", "kind": "local-vision", "seconds": 6.14, "count": 1, "model": "qwen2.5vl:7b", "load_s": 5.02, "eval_tokens": 28}
 {"ts": "2026-11-07T20:49:26Z", "agent": "SALONART", "what": "p1-990102.png", "kind": "local-vision", "seconds": 4.15, "count": 1, "model": "qwen2.5vl:7b", "load_s": 3.03, "eval_tokens": 28}
@@ -396,6 +391,11 @@
 {"ts": "2026-11-07T22:05:00Z", "agent": "SALONART", "what": "band-violin frames, 5 poses x 2 (wall time incl. queue)", "kind": "gpu-image", "seconds": 905, "count": 10}
 {"ts": "2026-11-07T22:05:00Z", "agent": "SALONART", "what": "salon pianist in-place key, 4 takes on a plate crop", "kind": "gpu-image", "seconds": 170.6, "count": 4}
 {"ts": "2026-11-07T22:40:00Z", "agent": "SALONART", "what": "salon pianist in-place frame edits, 3 poses x 2", "kind": "gpu-image", "seconds": 567.9, "count": 6}
+{"agent":"CONSOLE","what":"flutter test full suite x2, focused runs, zxing QR decode","kind":"cpu","seconds":260,"count":12}
+{"agent":"BOLERO","what":"salon bolero-cha candidates, 3 tag sets x 4 seeds, ACE-Step XL turbo","kind":"gpu-audio","seconds":249.93,"count":12}
+{"agent":"BOLERO","what":"salon chain (parent + 6 re-sampled tiers); first run had the wrong parent tags and was discarded","kind":"gpu-audio","seconds":150.4,"count":2}
+{"agent":"BOLERO","what":"salon reproduction checks, single takes to test seed and batch behaviour","kind":"gpu-audio","seconds":74.62,"count":2}
+{"agent":"BOLERO","what":"salon timing, character, chord-ear and grid measures; mixrs builds of salon (4) and billiards (1); verify","kind":"cpu","seconds":180,"count":12}
 {"ts": "2026-11-07T21:36:04Z", "agent": "SALONART", "what": "990700.png", "kind": "local-vision", "seconds": 35.87, "count": 1, "model": "qwen2.5vl:7b", "load_s": 10.81, "eval_tokens": 5}
 {"ts": "2026-11-07T21:36:08Z", "agent": "SALONART", "what": "990700.png", "kind": "local-vision", "seconds": 4.03, "count": 1, "model": "qwen2.5vl:7b", "load_s": 3.12, "eval_tokens": 5}
 {"ts": "2026-11-07T21:36:14Z", "agent": "SALONART", "what": "990700.png", "kind": "local-vision", "seconds": 5.44, "count": 1, "model": "qwen2.5vl:7b", "load_s": 3.9, "eval_tokens": 5}
