@@ -372,3 +372,22 @@
 {"agent": "blinblin", "what": "BlinBlin rig render, register, score, finish and pack (CPU)", "kind": "cpu", "seconds": 240, "count": 1}
 {"agent":"FEEL","what":"flutter test and analyze runs for timing, difficulty and tap-mark changes","kind":"cpu","seconds":520,"count":9}
 {"agent":"ALIGN","what":"mixrs salience on 16 rendered takes (5 levels + salon) and chart searches","kind":"cpu","seconds":15,"count":16}
+{"ts": "2026-11-07T20:49:16Z", "agent": "SALONART", "what": "p1-990100.png", "kind": "local-vision", "seconds": 18.53, "count": 1, "model": "qwen2.5vl:7b", "load_s": 8.27, "eval_tokens": 28}
+{"ts": "2026-11-07T20:49:22Z", "agent": "SALONART", "what": "p1-990101.png", "kind": "local-vision", "seconds": 6.14, "count": 1, "model": "qwen2.5vl:7b", "load_s": 5.02, "eval_tokens": 28}
+{"ts": "2026-11-07T20:49:26Z", "agent": "SALONART", "what": "p1-990102.png", "kind": "local-vision", "seconds": 4.15, "count": 1, "model": "qwen2.5vl:7b", "load_s": 3.03, "eval_tokens": 28}
+{"ts": "2026-11-07T20:49:31Z", "agent": "SALONART", "what": "p1-990103.png", "kind": "local-vision", "seconds": 4.13, "count": 1, "model": "qwen2.5vl:7b", "load_s": 3.03, "eval_tokens": 28}
+{"ts": "2026-11-07T20:49:35Z", "agent": "SALONART", "what": "p1-990104.png", "kind": "local-vision", "seconds": 3.97, "count": 1, "model": "qwen2.5vl:7b", "load_s": 2.87, "eval_tokens": 28}
+{"ts": "2026-11-07T20:49:38Z", "agent": "SALONART", "what": "p1-990105.png", "kind": "local-vision", "seconds": 3.8, "count": 1, "model": "qwen2.5vl:7b", "load_s": 2.71, "eval_tokens": 28}
+{"ts": "2026-11-07T20:52:00Z", "agent": "SALONART", "what": "salon room plate pass 1, 6 candidates (rooms/salon/run-a p1)", "kind": "gpu-image", "seconds": 135.6, "count": 6}
+{"ts": "2026-11-07T21:05:00Z", "agent": "SALONART", "what": "salon room plate pass 2, 9 candidates from 3 first passes (rooms/salon/run-a p2)", "kind": "gpu-image", "seconds": 299.3, "count": 9}
+{"ts": "2026-11-07T20:59:22Z", "agent": "SALONART", "what": "990500.png", "kind": "local-vision", "seconds": 50.46, "count": 1, "model": "qwen2.5vl:7b", "load_s": 22.22, "eval_tokens": 8}
+{"ts": "2026-11-07T21:00:01Z", "agent": "SALONART", "what": "990501.png", "kind": "local-vision", "seconds": 39.12, "count": 1, "model": "qwen2.5vl:7b", "load_s": 9.2, "eval_tokens": 8}
+{"ts": "2026-11-07T21:00:45Z", "agent": "SALONART", "what": "990502.png", "kind": "local-vision", "seconds": 43.4, "count": 1, "model": "qwen2.5vl:7b", "load_s": 10.55, "eval_tokens": 8}
+{"ts": "2026-11-07T21:00:49Z", "agent": "SALONART", "what": "990503.png", "kind": "local-vision", "seconds": 3.92, "count": 1, "model": "qwen2.5vl:7b", "load_s": 2.99, "eval_tokens": 8}
+{"ts": "2026-11-07T21:20:00Z", "agent": "SALONART", "what": "salon room plate run-b pass 1, 6 candidates", "kind": "gpu-image", "seconds": 274.73, "count": 6}
+{"ts": "2026-11-07T21:40:00Z", "agent": "SALONART", "what": "salon room plate run-b pass 2, 9 candidates (pick 991002)", "kind": "gpu-image", "seconds": 531.2, "count": 9}
+{"ts": "2026-11-07T21:40:00Z", "agent": "SALONART", "what": "band-violin front_3q sheet, 4 takes (wall time incl. queue)", "kind": "gpu-image", "seconds": 179, "count": 4}
+{"ts": "2026-11-07T21:40:00Z", "agent": "SALONART", "what": "band-bongos front_3q sheet, 4 takes (wall time incl. queue)", "kind": "gpu-image", "seconds": 351, "count": 4}
+{"ts": "2026-11-07T22:05:00Z", "agent": "SALONART", "what": "band-violin frames, 5 poses x 2 (wall time incl. queue)", "kind": "gpu-image", "seconds": 905, "count": 10}
+{"ts": "2026-11-07T22:05:00Z", "agent": "SALONART", "what": "salon pianist in-place key, 4 takes on a plate crop", "kind": "gpu-image", "seconds": 170.6, "count": 4}
+{"ts": "2026-11-07T22:40:00Z", "agent": "SALONART", "what": "salon pianist in-place frame edits, 3 poses x 2", "kind": "gpu-image", "seconds": 567.9, "count": 6}

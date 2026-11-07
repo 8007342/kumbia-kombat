@@ -1,0 +1,75 @@
+{
+ "room": "salon",
+ "run": "layers-salon-20261107",
+ "passNo": 2,
+ "steps": 4,
+ "jobs": [
+  {
+   "name": "chandelier-left",
+   "workflow": "art_runs/rooms/layers/salon/chandelier-left.api.json",
+   "inputs": {
+    "base": "/work/tmp/imagegen/kumbia/layers-salon-20261107/in/chandelier-left.png"
+   },
+   "overrides": {
+    "seed": 76200
+   },
+   "count": 2
+  },
+  {
+   "name": "chandelier-middle",
+   "workflow": "art_runs/rooms/layers/salon/chandelier-middle.api.json",
+   "inputs": {
+    "base": "/work/tmp/imagegen/kumbia/layers-salon-20261107/in/chandelier-middle.png"
+   },
+   "overrides": {
+    "seed": 76300
+   },
+   "count": 2
+  },
+  {
+   "name": "chandelier-right",
+   "workflow": "art_runs/rooms/layers/salon/chandelier-right.api.json",
+   "inputs": {
+    "base": "/work/tmp/imagegen/kumbia/layers-salon-20261107/in/chandelier-right.png"
+   },
+   "overrides": {
+    "seed": 76400
+   },
+   "count": 2
+  },
+  {
+   "name": "reflection-left",
+   "workflow": "art_runs/rooms/layers/salon/reflection-left.api.json",
+   "inputs": {
+    "base": "/work/tmp/imagegen/kumbia/layers-salon-20261107/in/reflection-left.png"
+   },
+   "overrides": {
+    "seed": 76500
+   },
+   "count": 2
+  },
+  {
+   "name": "reflection-middle",
+   "workflow": "art_runs/rooms/layers/salon/reflection-middle.api.json",
+   "inputs": {
+    "base": "/work/tmp/imagegen/kumbia/layers-salon-20261107/in/reflection-middle.png"
+   },
+   "overrides": {
+    "seed": 76600
+   },
+   "count": 2
+  },
+  {
+   "name": "reflection-right",
+   "workflow": "art_runs/rooms/layers/salon/reflection-right.api.json",
+   "inputs": {
+    "base": "/work/tmp/imagegen/kumbia/layers-salon-20261107/in/reflection-right.png"
+   },
+   "overrides": {
+    "seed": 76700
+   },
+   "count": 2
+  }
+ ],
+ "how": "tool/art/rooms/run_room_jobs.py --jobs <this file>"
+}

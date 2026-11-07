@@ -1,0 +1,109 @@
+{
+ "stage": {
+  "calibration": "unverifiedStoryboard",
+  "floor": {
+   "horizonY": 0.27,
+   "referenceFootY": 0.4,
+   "referenceHeight": 0.13
+  },
+  "heroHome": [
+   0.503,
+   0.6
+  ],
+  "heroEntrance": [
+   0.303,
+   0.64
+  ],
+  "heroRetreat": [
+   0.503,
+   0.625
+  ],
+  "challengers": [
+   {
+    "id": "don-terciopelo",
+    "atlas": "don-terciopelo",
+    "mark": [
+     0.503,
+     0.5
+    ],
+    "yieldMark": [
+     0.621,
+     0.5
+    ]
+   }
+  ]
+ },
+ "crowd": {
+  "guests": [
+   [
+    0.619,
+    0.4
+   ],
+   [
+    0.699,
+    0.4
+   ],
+   [
+    0.669,
+    0.46
+   ],
+   [
+    0.78,
+    0.46
+   ]
+  ],
+  "props": []
+ },
+ "scenery": {
+  "lamps": [
+   [
+    0.2107,
+    0.1407
+   ],
+   [
+    0.5039,
+    0.1498
+   ],
+   [
+    0.8001,
+    0.1404
+   ]
+  ],
+  "plants": []
+ },
+ "departure": {
+  "originY": 0.6,
+  "waypoints": [
+   {
+    "at": 0.0,
+    "x": 0.503,
+    "y": 0.6,
+    "facing": "sideRight"
+   },
+   {
+    "at": 0.091,
+    "x": 0.545,
+    "y": 0.552,
+    "facing": "rear"
+   },
+   {
+    "at": 0.354,
+    "x": 0.548,
+    "y": 0.467,
+    "facing": "rear"
+   },
+   {
+    "at": 0.684,
+    "x": 0.521,
+    "y": 0.413,
+    "facing": "rear"
+   },
+   {
+    "at": 1.0,
+    "x": 0.509,
+    "y": 0.383,
+    "facing": "rear"
+   }
+  ]
+ }
+}

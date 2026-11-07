@@ -390,6 +390,31 @@ def marimba_tubes(c: Ctx) -> None:
         add_capsule(_world(c, -half + 2 * half * t, f, top), _world(c, -half + 2 * half * t, f, low), 0.018, c.region, c.regions)
 
 
+def violin_body(c: Ctx) -> None:
+    """Held under the chin on the player's left shoulder, its neck running out to the left hand. Follows the body."""
+    chin = c.j["head"].lerp(c.j["l_sho"], 0.6)
+    axis = (c.j["l_wri"] - chin).normalized()
+    m = axis.to_track_quat("Z", "Y").to_matrix()
+    add_sphere(chin + axis * 0.1, 0.11, c.region, c.regions, scale=(1.0, 0.45, 1.75), rot_m=m)
+    add_capsule(chin + axis * 0.25, c.j["l_wri"], 0.018, c.region, c.regions)
+
+
+def violin_bow(c: Ctx) -> None:
+    """A thin straight bow from the right hand across the strings, past the violin's body."""
+    chin = c.j["head"].lerp(c.j["l_sho"], 0.6)
+    across = (chin - c.j["r_wri"])
+    tip = c.j["r_wri"] + across.normalized() * c.params.get("length", 0.7)
+    add_capsule(c.j["r_wri"], tip, 0.01, c.region, c.regions)
+
+
+def bongo_pair(c: Ctx) -> None:
+    """Two small joined drums on a thin stand at waist height, fixed in the world like the congas."""
+    f, z, r = c.params.get("forward", 0.28), c.params.get("height", 0.95), c.params.get("radius", 0.11)
+    for s, k in ((-1, 1.0), (1, 0.82)):
+        add_cyl(_world(c, s * 0.12, f, z - 0.09), r * k, 0.18, c.region, c.regions)
+    add_capsule(_world(c, 0, f, 0.0), _world(c, 0, f, z - 0.18), 0.015, c.region, c.regions)
+
+
 def jacket_lapels(c: Ctx) -> None:
     """The violet V of a dinner jacket, on the torso's front, so its ramp has a region and a place."""
     up, _ = _torso_axes(c.j)
@@ -411,7 +436,7 @@ SHAPES = {
     "trousers": trousers, "shoes-flat": shoes_flat, "shoes-heeled": shoes_heeled, "gold-chains": gold_chains,
     "cue-shaft": cue_shaft, "cue-butt": cue_butt, "waistcoat-buttons": waistcoat_buttons, "palette-only": palette_only,
     "upright-bass": upright_bass, "trumpet-horn": trumpet_horn, "conga-shells": conga_shells, "conga-bands": conga_bands,
-    "marimba-bars": marimba_bars, "marimba-tubes": marimba_tubes, "jacket-lapels": jacket_lapels,
+    "marimba-bars": marimba_bars, "marimba-tubes": marimba_tubes, "violin-body": violin_body, "violin-bow": violin_bow, "bongo-pair": bongo_pair, "jacket-lapels": jacket_lapels,
     "macron-body": macron_body,
 }
 
