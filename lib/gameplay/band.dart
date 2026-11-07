@@ -8,10 +8,9 @@ class RoomPlatform {
   RoomPlatform({
     required this.lift,
     required this.deck,
-    required double horizonY,
+    required this.horizonY,
     required double eyeHeightAdults,
-  }) : _horizonY = horizonY,
-       _rise = 1 - lift / eyeHeightAdults {
+  }) : _rise = 1 - lift / eyeHeightAdults {
     outline = [
       for (final corner in deck) groundUnder(corner),
     ];
@@ -23,14 +22,14 @@ class RoomPlatform {
   /// May run off the plate, as a platform cut by its edge does.
   final List<PartyPoint> deck;
   late final List<PartyPoint> outline;
-  final double _horizonY, _rise;
+  final double horizonY, _rise;
 
   /// The floor straight under a point on the deck. Someone with their feet there
   /// is sized by the floor plane at this point, and that alone makes them about
   /// 31% taller than the floor's plane gives at their feet: they stand nearer the
   /// camera's eye level, and verticals stay vertical.
   PartyPoint groundUnder(PartyPoint onDeck) =>
-      PartyPoint(onDeck.x, _horizonY + (onDeck.y - _horizonY) / _rise);
+      PartyPoint(onDeck.x, horizonY + (onDeck.y - horizonY) / _rise);
 
   static bool _inside(List<PartyPoint> shape, PartyPoint point) {
     var inside = false;

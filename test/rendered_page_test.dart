@@ -98,7 +98,11 @@ LevelRegistry _campaign() => LevelRegistry.parse(
   (id) => File('levels/$id.json').readAsStringSync(),
 );
 
-Future<GardenSession> _start(WidgetTester tester, _Audio audio) async {
+Future<GardenSession> _start(
+  WidgetTester tester,
+  _Audio audio, {
+  String? level,
+}) async {
   tester.view.physicalSize = const Size(500, 900);
   tester.view.devicePixelRatio = 1;
   addTearDown(tester.view.reset);
@@ -108,7 +112,7 @@ Future<GardenSession> _start(WidgetTester tester, _Audio audio) async {
     MaterialApp(
       home: GardenPage(
         audioFactory: () => audio,
-        levels: () async => _campaign(),
+        levels: () async => _campaign().reviewing(level),
       ),
     ),
   );
@@ -158,6 +162,18 @@ void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
   // The palette caches its shader for good; see pause_overlay_test.dart.
   setUpAll(() async => (await OutfitPalette.load()).dispose());
+
+  testWidgets('the hidden indoor party plays its own takes, not the synth', (
+    tester,
+  ) async {
+    final audio = _Audio();
+    final session = await _start(tester, audio, level: 'cool-crowd');
+    expect(session.transport.currentClip?.id, 'cool-crowd/low');
+    expect(audio.voices.single.clip.id, 'cool-crowd/low');
+    expect(session.transport.currentBpm, closeTo(112, .01));
+    expect(audio.notes, isEmpty);
+    await _end(tester);
+  });
 
   testWidgets('a run starts on the first take, with no synth song', (
     tester,

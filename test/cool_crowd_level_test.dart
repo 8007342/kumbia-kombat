@@ -443,7 +443,7 @@ void main() {
       });
       for (final take in takes.values) {
         for (final file in (take['files'] as Map).values) {
-          expect(File(file as String).existsSync(), isTrue, reason: '$file');
+          expect(File(file as String).existsSync(), isTrue, reason: file);
         }
       }
       expect(music['success'], isNotNull);
@@ -482,6 +482,36 @@ void main() {
         // The feet are where the deck lifts them.
         expect(p.at.y - height * level.scenery.platform!.lift, closeTo(p.feet.y, 1e-9));
         expect(p.at.x, p.feet.x);
+      }
+    });
+
+    test('a few guests dance in front of them, over them by depth, on a phone', () {
+      final level = _level();
+      final plane = level.layout.floor;
+      final platform = level.scenery.platform!;
+      final front = platform.deck.map((c) => platform.groundUnder(c).y).reduce(math.max);
+      final around = [
+        for (final g in level.layout.guests)
+          if (g.partTo == null && g.floor.y >= front && g.floor.x < .3) g,
+      ];
+      expect(around.length, greaterThanOrEqualTo(3));
+      const phoneLeft = 157 / 1024;
+      expect(around.where((g) => g.floor.x >= phoneLeft), isNotEmpty);
+      // Whoever a phone shows whole keeps head and shoulders above those in front.
+      final shown = band.players.where((p) => p.feet.x > phoneLeft);
+      expect(shown.length, greaterThanOrEqualTo(2));
+      for (final p in shown) {
+        final height = plane.standingHeightAt(p.at.y);
+        for (final g in around) {
+          expect(g.floor.y, greaterThan(p.at.y), reason: 'drawn over ${p.id}');
+          expect(_body(plane, g.floor).top, greaterThan(p.feet.y - height * 2 / 3));
+        }
+      }
+    });
+
+    test('until the art comes, stand-ins face the crowd: toward picture right', () {
+      for (final p in band.players) {
+        expect(p.flipX, isFalse, reason: p.id);
       }
     });
 

@@ -11,7 +11,7 @@ Open it with `?level=cool-crowd`, once a build carries it. Any campaign level op
 - **A band on the left platform**, four players, whose liveliness follows the player's recent form rather than the tier. Stand-in art. [F]
 - **The BlinBlin dancer's back to the room** until the first call, with the Bartender's atlas standing in. [F]
 - **Soft moving light** on the side walls, waking with the tier. No mirror ball. [F]
-- **Music:** the synth `crowd_duende`, until the rendered music lands. [F]
+- **Music:** the level's own rendered takes, found by its id in `assets/music/rendered/manifest.json`: 112, 124 and 136 BPM. A real page test holds this for `?level=cool-crowd`, and no synth notes play. `music.score` still names `crowd_duende`, as the fallback if the takes can't load. Nobody here has heard it in this level. [F]
 
 ## The opening, in beats
 
@@ -46,11 +46,17 @@ Tests hold, on the real level file: a clean run ends with everyone celebrating; 
 
 ## The band
 
-- **Where:** the plate's platform is data, `scenery.platform`, with its height and outline. People on it are sized by the room's floor and raised by its height. A guest can't stand on it, and a player can't stand off it (both refused on load). [F]
-- **Energy:** a new number, `recentForm` in the crowd model, moves a quarter of the way to each phrase's credit. Nothing else reads it, so it can't touch the score. A clean run passes .9 by phrase 9. A run of scrapes sits below .55. Both reach the same tier, which is how a test shows it's separate. A player who improves shows it within three phrases. [F] The quarter is a starting value. [P]
-- **How it shows:** each player has a ladder of clips, calm to lively. Energy picks the rung, once a bar, so a change lands on a downbeat. Energy itself changes over 24 beats with no speed at either end. Under reduced motion each rung holds one drawing, which still differs from the next. [F]
-- **Bringing in the real art is a data change:** add the atlas to `assets/art/ensemble/manifest.json`, list the art folder if it's a new one, and point `ladders` and `players` at the new drawings. The manifest now accepts atlases beyond its fixed list, and the level says which drawings it needs. Set `standIn` to false. [F]
-- **Only about two of the four players show on a 390 by 844 phone,** because a phone sees only the platform's right part. The other two spill off on purpose, and a wider screen shows them. The left of the crowd is kept thin so their heads and shoulders stay in sight, which a test holds. [F] That's why more of the crowd goes right than left. [P]
+- **Where:** the plate's platform is data, `scenery.platform`: `lift` .36 and `deck`, copied from `art_runs/rooms/cool-crowd/floor.json` `bandstand`, and a test holds them equal. Feet are written on the deck. The floor underneath is computed, and sizes them, which gives the band note's (footY - horizon) / 1.14: 31.6% taller than the floor's plane at those feet. A guest can't stand under it, and a player can't stand off it (both refused on load). [F]
+- **Marks:** the band note's four, except the trumpet, moved from y .368 to .385: the bandstand's measured back edge is about .378, so .368 was off the deck. The plate's measured corner notes differ from `topCornersFrac` by about 1% of the width. I used `topCornersFrac`. [F]
+- **Angle:** the owner wants them at an angle, playing toward the crowd. That's the art agent's drawing. Until then the stand-ins face picture right. [F]
+- **Dancers around them:** three of the guests who dance in place stand on the floor in front of the platform, drawn over the band by depth, at x .08, .135 and .20. Two more who part end up beside it. A test holds that the players a phone shows keep their heads and shoulders in sight. [F for the test, P for the marks]
+- **What livens them, for the owner to settle:** each rung of a ladder names one input and a threshold: `"input": "form" | "tier" | "partySwing"`, `"from": <number>`. Changing it is a data edit, and a test proves this. **Kept today: `form` on every rung.**
+  - The owner's words are "liven their rythm as the player game improves". `form` is the only one of the three that reads that directly: it moves a quarter of the way to each phrase's credit, so it forgets.
+  - The band note proposes `tier` for the foot tap and `partySwing` for the swing. A tier only counts passes, so a scraping player reaches the same tier as a clean one. `partySwing` follows the whole level's average, so a player who scrapes for six phrases of eleven and then plays cleanly never reaches it. A test shows that case: `form` reaches the top rung, and the party swing isn't earned. Its case is that it ties the band to the room's own reward, which is a fair choice too.
+  - Thresholds: tap from .3, swing from .75. Clean reaches the swing around phrase 5 to 7 of 11, and a run of scrapes stays on the tap. `lateBy` per player staggers them. These are starting values. [P]
+- **How it shows:** form eases over 24 beats with no speed at either end, and the rung changes once a bar, on a downbeat. Under reduced motion each rung holds one drawing, which still differs from the next. The band note asks for `relaxed_a` held instead. I kept the difference, so the meter still shows there. [F, P for that choice]
+- **Bringing in the real art is a data change:** add `band-bass`, `band-congas`, `band-trumpet` and `band-marimba` to `assets/art/ensemble/manifest.json`, and in the level set `atlas`, `reference: relaxed_a` and a ladder of `relaxed`, `tap` and `swing` with the band note's frames (`stepsPerBeat` 2 is `beatsPerFrame` .5). The manifest accepts atlases beyond its fixed list, and the level says which drawings it needs. Set `standIn` to false. [F]
+- **On a 390 by 844 phone,** bass and trumpet show whole and the congas about half, and the marimba is off screen. A wider screen shows all four. [F, by arithmetic: the phone shows plate x 157 to 867] More of the crowd goes right than left, to keep the band in sight. [P]
 
 ## Data for a later room
 
@@ -73,7 +79,7 @@ All of it is optional in a level file, and existing levels don't change:
 **Honest inventory.** [F, from the manifests and by eye on the sheets]
 
 - Guests have more than the plan thought: `standing_idle` (2), `step_touch` (4), `clap` (2), `cheer` (2), each with outfits. So the crowd here uses **their own drawings, not another dancer's**. "Standing poses needed" is true only of the poses below.
-- `step_touch_b` is a pointing arm. Pointing is reserved for flourishes and the turn from uninterested to interested, and this room shows it far more than seated rooms do.
+- `step_touch_b` is a pointing arm, and pointing is reserved for flourishes and the turn from uninterested to interested. **Fixed in every room:** a step in time now plays a, d, c, d. Nothing shows `b` any more, so the drawing is still in the atlases, unused. The golden shows one drawing of one guest moved, in the garden's cleared sample. [F]
 - Nothing is drawn with instruments. Nobody on the platform is really a musician yet.
 
 **Stand-ins in the level today, each to be replaced:**
@@ -81,7 +87,7 @@ All of it is optional in a level file, and existing levels don't change:
 | Where | Stand-in | Replace with |
 |---|---|---|
 | BlinBlin | Atlas `bartender`, with `spin_back*` for his back and `spin_*` for his turn | Atlas `blinblin` from `work/1860-blwv`: `back_groove`, `reveal` |
-| Band | `guest0`-`guest2` frames, no instruments | The BAND agent's clips, once the owner approves sheets (`plan/levels/indoor-band-2026-11-07.md`) |
+| Band | `guest0`-`guest2` frames, no instruments, facing picture right | The BAND agent's atlases, drawn three-quarter toward the crowd, once the owner approves sheets (`plan/levels/indoor-band-2026-11-07.md`) |
 | Own thing, glance | `step_touch` and `standing_idle` frames, flipped | Below |
 
 **To draw, for each of the three guest silhouettes** [P for the list]. 14 drawings each, 42 in all:
@@ -109,7 +115,7 @@ It needs a plate, a BlinBlin arms-crossed bust with nod (3 drawings), and a Māc
 
 ## Chart: a note for the DOUBLES agent
 
-`chart` is the plan's proposal, unchanged: offsets `[0, 1, 1.5, 2.5, 3.5, 4.5, 5.5, 6.5]`, four limbs in turn, with five variants I wrote by permuting limbs. Kept simple on purpose. Add your double and paired moves here. The level's parser is unchanged, so anything you add to the chart format should just work. Only a person playing it can approve it. The half-beat gap is the risk named in the plan: 278 ms at this synth score's 108 BPM, 250 ms at its top tier of 120, and 221 ms at the rendered ladder's proposed 136. [F for the arithmetic]
+`chart` is the plan's proposal, unchanged: offsets `[0, 1, 1.5, 2.5, 3.5, 4.5, 5.5, 6.5]`, four limbs in turn, with five variants I wrote by permuting limbs. Kept simple on purpose, and it has no `chart.rich` yet, so **it's currently simpler than the bar's**, which goes against "play complexity keeps rising". Add doubles, pairs and splits as `chart.rich`, the same way as the lawn and bar. Only a person playing it can approve it. The half-beat gap is the risk named in the plan: 278 ms at this synth score's 108 BPM, 250 ms at its top tier of 120, and 221 ms at the rendered ladder's proposed 136. [F for the arithmetic]
 
 ## Joining the campaign later
 
@@ -119,13 +125,13 @@ Data only, and a test does exactly this to the real files:
 2. `levels/bar.json`: `successScore` back to `bar_swag_success`, per the note in `tool/music/generate.mjs`. Check the bar's close-up then, as the style guide says, since it ends at 11.5 of 16.
 3. When the rendered music lands, point `music` at it. `lib/music` and audio in `garden_page.dart` weren't touched, apart from the single line that reads `?level=`.
 
-## Depends on
+## Camera and plate
 
-**The plate.** `background` is `cool-crowd/cool-crowd-v2.png`, and it isn't committed, as instructed: I used a local copy of `room-cool-crowd-v2-floor/987502-flat1.png` for every test and still. **On a clean checkout of this branch, `flutter test` fails and a build won't start, because `pubspec.yaml` lists `assets/art/cool-crowd/`.** Merging `work/1859-room` fixes that. If it names the file differently, change `background`. Marks and floor numbers here were placed by hand against that plate and its floor overlay, with the approved camera, horizon .25 and eye 1.5 adults. The room's platform outline and height were measured by eye from the plate. Recheck them against whatever the room agent's data says.
+`background` is `cool-crowd/cool-crowd-room.png`, byte for byte the plate I'd been using. Horizon .25, eye 1.5 adults and vanishing x .36 come from `tool/art/rooms/cool-crowd.json`, and a test holds them equal. `party_layout.dart`'s reference table had horizon .24 and now agrees with the plate. Nothing reads `vanishingX` for drawing yet. A test checks every guest, start and end, and every mark of Mācron and BlinBlin against the plate's `ids.png`: all are on floor or a joint. That caught one guest I had placed on the wall panel. My marks aren't the spec's: its `heroHome` works out to about (.54, .64) and its challenger to about (.50, .51), against my (.5, .62) and (.5, .47). Mine leave more room for the crowd. [P] The `marks` in the spec are unused by this level, and still name the GateKeeper.
 
 ## What was checked, and how
 
-- `flutter test`, including the 31 tests in `test/cool_crowd_level_test.dart`, and `flutter analyze lib test` at the expected 4 notes.
+- `flutter test`, including the tests in `test/cool_crowd_level_test.dart`, and `flutter analyze lib test` at the expected 4 notes.
 - That file plays a real run through the real session: 11 phrases of perfect taps clear the level, with every guest celebrating. It also proves, on the real file, no overlap with the thumbs, Mācron's marks, BlinBlin's marks or the quiet area, using a body box half as wide as tall. Arms reach further than that box, so a raised arm can still cross.
 - Stills of the real scene at 390 by 844, in `build/stills/cool-crowd.png`, `cool-crowd-reduced.png` and `cool-crowd-run.png`, looked at by me: crowd in the middle with BlinBlin's back visible among them, the floor opening, the turn, the first call, Mācron's answer and full swing. They look right as still pictures.
 - Wall light by numbers: the right wall's mean brightness rises from about 82 at the start to about 104 at the top tier, including the room's warmth. **Its movement hasn't been seen.**
@@ -140,6 +146,8 @@ Open `?level=cool-crowd`, or with `&autoplay=flawless`:
 - [ ] Is 18 "a bunch", or should there be more? Past about this many on a phone, they cover the room.
 - [ ] Does BlinBlin read in among them, with his back to us, and is the turn clean? It's the Bartender's spin for now.
 - [ ] Does the band show enough on a phone, and does a better run look livelier? With guests as stand-ins, judge only the timing.
+- [ ] Do the three dancing in front of the band read as "all around the band", without hiding it?
+- [ ] Which should liven the band: recent form as built, or tier and party swing as the band note proposes?
 - [ ] Is the moving light soft, and is it there at all? On a phone it lands on the right wall, because the left windows are mostly cropped.
 - [ ] Do the flips between turned away and facing in look bad? They need drawn turns if so.
 - [ ] Does it perform on a phone with 18 guests, 4 players and clipped light?

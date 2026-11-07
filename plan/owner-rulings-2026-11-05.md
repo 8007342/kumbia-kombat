@@ -198,6 +198,7 @@ The owner's words, whole: "let's use that left platform to add a band playing th
 |---|---|---|
 | Band | A band on the room's left platform plays the music, tapping a foot or swinging an instrument on the beat, and gets livelier as the player improves | "liven their rythm as the player game improves" |
 | Crowd | This room starts full of people already dancing in the middle of the floor. Those in the middle slow down and move aside, and the rest dance in place | "slow down and move aside, for Mācron and BlinBlin dancer to take over" |
+| Band's angle and dancers around it | Players stand at an angle, playing toward the crowd. A few people dance in front of them from our view, all around the band | "they're standing at an angle and playing towards the crowd, and there could be a few people dancing in front of them from our perspective, all around the band playing." |
 | Options | The "recommended A options" are approved. As the coordinator read it, that includes plate A for this room | "The recommended A options are great, I approve" |
 
 Status: built as a hidden level, with stand-in art. See `plan/levels/indoor-party-2026-11-07.md`.
