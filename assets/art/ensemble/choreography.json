@@ -2,14 +2,14 @@
   "version": 1,
   "status": "provisional first pass from drawn frames; names and tables may change after the dance teacher's interview",
   "hit": {
-    "anticipation": "{limb},
+    "anticipation": "{limb}_prep",
+    "followThrough": "{limb}_follow",
+    "settle": "{limb}_return"
+  },
   "pairHit": {
     "anticipation": "clap_close",
     "accent": "clap_contact",
     "followThrough": "clap_release"
-  }_prep",
-    "followThrough": "{limb}_follow",
-    "settle": "{limb}_return"
   },
   "inviteHoldBeats": 0.5,
   "travelOutUntilYield": 0.75,

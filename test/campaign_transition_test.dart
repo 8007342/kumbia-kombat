@@ -52,13 +52,17 @@ void clearFight(CampaignAudio audio, GardenSession session) {
     cycle++
   ) {
     final start = session.chart.introBeats + cycle * session.chart.cycleBeats;
-    for (var i = 0; i < session.activeLimbs.length; i++) {
+    final played = session.chart.patternFor(
+      session.progress.tier,
+      session.progress.fullTierSuccesses,
+    );
+    for (var i = 0; i < played.limbs.length; i++) {
       final when = music.secondsAt(
-        start + session.chart.callBeats + session.chart.offsets[i],
+        start + session.chart.callBeats + played.offsets[i],
       );
       advance(audio, when, update);
       expect(
-        session.tap(session.activeLimbs[i]).note,
+        session.tap(played.limbs[i]).note,
         isNotNull,
         reason:
             '${session.progress.definition.id} cycle $cycle note $i phase ${session.phase} beat ${music.positionBeats} now ${audio.nowSeconds} target $when transport ${music.state}',

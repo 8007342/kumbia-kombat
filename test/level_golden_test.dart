@@ -119,9 +119,13 @@ Future<Map<String, Object?>> _fingerprint(
       advance(music.secondsAt(start + 1));
       sample('call$cycle');
     }
-    for (var i = 0; i < session.activeLimbs.length; i++) {
-      final limb = session.activeLimbs[i];
-      final target = start + session.chart.callBeats + session.chart.offsets[i];
+    final played = session.chart.patternFor(session.progress.tier, session.progress.fullTierSuccesses);
+    for (var i = 0; i < played.limbs.length; i++) {
+      // The first limb is read before the phrase rolls over, so it can be the last
+      // phrase's, as it was when this golden was written: a tier's first note then
+      // misses. Kept, so the garden's fingerprint proves nothing else moved.
+      final limb = (i == 0 ? session.activeLimbs : played.limbs)[i];
+      final target = start + session.chart.callBeats + played.offsets[i];
       advance(music.secondsAt(target));
       session.tap(limb);
       if (session.phase == GardenPhase.cleared) break;

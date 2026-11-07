@@ -374,7 +374,7 @@ void main() {
               session.chart.introBeats + cycle * session.chart.cycleBeats;
           for (var i = 0; i < session.activeLimbs.length; i++) {
             final target =
-                start + session.chart.callBeats + session.chart.offsets[i];
+                start + session.chart.callBeats + session.activeOffsets[i];
             advance(music.secondsAt(target));
             session.tap(session.activeLimbs[i]);
             if (session.phase == GardenPhase.cleared) break;

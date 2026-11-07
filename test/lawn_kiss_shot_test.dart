@@ -254,12 +254,13 @@ void main() {
       final chart = session.chart;
       for (var cycle = 0; cycle < 60 && !session.progress.cleared; cycle++) {
         final start = chart.introBeats + cycle * chart.cycleBeats;
-        // Stills and taps, in the order the music reaches them.
-
-
+        // Stills and taps, in the order the music reaches them. The phrase's notes
+        // are known once its cycle has begun.
+        advance(music.secondsAt(start + .01));
         final moments = <(double, int?)>[
           for (final beat in [1.0, 5.0, 8.5, 11.0, 13.0, 15.0]) (beat, null),
-          for (var i = 0; i < chart.offsets.length; i++) (chart.callBeats + chart.offsets[i], i),
+          for (var i = 0; i < session.activeOffsets.length; i++)
+            (chart.callBeats + session.activeOffsets[i], i),
         ]..sort((x, y) => x.$1.compareTo(y.$1));
         for (final (beat, note) in moments) {
           advance(music.secondsAt(start + beat));
