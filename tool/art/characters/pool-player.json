@@ -635,7 +635,6 @@
      "twist": 0,
      "lean": 52,
      "side_bend": 0,
-     "pelvis_x": 0.0,
      "pelvis_roll": 0,
      "head_turn": 0,
      "head_nod": -34,
@@ -665,14 +664,15 @@
       44
      ],
      "l_arm": [
-      52,
-      62
+      40,
+      70
      ],
      "l_fore": [
-      30,
-      78
+      18,
+      84
      ],
-     "pin": "mid"
+     "pelvis_x": -0.08,
+     "pin": "r"
     }
    },
    "challenge.return": {
@@ -1337,11 +1337,12 @@
     "challenge.offer": {
      "mode": "held",
      "dir": [
-      0.85,
-      -0.5,
+      0.75,
+      -0.65,
       -0.02
      ],
-     "grip": 0.12,
+     "grip": 0.36,
+     "otherHand": 215,
      "words": "Both hands are on the cue, taking aim."
     },
     "clap.contact": {
