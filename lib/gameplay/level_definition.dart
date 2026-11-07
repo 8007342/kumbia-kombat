@@ -8,7 +8,9 @@ import '../music/accent_voice.dart';
 import '../music/transport.dart';
 import 'crowd_interest.dart';
 import 'garden_session.dart';
+import 'gesture_shapes.dart';
 import 'party_layout.dart';
+import 'party_up.dart';
 import 'progression.dart';
 import 'rhythm.dart';
 import 'duet_staging.dart';
@@ -320,6 +322,7 @@ class LevelDefinition {
     this.exitShot,
     this.layers = const [],
     this.propSet,
+    this.hardestCombo,
   });
 
   final String id;
@@ -348,6 +351,10 @@ class LevelDefinition {
   /// Which room's furniture, from `assets/art/props/manifest.json`: one set of
   /// drawings, baked to each room's pixel size and light. Null uses the old atlas.
   final String? propSet;
+
+  /// The opponent's hardest combo, for the late bathroom boss. Every level file
+  /// names one; nothing plays it yet.
+  final HardestCombo? hardestCombo;
 
   PartyPoint heroExitFloor(DeparturePose pose) =>
       PartyPoint(pose.x, stage.heroHome.y + pose.y - routeOriginY);
@@ -557,6 +564,10 @@ class LevelDefinition {
     final exitShot = fields.has('exitShot')
         ? _exitShot(fields.child('exitShot'))
         : null;
+    final hardestCombo = _hardestCombo(
+      fields.child('hardestCombo'),
+      [for (final challenger in stage.challengers) challenger.id],
+    );
     final layers = fields.has('layers')
         ? _layers(fields.child('layers'))
         : const <RoomLayerProp>[];
@@ -585,6 +596,7 @@ class LevelDefinition {
       exitShot: exitShot,
       layers: layers,
       propSet: propSet,
+      hardestCombo: hardestCombo,
     );
   }
 
@@ -1036,6 +1048,7 @@ class LevelDefinition {
             motion: prop.named('motion', RoomLayerMotion.values),
             periodBeats: prop.number('periodBeats', min: .25),
             instance: prop.whole('instance', min: 0),
+            kind: prop.named('kind', PartyLifeKind.values),
           );
           prop.finish();
           if (!ids.add(layer.id)) {
@@ -1105,6 +1118,152 @@ class LevelDefinition {
 /// A level's place in the campaign and what links it to the next. Bridges are
 /// written from one level to another, so they live here:
 /// adding a level changes this list and leaves its neighbours' files alone.
+/// Whether the owner has signed off on a combo's name and shape.
+enum HardestComboStatus { proposal, accepted }
+
+/// One move an opponent dances in a combo's call, from a clip it has today.
+class HardestComboMove {
+  const HardestComboMove({
+    required this.dancer,
+    required this.at,
+    required this.beats,
+    required this.clip,
+  });
+  final String dancer;
+  final double at, beats;
+  final String clip;
+}
+
+/// An opponent's named hardest combo: what they dance in the call, and the notes
+/// the player answers with. Data only. Nothing plays it until the bathroom boss.
+class HardestCombo {
+  const HardestCombo({
+    required this.name,
+    required this.status,
+    required this.callBeats,
+    required this.moves,
+    required this.chart,
+    this.lastNoteMove,
+  });
+  final String name;
+  final HardestComboStatus status;
+  final double callBeats;
+  final List<HardestComboMove> moves;
+
+  /// The player's notes, in the shape the session already plays.
+  final FightChart chart;
+
+  /// The optional move its last note invites, if it asks for a particular one.
+  final GestureKind? lastNoteMove;
+}
+
+/// Someone the campaign doesn't reach yet, who already needs a place in the boss.
+class UpcomingOpponent {
+  const UpcomingOpponent({
+    required this.id,
+    required this.name,
+    required this.level,
+    required this.hardestCombo,
+  });
+  final String id;
+  final String name;
+
+  /// The planned room. It need not exist, so it isn't looked up.
+  final String level;
+
+  /// Null only when the entry says it's a placeholder.
+  final HardestCombo? hardestCombo;
+}
+
+/// Refuses a combo the boss couldn't stage: a clip with no room in the call, two
+/// moves at once for one dancer, a dancer who isn't in the room or who sits it
+/// out, or notes the session's own chart check wouldn't pass.
+HardestCombo _hardestCombo(_Fields fields, List<String> dancers) {
+  final callBeats = fields.number('callBeats', min: .25);
+  final name = fields.text('name');
+  final status = fields.named('status', HardestComboStatus.values);
+  if (fields.has('note')) fields.text('note');
+
+  final movesPath = fields.at('moves');
+  final moves = <HardestComboMove>[];
+  for (final (i, raw) in fields.list('moves').indexed) {
+    final path = '$movesPath[$i]';
+    final move = _Fields(path, raw);
+    final String dancer;
+    if (move.has('dancer')) {
+      dancer = move.text('dancer');
+      if (!dancers.contains(dancer)) {
+        throw LevelDataError(move.at('dancer'), 'no such dancer: $dancer');
+      }
+    } else if (dancers.length == 1) {
+      dancer = dancers.single;
+    } else {
+      throw LevelDataError(path, 'a pair\'s move must name its dancer');
+    }
+    final parsed = HardestComboMove(
+      dancer: dancer,
+      at: move.number('at', min: 0),
+      beats: move.number('beats', min: .25),
+      clip: move.text('clip'),
+    );
+    move.finish();
+    if (parsed.at + parsed.beats > callBeats) {
+      throw LevelDataError(path, '${parsed.clip} runs past the call');
+    }
+    final before = moves.where((m) => m.dancer == dancer).lastOrNull;
+    if (before != null && parsed.at < before.at + before.beats) {
+      throw LevelDataError(path, '${parsed.clip} starts before $dancer is free');
+    }
+    moves.add(parsed);
+  }
+  for (final dancer in dancers) {
+    if (!moves.any((m) => m.dancer == dancer)) {
+      throw LevelDataError(movesPath, '$dancer has no moves');
+    }
+  }
+
+  final notesPath = fields.at('notes');
+  final offsets = <double>[];
+  final limbs = <Limb>[];
+  GestureKind? lastNoteMove;
+  final notes = fields.list('notes');
+  for (final (i, raw) in notes.indexed) {
+    final path = '$notesPath[$i]';
+    final note = _Fields(path, raw);
+    offsets.add(note.number('at', min: 0));
+    limbs.add(note.named('limb', Limb.values));
+    if (note.has('move')) {
+      if (i != notes.length - 1) {
+        throw LevelDataError(
+          note.at('move'),
+          'only the last note has room for a longer shape',
+        );
+      }
+      lastNoteMove = note.named('move', GestureKind.values);
+    }
+    note.finish();
+  }
+  fields.finish();
+  final chart = FightChart(
+    limbs: List.unmodifiable(limbs),
+    offsets: List.unmodifiable(offsets),
+    callBeats: callBeats,
+  );
+  try {
+    chart.validate();
+  } on ArgumentError catch (error) {
+    throw LevelDataError(notesPath, '${error.message}');
+  }
+  return HardestCombo(
+    name: name,
+    status: status,
+    callBeats: callBeats,
+    moves: List.unmodifiable(moves),
+    chart: chart,
+    lastNoteMove: lastNoteMove,
+  );
+}
+
 class LevelStep {
   const LevelStep({
     required this.level,
@@ -1118,7 +1277,7 @@ class LevelStep {
 
 /// The ordered campaign, and the single source of level order.
 class LevelRegistry {
-  LevelRegistry._(this.campaign, this.displayTotal);
+  LevelRegistry._(this.campaign, this.displayTotal, this.upcomingOpponents);
 
   static const folder = 'levels';
 
@@ -1126,6 +1285,9 @@ class LevelRegistry {
 
   /// The number the HUD shows after the level number.
   final int displayTotal;
+
+  /// Opponents with no level yet, so the boss can count on them from the start.
+  final List<UpcomingOpponent> upcomingOpponents;
 
   Iterable<LevelDefinition> get levels => campaign.map((step) => step.level);
   LevelDefinition get first => campaign.first.level;
@@ -1203,8 +1365,38 @@ class LevelRegistry {
     final displayTotal = index.has('displayTotal')
         ? index.whole('displayTotal', min: levels.length)
         : levels.length;
+    final upcomingPath = index.at('upcomingOpponents');
+    final upcoming = <UpcomingOpponent>[];
+    if (index.has('upcomingOpponents')) {
+      for (final (i, raw) in index.list('upcomingOpponents').indexed) {
+        final entry = _Fields('$upcomingPath[$i]', raw);
+        final id = entry.text('id');
+        final placeholder = entry.has('placeholder') && entry.flag('placeholder');
+        if (placeholder == entry.has('hardestCombo')) {
+          throw LevelDataError(
+            entry.path,
+            'needs a hardestCombo, or placeholder: true, and not both',
+          );
+        }
+        upcoming.add(
+          UpcomingOpponent(
+            id: id,
+            name: entry.text('name'),
+            level: entry.text('level'),
+            hardestCombo: placeholder
+                ? null
+                : _hardestCombo(entry.child('hardestCombo'), [id]),
+          ),
+        );
+        entry.finish();
+      }
+    }
     index.finish();
-    return LevelRegistry._(List.unmodifiable(steps), displayTotal);
+    return LevelRegistry._(
+      List.unmodifiable(steps),
+      displayTotal,
+      List.unmodifiable(upcoming),
+    );
   }
 
   static Future<LevelRegistry> load(AssetBundle bundle) async {

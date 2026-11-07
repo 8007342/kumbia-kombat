@@ -192,6 +192,10 @@ class DanceGrammar {
   String calmFrame(String dancer) =>
       _alias(_require(dancer), _rules['reducedMotionHold'] as String);
 
+  /// How long one pass of this dancer's clip is, in beats.
+  double clipBeats(String dancer, String clip) =>
+      _requireClip(_require(dancer), clip).lengthBeats;
+
   /// Fails closed when a level names a clip this dancer doesn't have.
   void requireClips(String dancer, Iterable<String> clips) {
     final d = _require(dancer);

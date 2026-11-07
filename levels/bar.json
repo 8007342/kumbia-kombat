@@ -161,25 +161,17 @@
       [
         0.706,
         0.082
-      ]
+      ],
+      [0.22, 0.115],
+      [0.277, 0.081],
+      [0.478, 0.02],
+      [0.754, 0.11]
     ],
     "plants": [
-      [
-        0.14,
-        0.43
-      ],
-      [
-        0.86,
-        0.43
-      ]
+      [0.14, 0.43],
+      [0.86, 0.43]
     ],
-    "waiter": {
-      "home": [
-        0.51,
-        0.345
-      ],
-      "swayX": 0.055
-    }
+    "waiter": { "home": [0.51, 0.345], "swayX": 0.12 }
   },
   "departure": {
     "threshold": "counter-end passage",
@@ -359,5 +351,71 @@
   "copy": {
     "invitation": "The bartender has a rhythm of their own.",
     "clearedTitle": "MUY\nSUAVE"
+  },
+  "hardestCombo": {
+    "name": "Last Call",
+    "status": "proposal",
+    "note": "Proposal. The name and shape need no sign-off to exist, but the owner hasn't seen or played them. The Bartender opens on the spin, where other opponents end on it, then doubles time over the bar's off-beats.",
+    "callBeats": 8,
+    "moves": [
+      {
+        "at": 0,
+        "beats": 3,
+        "clip": "spin_flare"
+      },
+      {
+        "at": 3,
+        "beats": 1,
+        "clip": "clap"
+      },
+      {
+        "at": 4,
+        "beats": 4,
+        "clip": "groove_double"
+      }
+    ],
+    "notes": [
+      {
+        "at": 0.5,
+        "limb": "rightHand"
+      },
+      {
+        "at": 1,
+        "limb": "leftHand"
+      },
+      {
+        "at": 1.75,
+        "limb": "rightFoot"
+      },
+      {
+        "at": 2.25,
+        "limb": "rightHand"
+      },
+      {
+        "at": 3,
+        "limb": "leftFoot"
+      },
+      {
+        "at": 3.75,
+        "limb": "leftHand"
+      },
+      {
+        "at": 4.5,
+        "limb": "rightFoot"
+      },
+      {
+        "at": 5.25,
+        "limb": "leftFoot"
+      },
+      {
+        "at": 6,
+        "limb": "leftHand"
+      },
+      {
+        "at": 6.75,
+        "limb": "rightFoot",
+        "move": "stomp"
+      }
+    ]
   }
 }

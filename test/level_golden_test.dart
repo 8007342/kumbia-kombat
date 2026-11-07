@@ -22,6 +22,12 @@ import 'support/recording_canvas.dart';
 /// the two files: every clear time, score and tier held, and the bar's twelve
 /// guests kept the same crowd numbers. Only canvas calls and the garden's bigger
 /// cast moved.
+///
+/// Rewritten again for slow party-up by tier. Clear times, scores, tiers and every
+/// crowd number held. Moved: which prop drawing shows in the first tier, as the
+/// room now starts nearer still, the waiters' range, and the bar's four more lamp
+/// glows. This harness renders only at its samples, so it barely sees the wake:
+/// `party_up_test.dart` covers that, rendering every step.
 const _goldenPath = 'test/goldens/levels_before.json';
 
 class _Audio implements MusicAudioBackend {
