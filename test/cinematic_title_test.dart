@@ -298,6 +298,11 @@ void main() {
         // never close, and a hit past it would never sound.
         expect(shot.closeupTo, lessThanOrEqualTo(end), reason: id);
         expect(shot.titleUntil, lessThanOrEqualTo(end), reason: id);
+        // The room dissolves as the bridge ends. It should clear the room, not a
+        // close-up, so the wide shot comes back with beats to spare.
+        if (step.bridgeToNext != null) {
+          expect(shot.closeupTo, lessThanOrEqualTo(end - 4), reason: id);
+        }
         for (final hit in shot.cue) {
           expect(hit.beat, lessThan(end), reason: '$id beat ${hit.beat}');
         }

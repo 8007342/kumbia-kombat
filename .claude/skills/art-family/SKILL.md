@@ -5,13 +5,15 @@ description: Produce or refresh a Kumbia Kombat character sprite family (opponen
 
 # Character sprite family, end to end
 
+How the result should look: `assets/art/STYLEGUIDE.md`, sections 3 and 6.
+
 One route: Qwen draws the character from a model sheet, posed by a bare skeleton (or by words, for
 Mācron). `tool/art/pipeline/README.md` has the details. Prompts come from data, so never hand-edit a
 workflow: fix the definition and re-plan. The operator's standing approval covers local GPU time
 for this project (2026-11-02). Partial work stays on a `work/NNNN-xxxx` branch; mature work merges
 into `game`.
 
-Below, `PY=~/.cache/kumbia-art/bin/python`, and `<c>` is a character id or a `.json` path.
+Below, `PY=~/.cache/tillandsias-project/venvs/kumbia-art/bin/python`, and `<c>` is a character id or a `.json` path.
 
 ## 1. Define (no GPU)
 

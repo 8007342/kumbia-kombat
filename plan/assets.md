@@ -1,5 +1,7 @@
 # Assets and animation production plan
 
+**For how art should look, use `assets/art/STYLEGUIDE.md`.** This plan is history: its cell sizes, five-stage table and counts predate the current route. Its references and provenance still stand.
+
 2026-10-28 planning update: [party overhaul](party-overhaul.md) refines the
 garden animation inventory, native pixel-grid direction and crowd behaviors.
 Use its first proof gates before bulk production. The older minimal counts
