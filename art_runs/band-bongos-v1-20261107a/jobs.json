@@ -1,0 +1,77 @@
+[
+ {
+  "pose": "relaxed.a",
+  "args": {
+   "workflow": "art_runs/band-bongos-v1-20261107a/workflows/relaxed.a.api.json",
+   "tier": "I1",
+   "count": 2,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/band-bongos-v1-20261107a/in/sheet_front_3q.png",
+    "pose_proxy": "/work/tmp/imagegen/kumbia/band-bongos-v1-20261107a/in/relaxed.a.skeleton.png"
+   },
+   "overrides": {
+    "seed": 990700
+   }
+  }
+ },
+ {
+  "pose": "relaxed.b",
+  "args": {
+   "workflow": "art_runs/band-bongos-v1-20261107a/workflows/relaxed.b.api.json",
+   "tier": "I1",
+   "count": 2,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/band-bongos-v1-20261107a/in/sheet_front_3q.png",
+    "pose_proxy": "/work/tmp/imagegen/kumbia/band-bongos-v1-20261107a/in/relaxed.b.skeleton.png"
+   },
+   "overrides": {
+    "seed": 990700
+   }
+  }
+ },
+ {
+  "pose": "swing.a",
+  "args": {
+   "workflow": "art_runs/band-bongos-v1-20261107a/workflows/swing.a.api.json",
+   "tier": "I1",
+   "count": 2,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/band-bongos-v1-20261107a/in/sheet_front_3q.png",
+    "pose_proxy": "/work/tmp/imagegen/kumbia/band-bongos-v1-20261107a/in/swing.a.skeleton.png"
+   },
+   "overrides": {
+    "seed": 990700
+   }
+  }
+ },
+ {
+  "pose": "swing.b",
+  "args": {
+   "workflow": "art_runs/band-bongos-v1-20261107a/workflows/swing.b.api.json",
+   "tier": "I1",
+   "count": 2,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/band-bongos-v1-20261107a/in/sheet_front_3q.png",
+    "pose_proxy": "/work/tmp/imagegen/kumbia/band-bongos-v1-20261107a/in/swing.b.skeleton.png"
+   },
+   "overrides": {
+    "seed": 990700
+   }
+  }
+ },
+ {
+  "pose": "swing.c",
+  "args": {
+   "workflow": "art_runs/band-bongos-v1-20261107a/workflows/swing.c.api.json",
+   "tier": "I1",
+   "count": 2,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/band-bongos-v1-20261107a/in/sheet_front_3q.png",
+    "pose_proxy": "/work/tmp/imagegen/kumbia/band-bongos-v1-20261107a/in/swing.c.skeleton.png"
+   },
+   "overrides": {
+    "seed": 990700
+   }
+  }
+ }
+]

@@ -44,6 +44,10 @@ LOCK = {
  'congas': dict(lo=(100, 0, 0), hi=(190, 45, 60), size='h'),
  'marimba': dict(lo=(180, 70, 60), hi=(255, 130, 120), size='top'),  # his height holds better than the bars' width
  'trumpet': dict(lo=(10, 10, 15), hi=(60, 60, 70), size='h', legs=True),
+ # The salon's trio (plan/levels/salon-art-2026-11-07.md): the violin's varnish for place, the whole figure for size,
+ # since a raised bow changes the frame's height; the bongos' honey wood for both, like the congas.
+ 'violin': dict(lo=(110, 35, 10), hi=(210, 115, 80), size='top'),
+ 'bongos': dict(lo=(170, 100, 20), hi=(255, 185, 95), size='h'),
 }
 def measure(rgba, spec):
     a = np.asarray(rgba)
@@ -83,8 +87,10 @@ PICKS = {
  'congas': dict(run='band-congas-v1-20261107d', seeds={'relaxed.a': 989620, 'relaxed.b': 989620, 'swing.a': ('band-congas-v1-20261107f', 989620), 'swing.c': 989620}, foot=None, shear={}, alias={'swing.b': 'relaxed.a'}),
  'trumpet': dict(run='band-trumpet-v1-20261107d', seeds={p: 989710 for p in ('relaxed.a', 'relaxed.b', 'swing.a', 'swing.b', 'swing.c')}, foot=None, shear={}),
  'marimba': dict(run='band-marimba-v1-20261107e', seeds={p: 989810 for p in ('relaxed.a', 'relaxed.b', 'swing.a', 'swing.b', 'swing.c')}, foot=None, shear={}),
+ 'violin': dict(run='band-violin-v1-20261107a', seeds={p: 990501 for p in ('relaxed.a', 'relaxed.b', 'swing.a', 'swing.b', 'swing.c')}, foot=None, shear={}, shirt='1E1B22'),
+ 'bongos': dict(run='band-bongos-v1-20261107a', seeds={p: 990700 for p in ('relaxed.a', 'relaxed.b', 'swing.a', 'swing.b', 'swing.c')}, foot=None, shear={}, shirt='1E1B22'),
 }
-FEET = {'bass': [100, 280, 119, 298, 8], 'trumpet': [98, 277, 120, 298, 8], 'marimba': [104, 276, 135, 298, 8], 'congas': [108, 274, 121, 296, 6]}  # native px: x0, y0, x1, y1, lift
+FEET = {'violin': [101, 278, 121, 298, 7], 'bass': [100, 280, 119, 298, 8], 'trumpet': [98, 277, 120, 298, 8], 'marimba': [104, 276, 135, 298, 8], 'congas': [108, 274, 121, 296, 6]}  # native px: x0, y0, x1, y1, lift
 FOOT = json.loads(os.environ.get('FOOT') or json.dumps(FEET))
 def shear(a, top_shift):
     ys = np.where(a[..., 3].any(axis=1))[0]
@@ -105,7 +111,7 @@ final = Path('art_runs') / run / 'final'; final.mkdir(parents=True, exist_ok=Tru
 sel = {}
 for pose, pick in c['seeds'].items():
     r, seed = pick if isinstance(pick, tuple) else (run, pick)
-    subprocess.run([sys.executable, 'tool/art/pipeline/register_frames.py', '--run', r, '--family', fam, '--root', str(K / r), '--shirt', 'EADFC2'], check=True, capture_output=True)
+    subprocess.run([sys.executable, 'tool/art/pipeline/register_frames.py', '--run', r, '--family', fam, '--root', str(K / r), '--shirt', c.get('shirt', 'EADFC2')], check=True, capture_output=True)
     reg = K / r / 'registered' / pose / f'{seed}.png'
     ref_pick = c['seeds']['relaxed.a']
     ref_run, ref_seed = ref_pick if isinstance(ref_pick, tuple) else (run, ref_pick)

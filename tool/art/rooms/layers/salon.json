@@ -1,0 +1,27 @@
+{
+  "room": "salon",
+  "run": "layers-salon-20261107",
+  "source": "art_runs/rooms/salon/picks/plate-991002.png",
+  "plate": "assets/art/salon/salon-room.png",
+  "atlas": "assets/art/salon/salon-layers.png",
+  "level": "art_runs/rooms/salon/layers-level.json",
+  "previewBpm": 108,
+  "keepWords": "Keep everything else exactly as it is: same pixel art, same camera, same colours.",
+  "props": [
+    {"id": "chandelier-left", "kind": "hanging", "rule": "bright", "close": 2, "polygon": [[200, 119], [222, 119], [262, 150], [262, 200], [240, 230], [178, 230], [160, 200], [160, 150]],
+     "fill": {"image": "chandelier-left-76200.png", "box": [142, 100, 282, 240], "edgeClamp": 70, "dilate": 2, "prompt": "Remove the glowing crystal chandelier at the centre of this picture, but keep its thin chain above. Where the chandelier was, show the same dark emerald wall, gilded cornice and dark window behind it, in the same dim warm light. Do not add any chandelier, lamp or object."},
+     "motion": "sway", "periodBeats": 4, "frames": 7, "instance": 1, "warp": {"pivot": [211, 0], "far": 230, "reachPx": 4, "power": 1}},
+    {"id": "chandelier-middle", "kind": "hanging", "rule": "bright", "close": 2, "polygon": [[413, 119], [437, 119], [476, 150], [476, 200], [455, 228], [395, 228], [374, 200], [374, 150]],
+     "fill": {"image": "chandelier-middle-76300.png", "box": [355, 100, 495, 240], "edgeClamp": 70, "dilate": 2, "prompt": "Remove the glowing crystal chandelier at the centre of this picture, but keep its thin chain above. Where the chandelier was, show the same dark emerald wall, gilded cornice and the top of the dark wooden door frame behind it, in the same dim warm light. Do not add any chandelier, lamp or object."},
+     "motion": "sway", "periodBeats": 4, "frames": 7, "instance": 2, "warp": {"pivot": [425, 0], "far": 230, "reachPx": 4, "power": 1}},
+    {"id": "chandelier-right", "kind": "hanging", "rule": "bright", "close": 2, "polygon": [[626, 119], [650, 119], [678, 150], [678, 200], [668, 232], [606, 232], [586, 200], [586, 150]],
+     "fill": {"image": "chandelier-right-76400.png", "box": [567, 100, 707, 240], "edgeClamp": 70, "dilate": 2, "prompt": "Remove the glowing crystal chandelier at the centre of this picture, but keep its thin chain above. Where the chandelier was, show the same dark emerald wall, gilded arch and dark night window behind it, in the same dim warm light. Do not add any chandelier, lamp or object."},
+     "motion": "sway", "periodBeats": 4, "frames": 7, "instance": 3, "warp": {"pivot": [638, 0], "far": 230, "reachPx": 4, "power": 1}},
+    {"id": "reflection-left", "fillOnly": true, "polygon": [[180, 760], [250, 760], [255, 810], [180, 810]],
+     "fill": {"image": "reflection-left-76500.png", "box": [150, 720, 290, 860], "edgeClamp": 24, "dilate": 3, "prompt": "Remove the soft glowing reflection in the middle of this polished parquet floor. Show the same plain dark herringbone parquet running straight through, in the same dim even light. Do not add any light, reflection or object."}},
+    {"id": "reflection-middle", "fillOnly": true, "polygon": [[368, 718], [478, 718], [478, 845], [368, 845]],
+     "fill": {"image": "reflection-middle-76600.png", "box": [352, 712, 492, 852], "edgeClamp": 24, "dilate": 3, "prompt": "Remove the bright reflection of a chandelier in the middle of this polished parquet floor, but keep the thin straight joint line running down through it. Show the same plain dark herringbone parquet running straight through, in the same dim even light. Do not add any light, reflection or object."}},
+    {"id": "reflection-right", "fillOnly": true, "polygon": [[590, 745], [690, 745], [690, 855], [590, 855]],
+     "fill": {"image": "reflection-right-76700.png", "box": [570, 730, 710, 870], "edgeClamp": 24, "dilate": 3, "prompt": "Remove the soft glowing reflection in the middle of this polished parquet floor. Show the same plain dark herringbone parquet running straight through, in the same dim even light. Do not add any light, reflection or object."}}
+  ]
+}

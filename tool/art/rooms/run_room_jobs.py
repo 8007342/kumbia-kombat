@@ -4,7 +4,7 @@
 studio.run_workflow only reads workflows in the main checkout, and a worktree outside it can't name its own
 baked workflow. The room graphs differ only in prompt and file prefix, so each job sends the billiards run's
 committed graph with the same number of input images (art_runs/rooms/billiards/run-a/workflows/p1 or p2,
-present in the main checkout) and puts this job's baked prompt, prefix and the 2511 LoRA in as node overrides.
+present in the main checkout) and puts this job's baked prompt, prefix, size and the 2511 LoRA in as node overrides.
 The baked workflow in art_runs/<run>/workflows/ stays the record; this script refuses to run if the graphs
 differ in anything but those fields.
 
@@ -37,6 +37,8 @@ def strip(wf: dict) -> dict:
     wf["10"]["inputs"]["prompt"] = ""
     wf["14"]["inputs"]["filename_prefix"] = ""
     wf.get("30", {}).get("inputs", {}).pop("lora_name", None)
+    for k in ("width", "height"):
+        wf["8"]["inputs"].pop(k, None)
     return wf
 
 
@@ -60,7 +62,8 @@ def main() -> None:
         count = a.count or job["count"]
         args = dict(workflow=graph, inputs=job["inputs"], count=count,
                     overrides={**job["overrides"], "$node:10.prompt": baked["10"]["inputs"]["prompt"],
-                               "$node:14.filename_prefix": baked["14"]["inputs"]["filename_prefix"], "$node:30.lora_name": LORA})
+                               "$node:14.filename_prefix": baked["14"]["inputs"]["filename_prefix"], "$node:30.lora_name": LORA,
+                               "$node:8.width": baked["8"]["inputs"]["width"], "$node:8.height": baked["8"]["inputs"]["height"]})
         t = time.time()
         for attempt in range(3):
             try:

@@ -59,6 +59,8 @@ def colour_rule(rgb, rule):
         return (np.maximum(np.maximum(r, g), b) < 70) | ((g > 185) & (b < 120) & (r > 200))
     if rule == "lantern":  # amber glass and near-black iron over violet: violet keeps blue above red
         return (r > b * 1.12) | (np.maximum(np.maximum(r, g), b) < 42)
+    if rule == "bright":  # crystal and candle flames over emerald wall and a near-black ceiling: bright, and not green
+        return (np.maximum(np.maximum(r, g), b) > 105) & ~((g > r * 1.15) & (g > b))
     raise ValueError(rule)
 
 
@@ -267,6 +269,8 @@ def bake(spec):
     rgb = source_rgb(spec)
     rows = []
     for prop in spec["props"]:
+        if prop.get("fillOnly"):  # painted out of the plate and never drawn again, such as a reflection in the tap band
+            continue
         rows.append((prop, *prop_frames(rgb, prop)))
     width = max(len(f) * (b[2] + GUTTER) for _, b, f in rows)
     height = sum(b[3] + GUTTER for _, b, _f in rows)
