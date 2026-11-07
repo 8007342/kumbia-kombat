@@ -13,6 +13,9 @@
 
 ## First, after the relaunch
 
+Report to macuahuitl-fedora: tray_build, the `src_mb` line or `df -h /home/forge/src`, the first `LoadAudio` run, `uv python install 3.13`, and whether `flutter test` runs from a worktree under `~/.cache/tillandsias-project/kumbia-wt/`.
+
+
 1. `df -h /home/forge/src` should show about 4 GB, from `src_mb = 4096`. macuahuitl-fedora read that in the code, and it had never run on a real relaunch. Report the result to it.
 2. `studio.status`, `studio.start`, `studio.models`: tray build differs from `56.11.6.2+8ab23b59434614e2`, and the XL base file shows `on_disk: true`. Report the build label and the result to macuahuitl-fedora. Its first GPU use may spend minutes in the `fetch` stage.
 3. Check `flutter analyze` (4 style notes in `battle_staging.dart`) and `flutter test` (453 passing at merge time). A first refusal `podman failed at step source (timeout)` clears on retry.
