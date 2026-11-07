@@ -629,32 +629,50 @@
     }
    },
    "challenge.offer": {
-    "intent": "bent forward over an imaginary table taking aim, the cue level in front of {him} and pointing toward the picture's right and toward the viewer, the right hand back at the hip on the butt of the cue, the left hand forward on the shaft as a bridge, the head low behind the cue sighting along it with one eye narrowed",
+    "intent": "bent far forward at the hips taking a shot on an imaginary table, turned toward the right of the picture, the cue level and pointing to the right of the picture, the left hand forward on the shaft as a bridge, the right hand back near the hip on the butt of the cue, {his} chin just above the cue, sighting along it with one eye narrowed, feet apart, back leg straight",
     "pose": {
-     "yaw": 24,
-     "twist": -10,
-     "lean": 26,
+     "yaw": 35,
+     "twist": 0,
+     "lean": 52,
      "side_bend": 0,
      "pelvis_x": 0.0,
      "pelvis_roll": 0,
-     "head_turn": 4,
-     "head_nod": -6,
+     "head_turn": 0,
+     "head_nod": -34,
+     "head_side": 0,
+     "l_thigh": [
+      8,
+      26
+     ],
+     "l_shin": [
+      4,
+      -10
+     ],
+     "r_thigh": [
+      14,
+      -14
+     ],
+     "r_shin": [
+      12,
+      -20
+     ],
      "r_arm": [
-      34,
-      -18
+      16,
+      -40
      ],
      "r_fore": [
-      20,
-      60
+      4,
+      44
      ],
      "l_arm": [
       52,
-      42
+      62
      ],
      "l_fore": [
-      60,
-      66
-     ]
+      30,
+      78
+     ],
+     "pin": "mid"
     }
    },
    "challenge.return": {
@@ -1319,9 +1337,9 @@
     "challenge.offer": {
      "mode": "held",
      "dir": [
-      0.75,
-      -0.6,
-      0.02
+      0.85,
+      -0.5,
+      -0.02
      ],
      "grip": 0.12,
      "words": "Both hands are on the cue, taking aim."

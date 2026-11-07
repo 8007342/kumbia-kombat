@@ -73,7 +73,7 @@ pose("clap.release", "the left palm bouncing away from the upright cue, elbows o
 # Challenge: chalks up, stands proud on the cue, sights down it at the player, settles ready.
 pose("challenge.load", "back-break dip: weight sunk on the bent left leg, right foot back on its ball, torso leaning forward a little, the right hand low at the hip holding the cue slanted up across {his} body so its tip comes to just below {his} chin, the left hand twisting a small blue cube of chalk on the tip, a sly look down at the tip", r_arm=[24, 20], r_fore=[20, 60], l_arm=[34, 52], l_fore=[-132, 64])
 pose("challenge.proud", "proud stance: left fist on the hip with the elbow out, right hand on the planted cue, chest pushed out and leaning back, chin raised, weight on the straight right leg, left heel set forward with the toe up", r_arm=[30, 10], r_fore=[50, 30], l_arm=[68, -26], l_fore=[-40, -14])
-pose("challenge.offer", "bent forward over an imaginary table taking aim, the cue level in front of {him} and pointing toward the picture's right and toward the viewer, the right hand back at the hip on the butt of the cue, the left hand forward on the shaft as a bridge, the head low behind the cue sighting along it with one eye narrowed", yaw=24, twist=-10, lean=26, side_bend=0, pelvis_x=0.0, pelvis_roll=0, head_turn=4, head_nod=-6, r_arm=[34, -18], r_fore=[20, 60], l_arm=[52, 42], l_fore=[60, 66])
+pose("challenge.offer", "bent far forward at the hips taking a shot on an imaginary table, turned toward the right of the picture, the cue level and pointing to the right of the picture, the left hand forward on the shaft as a bridge, the right hand back near the hip on the butt of the cue, {his} chin just above the cue, sighting along it with one eye narrowed, feet apart, back leg straight", yaw=35, twist=0, lean=52, side_bend=0, pelvis_x=0.0, pelvis_roll=0, head_turn=0, head_nod=-34, head_side=0, l_thigh=[8, 26], l_shin=[4, -10], r_thigh=[14, -14], r_shin=[12, -20], r_arm=[16, -40], r_fore=[4, 44], l_arm=[52, 62], l_fore=[30, 78], pin="mid")
 pose("challenge.return", "both feet flat, standing easy, right hand on the planted cue, left hand low near the hip, body upright, ready", **HOLD)
 
 pose("approval.load", "small inhale: chest lifted and leaning back slightly, chin raised, weight on the right foot, right hand on the planted cue, left arm loose and slightly away from the body", **HOLD)
@@ -131,7 +131,7 @@ c["drawing"]["cue"] = {
         "right_hand.follow": {"mode": "held", "dir": [0.9, -0.4, 0.1], "grip": 0.17},
         "right_hand.return": {"mode": "planted", "butt": [-0.46, -0.05], "words": POLE},
         "challenge.load": {"otherHand": "tip", "mode": "held", "dir": [0.42, -0.2, 0.88], "grip": 0.52, "words": "She holds a long billiard cue slanted across her body in her right hand, and chalks its tip with her left."},
-        "challenge.offer": {"mode": "held", "dir": [0.75, -0.6, 0.02], "grip": 0.12, "words": LEVEL},
+        "challenge.offer": {"mode": "held", "dir": [0.85, -0.5, -0.02], "grip": 0.12, "words": LEVEL},
         "clap.contact": {"otherHand": 60},
         "finish_turn.finish_a": {"mode": "held", "dir": [-0.05, 0, 1], "grip": 0.42, "words": "She holds a long billiard cue upright in her right hand."},
         "finish_turn.finish_b": {"mode": "held", "dir": [0, 0, 1], "grip": 0.42, "words": "She holds a long billiard cue upright in her right hand."},
