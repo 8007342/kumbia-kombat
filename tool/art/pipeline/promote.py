@@ -21,13 +21,14 @@ ENSEMBLE = Path("assets/art/ensemble")
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("candidate", nargs="+", type=Path)
+    ap.add_argument("--new", action="store_true", help="the atlas is a new character's, so it may not be in the manifest yet")
     a = ap.parse_args()
     path = ENSEMBLE / "manifest.json"
     manifest = json.loads(path.read_text())
     for cand_path in a.candidate:
         cand = json.loads(cand_path.read_text())
         atlas = cand["atlas"]
-        if atlas not in manifest["atlases"]:
+        if atlas not in manifest["atlases"] and not a.new:
             raise SystemExit(f"{cand_path}: the manifest has no atlas {atlas}")
         if not (ENSEMBLE / cand["image"]).is_file():
             raise SystemExit(f"{ENSEMBLE / cand['image']} is missing")
