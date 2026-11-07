@@ -32,8 +32,11 @@ from pathlib import Path
 HEAD_CLEAR = 1.2                      # head-widths, wrist to head centre
 HEAD_WHITELIST = {"finish_turn.finish_a", "finish_turn.finish_b", "approval.nod"}
 CUE_NEAR_FACE = {"watch", "clap", "challenge", "chalk"}  # both hands on a cue held close: the wrist near the chin is the pose
-TURN_CLIPS = {"turn", "finish_turn", "reveal", "spin", "lean"}  # yaw cap does not apply
+TURN_CLIPS = {"turn", "finish_turn", "reveal", "spin", "lean", "pair_dance", "back_dance", "sidestep", "glance", "model"}  # yaw cap does not apply
+# Seen in profile, or a set of different views: legs may overlap and shoulder width and ankles may change.
+PROFILE_CLIPS = {"sidestep", "model"}
 REAR_CLIPS = {"back_groove", "back_accent"}  # the yaw cap is measured from facing directly away
+BAND_CLIPS = {"relaxed", "tap", "swing"}  # motion set band-loop: arms reach across to an instrument, a horn is at the face
 CROSSED_ARMS = {"crossed"}  # the arms cross on purpose
 HEAD_ONLY = {"crossed"}  # a nod moves little but the head, so the static check does not apply
 NO_WIDTH_CHECK = {"turn", "reveal", "spin"}            # deliberate 360-degree turn views (no width/drift check)
@@ -71,7 +74,7 @@ def dist(a, b) -> float:
 
 def crossing_problems(r: dict) -> list[str]:
     op = r.get("openpose")
-    if not op:
+    if not op or r.get("clip") in BAND_CLIPS:
         return []
     out = []
     crossed = r.get("clip") in CROSSED_ARMS
@@ -87,7 +90,7 @@ def crossing_problems(r: dict) -> list[str]:
 
 
 def head_problems(r: dict) -> list[str]:
-    if not r.get("openpose") or r["id"] in HEAD_WHITELIST or (r.get("cue") and r.get("clip") in CUE_NEAR_FACE):
+    if not r.get("openpose") or r["id"] in HEAD_WHITELIST or r.get("clip") in BAND_CLIPS or (r.get("cue") and r.get("clip") in CUE_NEAR_FACE):
         return []
     head = r["joints"]["head"]
     limit = HEAD_CLEAR * r["headWidthPx"]
@@ -192,7 +195,8 @@ def check(rig: dict, margin: float) -> dict[str, list[str]]:
     for r in rig["poses"]:
         p = problems.setdefault(r["id"], [])
         p += r.get("problems", [])
-        p += crossing_problems(r)
+        if r.get("clip") not in PROFILE_CLIPS:
+            p += crossing_problems(r)
         p += head_problems(r)
         if ankle_h is not None:
             p += foot_problems(r, ankle_h)
@@ -206,6 +210,8 @@ def check(rig: dict, margin: float) -> dict[str, list[str]]:
         if shoes is not None and shoes < MIN_SHOES_PX:
             p.append(f"shoes: only {shoes}px of shoes visible")
     for clip, recs in by_clip.items():
+        if clip in PROFILE_CLIPS:
+            continue
         clip_p = drift_problems(clip, recs) + width_problems(clip, recs) + static_problems(clip, recs)
         for msg in clip_p:
             problems.setdefault(f"{clip}.*", []).append(msg)

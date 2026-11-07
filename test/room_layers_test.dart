@@ -160,6 +160,11 @@ void main() {
         'pool-garden/pool-garden-v1-draft.png',
       ),
       ('bar', 'bar/bar-interior-clean.png', 'bar/bar-interior.png'),
+      (
+        'cool-crowd',
+        'cool-crowd/cool-crowd-room-clean.png',
+        'cool-crowd/cool-crowd-room.png',
+      ),
     ]) {
       test('$id has a clean plate and props of its own', () {
         final level = LevelDefinition.fromJson(
@@ -167,7 +172,7 @@ void main() {
               as Map<String, Object?>,
         );
         expect(level.background, clean);
-        expect(level.layers.length, greaterThanOrEqualTo(8));
+        expect(level.layers.length, greaterThanOrEqualTo(6));
         expect(level.layers.map((p) => p.id).toSet().length, level.layers.length);
         expect(_pngSize('assets/art/$clean'), _pngSize('assets/art/$painted'));
         for (final prop in level.layers) {

@@ -174,8 +174,11 @@ def prompts(c: dict, backend: dict | None = None) -> dict[str, str]:
 
 def sheet_prompt(c: dict, backend: dict, view: str) -> str:
     d, sheet = drawing_of(c), _sheet(c)
-    template = backend["prompts"]["sheetFromText" if sheet.get("source", {}).get("styleOnly") else "sheetFromReference"]
-    return template.format(noun=d["noun"], fits=d["fits"], look=_look(c, view), extra=d.get("extra", ""),
+    source = sheet.get("source", {})
+    template = backend["prompts"]["sheetTurned" if source.get("poseFrom") or sheet["views"][view].get("poseFrom") else "sheetFromText" if source.get("styleOnly") else "sheetFromReference"]
+    if sheet["views"][view].get("poseFrom"):
+        template = template.replace(" and the same instrument", "")  # a view's own poseFrom is a person with no instrument
+    return template.format(noun=d["noun"], fits=d["fits"], look=_look(c, view), extra=_extra(c, view),
                            description=sheet["views"][view].get("description", "facing the viewer"), props="", **grammar(c))
 
 
@@ -364,9 +367,11 @@ def plan_run(c: dict, backend: dict, run: str, *, only: set[str] | None = None, 
             pid = f"sheet.{view}"
             inputs = {"sheet_front": str(src)}
             graph = one_image(base)
-            if source.get("styleOnly"):
+            view_ref = views[view].get("poseFrom")
+            if source.get("styleOnly") or source.get("poseFrom") or view_ref:
                 # A new person: the style sheet plus a neutral skeleton, so build and framing start right.
-                ref = motion_of(c)["referencePose"]
+                # poseFrom: an accepted view, redrawn at the angle of one of the character's own rig poses.
+                ref = view_ref or source.get("poseFrom") or motion_of(c)["referencePose"]
                 inputs["pose_proxy"] = str(lane / f"{ref}.skeleton.png")
                 graph = base
                 if stage:

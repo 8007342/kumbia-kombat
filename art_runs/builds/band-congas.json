@@ -1,0 +1,513 @@
+{
+ "definition": {
+  "$comment": "The indoor party's band (congas), owner's ruling 2026-11-07; front sheet approved the same day. Drawn at an angle, playing toward the crowd, from the front_3q view. The instrument is a mask-only garment, and Qwen draws it from the sheet. Plan: plan/levels/indoor-band-2026-11-07.md.",
+  "id": "band-congas",
+  "family": "band-congas-v1",
+  "style": "party-pixel",
+  "description": "Indoor party band, congas: short, stocky, barrel-chested man of about fifty-five, thick grey moustache, smooth bald head.",
+  "body": {
+   "preset": "stocky-adult"
+  },
+  "pronouns": [
+   "he",
+   "him",
+   "his"
+  ],
+  "skin": "#B5804F",
+  "traits": "short, stocky, barrel-chested man of about fifty-five, thick grey moustache, smooth bald head",
+  "demeanor": "the joker of the band: grinning, eyes on the dancers",
+  "garments": [
+   {
+    "id": "hair",
+    "shape": "short-hair-moustache",
+    "region": "hair",
+    "colour": "#8C8782",
+    "text": "smooth bald head with a thick neat grey moustache"
+   },
+   {
+    "id": "shirt",
+    "shape": "shirt-stocky",
+    "region": "shirt",
+    "colour": "#EFE4C8",
+    "text": "closed cream shirt with a small midnight-violet bow tie"
+   },
+   {
+    "id": "jacket",
+    "shape": "waistcoat-fitted",
+    "region": "cloth",
+    "colour": "#EADFC2",
+    "text": "long-sleeved cream dinner jacket"
+   },
+   {
+    "id": "lapels",
+    "shape": "jacket-lapels",
+    "region": "apron",
+    "colour": "#3A1F6B",
+    "text": "narrow midnight-violet satin lapels"
+   },
+   {
+    "id": "trousers",
+    "shape": "trousers",
+    "region": "trousers",
+    "colour": "#26232C",
+    "text": "slim dark charcoal trousers"
+   },
+   {
+    "id": "shoes",
+    "shape": "shoes-flat",
+    "region": "shoes",
+    "colour": "#D8C9A0",
+    "text": "polished two-tone cream and dark shoes"
+   },
+   {
+    "id": "drums",
+    "shape": "conga-shells",
+    "region": "prop",
+    "colour": "#8E1C28",
+    "text": "dark reddish wood conga drums",
+    "params": {
+     "yaw": 30.0
+    }
+   },
+   {
+    "id": "bands",
+    "shape": "conga-bands",
+    "region": "accessory",
+    "colour": "#C9A23A",
+    "text": "brass bands",
+    "params": {
+     "yaw": 30.0
+    }
+   }
+  ],
+  "motion": {
+   "set": "band-loop",
+   "overrides": {
+    "relaxed.a": {
+     "pose": {
+      "twist": 0,
+      "l_arm": [
+       24.3,
+       10.5
+      ],
+      "l_fore": [
+       -20.4,
+       69.5
+      ],
+      "r_arm": [
+       12.4,
+       19.7
+      ],
+      "r_fore": [
+       1.4,
+       30.8
+      ]
+     },
+     "intent": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, both feet flat on the floor, the hand on the left of the picture flat on its drumhead, the hand on the right of the picture lifted a little above its drumhead"
+    },
+    "relaxed.b": {
+     "pose": {
+      "twist": 0,
+      "l_arm": [
+       12.4,
+       19.7
+      ],
+      "l_fore": [
+       1.4,
+       30.8
+      ],
+      "r_arm": [
+       24.3,
+       10.5
+      ],
+      "r_fore": [
+       -20.4,
+       69.5
+      ]
+     },
+     "intent": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, both feet flat on the floor, the hand on the right of the picture flat on its drumhead, the hand on the left of the picture lifted a little above its drumhead"
+    },
+    "tap.up_a": {
+     "pose": {
+      "twist": 0,
+      "l_arm": [
+       24.3,
+       10.5
+      ],
+      "l_fore": [
+       -20.4,
+       69.5
+      ],
+      "r_arm": [
+       12.4,
+       19.7
+      ],
+      "r_fore": [
+       1.4,
+       30.8
+      ]
+     },
+     "intent": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, the foot on the left of the picture lifted clear off the floor with its knee bent and toe pointing down, tapping time, the other foot flat on the floor, the hand on the left of the picture flat on its drumhead, the other lifted a little"
+    },
+    "tap.up_b": {
+     "pose": {
+      "twist": 0,
+      "l_arm": [
+       12.4,
+       19.7
+      ],
+      "l_fore": [
+       1.4,
+       30.8
+      ],
+      "r_arm": [
+       24.3,
+       10.5
+      ],
+      "r_fore": [
+       -20.4,
+       69.5
+      ]
+     },
+     "intent": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, the foot on the left of the picture lifted clear off the floor with its knee bent and toe pointing down, tapping time, the other foot flat on the floor, the hand on the right of the picture flat on its drumhead, the other lifted a little"
+    },
+    "swing.a": {
+     "pose": {
+      "twist": 8,
+      "l_arm": [
+       8.7,
+       23.5
+      ],
+      "l_fore": [
+       -2.6,
+       34.2
+      ],
+      "r_arm": [
+       32.1,
+       9.8
+      ],
+      "r_fore": [
+       -6.8,
+       131.6
+      ]
+     },
+     "intent": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, both feet flat on the floor, the hand on the left of the picture lifted up to the height of his shoulder above the near drum, palm open, about to slap down, the other hand flat on the far drumhead, both drums exactly as in image 1"
+    },
+    "swing.b": {
+     "pose": {
+      "twist": 0,
+      "l_arm": [
+       26.7,
+       7.7
+      ],
+      "l_fore": [
+       -20.3,
+       82.3
+      ],
+      "r_arm": [
+       27.3,
+       7.0
+      ],
+      "r_fore": [
+       -14.9,
+       83.2
+      ]
+     },
+     "intent": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, both feet flat on the floor, both hands just above the drumheads, about to come down, shoulders level"
+    },
+    "swing.c": {
+     "pose": {
+      "twist": -8,
+      "l_arm": [
+       81.5,
+       23.1
+      ],
+      "l_fore": [
+       -158.1,
+       37.1
+      ],
+      "r_arm": [
+       8.7,
+       23.5
+      ],
+      "r_fore": [
+       -2.6,
+       34.2
+      ]
+     },
+     "intent": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, both feet flat on the floor, big joyful move: the hand on the right of the picture thrown high above his shoulder, palm open, the other flat on its drumhead, shoulders rolling"
+    },
+    "swing.d": {
+     "pose": {
+      "twist": 0,
+      "l_arm": [
+       26.7,
+       7.7
+      ],
+      "l_fore": [
+       -20.3,
+       82.3
+      ],
+      "r_arm": [
+       27.3,
+       7.0
+      ],
+      "r_fore": [
+       -14.9,
+       83.2
+      ]
+     },
+     "intent": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, the foot on the left of the picture lifted clear off the floor with its knee bent and toe pointing down, tapping time, the other foot flat on the floor, both hands just above the drumheads, about to come down"
+    }
+   }
+  },
+  "drawing": {
+   "noun": "man",
+   "fits": "his head, both shoes, both hands and both drums",
+   "look": "short, stocky, barrel-chested adult build, round belly, thick arms, short neck, round cheerful face with crinkled eyes and a wide open grin, warm tan skin, smooth bald head, thick neat grey moustache, long-sleeved cream dinner jacket buttoned closed, its narrow midnight-violet satin lapels lying flat on the chest, a small midnight-violet bow tie at a closed cream shirt collar, slim dark charcoal trousers and polished two-tone cream and dark shoes, and thick dark ink outline, behind a pair of slim barrel-shaped conga drums of dark reddish wood with cream drumheads and brass bands",
+   "extra": "He is a grown man of about fifty-five. The two slim conga drums stand on the floor and their cream heads are at the height of his hips. ",
+   "sheet": {
+    "source": {
+     "image": "tool/art/references/band-congas/front.png",
+     "poseFrom": "relaxed.a"
+    },
+    "views": {
+     "front": {
+      "image": "tool/art/references/band-congas/front.png",
+      "description": "standing square facing the viewer behind the two conga drums, feet apart, elbows out, both open hands lying flat on top of the cream drumheads, in plain sight"
+     },
+     "front_3q": {
+      "image": "tool/art/references/band-congas/front_3q.png",
+      "description": "standing behind the two conga drums, body and face turned three-quarters toward the right side of the picture, playing out toward a crowd on that side, feet apart, both open hands on top of the cream drumheads",
+      "extra": "He is a grown man of about fifty-five. The two slim conga drums stand on the floor and their cream heads are at the height of his hips. There are exactly two drums and no more, one just in front of the other as in image 1: the near one on the left of the picture in front of his legs, the far one on the right of the picture. Both drums stay exactly where image 1 shows them, overlapping, and only he moves. "
+     }
+    }
+   },
+   "score": {
+    "silhouetteTolerance": 60
+   },
+   "skeletonScale": 0.92,
+   "seed": 989620,
+   "count": 2
+  },
+  "references": {
+   "mode": "source",
+   "sources": []
+  },
+  "targets": [
+   {
+    "room": "cool-crowd",
+    "atlas": "band-congas",
+    "out": "assets/art/ensemble/band-congas-v1.png",
+    "native": [
+     256,
+     320
+    ],
+    "pixelScale": 3
+   }
+  ],
+  "seedBase": 989620
+ },
+ "style": {
+  "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background",
+  "negative": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render",
+  "frame": {
+   "margin": {
+    "minClear": 0.03,
+    "units": "fraction-of-generation-canvas",
+    "failOnBorderTouch": true
+   },
+   "units": "native-px",
+   "generationCanvas": {
+    "width": 768,
+    "height": 960
+   },
+   "camera": "floor-perspective"
+  },
+  "ramp": {
+   "shades": 4
+  },
+  "outline": "#1A1018",
+  "reservedRamps": [
+   {
+    "id": "kumbia-outfit",
+    "appliesToRegions": [
+     "cloth"
+    ],
+    "recolor": false,
+    "$comment": "Gates from shaders/party_palette.frag on unpremultiplied RGB 0-1; matches if ANY gate's ALL conditions hold. Structured, never eval'd: lhs is a channel or {sub:[a,b]}, rhs a literal or {mul:[k,channel]}.",
+    "gates": [
+     {
+      "id": "cool",
+      "all": [
+       {
+        "lhs": "b",
+        "op": ">=",
+        "rhs": 0.12
+       },
+       {
+        "lhs": "r",
+        "op": ">=",
+        "rhs": {
+         "mul": [
+          0.7,
+          "b"
+         ]
+        }
+       },
+       {
+        "lhs": "b",
+        "op": ">=",
+        "rhs": {
+         "mul": [
+          0.99,
+          "r"
+         ]
+        }
+       },
+       {
+        "lhs": "g",
+        "op": ">=",
+        "rhs": {
+         "mul": [
+          0.2,
+          "b"
+         ]
+        }
+       },
+       {
+        "lhs": "g",
+        "op": "<=",
+        "rhs": {
+         "mul": [
+          0.66,
+          "b"
+         ]
+        }
+       }
+      ]
+     },
+     {
+      "id": "plum",
+      "all": [
+       {
+        "lhs": "r",
+        "op": ">=",
+        "rhs": 0.392157
+       },
+       {
+        "lhs": "r",
+        "op": ">=",
+        "rhs": {
+         "mul": [
+          0.7,
+          "b"
+         ]
+        }
+       },
+       {
+        "lhs": "b",
+        "op": ">=",
+        "rhs": {
+         "mul": [
+          0.32,
+          "r"
+         ]
+        }
+       },
+       {
+        "lhs": "g",
+        "op": "<=",
+        "rhs": {
+         "mul": [
+          0.55,
+          "b"
+         ]
+        }
+       },
+       {
+        "lhs": {
+         "sub": [
+          "b",
+          "g"
+         ]
+        },
+        "op": ">=",
+        "rhs": 0.047059
+       }
+      ]
+     },
+     {
+      "id": "pink",
+      "all": [
+       {
+        "lhs": "r",
+        "op": ">=",
+        "rhs": 0.705882
+       },
+       {
+        "lhs": "r",
+        "op": ">=",
+        "rhs": {
+         "mul": [
+          0.7,
+          "b"
+         ]
+        }
+       },
+       {
+        "lhs": "b",
+        "op": ">=",
+        "rhs": {
+         "mul": [
+          0.32,
+          "r"
+         ]
+        }
+       },
+       {
+        "lhs": "g",
+        "op": "<=",
+        "rhs": {
+         "mul": [
+          0.86,
+          "b"
+         ]
+        }
+       },
+       {
+        "lhs": {
+         "sub": [
+          "b",
+          "g"
+         ]
+        },
+        "op": ">=",
+        "rhs": 0.047059
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  "generation": {
+   "count_per_pose": 4,
+   "seed_policy": "seed = seed_base + 100*pose_index + k; fixed per pose while tuning",
+   "tier": "I1"
+  }
+ },
+ "styleKey": "678ab4fca1ded9f95c38fad960356fa18d5651aea6ef3a4346ae687ff556ec48",
+ "backend": "qwen-frame",
+ "rigKey": "bbbb1f3aa8c71cdcfa8a10c5ef65ad98ee59b5fcd28fb0bf1692beb21ab0a931",
+ "frameKeys": {
+  "relaxed.a": "9494378e78043f03059cea0e6f7f7b306dbf1ca51674fd8a96e5bfd7b61b4dd0",
+  "relaxed.b": "c0f19ce0cb80c7fa0f9058bc5d7f25adc43ee90f29221493c2c56856cb3e773a",
+  "tap.up_a": "74637af08535018dcd7fd4172b400fbf034c2e7ffdabdc51221c09c64b74b9b7",
+  "tap.up_b": "e67d3ab2b302d7e0265d8cf027d545965d543bda16dabeed26d48f6e272bc79a",
+  "swing.a": "32d413596974cee3e691fcd3024e4f33afcefff53b726565fbe8c072170e015b",
+  "swing.b": "fd83754daba2f0ce7f301eb55eabb8541343456e1b335577e1f9adb4ebbbe3ee",
+  "swing.c": "37b257c476a752b2ba5986d89b427f50aec7f761a03de2f4de0a4de2eae9eed6",
+  "swing.d": "b757d67642f71f7167f7cce641f8246af8071d147856bd6c25da719b0d4b72c6"
+ },
+ "run": "band-congas-v1-4e0b0a5d53"
+}

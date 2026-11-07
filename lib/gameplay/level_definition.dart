@@ -1,6 +1,7 @@
 import 'dart:ui' as ui;
 
 import 'dart:convert';
+import 'dart:math' as math;
 
 import 'package:flutter/services.dart';
 
@@ -55,6 +56,9 @@ class _Fields {
   }
 
   bool has(String key) => _raw.containsKey(key);
+
+  /// For an object whose keys are names the level chooses.
+  Iterable<String> get keys => _raw.keys;
 
   String text(String key) {
     final value = _take(key);
@@ -183,11 +187,16 @@ class LevelChallenger {
     this.stature = 1,
     this.meetMark,
     this.facingAway,
+    this.defeatStance,
   });
   final FloorTrack? track;
 
   /// Dancing with their back to the room until the first call, if they do.
   final FacingAway? facingAway;
+
+  /// Taken once as the win's shot begins, and then held: the drawings play in
+  /// order from the shot's walk and stop on the last. Reduced motion shows the last.
+  final FloorClip? defeatStance;
 
   /// Where this dancer steps in to meet the hero when the level is won. Her
   /// [yieldMark] is off the floor, too far for the shot's walk to reach.
@@ -559,6 +568,7 @@ class LevelDefinition {
         : null;
     final seats = <PartySeat>[];
     final partTo = <PartyPoint?>[];
+    final cast = <FloorGuestCast?>[];
     final anchors = [
       for (final (i, raw) in crowdFields.list('guests').indexed)
         () {
@@ -567,6 +577,7 @@ class LevelDefinition {
           if (raw is List<Object?>) {
             seats.add(seat);
             partTo.add(null);
+            cast.add(null);
             return onFloor(path, _point(path, raw));
           }
           final guest = _Fields(path, raw);
@@ -578,6 +589,16 @@ class LevelDefinition {
             guest.has('partTo')
                 ? onFloor(guest.at('partTo'), guest.point('partTo'))
                 : null,
+          );
+          cast.add(
+            FloorGuestCast(
+              atlas: guest.has('atlas') ? guest.text('atlas') : null,
+              occupied: guest.has('occupied') ? guest.text('occupied') : null,
+              facingRight: guest.has('faces')
+                  ? guest.text('faces') == 'right'
+                  : null,
+              partner: guest.has('partner') ? guest.whole('partner', min: 0) : null,
+            ),
           );
           guest.finish();
           return at;
@@ -617,17 +638,39 @@ class LevelDefinition {
         );
       }
     }
+    for (final (i, guest) in cast.indexed) {
+      final partner = guest?.partner;
+      final path = '$guestPath[$i]';
+      if (guest?.occupied != null && floorDance?.occupied[guest!.occupied] == null) {
+        throw LevelDataError(path, 'no such occupied clip: ${guest!.occupied}');
+      }
+      if (partner == null) continue;
+      if (partner >= cast.length || partner == i || cast[partner]?.partner != i) {
+        throw LevelDataError(path, 'partner must be a guest naming them back');
+      }
+      if ((partTo[i] == null) != (partTo[partner] == null)) {
+        throw LevelDataError(path, 'partners part together, or not at all');
+      }
+    }
+    final delays = _partDelays(
+      anchors,
+      partTo,
+      stage.challengers.first.mark,
+      floorDance?.parting?.stagger ?? 0,
+    );
     final guests = seatedGuestSlots(
       id,
       anchors,
       seats: seats,
       partTo: partTo,
-      partDelays: _partDelays(
-        anchors,
-        partTo,
-        stage.challengers.first.mark,
-        floorDance?.parting?.stagger ?? 0,
-      ),
+      // Partners set off together, when the nearer of the two would.
+      partDelays: [
+        for (final (i, delay) in delays.indexed)
+          cast[i]?.partner == null
+              ? delay
+              : math.min(delay, delays[cast[i]!.partner!]),
+      ],
+      cast: cast,
     );
     final propPath = crowdFields.at('props');
     final placed = [
@@ -776,6 +819,22 @@ class LevelDefinition {
   static FloorDance _floorDance(_Fields fields, double introBeats) {
     final ownThing = _floorClip(fields.child('ownThing'));
     final glance = _floorClip(fields.child('glance'));
+    final occupied = <String, FloorClip>{};
+    if (fields.has('occupied')) {
+      final clips = fields.child('occupied');
+      for (final name in clips.keys) {
+        occupied[name] = _floorClip(clips.child(name));
+      }
+    }
+    final sidestep = fields.has('sidestep')
+        ? _floorClip(fields.child('sidestep'))
+        : null;
+    final following = fields.has('following')
+        ? _floorClip(fields.child('following'))
+        : null;
+    final castGlance = fields.has('castGlance')
+        ? _floorClip(fields.child('castGlance'))
+        : null;
     CrowdParting? parting;
     if (fields.has('parting')) {
       final part = fields.child('parting');
@@ -795,7 +854,15 @@ class LevelDefinition {
       }
     }
     fields.finish();
-    return FloorDance(ownThing: ownThing, glance: glance, parting: parting);
+    return FloorDance(
+      ownThing: ownThing,
+      glance: glance,
+      occupied: occupied,
+      castGlance: castGlance,
+      sidestep: sidestep,
+      following: following,
+      parting: parting,
+    );
   }
 
   /// Those nearest the dancer move first, as if the fight pushed the floor open.
@@ -1215,6 +1282,9 @@ class LevelDefinition {
           meetMark: fields.has('meetMark') ? mark(fields, 'meetMark') : null,
           facingAway: fields.has('facingAway')
               ? _facingAway(fields.child('facingAway'))
+              : null,
+          defeatStance: fields.has('defeatStance')
+              ? _floorClip(fields.child('defeatStance'))
               : null,
         ),
       );

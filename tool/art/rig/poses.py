@@ -546,6 +546,59 @@ POOL_BG = {
 
 MOTION_SETS = {"opponent-64": OPPONENT_64, "opponent-facing-away": OPPONENT_FACING_AWAY, "opponent-cue": OPPONENT_CUE, "pool-bg": POOL_BG,
                "macron-pilot": MACRON_PILOT}
+# ---------------------------------------------------------------- the band
+# Motion set band-loop: eight drawings a musician (plan/levels/indoor-band-2026-11-07.md). The whole band stands
+# at the same angle, turned toward the crowd, on the planted stance a player keeps all night. This table holds
+# the legs and body. Each player's arms and words are motion.overrides in their definition, since an arm's job
+# depends on the instrument. tap.up_* lifts the right heel, the foot nearer the viewer at this angle.
+
+BAND_YAW = 30.0
+_BAND_LEGS = dict(yaw=BAND_YAW, pin="mid", l_thigh=(9, 3), l_shin=(7, -3), r_thigh=(9, 3), r_shin=(7, -3), toe_out=10, knee_out=20)
+_BAND_TAP = dict(yaw=BAND_YAW, pin="l", l_thigh=(9, 3), l_shin=(7, -3), r_thigh=(10, 38), r_shin=(8, -18), r_foot=34, toe_out=10, knee_out=20)
+BAND_LOOP = {
+    "relaxed": {"a": (Pose(head_nod=4, **_BAND_LEGS), "both"), "b": (Pose(head_nod=-3, **_BAND_LEGS), "both")},
+    "tap": {"up_a": (Pose(head_nod=2, **_BAND_TAP), "left"), "up_b": (Pose(head_nod=-4, **_BAND_TAP), "left")},
+    "swing": {"a": (Pose(twist=8, head_nod=6, head_side=-6, **_BAND_LEGS), "both"),
+              "b": (Pose(head_nod=-4, **_BAND_LEGS), "both"),
+              "c": (Pose(twist=-8, head_nod=6, head_side=6, **_BAND_LEGS), "both"),
+              "d": (Pose(head_nod=-4, **_BAND_TAP), "left")},
+}
+
+# ---------------------------------------------------------------- the floor crowd
+# Motion set party-floor: guests who are on their feet all night, and dance in pairs (owner, 2026-11-07, "they would
+# likely be dancing in pairs"). A couple is two sprites on the same beat, one of them flipped, so every clip here faces
+# picture right. Hands are held forward at the height a partner's hand or waist would be. `model` is only the sheet
+# views' stances: it is planned so the sheets have a skeleton, and is never drawn as a frame.
+
+_PF_ARMS = dict(l_arm=(24, 46), l_fore=(26, 96), r_arm=(14, 30), r_fore=(-10, 78))
+_PF_L = dict(pelvis_x=0.05, pelvis_roll=6, side_bend=3, l_thigh=(5, 8), l_shin=(4, -4), r_thigh=(14, 18), r_shin=(8, -14), pin="l")
+_PF_R = dict(pelvis_x=-0.05, pelvis_roll=-6, side_bend=-3, r_thigh=(5, 8), r_shin=(4, -4), l_thigh=(14, 18), l_shin=(8, -14), pin="r")
+_PF_UP = dict(head_nod=-5, pin="mid", l_thigh=(6, 4), l_shin=(5, -2), r_thigh=(6, 4), r_shin=(5, -2))
+
+
+def _pf_pair(yaw: float, head: float = 0, arms: dict = _PF_ARMS) -> dict:
+    base = dict(yaw=yaw, head_turn=head, toe_out=10, knee_out=20, **arms)
+    return {"a": (Pose(head_nod=4, twist=6, **base, **_PF_L), "left"),
+            "c": (Pose(head_nod=4, twist=-6, **base, **_PF_R), "right")}
+
+
+_PF_WALK = paseo(82)
+_PF_SWING = dict(l_arm=(14, 18), l_fore=(12, 44), r_arm=(14, -14), r_fore=(12, 12))
+PARTY_FLOOR = {
+    "groove": {"a": (replace(GROOVE["down_l"][0], l_arm=(22, 18), l_fore=(18, 50), r_arm=(24, -10), r_fore=(26, 18)), "left"),
+               "c": (replace(GROOVE["down_r"][0], r_arm=(22, 18), r_fore=(18, 50), l_arm=(24, -10), l_fore=(26, 18)), "right")},
+    "pair_dance": _pf_pair(48, head=-6),
+    "back_dance": _pf_pair(152, arms=dict(l_arm=(14, 28), l_fore=(10, 64), r_arm=(14, 28), r_fore=(10, 64))),
+    "sidestep": {"a": (replace(_PF_WALK["contact_l"][0], **_PF_SWING), "left"), "b": (replace(_PF_WALK["pass_l"][0], **_PF_SWING), "left")},
+    "glance": {"a": (Pose(yaw=158, head_turn=-58, head_nod=-2, side_bend=3, l_arm=(16, 4), l_fore=(14, 22), r_arm=(18, 8), r_fore=(16, 28), **_TURN_LEGS), "both")},
+    "clap": {"a": CLAP["open"], "b": CLAP["contact"]},
+    "cheer": {"a": (Pose(yaw=8, head_nod=-8, l_arm=(148, 8), l_fore=(164, 8), r_arm=(148, 8), r_fore=(164, 8), l_thigh=(8, 6), l_shin=(6, -3), r_thigh=(8, 6), r_shin=(6, -3), pin="mid"), "both")},
+    "model": {"front": (Pose(l_arm=(16, 2), l_fore=(12, 14), r_arm=(16, 2), r_fore=(12, 14), l_thigh=(6, 2), l_shin=(5, -2), r_thigh=(6, 2), r_shin=(5, -2), pin="mid"), "both"),
+              "q3": (Pose(yaw=48, l_arm=(14, 8), l_fore=(10, 22), r_arm=(14, 2), r_fore=(10, 18), l_thigh=(6, 2), l_shin=(5, -2), r_thigh=(6, 2), r_shin=(5, -2), pin="mid", toe_out=10, knee_out=20), "both"),
+              "back": (Pose(yaw=142, l_arm=(14, 8), l_fore=(10, 22), r_arm=(14, 2), r_fore=(10, 18), l_thigh=(6, 2), l_shin=(5, -2), r_thigh=(6, 2), r_shin=(5, -2), pin="mid", toe_out=10, knee_out=20), "both")},
+}
+
+MOTION_SETS = {"party-floor": PARTY_FLOOR, "opponent-64": OPPONENT_64, "opponent-facing-away": OPPONENT_FACING_AWAY, "band-loop": BAND_LOOP, "macron-pilot": MACRON_PILOT}
 
 assert sum(len(v) for v in OPPONENT_64.values()) == 64, "opponent target is 64 drawings"
 
@@ -672,6 +725,42 @@ POOL_BG_INTENT = {
 POOL_BG_INTENT.pop("stroke")
 INTENT_BY_SET = {"opponent-64": OPPONENT_64_INTENT, "opponent-facing-away": OPPONENT_FACING_AWAY_INTENT,
                  "opponent-cue": OPPONENT_CUE_INTENT, "pool-bg": POOL_BG_INTENT}
+_BAND_PLAIN = "playing the instrument, body turned three-quarters toward the right side of the picture"
+BAND_LOOP_INTENT = {
+    "relaxed.a": ("settle", _BAND_PLAIN), "relaxed.b": ("settle", _BAND_PLAIN),
+    "tap.up_a": ("pass", _BAND_PLAIN), "tap.up_b": ("pass", _BAND_PLAIN),
+    "swing.a": ("accent", _BAND_PLAIN), "swing.b": ("pass", _BAND_PLAIN),
+    "swing.c": ("accent", _BAND_PLAIN), "swing.d": ("pass", _BAND_PLAIN),
+}
+
+_FLOOR_Q3 = "seen in a three-quarter view from the side: the chest, hips, knees, toes and nose all point toward the lower right corner of the picture, the face in three-quarter view looking that way, smiling, absorbed in the dance, "
+_FLOOR_BACK = "seen from behind at three quarters, turned away from the viewer toward the upper right corner of the picture: the back of {his} head and {his} back show, a sliver of cheek on the right, the face hidden, "
+_FLOOR_SIDE = "seen in a clean side profile walking toward the right side of the picture, the nose and both toes pointing right, one eye showing, "
+_FLOOR_HOLD = "both arms held forward in a slow social-dance hold, the upper hand open at chest height and the lower hand open at waist height, both reaching toward the right side of the picture, the fingers relaxed and together, "
+_FLOOR_BACK_ARMS = "both upper arms close to the body with the elbows bent and both forearms in front of the body, out of sight, so only the elbows show and no hand is visible, "
+PARTY_FLOOR_INTENT = {
+    "groove.a": ("down", "facing the viewer, dancing in place on bent knees with weight on {his} left foot, arms low and loose below the shoulders, loose relaxed hands, smiling"),
+    "groove.c": ("down", "facing the viewer, dancing in place on bent knees with weight on {his} right foot, arms low and loose below the shoulders, loose relaxed hands, smiling"),
+    "pair_dance.a": ("down", _FLOOR_Q3 + _FLOOR_HOLD + "weight on the back foot, the front heel lifted"),
+    "pair_dance.c": ("down", _FLOOR_Q3 + _FLOOR_HOLD + "weight on the front foot, the back heel lifted"),
+    "back_dance.a": ("down", _FLOOR_BACK + _FLOOR_BACK_ARMS + "weight on one foot, the other heel lifted"),
+    "back_dance.c": ("down", _FLOOR_BACK + _FLOOR_BACK_ARMS + "weight on the other foot, one heel lifted"),
+    "sidestep.a": ("contact", _FLOOR_SIDE + "taking a long easy step, the front heel just touching the floor and the back foot on its toes, arms swinging low at the sides, relaxed hands"),
+    "sidestep.b": ("pass", _FLOOR_SIDE + "mid-step, the weight over one straight leg and the other foot passing it, arms low at the sides, relaxed hands"),
+    "glance.a": ("hold", "seen from behind, {his} back to the viewer, head turned to look back over {his} shoulder toward the right side of the picture so {his} face shows in profile with one eye, curious and interested, arms relaxed"),
+    "clap.a": ("open", "facing the viewer, hands apart at chest height about to clap, palms facing each other, delighted"),
+    "clap.b": ("contact", "facing the viewer, palms together clapping at chest height, knees softly bent, delighted"),
+    "cheer.a": ("accent", "facing the viewer, cheering with both arms straight up above {his} head and open hands, a big smile"),
+    "model.front": ("sheet", "standing square"),
+    "model.q3": ("sheet", "standing in three quarters"),
+    "model.back": ("sheet", "from behind in three quarters"),
+}
+
+INTENT_BY_SET = {"party-floor": PARTY_FLOOR_INTENT, "opponent-64": OPPONENT_64_INTENT, "opponent-facing-away": OPPONENT_FACING_AWAY_INTENT, "band-loop": BAND_LOOP_INTENT}
+
+assert set(PARTY_FLOOR_INTENT) == {f"{c}.{n}" for c, d in PARTY_FLOOR.items() for n in d}, "intent ids != pose ids"
+
+assert set(BAND_LOOP_INTENT) == {f"{c}.{n}" for c, d in BAND_LOOP.items() for n in d}, "intent ids != pose ids"
 
 assert set(OPPONENT_FACING_AWAY_INTENT) == {f"{c}.{n}" for c, d in OPPONENT_FACING_AWAY.items() for n in d}, "intent ids != pose ids"
 

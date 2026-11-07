@@ -11,7 +11,9 @@ import 'package:kumbia_kombat/gameplay/garden_session.dart';
 import 'package:kumbia_kombat/gameplay/level_definition.dart';
 import 'package:kumbia_kombat/gameplay/music_mixer.dart';
 import 'package:kumbia_kombat/gameplay/outfit_palette.dart';
+import 'package:kumbia_kombat/gameplay/room_dissolve.dart';
 import 'package:kumbia_kombat/music/game_audio.dart';
+import 'package:kumbia_kombat/music/accent_voice.dart';
 import 'package:kumbia_kombat/music/rendered_music.dart';
 import 'package:kumbia_kombat/music/score.dart';
 import 'package:kumbia_kombat/music/transport.dart';
@@ -163,7 +165,90 @@ void main() {
   // The palette caches its shader for good; see pause_overlay_test.dart.
   setUpAll(() async => (await OutfitPalette.load()).dispose());
 
-  testWidgets('the hidden indoor party plays its own takes, not the synth', (
+  testWidgets('the real bar hands to the real party on rendered music', (
+    tester,
+  ) async {
+    tester.view.physicalSize = const Size(500, 900);
+    tester.view.devicePixelRatio = 1;
+    addTearDown(tester.view.reset);
+    Flame.images.clearCache();
+    rootBundle.clear();
+    final audio = _Audio();
+    final levels = LevelRegistry.parse(
+      '{ "campaign": [ { "level": "bar", "bridgeToNext": "bar_to_crowd" }, { "level": "cool-crowd" } ] }',
+      (id) => File('levels/$id.json').readAsStringSync(),
+    );
+    await tester.pumpWidget(
+      MaterialApp(
+        home: GardenPage(audioFactory: () => audio, levels: () async => levels),
+      ),
+    );
+    for (var i = 0; i < 400; i++) {
+      final button = find.byType(FilledButton);
+      if (button.evaluate().isNotEmpty &&
+          tester.widget<FilledButton>(button).onPressed != null) {
+        break;
+      }
+      await tester.runAsync(
+        () => Future<void>.delayed(const Duration(milliseconds: 20)),
+      );
+      await tester.pump();
+    }
+    await tester.tap(find.byKey(const ValueKey('autoplay')));
+    await tester.pump();
+    final game = tester
+        .widget<GameWidget<GardenSceneGame>>(
+          find.byType(GameWidget<GardenSceneGame>),
+        )
+        .game!;
+    for (var i = 0; i < 300 && game.session?.phase == GardenPhase.ready; i++) {
+      await tester.runAsync(
+        () => Future<void>.delayed(const Duration(milliseconds: 20)),
+      );
+      await tester.pump();
+    }
+    bool ended() => find.text('OTRA VUELTA  >').evaluate().isNotEmpty;
+    var entryChecked = false;
+    for (var frame = 0; frame < 24000 && !ended(); frame++) {
+      audio.nowSeconds += .02;
+      await tester.pump(const Duration(milliseconds: 20));
+      // Let the page's own awaits finish whenever a room changes hands.
+      if (frame % 50 == 0) {
+        await tester.runAsync(
+          () => Future<void>.delayed(const Duration(milliseconds: 20)),
+        );
+      }
+      final session = game.session;
+      if (session?.progress.definition.id == 'cool-crowd') entryChecked = true;
+    }
+    expect(
+      ended(),
+      isTrue,
+      reason:
+          '${game.session?.progress.definition.id} ${game.session?.phase} '
+          '${game.session?.positionBeats} ${audio.nowSeconds} '
+          '${audio.voices.map((v) => v.clip.id).toSet()}',
+    );
+    expect(entryChecked, isTrue);
+    // The room clears before his walk starts. Worked out, not measured here: how
+    // many frames the page takes to adopt a room depends on this machine's load.
+    final party = levels.byId('cool-crowd');
+    final beatSeconds = 60 / audio.voices
+        .firstWhere((v) => v.clip.id == 'cool-crowd/low')
+        .clip
+        .bpm;
+    expect(RoomDissolve.seconds, lessThan(party.stage.heroEntersAt * beatSeconds));
+    final clips = audio.voices.map((v) => v.clip.id).toList();
+    expect(clips, contains('bar/successShort'));
+    expect(clips, isNot(contains('bar/success')));
+    expect(clips, contains('bar/bridge'));
+    expect(clips, contains('cool-crowd/success'));
+    final accents = audio.notes.map((n) => n.track).where(isAccentTrack).toList();
+    expect(accents, containsAllInOrder(['clink', 'glug', 'nod', 'nod']));
+    await _end(tester);
+  }, timeout: const Timeout(Duration(minutes: 5)));
+
+  testWidgets('the indoor party plays its own takes, not the synth', (
     tester,
   ) async {
     final audio = _Audio();

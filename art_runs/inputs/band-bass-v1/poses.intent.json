@@ -1,0 +1,54 @@
+{
+ "character": "band-bass",
+ "note": "Sides are the character's own; she faces the viewer, so her left is on screen right.",
+ "poses": {
+  "relaxed.a": {
+   "clip": "relaxed",
+   "phase": "settle",
+   "support": "both",
+   "description": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, both feet flat on the floor, the hand on the left of the picture plucking the bass strings with bare fingertips, the other hand on the bass neck, the bass exactly where it is in image 1"
+  },
+  "relaxed.b": {
+   "clip": "relaxed",
+   "phase": "settle",
+   "support": "both",
+   "description": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, both feet flat on the floor, the plucking hand pulled a little away from the strings, the other hand on the bass neck, the bass exactly where it is in image 1"
+  },
+  "tap.up_a": {
+   "clip": "tap",
+   "phase": "pass",
+   "support": "left",
+   "description": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, the foot on the left of the picture lifted clear off the floor with its knee bent and toe pointing down, tapping time, the other foot flat on the floor, plucking the bass strings with bare fingertips, the other hand on the bass neck, the bass exactly where it is in image 1"
+  },
+  "tap.up_b": {
+   "clip": "tap",
+   "phase": "pass",
+   "support": "left",
+   "description": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, the foot on the left of the picture lifted clear off the floor with its knee bent and toe pointing down, tapping time, the other foot flat on the floor, the plucking hand pulled a little away from the strings, the other hand on the bass neck, the bass exactly where it is in image 1"
+  },
+  "swing.a": {
+   "clip": "swing",
+   "phase": "accent",
+   "support": "both",
+   "description": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, both feet flat on the floor, the bass exactly where it is in image 1, upright on its spike in front of her, her shoulders swaying a little toward the right of the picture, plucking hard"
+  },
+  "swing.b": {
+   "clip": "swing",
+   "phase": "pass",
+   "support": "both",
+   "description": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, both feet flat on the floor, the bass exactly where it is in image 1, the plucking hand pulled away"
+  },
+  "swing.c": {
+   "clip": "swing",
+   "phase": "accent",
+   "support": "both",
+   "description": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, both feet flat on the floor, the bass exactly where it is in image 1, upright on its spike in front of her, her shoulders swaying a little toward the left of the picture, plucking hard"
+  },
+  "swing.d": {
+   "clip": "swing",
+   "phase": "pass",
+   "support": "left",
+   "description": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, the foot on the left of the picture lifted clear off the floor with its knee bent and toe pointing down, tapping time, the other foot flat on the floor, the bass exactly where it is in image 1, the plucking hand pulled away"
+  }
+ }
+}

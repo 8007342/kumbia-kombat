@@ -312,10 +312,51 @@ void main() {
       return crowd;
     }
 
-    test('at the start they are dancing, turned away, doing their own thing', () {
+    test('at the start they are dancing, busy with each other or themselves', () {
       final all = poses(run(const []), 0);
       expect(all.every((p) => !p.facesIn), isTrue);
-      expect(all.map((p) => p.frame).toSet(), everyElement(isIn(dance.ownThing.frames)));
+      expect(
+        all.map((p) => p.frame).toSet(),
+        everyElement(isIn(dance.frames)),
+      );
+      // Those cast as couples are absorbed in each other, not turned away.
+      for (final slot in _level().layout.guests.where((g) => g.partner != null)) {
+        final crowd = run(const []);
+        final pose = floorGuestPose(
+          crowd.guest(slot.interestIndex!, 0),
+          dance,
+          danceBeat: 0,
+          cast: slot.atlas != null,
+          occupied: slot.occupied,
+        );
+        expect(pose.facesIn, isFalse);
+        expect(dance.occupied[slot.occupied]!.frames, contains(pose.frame));
+      }
+    });
+
+    test('most of the floor dances in couples, and faces all ways', () {
+      final guests = _level().layout.guests;
+      final coupled = guests.where((g) => g.partner != null).toList();
+      expect(coupled.length, greaterThanOrEqualTo(10));
+      for (final guest in coupled) {
+        final other = guests[guest.partner!];
+        expect(other.partner, guests.indexOf(guest));
+        // Side by side, at both ends of a parting, at the reach GUESTS measured:
+        // .40 to .44 of an adult apart, which scales with distance on the floor.
+        // On this plate an adult is (y - horizon) of the plate's width.
+        for (final (mine, theirs) in [
+          (guest.floor, other.floor),
+          if (guest.partTo != null) (guest.partTo!, other.partTo!),
+        ]) {
+          final adults = (mine.x - theirs.x).abs() / (mine.y - .25);
+          expect(adults, inInclusiveRange(.39, .45), reason: guest.id);
+          expect(mine.y, theirs.y, reason: guest.id);
+        }
+        expect(guest.occupiedFacingRight, guest.floor.x < other.floor.x);
+        expect(guest.partDelay, other.partDelay);
+      }
+      final facing = guests.map((g) => g.occupiedFacingRight).toSet();
+      expect(facing, {true, false});
     });
 
     test('nobody ever sits, however the run goes', () {
@@ -470,7 +511,11 @@ void main() {
     test('stands on the deck, every player with a ladder to climb', () {
       final level = _level();
       expect(band.players.length, greaterThanOrEqualTo(3));
-      expect(band.standIn, isTrue, reason: 'their art is owed: see the plan note');
+      expect(band.standIn, isFalse);
+      expect(
+        band.players.map((p) => p.atlas).toSet(),
+        {'band-trumpet', 'band-bass', 'band-congas', 'band-marimba'},
+      );
       for (final p in band.players) {
         expect(level.scenery.platform!.holds(p.feet), isTrue, reason: p.id);
         expect(p.ladder.length, greaterThanOrEqualTo(3));
@@ -545,7 +590,7 @@ void main() {
       expect(player.rungFor(const BandInputs(tier: 4, partySwing: 1)), 0);
 
       final other = _editedJson((json) {
-        final rungs = json['scenery']['band']['ladders']['standIn'] as List;
+        final rungs = json['scenery']['band']['ladders']['instrument'] as List;
         rungs[1]['input'] = 'tier';
         rungs[1]['from'] = 2;
         rungs[2]['input'] = 'partySwing';
@@ -556,6 +601,16 @@ void main() {
       expect(proposal.rungFor(const BandInputs(form: 1)), 0);
       expect(proposal.rungFor(const BandInputs(tier: 2)), 1);
       expect(proposal.rungFor(const BandInputs(tier: 2, partySwing: .5)), 2);
+    });
+
+    test('under reduced motion the top rung still looks different', () {
+      for (final player in band.players) {
+        expect(
+          player.ladder.last.clip.at(0, reducedMotion: true),
+          isNot(player.ladder.first.clip.at(0, reducedMotion: true)),
+          reason: player.id,
+        );
+      }
     });
 
     test('they liven one at a time', () {
@@ -814,6 +869,35 @@ void main() {
       for (var i = 0; i < session.crowd.guestCount; i++) {
         expect(session.crowd.guest(i, last).state, CrowdGuestState.celebrating);
       }
+      // The win's shot, through the real scene, on the beats that matter.
+      final won = <ui.Image>[];
+      final shot = level.exitShot!;
+      scene.exitCodaBeat = last;
+      for (final beat in [
+        1.0,
+        shot.walkTo - .25,
+        shot.closeupFrom + .25,
+        4.0,
+        shot.contactBeat,
+        shot.closeupTo - .25,
+        shot.closeupTo + .1,
+      ]) {
+        scene.exitBeat = beat;
+        scene.presentationBeat = last + beat;
+        won.add(await still(scene));
+      }
+      scene.exitBeat = null;
+      scene.presentationBeat = null;
+      final winRecorder = ui.PictureRecorder();
+      final winCanvas = ui.Canvas(winRecorder);
+      for (final (i, image) in won.indexed) {
+        winCanvas.drawImage(image, ui.Offset(i * 396.0, 0), ui.Paint());
+      }
+      final winSheet = await winRecorder.endRecording().toImage(396 * won.length, 844);
+      final winPng = await winSheet.toByteData(format: ui.ImageByteFormat.png);
+      Directory('build/stills').createSync(recursive: true);
+      File('build/stills/cool-crowd-win.png').writeAsBytesSync(winPng!.buffer.asUint8List());
+
       final recorder = ui.PictureRecorder();
       final canvas = ui.Canvas(recorder);
       for (final (i, image) in frames.indexed) {

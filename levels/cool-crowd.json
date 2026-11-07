@@ -1,7 +1,7 @@
 {
  "id": "cool-crowd",
  "title": "THE DANCE ROOM",
- "background": "cool-crowd/cool-crowd-room.png",
+ "background": "cool-crowd/cool-crowd-room-clean.png",
  "music": {
   "score": "crowd_duende",
   "successScore": "crowd_duende_success",
@@ -350,7 +350,7 @@
     "mark": [0.5, 0.47],
     "yieldMark": [0.62, 0.44],
     "stature": 1.1,
-    "meetMark": [0.58, 0.46],
+    "meetMark": [0.44, 0.46],
     "facingAway": {
      "back": {
       "frames": [
@@ -402,63 +402,168 @@
     "beats": 4,
     "stagger": 2,
     "slowTo": 0.5
+   },
+   "occupied": {
+    "pair": {
+     "frames": [
+      "pair_dance_a",
+      "pair_dance_b",
+      "pair_dance_c",
+      "pair_dance_d"
+     ],
+     "beatsPerFrame": 1
+    },
+    "back": {
+     "frames": [
+      "back_dance_a",
+      "back_dance_b",
+      "back_dance_c",
+      "back_dance_d"
+     ],
+     "beatsPerFrame": 1
+    }
+   },
+   "castGlance": {
+    "frames": [
+     "glance_a",
+     "glance_b"
+    ],
+    "beatsPerFrame": 2
+   },
+   "sidestep": {
+    "frames": [
+     "sidestep_a",
+     "sidestep_b",
+     "sidestep_c",
+     "sidestep_d"
+    ],
+    "beatsPerFrame": 0.5
+   },
+   "following": {
+    "frames": [
+     "groove_a",
+     "groove_b",
+     "groove_c",
+     "groove_d"
+    ],
+    "beatsPerFrame": 1
    }
   },
   "guests": [
    {
-    "at": [0.41, 0.45],
-    "partTo": [0.285, 0.46]
+    "at": [0.431, 0.455],
+    "partTo": [0.276, 0.515],
+    "occupied": "pair",
+    "faces": "left",
+    "partner": 3,
+    "atlas": "guest4"
    },
    {
-    "at": [0.345, 0.42],
-    "partTo": [0.295, 0.425]
+    "at": [0.37, 0.405],
+    "partTo": [0.295, 0.425],
+    "faces": "right"
    },
    {
-    "at": [0.43, 0.395],
-    "partTo": [0.305, 0.4]
+    "at": [0.43, 0.405],
+    "partTo": [0.305, 0.4],
+    "faces": "left"
    },
    {
-    "at": [0.35, 0.5],
-    "partTo": [0.285, 0.49]
+    "at": [0.345, 0.455],
+    "partTo": [0.165, 0.515],
+    "occupied": "pair",
+    "faces": "right",
+    "partner": 0,
+    "atlas": "guest3"
    },
    {
     "at": [0.38, 0.53],
-    "partTo": [0.06, 0.525]
+    "partTo": [0.06, 0.525],
+    "faces": "left"
    },
    {
-    "at": [0.59, 0.45],
-    "partTo": [0.775, 0.45]
+    "at": [0.585, 0.45],
+    "partTo": [0.76, 0.51],
+    "occupied": "pair",
+    "faces": "right",
+    "partner": 6,
+    "atlas": "guest5"
    },
    {
-    "at": [0.62, 0.52],
-    "partTo": [0.735, 0.5]
+    "at": [0.669, 0.45],
+    "partTo": [0.869, 0.51],
+    "occupied": "pair",
+    "faces": "left",
+    "partner": 5,
+    "atlas": "guest6"
    },
    {
-    "at": [0.66, 0.41],
-    "partTo": [0.735, 0.435]
+    "at": [0.53, 0.39],
+    "partTo": [0.74, 0.455],
+    "occupied": "pair",
+    "faces": "right",
+    "partner": 8,
+    "atlas": "guest4"
    },
    {
-    "at": [0.52, 0.405],
-    "partTo": [0.82, 0.47]
+    "at": [0.589, 0.39],
+    "partTo": [0.826, 0.455],
+    "occupied": "back",
+    "faces": "left",
+    "partner": 7,
+    "atlas": "guest5"
    },
    {
-    "at": [0.64, 0.49],
-    "partTo": [0.8, 0.515]
+    "at": [0.595, 0.42],
+    "partTo": [0.775, 0.555],
+    "occupied": "pair",
+    "faces": "right",
+    "partner": 10,
+    "atlas": "guest6"
    },
    {
-    "at": [0.61, 0.56],
-    "partTo": [0.76, 0.55]
+    "at": [0.666, 0.42],
+    "partTo": [0.903, 0.555],
+    "occupied": "back",
+    "faces": "left",
+    "partner": 9,
+    "atlas": "guest3"
    },
    {
-    "at": [0.57, 0.4],
-    "partTo": [0.86, 0.5]
+    "at": [0.66, 0.4],
+    "partTo": [0.875, 0.48],
+    "faces": "right"
    },
-   [0.87, 0.555],
-   [0.91, 0.52],
-   [0.83, 0.575],
-   [0.08, 0.575],
-   [0.2, 0.515],
-   [0.135, 0.535]
+   {
+    "at": [0.97, 0.57],
+    "faces": "left"
+   },
+   {
+    "at": [0.93, 0.515],
+    "faces": "right"
+   },
+   {
+    "at": [0.91, 0.55],
+    "faces": "left"
+   },
+   {
+    "at": [0.04, 0.535],
+    "occupied": "pair",
+    "faces": "right",
+    "partner": 16,
+    "atlas": "guest5"
+   },
+   {
+    "at": [0.16, 0.535],
+    "occupied": "pair",
+    "faces": "left",
+    "partner": 15,
+    "atlas": "guest3"
+   },
+   {
+    "at": [0.1, 0.515],
+    "faces": "left"
+   }
   ],
   "props": []
  },
@@ -481,15 +586,15 @@
    ]
   },
   "band": {
-   "standIn": true,
+   "standIn": false,
    "ladders": {
-    "standIn": [
+    "instrument": [
      {
       "input": "form",
       "from": 0,
       "frames": [
-       "standing_idle_a",
-       "standing_idle_b"
+       "relaxed_a",
+       "relaxed_b"
       ],
       "beatsPerFrame": 1
      },
@@ -497,10 +602,10 @@
       "input": "form",
       "from": 0.3,
       "frames": [
-       "standing_idle_a",
-       "step_touch_a",
-       "standing_idle_b",
-       "step_touch_c"
+       "relaxed_a",
+       "tap_up_a",
+       "relaxed_b",
+       "tap_up_b"
       ],
       "beatsPerFrame": 0.5
      },
@@ -508,10 +613,10 @@
       "input": "form",
       "from": 0.75,
       "frames": [
-       "step_touch_a",
-       "step_touch_d",
-       "step_touch_c",
-       "step_touch_d"
+       "swing_a",
+       "swing_b",
+       "swing_c",
+       "swing_d"
       ],
       "beatsPerFrame": 0.5
      }
@@ -520,39 +625,35 @@
    "players": [
     {
      "id": "trumpet",
-     "atlas": "guest2",
-     "reference": "standing_idle_a",
-     "palette": 1,
+     "atlas": "band-trumpet",
+     "reference": "relaxed_a",
      "feet": [0.168, 0.385],
-     "ladder": "standIn",
+     "ladder": "instrument",
      "lateBy": 0.1,
      "beatOffset": 1
     },
     {
      "id": "bass",
-     "atlas": "guest1",
-     "reference": "standing_idle_a",
-     "palette": 3,
+     "atlas": "band-bass",
+     "reference": "relaxed_a",
      "feet": [0.244, 0.384],
-     "ladder": "standIn"
+     "ladder": "instrument"
     },
     {
      "id": "congas",
-     "atlas": "guest1",
-     "reference": "standing_idle_a",
-     "palette": 0,
+     "atlas": "band-congas",
+     "reference": "relaxed_a",
      "feet": [0.146, 0.432],
-     "ladder": "standIn",
+     "ladder": "instrument",
      "lateBy": 0.05,
      "beatOffset": 2
     },
     {
      "id": "marimba",
-     "atlas": "guest0",
-     "reference": "standing_idle_a",
-     "palette": 2,
+     "atlas": "band-marimba",
+     "reference": "relaxed_a",
      "feet": [0.034, 0.438],
-     "ladder": "standIn",
+     "ladder": "instrument",
      "lateBy": 0.05,
      "beatOffset": 1
     }
@@ -595,6 +696,76 @@
     "x": 0.41,
     "y": 0.385,
     "facing": "rear"
+   }
+  ]
+ },
+ "exitShot": {
+  "plate": "closeups/nod-plate.png",
+  "celebrateUntil": 2,
+  "walkFrom": 1.75,
+  "walkTo": 3,
+  "heroStep": [0.56, 0.53],
+  "heroWaitFrame": "front_idle",
+  "closeupFrom": 3,
+  "contactBeat": 5,
+  "closeupTo": 7.75,
+  "contactPoint": [0.5, 1],
+  "impactBeats": 1,
+  "dust": false,
+  "actors": [
+   {
+    "approach": "closeups/oil-gulp-bt-offer.png",
+    "impact": "closeups/oil-gulp-bt-offer.png",
+    "frames": [
+     {
+      "beat": 3,
+      "image": "closeups/oil-gulp-bt-offer.png"
+     }
+    ],
+    "contact": [431, 384],
+    "scale": 0.6,
+    "entry": [-24, 0],
+    "recoil": [0, 0]
+   },
+   {
+    "approach": "closeups/nod-mc-rest.png",
+    "impact": "closeups/nod-mc-rest.png",
+    "frames": [
+     {
+      "beat": 3,
+      "image": "closeups/nod-mc-rest.png"
+     },
+     {
+      "beat": 5,
+      "image": "closeups/nod-mc-down.png"
+     },
+     {
+      "beat": 5.5,
+      "image": "closeups/nod-mc-up.png"
+     },
+     {
+      "beat": 6,
+      "image": "closeups/nod-mc-rest.png"
+     }
+    ],
+    "contact": [40, 440],
+    "scale": 0.6,
+    "entry": [24, 0],
+    "recoil": [0, 0]
+   }
+  ],
+  "cue": [
+   {
+    "beat": 4,
+    "track": "nod",
+    "pitch": 55,
+    "velocity": 110
+   },
+   {
+    "beat": 5,
+    "track": "nod",
+    "pitch": 60,
+    "velocity": 127
    }
   ]
  },
@@ -665,6 +836,96 @@
     "at": 7,
     "limb": "rightFoot",
     "move": "stomp"
+   }
+  ]
+ },
+ "layers": {
+  "plateWidth": 1024,
+  "plateHeight": 1536,
+  "props": [
+   {
+    "id": "lantern-a",
+    "atlas": "cool-crowd/cool-crowd-layers.png",
+    "atlasY": 0,
+    "left": 226,
+    "top": 2,
+    "width": 62,
+    "height": 139,
+    "frames": 7,
+    "motion": "sway",
+    "periodBeats": 4,
+    "instance": 1,
+    "kind": "hanging"
+   },
+   {
+    "id": "lantern-b",
+    "atlas": "cool-crowd/cool-crowd-layers.png",
+    "atlasY": 141,
+    "left": 296,
+    "top": 2,
+    "width": 65,
+    "height": 241,
+    "frames": 7,
+    "motion": "sway",
+    "periodBeats": 4,
+    "instance": 2,
+    "kind": "hanging"
+   },
+   {
+    "id": "lantern-c",
+    "atlas": "cool-crowd/cool-crowd-layers.png",
+    "atlasY": 384,
+    "left": 381,
+    "top": 4,
+    "width": 76,
+    "height": 253,
+    "frames": 7,
+    "motion": "sway",
+    "periodBeats": 4,
+    "instance": 3,
+    "kind": "hanging"
+   },
+   {
+    "id": "lantern-d",
+    "atlas": "cool-crowd/cool-crowd-layers.png",
+    "atlasY": 639,
+    "left": 457,
+    "top": 2,
+    "width": 94,
+    "height": 215,
+    "frames": 7,
+    "motion": "sway",
+    "periodBeats": 4,
+    "instance": 4,
+    "kind": "hanging"
+   },
+   {
+    "id": "lantern-e",
+    "atlas": "cool-crowd/cool-crowd-layers.png",
+    "atlasY": 856,
+    "left": 598,
+    "top": 2,
+    "width": 64,
+    "height": 174,
+    "frames": 7,
+    "motion": "sway",
+    "periodBeats": 4,
+    "instance": 5,
+    "kind": "hanging"
+   },
+   {
+    "id": "candle-left",
+    "atlas": "cool-crowd/cool-crowd-layers.png",
+    "atlasY": 1032,
+    "left": 200,
+    "top": 436,
+    "width": 81,
+    "height": 35,
+    "frames": 4,
+    "motion": "pulse",
+    "periodBeats": 1,
+    "instance": 6,
+    "kind": "flame"
    }
   ]
  }

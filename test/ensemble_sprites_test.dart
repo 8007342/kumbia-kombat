@@ -75,7 +75,7 @@ void main() {
       final manifest = EnsembleManifest.fromJson(json());
       expect(manifest.atlases.keys, containsAll(EnsembleManifest.atlasIds));
       expect(
-        // Art a level names by data, such as a band, adds to these nine.
+        // Atlases a level adds by data are checked below, but grow as they're drawn.
         EnsembleManifest.atlasIds.fold(
           0,
           (count, id) => count + manifest.atlases[id]!.art.frames.length,

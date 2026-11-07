@@ -1,0 +1,227 @@
+[
+ {
+  "pose": "groove.a",
+  "args": {
+   "workflow": "art_runs/guest4-20261107b/workflows/groove.a.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/guest4-20261107b/in/sheet_front.png",
+    "pose_proxy": "/work/tmp/imagegen/kumbia/guest4-20261107b/in/groove.a.skeleton.png"
+   },
+   "overrides": {
+    "seed": 992000
+   }
+  }
+ },
+ {
+  "pose": "groove.c",
+  "args": {
+   "workflow": "art_runs/guest4-20261107b/workflows/groove.c.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/guest4-20261107b/in/sheet_front.png",
+    "pose_proxy": "/work/tmp/imagegen/kumbia/guest4-20261107b/in/groove.c.skeleton.png"
+   },
+   "overrides": {
+    "seed": 992000
+   }
+  }
+ },
+ {
+  "pose": "pair_dance.a",
+  "args": {
+   "workflow": "art_runs/guest4-20261107b/workflows/pair_dance.a.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/guest4-20261107b/in/sheet_front_3q.png",
+    "pose_proxy": "/work/tmp/imagegen/kumbia/guest4-20261107b/in/pair_dance.a.skeleton.png"
+   },
+   "overrides": {
+    "seed": 992000
+   }
+  }
+ },
+ {
+  "pose": "pair_dance.c",
+  "args": {
+   "workflow": "art_runs/guest4-20261107b/workflows/pair_dance.c.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/guest4-20261107b/in/sheet_front_3q.png",
+    "pose_proxy": "/work/tmp/imagegen/kumbia/guest4-20261107b/in/pair_dance.c.skeleton.png"
+   },
+   "overrides": {
+    "seed": 992000
+   }
+  }
+ },
+ {
+  "pose": "back_dance.a",
+  "args": {
+   "workflow": "art_runs/guest4-20261107b/workflows/back_dance.a.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/guest4-20261107b/in/sheet_back_3q.png",
+    "pose_proxy": "/work/tmp/imagegen/kumbia/guest4-20261107b/in/back_dance.a.skeleton.png"
+   },
+   "overrides": {
+    "seed": 992000
+   }
+  }
+ },
+ {
+  "pose": "back_dance.c",
+  "args": {
+   "workflow": "art_runs/guest4-20261107b/workflows/back_dance.c.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/guest4-20261107b/in/sheet_back_3q.png",
+    "pose_proxy": "/work/tmp/imagegen/kumbia/guest4-20261107b/in/back_dance.c.skeleton.png"
+   },
+   "overrides": {
+    "seed": 992000
+   }
+  }
+ },
+ {
+  "pose": "sidestep.a",
+  "args": {
+   "workflow": "art_runs/guest4-20261107b/workflows/sidestep.a.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/guest4-20261107b/in/sheet_front_3q.png",
+    "pose_proxy": "/work/tmp/imagegen/kumbia/guest4-20261107b/in/sidestep.a.skeleton.png"
+   },
+   "overrides": {
+    "seed": 992000
+   }
+  }
+ },
+ {
+  "pose": "sidestep.b",
+  "args": {
+   "workflow": "art_runs/guest4-20261107b/workflows/sidestep.b.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/guest4-20261107b/in/sheet_front_3q.png",
+    "pose_proxy": "/work/tmp/imagegen/kumbia/guest4-20261107b/in/sidestep.b.skeleton.png"
+   },
+   "overrides": {
+    "seed": 992000
+   }
+  }
+ },
+ {
+  "pose": "glance.a",
+  "args": {
+   "workflow": "art_runs/guest4-20261107b/workflows/glance.a.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/guest4-20261107b/in/sheet_back_3q.png",
+    "pose_proxy": "/work/tmp/imagegen/kumbia/guest4-20261107b/in/glance.a.skeleton.png"
+   },
+   "overrides": {
+    "seed": 992000
+   }
+  }
+ },
+ {
+  "pose": "clap.a",
+  "args": {
+   "workflow": "art_runs/guest4-20261107b/workflows/clap.a.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/guest4-20261107b/in/sheet_front.png",
+    "pose_proxy": "/work/tmp/imagegen/kumbia/guest4-20261107b/in/clap.a.skeleton.png"
+   },
+   "overrides": {
+    "seed": 992000
+   }
+  }
+ },
+ {
+  "pose": "clap.b",
+  "args": {
+   "workflow": "art_runs/guest4-20261107b/workflows/clap.b.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/guest4-20261107b/in/sheet_front.png",
+    "pose_proxy": "/work/tmp/imagegen/kumbia/guest4-20261107b/in/clap.b.skeleton.png"
+   },
+   "overrides": {
+    "seed": 992000
+   }
+  }
+ },
+ {
+  "pose": "cheer.a",
+  "args": {
+   "workflow": "art_runs/guest4-20261107b/workflows/cheer.a.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/guest4-20261107b/in/sheet_front.png",
+    "pose_proxy": "/work/tmp/imagegen/kumbia/guest4-20261107b/in/cheer.a.skeleton.png"
+   },
+   "overrides": {
+    "seed": 992000
+   }
+  }
+ },
+ {
+  "pose": "model.front",
+  "args": {
+   "workflow": "art_runs/guest4-20261107b/workflows/model.front.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/guest4-20261107b/in/sheet_front.png",
+    "pose_proxy": "/work/tmp/imagegen/kumbia/guest4-20261107b/in/model.front.skeleton.png"
+   },
+   "overrides": {
+    "seed": 992000
+   }
+  }
+ },
+ {
+  "pose": "model.q3",
+  "args": {
+   "workflow": "art_runs/guest4-20261107b/workflows/model.q3.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/guest4-20261107b/in/sheet_front.png",
+    "pose_proxy": "/work/tmp/imagegen/kumbia/guest4-20261107b/in/model.q3.skeleton.png"
+   },
+   "overrides": {
+    "seed": 992000
+   }
+  }
+ },
+ {
+  "pose": "model.back",
+  "args": {
+   "workflow": "art_runs/guest4-20261107b/workflows/model.back.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/guest4-20261107b/in/sheet_front.png",
+    "pose_proxy": "/work/tmp/imagegen/kumbia/guest4-20261107b/in/model.back.skeleton.png"
+   },
+   "overrides": {
+    "seed": 992000
+   }
+  }
+ }
+]

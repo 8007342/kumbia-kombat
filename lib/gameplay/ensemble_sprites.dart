@@ -58,9 +58,13 @@ const ensembleFurnitureFrameIds = [
 ];
 
 class EnsembleAtlasDefinition {
-  EnsembleAtlasDefinition._(this.art, this.mirroredFrames);
+  EnsembleAtlasDefinition._(this.art, this.mirroredFrames, this.playerHeightPx);
   final PartyAtlasDefinition art;
   final Set<String> mirroredFrames;
+
+  /// How tall the person stands, in atlas pixels, when a frame's box says otherwise:
+  /// a bass or a raised bell reaches above the player's head.
+  final double? playerHeightPx;
 
   factory EnsembleAtlasDefinition.fromJson(Map<String, dynamic> data) {
     final art = PartyAtlasDefinition.fromJson(data);
@@ -72,7 +76,15 @@ class EnsembleAtlasDefinition {
       }
       if (mirror == true) mirrors.add(entry.key as String);
     }
-    return EnsembleAtlasDefinition._(art, Set.unmodifiable(mirrors));
+    final player = data['playerHeightPx'];
+    if (player != null && (player is! num || player <= 0)) {
+      throw const FormatException('Invalid playerHeightPx');
+    }
+    return EnsembleAtlasDefinition._(
+      art,
+      Set.unmodifiable(mirrors),
+      (player as num?)?.toDouble(),
+    );
   }
 
   bool flipFor(String frameId, {bool facingFlip = false}) =>
@@ -83,7 +95,7 @@ class EnsembleAtlasDefinition {
     if (frame == null) {
       throw StateError('Missing reference pose $referenceFrame');
     }
-    return frame.source.height / frame.pixelsPerUnit;
+    return (playerHeightPx ?? frame.source.height) / frame.pixelsPerUnit;
   }
 }
 

@@ -5,118 +5,118 @@
   "guest0": {
    "image": "guest-woman-v2.png",
    "imageWidth": 1536,
-   "imageHeight": 1024,
+   "imageHeight": 777,
    "referenceFrame": "standing_idle_a",
    "frames": {
     "seated_idle_a": {
      "rect": [
       67,
       24,
-      135,
+      131,
       231
      ],
      "anchor": [
-      61.0,
+      59.3,
       231
      ],
      "pixelsPerUnit": 8.0
     },
     "seated_idle_b": {
      "rect": [
-      321,
-      21,
-      134,
+      202,
+      2,
+      132,
       235
      ],
      "anchor": [
-      63.0,
+      63.7,
       235
      ],
      "pixelsPerUnit": 8.0
     },
     "notice_a": {
      "rect": [
-      576,
-      20,
-      134,
+      336,
+      2,
+      130,
       236
      ],
      "anchor": [
-      64.0,
+      60.8,
       236
      ],
      "pixelsPerUnit": 8.0
     },
     "notice_b": {
      "rect": [
-      822,
-      19,
-      195,
+      468,
+      2,
+      193,
       236
      ],
      "anchor": [
-      74.0,
+      70.9,
       236
      ],
      "pixelsPerUnit": 8.0
     },
     "seated_follow_a": {
      "rect": [
-      1064,
-      24,
-      169,
+      663,
+      2,
+      156,
       227
      ],
      "anchor": [
-      88.0,
+      79.5,
       227
      ],
      "pixelsPerUnit": 8.0
     },
     "seated_follow_b": {
      "rect": [
-      1330,
-      23,
-      156,
+      821,
+      2,
+      150,
       229
      ],
      "anchor": [
-      78.0,
+      74.3,
       229
      ],
      "pixelsPerUnit": 8.0
     },
     "stand_up_a": {
      "rect": [
-      82,
-      296,
+      973,
+      2,
       137,
       221
      ],
      "anchor": [
-      46.0,
+      53.1,
       221
      ],
      "pixelsPerUnit": 8.0
     },
     "stand_up_b": {
      "rect": [
-      334,
-      304,
-      140,
+      1112,
+      2,
+      138,
       213
      ],
      "anchor": [
-      50.0,
+      58.0,
       213
      ],
      "pixelsPerUnit": 8.0
     },
     "stand_up_c": {
      "rect": [
-      589,
-      282,
-      129,
+      1252,
+      2,
+      127,
       237
      ],
      "anchor": [
@@ -127,22 +127,22 @@
     },
     "stand_up_d": {
      "rect": [
-      834,
-      257,
-      137,
+      1381,
+      2,
+      132,
       262
      ],
      "anchor": [
-      62.0,
+      60.5,
       262
      ],
      "pixelsPerUnit": 8.0
     },
     "standing_idle_a": {
      "rect": [
-      1097,
-      259,
-      135,
+      2,
+      266,
+      128,
       263
      ],
      "anchor": [
@@ -153,169 +153,169 @@
     },
     "standing_idle_b": {
      "rect": [
-      1343,
-      260,
-      143,
+      132,
+      266,
+      140,
       262
      ],
      "anchor": [
-      65.0,
+      66.0,
       262
      ],
      "pixelsPerUnit": 8.0
     },
     "step_touch_a": {
      "rect": [
-      70,
-      524,
-      179,
+      274,
+      266,
+      173,
       237
      ],
      "anchor": [
-      58.0,
+      57.4,
       237
      ],
      "pixelsPerUnit": 8.0
     },
     "step_touch_b": {
      "rect": [
-      319,
-      524,
-      190,
+      449,
+      266,
+      188,
       240
      ],
      "anchor": [
-      65.0,
+      66.8,
       240
      ],
      "pixelsPerUnit": 8.0
     },
     "step_touch_c": {
      "rect": [
-      575,
-      524,
-      162,
+      639,
+      266,
+      157,
       240
      ],
      "anchor": [
-      65.0,
+      65.1,
       240
      ],
      "pixelsPerUnit": 8.0
     },
     "step_touch_d": {
      "rect": [
-      827,
-      526,
-      176,
+      798,
+      266,
+      175,
       239
      ],
      "anchor": [
-      69.0,
+      70.7,
       239
      ],
      "pixelsPerUnit": 8.0
     },
     "clap_a": {
      "rect": [
-      1102,
-      527,
-      130,
+      975,
+      266,
+      127,
       242
      ],
      "anchor": [
-      50.0,
+      50.6,
       242
      ],
      "pixelsPerUnit": 8.0
     },
     "clap_b": {
      "rect": [
-      1352,
-      530,
-      121,
+      1104,
+      266,
+      118,
       240
      ],
      "anchor": [
-      56.0,
+      55.7,
       240
      ],
      "pixelsPerUnit": 8.0
     },
     "cheer_a": {
      "rect": [
-      52,
-      764,
-      199,
+      1224,
+      266,
+      195,
       248
      ],
      "anchor": [
-      76.0,
+      76.5,
       248
      ],
      "pixelsPerUnit": 8.0
     },
     "cheer_b": {
      "rect": [
-      328,
-      768,
-      134,
+      2,
+      531,
+      130,
       244
      ],
      "anchor": [
-      56.0,
+      55.0,
       244
      ],
      "pixelsPerUnit": 8.0
     },
     "sit_down_a": {
      "rect": [
-      591,
-      771,
-      148,
+      134,
+      531,
+      146,
       237
      ],
      "anchor": [
-      49.0,
+      47.6,
       237
      ],
      "pixelsPerUnit": 8.0
     },
     "sit_down_b": {
      "rect": [
-      831,
-      791,
-      144,
+      282,
+      531,
+      138,
       214
      ],
      "anchor": [
-      65.0,
+      63.7,
       214
      ],
      "pixelsPerUnit": 8.0
     },
     "sit_down_c": {
      "rect": [
-      1092,
-      785,
-      141,
+      422,
+      531,
+      137,
       220
      ],
      "anchor": [
-      60.0,
+      60.9,
       220
      ],
      "pixelsPerUnit": 8.0
     },
     "sit_down_d": {
      "rect": [
-      1335,
-      792,
-      135,
+      561,
+      531,
+      133,
       216
      ],
      "anchor": [
-      73.0,
+      71.1,
       216
      ],
      "pixelsPerUnit": 8.0
@@ -325,57 +325,57 @@
   "guest1": {
    "image": "guest-man-v2.png",
    "imageWidth": 1254,
-   "imageHeight": 1254,
+   "imageHeight": 1503,
    "referenceFrame": "standing_idle_a",
    "frames": {
     "seated_idle_a": {
      "rect": [
-      23,
-      95,
-      204,
+      2,
+      1256,
+      182,
       240
      ],
      "anchor": [
-      81.5,
+      79.5,
       240
      ],
      "pixelsPerUnit": 8.0
     },
     "seated_idle_b": {
      "rect": [
-      233,
-      91,
-      190,
+      186,
+      1256,
+      164,
       243
      ],
      "anchor": [
-      80.5,
+      78.2,
       243
      ],
      "pixelsPerUnit": 8.0
     },
     "notice_a": {
      "rect": [
-      439,
-      88,
-      196,
+      352,
+      1256,
+      160,
       247
      ],
      "anchor": [
-      83.5,
+      70.5,
       247
      ],
      "pixelsPerUnit": 8.0
     },
     "notice_b": {
      "rect": [
-      625,
-      89,
+      514,
+      1256,
       219,
       247
      ],
      "anchor": [
-      106.5,
+      105.5,
       247
      ],
      "pixelsPerUnit": 8.0
@@ -629,13 +629,13 @@
     },
     "sit_down_d": {
      "rect": [
-      1062,
-      972,
-      189,
+      735,
+      1256,
+      172,
       226
      ],
      "anchor": [
-      87.5,
+      86.0,
       226
      ],
      "pixelsPerUnit": 8.0
@@ -645,7 +645,7 @@
   "guest2": {
    "image": "guest-host-v2.png",
    "imageWidth": 1536,
-   "imageHeight": 1024,
+   "imageHeight": 1258,
    "referenceFrame": "standing_idle_a",
    "frames": {
     "seated_idle_a": {
@@ -689,13 +689,13 @@
     },
     "notice_b": {
      "rect": [
-      788,
-      15,
-      204,
+      2,
+      1026,
+      208,
       232
      ],
      "anchor": [
-      108.0,
+      81.4,
       232
      ],
      "pixelsPerUnit": 8.0
@@ -14541,6 +14541,3250 @@
       "selectedBy": "agent's eye",
       "accepted": false
      }
+    }
+   }
+  },
+  "band-bass": {
+   "image": "band-bass-v1.png",
+   "imageWidth": 1024,
+   "imageHeight": 252,
+   "referenceFrame": "relaxed_a",
+   "ramps": {
+    "skin": {
+     "region": "skin",
+     "alsoIn": [],
+     "shades": [
+      "#230300",
+      "#462206",
+      "#6E4326",
+      "#886148"
+     ]
+    },
+    "hair": {
+     "region": "hair",
+     "alsoIn": [],
+     "shades": [
+      "#878580",
+      "#AFADA7",
+      "#D9D6D0",
+      "#FAF7F2"
+     ]
+    },
+    "shirt": {
+     "region": "shirt",
+     "alsoIn": [],
+     "shades": [
+      "#9B927A",
+      "#C4BAA1",
+      "#EFE4C8",
+      "#FFFBE3"
+     ]
+    },
+    "jacket": {
+     "region": "cloth",
+     "alsoIn": [],
+     "shades": [
+      "#968D74",
+      "#BFB59B",
+      "#EADFC2",
+      "#FFFBE2"
+     ]
+    },
+    "lapels": {
+     "region": "apron",
+     "alsoIn": [],
+     "shades": [
+      "#05001D",
+      "#1B0041",
+      "#3A1F6B",
+      "#524081"
+     ]
+    },
+    "trousers": {
+     "region": "trousers",
+     "alsoIn": [],
+     "shades": [
+      "#000001",
+      "#09070D",
+      "#26232C",
+      "#3F3C45"
+     ]
+    },
+    "shoes": {
+     "region": "shoes",
+     "alsoIn": [],
+     "shades": [
+      "#867956",
+      "#ADA07C",
+      "#D8C9A0",
+      "#F7EAC6"
+     ]
+    },
+    "bass": {
+     "region": "prop",
+     "alsoIn": [],
+     "shades": [
+      "#6E3000",
+      "#975500",
+      "#C57A22",
+      "#DE9D5C"
+     ]
+    }
+   },
+   "frames": {
+    "relaxed_a": {
+     "rect": [
+      2,
+      2,
+      122,
+      249
+     ],
+     "anchor": [
+      27.0,
+      248.0
+     ],
+     "pixelsPerUnit": 5.5226,
+     "facing": "front_3q",
+     "loop": true,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "both",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/band/art_runs/band-bass-v1-2ab2f1dfa8",
+      "pose": "relaxed.a",
+      "sha256": "42f02f68843a804f1f72dfda46ca60e68466f157b7125287a8e5a83a9009f2a6",
+      "selected": null,
+      "frameKey": "e461c0eeb5c2c95ab4ba18f899d09ebd33726144f65016b3427ef907020de95a",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "contrapposto",
+       "follow-through",
+       "no-twinning",
+       "timing-on-beat"
+      ]
+     }
+    },
+    "relaxed_b": {
+     "rect": [
+      746,
+      2,
+      122,
+      247
+     ],
+     "anchor": [
+      27.0,
+      246.0
+     ],
+     "pixelsPerUnit": 5.5226,
+     "facing": "front_3q",
+     "loop": true,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "both",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/band/art_runs/band-bass-v1-2ab2f1dfa8",
+      "pose": "relaxed.b",
+      "sha256": "4f8aa334d3aa380279f71f55940d470b55bd549d6d5bd30c4e566c7ede3789ff",
+      "selected": null,
+      "frameKey": "7ea97bf5c95b6613dfad2088012d915f63cd6330d55c0db5a094c095b2eb9311",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "contrapposto",
+       "follow-through",
+       "no-twinning",
+       "timing-on-beat"
+      ]
+     }
+    },
+    "swing_a": {
+     "rect": [
+      373,
+      2,
+      123,
+      248
+     ],
+     "anchor": [
+      26.0,
+      247.0
+     ],
+     "pixelsPerUnit": 5.5226,
+     "facing": "front_3q",
+     "loop": true,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "both",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/band/art_runs/band-bass-v1-2ab2f1dfa8",
+      "pose": "swing.a",
+      "sha256": "99e37949d70758a0a24b314450cbea2c4522f7fc3bec669a539e371d3649007e",
+      "selected": null,
+      "frameKey": "4524c622675af42e266cff8b7108ff280a6c9f94782731fcce2b4735175ddb1f",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "line-of-action",
+       "contrapposto",
+       "exaggeration-accent",
+       "no-twinning",
+       "timing-on-beat"
+      ]
+     }
+    },
+    "swing_b": {
+     "rect": [
+      498,
+      2,
+      122,
+      248
+     ],
+     "anchor": [
+      27.0,
+      247.0
+     ],
+     "pixelsPerUnit": 5.5226,
+     "facing": "front_3q",
+     "loop": true,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "both",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/band/art_runs/band-bass-v1-2ab2f1dfa8",
+      "pose": "swing.b",
+      "sha256": "7599451221ee5bfc1823a0a323b92aea503d374af6494d5282f354f6ec2d3f29",
+      "selected": null,
+      "frameKey": "657c8f0ecdbf7a3892dca2df23b6ad69b50febef14f6f1c696f2e80531d635eb",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "contrapposto",
+       "no-twinning",
+       "timing-on-beat",
+       "planted-pivot"
+      ]
+     }
+    },
+    "swing_c": {
+     "rect": [
+      250,
+      2,
+      121,
+      249
+     ],
+     "anchor": [
+      27.0,
+      248.0
+     ],
+     "pixelsPerUnit": 5.5226,
+     "facing": "front_3q",
+     "loop": true,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "both",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/band/art_runs/band-bass-v1-2ab2f1dfa8",
+      "pose": "swing.c",
+      "sha256": "67155584c844727cf89b404a899997c398578a29032a6a7e891ed4b11c16ffe8",
+      "selected": null,
+      "frameKey": "e4c4dada02133e83b06569231d511a2f24aa88e4179a03bb8e2de6e1492bdaa0",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "line-of-action",
+       "contrapposto",
+       "exaggeration-accent",
+       "no-twinning",
+       "timing-on-beat"
+      ]
+     }
+    },
+    "swing_d": {
+     "rect": [
+      622,
+      2,
+      122,
+      248
+     ],
+     "anchor": [
+      27.0,
+      247.0
+     ],
+     "pixelsPerUnit": 5.5226,
+     "facing": "front_3q",
+     "loop": true,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "left",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/band/art_runs/band-bass-v1-2ab2f1dfa8",
+      "pose": "swing.d",
+      "sha256": "52d1281fd893ad3258d46780e3102edc0e1429b8c99a7434ba5b2febb381310c",
+      "selected": null,
+      "frameKey": "13996acd82719d429e86cb49cb5225bc1480d15264bd1f4a33eece6685901ec4",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "contrapposto",
+       "no-twinning",
+       "timing-on-beat",
+       "planted-pivot"
+      ]
+     }
+    },
+    "tap_up_a": {
+     "rect": [
+      126,
+      2,
+      122,
+      249
+     ],
+     "anchor": [
+      27.0,
+      248.0
+     ],
+     "pixelsPerUnit": 5.5226,
+     "facing": "front_3q",
+     "loop": true,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "left",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/band/art_runs/band-bass-v1-2ab2f1dfa8",
+      "pose": "tap.up_a",
+      "sha256": "f7179a4cb3bc255d6c994c7bd345ceab0f190ae5ca4e60a31c427ee102e0afae",
+      "selected": null,
+      "frameKey": "583d11ef200d48c9aef58de475233c3e5d1f34bbec6fc52607afd8c10df51393",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "contrapposto",
+       "no-twinning",
+       "timing-on-beat",
+       "planted-pivot"
+      ]
+     }
+    },
+    "tap_up_b": {
+     "rect": [
+      870,
+      2,
+      122,
+      247
+     ],
+     "anchor": [
+      27.0,
+      246.0
+     ],
+     "pixelsPerUnit": 5.5226,
+     "facing": "front_3q",
+     "loop": true,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "left",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/band/art_runs/band-bass-v1-2ab2f1dfa8",
+      "pose": "tap.up_b",
+      "sha256": "6a4f7d3ffa4c5ee9ec188e2e55a40e544bc51172021b4bd1a601446bfc0c7b73",
+      "selected": null,
+      "frameKey": "3e4aba36ad45c69552a70e553add7bd38edff0068ff8f6fe0f7a28c3e365db6b",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "contrapposto",
+       "no-twinning",
+       "timing-on-beat",
+       "planted-pivot"
+      ]
+     }
+    }
+   },
+   "playerHeightPx": 214
+  },
+  "band-congas": {
+   "image": "band-congas-v1.png",
+   "imageWidth": 1024,
+   "imageHeight": 236,
+   "referenceFrame": "relaxed_a",
+   "ramps": {
+    "skin": {
+     "region": "skin",
+     "alsoIn": [],
+     "shades": [
+      "#623703",
+      "#895B2F",
+      "#B5804F",
+      "#D0A178"
+     ]
+    },
+    "hair": {
+     "region": "hair",
+     "alsoIn": [],
+     "shades": [
+      "#423E3A",
+      "#66615D",
+      "#8C8782",
+      "#AAA6A1"
+     ]
+    },
+    "shirt": {
+     "region": "shirt",
+     "alsoIn": [],
+     "shades": [
+      "#9B927A",
+      "#C4BAA1",
+      "#EFE4C8",
+      "#FFFBE3"
+     ]
+    },
+    "jacket": {
+     "region": "cloth",
+     "alsoIn": [],
+     "shades": [
+      "#968D74",
+      "#BFB59B",
+      "#EADFC2",
+      "#FFFBE2"
+     ]
+    },
+    "lapels": {
+     "region": "apron",
+     "alsoIn": [],
+     "shades": [
+      "#05001D",
+      "#1B0041",
+      "#3A1F6B",
+      "#524081"
+     ]
+    },
+    "trousers": {
+     "region": "trousers",
+     "alsoIn": [],
+     "shades": [
+      "#000001",
+      "#09070D",
+      "#26232C",
+      "#3F3C45"
+     ]
+    },
+    "shoes": {
+     "region": "shoes",
+     "alsoIn": [],
+     "shades": [
+      "#867956",
+      "#ADA07C",
+      "#D8C9A0",
+      "#F7EAC6"
+     ]
+    },
+    "drums": {
+     "region": "prop",
+     "alsoIn": [],
+     "shades": [
+      "#360000",
+      "#5F0009",
+      "#8E1C28",
+      "#A7484A"
+     ]
+    },
+    "bands": {
+     "region": "accessory",
+     "alsoIn": [],
+     "shades": [
+      "#765500",
+      "#9D7B14",
+      "#C9A23A",
+      "#E5C371"
+     ]
+    }
+   },
+   "frames": {
+    "relaxed_a": {
+     "rect": [
+      258,
+      2,
+      127,
+      226
+     ],
+     "anchor": [
+      31.0,
+      225.0
+     ],
+     "pixelsPerUnit": 5.8065,
+     "facing": "front_3q",
+     "loop": true,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "both",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/band/art_runs/band-congas-v1-4e0b0a5d53",
+      "pose": "relaxed.a",
+      "sha256": "7dbcab15ef6947158cb1fe578e4abe18f30695fef41efa0d7b056d615e599254",
+      "selected": null,
+      "frameKey": "9494378e78043f03059cea0e6f7f7b306dbf1ca51674fd8a96e5bfd7b61b4dd0",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "contrapposto",
+       "follow-through",
+       "no-twinning",
+       "timing-on-beat"
+      ]
+     }
+    },
+    "relaxed_b": {
+     "rect": [
+      774,
+      2,
+      124,
+      224
+     ],
+     "anchor": [
+      30.0,
+      223.0
+     ],
+     "pixelsPerUnit": 5.8065,
+     "facing": "front_3q",
+     "loop": true,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "both",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/band/art_runs/band-congas-v1-4e0b0a5d53",
+      "pose": "relaxed.b",
+      "sha256": "84511fcf702a4048b22caadecd527042d7c4a7a547dcbfb39939717ed58487ce",
+      "selected": null,
+      "frameKey": "c0f19ce0cb80c7fa0f9058bc5d7f25adc43ee90f29221493c2c56856cb3e773a",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "contrapposto",
+       "follow-through",
+       "no-twinning",
+       "timing-on-beat"
+      ]
+     }
+    },
+    "swing_a": {
+     "rect": [
+      2,
+      2,
+      127,
+      233
+     ],
+     "anchor": [
+      32.0,
+      232.0
+     ],
+     "pixelsPerUnit": 5.8065,
+     "facing": "front_3q",
+     "loop": true,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "both",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/band/art_runs/band-congas-v1-4e0b0a5d53",
+      "pose": "swing.a",
+      "sha256": "28a71f544bf5f33dbadde8ddf47d7176e795bd72ef5f48d33ea98f49759af1d5",
+      "selected": null,
+      "frameKey": "32d413596974cee3e691fcd3024e4f33afcefff53b726565fbe8c072170e015b",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "line-of-action",
+       "contrapposto",
+       "exaggeration-accent",
+       "no-twinning",
+       "timing-on-beat"
+      ]
+     }
+    },
+    "swing_b": {
+     "rect": [
+      516,
+      2,
+      127,
+      226
+     ],
+     "anchor": [
+      31.0,
+      225.0
+     ],
+     "pixelsPerUnit": 5.8065,
+     "facing": "front_3q",
+     "loop": true,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "both",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/band/art_runs/band-congas-v1-4e0b0a5d53",
+      "pose": "swing.b",
+      "sha256": "7dbcab15ef6947158cb1fe578e4abe18f30695fef41efa0d7b056d615e599254",
+      "selected": null,
+      "frameKey": "fd83754daba2f0ce7f301eb55eabb8541343456e1b335577e1f9adb4ebbbe3ee",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "contrapposto",
+       "no-twinning",
+       "timing-on-beat",
+       "planted-pivot"
+      ]
+     }
+    },
+    "swing_c": {
+     "rect": [
+      131,
+      2,
+      125,
+      232
+     ],
+     "anchor": [
+      30.0,
+      231.0
+     ],
+     "pixelsPerUnit": 5.8065,
+     "facing": "front_3q",
+     "loop": true,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "both",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/band/art_runs/band-congas-v1-4e0b0a5d53",
+      "pose": "swing.c",
+      "sha256": "ae56a96e2f68a6018584b3be42399fefd9eef6d8d0b007541fb187ce68e0fb9d",
+      "selected": null,
+      "frameKey": "37b257c476a752b2ba5986d89b427f50aec7f761a03de2f4de0a4de2eae9eed6",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "line-of-action",
+       "contrapposto",
+       "exaggeration-accent",
+       "no-twinning",
+       "timing-on-beat"
+      ]
+     }
+    },
+    "swing_d": {
+     "rect": [
+      645,
+      2,
+      127,
+      226
+     ],
+     "anchor": [
+      31.0,
+      225.0
+     ],
+     "pixelsPerUnit": 5.8065,
+     "facing": "front_3q",
+     "loop": true,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "left",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/band/art_runs/band-congas-v1-4e0b0a5d53",
+      "pose": "swing.d",
+      "sha256": "91e7e4effc3df0e33d88883aebf623c805e2af5b4633f56c5eb51d7b2b72fd2d",
+      "selected": null,
+      "frameKey": "b757d67642f71f7167f7cce641f8246af8071d147856bd6c25da719b0d4b72c6",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "contrapposto",
+       "no-twinning",
+       "timing-on-beat",
+       "planted-pivot"
+      ]
+     }
+    },
+    "tap_up_a": {
+     "rect": [
+      387,
+      2,
+      127,
+      226
+     ],
+     "anchor": [
+      31.0,
+      225.0
+     ],
+     "pixelsPerUnit": 5.8065,
+     "facing": "front_3q",
+     "loop": true,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "left",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/band/art_runs/band-congas-v1-4e0b0a5d53",
+      "pose": "tap.up_a",
+      "sha256": "91e7e4effc3df0e33d88883aebf623c805e2af5b4633f56c5eb51d7b2b72fd2d",
+      "selected": null,
+      "frameKey": "74637af08535018dcd7fd4172b400fbf034c2e7ffdabdc51221c09c64b74b9b7",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "contrapposto",
+       "no-twinning",
+       "timing-on-beat",
+       "planted-pivot"
+      ]
+     }
+    },
+    "tap_up_b": {
+     "rect": [
+      900,
+      2,
+      124,
+      224
+     ],
+     "anchor": [
+      30.0,
+      223.0
+     ],
+     "pixelsPerUnit": 5.8065,
+     "facing": "front_3q",
+     "loop": true,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "left",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/band/art_runs/band-congas-v1-4e0b0a5d53",
+      "pose": "tap.up_b",
+      "sha256": "a237fb10fb88475021a020195fb032c04a14c45efaacb3903fa02cf6f7f2742a",
+      "selected": null,
+      "frameKey": "e67d3ab2b302d7e0265d8cf027d545965d543bda16dabeed26d48f6e272bc79a",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "contrapposto",
+       "no-twinning",
+       "timing-on-beat",
+       "planted-pivot"
+      ]
+     }
+    }
+   },
+   "playerHeightPx": 225
+  },
+  "band-trumpet": {
+   "image": "band-trumpet-v1.png",
+   "imageWidth": 1024,
+   "imageHeight": 296,
+   "referenceFrame": "relaxed_a",
+   "ramps": {
+    "skin": {
+     "region": "skin",
+     "alsoIn": [],
+     "shades": [
+      "#7C5532",
+      "#A47A57",
+      "#D0A179",
+      "#ECC2A0"
+     ]
+    },
+    "hair": {
+     "region": "hair",
+     "alsoIn": [],
+     "shades": [
+      "#000000",
+      "#010000",
+      "#16110F",
+      "#2D2827"
+     ]
+    },
+    "shirt": {
+     "region": "shirt",
+     "alsoIn": [],
+     "shades": [
+      "#9B927A",
+      "#C4BAA1",
+      "#EFE4C8",
+      "#FFFBE3"
+     ]
+    },
+    "jacket": {
+     "region": "cloth",
+     "alsoIn": [],
+     "shades": [
+      "#968D74",
+      "#BFB59B",
+      "#EADFC2",
+      "#FFFBE2"
+     ]
+    },
+    "lapels": {
+     "region": "apron",
+     "alsoIn": [],
+     "shades": [
+      "#05001D",
+      "#1B0041",
+      "#3A1F6B",
+      "#524081"
+     ]
+    },
+    "trousers": {
+     "region": "trousers",
+     "alsoIn": [],
+     "shades": [
+      "#000001",
+      "#09070D",
+      "#26232C",
+      "#3F3C45"
+     ]
+    },
+    "shoes": {
+     "region": "shoes",
+     "alsoIn": [],
+     "shades": [
+      "#867956",
+      "#ADA07C",
+      "#D8C9A0",
+      "#F7EAC6"
+     ]
+    },
+    "horn": {
+     "region": "prop",
+     "alsoIn": [],
+     "shades": [
+      "#845B00",
+      "#AC8200",
+      "#D9A92E",
+      "#F4CB6E"
+     ]
+    }
+   },
+   "frames": {
+    "relaxed_a": {
+     "rect": [
+      117,
+      2,
+      121,
+      250
+     ],
+     "anchor": [
+      31.0,
+      249.0
+     ],
+     "pixelsPerUnit": 6.4258,
+     "facing": "front_3q",
+     "loop": true,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "both",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/band/art_runs/band-trumpet-v1-f0adb11689",
+      "pose": "relaxed.a",
+      "sha256": "673d4fad49111b905e496d57affc8c101579705436cee13043f43b736e996116",
+      "selected": null,
+      "frameKey": "b559e2096a12830714d16aef43acfd7fd060c291312d8d30fce1182c37b07785",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "contrapposto",
+       "follow-through",
+       "no-twinning",
+       "timing-on-beat"
+      ]
+     }
+    },
+    "relaxed_b": {
+     "rect": [
+      365,
+      2,
+      123,
+      249
+     ],
+     "anchor": [
+      33.0,
+      248.0
+     ],
+     "pixelsPerUnit": 6.4258,
+     "facing": "front_3q",
+     "loop": true,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "both",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/band/art_runs/band-trumpet-v1-f0adb11689",
+      "pose": "relaxed.b",
+      "sha256": "6f4361678ebc68a36dfcbbd95effd769b05d0203bebd125c1418ee8c58e69d8b",
+      "selected": null,
+      "frameKey": "ada2c60cb129089abf4d07d86d8fe4c777695e92ef96ec9caa17daa9b9bb1af6",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "contrapposto",
+       "follow-through",
+       "no-twinning",
+       "timing-on-beat"
+      ]
+     }
+    },
+    "swing_a": {
+     "rect": [
+      2,
+      2,
+      113,
+      293
+     ],
+     "anchor": [
+      36.0,
+      292.0
+     ],
+     "pixelsPerUnit": 6.4258,
+     "facing": "front_3q",
+     "loop": true,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "both",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/band/art_runs/band-trumpet-v1-f0adb11689",
+      "pose": "swing.a",
+      "sha256": "feca29d6caabfa5ec76157c16397d1b7a1e7c6894f7e953a46ce67e8692af3f5",
+      "selected": null,
+      "frameKey": "4fd9b34c9fafc7408f8aa9f5bcd890747e63226e85628f805fe4d36be665eea1",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "line-of-action",
+       "contrapposto",
+       "exaggeration-accent",
+       "no-twinning",
+       "timing-on-beat"
+      ]
+     }
+    },
+    "swing_b": {
+     "rect": [
+      240,
+      2,
+      123,
+      250
+     ],
+     "anchor": [
+      32.0,
+      249.0
+     ],
+     "pixelsPerUnit": 6.4258,
+     "facing": "front_3q",
+     "loop": true,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "both",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/band/art_runs/band-trumpet-v1-f0adb11689",
+      "pose": "swing.b",
+      "sha256": "ec9fcc913c02d633001548d00306474cf22b533c264b67c610083a879993ec8f",
+      "selected": null,
+      "frameKey": "a1ef244095d0e68ce9d88ccc3bab8221575b193d4dbb4cdb4b4e3ccc77de4bbb",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "contrapposto",
+       "no-twinning",
+       "timing-on-beat",
+       "planted-pivot"
+      ]
+     }
+    },
+    "swing_c": {
+     "rect": [
+      490,
+      2,
+      110,
+      249
+     ],
+     "anchor": [
+      28.0,
+      248.0
+     ],
+     "pixelsPerUnit": 6.4258,
+     "facing": "front_3q",
+     "loop": true,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "both",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/band/art_runs/band-trumpet-v1-f0adb11689",
+      "pose": "swing.c",
+      "sha256": "3a7062b8d88983f8802cc31b03341ee7353e401993c379585f326ca7f51346c9",
+      "selected": null,
+      "frameKey": "7e302708b939bf0cf186930a6632b25b5e8631919fe6919c974de8cc0f4acbc1",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "line-of-action",
+       "contrapposto",
+       "exaggeration-accent",
+       "no-twinning",
+       "timing-on-beat"
+      ]
+     }
+    },
+    "swing_d": {
+     "rect": [
+      725,
+      2,
+      123,
+      250
+     ],
+     "anchor": [
+      32.0,
+      249.0
+     ],
+     "pixelsPerUnit": 6.4258,
+     "facing": "front_3q",
+     "loop": true,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "left",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/band/art_runs/band-trumpet-v1-f0adb11689",
+      "pose": "swing.d",
+      "sha256": "50c84ed1330ee6400cda603525b1415e8eb3aff716e706c664e71ea41a2c5055",
+      "selected": null,
+      "frameKey": "1883e93936ea354ab569ace076d456d440168a741b3b4ac56be2e605bf9ebd17",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "contrapposto",
+       "no-twinning",
+       "timing-on-beat",
+       "planted-pivot"
+      ]
+     }
+    },
+    "tap_up_a": {
+     "rect": [
+      602,
+      2,
+      121,
+      250
+     ],
+     "anchor": [
+      31.0,
+      249.0
+     ],
+     "pixelsPerUnit": 6.4258,
+     "facing": "front_3q",
+     "loop": true,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "left",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/band/art_runs/band-trumpet-v1-f0adb11689",
+      "pose": "tap.up_a",
+      "sha256": "a740cce2538d7dec6a79f0b028431974b8c7d6b371f8cdbcfdc14941aff27a39",
+      "selected": null,
+      "frameKey": "0a8c504bc3b4469abc9f8ae4cfda87a16c705c26d56b5f016ebb1719182a242b",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "contrapposto",
+       "no-twinning",
+       "timing-on-beat",
+       "planted-pivot"
+      ]
+     }
+    },
+    "tap_up_b": {
+     "rect": [
+      850,
+      2,
+      123,
+      249
+     ],
+     "anchor": [
+      33.0,
+      248.0
+     ],
+     "pixelsPerUnit": 6.4258,
+     "facing": "front_3q",
+     "loop": true,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "left",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/band/art_runs/band-trumpet-v1-f0adb11689",
+      "pose": "tap.up_b",
+      "sha256": "e4f7c32fc389dde5f063968e6529e46de2386625a19c44bdc6ff0d7c26061404",
+      "selected": null,
+      "frameKey": "7308c9b6b86a39ab547665a7c29de8e0b4e90e1f6934348db3512ff51d74fcbb",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "contrapposto",
+       "no-twinning",
+       "timing-on-beat",
+       "planted-pivot"
+      ]
+     }
+    }
+   },
+   "playerHeightPx": 249
+  },
+  "guest3": {
+   "image": "guest3-v1.png",
+   "imageWidth": 1024,
+   "imageHeight": 506,
+   "referenceFrame": "standing_idle_a",
+   "stature": 0.9,
+   "frames": {
+    "groove_a": {
+     "rect": [
+      145,
+      252,
+      162,
+      235
+     ],
+     "anchor": [
+      108.0,
+      233.4
+     ],
+     "pixelsPerUnit": 8.0,
+     "provenance": {
+      "run": "guest3-20261107b",
+      "pose": "groove.a",
+      "seed": 991001,
+      "sha256": "5a3dbc80782ca4065d0a2c21c4831c85168598384331c262226c05620ce5fabc"
+     }
+    },
+    "groove_b": {
+     "rect": [
+      145,
+      252,
+      162,
+      235
+     ],
+     "anchor": [
+      108.0,
+      233.4
+     ],
+     "pixelsPerUnit": 8.0,
+     "provenance": {
+      "run": "guest3-20261107b",
+      "pose": "groove.a",
+      "seed": 991001,
+      "sha256": "5a3dbc80782ca4065d0a2c21c4831c85168598384331c262226c05620ce5fabc"
+     }
+    },
+    "groove_c": {
+     "rect": [
+      309,
+      252,
+      176,
+      235
+     ],
+     "anchor": [
+      69.0,
+      233.4
+     ],
+     "pixelsPerUnit": 8.0,
+     "provenance": {
+      "run": "guest3-20261107b",
+      "pose": "groove.c",
+      "seed": 991000,
+      "sha256": "f3ec2784765db6c7ea0c1184c1165c1ef9498d8d6f218a4b8a151472c41bb5ce"
+     }
+    },
+    "groove_d": {
+     "rect": [
+      309,
+      252,
+      176,
+      235
+     ],
+     "anchor": [
+      69.0,
+      233.4
+     ],
+     "pixelsPerUnit": 8.0,
+     "provenance": {
+      "run": "guest3-20261107b",
+      "pose": "groove.c",
+      "seed": 991000,
+      "sha256": "f3ec2784765db6c7ea0c1184c1165c1ef9498d8d6f218a4b8a151472c41bb5ce"
+     }
+    },
+    "pair_dance_a": {
+     "rect": [
+      2,
+      2,
+      143,
+      247
+     ],
+     "anchor": [
+      52.0,
+      245.4
+     ],
+     "pixelsPerUnit": 8.0,
+     "provenance": {
+      "run": "guest3-20261107b",
+      "pose": "pair_dance.a",
+      "seed": 991001,
+      "sha256": "c335e3cad93009c810a8c348e058cb4afbe7da65933d5be40540740cce6499d6"
+     }
+    },
+    "pair_dance_b": {
+     "rect": [
+      2,
+      2,
+      143,
+      247
+     ],
+     "anchor": [
+      52.0,
+      245.4
+     ],
+     "pixelsPerUnit": 8.0,
+     "provenance": {
+      "run": "guest3-20261107b",
+      "pose": "pair_dance.a",
+      "seed": 991001,
+      "sha256": "c335e3cad93009c810a8c348e058cb4afbe7da65933d5be40540740cce6499d6"
+     }
+    },
+    "pair_dance_c": {
+     "rect": [
+      147,
+      2,
+      148,
+      247
+     ],
+     "anchor": [
+      39.0,
+      245.4
+     ],
+     "pixelsPerUnit": 8.0,
+     "provenance": {
+      "run": "guest3-20261107b",
+      "pose": "pair_dance.c",
+      "seed": 991000,
+      "sha256": "5ad52de9612f052181e3f125f9683fe3365cc15c72525ac7442499e58527d71c"
+     }
+    },
+    "pair_dance_d": {
+     "rect": [
+      147,
+      2,
+      148,
+      247
+     ],
+     "anchor": [
+      39.0,
+      245.4
+     ],
+     "pixelsPerUnit": 8.0,
+     "provenance": {
+      "run": "guest3-20261107b",
+      "pose": "pair_dance.c",
+      "seed": 991000,
+      "sha256": "5ad52de9612f052181e3f125f9683fe3365cc15c72525ac7442499e58527d71c"
+     }
+    },
+    "back_dance_a": {
+     "rect": [
+      297,
+      2,
+      86,
+      247
+     ],
+     "anchor": [
+      31.0,
+      245.4
+     ],
+     "pixelsPerUnit": 8.0,
+     "provenance": {
+      "run": "guest3-20261107b",
+      "pose": "back_dance.a",
+      "seed": 991001,
+      "sha256": "335644d74f82527ef7097905e547801abaa32542d43a91e4b00967bf46937972"
+     }
+    },
+    "back_dance_b": {
+     "rect": [
+      297,
+      2,
+      86,
+      247
+     ],
+     "anchor": [
+      31.0,
+      245.4
+     ],
+     "pixelsPerUnit": 8.0,
+     "provenance": {
+      "run": "guest3-20261107b",
+      "pose": "back_dance.a",
+      "seed": 991001,
+      "sha256": "335644d74f82527ef7097905e547801abaa32542d43a91e4b00967bf46937972"
+     }
+    },
+    "back_dance_c": {
+     "rect": [
+      385,
+      2,
+      98,
+      247
+     ],
+     "anchor": [
+      54.0,
+      245.4
+     ],
+     "pixelsPerUnit": 8.0,
+     "provenance": {
+      "run": "guest3-20261107b",
+      "pose": "back_dance.c",
+      "seed": 996000,
+      "sha256": "b80a78e255556a0ca355f3efacd2b1e500066d325774f25b52f2230a1d830984"
+     }
+    },
+    "back_dance_d": {
+     "rect": [
+      385,
+      2,
+      98,
+      247
+     ],
+     "anchor": [
+      54.0,
+      245.4
+     ],
+     "pixelsPerUnit": 8.0,
+     "provenance": {
+      "run": "guest3-20261107b",
+      "pose": "back_dance.c",
+      "seed": 996000,
+      "sha256": "b80a78e255556a0ca355f3efacd2b1e500066d325774f25b52f2230a1d830984"
+     }
+    },
+    "sidestep_a": {
+     "rect": [
+      485,
+      2,
+      122,
+      238
+     ],
+     "anchor": [
+      97.0,
+      236.4
+     ],
+     "pixelsPerUnit": 8.0,
+     "provenance": {
+      "run": "guest3-20261107b",
+      "pose": "sidestep.a",
+      "seed": 991001,
+      "sha256": "7ae1632b099db72e74b5f38379383bc0f6beeef7d3ec5117163f2f46d99ad678"
+     }
+    },
+    "sidestep_b": {
+     "rect": [
+      609,
+      2,
+      96,
+      247
+     ],
+     "anchor": [
+      48.0,
+      245.4
+     ],
+     "pixelsPerUnit": 8.0,
+     "provenance": {
+      "run": "guest3-20261107b",
+      "pose": "sidestep.b",
+      "seed": 991000,
+      "sha256": "6440fed0986e6afe598d0f95616601780d3299f27500d5c4ade43a93a6fd5abb"
+     }
+    },
+    "sidestep_c": {
+     "rect": [
+      485,
+      2,
+      122,
+      238
+     ],
+     "anchor": [
+      97.0,
+      236.4
+     ],
+     "pixelsPerUnit": 8.0,
+     "provenance": {
+      "run": "guest3-20261107b",
+      "pose": "sidestep.a",
+      "seed": 991001,
+      "sha256": "7ae1632b099db72e74b5f38379383bc0f6beeef7d3ec5117163f2f46d99ad678"
+     }
+    },
+    "sidestep_d": {
+     "rect": [
+      609,
+      2,
+      96,
+      247
+     ],
+     "anchor": [
+      48.0,
+      245.4
+     ],
+     "pixelsPerUnit": 8.0,
+     "provenance": {
+      "run": "guest3-20261107b",
+      "pose": "sidestep.b",
+      "seed": 991000,
+      "sha256": "6440fed0986e6afe598d0f95616601780d3299f27500d5c4ade43a93a6fd5abb"
+     }
+    },
+    "glance_a": {
+     "rect": [
+      707,
+      2,
+      116,
+      246
+     ],
+     "anchor": [
+      54.0,
+      244.4
+     ],
+     "pixelsPerUnit": 8.0,
+     "provenance": {
+      "run": "guest3-20261107b",
+      "pose": "glance.a",
+      "seed": 991000,
+      "sha256": "3113e461704114d8517c5155bcfd705b776e48f07ab05aa90a1157f3c64e36ec"
+     }
+    },
+    "glance_b": {
+     "rect": [
+      707,
+      2,
+      116,
+      246
+     ],
+     "anchor": [
+      54.0,
+      244.4
+     ],
+     "pixelsPerUnit": 8.0,
+     "provenance": {
+      "run": "guest3-20261107b",
+      "pose": "glance.a",
+      "seed": 991000,
+      "sha256": "3113e461704114d8517c5155bcfd705b776e48f07ab05aa90a1157f3c64e36ec"
+     }
+    },
+    "clap_a": {
+     "rect": [
+      825,
+      2,
+      90,
+      248
+     ],
+     "anchor": [
+      45.0,
+      246.4
+     ],
+     "pixelsPerUnit": 8.0,
+     "provenance": {
+      "run": "guest3-20261107b",
+      "pose": "clap.a",
+      "seed": 991000,
+      "sha256": "d56bc5d57bdb3b56c02d7a0d2405e5e75d824a81403c19fb1b082703899d0f1a"
+     }
+    },
+    "clap_b": {
+     "rect": [
+      917,
+      2,
+      85,
+      238
+     ],
+     "anchor": [
+      42.0,
+      236.4
+     ],
+     "pixelsPerUnit": 8.0,
+     "provenance": {
+      "run": "guest3-20261107b",
+      "pose": "clap.b",
+      "seed": 991000,
+      "sha256": "473e1c9931bbb3c00bf2bd7002ef101b6ed27554086eb26eff0a8cebe9759966"
+     }
+    },
+    "cheer_a": {
+     "rect": [
+      2,
+      252,
+      141,
+      252
+     ],
+     "anchor": [
+      68.0,
+      250.4
+     ],
+     "pixelsPerUnit": 8.0,
+     "provenance": {
+      "run": "guest3-20261107b",
+      "pose": "cheer.a",
+      "seed": 991001,
+      "sha256": "663f0c1fe54dd87835a9e9459c4f739c2f0ec036ae873ea9c388cb0aec136c0b"
+     }
+    },
+    "cheer_b": {
+     "rect": [
+      2,
+      252,
+      141,
+      252
+     ],
+     "anchor": [
+      68.0,
+      250.4
+     ],
+     "pixelsPerUnit": 8.0,
+     "provenance": {
+      "run": "guest3-20261107b",
+      "pose": "cheer.a",
+      "seed": 991001,
+      "sha256": "663f0c1fe54dd87835a9e9459c4f739c2f0ec036ae873ea9c388cb0aec136c0b"
+     }
+    },
+    "standing_idle_a": {
+     "rect": [
+      2,
+      2,
+      143,
+      274
+     ],
+     "anchor": [
+      52.0,
+      245.4
+     ],
+     "pixelsPerUnit": 8.0,
+     "measureOnly": true
+    }
+   }
+  },
+  "guest4": {
+   "image": "guest4-v1.png",
+   "imageWidth": 1024,
+   "imageHeight": 509,
+   "referenceFrame": "standing_idle_a",
+   "stature": 1.06,
+   "frames": {
+    "groove_a": {
+     "rect": [
+      120,
+      253,
+      159,
+      235
+     ],
+     "anchor": [
+      107.2,
+      232.4
+     ],
+     "pixelsPerUnit": 8.0,
+     "provenance": {
+      "run": "guest4-20261107b",
+      "pose": "groove.a",
+      "seed": 992001,
+      "sha256": "8ae6c52f98ad98ec9ec1d65a3bcdb1ce9c338a2fa0fedeb0d6889cced40e5e00"
+     }
+    },
+    "groove_b": {
+     "rect": [
+      120,
+      253,
+      159,
+      235
+     ],
+     "anchor": [
+      107.2,
+      232.4
+     ],
+     "pixelsPerUnit": 8.0,
+     "provenance": {
+      "run": "guest4-20261107b",
+      "pose": "groove.a",
+      "seed": 992001,
+      "sha256": "8ae6c52f98ad98ec9ec1d65a3bcdb1ce9c338a2fa0fedeb0d6889cced40e5e00"
+     }
+    },
+    "groove_c": {
+     "rect": [
+      281,
+      253,
+      190,
+      236
+     ],
+     "anchor": [
+      66.8,
+      232.4
+     ],
+     "pixelsPerUnit": 8.0,
+     "provenance": {
+      "run": "guest4-20261107b",
+      "pose": "groove.c",
+      "seed": 992000,
+      "sha256": "5d96c9a9bd680d544248eee8f2de62b4c2a0dcd6ca2615a3a0da3d331e6bcd36"
+     }
+    },
+    "groove_d": {
+     "rect": [
+      281,
+      253,
+      190,
+      236
+     ],
+     "anchor": [
+      66.8,
+      232.4
+     ],
+     "pixelsPerUnit": 8.0,
+     "provenance": {
+      "run": "guest4-20261107b",
+      "pose": "groove.c",
+      "seed": 992000,
+      "sha256": "5d96c9a9bd680d544248eee8f2de62b4c2a0dcd6ca2615a3a0da3d331e6bcd36"
+     }
+    },
+    "pair_dance_a": {
+     "rect": [
+      2,
+      2,
+      133,
+      248
+     ],
+     "anchor": [
+      58.2,
+      245.4
+     ],
+     "pixelsPerUnit": 8.0,
+     "provenance": {
+      "run": "guest4-20261107b",
+      "pose": "pair_dance.a",
+      "seed": 992000,
+      "sha256": "c68545cfd3d932dacc4384ff053ed799dc671d7a1f62588b1bf406501d22472d"
+     }
+    },
+    "pair_dance_b": {
+     "rect": [
+      2,
+      2,
+      133,
+      248
+     ],
+     "anchor": [
+      58.2,
+      245.4
+     ],
+     "pixelsPerUnit": 8.0,
+     "provenance": {
+      "run": "guest4-20261107b",
+      "pose": "pair_dance.a",
+      "seed": 992000,
+      "sha256": "c68545cfd3d932dacc4384ff053ed799dc671d7a1f62588b1bf406501d22472d"
+     }
+    },
+    "pair_dance_c": {
+     "rect": [
+      137,
+      2,
+      120,
+      248
+     ],
+     "anchor": [
+      5.8,
+      245.4
+     ],
+     "pixelsPerUnit": 8.0,
+     "provenance": {
+      "run": "guest4-20261107b",
+      "pose": "pair_dance.c",
+      "seed": 992000,
+      "sha256": "77a7ebdcad986bd85de57faf80acb101f451267c7236c909e1cf34f53bff0085"
+     }
+    },
+    "pair_dance_d": {
+     "rect": [
+      137,
+      2,
+      120,
+      248
+     ],
+     "anchor": [
+      5.8,
+      245.4
+     ],
+     "pixelsPerUnit": 8.0,
+     "provenance": {
+      "run": "guest4-20261107b",
+      "pose": "pair_dance.c",
+      "seed": 992000,
+      "sha256": "77a7ebdcad986bd85de57faf80acb101f451267c7236c909e1cf34f53bff0085"
+     }
+    },
+    "back_dance_a": {
+     "rect": [
+      259,
+      2,
+      72,
+      249
+     ],
+     "anchor": [
+      16.8,
+      245.4
+     ],
+     "pixelsPerUnit": 8.0,
+     "provenance": {
+      "run": "guest4-20261107b",
+      "pose": "back_dance.a",
+      "seed": 992000,
+      "sha256": "3396916037fcc5151c296dd91f0b171c06ef82b6a41759e8227b267ca0a8b0b7"
+     }
+    },
+    "back_dance_b": {
+     "rect": [
+      259,
+      2,
+      72,
+      249
+     ],
+     "anchor": [
+      16.8,
+      245.4
+     ],
+     "pixelsPerUnit": 8.0,
+     "provenance": {
+      "run": "guest4-20261107b",
+      "pose": "back_dance.a",
+      "seed": 992000,
+      "sha256": "3396916037fcc5151c296dd91f0b171c06ef82b6a41759e8227b267ca0a8b0b7"
+     }
+    },
+    "back_dance_c": {
+     "rect": [
+      333,
+      2,
+      78,
+      248
+     ],
+     "anchor": [
+      59.2,
+      245.4
+     ],
+     "pixelsPerUnit": 8.0,
+     "provenance": {
+      "run": "guest4-20261107b",
+      "pose": "back_dance.c",
+      "seed": 997001,
+      "sha256": "173c15e5dd66703a19ff6e3bbf585618be28d0ac8e7664a97d772518e02f44f7"
+     }
+    },
+    "back_dance_d": {
+     "rect": [
+      333,
+      2,
+      78,
+      248
+     ],
+     "anchor": [
+      59.2,
+      245.4
+     ],
+     "pixelsPerUnit": 8.0,
+     "provenance": {
+      "run": "guest4-20261107b",
+      "pose": "back_dance.c",
+      "seed": 997001,
+      "sha256": "173c15e5dd66703a19ff6e3bbf585618be28d0ac8e7664a97d772518e02f44f7"
+     }
+    },
+    "sidestep_a": {
+     "rect": [
+      413,
+      2,
+      117,
+      238
+     ],
+     "anchor": [
+      65.2,
+      235.4
+     ],
+     "pixelsPerUnit": 8.0,
+     "provenance": {
+      "run": "guest4-20261107b",
+      "pose": "sidestep.a",
+      "seed": 992000,
+      "sha256": "6de0c45dce5bb48f076de97424e38ee6403686a809817002bd19838d9d567715"
+     }
+    },
+    "sidestep_b": {
+     "rect": [
+      532,
+      2,
+      139,
+      249
+     ],
+     "anchor": [
+      99.2,
+      246.4
+     ],
+     "pixelsPerUnit": 8.0,
+     "provenance": {
+      "run": "guest4-20261107b",
+      "pose": "sidestep.b",
+      "seed": 992001,
+      "sha256": "ef658ba5ca4696c94e32fb83b8101180704aa4b39af342232a23e6be2aebee18"
+     }
+    },
+    "sidestep_c": {
+     "rect": [
+      413,
+      2,
+      117,
+      238
+     ],
+     "anchor": [
+      65.2,
+      235.4
+     ],
+     "pixelsPerUnit": 8.0,
+     "provenance": {
+      "run": "guest4-20261107b",
+      "pose": "sidestep.a",
+      "seed": 992000,
+      "sha256": "6de0c45dce5bb48f076de97424e38ee6403686a809817002bd19838d9d567715"
+     }
+    },
+    "sidestep_d": {
+     "rect": [
+      532,
+      2,
+      139,
+      249
+     ],
+     "anchor": [
+      99.2,
+      246.4
+     ],
+     "pixelsPerUnit": 8.0,
+     "provenance": {
+      "run": "guest4-20261107b",
+      "pose": "sidestep.b",
+      "seed": 992001,
+      "sha256": "ef658ba5ca4696c94e32fb83b8101180704aa4b39af342232a23e6be2aebee18"
+     }
+    },
+    "glance_a": {
+     "rect": [
+      673,
+      2,
+      72,
+      247
+     ],
+     "anchor": [
+      38.0,
+      244.4
+     ],
+     "pixelsPerUnit": 8.0,
+     "provenance": {
+      "run": "guest4-20261107b",
+      "pose": "glance.a",
+      "seed": 992000,
+      "sha256": "18818f938fe40ecde523b150a20c92da16b892ef7254e03c3e86ef35e818146f"
+     }
+    },
+    "glance_b": {
+     "rect": [
+      673,
+      2,
+      72,
+      247
+     ],
+     "anchor": [
+      38.0,
+      244.4
+     ],
+     "pixelsPerUnit": 8.0,
+     "provenance": {
+      "run": "guest4-20261107b",
+      "pose": "glance.a",
+      "seed": 992000,
+      "sha256": "18818f938fe40ecde523b150a20c92da16b892ef7254e03c3e86ef35e818146f"
+     }
+    },
+    "clap_a": {
+     "rect": [
+      747,
+      2,
+      93,
+      249
+     ],
+     "anchor": [
+      46.0,
+      246.4
+     ],
+     "pixelsPerUnit": 8.0,
+     "provenance": {
+      "run": "guest4-20261107b",
+      "pose": "clap.a",
+      "seed": 992000,
+      "sha256": "7d5376c99d1b79d6fc5dd2bb2d1bef82c25695e1a21d154f1cf40f558d347896"
+     }
+    },
+    "clap_b": {
+     "rect": [
+      842,
+      2,
+      84,
+      239
+     ],
+     "anchor": [
+      42.0,
+      236.4
+     ],
+     "pixelsPerUnit": 8.0,
+     "provenance": {
+      "run": "guest4-20261107b",
+      "pose": "clap.b",
+      "seed": 992000,
+      "sha256": "f8018faf2e072bc5522705de7d75412029d5449a4c22159f76e817bc381d0027"
+     }
+    },
+    "cheer_a": {
+     "rect": [
+      2,
+      253,
+      116,
+      254
+     ],
+     "anchor": [
+      57.0,
+      251.4
+     ],
+     "pixelsPerUnit": 8.0,
+     "provenance": {
+      "run": "guest4-20261107b",
+      "pose": "cheer.a",
+      "seed": 992000,
+      "sha256": "606c581ba696792028f7c58cee7d5bfc38a8babc091a918682b86596e12e5ec7"
+     }
+    },
+    "cheer_b": {
+     "rect": [
+      2,
+      253,
+      116,
+      254
+     ],
+     "anchor": [
+      57.0,
+      251.4
+     ],
+     "pixelsPerUnit": 8.0,
+     "provenance": {
+      "run": "guest4-20261107b",
+      "pose": "cheer.a",
+      "seed": 992000,
+      "sha256": "606c581ba696792028f7c58cee7d5bfc38a8babc091a918682b86596e12e5ec7"
+     }
+    },
+    "standing_idle_a": {
+     "rect": [
+      2,
+      2,
+      133,
+      234
+     ],
+     "anchor": [
+      58.2,
+      245.4
+     ],
+     "pixelsPerUnit": 8.0,
+     "measureOnly": true
+    }
+   }
+  },
+  "band-marimba": {
+   "image": "band-marimba-v1.png",
+   "imageWidth": 1024,
+   "imageHeight": 505,
+   "referenceFrame": "relaxed_a",
+   "ramps": {
+    "skin": {
+     "region": "skin",
+     "alsoIn": [],
+     "shades": [
+      "#3B1300",
+      "#603513",
+      "#8A5733",
+      "#A47758"
+     ]
+    },
+    "hair": {
+     "region": "hair",
+     "alsoIn": [],
+     "shades": [
+      "#000000",
+      "#020100",
+      "#191312",
+      "#302B2A"
+     ]
+    },
+    "shirt": {
+     "region": "shirt",
+     "alsoIn": [],
+     "shades": [
+      "#9B927A",
+      "#C4BAA1",
+      "#EFE4C8",
+      "#FFFBE3"
+     ]
+    },
+    "jacket": {
+     "region": "cloth",
+     "alsoIn": [],
+     "shades": [
+      "#968D74",
+      "#BFB59B",
+      "#EADFC2",
+      "#FFFBE2"
+     ]
+    },
+    "lapels": {
+     "region": "apron",
+     "alsoIn": [],
+     "shades": [
+      "#05001D",
+      "#1B0041",
+      "#3A1F6B",
+      "#524081"
+     ]
+    },
+    "trousers": {
+     "region": "trousers",
+     "alsoIn": [],
+     "shades": [
+      "#000001",
+      "#09070D",
+      "#26232C",
+      "#3F3C45"
+     ]
+    },
+    "shoes": {
+     "region": "shoes",
+     "alsoIn": [],
+     "shades": [
+      "#867956",
+      "#ADA07C",
+      "#D8C9A0",
+      "#F7EAC6"
+     ]
+    },
+    "bars": {
+     "region": "prop",
+     "alsoIn": [],
+     "shades": [
+      "#74110C",
+      "#9E3C32",
+      "#CF5F52",
+      "#E88578"
+     ]
+    },
+    "tubes": {
+     "region": "accessory",
+     "alsoIn": [],
+     "shades": [
+      "#765500",
+      "#9D7B14",
+      "#C9A23A",
+      "#E5C371"
+     ]
+    }
+   },
+   "frames": {
+    "relaxed_a": {
+     "rect": [
+      220,
+      2,
+      221,
+      250
+     ],
+     "anchor": [
+      93.0,
+      249.0
+     ],
+     "pixelsPerUnit": 6.7097,
+     "facing": "front_3q",
+     "loop": true,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "both",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/band/art_runs/band-marimba-v1-0c2fafb8bc",
+      "pose": "relaxed.a",
+      "sha256": "c817661970b01d7102768e808c51c1d59809e1dc51728b3ba5042e18c889dcf2",
+      "selected": null,
+      "frameKey": "243e35cfcb871ab7329b6dc9ddcd835f4cdee915758bab7170d90e9b2c3d3a8e",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "contrapposto",
+       "follow-through",
+       "no-twinning",
+       "timing-on-beat"
+      ]
+     }
+    },
+    "relaxed_b": {
+     "rect": [
+      443,
+      2,
+      213,
+      250
+     ],
+     "anchor": [
+      90.0,
+      249.0
+     ],
+     "pixelsPerUnit": 6.7097,
+     "facing": "front_3q",
+     "loop": true,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "both",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/band/art_runs/band-marimba-v1-0c2fafb8bc",
+      "pose": "relaxed.b",
+      "sha256": "63926638e76e123b1b77f058182e7d23481d1ae478721661b566e6f49d04d3f4",
+      "selected": null,
+      "frameKey": "25e653cda21c9f64fd7ac6e3719ebd1fae951395546c563ba631f41b4e7fccbe",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "contrapposto",
+       "follow-through",
+       "no-twinning",
+       "timing-on-beat"
+      ]
+     }
+    },
+    "swing_a": {
+     "rect": [
+      2,
+      2,
+      216,
+      250
+     ],
+     "anchor": [
+      92.0,
+      249.0
+     ],
+     "pixelsPerUnit": 6.7097,
+     "facing": "front_3q",
+     "loop": true,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "both",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/band/art_runs/band-marimba-v1-0c2fafb8bc",
+      "pose": "swing.a",
+      "sha256": "dc28a2f0500717a9ce8ef5f9ea94c5ee5b0e004b980cad92f057334d8aab6374",
+      "selected": null,
+      "frameKey": "7f6f8be508d9b50d17a54752d2a36d42b6351d5ff58df652615181e6f90827c9",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "line-of-action",
+       "contrapposto",
+       "exaggeration-accent",
+       "no-twinning",
+       "timing-on-beat"
+      ]
+     }
+    },
+    "swing_b": {
+     "rect": [
+      217,
+      254,
+      213,
+      250
+     ],
+     "anchor": [
+      90.0,
+      249.0
+     ],
+     "pixelsPerUnit": 6.7097,
+     "facing": "front_3q",
+     "loop": true,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "both",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/band/art_runs/band-marimba-v1-0c2fafb8bc",
+      "pose": "swing.b",
+      "sha256": "ae4d9d0c3f76f8c1b87f16fe120abd8088a83072c3337e3d6ea76f0685d81b70",
+      "selected": null,
+      "frameKey": "e3deb7eaf64e492c5f8d5c985ceba3ef17acf7a91e90c07c08eca29343e58b1b",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "contrapposto",
+       "no-twinning",
+       "timing-on-beat",
+       "planted-pivot"
+      ]
+     }
+    },
+    "swing_c": {
+     "rect": [
+      432,
+      254,
+      212,
+      250
+     ],
+     "anchor": [
+      91.0,
+      249.0
+     ],
+     "pixelsPerUnit": 6.7097,
+     "facing": "front_3q",
+     "loop": true,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "both",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/band/art_runs/band-marimba-v1-0c2fafb8bc",
+      "pose": "swing.c",
+      "sha256": "2ac04cedacd8024bb11a42b36618fc27a236189377a68609d90001c5afd017d4",
+      "selected": null,
+      "frameKey": "3e98a78ce654b97bf4ed5bcbf9be8b68ca7345caf580c32db212956dd399bf82",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "line-of-action",
+       "contrapposto",
+       "exaggeration-accent",
+       "no-twinning",
+       "timing-on-beat"
+      ]
+     }
+    },
+    "swing_d": {
+     "rect": [
+      646,
+      254,
+      213,
+      250
+     ],
+     "anchor": [
+      90.0,
+      249.0
+     ],
+     "pixelsPerUnit": 6.7097,
+     "facing": "front_3q",
+     "loop": true,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "left",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/band/art_runs/band-marimba-v1-0c2fafb8bc",
+      "pose": "swing.d",
+      "sha256": "d8bff2746290a4eb2b4fa1fcd62bd1d145a0c3a254c7205ae5e6bfeec64a3e27",
+      "selected": null,
+      "frameKey": "e46ed23427b9edb377dc13d882c18bf01c9d2bba05227107ac36996c849736fd",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "contrapposto",
+       "no-twinning",
+       "timing-on-beat",
+       "planted-pivot"
+      ]
+     }
+    },
+    "tap_up_a": {
+     "rect": [
+      658,
+      2,
+      221,
+      250
+     ],
+     "anchor": [
+      93.0,
+      249.0
+     ],
+     "pixelsPerUnit": 6.7097,
+     "facing": "front_3q",
+     "loop": true,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "left",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/band/art_runs/band-marimba-v1-0c2fafb8bc",
+      "pose": "tap.up_a",
+      "sha256": "3898d8405d90fe296deb97780b4beb290f1ac6c062404e651c259bfb112723f7",
+      "selected": null,
+      "frameKey": "8f6450b01144e8436ee9c8a69767ff73f45dbf0d1caeee2fa68702dfbecd31aa",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "contrapposto",
+       "no-twinning",
+       "timing-on-beat",
+       "planted-pivot"
+      ]
+     }
+    },
+    "tap_up_b": {
+     "rect": [
+      2,
+      254,
+      213,
+      250
+     ],
+     "anchor": [
+      90.0,
+      249.0
+     ],
+     "pixelsPerUnit": 6.7097,
+     "facing": "front_3q",
+     "loop": true,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "left",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/band/art_runs/band-marimba-v1-0c2fafb8bc",
+      "pose": "tap.up_b",
+      "sha256": "32c88805da130ecd84f35ecd8da50fcbb478494cec4b8c4b05f87fe16d7b494c",
+      "selected": null,
+      "frameKey": "62c3c122013be84b213099c2b7429a54fab1caf637f0bb2873dcea4dbbe7ea2e",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "contrapposto",
+       "no-twinning",
+       "timing-on-beat",
+       "planted-pivot"
+      ]
+     }
+    }
+   },
+   "playerHeightPx": 260
+  },
+  "guest5": {
+   "image": "guest5-v1.png",
+   "imageWidth": 1024,
+   "imageHeight": 506,
+   "referenceFrame": "standing_idle_a",
+   "stature": 1.0,
+   "frames": {
+    "groove_a": {
+     "rect": [
+      142,
+      252,
+      110,
+      235
+     ],
+     "anchor": [
+      81.0,
+      233.4
+     ],
+     "pixelsPerUnit": 8.0,
+     "provenance": {
+      "run": "guest5-20261107b",
+      "pose": "groove.a",
+      "seed": 993000,
+      "sha256": "f8ced1d3ae845db8861d75fa6eb2e1dc9b216e3107e95c9f5c2fd15bd43d6dce"
+     }
+    },
+    "groove_b": {
+     "rect": [
+      142,
+      252,
+      110,
+      235
+     ],
+     "anchor": [
+      81.0,
+      233.4
+     ],
+     "pixelsPerUnit": 8.0,
+     "provenance": {
+      "run": "guest5-20261107b",
+      "pose": "groove.a",
+      "seed": 993000,
+      "sha256": "f8ced1d3ae845db8861d75fa6eb2e1dc9b216e3107e95c9f5c2fd15bd43d6dce"
+     }
+    },
+    "groove_c": {
+     "rect": [
+      254,
+      252,
+      124,
+      235
+     ],
+     "anchor": [
+      58.0,
+      233.4
+     ],
+     "pixelsPerUnit": 8.0,
+     "provenance": {
+      "run": "guest5-20261107b",
+      "pose": "groove.c",
+      "seed": 993000,
+      "sha256": "2df0174a3e5adcc95d341129f614bed77560c5d292aad61273c32eba69bc4018"
+     }
+    },
+    "groove_d": {
+     "rect": [
+      254,
+      252,
+      124,
+      235
+     ],
+     "anchor": [
+      58.0,
+      233.4
+     ],
+     "pixelsPerUnit": 8.0,
+     "provenance": {
+      "run": "guest5-20261107b",
+      "pose": "groove.c",
+      "seed": 993000,
+      "sha256": "2df0174a3e5adcc95d341129f614bed77560c5d292aad61273c32eba69bc4018"
+     }
+    },
+    "pair_dance_a": {
+     "rect": [
+      2,
+      2,
+      148,
+      247
+     ],
+     "anchor": [
+      51.0,
+      245.4
+     ],
+     "pixelsPerUnit": 8.0,
+     "provenance": {
+      "run": "guest5-20261107b",
+      "pose": "pair_dance.a",
+      "seed": 998000,
+      "sha256": "3cb9a117150a4297b8d8b8e83aad41b0e983fb77b8f442854eaf95f8d781a3bf"
+     }
+    },
+    "pair_dance_b": {
+     "rect": [
+      2,
+      2,
+      148,
+      247
+     ],
+     "anchor": [
+      51.0,
+      245.4
+     ],
+     "pixelsPerUnit": 8.0,
+     "provenance": {
+      "run": "guest5-20261107b",
+      "pose": "pair_dance.a",
+      "seed": 998000,
+      "sha256": "3cb9a117150a4297b8d8b8e83aad41b0e983fb77b8f442854eaf95f8d781a3bf"
+     }
+    },
+    "pair_dance_c": {
+     "rect": [
+      152,
+      2,
+      141,
+      247
+     ],
+     "anchor": [
+      32.0,
+      245.4
+     ],
+     "pixelsPerUnit": 8.0,
+     "provenance": {
+      "run": "guest5-20261107b",
+      "pose": "pair_dance.c",
+      "seed": 993000,
+      "sha256": "7cd7914ac1ce4975226f7fdc84ecce51dcc0fbc5b8640c251535456a5578490e"
+     }
+    },
+    "pair_dance_d": {
+     "rect": [
+      152,
+      2,
+      141,
+      247
+     ],
+     "anchor": [
+      32.0,
+      245.4
+     ],
+     "pixelsPerUnit": 8.0,
+     "provenance": {
+      "run": "guest5-20261107b",
+      "pose": "pair_dance.c",
+      "seed": 993000,
+      "sha256": "7cd7914ac1ce4975226f7fdc84ecce51dcc0fbc5b8640c251535456a5578490e"
+     }
+    },
+    "back_dance_a": {
+     "rect": [
+      295,
+      2,
+      79,
+      247
+     ],
+     "anchor": [
+      31.0,
+      245.4
+     ],
+     "pixelsPerUnit": 8.0,
+     "provenance": {
+      "run": "guest5-20261107b",
+      "pose": "back_dance.a",
+      "seed": 993000,
+      "sha256": "45077a7ca6aa6dc043c398bdbc96713cc9d3980837f0013cc4cb9450be11aa0b"
+     }
+    },
+    "back_dance_b": {
+     "rect": [
+      295,
+      2,
+      79,
+      247
+     ],
+     "anchor": [
+      31.0,
+      245.4
+     ],
+     "pixelsPerUnit": 8.0,
+     "provenance": {
+      "run": "guest5-20261107b",
+      "pose": "back_dance.a",
+      "seed": 993000,
+      "sha256": "45077a7ca6aa6dc043c398bdbc96713cc9d3980837f0013cc4cb9450be11aa0b"
+     }
+    },
+    "back_dance_c": {
+     "rect": [
+      376,
+      2,
+      83,
+      247
+     ],
+     "anchor": [
+      57.0,
+      245.4
+     ],
+     "pixelsPerUnit": 8.0,
+     "provenance": {
+      "run": "guest5-20261107b",
+      "pose": "back_dance.c",
+      "seed": 998000,
+      "sha256": "d81583372a1d437c15bcc00146d0a8435ea16c1a08d85e9e7c952ec89835968f"
+     }
+    },
+    "back_dance_d": {
+     "rect": [
+      376,
+      2,
+      83,
+      247
+     ],
+     "anchor": [
+      57.0,
+      245.4
+     ],
+     "pixelsPerUnit": 8.0,
+     "provenance": {
+      "run": "guest5-20261107b",
+      "pose": "back_dance.c",
+      "seed": 998000,
+      "sha256": "d81583372a1d437c15bcc00146d0a8435ea16c1a08d85e9e7c952ec89835968f"
+     }
+    },
+    "sidestep_a": {
+     "rect": [
+      461,
+      2,
+      112,
+      238
+     ],
+     "anchor": [
+      90.0,
+      236.4
+     ],
+     "pixelsPerUnit": 8.0,
+     "provenance": {
+      "run": "guest5-20261107b",
+      "pose": "sidestep.a",
+      "seed": 993000,
+      "sha256": "4db864dadc4f23de86245317576b58334316923e9392b2db1aa6e489fc54b14e"
+     }
+    },
+    "sidestep_b": {
+     "rect": [
+      575,
+      2,
+      106,
+      247
+     ],
+     "anchor": [
+      76.0,
+      245.4
+     ],
+     "pixelsPerUnit": 8.0,
+     "provenance": {
+      "run": "guest5-20261107b",
+      "pose": "sidestep.b",
+      "seed": 993000,
+      "sha256": "a0195124058bb3af839773ca4a8b0c336ecaf22196a27edddba6bfbda8e23227"
+     }
+    },
+    "sidestep_c": {
+     "rect": [
+      461,
+      2,
+      112,
+      238
+     ],
+     "anchor": [
+      90.0,
+      236.4
+     ],
+     "pixelsPerUnit": 8.0,
+     "provenance": {
+      "run": "guest5-20261107b",
+      "pose": "sidestep.a",
+      "seed": 993000,
+      "sha256": "4db864dadc4f23de86245317576b58334316923e9392b2db1aa6e489fc54b14e"
+     }
+    },
+    "sidestep_d": {
+     "rect": [
+      575,
+      2,
+      106,
+      247
+     ],
+     "anchor": [
+      76.0,
+      245.4
+     ],
+     "pixelsPerUnit": 8.0,
+     "provenance": {
+      "run": "guest5-20261107b",
+      "pose": "sidestep.b",
+      "seed": 993000,
+      "sha256": "a0195124058bb3af839773ca4a8b0c336ecaf22196a27edddba6bfbda8e23227"
+     }
+    },
+    "glance_a": {
+     "rect": [
+      683,
+      2,
+      78,
+      246
+     ],
+     "anchor": [
+      43.0,
+      244.4
+     ],
+     "pixelsPerUnit": 8.0,
+     "provenance": {
+      "run": "guest5-20261107b",
+      "pose": "glance.a",
+      "seed": 993000,
+      "sha256": "932f8320c1085948ee1203ba4a13af4c75b3ded0887190c6297949b9ed1ed924"
+     }
+    },
+    "glance_b": {
+     "rect": [
+      683,
+      2,
+      78,
+      246
+     ],
+     "anchor": [
+      43.0,
+      244.4
+     ],
+     "pixelsPerUnit": 8.0,
+     "provenance": {
+      "run": "guest5-20261107b",
+      "pose": "glance.a",
+      "seed": 993000,
+      "sha256": "932f8320c1085948ee1203ba4a13af4c75b3ded0887190c6297949b9ed1ed924"
+     }
+    },
+    "clap_a": {
+     "rect": [
+      763,
+      2,
+      100,
+      248
+     ],
+     "anchor": [
+      61.0,
+      246.4
+     ],
+     "pixelsPerUnit": 8.0,
+     "provenance": {
+      "run": "guest5-20261107b",
+      "pose": "clap.a",
+      "seed": 993000,
+      "sha256": "45fa081ac23c5f2698b304b01a30fa7e54992e1c655c35a90bb0da9a315e1a36"
+     }
+    },
+    "clap_b": {
+     "rect": [
+      865,
+      2,
+      88,
+      239
+     ],
+     "anchor": [
+      54.0,
+      237.4
+     ],
+     "pixelsPerUnit": 8.0,
+     "provenance": {
+      "run": "guest5-20261107b",
+      "pose": "clap.b",
+      "seed": 993000,
+      "sha256": "69b0dd34985b70435a365218e4a12bddc6fa6cb9db7490001f290dd0a851a582"
+     }
+    },
+    "cheer_a": {
+     "rect": [
+      2,
+      252,
+      138,
+      252
+     ],
+     "anchor": [
+      79.0,
+      250.4
+     ],
+     "pixelsPerUnit": 8.0,
+     "provenance": {
+      "run": "guest5-20261107b",
+      "pose": "cheer.a",
+      "seed": 993000,
+      "sha256": "5a1b94487c00184b6645acbf58b009c1c70af2f7625d66d94fd70591c70ef760"
+     }
+    },
+    "cheer_b": {
+     "rect": [
+      2,
+      252,
+      138,
+      252
+     ],
+     "anchor": [
+      79.0,
+      250.4
+     ],
+     "pixelsPerUnit": 8.0,
+     "provenance": {
+      "run": "guest5-20261107b",
+      "pose": "cheer.a",
+      "seed": 993000,
+      "sha256": "5a1b94487c00184b6645acbf58b009c1c70af2f7625d66d94fd70591c70ef760"
+     }
+    },
+    "standing_idle_a": {
+     "rect": [
+      2,
+      2,
+      148,
+      247
+     ],
+     "anchor": [
+      51.0,
+      245.4
+     ],
+     "pixelsPerUnit": 8.0,
+     "measureOnly": true
+    }
+   }
+  },
+  "guest6": {
+   "image": "guest6-v1.png",
+   "imageWidth": 1024,
+   "imageHeight": 508,
+   "referenceFrame": "standing_idle_a",
+   "stature": 0.94,
+   "frames": {
+    "groove_a": {
+     "rect": [
+      354,
+      253,
+      192,
+      236
+     ],
+     "anchor": [
+      111.0,
+      233.4
+     ],
+     "pixelsPerUnit": 8.0,
+     "provenance": {
+      "run": "guest6-20261107b",
+      "pose": "groove.a",
+      "seed": 994000,
+      "sha256": "ad6e7993554264c06d9ed0386b377f4f9b8ec9a1b6fb2511d014394f148eef3e"
+     }
+    },
+    "groove_b": {
+     "rect": [
+      354,
+      253,
+      192,
+      236
+     ],
+     "anchor": [
+      111.0,
+      233.4
+     ],
+     "pixelsPerUnit": 8.0,
+     "provenance": {
+      "run": "guest6-20261107b",
+      "pose": "groove.a",
+      "seed": 994000,
+      "sha256": "ad6e7993554264c06d9ed0386b377f4f9b8ec9a1b6fb2511d014394f148eef3e"
+     }
+    },
+    "groove_c": {
+     "rect": [
+      548,
+      253,
+      213,
+      236
+     ],
+     "anchor": [
+      95.0,
+      233.4
+     ],
+     "pixelsPerUnit": 8.0,
+     "provenance": {
+      "run": "guest6-20261107b",
+      "pose": "groove.c",
+      "seed": 994000,
+      "sha256": "f45468e33d710f6ecf4d1a67a1794ba477130300413a2e712f3ee303611dcf81"
+     }
+    },
+    "groove_d": {
+     "rect": [
+      548,
+      253,
+      213,
+      236
+     ],
+     "anchor": [
+      95.0,
+      233.4
+     ],
+     "pixelsPerUnit": 8.0,
+     "provenance": {
+      "run": "guest6-20261107b",
+      "pose": "groove.c",
+      "seed": 994000,
+      "sha256": "f45468e33d710f6ecf4d1a67a1794ba477130300413a2e712f3ee303611dcf81"
+     }
+    },
+    "pair_dance_a": {
+     "rect": [
+      2,
+      2,
+      139,
+      248
+     ],
+     "anchor": [
+      56.0,
+      245.4
+     ],
+     "pixelsPerUnit": 8.0,
+     "provenance": {
+      "run": "guest6-20261107b",
+      "pose": "pair_dance.a",
+      "seed": 994000,
+      "sha256": "f483f2ac82835dfe192aa73cea60c0d025c3eda5c6540aaaf434774db6c3d7ab"
+     }
+    },
+    "pair_dance_b": {
+     "rect": [
+      2,
+      2,
+      139,
+      248
+     ],
+     "anchor": [
+      56.0,
+      245.4
+     ],
+     "pixelsPerUnit": 8.0,
+     "provenance": {
+      "run": "guest6-20261107b",
+      "pose": "pair_dance.a",
+      "seed": 994000,
+      "sha256": "f483f2ac82835dfe192aa73cea60c0d025c3eda5c6540aaaf434774db6c3d7ab"
+     }
+    },
+    "pair_dance_c": {
+     "rect": [
+      143,
+      2,
+      130,
+      248
+     ],
+     "anchor": [
+      23.0,
+      245.4
+     ],
+     "pixelsPerUnit": 8.0,
+     "provenance": {
+      "run": "guest6-20261107b",
+      "pose": "pair_dance.c",
+      "seed": 994000,
+      "sha256": "4c08f74afdb6695e52ec96f74d82d0671ec743ccc7be28f2c5cb07bcfcf1ff58"
+     }
+    },
+    "pair_dance_d": {
+     "rect": [
+      143,
+      2,
+      130,
+      248
+     ],
+     "anchor": [
+      23.0,
+      245.4
+     ],
+     "pixelsPerUnit": 8.0,
+     "provenance": {
+      "run": "guest6-20261107b",
+      "pose": "pair_dance.c",
+      "seed": 994000,
+      "sha256": "4c08f74afdb6695e52ec96f74d82d0671ec743ccc7be28f2c5cb07bcfcf1ff58"
+     }
+    },
+    "back_dance_a": {
+     "rect": [
+      275,
+      2,
+      114,
+      248
+     ],
+     "anchor": [
+      33.0,
+      245.4
+     ],
+     "pixelsPerUnit": 8.0,
+     "provenance": {
+      "run": "guest6-20261107b",
+      "pose": "back_dance.a",
+      "seed": 994000,
+      "sha256": "e4b5290ae81a0a876b1c67ce05014046f03847f3a5fd75e74b4546118ff03958"
+     }
+    },
+    "back_dance_b": {
+     "rect": [
+      275,
+      2,
+      114,
+      248
+     ],
+     "anchor": [
+      33.0,
+      245.4
+     ],
+     "pixelsPerUnit": 8.0,
+     "provenance": {
+      "run": "guest6-20261107b",
+      "pose": "back_dance.a",
+      "seed": 994000,
+      "sha256": "e4b5290ae81a0a876b1c67ce05014046f03847f3a5fd75e74b4546118ff03958"
+     }
+    },
+    "back_dance_c": {
+     "rect": [
+      391,
+      2,
+      113,
+      249
+     ],
+     "anchor": [
+      52.0,
+      245.4
+     ],
+     "pixelsPerUnit": 8.0,
+     "provenance": {
+      "run": "guest6-20261107b",
+      "pose": "back_dance.c",
+      "seed": 994001,
+      "sha256": "f04340b363a51187c0e1626df58a68d2be4b5316b755adea3897803c0aea1d68"
+     }
+    },
+    "back_dance_d": {
+     "rect": [
+      391,
+      2,
+      113,
+      249
+     ],
+     "anchor": [
+      52.0,
+      245.4
+     ],
+     "pixelsPerUnit": 8.0,
+     "provenance": {
+      "run": "guest6-20261107b",
+      "pose": "back_dance.c",
+      "seed": 994001,
+      "sha256": "f04340b363a51187c0e1626df58a68d2be4b5316b755adea3897803c0aea1d68"
+     }
+    },
+    "sidestep_a": {
+     "rect": [
+      506,
+      2,
+      156,
+      240
+     ],
+     "anchor": [
+      117.0,
+      236.4
+     ],
+     "pixelsPerUnit": 8.0,
+     "provenance": {
+      "run": "guest6-20261107b",
+      "pose": "sidestep.a",
+      "seed": 994000,
+      "sha256": "26da3805688a440f1d0152f63fa453e14e375c56bb0aa53eb08bebca1bcbcf50"
+     }
+    },
+    "sidestep_b": {
+     "rect": [
+      664,
+      2,
+      150,
+      248
+     ],
+     "anchor": [
+      93.0,
+      245.4
+     ],
+     "pixelsPerUnit": 8.0,
+     "provenance": {
+      "run": "guest6-20261107b",
+      "pose": "sidestep.b",
+      "seed": 994000,
+      "sha256": "83fb32642ed35cfb0068c659be332569e84c906b7d6ddde1619ebd00cf99009a"
+     }
+    },
+    "sidestep_c": {
+     "rect": [
+      506,
+      2,
+      156,
+      240
+     ],
+     "anchor": [
+      117.0,
+      236.4
+     ],
+     "pixelsPerUnit": 8.0,
+     "provenance": {
+      "run": "guest6-20261107b",
+      "pose": "sidestep.a",
+      "seed": 994000,
+      "sha256": "26da3805688a440f1d0152f63fa453e14e375c56bb0aa53eb08bebca1bcbcf50"
+     }
+    },
+    "sidestep_d": {
+     "rect": [
+      664,
+      2,
+      150,
+      248
+     ],
+     "anchor": [
+      93.0,
+      245.4
+     ],
+     "pixelsPerUnit": 8.0,
+     "provenance": {
+      "run": "guest6-20261107b",
+      "pose": "sidestep.b",
+      "seed": 994000,
+      "sha256": "83fb32642ed35cfb0068c659be332569e84c906b7d6ddde1619ebd00cf99009a"
+     }
+    },
+    "glance_a": {
+     "rect": [
+      816,
+      2,
+      119,
+      247
+     ],
+     "anchor": [
+      53.0,
+      244.4
+     ],
+     "pixelsPerUnit": 8.0,
+     "provenance": {
+      "run": "guest6-20261107b",
+      "pose": "glance.a",
+      "seed": 994000,
+      "sha256": "da641399ef2d36a290394acd64595a6dccbdf660097cdb21419bf52d344a7c0b"
+     }
+    },
+    "glance_b": {
+     "rect": [
+      816,
+      2,
+      119,
+      247
+     ],
+     "anchor": [
+      53.0,
+      244.4
+     ],
+     "pixelsPerUnit": 8.0,
+     "provenance": {
+      "run": "guest6-20261107b",
+      "pose": "glance.a",
+      "seed": 994000,
+      "sha256": "da641399ef2d36a290394acd64595a6dccbdf660097cdb21419bf52d344a7c0b"
+     }
+    },
+    "clap_a": {
+     "rect": [
+      2,
+      253,
+      103,
+      249
+     ],
+     "anchor": [
+      52.0,
+      246.4
+     ],
+     "pixelsPerUnit": 8.0,
+     "provenance": {
+      "run": "guest6-20261107b",
+      "pose": "clap.a",
+      "seed": 994000,
+      "sha256": "09829550a06f1be59f134efe859f6937a33d5165b3c429396482660421ba065b"
+     }
+    },
+    "clap_b": {
+     "rect": [
+      107,
+      253,
+      103,
+      240
+     ],
+     "anchor": [
+      51.0,
+      237.4
+     ],
+     "pixelsPerUnit": 8.0,
+     "provenance": {
+      "run": "guest6-20261107b",
+      "pose": "clap.b",
+      "seed": 994000,
+      "sha256": "12ee51e79a5615debb40e73102026d73089d6c56b297ca717ca71c9644f21114"
+     }
+    },
+    "cheer_a": {
+     "rect": [
+      212,
+      253,
+      140,
+      253
+     ],
+     "anchor": [
+      68.0,
+      250.4
+     ],
+     "pixelsPerUnit": 8.0,
+     "provenance": {
+      "run": "guest6-20261107b",
+      "pose": "cheer.a",
+      "seed": 994000,
+      "sha256": "88dbf59bd34182e5b96170aef8b3414ec208e69b1e5504bc978d694e212ea2d5"
+     }
+    },
+    "cheer_b": {
+     "rect": [
+      212,
+      253,
+      140,
+      253
+     ],
+     "anchor": [
+      68.0,
+      250.4
+     ],
+     "pixelsPerUnit": 8.0,
+     "provenance": {
+      "run": "guest6-20261107b",
+      "pose": "cheer.a",
+      "seed": 994000,
+      "sha256": "88dbf59bd34182e5b96170aef8b3414ec208e69b1e5504bc978d694e212ea2d5"
+     }
+    },
+    "standing_idle_a": {
+     "rect": [
+      2,
+      2,
+      139,
+      264
+     ],
+     "anchor": [
+      56.0,
+      245.4
+     ],
+     "pixelsPerUnit": 8.0,
+     "measureOnly": true
     }
    }
   },
