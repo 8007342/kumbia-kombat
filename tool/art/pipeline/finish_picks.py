@@ -98,8 +98,11 @@ def main() -> None:
         Image.fromarray(frame, "RGBA").save(run_dir / "final" / f"{pid}.png", optimize=False)
         selection[pid] = {"k": f"{SEED_PREFIX}{suffix}", "run": other or a.run, "score": scores.get(pid, {}).get(f"{SEED_PREFIX}{suffix}", {}).get("score")}
         report[pid] = {"swing": moved, **({"note": note} if note else {})}
-    hold = np.asarray(Image.open(run_dir / "final" / "crossed.hold.png"))
+    hold_path = run_dir / "final" / "crossed.hold.png"
+    hold = np.asarray(Image.open(hold_path)) if hold_path.exists() else None
     for pid, down in NOD.items():
+        if hold is None or pid not in picks:
+            continue
         Image.fromarray(nod_frame(hold, poses["crossed.hold"], a.scale, down), "RGBA").save(run_dir / "final" / f"{pid}.png", optimize=False)
         report[pid] = {"derivedFrom": "crossed.hold", "headDown": down}
     (run_dir / "selection.json").write_text(json.dumps(selection, indent=1) + "\n")

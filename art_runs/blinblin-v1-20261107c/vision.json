@@ -1437,6 +1437,158 @@
    "hands": 2,
    "ok": true,
    "seconds": 0.8
+  },
+  "987002": {
+   "heads": 1,
+   "hands": 2,
+   "ok": true,
+   "seconds": 0.8
+  },
+  "987003": {
+   "heads": 1,
+   "hands": 2,
+   "ok": true,
+   "seconds": 0.8
+  }
+ },
+ "watch.hold_l": {
+  "987000": {
+   "heads": 1,
+   "hands": 2,
+   "ok": true,
+   "seconds": 0.8
+  },
+  "987001": {
+   "heads": 1,
+   "hands": 1,
+   "ok": true,
+   "seconds": 0.8
+  }
+ },
+ "watch.hold_r": {
+  "987000": {
+   "heads": 1,
+   "hands": 1,
+   "ok": true,
+   "seconds": 0.8
+  },
+  "987001": {
+   "heads": 1,
+   "hands": 1,
+   "ok": true,
+   "seconds": 0.8
+  }
+ },
+ "watch.shift_l": {
+  "987000": {
+   "heads": 1,
+   "hands": 2,
+   "ok": true,
+   "seconds": 0.8
+  },
+  "987001": {
+   "heads": 1,
+   "hands": 2,
+   "ok": true,
+   "seconds": 0.8
+  }
+ },
+ "watch.shift_r": {
+  "987000": {
+   "heads": 1,
+   "hands": 0,
+   "ok": false,
+   "seconds": 0.8
+  },
+  "987001": {
+   "heads": 1,
+   "hands": 1,
+   "ok": true,
+   "seconds": 0.8
+  }
+ },
+ "yield_side.contact_l": {
+  "987000": {
+   "heads": 1,
+   "hands": 2,
+   "ok": true,
+   "seconds": 0.8
+  },
+  "987001": {
+   "heads": 1,
+   "hands": 2,
+   "ok": true,
+   "seconds": 0.8
+  }
+ },
+ "yield_side.contact_r": {
+  "987000": {
+   "heads": 1,
+   "hands": 2,
+   "ok": true,
+   "seconds": 0.8
+  },
+  "987001": {
+   "heads": 1,
+   "hands": 2,
+   "ok": true,
+   "seconds": 0.8
+  }
+ },
+ "yield_side.down_l": {
+  "987000": {
+   "heads": 1,
+   "hands": 2,
+   "ok": true,
+   "seconds": 0.8
+  },
+  "987001": {
+   "heads": 1,
+   "hands": 2,
+   "ok": true,
+   "seconds": 0.7
+  }
+ },
+ "yield_side.down_r": {
+  "987000": {
+   "heads": 1,
+   "hands": 2,
+   "ok": true,
+   "seconds": 0.8
+  },
+  "987001": {
+   "heads": 1,
+   "hands": 2,
+   "ok": true,
+   "seconds": 0.8
+  }
+ },
+ "yield_side.pass_l": {
+  "987000": {
+   "heads": 1,
+   "hands": 2,
+   "ok": true,
+   "seconds": 1.0
+  },
+  "987001": {
+   "heads": 1,
+   "hands": 2,
+   "ok": true,
+   "seconds": 0.9
+  }
+ },
+ "yield_side.pass_r": {
+  "987000": {
+   "heads": 1,
+   "hands": 2,
+   "ok": true,
+   "seconds": 0.9
+  },
+  "987001": {
+   "heads": 1,
+   "hands": 2,
+   "ok": true,
+   "seconds": 0.9
   }
  }
 }
