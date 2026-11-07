@@ -44,14 +44,11 @@ void main() {
         'garden': 'The Velvet Rope',
         'pool-garden': 'Round Robin',
         'bar': 'Last Call',
+        'cool-crowd': 'All That Glitters',
       });
       final upcoming = {for (final o in registry.upcomingOpponents) o.id: o};
-      expect(upcoming['blinblin']!.hardestCombo!.name, 'All That Glitters');
       expect(upcoming['pool-player']!.hardestCombo, isNull);
-      for (final combo in [
-        ...registry.levels.map((l) => l.hardestCombo!),
-        upcoming['blinblin']!.hardestCombo!,
-      ]) {
+      for (final combo in registry.levels.map((l) => l.hardestCombo!)) {
         expect(combo.status, HardestComboStatus.proposal, reason: combo.name);
       }
     });
@@ -77,10 +74,7 @@ void main() {
 
     test('every call is danced from start to finish, by every dancer', () {
       final registry = _registry();
-      for (final combo in [
-        ...registry.levels.map((l) => l.hardestCombo!),
-        registry.upcomingOpponents.first.hardestCombo!,
-      ]) {
+      for (final combo in registry.levels.map((l) => l.hardestCombo!)) {
         for (final dancer in combo.moves.map((m) => m.dancer).toSet()) {
           var at = 0.0;
           for (final move in combo.moves.where((m) => m.dancer == dancer)) {
@@ -98,8 +92,7 @@ void main() {
     });
 
     test('the BlinBlin dancer uses only clips every dancer shares', () {
-      final combo = _registry().upcomingOpponents.first.hardestCombo!;
-      // He has no atlas yet, so the shared table is all a test can hold him to.
+      final combo = _registry().byId('cool-crowd').hardestCombo!;
       for (final move in combo.moves) {
         expect(
           () => grammar.requireClips('gatekeeper', [move.clip]),
@@ -139,10 +132,7 @@ void main() {
 
     test('each final move is the one its last limb can do', () {
       final registry = _registry();
-      for (final combo in [
-        ...registry.levels.map((l) => l.hardestCombo!),
-        registry.upcomingOpponents.first.hardestCombo!,
-      ]) {
+      for (final combo in registry.levels.map((l) => l.hardestCombo!)) {
         final foot =
             combo.chart.limbs.last == Limb.leftFoot ||
             combo.chart.limbs.last == Limb.rightFoot;

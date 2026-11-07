@@ -1,0 +1,624 @@
+{
+ "room": "cool-crowd",
+ "run": "layers-party-20261107",
+ "source": "assets/art/cool-crowd/cool-crowd-room.png",
+ "plate": "assets/art/cool-crowd/cool-crowd-room-clean.png",
+ "atlas": "assets/art/cool-crowd/cool-crowd-layers.png",
+ "level": "levels/cool-crowd.json",
+ "previewBpm": 124,
+ "keepWords": "Keep everything else exactly as it is: same pixel art, same camera, same colours.",
+ "props": [
+  {
+   "id": "lantern-a",
+   "kind": "hanging",
+   "polygon": [
+    [
+     254,
+     0
+    ],
+    [
+     262,
+     0
+    ],
+    [
+     262,
+     38
+    ],
+    [
+     282,
+     50
+    ],
+    [
+     282,
+     128
+    ],
+    [
+     264,
+     140
+    ],
+    [
+     252,
+     140
+    ],
+    [
+     232,
+     128
+    ],
+    [
+     232,
+     50
+    ],
+    [
+     254,
+     38
+    ]
+   ],
+   "fill": {
+    "image": "lantern-a-76100.png",
+    "box": [
+     168,
+     0,
+     348,
+     180
+    ],
+    "edgeClamp": 70,
+    "dilate": 2,
+    "prompt": "Remove the glowing hanging lantern at the centre of this picture and its thin hanging rod. Where it was, show the same dark violet patterned ceiling and purple wall panel that continues behind it, in the same dim light. Do not add any lantern, lamp or object.",
+    "polygon": [
+     [
+      254,
+      0
+     ],
+     [
+      262,
+      0
+     ],
+     [
+      262,
+      38
+     ],
+     [
+      282,
+      50
+     ],
+     [
+      282,
+      128
+     ],
+     [
+      264,
+      140
+     ],
+     [
+      252,
+      140
+     ],
+     [
+      232,
+      128
+     ],
+     [
+      232,
+      50
+     ],
+     [
+      254,
+      38
+     ]
+    ]
+   },
+   "motion": "sway",
+   "periodBeats": 4,
+   "frames": 7,
+   "instance": 1,
+   "warp": {
+    "pivot": [
+     258,
+     0
+    ],
+    "far": 140,
+    "reachPx": 7,
+    "power": 1
+   },
+   "rule": "lantern",
+   "close": 2
+  },
+  {
+   "id": "lantern-b",
+   "kind": "hanging",
+   "polygon": [
+    [
+     323,
+     0
+    ],
+    [
+     331,
+     0
+    ],
+    [
+     331,
+     150
+    ],
+    [
+     352,
+     162
+    ],
+    [
+     352,
+     230
+    ],
+    [
+     333,
+     242
+    ],
+    [
+     321,
+     242
+    ],
+    [
+     303,
+     230
+    ],
+    [
+     303,
+     162
+    ],
+    [
+     323,
+     150
+    ]
+   ],
+   "fill": {
+    "image": "lantern-b-76100.png",
+    "box": [
+     186,
+     0,
+     468,
+     282
+    ],
+    "edgeClamp": 70,
+    "dilate": 2,
+    "prompt": "Remove the glowing hanging lantern at the centre of this picture and its thin hanging rod. Where it was, show the same dark violet patterned ceiling and purple wall panel that continues behind it, in the same dim light. Do not add any lantern, lamp or object.",
+    "polygon": [
+     [
+      323,
+      0
+     ],
+     [
+      331,
+      0
+     ],
+     [
+      331,
+      150
+     ],
+     [
+      352,
+      162
+     ],
+     [
+      352,
+      230
+     ],
+     [
+      333,
+      242
+     ],
+     [
+      321,
+      242
+     ],
+     [
+      303,
+      230
+     ],
+     [
+      303,
+      162
+     ],
+     [
+      323,
+      150
+     ]
+    ]
+   },
+   "motion": "sway",
+   "periodBeats": 4,
+   "frames": 7,
+   "instance": 2,
+   "warp": {
+    "pivot": [
+     327,
+     0
+    ],
+    "far": 242,
+    "reachPx": 9,
+    "power": 1
+   },
+   "rule": "lantern",
+   "close": 2
+  },
+  {
+   "id": "lantern-c",
+   "kind": "hanging",
+   "polygon": [
+    [
+     414,
+     0
+    ],
+    [
+     422,
+     0
+    ],
+    [
+     422,
+     150
+    ],
+    [
+     446,
+     162
+    ],
+    [
+     446,
+     244
+    ],
+    [
+     424,
+     256
+    ],
+    [
+     412,
+     256
+    ],
+    [
+     390,
+     244
+    ],
+    [
+     390,
+     162
+    ],
+    [
+     414,
+     150
+    ]
+   ],
+   "fill": {
+    "image": "lantern-c-76100.png",
+    "box": [
+     270,
+     0,
+     566,
+     296
+    ],
+    "edgeClamp": 70,
+    "dilate": 2,
+    "prompt": "Remove the glowing hanging lantern at the centre of this picture and its thin hanging rod. Where it was, show the same dark violet patterned ceiling and purple wall panel that continues behind it, in the same dim light. Do not add any lantern, lamp or object.",
+    "polygon": [
+     [
+      414,
+      0
+     ],
+     [
+      422,
+      0
+     ],
+     [
+      422,
+      150
+     ],
+     [
+      446,
+      162
+     ],
+     [
+      446,
+      244
+     ],
+     [
+      424,
+      256
+     ],
+     [
+      412,
+      256
+     ],
+     [
+      390,
+      244
+     ],
+     [
+      390,
+      162
+     ],
+     [
+      414,
+      150
+     ]
+    ]
+   },
+   "motion": "sway",
+   "periodBeats": 4,
+   "frames": 7,
+   "instance": 3,
+   "warp": {
+    "pivot": [
+     418,
+     0
+    ],
+    "far": 256,
+    "reachPx": 10,
+    "power": 1
+   },
+   "rule": "lantern",
+   "close": 2
+  },
+  {
+   "id": "lantern-d",
+   "kind": "hanging",
+   "polygon": [
+    [
+     499,
+     0
+    ],
+    [
+     507,
+     0
+    ],
+    [
+     507,
+     68
+    ],
+    [
+     542,
+     80
+    ],
+    [
+     542,
+     204
+    ],
+    [
+     509,
+     216
+    ],
+    [
+     497,
+     216
+    ],
+    [
+     465,
+     204
+    ],
+    [
+     465,
+     80
+    ],
+    [
+     499,
+     68
+    ]
+   ],
+   "fill": {
+    "image": "lantern-d-76100.png",
+    "box": [
+     375,
+     0,
+     631,
+     256
+    ],
+    "edgeClamp": 70,
+    "dilate": 2,
+    "prompt": "Remove the glowing hanging lantern at the centre of this picture and its thin hanging rod. Where it was, show the same dark violet patterned ceiling and purple wall panel that continues behind it, in the same dim light. Do not add any lantern, lamp or object.",
+    "polygon": [
+     [
+      499,
+      0
+     ],
+     [
+      507,
+      0
+     ],
+     [
+      507,
+      68
+     ],
+     [
+      542,
+      80
+     ],
+     [
+      542,
+      204
+     ],
+     [
+      509,
+      216
+     ],
+     [
+      497,
+      216
+     ],
+     [
+      465,
+      204
+     ],
+     [
+      465,
+      80
+     ],
+     [
+      499,
+      68
+     ]
+    ]
+   },
+   "motion": "sway",
+   "periodBeats": 4,
+   "frames": 7,
+   "instance": 4,
+   "warp": {
+    "pivot": [
+     503,
+     0
+    ],
+    "far": 216,
+    "reachPx": 9,
+    "power": 1
+   },
+   "rule": "lantern",
+   "close": 2
+  },
+  {
+   "id": "lantern-e",
+   "kind": "hanging",
+   "polygon": [
+    [
+     624,
+     0
+    ],
+    [
+     632,
+     0
+    ],
+    [
+     632,
+     92
+    ],
+    [
+     654,
+     104
+    ],
+    [
+     654,
+     164
+    ],
+    [
+     634,
+     176
+    ],
+    [
+     622,
+     176
+    ],
+    [
+     604,
+     164
+    ],
+    [
+     604,
+     104
+    ],
+    [
+     624,
+     92
+    ]
+   ],
+   "fill": {
+    "image": "lantern-e-76100.png",
+    "box": [
+     520,
+     0,
+     736,
+     216
+    ],
+    "edgeClamp": 70,
+    "dilate": 2,
+    "prompt": "Remove the glowing hanging lantern at the centre of this picture and its thin hanging rod. Where it was, show the same dark violet patterned ceiling and purple wall panel that continues behind it, in the same dim light. Do not add any lantern, lamp or object.",
+    "polygon": [
+     [
+      624,
+      0
+     ],
+     [
+      632,
+      0
+     ],
+     [
+      632,
+      92
+     ],
+     [
+      654,
+      104
+     ],
+     [
+      654,
+      164
+     ],
+     [
+      634,
+      176
+     ],
+     [
+      622,
+      176
+     ],
+     [
+      604,
+      164
+     ],
+     [
+      604,
+      104
+     ],
+     [
+      624,
+      92
+     ]
+    ]
+   },
+   "motion": "sway",
+   "periodBeats": 4,
+   "frames": 7,
+   "instance": 5,
+   "warp": {
+    "pivot": [
+     628,
+     0
+    ],
+    "far": 176,
+    "reachPx": 8,
+    "power": 1
+   },
+   "rule": "lantern",
+   "close": 2
+  },
+  {
+   "id": "candle-left",
+   "kind": "flame",
+   "polygon": [
+    [
+     200,
+     436
+    ],
+    [
+     280,
+     436
+    ],
+    [
+     280,
+     470
+    ],
+    [
+     200,
+     470
+    ]
+   ],
+   "keepInside": true,
+   "motion": "pulse",
+   "periodBeats": 1,
+   "frames": 4,
+   "instance": 6,
+   "warp": {
+    "pivot": [
+     240,
+     473
+    ],
+    "far": 40,
+    "stretchPx": 4,
+    "reachPx": 1,
+    "power": 1.2
+   }
+  }
+ ]
+}

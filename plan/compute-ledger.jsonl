@@ -1,3 +1,108 @@
+{"agent":"PARTY","what":"cool-crowd lantern fills, 5 props x 2 seeds, run time excluding queue","kind":"gpu-image","seconds":155,"count":10}
 {"ts": "2026-11-07T02:30:37Z", "agent": "ledger", "what": "first test: pass1-review", "kind": "local-vision", "seconds": 11.11, "count": 1, "model": "qwen2.5vl:7b", "load_s": 0.01, "eval_tokens": 83}
 {"ts": "2026-11-07T02:33:33Z", "agent": "ledger", "what": "vision trial: extra limbs, facing, crossed legs, pointing", "kind": "local-vision", "seconds": 113.63, "count": 43, "model": "qwen2.5vl:7b", "load_s": 0.03, "eval_tokens": 996}
 {"ts": "2026-11-07T02:35:03Z", "agent": "ledger", "what": "vision trial: counting heads and hands", "kind": "local-vision", "seconds": 10.78, "count": 14, "model": "qwen2.5vl:7b", "load_s": 0, "eval_tokens": 26}
+{"ts": "2026-11-07T04:52:25Z", "agent": "band", "what": "989510.png", "kind": "local-vision", "seconds": 36.65, "count": 1, "model": "qwen2.5vl:7b", "load_s": 11.69, "eval_tokens": 2}
+{"ts": "2026-11-07T04:52:29Z", "agent": "band", "what": "989510.png", "kind": "local-vision", "seconds": 4.16, "count": 1, "model": "qwen2.5vl:7b", "load_s": 3.34, "eval_tokens": 2}
+{"ts": "2026-11-07T04:52:34Z", "agent": "band", "what": "989511.png", "kind": "local-vision", "seconds": 4.81, "count": 1, "model": "qwen2.5vl:7b", "load_s": 3.79, "eval_tokens": 2}
+{"ts": "2026-11-07T04:53:17Z", "agent": "band", "what": "989510.png", "kind": "local-vision", "seconds": 36.37, "count": 1, "model": "qwen2.5vl:7b", "load_s": 13.15, "eval_tokens": 2}
+{"ts": "2026-11-07T04:53:37Z", "agent": "band", "what": "989511.png", "kind": "local-vision", "seconds": 6.62, "count": 1, "model": "qwen2.5vl:7b", "load_s": 4.43, "eval_tokens": 2}
+{"ts": "2026-11-07T04:53:44Z", "agent": "band", "what": "989510.png", "kind": "local-vision", "seconds": 6.57, "count": 1, "model": "qwen2.5vl:7b", "load_s": 4.6, "eval_tokens": 2}
+{"ts": "2026-11-07T04:54:16Z", "agent": "band", "what": "989510.png", "kind": "local-vision", "seconds": 32.03, "count": 1, "model": "qwen2.5vl:7b", "load_s": 8.51, "eval_tokens": 2}
+{"ts": "2026-11-07T04:54:19Z", "agent": "band", "what": "989511.png", "kind": "local-vision", "seconds": 3.47, "count": 1, "model": "qwen2.5vl:7b", "load_s": 2.63, "eval_tokens": 2}
+{"ts": "2026-11-07T04:54:25Z", "agent": "band", "what": "989511.png", "kind": "local-vision", "seconds": 5.21, "count": 1, "model": "qwen2.5vl:7b", "load_s": 3.68, "eval_tokens": 2}
+{"ts": "2026-11-07T04:54:30Z", "agent": "band", "what": "989510.png", "kind": "local-vision", "seconds": 5.3, "count": 1, "model": "qwen2.5vl:7b", "load_s": 3.76, "eval_tokens": 2}
+{"ts": "2026-11-07T04:55:03Z", "agent": "band", "what": "989510.png", "kind": "local-vision", "seconds": 33.33, "count": 1, "model": "qwen2.5vl:7b", "load_s": 8.46, "eval_tokens": 2}
+{"ts": "2026-11-07T04:55:14Z", "agent": "band", "what": "989511.png", "kind": "local-vision", "seconds": 10.06, "count": 1, "model": "qwen2.5vl:7b", "load_s": 5.7, "eval_tokens": 2}
+{"ts": "2026-11-07T04:55:17Z", "agent": "band", "what": "989511.png", "kind": "local-vision", "seconds": 3.57, "count": 1, "model": "qwen2.5vl:7b", "load_s": 2.7, "eval_tokens": 2}
+{"ts": "2026-11-07T04:55:22Z", "agent": "band", "what": "989510.png", "kind": "local-vision", "seconds": 5.16, "count": 1, "model": "qwen2.5vl:7b", "load_s": 3.57, "eval_tokens": 2}
+{"ts": "2026-11-07T04:55:28Z", "agent": "band", "what": "989510.png", "kind": "local-vision", "seconds": 5.34, "count": 1, "model": "qwen2.5vl:7b", "load_s": 3.87, "eval_tokens": 2}
+{"ts": "2026-11-07T04:56:05Z", "agent": "band", "what": "989511.png", "kind": "local-vision", "seconds": 37.42, "count": 1, "model": "qwen2.5vl:7b", "load_s": 12.27, "eval_tokens": 2}
+{"ts": "2026-11-07T04:56:41Z", "agent": "band", "what": "989511.png", "kind": "local-vision", "seconds": 35.45, "count": 1, "model": "qwen2.5vl:7b", "load_s": 9.39, "eval_tokens": 2}
+{"ts": "2026-11-07T04:57:15Z", "agent": "band", "what": "989620.png", "kind": "local-vision", "seconds": 34.01, "count": 1, "model": "qwen2.5vl:7b", "load_s": 8.94, "eval_tokens": 2}
+{"ts": "2026-11-07T04:57:20Z", "agent": "band", "what": "989620.png", "kind": "local-vision", "seconds": 5.01, "count": 1, "model": "qwen2.5vl:7b", "load_s": 3.41, "eval_tokens": 2}
+{"ts": "2026-11-07T04:57:36Z", "agent": "band", "what": "989621.png", "kind": "local-vision", "seconds": 16.27, "count": 1, "model": "qwen2.5vl:7b", "load_s": 10.02, "eval_tokens": 2}
+{"ts": "2026-11-07T04:57:46Z", "agent": "band", "what": "989621.png", "kind": "local-vision", "seconds": 9.42, "count": 1, "model": "qwen2.5vl:7b", "load_s": 5.07, "eval_tokens": 2}
+{"ts": "2026-11-07T04:57:57Z", "agent": "band", "what": "989620.png", "kind": "local-vision", "seconds": 11.36, "count": 1, "model": "qwen2.5vl:7b", "load_s": 5.2, "eval_tokens": 2}
+{"ts": "2026-11-07T04:58:07Z", "agent": "band", "what": "989620.png", "kind": "local-vision", "seconds": 9.63, "count": 1, "model": "qwen2.5vl:7b", "load_s": 5.14, "eval_tokens": 2}
+{"ts": "2026-11-07T04:58:11Z", "agent": "band", "what": "989621.png", "kind": "local-vision", "seconds": 3.65, "count": 1, "model": "qwen2.5vl:7b", "load_s": 2.81, "eval_tokens": 2}
+{"ts": "2026-11-07T04:58:16Z", "agent": "band", "what": "989621.png", "kind": "local-vision", "seconds": 5.25, "count": 1, "model": "qwen2.5vl:7b", "load_s": 3.66, "eval_tokens": 2}
+{"ts": "2026-11-07T04:58:28Z", "agent": "band", "what": "989620.png", "kind": "local-vision", "seconds": 5.64, "count": 1, "model": "qwen2.5vl:7b", "load_s": 4.0, "eval_tokens": 2}
+{"ts": "2026-11-07T04:58:34Z", "agent": "band", "what": "989621.png", "kind": "local-vision", "seconds": 5.27, "count": 1, "model": "qwen2.5vl:7b", "load_s": 3.65, "eval_tokens": 2}
+{"ts": "2026-11-07T04:58:39Z", "agent": "band", "what": "989621.png", "kind": "local-vision", "seconds": 5.28, "count": 1, "model": "qwen2.5vl:7b", "load_s": 3.66, "eval_tokens": 2}
+{"ts": "2026-11-07T04:58:44Z", "agent": "band", "what": "989620.png", "kind": "local-vision", "seconds": 4.72, "count": 1, "model": "qwen2.5vl:7b", "load_s": 3.62, "eval_tokens": 2}
+{"ts": "2026-11-07T04:58:59Z", "agent": "band", "what": "989620.png", "kind": "local-vision", "seconds": 15.45, "count": 1, "model": "qwen2.5vl:7b", "load_s": 9.02, "eval_tokens": 2}
+{"ts": "2026-11-07T04:59:08Z", "agent": "band", "what": "989621.png", "kind": "local-vision", "seconds": 8.98, "count": 1, "model": "qwen2.5vl:7b", "load_s": 5.07, "eval_tokens": 2}
+{"ts": "2026-11-07T04:59:12Z", "agent": "band", "what": "989621.png", "kind": "local-vision", "seconds": 3.59, "count": 1, "model": "qwen2.5vl:7b", "load_s": 2.72, "eval_tokens": 2}
+{"ts": "2026-11-07T04:59:17Z", "agent": "band", "what": "989620.png", "kind": "local-vision", "seconds": 5.25, "count": 1, "model": "qwen2.5vl:7b", "load_s": 3.71, "eval_tokens": 2}
+{"ts": "2026-11-07T04:59:23Z", "agent": "band", "what": "989620.png", "kind": "local-vision", "seconds": 5.32, "count": 1, "model": "qwen2.5vl:7b", "load_s": 3.77, "eval_tokens": 2}
+{"ts": "2026-11-07T04:59:54Z", "agent": "band", "what": "989621.png", "kind": "local-vision", "seconds": 31.76, "count": 1, "model": "qwen2.5vl:7b", "load_s": 9.1, "eval_tokens": 2}
+{"ts": "2026-11-07T05:00:05Z", "agent": "band", "what": "989621.png", "kind": "local-vision", "seconds": 10.2, "count": 1, "model": "qwen2.5vl:7b", "load_s": 5.29, "eval_tokens": 2}
+{"ts": "2026-11-07T05:00:10Z", "agent": "band", "what": "989710.png", "kind": "local-vision", "seconds": 5.28, "count": 1, "model": "qwen2.5vl:7b", "load_s": 3.7, "eval_tokens": 2}
+{"ts": "2026-11-07T05:00:15Z", "agent": "band", "what": "989710.png", "kind": "local-vision", "seconds": 5.18, "count": 1, "model": "qwen2.5vl:7b", "load_s": 3.79, "eval_tokens": 2}
+{"ts": "2026-11-07T05:00:21Z", "agent": "band", "what": "989711.png", "kind": "local-vision", "seconds": 5.38, "count": 1, "model": "qwen2.5vl:7b", "load_s": 3.86, "eval_tokens": 2}
+{"ts": "2026-11-07T05:00:56Z", "agent": "band", "what": "989711.png", "kind": "local-vision", "seconds": 35.04, "count": 1, "model": "qwen2.5vl:7b", "load_s": 8.51, "eval_tokens": 2}
+{"ts": "2026-11-07T05:01:10Z", "agent": "band", "what": "989710.png", "kind": "local-vision", "seconds": 14.1, "count": 1, "model": "qwen2.5vl:7b", "load_s": 9.12, "eval_tokens": 2}
+{"ts": "2026-11-07T05:01:50Z", "agent": "band", "what": "989711.png", "kind": "local-vision", "seconds": 33.03, "count": 1, "model": "qwen2.5vl:7b", "load_s": 10.24, "eval_tokens": 2}
+{"ts": "2026-11-07T05:01:54Z", "agent": "band", "what": "989711.png", "kind": "local-vision", "seconds": 4.71, "count": 1, "model": "qwen2.5vl:7b", "load_s": 3.9, "eval_tokens": 2}
+{"ts": "2026-11-07T05:02:00Z", "agent": "band", "what": "989710.png", "kind": "local-vision", "seconds": 5.53, "count": 1, "model": "qwen2.5vl:7b", "load_s": 3.99, "eval_tokens": 2}
+{"ts": "2026-11-07T05:02:13Z", "agent": "band", "what": "989711.png", "kind": "local-vision", "seconds": 6.54, "count": 1, "model": "qwen2.5vl:7b", "load_s": 4.43, "eval_tokens": 2}
+{"ts": "2026-11-07T05:02:20Z", "agent": "band", "what": "989711.png", "kind": "local-vision", "seconds": 6.43, "count": 1, "model": "qwen2.5vl:7b", "load_s": 4.47, "eval_tokens": 2}
+{"ts": "2026-11-07T05:02:32Z", "agent": "band", "what": "989710.png", "kind": "local-vision", "seconds": 6.71, "count": 1, "model": "qwen2.5vl:7b", "load_s": 4.38, "eval_tokens": 2}
+{"ts": "2026-11-07T05:02:39Z", "agent": "band", "what": "989711.png", "kind": "local-vision", "seconds": 6.59, "count": 1, "model": "qwen2.5vl:7b", "load_s": 4.45, "eval_tokens": 2}
+{"ts": "2026-11-07T05:02:44Z", "agent": "band", "what": "989711.png", "kind": "local-vision", "seconds": 5.38, "count": 1, "model": "qwen2.5vl:7b", "load_s": 4.19, "eval_tokens": 2}
+{"ts": "2026-11-07T05:02:48Z", "agent": "band", "what": "989710.png", "kind": "local-vision", "seconds": 3.3, "count": 1, "model": "qwen2.5vl:7b", "load_s": 2.47, "eval_tokens": 2}
+{"ts": "2026-11-07T05:02:52Z", "agent": "band", "what": "989710.png", "kind": "local-vision", "seconds": 4.46, "count": 1, "model": "qwen2.5vl:7b", "load_s": 3.43, "eval_tokens": 2}
+{"ts": "2026-11-07T05:02:58Z", "agent": "band", "what": "989711.png", "kind": "local-vision", "seconds": 5.45, "count": 1, "model": "qwen2.5vl:7b", "load_s": 3.85, "eval_tokens": 2}
+{"ts": "2026-11-07T05:03:33Z", "agent": "band", "what": "989711.png", "kind": "local-vision", "seconds": 35.53, "count": 1, "model": "qwen2.5vl:7b", "load_s": 8.43, "eval_tokens": 2}
+{"ts": "2026-11-07T05:04:09Z", "agent": "band", "what": "989810.png", "kind": "local-vision", "seconds": 35.42, "count": 1, "model": "qwen2.5vl:7b", "load_s": 9.43, "eval_tokens": 2}
+{"ts": "2026-11-07T05:04:38Z", "agent": "band", "what": "989810.png", "kind": "local-vision", "seconds": 29.01, "count": 1, "model": "qwen2.5vl:7b", "load_s": 5.28, "eval_tokens": 2}
+{"ts": "2026-11-07T05:04:42Z", "agent": "band", "what": "989811.png", "kind": "local-vision", "seconds": 3.7, "count": 1, "model": "qwen2.5vl:7b", "load_s": 2.81, "eval_tokens": 2}
+{"ts": "2026-11-07T05:04:47Z", "agent": "band", "what": "989811.png", "kind": "local-vision", "seconds": 5.37, "count": 1, "model": "qwen2.5vl:7b", "load_s": 3.78, "eval_tokens": 2}
+{"ts": "2026-11-07T05:04:52Z", "agent": "band", "what": "989810.png", "kind": "local-vision", "seconds": 5.3, "count": 1, "model": "qwen2.5vl:7b", "load_s": 3.76, "eval_tokens": 2}
+{"ts": "2026-11-07T05:05:25Z", "agent": "band", "what": "989810.png", "kind": "local-vision", "seconds": 32.64, "count": 1, "model": "qwen2.5vl:7b", "load_s": 8.28, "eval_tokens": 2}
+{"ts": "2026-11-07T05:05:36Z", "agent": "band", "what": "989811.png", "kind": "local-vision", "seconds": 10.44, "count": 1, "model": "qwen2.5vl:7b", "load_s": 5.62, "eval_tokens": 2}
+{"ts": "2026-11-07T05:05:39Z", "agent": "band", "what": "989811.png", "kind": "local-vision", "seconds": 3.56, "count": 1, "model": "qwen2.5vl:7b", "load_s": 2.71, "eval_tokens": 2}
+{"ts": "2026-11-07T05:05:44Z", "agent": "band", "what": "989810.png", "kind": "local-vision", "seconds": 4.8, "count": 1, "model": "qwen2.5vl:7b", "load_s": 3.36, "eval_tokens": 2}
+{"ts": "2026-11-07T05:05:49Z", "agent": "band", "what": "989810.png", "kind": "local-vision", "seconds": 5.29, "count": 1, "model": "qwen2.5vl:7b", "load_s": 3.71, "eval_tokens": 2}
+{"ts": "2026-11-07T05:06:25Z", "agent": "band", "what": "989811.png", "kind": "local-vision", "seconds": 35.34, "count": 1, "model": "qwen2.5vl:7b", "load_s": 8.57, "eval_tokens": 2}
+{"ts": "2026-11-07T05:07:04Z", "agent": "band", "what": "989811.png", "kind": "local-vision", "seconds": 38.69, "count": 1, "model": "qwen2.5vl:7b", "load_s": 16.77, "eval_tokens": 2}
+{"ts": "2026-11-07T05:07:40Z", "agent": "band", "what": "989810.png", "kind": "local-vision", "seconds": 36.59, "count": 1, "model": "qwen2.5vl:7b", "load_s": 7.95, "eval_tokens": 2}
+{"ts": "2026-11-07T05:07:45Z", "agent": "band", "what": "989810.png", "kind": "local-vision", "seconds": 4.9, "count": 1, "model": "qwen2.5vl:7b", "load_s": 4.09, "eval_tokens": 2}
+{"ts": "2026-11-07T05:08:31Z", "agent": "band", "what": "989811.png", "kind": "local-vision", "seconds": 38.5, "count": 1, "model": "qwen2.5vl:7b", "load_s": 13.94, "eval_tokens": 2}
+{"ts": "2026-11-07T05:08:35Z", "agent": "band", "what": "989810.png", "kind": "local-vision", "seconds": 4.65, "count": 1, "model": "qwen2.5vl:7b", "load_s": 3.74, "eval_tokens": 2}
+{"ts": "2026-11-07T05:08:40Z", "agent": "band", "what": "989810.png", "kind": "local-vision", "seconds": 4.61, "count": 1, "model": "qwen2.5vl:7b", "load_s": 3.28, "eval_tokens": 2}
+{"ts": "2026-11-07T05:08:44Z", "agent": "band", "what": "989811.png", "kind": "local-vision", "seconds": 4.17, "count": 1, "model": "qwen2.5vl:7b", "load_s": 3.16, "eval_tokens": 2}
+{"ts": "2026-11-07T05:09:03Z", "agent": "band", "what": "989811.png", "kind": "local-vision", "seconds": 18.81, "count": 1, "model": "qwen2.5vl:7b", "load_s": 13.5, "eval_tokens": 2}
+{"agent": "band", "what": "band sheets, three-quarter views and frames (seconds estimated from about 20.5 s an image measured on studio jobs, not summed)", "kind": "gpu-image", "seconds": 3854, "count": 188}
+{"agent": "band", "what": "band rig renders, 4 players about 10 times (estimate)", "kind": "cpu", "seconds": 400, "count": 40}
+{"ts": "2026-11-07T05:54:16Z", "agent": "PARTY", "what": "crowd.png", "kind": "local-vision", "seconds": 39.58, "count": 1, "model": "qwen2.5vl:7b", "load_s": 8.83, "eval_tokens": 13}
+{"ts": "2026-11-07T09:30:00Z", "agent": "guests", "what": "party art review: one frame at a time, 113 frames", "kind": "local-vision", "seconds": 458.2, "count": 113}
+{"ts": "2026-11-07T09:30:00Z", "agent": "guests", "what": "four new party people: sheets, 153 images. GPU seconds estimated at 24 s an image from the band note; wall clock in a shared queue was far longer", "kind": "gpu-image", "seconds": 3672, "count": 153, "estimated": true}
+{"ts": "2026-11-07T09:30:00Z", "agent": "guests", "what": "repairs to the original guests, 28 and the guest0 neckline 24 images. GPU seconds estimated at 24 s an image", "kind": "gpu-image", "seconds": 1248, "count": 52, "estimated": true}
+{"ts": "2026-11-07T04:00:00Z", "agent": "music", "what": "chained-latent tests, bar sweeps and structure-tag takes (ACE XL turbo); seconds are sampler time, excluding queue waits", "kind": "gpu-audio", "seconds": 225, "count": 27}
+{"ts": "2026-11-07T04:00:00Z", "agent": "music", "what": "billiards themes, 4 styles of 6 seeds (ACE XL turbo); first style measured 72 s, others assumed alike", "kind": "gpu-audio", "seconds": 288, "count": 24}
+{"ts": "2026-11-07T04:00:00Z", "agent": "music", "what": "billiards trial on ACE XL base, 40 steps, cfg 4", "kind": "gpu-audio", "seconds": 61, "count": 2}
+{"ts": "2026-11-07T04:00:00Z", "agent": "music", "what": "one-performance ladders for 4 levels, 8 takes each; garden measured 47 s, others assumed alike", "kind": "gpu-audio", "seconds": 188, "count": 32}
+{"ts": "2026-11-07T02:30:37Z", "agent": "ledger", "what": "first test: pass1-review", "kind": "local-vision", "seconds": 11.11, "count": 1, "model": "qwen2.5vl:7b", "load_s": 0.01, "eval_tokens": 83}
+{"ts": "2026-11-07T02:33:33Z", "agent": "ledger", "what": "vision trial: extra limbs, facing, crossed legs, pointing", "kind": "local-vision", "seconds": 113.63, "count": 43, "model": "qwen2.5vl:7b", "load_s": 0.03, "eval_tokens": 996}
+{"ts": "2026-11-07T02:35:03Z", "agent": "ledger", "what": "vision trial: counting heads and hands", "kind": "local-vision", "seconds": 10.78, "count": 14, "model": "qwen2.5vl:7b", "load_s": 0, "eval_tokens": 26}
+{"agent":"MIXRS","what":"Python and mixrs builds and comparisons, 5 levels and 2 older levels","kind":"cpu","seconds":900,"count":8}
+{"ts": "2026-11-07T10:24:42Z", "agent": "blinblin", "what": "one-down-987600.png", "kind": "local-vision", "seconds": 14.29, "count": 1, "model": "qwen2.5vl:7b", "load_s": 13.44, "eval_tokens": 2}
+{"ts": "2026-11-07T10:24:47Z", "agent": "blinblin", "what": "one-down-987600.png", "kind": "local-vision", "seconds": 3.98, "count": 1, "model": "qwen2.5vl:7b", "load_s": 3.19, "eval_tokens": 2}
+{"ts": "2026-11-07T10:24:50Z", "agent": "blinblin", "what": "one-down-987600.png", "kind": "local-vision", "seconds": 3.1, "count": 1, "model": "qwen2.5vl:7b", "load_s": 2.32, "eval_tokens": 2}
+{"ts": "2026-11-07T10:24:53Z", "agent": "blinblin", "what": "one-down-987601.png", "kind": "local-vision", "seconds": 3.08, "count": 1, "model": "qwen2.5vl:7b", "load_s": 2.31, "eval_tokens": 2}
+{"ts": "2026-11-07T10:24:56Z", "agent": "blinblin", "what": "one-down-987601.png", "kind": "local-vision", "seconds": 3.06, "count": 1, "model": "qwen2.5vl:7b", "load_s": 2.29, "eval_tokens": 2}
+{"ts": "2026-11-07T10:24:59Z", "agent": "blinblin", "what": "one-down-987601.png", "kind": "local-vision", "seconds": 3.12, "count": 1, "model": "qwen2.5vl:7b", "load_s": 2.35, "eval_tokens": 2}
+{"ts": "2026-11-07T10:25:02Z", "agent": "blinblin", "what": "one-down-987602.png", "kind": "local-vision", "seconds": 3.06, "count": 1, "model": "qwen2.5vl:7b", "load_s": 2.28, "eval_tokens": 2}
+{"ts": "2026-11-07T10:25:06Z", "agent": "blinblin", "what": "one-down-987602.png", "kind": "local-vision", "seconds": 3.15, "count": 1, "model": "qwen2.5vl:7b", "load_s": 2.37, "eval_tokens": 2}
+{"ts": "2026-11-07T10:25:09Z", "agent": "blinblin", "what": "one-down-987602.png", "kind": "local-vision", "seconds": 3.13, "count": 1, "model": "qwen2.5vl:7b", "load_s": 2.36, "eval_tokens": 2}
+{"ts": "2026-11-07T10:25:12Z", "agent": "blinblin", "what": "one-down-987603.png", "kind": "local-vision", "seconds": 3.07, "count": 1, "model": "qwen2.5vl:7b", "load_s": 2.27, "eval_tokens": 2}
+{"ts": "2026-11-07T10:25:15Z", "agent": "blinblin", "what": "one-down-987603.png", "kind": "local-vision", "seconds": 3.18, "count": 1, "model": "qwen2.5vl:7b", "load_s": 2.38, "eval_tokens": 2}
+{"ts": "2026-11-07T10:25:18Z", "agent": "blinblin", "what": "one-down-987603.png", "kind": "local-vision", "seconds": 3.15, "count": 1, "model": "qwen2.5vl:7b", "load_s": 2.36, "eval_tokens": 2}
+{"agent": "blinblin", "what": "BlinBlin wave, 82 poses (78 jobs; 2 or 4 candidates), run blinblin-v1-20261107c; seconds are wall time per job including queue waits behind other agents", "kind": "gpu-image", "seconds": 21283, "count": 75}
+{"agent": "blinblin", "what": "BlinBlin redraws of 6 weak poses, run blinblin-v1-20261107d", "kind": "gpu-image", "seconds": 630, "count": 6}
+{"agent": "blinblin", "what": "BlinBlin pilot, runs blinblin-v1-20261107a and b; seconds not logged, estimated at 92 s a job", "kind": "gpu-image", "seconds": 920, "count": 10}
+{"agent": "blinblin", "what": "BlinBlin nod close-up: rest bust and bowed head, 4 candidates each; the bowed head's elapsed_s 85.9, the rest estimated", "kind": "gpu-image", "seconds": 172, "count": 2}
+{"agent": "blinblin", "what": "BlinBlin first-pass curation: heads and hands counted per cropped candidate with qwen2.5vl:7b", "kind": "local-vision", "seconds": 184.0, "count": 238}
+{"agent": "blinblin", "what": "BlinBlin rig render, register, score, finish and pack (CPU)", "kind": "cpu", "seconds": 240, "count": 1}

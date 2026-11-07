@@ -64,22 +64,48 @@ class CrowdParting {
 /// What people already dancing do, read from the same crowd model as a seated
 /// room. The model goes on saying how interested each one is, so the room is
 /// still the meter and every rule of how it fills still holds. Only the picture
-/// differs: "uninterested" here means turned away and dancing small, on their own.
+/// differs: "uninterested" here means busy with their own night, mostly with each
+/// other, in pairs, and facing whichever way that puts them. The owner's correction
+/// of the first version, where everyone turned away from the fight.
 class FloorDance {
   const FloorDance({
     required this.ownThing,
     required this.glance,
+    this.occupied = const {},
+    this.castGlance,
+    this.sidestep,
+    this.following,
     this.parting,
   });
 
-  /// Not interested yet: small slow steps, turned away from the floor's middle.
+  /// Not interested yet, for someone from the shared guest atlases.
   final FloorClip ownThing;
 
   /// Starting to notice: slowed down and turned toward the fight.
   final FloorClip glance;
+
+  /// The rest are for people a level casts by atlas, who only ever dance and have
+  /// their own drawings. Named ways of being busy: a couple, a back to the room.
+  final Map<String, FloorClip> occupied;
+  final FloorClip? castGlance;
+
+  /// Moving aside, facing the way they go. Without it they glide.
+  final FloorClip? sidestep;
+
+  /// In time and facing the fight, in place of the crowd's `step_touch`.
+  final FloorClip? following;
   final CrowdParting? parting;
 
+  /// The drawings a shared guest atlas must have.
   Iterable<String> get frames => [...ownThing.frames, ...glance.frames];
+
+  /// The drawings an atlas cast as [occupied] must have.
+  Iterable<String> castFrames(String? occupiedAs) => [
+    ...?occupied[occupiedAs]?.frames,
+    ...?castGlance?.frames,
+    ...?sidestep?.frames,
+    ...?following?.frames,
+  ];
 }
 
 /// A floor guest's drawing, and whether they face the fight. [danceBeat] is from
@@ -90,8 +116,11 @@ class FloorDance {
   FloorDance dance, {
   required double danceBeat,
   bool reducedMotion = false,
+  bool cast = false,
+  String? occupied,
+  double? phaseOffset,
 }) {
-  final local = danceBeat + guest.phaseOffset;
+  final local = danceBeat + (phaseOffset ?? guest.phaseOffset);
   String loop(CrowdClip clip) => ensembleClipFrame(
     clip,
     beat: guest.clipBeat,
@@ -100,15 +129,31 @@ class FloorDance {
   );
   return switch (guest.clip) {
     CrowdClip.seatedIdle => (
-      frame: dance.ownThing.at(local, reducedMotion: reducedMotion),
+      frame: ((cast ? dance.occupied[occupied] : null) ?? dance.ownThing).at(
+        local,
+        reducedMotion: reducedMotion,
+      ),
       facesIn: false,
     ),
     CrowdClip.notice => (
-      frame: dance.glance.at(local, reducedMotion: reducedMotion),
+      frame: ((cast ? dance.castGlance : null) ?? dance.glance).at(
+        local,
+        reducedMotion: reducedMotion,
+      ),
+      facesIn: true,
+    ),
+    CrowdClip.seatedFollow || CrowdClip.standUp || CrowdClip.stepTouch
+        when cast && dance.following != null => (
+      frame: dance.following!.at(local, reducedMotion: reducedMotion),
       facesIn: true,
     ),
     CrowdClip.seatedFollow || CrowdClip.standUp => (
       frame: loop(CrowdClip.stepTouch),
+      facesIn: true,
+    ),
+    CrowdClip.sitDown || CrowdClip.standingIdle
+        when cast && dance.following != null => (
+      frame: dance.following!.at(local, reducedMotion: reducedMotion),
       facesIn: true,
     ),
     CrowdClip.sitDown => (frame: loop(CrowdClip.standingIdle), facesIn: true),
@@ -117,6 +162,14 @@ class FloorDance {
       facesIn: true,
     ),
   };
+}
+
+/// Which way someone moving aside faces: where they're going. Null when they don't
+/// travel sideways, or aren't moving at all.
+bool? floorGuestTravelsRight(PartyGuestSlot slot) {
+  final to = slot.partTo;
+  if (to == null || to.x == slot.floor.x) return null;
+  return to.x > slot.floor.x;
 }
 
 /// A floor guest's place on the floor at [along].

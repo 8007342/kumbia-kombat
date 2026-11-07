@@ -1,0 +1,17 @@
+[
+ {
+  "pose": "back_dance.c",
+  "args": {
+   "workflow": "art_runs/guest4-20261107b/workflows/back_dance.c.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/guest4-20261107b/in/sheet_back_3q.png",
+    "pose_proxy": "/work/tmp/imagegen/kumbia/guest4-20261107b/in/back_dance.c.skeleton.png"
+   },
+   "overrides": {
+    "seed": 997000
+   }
+  }
+ }
+]

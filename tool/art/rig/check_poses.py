@@ -31,10 +31,16 @@ from pathlib import Path
 
 HEAD_CLEAR = 1.2                      # head-widths, wrist to head centre
 HEAD_WHITELIST = {"finish_turn.finish_a", "finish_turn.finish_b", "approval.nod"}
-TURN_CLIPS = {"turn", "finish_turn"}  # yaw cap does not apply
-NO_WIDTH_CHECK = {"turn"}            # deliberate 360-degree turn views (no width/drift check)
+TURN_CLIPS = {"turn", "finish_turn", "reveal", "pair_dance", "back_dance", "sidestep", "glance", "model"}  # yaw cap does not apply
+# Seen in profile, or a set of different views: legs may overlap and shoulder width and ankles may change.
+PROFILE_CLIPS = {"sidestep", "model"}
+REAR_CLIPS = {"back_groove", "back_accent"}  # the yaw cap is measured from facing directly away
+BAND_CLIPS = {"relaxed", "tap", "swing"}  # motion set band-loop: arms reach across to an instrument, a horn is at the face
+CROSSED_ARMS = {"crossed"}  # the arms cross on purpose
+HEAD_ONLY = {"crossed"}  # a nod moves little but the head, so the static check does not apply
+NO_WIDTH_CHECK = {"turn", "reveal"}            # deliberate 360-degree turn views (no width/drift check)
 LOCOMOTION = {"enter_forward", "retreat_backward", "yield_side", "ingress", "egress"}
-LOOPS = {"groove", "watch"}
+LOOPS = {"groove", "watch", "back_groove"}
 MAX_YAW = 35.0
 MAX_WIDTH_CHANGE = 0.25
 DRIFT_PX = 3.0
@@ -67,12 +73,15 @@ def dist(a, b) -> float:
 
 def crossing_problems(r: dict) -> list[str]:
     op = r.get("openpose")
-    if not op:
+    if not op or r.get("clip") in BAND_CLIPS:
         return []
     out = []
+    crossed = r.get("clip") in CROSSED_ARMS
     for (la, sa), (lb, sb) in itertools.combinations(LIMB_SEGMENTS.items(), 2):
         for (a1, a2), (b1, b2) in itertools.product(sa, sb):
             if not all(op[i][2] for i in (a1, a2, b1, b2)):
+                continue
+            if crossed and {la, lb} == {"l_arm", "r_arm"}:
                 continue
             if segments_cross(op[a1], op[a2], op[b1], op[b2]):
                 out.append(f"crossing: {la} segment {a1}-{a2} crosses {lb} segment {b1}-{b2}")
@@ -80,7 +89,7 @@ def crossing_problems(r: dict) -> list[str]:
 
 
 def head_problems(r: dict) -> list[str]:
-    if not r.get("openpose") or r["id"] in HEAD_WHITELIST:
+    if not r.get("openpose") or r["id"] in HEAD_WHITELIST or r.get("clip") in BAND_CLIPS:
         return []
     head = r["joints"]["head"]
     limit = HEAD_CLEAR * r["headWidthPx"]
@@ -146,6 +155,8 @@ def width_problems(clip: str, recs: list[dict]) -> list[str]:
 
 def static_problems(clip: str, recs: list[dict]) -> list[str]:
     out = []
+    if clip in HEAD_ONLY:
+        return out
     for a, b in zip(recs, recs[1:]):
         move = max(dist(a["joints"][k], b["joints"][k]) for k in a["joints"])
         if move < MIN_MOVE_PX:
@@ -183,11 +194,14 @@ def check(rig: dict, margin: float) -> dict[str, list[str]]:
     for r in rig["poses"]:
         p = problems.setdefault(r["id"], [])
         p += r.get("problems", [])
-        p += crossing_problems(r)
+        if r.get("clip") not in PROFILE_CLIPS:
+            p += crossing_problems(r)
         p += head_problems(r)
         if ankle_h is not None:
             p += foot_problems(r, ankle_h)
         yaw = abs(r.get("params", {}).get("yaw", 0))
+        if r.get("clip") in REAR_CLIPS:
+            yaw = abs(yaw - 180)
         if yaw > MAX_YAW and r.get("clip") not in TURN_CLIPS:
             p.append(f"yaw: {yaw:.0f} degrees outside a turn clip")
         p += margin_problems(r, canvas, margin)
@@ -195,6 +209,8 @@ def check(rig: dict, margin: float) -> dict[str, list[str]]:
         if shoes is not None and shoes < MIN_SHOES_PX:
             p.append(f"shoes: only {shoes}px of shoes visible")
     for clip, recs in by_clip.items():
+        if clip in PROFILE_CLIPS:
+            continue
         clip_p = drift_problems(clip, recs) + width_problems(clip, recs) + static_problems(clip, recs)
         for msg in clip_p:
             problems.setdefault(f"{clip}.*", []).append(msg)

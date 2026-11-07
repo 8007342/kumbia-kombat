@@ -16,18 +16,19 @@ import 'package:kumbia_kombat/gameplay/party_layout.dart';
 import 'package:kumbia_kombat/gameplay/progression.dart';
 import 'package:kumbia_kombat/gameplay/rhythm.dart';
 import 'package:kumbia_kombat/gameplay/thumb_layout.dart';
+import 'package:kumbia_kombat/music/rendered_music.dart';
 import 'package:kumbia_kombat/music/score.dart';
 import 'package:kumbia_kombat/music/transport.dart';
 
-/// The indoor party, on real game code and its real level file. It isn't in the
-/// campaign yet: the owner's ruling and how it was built are in
+/// The indoor party, on real game code and its real level file. The owner's
+/// ruling and how it was built are in
 /// `plan/levels/indoor-party-2026-11-07.md`.
 String _read(String id) => File('levels/$id.json').readAsStringSync();
 
 LevelRegistry _registry() =>
     LevelRegistry.parse(File('levels/index.json').readAsStringSync(), _read);
 
-LevelDefinition _level() => _registry().reviewLevels['cool-crowd']!;
+LevelDefinition _level() => _registry().byId('cool-crowd');
 
 class _Audio implements MusicAudioBackend {
   @override
@@ -62,10 +63,9 @@ Matcher _refused(String part) => throwsA(
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
-  group('hidden, but real', () {
-    test('it stays off the campaign, and a review link reaches it alone', () {
+  group('in the campaign, after the bar', () {
+    test('a review link still reaches it alone', () {
       final registry = _registry();
-      expect(registry.levels.map((l) => l.id), isNot(contains('cool-crowd')));
       expect(registry.reviewing(null), same(registry));
       final review = registry.reviewing('cool-crowd');
       expect(review.levels.map((l) => l.id), ['cool-crowd']);
@@ -81,15 +81,31 @@ void main() {
       expect(() => registry.reviewing('nowhere'), throwsArgumentError);
     });
 
-    test('joining the campaign is a data change', () {
-      final index = jsonDecode(File('levels/index.json').readAsStringSync())
-          as Map<String, dynamic>;
-      index.remove('review');
-      (index['campaign'] as List).last['bridgeToNext'] = 'bar_to_crowd';
-      (index['campaign'] as List).add({'level': 'cool-crowd'});
-      final registry = LevelRegistry.parse(jsonEncode(index), _read);
-      expect(registry.campaign.last.level.id, 'cool-crowd');
-      expect(registry.exitScoreIds, contains('bar_to_crowd'));
+    test('the bar hands over with its short tag, and the gulp spans both', () {
+      final registry = _registry();
+      final bar = registry.campaign[2];
+      expect(bar.next!.id, 'cool-crowd');
+      expect(bar.bridgeToNext, 'bar_to_crowd');
+      expect(bar.level.music.successScore, 'bar_swag_success');
+      final manifest = RenderedManifest.fromJson(
+        jsonDecode(
+          File('assets/music/rendered/manifest.json').readAsStringSync(),
+        ),
+      ).levels['bar']!;
+      final short = manifest.successToward('cool-crowd')!;
+      expect(short.id, manifest.successShort!.id);
+      // Alone on a review link, the long tag still carries the whole shot.
+      expect(manifest.successToward(null)!.id, manifest.success!.id);
+      final length = short.bars * short.beatsPerBar + 0.0;
+      final bridge = manifest.bridge!;
+      final shot = bar.level.exitShot!;
+      expect(shot.contactBeat, length, reason: 'the bridge downbeat');
+      expect(
+        shot.closeupTo,
+        lessThanOrEqualTo(length + bridge.bars * bridge.beatsPerBar),
+      );
+      expect(manifest.bridgeTo, 'cool-crowd');
+      expect(manifest.bridge!.bpm, closeTo(manifest.takes['high']!.bpm, .01));
     });
 
     test('everything it names is on disk', () {
@@ -104,10 +120,7 @@ void main() {
     test('the room uses the owner-approved title and the shared combo', () {
       final level = _level();
       expect(level.copy.titleWords, ['QUÉ', 'FLOW']);
-      final upcoming = _registry().upcomingOpponents.firstWhere(
-        (o) => o.id == 'blinblin',
-      );
-      expect(level.hardestCombo!.name, upcoming.hardestCombo!.name);
+      expect(level.hardestCombo!.name, 'All That Glitters');
       expect(level.hardestCombo!.status, HardestComboStatus.proposal);
     });
   });
@@ -299,10 +312,51 @@ void main() {
       return crowd;
     }
 
-    test('at the start they are dancing, turned away, doing their own thing', () {
+    test('at the start they are dancing, busy with each other or themselves', () {
       final all = poses(run(const []), 0);
       expect(all.every((p) => !p.facesIn), isTrue);
-      expect(all.map((p) => p.frame).toSet(), everyElement(isIn(dance.ownThing.frames)));
+      expect(
+        all.map((p) => p.frame).toSet(),
+        everyElement(isIn(dance.frames)),
+      );
+      // Those cast as couples are absorbed in each other, not turned away.
+      for (final slot in _level().layout.guests.where((g) => g.partner != null)) {
+        final crowd = run(const []);
+        final pose = floorGuestPose(
+          crowd.guest(slot.interestIndex!, 0),
+          dance,
+          danceBeat: 0,
+          cast: slot.atlas != null,
+          occupied: slot.occupied,
+        );
+        expect(pose.facesIn, isFalse);
+        expect(dance.occupied[slot.occupied]!.frames, contains(pose.frame));
+      }
+    });
+
+    test('most of the floor dances in couples, and faces all ways', () {
+      final guests = _level().layout.guests;
+      final coupled = guests.where((g) => g.partner != null).toList();
+      expect(coupled.length, greaterThanOrEqualTo(10));
+      for (final guest in coupled) {
+        final other = guests[guest.partner!];
+        expect(other.partner, guests.indexOf(guest));
+        // Side by side, at both ends of a parting, at the reach GUESTS measured:
+        // .40 to .44 of an adult apart, which scales with distance on the floor.
+        // On this plate an adult is (y - horizon) of the plate's width.
+        for (final (mine, theirs) in [
+          (guest.floor, other.floor),
+          if (guest.partTo != null) (guest.partTo!, other.partTo!),
+        ]) {
+          final adults = (mine.x - theirs.x).abs() / (mine.y - .25);
+          expect(adults, inInclusiveRange(.39, .45), reason: guest.id);
+          expect(mine.y, theirs.y, reason: guest.id);
+        }
+        expect(guest.occupiedFacingRight, guest.floor.x < other.floor.x);
+        expect(guest.partDelay, other.partDelay);
+      }
+      final facing = guests.map((g) => g.occupiedFacingRight).toSet();
+      expect(facing, {true, false});
     });
 
     test('nobody ever sits, however the run goes', () {
@@ -457,7 +511,11 @@ void main() {
     test('stands on the deck, every player with a ladder to climb', () {
       final level = _level();
       expect(band.players.length, greaterThanOrEqualTo(3));
-      expect(band.standIn, isTrue, reason: 'their art is owed: see the plan note');
+      expect(band.standIn, isFalse);
+      expect(
+        band.players.map((p) => p.atlas).toSet(),
+        {'band-trumpet', 'band-bass', 'band-congas', 'band-marimba'},
+      );
       for (final p in band.players) {
         expect(level.scenery.platform!.holds(p.feet), isTrue, reason: p.id);
         expect(p.ladder.length, greaterThanOrEqualTo(3));
@@ -532,7 +590,7 @@ void main() {
       expect(player.rungFor(const BandInputs(tier: 4, partySwing: 1)), 0);
 
       final other = _editedJson((json) {
-        final rungs = json['scenery']['band']['ladders']['standIn'] as List;
+        final rungs = json['scenery']['band']['ladders']['instrument'] as List;
         rungs[1]['input'] = 'tier';
         rungs[1]['from'] = 2;
         rungs[2]['input'] = 'partySwing';
@@ -543,6 +601,16 @@ void main() {
       expect(proposal.rungFor(const BandInputs(form: 1)), 0);
       expect(proposal.rungFor(const BandInputs(tier: 2)), 1);
       expect(proposal.rungFor(const BandInputs(tier: 2, partySwing: .5)), 2);
+    });
+
+    test('under reduced motion the top rung still looks different', () {
+      for (final player in band.players) {
+        expect(
+          player.ladder.last.clip.at(0, reducedMotion: true),
+          isNot(player.ladder.first.clip.at(0, reducedMotion: true)),
+          reason: player.id,
+        );
+      }
     });
 
     test('they liven one at a time', () {
@@ -780,9 +848,14 @@ void main() {
       var last = 0.0;
       for (; cycle < 60 && session.phase != GardenPhase.cleared; cycle++) {
         final start = level.chart.introBeats + cycle * level.chart.cycleBeats;
-        for (var i = 0; i < session.activeLimbs.length; i++) {
-          advance(music.secondsAt(start + level.chart.callBeats + level.chart.offsets[i]));
-          expect(session.tap(session.activeLimbs[i]).note, isNotNull);
+        // The call has begun, so these are this phrase's notes.
+        advance(music.secondsAt(start + .5));
+        if (session.phase == GardenPhase.cleared) break;
+        final limbs = session.activeLimbs;
+        final offsets = session.activeOffsets;
+        for (var i = 0; i < limbs.length; i++) {
+          advance(music.secondsAt(start + level.chart.callBeats + offsets[i]));
+          expect(session.tap(limbs[i]).note, isNotNull);
         }
         last = start + level.chart.cycleBeats - .05;
         advance(music.secondsAt(last));
@@ -795,6 +868,35 @@ void main() {
       for (var i = 0; i < session.crowd.guestCount; i++) {
         expect(session.crowd.guest(i, last).state, CrowdGuestState.celebrating);
       }
+      // The win's shot, through the real scene, on the beats that matter.
+      final won = <ui.Image>[];
+      final shot = level.exitShot!;
+      scene.exitCodaBeat = last;
+      for (final beat in [
+        1.0,
+        shot.walkTo - .25,
+        shot.closeupFrom + .25,
+        4.0,
+        shot.contactBeat,
+        shot.closeupTo - .25,
+        shot.closeupTo + .1,
+      ]) {
+        scene.exitBeat = beat;
+        scene.presentationBeat = last + beat;
+        won.add(await still(scene));
+      }
+      scene.exitBeat = null;
+      scene.presentationBeat = null;
+      final winRecorder = ui.PictureRecorder();
+      final winCanvas = ui.Canvas(winRecorder);
+      for (final (i, image) in won.indexed) {
+        winCanvas.drawImage(image, ui.Offset(i * 396.0, 0), ui.Paint());
+      }
+      final winSheet = await winRecorder.endRecording().toImage(396 * won.length, 844);
+      final winPng = await winSheet.toByteData(format: ui.ImageByteFormat.png);
+      Directory('build/stills').createSync(recursive: true);
+      File('build/stills/cool-crowd-win.png').writeAsBytesSync(winPng!.buffer.asUint8List());
+
       final recorder = ui.PictureRecorder();
       final canvas = ui.Canvas(recorder);
       for (final (i, image) in frames.indexed) {

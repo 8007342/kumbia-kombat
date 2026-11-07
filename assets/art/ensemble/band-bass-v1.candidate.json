@@ -1,0 +1,397 @@
+{
+ "atlas": "band-bass",
+ "image": "band-bass-v1.png",
+ "imageWidth": 1024,
+ "imageHeight": 252,
+ "referenceFrame": "relaxed_a",
+ "family": "/home/forge/.cache/tillandsias-project/kumbia-wt/band/tool/art/families/band-bass-v1.json",
+ "animationReferences": {
+  "registry": "tool/art/references/animation-principles.json",
+  "research": [
+   "plan/levels/indoor-band-2026-11-07.md"
+  ],
+  "principlesUsed": [
+   "contrapposto",
+   "exaggeration-accent",
+   "follow-through",
+   "line-of-action",
+   "no-twinning",
+   "planted-pivot",
+   "staging-silhouette",
+   "timing-on-beat"
+  ],
+  "sourcesUsed": [
+   "cartwright-gdc2014",
+   "contrapposto-fonseca",
+   "dead-cells-pipeline",
+   "disney-process",
+   "illusion-of-life",
+   "silhouette-test",
+   "simogo-bsb",
+   "slynyrd-53",
+   "slynyrd-55",
+   "twinning",
+   "ubisoft-foot-ik",
+   "williams-survival-kit"
+  ]
+ },
+ "ramps": {
+  "skin": {
+   "region": "skin",
+   "alsoIn": [],
+   "shades": [
+    "#230300",
+    "#462206",
+    "#6E4326",
+    "#886148"
+   ]
+  },
+  "hair": {
+   "region": "hair",
+   "alsoIn": [],
+   "shades": [
+    "#878580",
+    "#AFADA7",
+    "#D9D6D0",
+    "#FAF7F2"
+   ]
+  },
+  "shirt": {
+   "region": "shirt",
+   "alsoIn": [],
+   "shades": [
+    "#9B927A",
+    "#C4BAA1",
+    "#EFE4C8",
+    "#FFFBE3"
+   ]
+  },
+  "jacket": {
+   "region": "cloth",
+   "alsoIn": [],
+   "shades": [
+    "#968D74",
+    "#BFB59B",
+    "#EADFC2",
+    "#FFFBE2"
+   ]
+  },
+  "lapels": {
+   "region": "apron",
+   "alsoIn": [],
+   "shades": [
+    "#05001D",
+    "#1B0041",
+    "#3A1F6B",
+    "#524081"
+   ]
+  },
+  "trousers": {
+   "region": "trousers",
+   "alsoIn": [],
+   "shades": [
+    "#000001",
+    "#09070D",
+    "#26232C",
+    "#3F3C45"
+   ]
+  },
+  "shoes": {
+   "region": "shoes",
+   "alsoIn": [],
+   "shades": [
+    "#867956",
+    "#ADA07C",
+    "#D8C9A0",
+    "#F7EAC6"
+   ]
+  },
+  "bass": {
+   "region": "prop",
+   "alsoIn": [],
+   "shades": [
+    "#6E3000",
+    "#975500",
+    "#C57A22",
+    "#DE9D5C"
+   ]
+  }
+ },
+ "frames": {
+  "relaxed_a": {
+   "rect": [
+    2,
+    2,
+    122,
+    249
+   ],
+   "anchor": [
+    27.0,
+    248.0
+   ],
+   "pixelsPerUnit": 5.5226,
+   "facing": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/band/art_runs/band-bass-v1-2ab2f1dfa8",
+    "pose": "relaxed.a",
+    "sha256": "42f02f68843a804f1f72dfda46ca60e68466f157b7125287a8e5a83a9009f2a6",
+    "selected": null,
+    "frameKey": "e461c0eeb5c2c95ab4ba18f899d09ebd33726144f65016b3427ef907020de95a",
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "follow-through",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "relaxed_b": {
+   "rect": [
+    746,
+    2,
+    122,
+    247
+   ],
+   "anchor": [
+    27.0,
+    246.0
+   ],
+   "pixelsPerUnit": 5.5226,
+   "facing": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/band/art_runs/band-bass-v1-2ab2f1dfa8",
+    "pose": "relaxed.b",
+    "sha256": "4f8aa334d3aa380279f71f55940d470b55bd549d6d5bd30c4e566c7ede3789ff",
+    "selected": null,
+    "frameKey": "7ea97bf5c95b6613dfad2088012d915f63cd6330d55c0db5a094c095b2eb9311",
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "follow-through",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "swing_a": {
+   "rect": [
+    373,
+    2,
+    123,
+    248
+   ],
+   "anchor": [
+    26.0,
+    247.0
+   ],
+   "pixelsPerUnit": 5.5226,
+   "facing": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/band/art_runs/band-bass-v1-2ab2f1dfa8",
+    "pose": "swing.a",
+    "sha256": "99e37949d70758a0a24b314450cbea2c4522f7fc3bec669a539e371d3649007e",
+    "selected": null,
+    "frameKey": "4524c622675af42e266cff8b7108ff280a6c9f94782731fcce2b4735175ddb1f",
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "line-of-action",
+     "contrapposto",
+     "exaggeration-accent",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "swing_b": {
+   "rect": [
+    498,
+    2,
+    122,
+    248
+   ],
+   "anchor": [
+    27.0,
+    247.0
+   ],
+   "pixelsPerUnit": 5.5226,
+   "facing": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/band/art_runs/band-bass-v1-2ab2f1dfa8",
+    "pose": "swing.b",
+    "sha256": "7599451221ee5bfc1823a0a323b92aea503d374af6494d5282f354f6ec2d3f29",
+    "selected": null,
+    "frameKey": "657c8f0ecdbf7a3892dca2df23b6ad69b50febef14f6f1c696f2e80531d635eb",
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  },
+  "swing_c": {
+   "rect": [
+    250,
+    2,
+    121,
+    249
+   ],
+   "anchor": [
+    27.0,
+    248.0
+   ],
+   "pixelsPerUnit": 5.5226,
+   "facing": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/band/art_runs/band-bass-v1-2ab2f1dfa8",
+    "pose": "swing.c",
+    "sha256": "67155584c844727cf89b404a899997c398578a29032a6a7e891ed4b11c16ffe8",
+    "selected": null,
+    "frameKey": "e4c4dada02133e83b06569231d511a2f24aa88e4179a03bb8e2de6e1492bdaa0",
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "line-of-action",
+     "contrapposto",
+     "exaggeration-accent",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "swing_d": {
+   "rect": [
+    622,
+    2,
+    122,
+    248
+   ],
+   "anchor": [
+    27.0,
+    247.0
+   ],
+   "pixelsPerUnit": 5.5226,
+   "facing": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "left",
+   "status": "candidate",
+   "provenance": {
+    "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/band/art_runs/band-bass-v1-2ab2f1dfa8",
+    "pose": "swing.d",
+    "sha256": "52d1281fd893ad3258d46780e3102edc0e1429b8c99a7434ba5b2febb381310c",
+    "selected": null,
+    "frameKey": "13996acd82719d429e86cb49cb5225bc1480d15264bd1f4a33eece6685901ec4",
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  },
+  "tap_up_a": {
+   "rect": [
+    126,
+    2,
+    122,
+    249
+   ],
+   "anchor": [
+    27.0,
+    248.0
+   ],
+   "pixelsPerUnit": 5.5226,
+   "facing": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "left",
+   "status": "candidate",
+   "provenance": {
+    "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/band/art_runs/band-bass-v1-2ab2f1dfa8",
+    "pose": "tap.up_a",
+    "sha256": "f7179a4cb3bc255d6c994c7bd345ceab0f190ae5ca4e60a31c427ee102e0afae",
+    "selected": null,
+    "frameKey": "583d11ef200d48c9aef58de475233c3e5d1f34bbec6fc52607afd8c10df51393",
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  },
+  "tap_up_b": {
+   "rect": [
+    870,
+    2,
+    122,
+    247
+   ],
+   "anchor": [
+    27.0,
+    246.0
+   ],
+   "pixelsPerUnit": 5.5226,
+   "facing": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "left",
+   "status": "candidate",
+   "provenance": {
+    "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/band/art_runs/band-bass-v1-2ab2f1dfa8",
+    "pose": "tap.up_b",
+    "sha256": "6a4f7d3ffa4c5ee9ec188e2e55a40e544bc51172021b4bd1a601446bfc0c7b73",
+    "selected": null,
+    "frameKey": "3e4aba36ad45c69552a70e553add7bd38edff0068ff8f6fe0f7a28c3e365db6b",
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  }
+ },
+ "playerHeightPx": 214
+}

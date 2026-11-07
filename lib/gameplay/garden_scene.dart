@@ -117,6 +117,7 @@ class GardenSceneGame extends FlameGame {
         'bartender',
         'swing-a',
         'swing-b',
+        'blinblin',
       ]) {
         grammar.requireFrames(
           dancer,
@@ -181,6 +182,10 @@ class GardenSceneGame extends FlameGame {
       if (away != null) {
         _ensemble![challenger.atlas]!.definition.art.requireFrames(away.frames);
       }
+      final stance = challenger.defeatStance;
+      if (stance != null) {
+        _ensemble![challenger.atlas]!.definition.art.requireFrames(stance.frames);
+      }
     }
     for (final player in level.scenery.band?.players ?? const <BandPlayer>[]) {
       final atlas = _ensemble![player.atlas];
@@ -191,8 +196,15 @@ class GardenSceneGame extends FlameGame {
     }
     final dance = level.floorDance;
     if (dance != null) {
-      for (final atlas in const ['guest0', 'guest1', 'guest2']) {
-        _ensemble![atlas]!.definition.art.requireFrames(dance.frames);
+      for (final slot in level.layout.guests) {
+        final atlas = slot.atlas ?? 'guest${slot.archetype}';
+        final art = _ensemble![atlas];
+        if (art == null) {
+          throw StateError('Level ${level.id} names unknown atlas $atlas');
+        }
+        art.definition.art.requireFrames(
+          slot.atlas == null ? dance.frames : dance.castFrames(slot.occupied),
+        );
       }
     }
     final generation = ++_roomGeneration;
@@ -617,9 +629,16 @@ class GardenSceneGame extends FlameGame {
     final index = slot.interestIndex!;
     final danceBeat = parting?.danceBeat(beat, slot.partDelay) ?? beat;
     final snapshot = session?.crowd.guest(index, beat);
+    // A couple shares one beat, the lower-numbered partner's.
+    final partner = slot.partner;
+    final phaseOffset = partner != null && partner < index
+        ? session?.crowd.guest(partner, beat).phaseOffset
+        : null;
     final pose = snapshot == null
         ? (
-            frame: dance.ownThing.at(index * .371, reducedMotion: reducedMotion),
+            frame: ((slot.atlas == null ? null : dance.occupied[slot.occupied]) ??
+                    dance.ownThing)
+                .at(index * .371, reducedMotion: reducedMotion),
             facesIn: false,
           )
         : floorGuestPose(
@@ -627,26 +646,43 @@ class GardenSceneGame extends FlameGame {
             dance,
             danceBeat: danceBeat,
             reducedMotion: reducedMotion,
+            cast: slot.atlas != null,
+            occupied: slot.occupied,
+            phaseOffset: phaseOffset,
           );
     final atlas =
-        _ensemble!['guest${snapshot?.archetypeIndex ?? slot.archetype}']!;
+        _ensemble![slot.atlas ??
+            'guest${snapshot?.archetypeIndex ?? slot.archetype}']!;
     final scale = projected.spriteScale(atlas.nativeHeight('standing_idle_a'));
     final ground = _point(projected.floor);
     final palette =
         OutfitColor.values[(snapshot?.paletteIndex ?? slot.paletteIndex) %
             OutfitColor.values.length];
-    final facesRight = pose.facesIn ? slot.facingRight : !slot.facingRight;
+    // Mid-move they look where they're going, in a drawn sidestep if there is one.
+    final along = parting?.along(beat, slot.partDelay, reducedMotion: reducedMotion) ?? 0;
+    final moving =
+        slot.atlas != null && dance.sidestep != null && along > 0 && along < 1;
+    final frame = moving
+        ? dance.sidestep!.at(danceBeat + index * .25, reducedMotion: reducedMotion)
+        : pose.frame;
+    final facesRight = moving
+        ? floorGuestTravelsRight(slot) ?? slot.facingRight
+        : pose.facesIn
+        ? slot.facingRight
+        : slot.occupiedFacingRight ?? !slot.facingRight;
+    // Only the first three atlases have outfits; floor-only people draw as drawn.
+    final recoloured = slot.atlas == null;
     draws.add(
       _WorldDraw(slot.id, projected.floor.y, 10, (canvas) {
         _shadow(canvas, ground, projected.standingHeight);
         atlas.draw(
           canvas,
-          pose.frame,
+          frame,
           ground,
           scale,
           flipX: !facesRight,
-          outfits: _outfits,
-          palette: palette,
+          outfits: recoloured ? _outfits : null,
+          palette: recoloured ? palette : null,
         );
       }),
     );
@@ -1073,6 +1109,20 @@ class GardenSceneGame extends FlameGame {
           reducedMotion: reducedMotion,
         );
         if (away != null) dressed = dressed.withFrame(away);
+      }
+      final stance = challenger.defeatStance;
+      if (stance != null &&
+          shot != null &&
+          s?.phase == GardenPhase.cleared &&
+          exitBeat != null &&
+          exitBeat! >= shot.walkFrom) {
+        final step = reducedMotion
+            ? stance.frames.length - 1
+            : ((exitBeat! - shot.walkFrom) / stance.beatsPerFrame).floor().clamp(
+                0,
+                stance.frames.length - 1,
+              );
+        dressed = dressed.withFrame(stance.frames[step]);
       }
       var mirrored = false;
       DuetRole? role;

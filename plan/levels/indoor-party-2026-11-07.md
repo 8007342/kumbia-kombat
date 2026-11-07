@@ -158,3 +158,74 @@ Open `?level=cool-crowd`, or with `&autoplay=flawless`:
 - The win's close-up, and everything in the art lists above.
 - Chains: part of BlinBlin's art, not this work.
 - Any new sound, which belongs to the render agent.
+
+---
+
+# Update, 2026-11-07: into the campaign
+
+**Branch `work/1869-prty`. Status: wired and playing through, not finished: most of its art is still stand-ins.** Facts are [F], my choices [P]; the owner delegated these choices and can reverse any of them. Nobody has seen this move, heard it or played it with thumbs.
+
+## What changed
+
+- **Campaign.** [F] `levels/index.json` runs garden, lawn, bar, indoor party. `displayTotal` stays 5. BlinBlin left `upcomingOpponents`, since he has a level now. `?level=cool-crowd` still opens it alone.
+- **The bar.** [F] Back to `bar_swag_success`, and in rendered music its `successShort`, chosen only when a bridge to the next room follows. The gulp spans success and bridge again. Alone, on `?level=bar`, rendered music plays the long tag. With the synth fallback on that link, the tag is only 8 beats, so the gulp would be cut. That only affects a review link with no rendered files.
+- **Chart.** [F for the numbers, P for the design] `chart.rich`, 24 rich steps against the bar's 18, and 79% of notes off the beat against the bar's 78.8%. That margin is thin. Each phrase starts on the beat and then slips off it, which is the off-beat push from `next-level-plan.md`. The "circle copies him back" half of that idea is not built.
+
+| Tier | Tempo today | Presses | Doubles | Pairs | Splits | Presses a second |
+|---|---|---|---|---|---|---|
+| 0 | 112 | 8 | | | | 1.87 |
+| 1 | 112 | 11 | | 3 | | 2.57 |
+| 2 | 124 | 12 | | 2 | 2 | 3.10 |
+| 3 | 124 | 13 | 1 | 2 | 2 | 3.36 |
+| 4, first | 136 | 14 | 2 | 3 | 1 | 3.97 |
+| 4, second | 136 | 14 | 2 | 2 | 2 | 3.97 |
+
+Presses a second rise at every tier, and the top is above the lawn's 3.68 and the bar's. The first tier 4 pattern ends on both feet together, the first time any chart uses that. All of it holds the fairness limits and cue separation, in tests, at the manifest's tempos. MUSIC's ladder from `work/1867-musc` (`918f113`) is merged and keeps 112, 124 and 136. Its takes are now layers of one performance. [F] `rendered_music_test` still checks the charts against whatever tempos the manifest gives.
+
+- **Uninterested, reworked after the owner's correction.** [P] Ten guests dance as five couples, facing each other, and eight dance alone, facing different ways. They share one beat per couple and set off together when the floor opens. Couples stand .42 of an adult apart, the reach GUESTS measured, so the spacing grows toward the camera. To fit that, only one couple goes left and more guests go right, and the three solos on the far right are mostly off a phone. A guest can name their own atlas, and a drawn sidestep is supported, but neither is in use yet.
+- **The win.** [P] Beats from the win: wide until 3, close-up 3 to 7.75. BlinBlin nods on 4, and Mācron answers on 5 with QUÉ FLOW. I split the plan's single shared nod in two, so it reads as approval and then the same cool reply. New cue patch `nod`, a low dry knock, quieter than `bump`, softer on the first. All of it fits 8 beats, and tests hold that against both scores. BlinBlin takes `defeatStance` in the wide shot once his atlas lands.
+- **Party-up.** [F] Five lanterns sway and the left panel's candles pulse, from `tool/art/rooms/layers/cool-crowd.json`. New colour rule `lantern`. The right panel's candles are left out, because they reach the quiet area.
+- **Doorway.** [F] The page now also readies the next room's shot images and props ahead of time, so a slow load doesn't eat a 12-beat opening.
+
+## Still stand-ins
+
+| Where | Now | Waiting on |
+|---|---|---|
+| None | Everything in the level is now its own art | |
+
+The crowd's ten coupled dancers are real, cast from guest3-6 (`work/1868-gues`), with drawn sidesteps, glances and grooves. The eight solos stay on guest0-2, so the room isn't four people repeated. [P] Two of the couples show one partner from behind, using `back_dance`. BlinBlin in play is real: atlas `blinblin` from `work/1860-blwv`, with his back to the room, the turn, and arms crossed in the wide shot of the win. His back dance uses all eight drawings, one per beat, the same count as the shared `groove_basic`. He dances the shared clip tables, with no moves of his own in the grammar yet. BlinBlin's close-up `nod-bb-*` is real: a bust, cut at his belly, with only the head moving. Mācron's close-up is real: `nod-mc-*`, taken from `work/1860-blwv`. All four band players are real, from `work/1864-band`, on the `form` ladder.
+
+**One change from the first version of this note:** under reduced motion, the band's foot-tap rung now holds the same drawing as its calm rung, `relaxed_a`, because the art reuses that drawing so the arms stay continuous between rungs. So reduced motion shows two states, calm and swinging, not three. [F, tested]
+
+## What was checked, and how
+
+- `flutter test`, full suite, and `flutter analyze lib test` at the same 4 notes.
+- Local vision, one try on a four-panel sheet of the crowd: asked to count couples, it answered five. That's the right number for the level, but the sheet showed four moments, so I don't count it as evidence. My own look at the stills is what I relied on. I moved one big solo off the right foreground because of that look.
+- A new page test plays the real bar into the real party on autoplay, with a fake audio clock: `bar/successShort` and `bar/bridge` play, the long tag doesn't, and the accents come in order. It does **not** measure when the room is adopted, because that depends on machine load. That Mācron's walk starts after the dissolve is arithmetic: 1.2 s against 6 beats, or 3.2 s at 112 BPM.
+- Stills through the real scene at 390 by 844, `build/stills/cool-crowd-win.png`, seen by me with the stand-ins. They show placement only. The white rings in those stills are the test's own overlay, not the game.
+- Lantern fills: 5 props, 2 seeds each, seed 76100 kept for all, looked at by me on a contact sheet and a before-and-after. The local vision model was not used for this batch.
+
+## What went wrong
+
+- GUESTS' fixes to guest0-2 moved their atlas rects, so the level golden changed for the garden and bar. I regenerated it and compared old and new: all 684 changed lines are draws from those guest atlases, and nothing else moved. The guest0 neckline then moved it again: 228 more lines, the same kind, and nothing else.
+- I pushed one commit (`f927758`) with that golden failing, because I committed without reading the test result first. The next commit fixes it.
+
+- GPU waits ran up to 15 minutes a job, so art lands late.
+- GUESTS' measuring frames failed the sprite bounds check. Fixed in `party_sprites.dart`, for frames flagged `measureOnly`.
+- I told GUESTS the suite passed before I had run all of it. It hadn't, and I corrected that.
+- A page test assertion on the beat of arrival passed alone and failed under load. I replaced it with the arithmetic above.
+
+## Needs a moving look
+
+- [ ] Do couples read as couples, absorbed in each other? Only judge this once guest3-6 are cast.
+- [ ] The clean plate has a small smudge at the arch's keystone, where the middle lantern's tip was. It's covered at rest. Does it show at full swing?
+- [ ] The band's foot tap, swing and bass rock. Does the trumpet player seem to hop with the near foot lifted? BAND says the far foot stays put; nobody has seen it move.
+- [ ] On a wide screen, does the marimba player look small? His measured height includes his afro, so his head sits lower than the others'. Raising his size is a data edit.
+- [ ] Lantern swing, on the beat, against the moving wall light.
+- [ ] The two nods' timing, and whether `nod` can be heard over the rendered tag. Nobody here can hear.
+- [ ] On a wide screen, Mācron stands visible at his entrance mark before beat 6. A phone crops him out.
+- [ ] Tier 4 at 3.97 presses a second, and two feet together at the end of its first pattern. Only a thumb can judge these.
+
+## Not done
+
+Real art in the level, as above. `bridgeToNext` for this level, which is BILLIARDS' to add.

@@ -1,0 +1,503 @@
+{
+ "definition": {
+  "$comment": "The indoor party's band (upright bass), owner's ruling 2026-11-07; front sheet approved the same day. Drawn at an angle, playing toward the crowd, from the front_3q view. The instrument is a mask-only garment, and Qwen draws it from the sheet. Plan: plan/levels/indoor-band-2026-11-07.md.",
+  "id": "band-bass",
+  "family": "band-bass-v1",
+  "style": "party-pixel",
+  "description": "Indoor party band, upright bass: very tall, rangy woman of about sixty-five, calm eyes, closed easy smile.",
+  "body": {
+   "preset": "slim-adult"
+  },
+  "pronouns": [
+   "she",
+   "her",
+   "her"
+  ],
+  "skin": "#6E4326",
+  "traits": "very tall, rangy woman of about sixty-five, calm eyes, closed easy smile",
+  "demeanor": "the band's steady pulse: unhurried, smiling to herself",
+  "garments": [
+   {
+    "id": "hair",
+    "shape": "puff",
+    "region": "hair",
+    "colour": "#D9D6D0",
+    "text": "silver-white hair in a tall smooth rounded updo"
+   },
+   {
+    "id": "shirt",
+    "shape": "shirt-fitted",
+    "region": "shirt",
+    "colour": "#EFE4C8",
+    "text": "closed cream shirt with a small midnight-violet bow tie"
+   },
+   {
+    "id": "jacket",
+    "shape": "waistcoat-fitted",
+    "region": "cloth",
+    "colour": "#EADFC2",
+    "text": "long-sleeved cream dinner jacket"
+   },
+   {
+    "id": "lapels",
+    "shape": "jacket-lapels",
+    "region": "apron",
+    "colour": "#3A1F6B",
+    "text": "narrow midnight-violet satin lapels"
+   },
+   {
+    "id": "trousers",
+    "shape": "trousers",
+    "region": "trousers",
+    "colour": "#26232C",
+    "text": "slim dark charcoal trousers"
+   },
+   {
+    "id": "shoes",
+    "shape": "shoes-flat",
+    "region": "shoes",
+    "colour": "#D8C9A0",
+    "text": "polished two-tone cream and dark shoes"
+   },
+   {
+    "id": "bass",
+    "shape": "upright-bass",
+    "region": "prop",
+    "colour": "#C57A22",
+    "text": "big honey-amber wooden upright double bass",
+    "params": {
+     "yaw": 30.0
+    }
+   }
+  ],
+  "motion": {
+   "set": "band-loop",
+   "overrides": {
+    "relaxed.a": {
+     "pose": {
+      "twist": 22.0,
+      "l_arm": [
+       12.1,
+       41.5
+      ],
+      "l_fore": [
+       -53.7,
+       96.7
+      ],
+      "r_arm": [
+       -9.0,
+       36.2
+      ],
+      "r_fore": [
+       -22.1,
+       45.3
+      ]
+     },
+     "intent": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, both feet flat on the floor, the hand on the left of the picture plucking the bass strings with bare fingertips, the other hand on the bass neck, the bass exactly where it is in image 1"
+    },
+    "relaxed.b": {
+     "pose": {
+      "twist": 22.0,
+      "l_arm": [
+       11.7,
+       38.6
+      ],
+      "l_fore": [
+       -48.0,
+       91.8
+      ],
+      "r_arm": [
+       2.4,
+       32.4
+      ],
+      "r_fore": [
+       -9.4,
+       43.3
+      ]
+     },
+     "intent": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, both feet flat on the floor, the plucking hand pulled a little away from the strings, the other hand on the bass neck, the bass exactly where it is in image 1"
+    },
+    "tap.up_a": {
+     "pose": {
+      "twist": 22.0,
+      "l_arm": [
+       12.1,
+       41.5
+      ],
+      "l_fore": [
+       -53.7,
+       96.7
+      ],
+      "r_arm": [
+       -9.0,
+       36.2
+      ],
+      "r_fore": [
+       -22.1,
+       45.3
+      ]
+     },
+     "intent": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, the foot on the left of the picture lifted clear off the floor with its knee bent and toe pointing down, tapping time, the other foot flat on the floor, plucking the bass strings with bare fingertips, the other hand on the bass neck, the bass exactly where it is in image 1"
+    },
+    "tap.up_b": {
+     "pose": {
+      "twist": 22.0,
+      "l_arm": [
+       11.7,
+       38.6
+      ],
+      "l_fore": [
+       -48.0,
+       91.8
+      ],
+      "r_arm": [
+       2.4,
+       32.4
+      ],
+      "r_fore": [
+       -9.4,
+       43.3
+      ]
+     },
+     "intent": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, the foot on the left of the picture lifted clear off the floor with its knee bent and toe pointing down, tapping time, the other foot flat on the floor, the plucking hand pulled a little away from the strings, the other hand on the bass neck, the bass exactly where it is in image 1"
+    },
+    "swing.a": {
+     "pose": {
+      "twist": 24.0,
+      "l_arm": [
+       13.4,
+       43.0
+      ],
+      "l_fore": [
+       -43.4,
+       97.5
+      ],
+      "r_arm": [
+       -12.8,
+       37.5
+      ],
+      "r_fore": [
+       -26.2,
+       46.2
+      ]
+     },
+     "intent": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, both feet flat on the floor, the bass exactly where it is in image 1, upright on its spike in front of her, her shoulders swaying a little toward the right of the picture, plucking hard"
+    },
+    "swing.b": {
+     "pose": {
+      "twist": 22.0,
+      "l_arm": [
+       12.1,
+       41.5
+      ],
+      "l_fore": [
+       -53.7,
+       96.7
+      ],
+      "r_arm": [
+       1.3,
+       34.3
+      ],
+      "r_fore": [
+       -10.4,
+       45.2
+      ]
+     },
+     "intent": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, both feet flat on the floor, the bass exactly where it is in image 1, the plucking hand pulled away"
+    },
+    "swing.c": {
+     "pose": {
+      "twist": 20.0,
+      "l_arm": [
+       8.1,
+       39.0
+      ],
+      "l_fore": [
+       -65.1,
+       89.8
+      ],
+      "r_arm": [
+       -4.0,
+       36.2
+      ],
+      "r_fore": [
+       -16.4,
+       46.3
+      ]
+     },
+     "intent": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, both feet flat on the floor, the bass exactly where it is in image 1, upright on its spike in front of her, her shoulders swaying a little toward the left of the picture, plucking hard"
+    },
+    "swing.d": {
+     "pose": {
+      "twist": 22.0,
+      "l_arm": [
+       12.1,
+       41.5
+      ],
+      "l_fore": [
+       -53.7,
+       96.7
+      ],
+      "r_arm": [
+       5.4,
+       33.1
+      ],
+      "r_fore": [
+       -5.6,
+       44.7
+      ]
+     },
+     "intent": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, the foot on the left of the picture lifted clear off the floor with its knee bent and toe pointing down, tapping time, the other foot flat on the floor, the bass exactly where it is in image 1, the plucking hand pulled away"
+    }
+   }
+  },
+  "drawing": {
+   "noun": "woman",
+   "fits": "her tall updo, both shoes, both hands and the whole upright bass from its scroll to its spike",
+   "look": "very tall, rangy, long-limbed adult build, long narrow face with soft smile lines, calm eyes, closed easy smile, deep brown skin, silver-white hair in a tall smooth rounded updo, long-sleeved cream dinner jacket buttoned closed, its narrow midnight-violet satin lapels lying flat on the chest, a small midnight-violet bow tie at a closed cream shirt collar, slim dark charcoal trousers and polished two-tone cream and dark shoes, and thick dark ink outline, with a big honey-amber wooden upright double bass as tall as she is, with a dark fingerboard, four strings and a curled scroll",
+   "extra": "She is a grown woman of about sixty-five. She plays with bare fingers only and nothing else in her hands. The bass stands on the floor on its spike in front of her, on the right of the picture, its neck rising past her shoulder to the height of her head, and it stays the same size and colour. ",
+   "sheet": {
+    "source": {
+     "image": "tool/art/references/band-bass/front.png",
+     "poseFrom": "relaxed.a"
+    },
+    "views": {
+     "front": {
+      "image": "tool/art/references/band-bass/front.png",
+      "description": "standing square facing the viewer and playing the bass, feet apart; the hand on the right of the picture grips the bass neck at shoulder height, and the hand on the left of the picture reaches across her waist to pluck the strings"
+     },
+     "front_3q": {
+      "image": "tool/art/references/band-bass/front_3q.png",
+      "description": "standing and playing the bass, seen in a three-quarter view from the side: the chest, hips, knees, toes and nose all point toward the lower right corner of the picture, the face in three-quarter view looking that way, playing out toward a crowd on that side, feet apart",
+      "extra": "She is a grown woman of about sixty-five. She plays with bare fingers only and nothing else in her hands. The bass stands on the floor on its spike in front of her, on the right of the picture, its neck rising past her shoulder to the height of her head, and it stays the same size and colour. The bass is turned the same way: its strings and f-holes face the lower right corner of the picture, and its wooden side ribs show along its left edge. "
+     }
+    }
+   },
+   "score": {
+    "silhouetteTolerance": 60
+   },
+   "skeletonScale": 0.92,
+   "seed": 989510,
+   "count": 2
+  },
+  "references": {
+   "mode": "source",
+   "sources": []
+  },
+  "targets": [
+   {
+    "room": "cool-crowd",
+    "atlas": "band-bass",
+    "out": "assets/art/ensemble/band-bass-v1.png",
+    "native": [
+     256,
+     320
+    ],
+    "pixelScale": 3
+   }
+  ],
+  "seedBase": 989510
+ },
+ "style": {
+  "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background",
+  "negative": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render",
+  "frame": {
+   "margin": {
+    "minClear": 0.03,
+    "units": "fraction-of-generation-canvas",
+    "failOnBorderTouch": true
+   },
+   "units": "native-px",
+   "generationCanvas": {
+    "width": 768,
+    "height": 960
+   },
+   "camera": "floor-perspective"
+  },
+  "ramp": {
+   "shades": 4
+  },
+  "outline": "#1A1018",
+  "reservedRamps": [
+   {
+    "id": "kumbia-outfit",
+    "appliesToRegions": [
+     "cloth"
+    ],
+    "recolor": false,
+    "$comment": "Gates from shaders/party_palette.frag on unpremultiplied RGB 0-1; matches if ANY gate's ALL conditions hold. Structured, never eval'd: lhs is a channel or {sub:[a,b]}, rhs a literal or {mul:[k,channel]}.",
+    "gates": [
+     {
+      "id": "cool",
+      "all": [
+       {
+        "lhs": "b",
+        "op": ">=",
+        "rhs": 0.12
+       },
+       {
+        "lhs": "r",
+        "op": ">=",
+        "rhs": {
+         "mul": [
+          0.7,
+          "b"
+         ]
+        }
+       },
+       {
+        "lhs": "b",
+        "op": ">=",
+        "rhs": {
+         "mul": [
+          0.99,
+          "r"
+         ]
+        }
+       },
+       {
+        "lhs": "g",
+        "op": ">=",
+        "rhs": {
+         "mul": [
+          0.2,
+          "b"
+         ]
+        }
+       },
+       {
+        "lhs": "g",
+        "op": "<=",
+        "rhs": {
+         "mul": [
+          0.66,
+          "b"
+         ]
+        }
+       }
+      ]
+     },
+     {
+      "id": "plum",
+      "all": [
+       {
+        "lhs": "r",
+        "op": ">=",
+        "rhs": 0.392157
+       },
+       {
+        "lhs": "r",
+        "op": ">=",
+        "rhs": {
+         "mul": [
+          0.7,
+          "b"
+         ]
+        }
+       },
+       {
+        "lhs": "b",
+        "op": ">=",
+        "rhs": {
+         "mul": [
+          0.32,
+          "r"
+         ]
+        }
+       },
+       {
+        "lhs": "g",
+        "op": "<=",
+        "rhs": {
+         "mul": [
+          0.55,
+          "b"
+         ]
+        }
+       },
+       {
+        "lhs": {
+         "sub": [
+          "b",
+          "g"
+         ]
+        },
+        "op": ">=",
+        "rhs": 0.047059
+       }
+      ]
+     },
+     {
+      "id": "pink",
+      "all": [
+       {
+        "lhs": "r",
+        "op": ">=",
+        "rhs": 0.705882
+       },
+       {
+        "lhs": "r",
+        "op": ">=",
+        "rhs": {
+         "mul": [
+          0.7,
+          "b"
+         ]
+        }
+       },
+       {
+        "lhs": "b",
+        "op": ">=",
+        "rhs": {
+         "mul": [
+          0.32,
+          "r"
+         ]
+        }
+       },
+       {
+        "lhs": "g",
+        "op": "<=",
+        "rhs": {
+         "mul": [
+          0.86,
+          "b"
+         ]
+        }
+       },
+       {
+        "lhs": {
+         "sub": [
+          "b",
+          "g"
+         ]
+        },
+        "op": ">=",
+        "rhs": 0.047059
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  "generation": {
+   "count_per_pose": 4,
+   "seed_policy": "seed = seed_base + 100*pose_index + k; fixed per pose while tuning",
+   "tier": "I1"
+  }
+ },
+ "styleKey": "678ab4fca1ded9f95c38fad960356fa18d5651aea6ef3a4346ae687ff556ec48",
+ "backend": "qwen-frame",
+ "rigKey": "595343a6cb5a3e3b36812e20fabc9298060aa66990658e9071213966263b4d96",
+ "frameKeys": {
+  "relaxed.a": "e461c0eeb5c2c95ab4ba18f899d09ebd33726144f65016b3427ef907020de95a",
+  "relaxed.b": "7ea97bf5c95b6613dfad2088012d915f63cd6330d55c0db5a094c095b2eb9311",
+  "tap.up_a": "583d11ef200d48c9aef58de475233c3e5d1f34bbec6fc52607afd8c10df51393",
+  "tap.up_b": "3e4aba36ad45c69552a70e553add7bd38edff0068ff8f6fe0f7a28c3e365db6b",
+  "swing.a": "4524c622675af42e266cff8b7108ff280a6c9f94782731fcce2b4735175ddb1f",
+  "swing.b": "657c8f0ecdbf7a3892dca2df23b6ad69b50febef14f6f1c696f2e80531d635eb",
+  "swing.c": "e4c4dada02133e83b06569231d511a2f24aa88e4179a03bb8e2de6e1492bdaa0",
+  "swing.d": "13996acd82719d429e86cb49cb5225bc1480d15264bd1f4a33eece6685901ec4"
+ },
+ "run": "band-bass-v1-2ab2f1dfa8"
+}

@@ -1,0 +1,105 @@
+{
+ "schema": "tillandsias.palette/v1",
+ "name": "band-congas",
+ "colours": [
+  "#1A1018",
+  "#623703",
+  "#895B2F",
+  "#B5804F",
+  "#D0A178",
+  "#423E3A",
+  "#66615D",
+  "#8C8782",
+  "#AAA6A1",
+  "#9B927A",
+  "#C4BAA1",
+  "#EFE4C8",
+  "#FFFBE3",
+  "#968D74",
+  "#BFB59B",
+  "#EADFC2",
+  "#FFFBE2",
+  "#05001D",
+  "#1B0041",
+  "#3A1F6B",
+  "#524081",
+  "#000001",
+  "#09070D",
+  "#26232C",
+  "#3F3C45",
+  "#867956",
+  "#ADA07C",
+  "#D8C9A0",
+  "#F7EAC6",
+  "#360000",
+  "#5F0009",
+  "#8E1C28",
+  "#A7484A",
+  "#765500",
+  "#9D7B14",
+  "#C9A23A",
+  "#E5C371"
+ ],
+ "transparent": null,
+ "$provenance": {
+  "tool": "tool/art/pipeline/compile_family.py",
+  "definition": "tool/art/characters/band-congas.json",
+  "ramps": {
+   "skin": [
+    "#623703",
+    "#895B2F",
+    "#B5804F",
+    "#D0A178"
+   ],
+   "hair": [
+    "#423E3A",
+    "#66615D",
+    "#8C8782",
+    "#AAA6A1"
+   ],
+   "shirt": [
+    "#9B927A",
+    "#C4BAA1",
+    "#EFE4C8",
+    "#FFFBE3"
+   ],
+   "jacket": [
+    "#968D74",
+    "#BFB59B",
+    "#EADFC2",
+    "#FFFBE2"
+   ],
+   "lapels": [
+    "#05001D",
+    "#1B0041",
+    "#3A1F6B",
+    "#524081"
+   ],
+   "trousers": [
+    "#000001",
+    "#09070D",
+    "#26232C",
+    "#3F3C45"
+   ],
+   "shoes": [
+    "#867956",
+    "#ADA07C",
+    "#D8C9A0",
+    "#F7EAC6"
+   ],
+   "drums": [
+    "#360000",
+    "#5F0009",
+    "#8E1C28",
+    "#A7484A"
+   ],
+   "bands": [
+    "#765500",
+    "#9D7B14",
+    "#C9A23A",
+    "#E5C371"
+   ]
+  },
+  "nudged": {}
+ }
+}

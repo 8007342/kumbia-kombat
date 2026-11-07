@@ -1,0 +1,1343 @@
+{
+ "contract": "1935-k2ib/v1",
+ "pipelineVersion": null,
+ "family": "guest5-v1",
+ "version": 1,
+ "project": "kumbia-kombat",
+ "description": "Indoor party floor guest: a broad, full-figured woman of about forty.",
+ "kind": "character-frames",
+ "frame": {
+  "baselineY": null,
+  "pivot": {
+   "x": null,
+   "y": null,
+   "normalized": false
+  },
+  "scale": {
+   "mode": "fixed-per-family",
+   "referencePose": "model.front",
+   "resolved": null
+  },
+  "native": {
+   "perRoom": true,
+   "cool-crowd": {
+    "width": 256,
+    "height": 320,
+    "pixelScale": 3
+   }
+  },
+  "margin": {
+   "minClear": 0.03,
+   "units": "fraction-of-generation-canvas",
+   "failOnBorderTouch": true
+  },
+  "units": "native-px",
+  "generationCanvas": {
+   "width": 768,
+   "height": 960
+  },
+  "camera": "floor-perspective"
+ },
+ "transparency": {
+  "byBackend": {
+   "sdxl": "matte",
+   "default": "matte"
+  },
+  "matte": "birefnet",
+  "alpha": "binary"
+ },
+ "outline": "#1A1018",
+ "symmetry": "none",
+ "references": [],
+ "regions": {
+  "#FF0000": "skin",
+  "#00FF00": "hair",
+  "#0000FF": "cloth",
+  "#FF8000": "trousers",
+  "#00FFFF": "shoes"
+ },
+ "reservedRamps": [
+  {
+   "id": "kumbia-outfit",
+   "appliesToRegions": [
+    "cloth"
+   ],
+   "recolor": false,
+   "$comment": "Gates from shaders/party_palette.frag on unpremultiplied RGB 0-1; matches if ANY gate's ALL conditions hold. Structured, never eval'd: lhs is a channel or {sub:[a,b]}, rhs a literal or {mul:[k,channel]}.",
+   "gates": [
+    {
+     "id": "cool",
+     "all": [
+      {
+       "lhs": "b",
+       "op": ">=",
+       "rhs": 0.12
+      },
+      {
+       "lhs": "r",
+       "op": ">=",
+       "rhs": {
+        "mul": [
+         0.7,
+         "b"
+        ]
+       }
+      },
+      {
+       "lhs": "b",
+       "op": ">=",
+       "rhs": {
+        "mul": [
+         0.99,
+         "r"
+        ]
+       }
+      },
+      {
+       "lhs": "g",
+       "op": ">=",
+       "rhs": {
+        "mul": [
+         0.2,
+         "b"
+        ]
+       }
+      },
+      {
+       "lhs": "g",
+       "op": "<=",
+       "rhs": {
+        "mul": [
+         0.66,
+         "b"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "id": "plum",
+     "all": [
+      {
+       "lhs": "r",
+       "op": ">=",
+       "rhs": 0.392157
+      },
+      {
+       "lhs": "r",
+       "op": ">=",
+       "rhs": {
+        "mul": [
+         0.7,
+         "b"
+        ]
+       }
+      },
+      {
+       "lhs": "b",
+       "op": ">=",
+       "rhs": {
+        "mul": [
+         0.32,
+         "r"
+        ]
+       }
+      },
+      {
+       "lhs": "g",
+       "op": "<=",
+       "rhs": {
+        "mul": [
+         0.55,
+         "b"
+        ]
+       }
+      },
+      {
+       "lhs": {
+        "sub": [
+         "b",
+         "g"
+        ]
+       },
+       "op": ">=",
+       "rhs": 0.047059
+      }
+     ]
+    },
+    {
+     "id": "pink",
+     "all": [
+      {
+       "lhs": "r",
+       "op": ">=",
+       "rhs": 0.705882
+      },
+      {
+       "lhs": "r",
+       "op": ">=",
+       "rhs": {
+        "mul": [
+         0.7,
+         "b"
+        ]
+       }
+      },
+      {
+       "lhs": "b",
+       "op": ">=",
+       "rhs": {
+        "mul": [
+         0.32,
+         "r"
+        ]
+       }
+      },
+      {
+       "lhs": "g",
+       "op": "<=",
+       "rhs": {
+        "mul": [
+         0.86,
+         "b"
+        ]
+       }
+      },
+      {
+       "lhs": {
+        "sub": [
+         "b",
+         "g"
+        ]
+       },
+       "op": ">=",
+       "rhs": 0.047059
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "palette": {
+  "locked": "tool/art/palettes/guest5.json"
+ },
+ "style_prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background",
+ "style_negative": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render",
+ "character_prompt": "tall, broad, full-figured woman of about forty, a wide laughing smile, one long thick black braid over one shoulder, long-sleeved deep plum wrap dress, deep plum skirt falling below the knee, amber low-heeled shoes, lost in the dance with a partner, happy to be here",
+ "clips": [
+  {
+   "id": "groove",
+   "drawings": 4,
+   "view": "front",
+   "promptTemplate": "skeleton",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": []
+  },
+  {
+   "id": "pair_dance",
+   "drawings": 4,
+   "view": "front",
+   "promptTemplate": "skeletonTurn",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "sheetView": "front_3q"
+  },
+  {
+   "id": "back_dance",
+   "drawings": 4,
+   "view": "front",
+   "promptTemplate": "skeletonTurn",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "sheetView": "back_3q"
+  },
+  {
+   "id": "sidestep",
+   "drawings": 4,
+   "view": "front",
+   "promptTemplate": "skeletonTurn",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "sheetView": "front_3q"
+  },
+  {
+   "id": "glance",
+   "drawings": 2,
+   "view": "front",
+   "promptTemplate": "skeletonTurn",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "sheetView": "back_3q"
+  },
+  {
+   "id": "clap",
+   "drawings": 2,
+   "view": "front",
+   "promptTemplate": "skeleton",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": []
+  },
+  {
+   "id": "cheer",
+   "drawings": 2,
+   "view": "front",
+   "promptTemplate": "skeleton",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": []
+  },
+  {
+   "id": "model",
+   "drawings": 4,
+   "view": "front",
+   "promptTemplate": "skeleton",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": []
+  }
+ ],
+ "generation": {
+  "count_per_pose": 4,
+  "seed_base": 993000,
+  "seed_policy": "seed = seed_base + 100*pose_index + k; fixed per pose while tuning",
+  "backend": "comfyui-api",
+  "workflow": "tool/art/workflows/qwen-frame.api.json",
+  "tiers": {
+   "I1": {
+    "model": "qwen-frame",
+    "steps": 4
+   }
+  },
+  "workflowsByProfile": {
+   "moderate": "tool/art/workflows/qwen-frame.api.json",
+   "peak": "tool/art/workflows/qwen-frame.api.json",
+   "overlap": "tool/art/workflows/qwen-frame.api.json",
+   "turn": "tool/art/workflows/qwen-frame.api.json"
+  },
+  "defaultProfile": "moderate",
+  "profileRules": []
+ },
+ "qa": {
+  "inherit": [
+   "coverage",
+   "single_object",
+   "border_touch",
+   "slot_fill"
+  ],
+  "add": [
+   {
+    "id": "baseline_drift",
+    "maxPx": 1,
+    "scope": "consecutive drawings sharing a planted support foot",
+    "camera": "from target"
+   },
+   {
+    "id": "head_size_variance",
+    "maxPct": 4,
+    "scope": "family"
+   },
+   {
+    "id": "region_gate_agreement",
+    "rule": "non-cloth pixels outside all reservedRamps gates; cloth pixels inside one"
+   },
+   {
+    "id": "identity_similarity",
+    "against": "references",
+    "threshold": "TBD",
+    "embedding": {
+     "model": "facebook/dinov2-small",
+     "licence": "apache-2.0",
+     "status": "pending operator approval"
+    }
+   }
+  ],
+  "static": [
+   {
+    "id": "palette_fails_all_gates",
+    "rule": "outline and palette entries outside cloth fail every kumbia-outfit gate"
+   },
+   {
+    "id": "region_mask_colours_declared",
+    "rule": "every regionMask pixel is a declared regions colour or fully transparent"
+   }
+  ]
+ },
+ "targets": [
+  {
+   "type": "kumbiaManifest",
+   "atlas": "guest5",
+   "out": "assets/art/ensemble/guest5-v1.png",
+   "manifest": "assets/art/ensemble/manifest.json",
+   "frameId": "{clip}_{drawing}",
+   "fields": [
+    "rect",
+    "anchor",
+    "pixelsPerUnit",
+    "facing",
+    "loop",
+    "durationBeats",
+    "events",
+    "supportFoot",
+    "status",
+    "provenance",
+    "ramps"
+   ],
+   "packing": {
+    "gutterPx": 2,
+    "trim": true,
+    "anchorRelativeTo": "trimmed-rect"
+   },
+   "requireHumanAcceptance": true,
+   "room": "cool-crowd",
+   "camera": "floor-perspective"
+  }
+ ],
+ "adapters": {
+  "enum": [
+   "ip-adapter-sdxl",
+   "qwen-image-edit",
+   "img2img"
+  ]
+ },
+ "regionsRender": {
+  "antialias": false,
+  "filtering": "none"
+ },
+ "$notes": {
+  "spec": "Generated by tool/art/pipeline/compile_family.py from tool/art/characters/guest5.json. Do not edit by hand.",
+  "character": "guest5",
+  "motionSet": "party-floor"
+ },
+ "rigInputs": "art_runs/inputs/guest5-v1",
+ "regionProxyColours": {
+  "skin": "#8A5230",
+  "hair": "#1A1412",
+  "cloth": "#5B1F4E",
+  "trousers": "#50194A",
+  "shoes": "#B9791C"
+ },
+ "poses": [
+  {
+   "id": "groove.a",
+   "clip": "groove",
+   "order": 0,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/guest5-v1/groove.a.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/guest5-v1/groove.a.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/guest5-v1/groove.a.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/guest5-v1/groove.a.regions.png",
+   "supportFoot": "left",
+   "accent": false,
+   "phase": "down",
+   "phaseNote": "down",
+   "intent": "facing the viewer, dancing in place on bent knees with weight on her left foot, arms low and loose below the shoulders, loose relaxed hands, smiling",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "secondary-action",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
+  },
+  {
+   "id": "groove.b",
+   "clip": "groove",
+   "order": 1,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/guest5-v1/groove.b.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/guest5-v1/groove.b.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/guest5-v1/groove.b.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/guest5-v1/groove.b.regions.png",
+   "supportFoot": "both",
+   "accent": false,
+   "phase": "up",
+   "phaseNote": "up",
+   "intent": "facing the viewer, dancing in place, a small rise with both feet flat, arms low and loose below the shoulders, loose relaxed hands, smiling",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "secondary-action",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
+  },
+  {
+   "id": "groove.c",
+   "clip": "groove",
+   "order": 2,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/guest5-v1/groove.c.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/guest5-v1/groove.c.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/guest5-v1/groove.c.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/guest5-v1/groove.c.regions.png",
+   "supportFoot": "right",
+   "accent": false,
+   "phase": "down",
+   "phaseNote": "down",
+   "intent": "facing the viewer, dancing in place on bent knees with weight on her right foot, arms low and loose below the shoulders, loose relaxed hands, smiling",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "secondary-action",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
+  },
+  {
+   "id": "groove.d",
+   "clip": "groove",
+   "order": 3,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/guest5-v1/groove.d.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/guest5-v1/groove.d.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/guest5-v1/groove.d.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/guest5-v1/groove.d.regions.png",
+   "supportFoot": "both",
+   "accent": false,
+   "phase": "up",
+   "phaseNote": "up",
+   "intent": "facing the viewer, dancing in place, a small rise with both feet flat, arms low and loose below the shoulders, loose relaxed hands, smiling",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "secondary-action",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
+  },
+  {
+   "id": "pair_dance.a",
+   "clip": "pair_dance",
+   "order": 0,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/guest5-v1/pair_dance.a.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/guest5-v1/pair_dance.a.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/guest5-v1/pair_dance.a.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/guest5-v1/pair_dance.a.regions.png",
+   "supportFoot": "left",
+   "accent": false,
+   "phase": "down",
+   "phaseNote": "down",
+   "intent": "seen in a three-quarter view from the side: the chest, hips, knees, toes and nose all point toward the lower right corner of the picture, the face in three-quarter view looking that way, smiling, absorbed in the dance, both arms held forward in a slow social-dance hold, the upper hand open at chest height and the lower hand open at waist height, both reaching toward the right side of the picture, the fingers relaxed and together, weight on the back foot, the front heel lifted",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
+  },
+  {
+   "id": "pair_dance.b",
+   "clip": "pair_dance",
+   "order": 1,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/guest5-v1/pair_dance.b.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/guest5-v1/pair_dance.b.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/guest5-v1/pair_dance.b.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/guest5-v1/pair_dance.b.regions.png",
+   "supportFoot": "both",
+   "accent": false,
+   "phase": "up",
+   "phaseNote": "up",
+   "intent": "seen in a three-quarter view from the side: the chest, hips, knees, toes and nose all point toward the lower right corner of the picture, the face in three-quarter view looking that way, smiling, absorbed in the dance, both arms held forward in a slow social-dance hold, the upper hand open at chest height and the lower hand open at waist height, both reaching toward the right side of the picture, the fingers relaxed and together, both feet flat in a small rise",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "no-twinning",
+    "timing-on-beat"
+   ]
+  },
+  {
+   "id": "pair_dance.c",
+   "clip": "pair_dance",
+   "order": 2,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/guest5-v1/pair_dance.c.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/guest5-v1/pair_dance.c.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/guest5-v1/pair_dance.c.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/guest5-v1/pair_dance.c.regions.png",
+   "supportFoot": "right",
+   "accent": false,
+   "phase": "down",
+   "phaseNote": "down",
+   "intent": "seen in a three-quarter view from the side: the chest, hips, knees, toes and nose all point toward the lower right corner of the picture, the face in three-quarter view looking that way, smiling, absorbed in the dance, both arms held forward in a slow social-dance hold, the upper hand open at chest height and the lower hand open at waist height, both reaching toward the right side of the picture, the fingers relaxed and together, weight on the front foot, the back heel lifted",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
+  },
+  {
+   "id": "pair_dance.d",
+   "clip": "pair_dance",
+   "order": 3,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/guest5-v1/pair_dance.d.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/guest5-v1/pair_dance.d.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/guest5-v1/pair_dance.d.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/guest5-v1/pair_dance.d.regions.png",
+   "supportFoot": "both",
+   "accent": false,
+   "phase": "up",
+   "phaseNote": "up",
+   "intent": "seen in a three-quarter view from the side: the chest, hips, knees, toes and nose all point toward the lower right corner of the picture, the face in three-quarter view looking that way, smiling, absorbed in the dance, both arms held forward in a slow social-dance hold, the upper hand open at chest height and the lower hand open at waist height, both reaching toward the right side of the picture, the fingers relaxed and together, both feet flat in a small rise",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "no-twinning",
+    "timing-on-beat"
+   ]
+  },
+  {
+   "id": "back_dance.a",
+   "clip": "back_dance",
+   "order": 0,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/guest5-v1/back_dance.a.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/guest5-v1/back_dance.a.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/guest5-v1/back_dance.a.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/guest5-v1/back_dance.a.regions.png",
+   "supportFoot": "left",
+   "accent": false,
+   "phase": "down",
+   "phaseNote": "down",
+   "intent": "seen from behind at three quarters, turned away from the viewer toward the upper right corner of the picture: the back of her head and her back show, a sliver of cheek on the right, the face hidden, both arms held forward in a slow social-dance hold, the upper hand open at chest height and the lower hand open at waist height, both reaching toward the right side of the picture, the fingers relaxed and together, weight on one foot, the other heel lifted",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
+  },
+  {
+   "id": "back_dance.b",
+   "clip": "back_dance",
+   "order": 1,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/guest5-v1/back_dance.b.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/guest5-v1/back_dance.b.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/guest5-v1/back_dance.b.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/guest5-v1/back_dance.b.regions.png",
+   "supportFoot": "both",
+   "accent": false,
+   "phase": "up",
+   "phaseNote": "up",
+   "intent": "seen from behind at three quarters, turned away from the viewer toward the upper right corner of the picture: the back of her head and her back show, a sliver of cheek on the right, the face hidden, both arms held forward in a slow social-dance hold, the upper hand open at chest height and the lower hand open at waist height, both reaching toward the right side of the picture, the fingers relaxed and together, both feet flat in a small rise",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "no-twinning",
+    "timing-on-beat"
+   ]
+  },
+  {
+   "id": "back_dance.c",
+   "clip": "back_dance",
+   "order": 2,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/guest5-v1/back_dance.c.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/guest5-v1/back_dance.c.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/guest5-v1/back_dance.c.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/guest5-v1/back_dance.c.regions.png",
+   "supportFoot": "right",
+   "accent": false,
+   "phase": "down",
+   "phaseNote": "down",
+   "intent": "seen from behind at three quarters, turned away from the viewer toward the upper right corner of the picture: the back of her head and her back show, a sliver of cheek on the right, the face hidden, both arms held forward in a slow social-dance hold, the upper hand open at chest height and the lower hand open at waist height, both reaching toward the right side of the picture, the fingers relaxed and together, weight on the other foot, one heel lifted",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
+  },
+  {
+   "id": "back_dance.d",
+   "clip": "back_dance",
+   "order": 3,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/guest5-v1/back_dance.d.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/guest5-v1/back_dance.d.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/guest5-v1/back_dance.d.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/guest5-v1/back_dance.d.regions.png",
+   "supportFoot": "both",
+   "accent": false,
+   "phase": "up",
+   "phaseNote": "up",
+   "intent": "seen from behind at three quarters, turned away from the viewer toward the upper right corner of the picture: the back of her head and her back show, a sliver of cheek on the right, the face hidden, both arms held forward in a slow social-dance hold, the upper hand open at chest height and the lower hand open at waist height, both reaching toward the right side of the picture, the fingers relaxed and together, both feet flat in a small rise",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "no-twinning",
+    "timing-on-beat"
+   ]
+  },
+  {
+   "id": "sidestep.a",
+   "clip": "sidestep",
+   "order": 0,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/guest5-v1/sidestep.a.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/guest5-v1/sidestep.a.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/guest5-v1/sidestep.a.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/guest5-v1/sidestep.a.regions.png",
+   "supportFoot": "left",
+   "accent": true,
+   "phase": "contact",
+   "phaseNote": "contact",
+   "intent": "seen in a clean side profile walking toward the right side of the picture, the nose and both toes pointing right, one eye showing, taking a long easy step, the front heel just touching the floor and the back foot on its toes, arms swinging low at the sides, relaxed hands",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "anticipation",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
+  },
+  {
+   "id": "sidestep.b",
+   "clip": "sidestep",
+   "order": 1,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/guest5-v1/sidestep.b.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/guest5-v1/sidestep.b.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/guest5-v1/sidestep.b.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/guest5-v1/sidestep.b.regions.png",
+   "supportFoot": "left",
+   "accent": false,
+   "phase": "pass",
+   "phaseNote": "pass",
+   "intent": "seen in a clean side profile walking toward the right side of the picture, the nose and both toes pointing right, one eye showing, mid-step, the weight over one straight leg and the other foot passing it, arms low at the sides, relaxed hands",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
+  },
+  {
+   "id": "sidestep.c",
+   "clip": "sidestep",
+   "order": 2,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/guest5-v1/sidestep.c.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/guest5-v1/sidestep.c.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/guest5-v1/sidestep.c.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/guest5-v1/sidestep.c.regions.png",
+   "supportFoot": "right",
+   "accent": true,
+   "phase": "contact",
+   "phaseNote": "contact",
+   "intent": "seen in a clean side profile walking toward the right side of the picture, the nose and both toes pointing right, one eye showing, taking a long easy step with the other foot in front, the front heel just touching the floor and the back foot on its toes, arms swinging low at the sides, relaxed hands",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "anticipation",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
+  },
+  {
+   "id": "sidestep.d",
+   "clip": "sidestep",
+   "order": 3,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/guest5-v1/sidestep.d.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/guest5-v1/sidestep.d.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/guest5-v1/sidestep.d.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/guest5-v1/sidestep.d.regions.png",
+   "supportFoot": "right",
+   "accent": false,
+   "phase": "pass",
+   "phaseNote": "pass",
+   "intent": "seen in a clean side profile walking toward the right side of the picture, the nose and both toes pointing right, one eye showing, mid-step on the other leg, the weight over one straight leg and the other foot passing it, arms low at the sides, relaxed hands",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
+  },
+  {
+   "id": "glance.a",
+   "clip": "glance",
+   "order": 0,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/guest5-v1/glance.a.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/guest5-v1/glance.a.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/guest5-v1/glance.a.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/guest5-v1/glance.a.regions.png",
+   "supportFoot": "both",
+   "accent": false,
+   "phase": "hold",
+   "phaseNote": "hold",
+   "intent": "seen from behind, her back to the viewer, head turned to look back over her shoulder toward the right side of the picture so her face shows in profile with one eye, curious and interested, arms relaxed",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "secondary-action",
+    "no-twinning",
+    "timing-on-beat"
+   ]
+  },
+  {
+   "id": "glance.b",
+   "clip": "glance",
+   "order": 1,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/guest5-v1/glance.b.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/guest5-v1/glance.b.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/guest5-v1/glance.b.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/guest5-v1/glance.b.regions.png",
+   "supportFoot": "both",
+   "accent": false,
+   "phase": "hold",
+   "phaseNote": "hold",
+   "intent": "seen from behind, her back to the viewer, head turned a little further over her shoulder toward the right side of the picture so her face shows in profile with one eye, smiling and interested, arms relaxed",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "secondary-action",
+    "no-twinning",
+    "timing-on-beat"
+   ]
+  },
+  {
+   "id": "clap.a",
+   "clip": "clap",
+   "order": 0,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/guest5-v1/clap.a.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/guest5-v1/clap.a.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/guest5-v1/clap.a.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/guest5-v1/clap.a.regions.png",
+   "supportFoot": "both",
+   "accent": false,
+   "phase": "open",
+   "phaseNote": "open",
+   "intent": "facing the viewer, hands apart at chest height about to clap, palms facing each other, delighted",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "anticipation",
+    "no-twinning",
+    "timing-on-beat"
+   ]
+  },
+  {
+   "id": "clap.b",
+   "clip": "clap",
+   "order": 1,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/guest5-v1/clap.b.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/guest5-v1/clap.b.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/guest5-v1/clap.b.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/guest5-v1/clap.b.regions.png",
+   "supportFoot": "both",
+   "accent": true,
+   "phase": "contact",
+   "phaseNote": "contact",
+   "intent": "facing the viewer, palms together clapping at chest height, knees softly bent, delighted",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "anticipation",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
+  },
+  {
+   "id": "cheer.a",
+   "clip": "cheer",
+   "order": 0,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/guest5-v1/cheer.a.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/guest5-v1/cheer.a.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/guest5-v1/cheer.a.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/guest5-v1/cheer.a.regions.png",
+   "supportFoot": "both",
+   "accent": true,
+   "phase": "accent",
+   "phaseNote": "accent",
+   "intent": "facing the viewer, cheering with both arms straight up above her head and open hands, a big smile",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "line-of-action",
+    "contrapposto",
+    "exaggeration-accent",
+    "no-twinning",
+    "timing-on-beat"
+   ]
+  },
+  {
+   "id": "cheer.b",
+   "clip": "cheer",
+   "order": 1,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/guest5-v1/cheer.b.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/guest5-v1/cheer.b.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/guest5-v1/cheer.b.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/guest5-v1/cheer.b.regions.png",
+   "supportFoot": "left",
+   "accent": true,
+   "phase": "accent",
+   "phaseNote": "accent",
+   "intent": "facing the viewer, cheering with both arms up above her head and open hands, one hip dropped, a big smile",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "line-of-action",
+    "contrapposto",
+    "exaggeration-accent",
+    "no-twinning",
+    "timing-on-beat"
+   ]
+  },
+  {
+   "id": "model.front",
+   "clip": "model",
+   "order": 0,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/guest5-v1/model.front.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/guest5-v1/model.front.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/guest5-v1/model.front.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/guest5-v1/model.front.regions.png",
+   "supportFoot": "both",
+   "accent": false,
+   "phase": "sheet",
+   "phaseNote": "sheet",
+   "intent": "standing square",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "no-twinning",
+    "timing-on-beat"
+   ]
+  },
+  {
+   "id": "model.q3",
+   "clip": "model",
+   "order": 1,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/guest5-v1/model.q3.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/guest5-v1/model.q3.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/guest5-v1/model.q3.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/guest5-v1/model.q3.regions.png",
+   "supportFoot": "both",
+   "accent": false,
+   "phase": "sheet",
+   "phaseNote": "sheet",
+   "intent": "standing in three quarters",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "no-twinning",
+    "timing-on-beat"
+   ]
+  },
+  {
+   "id": "model.back",
+   "clip": "model",
+   "order": 2,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/guest5-v1/model.back.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/guest5-v1/model.back.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/guest5-v1/model.back.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/guest5-v1/model.back.regions.png",
+   "supportFoot": "both",
+   "accent": false,
+   "phase": "sheet",
+   "phaseNote": "sheet",
+   "intent": "from behind in three quarters",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "no-twinning",
+    "timing-on-beat"
+   ]
+  },
+  {
+   "id": "model.side",
+   "clip": "model",
+   "order": 3,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/guest5-v1/model.side.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/guest5-v1/model.side.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/guest5-v1/model.side.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/guest5-v1/model.side.regions.png",
+   "supportFoot": "both",
+   "accent": false,
+   "phase": "sheet",
+   "phaseNote": "sheet",
+   "intent": "in profile",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "no-twinning",
+    "timing-on-beat"
+   ]
+  }
+ ],
+ "animationReferences": {
+  "registry": "tool/art/references/animation-principles.json",
+  "research": [
+   "plan/party-art-review-2026-11-07.md"
+  ],
+  "principlesUsed": [
+   "anticipation",
+   "contrapposto",
+   "exaggeration-accent",
+   "line-of-action",
+   "no-twinning",
+   "planted-pivot",
+   "secondary-action",
+   "staging-silhouette",
+   "timing-on-beat"
+  ],
+  "sourcesUsed": [
+   "cartwright-gdc2014",
+   "contrapposto-fonseca",
+   "dead-cells-pipeline",
+   "disney-process",
+   "illusion-of-life",
+   "silhouette-test",
+   "simogo-bsb",
+   "slynyrd-53",
+   "slynyrd-55",
+   "twinning",
+   "ubisoft-foot-ik",
+   "williams-survival-kit"
+  ]
+ }
+}

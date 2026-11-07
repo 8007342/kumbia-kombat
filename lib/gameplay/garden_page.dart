@@ -396,7 +396,16 @@ class _GardenPageState extends State<GardenPage>
       }
       await _scene.loaded;
       final next = _step.next;
-      if (next != null) await _scene.images.load(next.background);
+      if (next != null) {
+        // All of what the doorway awaits: a late room would miss its own opening.
+        await _scene.images.load(next.background);
+        for (final image in next.exitShot?.images ?? const <String>[]) {
+          await _scene.images.load(image);
+        }
+        for (final prop in next.layers) {
+          await _scene.images.load(prop.atlas);
+        }
+      }
       if (mounted) setState(() => _exitReady = true);
     } catch (error) {
       // The current loop continues safely if the next room cannot be prepared.
@@ -423,7 +432,7 @@ class _GardenPageState extends State<GardenPage>
     final shot = step.level.exitShot;
     final library = _library;
     final music = library?.level(step.level.id);
-    final successClip = _readyClip(music?.success);
+    final successClip = _readyClip(music?.successToward(next?.id));
     final successScore = successClip == null
         ? _exitScores[step.level.music.successScore]!
         : _clipScore(successClip);
