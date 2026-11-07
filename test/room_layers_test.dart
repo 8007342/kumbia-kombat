@@ -110,6 +110,41 @@ void main() {
       }
     });
 
+    for (final (id, clean, painted) in const [
+      (
+        'pool-garden',
+        'pool-garden/pool-garden-clean.png',
+        'pool-garden/pool-garden-v1-draft.png',
+      ),
+      ('bar', 'bar/bar-interior-clean.png', 'bar/bar-interior.png'),
+    ]) {
+      test('$id has a clean plate and props of its own', () {
+        final level = LevelDefinition.fromJson(
+          jsonDecode(File('levels/$id.json').readAsStringSync())
+              as Map<String, Object?>,
+        );
+        expect(level.background, clean);
+        expect(level.layers.length, greaterThanOrEqualTo(8));
+        expect(level.layers.map((p) => p.id).toSet().length, level.layers.length);
+        expect(_pngSize('assets/art/$clean'), _pngSize('assets/art/$painted'));
+        for (final prop in level.layers) {
+          final (width, height) = _pngSize('assets/art/${prop.atlas}');
+          expect(
+            prop.atlasX(prop.frames - 1) + prop.width,
+            lessThanOrEqualTo(width),
+            reason: prop.id,
+          );
+          expect(prop.atlasY + prop.height, lessThanOrEqualTo(height));
+          expect(prop.placementProblem(1024, 1536), isNull, reason: prop.id);
+        }
+        expect(
+          level.layers.map((p) => p.instance).toSet().length,
+          level.layers.length,
+          reason: 'props wake one by one',
+        );
+      });
+    }
+
     test('the clean plate has the same size as the painting it replaces', () {
       expect(
         _pngSize('assets/art/garden/garden-mansion-clean.png'),
