@@ -14543,6 +14543,166 @@
      }
     }
    }
+  },
+  "guest3": {
+   "image": "guest3-v1.png",
+   "imageWidth": 1024,
+   "imageHeight": 251,
+   "referenceFrame": "standing_idle_a",
+   "stature": 0.9,
+   "frames": {
+    "pair_dance_a": {
+     "rect": [
+      2,
+      2,
+      143,
+      247
+     ],
+     "anchor": [
+      52.0,
+      245.4
+     ],
+     "pixelsPerUnit": 8.0,
+     "provenance": {
+      "run": "guest3-20261107b",
+      "pose": "pair_dance.a",
+      "seed": 991001,
+      "sha256": "c335e3cad93009c810a8c348e058cb4afbe7da65933d5be40540740cce6499d6"
+     }
+    },
+    "pair_dance_b": {
+     "rect": [
+      2,
+      2,
+      143,
+      247
+     ],
+     "anchor": [
+      52.0,
+      245.4
+     ],
+     "pixelsPerUnit": 8.0,
+     "provenance": {
+      "run": "guest3-20261107b",
+      "pose": "pair_dance.a",
+      "seed": 991001,
+      "sha256": "c335e3cad93009c810a8c348e058cb4afbe7da65933d5be40540740cce6499d6"
+     }
+    },
+    "pair_dance_c": {
+     "rect": [
+      147,
+      2,
+      148,
+      247
+     ],
+     "anchor": [
+      39.0,
+      245.4
+     ],
+     "pixelsPerUnit": 8.0,
+     "provenance": {
+      "run": "guest3-20261107b",
+      "pose": "pair_dance.c",
+      "seed": 991000,
+      "sha256": "5ad52de9612f052181e3f125f9683fe3365cc15c72525ac7442499e58527d71c"
+     }
+    },
+    "pair_dance_d": {
+     "rect": [
+      147,
+      2,
+      148,
+      247
+     ],
+     "anchor": [
+      39.0,
+      245.4
+     ],
+     "pixelsPerUnit": 8.0,
+     "provenance": {
+      "run": "guest3-20261107b",
+      "pose": "pair_dance.c",
+      "seed": 991000,
+      "sha256": "5ad52de9612f052181e3f125f9683fe3365cc15c72525ac7442499e58527d71c"
+     }
+    },
+    "standing_idle_a": {
+     "rect": [
+      2,
+      2,
+      143,
+      274
+     ],
+     "anchor": [
+      52.0,
+      245.4
+     ],
+     "pixelsPerUnit": 8.0,
+     "measureOnly": true
+    }
+   }
+  },
+  "guest4": {
+   "image": "guest4-v1.png",
+   "imageWidth": 1024,
+   "imageHeight": 252,
+   "referenceFrame": "standing_idle_a",
+   "stature": 1.06,
+   "frames": {
+    "pair_dance_a": {
+     "rect": [
+      2,
+      2,
+      133,
+      248
+     ],
+     "anchor": [
+      58.2,
+      245.4
+     ],
+     "pixelsPerUnit": 8.0,
+     "provenance": {
+      "run": "guest4-20261107b",
+      "pose": "pair_dance.a",
+      "seed": 992000,
+      "sha256": "c68545cfd3d932dacc4384ff053ed799dc671d7a1f62588b1bf406501d22472d"
+     }
+    },
+    "pair_dance_b": {
+     "rect": [
+      2,
+      2,
+      133,
+      248
+     ],
+     "anchor": [
+      58.2,
+      245.4
+     ],
+     "pixelsPerUnit": 8.0,
+     "provenance": {
+      "run": "guest4-20261107b",
+      "pose": "pair_dance.a",
+      "seed": 992000,
+      "sha256": "c68545cfd3d932dacc4384ff053ed799dc671d7a1f62588b1bf406501d22472d"
+     }
+    },
+    "standing_idle_a": {
+     "rect": [
+      2,
+      2,
+      133,
+      234
+     ],
+     "anchor": [
+      58.2,
+      245.4
+     ],
+     "pixelsPerUnit": 8.0,
+     "measureOnly": true
+    }
+   }
   }
  }
 }

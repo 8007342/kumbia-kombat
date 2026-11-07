@@ -551,14 +551,13 @@ _PF_UP = dict(head_nod=-5, pin="mid", l_thigh=(6, 4), l_shin=(5, -2), r_thigh=(6
 def _pf_pair(yaw: float, head: float = 0, arms: dict = _PF_ARMS) -> dict:
     base = dict(yaw=yaw, head_turn=head, toe_out=10, knee_out=20, **arms)
     return {"a": (Pose(head_nod=4, twist=6, **base, **_PF_L), "left"),
-            "b": (Pose(twist=2, **base, **_PF_UP), "both"),
             "c": (Pose(head_nod=4, twist=-6, **base, **_PF_R), "right")}
 
 
 _PF_WALK = paseo(82)
 _PF_SWING = dict(l_arm=(14, 18), l_fore=(12, 44), r_arm=(14, -14), r_fore=(12, 12))
 PARTY_FLOOR = {
-    "groove": {"a": (replace(GROOVE["down_l"][0], l_arm=(22, 18), l_fore=(18, 50), r_arm=(24, -10), r_fore=(26, 18)), "left"), "b": GROOVE["up_l"],
+    "groove": {"a": (replace(GROOVE["down_l"][0], l_arm=(22, 18), l_fore=(18, 50), r_arm=(24, -10), r_fore=(26, 18)), "left"),
                "c": (replace(GROOVE["down_r"][0], r_arm=(22, 18), r_fore=(18, 50), l_arm=(24, -10), l_fore=(26, 18)), "right")},
     "pair_dance": _pf_pair(48, head=-6),
     "back_dance": _pf_pair(142, arms=dict(l_arm=(34, 40), l_fore=(44, 74), r_arm=(14, 30), r_fore=(-10, 78))),
@@ -685,13 +684,10 @@ _FLOOR_SIDE = "seen in a clean side profile walking toward the right side of the
 _FLOOR_HOLD = "both arms held forward in a slow social-dance hold, the upper hand open at chest height and the lower hand open at waist height, both reaching toward the right side of the picture, the fingers relaxed and together, "
 PARTY_FLOOR_INTENT = {
     "groove.a": ("down", "facing the viewer, dancing in place on bent knees with weight on {his} left foot, arms low and loose below the shoulders, loose relaxed hands, smiling"),
-    "groove.b": ("up", "facing the viewer, dancing in place, a small rise with both feet flat, arms low and loose below the shoulders, loose relaxed hands, smiling"),
     "groove.c": ("down", "facing the viewer, dancing in place on bent knees with weight on {his} right foot, arms low and loose below the shoulders, loose relaxed hands, smiling"),
     "pair_dance.a": ("down", _FLOOR_Q3 + _FLOOR_HOLD + "weight on the back foot, the front heel lifted"),
-    "pair_dance.b": ("up", _FLOOR_Q3 + _FLOOR_HOLD + "both feet flat in a small rise"),
     "pair_dance.c": ("down", _FLOOR_Q3 + _FLOOR_HOLD + "weight on the front foot, the back heel lifted"),
     "back_dance.a": ("down", _FLOOR_BACK + _FLOOR_HOLD + "weight on one foot, the other heel lifted"),
-    "back_dance.b": ("up", _FLOOR_BACK + _FLOOR_HOLD + "both feet flat in a small rise"),
     "back_dance.c": ("down", _FLOOR_BACK + _FLOOR_HOLD + "weight on the other foot, one heel lifted"),
     "sidestep.a": ("contact", _FLOOR_SIDE + "taking a long easy step, the front heel just touching the floor and the back foot on its toes, arms swinging low at the sides, relaxed hands"),
     "sidestep.b": ("pass", _FLOOR_SIDE + "mid-step, the weight over one straight leg and the other foot passing it, arms low at the sides, relaxed hands"),

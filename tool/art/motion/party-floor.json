@@ -1,13 +1,13 @@
 {
  "id": "party-floor",
- "description": "A floor guest's drawings: on their feet all night, dancing in pairs. Every unflipped view faces picture right. plan/party-art-review-2026-11-07.md. Drawn once and repeated in the atlas: groove_d, pair_dance_d and back_dance_d are b; sidestep_c and _d are a and b; glance_b and cheer_b are a.",
+ "description": "A floor guest's drawings: on their feet all night, dancing in pairs. Every unflipped view faces picture right. Two drawings a dance, because the GPU is shared: the atlas repeats them, a,a,c,c for groove, pair_dance and back_dance; a,b,a,b for sidestep; a,a for glance and cheer. plan/party-art-review-2026-11-07.md.",
  "human": true,
  "poseTable": "party-floor",
  "referencePose": "model.front",
  "clips": [
   {
    "id": "groove",
-   "drawings": 3,
+   "drawings": 2,
    "view": "front",
    "promptTemplate": "skeleton",
    "loop": true,
@@ -16,7 +16,7 @@
   },
   {
    "id": "pair_dance",
-   "drawings": 3,
+   "drawings": 2,
    "view": "front",
    "promptTemplate": "skeletonTurn",
    "loop": true,
@@ -26,7 +26,7 @@
   },
   {
    "id": "back_dance",
-   "drawings": 3,
+   "drawings": 2,
    "view": "front",
    "promptTemplate": "skeletonTurn",
    "loop": true,
