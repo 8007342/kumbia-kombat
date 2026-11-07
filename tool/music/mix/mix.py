@@ -1390,8 +1390,9 @@ def verify_layers(entry, root, failures, lid):
         return np.convolve(onset_envelope(decode_mono_from(audio[a:a + take["loopSamples"]])), np.hanning(5) / 2, "same")
     reference = env(parent)
     out = {}
-    size = int(8 * 240.0 / parent["bpm"] * ENV_RATE)
     reach = int(0.08 * ENV_RATE)
+    # Eight bars, or half a loop shorter than that, so a short loop still gets a window.
+    size = min(int(8 * 240.0 / parent["bpm"] * ENV_RATE), (len(reference) - 2 * reach) // 2)
     for name, take in takes.items():
         if take["bars"] != parent["bars"]:
             failures.append(f"{lid}/{name}: layer doesn't share the parent's bars")

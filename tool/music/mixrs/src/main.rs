@@ -67,6 +67,8 @@ fn main() {
         .or_else(|| std::env::var("MIXRS_THREADS").ok().and_then(|v| v.parse().ok()))
         .unwrap_or(4);
     rayon::ThreadPoolBuilder::new().num_threads(threads).build_global().expect("thread pool");
+    let began = std::time::Instant::now();
+    let name = std::env::args().skip(1).find(|a| !a.starts_with('-') && a.parse::<usize>().is_err()).unwrap_or_default();
     let result = match cli.command {
         Cmd::Prepare { job, out } => tier::prepare(&read_json(&job), &out),
         Cmd::Transition { a, b, job, out } => {
@@ -96,4 +98,14 @@ fn main() {
         }
     };
     println!("{result}");
+    // MIXRS_LOG: one line per run, its wall time and its own peak, for the README's table.
+    if let Ok(log) = std::env::var("MIXRS_LOG") {
+        let status = std::fs::read_to_string("/proc/self/status").unwrap_or_default();
+        let peak_kb: f64 = status.lines().find(|l| l.starts_with("VmHWM")).and_then(|l| l.split_whitespace().nth(1)).and_then(|v| v.parse().ok()).unwrap_or(0.0);
+        let line = serde_json::json!({"step": name, "wall_s": began.elapsed().as_secs_f64(), "peak_mb": peak_kb / 1024.0});
+        use std::io::Write;
+        if let Ok(mut f) = std::fs::OpenOptions::new().append(true).create(true).open(log) {
+            let _ = writeln!(f, "{line}");
+        }
+    }
 }

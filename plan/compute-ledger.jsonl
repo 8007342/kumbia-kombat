@@ -1,3 +1,4 @@
 {"ts": "2026-11-07T02:30:37Z", "agent": "ledger", "what": "first test: pass1-review", "kind": "local-vision", "seconds": 11.11, "count": 1, "model": "qwen2.5vl:7b", "load_s": 0.01, "eval_tokens": 83}
 {"ts": "2026-11-07T02:33:33Z", "agent": "ledger", "what": "vision trial: extra limbs, facing, crossed legs, pointing", "kind": "local-vision", "seconds": 113.63, "count": 43, "model": "qwen2.5vl:7b", "load_s": 0.03, "eval_tokens": 996}
 {"ts": "2026-11-07T02:35:03Z", "agent": "ledger", "what": "vision trial: counting heads and hands", "kind": "local-vision", "seconds": 10.78, "count": 14, "model": "qwen2.5vl:7b", "load_s": 0, "eval_tokens": 26}
+{"agent":"MIXRS","what":"Python and mixrs builds and comparisons, 5 levels and 2 older levels","kind":"cpu","seconds":900,"count":8}

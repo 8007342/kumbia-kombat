@@ -649,3 +649,68 @@ pub fn pattern_drift(mono: &[f32], bpm: f64) -> (f64, f64) {
     let worst = found.iter().fold(0.0f64, |m, v| m.max((v - med).abs()));
     (round_to(median(&found[found.len() - edge..]) - median(&found[..edge]), 1), round_to(worst, 1))
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    fn clicks(bpm: f64, seconds: f64) -> Vec<f32> {
+        let n = (seconds * RATE as f64) as usize;
+        let mut out = vec![0f32; n];
+        let mut state = 7u32;
+        for s in out.iter_mut() {
+            state = state.wrapping_mul(1664525).wrapping_add(1013904223);
+            *s = ((state >> 16) as f32 / 65536.0 - 0.5) * 0.004;
+        }
+        let period = 60.0 / bpm;
+        let mut k = 0;
+        while (k as f64 * period + 0.02) * (RATE as f64) < (n - 400) as f64 {
+            let at = ((k as f64 * period) * RATE as f64) as usize;
+            for j in 0..400 {
+                let t = j as f64;
+                out[at + j] += (0.6 * (-t / 60.0).exp() * (2.0 * PI * 2500.0 * t / RATE as f64).sin()) as f32;
+            }
+            k += 1;
+        }
+        out
+    }
+
+    #[test]
+    fn a_click_track_gives_its_own_tempo_and_beats() {
+        let mono = clicks(100.0, 60.0);
+        let fit = beat_times(&mono, 100.0);
+        assert!((fit.bpm - 100.0).abs() < 0.05, "{}", fit.bpm);
+        assert!(fit.wander_ms < 5.0, "{}", fit.wander_ms);
+        let (rise, step) = attack_curve(&mono);
+        let (typical, worst) = grid_error_ms(&rise, step, &fit.beats);
+        assert!(typical < 5.0 && worst < 8.0, "{typical} {worst}");
+    }
+
+    #[test]
+    fn the_key_finder_names_a_plain_a_minor() {
+        let mut pcs = vec![[0.0; 12]; 16];
+        for (i, row) in pcs.iter_mut().enumerate() {
+            for &p in [[9, 0, 4], [2, 5, 9], [4, 7, 11], [9, 0, 4]][i % 4].iter() {
+                row[p] = 1.0;
+            }
+        }
+        assert_eq!(measure_key(&pcs).0, "A minor");
+    }
+
+    /// A real take, against mix.py's numbers for it. Masters aren't in the repository, so this
+    /// says so and passes where the file is missing. compare/compare.py covers the rest.
+    #[test]
+    fn a_real_take_matches_the_python() {
+        let home = std::env::var("HOME").unwrap_or_default();
+        let path = std::path::PathBuf::from(home)
+            .join(".cache/tillandsias-project/kumbia-audio/themes-20261106/lows-garden/mid.flac");
+        if !path.exists() {
+            eprintln!("skipped: no master at {}", path.display());
+            return;
+        }
+        let mono = crate::audio::decode_mono(&path, RATE as u32);
+        let fit = beat_times(&mono, 98.0);
+        assert_eq!(round_to(fit.bpm, 3), 97.986);
+        assert_eq!(round_to(fit.wander_ms, 2), 22.81);
+    }
+}
