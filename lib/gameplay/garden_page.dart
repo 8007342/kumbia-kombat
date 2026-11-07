@@ -423,7 +423,7 @@ class _GardenPageState extends State<GardenPage>
     final shot = step.level.exitShot;
     final library = _library;
     final music = library?.level(step.level.id);
-    final successClip = _readyClip(music?.success);
+    final successClip = _readyClip(music?.successToward(next?.id));
     final successScore = successClip == null
         ? _exitScores[step.level.music.successScore]!
         : _clipScore(successClip);

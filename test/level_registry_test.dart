@@ -84,6 +84,12 @@ void main() {
     expect(rich(charts[2]), greaterThan(rich(charts[1])));
     expect(offbeat(charts[1]), greaterThanOrEqualTo(offbeat(charts[0])));
     expect(offbeat(charts[2]), greaterThan(offbeat(charts[1])));
+    expect(rich(charts[3]), greaterThan(rich(charts[2])));
+    expect(offbeat(charts[3]), greaterThan(offbeat(charts[2])));
+    // "Our next levels grow in complexity", and it can be slow: "we can have fast
+    // simple levels, and slow complex levels".
+    expect(rich(charts[4]), greaterThan(rich(charts[3])));
+    expect(offbeat(charts[4]), greaterThanOrEqualTo(offbeat(charts[3])));
   });
 
   group('shipping levels match the two-room code they replaced', () {
@@ -198,21 +204,26 @@ void main() {
           'garden',
           'pool-garden',
           'bar',
+          'cool-crowd',
         ]);
         expect(levels.displayTotal, 5);
-        final [garden, lawn, bar] = levels.campaign;
+        final [garden, lawn, bar, party] = levels.campaign;
         expect(garden.next, same(lawn.level));
         expect(garden.bridgeToNext, 'garden_to_pool');
         expect(lawn.next, same(bar.level));
         expect(lawn.bridgeToNext, 'pool_to_bar');
-        expect(bar.next, isNull);
-        expect(bar.bridgeToNext, isNull);
+        expect(bar.next, same(party.level));
+        expect(bar.bridgeToNext, 'bar_to_crowd');
+        expect(party.next, isNull);
+        expect(party.bridgeToNext, isNull);
         expect(levels.exitScoreIds, {
           'garden_mojo_success',
           'garden_to_pool',
           'pool_swing_success',
           'pool_to_bar',
-          'bar_swag_finale',
+          'bar_swag_success',
+          'bar_to_crowd',
+          'crowd_duende_success',
         });
         expect(garden.level.copy.clearedShout, 'MUCHO MOJO');
         expect(bar.level.copy.clearedShout, 'MUY SUAVE');
@@ -223,7 +234,7 @@ void main() {
     );
 
     test('planned rooms stay planned', () {
-      for (final id in ['cool-crowd', 'restroom', 'vip']) {
+      for (final id in ['restroom', 'vip']) {
         expect(fights.map((fight) => fight.id), contains(id));
         expect(() => levels.byId(id), throwsArgumentError);
       }

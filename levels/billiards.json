@@ -1,7 +1,7 @@
 {
  "id": "billiards",
  "title": "THE BILLIARD ROOM",
- "background": "billiards/billiards-room.png",
+ "background": "billiards/billiards-room-clean.png",
  "music": {
   "score": "crowd_duende",
   "successScore": "bar_swag_finale",
@@ -735,9 +735,9 @@
   "clearedTitle": "QUÉ\nCARAMBOLA"
  },
  "hardestCombo": {
-  "name": "Run the Table",
+  "name": "Tres Bandas",
   "status": "proposal",
-  "note": "Proposal. The name and shape need no sign-off to exist, but the owner hasn't seen or played it. Chalks up, sets her hips, runs the turn, and finishes on a cue stroke. Uses only clips her atlas plans.",
+  "note": "Proposal, from the art agent. Three-cushion billiards: the ball banks off three rails before it scores. She chalks and sights, spins round the planted cue, then the notes ricochet corner to corner, each pair a diagonal, and speed up into the last hit. Uses only clips her atlas will have. The owner hasn't seen or played it.",
   "callBeats": 8,
   "moves": [
    {
@@ -747,65 +747,69 @@
    },
    {
     "at": 2,
-    "beats": 4,
-    "clip": "hip_pops"
-   },
-   {
-    "at": 6,
     "beats": 2,
     "clip": "finish_turn"
+   },
+   {
+    "at": 4,
+    "beats": 4,
+    "clip": "step_touch"
    }
   ],
   "notes": [
    {
     "at": 0,
-    "limb": "rightHand"
+    "limb": "leftHand"
    },
    {
-    "at": 0.5,
-    "limb": "leftFoot"
-   },
-   {
-    "at": 1.25,
+    "at": 1,
     "limb": "rightFoot"
    },
    {
     "at": 2,
-    "limb": "leftHand"
-   },
-   {
-    "at": 2.75,
     "limb": "rightHand"
    },
    {
-    "at": 3.5,
+    "at": 2.75,
     "limb": "leftFoot"
    },
    {
-    "at": 4,
-    "limb": "rightFoot"
+    "at": 3.5,
+    "limb": "rightHand"
    },
    {
-    "at": 4.75,
+    "at": 4.25,
+    "limb": "leftFoot"
+   },
+   {
+    "at": 5,
     "limb": "leftHand"
    },
    {
     "at": 5.5,
-    "limb": "rightHand"
-   },
-   {
-    "at": 6.25,
-    "limb": "leftFoot"
-   },
-   {
-    "at": 6.75,
     "limb": "rightFoot"
    },
    {
-    "at": 7.25,
+    "at": 6,
+    "limb": "leftHand"
+   },
+   {
+    "at": 6.5,
+    "limb": "rightFoot"
+   },
+   {
+    "at": 7,
     "limb": "rightHand",
     "move": "circle"
    }
   ]
- }
+ },
+  "layers": {
+    "plateWidth": 832,
+    "plateHeight": 1248,
+    "props": [
+      {"id": "lamps-left", "atlas": "billiards/billiards-layers.png", "atlasY": 0, "left": 113, "top": 345, "width": 141, "height": 81, "frames": 7, "motion": "sway", "periodBeats": 4, "instance": 1, "kind": "hanging"},
+      {"id": "lamps-right", "atlas": "billiards/billiards-layers.png", "atlasY": 83, "left": 579, "top": 345, "width": 141, "height": 81, "frames": 7, "motion": "sway", "periodBeats": 4, "instance": 2, "kind": "hanging"}
+    ]
+  }
 }
