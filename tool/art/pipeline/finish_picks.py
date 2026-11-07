@@ -16,6 +16,7 @@ from pathlib import Path
 
 import numpy as np
 from PIL import Image
+from scipy import ndimage as ndi
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import definitions as D  # noqa: E402
@@ -56,6 +57,12 @@ def main() -> None:
     for pose, source in doc.get("alias", {}).items():
         Image.open(final / f"{source}.png").save(final / f"{pose}.png")
         selection[pose] = {"k": f"same drawing as {source}", "accepted": True}
+    for pose in doc.get("trimCue", []):
+        # The game reads standing height from the reference drawing's rect, so a cue above the head would shrink them.
+        im = np.asarray(Image.open(final / f"{pose}.png").convert("RGBA")).copy()
+        body = ndi.binary_opening(im[..., 3] > 0, structure=np.ones((8, 8)))
+        im[:int(np.where(body.any(axis=1))[0].min())] = 0
+        Image.fromarray(im, "RGBA").save(final / f"{pose}.png")
     (run_dir / "selection.json").write_text(json.dumps(selection, indent=1) + "\n")
     subprocess.run([sys.executable, "tool/art/pipeline/pack_atlas.py", f"tool/art/families/{c['family']}.json", "--run", a.run], check=True)
 

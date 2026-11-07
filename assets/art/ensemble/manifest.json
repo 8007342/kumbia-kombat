@@ -15678,7 +15678,7 @@
    "frames": {
     "chalk_a": {
      "rect": [
-      369,
+      255,
       2,
       148,
       247
@@ -15687,7 +15687,7 @@
       84.0,
       244.4
      ],
-     "pixelsPerUnit": 6.6839,
+     "pixelsPerUnit": 5.8065,
      "facing": "front_3q",
      "loop": true,
      "durationBeats": 2.0,
@@ -15711,7 +15711,7 @@
     },
     "chalk_b": {
      "rect": [
-      519,
+      405,
       2,
       148,
       246
@@ -15720,7 +15720,7 @@
       84.0,
       243.4
      ],
-     "pixelsPerUnit": 6.6839,
+     "pixelsPerUnit": 5.8065,
      "facing": "front_3q",
      "loop": true,
      "durationBeats": 2.0,
@@ -15753,7 +15753,7 @@
       55.0,
       295.4
      ],
-     "pixelsPerUnit": 6.6839,
+     "pixelsPerUnit": 5.8065,
      "facing": "front_3q",
      "loop": true,
      "durationBeats": 2.0,
@@ -15786,7 +15786,7 @@
       56.0,
       271.4
      ],
-     "pixelsPerUnit": 6.6839,
+     "pixelsPerUnit": 5.8065,
      "facing": "front_3q",
      "loop": true,
      "durationBeats": 2.0,
@@ -15812,16 +15812,16 @@
     },
     "idle_stand": {
      "rect": [
-      255,
+      735,
       2,
       112,
-      259
+      225
      ],
      "anchor": [
       63.0,
-      256.4
+      222.4
      ],
-     "pixelsPerUnit": 6.6839,
+     "pixelsPerUnit": 5.8065,
      "facing": "front_3q",
      "loop": true,
      "durationBeats": 2.0,
@@ -15831,7 +15831,7 @@
      "provenance": {
       "run": "pool-bg-c-v1-final",
       "pose": "idle.stand",
-      "sha256": "c2331725fedb46e9964786c36a55f53290724532c632c0c29a56ee363d8ec9ab",
+      "sha256": "08b518292acb6f7b80c892e6b2e45f16c82885a8648d71a94aee99154c47b659",
       "selected": "989600f",
       "frameKey": null,
       "accepted": true,
@@ -15854,7 +15854,7 @@
       110.0,
       189.4
      ],
-     "pixelsPerUnit": 6.6839,
+     "pixelsPerUnit": 5.8065,
      "facing": "front_3q",
      "loop": true,
      "durationBeats": 2.0,
@@ -15887,7 +15887,7 @@
       113.0,
       189.4
      ],
-     "pixelsPerUnit": 6.6839,
+     "pixelsPerUnit": 5.8065,
      "facing": "front_3q",
      "loop": true,
      "durationBeats": 2.0,
@@ -15920,7 +15920,7 @@
       115.0,
       189.4
      ],
-     "pixelsPerUnit": 6.6839,
+     "pixelsPerUnit": 5.8065,
      "facing": "front_3q",
      "loop": true,
      "durationBeats": 2.0,
@@ -15946,16 +15946,16 @@
     },
     "stand": {
      "rect": [
-      255,
+      735,
       2,
       112,
-      259
+      225
      ],
      "anchor": [
       63.0,
-      256.4
+      222.4
      ],
-     "pixelsPerUnit": 6.6839,
+     "pixelsPerUnit": 5.8065,
      "facing": "front_3q",
      "loop": true,
      "durationBeats": 2.0,
@@ -15965,7 +15965,7 @@
      "provenance": {
       "run": "pool-bg-c-v1-final",
       "pose": "idle.stand",
-      "sha256": "c2331725fedb46e9964786c36a55f53290724532c632c0c29a56ee363d8ec9ab",
+      "sha256": "08b518292acb6f7b80c892e6b2e45f16c82885a8648d71a94aee99154c47b659",
       "selected": "989600f",
       "frameKey": null,
       "accepted": true,
@@ -15989,7 +15989,7 @@
       115.0,
       189.4
      ],
-     "pixelsPerUnit": 6.6839,
+     "pixelsPerUnit": 5.8065,
      "facing": "front_3q",
      "loop": true,
      "durationBeats": 2.0,
@@ -16016,7 +16016,7 @@
     },
     "watch_a": {
      "rect": [
-      760,
+      646,
       2,
       87,
       226
@@ -16025,7 +16025,7 @@
       36.0,
       222.4
      ],
-     "pixelsPerUnit": 6.6839,
+     "pixelsPerUnit": 5.8065,
      "facing": "front_3q",
      "loop": true,
      "durationBeats": 2.0,
@@ -16050,7 +16050,7 @@
     },
     "watch_b": {
      "rect": [
-      669,
+      555,
       2,
       89,
       246
@@ -16059,7 +16059,7 @@
       29.0,
       243.4
      ],
-     "pixelsPerUnit": 6.6839,
+     "pixelsPerUnit": 5.8065,
      "facing": "front_3q",
      "loop": true,
      "durationBeats": 2.0,
