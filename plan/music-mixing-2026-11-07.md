@@ -2,7 +2,7 @@
 
 The approved ladders are now game-ready assets: loops, joins between tiers, and exit music, for all four levels. **Nobody has heard any of it.** Every number below measures timing, level or sample continuity. None of them says a join sounds good. That part needs the owner's ears.
 
-Listening check: `~/.cache/tillandsias-project/kumbia-audio/mix-20261107/index.html` (52 clips, 24 MB, not in the repo). The coordinator serves it.
+Listening check: `~/.cache/tillandsias-project/kumbia-audio/mix-20261107/index.html` (64 clips, not in the repo). The coordinator serves it.
 
 ## What was built
 
@@ -75,7 +75,7 @@ The render agent saw a large sample step at the `bar/high` seam (0.133 against a
 - **AAC does add step at some wraps.** The codec encodes the two copies of the head separately. Largest cases, looped against straight through: cool-crowd mid 0.076 against 0.005, garden low 0.074 against 0.016, bar low 0.049 against 0.010, pool-garden mid 0.043 against 0.016. Opus has one such case, garden mid, 0.031 against 0.004. They don't show in the top-end measure, but that doesn't prove they're inaudible.
 - **Sparse music would be worse.** The self-test's sparse synthetic take adds 12.4 dB in AAC and 3.2 dB in Opus at a wrap, so the real takes pass because they're dense. A future sparse take could fail, and a quiet passage at a seam is the thing to listen for. The self-test allows only this failure on that take.
 
-Listen on AAC as well as Opus for these. The page's clips can't test it, since they're cut from the Opus loop's samples: `seam-*` clips are re-encoded and have no codec wrap at all. So **the page doesn't test a real wrap in either format.** That takes the game itself, staying on one tier past a loop's end (about 50 s on the bar's top tier).
+Listen on AAC as well as Opus for these. The page's wrap clips hold each file's real join in both formats, with a 192 kb/s encode on top, which could soften a very small click. The game itself is the final test: stay on one tier past a loop's end (about 50 s on the bar's top tier).
 
 ## Headroom, a proposal
 

@@ -1138,8 +1138,10 @@ def listen(cfg, target, root=REPO):
             section["clips"].append({"file": f"{lid}/{name}.m4a", "label": label, "seconds": round(len(audio) / SR, 1)})
         for n in order:
             take = entry["takes"][n]
-            add(f"seam-{n}", f"Loop wrap, {n}: last 4 bars into first 4 bars",
+            add(f"seam-{n}", f"Loop wrap, {n}, Opus file: last 4 bars into first 4 bars",
                 _bars(take, takes[n], take["bars"] - 4, 8))
+            add(f"seam-{n}-aac", f"The same wrap, {n}, from the AAC file",
+                _bars(take, _clip(root / take["files"]["aac"]), take["bars"] - 4, 8))
         for t in entry["transitions"]:
             a, b = entry["takes"][t["from"]], entry["takes"][t["to"]]
             seg = _segment(t, _clip(root / t["files"]["opus"]))
@@ -1184,8 +1186,9 @@ def listen(cfg, target, root=REPO):
         "@media (prefers-color-scheme:dark){body{background:#111;color:#eee}small{color:#999}}</style>"
         "<h1>Tier joins, for ears</h1><p>What to listen for: a click or thump at any join, tempo stumbling, "
         "harmony clashing in the crossfade, and whether the transition beats the plain crossfade. "
-        "Cut from the encoded Opus files, then re-encoded at 192 kb/s AAC for this page, so it isn't "
-        "a test of Opus or AAC quality at 128 kb/s.</p>" + "".join(body))
+        "Cut from the encoded files (Opus, unless a clip says AAC), then re-encoded at 192 kb/s AAC for "
+        "this page, so it isn't a test of quality at 128 kb/s. The wrap clips hold the files' real joins, "
+        "with that extra encode on top.</p>" + "".join(body))
     return target
 
 
