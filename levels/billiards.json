@@ -1012,78 +1012,6 @@
   ],
   "actors": [
    {
-    "approach": "closeups/pool-standin-chalk-a.png",
-    "impact": "closeups/pool-standin-dab.png",
-    "contact": [
-     414,
-     78
-    ],
-    "scale": 0.36,
-    "entry": [
-     -70,
-     6
-    ],
-    "recoil": [
-     -10,
-     1
-    ],
-    "sway": {
-     "from": 9.5,
-     "beats": 2,
-     "by": [
-      -2,
-      0
-     ]
-    },
-    "frames": [
-     {
-      "beat": 6,
-      "image": "closeups/pool-standin-chalk-a.png"
-     },
-     {
-      "beat": 6.5,
-      "image": "closeups/pool-standin-chalk-b.png"
-     },
-     {
-      "beat": 7,
-      "image": "closeups/pool-standin-wink.png"
-     },
-     {
-      "beat": 7.5,
-      "image": "closeups/pool-standin-reach.png"
-     },
-     {
-      "beat": 8,
-      "image": "closeups/pool-standin-dab.png"
-     },
-     {
-      "beat": 9,
-      "image": "closeups/pool-standin-wink.png"
-     },
-     {
-      "beat": 10,
-      "image": "closeups/pool-standin-chalk-a.png"
-     }
-    ]
-   },
-   {
-    "approach": "closeups/pool-chalk-table.png",
-    "impact": "closeups/pool-chalk-table.png",
-    "contact": [
-     214,
-     -264
-    ],
-    "scale": 0.5556,
-    "entry": [
-     0,
-     0
-    ],
-    "recoil": [
-     0,
-     0
-    ]
-   },
-   {
     "approach": "closeups/duet-macron-body-rest.png",
     "impact": "closeups/duet-macron-body-shy.png",
     "contact": [
@@ -1173,6 +1101,78 @@
       "beat": 9.5,
       "image": "closeups/pool-macron-arc-blush.png"
      }
+    ]
+   },
+   {
+    "approach": "closeups/pool-standin-chalk-a.png",
+    "impact": "closeups/pool-standin-dab.png",
+    "contact": [
+     414,
+     78
+    ],
+    "scale": 0.36,
+    "entry": [
+     -34,
+     4
+    ],
+    "recoil": [
+     -10,
+     1
+    ],
+    "sway": {
+     "from": 9.5,
+     "beats": 2,
+     "by": [
+      -2,
+      0
+     ]
+    },
+    "frames": [
+     {
+      "beat": 6,
+      "image": "closeups/pool-standin-chalk-a.png"
+     },
+     {
+      "beat": 6.5,
+      "image": "closeups/pool-standin-chalk-b.png"
+     },
+     {
+      "beat": 7,
+      "image": "closeups/pool-standin-wink.png"
+     },
+     {
+      "beat": 7.5,
+      "image": "closeups/pool-standin-reach.png"
+     },
+     {
+      "beat": 8,
+      "image": "closeups/pool-standin-dab.png"
+     },
+     {
+      "beat": 9,
+      "image": "closeups/pool-standin-wink.png"
+     },
+     {
+      "beat": 10,
+      "image": "closeups/pool-standin-chalk-a.png"
+     }
+    ]
+   },
+   {
+    "approach": "closeups/pool-chalk-table.png",
+    "impact": "closeups/pool-chalk-table.png",
+    "contact": [
+     214,
+     -264
+    ],
+    "scale": 0.5556,
+    "entry": [
+     0,
+     0
+    ],
+    "recoil": [
+     0,
+     0
     ]
    }
   ]

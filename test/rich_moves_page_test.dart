@@ -44,10 +44,12 @@ class _Audio implements GameAudio, MusicFader {
   @override
   void silence() {}
   final attacks = <double>[];
+  final tracks = <String>[];
   int countInTicks = 0;
   @override
   void schedule(ScoreNote note, double atSeconds, double durationSeconds) {
     attacks.add(atSeconds);
+    tracks.add(note.track);
     if (note.track == 'pulse' && note.pitch == 76 && note.velocity == 45) {
       countInTicks++;
     }
@@ -61,12 +63,19 @@ class _Audio implements GameAudio, MusicFader {
 
 
 /// The real page, on a campaign whose opening phrase holds all three moves.
-LevelRegistry _campaign() => LevelRegistry.parse(
+LevelRegistry _campaign({bool clack = false}) => LevelRegistry.parse(
   File('levels/index.json').readAsStringSync(),
   (id) {
     final text = File('levels/$id.json').readAsStringSync();
     if (id != 'garden') return text;
     final data = jsonDecode(text) as Map<String, dynamic>;
+    if (clack) {
+      (data['music'] as Map<String, dynamic>)['moveAccent'] = {
+        'track': 'clack',
+        'pitch': 60,
+        'velocity': 110,
+      };
+    }
     (data['chart'] as Map<String, dynamic>)['rich'] = {
       'limits': {
         'pairToleranceMs': 80,
@@ -134,7 +143,11 @@ class _Run {
 
 }
 
-Future<_Run> _startRun(WidgetTester tester, {bool calm = false}) async {
+Future<_Run> _startRun(
+  WidgetTester tester, {
+  bool calm = false,
+  LevelRegistry? levels,
+}) async {
   tester.view.physicalSize = const Size(_width, _height);
   tester.view.devicePixelRatio = 1;
   addTearDown(tester.view.reset);
@@ -146,7 +159,7 @@ Future<_Run> _startRun(WidgetTester tester, {bool calm = false}) async {
     MaterialApp(
       home: GardenPage(
         audioFactory: () => audio,
-        levels: () async => _campaign(),
+        levels: () async => levels ?? _campaign(),
       ),
     ),
   );
@@ -206,6 +219,20 @@ void main() {
     await tester.sendKeyEvent(LogicalKeyboardKey.keyW);
     expect(run.session.richStepsCompleted, 3);
     expect(run.session.pizazz, 3 * richStepPizazz);
+    await _end(tester);
+  });
+
+  testWidgets('a room with a reward sound plays it when a richer step lands', (
+    tester,
+  ) async {
+    final run = await _startRun(tester, levels: _campaign(clack: true));
+    await run.untilOffset(0);
+    await tester.sendKeyEvent(LogicalKeyboardKey.keyQ);
+    expect(run.audio.tracks, isNot(contains('clack')));
+    await tester.sendKeyEvent(LogicalKeyboardKey.keyW);
+    await tester.pump();
+    expect(run.session.richStepsCompleted, 1);
+    expect(run.audio.tracks.where((t) => t == 'clack'), hasLength(1));
     await _end(tester);
   });
 

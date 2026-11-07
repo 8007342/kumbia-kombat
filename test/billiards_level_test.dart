@@ -76,7 +76,7 @@ void main() {
       for (final p in [
         stage.heroHome,
         stage.heroRetreat,
-        stage.heroWatch!,
+        stage.heroWatch,
         stage.challengers.first.mark,
         stage.challengers.first.yieldMark,
         ...level.layout.guests.map((g) => g.floor),
@@ -173,8 +173,8 @@ void main() {
   group('the win', () {
     final level = _registry().byId('billiards');
     final shot = level.exitShot!;
-    final her = shot.actors.first;
-    final head = shot.actors.last;
+    final her = shot.actors[3];
+    final head = shot.actors[2];
 
     test('every drawing ships', () {
       for (final image in shot.images) {
@@ -197,8 +197,8 @@ void main() {
 
     test('her cue tip meets the antenna', () {
       final places = shot.sample(8, reducedMotion: false);
-      expect(places.first.offset.distance, 0);
-      expect(places.last.offset.distance, 0);
+      expect(places[3].offset.distance, 0);
+      expect(places[2].offset.distance, 0);
       expect(her.contact, isNot(head.contact));
     });
 
@@ -260,6 +260,23 @@ void main() {
     scene.presentationBeat = beat + 70;
     rows.add(await _still(scene, 390, 844));
     scene.presentationBeat = null;
+
+    // The win's shot, on the same scene: wide, then close, then wide.
+    final win = <ui.Image>[];
+    for (final at in [2.0, 5.0, 6.25, 7.25, 7.75, 8.0, 8.75, 10.5, 12.0]) {
+      scene.exitBeat = at;
+      win.add(await _still(scene, 390, 844));
+    }
+    scene.exitBeat = null;
+    final winRecorder = ui.PictureRecorder();
+    final winCanvas = ui.Canvas(winRecorder);
+    for (final (i, image) in win.indexed) {
+      winCanvas.drawImage(image, ui.Offset(i * 396.0, 0), ui.Paint());
+    }
+    final winSheet = await winRecorder.endRecording().toImage(396 * win.length, 844);
+    final winPng = await winSheet.toByteData(format: ui.ImageByteFormat.png);
+    File('build/stills/billiards-win.png')
+        .writeAsBytesSync(winPng!.buffer.asUint8List());
 
     final recorder = ui.PictureRecorder();
     final canvas = ui.Canvas(recorder);
