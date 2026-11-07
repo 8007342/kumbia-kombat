@@ -70,6 +70,18 @@
    "text": "a red rose in his left lapel"
   },
   {
+   "id": "rose_leaf",
+   "shape": "palette-only",
+   "region": "accessory",
+   "colour": "#2E7038",
+   "alsoIn": [
+    "cloth",
+    "skin",
+    "shirt"
+   ],
+   "text": "the rose's green stem and leaf"
+  },
+  {
    "id": "trousers",
    "shape": "trousers",
    "region": "trousers",
