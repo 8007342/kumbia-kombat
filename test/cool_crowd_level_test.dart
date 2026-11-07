@@ -319,6 +319,19 @@ void main() {
         all.map((p) => p.frame).toSet(),
         everyElement(isIn(dance.frames)),
       );
+      // Those cast as couples are absorbed in each other, not turned away.
+      for (final slot in _level().layout.guests.where((g) => g.partner != null)) {
+        final crowd = run(const []);
+        final pose = floorGuestPose(
+          crowd.guest(slot.interestIndex!, 0),
+          dance,
+          danceBeat: 0,
+          cast: slot.atlas != null,
+          occupied: slot.occupied,
+        );
+        expect(pose.facesIn, isFalse);
+        expect(dance.occupied[slot.occupied]!.frames, contains(pose.frame));
+      }
     });
 
     test('most of the floor dances in couples, and faces all ways', () {

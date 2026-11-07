@@ -807,6 +807,9 @@ class LevelDefinition {
     final following = fields.has('following')
         ? _floorClip(fields.child('following'))
         : null;
+    final castGlance = fields.has('castGlance')
+        ? _floorClip(fields.child('castGlance'))
+        : null;
     CrowdParting? parting;
     if (fields.has('parting')) {
       final part = fields.child('parting');
@@ -830,6 +833,7 @@ class LevelDefinition {
       ownThing: ownThing,
       glance: glance,
       occupied: occupied,
+      castGlance: castGlance,
       sidestep: sidestep,
       following: following,
       parting: parting,

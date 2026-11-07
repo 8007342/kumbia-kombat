@@ -195,16 +195,15 @@ class GardenSceneGame extends FlameGame {
     }
     final dance = level.floorDance;
     if (dance != null) {
-      final floorAtlases = {
-        for (final slot in level.layout.guests)
-          slot.atlas ?? 'guest${slot.archetype}',
-      };
-      for (final atlas in floorAtlases) {
+      for (final slot in level.layout.guests) {
+        final atlas = slot.atlas ?? 'guest${slot.archetype}';
         final art = _ensemble![atlas];
         if (art == null) {
           throw StateError('Level ${level.id} names unknown atlas $atlas');
         }
-        art.definition.art.requireFrames(dance.frames);
+        art.definition.art.requireFrames(
+          slot.atlas == null ? dance.frames : dance.castFrames(slot.occupied),
+        );
       }
     }
     final generation = ++_roomGeneration;
@@ -636,10 +635,9 @@ class GardenSceneGame extends FlameGame {
         : null;
     final pose = snapshot == null
         ? (
-            frame: (dance.occupied[slot.occupied] ?? dance.ownThing).at(
-              index * .371,
-              reducedMotion: reducedMotion,
-            ),
+            frame: ((slot.atlas == null ? null : dance.occupied[slot.occupied]) ??
+                    dance.ownThing)
+                .at(index * .371, reducedMotion: reducedMotion),
             facesIn: false,
           )
         : floorGuestPose(
@@ -647,6 +645,7 @@ class GardenSceneGame extends FlameGame {
             dance,
             danceBeat: danceBeat,
             reducedMotion: reducedMotion,
+            cast: slot.atlas != null,
             occupied: slot.occupied,
             phaseOffset: phaseOffset,
           );
@@ -660,7 +659,8 @@ class GardenSceneGame extends FlameGame {
             OutfitColor.values.length];
     // Mid-move they look where they're going, in a drawn sidestep if there is one.
     final along = parting?.along(beat, slot.partDelay, reducedMotion: reducedMotion) ?? 0;
-    final moving = dance.sidestep != null && along > 0 && along < 1;
+    final moving =
+        slot.atlas != null && dance.sidestep != null && along > 0 && along < 1;
     final frame = moving
         ? dance.sidestep!.at(danceBeat + index * .25, reducedMotion: reducedMotion)
         : pose.frame;

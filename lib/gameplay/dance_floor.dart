@@ -72,33 +72,37 @@ class FloorDance {
     required this.ownThing,
     required this.glance,
     this.occupied = const {},
+    this.castGlance,
     this.sidestep,
     this.following,
     this.parting,
   });
 
-  /// Not interested yet, for a guest whose cast names nothing in [occupied].
+  /// Not interested yet, for someone from the shared guest atlases.
   final FloorClip ownThing;
-
-  /// Named ways of being busy, chosen per guest: a couple, a back to the room.
-  final Map<String, FloorClip> occupied;
-
-  /// Moving aside, facing the way they go. Without it they keep dancing and glide.
-  final FloorClip? sidestep;
-
-  /// In time and facing the fight, for floor-only people with no `step_touch`.
-  /// Without it they use the crowd model's own drawing.
-  final FloorClip? following;
 
   /// Starting to notice: slowed down and turned toward the fight.
   final FloorClip glance;
+
+  /// The rest are for people a level casts by atlas, who only ever dance and have
+  /// their own drawings. Named ways of being busy: a couple, a back to the room.
+  final Map<String, FloorClip> occupied;
+  final FloorClip? castGlance;
+
+  /// Moving aside, facing the way they go. Without it they glide.
+  final FloorClip? sidestep;
+
+  /// In time and facing the fight, in place of the crowd's `step_touch`.
+  final FloorClip? following;
   final CrowdParting? parting;
 
-  /// Drawings every atlas on this floor must have.
-  Iterable<String> get frames => [
-    ...ownThing.frames,
-    ...glance.frames,
-    for (final clip in occupied.values) ...clip.frames,
+  /// The drawings a shared guest atlas must have.
+  Iterable<String> get frames => [...ownThing.frames, ...glance.frames];
+
+  /// The drawings an atlas cast as [occupied] must have.
+  Iterable<String> castFrames(String? occupiedAs) => [
+    ...?occupied[occupiedAs]?.frames,
+    ...?castGlance?.frames,
     ...?sidestep?.frames,
     ...?following?.frames,
   ];
@@ -112,6 +116,7 @@ class FloorDance {
   FloorDance dance, {
   required double danceBeat,
   bool reducedMotion = false,
+  bool cast = false,
   String? occupied,
   double? phaseOffset,
 }) {
@@ -124,18 +129,21 @@ class FloorDance {
   );
   return switch (guest.clip) {
     CrowdClip.seatedIdle => (
-      frame: (dance.occupied[occupied] ?? dance.ownThing).at(
+      frame: ((cast ? dance.occupied[occupied] : null) ?? dance.ownThing).at(
         local,
         reducedMotion: reducedMotion,
       ),
       facesIn: false,
     ),
     CrowdClip.notice => (
-      frame: dance.glance.at(local, reducedMotion: reducedMotion),
+      frame: ((cast ? dance.castGlance : null) ?? dance.glance).at(
+        local,
+        reducedMotion: reducedMotion,
+      ),
       facesIn: true,
     ),
     CrowdClip.seatedFollow || CrowdClip.standUp || CrowdClip.stepTouch
-        when dance.following != null => (
+        when cast && dance.following != null => (
       frame: dance.following!.at(local, reducedMotion: reducedMotion),
       facesIn: true,
     ),
@@ -144,7 +152,7 @@ class FloorDance {
       facesIn: true,
     ),
     CrowdClip.sitDown || CrowdClip.standingIdle
-        when dance.following != null => (
+        when cast && dance.following != null => (
       frame: dance.following!.at(local, reducedMotion: reducedMotion),
       facesIn: true,
     ),

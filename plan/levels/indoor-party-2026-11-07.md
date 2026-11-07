@@ -193,15 +193,15 @@ Presses a second rise at every tier, and the top is above the lawn's 3.68 and th
 |---|---|---|
 | BlinBlin, in play | Bartender atlas | `blinblin` atlas, `work/1860-blwv` |
 | BlinBlin, close-up | `oil-gulp-bt-offer.png`, which is a hand holding a glass and looks wrong | `nod-bb-*` |
-| Crowd | guest0-2, flipped `step_touch` | guest3-6, `work/1868-gues` |
 
-Mācron's close-up is real: `nod-mc-*`, taken from `work/1860-blwv`. All four band players are real, from `work/1864-band`, on the `form` ladder.
+The crowd's ten coupled dancers are real, cast from guest3-6 (`work/1868-gues`), with drawn sidesteps, glances and grooves. The eight solos stay on guest0-2, so the room isn't four people repeated. [P] Two of the couples show one partner from behind, using `back_dance`. Mācron's close-up is real: `nod-mc-*`, taken from `work/1860-blwv`. All four band players are real, from `work/1864-band`, on the `form` ladder.
 
 **One change from the first version of this note:** under reduced motion, the band's foot-tap rung now holds the same drawing as its calm rung, `relaxed_a`, because the art reuses that drawing so the arms stay continuous between rungs. So reduced motion shows two states, calm and swinging, not three. [F, tested]
 
 ## What was checked, and how
 
 - `flutter test`, full suite, and `flutter analyze lib test` at the same 4 notes.
+- Local vision, one try on a four-panel sheet of the crowd: asked to count couples, it answered five. That's the right number for the level, but the sheet showed four moments, so I don't count it as evidence. My own look at the stills is what I relied on. I moved one big solo off the right foreground because of that look.
 - A new page test plays the real bar into the real party on autoplay, with a fake audio clock: `bar/successShort` and `bar/bridge` play, the long tag doesn't, and the accents come in order. It does **not** measure when the room is adopted, because that depends on machine load. That Mācron's walk starts after the dissolve is arithmetic: 1.2 s against 6 beats, or 3.2 s at 112 BPM.
 - Stills through the real scene at 390 by 844, `build/stills/cool-crowd-win.png`, seen by me with the stand-ins. They show placement only. The white rings in those stills are the test's own overlay, not the game.
 - Lantern fills: 5 props, 2 seeds each, seed 76100 kept for all, looked at by me on a contact sheet and a before-and-after. The local vision model was not used for this batch.

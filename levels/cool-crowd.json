@@ -406,22 +406,47 @@
    "occupied": {
     "pair": {
      "frames": [
-      "step_touch_a",
-      "step_touch_d",
-      "step_touch_c",
-      "step_touch_d"
+      "pair_dance_a",
+      "pair_dance_b",
+      "pair_dance_c",
+      "pair_dance_d"
      ],
      "beatsPerFrame": 1
     },
-    "solo": {
+    "back": {
      "frames": [
-      "step_touch_a",
-      "standing_idle_a",
-      "step_touch_d",
-      "standing_idle_b"
+      "back_dance_a",
+      "back_dance_b",
+      "back_dance_c",
+      "back_dance_d"
      ],
      "beatsPerFrame": 1
     }
+   },
+   "castGlance": {
+    "frames": [
+     "glance_a",
+     "glance_b"
+    ],
+    "beatsPerFrame": 2
+   },
+   "sidestep": {
+    "frames": [
+     "sidestep_a",
+     "sidestep_b",
+     "sidestep_c",
+     "sidestep_d"
+    ],
+    "beatsPerFrame": 0.5
+   },
+   "following": {
+    "frames": [
+     "groove_a",
+     "groove_b",
+     "groove_c",
+     "groove_d"
+    ],
+    "beatsPerFrame": 1
    }
   },
   "guests": [
@@ -430,18 +455,17 @@
     "partTo": [0.276, 0.515],
     "occupied": "pair",
     "faces": "left",
-    "partner": 3
+    "partner": 3,
+    "atlas": "guest4"
    },
    {
     "at": [0.37, 0.405],
     "partTo": [0.295, 0.425],
-    "occupied": "solo",
     "faces": "right"
    },
    {
     "at": [0.43, 0.405],
     "partTo": [0.305, 0.4],
-    "occupied": "solo",
     "faces": "left"
    },
    {
@@ -449,12 +473,12 @@
     "partTo": [0.165, 0.515],
     "occupied": "pair",
     "faces": "right",
-    "partner": 0
+    "partner": 0,
+    "atlas": "guest3"
    },
    {
     "at": [0.38, 0.53],
     "partTo": [0.06, 0.525],
-    "occupied": "solo",
     "faces": "left"
    },
    {
@@ -462,79 +486,82 @@
     "partTo": [0.76, 0.51],
     "occupied": "pair",
     "faces": "right",
-    "partner": 6
+    "partner": 6,
+    "atlas": "guest5"
    },
    {
     "at": [0.669, 0.45],
     "partTo": [0.869, 0.51],
     "occupied": "pair",
     "faces": "left",
-    "partner": 5
+    "partner": 5,
+    "atlas": "guest6"
    },
    {
     "at": [0.53, 0.39],
     "partTo": [0.74, 0.455],
     "occupied": "pair",
     "faces": "right",
-    "partner": 8
+    "partner": 8,
+    "atlas": "guest4"
    },
    {
     "at": [0.589, 0.39],
     "partTo": [0.826, 0.455],
-    "occupied": "pair",
+    "occupied": "back",
     "faces": "left",
-    "partner": 7
+    "partner": 7,
+    "atlas": "guest5"
    },
    {
     "at": [0.595, 0.42],
     "partTo": [0.775, 0.555],
     "occupied": "pair",
     "faces": "right",
-    "partner": 10
+    "partner": 10,
+    "atlas": "guest6"
    },
    {
     "at": [0.666, 0.42],
     "partTo": [0.903, 0.555],
-    "occupied": "pair",
+    "occupied": "back",
     "faces": "left",
-    "partner": 9
+    "partner": 9,
+    "atlas": "guest3"
    },
    {
     "at": [0.66, 0.4],
     "partTo": [0.875, 0.48],
-    "occupied": "solo",
     "faces": "right"
    },
    {
     "at": [0.97, 0.57],
-    "occupied": "solo",
     "faces": "left"
    },
    {
     "at": [0.93, 0.515],
-    "occupied": "solo",
     "faces": "right"
    },
    {
-    "at": [0.9, 0.6],
-    "occupied": "solo",
+    "at": [0.91, 0.55],
     "faces": "left"
    },
    {
     "at": [0.04, 0.535],
     "occupied": "pair",
     "faces": "right",
-    "partner": 16
+    "partner": 16,
+    "atlas": "guest5"
    },
    {
     "at": [0.16, 0.535],
     "occupied": "pair",
     "faces": "left",
-    "partner": 15
+    "partner": 15,
+    "atlas": "guest3"
    },
    {
     "at": [0.1, 0.515],
-    "occupied": "solo",
     "faces": "left"
    }
   ],
