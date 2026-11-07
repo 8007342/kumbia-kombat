@@ -6,6 +6,7 @@ prop's own pixels, so at rest plate + props match the painted original. "Layers"
 tool/art/rooms/README.md has the route and what failed.
 
   layers.py matte <room>     each prop's matte and a review sheet
+  layers.py crops <room>     stage crops and bake a removal workflow for each prop with a fill prompt
   layers.py plate <room>     paste the fills into the plate, and report the seam
   layers.py frames <room>    bake the atlas, and write the level's "layers" block
   layers.py sheet <room>     phone-size before and after, at rest and at both extremes
@@ -50,6 +51,12 @@ def colour_rule(rgb, rule):
         return ~((b > g * 1.7) & (b > r * 1.7) & (b > 55))
     if rule == "all":
         return np.ones(rgb.shape[:2], bool)
+    if rule == "foliage":  # green over warm plaster or wood
+        return (g > r * 1.02) & (g > b * .85)
+    if rule == "water":  # cyan and its pale glints; beige columns have far less blue than green
+        return (b >= g * .92) & (b > 120)
+    if rule == "string":  # a dark wire with yellow bulbs
+        return (np.maximum(np.maximum(r, g), b) < 70) | ((g > 185) & (b < 120) & (r > 200))
     raise ValueError(rule)
 
 
@@ -143,6 +150,10 @@ def build_plate(spec):
             continue
         mask = polygon_mask((w, h), fill["polygon"]) if "polygon" in fill else matte(rgb, prop)
         mask = ndimage.binary_dilation(mask, iterations=fill.get("dilate", 2))
+        if fill.get("harmonic"):  # thin things only: a wire and its bulbs close up from their edges, with no GPU
+            plate = seamless(plate, np.full_like(plate, plate[mask].mean()), mask, 1000.0)
+            report[prop["id"]] = dict(maskPixels=int(mask.sum()), route="harmonic")
+            continue
         x0, y0, x1, y1 = fill["box"]
         keep = np.zeros(mask.shape, bool)
         keep[max(y0, 0):y1, max(x0, 0):x1] = True
@@ -165,6 +176,25 @@ def build_plate(spec):
     return np.clip(plate + .5, 0, 255).astype("uint8"), report
 
 
+def cmd_crops(room):
+    """Stage each prop's crop and bake its removal workflow. Queue them with studio.run_workflow, one at a time."""
+    from plates import STAGE, bake_workflow
+    spec = load_spec(room)
+    rgb = Image.fromarray(source_rgb(spec))
+    run, stage = spec["run"], STAGE / spec["run"] / "in"
+    stage.mkdir(parents=True, exist_ok=True)
+    out = REPO / "art_runs/rooms/layers" / room
+    out.mkdir(parents=True, exist_ok=True)
+    for prop in spec["props"]:
+        fill = prop.get("fill") or {}
+        if "prompt" not in fill:
+            continue
+        rgb.crop(fill["box"]).resize((832, 832), Image.LANCZOS).save(stage / f"{prop['id']}.png")
+        wf = bake_workflow(["base"], fill["prompt"] + " " + spec["keepWords"], f"kk/{run}/{prop['id']}", 4, (832, 832))
+        (out / f"{prop['id']}.api.json").write_text(json.dumps(wf, indent=1, ensure_ascii=False) + "\n")
+        print(prop["id"], stage / f"{prop['id']}.png", out / f"{prop['id']}.api.json")
+
+
 def cmd_plate(room):
     spec = load_spec(room)
     plate, report = build_plate(spec)
@@ -179,6 +209,15 @@ def warp_frame(rgb, alpha, warp, v):
     """Bend the prop about its pivot: nothing at the pivot, the full reach at its far end."""
     h, w = alpha.shape
     ys, xs = np.mgrid[0:h, 0:w].astype(float)
+    if "sag" in warp:  # a string held at both ends: nothing at the ends, the most in the middle
+        x0, x1 = warp["sag"]["between"]
+        drop = v * warp["sag"]["px"] * np.sin(np.pi * np.clip((xs - x0) / (x1 - x0), 0, 1))
+        iy = np.clip(np.round(ys - drop).astype(int), 0, h - 1)
+        return rgb[iy, xs.astype(int)], alpha[iy, xs.astype(int)]
+    if "wave" in warp:  # ripples across a surface
+        shift = v * warp["wave"]["px"] * np.sin(2 * np.pi * ys / warp["wave"]["every"] + xs / warp["wave"].get("along", 40))
+        ix = np.clip(np.round(xs + shift).astype(int), 0, w - 1)
+        return rgb[ys.astype(int), ix], alpha[ys.astype(int), ix]
     px, py = warp["pivot"]
     far = warp["far"]
     dx, dy = xs - px, ys - py
@@ -336,10 +375,10 @@ def motion_preview(spec, plate, rows, out, bpm=None, fps=12):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument("command", choices=["matte", "plate", "frames", "sheet"])
+    parser.add_argument("command", choices=["matte", "crops", "plate", "frames", "sheet"])
     parser.add_argument("room")
     args = parser.parse_args()
-    {"matte": cmd_matte, "plate": cmd_plate, "frames": cmd_frames, "sheet": cmd_sheet}[args.command](args.room)
+    {"matte": cmd_matte, "crops": cmd_crops, "plate": cmd_plate, "frames": cmd_frames, "sheet": cmd_sheet}[args.command](args.room)
 
 
 if __name__ == "__main__":
