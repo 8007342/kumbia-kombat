@@ -1,5 +1,7 @@
 # Character-frame pipeline
 
+How sprites should look: `assets/art/STYLEGUIDE.md`, section 6. This file is how they get made.
+
 From a character definition to a reviewed in-game atlas, with every step scripted and every frame
 traceable to its prompt, skeleton, sheet and seed. Contract: Tillandsias family spec `1935-k2ib/v1`.
 
@@ -64,7 +66,7 @@ The rig gives Qwen only a skeleton, and the model sheet gives it the character.
 source. The family spec and palette are generated. Edit a definition, then:
 
 ```bash
-PY=~/.cache/kumbia-art/bin/python
+PY=~/.cache/tillandsias-project/venvs/kumbia-art/bin/python
 $PY tool/art/pipeline/art.py build gatekeeper --dry-run --prompts   # every frame's action; changes nothing
 $PY tool/art/pipeline/art.py build gatekeeper --run <run>           # rig, spec, recolours, then the job lists or the atlas
 $PY tool/art/pipeline/art.py build gatekeeper --sheet <png> --only clap  # a pilot on a candidate sheet
@@ -93,7 +95,7 @@ needs no code, though a skirt has no rig shape yet (`waist-apron` stands in, and
 | `pack_atlas.py` | Atlas plus 64 frames, 20 runtime aliases (`motion/<set>.json`), rig-derived `facing`, `ramps` and `variants` blocks |
 
 Tests: `$PY -m unittest discover -s tool/art/tests`; renderer tests run with the bpy venv from inside that folder:
-`~/.cache/kumbia-bpy/bin/python -m unittest test_rig`.
+`~/.cache/tillandsias-project/venvs/kumbia-bpy/bin/python -m unittest test_rig`.
 
 ## Mācron
 
@@ -175,8 +177,8 @@ Editing, sync, conversion and headless runs: `tool/art/studio/README.md`.
 
 ```bash
 export UV_NATIVE_TLS=1
-uv venv ~/.cache/kumbia-art && VIRTUAL_ENV=~/.cache/kumbia-art uv pip install pillow numpy jsonschema
-# Blender rig: see tool/art/rig/README.md (~/.cache/kumbia-bpy)
+uv venv ~/.cache/tillandsias-project/venvs/kumbia-art && VIRTUAL_ENV=~/.cache/tillandsias-project/venvs/kumbia-art uv pip install pillow numpy jsonschema
+# Blender rig: see tool/art/rig/README.md (~/.cache/tillandsias-project/venvs/kumbia-bpy; run `uv python install 3.13` first after a relaunch)
 ```
 
 `/work/tmp/imagegen/` is wiped on forge teardown; anything worth keeping is

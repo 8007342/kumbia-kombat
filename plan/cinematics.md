@@ -1,6 +1,28 @@
 # Cinematics: the shot book
 
-**Draft, 2026-11-05. Nothing here is built.** The game has one kind of transition today: a sprite walking a
+**The rules now live in `assets/art/STYLEGUIDE.md`, section 8.** This file keeps the history, what the wiring taught, and notes on each shot. The next paragraph and the draft format and storyboards below date from 2026-11-05, before anything was built.
+
+## Lawn kiss: the stillness after it, 2026-11-07
+
+**What was wrong, from the code and from rendered frames.** The Girls took their reach drawing at beat 2.75 and never left it. The scene returned to the wide shot at 7.75 with both of them frozen in that lean, on their reach marks, until the room dissolved: 8.25 beats, about 5 s at the bridge's 100 BPM. Only tiny Mācron moved, while the guests sat down behind them. So the ninth round's "they keep dancing at the sides as Mācron dances between them" was only partly built.
+
+**What changed.**
+- Close-up to beat 12, the start of the bridge's second bar (it was 7.75). The title stays up with it. The blush and kiss timing is unchanged.
+- During that hold: from the bridge's first beat, Mācron's arms swing a beat at a time and the pair sway a little, as mirror images. Those are new `frames` on his body and a new `sway` field. `recoilBeats` keeps the kiss's easing apart at its old pace.
+- Back on the wide shot: the pair step out to their side marks over 1.5 beats while dancing `dance_with`, facing him. They also dance it at the sides before the reach, in place of the win's held pose. New fields in the duet's exit: `backBeats` and `danceClip`.
+- Garden: the wide shot wasn't frozen. The GateKeeper claps and grooves, and Mācron dances. The close-up now ends on beat 10 instead of 9.6, so the cut lands on a beat. The owner likes this bump, so I kept the change small.
+
+All of it is in beats. It needs only the bridge to be 8 beats long, not any tempo. Calm camera is unchanged: held pictures, no sway.
+
+**What's left.** The crowd still sits during the wide shot, most by about beat 11, and that's now the stillest part of the picture. See the guide, section 11, item 1. Proposal only, since it's in crowd and page code other agents hold.
+
+**How it was checked.** `flutter test` 460 pass, `flutter analyze lib test` shows the same 4 notes. I rendered 33 frames of each shot, before and after, through the real scene at half-beat steps, and looked at them as contact sheets. That harness set the clock by hand instead of using the music, and isn't committed. **Nobody has seen this moving, with sound.** Whether 3.8 s or so of close-up after the kiss feels like a held moment or too long is for the owner: `closeupTo` is one number.
+
+**What went wrong.** The shared disk filled during the test edits and truncated two test files. They were restored and redone. The first full test run then failed 33 tests while the build folder was being removed; the rerun passed.
+
+## Before anything was built
+
+**Draft, 2026-11-05. Nothing here was built then.** The game has one kind of transition today: a sprite walking a
 route (`DepartureRoute`). It has no close-ups, no cuts and no shot layer. The owner ruled that the fist bump is an
 extreme close-up, which makes this a foundation rather than a one-off. Every level's exit and the ending will use it.
 
@@ -42,7 +64,7 @@ code. We have not watched it play.
 
 The owner, 2026-11-06: "ONLY TEXT FOR THE CINEMATIC HIGHLIGHT, where we get our simple 2 word messages, where the second word is one of the semantic pop culture for the party and music theme."
 
-**Title.** `copy.clearedTitle` holds two words, one to a line, and the level file is refused otherwise. `ExitShot.titleAt` puts it up from `contactBeat` for at least 3 beats, because the garden's close-up lasts only 1.25 beats after contact. It can outlast the close-up and sit over the wide shot. A level with no `exitShot` shows no title in its transition; if it's the last level, the end screen still shows the words.
+**Title.** `copy.clearedTitle` holds two words, one to a line, and the level file is refused otherwise. `ExitShot.titleAt` puts it up from `contactBeat` for at least 3 beats, because the garden's close-up lasts only 2 beats after contact. It can outlast the close-up and sit over the wide shot. A level with no `exitShot` shows no title in its transition; if it's the last level, the end screen still shows the words.
 
 **Accents.** A `cue` entry's `track` can name a one-shot patch from `lib/music/accent_voice.dart`: `bump`, `glug` or `clink`. `pitch` transposes it around 60, and `velocity` scales it. Any other track must be one of the score's voices, and the level file is refused otherwise.
 
@@ -122,7 +144,7 @@ It needs a story decision first: what Mācron wants, and whether the player lear
 | Close-up art route | Probes exist for fists and gulp at full-figure framing. Not yet tried as a large close-up |
 | Close-up plates | One per room, from the room's palette. Not started |
 | One-shot sound cues on their own bus | Not built. `lib/music/web_audio_backend.dart` to be extended |
-| Style guide section for close-ups | Not written; depends on the first pilot |
+| Style guide section for close-ups | Written: `assets/art/STYLEGUIDE.md`, section 8 |
 
 ## Oil gulp redraw: what the wiring taught, 2026-11-06
 
@@ -142,7 +164,7 @@ The owner asked for the gulp to leave a repeatable route for later moments.
 
 The owner: "the two girls giving Mācron a kiss on each cheek at the same time, we see Mācrons big round eyes turn to smiling arcs and a small blush." The dancers are adults, and this stays warm: a friendly peck on a little robot's cheeks, with heads, collars and shoulders only in frame.
 
-Beats, inside the 8-beat success score: to the sides by 1.5, Mācron dancing between the two until 3, a quick reach from 2.75, close-up from 3.5, contact and QUÉ FINO on 4.5, eyes to arcs by 5, blush growing to 5.5, back to wide at 7.75. Nothing names a next room, so a bridge can be added to the campaign without touching the shot.
+Beats as first built, inside the 8-beat success score (see the 2026-11-07 note at the top for today's hold): to the sides by 1.5, Mācron dancing between the two until 3, a quick reach from 2.75, close-up from 3.5, contact and QUÉ FINO on 4.5, eyes to arcs by 5, blush growing to 5.5, back to wide at 7.75. Nothing names a next room, so a bridge can be added to the campaign without touching the shot.
 
 - **Puppet again, with less cutting.** Mācron is one drawing with code-drawn eyes and blush, so only those change. A test holds every pixel outside the face and cheeks equal between his frames.
 - **Qwen could hold this one.** From the kiss drawing as its only reference, it changed eye and mouth to a smile and left the head within a few pixels, measured by the outline, so the swap should barely show. Nobody has seen it moving. It held for one change, not for a chain. The 2511 LoRA and `$node:30.lora_name` worked as noted.
