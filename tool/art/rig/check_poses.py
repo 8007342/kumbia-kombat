@@ -38,6 +38,8 @@ PROFILE_CLIPS = {"sidestep", "model"}
 REAR_CLIPS = {"back_groove", "back_accent"}  # the yaw cap is measured from facing directly away
 BAND_CLIPS = {"relaxed", "tap", "swing"}  # motion set band-loop: arms reach across to an instrument, a horn is at the face
 CROSSED_ARMS = {"crossed"}  # the arms cross on purpose
+FACE_TOUCH_CLIPS = {"moustache", "glance", "rose"}  # motion set opponent-chacha: a hand at the moustache, the hair or the lapel is the pose
+SPIN_SIDE = {"spin.side_l", "spin.side_r"}  # in profile the ballroom frame's arms overlap the head and each other
 HEAD_ONLY = {"crossed"}  # a nod moves little but the head, so the static check does not apply
 NO_WIDTH_CHECK = {"turn", "reveal", "spin"}            # deliberate 360-degree turn views (no width/drift check)
 LOCOMOTION = {"enter_forward", "retreat_backward", "yield_side", "ingress", "egress"}
@@ -90,7 +92,7 @@ def crossing_problems(r: dict) -> list[str]:
 
 
 def head_problems(r: dict) -> list[str]:
-    if not r.get("openpose") or r["id"] in HEAD_WHITELIST or r.get("clip") in BAND_CLIPS or (r.get("cue") and r.get("clip") in CUE_NEAR_FACE):
+    if not r.get("openpose") or r["id"] in HEAD_WHITELIST or r["id"] in SPIN_SIDE or r.get("clip") in FACE_TOUCH_CLIPS or r.get("clip") in BAND_CLIPS or (r.get("cue") and r.get("clip") in CUE_NEAR_FACE):
         return []
     head = r["joints"]["head"]
     limit = HEAD_CLEAR * r["headWidthPx"]
@@ -195,7 +197,7 @@ def check(rig: dict, margin: float) -> dict[str, list[str]]:
     for r in rig["poses"]:
         p = problems.setdefault(r["id"], [])
         p += r.get("problems", [])
-        if r.get("clip") not in PROFILE_CLIPS:
+        if r.get("clip") not in PROFILE_CLIPS and r["id"] not in SPIN_SIDE:
             p += crossing_problems(r)
         p += head_problems(r)
         if ankle_h is not None:
