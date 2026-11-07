@@ -370,3 +370,7 @@
 {"agent": "blinblin", "what": "BlinBlin nod close-up: rest bust and bowed head, 4 candidates each; the bowed head's elapsed_s 85.9, the rest estimated", "kind": "gpu-image", "seconds": 172, "count": 2}
 {"agent": "blinblin", "what": "BlinBlin first-pass curation: heads and hands counted per cropped candidate with qwen2.5vl:7b", "kind": "local-vision", "seconds": 184.0, "count": 238}
 {"agent": "blinblin", "what": "BlinBlin rig render, register, score, finish and pack (CPU)", "kind": "cpu", "seconds": 240, "count": 1}
+{"agent":"BOLERO","what":"salon bolero-cha candidates, 3 tag sets x 4 seeds, ACE-Step XL turbo","kind":"gpu-audio","seconds":249.93,"count":12}
+{"agent":"BOLERO","what":"salon chain (parent + 6 re-sampled tiers); first run had the wrong parent tags and was discarded","kind":"gpu-audio","seconds":150.4,"count":2}
+{"agent":"BOLERO","what":"salon reproduction checks, single takes to test seed and batch behaviour","kind":"gpu-audio","seconds":74.62,"count":2}
+{"agent":"BOLERO","what":"salon timing, character, chord-ear and grid measures; mixrs builds of salon (4) and billiards (1); verify","kind":"cpu","seconds":180,"count":12}
