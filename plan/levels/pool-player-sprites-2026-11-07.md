@@ -37,7 +37,7 @@ Her right hand keeps the cue, so her arms differ from the shared table; her legs
 ## What was found
 
 - **The guide line worked.** The cue went along it in the pilot's 7 poses, 14 candidates. I had planned a no-line control and skipped it, so "works" is not "better than nothing, measured".
-- **It sometimes draws the line itself.** A thin white stroke showed up in about a dozen candidates of 150 or so, and on B most of all. Rejected by eye, not by any tool. One more reason to look at every pick.
+- **It sometimes draws the line itself.** A thin white stroke showed up in roughly a dozen candidates, a rough count from the sheets rather than a measure, and on B most of all. Rejected by eye, not by any tool. One more reason to look at every pick.
 - **Consistency in a moving set:** body height and floor measured on the finished groove and spin frames: floor within 1 native pixel across all 16; head top 50 to 52 except the two deep-knee `down` drawings, at 63, which is the dip. That measures position, not whether it looks good moving.
 - **Words beat the skeleton on facing.** "Torso turned away" drew her back on `left_hand.prep`. Fixed in the words.
 - **Qwen often turned the cue end for end** when swung (butt up, tip down). I picked the right way round; `right_hand` has two reversed candidates rejected.
@@ -63,10 +63,10 @@ Her right hand keeps the cue, so her arms differ from the shared table; her legs
 
 qwen2.5vl:7b counted heads and hands and named the view on all 63 picks, and on 6 frames I had rejected. 1240 s across 256 calls, in the ledger.
 
-- **Front or back: right every time I can check.** It named all three rear picks and `left_foot.peak` candidate 1, the rejected back-turned frame. One `side`, on a turned frame.
+- **Front or back: useful.** It named all three rear picks as back, and caught `left_foot.peak` candidate 1, the rejected back-turned frame. It called side views front, except one it called side, so it only separates a real back from everything else.
 - **Heads: said 0 on the three rear views.** Otherwise 1. It can't count a head from behind.
 - **Hands: 2 false alarms in 63.** `clap_close` got 4 and `yield_side.pass_r` got 1; `clap_close` has two hands when enlarged. I didn't enlarge `pass_r`, where one hand is out of sight.
-- **Faults it missed: all I tried.** The stray patch on a shin, the hook on a butt and a white line over the tip all scored clean, and one line of two showed only as "2 sticks". So it found facing errors and nothing else. All my rejections for anything but facing came from my own reading of the sheets.
+- **Faults it missed:** on 6 rejected frames I asked only for sticks and view. The stray patch on a shin, the hook on a butt and a white line over the tip all got one stick and the right view. A white line beside the cue got "2 sticks", which is a hit if you ask that way. A small sample. All my rejections other than facing came from my own reading of the sheets.
 
 ## Compute
 
