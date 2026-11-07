@@ -812,6 +812,12 @@
     "facing": "rear"
    },
    {
+    "at": 0.45,
+    "x": 0.62,
+    "y": 0.47,
+    "facing": "rear"
+   },
+   {
     "at": 1,
     "x": 0.5,
     "y": 0.385,
@@ -1041,16 +1047,16 @@
     "frames": [
      "watch_left"
     ],
-    "beatsPerFrame": 2
+    "beatsPerFrame": 1.75
    },
    {
-    "from": 2,
+    "from": 1.75,
     "frames": [
      "approval_load",
      "approval_nod",
      "approval_nod"
     ],
-    "beatsPerFrame": 1
+    "beatsPerFrame": 0.75
    },
    {
     "from": 10,
