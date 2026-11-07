@@ -41,9 +41,9 @@ List<TapCandidate> openTapCandidates({
   final open = <TapCandidate>[];
   for (final cue in cues) {
     if (cue.demo) continue;
-    final off = ((secondsAt(cue.beat) * 1000).round() - nowMs).abs();
-    if (off <= RhythmJudge.goodWindowMs) {
-      open.add(TapCandidate(cue.limb, landing(cue), off));
+    final signed = nowMs - (secondsAt(cue.beat) * 1000).round();
+    if (RhythmJudge.inWindow(signed)) {
+      open.add(TapCandidate(cue.limb, landing(cue), signed.abs()));
     }
   }
   return open;

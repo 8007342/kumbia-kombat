@@ -287,7 +287,7 @@ void main() {
         // A resume replays from a call, so the first judged note is a whole call
         // after the music restarts, less its early window.
         final firstWindow =
-            level.chart.callBeats * beat - RhythmJudge.goodWindowMs / 1000;
+            level.chart.callBeats * beat - RhythmJudge.earlyWindowMs / 1000;
         expect(musicFadeSeconds, lessThan(firstWindow), reason: level.id);
       }
     });

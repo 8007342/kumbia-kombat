@@ -12,6 +12,9 @@ import 'game_audio_contract.dart';
 extension type _Context._(JSObject _) implements JSObject {
   external factory _Context();
   external double get currentTime;
+  // Missing in some browsers: Safari has no outputLatency.
+  external JSNumber? get outputLatency;
+  external JSNumber? get baseLatency;
   external String get state;
   external double get sampleRate;
   external JSObject get destination;
@@ -24,6 +27,9 @@ extension type _Context._(JSObject _) implements JSObject {
   external _BufferSource createBufferSource();
   external JSPromise<_Buffer> decodeAudioData(JSArrayBuffer data);
 }
+
+@JS('performance.now')
+external double _performanceNow();
 
 @JS('document.createElement')
 external _AudioElement _createElement(String tag);
@@ -111,7 +117,8 @@ class _ClipVoice implements ClipVoice {
 
 /// A subtractive synth for the original scores, plus decoded buffers for the
 /// rendered music. Percussion noise is generated in memory.
-class WebAudioMusicBackend implements GameAudio, MusicFader, RenderedAudio {
+class WebAudioMusicBackend
+    implements GameAudio, MusicFader, RenderedAudio, AudioLatency {
   WebAudioMusicBackend({this.leadShape = 'triangle'});
   @override
   String leadShape;
@@ -177,6 +184,25 @@ class WebAudioMusicBackend implements GameAudio, MusicFader, RenderedAudio {
 
   @override
   double get nowSeconds => _context?.currentTime ?? 0;
+
+  @override
+  double? eventAgeSeconds(Duration timeStamp) {
+    // Zero is a synthesized event with no stamp.
+    if (timeStamp == Duration.zero) return null;
+    final age = (_performanceNow() - timeStamp.inMicroseconds / 1000) / 1000;
+    // Anything outside this is a stamp on some other clock.
+    return age >= 0 && age <= .15 ? age : null;
+  }
+
+  @override
+  ({double? output, double? base}) get reportedLatency {
+    final context = _context;
+    if (context == null) return (output: null, base: null);
+    return (
+      output: context.outputLatency?.toDartDouble,
+      base: context.baseLatency?.toDartDouble,
+    );
+  }
   @override
   bool get ready => !_disposed && _context?.state == 'running';
 

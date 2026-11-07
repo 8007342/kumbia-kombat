@@ -11,7 +11,7 @@
     "metric": "Mojo",
     "cleanSeconds": 60,
     "successesPerTier": 1,
-    "finalChallenges": 2,
+    "finalChallenges": 3,
     "resetAfterFailures": 5,
     "earlyHitRatio": 0.75
   },

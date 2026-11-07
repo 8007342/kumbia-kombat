@@ -140,7 +140,9 @@ _Run _play(
   }
 
   var phrase = 0;
-  while (session.phase != GardenPhase.cleared && phrase < 80) {
+  // Counted by the phrase that decides the win. The last move's window can run
+  // past the phrase at a slow tempo, so the page's cleared phase may come later.
+  while (!session.progress.cleared && phrase < 80) {
     final cycle = chart.introBeats + phrase * chart.cycleBeats;
     until(transport.secondsAt(cycle + chart.callBeats - .5));
     final limbs = session.activeLimbs;
@@ -174,6 +176,7 @@ _Run _play(
     until(transport.secondsAt(cycle + chart.cycleBeats - .02));
     phrase++;
   }
+  until(audio.nowSeconds + 1);
   expect(session.phase, GardenPhase.cleared, reason: 'run must clear');
   return _Run(session, session.completedAtBeat!, phrase);
 }
