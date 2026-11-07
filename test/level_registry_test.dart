@@ -90,9 +90,8 @@ void main() {
     // "Our next levels grow in complexity", and it can be slow: "we can have fast
     // simple levels, and slow complex levels".
     expect(rich(charts[4]), greaterThan(rich(charts[3])));
-    // It grows by richer steps and a cue stroke offered in every pattern, not by
-    // more syncopation than the party's: at 100 BPM it stays above the bar's.
-    expect(offbeat(charts[4]), greaterThan(offbeat(charts[2])));
+    expect(offbeat(charts[4]), greaterThan(offbeat(charts[3])));
+    // Its signature: a cue stroke offered in every pattern.
     for (var i = 0; i <= charts[4].variants.length; i++) {
       expect(charts[4].pattern(i).offers.whereType<GestureKind>(), isNotEmpty);
     }
