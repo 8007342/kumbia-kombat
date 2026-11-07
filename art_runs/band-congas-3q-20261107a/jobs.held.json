@@ -1,0 +1,122 @@
+[
+ {
+  "pose": "relaxed.a",
+  "args": {
+   "workflow": "art_runs/band-congas-3q-20261107a/workflows/relaxed.a.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/band-congas-3q-20261107a/in/sheet_front_3q.png",
+    "pose_proxy": "/work/tmp/imagegen/kumbia/band-congas-3q-20261107a/in/relaxed.a.skeleton.png"
+   },
+   "overrides": {
+    "seed": 989600
+   }
+  }
+ },
+ {
+  "pose": "relaxed.b",
+  "args": {
+   "workflow": "art_runs/band-congas-3q-20261107a/workflows/relaxed.b.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/band-congas-3q-20261107a/in/sheet_front_3q.png",
+    "pose_proxy": "/work/tmp/imagegen/kumbia/band-congas-3q-20261107a/in/relaxed.b.skeleton.png"
+   },
+   "overrides": {
+    "seed": 989600
+   }
+  }
+ },
+ {
+  "pose": "tap.up_a",
+  "args": {
+   "workflow": "art_runs/band-congas-3q-20261107a/workflows/tap.up_a.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/band-congas-3q-20261107a/in/sheet_front_3q.png",
+    "pose_proxy": "/work/tmp/imagegen/kumbia/band-congas-3q-20261107a/in/tap.up_a.skeleton.png"
+   },
+   "overrides": {
+    "seed": 989600
+   }
+  }
+ },
+ {
+  "pose": "tap.up_b",
+  "args": {
+   "workflow": "art_runs/band-congas-3q-20261107a/workflows/tap.up_b.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/band-congas-3q-20261107a/in/sheet_front_3q.png",
+    "pose_proxy": "/work/tmp/imagegen/kumbia/band-congas-3q-20261107a/in/tap.up_b.skeleton.png"
+   },
+   "overrides": {
+    "seed": 989600
+   }
+  }
+ },
+ {
+  "pose": "swing.a",
+  "args": {
+   "workflow": "art_runs/band-congas-3q-20261107a/workflows/swing.a.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/band-congas-3q-20261107a/in/sheet_front_3q.png",
+    "pose_proxy": "/work/tmp/imagegen/kumbia/band-congas-3q-20261107a/in/swing.a.skeleton.png"
+   },
+   "overrides": {
+    "seed": 989600
+   }
+  }
+ },
+ {
+  "pose": "swing.b",
+  "args": {
+   "workflow": "art_runs/band-congas-3q-20261107a/workflows/swing.b.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/band-congas-3q-20261107a/in/sheet_front_3q.png",
+    "pose_proxy": "/work/tmp/imagegen/kumbia/band-congas-3q-20261107a/in/swing.b.skeleton.png"
+   },
+   "overrides": {
+    "seed": 989600
+   }
+  }
+ },
+ {
+  "pose": "swing.c",
+  "args": {
+   "workflow": "art_runs/band-congas-3q-20261107a/workflows/swing.c.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/band-congas-3q-20261107a/in/sheet_front_3q.png",
+    "pose_proxy": "/work/tmp/imagegen/kumbia/band-congas-3q-20261107a/in/swing.c.skeleton.png"
+   },
+   "overrides": {
+    "seed": 989600
+   }
+  }
+ },
+ {
+  "pose": "swing.d",
+  "args": {
+   "workflow": "art_runs/band-congas-3q-20261107a/workflows/swing.d.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/band-congas-3q-20261107a/in/sheet_front_3q.png",
+    "pose_proxy": "/work/tmp/imagegen/kumbia/band-congas-3q-20261107a/in/swing.d.skeleton.png"
+   },
+   "overrides": {
+    "seed": 989600
+   }
+  }
+ }
+]

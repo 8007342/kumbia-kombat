@@ -526,7 +526,7 @@ OPPONENT_FACING_AWAY = {**OPPONENT_64, "back_groove": BACK_GROOVE, "back_accent"
 
 BAND_YAW = 30.0
 _BAND_LEGS = dict(yaw=BAND_YAW, pin="mid", l_thigh=(9, 3), l_shin=(7, -3), r_thigh=(9, 3), r_shin=(7, -3), toe_out=10, knee_out=20)
-_BAND_TAP = dict(yaw=BAND_YAW, pin="l", l_thigh=(9, 3), l_shin=(7, -3), r_thigh=(9, 22), r_shin=(7, -8), r_foot=26, toe_out=10, knee_out=20)
+_BAND_TAP = dict(yaw=BAND_YAW, pin="l", l_thigh=(9, 3), l_shin=(7, -3), r_thigh=(10, 38), r_shin=(8, -18), r_foot=34, toe_out=10, knee_out=20)
 BAND_LOOP = {
     "relaxed": {"a": (Pose(head_nod=4, **_BAND_LEGS), "both"), "b": (Pose(head_nod=-3, **_BAND_LEGS), "both")},
     "tap": {"up_a": (Pose(head_nod=2, **_BAND_TAP), "left"), "up_b": (Pose(head_nod=-4, **_BAND_TAP), "left")},

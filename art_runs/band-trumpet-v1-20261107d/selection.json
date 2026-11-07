@@ -1,0 +1,37 @@
+{
+ "relaxed.a": {
+  "k": 989710,
+  "accepted": true
+ },
+ "relaxed.b": {
+  "k": 989710,
+  "accepted": true
+ },
+ "swing.a": {
+  "k": 989710,
+  "accepted": true
+ },
+ "swing.b": {
+  "k": 989710,
+  "accepted": true
+ },
+ "swing.c": {
+  "k": 989710,
+  "accepted": true
+ },
+ "tap.up_a": {
+  "k": 989710,
+  "accepted": true,
+  "puppet": "relaxed.a with the foot lifted"
+ },
+ "tap.up_b": {
+  "k": 989710,
+  "accepted": true,
+  "puppet": "relaxed.b with the foot lifted"
+ },
+ "swing.d": {
+  "k": 989710,
+  "accepted": true,
+  "puppet": "swing.b with the foot lifted"
+ }
+}

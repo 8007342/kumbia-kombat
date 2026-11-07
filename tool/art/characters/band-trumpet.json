@@ -89,7 +89,7 @@
       -18.0
      ]
     },
-    "intent": "seen in a three-quarter view from the side: the chest, hips, knees, toes and nose all point toward the lower right corner of the picture, the face in three-quarter view looking that way, playing out toward a crowd on that side, both feet flat on the floor, both hands on the trumpet at their lips, the horn level, its bell pointing toward the right of the picture"
+    "intent": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, both feet flat on the floor, both hands on the trumpet at their lips, the horn level, its bell pointing toward the right of the picture"
    },
    "relaxed.b": {
     "pose": {
@@ -111,7 +111,7 @@
       17.6
      ]
     },
-    "intent": "seen in a three-quarter view from the side: the chest, hips, knees, toes and nose all point toward the lower right corner of the picture, the face in three-quarter view looking that way, playing out toward a crowd on that side, both feet flat on the floor, both hands on the trumpet at their lips, the horn dipped a little"
+    "intent": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, both feet flat on the floor, both hands on the trumpet at their lips, the horn dipped a little"
    },
    "tap.up_a": {
     "pose": {
@@ -133,7 +133,7 @@
       -18.0
      ]
     },
-    "intent": "seen in a three-quarter view from the side: the chest, hips, knees, toes and nose all point toward the lower right corner of the picture, the face in three-quarter view looking that way, playing out toward a crowd on that side, the right heel of the foot on the left of the picture lifted off the floor, its toe touching, tapping time, the other foot flat, both hands on the trumpet at their lips, the horn level"
+    "intent": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, the foot on the left of the picture lifted clear off the floor with its knee bent and toe pointing down, tapping time, the other foot flat on the floor, both hands on the trumpet at their lips, the horn level"
    },
    "tap.up_b": {
     "pose": {
@@ -155,7 +155,7 @@
       17.6
      ]
     },
-    "intent": "seen in a three-quarter view from the side: the chest, hips, knees, toes and nose all point toward the lower right corner of the picture, the face in three-quarter view looking that way, playing out toward a crowd on that side, the right heel of the foot on the left of the picture lifted off the floor, its toe touching, tapping time, the other foot flat, both hands on the trumpet at their lips, the horn dipped a little"
+    "intent": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, the foot on the left of the picture lifted clear off the floor with its knee bent and toe pointing down, tapping time, the other foot flat on the floor, both hands on the trumpet at their lips, the horn dipped a little"
    },
    "swing.a": {
     "pose": {
@@ -177,7 +177,7 @@
       -53.4
      ]
     },
-    "intent": "seen in a three-quarter view from the side: the chest, hips, knees, toes and nose all point toward the lower right corner of the picture, the face in three-quarter view looking that way, playing out toward a crowd on that side, both feet flat on the floor, swinging the horn high, bell pointing up at the ceiling toward the right of the picture, chin lifted, both hands on the trumpet at their lips"
+    "intent": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, both feet flat on the floor, swinging the horn high, bell pointing up at the ceiling toward the right of the picture, chin lifted, both hands on the trumpet at their lips"
    },
    "swing.b": {
     "pose": {
@@ -199,7 +199,7 @@
       -9.2
      ]
     },
-    "intent": "seen in a three-quarter view from the side: the chest, hips, knees, toes and nose all point toward the lower right corner of the picture, the face in three-quarter view looking that way, playing out toward a crowd on that side, both feet flat on the floor, the horn passing level, both hands on the trumpet at their lips"
+    "intent": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, both feet flat on the floor, the horn passing level, both hands on the trumpet at their lips"
    },
    "swing.c": {
     "pose": {
@@ -221,7 +221,7 @@
       66.0
      ]
     },
-    "intent": "seen in a three-quarter view from the side: the chest, hips, knees, toes and nose all point toward the lower right corner of the picture, the face in three-quarter view looking that way, playing out toward a crowd on that side, both feet flat on the floor, swinging the horn low, bell pointing down toward the floor on the right of the picture, chin tucked, both hands on the trumpet at their lips"
+    "intent": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, both feet flat on the floor, swinging the horn low, bell pointing down toward the floor on the right of the picture, chin tucked, both hands on the trumpet at their lips"
    },
    "swing.d": {
     "pose": {
@@ -243,7 +243,7 @@
       -9.2
      ]
     },
-    "intent": "seen in a three-quarter view from the side: the chest, hips, knees, toes and nose all point toward the lower right corner of the picture, the face in three-quarter view looking that way, playing out toward a crowd on that side, the right heel of the foot on the left of the picture lifted off the floor, its toe touching, tapping time, the other foot flat, the horn passing level, both hands on the trumpet at their lips"
+    "intent": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, the foot on the left of the picture lifted clear off the floor with its knee bent and toe pointing down, tapping time, the other foot flat on the floor, the horn passing level, both hands on the trumpet at their lips"
    }
   }
  },
@@ -272,7 +272,9 @@
   "score": {
    "silhouetteTolerance": 60
   },
-  "seed": 989710
+  "skeletonScale": 0.92,
+  "seed": 989710,
+  "count": 2
  },
  "references": {
   "mode": "source",

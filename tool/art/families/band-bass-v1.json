@@ -1,0 +1,691 @@
+{
+ "contract": "1935-k2ib/v1",
+ "pipelineVersion": null,
+ "family": "band-bass-v1",
+ "version": 1,
+ "project": "kumbia-kombat",
+ "description": "Indoor party band, upright bass: very tall, rangy woman of about sixty-five, calm eyes, closed easy smile.",
+ "kind": "character-frames",
+ "frame": {
+  "baselineY": null,
+  "pivot": {
+   "x": null,
+   "y": null,
+   "normalized": false
+  },
+  "scale": {
+   "mode": "fixed-per-family",
+   "referencePose": "relaxed.a",
+   "resolved": null
+  },
+  "native": {
+   "perRoom": true,
+   "cool-crowd": {
+    "width": 256,
+    "height": 320,
+    "pixelScale": 3
+   }
+  },
+  "margin": {
+   "minClear": 0.03,
+   "units": "fraction-of-generation-canvas",
+   "failOnBorderTouch": true
+  },
+  "units": "native-px",
+  "generationCanvas": {
+   "width": 768,
+   "height": 960
+  },
+  "camera": "floor-perspective"
+ },
+ "transparency": {
+  "byBackend": {
+   "sdxl": "matte",
+   "default": "matte"
+  },
+  "matte": "birefnet",
+  "alpha": "binary"
+ },
+ "outline": "#1A1018",
+ "symmetry": "none",
+ "references": [],
+ "regions": {
+  "#FF0000": "skin",
+  "#00FF00": "hair",
+  "#8000FF": "shirt",
+  "#0000FF": "cloth",
+  "#FF0080": "apron",
+  "#FF8000": "trousers",
+  "#00FFFF": "shoes",
+  "#00FF80": "prop"
+ },
+ "reservedRamps": [
+  {
+   "id": "kumbia-outfit",
+   "appliesToRegions": [
+    "cloth"
+   ],
+   "recolor": false,
+   "$comment": "Gates from shaders/party_palette.frag on unpremultiplied RGB 0-1; matches if ANY gate's ALL conditions hold. Structured, never eval'd: lhs is a channel or {sub:[a,b]}, rhs a literal or {mul:[k,channel]}.",
+   "gates": [
+    {
+     "id": "cool",
+     "all": [
+      {
+       "lhs": "b",
+       "op": ">=",
+       "rhs": 0.12
+      },
+      {
+       "lhs": "r",
+       "op": ">=",
+       "rhs": {
+        "mul": [
+         0.7,
+         "b"
+        ]
+       }
+      },
+      {
+       "lhs": "b",
+       "op": ">=",
+       "rhs": {
+        "mul": [
+         0.99,
+         "r"
+        ]
+       }
+      },
+      {
+       "lhs": "g",
+       "op": ">=",
+       "rhs": {
+        "mul": [
+         0.2,
+         "b"
+        ]
+       }
+      },
+      {
+       "lhs": "g",
+       "op": "<=",
+       "rhs": {
+        "mul": [
+         0.66,
+         "b"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "id": "plum",
+     "all": [
+      {
+       "lhs": "r",
+       "op": ">=",
+       "rhs": 0.392157
+      },
+      {
+       "lhs": "r",
+       "op": ">=",
+       "rhs": {
+        "mul": [
+         0.7,
+         "b"
+        ]
+       }
+      },
+      {
+       "lhs": "b",
+       "op": ">=",
+       "rhs": {
+        "mul": [
+         0.32,
+         "r"
+        ]
+       }
+      },
+      {
+       "lhs": "g",
+       "op": "<=",
+       "rhs": {
+        "mul": [
+         0.55,
+         "b"
+        ]
+       }
+      },
+      {
+       "lhs": {
+        "sub": [
+         "b",
+         "g"
+        ]
+       },
+       "op": ">=",
+       "rhs": 0.047059
+      }
+     ]
+    },
+    {
+     "id": "pink",
+     "all": [
+      {
+       "lhs": "r",
+       "op": ">=",
+       "rhs": 0.705882
+      },
+      {
+       "lhs": "r",
+       "op": ">=",
+       "rhs": {
+        "mul": [
+         0.7,
+         "b"
+        ]
+       }
+      },
+      {
+       "lhs": "b",
+       "op": ">=",
+       "rhs": {
+        "mul": [
+         0.32,
+         "r"
+        ]
+       }
+      },
+      {
+       "lhs": "g",
+       "op": "<=",
+       "rhs": {
+        "mul": [
+         0.86,
+         "b"
+        ]
+       }
+      },
+      {
+       "lhs": {
+        "sub": [
+         "b",
+         "g"
+        ]
+       },
+       "op": ">=",
+       "rhs": 0.047059
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "palette": {
+  "locked": "tool/art/palettes/band-bass.json"
+ },
+ "style_prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background",
+ "style_negative": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render",
+ "character_prompt": "very tall, rangy woman of about sixty-five, calm eyes, closed easy smile, silver-white hair in a tall smooth rounded updo, closed cream shirt with a small midnight-violet bow tie, long-sleeved cream dinner jacket, narrow midnight-violet satin lapels, slim dark charcoal trousers, polished two-tone cream and dark shoes, big honey-amber wooden upright double bass, the band's steady pulse: unhurried, smiling to herself",
+ "clips": [
+  {
+   "id": "relaxed",
+   "drawings": 2,
+   "view": "front",
+   "sheetView": "front_3q",
+   "promptTemplate": "skeletonTurn",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": []
+  },
+  {
+   "id": "tap",
+   "drawings": 2,
+   "view": "front",
+   "sheetView": "front_3q",
+   "promptTemplate": "skeletonTurn",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": []
+  },
+  {
+   "id": "swing",
+   "drawings": 4,
+   "view": "front",
+   "sheetView": "front_3q",
+   "promptTemplate": "skeletonTurn",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": []
+  }
+ ],
+ "generation": {
+  "count_per_pose": 4,
+  "seed_base": 989510,
+  "seed_policy": "seed = seed_base + 100*pose_index + k; fixed per pose while tuning",
+  "backend": "comfyui-api",
+  "workflow": "tool/art/workflows/qwen-frame.api.json",
+  "tiers": {
+   "I1": {
+    "model": "qwen-frame",
+    "steps": 4
+   }
+  },
+  "workflowsByProfile": {
+   "moderate": "tool/art/workflows/qwen-frame.api.json",
+   "peak": "tool/art/workflows/qwen-frame.api.json",
+   "overlap": "tool/art/workflows/qwen-frame.api.json",
+   "turn": "tool/art/workflows/qwen-frame.api.json"
+  },
+  "defaultProfile": "moderate",
+  "profileRules": []
+ },
+ "qa": {
+  "inherit": [
+   "coverage",
+   "single_object",
+   "border_touch",
+   "slot_fill"
+  ],
+  "add": [
+   {
+    "id": "baseline_drift",
+    "maxPx": 1,
+    "scope": "consecutive drawings sharing a planted support foot",
+    "camera": "from target"
+   },
+   {
+    "id": "head_size_variance",
+    "maxPct": 4,
+    "scope": "family"
+   },
+   {
+    "id": "region_gate_agreement",
+    "rule": "non-cloth pixels outside all reservedRamps gates; cloth pixels inside one"
+   },
+   {
+    "id": "identity_similarity",
+    "against": "references",
+    "threshold": "TBD",
+    "embedding": {
+     "model": "facebook/dinov2-small",
+     "licence": "apache-2.0",
+     "status": "pending operator approval"
+    }
+   }
+  ],
+  "static": [
+   {
+    "id": "palette_fails_all_gates",
+    "rule": "outline and palette entries outside cloth fail every kumbia-outfit gate"
+   },
+   {
+    "id": "region_mask_colours_declared",
+    "rule": "every regionMask pixel is a declared regions colour or fully transparent"
+   }
+  ]
+ },
+ "targets": [
+  {
+   "type": "kumbiaManifest",
+   "atlas": "band-bass",
+   "out": "assets/art/ensemble/band-bass-v1.png",
+   "manifest": "assets/art/ensemble/manifest.json",
+   "frameId": "{clip}_{drawing}",
+   "fields": [
+    "rect",
+    "anchor",
+    "pixelsPerUnit",
+    "facing",
+    "loop",
+    "durationBeats",
+    "events",
+    "supportFoot",
+    "status",
+    "provenance",
+    "ramps"
+   ],
+   "packing": {
+    "gutterPx": 2,
+    "trim": true,
+    "anchorRelativeTo": "trimmed-rect"
+   },
+   "requireHumanAcceptance": true,
+   "room": "cool-crowd",
+   "camera": "floor-perspective"
+  }
+ ],
+ "adapters": {
+  "enum": [
+   "ip-adapter-sdxl",
+   "qwen-image-edit",
+   "img2img"
+  ]
+ },
+ "regionsRender": {
+  "antialias": false,
+  "filtering": "none"
+ },
+ "$notes": {
+  "spec": "Generated by tool/art/pipeline/compile_family.py from tool/art/characters/band-bass.json. Do not edit by hand.",
+  "character": "band-bass",
+  "motionSet": "band-loop"
+ },
+ "rigInputs": "art_runs/inputs/band-bass-v1",
+ "regionProxyColours": {
+  "skin": "#6E4326",
+  "hair": "#D9D6D0",
+  "shirt": "#EFE4C8",
+  "cloth": "#EADFC2",
+  "apron": "#3A1F6B",
+  "trousers": "#26232C",
+  "shoes": "#D8C9A0",
+  "prop": "#C57A22"
+ },
+ "poses": [
+  {
+   "id": "relaxed.a",
+   "clip": "relaxed",
+   "order": 0,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/band-bass-v1/relaxed.a.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/band-bass-v1/relaxed.a.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/band-bass-v1/relaxed.a.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/band-bass-v1/relaxed.a.regions.png",
+   "supportFoot": "both",
+   "accent": false,
+   "phase": "settle",
+   "phaseNote": "settle",
+   "intent": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, both feet flat on the floor, the hand on the left of the picture plucking the bass strings with bare fingertips, the other hand on the bass neck, the bass exactly where it is in image 1",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "follow-through",
+    "no-twinning",
+    "timing-on-beat"
+   ]
+  },
+  {
+   "id": "relaxed.b",
+   "clip": "relaxed",
+   "order": 1,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/band-bass-v1/relaxed.b.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/band-bass-v1/relaxed.b.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/band-bass-v1/relaxed.b.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/band-bass-v1/relaxed.b.regions.png",
+   "supportFoot": "both",
+   "accent": false,
+   "phase": "settle",
+   "phaseNote": "settle",
+   "intent": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, both feet flat on the floor, the plucking hand pulled a little away from the strings, the other hand on the bass neck, the bass exactly where it is in image 1",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "follow-through",
+    "no-twinning",
+    "timing-on-beat"
+   ]
+  },
+  {
+   "id": "tap.up_a",
+   "clip": "tap",
+   "order": 0,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/band-bass-v1/tap.up_a.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/band-bass-v1/tap.up_a.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/band-bass-v1/tap.up_a.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/band-bass-v1/tap.up_a.regions.png",
+   "supportFoot": "left",
+   "accent": false,
+   "phase": "pass",
+   "phaseNote": "pass",
+   "intent": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, the foot on the left of the picture lifted clear off the floor with its knee bent and toe pointing down, tapping time, the other foot flat on the floor, plucking the bass strings with bare fingertips, the other hand on the bass neck, the bass exactly where it is in image 1",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
+  },
+  {
+   "id": "tap.up_b",
+   "clip": "tap",
+   "order": 1,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/band-bass-v1/tap.up_b.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/band-bass-v1/tap.up_b.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/band-bass-v1/tap.up_b.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/band-bass-v1/tap.up_b.regions.png",
+   "supportFoot": "left",
+   "accent": false,
+   "phase": "pass",
+   "phaseNote": "pass",
+   "intent": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, the foot on the left of the picture lifted clear off the floor with its knee bent and toe pointing down, tapping time, the other foot flat on the floor, the plucking hand pulled a little away from the strings, the other hand on the bass neck, the bass exactly where it is in image 1",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
+  },
+  {
+   "id": "swing.a",
+   "clip": "swing",
+   "order": 0,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/band-bass-v1/swing.a.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/band-bass-v1/swing.a.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/band-bass-v1/swing.a.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/band-bass-v1/swing.a.regions.png",
+   "supportFoot": "both",
+   "accent": true,
+   "phase": "accent",
+   "phaseNote": "accent",
+   "intent": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, both feet flat on the floor, the bass exactly where it is in image 1, upright on its spike in front of her, her shoulders swaying a little toward the right of the picture, plucking hard",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "line-of-action",
+    "contrapposto",
+    "exaggeration-accent",
+    "no-twinning",
+    "timing-on-beat"
+   ]
+  },
+  {
+   "id": "swing.b",
+   "clip": "swing",
+   "order": 1,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/band-bass-v1/swing.b.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/band-bass-v1/swing.b.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/band-bass-v1/swing.b.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/band-bass-v1/swing.b.regions.png",
+   "supportFoot": "both",
+   "accent": false,
+   "phase": "pass",
+   "phaseNote": "pass",
+   "intent": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, both feet flat on the floor, the bass exactly where it is in image 1, the plucking hand pulled away",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
+  },
+  {
+   "id": "swing.c",
+   "clip": "swing",
+   "order": 2,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/band-bass-v1/swing.c.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/band-bass-v1/swing.c.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/band-bass-v1/swing.c.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/band-bass-v1/swing.c.regions.png",
+   "supportFoot": "both",
+   "accent": true,
+   "phase": "accent",
+   "phaseNote": "accent",
+   "intent": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, both feet flat on the floor, the bass exactly where it is in image 1, upright on its spike in front of her, her shoulders swaying a little toward the left of the picture, plucking hard",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "line-of-action",
+    "contrapposto",
+    "exaggeration-accent",
+    "no-twinning",
+    "timing-on-beat"
+   ]
+  },
+  {
+   "id": "swing.d",
+   "clip": "swing",
+   "order": 3,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/band-bass-v1/swing.d.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/band-bass-v1/swing.d.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/band-bass-v1/swing.d.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/band-bass-v1/swing.d.regions.png",
+   "supportFoot": "left",
+   "accent": false,
+   "phase": "pass",
+   "phaseNote": "pass",
+   "intent": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, the foot on the left of the picture lifted clear off the floor with its knee bent and toe pointing down, tapping time, the other foot flat on the floor, the bass exactly where it is in image 1, the plucking hand pulled away",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
+  }
+ ],
+ "animationReferences": {
+  "registry": "tool/art/references/animation-principles.json",
+  "research": [
+   "plan/levels/indoor-band-2026-11-07.md"
+  ],
+  "principlesUsed": [
+   "contrapposto",
+   "exaggeration-accent",
+   "follow-through",
+   "line-of-action",
+   "no-twinning",
+   "planted-pivot",
+   "staging-silhouette",
+   "timing-on-beat"
+  ],
+  "sourcesUsed": [
+   "cartwright-gdc2014",
+   "contrapposto-fonseca",
+   "dead-cells-pipeline",
+   "disney-process",
+   "illusion-of-life",
+   "silhouette-test",
+   "simogo-bsb",
+   "slynyrd-53",
+   "slynyrd-55",
+   "twinning",
+   "ubisoft-foot-ik",
+   "williams-survival-kit"
+  ]
+ }
+}

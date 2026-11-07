@@ -1,0 +1,500 @@
+{
+ "definition": {
+  "$comment": "The indoor party's band (trumpet), owner's ruling 2026-11-07; front sheet approved the same day. Drawn at an angle, playing toward the crowd, from the front_3q view. The instrument is a mask-only garment, and Qwen draws it from the sheet. Plan: plan/levels/indoor-band-2026-11-07.md.",
+  "id": "band-trumpet",
+  "family": "band-trumpet-v1",
+  "style": "party-pixel",
+  "description": "Indoor party band, trumpet: slight, wiry musician of about thirty, tall black flat-top haircut.",
+  "body": {
+   "preset": "slim-adult"
+  },
+  "pronouns": [
+   "they",
+   "them",
+   "their"
+  ],
+  "skin": "#D0A179",
+  "traits": "slight, wiry musician of about thirty, tall black flat-top haircut",
+  "demeanor": "the band's spark: up on the toes, playing to the ceiling",
+  "garments": [
+   {
+    "id": "hair",
+    "shape": "puff",
+    "region": "hair",
+    "colour": "#16110F",
+    "text": "tall flat-topped block of black hair with shaved sides"
+   },
+   {
+    "id": "shirt",
+    "shape": "shirt-fitted",
+    "region": "shirt",
+    "colour": "#EFE4C8",
+    "text": "closed cream shirt with a small midnight-violet bow tie"
+   },
+   {
+    "id": "jacket",
+    "shape": "waistcoat-fitted",
+    "region": "cloth",
+    "colour": "#EADFC2",
+    "text": "long-sleeved cream dinner jacket"
+   },
+   {
+    "id": "lapels",
+    "shape": "jacket-lapels",
+    "region": "apron",
+    "colour": "#3A1F6B",
+    "text": "narrow midnight-violet satin lapels"
+   },
+   {
+    "id": "trousers",
+    "shape": "trousers",
+    "region": "trousers",
+    "colour": "#26232C",
+    "text": "slim dark charcoal trousers"
+   },
+   {
+    "id": "shoes",
+    "shape": "shoes-flat",
+    "region": "shoes",
+    "colour": "#D8C9A0",
+    "text": "polished two-tone cream and dark shoes"
+   },
+   {
+    "id": "horn",
+    "shape": "trumpet-horn",
+    "region": "prop",
+    "colour": "#D9A92E",
+    "text": "bright polished brass trumpet"
+   }
+  ],
+  "motion": {
+   "set": "band-loop",
+   "overrides": {
+    "relaxed.a": {
+     "pose": {
+      "twist": 0,
+      "l_arm": [
+       -1.4,
+       85.6
+      ],
+      "l_fore": [
+       -137.7,
+       56.0
+      ],
+      "r_arm": [
+       -7.3,
+       71.7
+      ],
+      "r_fore": [
+       -150.7,
+       -18.0
+      ]
+     },
+     "intent": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, both feet flat on the floor, both hands on the trumpet at their lips, the horn level, its bell pointing toward the right of the picture"
+    },
+    "relaxed.b": {
+     "pose": {
+      "twist": 0,
+      "l_arm": [
+       0.2,
+       70.9
+      ],
+      "l_fore": [
+       -130.1,
+       65.7
+      ],
+      "r_arm": [
+       -4.7,
+       57.6
+      ],
+      "r_fore": [
+       -148.7,
+       17.6
+      ]
+     },
+     "intent": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, both feet flat on the floor, both hands on the trumpet at their lips, the horn dipped a little"
+    },
+    "tap.up_a": {
+     "pose": {
+      "twist": 0,
+      "l_arm": [
+       -1.4,
+       85.6
+      ],
+      "l_fore": [
+       -137.7,
+       56.0
+      ],
+      "r_arm": [
+       -7.3,
+       71.7
+      ],
+      "r_fore": [
+       -150.7,
+       -18.0
+      ]
+     },
+     "intent": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, the foot on the left of the picture lifted clear off the floor with its knee bent and toe pointing down, tapping time, the other foot flat on the floor, both hands on the trumpet at their lips, the horn level"
+    },
+    "tap.up_b": {
+     "pose": {
+      "twist": 0,
+      "l_arm": [
+       0.2,
+       70.9
+      ],
+      "l_fore": [
+       -130.1,
+       65.7
+      ],
+      "r_arm": [
+       -4.7,
+       57.6
+      ],
+      "r_fore": [
+       -148.7,
+       17.6
+      ]
+     },
+     "intent": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, the foot on the left of the picture lifted clear off the floor with its knee bent and toe pointing down, tapping time, the other foot flat on the floor, both hands on the trumpet at their lips, the horn dipped a little"
+    },
+    "swing.a": {
+     "pose": {
+      "twist": 8,
+      "l_arm": [
+       -25.0,
+       119.2
+      ],
+      "l_fore": [
+       -141.9,
+       51.3
+      ],
+      "r_arm": [
+       4.4,
+       101.8
+      ],
+      "r_fore": [
+       -137.9,
+       -53.4
+      ]
+     },
+     "intent": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, both feet flat on the floor, swinging the horn high, bell pointing up at the ceiling toward the right of the picture, chin lifted, both hands on the trumpet at their lips"
+    },
+    "swing.b": {
+     "pose": {
+      "twist": 0,
+      "l_arm": [
+       -1.0,
+       81.9
+      ],
+      "l_fore": [
+       -136.7,
+       57.3
+      ],
+      "r_arm": [
+       -6.7,
+       67.6
+      ],
+      "r_fore": [
+       -151.3,
+       -9.2
+      ]
+     },
+     "intent": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, both feet flat on the floor, the horn passing level, both hands on the trumpet at their lips"
+    },
+    "swing.c": {
+     "pose": {
+      "twist": -8,
+      "l_arm": [
+       12.0,
+       41.6
+      ],
+      "l_fore": [
+       -92.6,
+       92.8
+      ],
+      "r_arm": [
+       -3.7,
+       38.4
+      ],
+      "r_fore": [
+       -111.8,
+       66.0
+      ]
+     },
+     "intent": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, both feet flat on the floor, swinging the horn low, bell pointing down toward the floor on the right of the picture, chin tucked, both hands on the trumpet at their lips"
+    },
+    "swing.d": {
+     "pose": {
+      "twist": 0,
+      "l_arm": [
+       -1.0,
+       81.9
+      ],
+      "l_fore": [
+       -136.7,
+       57.3
+      ],
+      "r_arm": [
+       -6.7,
+       67.6
+      ],
+      "r_fore": [
+       -151.3,
+       -9.2
+      ]
+     },
+     "intent": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, the foot on the left of the picture lifted clear off the floor with its knee bent and toe pointing down, tapping time, the other foot flat on the floor, the horn passing level, both hands on the trumpet at their lips"
+    }
+   }
+  },
+  "drawing": {
+   "noun": "musician",
+   "fits": "the top of their flat-top, both shoes, both hands and the whole trumpet",
+   "look": "small, slight, wiry adult build, narrow shoulders, slim angular face, tall flat-topped block of black hair with shaved sides, light olive skin, long-sleeved cream dinner jacket buttoned closed, its narrow midnight-violet satin lapels lying flat on the chest, a small midnight-violet bow tie at a closed cream shirt collar, slim dark charcoal trousers and polished two-tone cream and dark shoes, and thick dark ink outline, playing a bright polished brass trumpet with a wide flared bell",
+   "extra": "They are a grown adult of about thirty. The trumpet is at their lips with its wide round brass bell well clear of their head, one trumpet of the same size in every picture. ",
+   "sheet": {
+    "source": {
+     "image": "tool/art/references/band-trumpet/front.png",
+     "poseFrom": "relaxed.a"
+    },
+    "views": {
+     "front": {
+      "image": "tool/art/references/band-trumpet/front.png",
+      "description": "standing facing the viewer with feet apart and head turned a little toward the right side of the picture, both hands raised to the trumpet at their lips, elbows lifted away from the body"
+     },
+     "front_3q": {
+      "image": "tool/art/references/band-trumpet/front_3q.png",
+      "description": "standing and playing the trumpet, seen in a three-quarter view from the side: the chest, hips, knees, toes and nose all point toward the lower right corner of the picture, the face in three-quarter view looking that way, playing out toward a crowd on that side, feet apart, both hands on the trumpet at their lips, the horn level with its bell toward the right of the picture",
+      "extra": "They are a grown adult of about thirty. The trumpet is at their lips with its wide round brass bell well clear of their head, one trumpet of the same size in every picture. "
+     }
+    }
+   },
+   "score": {
+    "silhouetteTolerance": 60
+   },
+   "skeletonScale": 0.92,
+   "seed": 989710,
+   "count": 2
+  },
+  "references": {
+   "mode": "source",
+   "sources": []
+  },
+  "targets": [
+   {
+    "room": "cool-crowd",
+    "atlas": "band-trumpet",
+    "out": "assets/art/ensemble/band-trumpet-v1.png",
+    "native": [
+     256,
+     320
+    ],
+    "pixelScale": 3
+   }
+  ],
+  "seedBase": 989710
+ },
+ "style": {
+  "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background",
+  "negative": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render",
+  "frame": {
+   "margin": {
+    "minClear": 0.03,
+    "units": "fraction-of-generation-canvas",
+    "failOnBorderTouch": true
+   },
+   "units": "native-px",
+   "generationCanvas": {
+    "width": 768,
+    "height": 960
+   },
+   "camera": "floor-perspective"
+  },
+  "ramp": {
+   "shades": 4
+  },
+  "outline": "#1A1018",
+  "reservedRamps": [
+   {
+    "id": "kumbia-outfit",
+    "appliesToRegions": [
+     "cloth"
+    ],
+    "recolor": false,
+    "$comment": "Gates from shaders/party_palette.frag on unpremultiplied RGB 0-1; matches if ANY gate's ALL conditions hold. Structured, never eval'd: lhs is a channel or {sub:[a,b]}, rhs a literal or {mul:[k,channel]}.",
+    "gates": [
+     {
+      "id": "cool",
+      "all": [
+       {
+        "lhs": "b",
+        "op": ">=",
+        "rhs": 0.12
+       },
+       {
+        "lhs": "r",
+        "op": ">=",
+        "rhs": {
+         "mul": [
+          0.7,
+          "b"
+         ]
+        }
+       },
+       {
+        "lhs": "b",
+        "op": ">=",
+        "rhs": {
+         "mul": [
+          0.99,
+          "r"
+         ]
+        }
+       },
+       {
+        "lhs": "g",
+        "op": ">=",
+        "rhs": {
+         "mul": [
+          0.2,
+          "b"
+         ]
+        }
+       },
+       {
+        "lhs": "g",
+        "op": "<=",
+        "rhs": {
+         "mul": [
+          0.66,
+          "b"
+         ]
+        }
+       }
+      ]
+     },
+     {
+      "id": "plum",
+      "all": [
+       {
+        "lhs": "r",
+        "op": ">=",
+        "rhs": 0.392157
+       },
+       {
+        "lhs": "r",
+        "op": ">=",
+        "rhs": {
+         "mul": [
+          0.7,
+          "b"
+         ]
+        }
+       },
+       {
+        "lhs": "b",
+        "op": ">=",
+        "rhs": {
+         "mul": [
+          0.32,
+          "r"
+         ]
+        }
+       },
+       {
+        "lhs": "g",
+        "op": "<=",
+        "rhs": {
+         "mul": [
+          0.55,
+          "b"
+         ]
+        }
+       },
+       {
+        "lhs": {
+         "sub": [
+          "b",
+          "g"
+         ]
+        },
+        "op": ">=",
+        "rhs": 0.047059
+       }
+      ]
+     },
+     {
+      "id": "pink",
+      "all": [
+       {
+        "lhs": "r",
+        "op": ">=",
+        "rhs": 0.705882
+       },
+       {
+        "lhs": "r",
+        "op": ">=",
+        "rhs": {
+         "mul": [
+          0.7,
+          "b"
+         ]
+        }
+       },
+       {
+        "lhs": "b",
+        "op": ">=",
+        "rhs": {
+         "mul": [
+          0.32,
+          "r"
+         ]
+        }
+       },
+       {
+        "lhs": "g",
+        "op": "<=",
+        "rhs": {
+         "mul": [
+          0.86,
+          "b"
+         ]
+        }
+       },
+       {
+        "lhs": {
+         "sub": [
+          "b",
+          "g"
+         ]
+        },
+        "op": ">=",
+        "rhs": 0.047059
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  "generation": {
+   "count_per_pose": 4,
+   "seed_policy": "seed = seed_base + 100*pose_index + k; fixed per pose while tuning",
+   "tier": "I1"
+  }
+ },
+ "styleKey": "678ab4fca1ded9f95c38fad960356fa18d5651aea6ef3a4346ae687ff556ec48",
+ "backend": "qwen-frame",
+ "rigKey": "f846f41b2b5c1c278c9eec537222580abb69f6d8c786385e3455f0ac016ef39f",
+ "frameKeys": {
+  "relaxed.a": "b559e2096a12830714d16aef43acfd7fd060c291312d8d30fce1182c37b07785",
+  "relaxed.b": "ada2c60cb129089abf4d07d86d8fe4c777695e92ef96ec9caa17daa9b9bb1af6",
+  "tap.up_a": "0a8c504bc3b4469abc9f8ae4cfda87a16c705c26d56b5f016ebb1719182a242b",
+  "tap.up_b": "7308c9b6b86a39ab547665a7c29de8e0b4e90e1f6934348db3512ff51d74fcbb",
+  "swing.a": "4fd9b34c9fafc7408f8aa9f5bcd890747e63226e85628f805fe4d36be665eea1",
+  "swing.b": "a1ef244095d0e68ce9d88ccc3bab8221575b193d4dbb4cdb4b4e3ccc77de4bbb",
+  "swing.c": "7e302708b939bf0cf186930a6632b25b5e8631919fe6919c974de8cc0f4acbc1",
+  "swing.d": "1883e93936ea354ab569ace076d456d440168a741b3b4ac56be2e605bf9ebd17"
+ },
+ "run": "band-trumpet-v1-f0adb11689"
+}
