@@ -94,12 +94,11 @@
  "drawing": {
   "noun": "man",
   "fits": "hair, both shoes and both hands",
-  "look": "tall, slim, very upright elderly build with long legs and narrow shoulders, long narrow face, swept-back silver hair, a thin black pencil moustache, light olive-tan skin, crisp white dinner jacket with shawl lapels, white dress shirt, burgundy velvet bow tie, a single red rose in his left lapel, slim black dress trousers, two-tone white and black spectator shoes and thick dark ink outline",
+  "look": "tall, slim, very upright elderly build with long legs and narrow shoulders, long narrow face, swept-back silver hair, a thin, neatly trimmed dark pencil moustache along his upper lip, light olive-tan skin, crisp white dinner jacket with shawl lapels, white dress shirt, burgundy velvet bow tie, a single red rose in his left lapel, slim black dress trousers, two-tone white and black spectator shoes and thick dark ink outline",
   "extra": "He is a grown man of about seventy, lean and elegant, standing very tall and straight. Both eyes are open. His mouth stays closed in a poised, faintly amused smile. The red rose is small and bright on the lapel on the right side of the picture. ",
   "sheet": {
    "source": {
-    "image": "tool/art/references/blinblin/front.png",
-    "styleOnly": true
+    "image": "tool/art/references/terciopelo/front-draft-f4.png"
    },
    "views": {
     "front": {
@@ -119,7 +118,7 @@
   "score": {
    "silhouetteTolerance": 30
   },
-  "$comment": "The rose in his hand (clip rose) is in the pose words, not a prop: the rig's prop shapes are shaker, bottle and glass, and a held rose needs no mask. The hand is named by picture side in the words.",
+  "$comment": "The rose in his hand (clip rose) is in the pose words, not a prop: the rig's prop shapes are shaker, bottle and glass, and a held rose needs no mask. The hand is named by picture side in the words. The rig's arms stop short of the face and the far lapel, so the wrist is moved to the moustache, the bow tie and the left lapel in the skeleton (rig canvas pixels), as the BlinBlin dancer's salute was.",
   "skeletonOverrides": {
    "moustache.a": {
     "3": [
@@ -161,8 +160,7 @@
      372
     ]
    }
-  },
-  "$skeletonOverrides": "The rig's arms stop short of the face and the far lapel, so the wrist is moved to the moustache, the bow tie and the left lapel in the skeleton (rig canvas pixels), as the BlinBlin dancer's salute was."
+  }
  },
  "references": {
   "mode": "source",
