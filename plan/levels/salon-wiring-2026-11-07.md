@@ -17,13 +17,9 @@ Each swap is a data edit in `levels/salon.json`, plus its test run.
 | Where | Today | Replace with | From |
 |---|---|---|---|
 | Don Terciopelo in play | `gatekeeper` atlas (id `terciopelo`, so his dancer entry, accents and combo are already his) | `atlas: "terciopelo"`, and the win clips `mirror_look`, `bow_a/b/hold`, `sweep_a/b` in `exitShot.opponent` (today the GateKeeper's `watch_left`, `approval_*`, `reassurance_open_hand`, `invite`) | TERCIOPELO, drawing |
-| Room plate | `salon/salon-room-standin.png`, the picked 991002 as painted, with the chandeliers' floor reflections still in the tap band | `salon/salon-room.png`, the clean plate | SALONART, filling |
-| Chandeliers swaying | none (no `layers` block) | `art_runs/rooms/salon/layers-level.json`'s layers | SALONART |
-| Bongos | `band-congas` | `band-bongos` | SALONART, drawing |
-| Close-up plate | `closeups/salon-plate.png`, cut by me from the stand-in plate (x 181-651, y 60-760): the far doors, mirrors and a chandelier | keep, or recut from the clean plate | me |
 | Mācron before the rose, in the close-up | `closeups/nod-mc-rest.png` (the party's nod rig, same canvas and floor) | a salon-mc drawing without the rose, if TERCIOPELO draws one | TERCIOPELO |
 
-Already the real thing: the camera, every mark, the six couples and the trio's places (SALONART's `art_runs/rooms/salon/marks.json`), the piano and violin players, the close-up's busts and Mācron's half and the wide-shot rose (TERCIOPELO's `salon-art.json`), his dancer entry with the charisma idles and EL GIRO's clips, and the rendered music and synth fallback (BOLERO).
+Already the real thing: SALONART's clean plate (`salon/salon-room.png`), the three chandeliers swaying as `hanging` layers, the close-up's plate (`closeups/salon-rose-plate.png`, the arched mirror), the camera, every mark, the six couples and the trio's places (SALONART's `art_runs/rooms/salon/marks.json`), all three trio players (piano, bongos and violin), the close-up's busts and Mācron's half and the wide-shot rose (TERCIOPELO's `salon-art.json`), his dancer entry with the charisma idles and EL GIRO's clips, and the rendered music and synth fallback (BOLERO).
 
 ## The chart
 
