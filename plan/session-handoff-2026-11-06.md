@@ -2,6 +2,15 @@
 
 **Read this first after the relaunch.** `game` holds all merged work. Start the next work ref from `origin/game`, for example `git switch -c work/1853-ordr origin/game`; ref grammar is `work/[0-9]{3,4}-[a-z0-9]{4}`.
 
+## Latest, 2026-11-07: five levels on `game`, promoted to `main` for the owner's phone test
+
+- **Campaign:** garden, pool lawn, bar, indoor party (`cool-crowd`), billiards. Bridges: `garden_to_pool`, `pool_to_bar`, `bar_to_crowd`, `crowd_to_restroom` (the party into billiards). Billiards is last, followed by the end screen.
+- **Music:** every tier of the garden, bar, party and billiards comes from one performance. The owner's approved mid is kept exactly, and low and high are re-sampled from its latent in one workflow, so a tier change stays on the bar with a 1-beat crossfade. The lawn keeps its takes and uses an entry table per exit bar; its joins are the likeliest to still sound obvious. The fix is audio-in (`LoadAudio`) after the relaunch, with `tool/music/workflows/ace-xl-bridge.api.json`. Billiards is a tango-mambo in G minor at 96, 100 and 104 BPM. The Rust mixer `tool/music/mixrs` builds all five levels in 66 s and 331 MB; don't go back to the NumPy path for full builds.
+- **Art:** BlinBlin has 82 drawings and a close-up nod, there's a four-piece band and guests 3–6 dancing in pairs, and The Pool Player has three background players. Provenance rules for all of it are in `tool/metrics/asset_provenance.json`.
+- **Checks at merge:** 662 tests pass, `flutter analyze` shows the 4 usual notes, and both music validators pass. Nobody has heard any of it or seen it moving on a phone. Each level's plan note lists what to look at in motion: `plan/levels/indoor-party-2026-11-07.md`, `billiards-2026-11-07.md`, `blinblin-sprites-2026-11-07.md`, `pool-player-sprites-2026-11-07.md`.
+- **For the owner to judge:** whether the billiards top tier at 104 BPM feels cramped. Its half-beat doubles leave 288 ms between taps; if so, drop that tier to 100 BPM in `tool/music/mix/levels.json` and rebuild. Also whether the lawn joins are acceptable for now.
+- **Disk:** `/home/forge/src` is a 1.5 GB tmpfs. Keep worktrees in `~/.cache/tillandsias-project/kumbia-wt/` with sparse checkout. The main checkout's `build/` must be a real directory, because the preview container can't follow a symlink out of the project. Never write `cat > /tmp/x` in a command: it waits on stdin forever, and it hung an agent for 3.5 hours.
+
 ## First, after the relaunch
 
 1. `df -h /home/forge/src` should show about 4 GB, from `src_mb = 4096`. macuahuitl-fedora read that in the code, and it had never run on a real relaunch. Report the result to it.
