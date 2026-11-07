@@ -357,10 +357,10 @@ class _ConsolePageState extends State<ConsolePage> {
                         if (track.lufs != null) '${track.lufs} LUFS',
                       ].join(' · '),
                     ),
+                    _RefChip(track.ref),
                   ],
                 ),
               ),
-              _RefChip(track.ref),
             ],
           ),
           if (current)

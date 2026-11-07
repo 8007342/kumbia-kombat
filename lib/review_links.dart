@@ -19,7 +19,7 @@ AppRoute routeFor(Uri uri, {bool readPath = true}) {
   if (uri.queryParameters['capture'] == 'gestures') return AppRoute.gestures;
   final named = <String>[
     if (readPath) ...uri.pathSegments.where((s) => s.isNotEmpty).take(1),
-    if (uri.queryParameters['page'] case final page?) page,
+    ?uri.queryParameters['page'],
     // A hash route, for a server that rewrites nothing and a link typed by hand.
     ...uri.fragment.split('/').where((s) => s.isNotEmpty),
   ].map((s) => s.toLowerCase());

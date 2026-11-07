@@ -217,12 +217,7 @@ class QrPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     canvas.drawRect(Offset.zero & size, Paint()..color = _paper);
-    final count = qr.moduleCount + 2 * ShareCode.quietModules;
-    // Whole pixels a module where the space allows, so edges stay crisp.
-    var module = size.shortestSide / count;
-    if (module >= 2) module = module.floorToDouble();
-    final origin = (size.shortestSide - module * count) / 2 +
-        module * ShareCode.quietModules;
+    final (:module, :origin) = layout(size.shortestSide, qr.moduleCount);
     final ink = Paint()
       ..color = _ink
       ..isAntiAlias = false;
@@ -235,6 +230,18 @@ class QrPainter extends CustomPainter {
         );
       }
     }
+  }
+
+  /// Module size and the first module's corner, for a square of [side].
+  /// Whole pixels a module where the space allows, so edges stay crisp.
+  static ({double module, double origin}) layout(double side, int moduleCount) {
+    final count = moduleCount + 2 * ShareCode.quietModules;
+    var module = side / count;
+    if (module >= 2) module = module.floorToDouble();
+    return (
+      module: module,
+      origin: (side - module * count) / 2 + module * ShareCode.quietModules,
+    );
   }
 
   @override
