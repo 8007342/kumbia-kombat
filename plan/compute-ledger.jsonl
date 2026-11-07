@@ -370,3 +370,7 @@
 {"agent": "blinblin", "what": "BlinBlin nod close-up: rest bust and bowed head, 4 candidates each; the bowed head's elapsed_s 85.9, the rest estimated", "kind": "gpu-image", "seconds": 172, "count": 2}
 {"agent": "blinblin", "what": "BlinBlin first-pass curation: heads and hands counted per cropped candidate with qwen2.5vl:7b", "kind": "local-vision", "seconds": 184.0, "count": 238}
 {"agent": "blinblin", "what": "BlinBlin rig render, register, score, finish and pack (CPU)", "kind": "cpu", "seconds": 240, "count": 1}
+{"agent": "terciopelo", "what": "Don Terciopelo model sheet pass 1, front from text with the BlinBlin sheet as style, 4 candidates", "kind": "gpu-image", "seconds": 125, "count": 4}
+{"agent": "terciopelo", "what": "Don Terciopelo model sheet pass 2 from pass 1's fourth candidate, front and back, 4 candidates each (the first front attempt was refused for an unbound input and drew nothing)", "kind": "gpu-image", "seconds": 434, "count": 8}
+{"agent": "terciopelo", "what": "Don Terciopelo rose-handoff busts: rest, pluck, offer, empty and an offer redraw, 2 candidates each, wall time behind other agents' jobs", "kind": "gpu-image", "seconds": 1002, "count": 10}
+{"agent": "terciopelo", "what": "Mācron's rose handoff close-up and the wide rose, drawn from parts by the close-up rig (CPU, several iterations)", "kind": "cpu", "seconds": 20, "count": 5}

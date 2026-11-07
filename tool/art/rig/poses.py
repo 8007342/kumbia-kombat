@@ -841,9 +841,11 @@ OFFER_HAND = {
 }
 BOW = {
     # Pilot: with the free arm swept out, the 3/4 bow read as reaching forward. A gentleman's bow keeps it behind the back.
-    "a": (Pose(yaw=34, lean=10, head_nod=6, **_EASY_R, r_arm=(24, 32), r_fore=(-100, 56), **BEHIND_L), "both"),
-    "b": (Pose(yaw=34, lean=36, head_nod=16, **_EASY_R, r_arm=(24, 40), r_fore=(-100, 60), **BEHIND_L), "both"),
-    "hold": (Pose(yaw=34, lean=46, head_nod=20, **_EASY_R, r_arm=(24, 44), r_fore=(-100, 62), **BEHIND_L), "both"),
+    # Second try: at three quarters the bend at the waist didn't show, so the deep drawings turn nearly to profile.
+    # Third: asked to face the picture's right, Qwen drew the deepest bow facing left in 4 of 4, so he bows to the left.
+    "a": (Pose(yaw=-50, lean=14, head_nod=6, **_EASY_R, r_arm=(24, 32), r_fore=(-100, 56), **BEHIND_L), "both"),
+    "b": (Pose(yaw=-62, lean=40, head_nod=16, **_EASY_R, r_arm=(24, 40), r_fore=(-100, 60), **BEHIND_L), "both"),
+    "hold": (Pose(yaw=-62, lean=48, head_nod=20, **_EASY_R, r_arm=(24, 44), r_fore=(-100, 62), **BEHIND_L), "both"),
 }
 SWEEP = {
     "a": (Pose(yaw=-14, twist=6, head_turn=10, **_EASY_R, **BEHIND_R, l_arm=(64, 34), l_fore=(76, 46)), "both"),
@@ -876,9 +878,9 @@ CHACHA_INTENT = {
     "glance.b": ("accent (charisma)", "turned three quarters toward the left of the picture, admiring his reflection in a mirror outside the picture, head turned further toward it, the right hand smoothing back the silver hair above {his} ear, left hand behind the back, chin up, a knowing half smile"),
     "offer_hand.a": ("anticipation (charisma)", "inviting the viewer to dance: a slight courtly bow from the waist, left hand behind the back, the right arm held out low to the side on the left of the picture, the hand at waist height with the palm turned up as if to take a partner's hand, head inclined, a warm gallant smile"),
     "offer_hand.b": ("accent (charisma)", "inviting the viewer to dance: bowing a little deeper from the waist, left hand behind the back, the right arm extended out to the side on the left of the picture, the open hand at waist height with the palm turned up toward the sky, waiting for a partner's hand, the left foot pointed forward on its toe, eyes on the viewer, a warm gallant smile"),
-    "bow.a": ("anticipation (bow)", "turned three quarters toward the right of the picture, beginning a slow ballroom bow: standing on the right leg, the right hand placed flat on {his} chest, the left hand behind the back, leaning forward slightly from the waist, head beginning to lower"),
-    "bow.b": ("accent (bow)", "turned three quarters toward the right of the picture, a deep slow ballroom bow from the waist with a straight back, the right hand flat on {his} chest, the left hand behind the back, head bowed, eyes lowered, gracious"),
-    "bow.hold": ("settle (bow)", "turned three quarters toward the right of the picture, holding the deepest point of a slow ballroom bow, bent far forward from the waist with a straight back, the right hand flat on {his} chest, the left hand behind the back, head bowed low, gracious"),
+    "bow.a": ("anticipation (bow)", "turned well toward the left of the picture, beginning a slow ballroom bow: standing on the right leg, the right hand placed flat on {his} chest, the left hand behind the back, leaning forward slightly from the waist, head beginning to lower"),
+    "bow.b": ("accent (bow)", "seen from the side, his face and chest toward the left edge of the picture and his back toward the right edge, a deep slow ballroom bow: bent forward from the waist with a straight back so his head and shoulders lean toward the left of the picture, his legs straight and together, the right hand flat on {his} chest, the left hand tucked behind the small of {his} back, head bowed, eyes lowered, gracious and elegant"),
+    "bow.hold": ("settle (bow)", "seen from the side, his face and chest toward the left edge of the picture and his back toward the right edge, holding the deepest point of a slow ballroom bow: bent forward from the waist with a straight back, his head and shoulders lowered toward the left of the picture, his legs straight and together, both hands off his knees, the right hand flat on {his} chest, the left hand tucked behind the small of {his} back, head bowed low, gracious and elegant"),
     "sweep.a": ("anticipation (sweep)", "turned a little toward the right of the picture, the right hand behind the back, the left arm starting a grand sweep out toward the right of the picture at chest height, head following the hand"),
     "sweep.b": ("accent (sweep)", "turned a little toward the right of the picture, the right hand behind the back, the left arm swept out high and wide toward the right of the picture with the palm open, showing the way to a far door, head turned along the arm, chin up, a gracious smile"),
     "rose.pluck": ("anticipation (the rose)", "standing tall on the right leg, left hand behind the back, the right hand crossing to {his} left lapel and plucking the red rose from it, head bowed looking down at the rose, a fond smile"),
