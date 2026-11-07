@@ -39,6 +39,15 @@ void main() {
     }
   });
 
+  test('each nods on their own accent: BlinBlin first, Mācron on the title', () {
+    final [bb, mc] = shot.actors;
+    final nods = shot.cue.where((c) => c.track == 'nod').toList();
+    expect(bb.frameAt(nods.first.beat), endsWith('nod-bb-down.png'));
+    expect(bb.frameAt(nods.last.beat), isNot(endsWith('-down.png')));
+    expect(mc.frameAt(nods.last.beat), endsWith('nod-mc-down.png'));
+    expect(mc.frameAt(nods.first.beat), endsWith('nod-mc-rest.png'));
+  });
+
   test('two nods, each on a whole beat, the second on the title', () {
     final nods = shot.cue.where((c) => c.track == 'nod').toList();
     expect(nods.length, 2);

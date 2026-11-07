@@ -1,0 +1,92 @@
+[
+ {
+  "pose": "left_hand.follow",
+  "args": {
+   "workflow": "art_runs/blinblin-v1-20261107d/workflows/left_hand.follow.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/blinblin-v1-20261107d/in/sheet_front.png",
+    "pose_proxy": "/work/tmp/imagegen/kumbia/blinblin-v1-20261107d/in/left_hand.follow.skeleton.png"
+   },
+   "overrides": {
+    "seed": 987000
+   }
+  }
+ },
+ {
+  "pose": "retreat_backward.down_r",
+  "args": {
+   "workflow": "art_runs/blinblin-v1-20261107d/workflows/retreat_backward.down_r.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/blinblin-v1-20261107d/in/sheet_front.png",
+    "pose_proxy": "/work/tmp/imagegen/kumbia/blinblin-v1-20261107d/in/retreat_backward.down_r.skeleton.png"
+   },
+   "overrides": {
+    "seed": 987000
+   }
+  }
+ },
+ {
+  "pose": "clap.open",
+  "args": {
+   "workflow": "art_runs/blinblin-v1-20261107d/workflows/clap.open.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/blinblin-v1-20261107d/in/sheet_front.png",
+    "pose_proxy": "/work/tmp/imagegen/kumbia/blinblin-v1-20261107d/in/clap.open.skeleton.png"
+   },
+   "overrides": {
+    "seed": 987000
+   }
+  }
+ },
+ {
+  "pose": "back_groove.pass_l2",
+  "args": {
+   "workflow": "art_runs/blinblin-v1-20261107d/workflows/back_groove.pass_l2.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/blinblin-v1-20261107d/in/sheet_back.png",
+    "pose_proxy": "/work/tmp/imagegen/kumbia/blinblin-v1-20261107d/in/back_groove.pass_l2.skeleton.png"
+   },
+   "overrides": {
+    "seed": 987000
+   }
+  }
+ },
+ {
+  "pose": "back_groove.down_r",
+  "args": {
+   "workflow": "art_runs/blinblin-v1-20261107d/workflows/back_groove.down_r.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/blinblin-v1-20261107d/in/sheet_back.png",
+    "pose_proxy": "/work/tmp/imagegen/kumbia/blinblin-v1-20261107d/in/back_groove.down_r.skeleton.png"
+   },
+   "overrides": {
+    "seed": 987000
+   }
+  }
+ },
+ {
+  "pose": "back_groove.pass_r2",
+  "args": {
+   "workflow": "art_runs/blinblin-v1-20261107d/workflows/back_groove.pass_r2.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/blinblin-v1-20261107d/in/sheet_back.png",
+    "pose_proxy": "/work/tmp/imagegen/kumbia/blinblin-v1-20261107d/in/back_groove.pass_r2.skeleton.png"
+   },
+   "overrides": {
+    "seed": 987000
+   }
+  }
+ }
+]

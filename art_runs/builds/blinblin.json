@@ -107,6 +107,30 @@
     "crossed.nod_down": {
      "why": "Eyes looking down drew a scowl. A warm closed-eye nod reads as approval.",
      "description": "arms firmly crossed high over his chest with each hand tucked under the other arm, head bowed forward in a slow approving nod with the chin dropped, eyes softly closed, a warm small smile, weight on the right leg"
+    },
+    "back_groove.pass_l2": {
+     "why": "Both candidates turned the head to profile, which undercuts facing away.",
+     "description": "seen from directly behind, his back to the viewer, the back of his head pointing straight at the viewer with no face, nose or cheek showing, looking straight ahead away from the viewer: hip popped out to his right over the straight right leg, right hip high, right shoulder dipped, left knee bent with the left foot resting on its toe, right arm lifted out at hip height"
+    },
+    "back_groove.down_r": {
+     "why": "Both candidates turned the head to profile, which undercuts facing away.",
+     "description": "seen from directly behind, his back to the viewer, the back of his head pointing straight at the viewer with no face, nose or cheek showing, looking straight ahead away from the viewer: weight sunk on his bent right knee, left foot stepped back on its ball with the heel raised, right hip high and pushed out, shoulders tilted the other way, right arm low, left arm low and out"
+    },
+    "back_groove.pass_r2": {
+     "why": "Both candidates turned the head to profile, which undercuts facing away.",
+     "description": "seen from directly behind, his back to the viewer, the back of his head pointing straight at the viewer with no face, nose or cheek showing, looking straight ahead away from the viewer: hip popped out to his left over the straight left leg, left hip high, left shoulder dipped, right knee bent with the right foot resting on its toe, left arm lifted out at hip height"
+    },
+    "left_hand.follow": {
+     "why": "All four raised the wrong arm, on the left of the picture. The hand is now named by picture side.",
+     "description": "the arm on the right side of the picture reaching high up and out to the right of the picture, the palm open, torso leaning to the right of the picture, the other fist on the hip with the elbow pushed back, the foot on the right side of the picture on its toe out wide, head turned up toward the raised hand"
+    },
+    "retreat_backward.down_r": {
+     "why": "Both candidates crossed one leg over the other, which the owner dislikes. The words now say the legs stay apart.",
+     "description": "both legs apart and straight down to the floor, weight on the leg on the left of the picture with the knee a little bent, the other foot flat on the floor out to the right of the picture with space between the legs, one hand behind the back, one arm low, head nodding"
+    },
+    "clap.open": {
+     "why": "The pose table raises the forearms over a skeleton with arms down, which drew hands too high or a bar across the chest (LESSONS_LEARNED A5).",
+     "description": "standing square and upright, both arms held out to the sides and angled down, elbows soft, both open hands at hip height away from the body, palms forward, chin up"
     }
    },
    "score": {
@@ -428,7 +452,7 @@
   "groove.pass_r2": "113bebc516b4d9645e94e207b647f06dd47d7740be2cdab8e169d9ba4fb8838c",
   "left_hand.prep": "80f2a11045bc8e58b1863d26f6eea12cd414efcc3888c6bec91ba3c8706f88e9",
   "left_hand.peak": "0d2ba0aaa73704948623af3e9cd25dd51cd8c1f219c7c7d7d268a73f034bd256",
-  "left_hand.follow": "3d3013979e0ba849a1b8cea3c9a4e8156146a5f9ac23724b318f0ecd1fba1810",
+  "left_hand.follow": "5055ed0568258460c2b1bd2b60664040e9af15a2badd270cc7f277188e947a19",
   "left_hand.return": "2b2a38e615a59b3e8c21734e1722a11ce6a5fbaa2ccfa2fae77c4bf98b5aa793",
   "right_hand.prep": "ce057fa401e887eb8b2870ec971c9029e8bc8ba232a30592d2016babf41a97a0",
   "right_hand.peak": "fd377a1f6ca885cfa4a698e5c7e42472850d0b48ec4bf51a0f5fc422f95f2820",
@@ -452,7 +476,7 @@
   "retreat_backward.down_l": "160deb6f71974f682bb9b0f27c3000844a9d128a57ffb890a675532d0ab6f58b",
   "retreat_backward.pass_l": "1b5c49679b90d5a81586f22c36e84759cb711e3d9ad8b1a1b3dcc10c862dc1ad",
   "retreat_backward.contact_r": "705d5b8defb5ffbbd7654ac140597d4d53fb49fda4fa2afdd6cc20e4625afe89",
-  "retreat_backward.down_r": "6005ec5b7796ae3fcbc6e0d539e75f90daa32facb77d684c6833058f151f3932",
+  "retreat_backward.down_r": "7f86ad4d45a4d0b58933c7e24f914cf127837823cda59e20d5418d492934c526",
   "retreat_backward.pass_r": "24744ed30535ee76222baa257de78c7281a4f8c730ffd23e32fccb2b1356545d",
   "yield_side.contact_l": "231d0a00a01350fea8c61c0f59a1f20c7f13b3d02fc15400beafe4157b6c47f3",
   "yield_side.down_l": "d03702fe662b6cdab68f00a6a1088d9ac2ccce6df2705c1cb82d947b77e3eaa1",
@@ -464,7 +488,7 @@
   "watch.hold_l": "bdd04b2a6088d6ed751c8256c2303139d9096ae1e81b80ea4c929ce5748361f8",
   "watch.shift_r": "2b6939116b7096204aa0233282ccb7f646d89ccf248816607efcf342b7d6694d",
   "watch.hold_r": "f91246a00c8ac8f07472a2f5cadabb0dd53e91950c3654c46eeafc33f5a9bb63",
-  "clap.open": "e638ceeea98b9251a4798cfd9daa300299091045622514451603d8899303a06e",
+  "clap.open": "b4140ccae9815c9bf52c7da7c4dcb36995493e5700991997d4a217ba01970d26",
   "clap.close": "11038502dd0e89bfb18810250e6245e05cacbff6809cc389d2d745dd580f9fce",
   "clap.contact": "3ed5ae29682061546a5d6bb000eb200f9e7a9617470ae84664803f1ee0131ebe",
   "clap.release": "c7aae638493f99a5e1e85b9f0d194197814984360b254aae7532a567fcfc3a9c",
@@ -485,11 +509,11 @@
   "back_groove.down_l": "743bc44061925bd58f5c2feedc06c75bbdc431ffacee91c0390d2e5885f681f2",
   "back_groove.pass_l": "ca17cf316fee9b98440c6cf4d2a1f663fe83145268af8e7b112df79fed762100",
   "back_groove.up_l": "7bc9a72c9c500dcaa5c0c1595e4c5100e996e055e1d73774d503d82222f6a6e1",
-  "back_groove.pass_l2": "2ab324d8ec040f7e1a59eda904985381ca9e81d13b6aa3146a610a2025622d46",
-  "back_groove.down_r": "0507e43fb737de1fe963d983281f13a8b8be45693b612f0206fdd8627234a263",
+  "back_groove.pass_l2": "23f2243e9da5e27c937426a0ece1447ace479de4217264cbce688f36da4333b6",
+  "back_groove.down_r": "831907cd036afac706f0774a0a8591ea161c830bf9cc9fba9dff0b2c098b1cde",
   "back_groove.pass_r": "ec1837b2740b593cef852e0c136a446656c9a31781497e45a244883a44221deb",
   "back_groove.up_r": "b0ba5a0a49367d4f46bb7bbdd1ce6479a608bc35847cd73341aa0768e04770a4",
-  "back_groove.pass_r2": "a958b9b360ae52b52b39ba07b2603571737a5021256b8a943fdd6d9a4dce4c2e",
+  "back_groove.pass_r2": "480f322273b83b7407100d3c5a7b9cce8004e9a3d187e11a319607384a793a17",
   "back_accent.arm_l": "bdb8e841e589415cfd642997cdc9955c615c7abe345fa909f789b2c9de0b9e5a",
   "back_accent.arm_r": "4ef7bdbe6f1ea4f7f92694a35860234273bd898aa522e54c01fd77fcdd4ed964",
   "reveal.glance": "c3196ee6ee3e9165cab173b0782934d7863dad00a7e76a58adc8f451a3885b11",

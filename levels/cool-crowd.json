@@ -357,11 +357,13 @@
        "back_groove_down_l",
        "back_groove_pass_l",
        "back_groove_up_l",
+       "back_groove_pass_l2",
+       "back_groove_down_r",
        "back_groove_pass_r",
        "back_groove_up_r",
-       "back_groove_pass_r"
+       "back_groove_pass_r2"
       ],
-      "beatsPerFrame": 0.3333333333
+      "beatsPerFrame": 1
      },
      "turn": [
       "reveal_glance",
@@ -723,15 +725,27 @@
   "dust": false,
   "actors": [
    {
-    "approach": "closeups/oil-gulp-bt-offer.png",
-    "impact": "closeups/oil-gulp-bt-offer.png",
+    "approach": "closeups/nod-bb-rest.png",
+    "impact": "closeups/nod-bb-rest.png",
     "frames": [
      {
       "beat": 3,
-      "image": "closeups/oil-gulp-bt-offer.png"
+      "image": "closeups/nod-bb-rest.png"
+     },
+     {
+      "beat": 4,
+      "image": "closeups/nod-bb-down.png"
+     },
+     {
+      "beat": 4.5,
+      "image": "closeups/nod-bb-up.png"
+     },
+     {
+      "beat": 5,
+      "image": "closeups/nod-bb-rest.png"
      }
     ],
-    "contact": [431, 384],
+    "contact": [338, 440],
     "scale": 0.3,
     "entry": [-12, 0],
     "recoil": [0, 0]

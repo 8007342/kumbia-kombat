@@ -1,0 +1,21 @@
+{
+ "$comment": "The matched nod close-up: BlinBlin on the picture's left, Macron on the right, three drawings each in the order rest, down, up. Every canvas is 400x440 and transparent, and nothing is mirrored. Only the heads change between drawings: below the collar each set is pixel-identical.",
+ "canvas": [400, 440],
+ "order": ["rest", "down", "up"],
+ "blinblin": {
+  "drawings": {"rest": "nod-bb-rest.png", "down": "nod-bb-down.png", "up": "nod-bb-up.png"},
+  "side": "left",
+  "framing": "bust: the canvas bottom cuts his belly, below the medallion",
+  "source": "art_runs/nod-closeups-20261107/scripts/nod_blinblin.py, from two Qwen drawings with provenance in art_runs/nod-closeups-20261107/source/",
+  "cell": 2
+ },
+ "macron": {
+  "drawings": {"rest": "nod-mc-rest.png", "down": "nod-mc-down.png", "up": "nod-mc-up.png"},
+  "side": "right",
+  "framing": "to the knees: the canvas bottom cuts his boots",
+  "floor": [200, 470],
+  "K": 1.4,
+  "source": "art_runs/nod-closeups-20261107/scripts/nod_macron.py, drawn from parts by art_runs/closeups-v3-20261106/scripts/rig.py",
+  "cell": 2
+ }
+}
