@@ -8,9 +8,10 @@ These can't be judged from measurements:
 
 - Whether the music and the transitions sound right.
 - **The mix.** All levels start at 0 dB. Open the game with `?mixer=1`, set the sliders by ear, and press Copy JSON. The JSON matches the manifest's `mix` and each take's `gainDb`.
-- **Accents over the music.** Output peaked at 0.997 of full scale (first channel) in both full runs that recorded it, so there's almost no headroom. The loudest file peaks at 0.95, so the rest probably comes from cues landing on top. Nothing passed 1.0, but a slightly lower master may be wanted. I didn't change it, because that's a mixing choice.
+- **Accents over the music.** Output peaked at 0.997 of full scale (first channel) in both full runs that recorded it, so there's almost no headroom. The loudest file peaks at 0.95, so the rest probably comes from cues landing on top. Nothing passed 1.0, but a slightly lower master may be wanted. I didn't change it, because that's a mixing choice. The mixing agent proposes `masterDb` -1.5, which keeps the balance of music and cues, takes that peak to about 0.84, and needs no re-render. It can be tried live on the Master slider. This is the owner's decision.
 - **Sound rewards.** The answers to moves are still synth notes written in the old scores' keys. They may clash with the takes: keys weren't measured.
-- **One loop seam.** `bar/high` has a sample step of 0.133 at its seam, against about 0.008 just before it. It may be a real drum hit or a click, and only listening can tell. To hear it, stay on the top tier of the bar for about 50 s.
+- **Loop seams.** No live wrap has been heard. The mixing agent compared each wrap with the same music played straight through: in Opus the two largest steps I flagged measure as real attacks (`bar/high` 0.218 looped, 0.193 straight through), using ffmpeg's decoder, not a browser's. In AAC some wraps do add a step, such as `garden/low` at 0.074 against 0.016, so listen for this in quiet passages, in both formats if possible.
+- **Which seams can be heard.** This is my estimate from the level rules, not a test. Low takes are easy: keep missing on the first two tiers. Middle takes are reachable by passing and missing in turn. Garden's top take wraps about 14 s after it starts, so it's reachable, though a flawless run leaves just as it arrives. The lawn's top take (about 21 s to its seam, about 18 s possible) and the bar's (about 47 s, about 21 s possible) look out of reach in normal play, so those two seams shouldn't normally play at all.
 
 ## What was measured
 
@@ -83,7 +84,7 @@ The preview address only works on the host computer, so a phone needs a deployed
 3. **Is it the real music?** The small text should say `clip=garden/low` and `failed=0`. If it says `clip=synth` or `failed` is above 0, write that down: the phone couldn't play the file.
 4. **Does it stay in time?** Tap along for a few minutes. Say if the music and the rings slowly come apart. This is the most important question.
 5. **Do the joins work?** Listen when the music changes as you do well, and when you miss enough to drop a tier. Note any gap, doubled beat or click.
-6. **Does a loop hold?** Stay at one level for over a minute by missing on purpose, and listen for a click or jump.
+6. **Does a loop hold?** The easiest test is the garden's first music: keep missing on purpose for over a minute, and listen for a click or jump about 63 s after it starts. The small text shows `clip=garden/low` while you're on it. Then try the middle music, `clip=garden/mid`, by passing and missing in turn. You can't test this on autoplay, because it moves on before the music loops. Do this on both phones if you can, since they may decode different formats.
 7. **Pause.** Press pause, wait, resume. It should come back in time with the count-in.
 8. **Leave and return.** Lock the phone or switch apps during play, then come back. The music should stop while you're away, and the run should still be there.
 9. **Does it survive?** Play through all three levels. If the page reloads by itself or the sound dies, write down which level. That would point to memory.
