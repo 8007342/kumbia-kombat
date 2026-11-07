@@ -360,7 +360,7 @@ class _GardenPageState extends State<GardenPage>
     final nextIndex = _roomIndex + 1;
     final next = _handoff!.nextTransport;
     try {
-      await _scene.showLevel(_step.next!);
+      await _scene.showLevel(_step.next!, dissolve: true);
       if (!mounted || !_foreground || _conductor?.isPaused == true) return;
       _bankedPizazz += _session!.pizazz;
       _bankedPerfects += _session!.perfects;

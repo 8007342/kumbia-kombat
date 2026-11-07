@@ -43,9 +43,14 @@ void main() {
       at(start + offsets[i]);
       expect(garden.tap(limbs[i]).grade, TapGrade.perfect);
     }
-    at(start + (garden.progress.cleared ? 7.9 : 6.9));
+    // The bar's last note lands later than the garden's, so its phrase resolves later.
+    at(start + (garden.progress.cleared ? 7.9 : offsets.last + .4));
     if (garden.progress.cleared && garden.phase != GardenPhase.cleared) {
       at(start + 7.9);
+    }
+    // A late last note's swipe window outlasts the phrase, and the win waits for it.
+    if (garden.progress.cleared && garden.phase != GardenPhase.cleared) {
+      at(start + 9);
     }
   }
 
@@ -165,7 +170,7 @@ void main() {
       playResponse(12 + cycle * 16);
     }
     expect(garden.progress.fullTierSuccesses, 1);
-    at(162.9);
+    at(12 + 9 * 16 + FightChart.bar.offsets.last + .4);
     expect(garden.progress.fullTierSuccesses, 0);
     expect(garden.progress.tier, 3);
     expect(garden.progress.cleared, isFalse);

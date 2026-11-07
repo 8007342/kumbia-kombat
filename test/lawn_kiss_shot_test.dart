@@ -67,9 +67,9 @@ void main() {
     for (final hit in shot.cue) {
       expect(hit.beat, lessThan(length));
     }
-    // Nothing here names a next room, so a bridge can be added to the campaign
-    // alone, and routeAt still cools the room down over whatever music follows.
-    expect(step.next, isNull);
+    // Nothing in the shot names the next room: the campaign's bridge is enough,
+    // and routeAt cools the room down over whatever music follows.
+    expect(step.next, isNotNull);
     expect(shot.routeAt(shot.closeupTo, length + 8), 0);
     expect(shot.routeAt(length + 8, length + 8), 1);
   });

@@ -62,6 +62,18 @@ class _ClockOnly implements MusicAudioBackend {
 }
 
 void main() {
+  test('play complexity rises through the campaign, whatever the tempo', () {
+    // The owner's rule, tenth round: speed is only one factor, so the slower bar
+    // must still ask more than the lawn before it. Offbeat share is one measure of
+    // that; it says nothing about how a run feels, which needs a player.
+    double offbeat(FightChart chart) =>
+        chart.offsets.where((beat) => beat % 1 != 0).length /
+        chart.offsets.length;
+    final charts = [for (final step in _shipping().campaign) step.level.chart];
+    expect(offbeat(charts[1]), greaterThanOrEqualTo(offbeat(charts[0])));
+    expect(offbeat(charts[2]), greaterThan(offbeat(charts[1])));
+  });
+
   group('shipping levels match the two-room code they replaced', () {
     final levels = _shipping();
 
@@ -172,23 +184,23 @@ void main() {
       () {
         expect(levels.levels.map((level) => level.id), [
           'garden',
-          'bar',
           'pool-garden',
+          'bar',
         ]);
         expect(levels.displayTotal, 5);
-        final [garden, bar, lawn] = levels.campaign;
-        expect(garden.next, same(bar.level));
-        expect(garden.bridgeToNext, 'garden_to_bar');
-        expect(bar.next, same(lawn.level));
-        expect(bar.bridgeToNext, 'bar_to_pool');
-        expect(lawn.next, isNull);
-        expect(lawn.bridgeToNext, isNull);
+        final [garden, lawn, bar] = levels.campaign;
+        expect(garden.next, same(lawn.level));
+        expect(garden.bridgeToNext, 'garden_to_pool');
+        expect(lawn.next, same(bar.level));
+        expect(lawn.bridgeToNext, 'pool_to_bar');
+        expect(bar.next, isNull);
+        expect(bar.bridgeToNext, isNull);
         expect(levels.exitScoreIds, {
           'garden_mojo_success',
-          'garden_to_bar',
-          'bar_swag_success',
-          'bar_to_pool',
+          'garden_to_pool',
           'pool_swing_success',
+          'pool_to_bar',
+          'bar_swag_finale',
         });
         expect(garden.level.copy.clearedShout, 'MUCHO MOJO');
         expect(bar.level.copy.clearedShout, 'MUY SUAVE');

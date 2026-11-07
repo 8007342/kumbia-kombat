@@ -3,14 +3,14 @@
   "campaign": [
     {
       "level": "garden",
-      "bridgeToNext": "garden_to_bar"
+      "bridgeToNext": "garden_to_pool"
     },
     {
-      "level": "bar",
-      "bridgeToNext": "bar_to_pool"
+      "level": "pool-garden",
+      "bridgeToNext": "pool_to_bar"
     },
     {
-      "level": "pool-garden"
+      "level": "bar"
     }
   ]
 }

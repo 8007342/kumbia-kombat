@@ -309,11 +309,15 @@ void main() {
           note.velocity / 127 * musicVoiceGain * musicMasterGain * 1.3;
       for (final id in ['garden', 'bar']) {
         final shot = step(id).level.exitShot!;
-        final bridge = _score(step(id).bridgeToNext!);
-        final success = _score(step(id).level.music.successScore).lengthBeats;
+        final success = _score(step(id).level.music.successScore);
+        final bridgeId = step(id).bridgeToNext;
         for (final hit in shot.cue.where((hit) => hit.beat == shot.contactBeat)) {
-          final under = bridge.notes
-              .where((note) => note.beat == hit.beat - success)
+          // A last level has no bridge: its long success score plays under the hit.
+          final inSuccess = hit.beat < success.lengthBeats;
+          final score = inSuccess ? success : _score(bridgeId!);
+          final beat = inSuccess ? hit.beat : hit.beat - success.lengthBeats;
+          final under = score.notes
+              .where((note) => note.beat == beat)
               .fold(0.0, (sum, note) => sum + level(note));
           expect(
             accentPeak(hit.track, hit.velocity),

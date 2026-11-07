@@ -20,6 +20,7 @@ import 'party_sprites.dart';
 import 'progression.dart';
 import 'rhythm.dart';
 import 'room_departure.dart';
+import 'room_dissolve.dart';
 
 class _WorldDraw {
   const _WorldDraw(this.id, this.floorY, this.layer, this.draw);
@@ -40,6 +41,7 @@ class GardenSceneGame extends FlameGame {
   final Future<LevelDefinition> Function() firstLevel;
   GardenSession? session;
   bool reducedMotion = false;
+  RoomDissolve? _dissolve;
   bool presentationPaused = false;
   Limb? action;
   double actionBeat = -10;
@@ -123,9 +125,9 @@ class GardenSceneGame extends FlameGame {
         for (final entry in ensemble.atlases.entries)
           entry.key: EnsembleAtlas(entry.value, loaded[index++]),
       };
-      final propSets =
-          jsonDecode(await rootBundle.loadString('assets/art/props/manifest.json'))
-              as Map<String, dynamic>;
+      final propSets = jsonDecode(
+        await rootBundle.loadString('assets/art/props/manifest.json'),
+      ) as Map<String, dynamic>;
       _propSets = {
         for (final entry in (propSets['sets'] as Map).entries)
           entry.key as String: EnsembleAtlasDefinition.fromJson(
@@ -141,7 +143,7 @@ class GardenSceneGame extends FlameGame {
   }
 
   /// Challenger animation comes exclusively from the ensemble atlas.
-  Future<void> showLevel(LevelDefinition level) async {
+  Future<void> showLevel(LevelDefinition level, {bool dissolve = false}) async {
     for (final challenger in level.stage.challengers) {
       if (!_ensemble!.containsKey(challenger.atlas)) {
         throw StateError(
@@ -175,12 +177,15 @@ class GardenSceneGame extends FlameGame {
     }
     final propSet = level.propSet == null ? null : _propSets![level.propSet];
     if (level.propSet != null && propSet == null) {
-      throw StateError('Level ${level.id} names unknown props ${level.propSet}');
+      throw StateError(
+        'Level ${level.id} names unknown props ${level.propSet}',
+      );
     }
     final propImage = propSet == null
         ? null
         : await images.load('props/${propSet.art.image}');
     if (generation != _roomGeneration) return;
+    if (dissolve) _startDissolve();
     _props = propSet == null ? null : EnsembleAtlas(propSet, propImage!);
     _level = level;
     _background = loaded;
@@ -205,11 +210,42 @@ class GardenSceneGame extends FlameGame {
         dt.isFinite &&
         dt > 0) {
       _foregroundSeconds += dt;
+      final fading = _dissolve;
+      if (fading != null) {
+        fading.elapsed += dt;
+        if (fading.done) {
+          fading.dispose();
+          _dissolve = null;
+        }
+      }
     }
+  }
+
+  /// Keeps the frame on screen now, to clear away over the room about to load.
+  void _startDissolve() {
+    if (size.x <= 0 || size.y <= 0 || _level == null) return;
+    final scale = math.min(
+      ui.PlatformDispatcher.instance.implicitView?.devicePixelRatio ?? 1,
+      2.0,
+    );
+    final recorder = ui.PictureRecorder();
+    final canvas = ui.Canvas(recorder);
+    canvas.scale(scale);
+    render(canvas);
+    final picture = recorder.endRecording();
+    final image = picture.toImageSync(
+      (size.x * scale).ceil(),
+      (size.y * scale).ceil(),
+    );
+    picture.dispose();
+    _dissolve?.dispose();
+    _dissolve = RoomDissolve(image, scale: scale);
   }
 
   @override
   void onRemove() {
+    _dissolve?.dispose();
+    _dissolve = null;
     _outfits?.dispose();
     super.onRemove();
   }
@@ -282,6 +318,12 @@ class GardenSceneGame extends FlameGame {
 
   @override
   void render(ui.Canvas canvas) {
+    _renderRoom(canvas);
+    super.render(canvas);
+    _dissolve?.render(canvas, size.x, size.y, reducedMotion: reducedMotion);
+  }
+
+  void _renderRoom(ui.Canvas canvas) {
     if (size.x <= 0 ||
         size.y <= 0 ||
         _heroAtlas == null ||
@@ -362,7 +404,6 @@ class GardenSceneGame extends FlameGame {
     }
     _drawCloseup(canvas, bounds);
     canvas.restore();
-    super.render(canvas);
   }
 
   /// True while a close-up covers the world, for the HUD to step aside.
@@ -730,7 +771,9 @@ class GardenSceneGame extends FlameGame {
       // Mācron walks over for the shot, and a lone dancer comes in to meet him.
       final shot = _level!.exitShot;
       final meet = challenger.meetMark;
-      if (meet != null && shot != null && session?.phase == GardenPhase.cleared) {
+      if (meet != null &&
+          shot != null &&
+          session?.phase == GardenPhase.cleared) {
         final at = exitBeat == null ? 0.0 : shot.stepAt(exitBeat!);
         floor = PartyPoint(
           floor.x + (meet.x - floor.x) * at,
@@ -744,7 +787,9 @@ class GardenSceneGame extends FlameGame {
         floor = placed.floor;
         mirrored = placed.mirrored;
         role = placed.role;
-        dressed = placed.frame == null ? dressed : dressed.withFrame(placed.frame!);
+        dressed = placed.frame == null
+            ? dressed
+            : dressed.withFrame(placed.frame!);
       }
       final projected = viewport.project(floor);
       final height = _adultHeight(
@@ -846,7 +891,8 @@ class GardenSceneGame extends FlameGame {
     final t = beat - session!.callStartBeat;
     if (!spin.isTurning(t)) return null;
     final spec = _level!.stage.duet!.spin;
-    final index = ((t - spin.from) / spec.beats * spec.heroFrames.length).floor();
+    final index = ((t - spin.from) / spec.beats * spec.heroFrames.length)
+        .floor();
     return (
       spin: spin,
       frame: spec.heroFrames[index.clamp(0, spec.heroFrames.length - 1)],
@@ -874,12 +920,8 @@ class GardenSceneGame extends FlameGame {
 
   /// A pair's place and drawing from the level's floor pattern, or null when the
   /// level has none. Reads the beat and the pose only: art can't move the music.
-  ({PartyPoint floor, String? frame, bool mirrored, DuetRole? role})? _duetPlace(
-    int dancer,
-    String atlas,
-    ChallengerPose pose,
-    double beat,
-  ) {
+  ({PartyPoint floor, String? frame, bool mirrored, DuetRole? role})?
+  _duetPlace(int dancer, String atlas, ChallengerPose pose, double beat) {
     final level = _level!;
     final duet = level.stage.duet;
     final s = session;
@@ -1042,10 +1084,7 @@ class GardenSceneGame extends FlameGame {
     final watchWalking =
         inCall &&
         HeroWatch.walking(callAge, s!.chart.callBeats, firstCall: firstCall);
-    floor = PartyPoint(
-      floor.x + off.x - home.x,
-      floor.y + off.y - home.y,
-    );
+    floor = PartyPoint(floor.x + off.x - home.x, floor.y + off.y - home.y);
     var shotWalking = false;
     if (shot != null && s?.phase == GardenPhase.cleared) {
       final step = shotBeat == null ? 0.0 : shot.stepAt(shotBeat);

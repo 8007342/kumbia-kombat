@@ -230,7 +230,7 @@ class FightChart {
       Limb.leftHand,
       Limb.rightFoot,
     ],
-    offsets: [0, 1, 2, 2.5, 4, 5, 6, 6.5],
+    offsets: [.5, 1, 2.25, 3, 4.5, 5.25, 6, 6.75],
     variants: [
       [
         Limb.rightFoot,
@@ -238,8 +238,8 @@ class FightChart {
         Limb.rightHand,
         Limb.leftHand,
         Limb.rightFoot,
-        Limb.leftFoot,
         Limb.leftHand,
+        Limb.leftFoot,
         Limb.rightHand,
       ],
       [
