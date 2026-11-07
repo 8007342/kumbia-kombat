@@ -64,12 +64,24 @@ class _ClockOnly implements MusicAudioBackend {
 void main() {
   test('play complexity rises through the campaign, whatever the tempo', () {
     // The owner's rule, tenth round: speed is only one factor, so the slower bar
-    // must still ask more than the lawn before it. Offbeat share is one measure of
-    // that; it says nothing about how a run feels, which needs a player.
-    double offbeat(FightChart chart) =>
-        chart.offsets.where((beat) => beat % 1 != 0).length /
-        chart.offsets.length;
+    // must still ask more than the lawn before it. Twelfth round: richer moves are
+    // how it grows. So this counts them, along with the offbeat share, across every
+    // pattern a level can play. It says nothing about how a run feels, which needs
+    // a player.
+    List<ChartPattern> patterns(FightChart chart) => [
+      for (var i = 0; i <= chart.variants.length; i++) chart.pattern(i),
+    ];
+    double offbeat(FightChart chart) {
+      final notes = [for (final p in patterns(chart)) ...p.offsets];
+      return notes.where((beat) => beat % 1 != 0).length / notes.length;
+    }
+
+    int rich(FightChart chart) =>
+        patterns(chart).fold(0, (sum, p) => sum + p.richSteps);
     final charts = [for (final step in _shipping().campaign) step.level.chart];
+    expect(rich(charts[0]), 0, reason: 'the Garden stays simple, as the opener');
+    expect(rich(charts[1]), greaterThan(rich(charts[0])));
+    expect(rich(charts[2]), greaterThan(rich(charts[1])));
     expect(offbeat(charts[1]), greaterThanOrEqualTo(offbeat(charts[0])));
     expect(offbeat(charts[2]), greaterThan(offbeat(charts[1])));
   });

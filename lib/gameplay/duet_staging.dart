@@ -271,12 +271,14 @@ class LevelDuet {
     required Limb? limb,
     required DanceMovePhase phase,
     required double beat,
+    Limb? partner,
   }) {
     final showing =
         limb != null &&
         (phase == DanceMovePhase.accent ||
             phase == DanceMovePhase.followThrough) &&
-        onLeft == pictureLeftLimb(limb);
+        (onLeft == pictureLeftLimb(limb) ||
+            (partner != null && onLeft == pictureLeftLimb(partner)));
     if (showing) {
       return limb == Limb.leftHand || limb == Limb.rightHand
           ? pairFrames.arm

@@ -3,6 +3,7 @@ import 'crowd_interest.dart';
 import 'gesture_shapes.dart';
 import 'progression.dart';
 import 'rhythm.dart';
+import 'thumb_layout.dart';
 
 enum GardenPhase { ready, intro, call, response, paused, cleared }
 
@@ -91,6 +92,9 @@ class GardenCue {
     required this.demonstration,
     this.flourishTo,
     this.offer,
+    this.index = 0,
+    this.step = 0,
+    this.move,
   });
   final String id;
   final Limb limb;
@@ -102,7 +106,135 @@ class GardenCue {
 
   /// The move this note invites: what its glyph draws.
   final GestureKind? offer;
+
+  /// This note's place in the phrase, and the step it belongs to.
+  final int index;
+  final int step;
+
+  /// The richer move this note is part of, if any. Two cues of one step are drawn
+  /// linked: see `cue_links.dart`.
+  final RichMove? move;
 }
+
+/// Richer moves inside a beat, the owner's twelfth round. Each is one step of a
+/// phrase with two presses:
+/// - [doubleTap]: the same spot twice.
+/// - [pair]: two spots at once, one thumb on each.
+/// - [split]: one spot, then a spot on the other side.
+enum RichMove { doubleTap, pair, split }
+
+/// How close together a chart may ask for presses. The grip assumed is one thumb
+/// on each side of the phone. Every number is a starting value that a level can
+/// tune, and none of them has met a real thumb: see
+/// `plan/double-moves-2026-11-07.md`.
+class MoveLimits {
+  const MoveLimits({
+    this.pairToleranceMs = 80,
+    this.sameSpotMs = 285,
+    this.thumbHopMs = 330,
+    this.crossThumbMs = 170,
+    this.sameLimbMs = 400,
+    this.phraseEndMs = 100,
+  });
+
+  /// Two presses of a pair this close share the better grade, because they are
+  /// one gesture to the player. Each press counts whatever this is: a pair's
+  /// notes each keep the judge's whole window.
+  final int pairToleranceMs;
+
+  /// One thumb, one spot, inside one step. The progression report's 285 ms.
+  final int sameSpotMs;
+
+  /// One thumb moving to the other spot on its own side.
+  final int thumbHopMs;
+
+  /// Two thumbs, one after the other, unless they are a pair.
+  final int crossThumbMs;
+
+  /// One limb in two different steps. Above twice the good window, so a tap can
+  /// never be judged against a note of the wrong step.
+  final int sameLimbMs;
+
+  /// How long the last note's good window must end before the phrase does. A
+  /// window that crossed the boundary would be cut off by the next phrase.
+  final int phraseEndMs;
+}
+
+/// One step of a richer pattern. A step with no [move] is a single plain note.
+class ChartStep {
+  const ChartStep(this.at, this.limb, {this.move, this.partner, this.gap = 0});
+  final double at;
+  final Limb limb;
+  final RichMove? move;
+
+  /// The second limb of a pair or a split.
+  final Limb? partner;
+
+  /// Beats from the first press to the second, for a double or a split.
+  final double gap;
+}
+
+/// One phrase as it is played: its notes in time order, each knowing its step.
+/// A step is what clearing counts, so a richer phrase asks for no more than a
+/// plain one. The second press of a step is there for skilful play.
+class ChartPattern {
+  ChartPattern._(this.limbs, this.offsets, this.stepOf, this.moves, this.steps);
+
+  factory ChartPattern.plain(List<Limb> limbs, List<double> offsets) =>
+      ChartPattern._(
+        limbs,
+        offsets,
+        [for (var i = 0; i < limbs.length; i++) i],
+        List.filled(limbs.length, null),
+        limbs.length,
+      );
+
+  factory ChartPattern.rich(List<ChartStep> steps) {
+    final limbs = <Limb>[];
+    final offsets = <double>[];
+    final stepOf = <int>[];
+    final moves = <RichMove?>[];
+    for (final (index, step) in steps.indexed) {
+      void note(Limb limb, double at) {
+        limbs.add(limb);
+        offsets.add(at);
+        stepOf.add(index);
+        moves.add(step.move);
+      }
+
+      note(step.limb, step.at);
+      switch (step.move) {
+        case null:
+          break;
+        case RichMove.doubleTap:
+          note(step.limb, step.at + step.gap);
+        case RichMove.pair:
+          note(step.partner!, step.at);
+        case RichMove.split:
+          note(step.partner!, step.at + step.gap);
+      }
+    }
+    return ChartPattern._(
+      List.unmodifiable(limbs),
+      List.unmodifiable(offsets),
+      List.unmodifiable(stepOf),
+      List.unmodifiable(moves),
+      steps.length,
+    );
+  }
+
+  final List<Limb> limbs;
+  final List<double> offsets;
+  final List<int> stepOf;
+  final List<RichMove?> moves;
+  final int steps;
+
+  /// How many steps ask for a second press.
+  int get richSteps => limbs.length - steps;
+}
+
+/// What finishing a richer step adds to the score. An optional move adds 100.
+const richStepPizazz = 50;
 
 /// Two-bar demonstrations and responses. Bar currently runs about 90–95 s
 /// for ten clean responses; its 80 s design budget remains a tuning target.
@@ -114,6 +246,8 @@ class FightChart {
     this.introBeats = 4,
     this.flourishDestination = Limb.rightFoot,
     this.variants = const [],
+    this.richPatterns = const {},
+    this.limits = const MoveLimits(),
   });
   final List<Limb> limbs;
   final List<double> offsets;
@@ -121,9 +255,26 @@ class FightChart {
   final double introBeats;
   final Limb flourishDestination;
   final List<List<Limb>> variants;
-  List<Limb> limbsFor(int tier, int peakPhrase) => variants.isEmpty || tier == 0
-      ? limbs
-      : variants[(tier == 4 ? 3 + peakPhrase : tier - 1) % variants.length];
+
+  /// Patterns played as richer steps instead of their plain limbs and offsets:
+  /// key 0 is [limbs], and key n is `variants[n - 1]`. Empty on a plain chart.
+  final Map<int, List<ChartStep>> richPatterns;
+  final MoveLimits limits;
+
+  /// 0 is [limbs], and n is `variants[n - 1]`.
+  int patternIndex(int tier, int peakPhrase) => variants.isEmpty || tier == 0
+      ? 0
+      : 1 + (tier == 4 ? 3 + peakPhrase : tier - 1) % variants.length;
+  List<Limb> limbsFor(int tier, int peakPhrase) =>
+      patternFor(tier, peakPhrase).limbs;
+  ChartPattern patternFor(int tier, int peakPhrase) =>
+      pattern(patternIndex(tier, peakPhrase));
+  ChartPattern pattern(int index) {
+    final rich = richPatterns[index];
+    if (rich != null) return ChartPattern.rich(rich);
+    return ChartPattern.plain(index == 0 ? limbs : variants[index - 1], offsets);
+  }
+
   double get cycleBeats => callBeats * 2;
 
   void validate() {
@@ -148,6 +299,85 @@ class FightChart {
     if (variants.any((pattern) => pattern.length != limbs.length)) {
       throw ArgumentError('Chart variants must preserve note count');
     }
+    richPatterns.forEach(_validateRich);
+  }
+
+  /// Every pattern keeps the same number of steps, so "one dropped step in eight"
+  /// means the same thing at every tier, however many presses a step holds.
+  void _validateRich(int index, List<ChartStep> steps) {
+    if (index < 0 || index > variants.length) {
+      throw ArgumentError('Rich pattern $index has no plain pattern to replace');
+    }
+    if (steps.length != limbs.length) {
+      throw ArgumentError('Rich pattern $index must keep ${limbs.length} steps');
+    }
+    var previous = -1.0;
+    for (final (i, step) in steps.indexed) {
+      final where = 'Rich pattern $index step $i';
+      if (!step.at.isFinite || step.at <= previous) {
+        throw ArgumentError('$where must start after the last press before it');
+      }
+      final move = step.move;
+      final partner = step.partner;
+      final timed = move == RichMove.doubleTap || move == RichMove.split;
+      final paired = move == RichMove.pair || move == RichMove.split;
+      if (paired != (partner != null)) {
+        throw ArgumentError('$where names its second limb only for a pair or split');
+      }
+      if (timed != (step.gap > 0) || !step.gap.isFinite) {
+        throw ArgumentError('$where has a gap only for a double or split');
+      }
+      // One thumb on each side: it can't press both, or jump across the phone.
+      if (paired && limbIsLeft(partner!) == limbIsLeft(step.limb)) {
+        throw ArgumentError('$where must use both sides of the phone');
+      }
+      previous = step.at + step.gap;
+      if (previous >= callBeats) {
+        throw ArgumentError('$where runs past the call');
+      }
+    }
+  }
+
+  /// Which fairness limits a pattern breaks at [bpm]. Tempo belongs to the music,
+  /// so this is for tests and tools, not for loading. Empty when all is well.
+  List<String> fairnessProblems(int index, double bpm) {
+    final beatMs = 60000 / bpm;
+    final played = pattern(index);
+    final problems = <String>[];
+    for (var i = 0; i < played.limbs.length; i++) {
+      for (var j = i + 1; j < played.limbs.length; j++) {
+        final a = played.limbs[i];
+        final b = played.limbs[j];
+        final beats = played.offsets[j] - played.offsets[i];
+        final ms = beats * beatMs;
+        final sameStep = played.stepOf[i] == played.stepOf[j];
+        if (beats == 0) continue;
+        final String rule;
+        final int floor;
+        if (a == b) {
+          (rule, floor) = sameStep
+              ? ('same spot', limits.sameSpotMs)
+              : ('same limb', limits.sameLimbMs);
+        } else if (limbIsLeft(a) == limbIsLeft(b)) {
+          (rule, floor) = ('thumb hop', limits.thumbHopMs);
+        } else {
+          (rule, floor) = ('cross thumb', limits.crossThumbMs);
+        }
+        if (ms < floor) {
+          problems.add(
+            'pattern $index at $bpm BPM: $rule, beats '
+            '${played.offsets[i]} and ${played.offsets[j]}, '
+            '${ms.round()} ms under $floor',
+          );
+        }
+      }
+    }
+    final end =
+        (callBeats - played.offsets.last) * beatMs - RhythmJudge.goodWindowMs;
+    if (end < limits.phraseEndMs) {
+      problems.add('pattern $index at $bpm BPM: last note ends the phrase late');
+    }
+    return problems;
   }
 
   /// Frozen reference for `levels/garden.json`, which is what the game plays.
@@ -312,18 +542,28 @@ class GardenSession {
        ),
        _cycleStart = chart.introBeats {
     chart.validate();
-    _activeLimbs = chart.limbs;
+    _pattern = chart.pattern(0);
   }
   final MusicTransport transport;
   final MusicAudioBackend backend;
   final FightProgress progress;
   final FightChart chart;
   final CrowdInterestModel crowd;
-  late List<Limb> _activeLimbs;
-  List<Limb> get activeLimbs => _activeLimbs;
-  List<double> get activeOffsets => chart.offsets;
+  late ChartPattern _pattern;
+
+  /// Every note of this phrase, in time order. A pair's two notes share an offset.
+  List<Limb> get activeLimbs => _pattern.limbs;
+  List<double> get activeOffsets => _pattern.offsets;
+
+  /// The step each active note belongs to, and that step's richer move if any.
+  List<int> get activeSteps => _pattern.stepOf;
+  List<RichMove?> get activeMoves => _pattern.moves;
+  int get stepCount => _pattern.steps;
+
+  /// Steps needed to pass, not notes: a richer phrase asks for no more than a
+  /// plain one. See [ChartPattern].
   int get requiredHits => progress.definition.requiredHits(
-    _activeLimbs.length,
+    stepCount,
     atPeak: _phraseTier == 4,
   );
   int get peakChallengesRemaining =>
@@ -342,14 +582,24 @@ class GardenSession {
   double _lastStyleBeat = -100;
   int perfects = 0;
   int combo = 0;
+
+  /// Both presses of a richer step landed, this run. Never reset by a replay of
+  /// the same performance, and read by whatever wants to celebrate one.
+  int richStepsCompleted = 0;
+
+  /// The other limb of the pair the latest press completed, or null.
+  Limb? lastPairPartner;
   int passedPhrases = 0;
   double? completedAtSeconds;
   double? completedAtBeat;
   double _cycleStart;
   RhythmJudge? _judge;
   bool _resolved = false;
-  int _hits = 0;
-  int _phrasePerfects = 0;
+  final Set<int> _stepsLanded = {};
+  final Set<int> _stepsPerfect = {};
+  final Map<int, int> _pressedMs = {};
+  final Map<int, String> _pressedPlain = {};
+  int _phraseRich = 0;
   int _phraseGestures = 0;
   final List<int> _phraseDeltasMs = [];
   int _responseTier = 0;
@@ -398,26 +648,28 @@ class GardenSession {
     if (newOccurrence) _responseSequence++;
     _judge = null;
     _resolved = false;
-    _hits = 0;
-    _phrasePerfects = 0;
+    _stepsLanded.clear();
+    _stepsPerfect.clear();
+    _pressedMs.clear();
+    _pressedPlain.clear();
+    _phraseRich = 0;
+    lastPairPartner = null;
     _phraseGestures = 0;
     _phraseDeltasMs.clear();
     _hit.clear();
     _phraseTier = progress.tier;
-    _activeLimbs = List.unmodifiable(
-      chart.limbsFor(_phraseTier, progress.fullTierSuccesses),
-    );
+    _pattern = chart.patternFor(_phraseTier, progress.fullTierSuccesses);
     _crowdCheckpoint = crowd.checkpoint();
     _phraseIdentity =
         '${progress.definition.id}:${progress.tier}:${progress.successesAtTier}:${progress.fullTierSuccesses}';
   }
 
   RhythmJudge _makeJudge() => RhythmJudge([
-    for (var i = 0; i < _activeLimbs.length; i++)
+    for (var i = 0; i < activeLimbs.length; i++)
       RhythmNote(
         '$_phraseIdentity:$i',
-        _activeLimbs[i],
-        (transport.secondsAt(_cycleStart + chart.callBeats + chart.offsets[i]) *
+        activeLimbs[i],
+        (transport.secondsAt(_cycleStart + chart.callBeats + activeOffsets[i]) *
                 1000)
             .round(),
         flourishTo: _flourishDestination(i),
@@ -428,17 +680,17 @@ class GardenSession {
   GestureKind? _offerAt(int index) => _flourishDestination(index) == null
       ? null
       : gestureOffer(
-          limb: _activeLimbs[index],
-          lastNote: index == _activeLimbs.length - 1,
+          limb: activeLimbs[index],
+          lastNote: index == activeLimbs.length - 1,
           tier: _phraseTier,
         );
 
   Limb? _flourishDestination(int index) {
-    if (index == _activeLimbs.length - 1) return chart.flourishDestination;
+    if (index == activeLimbs.length - 1) return chart.flourishDestination;
     final response = _cycleStart + chart.callBeats;
     final gapMs =
-        (transport.secondsAt(response + chart.offsets[index + 1]) -
-            transport.secondsAt(response + chart.offsets[index])) *
+        (transport.secondsAt(response + activeOffsets[index + 1]) -
+            transport.secondsAt(response + activeOffsets[index])) *
         1000;
     // Leave the full late tap + ornament + next early tap windows unobstructed.
     return gapMs >=
@@ -457,11 +709,11 @@ class GardenSession {
     final beat = positionBeats;
     final cues = <GardenCue>[];
     for (final demonstration in [true, false]) {
-      for (var i = 0; i < _activeLimbs.length; i++) {
+      for (var i = 0; i < activeLimbs.length; i++) {
         final target =
             _cycleStart +
             (demonstration ? 0 : chart.callBeats) +
-            chart.offsets[i];
+            activeOffsets[i];
         final id = '$_phraseIdentity:$i';
         if (!demonstration && _hit.contains(id)) continue;
         if (beat >= target - 2 &&
@@ -470,12 +722,15 @@ class GardenSession {
           cues.add(
             GardenCue(
               id: id,
-              limb: _activeLimbs[i],
+              limb: activeLimbs[i],
               beat: target,
               progress: ((beat - target + 2) / 2).clamp(0, 1),
               demonstration: demonstration,
               flourishTo: _flourishDestination(i),
               offer: _offerAt(i),
+              index: i,
+              step: activeSteps[i],
+              move: activeMoves[i],
             ),
           );
         }
@@ -532,13 +787,18 @@ class GardenSession {
       _judge = _makeJudge();
     }
     final judge = _judge!;
-    if (judge.expire(_nowMs).isNotEmpty) {
-      combo = 0;
+    // A step's second press is for skilful play, so missing it breaks nothing.
+    // The combo breaks once a whole step has gone by with neither press.
+    for (final missed in judge.expire(_nowMs)) {
+      final step = activeSteps[_indexOf(missed)];
+      final lastOfStep =
+          _indexOf(missed) == activeSteps.lastIndexOf(step);
+      if (lastOfStep && !_stepsLanded.contains(step)) combo = 0;
     }
     if (!_resolved &&
         _nowMs > judge.notes.last.atMs + RhythmJudge.goodWindowMs) {
       _resolved = true;
-      final passed = _hits >= requiredHits;
+      final passed = _stepsLanded.length >= requiredHits;
       // Full-arrangement sustain cannot score while its request is pending.
       if (passed && progress.tier == 4 && _responseTier < 4) return;
       lastOutcome = progress.resolve(passed: passed);
@@ -553,10 +813,11 @@ class GardenSession {
         beat: resolvedBeat,
         cleared: progress.cleared,
         report: PhraseReport(
-          notes: _activeLimbs.length,
-          hits: _hits,
-          perfects: _phrasePerfects,
-          gestures: _phraseGestures,
+          notes: stepCount,
+          hits: _stepsLanded.length,
+          perfects: _stepsPerfect.length,
+          // A finished richer step is skill the room can see, like a move.
+          gestures: _phraseGestures + _phraseRich,
           spreadMs: PhraseReport.spreadOf(_phraseDeltasMs),
         ),
       );
@@ -598,23 +859,81 @@ class GardenSession {
       _responseTier = transport.currentTier;
       _judge = _makeJudge();
     }
-    final result = _judge!.tap(limb, _nowMs);
+    final result = _togetherGrade(_judge!.tap(limb, _nowMs));
     lastGrade = result.grade;
     lastTiming = result.timing;
     lastDeltaMs = result.deltaMs;
+    lastPairPartner = null;
     if (result.note != null) {
-      _hits++;
+      final index = _indexOf(result.note!);
+      final step = activeSteps[index];
+      final firstOfStep = !_stepsLanded.contains(step);
+      _stepsLanded.add(step);
       combo++;
       _hit.add(result.note!.id);
       _phraseDeltasMs.add(result.deltaMs);
       _openMove(result.note!);
-      if (result.grade == TapGrade.perfect) _phrasePerfects++;
-      if (result.grade == TapGrade.perfect &&
-          _perfectCredited.add(result.note!.id)) {
-        perfects++;
+      if (result.grade == TapGrade.perfect) {
+        _stepsPerfect.add(step);
+        _creditPerfect(result.note!.id);
+      }
+      if (!firstOfStep) _richStepLanded(index, step);
+      _pressedMs[step] = _nowMs;
+      if (result.grade != TapGrade.perfect) {
+        _pressedPlain[step] = result.note!.id;
       }
     }
     return result;
+  }
+
+  int _indexOf(RhythmNote note) => _judge!.notes.indexOf(note);
+
+  void _creditPerfect(String noteId) {
+    if (_perfectCredited.add(noteId)) perfects++;
+  }
+
+  /// Two thumbs a few milliseconds apart are one gesture, so a pair's presses
+  /// that land together share the better grade, either way round.
+  TapResult _togetherGrade(TapResult result) {
+    final note = result.note;
+    if (note == null) return result;
+    final index = _indexOf(note);
+    if (activeMoves[index] != RichMove.pair) return result;
+    final step = activeSteps[index];
+    final other = _pressedMs[step];
+    if (other == null ||
+        (_nowMs - other).abs() > chart.limits.pairToleranceMs) {
+      return result;
+    }
+    final otherPlain = _pressedPlain[step];
+    if (result.grade == TapGrade.perfect) {
+      // The first press was the one just outside: its credit comes now.
+      if (otherPlain != null) _creditPerfect(otherPlain);
+      return result;
+    }
+    if (otherPlain != null) return result;
+    return TapResult(
+      TapGrade.perfect,
+      note,
+      deltaMs: result.deltaMs,
+      timing: TapTiming.perfect,
+    );
+  }
+
+  /// Both presses of a step landed. It pays like a smaller optional move, and only
+  /// once per performance, so a pause's replay can't farm it.
+  void _richStepLanded(int index, int step) {
+    _phraseRich++;
+    if (activeMoves[index] == RichMove.pair) {
+      final first = activeSteps.indexOf(step);
+      lastPairPartner = activeLimbs[index == first ? index + 1 : first];
+    }
+    final key = '${progress.definition.id}:$_phraseIdentity:rich:$step:$_performance';
+    if (_credited.add(key)) {
+      richStepsCompleted++;
+      pizazz += richStepPizazz;
+      crowd.adorn(_responseSequence % crowd.guestCount, positionBeats);
+    }
   }
 
   void _openMove(RhythmNote note) {
@@ -749,9 +1068,7 @@ class GardenSession {
     if (phase != GardenPhase.paused) throw StateError('Garden is not paused');
     transport.resume(
       leadSeconds:
-          transport.score.beatsPerBar *
-          60 /
-          transport.score.tempos[transport.currentTier],
+          transport.score.beatsPerBar * 60 / transport.currentBpm,
     );
     phase = positionBeats < chart.introBeats
         ? GardenPhase.intro

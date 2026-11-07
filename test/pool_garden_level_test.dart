@@ -16,7 +16,7 @@ import 'package:kumbia_kombat/music/transport.dart';
 import 'support/recording_canvas.dart';
 
 /// The draft pool lawn, on real game code, as the campaign's third level.
-const _plate = 'assets/art/pool-garden/pool-garden-v1-draft.png';
+const _plate = 'assets/art/pool-garden/pool-garden-clean.png';
 
 String _read(String id) => File('levels/$id.json').readAsStringSync();
 
@@ -152,13 +152,15 @@ void main() {
 
     for (var cycle = 0; cycle < 60 && !session.progress.cleared; cycle++) {
       final start = session.chart.introBeats + cycle * session.chart.cycleBeats;
-      for (var i = 0; i < session.activeLimbs.length; i++) {
+      final played = session.chart.patternFor(
+        session.progress.tier,
+        session.progress.fullTierSuccesses,
+      );
+      for (var i = 0; i < played.limbs.length; i++) {
         advance(
-          music.secondsAt(
-            start + session.chart.callBeats + session.chart.offsets[i],
-          ),
+          music.secondsAt(start + session.chart.callBeats + played.offsets[i]),
         );
-        expect(session.tap(session.activeLimbs[i]).note, isNotNull);
+        expect(session.tap(played.limbs[i]).note, isNotNull);
       }
       advance(music.secondsAt(start + session.chart.cycleBeats - .05));
     }

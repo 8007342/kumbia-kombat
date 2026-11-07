@@ -4,6 +4,7 @@ import 'dart:math' as math;
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:kumbia_kombat/gameplay/cue_path.dart';
+import 'package:kumbia_kombat/gameplay/level_definition.dart';
 import 'package:kumbia_kombat/gameplay/rhythm.dart';
 import 'package:kumbia_kombat/gameplay/thumb_layout.dart';
 
@@ -56,30 +57,30 @@ class _Note {
   final String id;
 }
 
-Limb _limb(Object? name) => Limb.values.byName(name as String);
 
 /// Every level's phrases, called then answered, run into each other, so the
 /// seam where a call's last note meets the next phrase is covered too.
 Map<String, List<_Note>> _charts() {
   final charts = <String, List<_Note>>{};
   for (final level in ['garden', 'bar', 'pool-garden']) {
-    final data = jsonDecode(
-      File('levels/$level.json').readAsStringSync(),
-    ) as Map<String, dynamic>;
-    final chart = data['chart'] as Map<String, dynamic>;
-    final offsets = [for (final o in chart['offsets'] as List) o as num];
-    final phrases = <List<Limb>>[
-      [for (final l in chart['limbs'] as List) _limb(l)],
-      for (final v in chart['variants'] as List)
-        [for (final l in v as List) _limb(l)],
+    final chart = LevelDefinition.fromJson(
+      jsonDecode(File('levels/$level.json').readAsStringSync())
+          as Map<String, dynamic>,
+    ).chart;
+    final phrases = [
+      for (var p = 0; p <= chart.variants.length; p++) chart.pattern(p),
     ];
     final notes = <_Note>[];
     var base = 4.0;
-    for (final (p, limbs) in phrases.indexed) {
+    for (final (p, phrase) in phrases.indexed) {
       for (final turn in [0.0, 8.0]) {
-        for (var i = 0; i < limbs.length; i++) {
+        for (var i = 0; i < phrase.limbs.length; i++) {
           notes.add(
-            _Note(limbs[i], base + turn + offsets[i], '$level:$p:0:0:$i'),
+            _Note(
+              phrase.limbs[i],
+              base + turn + phrase.offsets[i],
+              '$level:$p:0:0:$i',
+            ),
           );
         }
       }
@@ -380,6 +381,7 @@ void main() {
       // landing. Different limbs do get a full gap: see the test above.
       const leastApart = .35;
       var measured = double.infinity;
+      var worst = '';
       for (final notes in _charts().values) {
         for (final screen in _screens) {
           for (var i = 0; i < notes.length; i++) {
@@ -399,13 +401,16 @@ void main() {
                   _path(b.limb, b.beat, b.id, screen).at(tb),
                 );
                 final ratio = apart / ((cueExtent(ta) + cueExtent(tb)) / 2);
+                if (ratio < measured) {
+                  worst = '${a.id} ${a.beat} ${b.id} ${b.beat} $screen';
+                }
                 measured = math.min(measured, ratio);
               }
             }
           }
         }
       }
-      expect(measured, greaterThanOrEqualTo(leastApart));
+      expect(measured, greaterThanOrEqualTo(leastApart), reason: worst);
     });
   });
 }

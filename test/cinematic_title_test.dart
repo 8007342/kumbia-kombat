@@ -7,6 +7,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:kumbia_kombat/gameplay/exit_shot.dart';
 import 'package:kumbia_kombat/gameplay/level_definition.dart';
 import 'package:kumbia_kombat/music/accent_voice.dart';
+import 'package:kumbia_kombat/music/rendered_music.dart';
 import 'package:kumbia_kombat/music/score.dart';
 import 'package:kumbia_kombat/music/transition_conductor.dart';
 import 'package:kumbia_kombat/music/transport.dart';
@@ -304,6 +305,34 @@ void main() {
         }
         for (final hit in shot.cue) {
           expect(hit.beat, lessThan(end), reason: '$id beat ${hit.beat}');
+        }
+      }
+    });
+
+    test('every shot fits inside the rendered music that plays it too', () {
+      final manifest = RenderedManifest.fromJson(
+        jsonDecode(
+          File('assets/music/rendered/manifest.json').readAsStringSync(),
+        ),
+      );
+      for (final step in levels.campaign) {
+        final shot = step.level.exitShot;
+        final music = manifest.levels[step.level.id];
+        if (shot == null || music == null) continue;
+        final id = step.level.id;
+        final success = music.success?.lengthBeats ??
+            _score(step.level.music.successScore).lengthBeats;
+        final bridge = step.bridgeToNext == null
+            ? 0.0
+            : music.bridge?.lengthBeats ?? _score(step.bridgeToNext!).lengthBeats;
+        final end = success + bridge;
+        expect(shot.closeupTo, lessThanOrEqualTo(end), reason: id);
+        expect(shot.titleUntil, lessThanOrEqualTo(end), reason: id);
+        for (final hit in shot.cue) {
+          expect(hit.beat, lessThan(end), reason: '$id beat ${hit.beat}');
+        }
+        if (step.next != null && music.bridge != null) {
+          expect(music.bridgeTo, step.next!.id, reason: id);
         }
       }
     });

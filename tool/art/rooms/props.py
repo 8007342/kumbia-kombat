@@ -98,6 +98,17 @@ def bake_prop(master, height_px, room):
     return Image.fromarray(out)
 
 
+def lean(master, amount):
+    """A drink dancing: its foot stays put and its top leans, by `amount` of its width."""
+    a = np.array(master)
+    h, w = a.shape[:2]
+    reach = int(abs(amount) * w) + 2
+    out = np.zeros((h, w + 2 * reach, 4), dtype=np.uint8)
+    for y in range(h):
+        out[y, reach + round(amount * w * ((h - 1 - y) / (h - 1)) ** 1.5):][:w] = a[y]
+    return Image.fromarray(out)
+
+
 def bake_room(room_id, s):
     room = s['rooms'][room_id]
     adult_at_mid = adult_plate_pixels(room, room['midY'])
@@ -107,8 +118,13 @@ def bake_room(room_id, s):
         master = Image.open(os.path.join(MASTERS, f"{info['master']}.png")).convert('RGBA')
         if info.get('flip'):
             master = master.transpose(Image.FLIP_LEFT_RIGHT)
+        if info.get('lean'):
+            master = lean(master, info['lean'])
         height = max(4, round(native_adult * info['heightInAdults']))
-        cells[frame] = bake_prop(master, height, room)
+        lit_room = room
+        if info.get('lift'):  # small and meant to read: brighter than the furniture around it
+            lit_room = {**room, 'light': {**room['light'], 'gain': [g * info['lift'] for g in room['light']['gain']]}}
+        cells[frame] = bake_prop(master, height, lit_room)
     width = sum(c.width + GUTTER for c in cells.values()) - GUTTER
     height = max(c.height for c in cells.values())
     atlas = Image.new('RGBA', (width, height), (0, 0, 0, 0))

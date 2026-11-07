@@ -49,6 +49,9 @@ class GardenSceneGame extends FlameGame {
   double actionBeat = -10;
   double? actionTargetBeat;
   double? nextRequiredBeat;
+
+  /// The other limb when the latest press finished a pair: he dances both.
+  Limb? actionPartner;
   double flourishBeat = -10;
 
   /// Which move the flourish is, so what he does matches what the thumb drew.
@@ -203,6 +206,7 @@ class GardenSceneGame extends FlameGame {
     actionBeat = -10;
     actionTargetBeat = null;
     nextRequiredBeat = null;
+    actionPartner = null;
     flourishBeat = -10;
     _choreography = null;
   }
@@ -255,8 +259,14 @@ class GardenSceneGame extends FlameGame {
     super.onRemove();
   }
 
-  void dance(Limb limb, {double? targetBeat, double? nextRequiredBeat}) {
+  void dance(
+    Limb limb, {
+    double? targetBeat,
+    double? nextRequiredBeat,
+    Limb? partner,
+  }) {
     action = limb;
+    actionPartner = partner;
     actionBeat = session?.positionBeats ?? 0;
     actionTargetBeat = targetBeat;
     this.nextRequiredBeat = nextRequiredBeat;
@@ -717,6 +727,30 @@ class GardenSceneGame extends FlameGame {
             );
           }),
         );
+        // A prop set that bakes a drink dances it at full swing.
+        if (baked != null && baked.definition.art.frames.containsKey('cup_2')) {
+          final cup = tableCupFrame(
+            beat: beat,
+            swing: _partySwing(beat),
+            instance: i,
+            reducedMotion: reducedMotion,
+          );
+          final cupGround = ui.Offset(
+            projected.x + adult * (i.isEven ? .11 : -.11),
+            // The table's drawing is taller than its top, by the drinks on it.
+            projected.y - adult * prop.heightInAdults * .72,
+          );
+          draws.add(
+            _WorldDraw('${prop.id}-cup', projected.y, 2, (canvas) {
+              baked.draw(
+                canvas,
+                cup,
+                cupGround,
+                adult * .2 / baked.nativeHeight('cup_2'),
+              );
+            }),
+          );
+        }
       }
     }
   }
@@ -1052,6 +1086,7 @@ class GardenSceneGame extends FlameGame {
       DuetRole.pair => duet.pairFrame(
         onLeft: place.onLeft,
         limb: pose.limb,
+        partner: pose.partnerLimb,
         phase: pose.movePhase,
         beat: reducedMotion ? 0 : beat,
       ),
@@ -1248,6 +1283,7 @@ class GardenSceneGame extends FlameGame {
         targetBeat: actionTargetBeat!,
         beat: beat,
         nextRequiredBeat: nextRequiredBeat,
+        partnerLimb: actionPartner,
       );
       if (move.phase != DanceMovePhase.idle) {
         frame = move.frameId;
