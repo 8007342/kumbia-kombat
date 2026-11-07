@@ -373,3 +373,7 @@
 {"agent":"FEEL","what":"flutter test and analyze runs for timing, difficulty and tap-mark changes","kind":"cpu","seconds":520,"count":9}
 {"agent":"ALIGN","what":"mixrs salience on 16 rendered takes (5 levels + salon) and chart searches","kind":"cpu","seconds":15,"count":16}
 {"agent":"CONSOLE","what":"flutter test full suite x2, focused runs, zxing QR decode","kind":"cpu","seconds":260,"count":12}
+{"agent":"BOLERO","what":"salon bolero-cha candidates, 3 tag sets x 4 seeds, ACE-Step XL turbo","kind":"gpu-audio","seconds":249.93,"count":12}
+{"agent":"BOLERO","what":"salon chain (parent + 6 re-sampled tiers); first run had the wrong parent tags and was discarded","kind":"gpu-audio","seconds":150.4,"count":2}
+{"agent":"BOLERO","what":"salon reproduction checks, single takes to test seed and batch behaviour","kind":"gpu-audio","seconds":74.62,"count":2}
+{"agent":"BOLERO","what":"salon timing, character, chord-ear and grid measures; mixrs builds of salon (4) and billiards (1); verify","kind":"cpu","seconds":180,"count":12}

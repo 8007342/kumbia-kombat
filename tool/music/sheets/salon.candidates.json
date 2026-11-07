@@ -1,0 +1,203 @@
+{
+ "level": "salon",
+ "workflow": "tool/music/workflows/ace-xl-turbo.api.json",
+ "how": "studio.queue_workflow, count 4, overrides seed and $node:94.tags, 94.bpm 116, 94.keyscale D minor, 94.duration 74.5, 98.seconds 74.5",
+ "tagSets": {
+  "A": {
+   "seeds": [
+    58000,
+    58001,
+    58002,
+    58003
+   ],
+   "tags": "elegant romantic bolero-cha, cha-cha-cha rhythm, instrumental, violin and flute carry a sung bolero melody, piano montuno, nylon string guitar, guiro, congas, soft bass, velvet ballroom, unhurried"
+  },
+  "B": {
+   "seeds": [
+    58100,
+    58101,
+    58102,
+    58103
+   ],
+   "tags": "classic Cuban charanga cha-cha-cha with a romantic bolero melody, instrumental, violin lead, wooden flute answers, piano montuno, nylon guitar, guiro scrape on the cha-cha-cha, congas, soft upright bass, elegant"
+  },
+  "C": {
+   "seeds": [
+    58200,
+    58201,
+    58202,
+    58203
+   ],
+   "tags": "slow romantic ballroom cha-cha-cha, instrumental, sweet singing violin melody answered by flute, piano montuno, nylon guitar arpeggios, guiro, congas, warm soft bass, string pads, mirrors and chandeliers, graceful and unhurried"
+  }
+ },
+ "chosen": 58001,
+ "runnerUp": 58202,
+ "takes": {
+  "seed58000.flac": {
+   "timing": {
+    "clarity": 6.8,
+    "reasons": []
+   },
+   "character": {
+    "melodicMotion": 0.069,
+    "leadRangeSemitones": 26.3,
+    "hookRepeat": 0.194,
+    "leadSalience": 79.4,
+    "arrangementMovement": 0.451
+   }
+  },
+  "seed58001.flac": {
+   "timing": {
+    "clarity": 18.2,
+    "reasons": []
+   },
+   "character": {
+    "melodicMotion": 0.103,
+    "leadRangeSemitones": 21.9,
+    "hookRepeat": 0.336,
+    "leadSalience": 94.6,
+    "arrangementMovement": 0.616
+   }
+  },
+  "seed58002.flac": {
+   "timing": {
+    "clarity": 25.0,
+    "reasons": []
+   },
+   "character": {
+    "melodicMotion": 0.047,
+    "leadRangeSemitones": 25.1,
+    "hookRepeat": 0.444,
+    "leadSalience": 79.9,
+    "arrangementMovement": 0.92
+   }
+  },
+  "seed58003.flac": {
+   "timing": {
+    "clarity": 16.2,
+    "reasons": []
+   },
+   "character": {
+    "melodicMotion": 0.141,
+    "leadRangeSemitones": 16.1,
+    "hookRepeat": 0.49,
+    "leadSalience": 112.1,
+    "arrangementMovement": 0.732
+   }
+  },
+  "seed58100.flac": {
+   "timing": {
+    "clarity": 15.3,
+    "reasons": [
+     "beat wanders 111 ms"
+    ]
+   },
+   "character": {
+    "melodicMotion": 0.074,
+    "leadRangeSemitones": 21.4,
+    "hookRepeat": 0.557,
+    "leadSalience": 81.3,
+    "arrangementMovement": 0.704
+   }
+  },
+  "seed58101.flac": {
+   "timing": {
+    "clarity": 8.7,
+    "reasons": []
+   },
+   "character": {
+    "melodicMotion": 0.089,
+    "leadRangeSemitones": 26.2,
+    "hookRepeat": 0.426,
+    "leadSalience": 68.2,
+    "arrangementMovement": 0.533
+   }
+  },
+  "seed58102.flac": {
+   "timing": {
+    "clarity": 5.2,
+    "reasons": []
+   },
+   "character": {
+    "melodicMotion": 0.075,
+    "leadRangeSemitones": 24.1,
+    "hookRepeat": 0.383,
+    "leadSalience": 83.4,
+    "arrangementMovement": 0.513
+   }
+  },
+  "seed58103.flac": {
+   "timing": {
+    "clarity": 7.6,
+    "reasons": []
+   },
+   "character": {
+    "melodicMotion": 0.08,
+    "leadRangeSemitones": 24.1,
+    "hookRepeat": 0.482,
+    "leadSalience": 72.5,
+    "arrangementMovement": 0.554
+   }
+  },
+  "seed58200.flac": {
+   "timing": {
+    "clarity": 3.1,
+    "reasons": [
+     "no clear pulse (3.1)",
+     "beat wanders 70 ms"
+    ]
+   },
+   "character": {
+    "melodicMotion": 0.092,
+    "leadRangeSemitones": 13.2,
+    "hookRepeat": 0.41,
+    "leadSalience": 102.4,
+    "arrangementMovement": 0.618
+   }
+  },
+  "seed58201.flac": {
+   "timing": {
+    "clarity": 10.2,
+    "reasons": [
+     "tempo off by -1.84%"
+    ]
+   },
+   "character": {
+    "melodicMotion": 0.11,
+    "leadRangeSemitones": 21.0,
+    "hookRepeat": 0.403,
+    "leadSalience": 81.2,
+    "arrangementMovement": 0.635
+   }
+  },
+  "seed58202.flac": {
+   "timing": {
+    "clarity": 20.6,
+    "reasons": []
+   },
+   "character": {
+    "melodicMotion": 0.106,
+    "leadRangeSemitones": 19.0,
+    "hookRepeat": 0.228,
+    "leadSalience": 102.8,
+    "arrangementMovement": 0.832
+   }
+  },
+  "seed58203.flac": {
+   "timing": {
+    "clarity": 9.1,
+    "reasons": [
+     "tempo off by -2.62%"
+    ]
+   },
+   "character": {
+    "melodicMotion": 0.077,
+    "leadRangeSemitones": 24.1,
+    "hookRepeat": 0.32,
+    "leadSalience": 87.2,
+    "arrangementMovement": 0.536
+   }
+  }
+ }
+}
