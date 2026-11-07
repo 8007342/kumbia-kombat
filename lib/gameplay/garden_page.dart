@@ -148,8 +148,8 @@ class _GardenPageState extends State<GardenPage>
   }
 
   /// `?latency=<ms>` replaces the browser's latency report and the touch delay
-  /// both, as one number, so values can be tried on a phone. Hidden: nothing
-  /// links to it. `?latency=0` turns compensation off.
+  /// both, as one number, so values can be tried on a phone. The console links
+  /// to it. `?latency=0` turns compensation off.
   static final double? _latencyOverride = () {
     final raw = Uri.base.queryParameters['latency'];
     final ms = raw == null ? null : double.tryParse(raw);
@@ -158,7 +158,8 @@ class _GardenPageState extends State<GardenPage>
 
   /// This device's tap-along result, if it has one. See `sync_overlay.dart`.
   int? _syncOffsetMs = loadSyncOffsetMs();
-  bool _calibrating = false;
+  // `?sync=1` opens the tap-along straight away: the console links to it.
+  bool _calibrating = ReviewLinks.syncFrom(Uri.base.queryParameters);
 
   /// For a player who hasn't calibrated: a small capped nudge from their own
   /// play. Shared by the run's rooms. A proposal: see `plan/feel-2026-11-07.md`.

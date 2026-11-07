@@ -204,13 +204,27 @@ class _ConsolePageState extends State<ConsolePage> {
             _link('PLAY', ReviewLinks.play()),
             _link('AUTOPLAY FLAWLESS', ReviewLinks.play(flawless: true)),
             _link('MIXER', ReviewLinks.play(mixer: true)),
+            _link('SYNC', ReviewLinks.play(sync: true)),
             _link('LISTENING PAGE', '/listen/'),
             _link('SHARE QR', '/qr/'),
           ],
         ),
         const SizedBox(height: 8),
+        Wrap(
+          spacing: 6,
+          runSpacing: 6,
+          crossAxisAlignment: WrapCrossAlignment.center,
+          children: [
+            const _Fine('latency ms'),
+            for (final ms in ReviewLinks.latencyTrials)
+              _link('$ms', ReviewLinks.play(latencyMs: ms), small: true),
+          ],
+        ),
+        const SizedBox(height: 8),
         const _Fine(
-          'A level link plays that level alone and ends on its end screen. '
+          'SYNC opens the tap-along calibration. A latency link sets output and '
+          'touch delay as one number and sets calibration aside; 0 turns '
+          'compensation off. A level link plays that level alone and ends on its end screen. '
           'TIER starts the first phrase at that tier: the crowd and band still '
           'start cold. OUTRO is tier 4 on autoplay, the quickest way to the '
           'close-up and the walk out in the game itself.',

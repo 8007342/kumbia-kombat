@@ -38,6 +38,12 @@ class ReviewLinks {
     return tier != null && tier >= 0 && tier <= 4 ? tier : null;
   }
 
+  /// `?sync=1` opens the SYNC tap-along calibration as the page loads.
+  static bool syncFrom(Map<String, String> query) => query['sync'] == '1';
+
+  /// Latencies the console offers for `?latency=<ms>`; 0 turns it off.
+  static const latencyTrials = [0, 40, 80, 120, 160, 200];
+
   /// A link to the game from the site root. [level] plays one level alone and
   /// ends on its end screen; null plays the campaign.
   static String play({
@@ -45,12 +51,16 @@ class ReviewLinks {
     bool flawless = false,
     int? tier,
     bool mixer = false,
+    bool sync = false,
+    int? latencyMs,
   }) {
     final query = <String, String>{
       'level': ?level,
       if (flawless) 'autoplay': 'flawless',
       if (tier != null) 'tier': '$tier',
       if (mixer) 'mixer': '1',
+      if (sync) 'sync': '1',
+      if (latencyMs != null) 'latency': '$latencyMs',
     };
     return Uri(path: '/', queryParameters: query.isEmpty ? null : query)
         .toString();

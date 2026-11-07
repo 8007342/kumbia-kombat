@@ -35,6 +35,10 @@ void main() {
       '/?level=salon&autoplay=flawless&tier=4',
     );
     expect(ReviewLinks.play(mixer: true), '/?mixer=1');
+    expect(ReviewLinks.play(sync: true), '/?sync=1');
+    expect(ReviewLinks.play(level: 'bar', latencyMs: 80), '/?level=bar&latency=80');
+    expect(ReviewLinks.syncFrom({'sync': '1'}), isTrue);
+    expect(ReviewLinks.syncFrom({}), isFalse);
     expect(ReviewLinks.tierFrom({'tier': '3'}), 3);
     expect(ReviewLinks.tierFrom({'tier': '0'}), 0);
     expect(ReviewLinks.tierFrom({'tier': '5'}), isNull);

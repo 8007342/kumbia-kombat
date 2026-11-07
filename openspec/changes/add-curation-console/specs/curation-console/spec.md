@@ -60,7 +60,8 @@ For each level the console SHALL offer links that open the game: that level
 alone (`?level=<id>`), on flawless autoplay (`&autoplay=flawless`), starting at
 tier 0 to 4 (`&tier=<n>`), straight toward the outro (tier 4 on flawless
 autoplay) and with the mixer (`&mixer=1`). It SHALL also link the whole campaign,
-the campaign on flawless autoplay, the mixer, the listening page and `/qr`.
+the campaign on flawless autoplay, the mixer, the SYNC calibration (`?sync=1`),
+latency trials (`?latency=<ms>`), the listening page and `/qr`.
 
 #### Scenario: Tier start
 - **WHEN** the game opens with `?level=bar&tier=3`
@@ -69,6 +70,10 @@ the campaign on flawless autoplay, the mixer, the listening page and `/qr`.
 #### Scenario: Bad tier
 - **WHEN** the game opens with `?tier=7` or `?tier=high`
 - **THEN** it starts at tier 0, as without the parameter
+
+#### Scenario: Calibration on load
+- **WHEN** the game opens with `?sync=1`
+- **THEN** the SYNC tap-along calibration is showing
 
 #### Scenario: Link targets
 - **WHEN** the owner taps FLAWLESS on the `salon` level
