@@ -1,0 +1,100 @@
+{
+ "$comment": "DRAFT for the owner, 2026-11-07: the PoolPlayer dancer of the billiards room, who stops Macron and dances with a cue stick. Age, look and pronouns are proposals. They/them until the owner states otherwise. The cue is in the sheet's words for now: the frames stage still needs a prop kind for it, since the pipeline refuses 'cue'.",
+ "id": "pool-player",
+ "family": "pool-player-v1",
+ "style": "party-pixel",
+ "description": "Billiards room opponent, the PoolPlayer dancer: an elegant adult of about sixty, a player of long standing who uses a cue stick as a dancing prop.",
+ "body": {
+  "preset": "slim-adult"
+ },
+ "pronouns": [
+  "they",
+  "them",
+  "their"
+ ],
+ "skin": "#8C5A3C",
+ "traits": "elegant upright adult woman of about sixty, a calm knowing smile, silver hair in a neat bob",
+ "demeanor": "patient, exact and amused, as if already three shots ahead",
+ "garments": [
+  {
+   "id": "hair",
+   "shape": "puff",
+   "region": "hair",
+   "colour": "#C9C6C2",
+   "text": "neat silver chin-length bob"
+  },
+  {
+   "id": "shirt",
+   "shape": "shirt-fitted",
+   "region": "shirt",
+   "colour": "#F0E8D8",
+   "text": "crisp ivory blouse with the sleeves rolled to the elbow"
+  },
+  {
+   "id": "waistcoat",
+   "shape": "waistcoat-fitted",
+   "region": "cloth",
+   "colour": "#1F4A3C",
+   "text": "fitted billiard-green waistcoat with brass buttons"
+  },
+  {
+   "id": "trousers",
+   "shape": "trousers",
+   "region": "trousers",
+   "colour": "#23242B",
+   "text": "high-waisted charcoal trousers with a sharp crease"
+  },
+  {
+   "id": "shoes",
+   "shape": "shoes-flat",
+   "region": "shoes",
+   "colour": "#6B3A22",
+   "text": "polished oxblood brogues"
+  }
+ ],
+ "motion": {
+  "set": "opponent-64",
+  "overrides": {}
+ },
+ "drawing": {
+  "noun": "woman",
+  "fits": "hair, both shoes and both hands",
+  "look": "slim upright adult build, warm brown skin, an oval face with fine smile lines and a calm knowing smile, neat silver chin-length bob, small gold stud earrings, crisp ivory blouse with the sleeves rolled to the elbow, fitted billiard-green waistcoat with brass buttons, high-waisted charcoal trousers with a sharp crease, polished oxblood brogues and thick dark ink outline",
+  "extra": "Both eyes are open. She is a grown woman of about sixty, fully clothed. In her right hand, at the picture's left, she holds a long slim wooden billiard cue upright, its butt resting on the floor beside her shoe and its pale tip above her head. ",
+  "sheet": {
+   "source": {
+    "image": "tool/art/references/bartender/front.png",
+    "styleOnly": true
+   },
+   "views": {
+    "front": {
+     "description": "standing square and upright facing the viewer, feet a little apart, her left arm relaxed and held a little away from her body with the open hand visible, her right hand holding the cue upright beside her",
+     "image": "tool/art/references/pool-player/front.png"
+    },
+    "back": {
+     "description": "seen from directly behind, her back to the viewer, standing upright with feet a little apart, the plain back of her waistcoat and the back of her silver hair, her right hand holding the cue upright beside her",
+     "look": "slim upright adult build, warm brown skin, neat silver chin-length bob seen from behind, ivory blouse with the sleeves rolled to the elbow, billiard-green waistcoat with a plain satin back and a small buckle, high-waisted charcoal trousers, polished oxblood brogues and thick dark ink outline",
+     "image": "tool/art/references/pool-player/back.png"
+    }
+   }
+  },
+  "seed": 989000
+ },
+ "references": {
+  "mode": "source",
+  "sources": []
+ },
+ "targets": [
+  {
+   "room": "billiards",
+   "atlas": "pool-player",
+   "out": "assets/art/ensemble/pool-player-v1.png",
+   "native": [
+    256,
+    320
+   ],
+   "pixelScale": 3
+  }
+ ],
+ "seedBase": 989000
+}
