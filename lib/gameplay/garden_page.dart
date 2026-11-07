@@ -89,6 +89,7 @@ class _GardenPageState extends State<GardenPage>
   /// Null when this backend has no rendered audio: the synth plays everything.
   RenderedLibrary? _library;
   RenderedMix _mix = const RenderedMix();
+  bool _mixEdited = false;
 
   /// The rendered exit has been decoded, or has failed and the synth will do.
   bool _exitMusicSettled = true;
@@ -319,7 +320,8 @@ class _GardenPageState extends State<GardenPage>
   void _applyMix() {
     final library = _library;
     if (library == null) return;
-    _mix = library.manifest.mixFor(_level.id);
+    // What the owner has set by ear outlasts a room change, until the page reloads.
+    if (!_mixEdited) _mix = library.manifest.mixFor(_level.id);
     library.audio.setMix(_mix);
   }
 
@@ -1003,7 +1005,10 @@ class _GardenPageState extends State<GardenPage>
                                 : _transport,
                             mix: _mix,
                             onMix: (mix) {
-                              setState(() => _mix = mix);
+                              setState(() {
+                                _mix = mix;
+                                _mixEdited = true;
+                              });
                               _library!.audio.setMix(mix);
                             },
                           ),
