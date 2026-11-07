@@ -123,6 +123,12 @@
      "description": "seen from directly behind, his back to the viewer, standing tall and upright with feet a little apart, both arms relaxed, the plain back of his white dinner jacket and the back of his swept-back silver hair",
      "look": "tall, slim, very upright elderly build with long legs and narrow shoulders, light olive-tan skin, swept-back silver hair, crisp white dinner jacket with a plain back, slim black dress trousers, two-tone white and black spectator shoes and thick dark ink outline",
      "extra": "He is a grown man of about seventy. From behind no face, rose or bow tie shows. "
+    },
+    "front_bare": {
+     "image": "tool/art/references/terciopelo/front-bare.png",
+     "description": "standing tall, square and very upright facing the viewer, the lapel bare",
+     "look": "tall, slim, very upright elderly build with long legs and narrow shoulders, long narrow face, swept-back silver hair, a thin, neatly trimmed dark pencil moustache along his upper lip, light olive-tan skin, crisp white dinner jacket with shawl lapels, white dress shirt, burgundy velvet bow tie, slim black dress trousers, two-tone white and black spectator shoes and thick dark ink outline",
+     "extra": "He is a grown man of about seventy, lean and elegant, standing very tall and straight. Both eyes are open. His mouth stays closed in a poised, faintly amused smile. His lapel is bare: the single red rose is in his hand. "
     }
    }
   },
@@ -131,7 +137,7 @@
   "score": {
    "silhouetteTolerance": 30
   },
-  "$comment": "The rose in his hand (clip rose) is in the pose words, not a prop: the rig's prop shapes are shaker, bottle and glass, and a held rose needs no mask. The hand is named by picture side in the words. The rig's arms stop short of the face and the far lapel, so the wrist is moved to the moustache, the bow tie and the left lapel in the skeleton (rig canvas pixels), as the BlinBlin dancer's salute was.",
+  "$comment": "The rose in his hand (clip rose) is in the pose words, not a prop: the rig's prop shapes are shaker, bottle and glass, and a held rose needs no mask. The hand is named by picture side in the words. The rig's arms stop short of the face and the far lapel, so the wrist is moved to the moustache, the bow tie and the left lapel in the skeleton (rig canvas pixels), as the BlinBlin dancer's salute was. front_bare is the accepted front with the lapel's rose painted out by code (rose.offer holds the rose, and the pilot drew a second one in the lapel).",
   "skeletonOverrides": {
    "moustache.a": {
     "3": [

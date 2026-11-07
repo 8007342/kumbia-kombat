@@ -488,7 +488,10 @@
      "type": "accent",
      "drawing": "offer"
     }
-   ]
+   ],
+   "poseViews": {
+    "offer": "front_bare"
+   }
   }
  ],
  "generation": {
@@ -3155,7 +3158,7 @@
    "accent": true,
    "phase": "accent",
    "phaseNote": "accent (held line)",
-   "intent": "a held ballroom fan line: standing tall on the straight right leg, the left leg extended out to the side with the toe pointed on the floor, chest lifted and leaning back slightly, left arm in a long line high on the diagonal with the fingers together, right arm long and low out to the side, head turned toward the raised hand, chin up, a proud elegant look",
+   "intent": "a held ballroom line, nothing in his hands: standing tall on the straight right leg, the left leg extended out to the side with the toe pointed on the floor, chest lifted and leaning back slightly, the left arm stretched up high on the diagonal ending in an open empty hand, the right arm long and low out to the side with an open empty hand, head turned toward the raised hand, chin up, a proud elegant look",
    "profile": "peak",
    "animationPrinciples": [
     "staging-silhouette",
@@ -3324,7 +3327,7 @@
    "accent": false,
    "phase": "anticipation",
    "phaseNote": "anticipation (charisma)",
-   "intent": "inviting the viewer to dance: a slight courtly bow from the waist, left hand behind the back, the right hand offered forward toward the viewer at waist height with the palm up, head inclined, a warm gallant smile",
+   "intent": "inviting the viewer to dance: a slight courtly bow from the waist, left hand behind the back, the right arm held out low to the side on the left of the picture, the hand at waist height with the palm turned up as if to take a partner's hand, head inclined, a warm gallant smile",
    "profile": "moderate",
    "animationPrinciples": [
     "staging-silhouette",
@@ -3357,7 +3360,7 @@
    "accent": true,
    "phase": "accent",
    "phaseNote": "accent (charisma)",
-   "intent": "inviting the viewer to dance: bowing a little deeper from the waist, left hand behind the back, the right arm extended forward toward the viewer with the palm up, the left foot pointed forward on its toe, head inclined, eyes on the viewer, a warm gallant smile",
+   "intent": "inviting the viewer to dance: bowing a little deeper from the waist, left hand behind the back, the right arm extended out to the side on the left of the picture, the open hand at waist height with the palm turned up toward the sky, waiting for a partner's hand, the left foot pointed forward on its toe, eyes on the viewer, a warm gallant smile",
    "profile": "peak",
    "animationPrinciples": [
     "staging-silhouette",
@@ -3392,7 +3395,7 @@
    "accent": false,
    "phase": "anticipation",
    "phaseNote": "anticipation (bow)",
-   "intent": "turned three quarters toward the right of the picture, beginning a slow ballroom bow: standing on the right leg, the right hand placed flat on his chest, the left arm sweeping out to the side at shoulder height, leaning forward slightly, head beginning to lower",
+   "intent": "turned three quarters toward the right of the picture, beginning a slow ballroom bow: standing on the right leg, the right hand placed flat on his chest, the left hand behind the back, leaning forward slightly from the waist, head beginning to lower",
    "profile": "moderate",
    "animationPrinciples": [
     "staging-silhouette",
@@ -3425,7 +3428,7 @@
    "accent": true,
    "phase": "accent",
    "phaseNote": "accent (bow)",
-   "intent": "turned three quarters toward the right of the picture, a deep slow ballroom bow from the waist, the back straight, the right hand flat on his chest, the left arm swept out low and back, head bowed, eyes lowered, gracious",
+   "intent": "turned three quarters toward the right of the picture, a deep slow ballroom bow from the waist with a straight back, the right hand flat on his chest, the left hand behind the back, head bowed, eyes lowered, gracious",
    "profile": "peak",
    "animationPrinciples": [
     "staging-silhouette",
@@ -3460,7 +3463,7 @@
    "accent": false,
    "phase": "settle",
    "phaseNote": "settle (bow)",
-   "intent": "turned three quarters toward the right of the picture, holding the deepest point of a slow ballroom bow, bent far forward from the waist with a straight back, the right hand flat on his chest, the left arm swept low and back, head bowed low, gracious",
+   "intent": "turned three quarters toward the right of the picture, holding the deepest point of a slow ballroom bow, bent far forward from the waist with a straight back, the right hand flat on his chest, the left hand behind the back, head bowed low, gracious",
    "profile": "moderate",
    "animationPrinciples": [
     "staging-silhouette",
@@ -3596,7 +3599,7 @@
    "accent": true,
    "phase": "accent",
    "phaseNote": "accent (the rose)",
-   "intent": "a slight courtly bow from the waist, left hand behind the back, the right arm extended forward toward the viewer holding out the single red rose by its stem, the lapel now bare, head inclined, a warm gallant smile",
+   "intent": "turned a little toward the right of the picture, a slight courtly bow from the waist, left hand behind the back, the right arm extended forward toward the right of the picture at chest height holding out the single red rose by its stem, his lapel bare with no flower in it, head inclined, a warm gallant smile",
    "profile": "peak",
    "animationPrinciples": [
     "staging-silhouette",

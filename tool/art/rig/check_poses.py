@@ -40,6 +40,7 @@ BAND_CLIPS = {"relaxed", "tap", "swing"}  # motion set band-loop: arms reach acr
 CROSSED_ARMS = {"crossed"}  # the arms cross on purpose
 FACE_TOUCH_CLIPS = {"moustache", "glance", "rose", "bow"}  # motion set opponent-chacha: a hand at the moustache, the hair or the lapel is the pose, and in a deep bow the head comes down past the swept arm
 SPIN_SIDE = {"spin.side_l", "spin.side_r"}  # in profile the ballroom frame's arms overlap the head and each other
+TURNED_BEHIND = {"bow"}  # turned three quarters, the hand behind the back crosses the near arm in 2D
 HEAD_ONLY = {"crossed"}  # a nod moves little but the head, so the static check does not apply
 NO_WIDTH_CHECK = {"turn", "reveal", "spin"}            # deliberate 360-degree turn views (no width/drift check)
 LOCOMOTION = {"enter_forward", "retreat_backward", "yield_side", "ingress", "egress"}
@@ -197,7 +198,7 @@ def check(rig: dict, margin: float) -> dict[str, list[str]]:
     for r in rig["poses"]:
         p = problems.setdefault(r["id"], [])
         p += r.get("problems", [])
-        if r.get("clip") not in PROFILE_CLIPS and r["id"] not in SPIN_SIDE:
+        if r.get("clip") not in PROFILE_CLIPS and r["id"] not in SPIN_SIDE and r.get("clip") not in TURNED_BEHIND:
             p += crossing_problems(r)
         p += head_problems(r)
         if ankle_h is not None:
