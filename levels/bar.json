@@ -11,9 +11,9 @@
     "metric": "Swag",
     "cleanSeconds": 80,
     "successesPerTier": 2,
-    "finalChallenges": 2,
+    "finalChallenges": 3,
     "resetAfterFailures": 5,
-    "earlyHitRatio": 0.875
+    "earlyHitRatio": 0.75
   },
   "chart": {
     "introBeats": 4,

@@ -88,7 +88,9 @@ class PartyAutoplay {
       suspend();
       return;
     }
-    final now = session.backend.nowSeconds;
+    // Plays on the clock taps are judged by, as a player with a calibrated
+    // phone would: its taps have no touch screen to cross.
+    final now = session.judgedNowMs / 1000;
     // A stroke in the air outlives the turn, as a late thumb's does.
     _drawStroke(session, now, onFlourish, onMove);
     if (session.phase != GardenPhase.response) return;
@@ -151,7 +153,7 @@ class PartyAutoplay {
           (!flawless &&
               secondPress &&
               (_responseOrdinal + cue.step) % 3 == 0) ||
-          now > noteAt + RhythmJudge.goodWindowMs / 1000) {
+          now > noteAt + RhythmJudge.lateWindowMs / 1000) {
         continue;
       }
       final result = (onTap ?? session.tap)(cue.limb);
