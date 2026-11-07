@@ -41,7 +41,7 @@ def finish(src, palette, scale=3):
 LOCK = {
  'bass': dict(lo=(170, 90, 0), hi=(255, 160, 70), size='h'),
  'congas': dict(lo=(100, 0, 0), hi=(190, 45, 60), size='h'),
- 'marimba': dict(lo=(180, 70, 60), hi=(255, 130, 120), size='w'),
+ 'marimba': dict(lo=(180, 70, 60), hi=(255, 130, 120), size='top'),  # his height holds better than the bars' width
  'trumpet': dict(lo=(10, 10, 15), hi=(60, 60, 70), size='h', legs=True),
 }
 def measure(rgba, spec):
@@ -60,12 +60,14 @@ def measure(rgba, spec):
         ys, xs = np.where(m)
         return dict(cx=float(np.median(xs)), w=float(np.percentile(xs, 99) - np.percentile(xs, 1)), h=float(body.max() - hem), floor=int(body.max()), n=int(m.sum()))
     ys, xs = np.where(m)
-    return dict(cx=float(np.median(xs)), w=float(np.percentile(xs, 99) - np.percentile(xs, 1)),
+    dark = op & (a[..., :3].max(axis=-1) < 40)
+    top = float(body.max() - np.where(dark.sum(axis=1) >= 8)[0].min())
+    return dict(cx=float(np.median(xs)), w=float(np.percentile(xs, 99) - np.percentile(xs, 1)), top=top,
                 h=float(np.percentile(ys, 99) - np.percentile(ys, 1)), floor=int(body.max()), n=int(m.sum()))
 def lock(src, ref, spec, s_extra=1.0):
     """src and ref: RGBA, the same canvas. Returns src scaled and moved to match ref's part, on ref's canvas."""
     a, b = measure(src, spec), measure(ref, spec)
-    s = (b['w'] / a['w'] if spec['size'] == 'w' else b['h'] / a['h']) * s_extra
+    s = b[spec['size']] / a[spec['size']] * s_extra
     W, H = src.size
     big = src.resize((round(W * s), round(H * s)), Image.LANCZOS)
     out = Image.new('RGBA', (W, H), (0, 0, 0, 0))
@@ -81,7 +83,7 @@ PICKS = {
  'trumpet': dict(run='band-trumpet-v1-20261107d', seeds={p: 989710 for p in ('relaxed.a', 'relaxed.b', 'swing.a', 'swing.b', 'swing.c')}, foot=None, shear={}),
  'marimba': dict(run='band-marimba-v1-20261107e', seeds={p: 989810 for p in ('relaxed.a', 'relaxed.b', 'swing.a', 'swing.b', 'swing.c')}, foot=None, shear={}),
 }
-FEET = {'bass': [100, 280, 119, 298, 8], 'trumpet': [98, 277, 120, 298, 8], 'marimba': [102, 278, 133, 298, 8], 'congas': [108, 274, 121, 296, 6]}  # native px: x0, y0, x1, y1, lift
+FEET = {'bass': [100, 280, 119, 298, 8], 'trumpet': [98, 277, 120, 298, 8], 'marimba': [104, 276, 135, 298, 8], 'congas': [108, 274, 121, 296, 6]}  # native px: x0, y0, x1, y1, lift
 FOOT = json.loads(os.environ.get('FOOT') or json.dumps(FEET))
 def shear(a, top_shift):
     ys = np.where(a[..., 3].any(axis=1))[0]
