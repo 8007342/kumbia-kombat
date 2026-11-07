@@ -19737,7 +19737,7 @@
      "provenance": {
       "run": "pool-player-v1-merged",
       "pose": "challenge.load",
-      "sha256": "c2dae7b503673fbc10f15249d3a9c67029f2648521ce8ffed1cc06ca3fd28aef",
+      "sha256": "93b185b39bb43f96156914625b5c251ad3cf46d1ff9abd6d4ace65042654b2dd",
       "selected": 989000,
       "frameKey": null,
       "accepted": true,
@@ -19812,7 +19812,7 @@
      "provenance": {
       "run": "pool-player-v1-merged",
       "pose": "challenge.proud",
-      "sha256": "37d82e57b3bc21f10e8411b52be8cd7dd6b27d68b0d666f41b98898c810e850c",
+      "sha256": "7155b13b4c669fcfbe3b03e6653801e335e5271b3ea8d6d61830fde2f4187a64",
       "selected": 989001,
       "frameKey": null,
       "accepted": true,
@@ -20059,7 +20059,7 @@
      "provenance": {
       "run": "pool-player-v1-merged",
       "pose": "enter_forward.contact_r",
-      "sha256": "5959a970c1048d070e53166e30d8e6e33269b98fdff34006badfa6a735d5c2f4",
+      "sha256": "9ba78b48b0e4bed3d9ea609c7bbca430c254baebd7d87cf3e02ccfd7de12f1d7",
       "selected": 989000,
       "frameKey": null,
       "accepted": true,
@@ -20128,7 +20128,7 @@
      "provenance": {
       "run": "pool-player-v1-merged",
       "pose": "enter_forward.down_r",
-      "sha256": "eeb7f5275a26d7ec6940c28ff9577f307f26dae3a18f91c770f1bc34304562b2",
+      "sha256": "64b9d8d3079d9176d9210625cd1d1f7722c385808b70b9b2a690680239bb228e",
       "selected": 989001,
       "frameKey": null,
       "accepted": true,
@@ -20162,7 +20162,7 @@
      "provenance": {
       "run": "pool-player-v1-merged",
       "pose": "enter_forward.pass_l",
-      "sha256": "c8caa808400a0fef683191d4306b4eba5b80e18c122174e5c24148589c9c71fd",
+      "sha256": "52bf0c2def62776049b8ed3e40ca836fee835cf25811d8c22758404142584ee8",
       "selected": 989000,
       "frameKey": null,
       "accepted": true,
@@ -20196,7 +20196,7 @@
      "provenance": {
       "run": "pool-player-v1-merged",
       "pose": "enter_forward.pass_r",
-      "sha256": "fee9e2b349d1c85c1545922b58f7283b8d72d719396e07b1fc86e7f26e5a36c2",
+      "sha256": "2998f00609fc85eb0e4f5e41110d4389c6802e4e731c3fbcf23804cf80f80786",
       "selected": 989000,
       "frameKey": null,
       "accepted": true,
@@ -20230,7 +20230,7 @@
      "provenance": {
       "run": "pool-player-v1-merged",
       "pose": "finish_turn.finish_b",
-      "sha256": "582a5e8ccb583dd8cdc91255344ed540f33056ff81f122787237f3d3ad59cc0d",
+      "sha256": "84f30aee191dd5f5a3376d1351ddc56b892e67d0f6fab4d648f42bdcd2fe1752",
       "selected": 989004,
       "frameKey": null,
       "accepted": true,
@@ -20266,7 +20266,7 @@
      "provenance": {
       "run": "pool-player-v1-merged",
       "pose": "finish_turn.finish_a",
-      "sha256": "6521565b9e03bce3fe1a8a6620202341a234c26184046649022a95a7e868fef3",
+      "sha256": "a42eb789cc6ea6c443a88c3e85a3d95de75aaaf77079ed062e5994a066264bc7",
       "selected": 989001,
       "frameKey": null,
       "accepted": true,
@@ -20300,7 +20300,7 @@
      "provenance": {
       "run": "pool-player-v1-merged",
       "pose": "finish_turn.finish_b",
-      "sha256": "582a5e8ccb583dd8cdc91255344ed540f33056ff81f122787237f3d3ad59cc0d",
+      "sha256": "84f30aee191dd5f5a3376d1351ddc56b892e67d0f6fab4d648f42bdcd2fe1752",
       "selected": 989004,
       "frameKey": null,
       "accepted": true,
@@ -20438,7 +20438,7 @@
      "provenance": {
       "run": "pool-player-v1-merged",
       "pose": "right_hand.follow",
-      "sha256": "4bafe356c69bae89fff26bbd4f2b3bbd1aae0e55d6e55a45d7316431d7a27582",
+      "sha256": "e0e11debd1a9a81e8dee88fd0af163193dac7b46d1933515449066203f050034",
       "selected": 989001,
       "frameKey": null,
       "accepted": true,
@@ -20805,7 +20805,7 @@
      "provenance": {
       "run": "pool-player-v1-merged",
       "pose": "left_foot.peak",
-      "sha256": "791ab8125519f4b38dd38a709aa6f3a0e968f03ec0af2e85d06eb68cd028a3a3",
+      "sha256": "3ecaf949ad0ce9bbc8175adb581310563e8da3f58b4020d1bab7a6c1d2f233fc",
       "selected": 989000,
       "frameKey": null,
       "accepted": true,
@@ -20841,7 +20841,7 @@
      "provenance": {
       "run": "pool-player-v1-merged",
       "pose": "left_foot.follow",
-      "sha256": "03fccf4ba5fa46d92e104f8d81d1eb81e965d06552c1639b16d0de66c821fb4d",
+      "sha256": "3605dcda628efe4f58ec692edb6791335b09bd0133ad6b4cd5309308839a6e68",
       "selected": 989000,
       "frameKey": null,
       "accepted": true,
@@ -20881,7 +20881,7 @@
      "provenance": {
       "run": "pool-player-v1-merged",
       "pose": "left_foot.peak",
-      "sha256": "791ab8125519f4b38dd38a709aa6f3a0e968f03ec0af2e85d06eb68cd028a3a3",
+      "sha256": "3ecaf949ad0ce9bbc8175adb581310563e8da3f58b4020d1bab7a6c1d2f233fc",
       "selected": 989000,
       "frameKey": null,
       "accepted": true,
@@ -20916,7 +20916,7 @@
      "provenance": {
       "run": "pool-player-v1-merged",
       "pose": "left_foot.prep",
-      "sha256": "89db22d89046dcd4e2df490cd0a53f3ae3b6baea473f9b084eafc8c9704677c5",
+      "sha256": "c64910c3ec21c5fa3a6acb6d5d49cd6e60faa29b206864c640d6df00032caf82",
       "selected": 989001,
       "frameKey": null,
       "accepted": true,
@@ -21240,7 +21240,7 @@
      "provenance": {
       "run": "pool-player-v1-merged",
       "pose": "reassurance.notice",
-      "sha256": "5776d68772f0173e2c3edb564be8c7c15f28c10a416083e08939342a1578c57e",
+      "sha256": "2905bc1f3ef66beee1cf891ae18945fac4e918a05dd62f1414c211ee22245553",
       "selected": 989001,
       "frameKey": null,
       "accepted": true,
@@ -21426,7 +21426,7 @@
      "provenance": {
       "run": "pool-player-v1-merged",
       "pose": "retreat_backward.contact_r",
-      "sha256": "5959a970c1048d070e53166e30d8e6e33269b98fdff34006badfa6a735d5c2f4",
+      "sha256": "9ba78b48b0e4bed3d9ea609c7bbca430c254baebd7d87cf3e02ccfd7de12f1d7",
       "selected": "same drawing as enter_forward.contact_r",
       "frameKey": null,
       "accepted": true,
@@ -21495,7 +21495,7 @@
      "provenance": {
       "run": "pool-player-v1-merged",
       "pose": "retreat_backward.down_r",
-      "sha256": "eeb7f5275a26d7ec6940c28ff9577f307f26dae3a18f91c770f1bc34304562b2",
+      "sha256": "64b9d8d3079d9176d9210625cd1d1f7722c385808b70b9b2a690680239bb228e",
       "selected": "same drawing as enter_forward.down_r",
       "frameKey": null,
       "accepted": true,
@@ -21529,7 +21529,7 @@
      "provenance": {
       "run": "pool-player-v1-merged",
       "pose": "retreat_backward.pass_l",
-      "sha256": "c8caa808400a0fef683191d4306b4eba5b80e18c122174e5c24148589c9c71fd",
+      "sha256": "52bf0c2def62776049b8ed3e40ca836fee835cf25811d8c22758404142584ee8",
       "selected": "same drawing as enter_forward.pass_l",
       "frameKey": null,
       "accepted": true,
@@ -21563,7 +21563,7 @@
      "provenance": {
       "run": "pool-player-v1-merged",
       "pose": "retreat_backward.pass_r",
-      "sha256": "fee9e2b349d1c85c1545922b58f7283b8d72d719396e07b1fc86e7f26e5a36c2",
+      "sha256": "2998f00609fc85eb0e4f5e41110d4389c6802e4e731c3fbcf23804cf80f80786",
       "selected": "same drawing as enter_forward.pass_r",
       "frameKey": null,
       "accepted": true,
@@ -21603,7 +21603,7 @@
      "provenance": {
       "run": "pool-player-v1-merged",
       "pose": "right_foot.peak",
-      "sha256": "089c8c2508f71cea045b93cf32e47f00bc065b5550b003b40625d15a2a78fe08",
+      "sha256": "5c382093bb7dd8483f5aa3eb49eff0acc218f35ed571e1e3cd1edfe258383c63",
       "selected": 989001,
       "frameKey": null,
       "accepted": true,
@@ -21639,7 +21639,7 @@
      "provenance": {
       "run": "pool-player-v1-merged",
       "pose": "right_foot.follow",
-      "sha256": "18befde549f85cd6abf9f2545bafc6f98ac5a26ff9c8099a40c778ff919eaf9e",
+      "sha256": "52192abbbeffee920ad549510b40985412526304521a1abfae222e1508c2d9ee",
       "selected": 989000,
       "frameKey": null,
       "accepted": true,
@@ -21679,7 +21679,7 @@
      "provenance": {
       "run": "pool-player-v1-merged",
       "pose": "right_foot.peak",
-      "sha256": "089c8c2508f71cea045b93cf32e47f00bc065b5550b003b40625d15a2a78fe08",
+      "sha256": "5c382093bb7dd8483f5aa3eb49eff0acc218f35ed571e1e3cd1edfe258383c63",
       "selected": 989001,
       "frameKey": null,
       "accepted": true,
@@ -21714,7 +21714,7 @@
      "provenance": {
       "run": "pool-player-v1-merged",
       "pose": "right_foot.prep",
-      "sha256": "b841c12e17d907dbf1ff37e1bb31840da534cba5629e1d48b57f684288a2a5da",
+      "sha256": "2994a54883076977828280ac4b94e185e242367a7d1ce121394668c4ff472db1",
       "selected": 989000,
       "frameKey": null,
       "accepted": true,
@@ -21788,7 +21788,7 @@
      "provenance": {
       "run": "pool-player-v1-merged",
       "pose": "right_hand.peak",
-      "sha256": "ab7b2fe93d572e223085d7dc1bf9442b09210b68dc0b4f33744361d0bc1c9df9",
+      "sha256": "cd9a92153bfb3754d22ac0f76aadd2289f32821b7a0e2befad4aab774ddae35c",
       "selected": 989001,
       "frameKey": null,
       "accepted": true,
@@ -21824,7 +21824,7 @@
      "provenance": {
       "run": "pool-player-v1-merged",
       "pose": "right_hand.follow",
-      "sha256": "4bafe356c69bae89fff26bbd4f2b3bbd1aae0e55d6e55a45d7316431d7a27582",
+      "sha256": "e0e11debd1a9a81e8dee88fd0af163193dac7b46d1933515449066203f050034",
       "selected": 989001,
       "frameKey": null,
       "accepted": true,
@@ -21864,7 +21864,7 @@
      "provenance": {
       "run": "pool-player-v1-merged",
       "pose": "right_hand.peak",
-      "sha256": "ab7b2fe93d572e223085d7dc1bf9442b09210b68dc0b4f33744361d0bc1c9df9",
+      "sha256": "cd9a92153bfb3754d22ac0f76aadd2289f32821b7a0e2befad4aab774ddae35c",
       "selected": 989001,
       "frameKey": null,
       "accepted": true,
@@ -21933,7 +21933,7 @@
      "provenance": {
       "run": "pool-player-v1-merged",
       "pose": "right_hand.return",
-      "sha256": "e10c16378fab413f8ebb562af863c28efc18927cc85a4a7723b5ffa312b7c351",
+      "sha256": "d94a77e9ab64619ef637569ec7a361e49bc575eded01dc4b0d287e8a061d9c1d",
       "selected": 989001,
       "frameKey": null,
       "accepted": true,
@@ -22070,7 +22070,7 @@
      "provenance": {
       "run": "pool-player-v1-merged",
       "pose": "spin.back",
-      "sha256": "8f470f3fa599a4a9827a760116e2008fe335b1378b99a7cbb020d9709196ac96",
+      "sha256": "f2a0afbc3d6f9375664acd104b4035422ec6ed1b754b1a6a41f26760af58c782",
       "selected": 989001,
       "frameKey": null,
       "accepted": true,
@@ -22104,7 +22104,7 @@
      "provenance": {
       "run": "pool-player-v1-merged",
       "pose": "spin.back34_l",
-      "sha256": "531a751066378625c29a29fa99846be7ebe5005669d739beb1641c3e26c4794d",
+      "sha256": "4fb8c839c282b5bd21154fa6e8a2d4b35b006e3a82bd9b8322853755b697bab0",
       "selected": 989001,
       "frameKey": null,
       "accepted": true,
@@ -22414,7 +22414,7 @@
      "provenance": {
       "run": "pool-player-v1-merged",
       "pose": "watch.shift_l",
-      "sha256": "37991d24a73542e0ff0d550ded56b899b0293984ef479afd1aee8277120ddec0",
+      "sha256": "03ba1dff0f2b4f2b647a718adf2992adf2f35b2e0afd419499d9905b067650f9",
       "selected": 989000,
       "frameKey": null,
       "accepted": true,
@@ -22486,7 +22486,7 @@
      "provenance": {
       "run": "pool-player-v1-merged",
       "pose": "watch.shift_l",
-      "sha256": "37991d24a73542e0ff0d550ded56b899b0293984ef479afd1aee8277120ddec0",
+      "sha256": "03ba1dff0f2b4f2b647a718adf2992adf2f35b2e0afd419499d9905b067650f9",
       "selected": 989000,
       "frameKey": null,
       "accepted": true,
@@ -22556,7 +22556,7 @@
      "provenance": {
       "run": "pool-player-v1-merged",
       "pose": "yield_side.contact_l",
-      "sha256": "9335b6be70df4859facc97541b977a81d45f6d1081ae742dfaa95c450184ef11",
+      "sha256": "4d96b54f66af6be34c9aaad4e6ad6e9374c71f008c101afbf597e9ebe64fa08a",
       "selected": 989003,
       "frameKey": null,
       "accepted": true,
@@ -22694,7 +22694,7 @@
      "provenance": {
       "run": "pool-player-v1-merged",
       "pose": "yield_side.pass_l",
-      "sha256": "9335b6be70df4859facc97541b977a81d45f6d1081ae742dfaa95c450184ef11",
+      "sha256": "4d96b54f66af6be34c9aaad4e6ad6e9374c71f008c101afbf597e9ebe64fa08a",
       "selected": "same drawing as yield_side.contact_l",
       "frameKey": null,
       "accepted": true,

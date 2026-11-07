@@ -33,6 +33,7 @@ The rig gives Qwen only a skeleton, and the model sheet gives it the character.
 - **Hand fixes are data.** `drawing.poseOverrides` rewrites a pose's words (say `why`) when they disagree with
   its skeleton, which otherwise draws both (A5). `drawing.skeletonOverrides` moves joints where the rig's
   wrists stop short, such as a clap or a hat brim. An override for an unknown pose is refused.
+- **A long held prop lies where the pose says.** `drawing.cue` gives each clip or pose a line: planted on the floor through the wrist, or held along a direction, with `otherHand` to land the free wrist on it. The rig renders it as a mask (`cue-shaft`, `cue-butt`), and planning draws it into the skeleton as a white line, which Qwen followed in nearly every frame. Register with `--thin-prop`, so the body alone sets height and floor. A line drawn in by mistake shows as a thin white stroke: look for it. `tool/art/rig/cue_sheet.py` shows every pose's line before any GPU.
 - **Props** carry a hand and clips. The prompt names the hand by picture side. Bartender's `wording: own-hand`
   only keeps her accepted run reproducible, so leave it out of anything new.
 - **Accepted work costs nothing.** `drawing.accepted.run` names a run, and a pose whose generated prompt equals
@@ -46,6 +47,8 @@ The rig gives Qwen only a skeleton, and the model sheet gives it the character.
 `test_qwen_route.py` holds all 64 Bartender prompts, the job args and the graph equal to the accepted run.
 
 ## Review tools
+
+- `cue_review.py`, `merge_runs.py` and `finish_picks.py` take a family with fixes from several runs to an atlas: gather the runs, read the sheets, write `{picks: {pose: seed}}` in `art_runs/<run>/picks.json`, then finish and pack. `promote.py --new` adds an atlas the manifest doesn't have.
 
 - `score_frames.py` only ranks candidates, and can't see an extra arm, a lost hand or a goatee, so look at every
   candidate. It rewrites `selection.json`, so run it before picking by eye. A knee looks for its `trousers`

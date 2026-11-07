@@ -1,0 +1,17 @@
+[
+ {
+  "pose": "ck.chalk_a",
+  "args": {
+   "workflow": "art_runs/pool-closeup-20261107a/workflows/ck.chalk_a.api.json",
+   "tier": "I1",
+   "count": 3,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/pool-closeup-20261107a/in/sheet.png",
+    "pose_proxy": "/work/tmp/imagegen/kumbia/pool-closeup-20261107a/in/sheet.png"
+   },
+   "overrides": {
+    "seed": 989700
+   }
+  }
+ }
+]
