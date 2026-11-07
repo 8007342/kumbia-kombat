@@ -193,7 +193,7 @@ Presses a second rise at every tier, and the top is above the lawn's 3.68 and th
 |---|---|---|
 | BlinBlin, in play | Bartender atlas | `blinblin` atlas, `work/1860-blwv` |
 | BlinBlin, close-up | `oil-gulp-bt-offer.png`, which is a hand holding a glass and looks wrong | `nod-bb-*` |
-| Band | Guests, no instruments | `band-*`, `work/1864-band` |
+| Band | Bass, congas and trumpet are real, on the `form` ladder. Marimba is still a guest, and off a phone's screen | `band-marimba`, `work/1864-band` |
 | Crowd | guest0-2, flipped `step_touch` | guest3-6, `work/1868-gues` |
 
 Mācron's close-up is real: `nod-mc-*`, taken from `work/1860-blwv`.

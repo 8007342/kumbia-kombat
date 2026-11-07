@@ -593,34 +593,64 @@
       ],
       "beatsPerFrame": 0.5
      }
+    ],
+    "instrument": [
+     {
+      "input": "form",
+      "from": 0,
+      "frames": [
+       "relaxed_a",
+       "relaxed_b"
+      ],
+      "beatsPerFrame": 1
+     },
+     {
+      "input": "form",
+      "from": 0.3,
+      "frames": [
+       "relaxed_a",
+       "tap_up_a",
+       "relaxed_b",
+       "tap_up_b"
+      ],
+      "beatsPerFrame": 0.5
+     },
+     {
+      "input": "form",
+      "from": 0.75,
+      "frames": [
+       "swing_a",
+       "swing_b",
+       "swing_c",
+       "swing_d"
+      ],
+      "beatsPerFrame": 0.5
+     }
     ]
    },
    "players": [
     {
      "id": "trumpet",
-     "atlas": "guest2",
-     "reference": "standing_idle_a",
-     "palette": 1,
+     "atlas": "band-trumpet",
+     "reference": "relaxed_a",
      "feet": [0.168, 0.385],
-     "ladder": "standIn",
+     "ladder": "instrument",
      "lateBy": 0.1,
      "beatOffset": 1
     },
     {
      "id": "bass",
-     "atlas": "guest1",
-     "reference": "standing_idle_a",
-     "palette": 3,
+     "atlas": "band-bass",
+     "reference": "relaxed_a",
      "feet": [0.244, 0.384],
-     "ladder": "standIn"
+     "ladder": "instrument"
     },
     {
      "id": "congas",
-     "atlas": "guest1",
-     "reference": "standing_idle_a",
-     "palette": 0,
+     "atlas": "band-congas",
+     "reference": "relaxed_a",
      "feet": [0.146, 0.432],
-     "ladder": "standIn",
+     "ladder": "instrument",
      "lateBy": 0.05,
      "beatOffset": 2
     },

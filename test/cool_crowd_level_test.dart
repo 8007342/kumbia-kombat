@@ -573,7 +573,7 @@ void main() {
       expect(player.rungFor(const BandInputs(tier: 4, partySwing: 1)), 0);
 
       final other = _editedJson((json) {
-        final rungs = json['scenery']['band']['ladders']['standIn'] as List;
+        final rungs = json['scenery']['band']['ladders']['instrument'] as List;
         rungs[1]['input'] = 'tier';
         rungs[1]['from'] = 2;
         rungs[2]['input'] = 'partySwing';
