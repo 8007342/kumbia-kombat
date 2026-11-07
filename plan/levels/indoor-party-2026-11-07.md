@@ -173,14 +173,14 @@ Open `?level=cool-crowd`, or with `&autoplay=flawless`:
 
 | Tier | Tempo today | Presses | Doubles | Pairs | Splits | Presses a second |
 |---|---|---|---|---|---|---|
-| 0 | 112 | 8 | | | | 2.33 |
-| 1 | 112 | 11 | | 3 | | 3.21 |
-| 2 | 124 | 12 | | 2 | 2 | 3.88 |
-| 3 | 124 | 13 | 1 | 2 | 2 | 4.20 |
+| 0 | 112 | 8 | | | | 1.87 |
+| 1 | 112 | 11 | | 3 | | 2.57 |
+| 2 | 124 | 12 | | 2 | 2 | 3.10 |
+| 3 | 124 | 13 | 1 | 2 | 2 | 3.36 |
 | 4, first | 136 | 14 | 2 | 3 | 1 | 3.97 |
 | 4, second | 136 | 14 | 2 | 2 | 2 | 3.97 |
 
-Tier 3 asks more presses a second than tier 4, because of the tempos. The first tier 4 pattern ends on both feet together, the first time any chart uses that. All of it holds the fairness limits and cue separation, in tests, at the manifest's tempos. **The MUSIC agent may change those tempos.** If so, `rendered_music_test` fails until the charts are looked at again.
+Presses a second rise at every tier, and the top is above the lawn's 3.68 and the bar's. The first tier 4 pattern ends on both feet together, the first time any chart uses that. All of it holds the fairness limits and cue separation, in tests, at the manifest's tempos. **The MUSIC agent may change those tempos.** If so, `rendered_music_test` fails until the charts are looked at again.
 
 - **Uninterested, reworked after the owner's correction.** [P] Ten guests dance as five couples, facing each other, and eight dance alone, facing different ways. They share one beat per couple and set off together when the floor opens. Couples stand .42 of an adult apart, the reach GUESTS measured, so the spacing grows toward the camera. To fit that, only one couple goes left and more guests go right, and the three solos on the far right are mostly off a phone. A guest can name their own atlas, and a drawn sidestep is supported, but neither is in use yet.
 - **The win.** [P] Beats from the win: wide until 3, close-up 3 to 7.75. BlinBlin nods on 4, and Mācron answers on 5 with QUÉ FLOW. I split the plan's single shared nod in two, so it reads as approval and then the same cool reply. New cue patch `nod`, a low dry knock, quieter than `bump`, softer on the first. All of it fits 8 beats, and tests hold that against both scores. BlinBlin takes `defeatStance` in the wide shot once his atlas lands.
@@ -202,7 +202,7 @@ Mācron's close-up is real: `nod-mc-*`, taken from `work/1860-blwv`.
 
 - `flutter test`, full suite, and `flutter analyze lib test` at the same 4 notes.
 - A new page test plays the real bar into the real party on autoplay, with a fake audio clock: `bar/successShort` and `bar/bridge` play, the long tag doesn't, and the accents come in order. It does **not** measure when the room is adopted, because that depends on machine load. That Mācron's walk starts after the dissolve is arithmetic: 1.2 s against 6 beats, or 3.2 s at 112 BPM.
-- Stills through the real scene at 390 by 844, `build/stills/cool-crowd-win.png`, seen by me with the stand-ins. They show placement only. The white rings in those stills: see the on-screen list.
+- Stills through the real scene at 390 by 844, `build/stills/cool-crowd-win.png`, seen by me with the stand-ins. They show placement only. The white rings in those stills are the test's own overlay, not the game.
 - Lantern fills: 5 props, 2 seeds each, seed 76100 kept for all, looked at by me on a contact sheet and a before-and-after. The local vision model was not used for this batch.
 
 ## What went wrong
@@ -218,9 +218,8 @@ Mācron's close-up is real: `nod-mc-*`, taken from `work/1860-blwv`.
 - [ ] The clean plate has a small smudge at the arch's keystone, where the middle lantern's tip was. It's covered at rest. Does it show at full swing?
 - [ ] Lantern swing, on the beat, against the moving wall light.
 - [ ] The two nods' timing, and whether `nod` can be heard over the rendered tag. Nobody here can hear.
-- [ ] Are tap rings gone during the close-up on the real page?
 - [ ] On a wide screen, Mācron stands visible at his entrance mark before beat 6. A phone crops him out.
-- [ ] Tier 3 at 4.2 presses a second, and two feet together at the end of tier 4. Only a thumb can judge these.
+- [ ] Tier 4 at 3.97 presses a second, and two feet together at the end of its first pattern. Only a thumb can judge these.
 
 ## Not done
 
