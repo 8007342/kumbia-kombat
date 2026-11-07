@@ -35,6 +35,29 @@ def compress(im: Image.Image) -> Image.Image:
     return Image.fromarray(out, "RGBA")
 
 
+def shoe_rule(c: dict, rows: int | None):
+    """Dark trouser shadow can snap to the dark end of a vivid shoe ramp. Above the shoes, those pixels go to the trousers' ramp."""
+    if not rows:
+        return lambda im: im
+    import colour as C  # noqa: E402
+
+    ramps = C.build_ramps(c, D.load_style(c["style"]))
+    hexes = lambda r: np.array([[int(h[i:i + 2], 16) for i in (1, 3, 5)] for h in r["shades"]])
+    shoes, trousers = hexes(ramps["shoes"]), hexes(ramps["trousers"])
+
+    def apply(im: Image.Image) -> Image.Image:
+        a = np.asarray(im.convert("RGBA")).copy()
+        ys = np.where(a[..., 3].max(axis=1) > 0)[0]
+        limit = int(ys.max()) - rows
+        on_shoe = (a[..., 3] > 0) & (a[..., :3][..., None, :] == shoes).all(-1).any(-1)
+        on_shoe[limit:] = False
+        for y, x in zip(*np.where(on_shoe)):
+            a[y, x, :3] = trousers[((trousers - a[y, x, :3].astype(int)) ** 2).sum(1).argmin()]
+        return Image.fromarray(a, "RGBA")
+
+    return apply
+
+
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("character")
@@ -47,9 +70,10 @@ def main() -> None:
     final = run_dir / "final"
     final.mkdir(parents=True, exist_ok=True)
     selection = {}
+    shoes_only = shoe_rule(c, doc.get("shoesBelow"))
     for pose, seed in doc["picks"].items():
         src = CACHE / a.run / "registered" / pose / f"{seed}.png"
-        finish(src, palette, c["targets"][0].get("pixelScale", 3)).save(final / f"{pose}.png")
+        shoes_only(finish(src, palette, c["targets"][0].get("pixelScale", 3))).save(final / f"{pose}.png")
         selection[pose] = {"k": seed, "accepted": True}
     for pose, how in doc.get("derive", {}).items():
         compress(Image.open(final / f"{how['from']}.png")).save(final / f"{pose}.png")

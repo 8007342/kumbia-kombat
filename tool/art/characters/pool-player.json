@@ -12,7 +12,7 @@
   "her",
   "her"
  ],
- "skin": "#8C5A3C",
+ "skin": "#C9743C",
  "traits": "elegant upright adult woman of about sixty, a calm knowing smile, silver hair in a neat bob",
  "demeanor": "patient, exact and amused, as if already three shots ahead",
  "garments": [
@@ -20,14 +20,14 @@
    "id": "hair",
    "shape": "puff",
    "region": "hair",
-   "colour": "#C9C6C2",
+   "colour": "#B8BBBD",
    "text": "neat silver chin-length bob"
   },
   {
    "id": "shirt",
    "shape": "shirt-fitted",
    "region": "shirt",
-   "colour": "#F0E8D8",
+   "colour": "#F6EED2",
    "text": "crisp ivory blouse with the sleeves rolled to the elbow",
    "alsoIn": [
     "prop"
@@ -37,28 +37,28 @@
    "id": "waistcoat",
    "shape": "waistcoat-fitted",
    "region": "cloth",
-   "colour": "#1F4A3C",
+   "colour": "#125C36",
    "text": "fitted billiard-green waistcoat with brass buttons"
   },
   {
    "id": "trousers",
    "shape": "trousers",
    "region": "trousers",
-   "colour": "#23242B",
+   "colour": "#222E30",
    "text": "high-waisted charcoal trousers with a sharp crease"
   },
   {
    "id": "shoes",
    "shape": "shoes-flat",
    "region": "shoes",
-   "colour": "#6B3A22",
+   "colour": "#8E1020",
    "text": "polished oxblood brogues"
   },
   {
    "id": "brass",
    "shape": "waistcoat-buttons",
    "region": "accessory",
-   "colour": "#D6A632",
+   "colour": "#E0AB19",
    "alsoIn": [
     "cloth",
     "skin",
@@ -81,7 +81,7 @@
    "id": "cue_shaft",
    "shape": "cue-shaft",
    "region": "prop",
-   "colour": "#C9984F",
+   "colour": "#C98840",
    "alsoIn": [
     "skin",
     "shirt",
@@ -94,7 +94,7 @@
    "id": "cue_butt",
    "shape": "cue-butt",
    "region": "prop_dark",
-   "colour": "#6B3A1E",
+   "colour": "#6E3A1E",
    "alsoIn": [
     "skin",
     "trousers",
