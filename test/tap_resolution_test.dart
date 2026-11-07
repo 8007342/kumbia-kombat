@@ -178,10 +178,10 @@ void main() {
 
     test('exactly the judge\'s Good window, either way', () {
       final note = [cue('a', 10)];
-      expect(open(note, 10000 - RhythmJudge.goodWindowMs), hasLength(1));
-      expect(open(note, 10000 - RhythmJudge.goodWindowMs - 1), isEmpty);
-      expect(open(note, 10000 + RhythmJudge.goodWindowMs), hasLength(1));
-      expect(open(note, 10000 + RhythmJudge.goodWindowMs + 1), isEmpty);
+      expect(open(note, 10000 - RhythmJudge.earlyWindowMs), hasLength(1));
+      expect(open(note, 10000 - RhythmJudge.earlyWindowMs - 1), isEmpty);
+      expect(open(note, 10000 + RhythmJudge.lateWindowMs), hasLength(1));
+      expect(open(note, 10000 + RhythmJudge.lateWindowMs + 1), isEmpty);
       expect(open(note, 10050).single.timingOffMs, 50);
     });
 

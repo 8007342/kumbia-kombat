@@ -272,7 +272,9 @@ void main() {
     }
 
     // Unchanged neighbours, and a fake level ruled entirely by its own data.
-    expect(clearSeconds['garden'], closeTo(60.667, .001));
+    // The first 20 ms step past the last note's late window. It was 60.667 with
+    // the old 180 ms window; the 230 ms one decides the win a step or so later.
+    expect(clearSeconds['garden'], closeTo(60.707, .001));
     expect(clearSeconds['bar'], closeTo(93.167, .2)); // Joined mid-beat grid.
     final night = levels.byId('night-bar');
     expect(clearSeconds['night-bar'], lessThan(clearSeconds['bar']!));

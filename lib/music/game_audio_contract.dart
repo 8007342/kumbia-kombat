@@ -10,6 +10,43 @@ abstract interface class MusicFader {
   void fadeMusicIn({required double atSeconds, required double seconds});
 }
 
+/// Offered by backends that know how late the device plays what they schedule.
+abstract interface class AudioLatency {
+  /// What the browser reports, in seconds, or null when it reports nothing:
+  /// Web Audio's `outputLatency` and `baseLatency`, each null when missing.
+  ({double? output, double? base}) get reportedLatency;
+}
+
+/// When a browser reports no latency at all. Phones commonly play 50 to 150 ms
+/// late without Bluetooth; this is the low end, so a wrong guess costs less.
+const defaultOutputLatencySeconds = .06;
+
+/// The output latency to compensate: [override] (from `?latency=<ms>`, in
+/// seconds) when given, else `outputLatency + baseLatency` when the browser
+/// reports an output latency, else `baseLatency` alone (Safari reports only
+/// that, and it leaves out the device), else [defaultOutputLatencySeconds].
+/// A zero or negative report counts as no report: Chrome reports 0 before the
+/// first sound. Never above half a second.
+double chooseOutputLatency({double? output, double? base, double? override}) {
+  double? valid(double? v) => v != null && v.isFinite && v > 0 ? v : null;
+  final double chosen;
+  if (override != null && override.isFinite && override >= 0) {
+    chosen = override;
+  } else if (valid(output) != null) {
+    chosen = valid(output)! + (valid(base) ?? 0);
+  } else if (valid(base) != null) {
+    chosen = valid(base)!;
+  } else {
+    chosen = defaultOutputLatencySeconds;
+  }
+  return chosen.clamp(0.0, .5);
+}
+
+/// How long a phone's touch screen takes to hand a tap over, when nothing
+/// measures it. Touch screens measure 50 to 200 ms end to end, much of it the
+/// display (Deber et al., CHI 2015); this is the low part that delays the tap.
+const defaultTouchLatencySeconds = .04;
+
 /// Device lifecycle needed by gameplay, separate from the scheduling contract.
 abstract interface class GameAudio implements MusicAudioBackend {
   /// Must be initiated from a player gesture on the web. Unsupported platforms
