@@ -3,7 +3,7 @@
  "sets": {
   "garden": {
    "image": "garden.png",
-   "imageWidth": 135,
+   "imageWidth": 198,
    "imageHeight": 52,
    "frames": {
     "chair_right": {
@@ -70,12 +70,77 @@
       28
      ],
      "pixelsPerUnit": 8.0
+    },
+    "cup_0": {
+     "rect": [
+      137,
+      36,
+      13,
+      16
+     ],
+     "anchor": [
+      6.5,
+      16
+     ],
+     "pixelsPerUnit": 8.0
+    },
+    "cup_1": {
+     "rect": [
+      152,
+      36,
+      10,
+      16
+     ],
+     "anchor": [
+      5.0,
+      16
+     ],
+     "pixelsPerUnit": 8.0
+    },
+    "cup_2": {
+     "rect": [
+      164,
+      36,
+      7,
+      16
+     ],
+     "anchor": [
+      3.5,
+      16
+     ],
+     "pixelsPerUnit": 8.0
+    },
+    "cup_3": {
+     "rect": [
+      173,
+      36,
+      10,
+      16
+     ],
+     "anchor": [
+      5.0,
+      16
+     ],
+     "pixelsPerUnit": 8.0
+    },
+    "cup_4": {
+     "rect": [
+      185,
+      36,
+      13,
+      16
+     ],
+     "anchor": [
+      6.5,
+      16
+     ],
+     "pixelsPerUnit": 8.0
     }
    }
   },
   "bar": {
    "image": "bar.png",
-   "imageWidth": 161,
+   "imageWidth": 236,
    "imageHeight": 62,
    "frames": {
     "chair_right": {
@@ -142,12 +207,77 @@
       33
      ],
      "pixelsPerUnit": 8.0
+    },
+    "cup_0": {
+     "rect": [
+      163,
+      43,
+      16,
+      19
+     ],
+     "anchor": [
+      8.0,
+      19
+     ],
+     "pixelsPerUnit": 8.0
+    },
+    "cup_1": {
+     "rect": [
+      181,
+      43,
+      12,
+      19
+     ],
+     "anchor": [
+      6.0,
+      19
+     ],
+     "pixelsPerUnit": 8.0
+    },
+    "cup_2": {
+     "rect": [
+      195,
+      43,
+      9,
+      19
+     ],
+     "anchor": [
+      4.5,
+      19
+     ],
+     "pixelsPerUnit": 8.0
+    },
+    "cup_3": {
+     "rect": [
+      206,
+      43,
+      12,
+      19
+     ],
+     "anchor": [
+      6.0,
+      19
+     ],
+     "pixelsPerUnit": 8.0
+    },
+    "cup_4": {
+     "rect": [
+      220,
+      43,
+      16,
+      19
+     ],
+     "anchor": [
+      8.0,
+      19
+     ],
+     "pixelsPerUnit": 8.0
     }
    }
   },
   "pool-garden": {
    "image": "pool-garden.png",
-   "imageWidth": 76,
+   "imageWidth": 114,
    "imageHeight": 27,
    "frames": {
     "chair_right": {
@@ -212,6 +342,71 @@
      "anchor": [
       5.5,
       15
+     ],
+     "pixelsPerUnit": 8.0
+    },
+    "cup_0": {
+     "rect": [
+      78,
+      19,
+      7,
+      8
+     ],
+     "anchor": [
+      3.5,
+      8
+     ],
+     "pixelsPerUnit": 8.0
+    },
+    "cup_1": {
+     "rect": [
+      87,
+      19,
+      5,
+      8
+     ],
+     "anchor": [
+      2.5,
+      8
+     ],
+     "pixelsPerUnit": 8.0
+    },
+    "cup_2": {
+     "rect": [
+      94,
+      19,
+      4,
+      8
+     ],
+     "anchor": [
+      2.0,
+      8
+     ],
+     "pixelsPerUnit": 8.0
+    },
+    "cup_3": {
+     "rect": [
+      100,
+      19,
+      5,
+      8
+     ],
+     "anchor": [
+      2.5,
+      8
+     ],
+     "pixelsPerUnit": 8.0
+    },
+    "cup_4": {
+     "rect": [
+      107,
+      19,
+      7,
+      8
+     ],
+     "anchor": [
+      3.5,
+      8
      ],
      "pixelsPerUnit": 8.0
     }
