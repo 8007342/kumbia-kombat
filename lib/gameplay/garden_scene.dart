@@ -727,6 +727,30 @@ class GardenSceneGame extends FlameGame {
             );
           }),
         );
+        // A prop set that bakes a drink dances it at full swing.
+        if (baked != null && baked.definition.art.frames.containsKey('cup_2')) {
+          final cup = tableCupFrame(
+            beat: beat,
+            swing: _partySwing(beat),
+            instance: i,
+            reducedMotion: reducedMotion,
+          );
+          final cupGround = ui.Offset(
+            projected.x + adult * (i.isEven ? .11 : -.11),
+            // The table's drawing is taller than its top, by the drinks on it.
+            projected.y - adult * prop.heightInAdults * .72,
+          );
+          draws.add(
+            _WorldDraw('${prop.id}-cup', projected.y, 2, (canvas) {
+              baked.draw(
+                canvas,
+                cup,
+                cupGround,
+                adult * .2 / baked.nativeHeight('cup_2'),
+              );
+            }),
+          );
+        }
       }
     }
   }

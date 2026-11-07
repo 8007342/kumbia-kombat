@@ -16,7 +16,7 @@ import 'package:kumbia_kombat/music/transport.dart';
 import 'support/recording_canvas.dart';
 
 /// The draft pool lawn, on real game code, as the campaign's third level.
-const _plate = 'assets/art/pool-garden/pool-garden-v1-draft.png';
+const _plate = 'assets/art/pool-garden/pool-garden-clean.png';
 
 String _read(String id) => File('levels/$id.json').readAsStringSync();
 
