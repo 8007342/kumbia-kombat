@@ -38,25 +38,30 @@ Desktop Chromium through the preview, audio routed through a zero gain, Opus unl
 
 ## Charts
 
-Charts are unchanged: nothing showed them landing off the beat grid. At the takes' tempos the closest same-limb gaps stay at or above 326 ms, and the lawn's stay at or above 729 ms.
+No chart was changed for the rendered music, because nothing showed one landing off the beat grid. The lawn and the bar now carry the doubles agent's richer patterns. A test checks them against their fairness limits at the tempos the manifest gives each tier, so a change to the tier mapping fails that test.
 
-Weak spots, where the music usually has no clear attack on the note's position in the beat. These compare attack strength with that take's median sixteenth, and show how often the spot beats that median:
+Garden's plain chart has no limits of its own. It has one same-limb gap of 326 ms at 92 BPM in its first tier, which would miss the 400 ms limit the lawn and bar use. That tempo and chart are unchanged from the synth, so this isn't new. It's noted for the owner in case it feels cramped.
 
-| Take | Chart notes | Strength, share |
+Weak spots, measured per tier on the take that tier plays. These are positions where the music usually has no clear attack. The numbers compare attack strength with that take's median sixteenth, then how often the position beats that median. Garden has none at this threshold:
+
+| Level, tier, take | Chart beats | Strength, share |
 |---|---|---|
-| bar mid | 6.75 | 0.72, 18% |
-| bar low | 0.5, 4.5 | 0.78, 27% |
-| lawn low (peak tier) | 1.75, 5.75, 6.75 | 0.76, 30% |
-| lawn high | 0, 1, 3, 4, 5 | 0.79, 31% |
-| bar high | 2.25, 5.25 | 0.86, 31% |
+| Lawn 2, high | 0, 1, 3, 4, 5 | 0.79, 31% |
+| Lawn 3, high | 1, 3, 4, 5, 6, 7 | 0.79, 31% |
+| Lawn 4, low | 1.75, 3.75, 5.75 (first peak pattern only), 6.75 | 0.76, 30% |
+| Bar 0, low | 0.5, 4.5 | 0.78, 27% |
+| Bar 1, low | 0.5, 1.5, 2.5, 5.5 | 0.78, 27% |
+| Bar 2, mid | 3.75 | 0.72, 18% |
+| Bar 3, mid | 1.75, 3.75 | 0.72, 18% |
+| Bar 4, high | 2.25, 5.25, 6.25 or 7.25, by peak pattern | 0.86, 31% |
 
-This is only about attacks. It looks at a note's place within the beat, across the whole take. It can't say whether a note feels right. The mixing agent's `bar1Confidence` is low on garden low (0.21), bar mid (0.26) and bar high (0.0), so on those takes a chart's first beat may not be the bar's downbeat.
+This is only about attacks, and it looks at a note's place within the beat across the whole take, so it can't say whether a note feels right. On the lawn's high take the weak spots are the whole beats themselves. The mixing agent's `bar1Confidence` is low on garden low (0.21), bar mid (0.26) and bar high (0.0), so on those takes a chart's first beat may not be the bar's downbeat.
 
 ## How it works
 
 - The lawn's order, 144, 160, 136, comes from `tierTakes` in the manifest, and nothing assumes tempo rises.
 - A tier change starts on a phrase boundary. The clock takes the destination's tempo at the transition's first beat, and with 8-beat transitions the tempo doesn't change during a response.
-- A take that isn't decoded holds the tier change until it's ready. If nothing is decoded, the synth plays at the takes' tempos, so chart times don't move.
+- A tier always runs at its own tempo, because its chart is only fair there. The lawn's richest tier is safe at 136 and breaks its limits at 160 (281 ms against a 330 ms floor). So a take that isn't decoded means the synth at that tier's tempo, and the take joins at a later boundary if it arrives. If the manifest itself can't be read, the synth runs on its old tempos, which would put that tier at 160. That needs a damaged build, since the manifest ships with the game.
 - The old room's decoded audio is released when the next room takes over. Only the next room's first take and the exit are decoded early.
 
 ## What went wrong
@@ -65,6 +70,8 @@ This is only about attacks. It looks at a note's place within the beat, across t
 - **Two of my drift measurements were wrong and were thrown away.** One mixed two audio taps in one array, the other mapped array position to time after dropping entries. The table has the corrected measurement.
 - **A false alarm.** My ffmpeg mono downmix showed peaks above 1.0. In the browser, per channel, no file passes 0.95.
 - `rsync` isn't installed, and a server inside the forge can't be reached from the browser. So a click-track fixture couldn't be measured in a browser, and the checks ran on the real music through the preview.
+
+- **I ran commands in the main checkout by accident.** My worktree had been removed after a merge, a `cd` failed, and the rest of the command ran there. That included a `flutter build web`, which replaced the preview's game with a build of `game` at `2847be5`. `listen` survived and nothing was committed. It also lost an uncommitted fix, which is now redone. Commands now stop if the `cd` fails.
 
 ## Not checked
 

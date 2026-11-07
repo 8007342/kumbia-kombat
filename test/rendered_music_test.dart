@@ -4,6 +4,7 @@ import 'dart:math' as math;
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:kumbia_kombat/gameplay/garden_session.dart';
+import 'package:kumbia_kombat/gameplay/level_definition.dart';
 import 'package:kumbia_kombat/gameplay/progression.dart';
 import 'package:kumbia_kombat/music/game_audio_contract.dart';
 import 'package:kumbia_kombat/music/rendered_library.dart';
@@ -396,15 +397,20 @@ void main() {
   });
 
   group('when the audio is not there', () {
-    test('a take still decoding holds the change, then joins at a boundary', () {
+    test('a take still decoding means the synth at that tier\'s tempo', () {
       final deck = FakeDeck()..notReady.add('high');
       final transport = ladder(deck)..start();
       run(deck, 1, transport.pump);
       final boundary = transport.requestTier(2);
       run(deck, transport.secondsAt(boundary) + 1, transport.pump);
       expect(transport.currentTier, 2);
-      expect(transport.currentClip!.id, 'mid');
-      expect(transport.currentBpm, 144, reason: 'the clock matches the music');
+      expect(transport.currentClip, isNull);
+      expect(transport.currentBpm, 160, reason: 'the chart is fair at this tempo');
+      expect(
+        deck.voices.single.stoppedAt,
+        closeTo(transport.secondsAt(boundary), 1e-9),
+      );
+      expect(deck.notes, isNotEmpty);
 
       deck.notReady.remove('high');
       transport.pump();
@@ -413,6 +419,61 @@ void main() {
       expect(join.beat % 8, 0);
       run(deck, join.seconds + 4, transport.pump);
       expect(transport.currentClip!.id, 'high');
+      expect(transport.currentBpm, 160);
+    });
+
+    test('the lawn\'s top tier is at 136 whatever the audio is doing', () {
+      final manifest = RenderedManifest.fromJson(
+        jsonDecode(
+          File('assets/music/rendered/manifest.json').readAsStringSync(),
+        ),
+      );
+      final level = manifest.levels['pool-garden']!;
+      final ids = level.clips.map((clip) => clip.id).toList();
+      for (final missing in <List<String>>[
+        const [],
+        ['pool-garden/low'],
+        ['pool-garden/high-low'],
+        ids,
+      ]) {
+        final deck = FakeDeck()..notReady.addAll(missing);
+        final transport = ladder(deck, level: level)..start(tier: 2);
+        run(deck, 1, transport.pump);
+        final boundary = transport.requestTier(4);
+        run(deck, transport.secondsAt(boundary) + 8, transport.pump);
+        expect(transport.currentTier, 4);
+        expect(transport.currentBpm, closeTo(136, .01), reason: '$missing');
+      }
+    });
+
+    test('every rich chart is fair at the tempo the manifest gives its tier', () {
+      final manifest = RenderedManifest.fromJson(
+        jsonDecode(
+          File('assets/music/rendered/manifest.json').readAsStringSync(),
+        ),
+      );
+      final levels = LevelRegistry.parse(
+        File('levels/index.json').readAsStringSync(),
+        (id) => File('levels/$id.json').readAsStringSync(),
+      );
+      for (final step in levels.campaign) {
+        final level = step.level;
+        // Garden declares no limits of its own. Its plain chart is as it was, at
+        // the tempos it always had, including 326 ms for one limb at 92 BPM.
+        if (level.chart.richPatterns.isEmpty) continue;
+        final tempos = manifest.levels[level.id]!.tempos;
+        for (var tier = 0; tier < 5; tier++) {
+          final peaks = tier == 4 ? level.rules.finalChallenges : 1;
+          for (var peak = 0; peak < peaks; peak++) {
+            final index = level.chart.patternIndex(tier, peak);
+            expect(
+              level.chart.fairnessProblems(index, tempos[tier]),
+              isEmpty,
+              reason: '${level.id} tier $tier at ${tempos[tier]} BPM',
+            );
+          }
+        }
+      }
     });
 
     test('nothing decoded plays the synth at the takes\' tempos', () {
