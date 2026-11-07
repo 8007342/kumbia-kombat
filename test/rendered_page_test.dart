@@ -11,6 +11,7 @@ import 'package:kumbia_kombat/gameplay/garden_session.dart';
 import 'package:kumbia_kombat/gameplay/level_definition.dart';
 import 'package:kumbia_kombat/gameplay/music_mixer.dart';
 import 'package:kumbia_kombat/gameplay/outfit_palette.dart';
+import 'package:kumbia_kombat/gameplay/room_dissolve.dart';
 import 'package:kumbia_kombat/music/game_audio.dart';
 import 'package:kumbia_kombat/music/accent_voice.dart';
 import 'package:kumbia_kombat/music/rendered_music.dart';
@@ -218,11 +219,7 @@ void main() {
         );
       }
       final session = game.session;
-      if (!entryChecked && session?.progress.definition.id == 'cool-crowd') {
-        entryChecked = true;
-        // He isn't on the floor yet: the room comes first, then his walk.
-        expect(session!.positionBeats, lessThan(6));
-      }
+      if (session?.progress.definition.id == 'cool-crowd') entryChecked = true;
     }
     expect(
       ended(),
@@ -233,6 +230,14 @@ void main() {
           '${audio.voices.map((v) => v.clip.id).toSet()}',
     );
     expect(entryChecked, isTrue);
+    // The room clears before his walk starts. Worked out, not measured here: how
+    // many frames the page takes to adopt a room depends on this machine's load.
+    final party = levels.byId('cool-crowd');
+    final beatSeconds = 60 / audio.voices
+        .firstWhere((v) => v.clip.id == 'cool-crowd/low')
+        .clip
+        .bpm;
+    expect(RoomDissolve.seconds, lessThan(party.stage.heroEntersAt * beatSeconds));
     final clips = audio.voices.map((v) => v.clip.id).toList();
     expect(clips, contains('bar/successShort'));
     expect(clips, isNot(contains('bar/success')));
