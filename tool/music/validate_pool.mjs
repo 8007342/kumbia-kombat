@@ -123,7 +123,7 @@ console.log('Transitions: pool_swing_success at',success.tiers[4].bpm,'BPM; bar_
 // ---- level file: the fields lib/gameplay/level_definition.dart reads, and no others
 const level=json('levels/pool-garden.json');
 assert.deepEqual(Object.keys(level).sort(),['background','chart','copy','crowd','departure','exitShot','id','music','rules','scenery','stage','title'].sort());
-assert.deepEqual(Object.keys(level.chart).sort(),['callBeats','flourishDestination','introBeats','limbs','offsets','variants']);
+assert.deepEqual(Object.keys(level.chart).sort(),['callBeats','flourishDestination','introBeats','limbs','offsets','rich','variants']);
 assert.deepEqual(Object.keys(level.music).sort(),['leadShape','score','successScore']);
 assert.deepEqual(Object.keys(level.rules).sort(),['cleanSeconds','earlyHitRatio','finalChallenges','metric','resetAfterFailures','successesPerTier']);
 assert.deepEqual(Object.keys(level.copy).sort(),['clearedTitle','invitation']);
@@ -142,31 +142,57 @@ assert.ok(chart.variants.every(v=>v.length===chart.limbs.length&&v.every(l=>LIMB
 assert.notDeepEqual(chart.offsets,json('levels/garden.json').chart.offsets);
 assert.notDeepEqual(chart.offsets,barLevel.chart.offsets);
 
-// ---- chart at every tier, as limbsFor in lib/gameplay/garden_session.dart picks patterns
-const patterns=[];
-for(let t=0;t<4;t++)patterns.push({tier:t,limbs:t===0?chart.limbs:chart.variants[t-1]});
-for(let peak=0;peak<level.rules.finalChallenges;peak++)patterns.push({tier:4,limbs:chart.variants[(3+peak)%chart.variants.length]});
+// ---- chart at every tier, as patternFor in lib/gameplay/garden_session.dart picks
+// patterns. Owner's twelfth round: richer moves carry the growth, so the top tier
+// is the richest and busiest, at the slowest tempo. Its tempos are the approved
+// ladder (MID, HIGH, LOW) as this tool assumes tiers map onto it. The render agent
+// owns that mapping: if it differs, this table and the charts need another look.
+const TIER_BPM=[144,144,160,160,136];
+const {sameSpotMs,thumbHopMs,crossThumbMs,sameLimbMs,phraseEndMs,pairToleranceMs}=chart.rich.limits;
+assert.ok(sameLimbMs>=SAME_LIMB_MS&&sameLimbMs>2*GOOD_MS,'same-limb good windows never touch');
+assert.ok(pairToleranceMs>0&&pairToleranceMs<=GOOD_MS);
 const side=l=>l.startsWith('left')?'left':'right';
+const steps=index=>chart.rich.patterns[index]??(index===0?chart.limbs:chart.variants[index-1]).map((limb,i)=>({at:chart.offsets[i],limb}));
+const presses=index=>steps(index).flatMap((s,step)=>{
+ const first={at:s.at,limb:s.limb,step};
+ if(s.move==='pair')return [first,{at:s.at,limb:s.with,step}];
+ if(s.move==='doubleTap')return [first,{at:s.at+s.gap,limb:s.limb,step}];
+ if(s.move==='split')return [first,{at:s.at+s.gap,limb:s.with,step}];
+ return [first];
+});
+const patterns=[];
+for(let t=0;t<4;t++)patterns.push({tier:t,index:t});
+for(let peak=0;peak<level.rules.finalChallenges;peak++)patterns.push({tier:4,index:1+(3+peak)%chart.variants.length});
 const chartRows=[];
-for(const {tier,limbs} of patterns){
- const beatMs=60000/LADDER[tier];
- let sameLimb=Infinity,sameThumb=Infinity,any=Infinity;
- for(let i=0;i<limbs.length;i++)for(let j=i+1;j<limbs.length;j++){
-  const ms=(chart.offsets[j]-chart.offsets[i])*beatMs;
-  any=Math.min(any,ms);
-  if(limbs[i]===limbs[j])sameLimb=Math.min(sameLimb,ms);
-  if(side(limbs[i])===side(limbs[j]))sameThumb=Math.min(sameThumb,ms);
+for(const {tier,index} of patterns){
+ const list=presses(index), bpm=TIER_BPM[tier], beatMs=60000/bpm;
+ assert.equal(steps(index).length,chart.limbs.length,`pattern ${index} keeps its steps`);
+ let spot=Infinity,limb=Infinity,hop=Infinity,cross=Infinity;
+ for(let i=0;i<list.length;i++)for(let j=i+1;j<list.length;j++){
+  const beats=list[j].at-list[i].at, ms=beats*beatMs;
+  assert.ok(beats>=0,`pattern ${index} is in time order`);
+  if(beats===0){assert.notEqual(side(list[i].limb),side(list[j].limb),'a pair takes both thumbs');continue}
+  if(list[i].limb===list[j].limb){
+   if(list[i].step===list[j].step)spot=Math.min(spot,ms);else limb=Math.min(limb,ms);
+  }else if(side(list[i].limb)===side(list[j].limb))hop=Math.min(hop,ms);
+  else cross=Math.min(cross,ms);
  }
- assert.ok(sameLimb>=SAME_LIMB_MS,`same limb ${sameLimb} ms at tier ${tier}`);
- assert.ok(sameLimb>2*GOOD_MS,'same-limb good windows never touch');
- assert.ok(sameThumb>=beatMs-1e-6,`same thumb inside one beat at tier ${tier}`);
- const pairs=new Set(limbs.slice(1).map((l,i)=>limbs[i]+'>'+l));
- chartRows.push({tier,bpm:LADDER[tier],limbsUsed:new Set(limbs).size,limbChanges:pairs.size,minSameLimbMs:Math.round(sameLimb),minSameThumbMs:Math.round(sameThumb),minAnyMs:Math.round(any),tapsPerSec:(limbs.length/(8*beatMs/1000)).toFixed(2),cueLeadMs:Math.round(2*beatMs)});
+ assert.ok(spot>=sameSpotMs,`same spot ${spot} ms, tier ${tier}`);
+ assert.ok(limb>=sameLimbMs,`same limb ${limb} ms, tier ${tier}`);
+ assert.ok(hop>=thumbHopMs,`thumb hop ${hop} ms, tier ${tier}`);
+ assert.ok(cross>=crossThumbMs,`two thumbs ${cross} ms, tier ${tier}`);
+ assert.ok((8-list.at(-1).at)*beatMs-GOOD_MS>=phraseEndMs,`last window crosses the phrase, tier ${tier}`);
+ for(const p of list)assert.equal((p.at*4)%1,0,`press at ${p.at} is on a quarter of a beat`);
+ chartRows.push({tier,bpm,steps:steps(index).length,presses:list.length,rich:list.length-steps(index).length,spotMs:Math.round(spot),limbMs:Math.round(limb),hopMs:Math.round(hop),crossMs:Math.round(cross),pressesPerSec:(list.length/(8*beatMs/1000)).toFixed(2),cueLeadMs:Math.round(2*beatMs)});
 }
-console.log('Chart',JSON.stringify(chart.offsets));console.table(chartRows);
-const tierChanges=t=>Math.max(...chartRows.filter(r=>r.tier===t).map(r=>r.limbChanges));
-assert.ok(tierChanges(2)>tierChanges(0)&&tierChanges(2)>tierChanges(1)&&tierChanges(2)>tierChanges(3)&&tierChanges(2)>tierChanges(4),'limb load peaks at the middle tier');
-// Swung chart notes against the music they sit on.
+console.log('Base chart',JSON.stringify(chart.offsets));console.table(chartRows);
+const richAt=t=>Math.min(...chartRows.filter(r=>r.tier===t).map(r=>r.rich));
+assert.equal(richAt(0),0,'the first tier stays plain');
+for(let t=1;t<5;t++)assert.ok(richAt(t)>=richAt(t-1),'rich moves never fall as tiers rise');
+assert.ok(chartRows.filter(r=>r.tier<4).every(r=>r.presses<Math.min(...chartRows.filter(q=>q.tier===4).map(q=>q.presses))),'the top tier asks for the most presses');
+// Swung plain notes against the score they sit on. A split's second press at half a
+// beat isn't on the synth's swing: plan/double-moves-2026-11-07.md has what the
+// rendered takes do there.
 for(let t=0;t<5;t++){
  const beatMs=60000/LADDER[t];
  for(const o of chart.offsets.filter(o=>within(o)!==0)){
@@ -175,29 +201,23 @@ for(let t=0;t<5;t++){
   assert.ok(ms<=20,`chart offbeat ${o} is ${ms} ms from the music at tier ${t}`);
  }
 }
-// A swung offbeat must not crowd the note after it.
+// A swung offbeat must not crowd the note after it. Only the plain opening: richer
+// patterns answer to the limits above, by the twelfth round.
 const gaps=chart.offsets.slice(1).map((o,i)=>o-chart.offsets[i]);
-assert.ok(Math.min(...gaps)>=.75,'at least three quarters of a beat between taps');
+assert.ok(Math.min(...gaps)>=.75,'at least three quarters of a beat between plain taps');
 // The peak's hard-coded ratio in lib/gameplay/progression.dart still allows one miss.
 assert.equal(Math.ceil(chart.offsets.length*PEAK_RATIO),chart.offsets.length-1,'peak allows one dropped note');
 // A tier request must land on the phrase boundary after the next call begins, not
 // at a response. Game lookahead is .3 s (garden_page.dart); boundaries are every 8 beats.
+const latest=Math.max(...patterns.map(p=>presses(p.index).at(-1).at));
 for(const bpm of LADDER){
- const lastMs=chart.offsets.at(-1)+(GOOD_MS+300)/(60000/bpm);
+ const lastMs=latest+(GOOD_MS+300)/(60000/bpm);
  const start=chart.introBeats, resolved=start+8+lastMs;
  const boundary=(Math.floor(resolved/8)+1)*8;
  const nextCall=start+16;
  assert.ok(boundary>nextCall&&boundary<nextCall+8,`tier change at ${bpm} BPM lands at call offset ${boundary-nextCall}`);
 }
 console.log('Tier changes land 4 beats into the next call at every tempo (intro',chart.introBeats,'beats, phrase boundaries every 8).');
-
-// The per-tier rhythm in plan/levels/pool-garden.md, which the chart format cannot
-// hold yet: one offset list serves all tiers. Taps per second must peak at tier 2.
-const proposed=[[0,1.75,3,4,5.75],[0,1,1.75,3,4,5.75],chart.offsets,[0,1,1.75,3,4,5.75,6.75],[0,1.75,3,4,5.75,6.75]];
-const proposedRates=proposed.map((o,t)=>o.length/(8*60/LADDER[t]));
-assert.ok(proposedRates.every((r,t)=>t===2||r<proposedRates[2]),'proposed density peaks at tier 2');
-assert.ok(proposedRates[4]<proposedRates[3],'proposed fastest tier is sparser');
-console.log('Proposed per-tier taps/s, not playable yet:',proposedRates.map(r=>r.toFixed(2)).join(', '));
 
 // ---- marks
 const {stage}=level;

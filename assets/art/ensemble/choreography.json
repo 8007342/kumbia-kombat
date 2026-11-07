@@ -6,6 +6,11 @@
     "followThrough": "{limb}_follow",
     "settle": "{limb}_return"
   },
+  "pairHit": {
+    "anticipation": "clap_close",
+    "accent": "clap_contact",
+    "followThrough": "clap_release"
+  },
   "inviteHoldBeats": 0.5,
   "travelOutUntilYield": 0.75,
   "clips": {

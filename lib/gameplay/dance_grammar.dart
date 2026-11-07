@@ -1,4 +1,5 @@
 import 'challenger_choreography.dart';
+import 'rhythm.dart';
 
 /// One drawn dance clip. Loops index from the absolute music beat, so a groove
 /// keeps its phase however it is entered. One-shots index from their own start.
@@ -224,6 +225,7 @@ class DanceGrammar {
           'right_foot',
         ])
           (template as String).replaceAll('{limb}', limb),
+      ...((_data['pairHit'] as Map?)?.values.cast<String>() ?? const <String>[]),
       ...List<String>.from(rules['finishByTier'] as List),
       rules['reducedMotionHold'] as String,
       rules['reducedMotionCelebration'] as String,
@@ -276,6 +278,8 @@ class DanceGrammar {
     bool reducedMotion = false,
   }) {
     final d = _require(dancer);
+    final pair = _pairFrame(pose);
+    if (pair != null) return pose.withFrame(_alias(d, pair));
     if (pose.movePhase == DanceMovePhase.accent) return pose;
     final frame = _frame(
       d,
@@ -288,6 +292,14 @@ class DanceGrammar {
       reducedMotion,
     );
     return pose.withFrame(_alias(d, frame));
+  }
+
+  /// Both hands at once: the clap every dancer already has, with its contact on
+  /// the note. Any other pair dances its own limb's accent.
+  String? _pairFrame(ChallengerPose pose) {
+    bool hand(Limb? l) => l == Limb.leftHand || l == Limb.rightHand;
+    if (!hand(pose.limb) || !hand(pose.partnerLimb)) return null;
+    return (_data['pairHit'] as Map?)?[pose.movePhase.name] as String?;
   }
 
   String _frame(

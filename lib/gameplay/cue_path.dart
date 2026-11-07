@@ -94,7 +94,10 @@ CuePath cuePath({
   final startY = draw.next();
   final bend = draw.next();
 
-  final onBeat = (beat * 2).round().isEven;
+  // Whole and half beats keep their rule. Quarter positions alternate bar by bar,
+  // so a double from an odd beat, or two offbeats a beat apart, land apart too.
+  final quarter = ((beat * 4).round() % 2) != 0;
+  final onBeat = quarter ? beat.floor().isEven : (beat * 2).round().isEven;
   final landingX = reducedMotion
       ? home.x
       : home.x +

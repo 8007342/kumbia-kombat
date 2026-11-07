@@ -730,6 +730,7 @@ class LevelDefinition {
 
     final offsetsPath = fields.at('offsets');
     final variantsPath = fields.at('variants');
+    final rich = fields.has('rich') ? _rich(fields.child('rich')) : null;
     final chart = FightChart(
       introBeats: fields.number('introBeats', min: .25),
       callBeats: fields.number('callBeats', min: .25),
@@ -743,6 +744,8 @@ class LevelDefinition {
         for (final (i, variant) in fields.list('variants').indexed)
           limbs('$variantsPath[$i]', variant),
       ]),
+      richPatterns: rich?.patterns ?? const {},
+      limits: rich?.limits ?? const MoveLimits(),
     );
     fields.finish();
     try {
@@ -751,6 +754,55 @@ class LevelDefinition {
       throw LevelDataError(fields.path, '${error.message}');
     }
     return chart;
+  }
+
+  /// The chart's richer moves: `plan/double-moves-2026-11-07.md`. A chart without
+  /// this field plays exactly as it did before they existed.
+  static ({Map<int, List<ChartStep>> patterns, MoveLimits limits}) _rich(
+    _Fields fields,
+  ) {
+    final limits = fields.child('limits');
+    int ms(String key) => limits.whole(key, min: 0);
+    final parsedLimits = MoveLimits(
+      pairToleranceMs: ms('pairToleranceMs'),
+      sameSpotMs: ms('sameSpotMs'),
+      thumbHopMs: ms('thumbHopMs'),
+      crossThumbMs: ms('crossThumbMs'),
+      sameLimbMs: ms('sameLimbMs'),
+      phraseEndMs: ms('phraseEndMs'),
+    );
+    limits.finish();
+    final patterns = fields.child('patterns');
+    final raw = patterns._raw;
+    final parsed = <int, List<ChartStep>>{};
+    for (final key in raw.keys.toList()) {
+      final index = int.tryParse(key);
+      if (index == null) {
+        throw LevelDataError(patterns.at(key), 'expected a pattern number');
+      }
+      parsed[index] = List.unmodifiable([
+        for (final (i, step) in patterns.list(key).indexed)
+          _step(_Fields('${patterns.at(key)}[$i]', step)),
+      ]);
+    }
+    patterns.finish();
+    fields.finish();
+    return (patterns: Map.unmodifiable(parsed), limits: parsedLimits);
+  }
+
+  static ChartStep _step(_Fields fields) {
+    final move = fields.has('move')
+        ? fields.named('move', RichMove.values)
+        : null;
+    final step = ChartStep(
+      fields.number('at', min: 0),
+      fields.named('limb', Limb.values),
+      move: move,
+      partner: fields.has('with') ? fields.named('with', Limb.values) : null,
+      gap: fields.has('gap') ? fields.number('gap', min: .001) : 0,
+    );
+    fields.finish();
+    return step;
   }
 
   static List<LevelChallenger> _challengers(
