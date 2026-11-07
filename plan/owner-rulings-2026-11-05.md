@@ -1,7 +1,7 @@
 # Owner rulings, 2026-11-05
 
 These settle the Level 3 discussion's first round. Where an older plan disagrees, this file wins until the
-plan is updated.
+plan is updated. `assets/art/STYLEGUIDE.md` folds the visual rulings into one guide, and this file still outranks it.
 
 | Topic | Ruling | Owner's words |
 |---|---|---|
@@ -189,3 +189,40 @@ Polish, the same day. No finish lamps: "the party engagement and music are indic
 
 Ladders, the same day: progression is right, but the low tiers are too quiet and, on the lawn, too slow. "the low level of the second try lawn pool level is a bit too slow, but the progression is great", "its LOW << MID < HIGH, the low tier is much more quieter in comparison with the mid and high tiers. We need to spike up a little more those low levels." Tiers share themes but "won't crossfade cleanly", so transitions must be made smooth. The implementation is open.
 
+
+## Indoor party round, 2026-11-07: the band and the crowd that's already dancing
+
+The owner's words, whole: "let's use that left platform to add a band playing the music, they'll also play while tapping a foot or swinging their instrument on rythm, and liven their rythm as the player game improves. We can fill a bunch of people dancing already in this room, where our dancing will actually have them slow down and move aside, for Mācron and BlinBlin dancer to take over, the rest will dance in place like at the other levels. They'll start dancing for this one, on the middle, then move over as Mācron and BlinBlin start their dance fight in the middle 😉 The recommended A options are great, I approve"
+
+| Topic | Ruling | Owner's words |
+|---|---|---|
+| Band | A band on the room's left platform plays the music, tapping a foot or swinging an instrument on the beat, and gets livelier as the player improves | "liven their rythm as the player game improves" |
+| Crowd | This room starts full of people already dancing in the middle of the floor. Those in the middle slow down and move aside, and the rest dance in place | "slow down and move aside, for Mācron and BlinBlin dancer to take over" |
+| Band's angle and dancers around it | Players stand at an angle, playing toward the crowd. A few people dance in front of them from our view, all around the band | "they're standing at an angle and playing towards the crowd, and there could be a few people dancing in front of them from our perspective, all around the band playing." |
+| Options | The "recommended A options" are approved. As the coordinator read it, that includes plate A for this room | "The recommended A options are great, I approve" |
+
+Status: built as a hidden level, with stand-in art. See `plan/levels/indoor-party-2026-11-07.md`.
+
+## Twelfth round, 2026-11-07: richer moves, and the ladders by ear
+
+| Topic | Ruling | Owner's words |
+|---|---|---|
+| Richer moves | Charts get double taps and taps in two spots, together or one after the other, inside one beat. Complexity carries the growth, so the lawn's slower top tier is intended | "It's ok, we'll add double taps, even taps in double spots like left and right or left then right, in the same beat, that should compensate for the lower speed. The music feels sharper and more rich, and so should be the dance, even if the tempo is slower ;)" |
+| BlinBlin | Sheets F1 (front) and B1 (back) are approved and accepted | |
+| Campaign order | Garden, pool party, bar is merged. The game should now play the rendered music | "plays great on auto, but it still has the old synth score" |
+| Ladders | By ear, the lawn plays MID, HIGH, LOW: 144, then 160, then 136 BPM. The bar and indoor party ladders stay as they are | "for the song to feel like its growing", "great the way it is" |
+| Mixing | Ladders need mixing, and perhaps some transitional segments re-mixed | "They still need mixing capabilities, and possibly re-mixing some transitional segments." |
+| Local models | Local CPU and GPU are approved for assets, curation, music and vision | |
+
+How the richer moves were built, and what only a thumb can settle: `plan/double-moves-2026-11-07.md`.
+
+## Round of 2026-11-07: The Pool Player and the billiards room
+
+| Topic | Ruling | Owner's words |
+|---|---|---|
+| Name | The Pool Player, she/her | "We'll call her The Pool Player" |
+| Front | Sheet 989001 | "the second front candidate, the one with the smile" |
+| Back | Sheets 989101 and 989103 | "the second and fourth back candidates" |
+| Billiards plate | `art_runs/rooms/billiards/picks/plate-989601.png`, the darkest ceiling, measured | "the glow reflections on the floor and the black ceiling provide the better effect and depth" |
+
+989103 shows a slight turn of the head, and its cue has a hooked foot with a ball. Back 989101 has a stray pale ball at the cue's foot. Both stay as drawn until frames show whether it matters.

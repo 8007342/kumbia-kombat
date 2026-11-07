@@ -68,12 +68,18 @@ flutter:
     - assets/ui/
     - assets/art/garden/
     - assets/art/bar/
+    - assets/art/cool-crowd/
     - assets/art/pool-garden/
+    - assets/art/cool-crowd/
     - assets/art/props/
     - assets/art/party/
     - assets/art/ensemble/
     - assets/art/closeups/
     - assets/music/scores/
+    - assets/music/rendered/
+    - assets/music/rendered/garden/
+    - assets/music/rendered/pool-garden/
+    - assets/music/rendered/bar/
     - levels/
 
   # To add assets to your application, add an assets section, like this:

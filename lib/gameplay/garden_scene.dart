@@ -6,7 +6,9 @@ import 'package:flame/game.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/services.dart';
 
+import 'band.dart';
 import 'challenger_choreography.dart';
+import 'dance_floor.dart';
 import 'dance_grammar.dart';
 import 'duet_staging.dart';
 import 'ensemble_sprites.dart';
@@ -17,10 +19,12 @@ import 'level_definition.dart';
 import 'outfit_palette.dart';
 import 'party_layout.dart';
 import 'party_sprites.dart';
+import 'party_up.dart';
 import 'progression.dart';
 import 'rhythm.dart';
 import 'room_departure.dart';
 import 'room_dissolve.dart';
+import 'room_layers.dart';
 
 class _WorldDraw {
   const _WorldDraw(this.id, this.floorY, this.layer, this.draw);
@@ -47,6 +51,9 @@ class GardenSceneGame extends FlameGame {
   double actionBeat = -10;
   double? actionTargetBeat;
   double? nextRequiredBeat;
+
+  /// The other limb when the latest press finished a pair: he dances both.
+  Limb? actionPartner;
   double flourishBeat = -10;
 
   /// Which move the flourish is, so what he does matches what the thumb drew.
@@ -76,6 +83,9 @@ class GardenSceneGame extends FlameGame {
   GardenSession? _choreographySession;
   List<Limb>? _choreographyLimbs;
   List<double>? _choreographyOffsets;
+  PartyUp _partyUp = PartyUp();
+  GardenSession? _partyUpSession;
+  BandEnergy _bandEnergy = BandEnergy();
 
   void resetEntrance() => _resetBeat = session?.positionBeats ?? -10;
 
@@ -155,6 +165,7 @@ class GardenSceneGame extends FlameGame {
         _grammar!.requireClips(challenger.atlas, [
           duet.offClip,
           duet.partnerClip,
+          duet.exit.danceClip,
           'yield_out',
           'return_in',
         ]);
@@ -165,6 +176,23 @@ class GardenSceneGame extends FlameGame {
           duet.spin.reachFrame,
         ]);
         _heroAtlas!.definition.requireFrames(duet.spin.heroFrames);
+      }
+      final away = challenger.facingAway;
+      if (away != null) {
+        _ensemble![challenger.atlas]!.definition.art.requireFrames(away.frames);
+      }
+    }
+    for (final player in level.scenery.band?.players ?? const <BandPlayer>[]) {
+      final atlas = _ensemble![player.atlas];
+      if (atlas == null) {
+        throw StateError('Level ${level.id} names unknown atlas ${player.atlas}');
+      }
+      atlas.definition.art.requireFrames(player.frames);
+    }
+    final dance = level.floorDance;
+    if (dance != null) {
+      for (final atlas in const ['guest0', 'guest1', 'guest2']) {
+        _ensemble![atlas]!.definition.art.requireFrames(dance.frames);
       }
     }
     final generation = ++_roomGeneration;
@@ -198,6 +226,7 @@ class GardenSceneGame extends FlameGame {
     actionBeat = -10;
     actionTargetBeat = null;
     nextRequiredBeat = null;
+    actionPartner = null;
     flourishBeat = -10;
     _choreography = null;
   }
@@ -250,8 +279,14 @@ class GardenSceneGame extends FlameGame {
     super.onRemove();
   }
 
-  void dance(Limb limb, {double? targetBeat, double? nextRequiredBeat}) {
+  void dance(
+    Limb limb, {
+    double? targetBeat,
+    double? nextRequiredBeat,
+    Limb? partner,
+  }) {
     action = limb;
+    actionPartner = partner;
     actionBeat = session?.positionBeats ?? 0;
     actionTargetBeat = targetBeat;
     this.nextRequiredBeat = nextRequiredBeat;
@@ -338,6 +373,7 @@ class GardenSceneGame extends FlameGame {
     final sampledBeat = presentationBeat ?? session?.positionBeats ?? 0;
     final beat = paused ? _lastBeat : sampledBeat;
     if (!paused) _lastBeat = beat;
+    _followTier(beat);
     final viewport = PartyViewport(
       size.x,
       size.y,
@@ -390,11 +426,12 @@ class GardenSceneGame extends FlameGame {
         ).createShader(bounds),
     );
 
-    _drawLampGlows(canvas, viewport);
+    _drawLampGlows(canvas, viewport, beat);
     final draws = <_WorldDraw>[];
     _addFurniture(draws, viewport, room, beat);
     _addGuests(draws, viewport, room, beat);
     _addLife(draws, viewport, room, beat);
+    _addBand(draws, viewport, room, beat);
     final challenger = _challengerAt(beat);
     _addChallenger(draws, viewport, room, challenger);
     _addHero(draws, viewport, room, beat, challenger);
@@ -515,7 +552,12 @@ class GardenSceneGame extends FlameGame {
     double beat,
   ) {
     final s = session;
+    final dance = _level!.floorDance;
     for (final slot in room.guests) {
+      if (slot.onFloor && dance != null) {
+        _addFloorGuest(draws, viewport, room, slot, dance, beat);
+        continue;
+      }
       final projected = room.projectSlot(viewport, slot);
       final snapshot = s != null && slot.interestIndex != null
           ? s.crowd.guest(
@@ -555,6 +597,113 @@ class GardenSceneGame extends FlameGame {
     }
   }
 
+  /// Someone already on the dance floor. They make way when the fight starts and
+  /// answer the player like everyone else, but on their feet, and they stay on
+  /// them: at a win they keep dancing until the room dissolves.
+  void _addFloorGuest(
+    List<_WorldDraw> draws,
+    PartyViewport viewport,
+    PartyRoomLayout room,
+    PartyGuestSlot slot,
+    FloorDance dance,
+    double beat,
+  ) {
+    final parting = slot.partTo == null ? null : dance.parting;
+    final place = floorGuestAt(
+      slot,
+      parting?.along(beat, slot.partDelay, reducedMotion: reducedMotion) ?? 0,
+    );
+    final projected = room.projectSlot(viewport, slot, at: place);
+    final index = slot.interestIndex!;
+    final danceBeat = parting?.danceBeat(beat, slot.partDelay) ?? beat;
+    final snapshot = session?.crowd.guest(index, beat);
+    final pose = snapshot == null
+        ? (
+            frame: dance.ownThing.at(index * .371, reducedMotion: reducedMotion),
+            facesIn: false,
+          )
+        : floorGuestPose(
+            snapshot,
+            dance,
+            danceBeat: danceBeat,
+            reducedMotion: reducedMotion,
+          );
+    final atlas =
+        _ensemble!['guest${snapshot?.archetypeIndex ?? slot.archetype}']!;
+    final scale = projected.spriteScale(atlas.nativeHeight('standing_idle_a'));
+    final ground = _point(projected.floor);
+    final palette =
+        OutfitColor.values[(snapshot?.paletteIndex ?? slot.paletteIndex) %
+            OutfitColor.values.length];
+    final facesRight = pose.facesIn ? slot.facingRight : !slot.facingRight;
+    draws.add(
+      _WorldDraw(slot.id, projected.floor.y, 10, (canvas) {
+        _shadow(canvas, ground, projected.standingHeight);
+        atlas.draw(
+          canvas,
+          pose.frame,
+          ground,
+          scale,
+          flipX: !facesRight,
+          outfits: _outfits,
+          palette: palette,
+        );
+      }),
+    );
+  }
+
+  /// The band on their platform, livened by whatever each rung of their ladder
+  /// listens to. Reads the beat and those numbers, and only picks drawings.
+  void _addBand(
+    List<_WorldDraw> draws,
+    PartyViewport viewport,
+    PartyRoomLayout room,
+    double beat,
+  ) {
+    final band = _level!.scenery.band;
+    if (band == null) return;
+    final lift = _level!.scenery.platform?.lift ?? 0;
+    final s = session;
+    for (final player in band.players) {
+      final atlas = _ensemble![player.atlas]!;
+      final floor = viewport.project(player.at);
+      final height = _adultHeight(
+        viewport,
+        room,
+        player.at,
+        stature: player.stature,
+      );
+      final ground = ui.Offset(floor.x, floor.y - height * lift);
+      final frame = player.frameAt(
+        beat,
+        (bar) => BandInputs(
+          form: _bandEnergy.at(bar),
+          tier: _partyUp.tier,
+          partySwing: _partySwing(bar),
+        ),
+        beatsPerBar: s?.transport.score.beatsPerBar ?? 4,
+        reducedMotion: reducedMotion,
+      );
+      final palette = player.palette;
+      draws.add(
+        _WorldDraw('band-${player.id}', floor.y, 10, (canvas) {
+          _shadow(canvas, ground, height);
+          atlas.draw(
+            canvas,
+            frame,
+            ground,
+            height / atlas.nativeHeight(player.reference),
+            flipX: player.flipX,
+            outfits: palette == null ? null : _outfits,
+            palette: palette == null
+                ? null
+                : OutfitColor.values[palette % OutfitColor.values.length],
+          );
+        }),
+      );
+    }
+  }
+
   /// The crowd's flawless reveal, easing back out as the room cools at the win.
   double _partySwing(double beat) =>
       (session?.crowd.partySwing(beat) ?? 0) * (1 - warmDown);
@@ -569,6 +718,7 @@ class GardenSceneGame extends FlameGame {
         beat: beat,
         swing: swing,
         reducedMotion: reducedMotion,
+        life: _life(prop.kind, beat, prop.instance),
       );
       final at = prop.screenRect(viewport);
       canvas.drawImageRect(
@@ -585,15 +735,53 @@ class GardenSceneGame extends FlameGame {
     }
   }
 
-  String _propFrame(String kind, int instance, double beat) =>
-      ensemblePartyFrame(
-        kind,
-        _foregroundSeconds,
-        beat: beat,
-        swing: _partySwing(beat),
-        instance: instance,
-        reducedMotion: reducedMotion,
+  /// The room wakes with the music's tier, for every player. A new session starts
+  /// a new room near still; a won room holds as it is and cools with [warmDown].
+  void _followTier(double beat) {
+    final s = session;
+    if (s == null || _level == null) return;
+    if (!identical(_partyUpSession, s)) {
+      _partyUpSession = s;
+      _partyUp = PartyUp.forLevel(
+        cycleBeats: s.chart.cycleBeats,
+        successesPerTier: _level!.rules.successesPerTier,
       );
+      _bandEnergy = BandEnergy();
+    }
+    final hold = s.phase == GardenPhase.cleared || s.transport.sections.isEmpty;
+    _partyUp.follow(beat, hold ? _partyUp.tier : s.transport.tierAt(beat));
+    if (_level!.scenery.band != null) {
+      _bandEnergy.follow(beat, s.crowd.recentForm);
+    }
+  }
+
+  double _life(PartyLifeKind kind, double beat, int instance) =>
+      _partyUp.life(kind, beat, instance: instance) * (1 - warmDown);
+
+  /// Drift in the room's first tier, as a share of the drawn movement.
+  static const _nearStillRange = .34;
+
+  double _driftRange(double life) =>
+      _nearStillRange + (1 - _nearStillRange) * life;
+
+  String _propFrame(String kind, int instance, double beat) {
+    final life = _life(switch (kind) {
+      'umbrella' => PartyLifeKind.umbrella,
+      'plant' => PartyLifeKind.plant,
+      'candle' => PartyLifeKind.flame,
+      _ => PartyLifeKind.staff,
+    }, beat, instance);
+    return ensemblePartyFrame(
+      kind,
+      _foregroundSeconds,
+      beat: beat,
+      swing: _partySwing(beat),
+      instance: instance,
+      reducedMotion: reducedMotion,
+      range: _driftRange(life),
+      onBeat: kind == 'candle' ? life * .5 : 0,
+    );
+  }
 
   void _addFurniture(
     List<_WorldDraw> draws,
@@ -676,6 +864,30 @@ class GardenSceneGame extends FlameGame {
             );
           }),
         );
+        // A prop set that bakes a drink dances it at full swing.
+        if (baked != null && baked.definition.art.frames.containsKey('cup_2')) {
+          final cup = tableCupFrame(
+            beat: beat,
+            swing: _partySwing(beat),
+            instance: i,
+            reducedMotion: reducedMotion,
+          );
+          final cupGround = ui.Offset(
+            projected.x + adult * (i.isEven ? .11 : -.11),
+            // The table's drawing is taller than its top, by the drinks on it.
+            projected.y - adult * prop.heightInAdults * .72,
+          );
+          draws.add(
+            _WorldDraw('${prop.id}-cup', projected.y, 2, (canvas) {
+              baked.draw(
+                canvas,
+                cup,
+                cupGround,
+                adult * .2 / baked.nativeHeight('cup_2'),
+              );
+            }),
+          );
+        }
       }
     }
   }
@@ -708,7 +920,10 @@ class GardenSceneGame extends FlameGame {
     if (waiter == null) return;
     final waiterX = reducedMotion
         ? waiter.home.x
-        : waiter.home.x + waiter.swayX * math.sin(_foregroundSeconds * .11);
+        : waiter.home.x +
+              waiter.swayX *
+                  _driftRange(_life(PartyLifeKind.staff, beat, 4)) *
+                  math.sin(_foregroundSeconds * .11);
     final floor = PartyPoint(waiterX, waiter.home.y);
     final projected = viewport.project(floor);
     final height = _adultHeight(viewport, room, floor);
@@ -726,7 +941,69 @@ class GardenSceneGame extends FlameGame {
     );
   }
 
-  void _drawLampGlows(ui.Canvas canvas, PartyViewport viewport) {
+  /// Soft light drifting over the walls. It wakes with the music's tier, on every
+  /// run, and under reduced motion it stays put and only brightens.
+  void _drawWallLight(ui.Canvas canvas, PartyViewport viewport, double beat) {
+    final light = _level!.scenery.wallLight;
+    if (light == null) return;
+    final life = _life(PartyLifeKind.light, beat, 0);
+    if (life <= 0) return;
+    final phase = reducedMotion ? .25 : (beat / light.periodBeats) % 1;
+    for (final (i, zone) in light.zones.indexed) {
+      final points = [for (final p in zone) viewport.project(p)];
+      final path = ui.Path()..moveTo(points.first.x, points.first.y);
+      for (final p in points.skip(1)) {
+        path.lineTo(p.x, p.y);
+      }
+      path.close();
+      final box = path.getBounds();
+      final sweep = math.sin(2 * math.pi * (phase + i * .37));
+      final centre = ui.Offset(
+        box.center.dx + sweep * box.width * .35,
+        box.center.dy + math.cos(2 * math.pi * (phase + i * .37)) * box.height * .2,
+      );
+      final radius = box.longestSide * .55;
+      canvas.save();
+      canvas.clipPath(path);
+      canvas.drawCircle(
+        centre,
+        radius,
+        ui.Paint()
+          ..shader = ui.Gradient.radial(centre, radius, [
+            const ui.Color(0xff9ec8ff).withValues(alpha: .34 * life),
+            const ui.Color(0x00b08cff),
+          ]),
+      );
+      canvas.restore();
+    }
+  }
+
+  void _drawLampGlows(ui.Canvas canvas, PartyViewport viewport, double beat) {
+    _drawWallLight(canvas, viewport, beat);
+    // The whole room warms from above, ending before the tap band, with no moving
+    // edge: for a room with no layers yet, this and the lamps are most of its life.
+    final warmth = _life(PartyLifeKind.light, beat, 0);
+    if (warmth > 0) {
+      final bounds = ui.Rect.fromLTWH(
+        0,
+        0,
+        PartyViewport.logicalWidth,
+        viewport.logicalHeight * roomLayerTapBandTop,
+      );
+      canvas.drawRect(
+        bounds,
+        ui.Paint()
+          ..blendMode = ui.BlendMode.softLight
+          ..shader = LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              const Color(0xFFFFB45E).withValues(alpha: .4 * warmth),
+              const Color(0x00FFB45E),
+            ],
+          ).createShader(bounds),
+      );
+    }
     // Centers measured against the painted lamps, under the same cover crop.
     final sources = _level!.scenery.lamps;
     for (var i = 0; i < sources.length; i++) {
@@ -736,13 +1013,21 @@ class GardenSceneGame extends FlameGame {
         instance: i,
         reducedMotion: reducedMotion,
       ).lightGain;
-      const radius = 2.0;
+      final life = _life(PartyLifeKind.light, beat, i);
+      // Breathes over a bar once awake: never a flash. Brightness alone under
+      // reduced motion, so the room is still the meter there.
+      final breath = reducedMotion
+          ? 1.0
+          : 1 + .12 * life * math.cos(2 * math.pi * beat / 4);
+      final radius = 2.0 + 10 * life;
       canvas.drawCircle(
         center,
         radius,
         ui.Paint()
           ..shader = ui.Gradient.radial(center, radius, [
-            const ui.Color(0xffffce83).withValues(alpha: .045 * gain),
+            const ui.Color(
+              0xffffce83,
+            ).withValues(alpha: (.045 + .3 * life) * gain * breath),
             const ui.Color(0x00ffce83),
           ]),
       );
@@ -779,6 +1064,15 @@ class GardenSceneGame extends FlameGame {
           floor.x + (meet.x - floor.x) * at,
           floor.y + (meet.y - floor.y) * at,
         );
+      }
+      final s = session;
+      if (s == null || s.phase == GardenPhase.ready || s.phase == GardenPhase.intro) {
+        final away = challenger.facingAway?.frameAt(
+          beat,
+          _level!.chart.introBeats,
+          reducedMotion: reducedMotion,
+        );
+        if (away != null) dressed = dressed.withFrame(away);
       }
       var mirrored = false;
       DuetRole? role;
@@ -936,11 +1230,16 @@ class GardenSceneGame extends FlameGame {
         onLeft: onLeft,
         from: dancer == 0 ? wins.first : wins.second,
         e: exitBeat ?? 0,
+        closeupTo: level.exitShot?.closeupTo ?? double.infinity,
         reducedMotion: reducedMotion,
       );
       return (
         floor: out.floor,
-        frame: out.reaching ? duet.exit.reachFrame : null,
+        frame: out.reaching
+            ? duet.exit.reachFrame
+            : out.dancing
+            ? _grammar!.clipFrame(atlas, duet.exit.danceClip, beat)
+            : null,
         mirrored: out.mirrored,
         role: null,
       );
@@ -971,6 +1270,7 @@ class GardenSceneGame extends FlameGame {
       DuetRole.pair => duet.pairFrame(
         onLeft: place.onLeft,
         limb: pose.limb,
+        partner: pose.partnerLimb,
         phase: pose.movePhase,
         beat: reducedMotion ? 0 : beat,
       ),
@@ -1031,8 +1331,9 @@ class GardenSceneGame extends FlameGame {
     ChallengerPose challenger,
   ) {
     final s = session;
+    final entersAt = _level!.stage.heroEntersAt;
     final entrance = s?.phase == GardenPhase.intro
-        ? (beat / s!.chart.introBeats).clamp(0.0, 1.0)
+        ? ((beat - entersAt) / (s!.chart.introBeats - entersAt)).clamp(0.0, 1.0)
         : 1.0;
     final resetAge = beat - _resetBeat;
     final retreat = resetAge >= 0 && resetAge < 2
@@ -1167,6 +1468,7 @@ class GardenSceneGame extends FlameGame {
         targetBeat: actionTargetBeat!,
         beat: beat,
         nextRequiredBeat: nextRequiredBeat,
+        partnerLimb: actionPartner,
       );
       if (move.phase != DanceMovePhase.idle) {
         frame = move.frameId;

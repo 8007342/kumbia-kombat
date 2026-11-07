@@ -22,6 +22,15 @@ import 'support/recording_canvas.dart';
 /// the two files: every clear time, score and tier held, and the bar's twelve
 /// guests kept the same crowd numbers. Only canvas calls and the garden's bigger
 /// cast moved.
+///
+/// Rewritten again for slow party-up by tier. Clear times, scores, tiers and every
+/// crowd number held. Moved: which prop drawing shows in the first tier, as the
+/// room now starts nearer still, the waiters' range, and the bar's four more lamp
+/// glows. This harness renders only at its samples, so it barely sees the wake:
+/// `party_up_test.dart` covers that, rendering every step.
+///
+/// Rewritten for the pointing rule, 2026-11-07: a step in time no longer shows
+/// `step_touch_b`. One drawing of one guest moved, in the garden's cleared sample.
 const _goldenPath = 'test/goldens/levels_before.json';
 
 class _Audio implements MusicAudioBackend {
@@ -119,9 +128,13 @@ Future<Map<String, Object?>> _fingerprint(
       advance(music.secondsAt(start + 1));
       sample('call$cycle');
     }
-    for (var i = 0; i < session.activeLimbs.length; i++) {
-      final limb = session.activeLimbs[i];
-      final target = start + session.chart.callBeats + session.chart.offsets[i];
+    final played = session.chart.patternFor(session.progress.tier, session.progress.fullTierSuccesses);
+    for (var i = 0; i < played.limbs.length; i++) {
+      // The first limb is read before the phrase rolls over, so it can be the last
+      // phrase's, as it was when this golden was written: a tier's first note then
+      // misses. Kept, so the garden's fingerprint proves nothing else moved.
+      final limb = (i == 0 ? session.activeLimbs : played.limbs)[i];
+      final target = start + session.chart.callBeats + played.offsets[i];
       advance(music.secondsAt(target));
       session.tap(limb);
       if (session.phase == GardenPhase.cleared) break;

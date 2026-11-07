@@ -8,6 +8,9 @@ key stays outside the served folder, so the page can't give it away.
 
   python3 -I tool/music/build_listening.py [--page pilot|themes] <run dir> <served dir>
   python3 -I tool/music/build_listening.py --add-ladder <ladder> <run dir> <served dir>
+  python3 -I tool/music/build_listening.py --latest <run dir> <served dir>
+
+--latest replaces the served dir with one screen of the approved ladders only, in play order.
 
 --add-ladder puts one more ladder from LADDERS into a built page, and changes nothing else:
 no letters, no other excerpts, no answer key. Use it while someone is still comparing the page.
@@ -21,6 +24,7 @@ import json
 import pathlib
 import re
 import secrets
+import shutil
 import subprocess
 import sys
 
@@ -165,13 +169,136 @@ def add_ladder(ladder, run, served):
     print("added", ladder, "to", index)
 
 
+# The approved ladders, in the order the owner wants each song to grow. --latest builds only these.
+LATEST = [
+    ("lows-garden", "The Garden", "warm night cumbia", [("low", "92"), ("mid", "98"), ("high", "104")]),
+    ("lows-lawn", "The Pool Lawn", "fast joyful swing", [("mid", "144"), ("high", "160"), ("low", "136")]),
+    ("lows-bar", "The Bar", "swaggering indoor cumbia", [("low", "100"), ("mid", "106"), ("high", "112")]),
+    ("lows-party", "The Indoor Party", "midnight Latin boogaloo", [("low", "112"), ("mid", "124"), ("high", "136")]),
+]
+LATEST_PAGE = """<!doctype html>
+<html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kumbia Kombat: listen</title>
+<style>
+:root{--bg:#14101f;--card:#211a31;--line:#3a2f52;--ink:#f6ecd8;--dim:#a79cb8;--accent:#ffbe5c;--mint:#6fe0c4}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{background:var(--bg);color:var(--ink);font:15px/1.35 system-ui,sans-serif;display:flex;justify-content:center}
+main{width:100%;max-width:560px;padding:16px;display:flex;flex-direction:column;gap:8px}
+h1{font-size:18px;margin:0;letter-spacing:.02em}
+header p{margin:2px 0 6px;color:var(--dim);font-size:13px}
+details{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+details[open]{border-color:var(--accent)}
+summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:10px;padding:10px 12px;min-height:48px}
+summary::-webkit-details-marker{display:none}
+summary b{flex:1;min-width:0}
+summary small{display:block;font-weight:400;color:var(--dim);font-size:12px}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+.round{flex:none;width:36px;height:36px;border-radius:50%;background:var(--accent);color:#22182f;font-size:14px;display:grid;place-items:center}
+.round.small{width:32px;height:32px;background:var(--line);color:var(--ink);font-size:12px}
+.playing>.round,.round.on{background:var(--mint);color:#102420}
+.rows{padding:0 12px 10px;display:flex;flex-direction:column;gap:8px}
+.row{display:flex;align-items:center;gap:10px}
+.tier{width:54px;font-size:12px;color:var(--dim);line-height:1.15}
+.tier b{display:block;color:var(--ink);font-size:13px;text-transform:capitalize}
+.bar{flex:1;height:32px;display:flex;align-items:center;cursor:pointer;touch-action:none}
+.track{width:100%;height:6px;border-radius:3px;background:var(--line);overflow:hidden}
+.fill{height:100%;width:0;background:var(--mint)}
+.time{width:66px;text-align:right;font-variant-numeric:tabular-nums;font-size:12px;color:var(--dim)}
+@media (max-height:620px){main{padding:8px;gap:5px}header p{display:none}}
+</style>
+<main>
+<header><h1>Kumbia Kombat: the songs</h1><p>Each song grows through three parts, in order. These are 40-second excerpts at matched loudness, cut from the takes without the game's transitions.</p></header>
+{sections}
+</main>
+<script>
+const audio=new Audio();audio.preload='none';
+let current=null,queue=[];
+const rows=[...document.querySelectorAll('.row')];
+const fmt=s=>Number.isFinite(s)?Math.floor(s/60)+':'+String(Math.floor(s%60)).padStart(2,'0'):'0:00';
+function paint(row,t,d){row.querySelector('.fill').style.width=(d?100*t/d:0)+'%';row.querySelector('.time').textContent=fmt(t)+' / '+fmt(d);}
+function mark(){
+ document.querySelectorAll('.round').forEach(b=>{b.classList.remove('on');b.textContent=b.dataset.icon;});
+ if(!current||audio.paused)return;
+ const b=current.querySelector('.round');b.classList.add('on');b.textContent='❚❚';
+ if(queue.playAll){const a=current.closest('details').querySelector('summary .round');a.classList.add('on');a.textContent='❚❚';}
+}
+function load(row,at){
+ if(current!==row){if(current)paint(current,0,audio.duration||0);current=row;audio.src=row.dataset.src;}
+ if(at!==undefined){const seek=()=>{audio.currentTime=at*(audio.duration||0);};audio.readyState>=1?seek():audio.addEventListener('loadedmetadata',seek,{once:true});}
+ current.closest('details').open=true;
+ audio.play();
+}
+rows.forEach(row=>{
+ row.querySelector('.round').addEventListener('click',()=>{
+  if(current===row&&!audio.paused){audio.pause();return;}
+  queue=[];load(row);
+ });
+ const bar=row.querySelector('.bar');
+ const seek=e=>{const r=bar.getBoundingClientRect();load(row,Math.min(1,Math.max(0,(e.clientX-r.left)/r.width)));};
+ bar.addEventListener('pointerdown',e=>{queue=[];seek(e);bar.setPointerCapture(e.pointerId);bar.onpointermove=seek;});
+ bar.addEventListener('pointerup',()=>{bar.onpointermove=null;});
+});
+document.querySelectorAll('details').forEach(d=>{
+ d.querySelector('summary .round').addEventListener('click',e=>{
+  e.preventDefault();e.stopPropagation();
+  const own=[...d.querySelectorAll('.row')];
+  if(queue.playAll&&own.includes(current)&&!audio.paused){audio.pause();return;}
+  queue=own.slice(1);queue.playAll=true;load(own[0],0);
+ });
+ d.addEventListener('toggle',()=>{if(d.open)document.querySelectorAll('details').forEach(o=>{if(o!==d)o.open=false;});});
+});
+audio.addEventListener('timeupdate',()=>{if(current)paint(current,audio.currentTime,audio.duration);});
+audio.addEventListener('play',mark);audio.addEventListener('pause',mark);
+audio.addEventListener('ended',()=>{
+ if(current)paint(current,0,audio.duration);
+ const all=queue.playAll,next=queue.shift();
+ if(next){queue.playAll=all;load(next,0);}else{queue=[];current=null;mark();}
+});
+</script></html>
+"""
+
+
+def build_latest(run, served):
+    served.mkdir(parents=True, exist_ok=True)
+    keep = {ladder for ladder, *_ in LATEST} | {"index.html"}
+    for old in served.iterdir():
+        if old.name not in keep:
+            shutil.rmtree(old) if old.is_dir() else old.unlink()
+    sections = []
+    for index, (ladder, title, style, tiers) in enumerate(LATEST):
+        folder = served / ladder
+        folder.mkdir(parents=True, exist_ok=True)
+        rows = []
+        for tier, bpm in tiers:
+            excerpt(run / ladder / f"{tier}.flac", TAKE_START, folder / f"{tier}.flac", seconds=LADDER_SECONDS)
+            rows.append(
+                f'<div class="row" data-src="{ladder}/{tier}.flac">'
+                f'<button class="round small" type="button" data-icon="▶" aria-label="Play {tier}">▶</button>'
+                f'<span class="tier"><b>{tier}</b>{bpm} BPM</span>'
+                f'<div class="bar" role="slider" aria-label="Position in {tier}"><div class="track"><div class="fill"></div></div></div>'
+                f'<span class="time">0:00 / {LADDER_SECONDS // 60}:{LADDER_SECONDS % 60:02d}</span></div>'
+            )
+        sections.append(
+            f"<details{' open' if index == 0 else ''}><summary>"
+            f'<button class="round" type="button" data-icon="▶" aria-label="Play {title} in order">▶</button>'
+            f"<b>{title}<small>{style}, {tiers[0][0]} to {tiers[-1][0]}</small></b></summary>"
+            f'<div class="rows">{"".join(rows)}</div></details>'
+        )
+    (served / "index.html").write_text(LATEST_PAGE.replace("{sections}", "\n".join(sections)))
+    print("built", served / "index.html")
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("--page", choices=PAGES, default="pilot")
     parser.add_argument("--add-ladder", choices=LADDERS)
+    parser.add_argument("--latest", action="store_true")
     parser.add_argument("run", type=pathlib.Path)
     parser.add_argument("served", type=pathlib.Path)
     args = parser.parse_args()
+    if args.latest:
+        return build_latest(args.run, args.served)
     if args.add_ladder:
         return add_ladder(args.add_ladder, args.run, args.served)
     page, run, served = PAGES[args.page], args.run, args.served

@@ -1,7 +1,7 @@
 {
   "id": "bar",
   "title": "THE BAR",
-  "background": "bar/bar-interior.png",
+  "background": "bar/bar-interior-clean.png",
   "music": {
     "score": "bar_swag",
     "successScore": "bar_swag_finale",
@@ -90,7 +90,62 @@
         "leftFoot",
         "rightFoot"
       ]
-    ]
+    ],
+    "rich": {
+      "limits": {"pairToleranceMs": 80, "sameSpotMs": 285, "thumbHopMs": 330, "crossThumbMs": 170, "sameLimbMs": 400, "phraseEndMs": 100},
+      "patterns": {
+        "1": [
+          {"at": 0.5, "limb": "rightFoot"},
+          {"at": 1.5, "limb": "leftHand", "move": "pair", "with": "rightHand"},
+          {"at": 2.5, "limb": "leftFoot"},
+          {"at": 3.25, "limb": "leftHand", "move": "pair", "with": "rightHand"},
+          {"at": 4.25, "limb": "leftFoot"},
+          {"at": 4.75, "limb": "rightFoot"},
+          {"at": 5.5, "limb": "rightHand"},
+          {"at": 6.25, "limb": "leftHand"}
+        ],
+        "2": [
+          {"at": 0, "limb": "rightFoot", "move": "split", "with": "leftFoot", "gap": 0.5},
+          {"at": 1.25, "limb": "leftHand", "move": "pair", "with": "rightHand"},
+          {"at": 2.25, "limb": "leftFoot"},
+          {"at": 3.25, "limb": "rightFoot"},
+          {"at": 3.75, "limb": "leftFoot"},
+          {"at": 4.5, "limb": "rightHand"},
+          {"at": 5.5, "limb": "rightFoot"},
+          {"at": 6.5, "limb": "leftHand", "move": "pair", "with": "rightHand"}
+        ],
+        "3": [
+          {"at": 0, "limb": "leftFoot"},
+          {"at": 0.5, "limb": "rightFoot", "move": "split", "with": "leftHand", "gap": 0.5},
+          {"at": 1.75, "limb": "rightHand"},
+          {"at": 3, "limb": "leftFoot", "move": "doubleTap", "gap": 0.75},
+          {"at": 4.5, "limb": "leftHand", "move": "pair", "with": "rightHand"},
+          {"at": 5.5, "limb": "rightFoot"},
+          {"at": 6.5, "limb": "leftHand", "move": "pair", "with": "rightHand"},
+          {"at": 7.5, "limb": "rightFoot"}
+        ],
+        "4": [
+          {"at": 0.5, "limb": "rightHand"},
+          {"at": 1, "limb": "leftFoot", "move": "split", "with": "rightFoot", "gap": 0.5},
+          {"at": 2.25, "limb": "leftHand", "move": "pair", "with": "rightHand"},
+          {"at": 3, "limb": "rightFoot", "move": "doubleTap", "gap": 0.75},
+          {"at": 4.5, "limb": "leftHand", "move": "pair", "with": "rightHand"},
+          {"at": 5.25, "limb": "leftFoot"},
+          {"at": 6.25, "limb": "leftHand"},
+          {"at": 7, "limb": "rightFoot"}
+        ],
+        "5": [
+          {"at": 0, "limb": "leftHand", "move": "pair", "with": "rightHand"},
+          {"at": 1, "limb": "rightFoot", "move": "doubleTap", "gap": 0.75},
+          {"at": 2.5, "limb": "leftHand", "move": "pair", "with": "rightHand"},
+          {"at": 3.5, "limb": "rightFoot"},
+          {"at": 4, "limb": "leftHand", "move": "split", "with": "rightHand", "gap": 0.5},
+          {"at": 5.25, "limb": "rightFoot", "move": "split", "with": "leftHand", "gap": 0.5},
+          {"at": 6.5, "limb": "rightHand"},
+          {"at": 7.25, "limb": "leftFoot"}
+        ]
+      }
+    }
   },
   "stage": {
     "calibration": "inspectedStarter",
@@ -161,25 +216,17 @@
       [
         0.706,
         0.082
-      ]
+      ],
+      [0.22, 0.115],
+      [0.277, 0.081],
+      [0.478, 0.02],
+      [0.754, 0.11]
     ],
     "plants": [
-      [
-        0.14,
-        0.43
-      ],
-      [
-        0.86,
-        0.43
-      ]
+      [0.14, 0.43],
+      [0.86, 0.43]
     ],
-    "waiter": {
-      "home": [
-        0.51,
-        0.345
-      ],
-      "swayX": 0.055
-    }
+    "waiter": { "home": [0.51, 0.345], "swayX": 0.12 }
   },
   "departure": {
     "threshold": "counter-end passage",
@@ -359,5 +406,87 @@
   "copy": {
     "invitation": "The bartender has a rhythm of their own.",
     "clearedTitle": "MUY\nSUAVE"
+  },
+  "hardestCombo": {
+    "name": "Last Call",
+    "status": "proposal",
+    "note": "Proposal. The name and shape need no sign-off to exist, but the owner hasn't seen or played them. The Bartender opens on the spin, where other opponents end on it, then doubles time over the bar's off-beats.",
+    "callBeats": 8,
+    "moves": [
+      {
+        "at": 0,
+        "beats": 3,
+        "clip": "spin_flare"
+      },
+      {
+        "at": 3,
+        "beats": 1,
+        "clip": "clap"
+      },
+      {
+        "at": 4,
+        "beats": 4,
+        "clip": "groove_double"
+      }
+    ],
+    "notes": [
+      {
+        "at": 0.5,
+        "limb": "rightHand"
+      },
+      {
+        "at": 1,
+        "limb": "leftHand"
+      },
+      {
+        "at": 1.75,
+        "limb": "rightFoot"
+      },
+      {
+        "at": 2.25,
+        "limb": "rightHand"
+      },
+      {
+        "at": 3,
+        "limb": "leftFoot"
+      },
+      {
+        "at": 3.75,
+        "limb": "leftHand"
+      },
+      {
+        "at": 4.5,
+        "limb": "rightFoot"
+      },
+      {
+        "at": 5.25,
+        "limb": "leftFoot"
+      },
+      {
+        "at": 6,
+        "limb": "leftHand"
+      },
+      {
+        "at": 6.75,
+        "limb": "rightFoot",
+        "move": "stomp"
+      }
+    ]
+  },
+  "layers": {
+    "plateWidth": 1024,
+    "plateHeight": 1536,
+    "props": [
+      {"id": "lantern-top", "atlas": "bar/bar-layers.png", "atlasY": 0, "left": 432, "top": 0, "width": 122, "height": 93, "frames": 7, "motion": "sway", "periodBeats": 4, "instance": 1, "kind": "hanging"},
+      {"id": "lantern-l2", "atlas": "bar/bar-layers.png", "atlasY": 95, "left": 247, "top": 1, "width": 78, "height": 175, "frames": 7, "motion": "sway", "periodBeats": 4, "instance": 2, "kind": "hanging"},
+      {"id": "lantern-r2", "atlas": "bar/bar-layers.png", "atlasY": 272, "left": 686, "top": 1, "width": 75, "height": 175, "frames": 7, "motion": "sway", "periodBeats": 4, "instance": 3, "kind": "hanging"},
+      {"id": "lantern-l1", "atlas": "bar/bar-layers.png", "atlasY": 449, "left": 199, "top": 80, "width": 57, "height": 153, "frames": 7, "motion": "sway", "periodBeats": 4, "instance": 4, "kind": "hanging"},
+      {"id": "lantern-r1", "atlas": "bar/bar-layers.png", "atlasY": 604, "left": 748, "top": 80, "width": 55, "height": 153, "frames": 7, "motion": "sway", "periodBeats": 4, "instance": 5, "kind": "hanging"},
+      {"id": "fern-right", "atlas": "bar/bar-layers.png", "atlasY": 759, "left": 794, "top": 0, "width": 170, "height": 168, "frames": 7, "motion": "sway", "periodBeats": 2, "instance": 6, "kind": "plant"},
+      {"id": "fern-left", "atlas": "bar/bar-layers.png", "atlasY": 929, "left": 1, "top": 0, "width": 193, "height": 264, "frames": 7, "motion": "sway", "periodBeats": 2, "instance": 7, "kind": "plant"},
+      {"id": "candle-left", "atlas": "bar/bar-layers.png", "atlasY": 1195, "left": 188, "top": 297, "width": 33, "height": 36, "frames": 4, "motion": "pulse", "periodBeats": 1, "instance": 8, "kind": "flame"},
+      {"id": "candle-mid", "atlas": "bar/bar-layers.png", "atlasY": 1233, "left": 466, "top": 297, "width": 32, "height": 36, "frames": 4, "motion": "pulse", "periodBeats": 1, "instance": 9, "kind": "flame"},
+      {"id": "candle-right", "atlas": "bar/bar-layers.png", "atlasY": 1271, "left": 676, "top": 297, "width": 32, "height": 36, "frames": 4, "motion": "pulse", "periodBeats": 1, "instance": 10, "kind": "flame"}
+    ]
   }
 }

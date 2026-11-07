@@ -39,7 +39,7 @@ COLOURS = {
 IDS = {name: i + 1 for i, name in enumerate(COLOURS)}
 
 TOP_KEYS = {"id", "title", "camera", "phone", "safe", "tapBand", "cast", "walkable", "standable", "paint", "story",
-            "marks", "props", "scene", "zones", "keep", "styleRef", "level", "comment", "genSize"}
+            "marks", "props", "scene", "zones", "keep", "styleRef", "level", "comment", "genSize", "platforms"}
 CAMERA_KEYS = {"horizonY", "eyeHeightAdults", "focalPx", "vanishingX", "originBottomX"}
 MARK_KEYS = {"heroHome", "heroEntrance", "heroRetreat", "challengers", "guests", "route", "plants", "routeFacing", "pathEnd"}
 
@@ -419,7 +419,7 @@ def compile_room(spec):
         "image": [W, H], "horizonY": cam.hz / H, "vanishingX": cam.vpx / W, "eyeHeightAdults": cam.eye, "focalPx": cam.f,
         "floorHomography_st_to_px": H_.tolist(), "ids": IDS, "walkable": walkable, "standable": standable,
         "safe": spec["safe"], "tapBand": spec["tapBand"], "phone": spec["phone"], "phoneVisibleX": report["phoneVisibleX"],
-        "lines": p.lines, "lampsNormalized": [[round(x / W, 4), round(y / H, 4)] for x, y in p.lamps],
+        "platforms": platform_tops(spec, cam), "lines": p.lines, "lampsNormalized": [[round(x / W, 4), round(y / H, 4)] for x, y in p.lamps],
         "walkablePixels": int(np.isin(ids, walk_ids).sum()),
         "note": "Adult height at foot y, as a fraction of image height: (y - horizonY) / eyeHeightAdults",
     }
@@ -451,6 +451,25 @@ def prompts(spec):
         "pass1": STYLE["pass1"].format(zones=layout, **fill).strip(),
         "pass2": STYLE["pass2"].format(zones=final, keep=spec["keep"], **fill).strip(),
     }
+
+
+def platform_tops(spec, cam):
+    """Raised surfaces people can stand on, such as a bandstand, from the box each one names in `paint`.
+
+    A figure on top keeps the scale of the floor point under it: its feet go at proj(s, t, z), its height comes
+    from the image y of proj(s, t, 0), through the same (y - horizon) / eye as anywhere else.
+    """
+    tops = []
+    for platform in spec.get("platforms", []):
+        boxes = [p for p in spec["paint"] if p.get("kind") == "box" and p.get("id") == platform["box"]]
+        if len(boxes) != 1:
+            raise RoomError(f"platforms: {platform['id']} names box {platform['box']!r}, found {len(boxes)}")
+        s, t, z = boxes[0]["s"], boxes[0]["t"], boxes[0]["z"][1]
+        corners = [(s[0], t[0]), (s[0], t[1]), (s[1], t[1]), (s[1], t[0])]
+        tops.append({"id": platform["id"], "s": s, "t": t, "heightAdults": z,
+                     "topCornersFrac": [[round(v, 4) for v in (cam.proj(a, b, z)[0] / cam.W, cam.proj(a, b, z)[1] / cam.H)] for a, b in corners],
+                     "note": platform.get("note", "")})
+    return tops
 
 
 def level_fragment(spec, cam, floor):

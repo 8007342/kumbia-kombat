@@ -30,7 +30,7 @@ String _nightBar({
 {
   "id": "$id",
   "title": "$title",
-  "background": "bar/bar-interior.png",
+  "background": "bar/bar-interior-clean.png",
   "music": { "score": "bar_swag", "successScore": "bar_swag_success", "leadShape": "square" },
   "rules": { "metric": "Glow", "cleanSeconds": 40, "successesPerTier": 1, "finalChallenges": 1, "resetAfterFailures": 3, "earlyHitRatio": 0.5 },
   "chart": {
@@ -61,7 +61,15 @@ String _nightBar({
       { "at": 1, "x": 0.80, "y": 0.34, "facing": "rear" }
     ]
   },
-  "copy": { "invitation": "Glow or go home.", "clearedTitle": "PURO\\nGLOW" }$exitShot
+  "copy": { "invitation": "Glow or go home.", "clearedTitle": "PURO\\nGLOW" },
+  "hardestCombo": {
+    "name": "Night Shift", "status": "proposal", "callBeats": 8,
+    "moves": [
+      { "dancer": "left", "at": 0, "beats": 8, "clip": "groove_basic" },
+      { "dancer": "right", "at": 0, "beats": 8, "clip": "groove_basic" }
+    ],
+    "notes": [{ "at": 0, "limb": "leftHand" }, { "at": 4, "limb": "rightHand" }]
+  }$exitShot
 }
 ''';
 
@@ -124,15 +132,16 @@ void _clear(_Audio audio, GardenSession session) {
 
   for (
     var cycle = 0;
-    cycle < 60 && session.phase != GardenPhase.cleared;
+    cycle < 60 && !session.progress.cleared;
     cycle++
   ) {
     final start = session.chart.introBeats + cycle * session.chart.cycleBeats;
-    for (var i = 0; i < session.activeLimbs.length; i++) {
-      final at = start + session.chart.callBeats + session.chart.offsets[i];
+    final played = session.chart.patternFor(session.progress.tier, session.progress.fullTierSuccesses);
+    for (var i = 0; i < played.limbs.length; i++) {
+      final at = start + session.chart.callBeats + played.offsets[i];
       _advance(audio, music.secondsAt(at), update);
       expect(
-        session.tap(session.activeLimbs[i]).note,
+        session.tap(played.limbs[i]).note,
         isNotNull,
         reason: '${session.progress.definition.id} cycle $cycle note $i',
       );
@@ -143,6 +152,8 @@ void _clear(_Audio audio, GardenSession session) {
       update,
     );
   }
+  // A late last note's optional move may outlast the phrase. The win holds for it.
+  _advance(audio, audio.nowSeconds + 1, update);
   expect(session.phase, GardenPhase.cleared);
 }
 
@@ -262,7 +273,7 @@ void main() {
 
     // Unchanged neighbours, and a fake level ruled entirely by its own data.
     expect(clearSeconds['garden'], closeTo(60.667, .001));
-    expect(clearSeconds['bar'], closeTo(92.885, .2)); // Joined mid-beat grid.
+    expect(clearSeconds['bar'], closeTo(93.167, .2)); // Joined mid-beat grid.
     final night = levels.byId('night-bar');
     expect(clearSeconds['night-bar'], lessThan(clearSeconds['bar']!));
     expect(night.rules.requiredHits(4, atPeak: false), 2);

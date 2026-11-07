@@ -12,5 +12,85 @@
     {
       "level": "bar"
     }
+  ],
+  "review": ["cool-crowd"],
+  "upcomingOpponents": [
+    {
+      "id": "blinblin",
+      "name": "The BlinBlin dancer",
+      "level": "indoor party",
+      "hardestCombo": {
+        "name": "All That Glitters",
+        "status": "proposal",
+        "note": "Proposal. The name and shape need no sign-off to exist, but the owner hasn't seen or played them. He has no atlas yet, so this uses only the shared clips his planned motion set covers. Unhurried in the call, off the beat in the answer.",
+        "callBeats": 8,
+        "moves": [
+          {
+            "at": 0,
+            "beats": 4,
+            "clip": "hip_pops"
+          },
+          {
+            "at": 4,
+            "beats": 2,
+            "clip": "show_off"
+          },
+          {
+            "at": 6,
+            "beats": 2,
+            "clip": "finish_turn"
+          }
+        ],
+        "notes": [
+          {
+            "at": 0,
+            "limb": "rightFoot"
+          },
+          {
+            "at": 0.75,
+            "limb": "leftHand"
+          },
+          {
+            "at": 1.5,
+            "limb": "rightHand"
+          },
+          {
+            "at": 2.5,
+            "limb": "leftFoot"
+          },
+          {
+            "at": 3.25,
+            "limb": "rightFoot"
+          },
+          {
+            "at": 4,
+            "limb": "leftHand"
+          },
+          {
+            "at": 4.75,
+            "limb": "rightHand"
+          },
+          {
+            "at": 5.5,
+            "limb": "leftFoot"
+          },
+          {
+            "at": 6.25,
+            "limb": "leftHand"
+          },
+          {
+            "at": 7,
+            "limb": "rightFoot",
+            "move": "stomp"
+          }
+        ]
+      }
+    },
+    {
+      "id": "pool-player",
+      "name": "The Pool Player",
+      "level": "billiards room",
+      "placeholder": true
+    }
   ]
 }

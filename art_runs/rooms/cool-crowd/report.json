@@ -5,22 +5,16 @@
  ],
  "story": {
   "corridor-door": [
-   0.334,
-   0.123,
-   0.466,
-   0.251
-  ],
-  "bandstand": [
-   0.178,
-   0.216,
-   0.323,
-   0.313
+   0.331,
+   0.197,
+   0.488,
+   0.363
   ]
  },
  "cast": {
-  "adultAtHeroMarkSourcePx": 388.3,
-  "heroAtMarkLogical": 34.5,
-  "heroAtMarkDp": 74.7,
+  "adultAtHeroMarkSourcePx": 399.7,
+  "heroAtMarkLogical": 35.5,
+  "heroAtMarkDp": 76.9,
   "reference": "garden 38.4 logical (83 dp), bar 66.7 logical (145 dp) at the same phone"
  }
 }

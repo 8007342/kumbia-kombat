@@ -1,5 +1,7 @@
 # Rooms
 
+How rooms should look: `assets/art/STYLEGUIDE.md`, section 5. This file is how they get made.
+
 A room is one data file, `tool/art/rooms/<id>.json`: primitives, a camera, a phone-safe box, a tap band and marks. From it the compiler makes the greybox guide, id map, `floor.json`, prompts and the level's floor and marks, in `art_runs/rooms/<id>/`. Two Qwen passes turn the guide into a plate.
 
 Python: `~/.cache/tillandsias-project/venvs/kumbia-art/bin/python`. All commands are `rooms.py <command>`.
@@ -85,6 +87,8 @@ Mattes, seams, frames and sheets are CPU, seconds each.
 - `level_golden_test` leaves out layer draws. Its recorded file didn't change when the garden moved to the clean plate, which is the proof that the marks didn't move.
 - Workflow paths from a worktree need the `.claude/worktrees/<name>/` prefix, and a job fails at once if its input isn't staged yet.
 
+**The lawn and the bar, 2026-11-07.** Same route. All 11 fills came clean at the first or second of two seeds: 22 images, about 11 s each. `crops <room>` stages each crop and bakes its workflow; the prompt lives in the prop's `fill`. New here: `foliage`, `water` and `string` colour rules, `sag` and `wave` warps, and a `harmonic` fill for a thin wire and its bulbs, which needs no GPU. The fills' dilated edge doesn't match the rest frame exactly: 2,700 pixels differ on the lawn and 6,500 on the bar at full size, mostly along prop edges, mean under .12 at phone size. It reads by eye only as slightly softer edges.
+
 **Reuse.** A level's `layers` block names each prop's atlas, position and motion; there's no kind switch, so a new prop needs no code. Levels can share an atlas. The loader refuses a prop that leaves the plate, reaches the tap band, or reaches the quiet area behind the opponent.
 
 ## Furniture: one set of drawings, baked per room
@@ -104,3 +108,26 @@ Stools, chairs and tables are sprites on the floor plane, sorted in depth with t
 **Laying out a crowd.** The first pass copied the rows further forward and made a wall: a guest's width grows with depth, so the front holds far fewer people than it looks. Keep every guest behind the opponent's mark, so the dancer is always the nearest adult. Thin out toward the viewer, and let the back carry the numbers. `test/crowd_staging_test.dart` holds guests and furniture off the tap band, the hero's marks and the dancers' floor, reading the level files, so moving a mark names any guest in the way. `test/room_stills_test.dart` writes phone-size pictures of each room to `build/stills/`.
 
 **Order in the file matters.** The crowd wakes in columns, every fourth guest first, so a guest's index decides when they get up. Lay the ranks out to alternate sides and mix depths, or the warm floor is all on one side.
+
+## Floors: painted apart from the walls
+
+Words failed on the indoor floor over four rounds: tone swung, joints drifted, amber discs appeared. So a floor can come from `floor.py <matte|paint|texture> <room> <plate-id>`, reading `floors/<room>.json`. The accepted indoor room is the first.
+
+1. **Pick the walls and ignore the floor.** Any plate whose walls and door are right will do.
+2. **Refit the camera to the paint.** Nothing held the old guide's far wall, so `tool/art/rooms/<room>.json` follows the plate: read horizon and vanishing point off the wall lines and the door's foot. Keep `(y - horizon) / eye` honest with a door of about 2.2 adults.
+3. **Trace the floor** in `floors/<room>.json`: a generous polygon, and `alwaysFloor` for spills like a runner the model laid across it. A colour rule cuts it to the floor's own pixels. `matte` shows the result.
+4. **Have Qwen paint only flat stone from above** (`floor_jobs.py`, `workflows/floor-flat.api.json`, bar floor as the sample). It has no perspective to get wrong.
+5. **Let the code do the rest:** warp the stone through the camera, cutting each slab from its own place in the stone; mirror the room into the polish; draw joints from the camera, two pixels fine; grain and limit the colours.
+
+This camera keeps verticals vertical, so mirroring each column about its contact line is the true reflection. Lamps need lifting first, or their streaks don't survive the blur.
+
+| Try | Result |
+|---|---|
+| Coded stone, no painted texture | True and calm, but airbrushed beside the bar |
+| Qwen repainting the coded floor at .35 and .55 denoise | Added no texture, and redrew the walls |
+| Flat stone with loud gold veins (988002) | Veins read as cues across the tap band |
+| Flat stone with faint veins (988001), warped | The owner accepted it. Floor median luma 26 |
+
+GPU: 3 images, 45 s for the stones. Everything else is CPU, about a minute a plate.
+
+**Raised surfaces.** `platforms` names a `box` in `paint`, and `floor.json` lists its extent, height and top corners. Place a figure on one with its feet at `proj(s, t, z)` and its height from the floor point under it. The loader doesn't read them yet.

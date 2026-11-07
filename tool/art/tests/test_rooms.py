@@ -106,5 +106,27 @@ class Rooms(unittest.TestCase):
         self.assertEqual(frag["departure"]["originY"], frag["stage"]["heroHome"][1])
 
 
+class PlatformTest(unittest.TestCase):
+    def test_the_bandstand_top_sits_on_the_accepted_plate(self):
+        spec = compiler.load_spec("cool-crowd")
+        cam = compiler.Camera(spec["camera"])
+        top = compiler.platform_tops(spec, cam)[0]
+        self.assertEqual(top["id"], "bandstand")
+        self.assertGreater(top["heightAdults"], 0)
+        # the corners measured by eye on the plate, to within a few pixels
+        front = top["topCornersFrac"][1]
+        rear = top["topCornersFrac"][2]
+        self.assertAlmostEqual(front[0] * cam.W, 238, delta=16)
+        self.assertAlmostEqual(front[1] * cam.H, 677, delta=16)
+        self.assertAlmostEqual(rear[0] * cam.W, 300, delta=16)
+        self.assertAlmostEqual(rear[1] * cam.H, 575, delta=16)
+
+    def test_a_platform_must_name_one_box(self):
+        spec = copy.deepcopy(compiler.load_spec("cool-crowd"))
+        spec["platforms"] = [{"id": "x", "box": "nothing"}]
+        with self.assertRaises(compiler.RoomError):
+            compiler.platform_tops(spec, compiler.Camera(spec["camera"]))
+
+
 if __name__ == "__main__":
     unittest.main()

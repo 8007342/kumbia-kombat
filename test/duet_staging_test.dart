@@ -646,6 +646,48 @@ void main() {
       );
     });
 
+    test('they keep dancing at the sides, either side of the kiss', () {
+      final shot = level.exitShot!;
+      DuetExitSample at(double e, {bool onLeft = true}) => duet.exitSample(
+        onLeft: onLeft,
+        from: exit.left,
+        e: e,
+        closeupTo: shot.closeupTo,
+      );
+      // On their marks before the reach.
+      expect(at(exit.sideBeats).dancing, isTrue);
+      expect(at(exit.sideBeats).floor.x, exit.left.x);
+      expect(at(exit.reachFrom).dancing, isFalse);
+      // They don't hold the reach: back in the wide shot they step out again.
+      final back = at(shot.closeupTo);
+      expect(back.reaching, isFalse);
+      expect(back.dancing, isTrue);
+      expect(back.floor.x, exit.leftReach.x);
+      final settled = at(shot.closeupTo + exit.backBeats);
+      expect(settled.floor.x, exit.left.x);
+      expect(settled.floor.y, exit.left.y);
+      expect(shot.closeupTo + exit.backBeats, lessThan(16));
+      // Facing him from each side, the way a partner does.
+      expect(at(shot.closeupTo).mirrored, isTrue);
+      expect(at(shot.closeupTo, onLeft: false).mirrored, isFalse);
+    });
+
+    test('the dance they keep up really moves, on every beat of the hold', () {
+      final grammar = DanceGrammar.fromJson(
+        jsonDecode(
+              File('assets/art/ensemble/choreography.json').readAsStringSync(),
+            )
+            as Map<String, dynamic>,
+      );
+      for (final dancer in ['swing-a', 'swing-b']) {
+        final frames = [
+          for (var beat = 12.0; beat < 16; beat += 1)
+            grammar.clipFrame(dancer, exit.danceClip, beat),
+        ];
+        expect(frames.toSet().length, frames.length, reason: dancer);
+      }
+    });
+
     test('calm camera holds them at the sides, with no reach', () {
       for (var e = 0.0; e < 8; e += .25) {
         final place = duet.exitSample(

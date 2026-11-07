@@ -1,0 +1,75 @@
+{
+ "schema": "tillandsias.palette/v1",
+ "name": "pool-player",
+ "colours": [
+  "#1A1018",
+  "#3D1600",
+  "#62371D",
+  "#8C5A3C",
+  "#A67A60",
+  "#797673",
+  "#A09D9A",
+  "#C9C6C2",
+  "#E9E7E3",
+  "#9C9588",
+  "#C5BEB0",
+  "#F0E8D8",
+  "#FFFBED",
+  "#000903",
+  "#00281C",
+  "#1F4A3C",
+  "#416458",
+  "#000000",
+  "#07070C",
+  "#23242B",
+  "#3C3D44",
+  "#1F0000",
+  "#431903",
+  "#6B3A22",
+  "#845844"
+ ],
+ "transparent": null,
+ "$provenance": {
+  "tool": "tool/art/pipeline/compile_family.py",
+  "definition": "tool/art/characters/pool-player.json",
+  "ramps": {
+   "skin": [
+    "#3D1600",
+    "#62371D",
+    "#8C5A3C",
+    "#A67A60"
+   ],
+   "hair": [
+    "#797673",
+    "#A09D9A",
+    "#C9C6C2",
+    "#E9E7E3"
+   ],
+   "shirt": [
+    "#9C9588",
+    "#C5BEB0",
+    "#F0E8D8",
+    "#FFFBED"
+   ],
+   "waistcoat": [
+    "#000903",
+    "#00281C",
+    "#1F4A3C",
+    "#416458"
+   ],
+   "trousers": [
+    "#000000",
+    "#07070C",
+    "#23242B",
+    "#3C3D44"
+   ],
+   "shoes": [
+    "#1F0000",
+    "#431903",
+    "#6B3A22",
+    "#845844"
+   ]
+  },
+  "nudged": {}
+ }
+}

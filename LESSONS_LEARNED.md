@@ -1,5 +1,7 @@
 # Lessons learned: Kumbia Kombat
 
+Art and cinematic lessons that became rules are in `assets/art/STYLEGUIDE.md`.
+
 Written 2026-11-05 for people and agents on sibling projects who know nothing about this one.
 Last source commit read: `07cd19d` on `work/1833-cast`, plus the merge that adds this file to `game`.
 
