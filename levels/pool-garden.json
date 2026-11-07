@@ -492,6 +492,8 @@
       ]
     ],
     "props": [
+      { "id": "pool-umbrella-left", "kind": "umbrella", "at": [0.3, 0.335], "heightInAdults": 1.35, "widthInAdults": 1.5 },
+      { "id": "pool-umbrella-right", "kind": "umbrella", "at": [0.77, 0.33], "heightInAdults": 1.35, "widthInAdults": 1.5 },
       {
         "id": "pool-table-0",
         "kind": "table",
@@ -593,9 +595,14 @@
       [
         0.4433,
         0.2368
-      ]
+      ],
+      [0.236, 0.189],
+      [0.336, 0.185],
+      [0.73, 0.221],
+      [0.816, 0.309]
     ],
-    "plants": []
+    "plants": [],
+    "waiter": { "home": [0.57, 0.335], "swayX": 0.09 }
   },
   "departure": {
     "threshold": "the carved gateway at the top of the path",
@@ -843,6 +850,93 @@
         "track": "peck",
         "pitch": 72,
         "velocity": 70
+      }
+    ]
+  },
+  "hardestCombo": {
+    "name": "Round Robin",
+    "status": "proposal",
+    "note": "Proposal. The name and shape need no sign-off to exist, but the owner hasn't seen or played them. The Girls answer each other in the call, then finish together. Hands and feet, where their chart is mostly hands.",
+    "callBeats": 8,
+    "moves": [
+      {
+        "dancer": "swing-a",
+        "at": 0,
+        "beats": 2,
+        "clip": "show_off"
+      },
+      {
+        "dancer": "swing-a",
+        "at": 2,
+        "beats": 4,
+        "clip": "step_touch"
+      },
+      {
+        "dancer": "swing-a",
+        "at": 6,
+        "beats": 2,
+        "clip": "finish_turn"
+      },
+      {
+        "dancer": "swing-b",
+        "at": 0,
+        "beats": 4,
+        "clip": "skirt_play"
+      },
+      {
+        "dancer": "swing-b",
+        "at": 4,
+        "beats": 2,
+        "clip": "show_off"
+      },
+      {
+        "dancer": "swing-b",
+        "at": 6,
+        "beats": 2,
+        "clip": "finish_turn"
+      }
+    ],
+    "notes": [
+      {
+        "at": 0,
+        "limb": "leftHand"
+      },
+      {
+        "at": 1,
+        "limb": "rightHand"
+      },
+      {
+        "at": 1.75,
+        "limb": "leftHand"
+      },
+      {
+        "at": 2.5,
+        "limb": "rightFoot"
+      },
+      {
+        "at": 3.25,
+        "limb": "leftFoot"
+      },
+      {
+        "at": 4,
+        "limb": "rightHand"
+      },
+      {
+        "at": 5,
+        "limb": "leftHand"
+      },
+      {
+        "at": 5.75,
+        "limb": "rightFoot"
+      },
+      {
+        "at": 6.5,
+        "limb": "leftFoot"
+      },
+      {
+        "at": 7.25,
+        "limb": "rightHand",
+        "move": "circle"
       }
     ]
   }
