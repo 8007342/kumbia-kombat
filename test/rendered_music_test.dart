@@ -454,6 +454,41 @@ void main() {
       expect(audio.clipReady(lawn().takes['mid']!), isFalse);
     });
 
+    test('a shared job finishes, and can run again', () async {
+      final flight = SingleFlight();
+      var runs = 0;
+      Future<void> job() async {
+        runs++;
+        await Future<void>.delayed(Duration.zero);
+      }
+
+      await Future.wait([flight.run('a', job), flight.run('a', job)]).timeout(
+        const Duration(seconds: 2),
+      );
+      expect(runs, 1);
+      await flight.run('a', job).timeout(const Duration(seconds: 2));
+      expect(runs, 2);
+    });
+
+    test('a shared job that fails reports it, and can run again', () async {
+      final flight = SingleFlight();
+      await expectLater(
+        flight.run('a', () async => throw StateError('bad')),
+        throwsStateError,
+      );
+      await flight.run('a', () async {}).timeout(const Duration(seconds: 2));
+    });
+
+    test('a decode that never answers costs that clip and nothing else', () async {
+      final audio = _FailingAudio()..hang = true;
+      final library = RenderedLibrary(
+        audio,
+        RenderedManifest(levels: {'lawn': lawn()}),
+      )..decodePatience = const Duration(milliseconds: 5);
+      await library.decodeRest('lawn').timeout(const Duration(seconds: 5));
+      expect(library.failures.keys, containsAll(['mid', 'high', 'low']));
+    });
+
     test('a decode that hangs only costs its patience', () async {
       final audio = _FailingAudio()..hang = true;
       final library = RenderedLibrary(

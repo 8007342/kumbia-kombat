@@ -12,6 +12,9 @@ class RenderedLibrary {
   final RenderedManifest manifest;
   final failures = <String, Object>{};
 
+  /// Far above the 0.2 to 0.5 s measured on a desktop, to leave room for phones.
+  Duration decodePatience = const Duration(seconds: 15);
+
   RenderedLevel? level(String id) => manifest.levels[id];
 
   Future<void> _guard(RenderedClip clip, Future<void> Function() work) async {
@@ -32,8 +35,12 @@ class RenderedLibrary {
     }
   }
 
-  Future<void> _decode(RenderedClip clip) =>
-      _guard(clip, () => audio.decodeClip(clip));
+  /// Bounded, so one decode that never answers costs that clip and nothing else.
+  /// If it does arrive later it's still used: playing asks whether a clip is ready.
+  Future<void> _decode(RenderedClip clip) => _guard(
+    clip,
+    () => audio.decodeClip(clip).timeout(decodePatience),
+  );
 
   /// What a run needs at its first beat. Bounded: past [patience] the run starts
   /// on the synth, and the take joins at a phrase boundary once it arrives.

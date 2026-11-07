@@ -130,7 +130,7 @@ class WebAudioMusicBackend implements GameAudio, MusicFader, RenderedAudio {
   final _clipVoices = <_ClipVoice>{};
   final _compressed = <String, ({String format, Uint8List bytes})>{};
   final _decoded = <String, ({_Buffer buffer, String format})>{};
-  final _decoding = <String, Future<void>>{};
+  final _decoding = SingleFlight();
   int stolenVoices = 0;
   bool _disposed = false;
 
@@ -389,9 +389,7 @@ class WebAudioMusicBackend implements GameAudio, MusicFader, RenderedAudio {
   @override
   Future<void> decodeClip(RenderedClip clip) {
     if (_decoded.containsKey(clip.id)) return Future.value();
-    return _decoding[clip.id] ??= _decode(clip).whenComplete(
-      () => _decoding.remove(clip.id),
-    );
+    return _decoding.run(clip.id, () => _decode(clip));
   }
 
   Future<void> _decode(RenderedClip clip) async {

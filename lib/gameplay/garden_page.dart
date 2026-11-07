@@ -349,10 +349,11 @@ class _GardenPageState extends State<GardenPage>
     _exitMusicSettled = false;
     try {
       if (next != null) unawaited(library.fetchLevel(next.id));
+      // The exit first: nothing may keep a level from ending, and a tier change
+      // can wait for its take where a level's end has nowhere to wait.
+      await library.decodeExit(level.id, nextId: next?.id);
+      _exitMusicSettled = true;
       await library.decodeRest(level.id);
-      await library
-          .decodeExit(level.id, nextId: next?.id)
-          .timeout(const Duration(seconds: 20));
     } catch (error) {
       debugPrint('Rendered exit is off: $error');
     } finally {

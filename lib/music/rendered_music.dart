@@ -14,6 +14,19 @@ class RenderedManifestError implements Exception {
   String toString() => 'RenderedManifestError at $path: $message';
 }
 
+/// One run of a job per key, shared by whoever asks while it's in progress. In
+/// plain Dart so a test can run it: the web backend can't run under `flutter test`.
+class SingleFlight {
+  final _running = <String, Future<void>>{};
+
+  Future<void> run(String key, Future<void> Function() job) =>
+      _running[key] ??= job().whenComplete(() {
+        // A block, not an arrow: `remove` returns this very future, and
+        // whenComplete would wait for it, which is to say forever.
+        _running.remove(key);
+      });
+}
+
 double dbToGain(double db) => math.pow(10, db / 20).toDouble();
 
 /// One audio file on the music clock: a looping take, a transition, a success
