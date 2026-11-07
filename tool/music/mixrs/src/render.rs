@@ -83,43 +83,57 @@ pub fn stretch_linear(audio: &[[f32; 2]], out_len: usize) -> Stereo {
     wsola(audio, |o| o * ratio, out_len).0
 }
 
-/// A shelving EQ across the whole take, one channel at a time. Every band in the current
-/// config is empty, so this usually returns at once.
-pub fn shelf_eq(audio: &mut [[f32; 2]], bands: &[(f64, f64, bool)]) {
-    if bands.is_empty() {
+const EQ_FFT: usize = 1 << 16;
+
+fn shelf_gain(freq_hz: f64, bands: &[(f64, f64, bool)]) -> f64 {
+    let freq = freq_hz.max(1.0);
+    let mut db = 0.0;
+    for &(f0, g, high) in bands {
+        let rise = 1.0 / (1.0 + (-4.0 * (freq / f0).log2()).exp());
+        db += g * if high { rise } else { 1.0 - rise };
+    }
+    10f64.powf(db / 20.0)
+}
+
+/// mix.py's zero-phase shelves, by overlap-save over short blocks, wrapping round the take's
+/// ends as its single whole-take FFT does. That FFT took over a gigabyte in Python and 700 MB
+/// here, because a take's length is rarely a friendly FFT size. The shelf's response is
+/// smooth, so its impulse fits a 1.4 s block; the unit test states how close this comes.
+pub fn shelf_eq(audio: &mut Stereo, bands: &[(f64, f64, bool)]) {
+    if bands.is_empty() || audio.is_empty() {
         return;
     }
     let n = audio.len();
+    let size = EQ_FFT;
+    let quarter = size / 4;
     let mut planner = RealFftPlanner::<f64>::new();
-    let fwd = planner.plan_fft_forward(n);
-    let inv = planner.plan_fft_inverse(n);
-    let gain: Vec<f64> = (0..n / 2 + 1)
-        .map(|k| {
-            let freq = (k as f64 * SR as f64 / n as f64).max(1.0);
-            let mut db = 0.0;
-            for &(f0, g, high) in bands {
-                let rise = 1.0 / (1.0 + (-4.0 * (freq / f0).log2()).exp());
-                db += g * if high { rise } else { 1.0 - rise };
-            }
-            10f64.powf(db / 20.0)
-        })
-        .collect();
-    for ch in 0..2 {
-        let mut input: Vec<f64> = audio.iter().map(|f| f[ch] as f64).collect();
+    let fwd = planner.plan_fft_forward(size);
+    let inv = planner.plan_fft_inverse(size);
+    let gain: Vec<f64> = (0..size / 2 + 1).map(|k| shelf_gain(k as f64 * SR as f64 / size as f64, bands)).collect();
+    let mut out = vec![[0f32; 2]; n];
+    let input: &[[f32; 2]] = audio;
+    out.par_chunks_mut(size / 2).enumerate().for_each(|(block, part)| {
+        let start = block * (size / 2);
+        let mut buf = fwd.make_input_vec();
         let mut spec = fwd.make_output_vec();
-        fwd.process(&mut input, &mut spec).expect("fft");
-        for (c, g) in spec.iter_mut().zip(&gain) {
-            *c *= *g;
+        let mut scratch = fwd.make_scratch_vec();
+        let mut back_scratch = inv.make_scratch_vec();
+        for ch in 0..2 {
+            for (k, slot) in buf.iter_mut().enumerate() {
+                let at = (start + k + n * size - quarter) % n;
+                *slot = input[at][ch] as f64;
+            }
+            fwd.process_with_scratch(&mut buf, &mut spec, &mut scratch).expect("fft");
+            for (c, g) in spec.iter_mut().zip(&gain) {
+                *c *= *g;
+            }
+            inv.process_with_scratch(&mut spec, &mut buf, &mut back_scratch).expect("ifft");
+            for (j, f) in part.iter_mut().enumerate() {
+                f[ch] = (buf[quarter + j] / size as f64) as f32;
+            }
         }
-        spec[0].im = 0.0;
-        if n % 2 == 0 {
-            spec[n / 2].im = 0.0;
-        }
-        inv.process(&mut spec, &mut input).expect("ifft");
-        for (f, v) in audio.iter_mut().zip(&input) {
-            f[ch] = (v / n as f64) as f32;
-        }
-    }
+    });
+    *audio = out;
 }
 
 fn sliding_min(values: &[f64], half: usize, circular: bool) -> Vec<f64> {
@@ -241,8 +255,60 @@ pub fn master_loop(lp: &[[f32; 2]], target: f64, ceiling_db: f64) -> Mastered {
     result.expect("at least one round")
 }
 
+const HPSS_BLOCK: usize = 10 * SR;
+
+/// The harmonic part, a block at a time with one-second crossfades, as mix.py's hpss.
+pub fn harmonic_part(input: &[[f32; 2]]) -> Stereo {
+    if input.len() <= HPSS_BLOCK * 3 / 2 {
+        return hpss_block(input).0.iter().map(|f| [f[0] as f32, f[1] as f32]).collect();
+    }
+    let overlap = SR;
+    let n = input.len();
+    let mut harmonic = vec![[0f32; 2]; n];
+    let mut weight = vec![0f32; n];
+    let mut start = 0;
+    loop {
+        let stop = (start + HPSS_BLOCK).min(n);
+        let (part, _) = hpss_block(&input[start..stop]);
+        let len = stop - start;
+        for i in 0..len {
+            let ramp = |k: usize| (k as f64 + 0.5) / overlap as f64;
+            let mut shape = 1.0;
+            if start > 0 && i < overlap {
+                shape = ramp(i);
+            }
+            if stop < n && i >= len - overlap {
+                shape = ramp(len - 1 - i);
+            }
+            harmonic[start + i][0] += (part[i][0] * shape) as f32;
+            harmonic[start + i][1] += (part[i][1] * shape) as f32;
+            weight[start + i] += shape as f32;
+        }
+        if stop == n {
+            break;
+        }
+        start += HPSS_BLOCK - overlap;
+    }
+    for (h, w) in harmonic.iter_mut().zip(&weight) {
+        let d = w.max(1e-9);
+        h[0] /= d;
+        h[1] /= d;
+    }
+    harmonic
+}
+
 /// Harmonic and percussive parts by median masks; they sum back to the input.
 pub fn hpss(input: &[[f32; 2]]) -> (Vec<[f64; 2]>, Vec<[f64; 2]>) {
+    if input.len() <= HPSS_BLOCK * 3 / 2 {
+        return hpss_block(input);
+    }
+    let h = harmonic_part(input);
+    let harmonic: Vec<[f64; 2]> = h.iter().map(|f| [f[0] as f64, f[1] as f64]).collect();
+    let percussive = input.iter().zip(&harmonic).map(|(a, b)| [a[0] as f64 - b[0], a[1] as f64 - b[1]]).collect();
+    (harmonic, percussive)
+}
+
+fn hpss_block(input: &[[f32; 2]]) -> (Vec<[f64; 2]>, Vec<[f64; 2]>) {
     let (nfft, hop, width) = (2048usize, 512usize, 17usize);
     let hann = hanning(nfft + 1);
     let window = &hann[..nfft];
@@ -534,6 +600,39 @@ mod tests {
         let crossings = body.windows(2).filter(|p| p[0][0] < 0.0 && p[1][0] >= 0.0).count();
         let hz = crossings as f64 / (body.len() as f64 / SR as f64);
         assert!((hz - 440.0).abs() < 1.0, "pitch moved to {hz}");
+    }
+
+    /// Against the whole-take FFT mix.py uses: a length with a large prime factor, wrapped ends.
+    #[test]
+    fn block_eq_matches_a_whole_take_fft() {
+        let n = 2 * 3 * 37 * 1201; // 266622 samples
+        let mut state = 12345u64;
+        let mut next = || {
+            state = state.wrapping_mul(6364136223846793005).wrapping_add(1442695040888963407);
+            ((state >> 40) as f64 / (1u64 << 24) as f64 - 0.5) as f32
+        };
+        let input: Stereo = (0..n).map(|_| [next(), next()]).collect();
+        let bands = [(1500.0, -3.0, true)];
+        let mut fast = input.clone();
+        shelf_eq(&mut fast, &bands);
+        let mut planner = RealFftPlanner::<f64>::new();
+        let (fwd, inv) = (planner.plan_fft_forward(n), planner.plan_fft_inverse(n));
+        let mut x: Vec<f64> = input.iter().map(|f| f[0] as f64).collect();
+        let mut spec = fwd.make_output_vec();
+        fwd.process(&mut x, &mut spec).unwrap();
+        for (k, c) in spec.iter_mut().enumerate() {
+            *c *= shelf_gain(k as f64 * SR as f64 / n as f64, &bands);
+        }
+        inv.process(&mut spec, &mut x).unwrap();
+        let (mut diff, mut power) = (0.0, 0.0);
+        for (f, v) in fast.iter().zip(&x) {
+            let exact = v / n as f64;
+            diff += (f[0] as f64 - exact).powi(2);
+            power += exact * exact;
+        }
+        let db = 10.0 * (diff / power).log10();
+        assert!(db < -80.0, "block EQ is {db:.1} dB from the whole-take FFT");
+        println!("block EQ residual {db:.1} dB");
     }
 
     #[test]

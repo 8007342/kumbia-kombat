@@ -179,7 +179,13 @@ pub fn encode(audio: &[[f32; 2]], base: &Path, cfg: Encode) -> (PathBuf, PathBuf
         .iter().map(|s| s.to_string()).collect();
     let aac_args: Vec<String> = ["-c:a", "aac", "-b:a", &format!("{}k", cfg.aac_kbps), "-movflags", "+faststart"]
         .iter().map(|s| s.to_string()).collect();
-    rayon::join(|| encode_one(audio, &opus, &opus_args), || encode_one(audio, &aac, &aac_args));
+    // Written beside the target and renamed, so a killed build can't leave half a file.
+    let stem = base.file_name().expect("file name").to_string_lossy().to_string();
+    let part_opus = base.with_file_name(format!("{stem}.part.ogg"));
+    let part_aac = base.with_file_name(format!("{stem}.part.m4a"));
+    rayon::join(|| encode_one(audio, &part_opus, &opus_args), || encode_one(audio, &part_aac, &aac_args));
+    std::fs::rename(&part_opus, &opus).expect("move opus into place");
+    std::fs::rename(&part_aac, &aac).expect("move aac into place");
     (opus, aac)
 }
 

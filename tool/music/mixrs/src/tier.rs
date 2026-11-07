@@ -76,7 +76,24 @@ pub fn prepare(job: &Value, out: &Path) -> Value {
     let path = Path::new(masters).join(source);
     let name = tier["name"].as_str().expect("name");
     let lid = level["id"].as_str().expect("id");
-    let audio_in = audio::decode_stereo(&path);
+    let mut audio_in = audio::decode_stereo(&path);
+    // Another take of the same performance, sample-aligned, added before warping.
+    if let Some(extras) = tier["layer"].as_array() {
+        for extra in extras {
+            let other_path = Path::new(masters).join(extra["source"].as_str().expect("layer source"));
+            let mut other = audio::decode_stereo(&other_path);
+            other.truncate(audio_in.len());
+            let harmonic = harmonic_part(&other);
+            let percussive = extra["part"] == "percussive";
+            let gain = 10f64.powf(extra["db"].as_f64().unwrap_or(0.0) / 20.0);
+            for i in 0..other.len() {
+                for ch in 0..2 {
+                    let part = if percussive { other[i][ch] as f64 - harmonic[i][ch] as f64 } else { harmonic[i][ch] as f64 };
+                    audio_in[i][ch] = (audio_in[i][ch] as f64 + part * gain) as f32;
+                }
+            }
+        }
+    }
     let mono = audio::decode_mono(&path, RATE as u32);
     let target = tier["bpm"].as_f64().expect("bpm");
     let fit = beat_times(&mono, target);

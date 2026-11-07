@@ -1,8 +1,11 @@
 #!/usr/bin/env python3
 """Per-step wall time and peak RSS of the Python build, one worker, in one process.
 
-  OPENBLAS_NUM_THREADS=1 uv run --no-project --with numpy python -I \
-      tool/music/mixrs/compare/profile_python.py LEVEL OUT_DIR
+  OPENBLAS_NUM_THREADS=1 MIX_ENGINE=python uv run --no-project --with numpy python -I \
+      tool/music/mixrs/compare/profile_python.py LEVEL OUT_DIR [CONFIG]
+
+MIX_PY names another mix.py to profile; WHOLE_TAKE_HPSS=1 separates whole takes, as the
+build that stalled the forge did.
 
 Wraps mix.py's own functions. Peak is VmHWM, reset through /proc/self/clear_refs at each
 call. "excl_s" leaves out time in wrapped functions called from inside. ffmpeg's own RSS
@@ -11,13 +14,14 @@ isn't counted: it's a separate process, and its peak appears at the end as child
 import collections
 import importlib.util
 import json
+import os
 import pathlib
 import resource
 import sys
 import time
 
 HERE = pathlib.Path(__file__).resolve().parent
-MIX = HERE.parents[1] / "mix" / "mix.py"
+MIX = os.environ.get("MIX_PY") or HERE.parents[1] / "mix" / "mix.py"
 spec = importlib.util.spec_from_file_location("mix", MIX)
 mix = importlib.util.module_from_spec(spec)
 sys.modules["mix"] = mix
@@ -26,7 +30,7 @@ spec.loader.exec_module(mix)
 NAMES = """decode loudness encode codec_peak onset_envelope fit_tempo _attack_curve _track_offsets
 _smooth_curve phase_wander_ms grid_error_ms grid_bias_seconds beat_times wsola shelf_eq beat_features
 find_bar_one measure_key choose_loop limit master_loop hpss prepare_tier write_asset decode_offset
-render_transition render_success render_bridge cut_table bar_features outgoing_at""".split()
+render_transition render_success render_bridge cut_table bar_features outgoing_at _hpss_block""".split()
 
 
 def hwm():
@@ -96,7 +100,11 @@ def main():
         if hasattr(mix, name):
             setattr(mix, name, wrap(name, getattr(mix, name)))
     mix.futures.ProcessPoolExecutor = Serial
-    cfg = mix.load_config()
+    if os.environ.get("WHOLE_TAKE_HPSS"):
+        mix.HPSS_CHUNK_SECONDS = 100000
+    if hasattr(mix, "limit_process"):
+        mix.limit_process = lambda: None
+    cfg = mix.load_config(sys.argv[3] if len(sys.argv) > 3 else None)
     out.mkdir(parents=True, exist_ok=True)
     start = time.perf_counter()
     mix.build(cfg, {level}, out, report_path=out / "report.json")
