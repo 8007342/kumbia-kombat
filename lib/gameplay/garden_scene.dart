@@ -17,10 +17,12 @@ import 'level_definition.dart';
 import 'outfit_palette.dart';
 import 'party_layout.dart';
 import 'party_sprites.dart';
+import 'party_up.dart';
 import 'progression.dart';
 import 'rhythm.dart';
 import 'room_departure.dart';
 import 'room_dissolve.dart';
+import 'room_layers.dart';
 
 class _WorldDraw {
   const _WorldDraw(this.id, this.floorY, this.layer, this.draw);
@@ -76,6 +78,8 @@ class GardenSceneGame extends FlameGame {
   GardenSession? _choreographySession;
   List<Limb>? _choreographyLimbs;
   List<double>? _choreographyOffsets;
+  PartyUp _partyUp = PartyUp();
+  GardenSession? _partyUpSession;
 
   void resetEntrance() => _resetBeat = session?.positionBeats ?? -10;
 
@@ -155,6 +159,7 @@ class GardenSceneGame extends FlameGame {
         _grammar!.requireClips(challenger.atlas, [
           duet.offClip,
           duet.partnerClip,
+          duet.exit.danceClip,
           'yield_out',
           'return_in',
         ]);
@@ -338,6 +343,7 @@ class GardenSceneGame extends FlameGame {
     final sampledBeat = presentationBeat ?? session?.positionBeats ?? 0;
     final beat = paused ? _lastBeat : sampledBeat;
     if (!paused) _lastBeat = beat;
+    _followTier(beat);
     final viewport = PartyViewport(
       size.x,
       size.y,
@@ -390,7 +396,7 @@ class GardenSceneGame extends FlameGame {
         ).createShader(bounds),
     );
 
-    _drawLampGlows(canvas, viewport);
+    _drawLampGlows(canvas, viewport, beat);
     final draws = <_WorldDraw>[];
     _addFurniture(draws, viewport, room, beat);
     _addGuests(draws, viewport, room, beat);
@@ -569,6 +575,7 @@ class GardenSceneGame extends FlameGame {
         beat: beat,
         swing: swing,
         reducedMotion: reducedMotion,
+        life: _life(prop.kind, beat, prop.instance),
       );
       final at = prop.screenRect(viewport);
       canvas.drawImageRect(
@@ -585,15 +592,49 @@ class GardenSceneGame extends FlameGame {
     }
   }
 
-  String _propFrame(String kind, int instance, double beat) =>
-      ensemblePartyFrame(
-        kind,
-        _foregroundSeconds,
-        beat: beat,
-        swing: _partySwing(beat),
-        instance: instance,
-        reducedMotion: reducedMotion,
+  /// The room wakes with the music's tier, for every player. A new session starts
+  /// a new room near still; a won room holds as it is and cools with [warmDown].
+  void _followTier(double beat) {
+    final s = session;
+    if (s == null || _level == null) return;
+    if (!identical(_partyUpSession, s)) {
+      _partyUpSession = s;
+      _partyUp = PartyUp.forLevel(
+        cycleBeats: s.chart.cycleBeats,
+        successesPerTier: _level!.rules.successesPerTier,
       );
+    }
+    final hold = s.phase == GardenPhase.cleared || s.transport.sections.isEmpty;
+    _partyUp.follow(beat, hold ? _partyUp.tier : s.transport.tierAt(beat));
+  }
+
+  double _life(PartyLifeKind kind, double beat, int instance) =>
+      _partyUp.life(kind, beat, instance: instance) * (1 - warmDown);
+
+  /// Drift in the room's first tier, as a share of the drawn movement.
+  static const _nearStillRange = .34;
+
+  double _driftRange(double life) =>
+      _nearStillRange + (1 - _nearStillRange) * life;
+
+  String _propFrame(String kind, int instance, double beat) {
+    final life = _life(switch (kind) {
+      'umbrella' => PartyLifeKind.umbrella,
+      'plant' => PartyLifeKind.plant,
+      'candle' => PartyLifeKind.flame,
+      _ => PartyLifeKind.staff,
+    }, beat, instance);
+    return ensemblePartyFrame(
+      kind,
+      _foregroundSeconds,
+      beat: beat,
+      swing: _partySwing(beat),
+      instance: instance,
+      reducedMotion: reducedMotion,
+      range: _driftRange(life),
+      onBeat: kind == 'candle' ? life * .5 : 0,
+    );
+  }
 
   void _addFurniture(
     List<_WorldDraw> draws,
@@ -708,7 +749,10 @@ class GardenSceneGame extends FlameGame {
     if (waiter == null) return;
     final waiterX = reducedMotion
         ? waiter.home.x
-        : waiter.home.x + waiter.swayX * math.sin(_foregroundSeconds * .11);
+        : waiter.home.x +
+              waiter.swayX *
+                  _driftRange(_life(PartyLifeKind.staff, beat, 4)) *
+                  math.sin(_foregroundSeconds * .11);
     final floor = PartyPoint(waiterX, waiter.home.y);
     final projected = viewport.project(floor);
     final height = _adultHeight(viewport, room, floor);
@@ -726,7 +770,31 @@ class GardenSceneGame extends FlameGame {
     );
   }
 
-  void _drawLampGlows(ui.Canvas canvas, PartyViewport viewport) {
+  void _drawLampGlows(ui.Canvas canvas, PartyViewport viewport, double beat) {
+    // The whole room warms from above, ending before the tap band, with no moving
+    // edge: for a room with no layers yet, this and the lamps are most of its life.
+    final warmth = _life(PartyLifeKind.light, beat, 0);
+    if (warmth > 0) {
+      final bounds = ui.Rect.fromLTWH(
+        0,
+        0,
+        PartyViewport.logicalWidth,
+        viewport.logicalHeight * roomLayerTapBandTop,
+      );
+      canvas.drawRect(
+        bounds,
+        ui.Paint()
+          ..blendMode = ui.BlendMode.softLight
+          ..shader = LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              const Color(0xFFFFB45E).withValues(alpha: .4 * warmth),
+              const Color(0x00FFB45E),
+            ],
+          ).createShader(bounds),
+      );
+    }
     // Centers measured against the painted lamps, under the same cover crop.
     final sources = _level!.scenery.lamps;
     for (var i = 0; i < sources.length; i++) {
@@ -736,13 +804,21 @@ class GardenSceneGame extends FlameGame {
         instance: i,
         reducedMotion: reducedMotion,
       ).lightGain;
-      const radius = 2.0;
+      final life = _life(PartyLifeKind.light, beat, i);
+      // Breathes over a bar once awake: never a flash. Brightness alone under
+      // reduced motion, so the room is still the meter there.
+      final breath = reducedMotion
+          ? 1.0
+          : 1 + .12 * life * math.cos(2 * math.pi * beat / 4);
+      final radius = 2.0 + 10 * life;
       canvas.drawCircle(
         center,
         radius,
         ui.Paint()
           ..shader = ui.Gradient.radial(center, radius, [
-            const ui.Color(0xffffce83).withValues(alpha: .045 * gain),
+            const ui.Color(
+              0xffffce83,
+            ).withValues(alpha: (.045 + .3 * life) * gain * breath),
             const ui.Color(0x00ffce83),
           ]),
       );
@@ -936,11 +1012,16 @@ class GardenSceneGame extends FlameGame {
         onLeft: onLeft,
         from: dancer == 0 ? wins.first : wins.second,
         e: exitBeat ?? 0,
+        closeupTo: level.exitShot?.closeupTo ?? double.infinity,
         reducedMotion: reducedMotion,
       );
       return (
         floor: out.floor,
-        frame: out.reaching ? duet.exit.reachFrame : null,
+        frame: out.reaching
+            ? duet.exit.reachFrame
+            : out.dancing
+            ? _grammar!.clipFrame(atlas, duet.exit.danceClip, beat)
+            : null,
         mirrored: out.mirrored,
         role: null,
       );

@@ -2,6 +2,7 @@ import 'dart:math' as math;
 
 import 'ensemble_sprites.dart';
 import 'party_layout.dart';
+import 'party_up.dart';
 
 /// How a layered prop answers the beat.
 enum RoomLayerMotion {
@@ -39,6 +40,7 @@ class RoomLayerProp {
     required this.motion,
     required this.periodBeats,
     required this.instance,
+    required this.kind,
   });
 
   final String id;
@@ -56,29 +58,60 @@ class RoomLayerProp {
   /// Decides when this prop wakes, the same way as every other party prop.
   final int instance;
 
+  /// What it is, which decides how the music's tier wakes it.
+  final PartyLifeKind kind;
+
+  /// How much of its range the tier alone can bring out: full swing has the rest.
+  /// Plants get the smallest, and drift too slowly to read as dancing.
+  double get _lifeReach => switch (kind) {
+    PartyLifeKind.plant || PartyLifeKind.umbrella || PartyLifeKind.staff => .34,
+    PartyLifeKind.light ||
+    PartyLifeKind.hanging ||
+    PartyLifeKind.flame => .5,
+  };
+
+  double get _lifePeriodBeats => switch (kind) {
+    PartyLifeKind.plant || PartyLifeKind.umbrella || PartyLifeKind.staff =>
+      periodBeats * 4,
+    PartyLifeKind.light ||
+    PartyLifeKind.hanging ||
+    PartyLifeKind.flame => periodBeats,
+  };
+
   /// Empty pixels between frames, so nearest sampling can't bleed.
   static const gutter = 2;
 
   int get restFrame => motion == RoomLayerMotion.sway ? frames ~/ 2 : 0;
   int atlasX(int frame) => frame * (width + gutter);
 
-  /// The frame for this moment. Reads the music beat and the crowd's swing and
-  /// returns a drawing's index: it can't reach the music, the notes or the score.
+  /// The frame for this moment. Reads the music beat, the crowd's swing and the
+  /// tier's [life] and returns a drawing's index: it can't reach the music, the
+  /// notes or the score. The tier's movement fades down as the swing's fades up,
+  /// and the two only add, so neither switches on at full size.
   int frameAt({
     required double beat,
     required double swing,
     bool reducedMotion = false,
+    double life = 0,
   }) {
     if (reducedMotion || !beat.isFinite || beat < 0) return restFrame;
     final strength = partyPropStrength(swing, instance);
-    if (strength <= 0) return restFrame;
-    final onBeat = math.cos(2 * math.pi * beat / periodBeats);
-    return switch (motion) {
+    final drift = life * _lifeReach * (1 - strength);
+    if (strength <= 0 && drift <= 0) return restFrame;
+    double wave(double period) => math.cos(2 * math.pi * beat / period);
+    final last = frames - 1;
+    final frame = switch (motion) {
       RoomLayerMotion.sway =>
-        restFrame + (restFrame * strength * onBeat).round(),
+        restFrame +
+            restFrame *
+                (strength * wave(periodBeats) +
+                    drift * wave(_lifePeriodBeats)),
       RoomLayerMotion.pulse =>
-        ((frames - 1) * strength * (1 + onBeat) / 2).round(),
+        last *
+            (strength * (1 + wave(periodBeats)) / 2 +
+                drift * (1 + wave(_lifePeriodBeats)) / 2),
     };
+    return frame.round().clamp(0, last);
   }
 
   /// A problem with this prop's placement on a [plateWidth] x [plateHeight]

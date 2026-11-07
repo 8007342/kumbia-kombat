@@ -9,6 +9,7 @@ import 'package:kumbia_kombat/gameplay/garden_scene.dart';
 import 'package:kumbia_kombat/gameplay/garden_session.dart';
 import 'package:kumbia_kombat/gameplay/level_definition.dart';
 import 'package:kumbia_kombat/gameplay/party_layout.dart';
+import 'package:kumbia_kombat/gameplay/party_up.dart';
 import 'package:kumbia_kombat/gameplay/room_layers.dart';
 import 'package:kumbia_kombat/music/score.dart';
 import 'package:kumbia_kombat/music/transport.dart';
@@ -45,6 +46,7 @@ RoomLayerProp _prop({
   motion: motion,
   periodBeats: 2,
   instance: instance,
+  kind: PartyLifeKind.plant,
 );
 
 Map<String, Object?> _withLayer(Map<String, Object?> overrides) {

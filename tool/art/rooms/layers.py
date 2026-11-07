@@ -276,7 +276,7 @@ def bake(spec):
             x = i * (w + GUTTER)
             atlas[y:y + h, x:x + w] = frame
         entries.append(dict(id=prop["id"], atlas=spec["atlas"].removeprefix("assets/art/"), atlasY=y, left=left, top=top, width=w, height=h,
-                            frames=len(frames), motion=prop["motion"], periodBeats=prop["periodBeats"], instance=prop["instance"]))
+                            frames=len(frames), motion=prop["motion"], periodBeats=prop["periodBeats"], instance=prop["instance"], kind=prop["kind"]))
         y += h + GUTTER
     return atlas, entries, rows
 

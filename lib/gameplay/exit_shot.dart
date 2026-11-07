@@ -20,6 +20,7 @@ class ExitShot {
     required this.actors,
     required this.cue,
     this.impactBeats = .4,
+    this.recoilBeats,
     this.heroWaitFrame = 'rear_idle',
     this.throwsDust = true,
   });
@@ -42,6 +43,10 @@ class ExitShot {
 
   /// How long the actors hold their impact drawings from the contact.
   final double impactBeats;
+
+  /// How long after contact the actors finish easing apart. Unset, it takes the
+  /// whole close-up, so a held close-up needs this or its hit drifts too slowly.
+  final double? recoilBeats;
 
   /// Mācron's drawing from the end of his dance until the close-up cuts in.
   final String heroWaitFrame;
@@ -81,11 +86,10 @@ class ExitShot {
     final closing = 1 - approach * approach;
     // Hold the contact for a moment so the hit reads, then ease apart.
     const hold = .25;
+    final apart = recoilBeats ?? closeupTo - contactBeat;
     final recoil = after <= hold || reducedMotion
         ? 0.0
-        : _easeOut(
-            ((after - hold) / (closeupTo - contactBeat - hold)).clamp(0.0, 1.0),
-          );
+        : _easeOut(((after - hold) / (apart - hold)).clamp(0.0, 1.0));
     final striking = after >= 0 && after < impactBeats;
     return [
       for (final actor in actors)
@@ -99,9 +103,12 @@ class ExitShot {
               ? actor.impact
               : actor.approach,
           ui.Offset(
-            actor.entry.dx * closing + actor.recoil.dx * recoil,
-            actor.entry.dy * closing + actor.recoil.dy * recoil,
-          ),
+                actor.entry.dx * closing + actor.recoil.dx * recoil,
+                actor.entry.dy * closing + actor.recoil.dy * recoil,
+              ) +
+              (reducedMotion
+                  ? ui.Offset.zero
+                  : actor.sway?.at(beat) ?? ui.Offset.zero),
         ),
     ];
   }
@@ -179,6 +186,20 @@ class ExitShotFrame {
   final String image;
 }
 
+/// A close-up actor keeping time while a long close-up holds. From [from] it leans
+/// by [by] and back, once every [beats], starting and ending at rest.
+class ExitShotSway {
+  const ExitShotSway({required this.from, required this.beats, required this.by});
+  final double from;
+  final double beats;
+  final ui.Offset by;
+
+  ui.Offset at(double beat) {
+    if (beat <= from) return ui.Offset.zero;
+    return by * math.sin((beat - from) / beats * 2 * math.pi);
+  }
+}
+
 class ExitShotActor {
   const ExitShotActor({
     required this.approach,
@@ -189,6 +210,7 @@ class ExitShotActor {
     required this.recoil,
     this.frames = const [],
     this.keepsReading = false,
+    this.sway,
   });
   final String approach;
   final String impact;
@@ -219,6 +241,9 @@ class ExitShotActor {
   /// Lettering: when the whole close-up mirrors, this drawing lands in its
   /// mirrored place but still reads the right way round.
   final bool keepsReading;
+
+  /// Keeping time through a long hold; nothing under reduced motion.
+  final ExitShotSway? sway;
 }
 
 class ExitShotPlacement {

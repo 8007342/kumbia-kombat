@@ -1,7 +1,7 @@
 # Owner rulings, 2026-11-05
 
 These settle the Level 3 discussion's first round. Where an older plan disagrees, this file wins until the
-plan is updated.
+plan is updated. `assets/art/STYLEGUIDE.md` folds the visual rulings into one guide, and this file still outranks it.
 
 | Topic | Ruling | Owner's words |
 |---|---|---|

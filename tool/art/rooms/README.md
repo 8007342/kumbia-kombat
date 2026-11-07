@@ -1,5 +1,7 @@
 # Rooms
 
+How rooms should look: `assets/art/STYLEGUIDE.md`, section 5. This file is how they get made.
+
 A room is one data file, `tool/art/rooms/<id>.json`: primitives, a camera, a phone-safe box, a tap band and marks. From it the compiler makes the greybox guide, id map, `floor.json`, prompts and the level's floor and marks, in `art_runs/rooms/<id>/`. Two Qwen passes turn the guide into a plate.
 
 Python: `~/.cache/tillandsias-project/venvs/kumbia-art/bin/python`. All commands are `rooms.py <command>`.

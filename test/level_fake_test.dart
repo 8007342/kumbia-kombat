@@ -61,7 +61,15 @@ String _nightBar({
       { "at": 1, "x": 0.80, "y": 0.34, "facing": "rear" }
     ]
   },
-  "copy": { "invitation": "Glow or go home.", "clearedTitle": "PURO\\nGLOW" }$exitShot
+  "copy": { "invitation": "Glow or go home.", "clearedTitle": "PURO\\nGLOW" },
+  "hardestCombo": {
+    "name": "Night Shift", "status": "proposal", "callBeats": 8,
+    "moves": [
+      { "dancer": "left", "at": 0, "beats": 8, "clip": "groove_basic" },
+      { "dancer": "right", "at": 0, "beats": 8, "clip": "groove_basic" }
+    ],
+    "notes": [{ "at": 0, "limb": "leftHand" }, { "at": 4, "limb": "rightHand" }]
+  }$exitShot
 }
 ''';
 

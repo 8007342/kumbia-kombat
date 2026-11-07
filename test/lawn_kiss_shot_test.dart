@@ -13,8 +13,8 @@ import 'package:kumbia_kombat/music/accent_voice.dart';
 import 'package:kumbia_kombat/music/score.dart';
 import 'package:kumbia_kombat/music/transport.dart';
 
-/// The lawn's way out: the two dancers kiss Mācron's cheeks. It is the last level
-/// for now, so the whole shot has to fit in the 8 beats of its success score.
+/// The lawn's way out: the two dancers kiss Mācron's cheeks. The kiss lands in the
+/// 8 beats of the success score; the close-up then holds into the bridge's 8.
 String _read(String id) => File('levels/$id.json').readAsStringSync();
 
 MusicScore _score(String id) => MusicScore.fromJson(
@@ -58,20 +58,56 @@ void main() {
     expect(shot.actors.length, 6);
   });
 
-  test('it fits the 8-beat score, with no bridge needed but room for one', () {
+  test('the kiss lands in the success score and holds half way into the bridge', () {
     final step = levels.campaign.singleWhere((s) => s.level.id == level.id);
     final length = _score(level.music.successScore).lengthBeats;
+    final bridge = _score(step.bridgeToNext!).lengthBeats;
     expect(length, 8);
-    expect(shot.closeupTo, lessThan(length));
-    expect(shot.titleUntil, lessThanOrEqualTo(length));
+    // Only the bridge's length counts here. Its tempo can change with the music.
+    expect(bridge, 8);
+    expect(shot.contactBeat, lessThan(length));
     for (final hit in shot.cue) {
       expect(hit.beat, lessThan(length));
     }
+    expect(shot.closeupTo, length + bridge / 2);
+    expect(shot.titleUntil, shot.closeupTo);
     // Nothing in the shot names the next room: the campaign's bridge is enough,
     // and routeAt cools the room down over whatever music follows.
     expect(step.next, isNotNull);
-    expect(shot.routeAt(shot.closeupTo, length + 8), 0);
-    expect(shot.routeAt(length + 8, length + 8), 1);
+    expect(shot.routeAt(shot.closeupTo, length + bridge), 0);
+    expect(shot.routeAt(length + bridge, length + bridge), 1);
+  });
+
+  test('the long hold keeps time, from the bridge on, and only then', () {
+    final start = _score(level.music.successScore).lengthBeats;
+    final body = shot.actors[4];
+    // Shy until the bridge starts, then his arms swing on each beat.
+    final swings = [
+      for (var beat = start; beat < shot.closeupTo; beat += 1)
+        imageAt(body, beat),
+    ];
+    expect(imageAt(body, start - .01), contains('body-shy'));
+    for (var i = 1; i < swings.length; i++) {
+      expect(swings[i], isNot(swings[i - 1]));
+    }
+    // The pair lean as mirror images, and never before the bridge.
+    final a = dancers.first.sway!;
+    final b = dancers.last.sway!;
+    expect(a.from, start);
+    expect(a.at(start), ui.Offset.zero);
+    expect(a.at(shot.contactBeat), ui.Offset.zero);
+    for (var beat = start; beat < shot.closeupTo; beat += .25) {
+      expect(a.at(beat).dx, closeTo(-b.at(beat).dx, 1e-9));
+      expect(a.at(beat).dy, closeTo(b.at(beat).dy, 1e-9));
+    }
+    expect(a.at(start + a.beats / 4), isNot(ui.Offset.zero));
+    // The hit eases apart at its own pace, however long the close-up holds.
+    final settled = shot.sample(
+      shot.contactBeat + shot.recoilBeats!,
+      reducedMotion: false,
+    );
+    final later = shot.sample(start - .01, reducedMotion: false);
+    expect(settled[1].offset, later[1].offset);
   });
 
   test('his whole body shows: head under the kisses, the rest over the hedge', () {

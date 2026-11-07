@@ -408,7 +408,9 @@
         "sideBeats": 1.5,
         "reachFrom": 2.75,
         "reachTo": 3.5,
-        "reachFrame": "left_hand_prep"
+        "reachFrame": "left_hand_prep",
+        "backBeats": 1.5,
+        "danceClip": "dance_with"
       }
     }
   },
@@ -504,6 +506,8 @@
       ]
     ],
     "props": [
+      { "id": "pool-umbrella-left", "kind": "umbrella", "at": [0.3, 0.335], "heightInAdults": 1.35, "widthInAdults": 1.5 },
+      { "id": "pool-umbrella-right", "kind": "umbrella", "at": [0.77, 0.33], "heightInAdults": 1.35, "widthInAdults": 1.5 },
       {
         "id": "pool-table-0",
         "kind": "table",
@@ -615,9 +619,14 @@
       [
         0.4433,
         0.2368
-      ]
+      ],
+      [0.236, 0.189],
+      [0.336, 0.185],
+      [0.73, 0.221],
+      [0.816, 0.309]
     ],
-    "plants": []
+    "plants": [],
+    "waiter": { "home": [0.57, 0.335], "swayX": 0.09 }
   },
   "departure": {
     "threshold": "the carved gateway at the top of the path",
@@ -678,7 +687,7 @@
     "dust": false,
     "closeupFrom": 3.5,
     "contactBeat": 4.5,
-    "closeupTo": 7.75,
+    "closeupTo": 12,
     "contactPoint": [
       0.5,
       0.29
@@ -753,7 +762,15 @@
         "recoil": [
           -13,
           2
-        ]
+        ],
+        "sway": {
+          "from": 8,
+          "beats": 2,
+          "by": [
+            -2.5,
+            1
+          ]
+        }
       },
       {
         "approach": "closeups/duet-b-smile.png",
@@ -784,7 +801,15 @@
         "recoil": [
           13,
           2
-        ]
+        ],
+        "sway": {
+          "from": 8,
+          "beats": 2,
+          "by": [
+            2.5,
+            1
+          ]
+        }
       },
       {
         "approach": "closeups/duet-hedge.png",
@@ -817,6 +842,22 @@
           },
           {
             "beat": 5.5,
+            "image": "closeups/duet-macron-body-shy.png"
+          },
+          {
+            "beat": 8,
+            "image": "closeups/duet-macron-body-rest.png"
+          },
+          {
+            "beat": 9,
+            "image": "closeups/duet-macron-body-shy.png"
+          },
+          {
+            "beat": 10,
+            "image": "closeups/duet-macron-body-rest.png"
+          },
+          {
+            "beat": 11,
             "image": "closeups/duet-macron-body-shy.png"
           }
         ],
@@ -866,21 +907,109 @@
         "pitch": 72,
         "velocity": 70
       }
+    ],
+    "recoilBeats": 3.25
+  },
+  "hardestCombo": {
+    "name": "Round Robin",
+    "status": "proposal",
+    "note": "Proposal. The name and shape need no sign-off to exist, but the owner hasn't seen or played them. The Girls answer each other in the call, then finish together. Hands and feet, where their chart is mostly hands.",
+    "callBeats": 8,
+    "moves": [
+      {
+        "dancer": "swing-a",
+        "at": 0,
+        "beats": 2,
+        "clip": "show_off"
+      },
+      {
+        "dancer": "swing-a",
+        "at": 2,
+        "beats": 4,
+        "clip": "step_touch"
+      },
+      {
+        "dancer": "swing-a",
+        "at": 6,
+        "beats": 2,
+        "clip": "finish_turn"
+      },
+      {
+        "dancer": "swing-b",
+        "at": 0,
+        "beats": 4,
+        "clip": "skirt_play"
+      },
+      {
+        "dancer": "swing-b",
+        "at": 4,
+        "beats": 2,
+        "clip": "show_off"
+      },
+      {
+        "dancer": "swing-b",
+        "at": 6,
+        "beats": 2,
+        "clip": "finish_turn"
+      }
+    ],
+    "notes": [
+      {
+        "at": 0,
+        "limb": "leftHand"
+      },
+      {
+        "at": 1,
+        "limb": "rightHand"
+      },
+      {
+        "at": 1.75,
+        "limb": "leftHand"
+      },
+      {
+        "at": 2.5,
+        "limb": "rightFoot"
+      },
+      {
+        "at": 3.25,
+        "limb": "leftFoot"
+      },
+      {
+        "at": 4,
+        "limb": "rightHand"
+      },
+      {
+        "at": 5,
+        "limb": "leftHand"
+      },
+      {
+        "at": 5.75,
+        "limb": "rightFoot"
+      },
+      {
+        "at": 6.5,
+        "limb": "leftFoot"
+      },
+      {
+        "at": 7.25,
+        "limb": "rightHand",
+        "move": "circle"
+      }
     ]
   },
   "layers": {
     "plateWidth": 1024,
     "plateHeight": 1536,
     "props": [
-      {"id": "palm", "atlas": "pool-garden/pool-garden-layers.png", "atlasY": 0, "left": 758, "top": 0, "width": 246, "height": 184, "frames": 7, "motion": "sway", "periodBeats": 2, "instance": 1},
-      {"id": "plant-left", "atlas": "pool-garden/pool-garden-layers.png", "atlasY": 186, "left": 203, "top": 344, "width": 65, "height": 47, "frames": 7, "motion": "sway", "periodBeats": 2, "instance": 2},
-      {"id": "plant-mid", "atlas": "pool-garden/pool-garden-layers.png", "atlasY": 235, "left": 408, "top": 304, "width": 40, "height": 36, "frames": 7, "motion": "sway", "periodBeats": 2, "instance": 3},
-      {"id": "plant-right", "atlas": "pool-garden/pool-garden-layers.png", "atlasY": 273, "left": 519, "top": 312, "width": 50, "height": 36, "frames": 7, "motion": "sway", "periodBeats": 2, "instance": 4},
-      {"id": "string", "atlas": "pool-garden/pool-garden-layers.png", "atlasY": 311, "left": 190, "top": 205, "width": 393, "height": 61, "frames": 7, "motion": "sway", "periodBeats": 4, "instance": 5},
-      {"id": "water", "atlas": "pool-garden/pool-garden-layers.png", "atlasY": 374, "left": 235, "top": 362, "width": 323, "height": 69, "frames": 4, "motion": "pulse", "periodBeats": 2, "instance": 6},
-      {"id": "post-lamp", "atlas": "pool-garden/pool-garden-layers.png", "atlasY": 445, "left": 452, "top": 357, "width": 21, "height": 21, "frames": 4, "motion": "pulse", "periodBeats": 1, "instance": 7},
-      {"id": "gate-lamp", "atlas": "pool-garden/pool-garden-layers.png", "atlasY": 468, "left": 575, "top": 314, "width": 20, "height": 19, "frames": 4, "motion": "pulse", "periodBeats": 1, "instance": 8},
-      {"id": "far-lamp", "atlas": "pool-garden/pool-garden-layers.png", "atlasY": 489, "left": 735, "top": 322, "width": 26, "height": 29, "frames": 4, "motion": "pulse", "periodBeats": 1, "instance": 9}
+      {"id": "palm", "atlas": "pool-garden/pool-garden-layers.png", "atlasY": 0, "left": 758, "top": 0, "width": 246, "height": 184, "frames": 7, "motion": "sway", "periodBeats": 2, "instance": 1, "kind": "plant"},
+      {"id": "plant-left", "atlas": "pool-garden/pool-garden-layers.png", "atlasY": 186, "left": 203, "top": 344, "width": 65, "height": 47, "frames": 7, "motion": "sway", "periodBeats": 2, "instance": 2, "kind": "plant"},
+      {"id": "plant-mid", "atlas": "pool-garden/pool-garden-layers.png", "atlasY": 235, "left": 408, "top": 304, "width": 40, "height": 36, "frames": 7, "motion": "sway", "periodBeats": 2, "instance": 3, "kind": "plant"},
+      {"id": "plant-right", "atlas": "pool-garden/pool-garden-layers.png", "atlasY": 273, "left": 519, "top": 312, "width": 50, "height": 36, "frames": 7, "motion": "sway", "periodBeats": 2, "instance": 4, "kind": "plant"},
+      {"id": "string", "atlas": "pool-garden/pool-garden-layers.png", "atlasY": 311, "left": 190, "top": 205, "width": 393, "height": 61, "frames": 7, "motion": "sway", "periodBeats": 4, "instance": 5, "kind": "hanging"},
+      {"id": "water", "atlas": "pool-garden/pool-garden-layers.png", "atlasY": 374, "left": 235, "top": 362, "width": 323, "height": 69, "frames": 4, "motion": "pulse", "periodBeats": 2, "instance": 6, "kind": "light"},
+      {"id": "post-lamp", "atlas": "pool-garden/pool-garden-layers.png", "atlasY": 445, "left": 452, "top": 357, "width": 21, "height": 21, "frames": 4, "motion": "pulse", "periodBeats": 1, "instance": 7, "kind": "flame"},
+      {"id": "gate-lamp", "atlas": "pool-garden/pool-garden-layers.png", "atlasY": 468, "left": 575, "top": 314, "width": 20, "height": 19, "frames": 4, "motion": "pulse", "periodBeats": 1, "instance": 8, "kind": "flame"},
+      {"id": "far-lamp", "atlas": "pool-garden/pool-garden-layers.png", "atlasY": 489, "left": 735, "top": 322, "width": 26, "height": 29, "frames": 4, "motion": "pulse", "periodBeats": 1, "instance": 9, "kind": "flame"}
     ]
   }
 }
