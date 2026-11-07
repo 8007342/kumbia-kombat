@@ -115,7 +115,19 @@ void main() {
     ]) {
       test('$id rules, chart and crowd numbers', () {
         final level = levels.byId(id);
-        final rules = fights[index];
+        // Re-tuned after the owner's phone test, 2026-11-07, and nothing else:
+        // a third peak pass, and early tiers that forgive two dropped steps of
+        // eight. See plan/feel-2026-11-07.md.
+        final frozen = fights[index];
+        final rules = FightDefinition(
+          frozen.id,
+          frozen.metric,
+          frozen.cleanSeconds,
+          frozen.successesPerTier,
+          3,
+          frozen.resetAfterFailures,
+          earlyHitRatio: .75,
+        );
         expect(level.rules.id, rules.id);
         expect(level.rules.metric, rules.metric);
         expect(level.rules.cleanSeconds, rules.cleanSeconds);

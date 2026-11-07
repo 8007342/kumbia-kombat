@@ -28,6 +28,9 @@ extension type _Context._(JSObject _) implements JSObject {
   external JSPromise<_Buffer> decodeAudioData(JSArrayBuffer data);
 }
 
+@JS('performance.now')
+external double _performanceNow();
+
 @JS('document.createElement')
 external _AudioElement _createElement(String tag);
 
@@ -181,6 +184,15 @@ class WebAudioMusicBackend
 
   @override
   double get nowSeconds => _context?.currentTime ?? 0;
+
+  @override
+  double? eventAgeSeconds(Duration timeStamp) {
+    // Zero is a synthesized event with no stamp.
+    if (timeStamp == Duration.zero) return null;
+    final age = (_performanceNow() - timeStamp.inMicroseconds / 1000) / 1000;
+    // Anything outside this is a stamp on some other clock.
+    return age >= 0 && age <= .15 ? age : null;
+  }
 
   @override
   ({double? output, double? base}) get reportedLatency {

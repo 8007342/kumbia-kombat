@@ -272,10 +272,11 @@ void main() {
     }
 
     // Unchanged neighbours, and a fake level ruled entirely by its own data.
-    // The first 20 ms step past the last note's late window. It was 60.667 with
-    // the old 180 ms window; the 230 ms one decides the win a step or so later.
-    expect(clearSeconds['garden'], closeTo(60.707, .001));
-    expect(clearSeconds['bar'], closeTo(93.167, .2)); // Joined mid-beat grid.
+    // The phone-test retune (plan/feel-2026-11-07.md): a third peak pass adds a
+    // phrase, and the late window decides the win a little later than 60.667.
+    expect(clearSeconds['garden'], closeTo(69.918, .001));
+    // A third peak pass, as for the garden. Joined mid-beat grid.
+    expect(clearSeconds['bar'], closeTo(101.223, .2));
     final night = levels.byId('night-bar');
     expect(clearSeconds['night-bar'], lessThan(clearSeconds['bar']!));
     expect(night.rules.requiredHits(4, atPeak: false), 2);
