@@ -43,7 +43,8 @@ const read = path => JSON.parse(readFileSync(path, 'utf8'));
 
 function mixrsBinary() {
   if (process.env.MIXRS) return process.env.MIXRS;
-  const target = process.env.CARGO_TARGET_DIR || resolve(homedir(), '.cache/tillandsias-project/cargo/target');
+  // Its own target directory: mix.py's shared one is rebuilt from whichever worktree ran last.
+  const target = process.env.ALIGN_CARGO_TARGET_DIR || resolve(homedir(), '.cache/tillandsias-project/mixrs-work/target-align');
   const bin = resolve(target, 'release/mixrs');
   execFileSync('cargo', ['build', '--release', '--quiet'], {
     cwd: resolve(here, 'tool/music/mixrs'), env: {...process.env, CARGO_TARGET_DIR: target}, stdio: 'inherit',
@@ -82,10 +83,14 @@ export function patternNotes(chart, index) {
   const limbs = index === 0 ? chart.limbs : chart.variants[index - 1];
   return chart.offsets.map((at, step) => ({at, limb: limbs[step], step, move: null}));
 }
-export function patternIndices(chart, tier) {
+// FightChart.patternIndex: tier 4 plays one pattern per final challenge, wrapping round the
+// variants, so a third challenge replays variants[0] at the top tier's tempo. FEEL raised
+// finalChallenges to 3 on four levels (work/1873-feel), so at least 3 are assumed.
+export const finalChallengesOf = level => Math.max(level?.rules?.finalChallenges ?? 2, 3);
+export function patternIndices(chart, tier, finals = 3) {
   const n = chart.variants?.length ?? 0;
   if (n === 0 || tier === 0) return [0];
-  if (tier === 4) return [1 + (3 % n), 1 + (4 % n)];
+  if (tier === 4) return [...new Set(Array.from({length: finals}, (_, peak) => 1 + ((3 + peak) % n)))];
   return [1 + ((tier - 1) % n)];
 }
 
@@ -196,7 +201,7 @@ export function auditLevel(manifest, id, level, takePath) {
   for (let tier = 0; tier < 5; tier++) {
     const take = m.tierTakes[tier];
     const t = takes[take];
-    for (const index of patternIndices(chart, tier)) {
+    for (const index of patternIndices(chart, tier, finalChallengesOf(level))) {
       const notes = patternNotes(chart, index);
       for (const half of [0, 1]) {
         const rows = scorePattern(t.sal, notes, t.phases, half);
