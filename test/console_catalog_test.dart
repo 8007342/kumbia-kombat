@@ -287,7 +287,7 @@ void main() {
   testWidgets('the console loads the shipping bundle and lists it with references', (
     tester,
   ) async {
-    tester.view.physicalSize = const Size(420, 2400);
+    tester.view.physicalSize = const Size(360, 2400);
     tester.view.devicePixelRatio = 1;
     addTearDown(tester.view.reset);
     final catalog = (await tester.runAsync(() => ConsoleCatalog.load(rootBundle)))!;
