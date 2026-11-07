@@ -25,8 +25,10 @@ class RenderedClip {
     required this.bars,
     required this.beatsPerBar,
     required this.files,
-    this.loopStartSeconds = 0,
+    this.startSeconds = 0,
     this.loopEndSeconds,
+    this.endSeconds,
+    this.decodeOffsetSamples = const {},
     this.gainDb = 0,
   });
 
@@ -40,8 +42,17 @@ class RenderedClip {
 
   /// Format name (`opus`, `aac`) to asset path.
   final Map<String, String> files;
-  final double loopStartSeconds;
+
+  /// Where beat 0 is in the file. Audio before and after is padding, there to
+  /// keep codec edges off the loop and to give fades something to fade over.
+  final double startSeconds;
   final double? loopEndSeconds;
+
+  /// A clip that doesn't loop stops here, which may be past its last beat.
+  final double? endSeconds;
+
+  /// What a format's decoder adds at the head of the file, in 48 kHz samples.
+  final Map<String, int> decodeOffsetSamples;
   double gainDb;
 
   bool get loops => loopEndSeconds != null;
@@ -52,8 +63,11 @@ class RenderedClip {
   /// Where in the file a beat counted from the clip's start falls.
   double fileSecondsAt(double beats) {
     final within = loops ? beats % lengthBeats : beats;
-    return loopStartSeconds + math.max(0.0, within) * secondsPerBeat;
+    return startSeconds + math.max(0.0, within) * secondsPerBeat;
   }
+
+  double decodeOffsetSeconds(String format) =>
+      (decodeOffsetSamples[format] ?? 0) / 48000;
 
   static RenderedClip fromJson(String id, String path, Object? raw) {
     final json = _object(path, raw);
@@ -63,17 +77,16 @@ class RenderedClip {
       throw RenderedManifestError(path, 'bars must be a whole number');
     }
     final declared = _number('$path.bpm', json['bpm'], min: 20, max: 400);
-    final start = json['loopStartSeconds'];
     final end = json['loopEndSeconds'];
+    final startRaw = json['loopStartSeconds'] ?? json['startSeconds'];
+    final start = startRaw == null
+        ? 0.0
+        : _number('$path.startSeconds', startRaw, min: 0);
     var bpm = declared;
     double? loopEnd;
-    var loopStart = 0.0;
     if (end != null) {
-      loopStart = start == null
-          ? 0.0
-          : _number('$path.loopStartSeconds', start, min: 0);
       loopEnd = _number('$path.loopEndSeconds', end);
-      final seconds = loopEnd - loopStart;
+      final seconds = loopEnd - start;
       if (seconds <= 0) {
         throw RenderedManifestError(path, 'the loop ends before it starts');
       }
@@ -96,8 +109,22 @@ class RenderedClip {
         for (final entry in files.entries)
           entry.key: _text('$path.files.${entry.key}', entry.value),
       },
-      loopStartSeconds: loopStart,
+      startSeconds: start,
       loopEndSeconds: loopEnd,
+      endSeconds: json['endSeconds'] == null
+          ? null
+          : _number('$path.endSeconds', json['endSeconds'], min: start),
+      decodeOffsetSamples: {
+        for (final entry
+            in _object(
+              '$path.decodeOffsetSamples',
+              json['decodeOffsetSamples'] ?? const <String, Object?>{},
+            ).entries)
+          entry.key: _number(
+            '$path.decodeOffsetSamples.${entry.key}',
+            entry.value,
+          ).round(),
+      },
       gainDb: json['gainDb'] == null
           ? 0
           : _number('$path.gainDb', json['gainDb'], min: -60, max: 24),
@@ -141,6 +168,8 @@ class RenderedLevel {
     this.transitions = const [],
     this.success,
     this.bridge,
+    this.bridgeTo,
+    this.bridgeEntryBar = 0,
     this.mix,
   }) {
     if (tierTakes.length != 5) {
@@ -167,6 +196,10 @@ class RenderedLevel {
   final List<RenderedTransition> transitions;
   final RenderedClip? success;
   final RenderedClip? bridge;
+
+  /// The level [bridge] leads to, and the bar of its first take it lands on.
+  final String? bridgeTo;
+  final int bridgeEntryBar;
   final RenderedMix? mix;
 
   RenderedClip takeForTier(int tier) => takes[tierTakes[tier]]!;
@@ -213,6 +246,12 @@ class RenderedLevel {
       ],
       success: single('success'),
       bridge: single('bridge'),
+      bridgeTo: json['bridge'] == null
+          ? null
+          : _object('$path.bridge', json['bridge'])['to'] as String?,
+      bridgeEntryBar: json['bridge'] == null
+          ? 0
+          : _object('$path.bridge', json['bridge'])['entryBar'] as int? ?? 0,
       mix: json['mix'] == null
           ? null
           : RenderedMix.fromJson('$path.mix', json['mix']),
@@ -282,7 +321,10 @@ class RenderedMix {
 }
 
 class RenderedManifest {
-  const RenderedManifest({this.mix = const RenderedMix(), this.levels = const {}});
+  const RenderedManifest({
+    this.mix = const RenderedMix(),
+    this.levels = const {},
+  });
   final RenderedMix mix;
   final Map<String, RenderedLevel> levels;
 

@@ -52,11 +52,20 @@ class TempoSection {
 /// What a transport plays when it plays rendered audio. Either a level's ladder
 /// of takes or one clip, such as a success tag or a bridge.
 class RenderedPlan {
-  RenderedPlan.ladder(RenderedLevel this.level, this.deck) : clip = null;
-  RenderedPlan.single(RenderedClip this.clip, this.deck) : level = null;
+  RenderedPlan.ladder(
+    RenderedLevel this.level,
+    this.deck, {
+    this.entryBar = 0,
+  }) : clip = null;
+  RenderedPlan.single(RenderedClip this.clip, this.deck)
+    : level = null,
+      entryBar = 0;
   final RenderedLevel? level;
   final RenderedClip? clip;
   final ClipDeck deck;
+
+  /// The bar of the first take that beat 0 lands on, as a bridge asks.
+  final int entryBar;
 }
 
 /// Call pump roughly every 20 ms; rendering frames never advance song time.
@@ -222,7 +231,9 @@ class MusicTransport {
       tier,
       clip?.bpm ?? score.tempos[tier],
       clip: clip,
-      originBeat: beat,
+      originBeat: beat == 0 && clip != null
+          ? -(rendered!.entryBar * clip.beatsPerBar).toDouble()
+          : beat,
       take: clip == null ? null : rendered?.level?.tierTakes[tier],
     );
   }

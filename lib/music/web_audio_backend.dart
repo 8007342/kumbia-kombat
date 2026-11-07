@@ -471,7 +471,7 @@ class WebAudioMusicBackend implements GameAudio, MusicFader, RenderedAudio {
     source.startAt(at, offsetSeconds + shift);
     final end = clip.endSeconds;
     if (!clip.loops && end != null) {
-      voice.stopAt(at + (end - clip.startSeconds - (offsetSeconds - clip.startSeconds)));
+      voice.stopAt(at + end - offsetSeconds, fadeSeconds: .02);
     }
     return voice;
   }
