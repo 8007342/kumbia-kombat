@@ -408,7 +408,9 @@
         "sideBeats": 1.5,
         "reachFrom": 2.75,
         "reachTo": 3.5,
-        "reachFrame": "left_hand_prep"
+        "reachFrame": "left_hand_prep",
+        "backBeats": 1.5,
+        "danceClip": "dance_with"
       }
     }
   },
@@ -663,7 +665,7 @@
     "dust": false,
     "closeupFrom": 3.5,
     "contactBeat": 4.5,
-    "closeupTo": 7.75,
+    "closeupTo": 12,
     "contactPoint": [
       0.5,
       0.29
@@ -738,7 +740,15 @@
         "recoil": [
           -13,
           2
-        ]
+        ],
+        "sway": {
+          "from": 8,
+          "beats": 2,
+          "by": [
+            -2.5,
+            1
+          ]
+        }
       },
       {
         "approach": "closeups/duet-b-smile.png",
@@ -769,7 +779,15 @@
         "recoil": [
           13,
           2
-        ]
+        ],
+        "sway": {
+          "from": 8,
+          "beats": 2,
+          "by": [
+            2.5,
+            1
+          ]
+        }
       },
       {
         "approach": "closeups/duet-hedge.png",
@@ -802,6 +820,22 @@
           },
           {
             "beat": 5.5,
+            "image": "closeups/duet-macron-body-shy.png"
+          },
+          {
+            "beat": 8,
+            "image": "closeups/duet-macron-body-rest.png"
+          },
+          {
+            "beat": 9,
+            "image": "closeups/duet-macron-body-shy.png"
+          },
+          {
+            "beat": 10,
+            "image": "closeups/duet-macron-body-rest.png"
+          },
+          {
+            "beat": 11,
             "image": "closeups/duet-macron-body-shy.png"
           }
         ],
@@ -851,7 +885,8 @@
         "pitch": 72,
         "velocity": 70
       }
-    ]
+    ],
+    "recoilBeats": 3.25
   },
   "hardestCombo": {
     "name": "Round Robin",

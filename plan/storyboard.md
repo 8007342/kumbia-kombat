@@ -1,5 +1,7 @@
 # Kumbia Kombat playable storyboard
 
+**For how shots and transitions work today, use `assets/art/STYLEGUIDE.md`, section 8.** This storyboard is history where the owner's rulings moved on: stage order, approval text and walks through doors. Its finale shots E01 to E05 remain the plan.
+
 Status: authored five-level sequence and asset contract; Garden background source is generated and visually inspected; single gatekeeper sprite is generated and visually inspected. All timings are transport beats unless explicitly seconds. Sequence IDs are stable integration hooks. Pose IDs below describe required production clips; a source concept does not imply its clip exists. Stage duration includes teaching/calls/responses, recovery-free progress and traversal. Authoritative clean combat budgets are [60, 80, 95, 45, 110] seconds (390 seconds total), targets pending chart tuning. Traversal and short transitions must keep the full run within the 5–8 minute target; tune chart density and repetition from playtesting rather than padding cutscenes.
 
 ## Visual and input grammar

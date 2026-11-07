@@ -159,6 +159,7 @@ class GardenSceneGame extends FlameGame {
         _grammar!.requireClips(challenger.atlas, [
           duet.offClip,
           duet.partnerClip,
+          duet.exit.danceClip,
           'yield_out',
           'return_in',
         ]);
@@ -1011,11 +1012,16 @@ class GardenSceneGame extends FlameGame {
         onLeft: onLeft,
         from: dancer == 0 ? wins.first : wins.second,
         e: exitBeat ?? 0,
+        closeupTo: level.exitShot?.closeupTo ?? double.infinity,
         reducedMotion: reducedMotion,
       );
       return (
         floor: out.floor,
-        frame: out.reaching ? duet.exit.reachFrame : null,
+        frame: out.reaching
+            ? duet.exit.reachFrame
+            : out.dancing
+            ? _grammar!.clipFrame(atlas, duet.exit.danceClip, beat)
+            : null,
         mirrored: out.mirrored,
         role: null,
       );

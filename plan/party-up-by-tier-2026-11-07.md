@@ -70,7 +70,7 @@ The loader refuses a level with no combo, a move past the end of the call, overl
 
 ## Verified, and how
 
-- `flutter test`: 501 pass (457 at the start). `flutter analyze lib test`: the same 4 notes in `battle_staging.dart`.
+- `flutter test`: 504 pass after merging `game` at `d1123fa` (457 at the start of this work, 501 before that merge). The merge had one conflict, at the end of `levels/pool-garden.json`; both sides are kept. `flutter analyze lib test`: the same 4 notes in `battle_staging.dart`.
 - Stills of the real scene, nobody playing, at tiers 0, 2 and 4 in all three rooms. I looked at them, and measured the top quarter of the picture getting steadily warmer in each room. Top-of-picture red rose by about 10 in the garden, 7 in the lawn and 17 in the bar, on a 0 to 255 scale. That's on the phone-sized software render, not the browser's.
 - Golden, `test/goldens/levels_before.json`, compared old against new for the garden and the bar:
   - **Held:** clear times and beats, perfects, required hits, last limbs, and beat, phase, tier and all crowd numbers in all 19 samples of each room.
