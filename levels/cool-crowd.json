@@ -426,8 +426,8 @@
   },
   "guests": [
    {
-    "at": [0.4, 0.45],
-    "partTo": [0.28, 0.525],
+    "at": [0.431, 0.455],
+    "partTo": [0.276, 0.515],
     "occupied": "pair",
     "faces": "left",
     "partner": 3
@@ -445,8 +445,8 @@
     "faces": "left"
    },
    {
-    "at": [0.345, 0.46],
-    "partTo": [0.225, 0.53],
+    "at": [0.345, 0.455],
+    "partTo": [0.165, 0.515],
     "occupied": "pair",
     "faces": "right",
     "partner": 0
@@ -458,84 +458,82 @@
     "faces": "left"
    },
    {
-    "at": [0.59, 0.45],
-    "partTo": [0.77, 0.49],
+    "at": [0.585, 0.45],
+    "partTo": [0.76, 0.51],
     "occupied": "pair",
     "faces": "right",
     "partner": 6
    },
    {
-    "at": [0.65, 0.46],
-    "partTo": [0.825, 0.49],
+    "at": [0.669, 0.45],
+    "partTo": [0.869, 0.51],
     "occupied": "pair",
     "faces": "left",
     "partner": 5
    },
    {
-    "at": [0.54, 0.405],
-    "partTo": [0.735, 0.43],
+    "at": [0.53, 0.39],
+    "partTo": [0.74, 0.455],
     "occupied": "pair",
     "faces": "right",
     "partner": 8
    },
    {
-    "at": [0.6, 0.4],
-    "partTo": [0.79, 0.445],
+    "at": [0.589, 0.39],
+    "partTo": [0.826, 0.455],
     "occupied": "pair",
     "faces": "left",
     "partner": 7
    },
    {
-    "at": [0.62, 0.53],
-    "partTo": [0.77, 0.55],
+    "at": [0.595, 0.42],
+    "partTo": [0.775, 0.555],
     "occupied": "pair",
     "faces": "right",
     "partner": 10
    },
    {
-    "at": [0.67, 0.535],
-    "partTo": [0.825, 0.555],
+    "at": [0.666, 0.42],
+    "partTo": [0.903, 0.555],
     "occupied": "pair",
     "faces": "left",
     "partner": 9
    },
    {
     "at": [0.66, 0.4],
-    "partTo": [0.86, 0.5],
+    "partTo": [0.875, 0.48],
     "occupied": "solo",
     "faces": "right"
    },
    {
-    "at": [0.87, 0.555],
-    "occupied": "pair",
-    "faces": "right",
-    "partner": 13
-   },
-   {
-    "at": [0.93, 0.56],
-    "occupied": "pair",
-    "faces": "left",
-    "partner": 12
-   },
-   {
-    "at": [0.91, 0.52],
+    "at": [0.97, 0.57],
     "occupied": "solo",
     "faces": "left"
    },
    {
-    "at": [0.08, 0.54],
+    "at": [0.93, 0.515],
+    "occupied": "solo",
+    "faces": "right"
+   },
+   {
+    "at": [0.9, 0.6],
+    "occupied": "solo",
+    "faces": "left"
+   },
+   {
+    "at": [0.04, 0.535],
     "occupied": "pair",
     "faces": "right",
     "partner": 16
    },
    {
-    "at": [0.135, 0.535],
+    "at": [0.16, 0.535],
     "occupied": "pair",
     "faces": "left",
     "partner": 15
    },
    {
-    "at": [0.17, 0.515],
+    "at": [0.1, 0.515],
     "occupied": "solo",
     "faces": "left"
    }
@@ -702,21 +700,33 @@
      }
     ],
     "contact": [431, 384],
-    "scale": 0.46,
+    "scale": 0.6,
     "entry": [-24, 0],
     "recoil": [0, 0]
    },
    {
-    "approach": "closeups/duet-macron-body-rest.png",
-    "impact": "closeups/duet-macron-body-rest.png",
+    "approach": "closeups/nod-mc-rest.png",
+    "impact": "closeups/nod-mc-rest.png",
     "frames": [
      {
       "beat": 3,
-      "image": "closeups/duet-macron-body-rest.png"
+      "image": "closeups/nod-mc-rest.png"
+     },
+     {
+      "beat": 5,
+      "image": "closeups/nod-mc-down.png"
+     },
+     {
+      "beat": 5.5,
+      "image": "closeups/nod-mc-up.png"
+     },
+     {
+      "beat": 6,
+      "image": "closeups/nod-mc-rest.png"
      }
     ],
-    "contact": [8, 440],
-    "scale": 0.46,
+    "contact": [40, 440],
+    "scale": 0.6,
     "entry": [24, 0],
     "recoil": [0, 0]
    }

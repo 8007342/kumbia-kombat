@@ -123,17 +123,20 @@ class PartyAtlasDefinition {
         (anchor[0] as num).toDouble(),
         (anchor[1] as num).toDouble(),
       );
-      if (source.left < 0 ||
-          source.top < 0 ||
-          source.width <= 0 ||
-          source.height <= 0 ||
-          source.right > width ||
-          source.bottom > height ||
-          rect.any((value) => value != (value as num).roundToDouble()) ||
-          pivot.dx < 0 ||
-          pivot.dy < 0 ||
-          pivot.dx > source.width ||
-          pivot.dy > source.height) {
+      // A measuring frame says how tall this person stands and is never drawn, so
+      // its height may reach past the image.
+      if (frame['measureOnly'] != true &&
+          (source.left < 0 ||
+              source.top < 0 ||
+              source.width <= 0 ||
+              source.height <= 0 ||
+              source.right > width ||
+              source.bottom > height ||
+              rect.any((value) => value != (value as num).roundToDouble()) ||
+              pivot.dx < 0 ||
+              pivot.dy < 0 ||
+              pivot.dx > source.width ||
+              pivot.dy > source.height)) {
         throw FormatException('Party sprite $id extends beyond its image');
       }
       final hold = frame['hold'];

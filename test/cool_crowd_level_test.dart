@@ -324,17 +324,20 @@ void main() {
     test('most of the floor dances in couples, and faces all ways', () {
       final guests = _level().layout.guests;
       final coupled = guests.where((g) => g.partner != null).toList();
-      expect(coupled.length, greaterThanOrEqualTo(12));
+      expect(coupled.length, greaterThanOrEqualTo(10));
       for (final guest in coupled) {
         final other = guests[guest.partner!];
         expect(other.partner, guests.indexOf(guest));
-        // Side by side, at both ends of a parting, and facing each other.
+        // Side by side, at both ends of a parting, at the reach GUESTS measured:
+        // .40 to .44 of an adult apart, which scales with distance on the floor.
+        // On this plate an adult is (y - horizon) of the plate's width.
         for (final (mine, theirs) in [
           (guest.floor, other.floor),
           if (guest.partTo != null) (guest.partTo!, other.partTo!),
         ]) {
-          expect((mine.x - theirs.x).abs(), lessThan(.09), reason: guest.id);
-          expect((mine.y - theirs.y).abs(), lessThan(.06), reason: guest.id);
+          final adults = (mine.x - theirs.x).abs() / (mine.y - .25);
+          expect(adults, inInclusiveRange(.39, .45), reason: guest.id);
+          expect(mine.y, theirs.y, reason: guest.id);
         }
         expect(guest.occupiedFacingRight, guest.floor.x < other.floor.x);
         expect(guest.partDelay, other.partDelay);

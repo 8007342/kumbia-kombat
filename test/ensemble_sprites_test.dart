@@ -75,9 +75,10 @@ void main() {
       final manifest = EnsembleManifest.fromJson(json());
       expect(manifest.atlases.keys, containsAll(EnsembleManifest.atlasIds));
       expect(
-        manifest.atlases.values.fold(
+        // Atlases a level adds by data are checked below, but grow as they're drawn.
+        EnsembleManifest.atlasIds.fold(
           0,
-          (count, atlas) => count + atlas.art.frames.length,
+          (count, id) => count + manifest.atlases[id]!.art.frames.length,
         ),
         466,
       );
