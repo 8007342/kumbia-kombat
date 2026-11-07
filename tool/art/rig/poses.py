@@ -518,7 +518,34 @@ CROSSED = {
 OPPONENT_FACING_AWAY = {**OPPONENT_64, "back_groove": BACK_GROOVE, "back_accent": BACK_ACCENT,
                         "reveal": REVEAL, "crossed": CROSSED}
 
-MOTION_SETS = {"opponent-64": OPPONENT_64, "opponent-facing-away": OPPONENT_FACING_AWAY, "macron-pilot": MACRON_PILOT}
+# Spin with a held cue: eight views about the feet, cue hand low, free arm out. Her frames carry these names so a
+# level can use the same spin clip as the Gatekeeper's.
+_SPIN_NAMES = ["front", "34_r", "side_r", "back34_r", "back", "back34_l", "side_l", "34_l"]
+SPIN = {name: (Pose(yaw=45 * i, pin="mid", l_arm=(60, 0), l_fore=(80, 10), r_arm=(30, 10), r_fore=(30, 30),
+                    l_thigh=(4, 6), l_shin=(4, -4), r_thigh=(10, 14), r_shin=(6, -6)), "both")
+        for i, name in enumerate(_SPIN_NAMES)}
+OPPONENT_CUE = {**OPPONENT_64, "spin": SPIN}
+
+# Players in the room's background: small loops at a table, three-quarters toward the picture's right, where the
+# table is. Nobody here is dancing.
+_BG = dict(yaw=32, pin="mid", l_thigh=(9, 4), l_shin=(7, -3), r_thigh=(9, 4), r_shin=(7, -3), toe_out=10, knee_out=20)
+_BG_LEAN = dict(yaw=35, pin="mid", lean=52, head_nod=-34, l_thigh=(8, 26), l_shin=(4, -10), r_thigh=(14, -14), r_shin=(12, -20),
+                toe_out=10, knee_out=20)
+POOL_BG = {
+    "idle": {"stand": (Pose(r_arm=(26, 10), r_fore=(40, 34), **_BG), "both")},
+    "chalk": {"a": (Pose(head_nod=14, r_arm=(24, 20), r_fore=(20, 60), l_arm=(34, 52), l_fore=(-132, 64), **_BG), "both"),
+              "b": (Pose(head_nod=18, head_side=-3, r_arm=(24, 20), r_fore=(20, 60), l_arm=(30, 50), l_fore=(-120, 66), **_BG), "both")},
+    "lean": {"a": (Pose(r_arm=(16, -40), r_fore=(4, 44), l_arm=(52, 62), l_fore=(30, 78), **_BG_LEAN), "both"),
+             "b": (Pose(side_bend=2, head_side=2, r_arm=(16, -56), r_fore=(4, 26), l_arm=(52, 62), l_fore=(30, 78), **_BG_LEAN), "both"),
+             "stroke": (Pose(r_arm=(16, -16), r_fore=(6, 70), l_arm=(52, 62), l_fore=(30, 78), **_BG_LEAN), "both")},
+    "watch": {"a": (Pose(head_turn=-24, r_arm=(10, 40), r_fore=(-30, 62), l_arm=(12, 44), l_fore=(-105, 58), **_BG), "both"),
+              "b": (Pose(head_turn=-28, head_nod=8, side_bend=4, pelvis_x=0.05, pelvis_roll=6, r_arm=(10, 40), r_fore=(-30, 62), l_arm=(12, 44), l_fore=(-105, 58), **_BG), "both")},
+    "clap": {"a": (Pose(head_turn=-20, l_arm=(34, 30), l_fore=(-12, 98), r_arm=(34, 30), r_fore=(-12, 98), **_BG), "both"),
+             "b": (Pose(head_turn=-20, head_nod=6, l_arm=(22, 34), l_fore=(-86, 72), r_arm=(22, 34), r_fore=(-86, 72), **_BG), "both")},
+}
+
+MOTION_SETS = {"opponent-64": OPPONENT_64, "opponent-facing-away": OPPONENT_FACING_AWAY, "opponent-cue": OPPONENT_CUE, "pool-bg": POOL_BG,
+               "macron-pilot": MACRON_PILOT}
 
 assert sum(len(v) for v in OPPONENT_64.values()) == 64, "opponent target is 64 drawings"
 
@@ -618,7 +645,33 @@ FACING_AWAY_INTENT = {
 }
 OPPONENT_FACING_AWAY_INTENT = {**OPPONENT_64_INTENT, **FACING_AWAY_INTENT}
 
-INTENT_BY_SET = {"opponent-64": OPPONENT_64_INTENT, "opponent-facing-away": OPPONENT_FACING_AWAY_INTENT}
+_SPIN_WORDS = {
+    "front": "facing the viewer in the middle of a spin on the spot, left arm flung out to the side, right hand low holding the cue upright",
+    "34_r": "turned three-quarters toward the right of the picture, spinning on the spot, left arm flung out, right hand low holding the cue upright",
+    "side_r": "in profile facing the right of the picture, spinning on the spot, right hand low holding the cue upright, left arm out",
+    "back34_r": "turned mostly away from the viewer, the face hidden, spinning on the spot, the silver hair swinging, right hand low holding the cue upright, left arm out",
+    "back": "seen from directly behind in the middle of a spin, only the back of {his} head showing, the right hand on the right of the picture holding the cue upright, left arm out on the left of the picture",
+    "back34_l": "turned mostly away from the viewer, the face hidden, spinning on the spot, right hand low holding the cue upright, left arm out",
+    "side_l": "in profile facing the left of the picture, spinning on the spot, right hand low holding the cue upright, left arm out",
+    "34_l": "turned three-quarters toward the left of the picture, coming back round to the viewer, left arm flung out, right hand low holding the cue upright",
+}
+OPPONENT_CUE_INTENT = {**OPPONENT_64_INTENT, **{f"spin.{k}": ("pass (spin)", v) for k, v in _SPIN_WORDS.items()}}
+POOL_BG_INTENT = {
+    "idle.stand": ("rest", "standing easy with a pool cue upright in the right hand, its butt on the floor, weight on both feet, looking toward the right of the picture at a table outside the picture"),
+    "chalk.a": ("rest", "looking down, the right hand holding the pool cue slanted across the body, the left hand rubbing a small blue cube of chalk on the cue's tip, absorbed"),
+    "chalk.b": ("rest", "the same, the chalk turned a little on the cue's tip, the head tilted, absorbed"),
+    "lean.a": ("rest", "bent far forward at the hips over a table outside the picture, taking a shot, the cue level and pointing to the right of the picture, the left hand forward on the shaft as a bridge, the right hand back near the hip on the butt, chin just above the cue, sighting along it"),
+    "lean.b": ("rest", "still bent far forward over the shot, the cue level, the back hand drawn further back, chin just above the cue, sighting along it"),
+    "stroke": ("accent", ""),
+    "lean.stroke": ("accent", "bent far forward over the shot, the back hand driven forward and the cue pushed through to the right of the picture, the shot just played, chin just above the cue"),
+    "watch.a": ("rest", "standing and leaning on the upright pool cue with both hands stacked on it at chest height, head turned to glance toward the viewer, mildly curious"),
+    "watch.b": ("rest", "leaning on the upright cue with both hands, head turned toward the viewer, a slight nod"),
+    "clap.a": ("rest", "the pool cue propped against the right shoulder, standing, hands apart in front of the chest about to clap, head turned toward the viewer, a small smile"),
+    "clap.b": ("accent", "the pool cue propped against the right shoulder, palms together in a clap in front of the chest, head turned toward the viewer, a small smile"),
+}
+POOL_BG_INTENT.pop("stroke")
+INTENT_BY_SET = {"opponent-64": OPPONENT_64_INTENT, "opponent-facing-away": OPPONENT_FACING_AWAY_INTENT,
+                 "opponent-cue": OPPONENT_CUE_INTENT, "pool-bg": POOL_BG_INTENT}
 
 assert set(OPPONENT_FACING_AWAY_INTENT) == {f"{c}.{n}" for c, d in OPPONENT_FACING_AWAY.items() for n in d}, "intent ids != pose ids"
 

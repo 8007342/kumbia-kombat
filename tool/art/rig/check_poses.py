@@ -31,12 +31,12 @@ from pathlib import Path
 
 HEAD_CLEAR = 1.2                      # head-widths, wrist to head centre
 HEAD_WHITELIST = {"finish_turn.finish_a", "finish_turn.finish_b", "approval.nod"}
-CUE_NEAR_FACE = {"watch", "clap", "challenge"}  # both hands on a cue held close: the wrist near the chin is the pose
-TURN_CLIPS = {"turn", "finish_turn", "reveal"}  # yaw cap does not apply
+CUE_NEAR_FACE = {"watch", "clap", "challenge", "chalk"}  # both hands on a cue held close: the wrist near the chin is the pose
+TURN_CLIPS = {"turn", "finish_turn", "reveal", "spin", "lean"}  # yaw cap does not apply
 REAR_CLIPS = {"back_groove", "back_accent"}  # the yaw cap is measured from facing directly away
 CROSSED_ARMS = {"crossed"}  # the arms cross on purpose
 HEAD_ONLY = {"crossed"}  # a nod moves little but the head, so the static check does not apply
-NO_WIDTH_CHECK = {"turn", "reveal"}            # deliberate 360-degree turn views (no width/drift check)
+NO_WIDTH_CHECK = {"turn", "reveal", "spin"}            # deliberate 360-degree turn views (no width/drift check)
 LOCOMOTION = {"enter_forward", "retreat_backward", "yield_side", "ingress", "egress"}
 LOOPS = {"groove", "watch", "back_groove"}
 MAX_YAW = 35.0

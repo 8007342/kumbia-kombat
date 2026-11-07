@@ -331,6 +331,9 @@ def plan_run(c: dict, backend: dict, run: str, *, only: set[str] | None = None, 
                 stage_smaller(source_image, sheet_files[view], spec["stageScale"])
             else:
                 shutil.copy(source_image, sheet_files[view])
+            if spec.get("stageFlip"):
+                # A sheet whose prop is in the wrong hand for this view, with nothing else asymmetric to give it away.
+                Image.open(sheet_files[view]).transpose(Image.FLIP_LEFT_RIGHT).save(sheet_files[view])
 
     def bake(graph: dict, pid: str, prompt: str) -> Path:
         wf = copy.deepcopy(graph)

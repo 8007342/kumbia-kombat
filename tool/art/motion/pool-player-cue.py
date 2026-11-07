@@ -106,6 +106,7 @@ for clip in ("enter_forward", "yield_side"):
 pose("yield_side.pass_r", "standing on the right leg, the cue upright in {his} right hand beside {him}, left arm held out low and wide with the palm open and up toward the empty floor, head turned toward the open palm with a slight bow, offering the floor", r_arm=[20, 14], r_fore=[28, 34], l_arm=[44, 16], l_fore=[70, 40])
 
 c["motion"]["overrides"] = O
+c["motion"]["set"] = "opponent-cue"
 P = {"mode": "planted", "hand": "r", "butt": [-0.42, -0.05], "words": POLE}
 LEVEL = "Both hands are on the cue, taking aim."
 CARRY = {"mode": "held", "hand": "r", "dir": [0, 0, 1], "grip": 0.5, "words": WALK}
@@ -122,6 +123,7 @@ c["drawing"]["cue"] = {
         "challenge": P, "approval": P, "reassurance": P,
         "right_hand": {"mode": "held", "hand": "r", "dir": [0.6, 0, 0.8], "grip": 0.22, "words": "She swings a long billiard cue in her right hand, gripped near its butt, the one cue in the picture."},
         "finish_turn": P,
+        "spin": {"mode": "held", "hand": "r", "dir": [0, 0, 1], "grip": 0.5, "words": "She carries one long billiard cue upright in her right hand through the spin, its butt just clear of the floor."},
     },
     "poses": {
         "right_hand.prep": {"mode": "held", "dir": [0.75, -0.2, 0.62], "grip": 0.2},
@@ -142,6 +144,7 @@ c["drawing"]["extra"] = ("Both eyes are open. This is a grown woman of about six
                          "image 2. Do not draw the line itself. ")
 c["drawing"]["sheet"]["views"]["front"]["stageScale"] = 0.84
 c["drawing"]["sheet"]["views"]["back"]["stageScale"] = 0.84
+c["drawing"]["sheet"]["views"]["back"]["stageFlip"] = True  # the accepted back has the cue in the picture's left: from behind that's her left hand
 c["drawing"]["count"] = 2
 c["drawing"]["score"] = {"silhouetteTolerance": 30}
 for g in c["garments"]:

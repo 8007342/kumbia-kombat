@@ -104,7 +104,7 @@
   }
  ],
  "motion": {
-  "set": "opponent-64",
+  "set": "opponent-cue",
   "overrides": {
    "groove.down_l": {
     "intent": "weight sunk on {his} bent left knee, right foot stepped back on its ball with the heel raised, left hip high and pushed out, shoulders tilted the other way, left forearm swinging forward at belly height, head level facing the viewer",
@@ -1114,7 +1114,8 @@
      "description": "seen from directly behind, her back to the viewer, standing upright with feet a little apart, the plain back of her waistcoat and the back of her silver hair, her right hand holding the cue upright beside her",
      "look": "slim upright adult build, warm brown skin, neat silver chin-length bob seen from behind, ivory blouse with the sleeves rolled to the elbow, billiard-green waistcoat with a plain satin back and a small buckle, high-waisted charcoal trousers, polished oxblood brogues and thick dark ink outline",
      "image": "tool/art/references/pool-player/back.png",
-     "stageScale": 0.84
+     "stageScale": 0.84,
+     "stageFlip": true
     }
    }
   },
@@ -1255,6 +1256,17 @@
       -0.05
      ],
      "words": "Her right hand grips a long billiard cue that stands on the floor beside her like a dance pole."
+    },
+    "spin": {
+     "mode": "held",
+     "hand": "r",
+     "dir": [
+      0,
+      0,
+      1
+     ],
+     "grip": 0.5,
+     "words": "She carries one long billiard cue upright in her right hand through the spin, its butt just clear of the floor."
     }
    },
    "poses": {

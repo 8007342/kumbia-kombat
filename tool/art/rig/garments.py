@@ -165,6 +165,7 @@ def cue_line(definition: dict, p, j: dict, pose_id: str) -> tuple[Vector, Vector
 
     drawing.cue = {length, default, clips: {clip: spec}, poses: {pose: spec}}, later wins. A spec says:
       hand    "r" or "l", the wrist that holds it
+      through a joint the cue passes through in place of the wrist, for a cue propped on a shoulder
       mode    "planted": the butt on the floor at `butt` [x, y], the line through the wrist (a dance pole).
               "held": through the wrist along `dir` [x, y, z], with `grip` the fraction of the length below the hand.
     World axes: x toward the picture's right, y away from the viewer, z up. The tip is the far end from the butt.
@@ -176,7 +177,7 @@ def cue_line(definition: dict, p, j: dict, pose_id: str) -> tuple[Vector, Vector
     spec = {**table.get("default", {}), **table.get("clips", {}).get(clip, {}), **table.get("poses", {}).get(pose_id, {})}
     if not spec or spec.get("mode") == "none":
         return None
-    wrist = j[f"{spec.get('hand', 'r')}_wri"]
+    wrist = j[spec.get("through", f"{spec.get('hand', 'r')}_wri")]
     length = spec.get("length", table.get("length", 1.5))
     if spec.get("mode") == "planted":
         x, y = spec.get("butt", (0, 0))

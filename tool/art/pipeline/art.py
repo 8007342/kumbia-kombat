@@ -82,6 +82,7 @@ def rig_key(c: dict) -> str:
         "props": [{f: p.get(f) for f in ("kind", "hand", "clips")} for p in c.get("props", [])],
         "motion": {"set": c["motion"]["set"], "overrides": {k: v.get("pose") for k, v in c["motion"].get("overrides", {}).items()}},
         "camera": [t.get("camera") for t in c.get("targets", [])],
+        **({"cue": c["drawing"]["cue"]} if c.get("drawing", {}).get("cue") else {}),
         "code": {f: hashlib.sha256((D.ART / f).read_bytes()).hexdigest() for f in RIG_CODE},
     })
 

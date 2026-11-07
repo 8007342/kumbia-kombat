@@ -90,7 +90,30 @@
       "id": "pool-player",
       "name": "The Pool Player",
       "level": "billiards room",
-      "placeholder": true
+      "hardestCombo": {
+        "name": "Tres Bandas",
+        "status": "proposal",
+        "note": "Proposal. Three-cushion billiards: the ball banks off three rails before it scores. She chalks and sights, spins round the planted cue, then the notes ricochet corner to corner, each pair a diagonal, and speed up into the last hit. Uses only clips her atlas will have, and no promenade. The owner hasn't seen or played it.",
+        "callBeats": 8,
+        "moves": [
+          {"at": 0, "beats": 2, "clip": "show_off"},
+          {"at": 2, "beats": 2, "clip": "finish_turn"},
+          {"at": 4, "beats": 4, "clip": "step_touch"}
+        ],
+        "notes": [
+          {"at": 0, "limb": "leftHand"},
+          {"at": 1, "limb": "rightFoot"},
+          {"at": 2, "limb": "rightHand"},
+          {"at": 2.75, "limb": "leftFoot"},
+          {"at": 3.5, "limb": "rightHand"},
+          {"at": 4.25, "limb": "leftFoot"},
+          {"at": 5, "limb": "leftHand"},
+          {"at": 5.5, "limb": "rightFoot"},
+          {"at": 6, "limb": "leftHand"},
+          {"at": 6.5, "limb": "rightFoot"},
+          {"at": 7, "limb": "rightHand", "move": "stomp"}
+        ]
+      }
     }
   ]
 }

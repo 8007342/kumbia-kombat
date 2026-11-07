@@ -47,7 +47,7 @@ void main() {
       });
       final upcoming = {for (final o in registry.upcomingOpponents) o.id: o};
       expect(upcoming['blinblin']!.hardestCombo!.name, 'All That Glitters');
-      expect(upcoming['pool-player']!.hardestCombo, isNull);
+      expect(upcoming['pool-player']!.hardestCombo!.name, 'Tres Bandas');
       for (final combo in [
         ...registry.levels.map((l) => l.hardestCombo!),
         upcoming['blinblin']!.hardestCombo!,
