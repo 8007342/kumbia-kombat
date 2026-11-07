@@ -749,17 +749,21 @@
    }
   ],
   "band": {
-   "standIn": true,
+   "standIn": false,
    "ladders": {
     "atTable": [
      {
       "input": "tier",
       "from": 0,
       "frames": [
-       "standing_idle_a",
-       "step_touch_a",
-       "standing_idle_b",
-       "step_touch_c"
+       "chalk_a",
+       "chalk_b",
+       "lean_a",
+       "lean_b",
+       "stroke",
+       "lean_b",
+       "lean_a",
+       "chalk_a"
       ],
       "beatsPerFrame": 1
      },
@@ -767,8 +771,8 @@
       "input": "tier",
       "from": 1,
       "frames": [
-       "standing_idle_a",
-       "standing_idle_b"
+       "watch_a",
+       "watch_b"
       ],
       "beatsPerFrame": 1
      },
@@ -786,9 +790,8 @@
    "players": [
     {
      "id": "far-left",
-     "atlas": "guest0",
-     "reference": "standing_idle_a",
-     "palette": 1,
+     "atlas": "pool-bg-a",
+     "reference": "stand",
      "feet": [
       0.3,
       0.445
@@ -797,9 +800,8 @@
     },
     {
      "id": "end-left",
-     "atlas": "guest1",
-     "reference": "standing_idle_a",
-     "palette": 2,
+     "atlas": "pool-bg-c",
+     "reference": "stand",
      "feet": [
       0.385,
       0.43
@@ -811,22 +813,21 @@
     },
     {
      "id": "far-right",
-     "atlas": "guest1",
-     "reference": "standing_idle_a",
-     "palette": 0,
+     "atlas": "pool-bg-b",
+     "reference": "stand",
      "feet": [
       0.7,
       0.445
      ],
      "ladder": "atTable",
      "flipX": true,
-     "beatOffset": 2
+     "beatOffset": 2,
+     "stature": 0.88
     },
     {
      "id": "end-right",
-     "atlas": "guest2",
-     "reference": "standing_idle_a",
-     "palette": 3,
+     "atlas": "pool-bg-a",
+     "reference": "stand",
      "feet": [
       0.615,
       0.43
