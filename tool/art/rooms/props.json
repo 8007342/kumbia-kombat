@@ -4,14 +4,20 @@
     "chair_left": { "from": "assets/art/ensemble/furniture-v2.png", "crop": [930, 13, 317, 476] },
     "stool": { "from": "art_runs/rooms/crowd-props/picks/stool.png" },
     "table_a": { "from": "art_runs/rooms/crowd-props/picks/table_a.png" },
-    "table_b": { "from": "art_runs/rooms/crowd-props/picks/table_b.png" }
+    "table_b": { "from": "art_runs/rooms/crowd-props/picks/table_b.png" },
+    "cup": { "from": "art_runs/rooms/crowd-props/picks/cup.png" }
   },
   "frames": {
     "chair_right": { "master": "chair_right", "heightInAdults": 0.80 },
     "chair_left": { "master": "chair_left", "heightInAdults": 0.80 },
     "stool": { "master": "stool", "heightInAdults": 0.39 },
     "table_a": { "master": "table_a", "heightInAdults": 0.43 },
-    "table_b": { "master": "table_b", "heightInAdults": 0.43 }
+    "table_b": { "master": "table_b", "heightInAdults": 0.43 },
+    "cup_0": { "master": "cup", "heightInAdults": 0.24, "lift": 1.6, "lean": -0.42 },
+    "cup_1": { "master": "cup", "heightInAdults": 0.24, "lift": 1.6, "lean": -0.2 },
+    "cup_2": { "master": "cup", "heightInAdults": 0.24, "lift": 1.6, "lean": 0.001 },
+    "cup_3": { "master": "cup", "heightInAdults": 0.24, "lift": 1.6, "lean": 0.2 },
+    "cup_4": { "master": "cup", "heightInAdults": 0.24, "lift": 1.6, "lean": 0.42 }
   },
   "rooms": {
     "garden": {

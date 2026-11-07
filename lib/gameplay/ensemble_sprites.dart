@@ -1,3 +1,4 @@
+import 'dart:math' as math;
 import 'dart:ui' as ui;
 
 import 'challenger_choreography.dart';
@@ -251,6 +252,20 @@ double partyPropStrength(double swing, int instance) {
   if (swing <= 0) return 0;
   final wake = (instance * .371 % 1) * .35;
   return ((swing - wake) / (1 - wake)).clamp(0.0, 1.0);
+}
+
+/// A table's drink, `cup_2` at rest. It only starts to lean with the crowd's
+/// swing, on the beat, and picks a drawing, so it can't reach the music or score.
+String tableCupFrame({
+  required double beat,
+  required double swing,
+  int instance = 0,
+  bool reducedMotion = false,
+}) {
+  if (reducedMotion || !beat.isFinite || beat < 0) return 'cup_2';
+  final strength = partyPropStrength(swing, instance);
+  final lean = (2 * strength * math.cos(math.pi * beat)).round();
+  return 'cup_${2 + lean}';
 }
 
 /// The top of the ladder: props stop drifting on the wall clock and dance on the

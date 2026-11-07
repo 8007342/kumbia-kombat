@@ -2,7 +2,7 @@
 
 The approved ladders are now game-ready assets: loops, joins between tiers, and exit music, for all four levels. **Nobody has heard any of it.** Every number below measures timing, level or sample continuity. None of them says a join sounds good. That part needs the owner's ears.
 
-Listening check: `~/.cache/tillandsias-project/kumbia-audio/mix-20261107/index.html` (52 clips, 24 MB, not in the repo). The coordinator serves it.
+Listening check: `~/.cache/tillandsias-project/kumbia-audio/mix-20261107/index.html` (64 clips, not in the repo). The coordinator serves it.
 
 ## What was built
 
@@ -35,7 +35,7 @@ Verify reads the encoded files back through ffmpeg: 0 failures. The self-test pa
 - **Tempo.** All 12 takes were within the 1.5% allowed, so none is uncorrected. The largest correction is lawn high, +1.24%. The largest local stretch is 1.22%.
 - **Loudness.** -17, -16, -15 LUFS in play order on every level, so the lawn rises mid, high, low. Encoded files land within 0.1 LU of that.
 - **Peaks.** The highest decoded true peak is -0.6 dB on a loop and -0.4 dB on any file.
-- **Loop wraps.** The sample step across each wrap is 0.03 to 0.87 of the ordinary large steps nearby, so nothing measures as a click. The level change across the wrap (up to 3.1 dB) is mostly within what the same loop does at its other bar lines. Three exceed their other bars' 90th percentile (lawn mid, bar low, party mid), the largest by 1.0 dB (party mid).
+- **Loop wraps.** The sample step across each wrap is 0.03 to 0.87 of the ordinary large steps nearby. See "Loop seams" below for the stricter check, and what it found in AAC. The level change across the wrap (up to 3.1 dB) is mostly within what the same loop does at its other bar lines. Three exceed their other bars' 90th percentile (lawn mid, bar low, party mid), the largest by 1.0 dB (party mid).
 - **Beat lock.** The first and last stretches of each loop differ by at most 3 ms. The worst single stretch is 4 ms, except lawn high at 10 ms.
 - **Decoded offset.** 0 samples on every file by ffmpeg's decoder. This says nothing about Safari or Chrome.
 
@@ -65,6 +65,21 @@ Attack error is the typical distance from a grid beat to the strongest attack wi
 5. **A transition's first bar is always the outgoing loop's last bar.** The game can leave at any even bar, so it can jump harmonically on entering the transition. `goodExitBars` in the manifest lists bars where this should matter least, and is empty on lawn mid and low. The page has an "arbitrary bar" clip beside the good one for each step up.
 6. **Exit beats aren't strong downbeats.** The fist bump and gulp on beat 8 have no measured accent under them: bars were chosen for tonic harmony and level, and level per beat is flat there. The game's synth cues still supply the hit. Bar one's low confidence on bar high also means beat 8 of its finale may not be a musical downbeat.
 7. **Transitions dip about 3 dB** on the beat before the barline, on purpose, so the two harmonies don't sound together. party high into mid also has a -29 dB beat, which comes from the incoming loop itself. Bridges keep the percussion 5 dB hot while it's alone.
+
+## Loop seams, checked again after the render agent's question
+
+The render agent saw a large sample step at the `bar/high` seam (0.133 against about 0.008 just before it) and a smaller one on `garden/low`, and asked if they were clicks. The original check compared a wrap only with the 50 ms around it, which couldn't tell. `verify` now compares each wrap with the same music played straight through, since the pad after the loop holds it with no join.
+
+- **Those two, in Opus, measure as real attacks.** `bar/high`: 0.218 looped, 0.193 straight through. `garden/low`: 0.034 and 0.030. The values are from ffmpeg's decoder and the largest channel, so they differ from the browser figure for `bar/high`, and the browser's decoder itself wasn't tested.
+- **No wrap adds measurable top end:** at most +0.48 dB in Opus and +1.02 dB in AAC, over 2 ms. No step exceeds its loop's largest, and at least 0.17% of each loop's steps are bigger. `verify` now fails above +3 dB.
+- **AAC does add step at some wraps.** The codec encodes the two copies of the head separately. Largest cases, looped against straight through: cool-crowd mid 0.076 against 0.005, garden low 0.074 against 0.016, bar low 0.049 against 0.010, pool-garden mid 0.043 against 0.016. Opus has one such case, garden mid, 0.031 against 0.004. They don't show in the top-end measure, but that doesn't prove they're inaudible.
+- **Sparse music would be worse.** The self-test's sparse synthetic take adds 12.4 dB in AAC and 3.2 dB in Opus at a wrap, so the real takes pass because they're dense. A future sparse take could fail, and a quiet passage at a seam is the thing to listen for. The self-test allows only this failure on that take.
+
+Listen on AAC as well as Opus for these. The page's wrap clips hold each file's real join in both formats, with a 192 kb/s encode on top, which could soften a very small click. The game itself is the final test: stay on one tier past a loop's end. Use `garden/low`, about 63 s after it starts, then `garden/mid`, as in the render agent's owner steps in `plan/music-rendered-runtime-2026-11-07.md`. The top tiers of the bar and the lawn are probably out of reach, by the render agent's estimate from the level rules, not a test: passes there clear the level and a miss drops a tier, so those two seams shouldn't normally play. That makes them lower priority than the AAC steps above, three of which are on low or middle takes in the current campaign (garden low, bar low, pool-garden mid). Cool-crowd mid isn't in the campaign yet.
+
+## Headroom, a proposal
+
+The render agent measured output peaks at 0.997 of full scale with music and cues together, never above 1.0, in desktop Chromium. The loudest file peaks at 0.95. Nothing has been changed. Proposal: try `masterDb` at -1.5 in the manifest, which keeps the balance of music and cues and takes peaks to about 0.84. It needs no re-render. The owner can try it on the game's mixer first.
 
 ## How the joins and exits are made
 
