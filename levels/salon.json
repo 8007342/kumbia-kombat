@@ -1,7 +1,7 @@
 {
  "id": "salon",
  "title": "EL SALÓN DE ESPEJOS",
- "background": "salon/salon-room-standin.png",
+ "background": "salon/salon-room.png",
  "music": {
   "score": "salon_bolero",
   "successScore": "salon_bolero_success",
@@ -759,26 +759,28 @@
     },
     {
      "id": "bongos",
-     "atlas": "band-congas",
+     "atlas": "band-bongos",
      "reference": "relaxed_a",
      "feet": [
-      0.215,
+      0.245,
       0.455
      ],
      "ladder": "instrument",
      "beatOffset": 1,
-     "lateBy": 0.05
+     "lateBy": 0.05,
+     "stature": 0.85
     },
     {
      "id": "violin",
      "atlas": "band-violin",
      "reference": "relaxed_a",
      "feet": [
-      0.31,
+      0.335,
       0.452
      ],
      "ladder": "instrument",
-     "lateBy": 0.1
+     "lateBy": 0.1,
+     "stature": 0.85
     }
    ]
   }
@@ -888,7 +890,7 @@
   ]
  },
  "exitShot": {
-  "plate": "closeups/salon-plate.png",
+  "plate": "closeups/salon-rose-plate.png",
   "celebrateUntil": 2,
   "walkFrom": 2,
   "walkTo": 3.75,
@@ -1077,5 +1079,53 @@
    "to": 15.5,
    "fadeBeats": 1.25
   }
+ },
+ "layers": {
+  "plateWidth": 832,
+  "plateHeight": 1248,
+  "props": [
+   {
+    "id": "chandelier-left",
+    "atlas": "salon/salon-layers.png",
+    "atlasY": 0,
+    "left": 164,
+    "top": 119,
+    "width": 95,
+    "height": 107,
+    "frames": 7,
+    "motion": "sway",
+    "periodBeats": 4,
+    "instance": 1,
+    "kind": "hanging"
+   },
+   {
+    "id": "chandelier-middle",
+    "atlas": "salon/salon-layers.png",
+    "atlasY": 109,
+    "left": 377,
+    "top": 119,
+    "width": 97,
+    "height": 104,
+    "frames": 7,
+    "motion": "sway",
+    "periodBeats": 4,
+    "instance": 2,
+    "kind": "hanging"
+   },
+   {
+    "id": "chandelier-right",
+    "atlas": "salon/salon-layers.png",
+    "atlasY": 215,
+    "left": 583,
+    "top": 119,
+    "width": 99,
+    "height": 114,
+    "frames": 7,
+    "motion": "sway",
+    "periodBeats": 4,
+    "instance": 3,
+    "kind": "hanging"
+   }
+  ]
  }
 }
