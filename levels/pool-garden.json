@@ -1,7 +1,7 @@
 {
   "id": "pool-garden",
   "title": "THE POOL LAWN",
-  "background": "pool-garden/pool-garden-v1-draft.png",
+  "background": "pool-garden/pool-garden-clean.png",
   "music": {
     "score": "pool_swing",
     "successScore": "pool_swing_success",
@@ -491,6 +491,18 @@
       [
         0.79,
         0.365
+      ],
+      [
+        0.685,
+        0.335
+      ],
+      [
+        0.84,
+        0.385
+      ],
+      [
+        0.655,
+        0.312
       ]
     ],
     "props": [
@@ -582,6 +594,16 @@
         "at": [
           0.8,
           0.445
+        ],
+        "heightInAdults": 0.43,
+        "widthInAdults": 0.6
+      },
+      {
+        "id": "pool-table-9",
+        "kind": "table",
+        "at": [
+          0.725,
+          0.318
         ],
         "heightInAdults": 0.43,
         "widthInAdults": 0.6
@@ -973,6 +995,21 @@
         "limb": "rightHand",
         "move": "circle"
       }
+    ]
+  },
+  "layers": {
+    "plateWidth": 1024,
+    "plateHeight": 1536,
+    "props": [
+      {"id": "palm", "atlas": "pool-garden/pool-garden-layers.png", "atlasY": 0, "left": 758, "top": 0, "width": 246, "height": 184, "frames": 7, "motion": "sway", "periodBeats": 2, "instance": 1, "kind": "plant"},
+      {"id": "plant-left", "atlas": "pool-garden/pool-garden-layers.png", "atlasY": 186, "left": 203, "top": 344, "width": 65, "height": 47, "frames": 7, "motion": "sway", "periodBeats": 2, "instance": 2, "kind": "plant"},
+      {"id": "plant-mid", "atlas": "pool-garden/pool-garden-layers.png", "atlasY": 235, "left": 408, "top": 304, "width": 40, "height": 36, "frames": 7, "motion": "sway", "periodBeats": 2, "instance": 3, "kind": "plant"},
+      {"id": "plant-right", "atlas": "pool-garden/pool-garden-layers.png", "atlasY": 273, "left": 519, "top": 312, "width": 50, "height": 36, "frames": 7, "motion": "sway", "periodBeats": 2, "instance": 4, "kind": "plant"},
+      {"id": "string", "atlas": "pool-garden/pool-garden-layers.png", "atlasY": 311, "left": 190, "top": 205, "width": 393, "height": 61, "frames": 7, "motion": "sway", "periodBeats": 4, "instance": 5, "kind": "hanging"},
+      {"id": "water", "atlas": "pool-garden/pool-garden-layers.png", "atlasY": 374, "left": 235, "top": 362, "width": 323, "height": 69, "frames": 4, "motion": "pulse", "periodBeats": 2, "instance": 6, "kind": "light"},
+      {"id": "post-lamp", "atlas": "pool-garden/pool-garden-layers.png", "atlasY": 445, "left": 452, "top": 357, "width": 21, "height": 21, "frames": 4, "motion": "pulse", "periodBeats": 1, "instance": 7, "kind": "flame"},
+      {"id": "gate-lamp", "atlas": "pool-garden/pool-garden-layers.png", "atlasY": 468, "left": 575, "top": 314, "width": 20, "height": 19, "frames": 4, "motion": "pulse", "periodBeats": 1, "instance": 8, "kind": "flame"},
+      {"id": "far-lamp", "atlas": "pool-garden/pool-garden-layers.png", "atlasY": 489, "left": 735, "top": 322, "width": 26, "height": 29, "frames": 4, "motion": "pulse", "periodBeats": 1, "instance": 9, "kind": "flame"}
     ]
   }
 }

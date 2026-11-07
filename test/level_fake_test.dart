@@ -30,7 +30,7 @@ String _nightBar({
 {
   "id": "$id",
   "title": "$title",
-  "background": "bar/bar-interior.png",
+  "background": "bar/bar-interior-clean.png",
   "music": { "score": "bar_swag", "successScore": "bar_swag_success", "leadShape": "square" },
   "rules": { "metric": "Glow", "cleanSeconds": 40, "successesPerTier": 1, "finalChallenges": 1, "resetAfterFailures": 3, "earlyHitRatio": 0.5 },
   "chart": {

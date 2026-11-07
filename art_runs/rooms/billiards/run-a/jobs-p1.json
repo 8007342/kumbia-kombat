@@ -1,0 +1,22 @@
+{
+ "room": "billiards",
+ "run": "rooms/billiards/run-a",
+ "passNo": 1,
+ "steps": 4,
+ "promptSha256": "bba351a65729d4c5cdceec116c94f57a75eaf6edbfcc4835746318ed06eaee3a",
+ "jobs": [
+  {
+   "name": "p1",
+   "workflow": "art_runs/rooms/billiards/run-a/workflows/p1.api.json",
+   "inputs": {
+    "layout": "/work/tmp/imagegen/kumbia/rooms/billiards/run-a/in/greybox.png",
+    "style": "/work/tmp/imagegen/kumbia/rooms/billiards/run-a/in/style.png"
+   },
+   "overrides": {
+    "seed": 989500
+   },
+   "count": 4
+  }
+ ],
+ "how": "Queue one studio.run_workflow per job, one at a time. Then: rooms.py collect --run rooms/billiards/run-a"
+}

@@ -429,10 +429,10 @@ void main() {
       expect(kinds['flame-left'], PartyLifeKind.flame);
     });
 
-    test('a room with no layers still has lamps and staff to wake', () {
+    test('the lawn and the bar have layers, lamps and staff to wake', () {
       for (final id in ['pool-garden', 'bar']) {
         final level = levels[id]!;
-        expect(level.layers, isEmpty, reason: 'update this when they arrive');
+        expect(level.layers, isNotEmpty, reason: id);
         expect(level.scenery.lamps.length, greaterThanOrEqualTo(6), reason: id);
         expect(level.scenery.waiter, isNotNull, reason: id);
       }

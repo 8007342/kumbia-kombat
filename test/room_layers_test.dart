@@ -5,6 +5,7 @@ import 'dart:typed_data';
 
 import 'package:flame/game.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:kumbia_kombat/gameplay/ensemble_sprites.dart';
 import 'package:kumbia_kombat/gameplay/garden_scene.dart';
 import 'package:kumbia_kombat/gameplay/garden_session.dart';
 import 'package:kumbia_kombat/gameplay/level_definition.dart';
@@ -89,6 +90,46 @@ List<(double, double)> _layerDraws(GardenSceneGame scene, LevelDefinition g) {
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
+  group('a table\'s drink', () {
+    test('stands still until the crowd swings, or with motion reduced', () {
+      for (final beat in [0.0, .5, 1.3, 77.7]) {
+        expect(tableCupFrame(beat: beat, swing: 0), 'cup_2');
+        expect(
+          tableCupFrame(beat: beat, swing: 1, reducedMotion: true),
+          'cup_2',
+        );
+      }
+      expect(tableCupFrame(beat: -1, swing: 1), 'cup_2');
+      expect(tableCupFrame(beat: double.nan, swing: 1), 'cup_2');
+    });
+
+    test('leans either way on the beat at full swing, by every drawing', () {
+      expect(tableCupFrame(beat: 40, swing: 1), 'cup_4');
+      expect(tableCupFrame(beat: 41, swing: 1), 'cup_0');
+      expect(
+        {for (var b = 40.0; b < 42; b += .02) tableCupFrame(beat: b, swing: 1)},
+        {'cup_0', 'cup_1', 'cup_2', 'cup_3', 'cup_4'},
+      );
+    });
+
+    test('is baked for the rooms with tables, at one height', () {
+      final sets =
+          (jsonDecode(File('assets/art/props/manifest.json').readAsStringSync())
+                  as Map<String, Object?>)['sets']!
+              as Map<String, Object?>;
+      for (final id in ['garden', 'pool-garden']) {
+        final frames =
+            (sets[id]! as Map<String, Object?>)['frames']!
+                as Map<String, Object?>;
+        final heights = {
+          for (var i = 0; i < 5; i++)
+            ((frames['cup_$i']! as Map<String, Object?>)['rect']! as List)[3],
+        };
+        expect(heights.length, 1, reason: id);
+      }
+    });
+  });
+
   group('the data', () {
     test('the garden names its clean plate and props', () {
       final garden = _garden();
@@ -111,6 +152,41 @@ void main() {
         expect(prop.atlasY + prop.height, lessThanOrEqualTo(height));
       }
     });
+
+    for (final (id, clean, painted) in const [
+      (
+        'pool-garden',
+        'pool-garden/pool-garden-clean.png',
+        'pool-garden/pool-garden-v1-draft.png',
+      ),
+      ('bar', 'bar/bar-interior-clean.png', 'bar/bar-interior.png'),
+    ]) {
+      test('$id has a clean plate and props of its own', () {
+        final level = LevelDefinition.fromJson(
+          jsonDecode(File('levels/$id.json').readAsStringSync())
+              as Map<String, Object?>,
+        );
+        expect(level.background, clean);
+        expect(level.layers.length, greaterThanOrEqualTo(8));
+        expect(level.layers.map((p) => p.id).toSet().length, level.layers.length);
+        expect(_pngSize('assets/art/$clean'), _pngSize('assets/art/$painted'));
+        for (final prop in level.layers) {
+          final (width, height) = _pngSize('assets/art/${prop.atlas}');
+          expect(
+            prop.atlasX(prop.frames - 1) + prop.width,
+            lessThanOrEqualTo(width),
+            reason: prop.id,
+          );
+          expect(prop.atlasY + prop.height, lessThanOrEqualTo(height));
+          expect(prop.placementProblem(1024, 1536), isNull, reason: prop.id);
+        }
+        expect(
+          level.layers.map((p) => p.instance).toSet().length,
+          level.layers.length,
+          reason: 'props wake one by one',
+        );
+      });
+    }
 
     test('the clean plate has the same size as the painting it replaces', () {
       expect(

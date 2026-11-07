@@ -1,0 +1,46 @@
+{
+  "mastersDir": "~/.cache/tillandsias-project/kumbia-audio/themes-20261106",
+  "outDir": "assets/music/rendered",
+  "maxCorrectionPct": 1.5,
+  "budgetMbPerFormat": 8,
+  "padSeconds": 0.25,
+  "ceilingDb": -1.5,
+  "seamFadeBeats": 1,
+  "encode": { "opusKbps": 128, "aacKbps": 128 },
+  "transition": { "beats": 8, "crossfadeBeats": 2, "fillDb": 1.5 },
+  "bridge": { "percussionBoostDb": 5 },
+  "levels": [
+    {
+      "id": "garden", "key": "A minor", "next": "pool-garden", "successBars": 2,
+      "tiers": [
+        { "name": "low",  "source": "lows-garden/low.flac",  "bpm": 92,  "loopBars": 24, "targetLufs": -17, "eq": [] },
+        { "name": "mid",  "source": "lows-garden/mid.flac",  "bpm": 98,  "loopBars": 24, "targetLufs": -16, "eq": [] },
+        { "name": "high", "source": "lows-garden/high.flac", "bpm": 104, "loopBars": 24, "targetLufs": -15, "eq": [] }
+      ]
+    },
+    {
+      "id": "pool-garden", "key": "C major", "next": "bar", "successBars": 2,
+      "tiers": [
+        { "name": "mid",  "source": "lows-lawn/mid.flac",  "bpm": 144, "loopBars": 32, "targetLufs": -17, "eq": [] },
+        { "name": "high", "source": "lows-lawn/high.flac", "bpm": 160, "loopBars": 32, "targetLufs": -16, "eq": [] },
+        { "name": "low",  "source": "lows-lawn/low.flac",  "bpm": 136, "loopBars": 32, "targetLufs": -15, "eq": [] }
+      ]
+    },
+    {
+      "id": "bar", "key": "C minor", "next": "cool-crowd", "successBars": 4, "successFinal": true, "successShortBars": 2,
+      "tiers": [
+        { "name": "low",  "source": "lows-bar/low.flac",  "bpm": 100, "loopBars": 24, "targetLufs": -17, "eq": [] },
+        { "name": "mid",  "source": "lows-bar/mid.flac",  "bpm": 106, "loopBars": 24, "targetLufs": -16, "eq": [] },
+        { "name": "high", "source": "lows-bar/high.flac", "bpm": 112, "loopBars": 24, "targetLufs": -15, "eq": [] }
+      ]
+    },
+    {
+      "id": "cool-crowd", "key": "D minor", "next": null, "successBars": 2, "successFinal": true,
+      "tiers": [
+        { "name": "low",  "source": "lows-party/low.flac",  "bpm": 112, "loopBars": 32, "targetLufs": -17, "eq": [] },
+        { "name": "mid",  "source": "lows-party/mid.flac",  "bpm": 124, "loopBars": 32, "targetLufs": -16, "eq": [] },
+        { "name": "high", "source": "lows-party/high.flac", "bpm": 136, "loopBars": 32, "targetLufs": -15, "eq": [] }
+      ]
+    }
+  ]
+}

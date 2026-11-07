@@ -1,7 +1,7 @@
 {
   "id": "bar",
   "title": "THE BAR",
-  "background": "bar/bar-interior.png",
+  "background": "bar/bar-interior-clean.png",
   "music": {
     "score": "bar_swag",
     "successScore": "bar_swag_finale",
@@ -416,6 +416,22 @@
         "limb": "rightFoot",
         "move": "stomp"
       }
+    ]
+  },
+  "layers": {
+    "plateWidth": 1024,
+    "plateHeight": 1536,
+    "props": [
+      {"id": "lantern-top", "atlas": "bar/bar-layers.png", "atlasY": 0, "left": 432, "top": 0, "width": 122, "height": 93, "frames": 7, "motion": "sway", "periodBeats": 4, "instance": 1, "kind": "hanging"},
+      {"id": "lantern-l2", "atlas": "bar/bar-layers.png", "atlasY": 95, "left": 247, "top": 1, "width": 78, "height": 175, "frames": 7, "motion": "sway", "periodBeats": 4, "instance": 2, "kind": "hanging"},
+      {"id": "lantern-r2", "atlas": "bar/bar-layers.png", "atlasY": 272, "left": 686, "top": 1, "width": 75, "height": 175, "frames": 7, "motion": "sway", "periodBeats": 4, "instance": 3, "kind": "hanging"},
+      {"id": "lantern-l1", "atlas": "bar/bar-layers.png", "atlasY": 449, "left": 199, "top": 80, "width": 57, "height": 153, "frames": 7, "motion": "sway", "periodBeats": 4, "instance": 4, "kind": "hanging"},
+      {"id": "lantern-r1", "atlas": "bar/bar-layers.png", "atlasY": 604, "left": 748, "top": 80, "width": 55, "height": 153, "frames": 7, "motion": "sway", "periodBeats": 4, "instance": 5, "kind": "hanging"},
+      {"id": "fern-right", "atlas": "bar/bar-layers.png", "atlasY": 759, "left": 794, "top": 0, "width": 170, "height": 168, "frames": 7, "motion": "sway", "periodBeats": 2, "instance": 6, "kind": "plant"},
+      {"id": "fern-left", "atlas": "bar/bar-layers.png", "atlasY": 929, "left": 1, "top": 0, "width": 193, "height": 264, "frames": 7, "motion": "sway", "periodBeats": 2, "instance": 7, "kind": "plant"},
+      {"id": "candle-left", "atlas": "bar/bar-layers.png", "atlasY": 1195, "left": 188, "top": 297, "width": 33, "height": 36, "frames": 4, "motion": "pulse", "periodBeats": 1, "instance": 8, "kind": "flame"},
+      {"id": "candle-mid", "atlas": "bar/bar-layers.png", "atlasY": 1233, "left": 466, "top": 297, "width": 32, "height": 36, "frames": 4, "motion": "pulse", "periodBeats": 1, "instance": 9, "kind": "flame"},
+      {"id": "candle-right", "atlas": "bar/bar-layers.png", "atlasY": 1271, "left": 676, "top": 297, "width": 32, "height": 36, "frames": 4, "motion": "pulse", "periodBeats": 1, "instance": 10, "kind": "flame"}
     ]
   }
 }
