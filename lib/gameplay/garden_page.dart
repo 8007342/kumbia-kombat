@@ -140,9 +140,35 @@ class _GardenPageState extends State<GardenPage>
     );
   }
 
+  /// `?latency=<ms>` replaces the browser's latency report and the touch delay
+  /// both, as one number, so values can be tried on a phone. Hidden: nothing
+  /// links to it. `?latency=0` turns compensation off.
+  static final double? _latencyOverride = () {
+    final raw = Uri.base.queryParameters['latency'];
+    final ms = raw == null ? null : double.tryParse(raw);
+    return ms == null ? null : ms / 1000;
+  }();
+
+  /// Re-read between responses, never inside one: Chrome reports 0 until the
+  /// first sound, and a mid-phrase change would move the notes under a thumb.
+  void _syncLatency(GardenSession session) {
+    final Object audio = _audio;
+    if (audio is! AudioLatency && _latencyOverride == null) return;
+    final reported = audio is AudioLatency ? audio.reportedLatency : null;
+    session.outputLatencySeconds = chooseOutputLatency(
+      output: reported?.output,
+      base: reported?.base,
+      override: _latencyOverride,
+    );
+    session.inputLatencySeconds = _latencyOverride == null
+        ? defaultTouchLatencySeconds
+        : 0;
+  }
+
   void _pumpGame() {
     final session = _session;
     if (session == null) return;
+    if (session.phase != GardenPhase.response) _syncLatency(session);
     if (_conductor != null) {
       _conductor!.pump();
       if (_conductor!.isPaused && !_handoffPaused) {
@@ -726,7 +752,7 @@ class _GardenPageState extends State<GardenPage>
     final now = _audio.nowSeconds;
     _marks
       ..removeWhere(
-        (old) => now - (old.bornAt ?? now) >= FeedbackMark.lifeSeconds,
+        (old) => now - (old.bornAt ?? now) >= old.life,
       )
       ..add(mark..bornAt = now);
   }
@@ -734,11 +760,16 @@ class _GardenPageState extends State<GardenPage>
   /// Low in the middle of the tap band, where a passed phrase sprays up from.
   Offset get _bandCentre => Offset(_stage.width / 2, _stage.height * .8);
 
-  TapResult _tap(Limb limb) {
+  /// [touch] is where the thumb landed, when a thumb did: marks ring it. A key
+  /// press has none, so its marks ring the note's landing spot.
+  TapResult _tap(Limb limb, {Offset? touch}) {
     final richBefore = _session!.richStepsCompleted;
     final result = _session!.tap(limb);
     // Heard, before any judgment: a stray tap gets this and nothing else.
     _pressedAt[limb] = _audio.nowSeconds;
+    if (result.note == null && _session!.lastTapOutOfTurn) {
+      _outOfTurn(touch ?? _restingSpot(limb));
+    }
     if (result.note != null) {
       final targetBeat = _transport!.beatAt(result.note!.atMs / 1000);
       final futureBeats = [
@@ -759,7 +790,7 @@ class _GardenPageState extends State<GardenPage>
         _addMark(
           FeedbackMark.tap(
             result.timing!,
-            _anchor(limb, _stage, targetBeat, result.note!.id),
+            touch ?? _anchor(limb, _stage, targetBeat, result.note!.id),
             deltaMs: result.deltaMs,
             combo: _session!.combo,
           ),
@@ -788,11 +819,40 @@ class _GardenPageState extends State<GardenPage>
       radius: tapAreaRadius(size.width),
       candidates: openTapCandidates(
         cues: session.visibleCues,
-        nowMs: (_audio.nowSeconds * 1000).round(),
+        nowMs: session.judgedNowMs,
         secondsAt: _transport!.secondsAt,
         landing: (cue) => _path(cue.limb, cue.beat, cue.id, size).landing,
       ),
     )?.limb;
+  }
+
+  double _lastDullAt = -1;
+
+  /// A tap while the challenger dances: a cross where it landed, and a soft
+  /// dull knock. It's never judged, so it costs nothing.
+  void _outOfTurn(Offset point) {
+    _addMark(FeedbackMark(MarkKind.outOfTurn, point));
+    final now = _audio.nowSeconds;
+    // One knock for a flurry of taps.
+    if (now - _lastDullAt < .12) return;
+    _lastDullAt = now;
+    _audio.schedule(
+      const ScoreNote(
+        track: 'pulse',
+        beat: 0,
+        pitch: 36,
+        duration: .05,
+        velocity: 26,
+      ),
+      now,
+      .05,
+    );
+  }
+
+  /// Where a limb's ring rests, for a key press's cross.
+  Offset _restingSpot(Limb limb) {
+    final session = _session!;
+    return _anchor(limb, _stage, session.positionBeats, '');
   }
 
   /// A stray tap in the pad is heard, like a wrong-quadrant tap always was: the
@@ -967,12 +1027,19 @@ class _GardenPageState extends State<GardenPage>
                             event.localPosition,
                             size,
                           );
-                          if (limb == null) _strayTap(event.localPosition, size);
+                          if (limb == null) {
+                            _strayTap(event.localPosition, size);
+                            if (session.opponentsTurn) {
+                              _outOfTurn(event.localPosition);
+                            }
+                          }
                           _touches.begin(
                             pointer: event.pointer,
                             x: event.localPosition.dx,
                             y: event.localPosition.dy,
-                            acceptedNote: limb == null ? null : _tap(limb).note,
+                            acceptedNote: limb == null
+                                ? null
+                                : _tap(limb, touch: event.localPosition).note,
                           );
                         },
                         onPointerMove: (event) {
