@@ -227,15 +227,13 @@ void main() {
     test('the band keeps its heads and shoulders in sight over the crowd', () {
       final level = _level();
       final plane = level.layout.floor;
-      final lift = level.scenery.platform!.lift;
       for (final player in level.scenery.band!.players) {
         final height = plane.standingHeightAt(player.at.y);
-        final feet = player.at.y - height * lift;
         final upper = ui.Rect.fromLTRB(
-          player.at.x - height * .25,
-          feet - height,
-          player.at.x + height * .25,
-          feet - height * 2 / 3,
+          player.feet.x - height * .25,
+          player.feet.y - height,
+          player.feet.x + height * .25,
+          player.feet.y - height * 2 / 3,
         );
         for (final g in level.layout.guests) {
           final place = g.partTo ?? g.floor;
@@ -358,35 +356,174 @@ void main() {
     });
   });
 
-  group('the band', () {
-    test('stands on the platform, every player with a ladder to climb', () {
+  group('plate A', () {
+    final room = jsonDecode(File('tool/art/rooms/cool-crowd.json').readAsStringSync())
+        as Map<String, dynamic>;
+    final floor = jsonDecode(File('art_runs/rooms/cool-crowd/floor.json').readAsStringSync())
+        as Map<String, dynamic>;
+
+    test('the level uses the room spec\'s camera', () {
+      final plane = _level().layout.floor;
+      final camera = room['camera'] as Map<String, dynamic>;
+      expect(plane.horizonY, camera['horizonY']);
+      expect(plane.vanishingX, camera['vanishingX']);
+      // Adult height at a foot y is (y - horizon) / eye.
+      expect(
+        (plane.referenceFootY - plane.horizonY) / plane.referenceHeight,
+        closeTo(camera['eyeHeightAdults'] as double, 1e-9),
+      );
+      final table = partyRoomLayouts['cool-crowd']!.floor;
+      expect(table.horizonY, plane.horizonY);
+      expect(table.referenceHeight, plane.referenceHeight);
+    });
+
+    test('the platform is the plate\'s measured bandstand', () {
+      final platform = _level().scenery.platform!;
+      final bandstand = (floor['platforms'] as List).single as Map<String, dynamic>;
+      expect(bandstand['id'], 'bandstand');
+      expect(platform.lift, bandstand['heightAdults']);
+      final corners = bandstand['topCornersFrac'] as List;
+      expect(platform.deck, hasLength(corners.length));
+      for (final (i, corner) in corners.indexed) {
+        expect(platform.deck[i].x, (corner as List)[0]);
+        expect(platform.deck[i].y, corner[1]);
+      }
+    });
+
+    test('everyone on the floor stands on floor the plate really has', () async {
+      final bytes = File('art_runs/rooms/cool-crowd/ids.png').readAsBytesSync();
+      final codec = await ui.instantiateImageCodec(bytes);
+      final image = (await codec.getNextFrame()).image;
+      final pixels = (await image.toByteData())!;
+      final ids = floor['ids'] as Map<String, dynamic>;
+      final walkable = {ids['floor'], ids['joint']};
+      void onFloor(String who, PartyPoint p) {
+        final x = (p.x * image.width).floor().clamp(0, image.width - 1);
+        final y = (p.y * image.height).floor().clamp(0, image.height - 1);
+        // A grey image decodes with its id in every colour channel.
+        final id = pixels.getUint8((y * image.width + x) * 4);
+        expect(walkable, contains(id), reason: '$who at ${p.x},${p.y}');
+      }
+
       final level = _level();
-      final band = level.scenery.band!;
+      for (final g in level.layout.guests) {
+        onFloor(g.id, g.floor);
+        if (g.partTo != null) onFloor(g.id, g.partTo!);
+      }
+      final stage = level.stage;
+      final dancer = stage.challengers.single;
+      for (final (name, mark) in [
+        ('home', stage.heroHome),
+        ('entrance', stage.heroEntrance),
+        ('retreat', stage.heroRetreat),
+        ('back mark', stage.heroWatch),
+        ('aside', stage.heroAside),
+        ('opponent', dancer.mark),
+        ('opponent aside', dancer.yieldMark),
+        ('meet', dancer.meetMark!),
+      ]) {
+        onFloor(name, mark);
+      }
+    });
+  });
+
+  group('the rendered music', () {
+    test('this level has takes of its own, found by its id', () {
+      // `lib/music/rendered_music.dart`, on `work/1855-rend`, looks a level's music
+      // up by level id, so a review link gets it with no change here.
+      final manifest = jsonDecode(File('assets/music/rendered/manifest.json').readAsStringSync())
+          as Map<String, dynamic>;
+      final music = (manifest['levels'] as Map)[_level().id] as Map<String, dynamic>;
+      expect(music['tierTakes'], ['low', 'low', 'mid', 'mid', 'high']);
+      final takes = music['takes'] as Map<String, dynamic>;
+      expect({for (final e in takes.entries) e.key: e.value['bpm']}, {
+        'low': 112.0,
+        'mid': 124.0,
+        'high': 136.0,
+      });
+      for (final take in takes.values) {
+        for (final file in (take['files'] as Map).values) {
+          expect(File(file as String).existsSync(), isTrue, reason: '$file');
+        }
+      }
+      expect(music['success'], isNotNull);
+    });
+  });
+
+  group('the band', () {
+    final band = _level().scenery.band!;
+    final player = band.players.firstWhere((p) => p.id == 'bass');
+
+    test('stands on the deck, every player with a ladder to climb', () {
+      final level = _level();
       expect(band.players.length, greaterThanOrEqualTo(3));
       expect(band.standIn, isTrue, reason: 'their art is owed: see the plan note');
-      for (final player in band.players) {
-        expect(level.scenery.platform!.covers(player.at), isTrue, reason: player.id);
-        expect(player.ladder.length, greaterThanOrEqualTo(3));
+      for (final p in band.players) {
+        expect(level.scenery.platform!.holds(p.feet), isTrue, reason: p.id);
+        expect(p.ladder.length, greaterThanOrEqualTo(3));
       }
       final manifest = EnsembleManifest.fromJson(
         jsonDecode(File('assets/art/ensemble/manifest.json').readAsStringSync())
             as Map<String, dynamic>,
       );
-      for (final player in band.players) {
-        manifest.atlases[player.atlas]!.art.requireFrames(player.frames);
+      for (final p in band.players) {
+        manifest.atlases[p.atlas]!.art.requireFrames(p.frames);
       }
     });
 
-    test('a player off the platform is refused', () {
+    test('a raised deck makes them about 31% taller than the floor at their feet', () {
+      final level = _level();
+      final plane = level.layout.floor;
+      for (final p in band.players) {
+        final height = plane.standingHeightAt(p.at.y);
+        // Band note: (footY - horizon) / 1.146 by its measured .35, 1.14 at .36.
+        expect(height, closeTo((p.feet.y - .25) / 1.14, 1e-9), reason: p.id);
+        expect(height / ((p.feet.y - .25) / 1.5), closeTo(1.316, .001));
+        // The feet are where the deck lifts them.
+        expect(p.at.y - height * level.scenery.platform!.lift, closeTo(p.feet.y, 1e-9));
+        expect(p.at.x, p.feet.x);
+      }
+    });
+
+    test('a player off the deck is refused', () {
       expect(
         () => LevelDefinition.fromJson(_editedJson((json) {
-          (json['scenery']['band']['players'] as List).first['at'] = [.5, .47];
+          (json['scenery']['band']['players'] as List).first['feet'] = [.5, .47];
         })),
-        _refused('off the platform'),
+        _refused('is off the platform'),
       );
     });
 
-    test('its energy follows the player, separately from the tier', () {
+    test('each rung names the one input that earns it, and any can be chosen by data', () {
+      expect(player.rungFor(const BandInputs()), 0);
+      expect(player.rungFor(const BandInputs(form: .4)), 1);
+      expect(player.rungFor(const BandInputs(form: .8)), 2);
+      // Today every rung reads form, so tier and swing alone move nothing.
+      expect(player.rungFor(const BandInputs(tier: 4, partySwing: 1)), 0);
+
+      final other = _editedJson((json) {
+        final rungs = json['scenery']['band']['ladders']['standIn'] as List;
+        rungs[1]['input'] = 'tier';
+        rungs[1]['from'] = 2;
+        rungs[2]['input'] = 'partySwing';
+        rungs[2]['from'] = .25;
+      });
+      final proposal = LevelDefinition.fromJson(other).scenery.band!.players
+          .firstWhere((p) => p.id == 'bass');
+      expect(proposal.rungFor(const BandInputs(form: 1)), 0);
+      expect(proposal.rungFor(const BandInputs(tier: 2)), 1);
+      expect(proposal.rungFor(const BandInputs(tier: 2, partySwing: .5)), 2);
+    });
+
+    test('they liven one at a time', () {
+      final rungs = {
+        for (final p in band.players) p.id: p.rungFor(const BandInputs(form: .78)),
+      };
+      expect(rungs['bass'], 2);
+      expect(rungs['trumpet'], 1);
+    });
+
+    test('form follows the player, separately from the tier', () {
       CrowdInterestModel played(PhraseReport report) {
         final crowd = CrowdInterestModel(rampPhrases: 9, arcPhrases: 11);
         for (var i = 0; i < 9; i++) {
@@ -404,11 +541,11 @@ void main() {
       expect(fight.tier, 4);
       final clean = played(const PhraseReport(notes: 8, hits: 8, perfects: 0));
       final scrappy = played(const PhraseReport(notes: 8, hits: 6, perfects: 0));
-      expect(clean.recentForm, greaterThan(.9));
-      expect(scrappy.recentForm, inInclusiveRange(.35, .55));
+      expect(player.rungFor(BandInputs(form: clean.recentForm)), 2);
+      expect(player.rungFor(BandInputs(form: scrappy.recentForm)), 1);
     });
 
-    test('a player who improves gets a livelier band, right away', () {
+    test('a player who improves late still gets the top rung, where the party swing doesn\'t', () {
       final crowd = CrowdInterestModel(rampPhrases: 9, arcPhrases: 11);
       var i = 0;
       void phrases(int count, PhraseReport report) {
@@ -417,10 +554,12 @@ void main() {
         }
       }
 
-      phrases(4, const PhraseReport(notes: 8, hits: 6, perfects: 0));
+      phrases(6, const PhraseReport(notes: 8, hits: 6, perfects: 0));
       final before = crowd.recentForm;
-      phrases(3, const PhraseReport(notes: 8, hits: 8, perfects: 0));
-      expect(crowd.recentForm, greaterThan(before + .15));
+      expect(player.rungFor(BandInputs(form: before)), 1);
+      phrases(5, const PhraseReport(notes: 8, hits: 8, perfects: 0));
+      expect(crowd.fullSwingEarned, isFalse, reason: 'six scrapes of eleven hold the average down');
+      expect(player.rungFor(BandInputs(form: crowd.recentForm)), 2);
     });
 
     test('energy eases in with no speed at either end, and survives a rewind', () {
@@ -435,39 +574,36 @@ void main() {
       expect(energy.at(4), closeTo(middle, .01));
     });
 
-    test('rungs change on a downbeat, and a higher energy plays a higher rung', () {
-      final player = _level().scenery.band!.players.first;
-      final rung = player.ladder;
-      String at(double beat, double energy) =>
-          player.frameAt(beat, (_) => energy, beatsPerBar: 4);
-      expect(rung.first.frames, contains(at(8, 0)));
-      expect(rung.last.frames, contains(at(8, .99)));
-      // Energy crossing a rung mid-bar waits for the next bar.
-      double rising(double bar) => bar < 8 ? 0 : .99;
-      expect(
-        rung.first.frames,
-        contains(player.frameAt(7.5, rising, beatsPerBar: 4)),
-      );
-      expect(
-        rung.last.frames,
-        contains(player.frameAt(8, rising, beatsPerBar: 4)),
-      );
+    test('rungs change on a downbeat', () {
+      final rungs = player.ladder;
+      BandInputs rising(double bar) => BandInputs(form: bar < 8 ? 0 : .99);
+      expect(rungs.first.clip.frames, contains(player.frameAt(7.5, rising)));
+      expect(rungs.last.clip.frames, contains(player.frameAt(8, rising)));
     });
 
     test('under reduced motion each rung holds one drawing, and still differs', () {
-      final player = _level().scenery.band!.players.first;
-      final calm = {
+      Set<String> held(double form) => {
         for (var b = 0.0; b < 16; b += .25)
-          player.frameAt(b, (_) => 0, reducedMotion: true),
+          player.frameAt(b, (_) => BandInputs(form: form), reducedMotion: true),
       };
-      final lively = {
-        for (var b = 0.0; b < 16; b += .25)
-          player.frameAt(b, (_) => .99, reducedMotion: true),
-      };
-      expect(calm, hasLength(1));
-      expect(lively, hasLength(1));
-      expect(calm, isNot(lively));
+      expect(held(0), hasLength(1));
+      expect(held(.99), hasLength(1));
+      expect(held(0), isNot(held(.99)));
     });
+  });
+
+  test('a step in time never shows the pointing drawing', () {
+    final frames = {
+      for (var b = 0.0; b < 8; b += .05)
+        ensembleClipFrame(CrowdClip.stepTouch, beat: b, duration: 2),
+    };
+    expect(frames, isNot(contains('step_touch_b')));
+    expect(frames.length, greaterThanOrEqualTo(3));
+    final level = _level();
+    for (final p in level.scenery.band!.players) {
+      expect(p.frames, isNot(contains('step_touch_b')), reason: p.id);
+    }
+    expect(level.floorDance!.frames, isNot(contains('step_touch_b')));
   });
 
   group('the BlinBlin dancer', () {

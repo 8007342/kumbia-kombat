@@ -225,6 +225,11 @@ String ensembleClipFrame(
   final frame = reducedMotion && !transitioning
       ? 0
       : (progress * count).floor().clamp(0, count - 1);
+  // `step_touch_b` is a pointing arm, and pointing is reserved for flourishes and
+  // for turning from uninterested to interested, so a step in time never shows it.
+  if (clip == CrowdClip.stepTouch) {
+    return 'step_touch_${const ['a', 'd', 'c', 'd'][frame]}';
+  }
   return '${prefix}_${const ['a', 'b', 'c', 'd'][frame]}';
 }
 

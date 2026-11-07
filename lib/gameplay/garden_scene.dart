@@ -652,8 +652,8 @@ class GardenSceneGame extends FlameGame {
     );
   }
 
-  /// The band on their platform, playing as livened by the player's recent form.
-  /// Reads the beat and that form, and only picks drawings.
+  /// The band on their platform, livened by whatever each rung of their ladder
+  /// listens to. Reads the beat and those numbers, and only picks drawings.
   void _addBand(
     List<_WorldDraw> draws,
     PartyViewport viewport,
@@ -676,7 +676,11 @@ class GardenSceneGame extends FlameGame {
       final ground = ui.Offset(floor.x, floor.y - height * lift);
       final frame = player.frameAt(
         beat,
-        _bandEnergy.at,
+        (bar) => BandInputs(
+          form: _bandEnergy.at(bar),
+          tier: _partyUp.tier,
+          partySwing: _partySwing(bar),
+        ),
         beatsPerBar: s?.transport.score.beatsPerBar ?? 4,
         reducedMotion: reducedMotion,
       );

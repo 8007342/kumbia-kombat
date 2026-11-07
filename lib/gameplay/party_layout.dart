@@ -375,12 +375,14 @@ final partyRoomLayouts = Map<String, PartyRoomLayout>.unmodifiable({
     props: List.unmodifiable(chairSlotsFor(_barGuests)),
   ),
   // Future art contracts, not calibrated existing rooms.
+  // Plate A's camera, `tool/art/rooms/cool-crowd.json`. The level file has its own.
   'cool-crowd': const PartyRoomLayout(
     id: 'cool-crowd',
     floor: PartyFloorPlane(
-      horizonY: .24,
-      referenceFootY: .43,
-      referenceHeight: .12,
+      horizonY: .25,
+      referenceFootY: .40,
+      referenceHeight: .10,
+      vanishingX: .36,
     ),
     guests: [],
   ),

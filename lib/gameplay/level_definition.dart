@@ -475,6 +475,9 @@ class LevelDefinition {
     final horizonY = floorFields.number('horizonY', min: 0, max: 1);
     final referenceFootY = floorFields.number('referenceFootY', max: 1);
     final referenceHeight = floorFields.number('referenceHeight', min: .001);
+    final vanishingX = floorFields.has('vanishingX')
+        ? floorFields.number('vanishingX', min: 0, max: 1)
+        : .5;
     floorFields.finish();
     if (horizonY >= referenceFootY) {
       throw LevelDataError(
@@ -486,6 +489,7 @@ class LevelDefinition {
       horizonY: horizonY,
       referenceFootY: referenceFootY,
       referenceHeight: referenceHeight,
+      vanishingX: vanishingX,
     );
     // A mark on or above the horizon would throw on every painted frame.
     PartyPoint onFloor(String path, PartyPoint mark) {
@@ -624,6 +628,9 @@ class LevelDefinition {
     }
 
     final sceneryFields = fields.child('scenery');
+    final platformBuilt = sceneryFields.has('platform')
+        ? _platform(sceneryFields.child('platform'), floor)
+        : null;
     final lampPath = sceneryFields.at('lamps');
     final plantPath = sceneryFields.at('plants');
     final scenery = LevelScenery(
@@ -638,11 +645,9 @@ class LevelDefinition {
       waiter: sceneryFields.has('waiter')
           ? _waiter(sceneryFields.child('waiter'), onFloor)
           : null,
-      platform: sceneryFields.has('platform')
-          ? _platform(sceneryFields.child('platform'))
-          : null,
+      platform: platformBuilt,
       band: sceneryFields.has('band')
-          ? _band(sceneryFields.child('band'), onFloor)
+          ? _band(sceneryFields.child('band'), onFloor, platformBuilt)
           : null,
       wallLight: sceneryFields.has('wallLight')
           ? _wallLight(sceneryFields.child('wallLight'))
@@ -656,17 +661,6 @@ class LevelDefinition {
           if (platform.covers(place)) {
             throw LevelDataError('$guestPath[$i]', 'is on the platform');
           }
-        }
-      }
-    }
-    final band = scenery.band;
-    if (band != null) {
-      for (final player in band.players) {
-        if (platform != null && !platform.covers(player.at)) {
-          throw LevelDataError(
-            '${sceneryFields.at('band')}.${player.id}',
-            'stands off the platform',
-          );
         }
       }
     }
@@ -810,32 +804,60 @@ class LevelDefinition {
     return List.unmodifiable(points);
   }
 
-  static RoomPlatform _platform(_Fields fields) {
-    final platform = RoomPlatform(
-      lift: fields.number('lift', min: 0, max: 2),
-      outline: _outline(fields, 'outline'),
-    );
+  /// A platform's corners may run off the plate, so these aren't held to 0..1.
+  static RoomPlatform _platform(_Fields fields, PartyFloorPlane floor) {
+    final path = fields.at('deck');
+    final deck = <PartyPoint>[];
+    for (final (i, raw) in fields.list('deck').indexed) {
+      if (raw is! List<Object?> || raw.length != 2) {
+        throw LevelDataError('$path[$i]', 'expected [x, y]');
+      }
+      deck.add(PartyPoint(_number('$path[$i]', raw[0]), _number('$path[$i]', raw[1])));
+    }
+    if (deck.length < 3) throw LevelDataError(path, 'needs three corners');
+    final lift = fields.number('lift', min: 0, max: 1);
     fields.finish();
-    return platform;
+    return RoomPlatform(
+      lift: lift,
+      deck: List.unmodifiable(deck),
+      horizonY: floor.horizonY,
+      // The same eye the floor plane's numbers come from.
+      eyeHeightAdults:
+          (floor.referenceFootY - floor.horizonY) / floor.referenceHeight,
+    );
   }
 
   static LevelBand _band(
     _Fields fields,
     PartyPoint Function(String, PartyPoint) onFloor,
+    RoomPlatform? platform,
   ) {
     final standIn = fields.flag('standIn');
     final laddersFields = fields.child('ladders');
-    final ladders = <String, List<FloorClip>>{};
-    List<FloorClip> ladder(_Fields from, String key) {
+    final ladders = <String, List<BandRung>>{};
+    List<BandRung> ladder(_Fields from, String key) {
       final name = from.text(key);
       return ladders[name] ??= () {
         final path = laddersFields.at(name);
-        final rungs = [
-          for (final (i, raw) in laddersFields.list(name).indexed)
-            _floorClip(_Fields('$path[$i]', raw)),
-        ];
+        final rungs = <BandRung>[];
+        for (final (i, raw) in laddersFields.list(name).indexed) {
+          final rung = _Fields('$path[$i]', raw);
+          final input = rung.named('input', BandInput.values);
+          final fromValue = rung.number('from', min: 0);
+          final clipFields = _Fields(rung.path, {
+            'frames': rung.list('frames'),
+            'beatsPerFrame': rung.number('beatsPerFrame', min: .125),
+          });
+          rungs.add(
+            BandRung(clip: _floorClip(clipFields), input: input, from: fromValue),
+          );
+          rung.finish();
+        }
         if (rungs.isEmpty) throw LevelDataError(path, 'needs a rung');
-        return List<FloorClip>.unmodifiable(rungs);
+        if (rungs.first.from != 0) {
+          throw LevelDataError('$path[0]', 'the first rung is where they start');
+        }
+        return List<BandRung>.unmodifiable(rungs);
       }();
     }
 
@@ -844,10 +866,15 @@ class LevelDefinition {
       for (final (i, raw) in fields.list('players').indexed)
         () {
           final player = _Fields('$path[$i]', raw);
+          final feet = player.point('feet');
+          if (platform != null && !platform.holds(feet)) {
+            throw LevelDataError(player.at('feet'), 'is off the platform');
+          }
           final parsed = BandPlayer(
             id: player.text('id'),
             atlas: player.text('atlas'),
-            at: onFloor(player.at('at'), player.point('at')),
+            feet: feet,
+            at: onFloor(player.at('feet'), platform?.groundUnder(feet) ?? feet),
             ladder: ladder(player, 'ladder'),
             reference: player.text('reference'),
             palette: player.has('palette')
@@ -860,6 +887,7 @@ class LevelDefinition {
             beatOffset: player.has('beatOffset')
                 ? player.number('beatOffset', min: 0)
                 : 0,
+            lateBy: player.has('lateBy') ? player.number('lateBy', min: 0) : 0,
           );
           player.finish();
           return parsed;
