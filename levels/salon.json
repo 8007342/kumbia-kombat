@@ -1,0 +1,1113 @@
+{
+ "id": "salon",
+ "title": "EL SALÓN DE ESPEJOS",
+ "background": "billiards/billiards-room-clean.png",
+ "music": {
+  "score": "crowd_duende",
+  "successScore": "bar_swag_finale",
+  "leadShape": "sine"
+ },
+ "rules": {
+  "metric": "Charm",
+  "cleanSeconds": 110,
+  "successesPerTier": 2,
+  "finalChallenges": 2,
+  "resetAfterFailures": 5,
+  "earlyHitRatio": 0.875
+ },
+ "chart": {
+  "introBeats": 12,
+  "callBeats": 8,
+  "flourishDestination": "rightHand",
+  "offsets": [
+   0,
+   1,
+   2,
+   2.5,
+   3,
+   5,
+   6,
+   7
+  ],
+  "limbs": [
+   "leftFoot",
+   "rightFoot",
+   "leftFoot",
+   "rightFoot",
+   "leftHand",
+   "rightHand",
+   "leftFoot",
+   "leftHand"
+  ],
+  "variants": [
+   [
+    "leftFoot",
+    "rightFoot",
+    "leftFoot",
+    "leftHand",
+    "leftFoot",
+    "rightFoot",
+    "leftFoot",
+    "leftHand"
+   ],
+   [
+    "leftFoot",
+    "rightFoot",
+    "leftFoot",
+    "leftHand",
+    "leftFoot",
+    "rightFoot",
+    "leftFoot",
+    "leftHand"
+   ],
+   [
+    "leftFoot",
+    "rightFoot",
+    "leftFoot",
+    "leftHand",
+    "leftFoot",
+    "rightFoot",
+    "leftFoot",
+    "leftHand"
+   ],
+   [
+    "leftFoot",
+    "rightFoot",
+    "leftFoot",
+    "leftHand",
+    "leftFoot",
+    "rightFoot",
+    "leftFoot",
+    "leftHand"
+   ],
+   [
+    "leftFoot",
+    "leftHand",
+    "rightFoot",
+    "rightHand",
+    "leftFoot",
+    "leftHand",
+    "rightFoot",
+    "rightHand"
+   ]
+  ],
+  "rich": {
+   "limits": {
+    "pairToleranceMs": 80,
+    "sameSpotMs": 285,
+    "thumbHopMs": 330,
+    "crossThumbMs": 170,
+    "sameLimbMs": 400,
+    "phraseEndMs": 100
+   },
+   "patterns": {
+    "0": [
+     {
+      "at": 0,
+      "limb": "leftFoot"
+     },
+     {
+      "at": 1,
+      "limb": "rightFoot"
+     },
+     {
+      "at": 2,
+      "limb": "leftFoot"
+     },
+     {
+      "at": 2.5,
+      "limb": "rightFoot"
+     },
+     {
+      "at": 3,
+      "limb": "leftHand"
+     },
+     {
+      "at": 5,
+      "limb": "rightHand"
+     },
+     {
+      "at": 6,
+      "limb": "leftFoot"
+     },
+     {
+      "at": 7,
+      "limb": "leftHand",
+      "offer": "spin"
+     }
+    ],
+    "1": [
+     {
+      "at": 0,
+      "limb": "leftFoot",
+      "move": "pair",
+      "with": "rightHand"
+     },
+     {
+      "at": 1,
+      "limb": "rightFoot"
+     },
+     {
+      "at": 2,
+      "limb": "leftFoot",
+      "move": "split",
+      "with": "rightFoot",
+      "gap": 0.5
+     },
+     {
+      "at": 3,
+      "limb": "leftHand"
+     },
+     {
+      "at": 4,
+      "limb": "leftFoot",
+      "move": "pair",
+      "with": "rightHand"
+     },
+     {
+      "at": 5,
+      "limb": "rightFoot"
+     },
+     {
+      "at": 6,
+      "limb": "leftFoot",
+      "move": "split",
+      "with": "rightFoot",
+      "gap": 0.5
+     },
+     {
+      "at": 7,
+      "limb": "leftHand",
+      "offer": "spin"
+     }
+    ],
+    "2": [
+     {
+      "at": 0,
+      "limb": "leftFoot",
+      "move": "pair",
+      "with": "rightHand"
+     },
+     {
+      "at": 1,
+      "limb": "rightFoot",
+      "move": "pair",
+      "with": "leftHand"
+     },
+     {
+      "at": 2,
+      "limb": "leftFoot",
+      "move": "split",
+      "with": "rightFoot",
+      "gap": 0.5
+     },
+     {
+      "at": 3,
+      "limb": "leftHand"
+     },
+     {
+      "at": 4,
+      "limb": "leftFoot",
+      "move": "pair",
+      "with": "rightHand"
+     },
+     {
+      "at": 5,
+      "limb": "rightFoot"
+     },
+     {
+      "at": 6,
+      "limb": "leftFoot",
+      "move": "split",
+      "with": "rightFoot",
+      "gap": 0.5
+     },
+     {
+      "at": 7,
+      "limb": "leftHand",
+      "offer": "spin"
+     }
+    ],
+    "3": [
+     {
+      "at": 0,
+      "limb": "leftFoot",
+      "move": "pair",
+      "with": "rightHand"
+     },
+     {
+      "at": 1,
+      "limb": "rightFoot"
+     },
+     {
+      "at": 2,
+      "limb": "leftFoot",
+      "move": "split",
+      "with": "rightFoot",
+      "gap": 0.5
+     },
+     {
+      "at": 3,
+      "limb": "leftHand"
+     },
+     {
+      "at": 4,
+      "limb": "leftFoot",
+      "move": "pair",
+      "with": "rightHand"
+     },
+     {
+      "at": 5,
+      "limb": "rightFoot",
+      "move": "pair",
+      "with": "leftHand"
+     },
+     {
+      "at": 6,
+      "limb": "leftFoot",
+      "move": "split",
+      "with": "rightFoot",
+      "gap": 0.5
+     },
+     {
+      "at": 7,
+      "limb": "leftHand",
+      "offer": "spin"
+     }
+    ],
+    "4": [
+     {
+      "at": 0,
+      "limb": "leftFoot",
+      "move": "pair",
+      "with": "rightHand"
+     },
+     {
+      "at": 1,
+      "limb": "rightFoot",
+      "move": "pair",
+      "with": "leftHand"
+     },
+     {
+      "at": 2,
+      "limb": "leftFoot",
+      "move": "split",
+      "with": "rightFoot",
+      "gap": 0.5
+     },
+     {
+      "at": 3,
+      "limb": "leftHand"
+     },
+     {
+      "at": 4,
+      "limb": "leftFoot",
+      "move": "pair",
+      "with": "rightHand"
+     },
+     {
+      "at": 5,
+      "limb": "rightFoot",
+      "move": "pair",
+      "with": "leftHand"
+     },
+     {
+      "at": 6,
+      "limb": "leftFoot",
+      "move": "split",
+      "with": "rightFoot",
+      "gap": 0.5
+     },
+     {
+      "at": 7,
+      "limb": "leftHand",
+      "offer": "spin"
+     }
+    ],
+    "5": [
+     {
+      "at": 0,
+      "limb": "leftFoot",
+      "move": "pair",
+      "with": "rightFoot"
+     },
+     {
+      "at": 1,
+      "limb": "leftHand",
+      "move": "pair",
+      "with": "rightHand"
+     },
+     {
+      "at": 2,
+      "limb": "rightFoot",
+      "move": "split",
+      "with": "leftFoot",
+      "gap": 0.5
+     },
+     {
+      "at": 3,
+      "limb": "rightHand"
+     },
+     {
+      "at": 4,
+      "limb": "leftFoot",
+      "move": "pair",
+      "with": "rightFoot"
+     },
+     {
+      "at": 5,
+      "limb": "leftHand",
+      "move": "pair",
+      "with": "rightHand"
+     },
+     {
+      "at": 6,
+      "limb": "rightFoot",
+      "move": "split",
+      "with": "leftFoot",
+      "gap": 0.5
+     },
+     {
+      "at": 7,
+      "limb": "rightHand",
+      "offer": "spin"
+     }
+    ]
+   }
+  }
+ },
+ "stage": {
+  "calibration": "unverifiedStoryboard",
+  "floor": {
+   "horizonY": 0.268,
+   "referenceFootY": 0.4,
+   "referenceHeight": 0.104,
+   "vanishingX": 0.494
+  },
+  "heroHome": [
+   0.5,
+   0.62
+  ],
+  "heroEntersAt": 6,
+  "heroEntrance": [
+   0.08,
+   0.635
+  ],
+  "heroRetreat": [
+   0.5,
+   0.645
+  ],
+  "heroWatch": [
+   0.5,
+   0.645
+  ],
+  "heroAside": [
+   0.26,
+   0.625
+  ],
+  "challengers": [
+   {
+    "id": "gatekeeper",
+    "atlas": "gatekeeper",
+    "mark": [
+     0.5,
+     0.5
+    ],
+    "yieldMark": [
+     0.6,
+     0.53
+    ],
+    "stature": 1.12,
+    "meetMark": [
+     0.46,
+     0.52
+    ]
+   }
+  ]
+ },
+ "crowd": {
+  "budgets": {
+   "interested": 12,
+   "following": 12,
+   "standing": 12,
+   "cheering": 12
+  },
+  "seat": "standing",
+  "floorDance": {
+   "ownThing": {
+    "frames": [
+     "standing_idle_a",
+     "standing_idle_b"
+    ],
+    "beatsPerFrame": 2
+   },
+   "glance": {
+    "frames": [
+     "standing_idle_a",
+     "standing_idle_b"
+    ],
+    "beatsPerFrame": 2
+   },
+   "occupied": {
+    "pair": {
+     "frames": [
+      "pair_dance_a",
+      "pair_dance_b",
+      "pair_dance_c",
+      "pair_dance_d"
+     ],
+     "beatsPerFrame": 2
+    },
+    "back": {
+     "frames": [
+      "back_dance_a",
+      "back_dance_b",
+      "back_dance_c",
+      "back_dance_d"
+     ],
+     "beatsPerFrame": 1
+    }
+   },
+   "castGlance": {
+    "frames": [
+     "glance_a",
+     "glance_b"
+    ],
+    "beatsPerFrame": 2
+   },
+   "following": {
+    "frames": [
+     "groove_a",
+     "groove_b",
+     "groove_c",
+     "groove_d"
+    ],
+    "beatsPerFrame": 1
+   },
+   "sidestep": {
+    "frames": [
+     "sidestep_a",
+     "sidestep_b",
+     "sidestep_c",
+     "sidestep_d"
+    ],
+    "beatsPerFrame": 0.5
+   }
+  },
+  "guests": [
+   {
+    "at": [
+     0.2,
+     0.41
+    ],
+    "occupied": "pair",
+    "faces": "right",
+    "partner": 2,
+    "atlas": "guest3"
+   },
+   {
+    "at": [
+     0.8,
+     0.41
+    ],
+    "occupied": "pair",
+    "faces": "left",
+    "partner": 3,
+    "atlas": "guest4"
+   },
+   {
+    "at": [
+     0.266,
+     0.41
+    ],
+    "occupied": "pair",
+    "faces": "left",
+    "partner": 0,
+    "atlas": "guest6"
+   },
+   {
+    "at": [
+     0.734,
+     0.41
+    ],
+    "occupied": "pair",
+    "faces": "right",
+    "partner": 1,
+    "atlas": "guest5"
+   },
+   [
+    0.11,
+    0.44
+   ],
+   [
+    0.89,
+    0.44
+   ],
+   [
+    0.06,
+    0.46
+   ],
+   [
+    0.94,
+    0.46
+   ],
+   [
+    0.02,
+    0.47
+   ],
+   [
+    0.98,
+    0.47
+   ],
+   [
+    0.13,
+    0.415
+   ],
+   [
+    0.87,
+    0.415
+   ]
+  ],
+  "props": []
+ },
+ "scenery": {
+  "lamps": [
+   [
+    0.184,
+    0.325
+   ],
+   [
+    0.231,
+    0.316
+   ],
+   [
+    0.267,
+    0.31
+   ],
+   [
+    0.733,
+    0.31
+   ],
+   [
+    0.769,
+    0.316
+   ],
+   [
+    0.816,
+    0.325
+   ],
+   [
+    0.35,
+    0.228
+   ],
+   [
+    0.7,
+    0.228
+   ],
+   [
+    0.54,
+    0.3
+   ]
+  ],
+  "plants": [],
+  "occluders": [
+   {
+    "frontY": 0.47,
+    "outline": [
+     [
+      0,
+      0.43
+     ],
+     [
+      0.04,
+      0.43
+     ],
+     [
+      0.195,
+      0.378
+     ],
+     [
+      0.4,
+      0.378
+     ],
+     [
+      0.4,
+      0.4
+     ],
+     [
+      0.335,
+      0.46
+     ],
+     [
+      0.32,
+      0.56
+     ],
+     [
+      0,
+      0.56
+     ],
+     [
+      0,
+      0.56
+     ]
+    ]
+   },
+   {
+    "frontY": 0.47,
+    "outline": [
+     [
+      1,
+      0.43
+     ],
+     [
+      0.96,
+      0.43
+     ],
+     [
+      0.805,
+      0.378
+     ],
+     [
+      0.61,
+      0.378
+     ],
+     [
+      0.61,
+      0.4
+     ],
+     [
+      0.675,
+      0.46
+     ],
+     [
+      0.69,
+      0.56
+     ],
+     [
+      1,
+      0.56
+     ],
+     [
+      1,
+      0.56
+     ]
+    ]
+   },
+   {
+    "frontY": 0.47,
+    "outline": [
+     [
+      0.14182692307692307,
+      0.31650641025641024
+     ],
+     [
+      0.17067307692307693,
+      0.2980769230769231
+     ],
+     [
+      0.18028846153846154,
+      0.27724358974358976
+     ],
+     [
+      0.25961538461538464,
+      0.27724358974358976
+     ],
+     [
+      0.2692307692307692,
+      0.2900641025641026
+     ],
+     [
+      0.2980769230769231,
+      0.30849358974358976
+     ],
+     [
+      0.2980769230769231,
+      0.3245192307692308
+     ],
+     [
+      0.2668269230769231,
+      0.32371794871794873
+     ],
+     [
+      0.2668269230769231,
+      0.3301282051282051
+     ],
+     [
+      0.22235576923076922,
+      0.3301282051282051
+     ],
+     [
+      0.22235576923076922,
+      0.33974358974358976
+     ],
+     [
+      0.14182692307692307,
+      0.33974358974358976
+     ]
+    ]
+   },
+   {
+    "frontY": 0.47,
+    "outline": [
+     [
+      0.8581730769230769,
+      0.31650641025641024
+     ],
+     [
+      0.8293269230769231,
+      0.2980769230769231
+     ],
+     [
+      0.8197115384615384,
+      0.27724358974358976
+     ],
+     [
+      0.7403846153846154,
+      0.27724358974358976
+     ],
+     [
+      0.7307692307692307,
+      0.2900641025641026
+     ],
+     [
+      0.7019230769230769,
+      0.30849358974358976
+     ],
+     [
+      0.7019230769230769,
+      0.3245192307692308
+     ],
+     [
+      0.7331730769230769,
+      0.32371794871794873
+     ],
+     [
+      0.7331730769230769,
+      0.3301282051282051
+     ],
+     [
+      0.7776442307692307,
+      0.3301282051282051
+     ],
+     [
+      0.7776442307692307,
+      0.33974358974358976
+     ],
+     [
+      0.8581730769230769,
+      0.33974358974358976
+     ]
+    ]
+   }
+  ]
+ },
+ "departure": {
+  "threshold": "far double doors",
+  "originY": 0.62,
+  "waypoints": [
+   {
+    "at": 0,
+    "x": 0.5,
+    "y": 0.62,
+    "facing": "rear"
+   },
+   {
+    "at": 1,
+    "x": 0.5,
+    "y": 0.385,
+    "facing": "rear"
+   }
+  ]
+ },
+ "copy": {
+  "invitation": "Shall we dance?",
+  "clearedTitle": "QUÉ\nELEGANCIA"
+ },
+ "hardestCombo": {
+  "name": "EL GIRO DE TERCIOPELO",
+  "status": "proposal",
+  "note": "STAND-IN until TERCIOPELO sends his: a spin into a held line, then a double-time cha-cha-chá. Uses the stand-in dancer's clips.",
+  "callBeats": 8,
+  "moves": [
+   {
+    "at": 0,
+    "beats": 2,
+    "clip": "finish_turn"
+   },
+   {
+    "at": 2,
+    "beats": 2,
+    "clip": "show_off"
+   },
+   {
+    "at": 4,
+    "beats": 4,
+    "clip": "groove_double"
+   }
+  ],
+  "notes": [
+   {
+    "at": 0,
+    "limb": "rightHand"
+   },
+   {
+    "at": 1,
+    "limb": "leftHand"
+   },
+   {
+    "at": 2,
+    "limb": "rightHand"
+   },
+   {
+    "at": 3,
+    "limb": "leftHand"
+   },
+   {
+    "at": 4,
+    "limb": "leftFoot"
+   },
+   {
+    "at": 4.5,
+    "limb": "rightFoot"
+   },
+   {
+    "at": 5,
+    "limb": "leftFoot"
+   },
+   {
+    "at": 6,
+    "limb": "rightFoot"
+   },
+   {
+    "at": 6.5,
+    "limb": "leftFoot"
+   },
+   {
+    "at": 7,
+    "limb": "rightFoot",
+    "move": "stomp"
+   }
+  ]
+ },
+ "layers": {
+  "plateWidth": 832,
+  "plateHeight": 1248,
+  "props": [
+   {
+    "id": "lamps-left",
+    "atlas": "billiards/billiards-layers.png",
+    "atlasY": 0,
+    "left": 113,
+    "top": 345,
+    "width": 141,
+    "height": 81,
+    "frames": 7,
+    "motion": "sway",
+    "periodBeats": 4,
+    "instance": 1,
+    "kind": "hanging"
+   },
+   {
+    "id": "lamps-right",
+    "atlas": "billiards/billiards-layers.png",
+    "atlasY": 83,
+    "left": 579,
+    "top": 345,
+    "width": 141,
+    "height": 81,
+    "frames": 7,
+    "motion": "sway",
+    "periodBeats": 4,
+    "instance": 2,
+    "kind": "hanging"
+   }
+  ]
+ },
+ "exitShot": {
+  "plate": "closeups/nod-plate.png",
+  "celebrateUntil": 2,
+  "walkFrom": 2,
+  "walkTo": 3.75,
+  "heroStep": [
+   0.56,
+   0.55
+  ],
+  "heroWaitFrame": "front_idle",
+  "dust": false,
+  "closeupFrom": 4,
+  "contactBeat": 6,
+  "closeupTo": 9.5,
+  "contactPoint": [
+   0.5,
+   1
+  ],
+  "impactBeats": 1,
+  "recoilBeats": 1.5,
+  "cue": [
+   {
+    "beat": 3,
+    "track": "nod",
+    "pitch": 55,
+    "velocity": 80
+   },
+   {
+    "beat": 6,
+    "track": "peck",
+    "pitch": 67,
+    "velocity": 95
+   },
+   {
+    "beat": 7.5,
+    "track": "peck",
+    "pitch": 72,
+    "velocity": 55
+   }
+  ],
+  "actors": [
+   {
+    "approach": "closeups/nod-bb-rest.png",
+    "impact": "closeups/nod-bb-down.png",
+    "contact": [
+     338,
+     440
+    ],
+    "scale": 0.3,
+    "entry": [
+     -12,
+     0
+    ],
+    "recoil": [
+     0,
+     0
+    ],
+    "frames": [
+     {
+      "beat": 4,
+      "image": "closeups/nod-bb-rest.png"
+     },
+     {
+      "beat": 4.5,
+      "image": "closeups/nod-bb-down.png"
+     },
+     {
+      "beat": 5.5,
+      "image": "closeups/nod-bb-up.png"
+     },
+     {
+      "beat": 6.5,
+      "image": "closeups/nod-bb-rest.png"
+     }
+    ]
+   },
+   {
+    "approach": "closeups/nod-mc-rest.png",
+    "impact": "closeups/nod-mc-down.png",
+    "contact": [
+     48,
+     440
+    ],
+    "scale": 0.3,
+    "entry": [
+     12,
+     0
+    ],
+    "recoil": [
+     0,
+     0
+    ],
+    "frames": [
+     {
+      "beat": 4,
+      "image": "closeups/nod-mc-rest.png"
+     },
+     {
+      "beat": 6,
+      "image": "closeups/nod-mc-down.png"
+     },
+     {
+      "beat": 7.5,
+      "image": "closeups/nod-mc-up.png"
+     },
+     {
+      "beat": 8.5,
+      "image": "closeups/nod-mc-rest.png"
+     }
+    ]
+   }
+  ],
+  "opponent": [
+   {
+    "from": 0,
+    "frames": [
+     "watch_left"
+    ],
+    "beatsPerFrame": 2
+   },
+   {
+    "from": 2,
+    "frames": [
+     "approval_load",
+     "approval_nod",
+     "approval_nod"
+    ],
+    "beatsPerFrame": 1
+   },
+   {
+    "from": 10,
+    "frames": [
+     "reassurance_open_hand",
+     "invite"
+    ],
+    "beatsPerFrame": 1
+   },
+   {
+    "from": 13,
+    "frames": [
+     "groove_down_l",
+     "groove_pass_l",
+     "groove_up_l",
+     "groove_pass_l2",
+     "groove_down_r",
+     "groove_pass_r",
+     "groove_up_r",
+     "groove_pass_r2"
+    ],
+    "beatsPerFrame": 1,
+    "loop": true
+   }
+  ],
+  "keepsake": {
+   "image": "closeups/salon-rose-standin.png",
+   "from": 7.5,
+   "at": [
+    0.05,
+    -0.97
+   ],
+   "anchor": [
+    3,
+    13
+   ],
+   "height": 0.18
+  },
+  "flare": {
+   "from": 9.5,
+   "beats": 4,
+   "rise": 1,
+   "gain": 1
+  },
+  "applause": {
+   "from": 9.75,
+   "frames": [
+    "clap_a",
+    "clap_b"
+   ],
+   "beatsPerFrame": 0.5,
+   "loop": true
+  },
+  "walkOut": {
+   "from": 11,
+   "to": 15.5,
+   "fadeBeats": 1.25
+  }
+ }
+}

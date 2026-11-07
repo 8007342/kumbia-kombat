@@ -23,6 +23,11 @@ class ExitShot {
     this.recoilBeats,
     this.heroWaitFrame = 'rear_idle',
     this.throwsDust = true,
+    this.opponent = const [],
+    this.flare,
+    this.applause,
+    this.keepsake,
+    this.walkOut,
   });
 
   final String plate;
@@ -54,8 +59,37 @@ class ExitShot {
   /// Whether the contact throws dust. A fist does; a kiss on the cheek doesn't.
   final bool throwsDust;
 
+  /// A lone opponent's drawings on the wide shot, by beat: a bow before the
+  /// close-up, a gesture after it. Empty, the shared celebration plays.
+  final List<ExitShotClip> opponent;
+
+  /// The room's lamps brighten once and settle, on the wide shot.
+  final ExitShotFlare? flare;
+
+  /// The dancing crowd turns to the fight and applauds from a beat.
+  final ExitShotClip? applause;
+
+  /// Something Mācron keeps from the close-up, drawn on him in the wide shot.
+  final ExitShotKeepsake? keepsake;
+
+  /// He leaves along the level's `departure` route after the close-up, from his
+  /// step, and is gone through the threshold by its end. For a last level, where
+  /// no dissolve carries him on.
+  final ExitShotWalkOut? walkOut;
+
+  /// The opponent's drawing at [beat], or null when [opponent] doesn't cover it.
+  String? opponentFrameAt(double beat, {required bool reducedMotion}) {
+    ExitShotClip? playing;
+    for (final clip in opponent) {
+      if (clip.from > beat) break;
+      playing = clip;
+    }
+    return playing?.frameAt(beat, reducedMotion: reducedMotion);
+  }
+
   Iterable<String> get images => [
     plate,
+    ?keepsake?.image,
     for (final actor in actors) ...[
       actor.approach,
       actor.impact,
@@ -172,6 +206,101 @@ class ExitShot {
 
   static double _smooth(double t) => t * t * (3 - 2 * t);
   static double _easeOut(double t) => 1 - (1 - t) * (1 - t);
+}
+
+/// Drawings by beat from [from], on the shot's beat clock. A clip that doesn't
+/// loop holds its last drawing; reduced motion holds it from the start.
+class ExitShotClip {
+  const ExitShotClip({
+    required this.from,
+    required this.frames,
+    required this.beatsPerFrame,
+    this.loop = false,
+  });
+  final double from;
+  final List<String> frames;
+  final double beatsPerFrame;
+  final bool loop;
+
+  double get lengthBeats => frames.length * beatsPerFrame;
+
+  String frameAt(double beat, {required bool reducedMotion}) {
+    if (reducedMotion && !loop) return frames.last;
+    if (reducedMotion) return frames.first;
+    final step = ((beat - from) / beatsPerFrame).floor();
+    if (step < 0) return frames.first;
+    return loop
+        ? frames[step % frames.length]
+        : frames[math.min(step, frames.length - 1)];
+  }
+}
+
+/// One soft swell of the lamps: up over [rise] beats, back over the rest of
+/// [beats], with no speed at either end. Brightness only, so reduced motion
+/// keeps it.
+class ExitShotFlare {
+  const ExitShotFlare({
+    required this.from,
+    required this.beats,
+    this.rise = 1,
+    this.gain = 1,
+  });
+  final double from;
+  final double beats;
+  final double rise;
+  final double gain;
+
+  double at(double beat) {
+    final t = beat - from;
+    if (t <= 0 || t >= beats) return 0;
+    double smooth(double u) => u * u * u * (u * (u * 6 - 15) + 10);
+    return gain *
+        (t < rise ? smooth(t / rise) : smooth(1 - (t - rise) / (beats - rise)));
+  }
+}
+
+/// A small drawing worn by Mācron from [from]: [at] is where its [anchor] sits,
+/// from his feet in units of his height (y up is negative), mirrored with him,
+/// and [height] is its height in units of his. His antenna sits at about the
+/// same place in every drawing, so one point holds it there.
+class ExitShotKeepsake {
+  const ExitShotKeepsake({
+    required this.image,
+    required this.from,
+    required this.at,
+    required this.anchor,
+    required this.height,
+  });
+  final String image;
+  final double from;
+  final ui.Offset at;
+
+  /// The image's own pixel that sits on [at].
+  final ui.Offset anchor;
+  final double height;
+}
+
+/// His walk out, in shot beats. He fades over the last [fadeBeats], through the
+/// threshold. Under reduced motion he holds his step and then is gone.
+class ExitShotWalkOut {
+  const ExitShotWalkOut({
+    required this.from,
+    required this.to,
+    this.fadeBeats = 1,
+  });
+  final double from;
+  final double to;
+  final double fadeBeats;
+
+  /// 0 before, 1 at the threshold.
+  double along(double beat) => ((beat - from) / (to - from)).clamp(0.0, 1.0);
+
+  bool walkingAt(double beat) => beat >= from && beat < to;
+
+  double opacityAt(double beat, {required bool reducedMotion}) {
+    if (reducedMotion) return beat >= to ? 0 : 1;
+    return ((to - beat) / fadeBeats).clamp(0.0, 1.0);
+  }
 }
 
 class ExitTitlePose {

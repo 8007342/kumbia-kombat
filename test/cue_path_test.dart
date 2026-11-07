@@ -62,7 +62,7 @@ class _Note {
 /// seam where a call's last note meets the next phrase is covered too.
 Map<String, List<_Note>> _charts() {
   final charts = <String, List<_Note>>{};
-  for (final level in ['garden', 'bar', 'pool-garden', 'billiards']) {
+  for (final level in ['garden', 'bar', 'pool-garden', 'billiards', 'salon']) {
     final chart = LevelDefinition.fromJson(
       jsonDecode(File('levels/$level.json').readAsStringSync())
           as Map<String, dynamic>,
