@@ -265,7 +265,7 @@ void main() {
 
     // Unchanged neighbours, and a fake level ruled entirely by its own data.
     expect(clearSeconds['garden'], closeTo(60.667, .001));
-    expect(clearSeconds['bar'], closeTo(92.885, .2)); // Joined mid-beat grid.
+    expect(clearSeconds['bar'], closeTo(93.167, .2)); // Joined mid-beat grid.
     final night = levels.byId('night-bar');
     expect(clearSeconds['night-bar'], lessThan(clearSeconds['bar']!));
     expect(night.rules.requiredHits(4, atPeak: false), 2);

@@ -2,10 +2,15 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter_test/flutter_test.dart';
+import 'package:kumbia_kombat/gameplay/challenger_choreography.dart';
 import 'package:kumbia_kombat/gameplay/crowd_interest.dart';
+import 'package:kumbia_kombat/gameplay/cue_links.dart';
+import 'package:kumbia_kombat/gameplay/cue_path.dart';
+import 'package:kumbia_kombat/gameplay/dance_grammar.dart';
 import 'package:kumbia_kombat/gameplay/garden_session.dart';
 import 'package:kumbia_kombat/gameplay/level_definition.dart';
 import 'package:kumbia_kombat/gameplay/party_autoplay.dart';
+import 'package:kumbia_kombat/gameplay/party_sprites.dart';
 import 'package:kumbia_kombat/gameplay/progression.dart';
 import 'package:kumbia_kombat/gameplay/rhythm.dart';
 import 'package:kumbia_kombat/music/score.dart';
@@ -362,6 +367,141 @@ void main() {
     expect(CrowdEngagement.grade(true, rich), PhraseGrade.excellent);
   });
 
+  group('what a richer step looks like', () {
+    Offset place(GardenCue cue) => switch (cue.id) {
+      'a' => const Offset(100, 100),
+      'b' => const Offset(300, 100),
+      _ => const Offset(0, 0),
+    };
+
+    test('two cues of one step tie together, rim to rim', () {
+      final links = cueLinks([
+        _cue('a', 0, RichMove.pair),
+        _cue('b', 0, RichMove.pair),
+      ], place);
+      expect(links, hasLength(1));
+      final rim = cueExtent(.8) / 2;
+      expect(links.single.from, Offset(100 + rim, 100));
+      expect(links.single.to, Offset(300 - rim, 100));
+      expect(links.single.move, RichMove.pair);
+    });
+
+    test('plain notes, lone cues, and a call and its answer never tie', () {
+      expect(cueLinks([_cue('a', 0, null), _cue('b', 0, null)], place), isEmpty);
+      expect(cueLinks([_cue('a', 0, RichMove.pair)], place), isEmpty);
+      expect(
+        cueLinks([
+          _cue('a', 0, RichMove.pair, demo: true),
+          _cue('b', 0, RichMove.pair),
+        ], place),
+        isEmpty,
+      );
+      expect(
+        cueLinks([_cue('a', 0, RichMove.split), _cue('b', 1, RichMove.split)], place),
+        isEmpty,
+      );
+    });
+
+    test('touching cues draw no cord', () {
+      expect(
+        cueLinks([
+          _cue('a', 0, RichMove.doubleTap),
+          _cue('c', 0, RichMove.doubleTap),
+        ], (cue) => cue.id == 'a' ? const Offset(100, 100) : const Offset(105, 100)),
+        isEmpty,
+      );
+    });
+
+    test('a split points at the cue that comes second', () {
+      final link = cueLinks([
+        _cue('a', 0, RichMove.split),
+        _cue('b', 0, RichMove.split),
+      ], place).single;
+      final arrow = splitArrow(link);
+      final mid = Offset.lerp(link.from, link.to, .5)!;
+      expect(arrow.first.dx, greaterThan(mid.dx));
+    });
+
+    test('Mācron has a drawing for both hands, and for both feet', () {
+      expect(heroFrameIds, contains(playerPairFrame(Limb.leftHand, Limb.rightHand)));
+      expect(heroFrameIds, contains(playerPairFrame(Limb.leftFoot, Limb.rightFoot)));
+      expect(playerPairFrame(Limb.leftHand, Limb.rightFoot), isNull);
+      expect(playerPairFrame(Limb.leftHand, null), isNull);
+      final pose = playerMovePose(
+        limb: Limb.rightHand,
+        acceptedBeat: 8,
+        targetBeat: 8,
+        beat: 8.05,
+        partnerLimb: Limb.leftHand,
+      );
+      expect(pose.frameId, 'spin_front');
+      expect(pose.phase, DanceMovePhase.accent);
+    });
+
+    group('the opponent shows it in the call', () {
+      final grammar = DanceGrammar.fromJson(
+        jsonDecode(
+              File('assets/art/ensemble/choreography.json').readAsStringSync(),
+            )
+            as Map<String, dynamic>,
+      );
+      final phrase = ChallengerChoreography(
+        limbs: const [
+          Limb.leftHand,
+          Limb.rightHand,
+          Limb.leftFoot,
+          Limb.leftFoot,
+          Limb.leftHand,
+          Limb.rightHand,
+        ],
+        offsets: const [0, 0, 2, 2.75, 4, 4.5],
+      );
+      String frame(double t) => grammar
+          .dress(
+            phrase.sample(beat: t, callStartBeat: 0),
+            dancer: 'bartender',
+            beat: t,
+            callStartBeat: 0,
+          )
+          .frameId;
+
+      test('a pair of hands is the clap, with its contact on the note', () {
+        expect(phrase.sample(beat: .01, callStartBeat: 0).partnerLimb, Limb.leftHand);
+        expect(frame(.01), 'clap_contact');
+      });
+      test('a double is the same accent twice', () {
+        expect(frame(2.01), 'left_foot');
+        expect(frame(2.76), 'left_foot');
+      });
+      test('a split is one side, then the other', () {
+        expect(frame(4.01), 'left_hand');
+        expect(frame(4.51), 'right_hand');
+        expect(phrase.sample(beat: 4.51, callStartBeat: 0).partnerLimb, isNull);
+      });
+      test('every dancer has the clap', () {
+        for (final dancer in ['gatekeeper', 'bartender', 'swing-a', 'swing-b']) {
+          expect(grammar.framesFor(dancer), contains('clap_contact'));
+        }
+      });
+    });
+
+    test('on the lawn both dancers raise an arm for a pair', () {
+      final duet = _levels().byId('pool-garden').stage.duet!;
+      for (final onLeft in [true, false]) {
+        expect(
+          duet.pairFrame(
+            onLeft: onLeft,
+            limb: Limb.rightHand,
+            partner: Limb.leftHand,
+            phase: DanceMovePhase.accent,
+            beat: 1,
+          ),
+          duet.pairFrames.arm,
+        );
+      }
+    });
+  });
+
   group('autoplay clears the real levels with the new moves', () {
     for (final id in ['pool-garden', 'bar']) {
       for (final flawless in [true, false]) {
@@ -418,3 +558,20 @@ void main() {
     }
   });
 }
+
+GardenCue _cue(
+  String id,
+  int step,
+  RichMove? move, {
+  bool demo = false,
+  Limb limb = Limb.leftHand,
+  double beat = 0,
+}) => GardenCue(
+  id: id,
+  limb: limb,
+  beat: beat,
+  progress: .8,
+  demonstration: demo,
+  step: step,
+  move: move,
+);

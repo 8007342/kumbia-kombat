@@ -464,12 +464,20 @@ PlayerMovePose playerMovePose({
       ? .65
       : (nextRequiredBeat - peak).clamp(.12, .65);
   final age = math.max(0.0, beat - peak);
-  if (age < duration * .32) {
+  // A pair has no follow-through drawing, and it has to read as both limbs, so
+  // its one drawing holds through the follow-through too.
+  final pair = playerPairFrame(limb, partnerLimb);
+  if (pair != null && age < duration * .70) {
     return PlayerMovePose(
-      playerPairFrame(limb, partnerLimb) ?? limbAccentFrame(limb),
-      DanceMovePhase.accent,
+      pair,
+      age < duration * .32
+          ? DanceMovePhase.accent
+          : DanceMovePhase.followThrough,
       peak,
     );
+  }
+  if (age < duration * .32) {
+    return PlayerMovePose(limbAccentFrame(limb), DanceMovePhase.accent, peak);
   }
   if (age < duration * .70) {
     return PlayerMovePose(
