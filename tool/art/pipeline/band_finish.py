@@ -95,6 +95,11 @@ def shear(a, top_shift):
     return out
 n = sys.argv[1]; c = PICKS[n]; run = c['run']
 fam = f'band-{n}-v1'; pal = palette_of(f'tool/art/palettes/band-{n}.json')
+# The conga player's skin as drawn in the approved view is more orange than the definition's ramp, so his face
+# fell between the ramp and the brass and read flat yellow on a phone. Sampled from relaxed.a.
+EXTRA = {'congas': [(185, 99, 49), (219, 132, 72), (229, 146, 86)]}
+if n in EXTRA:
+    pal = np.vstack([pal, np.array(EXTRA[n], np.int64)])
 final = Path('art_runs') / run / 'final'; final.mkdir(parents=True, exist_ok=True)
 sel = {}
 for pose, pick in c['seeds'].items():
