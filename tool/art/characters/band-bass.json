@@ -35,7 +35,7 @@
    "shape": "waistcoat-fitted",
    "region": "cloth",
    "colour": "#EADFC2",
-   "text": "long-sleeved cream dinner jacket with midnight-violet shawl lapels"
+   "text": "long-sleeved cream dinner jacket with narrow midnight-violet lapels"
   },
   {
    "id": "trousers",
@@ -59,8 +59,8 @@
  "drawing": {
   "noun": "woman",
   "fits": "her tall updo, both shoes, both hands and the whole upright bass from its scroll to its spike",
-  "look": "very tall, rangy, long-limbed adult build, long narrow face with soft smile lines, calm eyes, closed easy smile, deep brown skin, silver-white hair in a tall smooth rounded updo, long-sleeved cream dinner jacket buttoned closed with glossy midnight-violet satin shawl lapels, a small midnight-violet bow tie at a closed cream shirt collar, slim dark charcoal trousers and polished two-tone cream and dark shoes, and thick dark ink outline, beside a big honey-amber wooden upright double bass as tall as she is, with a dark fingerboard, four strings and a curled scroll",
-  "extra": "She is a grown woman of about sixty-five. The upright bass stands on the floor at her left side, on the right of the picture, its big rounded body at her hip and its long neck rising past her shoulder to the height of her head. ",
+  "look": "very tall, rangy, long-limbed adult build, long narrow face with soft smile lines, calm eyes, closed easy smile, deep brown skin, silver-white hair in a tall smooth rounded updo, long-sleeved cream dinner jacket buttoned closed, its narrow midnight-violet satin lapels lying flat on the chest, a small midnight-violet bow tie at a closed cream shirt collar, slim dark charcoal trousers and polished two-tone cream and dark shoes, and thick dark ink outline, beside a big honey-amber wooden upright double bass as tall as she is, with a dark fingerboard, four strings and a curled scroll",
+  "extra": "She is a grown woman of about sixty-five. The upright bass stands on the floor at her left side, on the right of the picture, its big rounded body at her hip and its long neck rising past her shoulder to the height of her head. She plucks the strings with the bare fingertips of her open hand. ",
   "skeletonOverrides": {
    "groove.down_l": {
     "0": [
@@ -149,7 +149,7 @@
     }
    }
   },
-  "seed": 989000
+  "seed": 989010
  },
  "references": {
   "mode": "source",
@@ -167,5 +167,5 @@
    "pixelScale": 3
   }
  ],
- "seedBase": 989000
+ "seedBase": 989010
 }

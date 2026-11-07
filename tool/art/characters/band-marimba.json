@@ -35,7 +35,7 @@
    "shape": "waistcoat-fitted",
    "region": "cloth",
    "colour": "#EADFC2",
-   "text": "long-sleeved cream dinner jacket with midnight-violet shawl lapels"
+   "text": "long-sleeved cream dinner jacket with narrow midnight-violet lapels"
   },
   {
    "id": "trousers",
@@ -59,8 +59,8 @@
  "drawing": {
   "noun": "man",
   "fits": "the whole of his afro, both shoes, both hands, both mallets and the whole marimba",
-  "look": "tall, narrow, long-armed adult build, long thin face, round gold-rimmed spectacles, focused gentle smile, brown skin, big perfectly round black afro, long-sleeved cream dinner jacket buttoned closed with glossy midnight-violet satin shawl lapels, a small midnight-violet bow tie at a closed cream shirt collar, slim dark charcoal trousers and polished two-tone cream and dark shoes, and thick dark ink outline, behind a long low wooden marimba with a row of warm rosewood bars at his waist and a row of brass resonator tubes hanging beneath them, on a dark frame with two end legs",
-  "extra": "He is a grown man of about forty. He holds one long thin mallet with a round cream head in each hand, one mallet raised and the other striking a bar. The marimba spans the picture from side to side at the height of his waist, and his legs and both shoes show below it, between the brass tubes. ",
+  "look": "tall, narrow, long-armed adult build, long thin lined face, neatly trimmed short beard flecked with grey, round gold-rimmed spectacles, focused gentle smile, brown skin, big perfectly round black afro, long-sleeved cream dinner jacket buttoned closed, its narrow midnight-violet satin lapels lying flat on the chest, a small midnight-violet bow tie at a closed cream shirt collar, slim dark charcoal trousers and polished two-tone cream and dark shoes, and thick dark ink outline, behind a compact wooden marimba with a row of warm rosewood bars at his waist and a row of brass resonator tubes hanging beneath them, on a dark frame with two end legs",
+  "extra": "He is a grown man of about forty. He holds two separate short mallets, one in each hand, each as long as his forearm with a round cream head. The hand on the left of the picture holds its mallet straight up beside his shoulder, with the round head in the air by his ear. The hand on the right of the picture points its mallet down, with the round head on a bar. The marimba stands between him and the viewer, about as wide as he is tall: its row of bars crosses in front of his belt and covers his hips, and its brass tubes hang in front of his thighs, with his shins and both shoes showing below them. ",
   "skeletonOverrides": {
    "groove.down_l": {
     "0": [
@@ -149,7 +149,7 @@
     }
    }
   },
-  "seed": 989300
+  "seed": 989330
  },
  "references": {
   "mode": "source",
@@ -167,5 +167,5 @@
    "pixelScale": 3
   }
  ],
- "seedBase": 989300
+ "seedBase": 989330
 }

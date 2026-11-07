@@ -35,7 +35,7 @@
    "shape": "waistcoat-fitted",
    "region": "cloth",
    "colour": "#EADFC2",
-   "text": "long-sleeved cream dinner jacket with midnight-violet shawl lapels"
+   "text": "long-sleeved cream dinner jacket with narrow midnight-violet lapels"
   },
   {
    "id": "trousers",
@@ -59,8 +59,8 @@
  "drawing": {
   "noun": "man",
   "fits": "his head, both shoes, both hands and both drums",
-  "look": "short, stocky, barrel-chested adult build, round belly, thick arms, short neck, round cheerful face with crinkled eyes and a wide open grin, warm tan skin, smooth bald head, thick neat grey moustache, long-sleeved cream dinner jacket buttoned closed with glossy midnight-violet satin shawl lapels, a small midnight-violet bow tie at a closed cream shirt collar, slim dark charcoal trousers and polished two-tone cream and dark shoes, and thick dark ink outline, behind a pair of tall barrel-shaped conga drums of dark reddish wood with cream drumheads and brass bands",
-  "extra": "He is a grown man of about fifty-five. The two conga drums stand on the floor in front of him, one toward each side of the picture, their cream heads at the height of his hips, with his legs and both shoes showing in the gap between them. ",
+  "look": "short, stocky, barrel-chested adult build, round belly, thick arms, short neck, round cheerful face with crinkled eyes and a wide open grin, warm tan skin, smooth bald head, thick neat grey moustache, long-sleeved cream dinner jacket buttoned closed, its narrow midnight-violet satin lapels lying flat on the chest, a small midnight-violet bow tie at a closed cream shirt collar, slim dark charcoal trousers and polished two-tone cream and dark shoes, and thick dark ink outline, behind a pair of slim barrel-shaped conga drums of dark reddish wood with cream drumheads and brass bands",
+  "extra": "He is a grown man of about fifty-five. The two slim conga drums stand close beside his legs, one toward each side of the picture, their cream heads at the height of his hips and his hands on top of them, with his legs and both shoes showing in the gap between them. ",
   "skeletonOverrides": {
    "groove.down_l": {
     "0": [
@@ -145,11 +145,11 @@
    "views": {
     "front": {
      "image": "tool/art/references/band-congas/front.png",
-     "description": "standing square facing the viewer behind the two conga drums, feet apart, elbows out, one open palm resting on the head of each drum"
+     "description": "standing square facing the viewer behind the two conga drums, feet apart, elbows out, both open hands lying flat on top of the cream drumheads, in plain sight"
     }
    }
   },
-  "seed": 989100
+  "seed": 989110
  },
  "references": {
   "mode": "source",
@@ -167,5 +167,5 @@
    "pixelScale": 3
   }
  ],
- "seedBase": 989100
+ "seedBase": 989110
 }

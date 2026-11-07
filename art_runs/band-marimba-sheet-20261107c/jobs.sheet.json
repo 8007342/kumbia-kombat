@@ -1,0 +1,17 @@
+[
+ {
+  "pose": "sheet.front",
+  "args": {
+   "workflow": "art_runs/band-marimba-sheet-20261107c/workflows/sheet.front.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/band-marimba-sheet-20261107c/in/sheet_source.png",
+    "pose_proxy": "/work/tmp/imagegen/kumbia/band-marimba-sheet-20261107c/in/groove.down_l.skeleton.png"
+   },
+   "overrides": {
+    "seed": 989320
+   }
+  }
+ }
+]
