@@ -102,7 +102,7 @@
       160.2
      ]
     },
-    "intent": "seen in a three-quarter view from the side: the chest, hips, knees, toes and nose all point toward the lower right corner of the picture, the face in three-quarter view looking that way, playing out toward a crowd on that side, both feet flat on the floor, standing behind the marimba, the mallet in the hand on the left of the picture raised by his shoulder, the other mallet down on a bar"
+    "intent": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, both feet flat on the floor, standing behind the marimba, the mallet in the hand on the left of the picture raised by his shoulder, the other mallet down on a bar"
    },
    "relaxed.b": {
     "pose": {
@@ -124,7 +124,7 @@
       61.3
      ]
     },
-    "intent": "seen in a three-quarter view from the side: the chest, hips, knees, toes and nose all point toward the lower right corner of the picture, the face in three-quarter view looking that way, playing out toward a crowd on that side, both feet flat on the floor, standing behind the marimba, the mallet in the hand on the right of the picture raised by his shoulder, the other mallet down on a bar"
+    "intent": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, both feet flat on the floor, standing behind the marimba, the mallet in the hand on the right of the picture raised by his shoulder, the other mallet down on a bar"
    },
    "tap.up_a": {
     "pose": {
@@ -146,7 +146,7 @@
       160.2
      ]
     },
-    "intent": "seen in a three-quarter view from the side: the chest, hips, knees, toes and nose all point toward the lower right corner of the picture, the face in three-quarter view looking that way, playing out toward a crowd on that side, the foot on the left of the picture lifted clear off the floor with its knee bent and toe pointing down, tapping time, the other foot flat on the floor, standing behind the marimba, the mallet in the hand on the left of the picture raised, the other mallet down on a bar"
+    "intent": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, the foot on the left of the picture lifted clear off the floor with its knee bent and toe pointing down, tapping time, the other foot flat on the floor, standing behind the marimba, the mallet in the hand on the left of the picture raised, the other mallet down on a bar"
    },
    "tap.up_b": {
     "pose": {
@@ -168,7 +168,7 @@
       61.3
      ]
     },
-    "intent": "seen in a three-quarter view from the side: the chest, hips, knees, toes and nose all point toward the lower right corner of the picture, the face in three-quarter view looking that way, playing out toward a crowd on that side, the foot on the left of the picture lifted clear off the floor with its knee bent and toe pointing down, tapping time, the other foot flat on the floor, standing behind the marimba, the mallet in the hand on the right of the picture raised, the other mallet down on a bar"
+    "intent": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, the foot on the left of the picture lifted clear off the floor with its knee bent and toe pointing down, tapping time, the other foot flat on the floor, standing behind the marimba, the mallet in the hand on the right of the picture raised, the other mallet down on a bar"
    },
    "swing.a": {
     "pose": {
@@ -190,7 +190,7 @@
       4.4
      ]
     },
-    "intent": "seen in a three-quarter view from the side: the chest, hips, knees, toes and nose all point toward the lower right corner of the picture, the face in three-quarter view looking that way, playing out toward a crowd on that side, both feet flat on the floor, standing behind the marimba, leaning into a wide sweep, the arm on the left of the picture flung far out with its mallet, the other mallet down on a bar"
+    "intent": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, both feet flat on the floor, standing behind the marimba, leaning into a wide sweep, the arm on the left of the picture flung far out with its mallet, the other mallet down on a bar"
    },
    "swing.b": {
     "pose": {
@@ -212,7 +212,7 @@
       135.5
      ]
     },
-    "intent": "seen in a three-quarter view from the side: the chest, hips, knees, toes and nose all point toward the lower right corner of the picture, the face in three-quarter view looking that way, playing out toward a crowd on that side, both feet flat on the floor, standing behind the marimba, both mallets lifted high at shoulder height, head bobbing"
+    "intent": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, both feet flat on the floor, standing behind the marimba, both mallets lifted high at shoulder height, head bobbing"
    },
    "swing.c": {
     "pose": {
@@ -234,7 +234,7 @@
       58.3
      ]
     },
-    "intent": "seen in a three-quarter view from the side: the chest, hips, knees, toes and nose all point toward the lower right corner of the picture, the face in three-quarter view looking that way, playing out toward a crowd on that side, both feet flat on the floor, standing behind the marimba, leaning into a wide sweep, the arm on the right of the picture flung far out with its mallet, the other mallet down on a bar"
+    "intent": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, both feet flat on the floor, standing behind the marimba, leaning into a wide sweep, the arm on the right of the picture flung far out with its mallet, the other mallet down on a bar"
    },
    "swing.d": {
     "pose": {
@@ -256,7 +256,7 @@
       135.5
      ]
     },
-    "intent": "seen in a three-quarter view from the side: the chest, hips, knees, toes and nose all point toward the lower right corner of the picture, the face in three-quarter view looking that way, playing out toward a crowd on that side, both feet flat on the floor, standing behind the marimba, both mallets lifted high at shoulder height"
+    "intent": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, both feet flat on the floor, standing behind the marimba, both mallets lifted high at shoulder height"
    }
   }
  },
@@ -285,7 +285,7 @@
   "score": {
    "silhouetteTolerance": 60
   },
-  "skeletonScale": 1.0,
+  "skeletonScale": 0.92,
   "seed": 989810,
   "count": 2
  },

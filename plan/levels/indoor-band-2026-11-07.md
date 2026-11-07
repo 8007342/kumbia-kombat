@@ -2,7 +2,15 @@
 
 Branch `work/1864-band`. The owner's ruling: "let's use that left platform to add a band playing the music, they'll also play while tapping a foot or swinging their instrument on rythm, and liven their rythm as the player game improves."
 
-**Status:** model sheets are drawn and waiting for the owner. No frames are drawn, and none should be until the owner approves sheets. Nothing has been built in the game. Everything labelled **proposal** is unapproved.
+**Status:** the owner approved the front sheets and the choices below ("Excellent references... I approve your choices, keep going on with the plan"), then delegated completion for this level. Choices taken since are mine, and each is listed in section 8 so the owner can reverse it on the phone. Sections 1 to 7 are the pre-approval plan, kept as written apart from the notes here.
+
+**Corrections to what follows:**
+- The band is drawn at an angle, playing toward the crowd (owner), so section 2's front views are not what frames use. Each player has a `front_3q` view drawn from the approved front.
+- The trumpet's feet moved to (.168, .385), since .368 is off the measured deck (INDOOR).
+- Rung inputs are data, `"input": "form"|"tier"|"partySwing"` with `"from": n`, all `form` for now, pending the owner (INDOOR). That replaces `tapFromTier` and `swingFrom` below.
+- Under reduced motion each energy rung holds its own drawing, so the meter still shows (INDOOR), not `relaxed_a` throughout.
+- `ensemble_sprites.dart` no longer rejects new atlases, per the PARTY agent, so no `requireFrames` case is needed.
+- Question 3 (players waiting for their instrument's entry) stays open: every player plays from tier 0.
 
 ## 1. What fits on the platform
 

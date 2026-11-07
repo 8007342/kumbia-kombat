@@ -102,7 +102,7 @@
       30.8
      ]
     },
-    "intent": "body and face turned three-quarters toward the right side of the picture, playing out toward a crowd on that side, both feet flat on the floor, the hand on the left of the picture flat on its drumhead, the hand on the right of the picture lifted a little above its drumhead"
+    "intent": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, both feet flat on the floor, the hand on the left of the picture flat on its drumhead, the hand on the right of the picture lifted a little above its drumhead"
    },
    "relaxed.b": {
     "pose": {
@@ -124,7 +124,7 @@
       69.5
      ]
     },
-    "intent": "body and face turned three-quarters toward the right side of the picture, playing out toward a crowd on that side, both feet flat on the floor, the hand on the right of the picture flat on its drumhead, the hand on the left of the picture lifted a little above its drumhead"
+    "intent": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, both feet flat on the floor, the hand on the right of the picture flat on its drumhead, the hand on the left of the picture lifted a little above its drumhead"
    },
    "tap.up_a": {
     "pose": {
@@ -146,7 +146,7 @@
       30.8
      ]
     },
-    "intent": "body and face turned three-quarters toward the right side of the picture, playing out toward a crowd on that side, the foot on the left of the picture lifted clear off the floor with its knee bent and toe pointing down, tapping time, the other foot flat on the floor, the hand on the left of the picture flat on its drumhead, the other lifted a little"
+    "intent": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, the foot on the left of the picture lifted clear off the floor with its knee bent and toe pointing down, tapping time, the other foot flat on the floor, the hand on the left of the picture flat on its drumhead, the other lifted a little"
    },
    "tap.up_b": {
     "pose": {
@@ -168,7 +168,7 @@
       69.5
      ]
     },
-    "intent": "body and face turned three-quarters toward the right side of the picture, playing out toward a crowd on that side, the foot on the left of the picture lifted clear off the floor with its knee bent and toe pointing down, tapping time, the other foot flat on the floor, the hand on the right of the picture flat on its drumhead, the other lifted a little"
+    "intent": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, the foot on the left of the picture lifted clear off the floor with its knee bent and toe pointing down, tapping time, the other foot flat on the floor, the hand on the right of the picture flat on its drumhead, the other lifted a little"
    },
    "swing.a": {
     "pose": {
@@ -190,7 +190,7 @@
       37.1
      ]
     },
-    "intent": "body and face turned three-quarters toward the right side of the picture, playing out toward a crowd on that side, both feet flat on the floor, big joyful move: the hand on the left of the picture thrown high above his shoulder, palm open, the other flat on its drumhead, shoulders rolling"
+    "intent": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, both feet flat on the floor, big joyful move: the hand on the left of the picture thrown high above his shoulder, palm open, the other flat on its drumhead, shoulders rolling"
    },
    "swing.b": {
     "pose": {
@@ -212,7 +212,7 @@
       83.2
      ]
     },
-    "intent": "body and face turned three-quarters toward the right side of the picture, playing out toward a crowd on that side, both feet flat on the floor, both hands just above the drumheads, about to come down, shoulders level"
+    "intent": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, both feet flat on the floor, both hands just above the drumheads, about to come down, shoulders level"
    },
    "swing.c": {
     "pose": {
@@ -234,7 +234,7 @@
       34.2
      ]
     },
-    "intent": "body and face turned three-quarters toward the right side of the picture, playing out toward a crowd on that side, both feet flat on the floor, big joyful move: the hand on the right of the picture thrown high above his shoulder, palm open, the other flat on its drumhead, shoulders rolling"
+    "intent": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, both feet flat on the floor, big joyful move: the hand on the right of the picture thrown high above his shoulder, palm open, the other flat on its drumhead, shoulders rolling"
    },
    "swing.d": {
     "pose": {
@@ -256,7 +256,7 @@
       83.2
      ]
     },
-    "intent": "body and face turned three-quarters toward the right side of the picture, playing out toward a crowd on that side, the foot on the left of the picture lifted clear off the floor with its knee bent and toe pointing down, tapping time, the other foot flat on the floor, both hands just above the drumheads, about to come down"
+    "intent": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, the foot on the left of the picture lifted clear off the floor with its knee bent and toe pointing down, tapping time, the other foot flat on the floor, both hands just above the drumheads, about to come down"
    }
   }
  },
@@ -264,7 +264,7 @@
   "noun": "man",
   "fits": "his head, both shoes, both hands and both drums",
   "look": "short, stocky, barrel-chested adult build, round belly, thick arms, short neck, round cheerful face with crinkled eyes and a wide open grin, warm tan skin, smooth bald head, thick neat grey moustache, long-sleeved cream dinner jacket buttoned closed, its narrow midnight-violet satin lapels lying flat on the chest, a small midnight-violet bow tie at a closed cream shirt collar, slim dark charcoal trousers and polished two-tone cream and dark shoes, and thick dark ink outline, behind a pair of slim barrel-shaped conga drums of dark reddish wood with cream drumheads and brass bands",
-  "extra": "He is a grown man of about fifty-five. The two slim conga drums stand on the floor close beside his legs and stay in the same place, their cream heads at the height of his hips, with his legs and both shoes showing in the gap between them. ",
+  "extra": "He is a grown man of about fifty-five. The two slim conga drums stand on the floor and their cream heads are at the height of his hips. ",
   "sheet": {
    "source": {
     "image": "tool/art/references/band-congas/front.png",
@@ -278,14 +278,14 @@
     "front_3q": {
      "image": "tool/art/references/band-congas/front_3q.png",
      "description": "standing behind the two conga drums, body and face turned three-quarters toward the right side of the picture, playing out toward a crowd on that side, feet apart, both open hands on top of the cream drumheads",
-     "extra": "He is a grown man of about fifty-five. The two slim conga drums stand on the floor close beside his legs and stay in the same place, their cream heads at the height of his hips, with his legs and both shoes showing in the gap between them. There are exactly two drums and no more: one on the left of the picture and one on the right of the picture, side by side, each with one of his hands on it, with his legs showing between them. "
+     "extra": "He is a grown man of about fifty-five. The two slim conga drums stand on the floor and their cream heads are at the height of his hips. There are exactly two drums and no more, one just in front of the other as in image 1: the near one on the left of the picture in front of his legs, the far one on the right of the picture. Both drums stay exactly where image 1 shows them, overlapping, and only he moves. "
     }
    }
   },
   "score": {
    "silhouetteTolerance": 60
   },
-  "skeletonScale": 1.0,
+  "skeletonScale": 0.92,
   "seed": 989620,
   "count": 2
  },
