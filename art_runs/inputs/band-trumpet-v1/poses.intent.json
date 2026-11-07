@@ -1,0 +1,54 @@
+{
+ "character": "band-trumpet",
+ "note": "Sides are the character's own; they faces the viewer, so their left is on screen right.",
+ "poses": {
+  "relaxed.a": {
+   "clip": "relaxed",
+   "phase": "settle",
+   "support": "both",
+   "description": "seen in a three-quarter view from the side: the chest, hips, knees, toes and nose all point toward the lower right corner of the picture, the face in three-quarter view looking that way, playing out toward a crowd on that side, both feet flat on the floor, both hands on the trumpet at their lips, the horn level, its bell pointing toward the right of the picture"
+  },
+  "relaxed.b": {
+   "clip": "relaxed",
+   "phase": "settle",
+   "support": "both",
+   "description": "seen in a three-quarter view from the side: the chest, hips, knees, toes and nose all point toward the lower right corner of the picture, the face in three-quarter view looking that way, playing out toward a crowd on that side, both feet flat on the floor, both hands on the trumpet at their lips, the horn dipped a little"
+  },
+  "tap.up_a": {
+   "clip": "tap",
+   "phase": "pass",
+   "support": "left",
+   "description": "seen in a three-quarter view from the side: the chest, hips, knees, toes and nose all point toward the lower right corner of the picture, the face in three-quarter view looking that way, playing out toward a crowd on that side, the foot on the left of the picture lifted clear off the floor with its knee bent and toe pointing down, tapping time, the other foot flat on the floor, both hands on the trumpet at their lips, the horn level"
+  },
+  "tap.up_b": {
+   "clip": "tap",
+   "phase": "pass",
+   "support": "left",
+   "description": "seen in a three-quarter view from the side: the chest, hips, knees, toes and nose all point toward the lower right corner of the picture, the face in three-quarter view looking that way, playing out toward a crowd on that side, the foot on the left of the picture lifted clear off the floor with its knee bent and toe pointing down, tapping time, the other foot flat on the floor, both hands on the trumpet at their lips, the horn dipped a little"
+  },
+  "swing.a": {
+   "clip": "swing",
+   "phase": "accent",
+   "support": "both",
+   "description": "seen in a three-quarter view from the side: the chest, hips, knees, toes and nose all point toward the lower right corner of the picture, the face in three-quarter view looking that way, playing out toward a crowd on that side, both feet flat on the floor, swinging the horn high, bell pointing up at the ceiling toward the right of the picture, chin lifted, both hands on the trumpet at their lips"
+  },
+  "swing.b": {
+   "clip": "swing",
+   "phase": "pass",
+   "support": "both",
+   "description": "seen in a three-quarter view from the side: the chest, hips, knees, toes and nose all point toward the lower right corner of the picture, the face in three-quarter view looking that way, playing out toward a crowd on that side, both feet flat on the floor, the horn passing level, both hands on the trumpet at their lips"
+  },
+  "swing.c": {
+   "clip": "swing",
+   "phase": "accent",
+   "support": "both",
+   "description": "seen in a three-quarter view from the side: the chest, hips, knees, toes and nose all point toward the lower right corner of the picture, the face in three-quarter view looking that way, playing out toward a crowd on that side, both feet flat on the floor, swinging the horn low, bell pointing down toward the floor on the right of the picture, chin tucked, both hands on the trumpet at their lips"
+  },
+  "swing.d": {
+   "clip": "swing",
+   "phase": "pass",
+   "support": "left",
+   "description": "seen in a three-quarter view from the side: the chest, hips, knees, toes and nose all point toward the lower right corner of the picture, the face in three-quarter view looking that way, playing out toward a crowd on that side, the foot on the left of the picture lifted clear off the floor with its knee bent and toe pointing down, tapping time, the other foot flat on the floor, the horn passing level, both hands on the trumpet at their lips"
+  }
+ }
+}
