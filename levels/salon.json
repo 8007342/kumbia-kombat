@@ -1,7 +1,7 @@
 {
  "id": "salon",
  "title": "EL SALÓN DE ESPEJOS",
- "background": "billiards/billiards-room-clean.png",
+ "background": "salon/salon-room-standin.png",
  "music": {
   "score": "salon_bolero",
   "successScore": "salon_bolero_success",
@@ -438,31 +438,31 @@
  "stage": {
   "calibration": "unverifiedStoryboard",
   "floor": {
-   "horizonY": 0.268,
-   "referenceFootY": 0.4,
-   "referenceHeight": 0.104,
-   "vanishingX": 0.494
+   "horizonY": 0.27,
+   "referenceFootY": 0.6,
+   "referenceHeight": 0.33,
+   "vanishingX": 0.505
   },
   "heroHome": [
    0.5,
-   0.62
+   0.6
   ],
   "heroEntersAt": 6,
   "heroEntrance": [
-   0.08,
-   0.635
+   0.3,
+   0.64
   ],
   "heroRetreat": [
    0.5,
-   0.645
+   0.625
   ],
   "heroWatch": [
    0.5,
-   0.645
+   0.625
   ],
   "heroAside": [
-   0.26,
-   0.625
+   0.38,
+   0.61
   ],
   "challengers": [
    {
@@ -473,8 +473,8 @@
      0.5
     ],
     "yieldMark": [
-     0.6,
-     0.53
+     0.62,
+     0.5
     ],
     "stature": 1.12,
     "meetMark": [
@@ -556,28 +556,18 @@
   "guests": [
    {
     "at": [
-     0.2,
-     0.41
+     0.765,
+     0.388
     ],
     "occupied": "pair",
     "faces": "right",
-    "partner": 2,
-    "atlas": "guest3"
+    "partner": 1,
+    "atlas": "guest5"
    },
    {
     "at": [
-     0.8,
-     0.41
-    ],
-    "occupied": "pair",
-    "faces": "left",
-    "partner": 3,
-    "atlas": "guest4"
-   },
-   {
-    "at": [
-     0.266,
-     0.41
+     0.84,
+     0.388
     ],
     "occupied": "pair",
     "faces": "left",
@@ -586,300 +576,239 @@
    },
    {
     "at": [
-     0.734,
-     0.41
+     0.62,
+     0.4
     ],
     "occupied": "pair",
     "faces": "right",
-    "partner": 1,
+    "partner": 3,
+    "atlas": "guest4"
+   },
+   {
+    "at": [
+     0.7,
+     0.4
+    ],
+    "occupied": "pair",
+    "faces": "left",
+    "partner": 2,
+    "atlas": "guest3"
+   },
+   {
+    "at": [
+     0.67,
+     0.455
+    ],
+    "occupied": "pair",
+    "faces": "right",
+    "partner": 5,
+    "atlas": "guest6"
+   },
+   {
+    "at": [
+     0.78,
+     0.455
+    ],
+    "occupied": "pair",
+    "faces": "left",
+    "partner": 4,
     "atlas": "guest5"
    },
-   [
-    0.11,
-    0.44
-   ],
-   [
-    0.89,
-    0.44
-   ],
-   [
-    0.06,
-    0.46
-   ],
-   [
-    0.94,
-    0.46
-   ],
-   [
-    0.02,
-    0.47
-   ],
-   [
-    0.98,
-    0.47
-   ],
-   [
-    0.13,
-    0.415
-   ],
-   [
-    0.87,
-    0.415
-   ]
+   {
+    "at": [
+     0.875,
+     0.42
+    ],
+    "occupied": "pair",
+    "faces": "right",
+    "partner": 7,
+    "atlas": "guest3"
+   },
+   {
+    "at": [
+     0.95,
+     0.42
+    ],
+    "occupied": "pair",
+    "faces": "left",
+    "partner": 6,
+    "atlas": "guest4"
+   },
+   {
+    "at": [
+     0.86,
+     0.46
+    ],
+    "occupied": "pair",
+    "faces": "right",
+    "partner": 9,
+    "atlas": "guest5"
+   },
+   {
+    "at": [
+     0.94,
+     0.46
+    ],
+    "occupied": "pair",
+    "faces": "left",
+    "partner": 8,
+    "atlas": "guest3"
+   },
+   {
+    "at": [
+     0.885,
+     0.495
+    ],
+    "occupied": "pair",
+    "faces": "right",
+    "partner": 11,
+    "atlas": "guest4"
+   },
+   {
+    "at": [
+     0.965,
+     0.495
+    ],
+    "occupied": "pair",
+    "faces": "left",
+    "partner": 10,
+    "atlas": "guest6"
+   }
   ],
   "props": []
  },
  "scenery": {
   "lamps": [
    [
-    0.184,
-    0.325
+    0.254,
+    0.15
    ],
    [
-    0.231,
-    0.316
+    0.511,
+    0.148
    ],
    [
-    0.267,
-    0.31
+    0.767,
+    0.152
    ],
    [
-    0.733,
-    0.31
+    0.11,
+    0.245
    ],
    [
-    0.769,
-    0.316
+    0.4,
+    0.245
    ],
    [
-    0.816,
-    0.325
+    0.62,
+    0.245
    ],
    [
-    0.35,
-    0.228
-   ],
-   [
-    0.7,
-    0.228
-   ],
-   [
-    0.54,
-    0.3
+    0.91,
+    0.245
    ]
   ],
   "plants": [],
-  "occluders": [
-   {
-    "frontY": 0.47,
-    "outline": [
-     [
-      0,
-      0.43
-     ],
-     [
-      0.04,
-      0.43
-     ],
-     [
-      0.195,
-      0.378
-     ],
-     [
-      0.4,
-      0.378
-     ],
-     [
-      0.4,
-      0.4
-     ],
-     [
-      0.335,
-      0.46
-     ],
-     [
-      0.32,
-      0.56
-     ],
-     [
-      0,
-      0.56
-     ],
-     [
-      0,
-      0.56
-     ]
+  "band": {
+   "standIn": false,
+   "ladders": {
+    "instrument": [
+     {
+      "input": "form",
+      "from": 0,
+      "frames": [
+       "relaxed_a",
+       "relaxed_b"
+      ],
+      "beatsPerFrame": 1
+     },
+     {
+      "input": "form",
+      "from": 0.3,
+      "frames": [
+       "relaxed_a",
+       "tap_up_a",
+       "relaxed_b",
+       "tap_up_b"
+      ],
+      "beatsPerFrame": 0.5
+     },
+     {
+      "input": "form",
+      "from": 0.75,
+      "frames": [
+       "swing_a",
+       "swing_b",
+       "swing_c",
+       "swing_d"
+      ],
+      "beatsPerFrame": 0.5
+     }
     ]
    },
-   {
-    "frontY": 0.47,
-    "outline": [
-     [
-      1,
-      0.43
+   "players": [
+    {
+     "id": "piano",
+     "atlas": "band-piano",
+     "reference": "relaxed_a",
+     "feet": [
+      0.1322,
+      0.4503
      ],
-     [
-      0.96,
-      0.43
+     "ladder": "instrument"
+    },
+    {
+     "id": "bongos",
+     "atlas": "band-congas",
+     "reference": "relaxed_a",
+     "feet": [
+      0.215,
+      0.455
      ],
-     [
-      0.805,
-      0.378
+     "ladder": "instrument",
+     "beatOffset": 1,
+     "lateBy": 0.05
+    },
+    {
+     "id": "violin",
+     "atlas": "band-violin",
+     "reference": "relaxed_a",
+     "feet": [
+      0.31,
+      0.452
      ],
-     [
-      0.61,
-      0.378
-     ],
-     [
-      0.61,
-      0.4
-     ],
-     [
-      0.675,
-      0.46
-     ],
-     [
-      0.69,
-      0.56
-     ],
-     [
-      1,
-      0.56
-     ],
-     [
-      1,
-      0.56
-     ]
-    ]
-   },
-   {
-    "frontY": 0.47,
-    "outline": [
-     [
-      0.14182692307692307,
-      0.31650641025641024
-     ],
-     [
-      0.17067307692307693,
-      0.2980769230769231
-     ],
-     [
-      0.18028846153846154,
-      0.27724358974358976
-     ],
-     [
-      0.25961538461538464,
-      0.27724358974358976
-     ],
-     [
-      0.2692307692307692,
-      0.2900641025641026
-     ],
-     [
-      0.2980769230769231,
-      0.30849358974358976
-     ],
-     [
-      0.2980769230769231,
-      0.3245192307692308
-     ],
-     [
-      0.2668269230769231,
-      0.32371794871794873
-     ],
-     [
-      0.2668269230769231,
-      0.3301282051282051
-     ],
-     [
-      0.22235576923076922,
-      0.3301282051282051
-     ],
-     [
-      0.22235576923076922,
-      0.33974358974358976
-     ],
-     [
-      0.14182692307692307,
-      0.33974358974358976
-     ]
-    ]
-   },
-   {
-    "frontY": 0.47,
-    "outline": [
-     [
-      0.8581730769230769,
-      0.31650641025641024
-     ],
-     [
-      0.8293269230769231,
-      0.2980769230769231
-     ],
-     [
-      0.8197115384615384,
-      0.27724358974358976
-     ],
-     [
-      0.7403846153846154,
-      0.27724358974358976
-     ],
-     [
-      0.7307692307692307,
-      0.2900641025641026
-     ],
-     [
-      0.7019230769230769,
-      0.30849358974358976
-     ],
-     [
-      0.7019230769230769,
-      0.3245192307692308
-     ],
-     [
-      0.7331730769230769,
-      0.32371794871794873
-     ],
-     [
-      0.7331730769230769,
-      0.3301282051282051
-     ],
-     [
-      0.7776442307692307,
-      0.3301282051282051
-     ],
-     [
-      0.7776442307692307,
-      0.33974358974358976
-     ],
-     [
-      0.8581730769230769,
-      0.33974358974358976
-     ]
-    ]
-   }
-  ]
+     "ladder": "instrument",
+     "lateBy": 0.1
+    }
+   ]
+  }
  },
  "departure": {
   "threshold": "far double doors",
-  "originY": 0.62,
+  "originY": 0.6,
   "waypoints": [
    {
     "at": 0,
     "x": 0.5,
-    "y": 0.62,
+    "y": 0.6,
     "facing": "rear"
    },
    {
-    "at": 0.45,
-    "x": 0.62,
-    "y": 0.47,
+    "at": 0.3,
+    "x": 0.55,
+    "y": 0.48,
+    "facing": "rear"
+   },
+   {
+    "at": 0.7,
+    "x": 0.52,
+    "y": 0.42,
     "facing": "rear"
    },
    {
     "at": 1,
-    "x": 0.5,
-    "y": 0.385,
+    "x": 0.51,
+    "y": 0.39,
     "facing": "rear"
    }
   ]
@@ -891,7 +820,7 @@
  "hardestCombo": {
   "name": "EL GIRO DE TERCIOPELO",
   "status": "proposal",
-  "note": "Proposal, from the art agent, timed by the wiring agent. A spin into a held line with a cha-cha-chá: one and a half turns on the hands, the fan line lands on the left foot, then two cha-cha-chá triples in the feet (3, 3.5, 4 and 5, 5.5, 6), and the held line closes it with a circle. The art agent's quarter-beat double-time triples are 121 ms apart at 124 BPM, under the 230 ms good window a combo's notes must keep, so they are half beats here. Uses only his atlas's clips. The owner hasn't seen or played it. The last beat is the shared invite_onward, since his flare runs 1.5 beats and the call has 1 left.",
+  "note": "Proposal, from the art agent, timed by the wiring agent. A spin into a held line with a cha-cha-chá: one and a half turns on the hands, the fan line lands on the left foot, then two cha-cha-chá triples in the feet (3, 3.5, 4 and 5, 5.5, 6), and the held line closes it with a circle. The art agent's quarter-beat double-time triples are 121 ms apart at 124 BPM, under the 230 ms good window a combo's notes must keep, so they are half beats here. Uses only his atlas's clips. The owner hasn't seen or played it.",
   "callBeats": 8,
   "moves": [
    {
@@ -907,7 +836,7 @@
    {
     "at": 7,
     "beats": 1,
-    "clip": "invite_onward"
+    "clip": "line_hold"
    }
   ],
   "notes": [
@@ -958,42 +887,8 @@
    }
   ]
  },
- "layers": {
-  "plateWidth": 832,
-  "plateHeight": 1248,
-  "props": [
-   {
-    "id": "lamps-left",
-    "atlas": "billiards/billiards-layers.png",
-    "atlasY": 0,
-    "left": 113,
-    "top": 345,
-    "width": 141,
-    "height": 81,
-    "frames": 7,
-    "motion": "sway",
-    "periodBeats": 4,
-    "instance": 1,
-    "kind": "hanging"
-   },
-   {
-    "id": "lamps-right",
-    "atlas": "billiards/billiards-layers.png",
-    "atlasY": 83,
-    "left": 579,
-    "top": 345,
-    "width": 141,
-    "height": 81,
-    "frames": 7,
-    "motion": "sway",
-    "periodBeats": 4,
-    "instance": 2,
-    "kind": "hanging"
-   }
-  ]
- },
  "exitShot": {
-  "plate": "closeups/nod-plate.png",
+  "plate": "closeups/salon-plate.png",
   "celebrateUntil": 2,
   "walkFrom": 2,
   "walkTo": 3.75,
@@ -1034,8 +929,8 @@
   ],
   "actors": [
    {
-    "approach": "closeups/nod-bb-rest.png",
-    "impact": "closeups/nod-bb-down.png",
+    "approach": "closeups/salon-dt-rest.png",
+    "impact": "closeups/salon-dt-offer.png",
     "contact": [
      338,
      440
@@ -1052,25 +947,29 @@
     "frames": [
      {
       "beat": 4,
-      "image": "closeups/nod-bb-rest.png"
+      "image": "closeups/salon-dt-rest.png"
      },
      {
       "beat": 4.5,
-      "image": "closeups/nod-bb-down.png"
+      "image": "closeups/salon-dt-pluck.png"
      },
      {
-      "beat": 5.5,
-      "image": "closeups/nod-bb-up.png"
+      "beat": 5.25,
+      "image": "closeups/salon-dt-offer.png"
      },
      {
       "beat": 6.5,
-      "image": "closeups/nod-bb-rest.png"
+      "image": "closeups/salon-dt-empty.png"
+     },
+     {
+      "beat": 8,
+      "image": "closeups/salon-dt-rest.png"
      }
     ]
    },
    {
     "approach": "closeups/nod-mc-rest.png",
-    "impact": "closeups/nod-mc-down.png",
+    "impact": "closeups/salon-mc-take.png",
     "contact": [
      48,
      440
@@ -1090,16 +989,20 @@
       "image": "closeups/nod-mc-rest.png"
      },
      {
+      "beat": 5.25,
+      "image": "closeups/salon-mc-reach.png"
+     },
+     {
       "beat": 6,
-      "image": "closeups/nod-mc-down.png"
+      "image": "closeups/salon-mc-take.png"
      },
      {
       "beat": 7.5,
-      "image": "closeups/nod-mc-up.png"
+      "image": "closeups/salon-mc-tuck.png"
      },
      {
       "beat": 8.5,
-      "image": "closeups/nod-mc-rest.png"
+      "image": "closeups/salon-mc-rest.png"
      }
     ]
    }
@@ -1146,17 +1049,17 @@
    }
   ],
   "keepsake": {
-   "image": "closeups/salon-rose-standin.png",
+   "image": "closeups/salon-rose.png",
    "from": 7.5,
    "at": [
-    0.05,
-    -0.97
+    -0.03,
+    -0.858
    ],
    "anchor": [
     3,
-    13
+    8
    ],
-   "height": 0.18
+   "height": 0.16
   },
   "flare": {
    "from": 9.5,
