@@ -1,0 +1,332 @@
+/// The rendered music's data, read from `assets/music/rendered/manifest.json`.
+/// Pure Dart: nothing here touches a browser, so tests read it directly.
+library;
+
+import 'dart:math' as math;
+
+/// A manifest entry is wrong. The game falls back to the synth rather than
+/// playing music whose timing it can't trust.
+class RenderedManifestError implements Exception {
+  const RenderedManifestError(this.path, this.message);
+  final String path;
+  final String message;
+  @override
+  String toString() => 'RenderedManifestError at $path: $message';
+}
+
+double dbToGain(double db) => math.pow(10, db / 20).toDouble();
+
+/// One audio file on the music clock: a looping take, a transition, a success
+/// tag or a bridge. Constant tempo and whole bars, so a beat always has one time.
+class RenderedClip {
+  RenderedClip({
+    required this.id,
+    required this.bpm,
+    required this.bars,
+    required this.beatsPerBar,
+    required this.files,
+    this.loopStartSeconds = 0,
+    this.loopEndSeconds,
+    this.gainDb = 0,
+  });
+
+  final String id;
+
+  /// With loop points, the tempo the loop really runs at, so that the beat clock
+  /// and a natively looping buffer can't drift apart however long a run lasts.
+  final double bpm;
+  final int bars;
+  final int beatsPerBar;
+
+  /// Format name (`opus`, `aac`) to asset path.
+  final Map<String, String> files;
+  final double loopStartSeconds;
+  final double? loopEndSeconds;
+  double gainDb;
+
+  bool get loops => loopEndSeconds != null;
+  double get lengthBeats => (bars * beatsPerBar).toDouble();
+  double get secondsPerBeat => 60 / bpm;
+  double get lengthSeconds => lengthBeats * secondsPerBeat;
+
+  /// Where in the file a beat counted from the clip's start falls.
+  double fileSecondsAt(double beats) {
+    final within = loops ? beats % lengthBeats : beats;
+    return loopStartSeconds + math.max(0.0, within) * secondsPerBeat;
+  }
+
+  static RenderedClip fromJson(String id, String path, Object? raw) {
+    final json = _object(path, raw);
+    final bars = json['bars'];
+    final beatsPerBar = json['beatsPerBar'] ?? 4;
+    if (bars is! int || bars <= 0 || beatsPerBar is! int || beatsPerBar <= 0) {
+      throw RenderedManifestError(path, 'bars must be a whole number');
+    }
+    final declared = _number('$path.bpm', json['bpm'], min: 20, max: 400);
+    final start = json['loopStartSeconds'];
+    final end = json['loopEndSeconds'];
+    var bpm = declared;
+    double? loopEnd;
+    var loopStart = 0.0;
+    if (end != null) {
+      loopStart = start == null
+          ? 0.0
+          : _number('$path.loopStartSeconds', start, min: 0);
+      loopEnd = _number('$path.loopEndSeconds', end);
+      final seconds = loopEnd - loopStart;
+      if (seconds <= 0) {
+        throw RenderedManifestError(path, 'the loop ends before it starts');
+      }
+      bpm = bars * beatsPerBar * 60 / seconds;
+      if ((bpm - declared).abs() > declared * .005) {
+        throw RenderedManifestError(
+          path,
+          'loop points give $bpm BPM, but it declares $declared',
+        );
+      }
+    }
+    final files = _object('$path.files', json['files']);
+    if (files.isEmpty) throw RenderedManifestError(path, 'lists no files');
+    return RenderedClip(
+      id: id,
+      bpm: bpm,
+      bars: bars,
+      beatsPerBar: beatsPerBar,
+      files: {
+        for (final entry in files.entries)
+          entry.key: _text('$path.files.${entry.key}', entry.value),
+      },
+      loopStartSeconds: loopStart,
+      loopEndSeconds: loopEnd,
+      gainDb: json['gainDb'] == null
+          ? 0
+          : _number('$path.gainDb', json['gainDb'], min: -60, max: 24),
+    );
+  }
+
+  /// The first format this browser says it can play, in the manifest's order.
+  String? pathFor(bool Function(String format) canPlay) {
+    for (final entry in files.entries) {
+      if (canPlay(entry.key)) return entry.value;
+    }
+    return null;
+  }
+}
+
+/// A written join between two takes.
+class RenderedTransition {
+  RenderedTransition({
+    required this.from,
+    required this.to,
+    required this.clip,
+    this.entryBar = 0,
+    this.crossfadeSeconds = RenderedLevel.defaultJoinSeconds,
+  });
+  final String from;
+  final String to;
+  final RenderedClip clip;
+
+  /// The bar of the destination's loop this lands on.
+  final int entryBar;
+  final double crossfadeSeconds;
+}
+
+/// One level's music. Five game tiers map onto its takes through [tierTakes], so
+/// tempo is data: nothing assumes a higher tier is a faster take.
+class RenderedLevel {
+  RenderedLevel({
+    required this.id,
+    required this.tierTakes,
+    required this.takes,
+    this.transitions = const [],
+    this.success,
+    this.bridge,
+    this.mix,
+  }) {
+    if (tierTakes.length != 5) {
+      throw RenderedManifestError(id, 'tierTakes must name five takes');
+    }
+    for (final take in tierTakes) {
+      if (!takes.containsKey(take)) {
+        throw RenderedManifestError(id, 'tierTakes names unknown take $take');
+      }
+    }
+    for (final join in transitions) {
+      if (!takes.containsKey(join.from) || !takes.containsKey(join.to)) {
+        throw RenderedManifestError(id, 'a transition names an unknown take');
+      }
+    }
+  }
+
+  /// A join with nothing written for it: quick enough not to double a beat.
+  static const defaultJoinSeconds = .02;
+
+  final String id;
+  final List<String> tierTakes;
+  final Map<String, RenderedClip> takes;
+  final List<RenderedTransition> transitions;
+  final RenderedClip? success;
+  final RenderedClip? bridge;
+  final RenderedMix? mix;
+
+  RenderedClip takeForTier(int tier) => takes[tierTakes[tier]]!;
+  List<double> get tempos => [for (var t = 0; t < 5; t++) takeForTier(t).bpm];
+
+  RenderedTransition? transition(String from, String to) {
+    for (final join in transitions) {
+      if (join.from == from && join.to == to) return join;
+    }
+    return null;
+  }
+
+  Iterable<RenderedClip> get clips => [
+    ...takes.values,
+    ...transitions.map((join) => join.clip),
+    ?success,
+    ?bridge,
+  ];
+
+  factory RenderedLevel.fromJson(String id, String path, Object? raw) {
+    final json = _object(path, raw);
+    final takes = _object('$path.takes', json['takes']);
+    final tierTakes = json['tierTakes'];
+    if (tierTakes is! List) {
+      throw RenderedManifestError(path, 'tierTakes must be a list');
+    }
+    RenderedClip? single(String key) => json[key] == null
+        ? null
+        : RenderedClip.fromJson('$id/$key', '$path.$key', json[key]);
+    return RenderedLevel(
+      id: id,
+      tierTakes: [for (final take in tierTakes) '$take'],
+      takes: {
+        for (final entry in takes.entries)
+          entry.key: RenderedClip.fromJson(
+            '$id/${entry.key}',
+            '$path.takes.${entry.key}',
+            entry.value,
+          ),
+      },
+      transitions: [
+        for (final (i, raw) in ((json['transitions'] as List?) ?? []).indexed)
+          _transition(id, '$path.transitions[$i]', raw),
+      ],
+      success: single('success'),
+      bridge: single('bridge'),
+      mix: json['mix'] == null
+          ? null
+          : RenderedMix.fromJson('$path.mix', json['mix']),
+    );
+  }
+
+  static RenderedTransition _transition(String id, String path, Object? raw) {
+    final json = _object(path, raw);
+    final from = _text('$path.from', json['from']);
+    final to = _text('$path.to', json['to']);
+    return RenderedTransition(
+      from: from,
+      to: to,
+      clip: RenderedClip.fromJson('$id/$from-$to', path, raw),
+      entryBar: json['entryBar'] as int? ?? 0,
+      crossfadeSeconds: json['crossfadeSeconds'] == null
+          ? defaultJoinSeconds
+          : _number('$path.crossfadeSeconds', json['crossfadeSeconds'], min: 0),
+    );
+  }
+}
+
+/// The buses' levels, in decibels. Only gain: nothing here reaches the clock.
+class RenderedMix {
+  const RenderedMix({
+    this.masterDb = 0,
+    this.musicDb = 0,
+    this.accentsDb = 0,
+    this.rewardsDb = 0,
+  });
+  final double masterDb;
+  final double musicDb;
+  final double accentsDb;
+  final double rewardsDb;
+
+  RenderedMix copyWith({
+    double? masterDb,
+    double? musicDb,
+    double? accentsDb,
+    double? rewardsDb,
+  }) => RenderedMix(
+    masterDb: masterDb ?? this.masterDb,
+    musicDb: musicDb ?? this.musicDb,
+    accentsDb: accentsDb ?? this.accentsDb,
+    rewardsDb: rewardsDb ?? this.rewardsDb,
+  );
+
+  Map<String, double> toJson() => {
+    'masterDb': masterDb,
+    'musicDb': musicDb,
+    'accentsDb': accentsDb,
+    'rewardsDb': rewardsDb,
+  };
+
+  factory RenderedMix.fromJson(String path, Object? raw) {
+    final json = _object(path, raw);
+    double level(String key) => json[key] == null
+        ? 0
+        : _number('$path.$key', json[key], min: -60, max: 24);
+    return RenderedMix(
+      masterDb: level('masterDb'),
+      musicDb: level('musicDb'),
+      accentsDb: level('accentsDb'),
+      rewardsDb: level('rewardsDb'),
+    );
+  }
+}
+
+class RenderedManifest {
+  const RenderedManifest({this.mix = const RenderedMix(), this.levels = const {}});
+  final RenderedMix mix;
+  final Map<String, RenderedLevel> levels;
+
+  RenderedMix mixFor(String level) => levels[level]?.mix ?? mix;
+
+  factory RenderedManifest.fromJson(Object? raw) {
+    final json = _object('manifest', raw);
+    if (json['schemaVersion'] != 1) {
+      throw const RenderedManifestError('manifest', 'unsupported version');
+    }
+    final levels = _object('manifest.levels', json['levels'] ?? const {});
+    return RenderedManifest(
+      mix: json['mix'] == null
+          ? const RenderedMix()
+          : RenderedMix.fromJson('manifest.mix', json['mix']),
+      levels: {
+        for (final entry in levels.entries)
+          entry.key: RenderedLevel.fromJson(
+            entry.key,
+            'manifest.levels.${entry.key}',
+            entry.value,
+          ),
+      },
+    );
+  }
+}
+
+Map<String, Object?> _object(String path, Object? raw) {
+  if (raw is Map<String, Object?>) return raw;
+  throw RenderedManifestError(path, 'expected an object, found $raw');
+}
+
+String _text(String path, Object? raw) {
+  if (raw is String && raw.isNotEmpty) return raw;
+  throw RenderedManifestError(path, 'expected text, found $raw');
+}
+
+double _number(String path, Object? raw, {double? min, double? max}) {
+  if (raw is! num || !raw.isFinite) {
+    throw RenderedManifestError(path, 'expected a number, found $raw');
+  }
+  final value = raw.toDouble();
+  if ((min != null && value < min) || (max != null && value > max)) {
+    throw RenderedManifestError(path, '$value is out of range');
+  }
+  return value;
+}
