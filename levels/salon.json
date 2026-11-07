@@ -930,7 +930,7 @@
   "actors": [
    {
     "approach": "closeups/salon-dt-rest.png",
-    "impact": "closeups/salon-dt-offer.png",
+    "impact": "closeups/salon-dt-empty.png",
     "contact": [
      338,
      440
@@ -958,12 +958,8 @@
       "image": "closeups/salon-dt-offer.png"
      },
      {
-      "beat": 6.5,
+      "beat": 6,
       "image": "closeups/salon-dt-empty.png"
-     },
-     {
-      "beat": 8,
-      "image": "closeups/salon-dt-rest.png"
      }
     ]
    },
