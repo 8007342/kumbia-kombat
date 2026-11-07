@@ -560,7 +560,7 @@ PARTY_FLOOR = {
     "groove": {"a": (replace(GROOVE["down_l"][0], l_arm=(22, 18), l_fore=(18, 50), r_arm=(24, -10), r_fore=(26, 18)), "left"),
                "c": (replace(GROOVE["down_r"][0], r_arm=(22, 18), r_fore=(18, 50), l_arm=(24, -10), l_fore=(26, 18)), "right")},
     "pair_dance": _pf_pair(48, head=-6),
-    "back_dance": _pf_pair(142, arms=dict(l_arm=(34, 40), l_fore=(44, 74), r_arm=(14, 30), r_fore=(-10, 78))),
+    "back_dance": _pf_pair(152, arms=dict(l_arm=(14, 28), l_fore=(10, 64), r_arm=(14, 28), r_fore=(10, 64))),
     "sidestep": {"a": (replace(_PF_WALK["contact_l"][0], **_PF_SWING), "left"), "b": (replace(_PF_WALK["pass_l"][0], **_PF_SWING), "left")},
     "glance": {"a": (Pose(yaw=158, head_turn=-58, head_nod=-2, side_bend=3, l_arm=(16, 4), l_fore=(14, 22), r_arm=(18, 8), r_fore=(16, 28), **_TURN_LEGS), "both")},
     "clap": {"a": CLAP["open"], "b": CLAP["contact"]},
@@ -682,13 +682,14 @@ _FLOOR_Q3 = "seen in a three-quarter view from the side: the chest, hips, knees,
 _FLOOR_BACK = "seen from behind at three quarters, turned away from the viewer toward the upper right corner of the picture: the back of {his} head and {his} back show, a sliver of cheek on the right, the face hidden, "
 _FLOOR_SIDE = "seen in a clean side profile walking toward the right side of the picture, the nose and both toes pointing right, one eye showing, "
 _FLOOR_HOLD = "both arms held forward in a slow social-dance hold, the upper hand open at chest height and the lower hand open at waist height, both reaching toward the right side of the picture, the fingers relaxed and together, "
+_FLOOR_BACK_ARMS = "both upper arms close to the body with the elbows bent and both forearms in front of the body, out of sight, so only the elbows show and no hand is visible, "
 PARTY_FLOOR_INTENT = {
     "groove.a": ("down", "facing the viewer, dancing in place on bent knees with weight on {his} left foot, arms low and loose below the shoulders, loose relaxed hands, smiling"),
     "groove.c": ("down", "facing the viewer, dancing in place on bent knees with weight on {his} right foot, arms low and loose below the shoulders, loose relaxed hands, smiling"),
     "pair_dance.a": ("down", _FLOOR_Q3 + _FLOOR_HOLD + "weight on the back foot, the front heel lifted"),
     "pair_dance.c": ("down", _FLOOR_Q3 + _FLOOR_HOLD + "weight on the front foot, the back heel lifted"),
-    "back_dance.a": ("down", _FLOOR_BACK + _FLOOR_HOLD + "weight on one foot, the other heel lifted"),
-    "back_dance.c": ("down", _FLOOR_BACK + _FLOOR_HOLD + "weight on the other foot, one heel lifted"),
+    "back_dance.a": ("down", _FLOOR_BACK + _FLOOR_BACK_ARMS + "weight on one foot, the other heel lifted"),
+    "back_dance.c": ("down", _FLOOR_BACK + _FLOOR_BACK_ARMS + "weight on the other foot, one heel lifted"),
     "sidestep.a": ("contact", _FLOOR_SIDE + "taking a long easy step, the front heel just touching the floor and the back foot on its toes, arms swinging low at the sides, relaxed hands"),
     "sidestep.b": ("pass", _FLOOR_SIDE + "mid-step, the weight over one straight leg and the other foot passing it, arms low at the sides, relaxed hands"),
     "glance.a": ("hold", "seen from behind, {his} back to the viewer, head turned to look back over {his} shoulder toward the right side of the picture so {his} face shows in profile with one eye, curious and interested, arms relaxed"),

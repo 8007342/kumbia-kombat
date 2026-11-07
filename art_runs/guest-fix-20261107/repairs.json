@@ -3,13 +3,22 @@
   "atlas": "guest1",
   "frame": "step_touch_c",
   "seed": 995100,
-  "ask": "the raised hand on the right of the picture no longer points. It is a relaxed loose closed fist with no finger extended, the same size, at the same place."
+  "ask": "the raised hand on the right of the picture no longer points. It is a relaxed loose closed fist with no finger extended, the same size, at the same place.",
+  "pick": 995100,
+  "box": [
+   0.62,
+   0.12,
+   1,
+   0.5
+  ]
  },
  "g1_idle_a": {
   "atlas": "guest1",
   "frame": "seated_idle_a",
   "seed": 995110,
-  "ask": "his legs are no longer crossed. He sits on an unseen seat with both knees forward and a little apart, both shins straight down and both feet flat on the floor side by side."
+  "ask": "his legs are no longer crossed. He sits on an unseen seat with both knees forward and a little apart, both shins straight down and both feet flat on the floor side by side.",
+  "pick": 995110,
+  "append": true
  },
  "g0_idle_a": {
   "atlas": "guest0",
@@ -21,66 +30,107 @@
   "atlas": "guest2",
   "frame": "step_touch_d",
   "seed": 995130,
-  "ask": "the raised hand on the right of the picture no longer points. It is a relaxed loose closed fist with no finger extended, the same size, at the same place."
+  "ask": "the raised hand on the right of the picture no longer points. It is a relaxed loose closed fist with no finger extended, the same size, at the same place.",
+  "pick": 995130,
+  "box": [
+   0.62,
+   0.1,
+   1,
+   0.5
+  ]
  },
  "g0_touch_b": {
   "atlas": "guest0",
   "frame": "step_touch_b",
   "seed": 995140,
-  "ask": "the outstretched hand on the right of the picture no longer points. It is a relaxed open hand with the fingers together, the same size, at the same place."
+  "ask": "the outstretched hand on the right of the picture no longer points. It is a relaxed open hand with the fingers together, the same size, at the same place.",
+  "pick": 995140,
+  "box": [
+   0.62,
+   0.15,
+   1,
+   0.5
+  ]
  },
  "g1_idle_b": {
   "atlas": "guest1",
   "frame": "seated_idle_b",
   "seed": 995150,
-  "ask": "his legs are no longer crossed. He sits on an unseen seat with both knees forward and a little apart, both shins straight down and both feet flat on the floor side by side."
+  "ask": "his legs are no longer crossed. He sits on an unseen seat with both knees forward and a little apart, both shins straight down and both feet flat on the floor side by side.",
+  "pick": 995150,
+  "append": true
  },
  "g1_notice_a": {
   "atlas": "guest1",
   "frame": "notice_a",
   "seed": 995160,
-  "ask": "his legs are no longer crossed. He sits on an unseen seat with both knees forward and a little apart, both shins straight down and both feet flat on the floor side by side."
+  "ask": "his legs are no longer crossed. He sits on an unseen seat with both knees forward and a little apart, both shins straight down and both feet flat on the floor side by side.",
+  "pick": 995160,
+  "append": true,
+  "clear": [
+   [
+    0,
+    0.35,
+    0.07,
+    0.7
+   ]
+  ]
  },
  "g1_notice_b": {
   "atlas": "guest1",
   "frame": "notice_b",
   "seed": 995170,
-  "ask": "his legs are no longer crossed. He sits on an unseen seat with both knees forward and a little apart, both shins straight down and both feet flat on the floor side by side."
+  "ask": "his legs are no longer crossed. He sits on an unseen seat with both knees forward and a little apart, both shins straight down and both feet flat on the floor side by side.",
+  "pick": 995170,
+  "append": true
  },
  "g1_sit_d": {
   "atlas": "guest1",
   "frame": "sit_down_d",
   "seed": 995180,
-  "ask": "his legs are no longer crossed. He sits on an unseen seat with both knees forward and a little apart, both shins straight down and both feet flat on the floor side by side."
+  "ask": "his legs are no longer crossed. He sits on an unseen seat with both knees forward and a little apart, both shins straight down and both feet flat on the floor side by side.",
+  "pick": 995180,
+  "append": true
  },
  "g0_stand_a": {
   "atlas": "guest0",
   "frame": "stand_up_a",
   "seed": 995190,
-  "ask": "the small brown blocks she grips are gone: both her hands rest open on nothing, with only the hands themselves and bare grey background around them."
+  "ask": "the small brown blocks she grips are gone: both her hands rest open on nothing, with only the hands themselves and bare grey background around them.",
+  "pick": 995191,
+  "append": true
  },
  "g0_stand_b": {
   "atlas": "guest0",
   "frame": "stand_up_b",
   "seed": 995200,
-  "ask": "the small brown blocks she grips are gone: both her hands rest open on nothing, with only the hands themselves and bare grey background around them."
+  "ask": "the small brown blocks she grips are gone: both her hands rest open on nothing, with only the hands themselves and bare grey background around them.",
+  "pick": 995201,
+  "append": true
  },
  "g0_follow_a": {
   "atlas": "guest0",
   "frame": "seated_follow_a",
   "seed": 995210,
-  "ask": "her lifted foot on the left of the picture is one clear sandal seen from the side, resting toe down on the floor, a single shoe with a single heel; the brown cuff on her wrist is gone, leaving a bare wrist."
+  "ask": "her lifted foot on the left of the picture is one clear sandal seen from the side, resting toe down on the floor, a single shoe with a single heel; the brown cuff on her wrist is gone, leaving a bare wrist.",
+  "pick": 995210,
+  "append": true
  },
  "g0_follow_b": {
   "atlas": "guest0",
   "frame": "seated_follow_b",
   "seed": 995220,
-  "ask": "her lifted foot on the left of the picture is one clear sandal seen from the side, resting toe down on the floor, a single shoe with a single heel."
+  "ask": "her lifted foot on the left of the picture is one clear sandal seen from the side, resting toe down on the floor, a single shoe with a single heel.",
+  "pick": 995220,
+  "append": true
  },
  "g2_notice_b": {
   "atlas": "guest2",
   "frame": "notice_a",
   "seed": 995230,
-  "ask": "he now raises the arm on the right of the picture and points with one finger toward the right side of the picture, the arm straight out at shoulder height, and he looks along his arm to the right, smiling. The other hand stays on his knee."
+  "ask": "he now raises the arm on the right of the picture and points with one finger toward the right side of the picture, the arm straight out at shoulder height, and he looks along his arm to the right, smiling. The other hand stays on his knee.",
+  "pick": 995231,
+  "target": "notice_b",
+  "append": true
  }
 }
