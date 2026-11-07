@@ -226,6 +226,7 @@ def qwen_frame_key(c: dict, style: dict, backend: dict, pid: str, prompt: str, p
         "sheet": sha_file(sheet) if sheet.exists() else None,
         "skeleton": (rig_pose or {}).get("openpose"), "moved": d.get("skeletonOverrides", {}).get(pid),
         "scale": d.get("poseOverrides", {}).get(pid, {}).get("skeletonScale", d.get("skeletonScale", backend["skeletonScale"])),
+        **({"stageScale": d["sheet"]["views"][pose.get("view", "front")]["stageScale"]} if d["sheet"]["views"][pose.get("view", "front")].get("stageScale") else {}),
         "seed": d.get("seed", c.get("seedBase")), "count": d.get("count", backend["countPerPose"]),
         "colours": [[p.get("id"), p.get("colour")] for p in P.visible_parts(c, seen)],
         "targets": c.get("targets"),

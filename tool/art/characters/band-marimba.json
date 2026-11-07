@@ -1,0 +1,307 @@
+{
+ "$comment": "The indoor party's band (marimba), owner's ruling 2026-11-07; front sheet approved the same day. Drawn at an angle, playing toward the crowd, from the front_3q view. The instrument is a mask-only garment, and Qwen draws it from the sheet. Plan: plan/levels/indoor-band-2026-11-07.md.",
+ "id": "band-marimba",
+ "family": "band-marimba-v1",
+ "style": "party-pixel",
+ "description": "Indoor party band, marimba: long-armed, narrow man of about forty, big round black afro, round gold-rimmed spectacles.",
+ "body": {
+  "preset": "slim-adult"
+ },
+ "pronouns": [
+  "he",
+  "him",
+  "his"
+ ],
+ "skin": "#8A5733",
+ "traits": "long-armed, narrow man of about forty, big round black afro, round gold-rimmed spectacles",
+ "demeanor": "the quiet one: absorbed in the bars, head nodding",
+ "garments": [
+  {
+   "id": "hair",
+   "shape": "puff",
+   "region": "hair",
+   "colour": "#191312",
+   "text": "big perfectly round black afro"
+  },
+  {
+   "id": "shirt",
+   "shape": "shirt-fitted",
+   "region": "shirt",
+   "colour": "#EFE4C8",
+   "text": "closed cream shirt with a small midnight-violet bow tie"
+  },
+  {
+   "id": "jacket",
+   "shape": "waistcoat-fitted",
+   "region": "cloth",
+   "colour": "#EADFC2",
+   "text": "long-sleeved cream dinner jacket"
+  },
+  {
+   "id": "lapels",
+   "shape": "jacket-lapels",
+   "region": "apron",
+   "colour": "#3A1F6B",
+   "text": "narrow midnight-violet satin lapels"
+  },
+  {
+   "id": "trousers",
+   "shape": "trousers",
+   "region": "trousers",
+   "colour": "#26232C",
+   "text": "slim dark charcoal trousers"
+  },
+  {
+   "id": "shoes",
+   "shape": "shoes-flat",
+   "region": "shoes",
+   "colour": "#D8C9A0",
+   "text": "polished two-tone cream and dark shoes"
+  },
+  {
+   "id": "bars",
+   "shape": "marimba-bars",
+   "region": "prop",
+   "colour": "#CF5F52",
+   "text": "coral-red rosewood marimba bars",
+   "params": {
+    "yaw": 30.0
+   }
+  },
+  {
+   "id": "tubes",
+   "shape": "marimba-tubes",
+   "region": "accessory",
+   "colour": "#C9A23A",
+   "text": "brass resonator tubes",
+   "params": {
+    "yaw": 30.0
+   }
+  }
+ ],
+ "motion": {
+  "set": "band-loop",
+  "overrides": {
+   "relaxed.a": {
+    "pose": {
+     "twist": 0,
+     "l_arm": [
+      28.0,
+      2.5
+     ],
+     "l_fore": [
+      -4.3,
+      61.3
+     ],
+     "r_arm": [
+      37.2,
+      6.1
+     ],
+     "r_fore": [
+      -33.5,
+      160.2
+     ]
+    },
+    "intent": "seen in a three-quarter view from the side: the chest, hips, knees, toes and nose all point toward the lower right corner of the picture, the face in three-quarter view looking that way, playing out toward a crowd on that side, both feet flat on the floor, standing behind the marimba, the mallet in the hand on the left of the picture raised by his shoulder, the other mallet down on a bar"
+   },
+   "relaxed.b": {
+    "pose": {
+     "twist": 0,
+     "l_arm": [
+      37.2,
+      6.1
+     ],
+     "l_fore": [
+      -33.5,
+      160.2
+     ],
+     "r_arm": [
+      28.0,
+      2.5
+     ],
+     "r_fore": [
+      -4.3,
+      61.3
+     ]
+    },
+    "intent": "seen in a three-quarter view from the side: the chest, hips, knees, toes and nose all point toward the lower right corner of the picture, the face in three-quarter view looking that way, playing out toward a crowd on that side, both feet flat on the floor, standing behind the marimba, the mallet in the hand on the right of the picture raised by his shoulder, the other mallet down on a bar"
+   },
+   "tap.up_a": {
+    "pose": {
+     "twist": 0,
+     "l_arm": [
+      28.0,
+      2.5
+     ],
+     "l_fore": [
+      -4.3,
+      61.3
+     ],
+     "r_arm": [
+      37.2,
+      6.1
+     ],
+     "r_fore": [
+      -33.5,
+      160.2
+     ]
+    },
+    "intent": "seen in a three-quarter view from the side: the chest, hips, knees, toes and nose all point toward the lower right corner of the picture, the face in three-quarter view looking that way, playing out toward a crowd on that side, the right heel of the foot on the left of the picture lifted off the floor, its toe touching, tapping time, the other foot flat, standing behind the marimba, the mallet in the hand on the left of the picture raised, the other mallet down on a bar"
+   },
+   "tap.up_b": {
+    "pose": {
+     "twist": 0,
+     "l_arm": [
+      37.2,
+      6.1
+     ],
+     "l_fore": [
+      -33.5,
+      160.2
+     ],
+     "r_arm": [
+      28.0,
+      2.5
+     ],
+     "r_fore": [
+      -4.3,
+      61.3
+     ]
+    },
+    "intent": "seen in a three-quarter view from the side: the chest, hips, knees, toes and nose all point toward the lower right corner of the picture, the face in three-quarter view looking that way, playing out toward a crowd on that side, the right heel of the foot on the left of the picture lifted off the floor, its toe touching, tapping time, the other foot flat, standing behind the marimba, the mallet in the hand on the right of the picture raised, the other mallet down on a bar"
+   },
+   "swing.a": {
+    "pose": {
+     "twist": 8,
+     "l_arm": [
+      19.4,
+      11.8
+     ],
+     "l_fore": [
+      -37.3,
+      58.3
+     ],
+     "r_arm": [
+      44.4,
+      0.7
+     ],
+     "r_fore": [
+      109.5,
+      4.4
+     ]
+    },
+    "intent": "seen in a three-quarter view from the side: the chest, hips, knees, toes and nose all point toward the lower right corner of the picture, the face in three-quarter view looking that way, playing out toward a crowd on that side, both feet flat on the floor, standing behind the marimba, leaning into a wide sweep, the arm on the left of the picture flung far out with its mallet, the other mallet down on a bar"
+   },
+   "swing.b": {
+    "pose": {
+     "twist": 0,
+     "l_arm": [
+      31.1,
+      2.5
+     ],
+     "l_fore": [
+      45.9,
+      135.5
+     ],
+     "r_arm": [
+      31.1,
+      2.5
+     ],
+     "r_fore": [
+      45.9,
+      135.5
+     ]
+    },
+    "intent": "seen in a three-quarter view from the side: the chest, hips, knees, toes and nose all point toward the lower right corner of the picture, the face in three-quarter view looking that way, playing out toward a crowd on that side, both feet flat on the floor, standing behind the marimba, both mallets lifted high at shoulder height, head bobbing"
+   },
+   "swing.c": {
+    "pose": {
+     "twist": -8,
+     "l_arm": [
+      44.4,
+      0.7
+     ],
+     "l_fore": [
+      109.5,
+      4.4
+     ],
+     "r_arm": [
+      19.4,
+      11.8
+     ],
+     "r_fore": [
+      -37.3,
+      58.3
+     ]
+    },
+    "intent": "seen in a three-quarter view from the side: the chest, hips, knees, toes and nose all point toward the lower right corner of the picture, the face in three-quarter view looking that way, playing out toward a crowd on that side, both feet flat on the floor, standing behind the marimba, leaning into a wide sweep, the arm on the right of the picture flung far out with its mallet, the other mallet down on a bar"
+   },
+   "swing.d": {
+    "pose": {
+     "twist": 0,
+     "l_arm": [
+      31.1,
+      2.5
+     ],
+     "l_fore": [
+      45.9,
+      135.5
+     ],
+     "r_arm": [
+      31.1,
+      2.5
+     ],
+     "r_fore": [
+      45.9,
+      135.5
+     ]
+    },
+    "intent": "seen in a three-quarter view from the side: the chest, hips, knees, toes and nose all point toward the lower right corner of the picture, the face in three-quarter view looking that way, playing out toward a crowd on that side, both feet flat on the floor, standing behind the marimba, both mallets lifted high at shoulder height"
+   }
+  }
+ },
+ "drawing": {
+  "noun": "man",
+  "fits": "the whole of his afro, both shoes, both hands, both mallets and the whole marimba",
+  "look": "tall, narrow, long-armed adult build, long thin lined face, neatly trimmed short beard flecked with grey, round gold-rimmed spectacles, focused gentle smile, brown skin, big perfectly round black afro, long-sleeved cream dinner jacket buttoned closed, its narrow midnight-violet satin lapels lying flat on the chest, a small midnight-violet bow tie at a closed cream shirt collar, slim dark charcoal trousers and polished two-tone cream and dark shoes, and thick dark ink outline, behind a compact wooden marimba with a row of coral-red rosewood bars at his waist and a row of brass resonator tubes hanging beneath them, on a dark frame with two end legs",
+  "extra": "He is a grown man of about forty. He holds two separate short mallets, one in each hand, each as long as his forearm with a round cream head. The marimba stands between him and the viewer at the same angle as his body, about as wide as he is tall and staying in the same place: its row of bars crosses in front of his belt and covers his hips, and its brass tubes hang in front of his thighs, with his shins and both shoes showing below them. ",
+  "sheet": {
+   "source": {
+    "image": "tool/art/references/band-marimba/front.png",
+    "poseFrom": "relaxed.a"
+   },
+   "views": {
+    "front": {
+     "image": "tool/art/references/band-marimba/front.png",
+     "description": "standing square facing the viewer behind the marimba, feet apart, elbows out, looking down at the bars, the hand on the left of the picture lifted to shoulder height and the hand on the right of the picture low over the bars"
+    },
+    "front_3q": {
+     "image": "tool/art/references/band-marimba/front_3q.png",
+     "description": "standing behind the marimba, seen in a three-quarter view from the side: the chest, hips, knees, toes and nose all point toward the lower right corner of the picture, the face in three-quarter view looking that way, playing out toward a crowd on that side, feet apart, looking down at the bars, the mallet in the hand on the left of the picture raised by his shoulder and the other mallet down on a bar",
+     "extra": "He is a grown man of about forty. He holds two separate short mallets, one in each hand, each as long as his forearm with a round cream head. The marimba stands between him and the viewer at the same angle as his body, about as wide as he is tall and staying in the same place: its row of bars crosses in front of his belt and covers his hips, and its brass tubes hang in front of his thighs, with his shins and both shoes showing below them. The marimba is turned the same way: its row of bars runs on a diagonal, its end on the left of the picture nearer the viewer, larger and lower, and its end on the right of the picture smaller and higher. "
+    }
+   }
+  },
+  "score": {
+   "silhouetteTolerance": 60
+  },
+  "seed": 989810
+ },
+ "references": {
+  "mode": "source",
+  "sources": []
+ },
+ "targets": [
+  {
+   "room": "cool-crowd",
+   "atlas": "band-marimba",
+   "out": "assets/art/ensemble/band-marimba-v1.png",
+   "native": [
+    256,
+    320
+   ],
+   "pixelScale": 3
+  }
+ ],
+ "seedBase": 989810
+}

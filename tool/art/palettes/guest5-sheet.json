@@ -1,0 +1,30 @@
+{
+ "schema": "tillandsias.palette/v1",
+ "name": "guest5-sheet",
+ "colours": [
+  "#1A1018",
+  "#000000",
+  "#1F0C0E",
+  "#4B092E",
+  "#371D1F",
+  "#650F37",
+  "#312D2B",
+  "#891647",
+  "#A61E56",
+  "#723619",
+  "#B72F59",
+  "#88441C",
+  "#A5521C",
+  "#B26633",
+  "#C77944",
+  "#DA955A"
+ ],
+ "transparent": null,
+ "$provenance": {
+  "tool": "tool/art/palettes/extract_palette.py",
+  "sources": {
+   "tool/art/references/guest5/front.png": "48bfc034fa5918af1a5a856ad13d0c8d12c6868a6684ce1935ad278a6f580ba3"
+  },
+  "method": "median-cut 93, merge<20, top 31 by count, alpha>=128, luma order, outline at 0"
+ }
+}

@@ -27,6 +27,25 @@
     },
     "party_furniture_v2": {
       "prompt": "Generate a transparent PNG reusable PROP ATLAS for an original warm 16-bit pixel-art mansion party. EXACT2columns×2rows, 4 isolated completeobjects with generous fully transparent gutters, REAL alpha0 background, no text/labels/grid/floor/shadows/halos. Match the brown wood chair in the supplied reference, used by seated adult guests.\nTOPLEFT: empty simple brown carved wooden party chair, three-quarterfront view facing slightly right, vertical back posts with rounded finials, slender slatted back, solid flat wood seat, four distinct planted chairlegs. Allchair visible.\nTOPRIGHT: same chair facing slightly left, equivalent height/scale.\nBOTTOMLEFT: small round brown wood cafe table with pedestalbase, two glasscups with coloredfruitdrinks and a tinyglassvotive on tabletop, viewedthree-quarter slightly from above. Full table and groundbase.\nBOTTOMRIGHT: a matchingcreamfabricpatio umbrella CLOSED, tied canopy onslim brownpole withbase, full tallobject.\nCrisp deliberatelyclusteredpixelart, brown/amberwood ramps, restrained creamhighlights. No people. Objects need no sharedphysicalscale acrossdifferenttypes; chairs sameexactphysicalscale and matchingangles. This image is a clean sprite cutout sheet for independent furniture rendered behind separately animated seated people. Keep eachobjectwhollywithinitscell."
+    },
+    "guest3-v1.png": {
+      "route": "qwen-frame, 2511 Lightning LoRA, $node overrides; tool/art/pipeline/pack_floor_guest.py",
+      "definition": "tool/art/characters/guest3.json",
+      "run": "guest3-20261107b",
+      "picks": {
+        "pair_dance.a": 991001,
+        "pair_dance.c": 991000
+      },
+      "acceptedBy": "agent, proposal: plan/party-art-review-2026-11-07.md"
+    },
+    "guest4-v1.png": {
+      "route": "qwen-frame, 2511 Lightning LoRA, $node overrides; tool/art/pipeline/pack_floor_guest.py",
+      "definition": "tool/art/characters/guest4.json",
+      "run": "guest4-20261107b",
+      "picks": {
+        "pair_dance.a": 992000
+      },
+      "acceptedBy": "agent, proposal: plan/party-art-review-2026-11-07.md"
     }
   }
 }
