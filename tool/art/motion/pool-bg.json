@@ -1,0 +1,66 @@
+{
+ "id": "pool-bg",
+ "description": "A background pool player's small loops at a table outside the picture: stand, chalk, lean and stroke, watch, clap. Not a dance set.",
+ "human": true,
+ "poseTable": "pool-bg",
+ "referencePose": "idle.stand",
+ "clips": [
+  {
+   "id": "idle",
+   "drawings": 1,
+   "view": "front",
+   "sheetView": "front",
+   "promptTemplate": "skeletonTurn",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": []
+  },
+  {
+   "id": "chalk",
+   "drawings": 2,
+   "view": "front",
+   "sheetView": "front",
+   "promptTemplate": "skeletonTurn",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": []
+  },
+  {
+   "id": "lean",
+   "drawings": 3,
+   "view": "front",
+   "sheetView": "front",
+   "promptTemplate": "skeletonTurn",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": []
+  },
+  {
+   "id": "watch",
+   "drawings": 2,
+   "view": "front",
+   "sheetView": "front",
+   "promptTemplate": "skeletonTurn",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": []
+  },
+  {
+   "id": "clap",
+   "drawings": 2,
+   "view": "front",
+   "sheetView": "front",
+   "promptTemplate": "skeletonTurn",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": []
+  }
+ ],
+ "defaultProfile": "moderate",
+ "profileRules": [],
+ "research": [],
+ "runtimeAliases": {
+  "stand": "idle.stand",
+  "stroke": "lean.stroke"
+ }
+}

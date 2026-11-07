@@ -1,5 +1,5 @@
 {
- "$comment": "The Pool Player, the billiards room opponent. The owner accepted sheets 989001 (front) and 989101 and 989103 (back; the second is back-alt.png) on 2026-11-07. The cue is in the words only: the pipeline needs a cue prop kind before any frames.",
+ "$comment": "The Pool Player, the billiards room opponent. The owner accepted sheets 989001 (front) and 989101 and 989103 (back; the second is back-alt.png) on 2026-11-07. Her dance with the cue is written by pool-player.cue-source.py; the cue is a mask (cue-shaft, cue-butt) and a line in each skeleton.",
  "id": "pool-player",
  "family": "pool-player-v1",
  "style": "party-pixel",
@@ -28,7 +28,10 @@
    "shape": "shirt-fitted",
    "region": "shirt",
    "colour": "#F0E8D8",
-   "text": "crisp ivory blouse with the sleeves rolled to the elbow"
+   "text": "crisp ivory blouse with the sleeves rolled to the elbow",
+   "alsoIn": [
+    "prop"
+   ]
   },
   {
    "id": "waistcoat",
@@ -50,17 +53,1052 @@
    "region": "shoes",
    "colour": "#6B3A22",
    "text": "polished oxblood brogues"
+  },
+  {
+   "id": "brass",
+   "shape": "waistcoat-buttons",
+   "region": "accessory",
+   "colour": "#D6A632",
+   "alsoIn": [
+    "cloth",
+    "skin",
+    "hair"
+   ],
+   "text": "brass buttons and small gold stud earrings"
+  },
+  {
+   "id": "chalk",
+   "shape": "palette-only",
+   "region": "accessory",
+   "colour": "#3E8EDE",
+   "alsoIn": [
+    "skin",
+    "prop"
+   ],
+   "text": "a small cube of blue billiard chalk"
+  },
+  {
+   "id": "cue_shaft",
+   "shape": "cue-shaft",
+   "region": "prop",
+   "colour": "#C9984F",
+   "alsoIn": [
+    "skin",
+    "shirt",
+    "cloth",
+    "trousers"
+   ],
+   "text": "pale wooden cue shaft with a white tip"
+  },
+  {
+   "id": "cue_butt",
+   "shape": "cue-butt",
+   "region": "prop_dark",
+   "colour": "#6B3A1E",
+   "alsoIn": [
+    "skin",
+    "trousers",
+    "shoes"
+   ],
+   "text": "dark wooden cue butt"
   }
  ],
  "motion": {
-  "set": "opponent-64",
-  "overrides": {}
+  "set": "opponent-cue",
+  "overrides": {
+   "groove.down_l": {
+    "intent": "weight sunk on {his} bent left knee, right foot stepped back on its ball with the heel raised, left hip high and pushed out, shoulders tilted the other way, left forearm swinging forward at belly height, head level facing the viewer",
+    "pose": {
+     "r_arm": [
+      26,
+      10
+     ],
+     "r_fore": [
+      44,
+      34
+     ]
+    }
+   },
+   "groove.pass_l": {
+    "intent": "weight rolling forward onto the left foot, knees softening upward, right foot still slightly back on its ball, hips easing toward level, left arm loose and low",
+    "pose": {
+     "r_arm": [
+      26,
+      10
+     ],
+     "r_fore": [
+      44,
+      34
+     ]
+    }
+   },
+   "groove.up_l": {
+    "intent": "both feet together and flat, legs nearly straight in a small rise, hips almost level, chin lifted proudly, left arm relaxed low at the side with a soft elbow",
+    "pose": {
+     "r_arm": [
+      26,
+      10
+     ],
+     "r_fore": [
+      44,
+      34
+     ]
+    }
+   },
+   "groove.pass_l2": {
+    "intent": "hip popped out to {his} right over the straight right leg, right hip high, right shoulder dipped toward the cue, left knee bent with the left foot resting on its toe, left forearm across the belly, head tilted toward {his} left",
+    "pose": {
+     "r_arm": [
+      26,
+      10
+     ],
+     "r_fore": [
+      44,
+      34
+     ]
+    }
+   },
+   "groove.down_r": {
+    "intent": "weight sunk on {his} bent right knee, left foot stepped back on its ball with the heel raised, right hip high and pushed out toward the cue, shoulders tilted the other way, left arm low and back, head level facing the viewer",
+    "pose": {
+     "r_arm": [
+      26,
+      10
+     ],
+     "r_fore": [
+      44,
+      34
+     ]
+    }
+   },
+   "groove.pass_r": {
+    "intent": "weight rolling forward onto the right foot, knees softening upward, left foot still slightly back on its ball, hips easing toward level, left arm loose and low",
+    "pose": {
+     "r_arm": [
+      26,
+      10
+     ],
+     "r_fore": [
+      44,
+      34
+     ]
+    }
+   },
+   "groove.up_r": {
+    "intent": "both feet together and flat, legs nearly straight in a small rise, hips almost level, chin lifted proudly, left arm relaxed low at the side with a soft elbow",
+    "pose": {
+     "r_arm": [
+      26,
+      10
+     ],
+     "r_fore": [
+      44,
+      34
+     ]
+    }
+   },
+   "groove.pass_r2": {
+    "intent": "hip popped out to {his} left over the straight left leg, left hip high, left shoulder dipped, right knee bent with the right foot resting on its toe, left forearm lifted out at hip height in a wrist roll, head tilted toward {his} right",
+    "pose": {
+     "r_arm": [
+      26,
+      10
+     ],
+     "r_fore": [
+      44,
+      34
+     ]
+    }
+   },
+   "left_hand.prep": {
+    "intent": "crouched low with weight on the bent right leg, left hand scooped down low in front of the left hip, torso turned away to {his} right, head glancing down at the left hand",
+    "pose": {
+     "r_arm": [
+      30,
+      12
+     ],
+     "r_fore": [
+      50,
+      30
+     ]
+    }
+   },
+   "left_hand.peak": {
+    "intent": "leaning far away from the planted cue with the right arm stretched straight out to hold it, like a dancer swinging out from a pole, one long diagonal from the cue hand through the chest to the left palm thrust high and out at about 45 degrees, left foot on its toe out to the side, head turned up toward the raised hand",
+    "pose": {
+     "r_arm": [
+      62,
+      8
+     ],
+     "r_fore": [
+      66,
+      12
+     ]
+    }
+   },
+   "left_hand.follow": {
+    "intent": "same lean pushed further: right arm straight, hanging out from the planted cue, left arm reaching higher and the palm rolling forward, left toe touch out wider, head following the hand",
+    "pose": {
+     "r_arm": [
+      68,
+      8
+     ],
+     "r_fore": [
+      70,
+      12
+     ]
+    }
+   },
+   "left_hand.return": {
+    "intent": "left arm sweeping down in an arc at shoulder height with the elbow bent, right hand on the planted cue, both feet flat and close, torso returning upright",
+    "pose": {
+     "r_arm": [
+      32,
+      10
+     ],
+     "r_fore": [
+      46,
+      30
+     ]
+    }
+   },
+   "right_hand.prep": {
+    "intent": "crouched low with weight on the bent left leg, left fist on the hip, right hand low in front of the right hip holding the cue near its butt, the cue slanting up and out across the picture, torso turned away to {his} left, head glancing at the cue",
+    "pose": {
+     "r_arm": [
+      36,
+      26
+     ],
+     "r_fore": [
+      34,
+      60
+     ]
+    }
+   },
+   "right_hand.peak": {
+    "intent": "weight on the straight left foot, left fist on the hip, body leaning toward {his} right, right arm thrust high and out holding the cue near its butt, the long cue swung up over {his} head and slanting across the top of the picture, right foot on its toe out to the side, head turned up toward the cue",
+    "pose": {
+     "r_arm": [
+      122,
+      14
+     ],
+     "r_fore": [
+      132,
+      10
+     ]
+    }
+   },
+   "right_hand.follow": {
+    "intent": "right arm high, the cue swung further round so that it lies nearly level above {his} head, torso leaning further toward {his} right, left elbow pushed back on the hip, right toe touch out wider, head following the cue",
+    "pose": {
+     "r_arm": [
+      130,
+      16
+     ],
+     "r_fore": [
+      150,
+      16
+     ]
+    }
+   },
+   "right_hand.return": {
+    "intent": "the right arm coming down with the elbow bent, the cue swinging back upright beside {him} with its butt nearing the floor, left hand low on the hip, both feet flat and close, torso returning upright",
+    "pose": {
+     "r_arm": [
+      38,
+      12
+     ],
+     "r_fore": [
+      50,
+      34
+     ]
+    }
+   },
+   "left_foot.prep": {
+    "intent": "weight on the bent right leg, left knee lifted forward and out with the foot off the floor and the toe pointing down, left fist on the hip, head looking down at the left foot",
+    "pose": {
+     "r_arm": [
+      26,
+      10
+     ],
+     "r_fore": [
+      44,
+      34
+     ]
+    }
+   },
+   "left_foot.peak": {
+    "intent": "heel dig: left leg stretched out on a forward diagonal with the left heel on the floor and the toe up, weight on the bent right leg, chest proud and leaning back slightly, left arm low and back, head turned toward the left foot",
+    "pose": {
+     "r_arm": [
+      26,
+      10
+     ],
+     "r_fore": [
+      44,
+      34
+     ]
+    }
+   },
+   "left_foot.follow": {
+    "intent": "left heel still dug in on the diagonal, hip popped over the right foot, shoulders tilted against the hips, left arm low and out, head on the left foot",
+    "pose": {
+     "r_arm": [
+      26,
+      10
+     ],
+     "r_fore": [
+      44,
+      34
+     ]
+    }
+   },
+   "left_foot.return": {
+    "intent": "left foot dragged back along the floor to close beside the right, both feet flat, knees soft, left arm relaxed low at the side",
+    "pose": {
+     "r_arm": [
+      26,
+      10
+     ],
+     "r_fore": [
+      44,
+      34
+     ]
+    }
+   },
+   "right_foot.prep": {
+    "intent": "weight on the bent left leg, right knee lifted forward and out with the foot off the floor and the toe pointing down, left fist on the hip, head looking down at the right foot",
+    "pose": {
+     "r_arm": [
+      40,
+      10
+     ],
+     "r_fore": [
+      50,
+      30
+     ]
+    }
+   },
+   "right_foot.peak": {
+    "intent": "heel dig: right leg stretched out on a forward diagonal with the right heel on the floor and the toe up, weight on the bent left leg, chest proud and leaning back slightly, left fist on the hip, head turned toward the right foot",
+    "pose": {
+     "r_arm": [
+      46,
+      10
+     ],
+     "r_fore": [
+      56,
+      26
+     ]
+    }
+   },
+   "right_foot.follow": {
+    "intent": "right heel still dug in on the diagonal, hip popped over the left foot, shoulders tilted against the hips, left elbow pushed back on the hip, head on the right foot",
+    "pose": {
+     "r_arm": [
+      46,
+      10
+     ],
+     "r_fore": [
+      56,
+      26
+     ]
+    }
+   },
+   "right_foot.return": {
+    "intent": "right foot dragged back along the floor to close beside the left, both feet flat, knees soft, left arm relaxed low at the side",
+    "pose": {
+     "r_arm": [
+      26,
+      10
+     ],
+     "r_fore": [
+      44,
+      34
+     ]
+    }
+   },
+   "watch.shift_l": {
+    "intent": "relaxed stance turned slightly to {his} left, both hands stacked one over the other on the upright cue in front of {his} chest, leaning on it, weight on the left foot with the left hip high, right knee soft, head turned to watch the other dancer",
+    "pose": {
+     "r_arm": [
+      10,
+      40
+     ],
+     "r_fore": [
+      -30,
+      62
+     ],
+     "l_arm": [
+      12,
+      44
+     ],
+     "l_fore": [
+      -105,
+      58
+     ]
+    }
+   },
+   "watch.hold_l": {
+    "intent": "both hands stacked on the upright cue, weight sunk on the left foot with both knees softer, head nodding along to the music while watching",
+    "pose": {
+     "r_arm": [
+      10,
+      40
+     ],
+     "r_fore": [
+      -30,
+      62
+     ],
+     "l_arm": [
+      12,
+      44
+     ],
+     "l_fore": [
+      -105,
+      58
+     ]
+    }
+   },
+   "watch.shift_r": {
+    "intent": "relaxed stance turned slightly to {his} left, both hands stacked one over the other on the upright cue in front of {his} chest, leaning on it, weight on the right foot with the right hip high, left knee soft, head turned to watch the other dancer",
+    "pose": {
+     "r_arm": [
+      10,
+      40
+     ],
+     "r_fore": [
+      -30,
+      62
+     ],
+     "l_arm": [
+      12,
+      44
+     ],
+     "l_fore": [
+      -105,
+      58
+     ]
+    }
+   },
+   "watch.hold_r": {
+    "intent": "both hands stacked on the upright cue, weight sunk on the right foot with both knees softer, head tilted with a small nod while watching",
+    "pose": {
+     "r_arm": [
+      10,
+      40
+     ],
+     "r_fore": [
+      -30,
+      62
+     ],
+     "l_arm": [
+      12,
+      44
+     ],
+     "l_fore": [
+      -105,
+      58
+     ]
+    }
+   },
+   "clap.open": {
+    "intent": "standing square and upright, the cue upright in {his} right hand in front of {his} chest, left forearm raised with the palm open and away from the cue, elbows out, chin up",
+    "pose": {
+     "r_arm": [
+      18,
+      36
+     ],
+     "r_fore": [
+      -44,
+      70
+     ],
+     "l_arm": [
+      40,
+      26
+     ],
+     "l_fore": [
+      10,
+      96
+     ]
+    }
+   },
+   "clap.close": {
+    "intent": "the left palm swinging in toward the upright cue held in front of {his} chest, elbows out, knees starting to bend, head starting to nod",
+    "pose": {
+     "r_arm": [
+      18,
+      36
+     ],
+     "r_fore": [
+      -44,
+      70
+     ],
+     "l_arm": [
+      26,
+      34
+     ],
+     "l_fore": [
+      -70,
+      84
+     ]
+    }
+   },
+   "clap.contact": {
+    "intent": "left palm slapped against the shaft of the upright cue just above the right hand, in front of the chest, elbows out to the sides, both knees dipped, head nodding down with a smile",
+    "pose": {
+     "r_arm": [
+      18,
+      36
+     ],
+     "r_fore": [
+      -44,
+      70
+     ],
+     "l_arm": [
+      20,
+      34
+     ],
+     "l_fore": [
+      -108,
+      70
+     ]
+    }
+   },
+   "clap.release": {
+    "intent": "the left palm bouncing away from the upright cue, elbows out, knees rising, head level",
+    "pose": {
+     "r_arm": [
+      18,
+      36
+     ],
+     "r_fore": [
+      -44,
+      70
+     ],
+     "l_arm": [
+      36,
+      26
+     ],
+     "l_fore": [
+      -30,
+      84
+     ]
+    }
+   },
+   "challenge.load": {
+    "intent": "back-break dip: weight sunk on the bent left leg, right foot back on its ball, torso leaning forward a little, the right hand low at the hip holding the cue slanted up across {his} body so its tip comes to just below {his} chin, the left hand twisting a small blue cube of chalk on the tip, a sly look down at the tip",
+    "pose": {
+     "r_arm": [
+      24,
+      20
+     ],
+     "r_fore": [
+      20,
+      60
+     ],
+     "l_arm": [
+      34,
+      52
+     ],
+     "l_fore": [
+      -132,
+      64
+     ]
+    }
+   },
+   "challenge.proud": {
+    "intent": "proud stance: left fist on the hip with the elbow out, right hand on the planted cue, chest pushed out and leaning back, chin raised, weight on the straight right leg, left heel set forward with the toe up",
+    "pose": {
+     "r_arm": [
+      30,
+      10
+     ],
+     "r_fore": [
+      50,
+      30
+     ],
+     "l_arm": [
+      68,
+      -26
+     ],
+     "l_fore": [
+      -40,
+      -14
+     ]
+    }
+   },
+   "challenge.offer": {
+    "intent": "bent forward over an imaginary table taking aim, the cue level in front of {him} and pointing toward the picture's right and toward the viewer, the right hand back at the hip on the butt of the cue, the left hand forward on the shaft as a bridge, the head low behind the cue sighting along it with one eye narrowed",
+    "pose": {
+     "yaw": 24,
+     "twist": -10,
+     "lean": 26,
+     "side_bend": 0,
+     "pelvis_x": 0.0,
+     "pelvis_roll": 0,
+     "head_turn": 4,
+     "head_nod": -6,
+     "r_arm": [
+      34,
+      -18
+     ],
+     "r_fore": [
+      20,
+      60
+     ],
+     "l_arm": [
+      52,
+      42
+     ],
+     "l_fore": [
+      60,
+      66
+     ]
+    }
+   },
+   "challenge.return": {
+    "intent": "both feet flat, standing easy, right hand on the planted cue, left hand low near the hip, body upright, ready",
+    "pose": {
+     "r_arm": [
+      26,
+      10
+     ],
+     "r_fore": [
+      44,
+      34
+     ]
+    }
+   },
+   "approval.load": {
+    "intent": "small inhale: chest lifted and leaning back slightly, chin raised, weight on the right foot, right hand on the planted cue, left arm loose and slightly away from the body",
+    "pose": {
+     "r_arm": [
+      26,
+      10
+     ],
+     "r_fore": [
+      44,
+      34
+     ]
+    }
+   },
+   "approval.nod": {
+    "intent": "left palm pressed flat to the chest, a deep nod with the head bowed, both knees dipped, right hand on the planted cue",
+    "pose": {
+     "r_arm": [
+      26,
+      10
+     ],
+     "r_fore": [
+      44,
+      34
+     ],
+     "l_arm": [
+      24,
+      32
+     ],
+     "l_fore": [
+      -100,
+      56
+     ]
+    }
+   },
+   "approval.release": {
+    "intent": "left arm held out forward at waist height with the palm open toward the viewer, right hand on the planted cue, head tilted warmly",
+    "pose": {
+     "r_arm": [
+      26,
+      10
+     ],
+     "r_fore": [
+      44,
+      34
+     ],
+     "l_arm": [
+      52,
+      34
+     ],
+     "l_fore": [
+      70,
+      50
+     ]
+    }
+   },
+   "reassurance.notice": {
+    "intent": "head tilted to {his} right with a soft warm look, weight on the left foot, right hand on the planted cue, left arm relaxed low",
+    "pose": {
+     "r_arm": [
+      26,
+      10
+     ],
+     "r_fore": [
+      44,
+      34
+     ]
+    }
+   },
+   "reassurance.open_hand": {
+    "intent": "small friendly shrug: left forearm out at waist height with the palm open and up, right hand on the planted cue, both knees softly bent, head tilted",
+    "pose": {
+     "r_arm": [
+      26,
+      10
+     ],
+     "r_fore": [
+      44,
+      34
+     ]
+    }
+   },
+   "reassurance.settle": {
+    "intent": "a back-break step on the spot: weight on the bent left knee, right foot back on its ball, left forearm forward, right hand on the planted cue, inviting the rhythm back",
+    "pose": {
+     "r_arm": [
+      26,
+      10
+     ],
+     "r_fore": [
+      44,
+      34
+     ]
+    }
+   },
+   "finish_turn.finish_a": {
+    "intent": "weight on the straight right leg, left heel set forward with the toe up, left fist on the hip, the right hand lifting the cue up off the floor and rising to the shoulder, chest proud, chin up",
+    "pose": {
+     "r_arm": [
+      40,
+      20
+     ],
+     "r_fore": [
+      -6,
+      90
+     ],
+     "l_arm": [
+      58,
+      -18
+     ],
+     "l_fore": [
+      -48,
+      -8
+     ]
+    }
+   },
+   "finish_turn.finish_b": {
+    "intent": "the cue held straight up in front of {his} face in the right hand like a fencer's salute, its tip above {his} head, head dipped slightly, chest proud, left elbow out with the fist on the hip, left heel forward with the toe up",
+    "pose": {
+     "r_arm": [
+      24,
+      36
+     ],
+     "r_fore": [
+      -96,
+      96
+     ],
+     "l_arm": [
+      68,
+      -26
+     ],
+     "l_fore": [
+      -40,
+      -14
+     ]
+    }
+   },
+   "finish_turn.turn_in": {
+    "intent": "body turned about 30 degrees toward {his} left on a heel pivot, circling the planted cue as a partner, right arm stretched to it behind {him}, left arm open out to the side at hip height",
+    "pose": {
+     "r_arm": [
+      50,
+      -10
+     ],
+     "r_fore": [
+      58,
+      0
+     ]
+    }
+   },
+   "finish_turn.turn_out": {
+    "intent": "body turned about 30 degrees toward {his} right on a heel pivot, swinging in round the planted cue as a partner, chest close to it, right hand on it at shoulder height, left fist on the hip",
+    "pose": {
+     "r_arm": [
+      40,
+      26
+     ],
+     "r_fore": [
+      50,
+      60
+     ],
+     "l_arm": [
+      58,
+      -18
+     ],
+     "l_fore": [
+      -48,
+      -8
+     ]
+    }
+   },
+   "enter_forward.contact_l": {
+    "intent": "walk toward the viewer on a slight diagonal, left heel landing in front, right foot behind on its toe, chin up, left arm swinging back",
+    "pose": {
+     "r_arm": [
+      20,
+      14
+     ],
+     "r_fore": [
+      28,
+      34
+     ],
+     "l_arm": [
+      20,
+      -20
+     ],
+     "l_fore": [
+      16,
+      20
+     ]
+    }
+   },
+   "enter_forward.down_l": {
+    "intent": "walk, weight settling on the bent left knee, right foot passing behind, left arm low",
+    "pose": {
+     "r_arm": [
+      20,
+      14
+     ],
+     "r_fore": [
+      28,
+      34
+     ],
+     "l_arm": [
+      20,
+      0
+     ],
+     "l_fore": [
+      16,
+      20
+     ]
+    }
+   },
+   "enter_forward.pass_l": {
+    "intent": "walk, rising over the straight left leg, right knee passing forward, left arm low",
+    "pose": {
+     "r_arm": [
+      20,
+      14
+     ],
+     "r_fore": [
+      28,
+      34
+     ],
+     "l_arm": [
+      20,
+      0
+     ],
+     "l_fore": [
+      16,
+      20
+     ]
+    }
+   },
+   "enter_forward.contact_r": {
+    "intent": "walk, right heel landing in front, left foot behind on its toe, left arm swinging forward",
+    "pose": {
+     "r_arm": [
+      20,
+      14
+     ],
+     "r_fore": [
+      28,
+      34
+     ],
+     "l_arm": [
+      20,
+      0
+     ],
+     "l_fore": [
+      16,
+      20
+     ]
+    }
+   },
+   "enter_forward.down_r": {
+    "intent": "walk, weight settling on the bent right knee, left foot passing behind, left arm low",
+    "pose": {
+     "r_arm": [
+      20,
+      14
+     ],
+     "r_fore": [
+      28,
+      34
+     ],
+     "l_arm": [
+      20,
+      0
+     ],
+     "l_fore": [
+      16,
+      20
+     ]
+    }
+   },
+   "enter_forward.pass_r": {
+    "intent": "walk, rising over the straight right leg, left knee passing forward, left arm low",
+    "pose": {
+     "r_arm": [
+      20,
+      14
+     ],
+     "r_fore": [
+      28,
+      34
+     ],
+     "l_arm": [
+      20,
+      0
+     ],
+     "l_fore": [
+      16,
+      20
+     ]
+    }
+   },
+   "yield_side.contact_l": {
+    "intent": "walk sideways out of the way, left heel landing in front, right foot behind on its toe, chin up, left arm swinging back",
+    "pose": {
+     "r_arm": [
+      20,
+      14
+     ],
+     "r_fore": [
+      28,
+      34
+     ],
+     "l_arm": [
+      20,
+      -20
+     ],
+     "l_fore": [
+      16,
+      20
+     ]
+    }
+   },
+   "yield_side.down_l": {
+    "intent": "walk, weight settling on the bent left knee, right foot passing behind, left arm low",
+    "pose": {
+     "r_arm": [
+      20,
+      14
+     ],
+     "r_fore": [
+      28,
+      34
+     ],
+     "l_arm": [
+      20,
+      0
+     ],
+     "l_fore": [
+      16,
+      20
+     ]
+    }
+   },
+   "yield_side.pass_l": {
+    "intent": "walk, rising over the straight left leg, right knee passing forward, left arm low",
+    "pose": {
+     "r_arm": [
+      20,
+      14
+     ],
+     "r_fore": [
+      28,
+      34
+     ],
+     "l_arm": [
+      20,
+      0
+     ],
+     "l_fore": [
+      16,
+      20
+     ]
+    }
+   },
+   "yield_side.contact_r": {
+    "intent": "walk, right heel landing in front, left foot behind on its toe, left arm swinging forward",
+    "pose": {
+     "r_arm": [
+      20,
+      14
+     ],
+     "r_fore": [
+      28,
+      34
+     ],
+     "l_arm": [
+      20,
+      0
+     ],
+     "l_fore": [
+      16,
+      20
+     ]
+    }
+   },
+   "yield_side.down_r": {
+    "intent": "walk, weight settling on the bent right knee, left foot passing behind, left arm low",
+    "pose": {
+     "r_arm": [
+      20,
+      14
+     ],
+     "r_fore": [
+      28,
+      34
+     ],
+     "l_arm": [
+      20,
+      0
+     ],
+     "l_fore": [
+      16,
+      20
+     ]
+    }
+   },
+   "yield_side.pass_r": {
+    "intent": "standing on the right leg, the cue upright in {his} right hand beside {him}, left arm held out low and wide with the palm open and up toward the empty floor, head turned toward the open palm with a slight bow, offering the floor",
+    "pose": {
+     "r_arm": [
+      20,
+      14
+     ],
+     "r_fore": [
+      28,
+      34
+     ],
+     "l_arm": [
+      44,
+      16
+     ],
+     "l_fore": [
+      70,
+      40
+     ]
+    }
+   }
+  }
  },
  "drawing": {
   "noun": "woman",
   "fits": "hair, both shoes and both hands",
   "look": "slim upright adult build, warm brown skin, an oval face with fine smile lines and a calm knowing smile, neat silver chin-length bob, small gold stud earrings, crisp ivory blouse with the sleeves rolled to the elbow, fitted billiard-green waistcoat with brass buttons, high-waisted charcoal trousers with a sharp crease, polished oxblood brogues and thick dark ink outline",
-  "extra": "Both eyes are open. This is a grown woman of about sixty, fully clothed. A long slim wooden billiard cue stands upright in the hand at the picture's left, its butt resting on the floor beside the shoe and its pale tip above the head. ",
+  "extra": "Both eyes are open. This is a grown woman of about sixty, fully clothed. There is exactly one billiard cue, long, slim, straight and rigid, with a pale wooden shaft, a white tip and a dark wooden butt: it lies along the thin white line in image 2. Do not draw the line itself. ",
   "sheet": {
    "source": {
     "image": "tool/art/references/bartender/front.png",
@@ -69,16 +1107,270 @@
    "views": {
     "front": {
      "description": "standing square and upright facing the viewer, feet a little apart, her left arm relaxed and held a little away from her body with the open hand visible, her right hand holding the cue upright beside her",
-     "image": "tool/art/references/pool-player/front.png"
+     "image": "tool/art/references/pool-player/front.png",
+     "stageScale": 0.84
     },
     "back": {
      "description": "seen from directly behind, her back to the viewer, standing upright with feet a little apart, the plain back of her waistcoat and the back of her silver hair, her right hand holding the cue upright beside her",
      "look": "slim upright adult build, warm brown skin, neat silver chin-length bob seen from behind, ivory blouse with the sleeves rolled to the elbow, billiard-green waistcoat with a plain satin back and a small buckle, high-waisted charcoal trousers, polished oxblood brogues and thick dark ink outline",
-     "image": "tool/art/references/pool-player/back.png"
+     "image": "tool/art/references/pool-player/back.png",
+     "stageScale": 0.84,
+     "stageFlip": true
     }
    }
   },
-  "seed": 989000
+  "seed": 989000,
+  "cue": {
+   "length": 1.6,
+   "default": {
+    "mode": "planted",
+    "hand": "r",
+    "butt": [
+     -0.42,
+     -0.05
+    ]
+   },
+   "clips": {
+    "groove": {
+     "mode": "planted",
+     "hand": "r",
+     "butt": [
+      -0.42,
+      -0.05
+     ],
+     "words": "Her right hand grips a long billiard cue that stands on the floor beside her like a dance pole."
+    },
+    "left_hand": {
+     "mode": "planted",
+     "hand": "r",
+     "butt": [
+      -0.38,
+      -0.05
+     ],
+     "words": "Her right hand grips a long billiard cue that stands on the floor beside her like a dance pole."
+    },
+    "left_foot": {
+     "mode": "planted",
+     "hand": "r",
+     "butt": [
+      -0.42,
+      -0.05
+     ],
+     "words": "Her right hand grips a long billiard cue that stands on the floor beside her like a dance pole."
+    },
+    "right_foot": {
+     "mode": "planted",
+     "hand": "r",
+     "butt": [
+      -0.42,
+      -0.05
+     ],
+     "words": "Her right hand grips a long billiard cue that stands on the floor beside her like a dance pole."
+    },
+    "enter_forward": {
+     "mode": "held",
+     "hand": "r",
+     "dir": [
+      0,
+      0,
+      1
+     ],
+     "grip": 0.5,
+     "words": "She carries a long billiard cue upright in her right hand, its butt just clear of the floor."
+    },
+    "yield_side": {
+     "mode": "held",
+     "hand": "r",
+     "dir": [
+      0,
+      0,
+      1
+     ],
+     "grip": 0.5,
+     "words": "She carries a long billiard cue upright in her right hand, its butt just clear of the floor."
+    },
+    "watch": {
+     "mode": "planted",
+     "hand": "r",
+     "butt": [
+      0.08,
+      -0.32
+     ],
+     "otherHand": 50,
+     "words": "A long billiard cue stands on the floor in front of her, and she leans on it with both hands."
+    },
+    "clap": {
+     "mode": "held",
+     "hand": "r",
+     "dir": [
+      0,
+      0,
+      1
+     ],
+     "grip": 0.42,
+     "words": "She holds a long billiard cue upright in her right hand."
+    },
+    "challenge": {
+     "mode": "planted",
+     "hand": "r",
+     "butt": [
+      -0.42,
+      -0.05
+     ],
+     "words": "Her right hand grips a long billiard cue that stands on the floor beside her like a dance pole."
+    },
+    "approval": {
+     "mode": "planted",
+     "hand": "r",
+     "butt": [
+      -0.42,
+      -0.05
+     ],
+     "words": "Her right hand grips a long billiard cue that stands on the floor beside her like a dance pole."
+    },
+    "reassurance": {
+     "mode": "planted",
+     "hand": "r",
+     "butt": [
+      -0.42,
+      -0.05
+     ],
+     "words": "Her right hand grips a long billiard cue that stands on the floor beside her like a dance pole."
+    },
+    "right_hand": {
+     "mode": "held",
+     "hand": "r",
+     "dir": [
+      0.6,
+      0,
+      0.8
+     ],
+     "grip": 0.22,
+     "words": "She swings a long billiard cue in her right hand, gripped near its butt, the one cue in the picture."
+    },
+    "finish_turn": {
+     "mode": "planted",
+     "hand": "r",
+     "butt": [
+      -0.42,
+      -0.05
+     ],
+     "words": "Her right hand grips a long billiard cue that stands on the floor beside her like a dance pole."
+    },
+    "spin": {
+     "mode": "held",
+     "hand": "r",
+     "dir": [
+      0,
+      0,
+      1
+     ],
+     "grip": 0.5,
+     "words": "She carries one long billiard cue upright in her right hand through the spin, its butt just clear of the floor."
+    }
+   },
+   "poses": {
+    "right_hand.prep": {
+     "mode": "held",
+     "dir": [
+      0.75,
+      -0.2,
+      0.62
+     ],
+     "grip": 0.2
+    },
+    "right_hand.peak": {
+     "mode": "held",
+     "dir": [
+      0.82,
+      -0.45,
+      0.35
+     ],
+     "grip": 0.2
+    },
+    "right_hand.follow": {
+     "mode": "held",
+     "dir": [
+      0.9,
+      -0.4,
+      0.1
+     ],
+     "grip": 0.17
+    },
+    "right_hand.return": {
+     "mode": "planted",
+     "butt": [
+      -0.46,
+      -0.05
+     ],
+     "words": "Her right hand grips a long billiard cue that stands on the floor beside her like a dance pole."
+    },
+    "challenge.load": {
+     "otherHand": "tip",
+     "mode": "held",
+     "dir": [
+      0.42,
+      -0.2,
+      0.88
+     ],
+     "grip": 0.52,
+     "words": "She holds a long billiard cue slanted across her body in her right hand, and chalks its tip with her left."
+    },
+    "challenge.offer": {
+     "mode": "held",
+     "dir": [
+      0.75,
+      -0.6,
+      0.02
+     ],
+     "grip": 0.12,
+     "words": "Both hands are on the cue, taking aim."
+    },
+    "clap.contact": {
+     "otherHand": 60
+    },
+    "finish_turn.finish_a": {
+     "mode": "held",
+     "dir": [
+      -0.05,
+      0,
+      1
+     ],
+     "grip": 0.42,
+     "words": "She holds a long billiard cue upright in her right hand."
+    },
+    "finish_turn.finish_b": {
+     "mode": "held",
+     "dir": [
+      0,
+      0,
+      1
+     ],
+     "grip": 0.42,
+     "words": "She holds a long billiard cue upright in her right hand."
+    },
+    "finish_turn.turn_in": {
+     "mode": "planted",
+     "butt": [
+      -0.5,
+      0.15
+     ],
+     "words": "Her right hand grips a long billiard cue that stands on the floor beside her like a dance pole."
+    },
+    "finish_turn.turn_out": {
+     "mode": "planted",
+     "butt": [
+      -0.36,
+      -0.2
+     ],
+     "words": "Her right hand grips a long billiard cue that stands on the floor beside her like a dance pole."
+    }
+   }
+  },
+  "count": 2,
+  "score": {
+   "silhouetteTolerance": 30
+  }
  },
  "references": {
   "mode": "source",

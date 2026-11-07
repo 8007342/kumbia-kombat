@@ -82,6 +82,7 @@ def rig_key(c: dict) -> str:
         "props": [{f: p.get(f) for f in ("kind", "hand", "clips")} for p in c.get("props", [])],
         "motion": {"set": c["motion"]["set"], "overrides": {k: v.get("pose") for k, v in c["motion"].get("overrides", {}).items()}},
         "camera": [t.get("camera") for t in c.get("targets", [])],
+        **({"cue": c["drawing"]["cue"]} if c.get("drawing", {}).get("cue") else {}),
         "code": {f: hashlib.sha256((D.ART / f).read_bytes()).hexdigest() for f in RIG_CODE},
     })
 
@@ -224,8 +225,9 @@ def qwen_frame_key(c: dict, style: dict, backend: dict, pid: str, prompt: str, p
     return key_of({
         "backend": backend["id"], "pose": pid, "prompt": prompt, "graph": sha_file(D.ROOT / backend["workflow"]),
         "sheet": sha_file(sheet) if sheet.exists() else None,
-        "skeleton": (rig_pose or {}).get("openpose"), "moved": d.get("skeletonOverrides", {}).get(pid),
+        "skeleton": (rig_pose or {}).get("openpose"), "moved": d.get("skeletonOverrides", {}).get(pid), **({"cue": rig_pose["cue"]} if (rig_pose or {}).get("cue") else {}),
         "scale": d.get("poseOverrides", {}).get(pid, {}).get("skeletonScale", d.get("skeletonScale", backend["skeletonScale"])),
+        **({"stageScale": d["sheet"]["views"][pose.get("view", "front")]["stageScale"]} if d["sheet"]["views"][pose.get("view", "front")].get("stageScale") else {}),
         "seed": d.get("seed", c.get("seedBase")), "count": d.get("count", backend["countPerPose"]),
         "colours": [[p.get("id"), p.get("colour")] for p in P.visible_parts(c, seen)],
         "targets": c.get("targets"),
