@@ -12,7 +12,18 @@
 
 ## Still stand-ins
 
-STANDIN_TABLE
+Each swap is a data edit in `levels/salon.json`, plus its test run.
+
+| Where | Today | Replace with | From |
+|---|---|---|---|
+| Don Terciopelo in play | `gatekeeper` atlas (id `terciopelo`, so his dancer entry, accents and combo are already his) | `atlas: "terciopelo"`, and the win clips `mirror_look`, `bow_a/b/hold`, `sweep_a/b` in `exitShot.opponent` (today the GateKeeper's `watch_left`, `approval_*`, `reassurance_open_hand`, `invite`) | TERCIOPELO, drawing |
+| Room plate | `salon/salon-room-standin.png`, the picked 991002 as painted, with the chandeliers' floor reflections still in the tap band | `salon/salon-room.png`, the clean plate | SALONART, filling |
+| Chandeliers swaying | none (no `layers` block) | `art_runs/rooms/salon/layers-level.json`'s layers | SALONART |
+| Bongos | `band-congas` | `band-bongos` | SALONART, drawing |
+| Close-up plate | `closeups/salon-plate.png`, cut by me from the stand-in plate (x 181-651, y 60-760): the far doors, mirrors and a chandelier | keep, or recut from the clean plate | me |
+| Mācron before the rose, in the close-up | `closeups/nod-mc-rest.png` (the party's nod rig, same canvas and floor) | a salon-mc drawing without the rose, if TERCIOPELO draws one | TERCIOPELO |
+
+Already the real thing: the camera, every mark, the six couples and the trio's places (SALONART's `art_runs/rooms/salon/marks.json`), the piano and violin players, the close-up's busts and Mācron's half and the wide-shot rose (TERCIOPELO's `salon-art.json`), his dancer entry with the charisma idles and EL GIRO's clips, and the rendered music and synth fallback (BOLERO).
 
 ## The chart
 
@@ -46,8 +57,8 @@ Beats count from the success score's first beat. The salon is the last level, so
 | 1.75-4 | He turns and gives a deep, slow bow, held | `opponent` clip 2, and a low `nod` on 3 |
 | 2-3.75 | Mācron, done celebrating, walks to him | `walkFrom`, `walkTo` |
 | 4 | Close-up | `closeupFrom` |
-| 4.5-5.5 | He plucks the rose and offers it | actor frames |
-| 6 | Mācron takes it, on the downbeat. QUÉ / ELEGANCIA | `contactBeat`, a soft `peck` |
+| 4.5-5.25 | He plucks the rose and offers it | actor frames |
+| 6 | Mācron takes it, on the downbeat. His hand is empty. QUÉ / ELEGANCIA | `contactBeat`, a soft `peck` |
 | 7.5 | He tucks it behind his antenna | actor frames, a softer `peck` |
 | 9.5 | Back to wide. The rose is on his antenna | `closeupTo`, `keepsake` from 7.5 |
 | 9.5-13.5 | The chandeliers swell once and settle | `flare` |
@@ -73,7 +84,14 @@ The loader refuses a walk out that starts inside the close-up, a flare inside it
 
 ## What was checked, and how
 
-CHECKED
+- `flutter test` and `flutter analyze lib test` (the 4 baseline notes), run in a copy under `/home/forge/src/kumbia-kombat/wt/wire-run`, since the host's Flutter only runs there. Counts are in the final report.
+- `test/salon_level_test.dart`: the campaign place, title and metric; fairness at 108/108/116/116/124 and all three peak passes; the triple shape; same-limb notes 1.5 beats apart; a flawless autoplay run clears; every outro drawing exists in the atlas that draws it (the opponent's in his, the applause in each guest's); the story's order; the shot, title and walk fit the 16-beat success; his fade; the flare's ends; the loader's refusals. It writes `build/stills/salon-opening.png` and `salon-win.png` from a real cleared run through the real scene, which I read by eye.
+- `test/rendered_page_test.dart`, new: the real page plays billiards into the salon on rendered music, through `billiards/bridge`, `salon/low` and `salon/success`, the accents land in order (chalk, then nod, peck, peck), the win's walk-out runs, and the end screen comes up.
+- The level golden, regenerated with `--dart-define=UPDATE_LEVEL_GOLDEN=true`: byte for byte the same as committed. It samples garden and bar only, and the new fields are off there.
+- `tool/music/validate_pool.mjs` and `validate.mjs` pass, with the six-level campaign.
+- ALIGN's audit of this chart against BOLERO's takes (`tool/music/align_charts.mjs`): 96 of 100, no note on silence, the best of any level. Its weakest notes are the "and" of each triple (2.5 and 6.5). Its suggestion, triples on 4-and-1 at the end of the call, I left for a person who can hear it. [F, from ALIGN]
+- **Seen on stills, not moving:** the bow, the close-up's four steps (one rose on screen at a time: I switch him to his empty hand on the downbeat), the rose on his antenna from the cut back through his walk, the couples clapping, the lamps' swell, and his walk out passing under Don Terciopelo's swept arm to the doors.
+- **What went wrong:** the shared scratchpad held my sync script under a generic name, and another agent's script replaced it. For a stretch my test runs copied nothing new, so their results were stale. I caught it when a new test wasn't found, moved my tools to their own folder, and reran everything since. A first chart put the same foot a beat apart in each triple, and `cue_path_test` caught the cues overlapping on small screens. A test copied from the bar asked for a 1-beat `flare` move his clip doesn't have. The salon first had six guests, and the crowd model and its tests are fixed at twelve.
 
 ## What needs a look moving
 
