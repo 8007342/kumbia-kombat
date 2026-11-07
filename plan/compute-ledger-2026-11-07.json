@@ -1,0 +1,2211 @@
+{
+ "measured_at": "2026-11-07T02:35:22+00:00",
+ "cloud": {
+  "sessions": [
+   "8b0b6f7a-a8c4-46c6-83c2-f1cfac245fea"
+  ],
+  "agents": [
+   {
+    "session": "8b0b6f7a-a8c4-46c6-83c2-f1cfac245fea",
+    "agent": "main",
+    "label": "main",
+    "messages": 162,
+    "tokens": {
+     "input": 394,
+     "cache_read": 48386686,
+     "cache_write": 476368,
+     "output": 198343
+    },
+    "first": 1794006201.751,
+    "last": 1794018672.635,
+    "model_wait_s": 1886.4,
+    "tool_calls": 307,
+    "images_in": 17,
+    "span_s": 12470.9
+   },
+   {
+    "session": "8b0b6f7a-a8c4-46c6-83c2-f1cfac245fea",
+    "agent": "a38ab18594a1e8145",
+    "label": "Offline mixing and loop assets",
+    "messages": 38,
+    "tokens": {
+     "input": 90,
+     "cache_read": 6221246,
+     "cache_write": 456775,
+     "output": 123334
+    },
+    "first": 1794010809.12,
+    "last": 1794014455.536,
+    "model_wait_s": 1165.0,
+    "tool_calls": 44,
+    "images_in": 0,
+    "span_s": 3646.4
+   },
+   {
+    "session": "8b0b6f7a-a8c4-46c6-83c2-f1cfac245fea",
+    "agent": "a5cbcbdbc4b8111ed",
+    "label": "Rendered music in the game",
+    "messages": 126,
+    "tokens": {
+     "input": 318,
+     "cache_read": 31249465,
+     "cache_write": 862440,
+     "output": 187108
+    },
+    "first": 1794010828.565,
+    "last": 1794016169.888,
+    "model_wait_s": 1757.0,
+    "tool_calls": 187,
+    "images_in": 4,
+    "span_s": 5341.3
+   },
+   {
+    "session": "8b0b6f7a-a8c4-46c6-83c2-f1cfac245fea",
+    "agent": "aeed335a0c369b61a",
+    "label": "Party-up by tier and hardest combos",
+    "messages": 32,
+    "tokens": {
+     "input": 66,
+     "cache_read": 5668189,
+     "cache_write": 225071,
+     "output": 79156
+    },
+    "first": 1794010841.014,
+    "last": 1794011845.938,
+    "model_wait_s": 724.0,
+    "tool_calls": 45,
+    "images_in": 8,
+    "span_s": 1004.9
+   },
+   {
+    "session": "8b0b6f7a-a8c4-46c6-83c2-f1cfac245fea",
+    "agent": "a08bc6e7cd81055cf",
+    "label": "Unified style guide, cinematic rules",
+    "messages": 27,
+    "tokens": {
+     "input": 60,
+     "cache_read": 4080017,
+     "cache_write": 210649,
+     "output": 62607
+    },
+    "first": 1794010852.066,
+    "last": 1794011513.866,
+    "model_wait_s": 573.8,
+    "tool_calls": 39,
+    "images_in": 5,
+    "span_s": 661.8
+   },
+   {
+    "session": "8b0b6f7a-a8c4-46c6-83c2-f1cfac245fea",
+    "agent": "aabf06809f411558b",
+    "label": "BlinBlin full sprite wave (GPU)",
+    "messages": 84,
+    "tokens": {
+     "input": 188,
+     "cache_read": 19985157,
+     "cache_write": 1176811,
+     "output": 118903
+    },
+    "first": 1794010862.914,
+    "last": 1794018692.136,
+    "model_wait_s": 1075.8,
+    "tool_calls": 115,
+    "images_in": 14,
+    "span_s": 7829.2
+   },
+   {
+    "session": "8b0b6f7a-a8c4-46c6-83c2-f1cfac245fea",
+    "agent": "a2066dfe8c5f10a9f",
+    "label": "Indoor plate and room layers (GPU)",
+    "messages": 94,
+    "tokens": {
+     "input": 204,
+     "cache_read": 23558045,
+     "cache_write": 588065,
+     "output": 129759
+    },
+    "first": 1794010875.261,
+    "last": 1794015799.214,
+    "model_wait_s": 1229.6,
+    "tool_calls": 169,
+    "images_in": 40,
+    "span_s": 4924.0
+   },
+   {
+    "session": "8b0b6f7a-a8c4-46c6-83c2-f1cfac245fea",
+    "agent": "a6a80bfff6e93b5b0",
+    "label": "Double taps and paired-spot charts",
+    "messages": 54,
+    "tokens": {
+     "input": 114,
+     "cache_read": 10026528,
+     "cache_write": 286593,
+     "output": 133768
+    },
+    "first": 1794011157.704,
+    "last": 1794012905.036,
+    "model_wait_s": 1233.9,
+    "tool_calls": 62,
+    "images_in": 2,
+    "span_s": 1747.3
+   },
+   {
+    "session": "8b0b6f7a-a8c4-46c6-83c2-f1cfac245fea",
+    "agent": "a6ed5545f74dfa4fc",
+    "label": "Band sprite family art (GPU)",
+    "messages": 105,
+    "tokens": {
+     "input": 224,
+     "cache_read": 24604090,
+     "cache_write": 570903,
+     "output": 149143
+    },
+    "first": 1794011981.313,
+    "last": 1794018776.437,
+    "model_wait_s": 1452.9,
+    "tool_calls": 152,
+    "images_in": 24,
+    "span_s": 6795.1
+   },
+   {
+    "session": "8b0b6f7a-a8c4-46c6-83c2-f1cfac245fea",
+    "agent": "aff31ce4310953214",
+    "label": "Indoor party level with dancing crowd",
+    "messages": 40,
+    "tokens": {
+     "input": 86,
+     "cache_read": 9919285,
+     "cache_write": 626349,
+     "output": 123956
+    },
+    "first": 1794012000.484,
+    "last": 1794016250.359,
+    "model_wait_s": 1135.9,
+    "tool_calls": 51,
+    "images_in": 9,
+    "span_s": 4249.9
+   },
+   {
+    "session": "8b0b6f7a-a8c4-46c6-83c2-f1cfac245fea",
+    "agent": "a35d4ebbd5027e110",
+    "label": "Compute ledger, cloud versus local",
+    "messages": 17,
+    "tokens": {
+     "input": 34,
+     "cache_read": 1344461,
+     "cache_write": 118775,
+     "output": 48246
+    },
+    "first": 1794018448.951,
+    "last": 1794018921.398,
+    "model_wait_s": 441.2,
+    "tool_calls": 27,
+    "images_in": 5,
+    "span_s": 472.4
+   },
+   {
+    "session": "8b0b6f7a-a8c4-46c6-83c2-f1cfac245fea",
+    "agent": "a7f9f2b7bc25c5594",
+    "label": "Music method and pool room theme",
+    "messages": 9,
+    "tokens": {
+     "input": 24,
+     "cache_read": 785722,
+     "cache_write": 139939,
+     "output": 13220
+    },
+    "first": 1794018472.951,
+    "last": 1794018605.897,
+    "model_wait_s": 124.1,
+    "tool_calls": 26,
+    "images_in": 0,
+    "span_s": 132.9
+   },
+   {
+    "session": "8b0b6f7a-a8c4-46c6-83c2-f1cfac245fea",
+    "agent": "af7c4e679dd46a637",
+    "label": "Party people review and pairs",
+    "messages": 16,
+    "tokens": {
+     "input": 38,
+     "cache_read": 1719453,
+     "cache_write": 156964,
+     "output": 32491
+    },
+    "first": 1794018488.154,
+    "last": 1794018868.811,
+    "model_wait_s": 308.3,
+    "tool_calls": 26,
+    "images_in": 5,
+    "span_s": 380.7
+   },
+   {
+    "session": "8b0b6f7a-a8c4-46c6-83c2-f1cfac245fea",
+    "agent": "aed49975c4e7ce569",
+    "label": "Finish and wire indoor party level",
+    "messages": 22,
+    "tokens": {
+     "input": 52,
+     "cache_read": 2496828,
+     "cache_write": 168560,
+     "output": 35097
+    },
+    "first": 1794018504.602,
+    "last": 1794018914.583,
+    "model_wait_s": 320.7,
+    "tool_calls": 33,
+    "images_in": 0,
+    "span_s": 410.0
+   },
+   {
+    "session": "8b0b6f7a-a8c4-46c6-83c2-f1cfac245fea",
+    "agent": "ae4812bafe23f4ba7",
+    "label": "Pool Player sprites (GPU)",
+    "messages": 17,
+    "tokens": {
+     "input": 42,
+     "cache_read": 1572542,
+     "cache_write": 132341,
+     "output": 27108
+    },
+    "first": 1794018515.702,
+    "last": 1794018891.66,
+    "model_wait_s": 252.9,
+    "tool_calls": 26,
+    "images_in": 1,
+    "span_s": 376.0
+   },
+   {
+    "session": "8b0b6f7a-a8c4-46c6-83c2-f1cfac245fea",
+    "agent": "a65304d4885c8ab50",
+    "label": "Build and wire billiards level",
+    "messages": 19,
+    "tokens": {
+     "input": 46,
+     "cache_read": 2444350,
+     "cache_write": 192425,
+     "output": 34062
+    },
+    "first": 1794018530.505,
+    "last": 1794018900.701,
+    "model_wait_s": 344.7,
+    "tool_calls": 31,
+    "images_in": 1,
+    "span_s": 370.2
+   }
+  ],
+  "tokens": {
+   "input": 1980,
+   "cache_read": 194062064,
+   "cache_write": 6389028,
+   "output": 1496301
+  },
+  "by_model": {
+   "claude-opus-5-5": {
+    "input": 1980,
+    "cache_read": 194062064,
+    "cache_write": 6389028,
+    "output": 1496301
+   }
+  },
+  "window": [
+   1794006201.751,
+   1794018921.398
+  ],
+  "wall_clock_s": 12719.6,
+  "sum_agent_span_s": 50813.0,
+  "sum_model_wait_s": 14026.2,
+  "any_model_generating_s": 6154.7,
+  "tools": {
+   "Bash": {
+    "calls": 783,
+    "wall_s": 11918.7
+   },
+   "Read": {
+    "calls": 166,
+    "wall_s": 262.1
+   },
+   "ToolSearch": {
+    "calls": 27,
+    "wall_s": 3.8
+   },
+   "ListAgents": {
+    "calls": 3,
+    "wall_s": 0.8
+   },
+   "mcp__host-browser__tillandsias_lane_version": {
+    "calls": 1,
+    "wall_s": 0.0
+   },
+   "mcp__host-browser__studio_start": {
+    "calls": 1,
+    "wall_s": 8.7
+   },
+   "mcp__host-browser__gpu_status": {
+    "calls": 6,
+    "wall_s": 113.9
+   },
+   "mcp__host-browser__preview_status": {
+    "calls": 3,
+    "wall_s": 12.1
+   },
+   "mcp__host-browser__studio_models": {
+    "calls": 3,
+    "wall_s": 3.2
+   },
+   "SendMessage": {
+    "calls": 62,
+    "wall_s": 2827.4
+   },
+   "mcp__host-browser__preview_publish": {
+    "calls": 1,
+    "wall_s": 3.5
+   },
+   "mcp__host-browser__browser_open": {
+    "calls": 7,
+    "wall_s": 397.9
+   },
+   "mcp__host-browser__browser_cdp": {
+    "calls": 65,
+    "wall_s": 61.1
+   },
+   "mcp__host-browser__browser_screenshot": {
+    "calls": 18,
+    "wall_s": 39.2
+   },
+   "mcp__host-browser__browser_eval": {
+    "calls": 57,
+    "wall_s": 244.8
+   },
+   "mcp__host-browser__studio_run_workflow": {
+    "calls": 26,
+    "wall_s": 19930.4
+   },
+   "mcp__host-browser__browser_close": {
+    "calls": 7,
+    "wall_s": 2.8
+   },
+   "SendUserFile": {
+    "calls": 5,
+    "wall_s": 52.8
+   },
+   "Agent": {
+    "calls": 15,
+    "wall_s": 0.2
+   },
+   "mcp__host-browser__browser_console_tail": {
+    "calls": 2,
+    "wall_s": 0.0
+   },
+   "Skill": {
+    "calls": 1,
+    "wall_s": 180.2
+   },
+   "mcp__host-browser__browser_navigate": {
+    "calls": 10,
+    "wall_s": 22.8
+   },
+   "mcp__host-browser__tillandsias_index": {
+    "calls": 1,
+    "wall_s": 0.1
+   },
+   "Write": {
+    "calls": 4,
+    "wall_s": 0.1
+   },
+   "mcp__project-info__sibling_projects": {
+    "calls": 1,
+    "wall_s": 0.0
+   },
+   "mcp__host-browser__studio_status": {
+    "calls": 3,
+    "wall_s": 0.2
+   },
+   "TaskStop": {
+    "calls": 2,
+    "wall_s": 0.0
+   },
+   "mcp__host-browser__studio_queue_workflow": {
+    "calls": 31,
+    "wall_s": 24.5
+   },
+   "mcp__host-browser__studio_job_status": {
+    "calls": 21,
+    "wall_s": 34.2
+   },
+   "Monitor": {
+    "calls": 2,
+    "wall_s": 3.8
+   },
+   "mcp__host-browser__studio_finish_pixels": {
+    "calls": 1,
+    "wall_s": 3.9
+   },
+   "WebSearch": {
+    "calls": 2,
+    "wall_s": 12.5
+   },
+   "WebFetch": {
+    "calls": 2,
+    "wall_s": 0.4
+   },
+   "mcp__forge-plan__msg_recv": {
+    "calls": 1,
+    "wall_s": 0.1
+   }
+  },
+  "images": {
+   "returned_to_cloud": {
+    "Read .png": 135
+   },
+   "total": 135,
+   "distinct_sources": 117,
+   "bytes": 38495688,
+   "tokens_estimate_w_h_over_750": 206551,
+   "pasted_in_prompts": 0
+  }
+ },
+ "local": {
+  "gpu_by_kind": {
+   "image": {
+    "jobs": 93,
+    "outputs": 339,
+    "elapsed_s": 22131.550000000003,
+    "gpu_run_s": 6790.236000000001,
+    "gpu_wait_s": 2925.451,
+    "jobs_run_estimated": 71,
+    "audio_s": 0.0
+   },
+   "audio": {
+    "jobs": 5,
+    "outputs": 30,
+    "elapsed_s": 342.95,
+    "gpu_run_s": 342.269,
+    "gpu_wait_s": 0.0,
+    "jobs_run_estimated": 0,
+    "audio_s": 2539.3999999999996
+   }
+  },
+  "gpu_by_run": {
+   "blinblin-20261106a": {
+    "jobs": 2,
+    "outputs": 8,
+    "gpu_run_s": 184.63299999999998
+   },
+   "blinblin-20261106b": {
+    "jobs": 2,
+    "outputs": 8,
+    "gpu_run_s": 116.382
+   },
+   "ace-xl-turbo": {
+    "jobs": 5,
+    "outputs": 30,
+    "gpu_run_s": 342.269
+   },
+   "cool-crowd": {
+    "jobs": 3,
+    "outputs": 7,
+    "gpu_run_s": 113.655
+   },
+   "layers": {
+    "jobs": 11,
+    "outputs": 22,
+    "gpu_run_s": 341.776
+   },
+   "crowd-props": {
+    "jobs": 1,
+    "outputs": 4,
+    "gpu_run_s": 67.788
+   },
+   "billiards": {
+    "jobs": 3,
+    "outputs": 8,
+    "gpu_run_s": 148.66
+   },
+   "band-bass-sheet-20261107a": {
+    "jobs": 1,
+    "outputs": 4,
+    "gpu_run_s": 92.196
+   },
+   "band-bass-sheet-20261107b": {
+    "jobs": 1,
+    "outputs": 4,
+    "gpu_run_s": 97.146
+   },
+   "blinblin-v1-20261107a": {
+    "jobs": 8,
+    "outputs": 32,
+    "gpu_run_s": 634.6
+   },
+   "band-congas-sheet-20261107a": {
+    "jobs": 1,
+    "outputs": 4,
+    "gpu_run_s": 84.3
+   },
+   "band-trumpet-sheet-20261107a": {
+    "jobs": 1,
+    "outputs": 4,
+    "gpu_run_s": 83.0
+   },
+   "band-marimba-sheet-20261107a": {
+    "jobs": 1,
+    "outputs": 4,
+    "gpu_run_s": 83.5
+   },
+   "blinblin-v1-20261107b": {
+    "jobs": 2,
+    "outputs": 8,
+    "gpu_run_s": 171.39999999999998
+   },
+   "band-congas-sheet-20261107b": {
+    "jobs": 1,
+    "outputs": 4,
+    "gpu_run_s": 82.5
+   },
+   "band-trumpet-sheet-20261107b": {
+    "jobs": 1,
+    "outputs": 4,
+    "gpu_run_s": 81.7
+   },
+   "band-marimba-sheet-20261107b": {
+    "jobs": 1,
+    "outputs": 4,
+    "gpu_run_s": 81.8
+   },
+   "blinblin-v1-20261107c": {
+    "jobs": 34,
+    "outputs": 134,
+    "gpu_run_s": 2761.2000000000003
+   },
+   "band-marimba-sheet-20261107c": {
+    "jobs": 1,
+    "outputs": 4,
+    "gpu_run_s": 82.8
+   },
+   "band-marimba-sheet-20261107d": {
+    "jobs": 1,
+    "outputs": 4,
+    "gpu_run_s": 81.1
+   },
+   "pool-player-20261107a": {
+    "jobs": 2,
+    "outputs": 8,
+    "gpu_run_s": 155.2
+   },
+   "band-bass-3q-20261107a": {
+    "jobs": 1,
+    "outputs": 4,
+    "gpu_run_s": 78.0
+   },
+   "band-congas-3q-20261107a": {
+    "jobs": 1,
+    "outputs": 4,
+    "gpu_run_s": 79.0
+   },
+   "band-trumpet-3q-20261107a": {
+    "jobs": 1,
+    "outputs": 4,
+    "gpu_run_s": 78.5
+   },
+   "band-bass-3q-20261107b": {
+    "jobs": 2,
+    "outputs": 8,
+    "gpu_run_s": 162.2
+   },
+   "band-marimba-3q-20261107a": {
+    "jobs": 1,
+    "outputs": 4,
+    "gpu_run_s": 81.1
+   },
+   "band-congas-3q-20261107b": {
+    "jobs": 1,
+    "outputs": 4,
+    "gpu_run_s": 83.4
+   },
+   "band-bass-v1-20261107a": {
+    "jobs": 3,
+    "outputs": 12,
+    "gpu_run_s": 240.4
+   },
+   "band-trumpet-3q-20261107b": {
+    "jobs": 1,
+    "outputs": 4,
+    "gpu_run_s": 79.4
+   },
+   "band-marimba-3q-20261107b": {
+    "jobs": 1,
+    "outputs": 4,
+    "gpu_run_s": 78.6
+   },
+   "band-congas-3q-20261107c": {
+    "jobs": 1,
+    "outputs": 4,
+    "gpu_run_s": 77.2
+   },
+   "band-bass-v1-20261107b": {
+    "jobs": 2,
+    "outputs": 8,
+    "gpu_run_s": 207.1
+   }
+  },
+  "failed_submissions": 5,
+  "jobs": [
+   {
+    "job": "st-1794007510440-0",
+    "agent": "main",
+    "source": "transcript",
+    "workflow": "art_runs/blinblin-20261106a/workflows/sheet.front.api.json",
+    "kind": "image",
+    "count": 4,
+    "elapsed_s": 92.1,
+    "gpu_run_s": 91.886,
+    "gpu_wait_s": 0.0,
+    "run_estimated": false,
+    "at": 1794007602.548,
+    "audio_s": 0,
+    "run": "blinblin-20261106a"
+   },
+   {
+    "job": "st-1794007611855-1",
+    "agent": "main",
+    "source": "transcript",
+    "workflow": "art_runs/blinblin-20261106a/workflows/sheet.back.api.json",
+    "kind": "image",
+    "count": 4,
+    "elapsed_s": 92.97,
+    "gpu_run_s": 92.747,
+    "gpu_wait_s": 0.0,
+    "run_estimated": false,
+    "at": 1794007704.832,
+    "audio_s": 0,
+    "run": "blinblin-20261106a"
+   },
+   {
+    "job": "st-1794007762505-2",
+    "agent": "main",
+    "source": "transcript",
+    "workflow": "art_runs/blinblin-20261106b/workflows/sheet.front.api.json",
+    "kind": "image",
+    "count": 4,
+    "elapsed_s": 58.58,
+    "gpu_run_s": 58.341,
+    "gpu_wait_s": 0.0,
+    "run_estimated": false,
+    "at": 1794007821.088,
+    "audio_s": 0,
+    "run": "blinblin-20261106b"
+   },
+   {
+    "job": "st-1794007822615-3",
+    "agent": "main",
+    "source": "transcript",
+    "workflow": "art_runs/blinblin-20261106b/workflows/sheet.back.api.json",
+    "kind": "image",
+    "count": 4,
+    "elapsed_s": 58.27,
+    "gpu_run_s": 58.041,
+    "gpu_wait_s": 0.0,
+    "run_estimated": false,
+    "at": 1794007880.891,
+    "audio_s": 0,
+    "run": "blinblin-20261106b"
+   },
+   {
+    "job": "st-1794007936821-4",
+    "agent": "main",
+    "source": "transcript",
+    "workflow": "tool/music/workflows/ace-xl-turbo.api.json",
+    "kind": "audio",
+    "count": 6,
+    "elapsed_s": 65.28,
+    "gpu_run_s": 65.131,
+    "gpu_wait_s": 0.0,
+    "run_estimated": false,
+    "at": 1794008002.154,
+    "audio_s": 487.2,
+    "run": "ace-xl-turbo"
+   },
+   {
+    "job": "st-1794008003454-5",
+    "agent": "main",
+    "source": "transcript",
+    "workflow": "tool/music/workflows/ace-xl-turbo.api.json",
+    "kind": "audio",
+    "count": 6,
+    "elapsed_s": 70.41,
+    "gpu_run_s": 70.289,
+    "gpu_wait_s": 0.0,
+    "run_estimated": false,
+    "at": 1794008073.923,
+    "audio_s": 518.4,
+    "run": "ace-xl-turbo"
+   },
+   {
+    "job": "st-1794008075246-6",
+    "agent": "main",
+    "source": "transcript",
+    "workflow": "tool/music/workflows/ace-xl-turbo.api.json",
+    "kind": "audio",
+    "count": 6,
+    "elapsed_s": 74.06,
+    "gpu_run_s": 73.941,
+    "gpu_wait_s": 0.0,
+    "run_estimated": false,
+    "at": 1794008149.356,
+    "audio_s": 514.3,
+    "run": "ace-xl-turbo"
+   },
+   {
+    "job": "st-1794008150804-7",
+    "agent": "main",
+    "source": "transcript",
+    "workflow": "tool/music/workflows/ace-xl-turbo.api.json",
+    "kind": "audio",
+    "count": 6,
+    "elapsed_s": 69.57,
+    "gpu_run_s": 69.424,
+    "gpu_wait_s": 0.0,
+    "run_estimated": false,
+    "at": 1794008220.436,
+    "audio_s": 532.3,
+    "run": "ace-xl-turbo"
+   },
+   {
+    "job": "st-1794008260825-8",
+    "agent": "main",
+    "source": "transcript",
+    "workflow": "tool/music/workflows/ace-xl-turbo.api.json",
+    "kind": "audio",
+    "count": 6,
+    "elapsed_s": 63.63,
+    "gpu_run_s": 63.484,
+    "gpu_wait_s": 0.0,
+    "run_estimated": false,
+    "at": 1794008324.501,
+    "audio_s": 487.2,
+    "run": "ace-xl-turbo"
+   },
+   {
+    "job": "st-1794011251494-9",
+    "agent": "a2066dfe8c5f10a9f",
+    "source": "transcript",
+    "workflow": "wt/rooms/art_runs/rooms/cool-crowd/workflows/floor-flat.api.json",
+    "kind": "image",
+    "count": 3,
+    "elapsed_s": 44.94,
+    "gpu_run_s": 44.617,
+    "gpu_wait_s": 0.0,
+    "run_estimated": false,
+    "at": 1794011296.442,
+    "audio_s": 0,
+    "run": "cool-crowd"
+   },
+   {
+    "job": "st-1794011297815-10",
+    "agent": "a2066dfe8c5f10a9f",
+    "source": "transcript",
+    "workflow": "wt/rooms/art_runs/rooms/cool-crowd/workflows/floor-refine35.api.json",
+    "kind": "image",
+    "count": 2,
+    "elapsed_s": 34.57,
+    "gpu_run_s": 34.372,
+    "gpu_wait_s": 0.0,
+    "run_estimated": false,
+    "at": 1794011332.39,
+    "audio_s": 0,
+    "run": "cool-crowd"
+   },
+   {
+    "job": "st-1794011333735-11",
+    "agent": "a2066dfe8c5f10a9f",
+    "source": "transcript",
+    "workflow": "wt/rooms/art_runs/rooms/cool-crowd/workflows/floor-refine55.api.json",
+    "kind": "image",
+    "count": 2,
+    "elapsed_s": 34.88,
+    "gpu_run_s": 34.666,
+    "gpu_wait_s": 0.0,
+    "run_estimated": false,
+    "at": 1794011368.619,
+    "audio_s": 0,
+    "run": "cool-crowd"
+   },
+   {
+    "job": "st-1794011623256-12",
+    "agent": "(job folder only)",
+    "source": "disk",
+    "workflow": "tool/art/workflows/qwen-frame.api.json",
+    "kind": "image",
+    "count": 4,
+    "elapsed_s": 98.7,
+    "gpu_run_s": 76.9,
+    "gpu_wait_s": null,
+    "run_estimated": true,
+    "at": 1794011623.256,
+    "audio_s": 0,
+    "run": "blinblin-v1-20261107a"
+   },
+   {
+    "job": "st-1794011629550-13",
+    "agent": "(job folder only)",
+    "source": "disk",
+    "workflow": "tool/art/workflows/qwen-frame.api.json",
+    "kind": "image",
+    "count": 4,
+    "elapsed_s": 181.2,
+    "gpu_run_s": 78.1,
+    "gpu_wait_s": null,
+    "run_estimated": true,
+    "at": 1794011629.55,
+    "audio_s": 0,
+    "run": "blinblin-v1-20261107a"
+   },
+   {
+    "job": "st-1794011663227-14",
+    "agent": "a2066dfe8c5f10a9f",
+    "source": "transcript",
+    "workflow": "wt/rooms/art_runs/rooms/layers/pool-garden/palm.api.json",
+    "kind": "image",
+    "count": 2,
+    "elapsed_s": 179.09,
+    "gpu_run_s": 31.314,
+    "gpu_wait_s": 147.554,
+    "run_estimated": false,
+    "at": 1794011842.325,
+    "audio_s": 0,
+    "run": "layers"
+   },
+   {
+    "job": "st-1794011845482-16",
+    "agent": "(job folder only)",
+    "source": "disk",
+    "workflow": "tool/art/workflows/qwen-frame.api.json",
+    "kind": "image",
+    "count": 4,
+    "elapsed_s": 120.4,
+    "gpu_run_s": 80.2,
+    "gpu_wait_s": null,
+    "run_estimated": true,
+    "at": 1794011845.482,
+    "audio_s": 0,
+    "run": "blinblin-v1-20261107a"
+   },
+   {
+    "job": "st-1794011850735-17",
+    "agent": "(job folder only)",
+    "source": "disk",
+    "workflow": "tool/art/workflows/qwen-frame.api.json",
+    "kind": "image",
+    "count": 4,
+    "elapsed_s": 212.8,
+    "gpu_run_s": 80.4,
+    "gpu_wait_s": null,
+    "run_estimated": true,
+    "at": 1794011850.735,
+    "audio_s": 0,
+    "run": "blinblin-v1-20261107a"
+   },
+   {
+    "job": "st-1794011855457-18",
+    "agent": "(job folder only)",
+    "source": "disk",
+    "workflow": "tool/art/workflows/qwen-frame.api.json",
+    "kind": "image",
+    "count": 4,
+    "elapsed_s": 307.3,
+    "gpu_run_s": 78.5,
+    "gpu_wait_s": null,
+    "run_estimated": true,
+    "at": 1794011855.457,
+    "audio_s": 0,
+    "run": "blinblin-v1-20261107a"
+   },
+   {
+    "job": "st-1794011861143-19",
+    "agent": "(job folder only)",
+    "source": "disk",
+    "workflow": "tool/art/workflows/qwen-frame.api.json",
+    "kind": "image",
+    "count": 4,
+    "elapsed_s": 394.0,
+    "gpu_run_s": 78.1,
+    "gpu_wait_s": null,
+    "run_estimated": true,
+    "at": 1794011861.143,
+    "audio_s": 0,
+    "run": "blinblin-v1-20261107a"
+   },
+   {
+    "job": "st-1794011865788-20",
+    "agent": "(job folder only)",
+    "source": "disk",
+    "workflow": "tool/art/workflows/qwen-frame.api.json",
+    "kind": "image",
+    "count": 4,
+    "elapsed_s": 484.0,
+    "gpu_run_s": 82.5,
+    "gpu_wait_s": null,
+    "run_estimated": true,
+    "at": 1794011865.788,
+    "audio_s": 0,
+    "run": "blinblin-v1-20261107a"
+   },
+   {
+    "job": "st-1794011871354-21",
+    "agent": "(job folder only)",
+    "source": "disk",
+    "workflow": "tool/art/workflows/qwen-frame.api.json",
+    "kind": "image",
+    "count": 4,
+    "elapsed_s": 572.7,
+    "gpu_run_s": 79.9,
+    "gpu_wait_s": null,
+    "run_estimated": true,
+    "at": 1794011871.354,
+    "audio_s": 0,
+    "run": "blinblin-v1-20261107a"
+   },
+   {
+    "job": "st-1794011843679-15",
+    "agent": "a2066dfe8c5f10a9f",
+    "source": "transcript",
+    "workflow": "wt/rooms/art_runs/rooms/layers/pool-garden/plant-left.api.json",
+    "kind": "image",
+    "count": 2,
+    "elapsed_s": 30.3,
+    "gpu_run_s": 30.059,
+    "gpu_wait_s": 0.0,
+    "run_estimated": false,
+    "at": 1794011873.98,
+    "audio_s": 0,
+    "run": "layers"
+   },
+   {
+    "job": "st-1794012366623-24",
+    "agent": "(job folder only)",
+    "source": "disk",
+    "workflow": "tool/art/workflows/qwen-frame.api.json",
+    "kind": "image",
+    "count": 4,
+    "elapsed_s": 296.6,
+    "gpu_run_s": 84.3,
+    "gpu_wait_s": null,
+    "run_estimated": true,
+    "at": 1794012366.623,
+    "audio_s": 0,
+    "run": "band-congas-sheet-20261107a"
+   },
+   {
+    "job": "st-1794012371353-25",
+    "agent": "(job folder only)",
+    "source": "disk",
+    "workflow": "tool/art/workflows/qwen-frame.api.json",
+    "kind": "image",
+    "count": 4,
+    "elapsed_s": 387.2,
+    "gpu_run_s": 83.0,
+    "gpu_wait_s": null,
+    "run_estimated": true,
+    "at": 1794012371.353,
+    "audio_s": 0,
+    "run": "band-trumpet-sheet-20261107a"
+   },
+   {
+    "job": "st-1794012376559-26",
+    "agent": "(job folder only)",
+    "source": "disk",
+    "workflow": "tool/art/workflows/qwen-frame.api.json",
+    "kind": "image",
+    "count": 4,
+    "elapsed_s": 475.3,
+    "gpu_run_s": 83.5,
+    "gpu_wait_s": null,
+    "run_estimated": true,
+    "at": 1794012376.559,
+    "audio_s": 0,
+    "run": "band-marimba-sheet-20261107a"
+   },
+   {
+    "job": "st-1794011875609-22",
+    "agent": "a2066dfe8c5f10a9f",
+    "source": "transcript",
+    "workflow": "wt/rooms/art_runs/rooms/layers/pool-garden/plant-mid.api.json",
+    "kind": "image",
+    "count": 2,
+    "elapsed_s": 600.65,
+    "gpu_run_s": 31.323,
+    "gpu_wait_s": 568.408,
+    "run_estimated": false,
+    "at": 1794012476.269,
+    "audio_s": 0,
+    "run": "layers"
+   },
+   {
+    "job": "st-1794012518575-28",
+    "agent": "(job folder only)",
+    "source": "disk",
+    "workflow": "tool/art/workflows/qwen-frame.api.json",
+    "kind": "image",
+    "count": 4,
+    "elapsed_s": 464.6,
+    "gpu_run_s": 87.6,
+    "gpu_wait_s": null,
+    "run_estimated": true,
+    "at": 1794012518.575,
+    "audio_s": 0,
+    "run": "blinblin-v1-20261107b"
+   },
+   {
+    "job": "st-1794012521375-29",
+    "agent": "(job folder only)",
+    "source": "disk",
+    "workflow": "tool/art/workflows/qwen-frame.api.json",
+    "kind": "image",
+    "count": 4,
+    "elapsed_s": 557.7,
+    "gpu_run_s": 83.8,
+    "gpu_wait_s": null,
+    "run_estimated": true,
+    "at": 1794012521.375,
+    "audio_s": 0,
+    "run": "blinblin-v1-20261107b"
+   },
+   {
+    "job": "st-1794012361369-23",
+    "agent": "a6ed5545f74dfa4fc",
+    "source": "transcript",
+    "workflow": "tool/art/workflows/qwen-frame.api.json",
+    "kind": "image",
+    "count": 4,
+    "elapsed_s": 207.74,
+    "gpu_run_s": 92.196,
+    "gpu_wait_s": 114.892,
+    "run_estimated": false,
+    "at": 1794012743.257,
+    "audio_s": 0,
+    "run": "band-bass-sheet-20261107a"
+   },
+   {
+    "job": "st-1794012481994-27",
+    "agent": "a2066dfe8c5f10a9f",
+    "source": "transcript",
+    "workflow": "wt/rooms/art_runs/rooms/layers/pool-garden/plant-right.api.json",
+    "kind": "image",
+    "count": 2,
+    "elapsed_s": 402.11,
+    "gpu_run_s": 31.989,
+    "gpu_wait_s": 369.872,
+    "run_estimated": false,
+    "at": 1794012884.107,
+    "audio_s": 0,
+    "run": "layers"
+   },
+   {
+    "job": "st-1794012923132-32",
+    "agent": "(job folder only)",
+    "source": "disk",
+    "workflow": "tool/art/workflows/qwen-frame.api.json",
+    "kind": "image",
+    "count": 4,
+    "elapsed_s": 380.1,
+    "gpu_run_s": 82.5,
+    "gpu_wait_s": null,
+    "run_estimated": true,
+    "at": 1794012923.132,
+    "audio_s": 0,
+    "run": "band-congas-sheet-20261107b"
+   },
+   {
+    "job": "st-1794012928699-33",
+    "agent": "(job folder only)",
+    "source": "disk",
+    "workflow": "tool/art/workflows/qwen-frame.api.json",
+    "kind": "image",
+    "count": 4,
+    "elapsed_s": 466.4,
+    "gpu_run_s": 81.7,
+    "gpu_wait_s": null,
+    "run_estimated": true,
+    "at": 1794012928.699,
+    "audio_s": 0,
+    "run": "band-trumpet-sheet-20261107b"
+   },
+   {
+    "job": "st-1794012935646-34",
+    "agent": "(job folder only)",
+    "source": "disk",
+    "workflow": "tool/art/workflows/qwen-frame.api.json",
+    "kind": "image",
+    "count": 4,
+    "elapsed_s": 551.2,
+    "gpu_run_s": 81.8,
+    "gpu_wait_s": null,
+    "run_estimated": true,
+    "at": 1794012935.646,
+    "audio_s": 0,
+    "run": "band-marimba-sheet-20261107b"
+   },
+   {
+    "job": "st-1794012885794-30",
+    "agent": "a2066dfe8c5f10a9f",
+    "source": "transcript",
+    "workflow": "wt/rooms/art_runs/rooms/layers/bar/lantern-top.api.json",
+    "kind": "image",
+    "count": 2,
+    "elapsed_s": 225.29,
+    "gpu_run_s": 31.822,
+    "gpu_wait_s": 193.253,
+    "run_estimated": false,
+    "at": 1794013111.088,
+    "audio_s": 0,
+    "run": "layers"
+   },
+   {
+    "job": "st-1794013127197-36",
+    "agent": "(job folder only)",
+    "source": "disk",
+    "workflow": "tool/art/workflows/qwen-frame.api.json",
+    "kind": "image",
+    "count": 4,
+    "elapsed_s": 484.1,
+    "gpu_run_s": 82.9,
+    "gpu_wait_s": null,
+    "run_estimated": true,
+    "at": 1794013127.197,
+    "audio_s": 0,
+    "run": "blinblin-v1-20261107c"
+   },
+   {
+    "job": "st-1794013131984-37",
+    "agent": "(job folder only)",
+    "source": "disk",
+    "workflow": "tool/art/workflows/qwen-frame.api.json",
+    "kind": "image",
+    "count": 4,
+    "elapsed_s": 573.4,
+    "gpu_run_s": 83.0,
+    "gpu_wait_s": null,
+    "run_estimated": true,
+    "at": 1794013131.984,
+    "audio_s": 0,
+    "run": "blinblin-v1-20261107c"
+   },
+   {
+    "job": "st-1794013180763-38",
+    "agent": "(job folder only)",
+    "source": "disk",
+    "workflow": "tool/art/workflows/qwen-frame.api.json",
+    "kind": "image",
+    "count": 4,
+    "elapsed_s": 617.8,
+    "gpu_run_s": 82.4,
+    "gpu_wait_s": null,
+    "run_estimated": true,
+    "at": 1794013180.763,
+    "audio_s": 0,
+    "run": "blinblin-v1-20261107c"
+   },
+   {
+    "job": "st-1794012918152-31",
+    "agent": "a6ed5545f74dfa4fc",
+    "source": "transcript",
+    "workflow": "tool/art/workflows/qwen-frame.api.json",
+    "kind": "image",
+    "count": 4,
+    "elapsed_s": 290.31,
+    "gpu_run_s": 97.146,
+    "gpu_wait_s": 192.932,
+    "run_estimated": false,
+    "at": 1794013352.27,
+    "audio_s": 0,
+    "run": "band-bass-sheet-20261107b"
+   },
+   {
+    "job": "st-1794013517051-39",
+    "agent": "(job folder only)",
+    "source": "disk",
+    "workflow": "tool/art/workflows/qwen-frame.api.json",
+    "kind": "image",
+    "count": 4,
+    "elapsed_s": 375.7,
+    "gpu_run_s": 82.8,
+    "gpu_wait_s": null,
+    "run_estimated": true,
+    "at": 1794013517.051,
+    "audio_s": 0,
+    "run": "band-marimba-sheet-20261107c"
+   },
+   {
+    "job": "st-1794013112869-35",
+    "agent": "a2066dfe8c5f10a9f",
+    "source": "transcript",
+    "workflow": "wt/rooms/art_runs/rooms/layers/bar/lantern-l2.api.json",
+    "kind": "image",
+    "count": 2,
+    "elapsed_s": 405.59,
+    "gpu_run_s": 31.399,
+    "gpu_wait_s": 373.961,
+    "run_estimated": false,
+    "at": 1794013518.463,
+    "audio_s": 0,
+    "run": "layers"
+   },
+   {
+    "job": "st-1794013800361-41",
+    "agent": "(job folder only)",
+    "source": "disk",
+    "workflow": "tool/art/workflows/qwen-frame.api.json",
+    "kind": "image",
+    "count": 4,
+    "elapsed_s": 217.4,
+    "gpu_run_s": 82.8,
+    "gpu_wait_s": null,
+    "run_estimated": true,
+    "at": 1794013800.361,
+    "audio_s": 0,
+    "run": "blinblin-v1-20261107c"
+   },
+   {
+    "job": "st-1794013920959-42",
+    "agent": "(job folder only)",
+    "source": "disk",
+    "workflow": "tool/art/workflows/qwen-frame.api.json",
+    "kind": "image",
+    "count": 4,
+    "elapsed_s": 189.8,
+    "gpu_run_s": 81.1,
+    "gpu_wait_s": null,
+    "run_estimated": true,
+    "at": 1794013920.959,
+    "audio_s": 0,
+    "run": "band-marimba-sheet-20261107d"
+   },
+   {
+    "job": "st-1794013519966-40",
+    "agent": "a2066dfe8c5f10a9f",
+    "source": "transcript",
+    "workflow": "wt/rooms/art_runs/rooms/layers/bar/lantern-r2.api.json",
+    "kind": "image",
+    "count": 2,
+    "elapsed_s": 404.24,
+    "gpu_run_s": 31.21,
+    "gpu_wait_s": 372.794,
+    "run_estimated": false,
+    "at": 1794013924.212,
+    "audio_s": 0,
+    "run": "layers"
+   },
+   {
+    "job": "st-1794014019698-44",
+    "agent": "(job folder only)",
+    "source": "disk",
+    "workflow": "tool/art/workflows/qwen-frame.api.json",
+    "kind": "image",
+    "count": 4,
+    "elapsed_s": 211.5,
+    "gpu_run_s": 78.4,
+    "gpu_wait_s": null,
+    "run_estimated": true,
+    "at": 1794014019.698,
+    "audio_s": 0,
+    "run": "blinblin-v1-20261107c"
+   },
+   {
+    "job": "st-1794013925843-43",
+    "agent": "a2066dfe8c5f10a9f",
+    "source": "transcript",
+    "workflow": "wt/rooms/art_runs/rooms/layers/bar/lantern-l1.api.json",
+    "kind": "image",
+    "count": 2,
+    "elapsed_s": 215.69,
+    "gpu_run_s": 30.605,
+    "gpu_wait_s": 184.876,
+    "run_estimated": false,
+    "at": 1794014141.538,
+    "audio_s": 0,
+    "run": "layers"
+   },
+   {
+    "job": "st-1794014233128-46",
+    "agent": "(job folder only)",
+    "source": "disk",
+    "workflow": "tool/art/workflows/qwen-frame.api.json",
+    "kind": "image",
+    "count": 4,
+    "elapsed_s": 125.0,
+    "gpu_run_s": 83.8,
+    "gpu_wait_s": null,
+    "run_estimated": true,
+    "at": 1794014233.128,
+    "audio_s": 0,
+    "run": "blinblin-v1-20261107c"
+   },
+   {
+    "job": "st-1794014143177-45",
+    "agent": "a2066dfe8c5f10a9f",
+    "source": "transcript",
+    "workflow": "wt/rooms/art_runs/rooms/layers/bar/lantern-r1.api.json",
+    "kind": "image",
+    "count": 2,
+    "elapsed_s": 118.77,
+    "gpu_run_s": 30.467,
+    "gpu_wait_s": 88.062,
+    "run_estimated": false,
+    "at": 1794014261.948,
+    "audio_s": 0,
+    "run": "layers"
+   },
+   {
+    "job": "st-1794014359986-48",
+    "agent": "(job folder only)",
+    "source": "disk",
+    "workflow": "tool/art/workflows/qwen-frame.api.json",
+    "kind": "image",
+    "count": 4,
+    "elapsed_s": 119.9,
+    "gpu_run_s": 78.8,
+    "gpu_wait_s": null,
+    "run_estimated": true,
+    "at": 1794014359.986,
+    "audio_s": 0,
+    "run": "blinblin-v1-20261107c"
+   },
+   {
+    "job": "st-1794014263660-47",
+    "agent": "a2066dfe8c5f10a9f",
+    "source": "transcript",
+    "workflow": "wt/rooms/art_runs/rooms/layers/bar/fern-right.api.json",
+    "kind": "image",
+    "count": 2,
+    "elapsed_s": 125.67,
+    "gpu_run_s": 31.002,
+    "gpu_wait_s": 94.431,
+    "run_estimated": false,
+    "at": 1794014389.338,
+    "audio_s": 0,
+    "run": "layers"
+   },
+   {
+    "job": "st-1794014481699-50",
+    "agent": "(job folder only)",
+    "source": "disk",
+    "workflow": "tool/art/workflows/qwen-frame.api.json",
+    "kind": "image",
+    "count": 4,
+    "elapsed_s": 120.3,
+    "gpu_run_s": 80.4,
+    "gpu_wait_s": null,
+    "run_estimated": true,
+    "at": 1794014481.699,
+    "audio_s": 0,
+    "run": "blinblin-v1-20261107c"
+   },
+   {
+    "job": "st-1794014390875-49",
+    "agent": "a2066dfe8c5f10a9f",
+    "source": "transcript",
+    "workflow": "wt/rooms/art_runs/rooms/layers/bar/fern-left.api.json",
+    "kind": "image",
+    "count": 2,
+    "elapsed_s": 119.76,
+    "gpu_run_s": 30.586,
+    "gpu_wait_s": 88.976,
+    "run_estimated": false,
+    "at": 1794014510.644,
+    "audio_s": 0,
+    "run": "layers"
+   },
+   {
+    "job": "st-1794014603695-51",
+    "agent": "(job folder only)",
+    "source": "disk",
+    "workflow": "tool/art/workflows/qwen-frame.api.json",
+    "kind": "image",
+    "count": 4,
+    "elapsed_s": 89.2,
+    "gpu_run_s": 78.7,
+    "gpu_wait_s": null,
+    "run_estimated": true,
+    "at": 1794014603.695,
+    "audio_s": 0,
+    "run": "blinblin-v1-20261107c"
+   },
+   {
+    "job": "st-1794014694501-52",
+    "agent": "(job folder only)",
+    "source": "disk",
+    "workflow": "tool/art/workflows/qwen-frame.api.json",
+    "kind": "image",
+    "count": 4,
+    "elapsed_s": 90.3,
+    "gpu_run_s": 78.7,
+    "gpu_wait_s": null,
+    "run_estimated": true,
+    "at": 1794014694.501,
+    "audio_s": 0,
+    "run": "blinblin-v1-20261107c"
+   },
+   {
+    "job": "st-1794014787114-53",
+    "agent": "(job folder only)",
+    "source": "disk",
+    "workflow": "tool/art/workflows/qwen-frame.api.json",
+    "kind": "image",
+    "count": 4,
+    "elapsed_s": 91.3,
+    "gpu_run_s": 78.6,
+    "gpu_wait_s": null,
+    "run_estimated": true,
+    "at": 1794014787.114,
+    "audio_s": 0,
+    "run": "blinblin-v1-20261107c"
+   },
+   {
+    "job": "st-1794014881175-54",
+    "agent": "(job folder only)",
+    "source": "disk",
+    "workflow": "tool/art/workflows/qwen-frame.api.json",
+    "kind": "image",
+    "count": 4,
+    "elapsed_s": 93.4,
+    "gpu_run_s": 78.5,
+    "gpu_wait_s": null,
+    "run_estimated": true,
+    "at": 1794014881.175,
+    "audio_s": 0,
+    "run": "blinblin-v1-20261107c"
+   },
+   {
+    "job": "st-1794014976082-55",
+    "agent": "(job folder only)",
+    "source": "disk",
+    "workflow": "tool/art/workflows/qwen-frame.api.json",
+    "kind": "image",
+    "count": 4,
+    "elapsed_s": 88.6,
+    "gpu_run_s": 78.9,
+    "gpu_wait_s": null,
+    "run_estimated": true,
+    "at": 1794014976.082,
+    "audio_s": 0,
+    "run": "blinblin-v1-20261107c"
+   },
+   {
+    "job": "st-1794015066674-57",
+    "agent": "(job folder only)",
+    "source": "disk",
+    "workflow": "tool/art/workflows/qwen-frame.api.json",
+    "kind": "image",
+    "count": 4,
+    "elapsed_s": 156.1,
+    "gpu_run_s": 79.0,
+    "gpu_wait_s": null,
+    "run_estimated": true,
+    "at": 1794015066.674,
+    "audio_s": 0,
+    "run": "blinblin-v1-20261107c"
+   },
+   {
+    "job": "st-1794015003655-56",
+    "agent": "a2066dfe8c5f10a9f",
+    "source": "transcript",
+    "workflow": "wt/rooms/art_runs/rooms/crowd-props/workflows/prop-edit.api.json",
+    "kind": "image",
+    "count": 4,
+    "elapsed_s": 129.08,
+    "gpu_run_s": 67.788,
+    "gpu_wait_s": 61.072,
+    "run_estimated": false,
+    "at": 1794015142.882,
+    "audio_s": 0,
+    "run": "crowd-props"
+   },
+   {
+    "job": "st-1794015164416-59",
+    "agent": "(job folder only)",
+    "source": "disk",
+    "workflow": "wt/rooms/art_runs/pool-player-20261107a/workflows/sheet.front.api.json",
+    "kind": "image",
+    "count": 4,
+    "elapsed_s": 242.8,
+    "gpu_run_s": 78.1,
+    "gpu_wait_s": null,
+    "run_estimated": true,
+    "at": 1794015164.416,
+    "audio_s": 0,
+    "run": "pool-player-20261107a"
+   },
+   {
+    "job": "st-1794015166134-60",
+    "agent": "(job folder only)",
+    "source": "disk",
+    "workflow": "wt/rooms/art_runs/pool-player-20261107a/workflows/sheet.back.api.json",
+    "kind": "image",
+    "count": 4,
+    "elapsed_s": 329.4,
+    "gpu_run_s": 77.1,
+    "gpu_wait_s": null,
+    "run_estimated": true,
+    "at": 1794015166.134,
+    "audio_s": 0,
+    "run": "pool-player-20261107a"
+   },
+   {
+    "job": "st-1794015224832-61",
+    "agent": "(job folder only)",
+    "source": "disk",
+    "workflow": "tool/art/workflows/qwen-frame.api.json",
+    "kind": "image",
+    "count": 4,
+    "elapsed_s": 361.4,
+    "gpu_run_s": 78.8,
+    "gpu_wait_s": null,
+    "run_estimated": true,
+    "at": 1794015224.832,
+    "audio_s": 0,
+    "run": "blinblin-v1-20261107c"
+   },
+   {
+    "job": "st-1794015148439-58",
+    "agent": "a2066dfe8c5f10a9f",
+    "source": "transcript",
+    "workflow": "wt/rooms/art_runs/rooms/billiards/run-a/workflows/p1.api.json",
+    "kind": "image",
+    "count": 4,
+    "elapsed_s": 169.05,
+    "gpu_run_s": 94.46,
+    "gpu_wait_s": 74.368,
+    "run_estimated": false,
+    "at": 1794015368.678,
+    "audio_s": 0,
+    "run": "billiards"
+   },
+   {
+    "job": "st-1794015409762-62",
+    "agent": "(job folder only)",
+    "source": "disk",
+    "workflow": "wt/rooms/art_runs/rooms/billiards/run-a/workflows/p2.api.json",
+    "kind": "image",
+    "count": 2,
+    "elapsed_s": 212.1,
+    "gpu_run_s": 27.1,
+    "gpu_wait_s": null,
+    "run_estimated": true,
+    "at": 1794015409.762,
+    "audio_s": 0,
+    "run": "billiards"
+   },
+   {
+    "job": "st-1794015411652-63",
+    "agent": "(job folder only)",
+    "source": "disk",
+    "workflow": "wt/rooms/art_runs/rooms/billiards/run-a/workflows/p2.api.json",
+    "kind": "image",
+    "count": 2,
+    "elapsed_s": 245.9,
+    "gpu_run_s": 27.1,
+    "gpu_wait_s": null,
+    "run_estimated": true,
+    "at": 1794015411.652,
+    "audio_s": 0,
+    "run": "billiards"
+   },
+   {
+    "job": "st-1794015588025-64",
+    "agent": "(job folder only)",
+    "source": "disk",
+    "workflow": "tool/art/workflows/qwen-frame.api.json",
+    "kind": "image",
+    "count": 4,
+    "elapsed_s": 161.1,
+    "gpu_run_s": 80.4,
+    "gpu_wait_s": null,
+    "run_estimated": true,
+    "at": 1794015588.025,
+    "audio_s": 0,
+    "run": "blinblin-v1-20261107c"
+   },
+   {
+    "job": "st-1794015752570-65",
+    "agent": "(job folder only)",
+    "source": "disk",
+    "workflow": "tool/art/workflows/qwen-frame.api.json",
+    "kind": "image",
+    "count": 4,
+    "elapsed_s": 93.2,
+    "gpu_run_s": 80.3,
+    "gpu_wait_s": null,
+    "run_estimated": true,
+    "at": 1794015752.57,
+    "audio_s": 0,
+    "run": "blinblin-v1-20261107c"
+   },
+   {
+    "job": "st-1794015847859-66",
+    "agent": "(job folder only)",
+    "source": "disk",
+    "workflow": "tool/art/workflows/qwen-frame.api.json",
+    "kind": "image",
+    "count": 4,
+    "elapsed_s": 92.8,
+    "gpu_run_s": 79.7,
+    "gpu_wait_s": null,
+    "run_estimated": true,
+    "at": 1794015847.859,
+    "audio_s": 0,
+    "run": "blinblin-v1-20261107c"
+   },
+   {
+    "job": "st-1794015942321-67",
+    "agent": "(job folder only)",
+    "source": "disk",
+    "workflow": "tool/art/workflows/qwen-frame.api.json",
+    "kind": "image",
+    "count": 4,
+    "elapsed_s": 93.0,
+    "gpu_run_s": 80.8,
+    "gpu_wait_s": null,
+    "run_estimated": true,
+    "at": 1794015942.321,
+    "audio_s": 0,
+    "run": "blinblin-v1-20261107c"
+   },
+   {
+    "job": "st-1794016036967-68",
+    "agent": "(job folder only)",
+    "source": "disk",
+    "workflow": "tool/art/workflows/qwen-frame.api.json",
+    "kind": "image",
+    "count": 4,
+    "elapsed_s": 92.7,
+    "gpu_run_s": 80.3,
+    "gpu_wait_s": null,
+    "run_estimated": true,
+    "at": 1794016036.967,
+    "audio_s": 0,
+    "run": "blinblin-v1-20261107c"
+   },
+   {
+    "job": "st-1794016131329-69",
+    "agent": "(job folder only)",
+    "source": "disk",
+    "workflow": "tool/art/workflows/qwen-frame.api.json",
+    "kind": "image",
+    "count": 4,
+    "elapsed_s": 91.4,
+    "gpu_run_s": 79.0,
+    "gpu_wait_s": null,
+    "run_estimated": true,
+    "at": 1794016131.329,
+    "audio_s": 0,
+    "run": "blinblin-v1-20261107c"
+   },
+   {
+    "job": "st-1794016224584-70",
+    "agent": "(job folder only)",
+    "source": "disk",
+    "workflow": "tool/art/workflows/qwen-frame.api.json",
+    "kind": "image",
+    "count": 4,
+    "elapsed_s": 91.5,
+    "gpu_run_s": 79.0,
+    "gpu_wait_s": null,
+    "run_estimated": true,
+    "at": 1794016224.584,
+    "audio_s": 0,
+    "run": "blinblin-v1-20261107c"
+   },
+   {
+    "job": "st-1794016317810-71",
+    "agent": "(job folder only)",
+    "source": "disk",
+    "workflow": "tool/art/workflows/qwen-frame.api.json",
+    "kind": "image",
+    "count": 4,
+    "elapsed_s": 91.4,
+    "gpu_run_s": 79.5,
+    "gpu_wait_s": null,
+    "run_estimated": true,
+    "at": 1794016317.81,
+    "audio_s": 0,
+    "run": "blinblin-v1-20261107c"
+   },
+   {
+    "job": "st-1794016410866-72",
+    "agent": "(job folder only)",
+    "source": "disk",
+    "workflow": "tool/art/workflows/qwen-frame.api.json",
+    "kind": "image",
+    "count": 4,
+    "elapsed_s": 89.8,
+    "gpu_run_s": 77.4,
+    "gpu_wait_s": null,
+    "run_estimated": true,
+    "at": 1794016410.866,
+    "audio_s": 0,
+    "run": "blinblin-v1-20261107c"
+   },
+   {
+    "job": "st-1794016415109-73",
+    "agent": "(job folder only)",
+    "source": "disk",
+    "workflow": "tool/art/workflows/qwen-frame.api.json",
+    "kind": "image",
+    "count": 4,
+    "elapsed_s": 173.6,
+    "gpu_run_s": 78.0,
+    "gpu_wait_s": null,
+    "run_estimated": true,
+    "at": 1794016415.109,
+    "audio_s": 0,
+    "run": "band-bass-3q-20261107a"
+   },
+   {
+    "job": "st-1794016502543-74",
+    "agent": "(job folder only)",
+    "source": "disk",
+    "workflow": "tool/art/workflows/qwen-frame.api.json",
+    "kind": "image",
+    "count": 4,
+    "elapsed_s": 174.6,
+    "gpu_run_s": 79.0,
+    "gpu_wait_s": null,
+    "run_estimated": true,
+    "at": 1794016502.543,
+    "audio_s": 0,
+    "run": "blinblin-v1-20261107c"
+   },
+   {
+    "job": "st-1794016598089-75",
+    "agent": "(job folder only)",
+    "source": "disk",
+    "workflow": "tool/art/workflows/qwen-frame.api.json",
+    "kind": "image",
+    "count": 4,
+    "elapsed_s": 169.2,
+    "gpu_run_s": 79.0,
+    "gpu_wait_s": null,
+    "run_estimated": true,
+    "at": 1794016598.089,
+    "audio_s": 0,
+    "run": "band-congas-3q-20261107a"
+   },
+   {
+    "job": "st-1794016678939-76",
+    "agent": "(job folder only)",
+    "source": "disk",
+    "workflow": "tool/art/workflows/qwen-frame.api.json",
+    "kind": "image",
+    "count": 4,
+    "elapsed_s": 179.9,
+    "gpu_run_s": 79.0,
+    "gpu_wait_s": null,
+    "run_estimated": true,
+    "at": 1794016678.939,
+    "audio_s": 0,
+    "run": "blinblin-v1-20261107c"
+   },
+   {
+    "job": "st-1794016769215-77",
+    "agent": "(job folder only)",
+    "source": "disk",
+    "workflow": "tool/art/workflows/qwen-frame.api.json",
+    "kind": "image",
+    "count": 4,
+    "elapsed_s": 180.4,
+    "gpu_run_s": 78.5,
+    "gpu_wait_s": null,
+    "run_estimated": true,
+    "at": 1794016769.215,
+    "audio_s": 0,
+    "run": "band-trumpet-3q-20261107a"
+   },
+   {
+    "job": "st-1794016808542-78",
+    "agent": "(job folder only)",
+    "source": "disk",
+    "workflow": "tool/art/workflows/qwen-frame.api.json",
+    "kind": "image",
+    "count": 4,
+    "elapsed_s": 233.2,
+    "gpu_run_s": 79.1,
+    "gpu_wait_s": null,
+    "run_estimated": true,
+    "at": 1794016808.542,
+    "audio_s": 0,
+    "run": "band-bass-3q-20261107b"
+   },
+   {
+    "job": "st-1794016860663-79",
+    "agent": "(job folder only)",
+    "source": "disk",
+    "workflow": "tool/art/workflows/qwen-frame.api.json",
+    "kind": "image",
+    "count": 4,
+    "elapsed_s": 271.6,
+    "gpu_run_s": 79.6,
+    "gpu_wait_s": null,
+    "run_estimated": true,
+    "at": 1794016860.663,
+    "audio_s": 0,
+    "run": "blinblin-v1-20261107c"
+   },
+   {
+    "job": "st-1794016951618-80",
+    "agent": "(job folder only)",
+    "source": "disk",
+    "workflow": "tool/art/workflows/qwen-frame.api.json",
+    "kind": "image",
+    "count": 4,
+    "elapsed_s": 270.9,
+    "gpu_run_s": 81.1,
+    "gpu_wait_s": null,
+    "run_estimated": true,
+    "at": 1794016951.618,
+    "audio_s": 0,
+    "run": "band-marimba-3q-20261107a"
+   },
+   {
+    "job": "st-1794016982608-81",
+    "agent": "(job folder only)",
+    "source": "disk",
+    "workflow": "tool/art/workflows/qwen-frame.api.json",
+    "kind": "image",
+    "count": 4,
+    "elapsed_s": 333.1,
+    "gpu_run_s": 83.1,
+    "gpu_wait_s": null,
+    "run_estimated": true,
+    "at": 1794016982.608,
+    "audio_s": 0,
+    "run": "band-bass-3q-20261107b"
+   },
+   {
+    "job": "st-1794017134187-82",
+    "agent": "(job folder only)",
+    "source": "disk",
+    "workflow": "tool/art/workflows/qwen-frame.api.json",
+    "kind": "image",
+    "count": 4,
+    "elapsed_s": 277.2,
+    "gpu_run_s": 81.5,
+    "gpu_wait_s": null,
+    "run_estimated": true,
+    "at": 1794017134.187,
+    "audio_s": 0,
+    "run": "blinblin-v1-20261107c"
+   },
+   {
+    "job": "st-1794017317697-83",
+    "agent": "(job folder only)",
+    "source": "disk",
+    "workflow": "tool/art/workflows/qwen-frame.api.json",
+    "kind": "image",
+    "count": 4,
+    "elapsed_s": 188.9,
+    "gpu_run_s": 83.4,
+    "gpu_wait_s": null,
+    "run_estimated": true,
+    "at": 1794017317.697,
+    "audio_s": 0,
+    "run": "band-congas-3q-20261107b"
+   },
+   {
+    "job": "st-1794017335559-84",
+    "agent": "(job folder only)",
+    "source": "disk",
+    "workflow": "tool/art/workflows/qwen-frame.api.json",
+    "kind": "image",
+    "count": 4,
+    "elapsed_s": 266.9,
+    "gpu_run_s": 83.7,
+    "gpu_wait_s": null,
+    "run_estimated": true,
+    "at": 1794017335.559,
+    "audio_s": 0,
+    "run": "band-bass-v1-20261107a"
+   },
+   {
+    "job": "st-1794017413255-85",
+    "agent": "(job folder only)",
+    "source": "disk",
+    "workflow": "tool/art/workflows/qwen-frame.api.json",
+    "kind": "image",
+    "count": 4,
+    "elapsed_s": 284.7,
+    "gpu_run_s": 83.9,
+    "gpu_wait_s": null,
+    "run_estimated": true,
+    "at": 1794017413.255,
+    "audio_s": 0,
+    "run": "blinblin-v1-20261107c"
+   },
+   {
+    "job": "st-1794017508597-86",
+    "agent": "(job folder only)",
+    "source": "disk",
+    "workflow": "tool/art/workflows/qwen-frame.api.json",
+    "kind": "image",
+    "count": 4,
+    "elapsed_s": 280.8,
+    "gpu_run_s": 79.4,
+    "gpu_wait_s": null,
+    "run_estimated": true,
+    "at": 1794017508.597,
+    "audio_s": 0,
+    "run": "band-trumpet-3q-20261107b"
+   },
+   {
+    "job": "st-1794017604247-87",
+    "agent": "(job folder only)",
+    "source": "disk",
+    "workflow": "tool/art/workflows/qwen-frame.api.json",
+    "kind": "image",
+    "count": 4,
+    "elapsed_s": 274.8,
+    "gpu_run_s": 78.6,
+    "gpu_wait_s": null,
+    "run_estimated": true,
+    "at": 1794017604.247,
+    "audio_s": 0,
+    "run": "band-bass-v1-20261107a"
+   },
+   {
+    "job": "st-1794017700205-88",
+    "agent": "(job folder only)",
+    "source": "disk",
+    "workflow": "tool/art/workflows/qwen-frame.api.json",
+    "kind": "image",
+    "count": 4,
+    "elapsed_s": 267.6,
+    "gpu_run_s": 76.7,
+    "gpu_wait_s": null,
+    "run_estimated": true,
+    "at": 1794017700.205,
+    "audio_s": 0,
+    "run": "blinblin-v1-20261107c"
+   },
+   {
+    "job": "st-1794017791307-89",
+    "agent": "(job folder only)",
+    "source": "disk",
+    "workflow": "tool/art/workflows/qwen-frame.api.json",
+    "kind": "image",
+    "count": 4,
+    "elapsed_s": 271.2,
+    "gpu_run_s": 78.6,
+    "gpu_wait_s": null,
+    "run_estimated": true,
+    "at": 1794017791.307,
+    "audio_s": 0,
+    "run": "band-marimba-3q-20261107b"
+   },
+   {
+    "job": "st-1794017880863-90",
+    "agent": "(job folder only)",
+    "source": "disk",
+    "workflow": "tool/art/workflows/qwen-frame.api.json",
+    "kind": "image",
+    "count": 4,
+    "elapsed_s": 271.3,
+    "gpu_run_s": 78.1,
+    "gpu_wait_s": null,
+    "run_estimated": true,
+    "at": 1794017880.863,
+    "audio_s": 0,
+    "run": "band-bass-v1-20261107a"
+   },
+   {
+    "job": "st-1794017969603-91",
+    "agent": "(job folder only)",
+    "source": "disk",
+    "workflow": "tool/art/workflows/qwen-frame.api.json",
+    "kind": "image",
+    "count": 4,
+    "elapsed_s": 271.2,
+    "gpu_run_s": 76.9,
+    "gpu_wait_s": null,
+    "run_estimated": true,
+    "at": 1794017969.603,
+    "audio_s": 0,
+    "run": "blinblin-v1-20261107c"
+   },
+   {
+    "job": "st-1794018133507-92",
+    "agent": "(job folder only)",
+    "source": "disk",
+    "workflow": "tool/art/workflows/qwen-frame.api.json",
+    "kind": "image",
+    "count": 4,
+    "elapsed_s": 194.4,
+    "gpu_run_s": 77.2,
+    "gpu_wait_s": null,
+    "run_estimated": true,
+    "at": 1794018133.507,
+    "audio_s": 0,
+    "run": "band-congas-3q-20261107c"
+   },
+   {
+    "job": "st-1794018189841-93",
+    "agent": "(job folder only)",
+    "source": "disk",
+    "workflow": "tool/art/workflows/qwen-frame.api.json",
+    "kind": "image",
+    "count": 4,
+    "elapsed_s": 228.1,
+    "gpu_run_s": 77.9,
+    "gpu_wait_s": null,
+    "run_estimated": true,
+    "at": 1794018189.841,
+    "audio_s": 0,
+    "run": "band-bass-v1-20261107b"
+   },
+   {
+    "job": "st-1794018242482-94",
+    "agent": "(job folder only)",
+    "source": "disk",
+    "workflow": "tool/art/workflows/qwen-frame.api.json",
+    "kind": "image",
+    "count": 4,
+    "elapsed_s": 264.0,
+    "gpu_run_s": 78.2,
+    "gpu_wait_s": null,
+    "run_estimated": true,
+    "at": 1794018242.482,
+    "audio_s": 0,
+    "run": "blinblin-v1-20261107c"
+   },
+   {
+    "job": "st-1794018419540-95",
+    "agent": "(job folder only)",
+    "source": "disk",
+    "workflow": "tool/art/workflows/qwen-frame.api.json",
+    "kind": "image",
+    "count": 4,
+    "elapsed_s": 238.3,
+    "gpu_run_s": 129.2,
+    "gpu_wait_s": null,
+    "run_estimated": true,
+    "at": 1794018419.54,
+    "audio_s": 0,
+    "run": "band-bass-v1-20261107b"
+   },
+   {
+    "job": "st-1794018508229-96",
+    "agent": "(job folder only)",
+    "source": "disk",
+    "workflow": "tool/art/workflows/qwen-frame.api.json",
+    "kind": "image",
+    "count": 4,
+    "elapsed_s": 305.1,
+    "gpu_run_s": 137.8,
+    "gpu_wait_s": null,
+    "run_estimated": true,
+    "at": 1794018508.229,
+    "audio_s": 0,
+    "run": "blinblin-v1-20261107c"
+   },
+   {
+    "job": "st-1794018560088-97",
+    "agent": "(job folder only)",
+    "source": "disk",
+    "workflow": "tool/art/workflows/qwen-frame.api.json",
+    "kind": "image",
+    "count": 2,
+    "elapsed_s": 338.4,
+    "gpu_run_s": 68.5,
+    "gpu_wait_s": null,
+    "run_estimated": true,
+    "at": 1794018560.088,
+    "audio_s": 0,
+    "run": "blinblin-v1-20261107c"
+   }
+  ],
+  "ledger": {
+   "by_kind": {
+    "local-vision": {
+     "lines": 3,
+     "seconds": 135.51999999999998,
+     "count": 58
+    }
+   },
+   "files": [
+    "/home/forge/.cache/tillandsias-project/kumbia-wt/ledger/plan/compute-ledger.jsonl"
+   ],
+   "bad_lines": 0
+  },
+  "bash_commands_calling_local_vision": 12,
+  "all_time_outputs": {
+   "image": 655,
+   "audio": 127,
+   "other": 2257,
+   "audio_seconds": 10730.719999999996,
+   "audio_unread": 0,
+   "first": "2026-11-06T19:11:27Z",
+   "last": "2026-11-07T02:34:58Z"
+  }
+ },
+ "assets": {
+  "classes": {
+   "builtin-imagegen / art": {
+    "files": 15,
+    "bytes": 27437397,
+    "named_files": 13,
+    "named_bytes": 23840753
+   },
+   "local-edit-of-imagegen / art": {
+    "files": 4,
+    "bytes": 5062173,
+    "named_files": 4,
+    "named_bytes": 5062173
+   },
+   "local-model / art": {
+    "files": 47,
+    "bytes": 8534800,
+    "named_files": 46,
+    "named_bytes": 7627402
+   },
+   "unclassified / art": {
+    "files": 3,
+    "bytes": 20122,
+    "named_files": 3,
+    "named_bytes": 20122
+   },
+   "reference-not-shipped / art": {
+    "files": 1,
+    "bytes": 2820124,
+    "named_files": 0,
+    "named_bytes": 0
+   },
+   "third-party / art": {
+    "files": 1,
+    "bytes": 170576,
+    "named_files": 1,
+    "named_bytes": 170576
+   },
+   "authored-code / audio": {
+    "files": 44,
+    "bytes": 264569,
+    "named_files": 14,
+    "named_bytes": 8146
+   },
+   "local-model / audio": {
+    "files": 80,
+    "bytes": 28985801,
+    "named_files": 80,
+    "named_bytes": 28985801
+   },
+   "authored-code / art": {
+    "files": 4,
+    "bytes": 1130,
+    "named_files": 0,
+    "named_bytes": 0
+   }
+  },
+  "unclassified": [
+   "assets/art/props/bar.png",
+   "assets/art/props/garden.png",
+   "assets/art/props/pool-garden.png"
+  ]
+ }
+}
