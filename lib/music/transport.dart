@@ -326,8 +326,8 @@ class MusicTransport {
   }
 
   /// The sections a tier change makes: the new tier's take, through its written
-  /// transition if there is one, staying on what's playing if the take isn't
-  /// decoded yet. The clock and the audio are planned here, together.
+  /// transition if there is one, or the synth if the take isn't decoded yet. The
+  /// clock and the audio are planned here, together.
   List<TempoSection> _tierChange(int tier, double boundary, double when) {
     final level = rendered?.level;
     final previous = _sections.last;
@@ -350,20 +350,12 @@ class MusicTransport {
         ),
       ];
     }
+    // A tier always runs at its own tempo, because its chart is only fair there:
+    // the lawn's richest tier is safe at 136 and breaks its limits at 160. So a
+    // take that isn't ready means the synth at that tempo, not a hold on what's
+    // playing, and pump brings the take in at a later boundary if it arrives.
     if (!deck.clipReady(clip)) {
-      // Held, and pump tries again. On the synth that is the tier's tempo, and
-      // on a take it is that take's: music and clock never disagree.
-      return [
-        TempoSection(
-          boundary,
-          when,
-          tier,
-          previous.clip == null ? score.tempos[tier] : previous.bpm,
-          clip: previous.clip,
-          originBeat: previous.originBeat,
-          take: previous.take,
-        ),
-      ];
+      return [TempoSection(boundary, when, tier, score.tempos[tier])];
     }
     final from = previous.take;
     final join = from == null ? null : level.transition(from, target);
@@ -440,8 +432,8 @@ class MusicTransport {
     }
   }
 
-  /// A tier held back for a take still decoding moves on once the take is ready,
-  /// at the next boundary like any other change.
+  /// A tier on the synth because its take wasn't ready picks the take up once it
+  /// is, at the next boundary like any other change.
   void _retryHeldTier() {
     final level = rendered?.level;
     if (level == null || _sections.isEmpty) return;

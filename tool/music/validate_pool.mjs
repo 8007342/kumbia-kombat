@@ -122,7 +122,7 @@ console.log('Transitions: pool_swing_success at',success.tiers[4].bpm,'BPM; bar_
 
 // ---- level file: the fields lib/gameplay/level_definition.dart reads, and no others
 const level=json('levels/pool-garden.json');
-assert.deepEqual(Object.keys(level).sort(),['background','chart','copy','crowd','departure','exitShot','hardestCombo','id','music','rules','scenery','stage','title'].sort());
+assert.deepEqual(Object.keys(level).sort(),['background','chart','copy','crowd','departure','exitShot','hardestCombo','id','layers','music','rules','scenery','stage','title'].sort());
 assert.deepEqual(Object.keys(level.chart).sort(),['callBeats','flourishDestination','introBeats','limbs','offsets','rich','variants']);
 assert.deepEqual(Object.keys(level.music).sort(),['leadShape','score','successScore']);
 assert.deepEqual(Object.keys(level.rules).sort(),['cleanSeconds','earlyHitRatio','finalChallenges','metric','resetAfterFailures','successesPerTier']);
