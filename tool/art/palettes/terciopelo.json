@@ -1,0 +1,118 @@
+{
+ "schema": "tillandsias.palette/v1",
+ "name": "terciopelo",
+ "colours": [
+  "#1A1018",
+  "#5E3613",
+  "#855938",
+  "#B07E58",
+  "#CB9F7E",
+  "#797C7F",
+  "#A0A3A6",
+  "#C9CCD0",
+  "#EAEDF0",
+  "#A09F99",
+  "#C9C7C2",
+  "#F4F2EC",
+  "#FDFCF7",
+  "#9D9A94",
+  "#C5C3BC",
+  "#F0EDE6",
+  "#FEFCF6",
+  "#9D9A95",
+  "#C5C3BD",
+  "#F0EDE7",
+  "#FEFCF7",
+  "#0A0000",
+  "#300006",
+  "#5A0C22",
+  "#73323D",
+  "#620000",
+  "#8E0000",
+  "#C2141A",
+  "#DA5249",
+  "#000000",
+  "#010102",
+  "#14151A",
+  "#2C2D31",
+  "#9D9A93",
+  "#C5C3BB",
+  "#F0EDE5",
+  "#FEFCF5"
+ ],
+ "transparent": null,
+ "$provenance": {
+  "tool": "tool/art/pipeline/compile_family.py",
+  "definition": "tool/art/characters/terciopelo.json",
+  "ramps": {
+   "skin": [
+    "#5E3613",
+    "#855938",
+    "#B07E58",
+    "#CB9F7E"
+   ],
+   "hair": [
+    "#797C7F",
+    "#A0A3A6",
+    "#C9CCD0",
+    "#EAEDF0"
+   ],
+   "shirt": [
+    "#A09F99",
+    "#C9C7C2",
+    "#F4F2EC",
+    "#FDFCF7"
+   ],
+   "jacket": [
+    "#9D9A94",
+    "#C5C3BC",
+    "#F0EDE6",
+    "#FEFCF6"
+   ],
+   "lapels": [
+    "#9D9A95",
+    "#C5C3BD",
+    "#F0EDE7",
+    "#FEFCF7"
+   ],
+   "velvet": [
+    "#0A0000",
+    "#300006",
+    "#5A0C22",
+    "#73323D"
+   ],
+   "rose": [
+    "#620000",
+    "#8E0000",
+    "#C2141A",
+    "#DA5249"
+   ],
+   "trousers": [
+    "#000000",
+    "#010102",
+    "#14151A",
+    "#2C2D31"
+   ],
+   "shoes": [
+    "#9D9A93",
+    "#C5C3BB",
+    "#F0EDE5",
+    "#FEFCF5"
+   ]
+  },
+  "nudged": {
+   "lapels": {
+    "#9D9A94": "#9D9A95",
+    "#C5C3BC": "#C5C3BD",
+    "#F0EDE6": "#F0EDE7",
+    "#FEFCF6": "#FEFCF7"
+   },
+   "shoes": {
+    "#9D9A94": "#9D9A93",
+    "#C5C3BC": "#C5C3BB",
+    "#F0EDE6": "#F0EDE5",
+    "#FEFCF6": "#FEFCF5"
+   }
+  }
+ }
+}

@@ -1,0 +1,3646 @@
+{
+ "contract": "1935-k2ib/v1",
+ "pipelineVersion": null,
+ "family": "terciopelo-v1",
+ "version": 1,
+ "project": "kumbia-kombat",
+ "description": "Salon opponent, Don Terciopelo: a tall, slim, very upright ballroom gentleman of about seventy in a white dinner jacket, with a red rose in his lapel.",
+ "kind": "character-frames",
+ "frame": {
+  "baselineY": null,
+  "pivot": {
+   "x": null,
+   "y": null,
+   "normalized": false
+  },
+  "scale": {
+   "mode": "fixed-per-family",
+   "referencePose": "challenge.return",
+   "resolved": null
+  },
+  "native": {
+   "perRoom": true,
+   "salon": {
+    "width": 256,
+    "height": 320,
+    "pixelScale": 3
+   }
+  },
+  "margin": {
+   "minClear": 0.03,
+   "units": "fraction-of-generation-canvas",
+   "failOnBorderTouch": true
+  },
+  "units": "native-px",
+  "generationCanvas": {
+   "width": 768,
+   "height": 960
+  },
+  "camera": "floor-perspective"
+ },
+ "transparency": {
+  "byBackend": {
+   "sdxl": "matte",
+   "default": "matte"
+  },
+  "matte": "birefnet",
+  "alpha": "binary"
+ },
+ "outline": "#1A1018",
+ "symmetry": "none",
+ "references": [],
+ "regions": {
+  "#FF0000": "skin",
+  "#00FF00": "hair",
+  "#8000FF": "shirt",
+  "#0000FF": "cloth",
+  "#FF00FF": "accessory",
+  "#FF8000": "trousers",
+  "#00FFFF": "shoes"
+ },
+ "reservedRamps": [
+  {
+   "id": "kumbia-outfit",
+   "appliesToRegions": [
+    "cloth"
+   ],
+   "recolor": false,
+   "$comment": "Gates from shaders/party_palette.frag on unpremultiplied RGB 0-1; matches if ANY gate's ALL conditions hold. Structured, never eval'd: lhs is a channel or {sub:[a,b]}, rhs a literal or {mul:[k,channel]}.",
+   "gates": [
+    {
+     "id": "cool",
+     "all": [
+      {
+       "lhs": "b",
+       "op": ">=",
+       "rhs": 0.12
+      },
+      {
+       "lhs": "r",
+       "op": ">=",
+       "rhs": {
+        "mul": [
+         0.7,
+         "b"
+        ]
+       }
+      },
+      {
+       "lhs": "b",
+       "op": ">=",
+       "rhs": {
+        "mul": [
+         0.99,
+         "r"
+        ]
+       }
+      },
+      {
+       "lhs": "g",
+       "op": ">=",
+       "rhs": {
+        "mul": [
+         0.2,
+         "b"
+        ]
+       }
+      },
+      {
+       "lhs": "g",
+       "op": "<=",
+       "rhs": {
+        "mul": [
+         0.66,
+         "b"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "id": "plum",
+     "all": [
+      {
+       "lhs": "r",
+       "op": ">=",
+       "rhs": 0.392157
+      },
+      {
+       "lhs": "r",
+       "op": ">=",
+       "rhs": {
+        "mul": [
+         0.7,
+         "b"
+        ]
+       }
+      },
+      {
+       "lhs": "b",
+       "op": ">=",
+       "rhs": {
+        "mul": [
+         0.32,
+         "r"
+        ]
+       }
+      },
+      {
+       "lhs": "g",
+       "op": "<=",
+       "rhs": {
+        "mul": [
+         0.55,
+         "b"
+        ]
+       }
+      },
+      {
+       "lhs": {
+        "sub": [
+         "b",
+         "g"
+        ]
+       },
+       "op": ">=",
+       "rhs": 0.047059
+      }
+     ]
+    },
+    {
+     "id": "pink",
+     "all": [
+      {
+       "lhs": "r",
+       "op": ">=",
+       "rhs": 0.705882
+      },
+      {
+       "lhs": "r",
+       "op": ">=",
+       "rhs": {
+        "mul": [
+         0.7,
+         "b"
+        ]
+       }
+      },
+      {
+       "lhs": "b",
+       "op": ">=",
+       "rhs": {
+        "mul": [
+         0.32,
+         "r"
+        ]
+       }
+      },
+      {
+       "lhs": "g",
+       "op": "<=",
+       "rhs": {
+        "mul": [
+         0.86,
+         "b"
+        ]
+       }
+      },
+      {
+       "lhs": {
+        "sub": [
+         "b",
+         "g"
+        ]
+       },
+       "op": ">=",
+       "rhs": 0.047059
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "palette": {
+  "locked": "tool/art/palettes/terciopelo.json"
+ },
+ "style_prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background",
+ "style_negative": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render",
+ "character_prompt": "tall slim upright gentleman of about seventy, swept-back silver hair, pencil moustache, poised and elegantly unimpressed, swept-back silver hair, white dress shirt, white dinner jacket with shawl lapels, shawl lapels, burgundy velvet bow tie, a red rose in his left lapel, black dress trousers, two-tone white and black spectator shoes, absurdly poised, gallant and elegantly unimpressed, until he is won over",
+ "clips": [
+  {
+   "id": "groove",
+   "drawings": 8,
+   "view": "front",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": []
+  },
+  {
+   "id": "left_hand",
+   "drawings": 4,
+   "view": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [
+    {
+     "beat": 0.25,
+     "type": "accent",
+     "drawing": "peak"
+    }
+   ]
+  },
+  {
+   "id": "right_hand",
+   "drawings": 4,
+   "view": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [
+    {
+     "beat": 0.25,
+     "type": "accent",
+     "drawing": "peak"
+    }
+   ]
+  },
+  {
+   "id": "left_foot",
+   "drawings": 4,
+   "view": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [
+    {
+     "beat": 0.25,
+     "type": "accent",
+     "drawing": "peak"
+    }
+   ]
+  },
+  {
+   "id": "right_foot",
+   "drawings": 4,
+   "view": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [
+    {
+     "beat": 0.25,
+     "type": "accent",
+     "drawing": "peak"
+    }
+   ]
+  },
+  {
+   "id": "enter_forward",
+   "drawings": 6,
+   "view": "front",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": []
+  },
+  {
+   "id": "retreat_backward",
+   "drawings": 6,
+   "view": "front",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": []
+  },
+  {
+   "id": "yield_side",
+   "drawings": 6,
+   "view": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": []
+  },
+  {
+   "id": "watch",
+   "drawings": 4,
+   "view": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": []
+  },
+  {
+   "id": "clap",
+   "drawings": 4,
+   "view": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [
+    {
+     "beat": 0.5,
+     "type": "accent",
+     "drawing": "contact"
+    }
+   ]
+  },
+  {
+   "id": "challenge",
+   "drawings": 4,
+   "view": "front",
+   "loop": false,
+   "durationBeats": 2.0,
+   "events": [
+    {
+     "beat": 1.0,
+     "type": "accent",
+     "drawing": "offer"
+    }
+   ]
+  },
+  {
+   "id": "approval",
+   "drawings": 3,
+   "view": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [
+    {
+     "beat": 0.333,
+     "type": "accent",
+     "drawing": "nod"
+    }
+   ]
+  },
+  {
+   "id": "reassurance",
+   "drawings": 3,
+   "view": "front",
+   "loop": false,
+   "durationBeats": 1.5,
+   "events": [
+    {
+     "beat": 0.5,
+     "type": "accent",
+     "drawing": "open_hand"
+    }
+   ]
+  },
+  {
+   "id": "finish_turn",
+   "drawings": 4,
+   "view": "front",
+   "loop": false,
+   "durationBeats": 2.0,
+   "events": []
+  },
+  {
+   "id": "spin",
+   "drawings": 8,
+   "view": "front",
+   "sheetView": "front",
+   "promptTemplate": "skeletonTurn",
+   "loop": false,
+   "durationBeats": 2.0,
+   "events": []
+  },
+  {
+   "id": "flare",
+   "drawings": 1,
+   "view": "front",
+   "loop": false,
+   "durationBeats": 1.5,
+   "events": [
+    {
+     "beat": 0.0,
+     "type": "accent",
+     "drawing": "line"
+    }
+   ]
+  },
+  {
+   "id": "moustache",
+   "drawings": 2,
+   "view": "front",
+   "loop": false,
+   "durationBeats": 2.0,
+   "events": []
+  },
+  {
+   "id": "glance",
+   "drawings": 2,
+   "view": "front_3q",
+   "promptTemplate": "skeletonTurn",
+   "loop": false,
+   "durationBeats": 2.0,
+   "events": [
+    {
+     "beat": 1.0,
+     "type": "accent",
+     "drawing": "b"
+    }
+   ]
+  },
+  {
+   "id": "offer_hand",
+   "drawings": 2,
+   "view": "front",
+   "loop": false,
+   "durationBeats": 2.0,
+   "events": [
+    {
+     "beat": 1.0,
+     "type": "accent",
+     "drawing": "b"
+    }
+   ]
+  },
+  {
+   "id": "bow",
+   "drawings": 3,
+   "view": "front",
+   "loop": false,
+   "durationBeats": 3.0,
+   "events": [
+    {
+     "beat": 1.0,
+     "type": "accent",
+     "drawing": "b"
+    }
+   ]
+  },
+  {
+   "id": "sweep",
+   "drawings": 2,
+   "view": "front",
+   "loop": false,
+   "durationBeats": 2.0,
+   "events": [
+    {
+     "beat": 1.0,
+     "type": "accent",
+     "drawing": "b"
+    }
+   ]
+  },
+  {
+   "id": "rose",
+   "drawings": 2,
+   "view": "front",
+   "loop": false,
+   "durationBeats": 2.0,
+   "events": [
+    {
+     "beat": 1.0,
+     "type": "accent",
+     "drawing": "offer"
+    }
+   ]
+  }
+ ],
+ "generation": {
+  "count_per_pose": 4,
+  "seed_base": 991000,
+  "seed_policy": "seed = seed_base + 100*pose_index + k; fixed per pose while tuning",
+  "backend": "comfyui-api",
+  "workflow": "tool/art/workflows/qwen-frame.api.json",
+  "tiers": {
+   "I1": {
+    "model": "qwen-frame",
+    "steps": 4
+   }
+  },
+  "workflowsByProfile": {
+   "moderate": "tool/art/workflows/qwen-frame.api.json",
+   "peak": "tool/art/workflows/qwen-frame.api.json",
+   "overlap": "tool/art/workflows/qwen-frame.api.json",
+   "turn": "tool/art/workflows/qwen-frame.api.json"
+  },
+  "defaultProfile": "moderate",
+  "profileRules": [
+   {
+    "profile": "turn",
+    "poses": [
+     "finish_turn.turn_in",
+     "finish_turn.turn_out"
+    ]
+   },
+   {
+    "profile": "overlap",
+    "clips": [
+     "clap",
+     "watch",
+     "approval"
+    ],
+    "poses": [
+     "challenge.proud",
+     "challenge.load",
+     "finish_turn.finish_a",
+     "finish_turn.finish_b"
+    ]
+   },
+   {
+    "profile": "peak",
+    "phases": [
+     "accent"
+    ],
+    "poses": [
+     "challenge.offer",
+     "reassurance.open_hand"
+    ]
+   }
+  ]
+ },
+ "qa": {
+  "inherit": [
+   "coverage",
+   "single_object",
+   "border_touch",
+   "slot_fill"
+  ],
+  "add": [
+   {
+    "id": "baseline_drift",
+    "maxPx": 1,
+    "scope": "consecutive drawings sharing a planted support foot",
+    "camera": "from target"
+   },
+   {
+    "id": "head_size_variance",
+    "maxPct": 4,
+    "scope": "family"
+   },
+   {
+    "id": "region_gate_agreement",
+    "rule": "non-cloth pixels outside all reservedRamps gates; cloth pixels inside one"
+   },
+   {
+    "id": "identity_similarity",
+    "against": "references",
+    "threshold": "TBD",
+    "embedding": {
+     "model": "facebook/dinov2-small",
+     "licence": "apache-2.0",
+     "status": "pending operator approval"
+    }
+   }
+  ],
+  "static": [
+   {
+    "id": "palette_fails_all_gates",
+    "rule": "outline and palette entries outside cloth fail every kumbia-outfit gate"
+   },
+   {
+    "id": "region_mask_colours_declared",
+    "rule": "every regionMask pixel is a declared regions colour or fully transparent"
+   }
+  ]
+ },
+ "targets": [
+  {
+   "type": "kumbiaManifest",
+   "atlas": "terciopelo",
+   "out": "assets/art/ensemble/terciopelo-v1.png",
+   "manifest": "assets/art/ensemble/manifest.json",
+   "frameId": "{clip}_{drawing}",
+   "fields": [
+    "rect",
+    "anchor",
+    "pixelsPerUnit",
+    "facing",
+    "loop",
+    "durationBeats",
+    "events",
+    "supportFoot",
+    "status",
+    "provenance",
+    "ramps"
+   ],
+   "packing": {
+    "gutterPx": 2,
+    "trim": true,
+    "anchorRelativeTo": "trimmed-rect"
+   },
+   "requireHumanAcceptance": true,
+   "room": "salon",
+   "camera": "floor-perspective"
+  }
+ ],
+ "adapters": {
+  "enum": [
+   "ip-adapter-sdxl",
+   "qwen-image-edit",
+   "img2img"
+  ]
+ },
+ "regionsRender": {
+  "antialias": false,
+  "filtering": "none"
+ },
+ "$notes": {
+  "spec": "Generated by tool/art/pipeline/compile_family.py from tool/art/characters/terciopelo.json. Do not edit by hand.",
+  "character": "terciopelo",
+  "motionSet": "opponent-chacha"
+ },
+ "rigInputs": "art_runs/inputs/terciopelo-v1",
+ "regionProxyColours": {
+  "skin": "#B07E58",
+  "hair": "#C9CCD0",
+  "shirt": "#F4F2EC",
+  "cloth": "#F0EDE6",
+  "accessory": "#5A0C22",
+  "trousers": "#14151A",
+  "shoes": "#F0EDE5"
+ },
+ "poses": [
+  {
+   "id": "groove.down_l",
+   "clip": "groove",
+   "order": 0,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/terciopelo-v1/groove.down_l.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/terciopelo-v1/groove.down_l.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/terciopelo-v1/groove.down_l.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/terciopelo-v1/groove.down_l.regions.png",
+   "supportFoot": "left",
+   "accent": false,
+   "phase": "down",
+   "phaseNote": "down (count 2, rock step)",
+   "intent": "cha-cha-chá: rock step forward onto the straight left leg, the right foot behind on its toe with the heel raised, hips settled over the left foot, chest upright and proud, left arm extended out to the side at shoulder height in a long line, right arm curved in front of the chest, chin lifted",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "secondary-action",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
+  },
+  {
+   "id": "groove.pass_l",
+   "clip": "groove",
+   "order": 1,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/terciopelo-v1/groove.pass_l.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/terciopelo-v1/groove.pass_l.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/terciopelo-v1/groove.pass_l.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/terciopelo-v1/groove.pass_l.regions.png",
+   "supportFoot": "right",
+   "accent": false,
+   "phase": "pass",
+   "phaseNote": "pass (count 3, replace)",
+   "intent": "cha-cha-chá: weight replaced back onto the straight right leg, the left foot forward resting on its toe, hips settling to his right, upright and elegant, left arm lowering out to the side, right arm curved in front of the chest",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "secondary-action",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
+  },
+  {
+   "id": "groove.up_l",
+   "clip": "groove",
+   "order": 2,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/terciopelo-v1/groove.up_l.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/terciopelo-v1/groove.up_l.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/terciopelo-v1/groove.up_l.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/terciopelo-v1/groove.up_l.regions.png",
+   "supportFoot": "both",
+   "accent": false,
+   "phase": "up",
+   "phaseNote": "up (count 4 and, chassé)",
+   "intent": "cha-cha-chá: a small quick chassé to the side, the left foot stepping out with both knees softly bent and the feet a little apart, hips level, upright, left wrist flicked up with the arm out to the side, right arm curved in front of the chest",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "secondary-action",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
+  },
+  {
+   "id": "groove.pass_l2",
+   "clip": "groove",
+   "order": 3,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/terciopelo-v1/groove.pass_l2.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/terciopelo-v1/groove.pass_l2.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/terciopelo-v1/groove.pass_l2.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/terciopelo-v1/groove.pass_l2.regions.png",
+   "supportFoot": "left",
+   "accent": true,
+   "phase": "accent",
+   "phaseNote": "accent (count 1, the hold)",
+   "intent": "cha-cha-chá: landed on the straight left leg with the hip settled out to his left, the right leg extended out to the side with the toe pointed on the floor, chest high, left arm in a long line high on the diagonal, right arm long and low out to the side, head turned toward the raised hand, chin up",
+   "profile": "peak",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "line-of-action",
+    "contrapposto",
+    "exaggeration-accent",
+    "secondary-action",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
+  },
+  {
+   "id": "groove.down_r",
+   "clip": "groove",
+   "order": 4,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/terciopelo-v1/groove.down_r.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/terciopelo-v1/groove.down_r.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/terciopelo-v1/groove.down_r.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/terciopelo-v1/groove.down_r.regions.png",
+   "supportFoot": "right",
+   "accent": false,
+   "phase": "down",
+   "phaseNote": "down (count 2, rock step)",
+   "intent": "cha-cha-chá: rock step forward onto the straight right leg, the left foot behind on its toe with the heel raised, hips settled over the right foot, chest upright and proud, right arm extended out to the side at shoulder height in a long line, left arm curved in front of the chest, chin lifted",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "secondary-action",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
+  },
+  {
+   "id": "groove.pass_r",
+   "clip": "groove",
+   "order": 5,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/terciopelo-v1/groove.pass_r.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/terciopelo-v1/groove.pass_r.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/terciopelo-v1/groove.pass_r.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/terciopelo-v1/groove.pass_r.regions.png",
+   "supportFoot": "left",
+   "accent": false,
+   "phase": "pass",
+   "phaseNote": "pass (count 3, replace)",
+   "intent": "cha-cha-chá: weight replaced back onto the straight left leg, the right foot forward resting on its toe, hips settling to his left, upright and elegant, right arm lowering out to the side, left arm curved in front of the chest",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "secondary-action",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
+  },
+  {
+   "id": "groove.up_r",
+   "clip": "groove",
+   "order": 6,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/terciopelo-v1/groove.up_r.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/terciopelo-v1/groove.up_r.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/terciopelo-v1/groove.up_r.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/terciopelo-v1/groove.up_r.regions.png",
+   "supportFoot": "both",
+   "accent": false,
+   "phase": "up",
+   "phaseNote": "up (count 4 and, chassé)",
+   "intent": "cha-cha-chá: a small quick chassé to the side, the right foot stepping out with both knees softly bent and the feet a little apart, hips level, upright, right wrist flicked up with the arm out to the side, left arm curved in front of the chest",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "secondary-action",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
+  },
+  {
+   "id": "groove.pass_r2",
+   "clip": "groove",
+   "order": 7,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/terciopelo-v1/groove.pass_r2.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/terciopelo-v1/groove.pass_r2.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/terciopelo-v1/groove.pass_r2.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/terciopelo-v1/groove.pass_r2.regions.png",
+   "supportFoot": "right",
+   "accent": true,
+   "phase": "accent",
+   "phaseNote": "accent (count 1, the hold)",
+   "intent": "cha-cha-chá: landed on the straight right leg with the hip settled out to his right, the left leg extended out to the side with the toe pointed on the floor, chest high, right arm in a long line high on the diagonal, left arm long and low out to the side, head turned toward the raised hand, chin up",
+   "profile": "peak",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "line-of-action",
+    "contrapposto",
+    "exaggeration-accent",
+    "secondary-action",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
+  },
+  {
+   "id": "left_hand.prep",
+   "clip": "left_hand",
+   "order": 0,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/terciopelo-v1/left_hand.prep.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/terciopelo-v1/left_hand.prep.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/terciopelo-v1/left_hand.prep.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/terciopelo-v1/left_hand.prep.regions.png",
+   "supportFoot": "right",
+   "accent": false,
+   "phase": "anticipation",
+   "phaseNote": "anticipation",
+   "intent": "crouched low with weight on the bent right leg, right fist on the hip, left hand scooped down low in front of the left hip, torso turned away to his right, head glancing down at the left hand",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "anticipation",
+    "no-twinning",
+    "timing-on-beat"
+   ]
+  },
+  {
+   "id": "left_hand.peak",
+   "clip": "left_hand",
+   "order": 1,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/terciopelo-v1/left_hand.peak.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/terciopelo-v1/left_hand.peak.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/terciopelo-v1/left_hand.peak.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/terciopelo-v1/left_hand.peak.regions.png",
+   "supportFoot": "right",
+   "accent": true,
+   "phase": "accent",
+   "phaseNote": "accent",
+   "intent": "weight on the straight right foot, right hip pushed out, right fist on the hip, body leaning toward his left so one long diagonal runs from the right foot to the left palm thrust high and out at about 45 degrees, left foot on its toe out to the side, head turned up toward the raised hand",
+   "profile": "peak",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "line-of-action",
+    "contrapposto",
+    "exaggeration-accent",
+    "no-twinning",
+    "timing-on-beat"
+   ]
+  },
+  {
+   "id": "left_hand.follow",
+   "clip": "left_hand",
+   "order": 2,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/terciopelo-v1/left_hand.follow.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/terciopelo-v1/left_hand.follow.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/terciopelo-v1/left_hand.follow.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/terciopelo-v1/left_hand.follow.regions.png",
+   "supportFoot": "right",
+   "accent": false,
+   "phase": "follow-through",
+   "phaseNote": "follow-through",
+   "intent": "same diagonal pushed further: left arm reaching higher and the palm rolling forward, torso leaning further toward his left, right elbow pushed back on the hip, left toe touch out wider, head following the hand",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "follow-through",
+    "no-twinning",
+    "timing-on-beat"
+   ]
+  },
+  {
+   "id": "left_hand.return",
+   "clip": "left_hand",
+   "order": 3,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/terciopelo-v1/left_hand.return.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/terciopelo-v1/left_hand.return.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/terciopelo-v1/left_hand.return.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/terciopelo-v1/left_hand.return.regions.png",
+   "supportFoot": "both",
+   "accent": false,
+   "phase": "settle",
+   "phaseNote": "settle",
+   "intent": "left arm sweeping down in an arc at shoulder height with the elbow bent, right hand low on the hip, both feet flat and close, torso returning upright",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "follow-through",
+    "no-twinning",
+    "timing-on-beat"
+   ]
+  },
+  {
+   "id": "right_hand.prep",
+   "clip": "right_hand",
+   "order": 0,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/terciopelo-v1/right_hand.prep.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/terciopelo-v1/right_hand.prep.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/terciopelo-v1/right_hand.prep.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/terciopelo-v1/right_hand.prep.regions.png",
+   "supportFoot": "left",
+   "accent": false,
+   "phase": "anticipation",
+   "phaseNote": "anticipation",
+   "intent": "crouched low with weight on the bent left leg, left fist on the hip, right hand scooped down low in front of the right hip, torso turned away to his left, head glancing down at the right hand",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "anticipation",
+    "no-twinning",
+    "timing-on-beat"
+   ]
+  },
+  {
+   "id": "right_hand.peak",
+   "clip": "right_hand",
+   "order": 1,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/terciopelo-v1/right_hand.peak.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/terciopelo-v1/right_hand.peak.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/terciopelo-v1/right_hand.peak.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/terciopelo-v1/right_hand.peak.regions.png",
+   "supportFoot": "left",
+   "accent": true,
+   "phase": "accent",
+   "phaseNote": "accent",
+   "intent": "weight on the straight left foot, left hip pushed out, left fist on the hip, body leaning toward his right so one long diagonal runs from the left foot to the right palm thrust high and out at about 45 degrees, right foot on its toe out to the side, head turned up toward the raised hand",
+   "profile": "peak",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "line-of-action",
+    "contrapposto",
+    "exaggeration-accent",
+    "no-twinning",
+    "timing-on-beat"
+   ]
+  },
+  {
+   "id": "right_hand.follow",
+   "clip": "right_hand",
+   "order": 2,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/terciopelo-v1/right_hand.follow.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/terciopelo-v1/right_hand.follow.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/terciopelo-v1/right_hand.follow.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/terciopelo-v1/right_hand.follow.regions.png",
+   "supportFoot": "left",
+   "accent": false,
+   "phase": "follow-through",
+   "phaseNote": "follow-through",
+   "intent": "same diagonal pushed further: right arm reaching higher and the palm rolling forward, torso leaning further toward his right, left elbow pushed back on the hip, right toe touch out wider, head following the hand",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "follow-through",
+    "no-twinning",
+    "timing-on-beat"
+   ]
+  },
+  {
+   "id": "right_hand.return",
+   "clip": "right_hand",
+   "order": 3,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/terciopelo-v1/right_hand.return.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/terciopelo-v1/right_hand.return.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/terciopelo-v1/right_hand.return.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/terciopelo-v1/right_hand.return.regions.png",
+   "supportFoot": "both",
+   "accent": false,
+   "phase": "settle",
+   "phaseNote": "settle",
+   "intent": "right arm sweeping down in an arc at shoulder height with the elbow bent, left hand low on the hip, both feet flat and close, torso returning upright",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "follow-through",
+    "no-twinning",
+    "timing-on-beat"
+   ]
+  },
+  {
+   "id": "left_foot.prep",
+   "clip": "left_foot",
+   "order": 0,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/terciopelo-v1/left_foot.prep.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/terciopelo-v1/left_foot.prep.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/terciopelo-v1/left_foot.prep.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/terciopelo-v1/left_foot.prep.regions.png",
+   "supportFoot": "right",
+   "accent": false,
+   "phase": "anticipation",
+   "phaseNote": "anticipation",
+   "intent": "weight on the bent right leg, left knee lifted forward and out with the foot off the floor and the toe pointing down, left fist on the hip, right arm low and out for balance, head looking down at the left foot",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "anticipation",
+    "no-twinning",
+    "timing-on-beat"
+   ]
+  },
+  {
+   "id": "left_foot.peak",
+   "clip": "left_foot",
+   "order": 1,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/terciopelo-v1/left_foot.peak.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/terciopelo-v1/left_foot.peak.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/terciopelo-v1/left_foot.peak.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/terciopelo-v1/left_foot.peak.regions.png",
+   "supportFoot": "right",
+   "accent": true,
+   "phase": "accent",
+   "phaseNote": "accent",
+   "intent": "heel dig: left leg stretched out on a forward diagonal with the left heel on the floor and the toe up, weight on the bent right leg, chest proud and leaning back slightly, right fist on the hip, left arm low and back, head turned toward the left foot",
+   "profile": "peak",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "line-of-action",
+    "contrapposto",
+    "exaggeration-accent",
+    "no-twinning",
+    "timing-on-beat"
+   ]
+  },
+  {
+   "id": "left_foot.follow",
+   "clip": "left_foot",
+   "order": 2,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/terciopelo-v1/left_foot.follow.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/terciopelo-v1/left_foot.follow.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/terciopelo-v1/left_foot.follow.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/terciopelo-v1/left_foot.follow.regions.png",
+   "supportFoot": "right",
+   "accent": false,
+   "phase": "follow-through",
+   "phaseNote": "follow-through",
+   "intent": "left heel still dug in on the diagonal, hip popped over the right foot, shoulders tilted against the hips, right elbow pushed back on the hip, left arm low and out, head on the left foot",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "follow-through",
+    "no-twinning",
+    "timing-on-beat"
+   ]
+  },
+  {
+   "id": "left_foot.return",
+   "clip": "left_foot",
+   "order": 3,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/terciopelo-v1/left_foot.return.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/terciopelo-v1/left_foot.return.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/terciopelo-v1/left_foot.return.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/terciopelo-v1/left_foot.return.regions.png",
+   "supportFoot": "both",
+   "accent": false,
+   "phase": "settle",
+   "phaseNote": "settle",
+   "intent": "left foot dragged back along the floor to close beside the right, both feet flat, knees soft, arms relaxed low at the sides",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "follow-through",
+    "no-twinning",
+    "timing-on-beat"
+   ]
+  },
+  {
+   "id": "right_foot.prep",
+   "clip": "right_foot",
+   "order": 0,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/terciopelo-v1/right_foot.prep.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/terciopelo-v1/right_foot.prep.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/terciopelo-v1/right_foot.prep.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/terciopelo-v1/right_foot.prep.regions.png",
+   "supportFoot": "left",
+   "accent": false,
+   "phase": "anticipation",
+   "phaseNote": "anticipation",
+   "intent": "weight on the bent left leg, right knee lifted forward and out with the foot off the floor and the toe pointing down, right fist on the hip, left arm low and out for balance, head looking down at the right foot",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "anticipation",
+    "no-twinning",
+    "timing-on-beat"
+   ]
+  },
+  {
+   "id": "right_foot.peak",
+   "clip": "right_foot",
+   "order": 1,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/terciopelo-v1/right_foot.peak.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/terciopelo-v1/right_foot.peak.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/terciopelo-v1/right_foot.peak.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/terciopelo-v1/right_foot.peak.regions.png",
+   "supportFoot": "left",
+   "accent": true,
+   "phase": "accent",
+   "phaseNote": "accent",
+   "intent": "heel dig: right leg stretched out on a forward diagonal with the right heel on the floor and the toe up, weight on the bent left leg, chest proud and leaning back slightly, left fist on the hip, right arm low and back, head turned toward the right foot",
+   "profile": "peak",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "line-of-action",
+    "contrapposto",
+    "exaggeration-accent",
+    "no-twinning",
+    "timing-on-beat"
+   ]
+  },
+  {
+   "id": "right_foot.follow",
+   "clip": "right_foot",
+   "order": 2,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/terciopelo-v1/right_foot.follow.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/terciopelo-v1/right_foot.follow.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/terciopelo-v1/right_foot.follow.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/terciopelo-v1/right_foot.follow.regions.png",
+   "supportFoot": "left",
+   "accent": false,
+   "phase": "follow-through",
+   "phaseNote": "follow-through",
+   "intent": "right heel still dug in on the diagonal, hip popped over the left foot, shoulders tilted against the hips, left elbow pushed back on the hip, right arm low and out, head on the right foot",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "follow-through",
+    "no-twinning",
+    "timing-on-beat"
+   ]
+  },
+  {
+   "id": "right_foot.return",
+   "clip": "right_foot",
+   "order": 3,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/terciopelo-v1/right_foot.return.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/terciopelo-v1/right_foot.return.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/terciopelo-v1/right_foot.return.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/terciopelo-v1/right_foot.return.regions.png",
+   "supportFoot": "both",
+   "accent": false,
+   "phase": "settle",
+   "phaseNote": "settle",
+   "intent": "right foot dragged back along the floor to close beside the left, both feet flat, knees soft, arms relaxed low at the sides",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "follow-through",
+    "no-twinning",
+    "timing-on-beat"
+   ]
+  },
+  {
+   "id": "enter_forward.contact_l",
+   "clip": "enter_forward",
+   "order": 0,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/terciopelo-v1/enter_forward.contact_l.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/terciopelo-v1/enter_forward.contact_l.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/terciopelo-v1/enter_forward.contact_l.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/terciopelo-v1/enter_forward.contact_l.regions.png",
+   "supportFoot": "both",
+   "accent": true,
+   "phase": "contact",
+   "phaseNote": "contact",
+   "intent": "swaggering walk toward the viewer on a slight diagonal, left heel landing in front, right foot behind on its toe, right fist on the hip, left arm swinging back, chin up",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "anticipation",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
+  },
+  {
+   "id": "enter_forward.down_l",
+   "clip": "enter_forward",
+   "order": 1,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/terciopelo-v1/enter_forward.down_l.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/terciopelo-v1/enter_forward.down_l.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/terciopelo-v1/enter_forward.down_l.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/terciopelo-v1/enter_forward.down_l.regions.png",
+   "supportFoot": "left",
+   "accent": false,
+   "phase": "down",
+   "phaseNote": "down",
+   "intent": "weight dropping into the bent left knee, left hip high, right foot pushing off behind on its toe, right fist on the hip, left arm swinging, head dipping on the beat",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
+  },
+  {
+   "id": "enter_forward.pass_l",
+   "clip": "enter_forward",
+   "order": 2,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/terciopelo-v1/enter_forward.pass_l.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/terciopelo-v1/enter_forward.pass_l.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/terciopelo-v1/enter_forward.pass_l.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/terciopelo-v1/enter_forward.pass_l.regions.png",
+   "supportFoot": "left",
+   "accent": false,
+   "phase": "pass",
+   "phaseNote": "pass",
+   "intent": "standing tall on the straight left leg, right knee swinging forward past it, right fist on the hip, left arm relaxed at the side, chin up",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
+  },
+  {
+   "id": "enter_forward.contact_r",
+   "clip": "enter_forward",
+   "order": 3,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/terciopelo-v1/enter_forward.contact_r.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/terciopelo-v1/enter_forward.contact_r.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/terciopelo-v1/enter_forward.contact_r.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/terciopelo-v1/enter_forward.contact_r.regions.png",
+   "supportFoot": "both",
+   "accent": true,
+   "phase": "contact",
+   "phaseNote": "contact",
+   "intent": "swaggering walk toward the viewer on a slight diagonal, right heel landing in front, left foot behind on its toe, right fist on the hip, left arm swinging forward, chin up",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "anticipation",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
+  },
+  {
+   "id": "enter_forward.down_r",
+   "clip": "enter_forward",
+   "order": 4,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/terciopelo-v1/enter_forward.down_r.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/terciopelo-v1/enter_forward.down_r.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/terciopelo-v1/enter_forward.down_r.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/terciopelo-v1/enter_forward.down_r.regions.png",
+   "supportFoot": "right",
+   "accent": false,
+   "phase": "down",
+   "phaseNote": "down",
+   "intent": "weight dropping into the bent right knee, right hip high, left foot pushing off behind on its toe, right fist on the hip, left arm swinging forward, head dipping on the beat",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
+  },
+  {
+   "id": "enter_forward.pass_r",
+   "clip": "enter_forward",
+   "order": 5,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/terciopelo-v1/enter_forward.pass_r.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/terciopelo-v1/enter_forward.pass_r.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/terciopelo-v1/enter_forward.pass_r.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/terciopelo-v1/enter_forward.pass_r.regions.png",
+   "supportFoot": "right",
+   "accent": false,
+   "phase": "pass",
+   "phaseNote": "pass",
+   "intent": "standing tall on the straight right leg, left knee swinging forward past it, right fist on the hip, left arm relaxed at the side, chin up",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
+  },
+  {
+   "id": "retreat_backward.contact_l",
+   "clip": "retreat_backward",
+   "order": 0,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/terciopelo-v1/retreat_backward.contact_l.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/terciopelo-v1/retreat_backward.contact_l.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/terciopelo-v1/retreat_backward.contact_l.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/terciopelo-v1/retreat_backward.contact_l.regions.png",
+   "supportFoot": "both",
+   "accent": true,
+   "phase": "contact",
+   "phaseNote": "contact",
+   "intent": "stepping backward while still facing the viewer, left foot reaching back onto its ball, weight still on the flat right foot, left hand behind the back, right arm low and loose",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "anticipation",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
+  },
+  {
+   "id": "retreat_backward.down_l",
+   "clip": "retreat_backward",
+   "order": 1,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/terciopelo-v1/retreat_backward.down_l.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/terciopelo-v1/retreat_backward.down_l.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/terciopelo-v1/retreat_backward.down_l.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/terciopelo-v1/retreat_backward.down_l.regions.png",
+   "supportFoot": "left",
+   "accent": false,
+   "phase": "down",
+   "phaseNote": "down",
+   "intent": "weight rolled back onto the bent left leg, left hip high, right foot in front with the toe lifted, left hand behind the back, right arm low and forward, head nodding",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
+  },
+  {
+   "id": "retreat_backward.pass_l",
+   "clip": "retreat_backward",
+   "order": 2,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/terciopelo-v1/retreat_backward.pass_l.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/terciopelo-v1/retreat_backward.pass_l.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/terciopelo-v1/retreat_backward.pass_l.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/terciopelo-v1/retreat_backward.pass_l.regions.png",
+   "supportFoot": "left",
+   "accent": false,
+   "phase": "pass",
+   "phaseNote": "pass",
+   "intent": "right foot dragged back along the floor past the straight left leg, left hand behind the back, right arm hanging loose, chin up",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
+  },
+  {
+   "id": "retreat_backward.contact_r",
+   "clip": "retreat_backward",
+   "order": 3,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/terciopelo-v1/retreat_backward.contact_r.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/terciopelo-v1/retreat_backward.contact_r.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/terciopelo-v1/retreat_backward.contact_r.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/terciopelo-v1/retreat_backward.contact_r.regions.png",
+   "supportFoot": "both",
+   "accent": true,
+   "phase": "contact",
+   "phaseNote": "contact",
+   "intent": "stepping backward while still facing the viewer, right foot reaching back onto its ball, weight still on the flat left foot, left hand behind the back, right arm low and loose",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "anticipation",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
+  },
+  {
+   "id": "retreat_backward.down_r",
+   "clip": "retreat_backward",
+   "order": 4,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/terciopelo-v1/retreat_backward.down_r.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/terciopelo-v1/retreat_backward.down_r.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/terciopelo-v1/retreat_backward.down_r.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/terciopelo-v1/retreat_backward.down_r.regions.png",
+   "supportFoot": "right",
+   "accent": false,
+   "phase": "down",
+   "phaseNote": "down",
+   "intent": "weight rolled back onto the bent right leg, right hip high, left foot in front with the toe lifted, left hand behind the back, right arm low, head nodding",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
+  },
+  {
+   "id": "retreat_backward.pass_r",
+   "clip": "retreat_backward",
+   "order": 5,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/terciopelo-v1/retreat_backward.pass_r.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/terciopelo-v1/retreat_backward.pass_r.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/terciopelo-v1/retreat_backward.pass_r.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/terciopelo-v1/retreat_backward.pass_r.regions.png",
+   "supportFoot": "right",
+   "accent": false,
+   "phase": "pass",
+   "phaseNote": "pass",
+   "intent": "left foot dragged back along the floor past the straight right leg, left hand behind the back, right arm hanging loose, chin up",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
+  },
+  {
+   "id": "yield_side.contact_l",
+   "clip": "yield_side",
+   "order": 0,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/terciopelo-v1/yield_side.contact_l.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/terciopelo-v1/yield_side.contact_l.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/terciopelo-v1/yield_side.contact_l.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/terciopelo-v1/yield_side.contact_l.regions.png",
+   "supportFoot": "both",
+   "accent": true,
+   "phase": "contact",
+   "phaseNote": "contact",
+   "intent": "side-step toward the sideline: left leg reaching out sideways with the foot landing, weight still on the bent right leg, right fist on the hip, left arm out low",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "anticipation",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
+  },
+  {
+   "id": "yield_side.down_l",
+   "clip": "yield_side",
+   "order": 1,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/terciopelo-v1/yield_side.down_l.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/terciopelo-v1/yield_side.down_l.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/terciopelo-v1/yield_side.down_l.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/terciopelo-v1/yield_side.down_l.regions.png",
+   "supportFoot": "left",
+   "accent": false,
+   "phase": "down",
+   "phaseNote": "down",
+   "intent": "weight shifted onto the bent left leg, left hip high and pushed out, right foot trailing on its toe, right fist on the hip, head nodding",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
+  },
+  {
+   "id": "yield_side.pass_l",
+   "clip": "yield_side",
+   "order": 2,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/terciopelo-v1/yield_side.pass_l.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/terciopelo-v1/yield_side.pass_l.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/terciopelo-v1/yield_side.pass_l.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/terciopelo-v1/yield_side.pass_l.regions.png",
+   "supportFoot": "left",
+   "accent": false,
+   "phase": "pass",
+   "phaseNote": "pass",
+   "intent": "right foot dragged in along the floor to close beside the straight left leg, right fist on the hip, left arm relaxed at the side",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
+  },
+  {
+   "id": "yield_side.contact_r",
+   "clip": "yield_side",
+   "order": 3,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/terciopelo-v1/yield_side.contact_r.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/terciopelo-v1/yield_side.contact_r.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/terciopelo-v1/yield_side.contact_r.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/terciopelo-v1/yield_side.contact_r.regions.png",
+   "supportFoot": "both",
+   "accent": true,
+   "phase": "contact",
+   "phaseNote": "contact",
+   "intent": "right foot stepping back on a diagonal onto its ball, left knee bent, arms low and loose, torso turning open",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "anticipation",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
+  },
+  {
+   "id": "yield_side.down_r",
+   "clip": "yield_side",
+   "order": 4,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/terciopelo-v1/yield_side.down_r.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/terciopelo-v1/yield_side.down_r.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/terciopelo-v1/yield_side.down_r.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/terciopelo-v1/yield_side.down_r.regions.png",
+   "supportFoot": "right",
+   "accent": false,
+   "phase": "down",
+   "phaseNote": "down",
+   "intent": "weight settled onto the bent right leg, right hip high, left foot in front with the toe lifted, right forearm coming forward at waist height",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
+  },
+  {
+   "id": "yield_side.pass_r",
+   "clip": "yield_side",
+   "order": 5,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/terciopelo-v1/yield_side.pass_r.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/terciopelo-v1/yield_side.pass_r.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/terciopelo-v1/yield_side.pass_r.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/terciopelo-v1/yield_side.pass_r.regions.png",
+   "supportFoot": "right",
+   "accent": true,
+   "phase": "accent",
+   "phaseNote": "accent (hand-over)",
+   "intent": "standing on the right leg, left fist on the hip, right arm held out low and wide with the palm open and up toward the empty floor, head turned toward the open palm with a slight bow, offering the floor",
+   "profile": "peak",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "line-of-action",
+    "contrapposto",
+    "exaggeration-accent",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
+  },
+  {
+   "id": "watch.shift_l",
+   "clip": "watch",
+   "order": 0,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/terciopelo-v1/watch.shift_l.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/terciopelo-v1/watch.shift_l.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/terciopelo-v1/watch.shift_l.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/terciopelo-v1/watch.shift_l.regions.png",
+   "supportFoot": "left",
+   "accent": false,
+   "phase": "pass",
+   "phaseNote": "pass (weight shift)",
+   "intent": "relaxed stance turned slightly to his left, hands clasped behind the back, weight on the left foot with the left hip high, right knee soft, head turned to watch the other dancer",
+   "profile": "overlap",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "secondary-action",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
+  },
+  {
+   "id": "watch.hold_l",
+   "clip": "watch",
+   "order": 1,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/terciopelo-v1/watch.hold_l.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/terciopelo-v1/watch.hold_l.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/terciopelo-v1/watch.hold_l.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/terciopelo-v1/watch.hold_l.regions.png",
+   "supportFoot": "left",
+   "accent": false,
+   "phase": "settle",
+   "phaseNote": "settle (nod on beat 1)",
+   "intent": "hands clasped behind the back, weight sunk on the left foot with both knees softer, head nodding along to the music while watching",
+   "profile": "overlap",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "follow-through",
+    "secondary-action",
+    "no-twinning",
+    "timing-on-beat"
+   ]
+  },
+  {
+   "id": "watch.shift_r",
+   "clip": "watch",
+   "order": 2,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/terciopelo-v1/watch.shift_r.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/terciopelo-v1/watch.shift_r.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/terciopelo-v1/watch.shift_r.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/terciopelo-v1/watch.shift_r.regions.png",
+   "supportFoot": "right",
+   "accent": false,
+   "phase": "pass",
+   "phaseNote": "pass (weight shift)",
+   "intent": "relaxed stance turned slightly to his left, hands clasped behind the back, weight on the right foot with the right hip high, left knee soft, head turned to watch the other dancer",
+   "profile": "overlap",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "secondary-action",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
+  },
+  {
+   "id": "watch.hold_r",
+   "clip": "watch",
+   "order": 3,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/terciopelo-v1/watch.hold_r.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/terciopelo-v1/watch.hold_r.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/terciopelo-v1/watch.hold_r.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/terciopelo-v1/watch.hold_r.regions.png",
+   "supportFoot": "right",
+   "accent": false,
+   "phase": "settle",
+   "phaseNote": "settle",
+   "intent": "hands clasped behind the back, weight sunk on the right foot with both knees softer, head tilted with a small nod while watching",
+   "profile": "overlap",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "follow-through",
+    "secondary-action",
+    "no-twinning",
+    "timing-on-beat"
+   ]
+  },
+  {
+   "id": "clap.open",
+   "clip": "clap",
+   "order": 0,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/terciopelo-v1/clap.open.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/terciopelo-v1/clap.open.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/terciopelo-v1/clap.open.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/terciopelo-v1/clap.open.regions.png",
+   "supportFoot": "both",
+   "accent": false,
+   "phase": "anticipation",
+   "phaseNote": "anticipation",
+   "intent": "standing square and upright, both forearms raised in front of the chest with the palms apart and facing each other, elbows out, chin up",
+   "profile": "overlap",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "anticipation",
+    "no-twinning",
+    "timing-on-beat"
+   ]
+  },
+  {
+   "id": "clap.close",
+   "clip": "clap",
+   "order": 1,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/terciopelo-v1/clap.close.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/terciopelo-v1/clap.close.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/terciopelo-v1/clap.close.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/terciopelo-v1/clap.close.regions.png",
+   "supportFoot": "both",
+   "accent": false,
+   "phase": "pass",
+   "phaseNote": "pass",
+   "intent": "both hands swinging together in front of the chest, elbows out, knees starting to bend, head starting to nod",
+   "profile": "overlap",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
+  },
+  {
+   "id": "clap.contact",
+   "clip": "clap",
+   "order": 2,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/terciopelo-v1/clap.contact.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/terciopelo-v1/clap.contact.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/terciopelo-v1/clap.contact.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/terciopelo-v1/clap.contact.regions.png",
+   "supportFoot": "both",
+   "accent": true,
+   "phase": "contact",
+   "phaseNote": "contact (on the beat)",
+   "intent": "palms clapped together in front of the chest, elbows out to the sides, both knees dipped, head nodding down with a smile",
+   "profile": "overlap",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "anticipation",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
+  },
+  {
+   "id": "clap.release",
+   "clip": "clap",
+   "order": 3,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/terciopelo-v1/clap.release.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/terciopelo-v1/clap.release.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/terciopelo-v1/clap.release.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/terciopelo-v1/clap.release.regions.png",
+   "supportFoot": "both",
+   "accent": false,
+   "phase": "follow-through",
+   "phaseNote": "follow-through",
+   "intent": "hands bouncing apart in front of the chest, elbows out, knees rising, head level",
+   "profile": "overlap",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "follow-through",
+    "no-twinning",
+    "timing-on-beat"
+   ]
+  },
+  {
+   "id": "challenge.load",
+   "clip": "challenge",
+   "order": 0,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/terciopelo-v1/challenge.load.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/terciopelo-v1/challenge.load.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/terciopelo-v1/challenge.load.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/terciopelo-v1/challenge.load.regions.png",
+   "supportFoot": "left",
+   "accent": false,
+   "phase": "anticipation",
+   "phaseNote": "anticipation",
+   "intent": "back-break dip: weight sunk on the bent left leg, right foot back on its ball, torso leaning forward, both hands travelling toward the hips, head lowered",
+   "profile": "overlap",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "anticipation",
+    "no-twinning",
+    "timing-on-beat"
+   ]
+  },
+  {
+   "id": "challenge.proud",
+   "clip": "challenge",
+   "order": 1,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/terciopelo-v1/challenge.proud.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/terciopelo-v1/challenge.proud.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/terciopelo-v1/challenge.proud.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/terciopelo-v1/challenge.proud.regions.png",
+   "supportFoot": "right",
+   "accent": true,
+   "phase": "accent",
+   "phaseNote": "accent",
+   "intent": "proud stance: both fists on the hips with the elbows out, chest pushed out and leaning back, chin raised, weight on the straight right leg, left heel set forward with the toe up",
+   "profile": "overlap",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "line-of-action",
+    "contrapposto",
+    "exaggeration-accent",
+    "no-twinning",
+    "timing-on-beat"
+   ]
+  },
+  {
+   "id": "challenge.offer",
+   "clip": "challenge",
+   "order": 2,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/terciopelo-v1/challenge.offer.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/terciopelo-v1/challenge.offer.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/terciopelo-v1/challenge.offer.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/terciopelo-v1/challenge.offer.regions.png",
+   "supportFoot": "right",
+   "accent": true,
+   "phase": "accent",
+   "phaseNote": "accent (invitation)",
+   "intent": "courteous invitation: weight on the right leg, left fist on the hip, right arm sweeping out low and forward with the palm open and up toward the floor, torso bowing slightly forward, head bowed toward the open hand",
+   "profile": "peak",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "line-of-action",
+    "contrapposto",
+    "exaggeration-accent",
+    "no-twinning",
+    "timing-on-beat"
+   ]
+  },
+  {
+   "id": "challenge.return",
+   "clip": "challenge",
+   "order": 3,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/terciopelo-v1/challenge.return.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/terciopelo-v1/challenge.return.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/terciopelo-v1/challenge.return.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/terciopelo-v1/challenge.return.regions.png",
+   "supportFoot": "both",
+   "accent": false,
+   "phase": "settle",
+   "phaseNote": "settle",
+   "intent": "both feet flat, standing easy, right forearm relaxed in front, left hand low near the hip, body upright",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "follow-through",
+    "no-twinning",
+    "timing-on-beat"
+   ]
+  },
+  {
+   "id": "approval.load",
+   "clip": "approval",
+   "order": 0,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/terciopelo-v1/approval.load.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/terciopelo-v1/approval.load.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/terciopelo-v1/approval.load.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/terciopelo-v1/approval.load.regions.png",
+   "supportFoot": "both",
+   "accent": false,
+   "phase": "anticipation",
+   "phaseNote": "anticipation",
+   "intent": "small inhale: chest lifted and leaning back slightly, chin raised, weight on the right foot, arms loose and slightly away from the body",
+   "profile": "overlap",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "anticipation",
+    "secondary-action",
+    "no-twinning",
+    "timing-on-beat"
+   ]
+  },
+  {
+   "id": "approval.nod",
+   "clip": "approval",
+   "order": 1,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/terciopelo-v1/approval.nod.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/terciopelo-v1/approval.nod.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/terciopelo-v1/approval.nod.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/terciopelo-v1/approval.nod.regions.png",
+   "supportFoot": "both",
+   "accent": true,
+   "phase": "accent",
+   "phaseNote": "accent",
+   "intent": "right palm pressed flat to the chest, a deep nod with the head bowed, both knees dipped, left arm low and out at the side",
+   "profile": "overlap",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "line-of-action",
+    "contrapposto",
+    "exaggeration-accent",
+    "secondary-action",
+    "no-twinning",
+    "timing-on-beat"
+   ]
+  },
+  {
+   "id": "approval.release",
+   "clip": "approval",
+   "order": 2,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/terciopelo-v1/approval.release.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/terciopelo-v1/approval.release.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/terciopelo-v1/approval.release.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/terciopelo-v1/approval.release.regions.png",
+   "supportFoot": "both",
+   "accent": false,
+   "phase": "settle",
+   "phaseNote": "settle",
+   "intent": "left fist on the hip, right arm held out forward at waist height with the palm open toward the viewer, head tilted warmly",
+   "profile": "overlap",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "follow-through",
+    "secondary-action",
+    "no-twinning",
+    "timing-on-beat"
+   ]
+  },
+  {
+   "id": "reassurance.notice",
+   "clip": "reassurance",
+   "order": 0,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/terciopelo-v1/reassurance.notice.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/terciopelo-v1/reassurance.notice.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/terciopelo-v1/reassurance.notice.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/terciopelo-v1/reassurance.notice.regions.png",
+   "supportFoot": "both",
+   "accent": false,
+   "phase": "anticipation",
+   "phaseNote": "anticipation",
+   "intent": "head tilted to his right with a soft warm look, weight on the left foot, arms relaxed low, right forearm slightly forward",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "anticipation",
+    "no-twinning",
+    "timing-on-beat"
+   ]
+  },
+  {
+   "id": "reassurance.open_hand",
+   "clip": "reassurance",
+   "order": 1,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/terciopelo-v1/reassurance.open_hand.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/terciopelo-v1/reassurance.open_hand.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/terciopelo-v1/reassurance.open_hand.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/terciopelo-v1/reassurance.open_hand.regions.png",
+   "supportFoot": "both",
+   "accent": true,
+   "phase": "accent",
+   "phaseNote": "accent",
+   "intent": "small friendly shrug: both forearms out at waist height with the palms open and up, the right hand a little higher, both knees softly bent, head tilted",
+   "profile": "peak",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "line-of-action",
+    "contrapposto",
+    "exaggeration-accent",
+    "no-twinning",
+    "timing-on-beat"
+   ]
+  },
+  {
+   "id": "reassurance.settle",
+   "clip": "reassurance",
+   "order": 2,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/terciopelo-v1/reassurance.settle.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/terciopelo-v1/reassurance.settle.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/terciopelo-v1/reassurance.settle.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/terciopelo-v1/reassurance.settle.regions.png",
+   "supportFoot": "left",
+   "accent": false,
+   "phase": "settle",
+   "phaseNote": "settle (invitation)",
+   "intent": "a back-break step on the spot: weight on the bent left knee, right foot back on its ball, left forearm forward, right arm low and back, inviting the rhythm back",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "follow-through",
+    "no-twinning",
+    "timing-on-beat"
+   ]
+  },
+  {
+   "id": "finish_turn.finish_a",
+   "clip": "finish_turn",
+   "order": 0,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/terciopelo-v1/finish_turn.finish_a.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/terciopelo-v1/finish_turn.finish_a.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/terciopelo-v1/finish_turn.finish_a.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/terciopelo-v1/finish_turn.finish_a.regions.png",
+   "supportFoot": "right",
+   "accent": false,
+   "phase": "anticipation",
+   "phaseNote": "anticipation (remate)",
+   "intent": "weight on the straight right leg, left heel set forward with the toe up, left fist on the hip, right hand rising beside the head, chest proud, chin up",
+   "profile": "overlap",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "exaggeration-accent",
+    "no-twinning",
+    "timing-on-beat"
+   ]
+  },
+  {
+   "id": "finish_turn.finish_b",
+   "clip": "finish_turn",
+   "order": 1,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/terciopelo-v1/finish_turn.finish_b.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/terciopelo-v1/finish_turn.finish_b.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/terciopelo-v1/finish_turn.finish_b.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/terciopelo-v1/finish_turn.finish_b.regions.png",
+   "supportFoot": "right",
+   "accent": true,
+   "phase": "accent",
+   "phaseNote": "accent (remate)",
+   "intent": "the right hand smoothing back the silver hair at his temple with a flourish, head dipped slightly, chest proud, left elbow out with the fist on the hip, left heel forward with the toe up",
+   "profile": "overlap",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "line-of-action",
+    "contrapposto",
+    "exaggeration-accent",
+    "no-twinning",
+    "timing-on-beat"
+   ]
+  },
+  {
+   "id": "finish_turn.turn_in",
+   "clip": "finish_turn",
+   "order": 2,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/terciopelo-v1/finish_turn.turn_in.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/terciopelo-v1/finish_turn.turn_in.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/terciopelo-v1/finish_turn.turn_in.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/terciopelo-v1/finish_turn.turn_in.regions.png",
+   "supportFoot": "both",
+   "accent": false,
+   "phase": "pass",
+   "phaseNote": "pass (turn)",
+   "intent": "body turned about 30 degrees toward his left on a heel pivot, leaning into the turn, left arm open out to the side at hip height, right fist on the hip",
+   "profile": "turn",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
+  },
+  {
+   "id": "finish_turn.turn_out",
+   "clip": "finish_turn",
+   "order": 3,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/terciopelo-v1/finish_turn.turn_out.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/terciopelo-v1/finish_turn.turn_out.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/terciopelo-v1/finish_turn.turn_out.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/terciopelo-v1/finish_turn.turn_out.regions.png",
+   "supportFoot": "both",
+   "accent": false,
+   "phase": "pass",
+   "phaseNote": "pass (turn)",
+   "intent": "body turned about 30 degrees toward his right on a heel pivot, leaning into the turn, right arm open out to the side at hip height, left fist on the hip",
+   "profile": "turn",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
+  },
+  {
+   "id": "spin.front",
+   "clip": "spin",
+   "order": 0,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/terciopelo-v1/spin.front.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/terciopelo-v1/spin.front.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/terciopelo-v1/spin.front.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/terciopelo-v1/spin.front.regions.png",
+   "supportFoot": "both",
+   "accent": false,
+   "phase": "pass",
+   "phaseNote": "pass (spin)",
+   "intent": "facing the viewer in the middle of a ballroom spin on the spot, upright, left arm extended out to the side in a long line, right arm curved in front of the chest",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
+  },
+  {
+   "id": "spin.34_r",
+   "clip": "spin",
+   "order": 1,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/terciopelo-v1/spin.34_r.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/terciopelo-v1/spin.34_r.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/terciopelo-v1/spin.34_r.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/terciopelo-v1/spin.34_r.regions.png",
+   "supportFoot": "both",
+   "accent": false,
+   "phase": "pass",
+   "phaseNote": "pass (spin)",
+   "intent": "turned three-quarters toward the right of the picture, spinning on the spot, upright, arms held in a ballroom frame",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
+  },
+  {
+   "id": "spin.side_r",
+   "clip": "spin",
+   "order": 2,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/terciopelo-v1/spin.side_r.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/terciopelo-v1/spin.side_r.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/terciopelo-v1/spin.side_r.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/terciopelo-v1/spin.side_r.regions.png",
+   "supportFoot": "both",
+   "accent": false,
+   "phase": "pass",
+   "phaseNote": "pass (spin)",
+   "intent": "in profile facing the right of the picture, spinning on the spot, upright, arms held in a ballroom frame",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
+  },
+  {
+   "id": "spin.back34_r",
+   "clip": "spin",
+   "order": 3,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/terciopelo-v1/spin.back34_r.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/terciopelo-v1/spin.back34_r.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/terciopelo-v1/spin.back34_r.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/terciopelo-v1/spin.back34_r.regions.png",
+   "supportFoot": "both",
+   "accent": false,
+   "phase": "pass",
+   "phaseNote": "pass (spin)",
+   "intent": "turned mostly away from the viewer, the face hidden, spinning on the spot, upright, the back of the silver hair showing, arms held in a ballroom frame",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
+  },
+  {
+   "id": "spin.back",
+   "clip": "spin",
+   "order": 4,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/terciopelo-v1/spin.back.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/terciopelo-v1/spin.back.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/terciopelo-v1/spin.back.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/terciopelo-v1/spin.back.regions.png",
+   "supportFoot": "both",
+   "accent": false,
+   "phase": "pass",
+   "phaseNote": "pass (spin)",
+   "intent": "seen from directly behind in the middle of a spin, only the back of his head and white jacket showing, upright, arms held out in a ballroom frame",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
+  },
+  {
+   "id": "spin.back34_l",
+   "clip": "spin",
+   "order": 5,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/terciopelo-v1/spin.back34_l.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/terciopelo-v1/spin.back34_l.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/terciopelo-v1/spin.back34_l.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/terciopelo-v1/spin.back34_l.regions.png",
+   "supportFoot": "both",
+   "accent": false,
+   "phase": "pass",
+   "phaseNote": "pass (spin)",
+   "intent": "turned mostly away from the viewer, the face hidden, spinning on the spot, upright, arms held in a ballroom frame",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
+  },
+  {
+   "id": "spin.side_l",
+   "clip": "spin",
+   "order": 6,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/terciopelo-v1/spin.side_l.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/terciopelo-v1/spin.side_l.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/terciopelo-v1/spin.side_l.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/terciopelo-v1/spin.side_l.regions.png",
+   "supportFoot": "both",
+   "accent": false,
+   "phase": "pass",
+   "phaseNote": "pass (spin)",
+   "intent": "in profile facing the left of the picture, spinning on the spot, upright, arms held in a ballroom frame",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
+  },
+  {
+   "id": "spin.34_l",
+   "clip": "spin",
+   "order": 7,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/terciopelo-v1/spin.34_l.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/terciopelo-v1/spin.34_l.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/terciopelo-v1/spin.34_l.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/terciopelo-v1/spin.34_l.regions.png",
+   "supportFoot": "both",
+   "accent": false,
+   "phase": "pass",
+   "phaseNote": "pass (spin)",
+   "intent": "turned three-quarters toward the left of the picture, coming back round to the viewer, upright, left arm extended out in a long line",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
+  },
+  {
+   "id": "flare.line",
+   "clip": "flare",
+   "order": 0,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/terciopelo-v1/flare.line.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/terciopelo-v1/flare.line.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/terciopelo-v1/flare.line.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/terciopelo-v1/flare.line.regions.png",
+   "supportFoot": "right",
+   "accent": true,
+   "phase": "accent",
+   "phaseNote": "accent (held line)",
+   "intent": "a held ballroom fan line: standing tall on the straight right leg, the left leg extended out to the side with the toe pointed on the floor, chest lifted and leaning back slightly, left arm in a long line high on the diagonal with the fingers together, right arm long and low out to the side, head turned toward the raised hand, chin up, a proud elegant look",
+   "profile": "peak",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "line-of-action",
+    "contrapposto",
+    "exaggeration-accent",
+    "no-twinning",
+    "timing-on-beat"
+   ]
+  },
+  {
+   "id": "moustache.a",
+   "clip": "moustache",
+   "order": 0,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/terciopelo-v1/moustache.a.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/terciopelo-v1/moustache.a.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/terciopelo-v1/moustache.a.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/terciopelo-v1/moustache.a.regions.png",
+   "supportFoot": "both",
+   "accent": false,
+   "phase": "rest",
+   "phaseNote": "rest (charisma)",
+   "intent": "standing tall and easy on the right leg, left hand behind the back, the right index finger and thumb raised to his upper lip smoothing one side of the thin pencil moustache, chin lifted, eyes half closed, pleased with himself",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "no-twinning",
+    "timing-on-beat"
+   ]
+  },
+  {
+   "id": "moustache.b",
+   "clip": "moustache",
+   "order": 1,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/terciopelo-v1/moustache.b.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/terciopelo-v1/moustache.b.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/terciopelo-v1/moustache.b.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/terciopelo-v1/moustache.b.regions.png",
+   "supportFoot": "both",
+   "accent": false,
+   "phase": "rest",
+   "phaseNote": "rest (charisma)",
+   "intent": "standing tall and easy on the right leg, left hand behind the back, the right fingertips drawing out along the other side of the thin pencil moustache, head tilted, a satisfied little smile",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "no-twinning",
+    "timing-on-beat"
+   ]
+  },
+  {
+   "id": "glance.a",
+   "clip": "glance",
+   "order": 0,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/terciopelo-v1/glance.a.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/terciopelo-v1/glance.a.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/terciopelo-v1/glance.a.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/terciopelo-v1/glance.a.regions.png",
+   "supportFoot": "both",
+   "accent": false,
+   "phase": "rest",
+   "phaseNote": "rest (charisma)",
+   "intent": "turned three quarters toward the left of the picture, glancing sideways at his reflection in a mirror outside the picture, chin lifted, the left hand adjusting the velvet bow tie at his throat, right arm relaxed low",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "no-twinning",
+    "timing-on-beat"
+   ]
+  },
+  {
+   "id": "glance.b",
+   "clip": "glance",
+   "order": 1,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/terciopelo-v1/glance.b.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/terciopelo-v1/glance.b.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/terciopelo-v1/glance.b.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/terciopelo-v1/glance.b.regions.png",
+   "supportFoot": "both",
+   "accent": true,
+   "phase": "accent",
+   "phaseNote": "accent (charisma)",
+   "intent": "turned three quarters toward the left of the picture, admiring his reflection in a mirror outside the picture, head turned further toward it, the right hand smoothing back the silver hair above his ear, left hand behind the back, chin up, a knowing half smile",
+   "profile": "peak",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "line-of-action",
+    "contrapposto",
+    "exaggeration-accent",
+    "no-twinning",
+    "timing-on-beat"
+   ]
+  },
+  {
+   "id": "offer_hand.a",
+   "clip": "offer_hand",
+   "order": 0,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/terciopelo-v1/offer_hand.a.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/terciopelo-v1/offer_hand.a.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/terciopelo-v1/offer_hand.a.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/terciopelo-v1/offer_hand.a.regions.png",
+   "supportFoot": "both",
+   "accent": false,
+   "phase": "anticipation",
+   "phaseNote": "anticipation (charisma)",
+   "intent": "inviting the viewer to dance: a slight courtly bow from the waist, left hand behind the back, the right hand offered forward toward the viewer at waist height with the palm up, head inclined, a warm gallant smile",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "no-twinning",
+    "timing-on-beat"
+   ]
+  },
+  {
+   "id": "offer_hand.b",
+   "clip": "offer_hand",
+   "order": 1,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/terciopelo-v1/offer_hand.b.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/terciopelo-v1/offer_hand.b.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/terciopelo-v1/offer_hand.b.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/terciopelo-v1/offer_hand.b.regions.png",
+   "supportFoot": "right",
+   "accent": true,
+   "phase": "accent",
+   "phaseNote": "accent (charisma)",
+   "intent": "inviting the viewer to dance: bowing a little deeper from the waist, left hand behind the back, the right arm extended forward toward the viewer with the palm up, the left foot pointed forward on its toe, head inclined, eyes on the viewer, a warm gallant smile",
+   "profile": "peak",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "line-of-action",
+    "contrapposto",
+    "exaggeration-accent",
+    "no-twinning",
+    "timing-on-beat"
+   ]
+  },
+  {
+   "id": "bow.a",
+   "clip": "bow",
+   "order": 0,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/terciopelo-v1/bow.a.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/terciopelo-v1/bow.a.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/terciopelo-v1/bow.a.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/terciopelo-v1/bow.a.regions.png",
+   "supportFoot": "both",
+   "accent": false,
+   "phase": "anticipation",
+   "phaseNote": "anticipation (bow)",
+   "intent": "turned three quarters toward the right of the picture, beginning a slow ballroom bow: standing on the right leg, the right hand placed flat on his chest, the left arm sweeping out to the side at shoulder height, leaning forward slightly, head beginning to lower",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "no-twinning",
+    "timing-on-beat"
+   ]
+  },
+  {
+   "id": "bow.b",
+   "clip": "bow",
+   "order": 1,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/terciopelo-v1/bow.b.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/terciopelo-v1/bow.b.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/terciopelo-v1/bow.b.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/terciopelo-v1/bow.b.regions.png",
+   "supportFoot": "both",
+   "accent": true,
+   "phase": "accent",
+   "phaseNote": "accent (bow)",
+   "intent": "turned three quarters toward the right of the picture, a deep slow ballroom bow from the waist, the back straight, the right hand flat on his chest, the left arm swept out low and back, head bowed, eyes lowered, gracious",
+   "profile": "peak",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "line-of-action",
+    "contrapposto",
+    "exaggeration-accent",
+    "no-twinning",
+    "timing-on-beat"
+   ]
+  },
+  {
+   "id": "bow.hold",
+   "clip": "bow",
+   "order": 2,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/terciopelo-v1/bow.hold.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/terciopelo-v1/bow.hold.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/terciopelo-v1/bow.hold.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/terciopelo-v1/bow.hold.regions.png",
+   "supportFoot": "both",
+   "accent": false,
+   "phase": "settle",
+   "phaseNote": "settle (bow)",
+   "intent": "turned three quarters toward the right of the picture, holding the deepest point of a slow ballroom bow, bent far forward from the waist with a straight back, the right hand flat on his chest, the left arm swept low and back, head bowed low, gracious",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "follow-through",
+    "secondary-action",
+    "no-twinning",
+    "timing-on-beat"
+   ]
+  },
+  {
+   "id": "sweep.a",
+   "clip": "sweep",
+   "order": 0,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/terciopelo-v1/sweep.a.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/terciopelo-v1/sweep.a.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/terciopelo-v1/sweep.a.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/terciopelo-v1/sweep.a.regions.png",
+   "supportFoot": "both",
+   "accent": false,
+   "phase": "anticipation",
+   "phaseNote": "anticipation (sweep)",
+   "intent": "turned a little toward the right of the picture, the right hand behind the back, the left arm starting a grand sweep out toward the right of the picture at chest height, head following the hand",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "no-twinning",
+    "timing-on-beat"
+   ]
+  },
+  {
+   "id": "sweep.b",
+   "clip": "sweep",
+   "order": 1,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/terciopelo-v1/sweep.b.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/terciopelo-v1/sweep.b.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/terciopelo-v1/sweep.b.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/terciopelo-v1/sweep.b.regions.png",
+   "supportFoot": "both",
+   "accent": true,
+   "phase": "accent",
+   "phaseNote": "accent (sweep)",
+   "intent": "turned a little toward the right of the picture, the right hand behind the back, the left arm swept out high and wide toward the right of the picture with the palm open, showing the way to a far door, head turned along the arm, chin up, a gracious smile",
+   "profile": "peak",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "line-of-action",
+    "contrapposto",
+    "exaggeration-accent",
+    "no-twinning",
+    "timing-on-beat"
+   ]
+  },
+  {
+   "id": "rose.pluck",
+   "clip": "rose",
+   "order": 0,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/terciopelo-v1/rose.pluck.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/terciopelo-v1/rose.pluck.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/terciopelo-v1/rose.pluck.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/terciopelo-v1/rose.pluck.regions.png",
+   "supportFoot": "both",
+   "accent": false,
+   "phase": "anticipation",
+   "phaseNote": "anticipation (the rose)",
+   "intent": "standing tall on the right leg, left hand behind the back, the right hand crossing to his left lapel and plucking the red rose from it, head bowed looking down at the rose, a fond smile",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "no-twinning",
+    "timing-on-beat"
+   ]
+  },
+  {
+   "id": "rose.offer",
+   "clip": "rose",
+   "order": 1,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/terciopelo-v1/rose.offer.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/terciopelo-v1/rose.offer.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/terciopelo-v1/rose.offer.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/terciopelo-v1/rose.offer.regions.png",
+   "supportFoot": "both",
+   "accent": true,
+   "phase": "accent",
+   "phaseNote": "accent (the rose)",
+   "intent": "a slight courtly bow from the waist, left hand behind the back, the right arm extended forward toward the viewer holding out the single red rose by its stem, the lapel now bare, head inclined, a warm gallant smile",
+   "profile": "peak",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "line-of-action",
+    "contrapposto",
+    "exaggeration-accent",
+    "no-twinning",
+    "timing-on-beat"
+   ]
+  }
+ ],
+ "animationReferences": {
+  "registry": "tool/art/references/animation-principles.json",
+  "research": [
+   "plan/research/gatekeeper-dance-2026-11-02.md",
+   "plan/dance-fluidity-pass.md",
+   "plan/opponent-depth-staging-pass.md",
+   "plan/levels/salon-2026-11-07.md"
+  ],
+  "principlesUsed": [
+   "anticipation",
+   "contrapposto",
+   "exaggeration-accent",
+   "follow-through",
+   "line-of-action",
+   "no-twinning",
+   "planted-pivot",
+   "secondary-action",
+   "staging-silhouette",
+   "timing-on-beat"
+  ],
+  "sourcesUsed": [
+   "cartwright-gdc2014",
+   "contrapposto-fonseca",
+   "dead-cells-pipeline",
+   "disney-process",
+   "illusion-of-life",
+   "silhouette-test",
+   "simogo-bsb",
+   "slynyrd-53",
+   "slynyrd-55",
+   "twinning",
+   "ubisoft-foot-ik",
+   "williams-survival-kit"
+  ]
+ }
+}
