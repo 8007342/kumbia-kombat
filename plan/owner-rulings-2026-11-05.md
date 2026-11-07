@@ -201,3 +201,16 @@ The owner's words, whole: "let's use that left platform to add a band playing th
 | Options | The "recommended A options" are approved. As the coordinator read it, that includes plate A for this room | "The recommended A options are great, I approve" |
 
 Status: built as a hidden level, with stand-in art. See `plan/levels/indoor-party-2026-11-07.md`.
+
+## Twelfth round, 2026-11-07: richer moves, and the ladders by ear
+
+| Topic | Ruling | Owner's words |
+|---|---|---|
+| Richer moves | Charts get double taps and taps in two spots, together or one after the other, inside one beat. Complexity carries the growth, so the lawn's slower top tier is intended | "It's ok, we'll add double taps, even taps in double spots like left and right or left then right, in the same beat, that should compensate for the lower speed. The music feels sharper and more rich, and so should be the dance, even if the tempo is slower ;)" |
+| BlinBlin | Sheets F1 (front) and B1 (back) are approved and accepted | |
+| Campaign order | Garden, pool party, bar is merged. The game should now play the rendered music | "plays great on auto, but it still has the old synth score" |
+| Ladders | By ear, the lawn plays MID, HIGH, LOW: 144, then 160, then 136 BPM. The bar and indoor party ladders stay as they are | "for the song to feel like its growing", "great the way it is" |
+| Mixing | Ladders need mixing, and perhaps some transitional segments re-mixed | "They still need mixing capabilities, and possibly re-mixing some transitional segments." |
+| Local models | Local CPU and GPU are approved for assets, curation, music and vision | |
+
+How the richer moves were built, and what only a thumb can settle: `plan/double-moves-2026-11-07.md`.
