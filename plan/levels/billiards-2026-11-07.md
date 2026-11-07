@@ -13,7 +13,6 @@ Each swap is a data edit.
 | Her dance | Atlas `bartender`, so The Bartender dances here | `stage.challengers[0].atlas: "pool-player"` once the atlas is packed. Her dancer block is already in `choreography.json` | POOLART |
 | Music | `crowd_duende`, with `bar_swag_finale` as the 16-beat success | The rendered `billiards` key, about 100 BPM, 16-beat final success. Then drop the guard in `rendered_music_test.dart` | MUSIC |
 | Bridge from the party | `crowd_to_restroom` in `index.json`, as the synth fallback | Rendered `cool-crowd.bridge`, 8 beats, read by the runtime | MUSIC |
-| Guests | The old three guests | The new party people | GUESTS |
 
 ## Room
 
@@ -28,7 +27,7 @@ Each swap is a data edit.
 - **Four players at the tables**, two behind the far rails and two at the inner ends. They use `scenery.band` with no platform, on a `tier` ladder: absorbed, then watching, then clapping. `lateBy` staggers them, so two turn at tier 1 and two at tier 2; two clap at tier 3 and two at 4. Every clearing run passes through tier 4, so all of them are engaged by the win. A drop in tier turns them back to their game. [F for the data, P for the choice of `tier` over `form`]
 - **Who they are:** POOLART's `pool-bg-a`, `-b`, `-c`. There are three drawings for four places, so the flat-cap man plays at both tables, on opposite sides of the room. B has `stature` .88, POOLART's unchecked suggestion. [F for the art, P for the casting]
 - **Why `tier`:** the ruling is "start uninterested, engaged by the time a level clears", so a clearing run must always get there. `form` might not. One data edit changes it.
-- **Twelve guests, standing, the crowd model unchanged.** Four show on a phone, behind the tables. The other eight are off a phone's edges, for wider screens. My first pass of ten on-screen figures read as a wall and hid the tables. [F]
+- **Twelve guests, standing, the crowd model unchanged.** Four show on a phone, behind the tables, as two couples from the new party people, swaying slowly together while uninterested: `guest3` with `guest6` on the left, `guest4` with `guest5` on the right. I kept the short round amber `guest3` away from the short round curly player B. Amber, lavender and plum sit well on the bottle-green walls. Lamps cover part of them, on purpose. [P] The other eight are the old guests, off a phone's edges, for wider screens. My first pass of ten on-screen figures read as a wall and hid the tables. [F]
 - **She starts with her back to us**, absorbed like the rest, and turns at beats 10 to 12 as Mācron walks in from off the left: the "stops Mācron" beat, using the party's `facingAway`. [P]
 - **Rule kept:** nobody stands nearer than she does. [F, test]
 
@@ -85,7 +84,7 @@ It fits the 16-beat success, as a last level must. A table cut from the room is 
 ## What was checked, and how
 
 - `flutter test`: 648 pass. `flutter analyze lib test`: the same 4 notes.
-- `test/billiards_level_test.dart`: marks on the painted floor, nobody in front of her, the players' arc, a flawless autoplay run that clears and lands strokes, the dab's beats. It writes stills to `build/stills/billiards.png` and `billiards-win.png`, which I read by eye, with guests and players as stand-ins.
+- `test/billiards_level_test.dart`: marks on the painted floor, nobody in front of her, the players' arc, a flawless autoplay run that clears and lands strokes, the dab's beats. It writes stills to `build/stills/billiards-opening.png` and `billiards-win.png` (`room_stills_test` writes `billiards.png`, other moments of play), which I read by eye, with guests and players as stand-ins.
 - Local vision, 91 s on the room's sheet: it answered with a generic list of every fault I asked about, naming nothing specific. It missed the things I changed by eye: the wall of guests, the guest over the door, the cue across his face. No use as a first pass on a sheet this busy, with that prompt.
 
 ## What went wrong

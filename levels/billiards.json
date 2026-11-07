@@ -464,25 +464,94 @@
      "standing_idle_b"
     ],
     "beatsPerFrame": 2
+   },
+   "occupied": {
+    "pair": {
+     "frames": [
+      "pair_dance_a",
+      "pair_dance_b",
+      "pair_dance_c",
+      "pair_dance_d"
+     ],
+     "beatsPerFrame": 2
+    },
+    "back": {
+     "frames": [
+      "back_dance_a",
+      "back_dance_b",
+      "back_dance_c",
+      "back_dance_d"
+     ],
+     "beatsPerFrame": 1
+    }
+   },
+   "castGlance": {
+    "frames": [
+     "glance_a",
+     "glance_b"
+    ],
+    "beatsPerFrame": 2
+   },
+   "following": {
+    "frames": [
+     "groove_a",
+     "groove_b",
+     "groove_c",
+     "groove_d"
+    ],
+    "beatsPerFrame": 1
+   },
+   "sidestep": {
+    "frames": [
+     "sidestep_a",
+     "sidestep_b",
+     "sidestep_c",
+     "sidestep_d"
+    ],
+    "beatsPerFrame": 0.5
    }
   },
   "guests": [
-   [
-    0.2,
-    0.41
-   ],
-   [
-    0.8,
-    0.41
-   ],
-   [
-    0.26,
-    0.395
-   ],
-   [
-    0.74,
-    0.395
-   ],
+   {
+    "at": [
+     0.2,
+     0.41
+    ],
+    "occupied": "pair",
+    "faces": "right",
+    "partner": 2,
+    "atlas": "guest3"
+   },
+   {
+    "at": [
+     0.8,
+     0.41
+    ],
+    "occupied": "pair",
+    "faces": "left",
+    "partner": 3,
+    "atlas": "guest4"
+   },
+   {
+    "at": [
+     0.266,
+     0.41
+    ],
+    "occupied": "pair",
+    "faces": "left",
+    "partner": 0,
+    "atlas": "guest6"
+   },
+   {
+    "at": [
+     0.734,
+     0.41
+    ],
+    "occupied": "pair",
+    "faces": "right",
+    "partner": 1,
+    "atlas": "guest5"
+   },
    [
     0.11,
     0.44

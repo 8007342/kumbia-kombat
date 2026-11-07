@@ -285,7 +285,7 @@ void main() {
     }
     final sheet = await recorder.endRecording().toImage(396 * rows.length, 844);
     final png = await sheet.toByteData(format: ui.ImageByteFormat.png);
-    File('build/stills/billiards.png')
+    File('build/stills/billiards-opening.png')
         .writeAsBytesSync(png!.buffer.asUint8List());
   });
 }
