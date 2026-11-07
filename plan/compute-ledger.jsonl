@@ -372,3 +372,4 @@
 {"agent": "blinblin", "what": "BlinBlin rig render, register, score, finish and pack (CPU)", "kind": "cpu", "seconds": 240, "count": 1}
 {"agent":"FEEL","what":"flutter test and analyze runs for timing, difficulty and tap-mark changes","kind":"cpu","seconds":520,"count":9}
 {"agent":"ALIGN","what":"mixrs salience on 16 rendered takes (5 levels + salon) and chart searches","kind":"cpu","seconds":15,"count":16}
+{"agent":"CONSOLE","what":"flutter test full suite x2, focused runs, zxing QR decode","kind":"cpu","seconds":260,"count":12}

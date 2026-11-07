@@ -14,6 +14,7 @@ import '../music/rendered_music.dart';
 import '../music/score.dart';
 import '../music/transport.dart';
 import '../music/transition_conductor.dart';
+import '../review_links.dart';
 import 'garden_scene.dart';
 import 'garden_session.dart';
 import 'gesture_glyph.dart';
@@ -74,6 +75,9 @@ class _GardenPageState extends State<GardenPage>
     startFlawless: Uri.base.queryParameters['autoplay'] == 'flawless',
   );
   bool _usedAutoplay = false;
+
+  /// `?tier=<0-4>` starts the first phrase there, once, for review.
+  int? _reviewTier = ReviewLinks.tierFrom(Uri.base.queryParameters);
 
   /// AutoPlay was pressed before the campaign finished loading. A press isn't
   /// dropped just because it came early: it's kept, and the run starts on load.
@@ -144,8 +148,8 @@ class _GardenPageState extends State<GardenPage>
   }
 
   /// `?latency=<ms>` replaces the browser's latency report and the touch delay
-  /// both, as one number, so values can be tried on a phone. Hidden: nothing
-  /// links to it. `?latency=0` turns compensation off.
+  /// both, as one number, so values can be tried on a phone. The console links
+  /// to it. `?latency=0` turns compensation off.
   static final double? _latencyOverride = () {
     final raw = Uri.base.queryParameters['latency'];
     final ms = raw == null ? null : double.tryParse(raw);
@@ -154,7 +158,8 @@ class _GardenPageState extends State<GardenPage>
 
   /// This device's tap-along result, if it has one. See `sync_overlay.dart`.
   int? _syncOffsetMs = loadSyncOffsetMs();
-  bool _calibrating = false;
+  // `?sync=1` opens the tap-along straight away: the console links to it.
+  bool _calibrating = ReviewLinks.syncFrom(Uri.base.queryParameters);
 
   /// For a player who hasn't calibrated: a small capped nudge from their own
   /// play. Shared by the run's rooms. A proposal: see `plan/feel-2026-11-07.md`.
@@ -667,12 +672,14 @@ class _GardenPageState extends State<GardenPage>
       } else {
         // Bounded: if the take isn't decoded in time, the run starts on the synth
         // at the same tempo, and the take joins at a phrase boundary.
-        await _library?.decodeStart(_level.id, tier: 0);
+        final tier = _reviewTier ?? 0;
+        _reviewTier = null;
+        await _library?.decodeStart(_level.id, tier: tier);
         if (!mounted || !_foreground || activationEpoch != _activationEpoch) {
           return;
         }
         _applyMix();
-        _session!.start();
+        _session!.start(tier: tier);
         unawaited(_warmRenderedMusic());
       }
       _focus.requestFocus();
