@@ -76,7 +76,7 @@ class RenderedLibrary {
       if (nextId != null) await decodeStart(nextId);
       return;
     }
-    final success = music.success;
+    final success = music.successToward(nextId);
     if (success != null) await _decode(success);
     if (nextId == null) return;
     final bridge = music.bridge;

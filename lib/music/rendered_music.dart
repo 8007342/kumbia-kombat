@@ -180,6 +180,7 @@ class RenderedLevel {
     required this.takes,
     this.transitions = const [],
     this.success,
+    this.successShort,
     this.bridge,
     this.bridgeTo,
     this.bridgeEntryBar = 0,
@@ -208,12 +209,23 @@ class RenderedLevel {
   final Map<String, RenderedClip> takes;
   final List<RenderedTransition> transitions;
   final RenderedClip? success;
+
+  /// The shorter tag for when a bridge follows: the score the gulp shot spans
+  /// together with [bridge], where [success] alone ends a level.
+  final RenderedClip? successShort;
   final RenderedClip? bridge;
 
   /// The level [bridge] leads to, and the bar of its first take it lands on.
   final String? bridgeTo;
   final int bridgeEntryBar;
   final RenderedMix? mix;
+
+  /// The success tag for leaving this level toward [nextId], or for ending on it.
+  /// The short tag only ever plays when the bridge that follows it leads there.
+  RenderedClip? successToward(String? nextId) =>
+      nextId != null && bridgeTo == nextId && bridge != null
+      ? successShort ?? success
+      : success;
 
   RenderedClip takeForTier(int tier) => takes[tierTakes[tier]]!;
   List<double> get tempos => [for (var t = 0; t < 5; t++) takeForTier(t).bpm];
@@ -229,6 +241,7 @@ class RenderedLevel {
     ...takes.values,
     ...transitions.map((join) => join.clip),
     ?success,
+    ?successShort,
     ?bridge,
   ];
 
@@ -258,6 +271,7 @@ class RenderedLevel {
           _transition(id, '$path.transitions[$i]', raw),
       ],
       success: single('success'),
+      successShort: single('successShort'),
       bridge: single('bridge'),
       bridgeTo: json['bridge'] == null
           ? null
