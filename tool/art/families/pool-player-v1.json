@@ -4,7 +4,7 @@
  "family": "pool-player-v1",
  "version": 1,
  "project": "kumbia-kombat",
- "description": "Billiards room opponent, the PoolPlayer dancer: an elegant adult of about sixty, a player of long standing who uses a cue stick as a dancing prop.",
+ "description": "Billiards room opponent, The Pool Player: an elegant adult of about sixty, a player of long standing who uses a cue stick as a dancing prop.",
  "kind": "character-frames",
  "frame": {
   "baselineY": null,
@@ -55,7 +55,10 @@
   "#8000FF": "shirt",
   "#0000FF": "cloth",
   "#FF8000": "trousers",
-  "#00FFFF": "shoes"
+  "#00FFFF": "shoes",
+  "#FF00FF": "accessory",
+  "#00FF80": "prop",
+  "#80FF00": "prop_dark"
  },
  "reservedRamps": [
   {
@@ -224,7 +227,7 @@
  },
  "style_prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background",
  "style_negative": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render",
- "character_prompt": "elegant upright adult woman of about sixty, a calm knowing smile, silver hair in a neat bob, neat silver chin-length bob, crisp ivory blouse with the sleeves rolled to the elbow, fitted billiard-green waistcoat with brass buttons, high-waisted charcoal trousers with a sharp crease, polished oxblood brogues, patient, exact and amused, as if already three shots ahead",
+ "character_prompt": "elegant upright adult woman of about sixty, a calm knowing smile, silver hair in a neat bob, neat silver chin-length bob, crisp ivory blouse with the sleeves rolled to the elbow, fitted billiard-green waistcoat with brass buttons, high-waisted charcoal trousers with a sharp crease, polished oxblood brogues, brass buttons and small gold stud earrings, a small cube of blue billiard chalk, pale wooden cue shaft with a white tip, dark wooden cue butt, patient, exact and amused, as if already three shots ahead",
  "clips": [
   {
    "id": "groove",
@@ -538,7 +541,10 @@
   "shirt": "#F0E8D8",
   "cloth": "#1F4A3C",
   "trousers": "#23242B",
-  "shoes": "#6B3A22"
+  "shoes": "#6B3A22",
+  "accessory": "#D6A632",
+  "prop": "#C9984F",
+  "prop_dark": "#6B3A1E"
  },
  "poses": [
   {
@@ -565,7 +571,7 @@
    "accent": false,
    "phase": "down",
    "phaseNote": "down (beat 1, back-step)",
-   "intent": "weight sunk on her bent left knee, right foot stepped back on its ball with the heel raised, left hip high and pushed out, shoulders tilted the other way, left forearm swinging forward at belly height, right arm low and back, head level facing the viewer",
+   "intent": "weight sunk on her bent left knee, right foot stepped back on its ball with the heel raised, left hip high and pushed out, shoulders tilted the other way, left forearm swinging forward at belly height, head level facing the viewer",
    "profile": "moderate",
    "animationPrinciples": [
     "staging-silhouette",
@@ -600,7 +606,7 @@
    "accent": false,
    "phase": "pass",
    "phaseNote": "pass (beat 2, replace)",
-   "intent": "weight rolling forward onto the left foot, knees softening upward, right foot still slightly back on its ball, hips easing toward level, arms loose and low swinging back toward the body",
+   "intent": "weight rolling forward onto the left foot, knees softening upward, right foot still slightly back on its ball, hips easing toward level, left arm loose and low",
    "profile": "moderate",
    "animationPrinciples": [
     "staging-silhouette",
@@ -635,7 +641,7 @@
    "accent": false,
    "phase": "up",
    "phaseNote": "up (beat 3, close)",
-   "intent": "both feet together and flat, legs nearly straight in a small rise, hips almost level, chin lifted proudly, arms relaxed low at the sides with elbows soft",
+   "intent": "both feet together and flat, legs nearly straight in a small rise, hips almost level, chin lifted proudly, left arm relaxed low at the side with a soft elbow",
    "profile": "moderate",
    "animationPrinciples": [
     "staging-silhouette",
@@ -670,7 +676,7 @@
    "accent": true,
    "phase": "accent",
    "phaseNote": "accent (beat 4, the hold)",
-   "intent": "hip popped out to her right over the straight right leg, right hip high, right shoulder dipped, left knee bent with the left foot resting on its toe, right forearm lifted out at hip height in a wrist roll, left forearm across the belly, head tilted toward her left",
+   "intent": "hip popped out to her right over the straight right leg, right hip high, right shoulder dipped toward the cue, left knee bent with the left foot resting on its toe, left forearm across the belly, head tilted toward her left",
    "profile": "peak",
    "animationPrinciples": [
     "staging-silhouette",
@@ -707,7 +713,7 @@
    "accent": false,
    "phase": "down",
    "phaseNote": "down (beat 1, back-step)",
-   "intent": "weight sunk on her bent right knee, left foot stepped back on its ball with the heel raised, right hip high and pushed out, shoulders tilted the other way, right forearm swinging forward at belly height, left arm low and back, head level facing the viewer",
+   "intent": "weight sunk on her bent right knee, left foot stepped back on its ball with the heel raised, right hip high and pushed out toward the cue, shoulders tilted the other way, left arm low and back, head level facing the viewer",
    "profile": "moderate",
    "animationPrinciples": [
     "staging-silhouette",
@@ -742,7 +748,7 @@
    "accent": false,
    "phase": "pass",
    "phaseNote": "pass (beat 2, replace)",
-   "intent": "weight rolling forward onto the right foot, knees softening upward, left foot still slightly back on its ball, hips easing toward level, arms loose and low swinging back toward the body",
+   "intent": "weight rolling forward onto the right foot, knees softening upward, left foot still slightly back on its ball, hips easing toward level, left arm loose and low",
    "profile": "moderate",
    "animationPrinciples": [
     "staging-silhouette",
@@ -777,7 +783,7 @@
    "accent": false,
    "phase": "up",
    "phaseNote": "up (beat 3, close)",
-   "intent": "both feet together and flat, legs nearly straight in a small rise, hips almost level, chin lifted proudly, arms relaxed low at the sides with elbows soft",
+   "intent": "both feet together and flat, legs nearly straight in a small rise, hips almost level, chin lifted proudly, left arm relaxed low at the side with a soft elbow",
    "profile": "moderate",
    "animationPrinciples": [
     "staging-silhouette",
@@ -812,7 +818,7 @@
    "accent": true,
    "phase": "accent",
    "phaseNote": "accent (beat 4, the hold)",
-   "intent": "hip popped out to her left over the straight left leg, left hip high, left shoulder dipped, right knee bent with the right foot resting on its toe, left forearm lifted out at hip height in a wrist roll, right forearm across the belly, head tilted toward her right",
+   "intent": "hip popped out to her left over the straight left leg, left hip high, left shoulder dipped, right knee bent with the right foot resting on its toe, left forearm lifted out at hip height in a wrist roll, head tilted toward her right",
    "profile": "peak",
    "animationPrinciples": [
     "staging-silhouette",
@@ -849,7 +855,7 @@
    "accent": false,
    "phase": "anticipation",
    "phaseNote": "anticipation",
-   "intent": "crouched low with weight on the bent right leg, right fist on the hip, left hand scooped down low in front of the left hip, torso turned away to her right, head glancing down at the left hand",
+   "intent": "crouched low with weight on the bent right leg, left hand scooped down low in front of the left hip, torso turned away to her right, head glancing down at the left hand",
    "profile": "moderate",
    "animationPrinciples": [
     "staging-silhouette",
@@ -883,7 +889,7 @@
    "accent": true,
    "phase": "accent",
    "phaseNote": "accent",
-   "intent": "weight on the straight right foot, right hip pushed out, right fist on the hip, body leaning toward her left so one long diagonal runs from the right foot to the left palm thrust high and out at about 45 degrees, left foot on its toe out to the side, head turned up toward the raised hand",
+   "intent": "leaning far away from the planted cue with the right arm stretched straight out to hold it, like a dancer swinging out from a pole, one long diagonal from the cue hand through the chest to the left palm thrust high and out at about 45 degrees, left foot on its toe out to the side, head turned up toward the raised hand",
    "profile": "peak",
    "animationPrinciples": [
     "staging-silhouette",
@@ -918,7 +924,7 @@
    "accent": false,
    "phase": "follow-through",
    "phaseNote": "follow-through",
-   "intent": "same diagonal pushed further: left arm reaching higher and the palm rolling forward, torso leaning further toward her left, right elbow pushed back on the hip, left toe touch out wider, head following the hand",
+   "intent": "same lean pushed further: right arm straight, hanging out from the planted cue, left arm reaching higher and the palm rolling forward, left toe touch out wider, head following the hand",
    "profile": "moderate",
    "animationPrinciples": [
     "staging-silhouette",
@@ -952,7 +958,7 @@
    "accent": false,
    "phase": "settle",
    "phaseNote": "settle",
-   "intent": "left arm sweeping down in an arc at shoulder height with the elbow bent, right hand low on the hip, both feet flat and close, torso returning upright",
+   "intent": "left arm sweeping down in an arc at shoulder height with the elbow bent, right hand on the planted cue, both feet flat and close, torso returning upright",
    "profile": "moderate",
    "animationPrinciples": [
     "staging-silhouette",
@@ -986,7 +992,7 @@
    "accent": false,
    "phase": "anticipation",
    "phaseNote": "anticipation",
-   "intent": "crouched low with weight on the bent left leg, left fist on the hip, right hand scooped down low in front of the right hip, torso turned away to her left, head glancing down at the right hand",
+   "intent": "crouched low with weight on the bent left leg, left fist on the hip, right hand low in front of the right hip holding the cue near its butt, the cue slanting up and out across the picture, torso turned away to her left, head glancing at the cue",
    "profile": "moderate",
    "animationPrinciples": [
     "staging-silhouette",
@@ -1020,7 +1026,7 @@
    "accent": true,
    "phase": "accent",
    "phaseNote": "accent",
-   "intent": "weight on the straight left foot, left hip pushed out, left fist on the hip, body leaning toward her right so one long diagonal runs from the left foot to the right palm thrust high and out at about 45 degrees, right foot on its toe out to the side, head turned up toward the raised hand",
+   "intent": "weight on the straight left foot, left fist on the hip, body leaning toward her right, right arm thrust high and out holding the cue near its butt, the long cue swung up over her head and slanting across the top of the picture, right foot on its toe out to the side, head turned up toward the cue",
    "profile": "peak",
    "animationPrinciples": [
     "staging-silhouette",
@@ -1055,7 +1061,7 @@
    "accent": false,
    "phase": "follow-through",
    "phaseNote": "follow-through",
-   "intent": "same diagonal pushed further: right arm reaching higher and the palm rolling forward, torso leaning further toward her right, left elbow pushed back on the hip, right toe touch out wider, head following the hand",
+   "intent": "right arm high, the cue swung further round so that it lies nearly level above her head, torso leaning further toward her right, left elbow pushed back on the hip, right toe touch out wider, head following the cue",
    "profile": "moderate",
    "animationPrinciples": [
     "staging-silhouette",
@@ -1089,7 +1095,7 @@
    "accent": false,
    "phase": "settle",
    "phaseNote": "settle",
-   "intent": "right arm sweeping down in an arc at shoulder height with the elbow bent, left hand low on the hip, both feet flat and close, torso returning upright",
+   "intent": "the right arm coming down with the elbow bent, the cue swinging back upright beside her with its butt nearing the floor, left hand low on the hip, both feet flat and close, torso returning upright",
    "profile": "moderate",
    "animationPrinciples": [
     "staging-silhouette",
@@ -1123,7 +1129,7 @@
    "accent": false,
    "phase": "anticipation",
    "phaseNote": "anticipation",
-   "intent": "weight on the bent right leg, left knee lifted forward and out with the foot off the floor and the toe pointing down, left fist on the hip, right arm low and out for balance, head looking down at the left foot",
+   "intent": "weight on the bent right leg, left knee lifted forward and out with the foot off the floor and the toe pointing down, left fist on the hip, head looking down at the left foot",
    "profile": "moderate",
    "animationPrinciples": [
     "staging-silhouette",
@@ -1157,7 +1163,7 @@
    "accent": true,
    "phase": "accent",
    "phaseNote": "accent",
-   "intent": "heel dig: left leg stretched out on a forward diagonal with the left heel on the floor and the toe up, weight on the bent right leg, chest proud and leaning back slightly, right fist on the hip, left arm low and back, head turned toward the left foot",
+   "intent": "heel dig: left leg stretched out on a forward diagonal with the left heel on the floor and the toe up, weight on the bent right leg, chest proud and leaning back slightly, left arm low and back, head turned toward the left foot",
    "profile": "peak",
    "animationPrinciples": [
     "staging-silhouette",
@@ -1192,7 +1198,7 @@
    "accent": false,
    "phase": "follow-through",
    "phaseNote": "follow-through",
-   "intent": "left heel still dug in on the diagonal, hip popped over the right foot, shoulders tilted against the hips, right elbow pushed back on the hip, left arm low and out, head on the left foot",
+   "intent": "left heel still dug in on the diagonal, hip popped over the right foot, shoulders tilted against the hips, left arm low and out, head on the left foot",
    "profile": "moderate",
    "animationPrinciples": [
     "staging-silhouette",
@@ -1226,7 +1232,7 @@
    "accent": false,
    "phase": "settle",
    "phaseNote": "settle",
-   "intent": "left foot dragged back along the floor to close beside the right, both feet flat, knees soft, arms relaxed low at the sides",
+   "intent": "left foot dragged back along the floor to close beside the right, both feet flat, knees soft, left arm relaxed low at the side",
    "profile": "moderate",
    "animationPrinciples": [
     "staging-silhouette",
@@ -1260,7 +1266,7 @@
    "accent": false,
    "phase": "anticipation",
    "phaseNote": "anticipation",
-   "intent": "weight on the bent left leg, right knee lifted forward and out with the foot off the floor and the toe pointing down, right fist on the hip, left arm low and out for balance, head looking down at the right foot",
+   "intent": "weight on the bent left leg, right knee lifted forward and out with the foot off the floor and the toe pointing down, left fist on the hip, head looking down at the right foot",
    "profile": "moderate",
    "animationPrinciples": [
     "staging-silhouette",
@@ -1294,7 +1300,7 @@
    "accent": true,
    "phase": "accent",
    "phaseNote": "accent",
-   "intent": "heel dig: right leg stretched out on a forward diagonal with the right heel on the floor and the toe up, weight on the bent left leg, chest proud and leaning back slightly, left fist on the hip, right arm low and back, head turned toward the right foot",
+   "intent": "heel dig: right leg stretched out on a forward diagonal with the right heel on the floor and the toe up, weight on the bent left leg, chest proud and leaning back slightly, left fist on the hip, head turned toward the right foot",
    "profile": "peak",
    "animationPrinciples": [
     "staging-silhouette",
@@ -1329,7 +1335,7 @@
    "accent": false,
    "phase": "follow-through",
    "phaseNote": "follow-through",
-   "intent": "right heel still dug in on the diagonal, hip popped over the left foot, shoulders tilted against the hips, left elbow pushed back on the hip, right arm low and out, head on the right foot",
+   "intent": "right heel still dug in on the diagonal, hip popped over the left foot, shoulders tilted against the hips, left elbow pushed back on the hip, head on the right foot",
    "profile": "moderate",
    "animationPrinciples": [
     "staging-silhouette",
@@ -1363,7 +1369,7 @@
    "accent": false,
    "phase": "settle",
    "phaseNote": "settle",
-   "intent": "right foot dragged back along the floor to close beside the left, both feet flat, knees soft, arms relaxed low at the sides",
+   "intent": "right foot dragged back along the floor to close beside the left, both feet flat, knees soft, left arm relaxed low at the side",
    "profile": "moderate",
    "animationPrinciples": [
     "staging-silhouette",
@@ -1397,7 +1403,7 @@
    "accent": true,
    "phase": "contact",
    "phaseNote": "contact",
-   "intent": "swaggering walk toward the viewer on a slight diagonal, left heel landing in front, right foot behind on its toe, right fist on the hip, left arm swinging back, chin up",
+   "intent": "walk toward the viewer on a slight diagonal, left heel landing in front, right foot behind on its toe, chin up, left arm swinging back",
    "profile": "moderate",
    "animationPrinciples": [
     "staging-silhouette",
@@ -1432,7 +1438,7 @@
    "accent": false,
    "phase": "down",
    "phaseNote": "down",
-   "intent": "weight dropping into the bent left knee, left hip high, right foot pushing off behind on its toe, right fist on the hip, left arm swinging, head dipping on the beat",
+   "intent": "walk, weight settling on the bent left knee, right foot passing behind, left arm low",
    "profile": "moderate",
    "animationPrinciples": [
     "staging-silhouette",
@@ -1466,7 +1472,7 @@
    "accent": false,
    "phase": "pass",
    "phaseNote": "pass",
-   "intent": "standing tall on the straight left leg, right knee swinging forward past it, right fist on the hip, left arm relaxed at the side, chin up",
+   "intent": "walk, rising over the straight left leg, right knee passing forward, left arm low",
    "profile": "moderate",
    "animationPrinciples": [
     "staging-silhouette",
@@ -1500,7 +1506,7 @@
    "accent": true,
    "phase": "contact",
    "phaseNote": "contact",
-   "intent": "swaggering walk toward the viewer on a slight diagonal, right heel landing in front, left foot behind on its toe, right fist on the hip, left arm swinging forward, chin up",
+   "intent": "walk, right heel landing in front, left foot behind on its toe, left arm swinging forward",
    "profile": "moderate",
    "animationPrinciples": [
     "staging-silhouette",
@@ -1535,7 +1541,7 @@
    "accent": false,
    "phase": "down",
    "phaseNote": "down",
-   "intent": "weight dropping into the bent right knee, right hip high, left foot pushing off behind on its toe, right fist on the hip, left arm swinging forward, head dipping on the beat",
+   "intent": "walk, weight settling on the bent right knee, left foot passing behind, left arm low",
    "profile": "moderate",
    "animationPrinciples": [
     "staging-silhouette",
@@ -1569,7 +1575,7 @@
    "accent": false,
    "phase": "pass",
    "phaseNote": "pass",
-   "intent": "standing tall on the straight right leg, left knee swinging forward past it, right fist on the hip, left arm relaxed at the side, chin up",
+   "intent": "walk, rising over the straight right leg, left knee passing forward, left arm low",
    "profile": "moderate",
    "animationPrinciples": [
     "staging-silhouette",
@@ -1809,7 +1815,7 @@
    "accent": true,
    "phase": "contact",
    "phaseNote": "contact",
-   "intent": "side-step toward the sideline: left leg reaching out sideways with the foot landing, weight still on the bent right leg, right fist on the hip, left arm out low",
+   "intent": "walk sideways out of the way, left heel landing in front, right foot behind on its toe, chin up, left arm swinging back",
    "profile": "moderate",
    "animationPrinciples": [
     "staging-silhouette",
@@ -1844,7 +1850,7 @@
    "accent": false,
    "phase": "down",
    "phaseNote": "down",
-   "intent": "weight shifted onto the bent left leg, left hip high and pushed out, right foot trailing on its toe, right fist on the hip, head nodding",
+   "intent": "walk, weight settling on the bent left knee, right foot passing behind, left arm low",
    "profile": "moderate",
    "animationPrinciples": [
     "staging-silhouette",
@@ -1878,7 +1884,7 @@
    "accent": false,
    "phase": "pass",
    "phaseNote": "pass",
-   "intent": "right foot dragged in along the floor to close beside the straight left leg, right fist on the hip, left arm relaxed at the side",
+   "intent": "walk, rising over the straight left leg, right knee passing forward, left arm low",
    "profile": "moderate",
    "animationPrinciples": [
     "staging-silhouette",
@@ -1912,7 +1918,7 @@
    "accent": true,
    "phase": "contact",
    "phaseNote": "contact",
-   "intent": "right foot stepping back on a diagonal onto its ball, left knee bent, arms low and loose, torso turning open",
+   "intent": "walk, right heel landing in front, left foot behind on its toe, left arm swinging forward",
    "profile": "moderate",
    "animationPrinciples": [
     "staging-silhouette",
@@ -1947,7 +1953,7 @@
    "accent": false,
    "phase": "down",
    "phaseNote": "down",
-   "intent": "weight settled onto the bent right leg, right hip high, left foot in front with the toe lifted, right forearm coming forward at waist height",
+   "intent": "walk, weight settling on the bent right knee, left foot passing behind, left arm low",
    "profile": "moderate",
    "animationPrinciples": [
     "staging-silhouette",
@@ -1981,7 +1987,7 @@
    "accent": true,
    "phase": "accent",
    "phaseNote": "accent (hand-over)",
-   "intent": "standing on the right leg, left fist on the hip, right arm held out low and wide with the palm open and up toward the empty floor, head turned toward the open palm with a slight bow, offering the floor",
+   "intent": "standing on the right leg, the cue upright in her right hand beside her, left arm held out low and wide with the palm open and up toward the empty floor, head turned toward the open palm with a slight bow, offering the floor",
    "profile": "peak",
    "animationPrinciples": [
     "staging-silhouette",
@@ -2017,7 +2023,7 @@
    "accent": false,
    "phase": "pass",
    "phaseNote": "pass (weight shift)",
-   "intent": "relaxed stance turned slightly to her left, hands clasped behind the back, weight on the left foot with the left hip high, right knee soft, head turned to watch the other dancer",
+   "intent": "relaxed stance turned slightly to her left, both hands stacked one over the other on the upright cue in front of her chest, leaning on it, weight on the left foot with the left hip high, right knee soft, head turned to watch the other dancer",
    "profile": "overlap",
    "animationPrinciples": [
     "staging-silhouette",
@@ -2052,7 +2058,7 @@
    "accent": false,
    "phase": "settle",
    "phaseNote": "settle (nod on beat 1)",
-   "intent": "hands clasped behind the back, weight sunk on the left foot with both knees softer, head nodding along to the music while watching",
+   "intent": "both hands stacked on the upright cue, weight sunk on the left foot with both knees softer, head nodding along to the music while watching",
    "profile": "overlap",
    "animationPrinciples": [
     "staging-silhouette",
@@ -2087,7 +2093,7 @@
    "accent": false,
    "phase": "pass",
    "phaseNote": "pass (weight shift)",
-   "intent": "relaxed stance turned slightly to her left, hands clasped behind the back, weight on the right foot with the right hip high, left knee soft, head turned to watch the other dancer",
+   "intent": "relaxed stance turned slightly to her left, both hands stacked one over the other on the upright cue in front of her chest, leaning on it, weight on the right foot with the right hip high, left knee soft, head turned to watch the other dancer",
    "profile": "overlap",
    "animationPrinciples": [
     "staging-silhouette",
@@ -2122,7 +2128,7 @@
    "accent": false,
    "phase": "settle",
    "phaseNote": "settle",
-   "intent": "hands clasped behind the back, weight sunk on the right foot with both knees softer, head tilted with a small nod while watching",
+   "intent": "both hands stacked on the upright cue, weight sunk on the right foot with both knees softer, head tilted with a small nod while watching",
    "profile": "overlap",
    "animationPrinciples": [
     "staging-silhouette",
@@ -2157,7 +2163,7 @@
    "accent": false,
    "phase": "anticipation",
    "phaseNote": "anticipation",
-   "intent": "standing square and upright, both forearms raised in front of the chest with the palms apart and facing each other, elbows out, chin up",
+   "intent": "standing square and upright, the cue upright in her right hand in front of her chest, left forearm raised with the palm open and away from the cue, elbows out, chin up",
    "profile": "overlap",
    "animationPrinciples": [
     "staging-silhouette",
@@ -2191,7 +2197,7 @@
    "accent": false,
    "phase": "pass",
    "phaseNote": "pass",
-   "intent": "both hands swinging together in front of the chest, elbows out, knees starting to bend, head starting to nod",
+   "intent": "the left palm swinging in toward the upright cue held in front of her chest, elbows out, knees starting to bend, head starting to nod",
    "profile": "overlap",
    "animationPrinciples": [
     "staging-silhouette",
@@ -2225,7 +2231,7 @@
    "accent": true,
    "phase": "contact",
    "phaseNote": "contact (on the beat)",
-   "intent": "palms clapped together in front of the chest, elbows out to the sides, both knees dipped, head nodding down with a smile",
+   "intent": "left palm slapped against the shaft of the upright cue just above the right hand, in front of the chest, elbows out to the sides, both knees dipped, head nodding down with a smile",
    "profile": "overlap",
    "animationPrinciples": [
     "staging-silhouette",
@@ -2260,7 +2266,7 @@
    "accent": false,
    "phase": "follow-through",
    "phaseNote": "follow-through",
-   "intent": "hands bouncing apart in front of the chest, elbows out, knees rising, head level",
+   "intent": "the left palm bouncing away from the upright cue, elbows out, knees rising, head level",
    "profile": "overlap",
    "animationPrinciples": [
     "staging-silhouette",
@@ -2294,7 +2300,7 @@
    "accent": false,
    "phase": "anticipation",
    "phaseNote": "anticipation",
-   "intent": "back-break dip: weight sunk on the bent left leg, right foot back on its ball, torso leaning forward, both hands travelling toward the hips, head lowered",
+   "intent": "back-break dip: weight sunk on the bent left leg, right foot back on its ball, torso leaning forward a little, the right hand low at the hip holding the cue slanted up across her body so its tip comes to just below her chin, the left hand twisting a small blue cube of chalk on the tip, a sly look down at the tip",
    "profile": "overlap",
    "animationPrinciples": [
     "staging-silhouette",
@@ -2328,7 +2334,7 @@
    "accent": true,
    "phase": "accent",
    "phaseNote": "accent",
-   "intent": "proud stance: both fists on the hips with the elbows out, chest pushed out and leaning back, chin raised, weight on the straight right leg, left heel set forward with the toe up",
+   "intent": "proud stance: left fist on the hip with the elbow out, right hand on the planted cue, chest pushed out and leaning back, chin raised, weight on the straight right leg, left heel set forward with the toe up",
    "profile": "overlap",
    "animationPrinciples": [
     "staging-silhouette",
@@ -2363,7 +2369,7 @@
    "accent": true,
    "phase": "accent",
    "phaseNote": "accent (invitation)",
-   "intent": "courteous invitation: weight on the right leg, left fist on the hip, right arm sweeping out low and forward with the palm open and up toward the floor, torso bowing slightly forward, head bowed toward the open hand",
+   "intent": "bent forward over an imaginary table taking aim, the cue level in front of her and pointing toward the picture's right and toward the viewer, the right hand back at the hip on the butt of the cue, the left hand forward on the shaft as a bridge, the head low behind the cue sighting along it with one eye narrowed",
    "profile": "peak",
    "animationPrinciples": [
     "staging-silhouette",
@@ -2398,7 +2404,7 @@
    "accent": false,
    "phase": "settle",
    "phaseNote": "settle",
-   "intent": "both feet flat, standing easy, right forearm relaxed in front, left hand low near the hip, body upright",
+   "intent": "both feet flat, standing easy, right hand on the planted cue, left hand low near the hip, body upright, ready",
    "profile": "moderate",
    "animationPrinciples": [
     "staging-silhouette",
@@ -2432,7 +2438,7 @@
    "accent": false,
    "phase": "anticipation",
    "phaseNote": "anticipation",
-   "intent": "small inhale: chest lifted and leaning back slightly, chin raised, weight on the right foot, arms loose and slightly away from the body",
+   "intent": "small inhale: chest lifted and leaning back slightly, chin raised, weight on the right foot, right hand on the planted cue, left arm loose and slightly away from the body",
    "profile": "overlap",
    "animationPrinciples": [
     "staging-silhouette",
@@ -2467,7 +2473,7 @@
    "accent": true,
    "phase": "accent",
    "phaseNote": "accent",
-   "intent": "right palm pressed flat to the chest, a deep nod with the head bowed, both knees dipped, left arm low and out at the side",
+   "intent": "left palm pressed flat to the chest, a deep nod with the head bowed, both knees dipped, right hand on the planted cue",
    "profile": "overlap",
    "animationPrinciples": [
     "staging-silhouette",
@@ -2503,7 +2509,7 @@
    "accent": false,
    "phase": "settle",
    "phaseNote": "settle",
-   "intent": "left fist on the hip, right arm held out forward at waist height with the palm open toward the viewer, head tilted warmly",
+   "intent": "left arm held out forward at waist height with the palm open toward the viewer, right hand on the planted cue, head tilted warmly",
    "profile": "overlap",
    "animationPrinciples": [
     "staging-silhouette",
@@ -2538,7 +2544,7 @@
    "accent": false,
    "phase": "anticipation",
    "phaseNote": "anticipation",
-   "intent": "head tilted to her right with a soft warm look, weight on the left foot, arms relaxed low, right forearm slightly forward",
+   "intent": "head tilted to her right with a soft warm look, weight on the left foot, right hand on the planted cue, left arm relaxed low",
    "profile": "moderate",
    "animationPrinciples": [
     "staging-silhouette",
@@ -2572,7 +2578,7 @@
    "accent": true,
    "phase": "accent",
    "phaseNote": "accent",
-   "intent": "small friendly shrug: both forearms out at waist height with the palms open and up, the right hand a little higher, both knees softly bent, head tilted",
+   "intent": "small friendly shrug: left forearm out at waist height with the palm open and up, right hand on the planted cue, both knees softly bent, head tilted",
    "profile": "peak",
    "animationPrinciples": [
     "staging-silhouette",
@@ -2607,7 +2613,7 @@
    "accent": false,
    "phase": "settle",
    "phaseNote": "settle (invitation)",
-   "intent": "a back-break step on the spot: weight on the bent left knee, right foot back on its ball, left forearm forward, right arm low and back, inviting the rhythm back",
+   "intent": "a back-break step on the spot: weight on the bent left knee, right foot back on its ball, left forearm forward, right hand on the planted cue, inviting the rhythm back",
    "profile": "moderate",
    "animationPrinciples": [
     "staging-silhouette",
@@ -2641,7 +2647,7 @@
    "accent": false,
    "phase": "anticipation",
    "phaseNote": "anticipation (remate)",
-   "intent": "weight on the straight right leg, left heel set forward with the toe up, left fist on the hip, right hand rising beside the head on its way to the hat brim, chest proud, chin up",
+   "intent": "weight on the straight right leg, left heel set forward with the toe up, left fist on the hip, the right hand lifting the cue up off the floor and rising to the shoulder, chest proud, chin up",
    "profile": "overlap",
    "animationPrinciples": [
     "staging-silhouette",
@@ -2675,7 +2681,7 @@
    "accent": true,
    "phase": "accent",
    "phaseNote": "accent (remate)",
-   "intent": "right fingertips touching the front of the hat brim in a courteous salute, the hat still on her head, head dipped slightly, chest proud, left elbow out with the fist on the hip, left heel forward with the toe up",
+   "intent": "the cue held straight up in front of her face in the right hand like a fencer's salute, its tip above her head, head dipped slightly, chest proud, left elbow out with the fist on the hip, left heel forward with the toe up",
    "profile": "overlap",
    "animationPrinciples": [
     "staging-silhouette",
@@ -2710,7 +2716,7 @@
    "accent": false,
    "phase": "pass",
    "phaseNote": "pass (turn)",
-   "intent": "body turned about 30 degrees toward her left on a heel pivot, leaning into the turn, left arm open out to the side at hip height, right fist on the hip",
+   "intent": "body turned about 30 degrees toward her left on a heel pivot, circling the planted cue as a partner, right arm stretched to it behind her, left arm open out to the side at hip height",
    "profile": "turn",
    "animationPrinciples": [
     "staging-silhouette",
@@ -2744,7 +2750,7 @@
    "accent": false,
    "phase": "pass",
    "phaseNote": "pass (turn)",
-   "intent": "body turned about 30 degrees toward her right on a heel pivot, leaning into the turn, right arm open out to the side at hip height, left fist on the hip",
+   "intent": "body turned about 30 degrees toward her right on a heel pivot, swinging in round the planted cue as a partner, chest close to it, right hand on it at shoulder height, left fist on the hip",
    "profile": "turn",
    "animationPrinciples": [
     "staging-silhouette",

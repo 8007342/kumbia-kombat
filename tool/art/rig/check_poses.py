@@ -31,6 +31,7 @@ from pathlib import Path
 
 HEAD_CLEAR = 1.2                      # head-widths, wrist to head centre
 HEAD_WHITELIST = {"finish_turn.finish_a", "finish_turn.finish_b", "approval.nod"}
+CUE_NEAR_FACE = {"watch", "clap", "challenge"}  # both hands on a cue held close: the wrist near the chin is the pose
 TURN_CLIPS = {"turn", "finish_turn", "reveal"}  # yaw cap does not apply
 REAR_CLIPS = {"back_groove", "back_accent"}  # the yaw cap is measured from facing directly away
 CROSSED_ARMS = {"crossed"}  # the arms cross on purpose
@@ -86,7 +87,7 @@ def crossing_problems(r: dict) -> list[str]:
 
 
 def head_problems(r: dict) -> list[str]:
-    if not r.get("openpose") or r["id"] in HEAD_WHITELIST:
+    if not r.get("openpose") or r["id"] in HEAD_WHITELIST or (r.get("cue") and r.get("clip") in CUE_NEAR_FACE):
         return []
     head = r["joints"]["head"]
     limit = HEAD_CLEAR * r["headWidthPx"]
