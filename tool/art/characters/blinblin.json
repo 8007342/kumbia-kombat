@@ -1,5 +1,5 @@
 {
- "$comment": "The owner's indoor-party opponent, eleventh round: a male dancer with lots of bling, facing away until Macron enters, chains swinging as he dances. Violet jacket over a guayabera is the approved default for this room's lead. The chains are drawn at rest here; their swing is planned as a beat-driven puppet layer, which the pipeline has not done yet.",
+ "$comment": "The owner's indoor-party opponent, eleventh round: a male dancer with lots of bling, facing away until Macron enters, chains swinging as he dances. Violet jacket over a guayabera is the approved default for this room's lead. The chains are drawn at rest here; their swing is planned as a beat-driven puppet layer, which the pipeline has not done yet. Garment colours are the accepted sheets' medians, measured 2026-11-07: reference art outranks the hexes first written here.",
  "id": "blinblin",
  "family": "blinblin-v1",
  "style": "party-pixel",
@@ -12,7 +12,7 @@
   "him",
   "his"
  ],
- "skin": "#B0713F",
+ "skin": "#A75E35",
  "traits": "lean confident adult man of about forty-five, slow unimpressed half smile, layered gold chains",
  "demeanor": "cool, unhurried and unimpressed, until he is impressed",
  "garments": [
@@ -20,21 +20,21 @@
    "id": "hair",
    "shape": "puff",
    "region": "hair",
-   "colour": "#1C1412",
+   "colour": "#14161E",
    "text": "short slicked-back black hair"
   },
   {
    "id": "shirt",
    "shape": "shirt-fitted",
    "region": "shirt",
-   "colour": "#EFE4C8",
+   "colour": "#F6ECC8",
    "text": "cream guayabera shirt, open at the neck"
   },
   {
    "id": "jacket",
    "shape": "waistcoat-fitted",
    "region": "cloth",
-   "colour": "#3A1F6B",
+   "colour": "#3B1555",
    "text": "long open midnight-violet jacket",
    "secondaryMotion": "lag-1"
   },
@@ -55,14 +55,14 @@
    "id": "trousers",
    "shape": "trousers",
    "region": "trousers",
-   "colour": "#1E1B28",
+   "colour": "#1E2633",
    "text": "slim dark trousers"
   },
   {
    "id": "shoes",
    "shape": "shoes-flat",
    "region": "shoes",
-   "colour": "#D8C9A0",
+   "colour": "#F4E2B0",
    "text": "polished two-tone cream and dark shoes"
   }
  ],
