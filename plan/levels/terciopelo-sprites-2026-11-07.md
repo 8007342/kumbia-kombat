@@ -106,6 +106,8 @@ Branch `work/1875-terc`. The coordinator delegated acceptance for the salon (`pl
 
 ## Not done, or not seen
 
+- **`dancers.terciopelo` is missing from this branch's `choreography.json`.** LEVEL's stand-in commit removed it, and the removal reached this branch when I merged `game`. LEVEL restored it from e5a8d15 on `work/1877-wire` (f53eaae), so take `choreography.json` from there. LEVEL ran the full suite with this atlas in its run copy: 730 pass, and analyze is clean. On stills, the mirrored bow faces Mācron.
+
 - **Nobody has seen him moving, or in a browser.** Flutter doesn't run in this worktree, and the preview isn't mine to update.
 - **Needs eyes:**
   - The cha-cha groove at tempo: does the held landing on 1 read as cha-cha-chá, and does the hip settle?
