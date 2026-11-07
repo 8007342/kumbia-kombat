@@ -84,6 +84,39 @@
   0.153,
   0.847
  ],
+ "platforms": [
+  {
+   "id": "bandstand",
+   "s": [
+    3.24,
+    5.61
+   ],
+   "t": [
+    -2.05,
+    -0.9
+   ],
+   "heightAdults": 0.36,
+   "topCornersFrac": [
+    [
+     -0.0562,
+     0.4463
+    ],
+    [
+     0.2464,
+     0.4406
+    ],
+    [
+     0.2844,
+     0.3768
+    ],
+    [
+     0.0859,
+     0.3793
+    ]
+   ],
+   "note": "Measured on the accepted plate: top front-right corner at plate (238, 677), its foot at (238, 770), rear corner (300, 575). The owner keeps it for a band. It runs off the phone's left edge by design."
+  }
+ ],
  "lines": {
   "cross": [
    [
@@ -2420,6 +2453,6 @@
    0.1162
   ]
  ],
- "walkablePixels": 875156,
+ "walkablePixels": 896340,
  "note": "Adult height at foot y, as a fraction of image height: (y - horizonY) / eyeHeightAdults"
 }

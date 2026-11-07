@@ -2,7 +2,7 @@
  "id": "cool-crowd",
  "title": "THE DANCE ROOM",
  "styleRef": "bar",
- "comment": "Third room. Camera refitted 2026-11-07 to the painted walls, since no plate held the old guide's far wall: horizon .25, adult .12 at foot .43, the same as party_layout's contract at its reference foot. The bandstand and walls follow the paint, and it may spill off the phone.",
+ "comment": "Third room, accepted 2026-11-07 as plate A: assets/art/cool-crowd/cool-crowd-room.png. Camera and geometry were refitted to the painted walls, since no plate held the old guide's far wall: horizon .25, adult .12 at foot .43, the same as party_layout's contract at its reference foot. The floor is painted separately: tool/art/rooms/floor.py.",
  "camera": {
   "horizonY": 0.25,
   "eyeHeightAdults": 1.5,
@@ -169,16 +169,16 @@
    "kind": "box",
    "id": "stage",
    "s": [
-    2.6,
-    7.9
+    3.24,
+    5.61
    ],
    "t": [
     -2.05,
-    -0.85
+    -0.9
    ],
    "z": [
     0,
-    0.45
+    0.36
    ]
   },
   {
@@ -329,5 +329,12 @@
    "layout": "glowing chandeliers hanging from the ceiling.",
    "paint": "Small amber lantern chandeliers with fine metalwork hang high in the air."
   }
- }
+ },
+ "platforms": [
+  {
+   "id": "bandstand",
+   "box": "stage",
+   "note": "Measured on the accepted plate: top front-right corner at plate (238, 677), its foot at (238, 770), rear corner (300, 575). The owner keeps it for a band. It runs off the phone's left edge by design."
+  }
+ ]
 }

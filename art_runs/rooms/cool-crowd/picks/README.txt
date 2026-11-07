@@ -2,3 +2,6 @@ Draft indoor plates, not accepted. Raw walls: kumbia-art/room-cool-crowd-v1-a/p2
 Stone: kumbia-art/room-cool-crowd-v2-floor/flat-988001.png (art_runs/rooms/cool-crowd/workflows/floor-flat.api.json, seed 988001, 2511 Lightning LoRA).
 Rebuild: tool/art/rooms/floor.py texture cool-crowd <987500|987502> --image flat-988001.png --name <plate>-flat1
 Finished: kumbia-art/room-cool-crowd-v2-floor/{987500,987502}-flat1.png
+
+Accepted by the owner, 2026-11-07: plate A, 987502 + stone 988001, now assets/art/cool-crowd/cool-crowd-room.png.
+The stone is committed beside this file as stone-flat-988001.png.
