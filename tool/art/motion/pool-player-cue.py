@@ -159,4 +159,10 @@ extra = [
 ]
 c["garments"] += [g for g in extra if g["id"] not in existing]
 c["$comment"] = "The Pool Player, the billiards room opponent. The owner accepted sheets 989001 (front) and 989101 and 989103 (back; the second is back-alt.png) on 2026-11-07. Her dance with the cue is written by pool-player.cue-source.py; the cue is a mask (cue-shaft, cue-butt) and a line in each skeleton."
+# Sampled from the accepted sheet: the first palette, written before the sheet existed, turned her shoes brown.
+c["skin"] = "#C9743C"
+SAMPLED = {"hair": "#B8BBBD", "shirt": "#F6EED2", "waistcoat": "#125C36", "trousers": "#222E30", "shoes": "#8E1020",
+           "brass": "#E0AB19", "cue_shaft": "#C98840", "cue_butt": "#6E3A1E"}
+for g in c["garments"]:
+    g["colour"] = SAMPLED.get(g["id"], g["colour"])
 HERE.write_text(json.dumps(c, indent=1, ensure_ascii=False) + "\n")

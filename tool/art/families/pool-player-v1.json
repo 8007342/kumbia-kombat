@@ -551,15 +551,15 @@
  },
  "rigInputs": "art_runs/inputs/pool-player-v1",
  "regionProxyColours": {
-  "skin": "#8C5A3C",
-  "hair": "#C9C6C2",
-  "shirt": "#F0E8D8",
-  "cloth": "#1F4A3C",
-  "trousers": "#23242B",
-  "shoes": "#6B3A22",
-  "accessory": "#D6A632",
-  "prop": "#C9984F",
-  "prop_dark": "#6B3A1E"
+  "skin": "#C9743C",
+  "hair": "#B8BBBD",
+  "shirt": "#F6EED2",
+  "cloth": "#125C36",
+  "trousers": "#222E30",
+  "shoes": "#8E1020",
+  "accessory": "#E0AB19",
+  "prop": "#C98840",
+  "prop_dark": "#6E3A1E"
  },
  "poses": [
   {
@@ -2384,7 +2384,7 @@
    "accent": true,
    "phase": "accent",
    "phaseNote": "accent (invitation)",
-   "intent": "bent forward over an imaginary table taking aim, the cue level in front of her and pointing toward the picture's right and toward the viewer, the right hand back at the hip on the butt of the cue, the left hand forward on the shaft as a bridge, the head low behind the cue sighting along it with one eye narrowed",
+   "intent": "bent far forward at the hips taking a shot on an imaginary table, turned toward the right of the picture, the cue level and pointing to the right of the picture, the left hand forward on the shaft as a bridge, the right hand back near the hip on the butt of the cue, her chin just above the cue, sighting along it with one eye narrowed, feet apart, back leg straight",
    "profile": "peak",
    "animationPrinciples": [
     "staging-silhouette",
