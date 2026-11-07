@@ -213,9 +213,14 @@ def _two_bone(hip: Vector, knee0: Vector, target: Vector, a: float, b: float) ->
     return knee, hip + u * d
 
 
-def home_ankles(p: Proportions) -> dict[str, Vector]:
-    """Rest-pose ankle positions: where a planted foot always sits."""
+def home_ankles(p: Proportions, yaw: float = 0) -> dict[str, Vector]:
+    """Rest-pose ankle positions: where a planted foot always sits.
+
+    Facing away, each foot's spot is the other one's: his left foot is on picture left, or the legs cross.
+    """
     j = _fk_local(p, Pose(), "both")
+    if math.cos(math.radians(yaw)) < -0.1:
+        return {"l": j["r_ank"], "r": j["l_ank"]}
     return {"l": j["l_ank"], "r": j["r_ank"]}
 
 
@@ -244,7 +249,7 @@ def solve(p: Proportions, pose: Pose, support: str) -> dict:
         # Two-foot stance: both ankles on their home spots (2-bone IK in the
         # body frame, knee kept in the authored bend plane), so feet never
         # slide into or out of a two-foot stance.
-        home = home_ankles(p)
+        home = home_ankles(p, pose.yaw)
         inv = rot("Z", -pose.yaw)
         for side, _s in SIDES:
             tgt = inv @ home[side]
@@ -269,7 +274,7 @@ def solve(p: Proportions, pose: Pose, support: str) -> dict:
     body = rot("Z", pose.yaw)
     out = {k: (body @ v if isinstance(v, Vector) else v) for k, v in j.items()}
     out["_head_rot"] = body @ j["_head_rot"]
-    home = home_ankles(p)
+    home = home_ankles(p, pose.yaw)
     pin = pin_of(pose, support)
     if pin == "mid":
         cur = (out["l_ank"] + out["r_ank"]) / 2

@@ -39,6 +39,19 @@
    "secondaryMotion": "lag-1"
   },
   {
+   "id": "gold",
+   "shape": "gold-chains",
+   "region": "accessory",
+   "colour": "#F0CC22",
+   "alsoIn": [
+    "shirt",
+    "cloth",
+    "skin",
+    "hair"
+   ],
+   "text": "layered gold rope chains, medallion, rings, watch and earring"
+  },
+  {
    "id": "trousers",
    "shape": "trousers",
    "region": "trousers",
@@ -54,7 +67,7 @@
   }
  ],
  "motion": {
-  "set": "opponent-64",
+  "set": "opponent-facing-away",
   "overrides": {}
  },
  "drawing": {
@@ -78,7 +91,115 @@
     }
    }
   },
-  "seed": 987000
+  "seed": 987000,
+  "poseOverrides": {
+   "finish_turn.finish_a": {
+    "why": "The table's finish touches a hat brim, and he wears no hat. The words follow the skeleton's raised hand.",
+    "description": "weight on the straight right leg, left heel set forward with the toe up, left fist on the hip, right hand rising beside his head with two fingers out, chest proud, chin up"
+   },
+   "finish_turn.finish_b": {
+    "why": "The table's finish touches a hat brim, and he wears no hat. Two fingers off the temple keeps the salute.",
+    "description": "right hand at his temple with two fingers out in a cool salute, no hat, head dipped slightly, chest proud, left elbow out with the fist on the hip, left heel forward with the toe up"
+   }
+  },
+  "score": {
+   "silhouetteTolerance": 30
+  },
+  "$comment": "The sheet's long coat reaches below the knee and the rig has no coat shape, so silhouettes need a wide tolerance.",
+  "skeletonOverrides": {
+   "clap.open": {
+    "3": [
+     262,
+     462
+    ],
+    "4": [
+     328,
+     392
+    ],
+    "6": [
+     506,
+     462
+    ],
+    "7": [
+     440,
+     392
+    ]
+   },
+   "clap.close": {
+    "3": [
+     268,
+     466
+    ],
+    "4": [
+     352,
+     412
+    ],
+    "6": [
+     500,
+     466
+    ],
+    "7": [
+     416,
+     412
+    ]
+   },
+   "clap.contact": {
+    "3": [
+     272,
+     490
+    ],
+    "4": [
+     378,
+     432
+    ],
+    "6": [
+     496,
+     490
+    ],
+    "7": [
+     390,
+     432
+    ]
+   },
+   "clap.release": {
+    "3": [
+     262,
+     468
+    ],
+    "4": [
+     338,
+     430
+    ],
+    "6": [
+     506,
+     468
+    ],
+    "7": [
+     430,
+     430
+    ]
+   },
+   "finish_turn.finish_a": {
+    "3": [
+     175,
+     372
+    ],
+    "4": [
+     205,
+     265
+    ]
+   },
+   "finish_turn.finish_b": {
+    "3": [
+     168,
+     334
+    ],
+    "4": [
+     248,
+     225
+    ]
+   }
+  }
  },
  "references": {
   "mode": "source",

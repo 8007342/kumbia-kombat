@@ -79,6 +79,7 @@ def pose_table(c: dict) -> dict[str, dict]:
     table = {}
     overrides = c["motion"].get("overrides", {})
     intent = INTENT_BY_SET[c["motion"]["set"]]
+    meta = {m["id"]: m for m in motion_of(c).get("clips", [])}
     for clip, drawings in MOTION_SETS[c["motion"]["set"]].items():
         for name, (_, support) in drawings.items():
             pid = f"{clip}.{name}"
@@ -86,6 +87,13 @@ def pose_table(c: dict) -> dict[str, dict]:
             text = overrides.get(pid, {}).get("intent", template)
             table[pid] = {"clip": clip, "phase": phase, "support": support,
                           "description": intent_text(text, c["pronouns"])}
+            # A clip drawn from another sheet view than the front names it, and its sentence about sides.
+            m = meta.get(clip, {})
+            view = m.get("poseViews", {}).get(name, m.get("sheetView"))
+            if view:
+                table[pid]["view"] = view
+            if m.get("promptTemplate"):
+                table[pid]["template"] = m["promptTemplate"]
     return table
 
 
@@ -141,7 +149,7 @@ def _look(c: dict, view: str | None) -> str:
 def prompt_for(c: dict, backend: dict, pid: str, pose: dict) -> str:
     d = drawing_of(c)
     fix = d.get("poseOverrides", {}).get(pid, {})
-    template = backend["prompts"]["reference" if is_drawn(c) else "skeleton"]
+    template = backend["prompts"]["reference" if is_drawn(c) else pose.get("template", "skeleton")]
     props = fix["props"] if "props" in fix else props_text(c, pose["clip"])
     return template.format(noun=d["noun"], fits=d["fits"], look=_look(c, pose.get("view")), extra=d.get("extra", ""),
                            description=fix.get("description", pose["description"]), props=props, **grammar(c))
@@ -322,7 +330,10 @@ def plan_run(c: dict, backend: dict, run: str, *, only: set[str] | None = None, 
             skel = lane / f"{pid}.skeleton.png"
             if stage:
                 skel = skeleton_png(c, rig_dir, rig_poses, pid, lane, fix.get("skeletonScale", default_scale))
-            inputs = {"sheet_front": str(sheet_files["front"]), "pose_proxy": str(skel)}
+            view = pose.get("view", "front")
+            if view not in views:
+                raise D.DefinitionError([f"motion.clips.{pose['clip']}: no sheet view {view!r}"])
+            inputs = {"sheet_front": str(sheet_files[view]), "pose_proxy": str(skel)}
             graph = base
         frame_jobs.append(job(pid, bake(graph, pid, prompt_for(c, backend, pid, pose)), inputs))
     return {"sheet": sheet_jobs, "frames": frame_jobs}
