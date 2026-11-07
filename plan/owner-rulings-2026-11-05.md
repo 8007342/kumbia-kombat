@@ -215,3 +215,14 @@ Status: built as a hidden level, with stand-in art. See `plan/levels/indoor-part
 | Local models | Local CPU and GPU are approved for assets, curation, music and vision | |
 
 How the richer moves were built, and what only a thumb can settle: `plan/double-moves-2026-11-07.md`.
+
+## Round of 2026-11-07: The Pool Player and the billiards room
+
+| Topic | Ruling | Owner's words |
+|---|---|---|
+| Name | The Pool Player, she/her | "We'll call her The Pool Player" |
+| Front | Sheet 989001 | "the second front candidate, the one with the smile" |
+| Back | Sheets 989101 and 989103 | "the second and fourth back candidates" |
+| Billiards plate | `art_runs/rooms/billiards/picks/plate-989601.png`, the darkest ceiling, measured | "the glow reflections on the floor and the black ceiling provide the better effect and depth" |
+
+989103 shows a slight turn of the head, and its cue has a hooked foot with a ball. Back 989101 has a stray pale ball at the cue's foot. Both stay as drawn until frames show whether it matters.
