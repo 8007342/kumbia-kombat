@@ -29,6 +29,7 @@ from run_jobs import GRAPH, LORA, Lane  # noqa: E402
 ROOT = Path(__file__).resolve().parents[3]
 CACHE = Path.home() / ".cache/tillandsias-project/kumbia-art"
 STAGE = Path("/work/tmp/imagegen/kumbia")
+REPAIRS = "repairs.json"
 GREY = (226, 226, 226, 255)
 SCALE = 3
 CANVAS = (768, 960)
@@ -59,7 +60,7 @@ def staged(run: str, name: str, spec: dict) -> Path:
 
 
 def draw(run: str, only: set[str]) -> None:
-    jobs = json.loads((ROOT / "art_runs" / run / "repairs.json").read_text())
+    jobs = json.loads((ROOT / "art_runs" / run / REPAIRS).read_text())
     lane = Lane()
     for name, spec in jobs.items():
         if only and name not in only:
@@ -119,7 +120,7 @@ def aligned(raw: Image.Image, im: Image.Image, box: tuple[int, int, int, int]) -
 
 
 def compose(run: str, sheet: str | None) -> None:
-    jobs = json.loads((ROOT / "art_runs" / run / "repairs.json").read_text())
+    jobs = json.loads((ROOT / "art_runs" / run / REPAIRS).read_text())
     rows = []
     atlases: dict[str, Image.Image] = {}
     cursors: dict[str, tuple[int, int, int]] = {}
@@ -211,7 +212,10 @@ def main() -> None:
     ap.add_argument("--run", required=True)
     ap.add_argument("--only", default="")
     ap.add_argument("--sheet")
+    ap.add_argument("--file", default="repairs.json")
     a = ap.parse_args()
+    global REPAIRS
+    REPAIRS = a.file
     if a.cmd == "compose":
         compose(a.run, a.sheet)
     else:
