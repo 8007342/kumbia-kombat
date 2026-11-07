@@ -189,3 +189,16 @@ Polish, the same day. No finish lamps: "the party engagement and music are indic
 
 Ladders, the same day: progression is right, but the low tiers are too quiet and, on the lawn, too slow. "the low level of the second try lawn pool level is a bit too slow, but the progression is great", "its LOW << MID < HIGH, the low tier is much more quieter in comparison with the mid and high tiers. We need to spike up a little more those low levels." Tiers share themes but "won't crossfade cleanly", so transitions must be made smooth. The implementation is open.
 
+
+## Twelfth round, 2026-11-07: richer moves, and the ladders by ear
+
+| Topic | Ruling | Owner's words |
+|---|---|---|
+| Richer moves | Charts get double taps and taps in two spots, together or one after the other, inside one beat. Complexity carries the growth, so the lawn's slower top tier is intended | "It's ok, we'll add double taps, even taps in double spots like left and right or left then right, in the same beat, that should compensate for the lower speed. The music feels sharper and more rich, and so should be the dance, even if the tempo is slower ;)" |
+| BlinBlin | Sheets F1 (front) and B1 (back) are approved and accepted | |
+| Campaign order | Garden, pool party, bar is merged. The game should now play the rendered music | "plays great on auto, but it still has the old synth score" |
+| Ladders | By ear, the lawn plays MID, HIGH, LOW: 144, then 160, then 136 BPM. The bar and indoor party ladders stay as they are | "for the song to feel like its growing", "great the way it is" |
+| Mixing | Ladders need mixing, and perhaps some transitional segments re-mixed | "They still need mixing capabilities, and possibly re-mixing some transitional segments." |
+| Local models | Local CPU and GPU are approved for assets, curation, music and vision | |
+
+How the richer moves were built, and what only a thumb can settle: `plan/double-moves-2026-11-07.md`.

@@ -24,6 +24,7 @@ import 'party_autoplay.dart';
 import 'pause_overlay.dart';
 import 'progression.dart';
 import 'rhythm.dart';
+import 'cue_links.dart';
 import 'cue_path.dart';
 import 'tap_feedback.dart';
 import 'tap_resolution.dart';
@@ -722,6 +723,7 @@ class _GardenPageState extends State<GardenPage>
   Offset get _bandCentre => Offset(_stage.width / 2, _stage.height * .8);
 
   TapResult _tap(Limb limb) {
+    final richBefore = _session!.richStepsCompleted;
     final result = _session!.tap(limb);
     // Heard, before any judgment: a stray tap gets this and nothing else.
     _pressedAt[limb] = _audio.nowSeconds;
@@ -735,6 +737,7 @@ class _GardenPageState extends State<GardenPage>
         limb,
         targetBeat: targetBeat,
         nextRequiredBeat: futureBeats.isEmpty ? null : futureBeats.first,
+        partner: _session!.lastPairPartner,
       );
       _styleNote = result.note!.flourishTo == null ? null : result.note!.id;
       _lastTapLimb = limb;
@@ -747,6 +750,15 @@ class _GardenPageState extends State<GardenPage>
             _anchor(limb, _stage, targetBeat, result.note!.id),
             deltaMs: result.deltaMs,
             combo: _session!.combo,
+          ),
+        );
+      }
+      // Both presses of a richer step: the sparks say it landed, as a move's do.
+      if (_session!.richStepsCompleted != richBefore) {
+        _addMark(
+          FeedbackMark(
+            MarkKind.flourish,
+            _anchor(limb, _stage, targetBeat, result.note!.id),
           ),
         );
       }
@@ -959,6 +971,20 @@ class _GardenPageState extends State<GardenPage>
                                 _target(limb, size),
                             for (final cue in session!.visibleCues)
                               _target(cue.limb, size, cue),
+                            Positioned.fill(
+                              child: IgnorePointer(
+                                child: CustomPaint(
+                                  painter: CueLinkPainter(
+                                    cueLinks(
+                                      session.visibleCues,
+                                      (cue) => _cuePosition(cue, size),
+                                    ),
+                                    demoColor: _gold,
+                                    playColor: _mint,
+                                  ),
+                                ),
+                              ),
+                            ),
                             for (final cue in session.visibleCues)
                               _cue(cue, size),
                           ],
@@ -1214,6 +1240,20 @@ class _GardenPageState extends State<GardenPage>
                   padding: const EdgeInsets.all(9),
                   child: _limbIcon(cue.limb, color),
                 ),
+                // A second ring: this spot wants two presses.
+                if (cue.move == RichMove.doubleTap)
+                  Semantics(
+                    label: 'Press twice',
+                    child: Transform.scale(
+                      scale: 1.3,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          border: Border.all(color: color, width: 1.5),
+                        ),
+                      ),
+                    ),
+                  ),
                 // The path itself, from where the thumb lands: press, then this.
                 if (cue.offer != null)
                   Semantics(
