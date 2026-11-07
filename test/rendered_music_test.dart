@@ -161,6 +161,7 @@ void run(FakeDeck deck, double until, void Function() pump) {
 }
 
 void main() {
+  _shippedFilesExist();
   group('the manifest', () {
     Map<String, Object?> clip(double bpm, double end) => {
       'bpm': bpm,
@@ -632,4 +633,34 @@ class _FailingAudio implements RenderedAudio {
   int get decodedBytes => 0;
   @override
   int get compressedBytes => 0;
+}
+
+void _shippedFilesExist() {
+  test('every campaign clip exists in both formats and fits the budget', () {
+    final manifest = RenderedManifest.fromJson(
+      jsonDecode(
+        File('assets/music/rendered/manifest.json').readAsStringSync(),
+      ),
+    );
+    for (final id in ['garden', 'pool-garden', 'bar']) {
+      final level = manifest.levels[id]!;
+      expect(level.tempos, hasLength(5));
+      var bytes = 0;
+      for (final clip in level.clips) {
+        for (final format in ['opus', 'aac']) {
+          final file = File(clip.files[format]!);
+          expect(file.existsSync(), isTrue, reason: file.path);
+          if (format == 'opus') bytes += file.lengthSync();
+        }
+      }
+      expect(bytes, lessThan(8 * 1024 * 1024), reason: id);
+    }
+    expect(manifest.levels['pool-garden']!.tempos.map((t) => t.round()), [
+      144,
+      144,
+      160,
+      160,
+      136,
+    ]);
+  });
 }
