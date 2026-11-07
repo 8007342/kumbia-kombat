@@ -12,7 +12,6 @@ Each swap is a data edit.
 |---|---|---|---|
 | Her dance | Atlas `bartender`, so The Bartender dances here | `stage.challengers[0].atlas: "pool-player"` once the atlas is packed. Her dancer block is already in `choreography.json` | POOLART |
 | Players at the tables | Guest drawings | Atlases `pool-bg-a`, `-b`, `-c`, ladder `atTable`: rung 0 `chalk_*`, `lean_*`, `stroke`, rung 1 `watch_*`, rung 2 `clap_*`, `reference: stand`, no `palette`, `standIn: false` | POOLART |
-| Her close-up | `pool-standin-*.png`, her sheet with the cue tilted by code. The cue crosses his face, which is wrong | `pool-player-chalk-a`, `-b`, `-wink`, `-reach`, `-dab`, and her `contact`. Delete the stand-ins and their part of `tool/art/rooms/billiards_closeup.py` | POOLART |
 | Music | `crowd_duende`, with `bar_swag_finale` as the 16-beat success | The rendered `billiards` key, about 100 BPM, 16-beat final success. Then drop the guard in `rendered_music_test.dart` | MUSIC |
 | Bridge from the party | `crowd_to_restroom` in `index.json`, as the synth fallback | Rendered `cool-crowd.bridge`, 8 beats, read by the runtime | MUSIC |
 | Guests | The old three guests | The new party people | GUESTS |
@@ -79,7 +78,7 @@ QUÉ CARAMBOLA. [P]
 | 9.5 | He blushes. She sways |
 | 11.5 | Back to wide. The music fades over its last 4 beats, then the end screen |
 
-It fits the 16-beat success, as a last level must. A table cut from the room is the foreground, covering where both bodies end. It's drawn over him as well, so he stands behind the table rather than on it. His drawings are POOLART's. [F]
+It fits the 16-beat success, as a last level must. A table cut from the room is the foreground, covering where both bodies end. It's drawn over him as well, so he stands behind the table rather than on it. Her drawings and his are POOLART's. Her cue comes in level above his head line, and her forearm crosses his left ear. Seen on stills, not moving. [F]
 
 **Her combo** is POOLART's Tres Bandas, moved into the level. I changed its last move from stomp to circle, since the test holds a hand to a hand's move. `upcomingOpponents` is now empty. [F]
 
