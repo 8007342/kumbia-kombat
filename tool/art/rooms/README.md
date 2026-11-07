@@ -119,14 +119,14 @@ Words failed on the indoor floor over four rounds: tone swung, joints drifted, a
 4. **Have Qwen paint only flat stone from above** (`floor_jobs.py`, `workflows/floor-flat.api.json`, bar floor as the sample). It has no perspective to get wrong.
 5. **Let the code do the rest:** warp the stone through the camera, cutting each slab from its own place in the stone; mirror the room into the polish; draw joints from the camera, two pixels fine; grain and limit the colours.
 
-The camera never moves walls in the picture: verticals stay vertical, so mirroring each column about its contact line is the true reflection. Lamps need lifting first, or their streaks don't survive the blur.
+This camera keeps verticals vertical, so mirroring each column about its contact line is the true reflection. Lamps need lifting first, or their streaks don't survive the blur.
 
 | Try | Result |
 |---|---|
 | Coded stone, no painted texture | True and calm, but airbrushed beside the bar |
 | Qwen repainting the coded floor at .35 and .55 denoise | Added no texture, and redrew the walls |
 | Flat stone with loud gold veins (988002) | Veins read as cues across the tap band |
-| Flat stone with faint veins (988001), warped | Accepted, with the bar for company at phone size. Floor median luma 26 |
+| Flat stone with faint veins (988001), warped | The owner accepted it. Floor median luma 26 |
 
 GPU: 3 images, 45 s for the stones. Everything else is CPU, about a minute a plate.
 

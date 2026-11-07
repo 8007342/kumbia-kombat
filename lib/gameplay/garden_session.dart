@@ -1068,9 +1068,7 @@ class GardenSession {
     if (phase != GardenPhase.paused) throw StateError('Garden is not paused');
     transport.resume(
       leadSeconds:
-          transport.score.beatsPerBar *
-          60 /
-          transport.score.tempos[transport.currentTier],
+          transport.score.beatsPerBar * 60 / transport.currentBpm,
     );
     phase = positionBeats < chart.introBeats
         ? GardenPhase.intro

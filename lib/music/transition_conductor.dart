@@ -61,6 +61,9 @@ class TransitionConductor {
     required MusicScore bridge,
     required MusicScore nextScore,
     int nextTier = 0,
+    RenderedPlan? successPlan,
+    RenderedPlan? bridgePlan,
+    RenderedPlan? nextPlan,
   }) {
     _checkSource(source);
     if (nextTier < 0 || nextTier > 4) {
@@ -69,9 +72,9 @@ class TransitionConductor {
     final exitBeat = source.nextPhraseBoundaryBeat;
     final exitAt = source.secondsAt(exitBeat);
     final tier = source.tierAt(exitBeat);
-    final successTransport = _segment(success);
-    final bridgeTransport = _segment(bridge);
-    final nextTransport = _segment(nextScore, loop: true);
+    final successTransport = _segment(success, plan: successPlan);
+    final bridgeTransport = _segment(bridge, plan: bridgePlan);
+    final nextTransport = _segment(nextScore, loop: true, plan: nextPlan);
     // Retirement is set before successor notes enter the common device queue.
     source.retireAt(exitAt);
     successTransport.startAt(exitAt, tier: tier);
@@ -92,12 +95,13 @@ class TransitionConductor {
   MusicFinish finish({
     required MusicTransport source,
     required MusicScore success,
+    RenderedPlan? successPlan,
   }) {
     _checkSource(source);
     final exitBeat = source.nextPhraseBoundaryBeat;
     final exitAt = source.secondsAt(exitBeat);
     final tier = source.tierAt(exitBeat);
-    final successTransport = _segment(success);
+    final successTransport = _segment(success, plan: successPlan);
     source.retireAt(exitAt);
     successTransport.startAt(exitAt, tier: tier);
     _transports = [source, successTransport];
@@ -105,7 +109,11 @@ class TransitionConductor {
     return MusicFinish._(source, successTransport);
   }
 
-  MusicTransport _segment(MusicScore score, {bool loop = false}) =>
+  MusicTransport _segment(
+    MusicScore score, {
+    bool loop = false,
+    RenderedPlan? plan,
+  }) =>
       MusicTransport(
         score,
         backend,
@@ -113,6 +121,7 @@ class TransitionConductor {
         silenceOnCompletion: false,
         lookaheadSeconds: lookaheadSeconds,
         starvationGraceSeconds: starvationGraceSeconds,
+        rendered: plan,
       );
 
   void _checkSource(MusicTransport source) {

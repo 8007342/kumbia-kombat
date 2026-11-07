@@ -103,6 +103,33 @@ class MusicScore {
     sectionBars: sectionBars,
   );
 
+  /// The same song at other tempos: a level's rendered takes set the clock, and
+  /// the synth falling back from them must keep that clock's chart times.
+  MusicScore withTempos(List<double> values) => MusicScore(
+    id: id,
+    beatsPerBar: beatsPerBar,
+    bars: bars,
+    phraseBars: phraseBars,
+    tempos: values,
+    notes: notes,
+    sectionBars: sectionBars,
+  );
+
+  /// An empty score the length of a rendered clip, to hold its clock and cues.
+  factory MusicScore.silent({
+    required String id,
+    required int beatsPerBar,
+    required int bars,
+    required double bpm,
+  }) => MusicScore(
+    id: id,
+    beatsPerBar: beatsPerBar,
+    bars: bars,
+    phraseBars: bars,
+    tempos: List.filled(5, bpm),
+    notes: const [],
+  );
+
   factory MusicScore.fromJson(Map<String, dynamic> json) {
     if (json['schemaVersion'] != 1) {
       throw const FormatException('Unsupported music score version');
