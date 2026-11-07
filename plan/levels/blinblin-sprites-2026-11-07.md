@@ -11,7 +11,7 @@ Branch `work/1860-blwv`. The owner delegated completion of the indoor party on 2
   - `reveal` 4: glance over the shoulder, rear three-quarter, profile, front three-quarter.
   - `crossed` 4: settle, hold, nod down, nod up.
   - New aliases: `facing_away`, `reveal_turn`, `defeat_stance` and `defeat_nod`. `approve` still points at the old palm-to-chest nod.
-- **Medallion swing, baked in**: 47 frames carry it. The medallion trails the neck's movement since the previous drawing, by up to 4 native pixels. Rear views have no medallion, so they carry none, and 4 frames where the detector found no clean medallion hold still: `enter_forward.contact_l`, `retreat_backward.contact_l`, `retreat_backward.pass_l` and `retreat_backward.pass_r`.
+- **Medallion swing, baked in**: 45 frames carry it. The medallion trails the neck's movement since the previous drawing, by up to 4 native pixels. Rear views have no medallion, so they carry none, and 4 frames where the detector found no clean medallion hold still: `enter_forward.contact_l`, `retreat_backward.contact_l`, `retreat_backward.pass_l` and `retreat_backward.pass_r`.
 - **Sprite nod**: `crossed.nod_down` and `nod_up` are `crossed.hold` with only the head moved, 5 and 1 native px. Qwen's own nod drawings barely bowed the head and redrew the whole body.
 - **Matched-nod close-up**: `assets/art/closeups/nod-bb-{rest,down,up}.png` and `nod-mc-{rest,down,up}.png`, 400x440, described in `nod-art.json`.
   - BlinBlin's bowed head is Qwen's, pasted onto the rest drawing's body after aligning the two by the body. Below the collar his three drawings are pixel-identical.
