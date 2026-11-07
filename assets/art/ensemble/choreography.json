@@ -541,6 +541,192 @@
           "clip": "flare"
         }
       ]
+    },
+    "terciopelo": {
+      "note": "Don Terciopelo, the salon. His groove_* drawings are the cha-cha-chá basic, so the shared groove tables dance it: rock (count 2), replace (3), chassé (4 and), the held landing (1). Between phrases he smooths his moustache, checks himself in a mirror and offers Mācron a hand. bow, sweep and rose_offer are the win's, played by the level's data. Proposals from the art agent; the owner hasn't seen them moving.",
+      "clips": {
+        "spin_flare": {
+          "note": "A ballroom turn in two beats, opening into a held fan line.",
+          "frames": [
+            "spin_front",
+            "spin_34_r",
+            "spin_side_r",
+            "spin_back34_r",
+            "spin_back",
+            "spin_back34_l",
+            "spin_side_l",
+            "spin_34_l",
+            "flare_line"
+          ],
+          "beats": [
+            0.25,
+            0.25,
+            0.25,
+            0.25,
+            0.25,
+            0.25,
+            0.25,
+            0.25,
+            1
+          ]
+        },
+        "flare": {
+          "note": "The fan line on its own.",
+          "frames": [
+            "flare_line"
+          ],
+          "beats": [
+            1.5
+          ]
+        },
+        "giro": {
+          "note": "EL GIRO DE TERCIOPELO's turn: one and a half turns in a beat and a half, landing face on, then the line held a full beat.",
+          "frames": [
+            "spin_front",
+            "spin_34_r",
+            "spin_side_r",
+            "spin_back34_r",
+            "spin_back",
+            "spin_back34_l",
+            "spin_side_l",
+            "spin_34_l",
+            "spin_front",
+            "spin_34_r",
+            "spin_side_r",
+            "spin_back34_r",
+            "spin_front",
+            "flare_line"
+          ],
+          "beats": [
+            0.125,
+            0.125,
+            0.125,
+            0.125,
+            0.125,
+            0.125,
+            0.125,
+            0.125,
+            0.125,
+            0.125,
+            0.125,
+            0.125,
+            0.25,
+            1.25
+          ]
+        },
+        "moustache": {
+          "note": "Smooths one side of the moustache, then the other.",
+          "frames": [
+            "moustache_a",
+            "moustache_b"
+          ],
+          "beats": [
+            1,
+            1
+          ]
+        },
+        "mirror_glance": {
+          "note": "A sideways look at his reflection, a hand to the bow tie, then the hair.",
+          "frames": [
+            "glance_a",
+            "glance_b"
+          ],
+          "beats": [
+            0.75,
+            1.25
+          ]
+        },
+        "hand_offer": {
+          "note": "A courtly half bow with the hand held out to Mācron, palm up: may I have this dance?",
+          "frames": [
+            "offer_hand_a",
+            "offer_hand_b"
+          ],
+          "beats": [
+            0.75,
+            1.25
+          ]
+        },
+        "bow": {
+          "note": "The win's deep slow ballroom bow, turned three quarters to the picture's right.",
+          "frames": [
+            "bow_a",
+            "bow_b",
+            "bow_hold"
+          ],
+          "beats": [
+            1,
+            1,
+            2
+          ]
+        },
+        "sweep": {
+          "note": "The win's arm sweep toward the far doors, to the picture's right.",
+          "frames": [
+            "sweep_a",
+            "sweep_b"
+          ],
+          "beats": [
+            1,
+            2
+          ]
+        },
+        "rose_offer": {
+          "note": "Plucks the rose from his lapel and holds it out.",
+          "frames": [
+            "rose_pluck",
+            "rose_offer"
+          ],
+          "beats": [
+            1,
+            2
+          ]
+        },
+        "line_hold": {
+          "note": "The fan line held one beat, closing EL GIRO DE TERCIOPELO.",
+          "frames": [
+            "flare_line"
+          ],
+          "beats": [
+            1
+          ]
+        }
+      },
+      "accents": [
+        {
+          "note": "Between phrases, a warm room: the moustache, as the second bar of the phrase starts.",
+          "everyBeats": 16,
+          "atBeat": 4,
+          "minTier": 1,
+          "clip": "moustache"
+        },
+        {
+          "note": "A glance in the mirror, once every two phrases.",
+          "everyBeats": 16,
+          "atBeat": 12,
+          "minTier": 2,
+          "clip": "mirror_glance"
+        },
+        {
+          "note": "He offers Mācron a hand, a hot room's invitation.",
+          "everyBeats": 32,
+          "atBeat": 28,
+          "minTier": 3,
+          "clip": "hand_offer"
+        }
+      ],
+      "handoffMoves": [
+        {
+          "note": "Danced on the mark as the call ends, overflowing into Mācron's turn, then he steps away. The turn from the first warm tier.",
+          "minTier": 1,
+          "clip": "spin_flare"
+        },
+        {
+          "note": "A cold room still gets the fan line.",
+          "minTier": 0,
+          "clip": "flare"
+        }
+      ]
     }
   }
 }
