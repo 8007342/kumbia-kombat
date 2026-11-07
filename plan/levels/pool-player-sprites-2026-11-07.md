@@ -32,7 +32,7 @@ Her right hand keeps the cue, so her arms differ from the shared table; her legs
 
 ## What the pipeline gained
 
-`drawing.cue`, the white guide line in the skeleton, `otherHand`, the mask shapes `cue-shaft` and `cue-butt`, `register_frames.py --thin-prop`, `stageFlip`, the `opponent-cue` and `pool-bg` motion sets, and `finish_picks.py`, `merge_runs.py`, `cue_review.py`, `cue_sheet.py`. Details in `tool/art/pipeline/README.md`. New tests: `tool/art/tests/test_cue.py`, 5 pass.
+`drawing.cue`, the white guide line in the skeleton, `otherHand`, the mask shapes `cue-shaft` and `cue-butt`, `register_frames.py --thin-prop`, `stageFlip`, the `opponent-cue` and `pool-bg` motion sets, and `finish_run_picks.py` (renamed at merge, beside the BlinBlin `finish_picks.py`), `merge_runs.py`, `cue_review.py`, `cue_sheet.py`. Details in `tool/art/pipeline/README.md`. New tests: `tool/art/tests/test_cue.py`, 5 pass.
 
 ## What was found
 

@@ -180,7 +180,7 @@ Open `?level=cool-crowd`, or with `&autoplay=flawless`:
 | 4, first | 136 | 14 | 2 | 3 | 1 | 3.97 |
 | 4, second | 136 | 14 | 2 | 2 | 2 | 3.97 |
 
-Presses a second rise at every tier, and the top is above the lawn's 3.68 and the bar's. The first tier 4 pattern ends on both feet together, the first time any chart uses that. All of it holds the fairness limits and cue separation, in tests, at the manifest's tempos. **The MUSIC agent may change those tempos.** If so, `rendered_music_test` fails until the charts are looked at again.
+Presses a second rise at every tier, and the top is above the lawn's 3.68 and the bar's. The first tier 4 pattern ends on both feet together, the first time any chart uses that. All of it holds the fairness limits and cue separation, in tests, at the manifest's tempos. MUSIC's ladder from `work/1867-musc` (`918f113`) is merged and keeps 112, 124 and 136. Its takes are now layers of one performance. [F] `rendered_music_test` still checks the charts against whatever tempos the manifest gives.
 
 - **Uninterested, reworked after the owner's correction.** [P] Ten guests dance as five couples, facing each other, and eight dance alone, facing different ways. They share one beat per couple and set off together when the floor opens. Couples stand .42 of an adult apart, the reach GUESTS measured, so the spacing grows toward the camera. To fit that, only one couple goes left and more guests go right, and the three solos on the far right are mostly off a phone. A guest can name their own atlas, and a drawn sidestep is supported, but neither is in use yet.
 - **The win.** [P] Beats from the win: wide until 3, close-up 3 to 7.75. BlinBlin nods on 4, and Mācron answers on 5 with QUÉ FLOW. I split the plan's single shared nod in two, so it reads as approval and then the same cool reply. New cue patch `nod`, a low dry knock, quieter than `bump`, softer on the first. All of it fits 8 beats, and tests hold that against both scores. BlinBlin takes `defeatStance` in the wide shot once his atlas lands.
@@ -191,10 +191,9 @@ Presses a second rise at every tier, and the top is above the lawn's 3.68 and th
 
 | Where | Now | Waiting on |
 |---|---|---|
-| BlinBlin, in play | Bartender atlas | `blinblin` atlas, `work/1860-blwv` |
 | BlinBlin, close-up | `oil-gulp-bt-offer.png`, which is a hand holding a glass and looks wrong | `nod-bb-*` |
 
-The crowd's ten coupled dancers are real, cast from guest3-6 (`work/1868-gues`), with drawn sidesteps, glances and grooves. The eight solos stay on guest0-2, so the room isn't four people repeated. [P] Two of the couples show one partner from behind, using `back_dance`. Mācron's close-up is real: `nod-mc-*`, taken from `work/1860-blwv`. All four band players are real, from `work/1864-band`, on the `form` ladder.
+The crowd's ten coupled dancers are real, cast from guest3-6 (`work/1868-gues`), with drawn sidesteps, glances and grooves. The eight solos stay on guest0-2, so the room isn't four people repeated. [P] Two of the couples show one partner from behind, using `back_dance`. BlinBlin in play is real: atlas `blinblin` from `work/1860-blwv`, with his back to the room, the turn, and arms crossed in the wide shot of the win. His back dance uses five of its eight drawings for now, because BLINBLIN is redrawing the three that show a profile. He dances the shared clip tables, with no moves of his own in the grammar yet. Mācron's close-up is real: `nod-mc-*`, taken from `work/1860-blwv`. All four band players are real, from `work/1864-band`, on the `form` ladder.
 
 **One change from the first version of this note:** under reduced motion, the band's foot-tap rung now holds the same drawing as its calm rung, `relaxed_a`, because the art reuses that drawing so the arms stay continuous between rungs. So reduced motion shows two states, calm and swinging, not three. [F, tested]
 

@@ -346,7 +346,7 @@
   "challengers": [
    {
     "id": "blinblin",
-    "atlas": "bartender",
+    "atlas": "blinblin",
     "mark": [0.5, 0.47],
     "yieldMark": [0.62, 0.44],
     "stature": 1.1,
@@ -354,20 +354,29 @@
     "facingAway": {
      "back": {
       "frames": [
-       "spin_back",
-       "spin_back34_l",
-       "spin_back",
-       "spin_back34_r"
+       "back_groove_down_l",
+       "back_groove_pass_l",
+       "back_groove_up_l",
+       "back_groove_pass_r",
+       "back_groove_up_r",
+       "back_groove_pass_r"
       ],
-      "beatsPerFrame": 1
+      "beatsPerFrame": 0.3333333333
      },
      "turn": [
-      "spin_back34_r",
-      "spin_side_r",
-      "spin_34_r",
-      "spin_front"
+      "reveal_glance",
+      "reveal_rear_3q",
+      "reveal_profile",
+      "reveal_front_3q"
      ],
      "turnBeats": 2
+    },
+    "defeatStance": {
+     "frames": [
+      "crossed_settle",
+      "crossed_hold"
+     ],
+     "beatsPerFrame": 1
     }
    }
   ]
@@ -723,8 +732,8 @@
      }
     ],
     "contact": [431, 384],
-    "scale": 0.6,
-    "entry": [-24, 0],
+    "scale": 0.3,
+    "entry": [-12, 0],
     "recoil": [0, 0]
    },
    {
@@ -748,9 +757,9 @@
       "image": "closeups/nod-mc-rest.png"
      }
     ],
-    "contact": [40, 440],
-    "scale": 0.6,
-    "entry": [24, 0],
+    "contact": [48, 440],
+    "scale": 0.3,
+    "entry": [12, 0],
     "recoil": [0, 0]
    }
   ],

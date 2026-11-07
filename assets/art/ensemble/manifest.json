@@ -17788,6 +17788,3890 @@
     }
    }
   },
+  "blinblin": {
+   "image": "blinblin-v1.png",
+   "imageWidth": 1024,
+   "imageHeight": 2952,
+   "referenceFrame": "occupied",
+   "ramps": {
+    "skin": {
+     "region": "skin",
+     "alsoIn": [],
+     "shades": [
+      "#531700",
+      "#7A3B14",
+      "#A75E35",
+      "#C0805E"
+     ]
+    },
+    "hair": {
+     "region": "hair",
+     "alsoIn": [],
+     "shades": [
+      "#000001",
+      "#010103",
+      "#14161E",
+      "#2C2E35"
+     ]
+    },
+    "shirt": {
+     "region": "shirt",
+     "alsoIn": [],
+     "shades": [
+      "#A2997A",
+      "#CBC2A2",
+      "#F6ECC8",
+      "#FFFCDD"
+     ]
+    },
+    "jacket": {
+     "region": "cloth",
+     "alsoIn": [],
+     "shades": [
+      "#02000C",
+      "#1A002E",
+      "#3B1555",
+      "#53486C"
+     ]
+    },
+    "gold": {
+     "region": "accessory",
+     "alsoIn": [
+      "shirt",
+      "cloth",
+      "skin",
+      "hair"
+     ],
+     "shades": [
+      "#9A7A00",
+      "#C3A300",
+      "#F0CC22",
+      "#FFEE75"
+     ]
+    },
+    "trousers": {
+     "region": "trousers",
+     "alsoIn": [],
+     "shades": [
+      "#000002",
+      "#040813",
+      "#1E2633",
+      "#383F4B"
+     ]
+    },
+    "shoes": {
+     "region": "shoes",
+     "alsoIn": [],
+     "shades": [
+      "#9F9065",
+      "#C8B88C",
+      "#F4E2B0",
+      "#FFFBD0"
+     ]
+    }
+   },
+   "frames": {
+    "anticipate_left": {
+     "rect": [
+      375,
+      2474,
+      129,
+      237
+     ],
+     "anchor": [
+      76.8,
+      234.4
+     ],
+     "pixelsPerUnit": 6.0645,
+     "facing": "front",
+     "loop": false,
+     "durationBeats": 1.0,
+     "events": [],
+     "supportFoot": "right",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/blinblin/art_runs/blinblin-v1-20261107c",
+      "pose": "left_hand.prep",
+      "sha256": "ea0c94bbfe51483c3382900a7291ff72a237bd1b08a4c1a49c7c98beb4f2cf77",
+      "selected": null,
+      "frameKey": "80f2a11045bc8e58b1863d26f6eea12cd414efcc3888c6bec91ba3c8706f88e9",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "contrapposto",
+       "anticipation",
+       "no-twinning",
+       "timing-on-beat"
+      ]
+     },
+     "aliasOf": "left_hand_prep"
+    },
+    "anticipate_right": {
+     "rect": [
+      2,
+      2474,
+      132,
+      238
+     ],
+     "anchor": [
+      85.2,
+      234.4
+     ],
+     "pixelsPerUnit": 6.0645,
+     "facing": "front",
+     "loop": false,
+     "durationBeats": 1.0,
+     "events": [],
+     "supportFoot": "left",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/blinblin/art_runs/blinblin-v1-20261107c",
+      "pose": "right_hand.prep",
+      "sha256": "ea56eb86ad7701d95b7ef6e23b9b9a0d5b2c5093e6a26fe66f20b059ddcf98b0",
+      "selected": null,
+      "frameKey": "ce057fa401e887eb8b2870ec971c9029e8bc8ba232a30592d2016babf41a97a0",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "contrapposto",
+       "anticipation",
+       "no-twinning",
+       "timing-on-beat"
+      ]
+     },
+     "aliasOf": "right_hand_prep"
+    },
+    "approval_load": {
+     "rect": [
+      2,
+      1251,
+      103,
+      245
+     ],
+     "anchor": [
+      55.0,
+      242.4
+     ],
+     "pixelsPerUnit": 6.0645,
+     "facing": "front",
+     "loop": false,
+     "durationBeats": 1.0,
+     "events": [],
+     "supportFoot": "both",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/blinblin/art_runs/blinblin-v1-20261107c",
+      "pose": "approval.load",
+      "sha256": "9e084911ef8701ff6306ed7220950ff6a1220c2b76bb69f4a977ef508accd245",
+      "selected": null,
+      "frameKey": "850b303a44a1de3f4218a16b119074121cfc4b2aa2e5e57286054df3ff20ac60",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "contrapposto",
+       "anticipation",
+       "secondary-action",
+       "no-twinning",
+       "timing-on-beat"
+      ]
+     }
+    },
+    "approval_nod": {
+     "rect": [
+      299,
+      2232,
+      131,
+      240
+     ],
+     "anchor": [
+      48.0,
+      237.4
+     ],
+     "pixelsPerUnit": 6.0645,
+     "facing": "front",
+     "loop": false,
+     "durationBeats": 1.0,
+     "events": [
+      {
+       "beat": 0.333,
+       "type": "accent",
+       "drawing": "nod"
+      }
+     ],
+     "supportFoot": "both",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/blinblin/art_runs/blinblin-v1-20261107c",
+      "pose": "approval.nod",
+      "sha256": "a5d8a84bd3f495f03705d11ce943f26f1fef507ea25d7c8945e6712504865f43",
+      "selected": null,
+      "frameKey": "4601759eb41176cbdaa64cac5f2620db9b94ecf2cb67c6d3c09637892ecadf4f",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "line-of-action",
+       "contrapposto",
+       "exaggeration-accent",
+       "secondary-action",
+       "no-twinning",
+       "timing-on-beat"
+      ]
+     }
+    },
+    "approval_release": {
+     "rect": [
+      300,
+      504,
+      142,
+      248
+     ],
+     "anchor": [
+      96.0,
+      245.4
+     ],
+     "pixelsPerUnit": 6.0645,
+     "facing": "front",
+     "loop": false,
+     "durationBeats": 1.0,
+     "events": [],
+     "supportFoot": "both",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/blinblin/art_runs/blinblin-v1-20261107c",
+      "pose": "approval.release",
+      "sha256": "a0f8691b8e347f4aef79e47e71bd16947ab459d781d51837733e6f63ee6a5879",
+      "selected": null,
+      "frameKey": "31b8d20e703ffa3b8f18ca0d38375243e108df75d3382229cd7c8454fd1e6ba3",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "contrapposto",
+       "follow-through",
+       "secondary-action",
+       "no-twinning",
+       "timing-on-beat"
+      ]
+     }
+    },
+    "approve": {
+     "rect": [
+      299,
+      2232,
+      131,
+      240
+     ],
+     "anchor": [
+      48.0,
+      237.4
+     ],
+     "pixelsPerUnit": 6.0645,
+     "facing": "front",
+     "loop": false,
+     "durationBeats": 1.0,
+     "events": [
+      {
+       "beat": 0.333,
+       "type": "accent",
+       "drawing": "nod"
+      }
+     ],
+     "supportFoot": "both",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/blinblin/art_runs/blinblin-v1-20261107c",
+      "pose": "approval.nod",
+      "sha256": "a5d8a84bd3f495f03705d11ce943f26f1fef507ea25d7c8945e6712504865f43",
+      "selected": null,
+      "frameKey": "4601759eb41176cbdaa64cac5f2620db9b94ecf2cb67c6d3c09637892ecadf4f",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "line-of-action",
+       "contrapposto",
+       "exaggeration-accent",
+       "secondary-action",
+       "no-twinning",
+       "timing-on-beat"
+      ]
+     },
+     "aliasOf": "approval_nod"
+    },
+    "back_accent_arm_l": {
+     "rect": [
+      745,
+      1498,
+      165,
+      243
+     ],
+     "anchor": [
+      115.2,
+      240.4
+     ],
+     "pixelsPerUnit": 6.0645,
+     "facing": "rear",
+     "loop": false,
+     "durationBeats": 1.0,
+     "events": [
+      {
+       "beat": 0.25,
+       "type": "accent",
+       "drawing": "arm_l"
+      }
+     ],
+     "supportFoot": "right",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/blinblin/art_runs/blinblin-v1-20261107c",
+      "pose": "back_accent.arm_l",
+      "sha256": "7750ea890bd6740e8fc1d7a54dc17539c422d321092820910af427e46d2a70fc",
+      "selected": null,
+      "frameKey": "bdb8e841e589415cfd642997cdc9955c615c7abe345fa909f789b2c9de0b9e5a",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "line-of-action",
+       "contrapposto",
+       "exaggeration-accent",
+       "no-twinning",
+       "timing-on-beat"
+      ]
+     }
+    },
+    "back_accent_arm_r": {
+     "rect": [
+      2,
+      1744,
+      180,
+      243
+     ],
+     "anchor": [
+      49.8,
+      240.4
+     ],
+     "pixelsPerUnit": 6.0645,
+     "facing": "rear",
+     "loop": false,
+     "durationBeats": 1.0,
+     "events": [
+      {
+       "beat": 0.25,
+       "type": "accent",
+       "drawing": "arm_r"
+      }
+     ],
+     "supportFoot": "left",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/blinblin/art_runs/blinblin-v1-20261107c",
+      "pose": "back_accent.arm_r",
+      "sha256": "f145002b5290d6b533aee07da9a66c77e65b32cbfafee89caa63bd85870b11b3",
+      "selected": null,
+      "frameKey": "4ef7bdbe6f1ea4f7f92694a35860234273bd898aa522e54c01fd77fcdd4ed964",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "line-of-action",
+       "contrapposto",
+       "exaggeration-accent",
+       "no-twinning",
+       "timing-on-beat"
+      ]
+     }
+    },
+    "back_groove_down_l": {
+     "rect": [
+      323,
+      2714,
+      165,
+      235
+     ],
+     "anchor": [
+      60.8,
+      232.4
+     ],
+     "pixelsPerUnit": 6.0645,
+     "facing": "rear",
+     "loop": true,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "left",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/blinblin/art_runs/blinblin-v1-20261107c",
+      "pose": "back_groove.down_l",
+      "sha256": "25dbd38ab10837e907a6d163c63c61af1f621a9c956fa0a0852870d5376bc124",
+      "selected": null,
+      "frameKey": "743bc44061925bd58f5c2feedc06c75bbdc431ffacee91c0390d2e5885f681f2",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "contrapposto",
+       "no-twinning",
+       "timing-on-beat",
+       "planted-pivot"
+      ]
+     }
+    },
+    "back_groove_down_r": {
+     "rect": [
+      490,
+      2714,
+      187,
+      235
+     ],
+     "anchor": [
+      114.2,
+      232.4
+     ],
+     "pixelsPerUnit": 6.0645,
+     "facing": "rear",
+     "loop": true,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "right",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/blinblin/art_runs/blinblin-v1-20261107c",
+      "pose": "back_groove.down_r",
+      "sha256": "5f8f8c537d40432fd7251215995173f35bda10fff9e69c83b82c721e4372c2e0",
+      "selected": null,
+      "frameKey": "0507e43fb737de1fe963d983281f13a8b8be45693b612f0206fdd8627234a263",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "contrapposto",
+       "no-twinning",
+       "timing-on-beat",
+       "planted-pivot"
+      ]
+     }
+    },
+    "back_groove_pass_l": {
+     "rect": [
+      414,
+      754,
+      185,
+      247
+     ],
+     "anchor": [
+      74.8,
+      244.4
+     ],
+     "pixelsPerUnit": 6.0645,
+     "facing": "rear",
+     "loop": true,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "left",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/blinblin/art_runs/blinblin-v1-20261107c",
+      "pose": "back_groove.pass_l",
+      "sha256": "780b5dee80746ecb5809f600317355f26c6c65a5f50555657e31bbfbedda375c",
+      "selected": null,
+      "frameKey": "ca17cf316fee9b98440c6cf4d2a1f663fe83145268af8e7b112df79fed762100",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "contrapposto",
+       "no-twinning",
+       "timing-on-beat",
+       "planted-pivot"
+      ]
+     }
+    },
+    "back_groove_pass_l2": {
+     "rect": [
+      580,
+      1003,
+      187,
+      246
+     ],
+     "anchor": [
+      80.2,
+      243.4
+     ],
+     "pixelsPerUnit": 6.0645,
+     "facing": "rear",
+     "loop": true,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "right",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/blinblin/art_runs/blinblin-v1-20261107c",
+      "pose": "back_groove.pass_l2",
+      "sha256": "33c97e62655cdc12a616a6eb65c733408290a1964817aa6ce12cf12e32452c55",
+      "selected": null,
+      "frameKey": "2ab324d8ec040f7e1a59eda904985381ca9e81d13b6aa3146a610a2025622d46",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "line-of-action",
+       "contrapposto",
+       "exaggeration-accent",
+       "no-twinning",
+       "timing-on-beat",
+       "planted-pivot"
+      ]
+     }
+    },
+    "back_groove_pass_r": {
+     "rect": [
+      601,
+      754,
+      170,
+      247
+     ],
+     "anchor": [
+      104.2,
+      244.4
+     ],
+     "pixelsPerUnit": 6.0645,
+     "facing": "rear",
+     "loop": true,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "right",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/blinblin/art_runs/blinblin-v1-20261107c",
+      "pose": "back_groove.pass_r",
+      "sha256": "e253e58b16e1d4064e703f37328e92f2ec31ca5147be279fbfde810bb5642c3e",
+      "selected": null,
+      "frameKey": "ec1837b2740b593cef852e0c136a446656c9a31781497e45a244883a44221deb",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "contrapposto",
+       "no-twinning",
+       "timing-on-beat",
+       "planted-pivot"
+      ]
+     }
+    },
+    "back_groove_pass_r2": {
+     "rect": [
+      579,
+      1251,
+      160,
+      245
+     ],
+     "anchor": [
+      97.8,
+      242.4
+     ],
+     "pixelsPerUnit": 6.0645,
+     "facing": "rear",
+     "loop": true,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "left",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/blinblin/art_runs/blinblin-v1-20261107c",
+      "pose": "back_groove.pass_r2",
+      "sha256": "9a476f44a3d10fdcec53b50ec41b7d1ec301ba8e0d54aedb3919431fa5eb4ab8",
+      "selected": null,
+      "frameKey": "a958b9b360ae52b52b39ba07b2603571737a5021256b8a943fdd6d9a4dce4c2e",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "line-of-action",
+       "contrapposto",
+       "exaggeration-accent",
+       "no-twinning",
+       "timing-on-beat",
+       "planted-pivot"
+      ]
+     }
+    },
+    "back_groove_up_l": {
+     "rect": [
+      444,
+      504,
+      102,
+      248
+     ],
+     "anchor": [
+      50.0,
+      245.4
+     ],
+     "pixelsPerUnit": 6.0645,
+     "facing": "rear",
+     "loop": true,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "both",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/blinblin/art_runs/blinblin-v1-20261107c",
+      "pose": "back_groove.up_l",
+      "sha256": "8af179387f6c3d9de9615a5dc798c1bd50e463bab81a944dfaf9af1ec8548f99",
+      "selected": null,
+      "frameKey": "7bc9a72c9c500dcaa5c0c1595e4c5100e996e055e1d73774d503d82222f6a6e1",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "contrapposto",
+       "no-twinning",
+       "timing-on-beat"
+      ]
+     }
+    },
+    "back_groove_up_r": {
+     "rect": [
+      548,
+      504,
+      103,
+      248
+     ],
+     "anchor": [
+      54.0,
+      245.4
+     ],
+     "pixelsPerUnit": 6.0645,
+     "facing": "rear",
+     "loop": true,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "both",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/blinblin/art_runs/blinblin-v1-20261107c",
+      "pose": "back_groove.up_r",
+      "sha256": "7355602fc520c28916f43ede6feb8e04abafbe32604e62031241c47867228933",
+      "selected": null,
+      "frameKey": "b0ba5a0a49367d4f46bb7bbdd1ce6479a608bc35847cd73341aa0768e04770a4",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "contrapposto",
+       "no-twinning",
+       "timing-on-beat"
+      ]
+     }
+    },
+    "cede": {
+     "rect": [
+      362,
+      2,
+      128,
+      249
+     ],
+     "anchor": [
+      52.8,
+      245.4
+     ],
+     "pixelsPerUnit": 6.0645,
+     "facing": "front_3q",
+     "loop": true,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "right",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/blinblin/art_runs/blinblin-v1-20261107c",
+      "pose": "yield_side.pass_r",
+      "sha256": "aab27ad8a721fbb5c0b246b5e2a09f548ed3eb9ef730f1ffbd9bac2a460e05be",
+      "selected": null,
+      "frameKey": "c4d7c70a235b849dc47c8da848aef051756d9dfeb1f32328b78c7c8414a516a8",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "line-of-action",
+       "contrapposto",
+       "exaggeration-accent",
+       "no-twinning",
+       "timing-on-beat",
+       "planted-pivot"
+      ]
+     },
+     "aliasOf": "yield_side_pass_r"
+    },
+    "challenge_load": {
+     "rect": [
+      826,
+      2474,
+      126,
+      237
+     ],
+     "anchor": [
+      82.2,
+      234.4
+     ],
+     "pixelsPerUnit": 6.0645,
+     "facing": "front",
+     "loop": false,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "left",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/blinblin/art_runs/blinblin-v1-20261107c",
+      "pose": "challenge.load",
+      "sha256": "303017e3497d4b5b2893a28fb52beb18d203ddd325d824d471121b09e5cfdadd",
+      "selected": null,
+      "frameKey": "b906f304308308d6cd00c8ac9226af9c5d9a1a4ae32710501bcb1219a99f52e8",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "contrapposto",
+       "anticipation",
+       "no-twinning",
+       "timing-on-beat"
+      ]
+     }
+    },
+    "challenge_offer": {
+     "rect": [
+      102,
+      1498,
+      171,
+      244
+     ],
+     "anchor": [
+      106.8,
+      240.4
+     ],
+     "pixelsPerUnit": 6.0645,
+     "facing": "front",
+     "loop": false,
+     "durationBeats": 2.0,
+     "events": [
+      {
+       "beat": 1.0,
+       "type": "accent",
+       "drawing": "offer"
+      }
+     ],
+     "supportFoot": "right",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/blinblin/art_runs/blinblin-v1-20261107c",
+      "pose": "challenge.offer",
+      "sha256": "16ae23df9a24c9db93ac462234084250515917164fd060d36a955f0ca4f4124c",
+      "selected": null,
+      "frameKey": "0fa7b39992f249097f92edbb6e80850d3259e6c285476c9eae151e023a201aa5",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "line-of-action",
+       "contrapposto",
+       "exaggeration-accent",
+       "no-twinning",
+       "timing-on-beat"
+      ]
+     }
+    },
+    "challenge_proud": {
+     "rect": [
+      609,
+      1498,
+      134,
+      243
+     ],
+     "anchor": [
+      48.8,
+      240.4
+     ],
+     "pixelsPerUnit": 6.0645,
+     "facing": "front",
+     "loop": false,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "right",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/blinblin/art_runs/blinblin-v1-20261107c",
+      "pose": "challenge.proud",
+      "sha256": "b7052efc24115d03e92b517a028be32717d20aa821b7368e6283c926beff34c2",
+      "selected": null,
+      "frameKey": "9b7907f3b4257b14cf8a8dd78f1c8074c3956cc143510859395016dcdc104a63",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "line-of-action",
+       "contrapposto",
+       "exaggeration-accent",
+       "no-twinning",
+       "timing-on-beat"
+      ]
+     }
+    },
+    "challenge_return": {
+     "rect": [
+      755,
+      2,
+      125,
+      249
+     ],
+     "anchor": [
+      69.0,
+      246.4
+     ],
+     "pixelsPerUnit": 6.0645,
+     "facing": "front",
+     "loop": false,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "both",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/blinblin/art_runs/blinblin-v1-20261107c",
+      "pose": "challenge.return",
+      "sha256": "6a1b5a71f3994947fbb62ffe21200ba8bda681590a140283492b8258838d5414",
+      "selected": null,
+      "frameKey": "fa8629d123d4da8e35f932962814588b08a72442f0b420db77035dba980f9721",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "contrapposto",
+       "follow-through",
+       "no-twinning",
+       "timing-on-beat"
+      ]
+     }
+    },
+    "clap_close": {
+     "rect": [
+      206,
+      504,
+      92,
+      248
+     ],
+     "anchor": [
+      45.0,
+      245.4
+     ],
+     "pixelsPerUnit": 6.0645,
+     "facing": "front",
+     "loop": false,
+     "durationBeats": 1.0,
+     "events": [],
+     "supportFoot": "both",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/blinblin/art_runs/blinblin-v1-20261107c",
+      "pose": "clap.close",
+      "sha256": "8a11c68255a4928cd098b0cf992ffbe4eaa7209af78908db660ae0c4975687b4",
+      "selected": null,
+      "frameKey": "11038502dd0e89bfb18810250e6245e05cacbff6809cc389d2d745dd580f9fce",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "contrapposto",
+       "no-twinning",
+       "timing-on-beat",
+       "planted-pivot"
+      ]
+     }
+    },
+    "clap_contact": {
+     "rect": [
+      688,
+      2232,
+      89,
+      239
+     ],
+     "anchor": [
+      43.0,
+      236.4
+     ],
+     "pixelsPerUnit": 6.0645,
+     "facing": "front",
+     "loop": false,
+     "durationBeats": 1.0,
+     "events": [
+      {
+       "beat": 0.5,
+       "type": "accent",
+       "drawing": "contact"
+      }
+     ],
+     "supportFoot": "both",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/blinblin/art_runs/blinblin-v1-20261107c",
+      "pose": "clap.contact",
+      "sha256": "8b8eb12e8d3e1fec0bd91cafed7a9e0a5e7e35687a2b1ee34064bd54a56475a7",
+      "selected": null,
+      "frameKey": "3ed5ae29682061546a5d6bb000eb200f9e7a9617470ae84664803f1ee0131ebe",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "contrapposto",
+       "anticipation",
+       "no-twinning",
+       "timing-on-beat",
+       "planted-pivot"
+      ]
+     }
+    },
+    "clap_open": {
+     "rect": [
+      492,
+      2,
+      161,
+      249
+     ],
+     "anchor": [
+      79.0,
+      246.4
+     ],
+     "pixelsPerUnit": 6.0645,
+     "facing": "front",
+     "loop": false,
+     "durationBeats": 1.0,
+     "events": [],
+     "supportFoot": "both",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/blinblin/art_runs/blinblin-v1-20261107c",
+      "pose": "clap.open",
+      "sha256": "21fc1e18a6ad3a89eec7ee59f976ab4ce3683bd429cc69a47583d13115262f86",
+      "selected": null,
+      "frameKey": "e638ceeea98b9251a4798cfd9daa300299091045622514451603d8899303a06e",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "contrapposto",
+       "anticipation",
+       "no-twinning",
+       "timing-on-beat"
+      ]
+     }
+    },
+    "clap_release": {
+     "rect": [
+      655,
+      2,
+      98,
+      249
+     ],
+     "anchor": [
+      49.0,
+      246.4
+     ],
+     "pixelsPerUnit": 6.0645,
+     "facing": "front",
+     "loop": false,
+     "durationBeats": 1.0,
+     "events": [],
+     "supportFoot": "both",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/blinblin/art_runs/blinblin-v1-20261107c",
+      "pose": "clap.release",
+      "sha256": "750ff8f0b1595bfd8098522ae5e8acbbe0ecafed020f10371e255932093090a4",
+      "selected": null,
+      "frameKey": "c7aae638493f99a5e1e85b9f0d194197814984360b254aae7532a567fcfc3a9c",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "contrapposto",
+       "follow-through",
+       "no-twinning",
+       "timing-on-beat"
+      ]
+     }
+    },
+    "crossed_hold": {
+     "rect": [
+      855,
+      754,
+      87,
+      247
+     ],
+     "anchor": [
+      49.0,
+      244.4
+     ],
+     "pixelsPerUnit": 6.0645,
+     "facing": "front",
+     "loop": false,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "both",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/blinblin/art_runs/blinblin-v1-20261107c",
+      "pose": "crossed.hold",
+      "sha256": "58f3e0421fef0a2fb9effdcf56fbcff0b1c317eda9e9962a6cc6870fc990bde8",
+      "selected": null,
+      "frameKey": "7452f4f7055d750e1849fc3aac46d14fa177c7978f63bbde1c8854d583f328c3",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "contrapposto",
+       "follow-through",
+       "secondary-action",
+       "no-twinning",
+       "timing-on-beat"
+      ]
+     }
+    },
+    "crossed_nod_down": {
+     "rect": [
+      693,
+      1744,
+      87,
+      242
+     ],
+     "anchor": [
+      49.0,
+      239.4
+     ],
+     "pixelsPerUnit": 6.0645,
+     "facing": "front",
+     "loop": false,
+     "durationBeats": 2.0,
+     "events": [
+      {
+       "beat": 1.0,
+       "type": "accent",
+       "drawing": "nod_down"
+      }
+     ],
+     "supportFoot": "both",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/blinblin/art_runs/blinblin-v1-20261107c",
+      "pose": "crossed.nod_down",
+      "sha256": "d6b796d76834518d59b9e96375d51df1b32ea39585a2f7f7372e9b8de5e0e999",
+      "selected": null,
+      "frameKey": "05c65d810d9e78ddb990d01712b24f80152278eb66c76ce68270c11ae2083190",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "line-of-action",
+       "contrapposto",
+       "exaggeration-accent",
+       "no-twinning",
+       "timing-on-beat"
+      ]
+     }
+    },
+    "crossed_nod_up": {
+     "rect": [
+      769,
+      1003,
+      87,
+      246
+     ],
+     "anchor": [
+      49.0,
+      243.4
+     ],
+     "pixelsPerUnit": 6.0645,
+     "facing": "front",
+     "loop": false,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "both",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/blinblin/art_runs/blinblin-v1-20261107c",
+      "pose": "crossed.nod_up",
+      "sha256": "21e14eca460b8c0086f1a8ba90d8cc19b2b3bd72fcc51308593ae1ae2c2ef6aa",
+      "selected": null,
+      "frameKey": "dfe39b77490c3b25e6d31dd78a2892114cdb6a7c9e17d399f419f0c8a1591882",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "contrapposto",
+       "no-twinning",
+       "timing-on-beat"
+      ]
+     }
+    },
+    "crossed_settle": {
+     "rect": [
+      826,
+      504,
+      101,
+      248
+     ],
+     "anchor": [
+      55.0,
+      245.4
+     ],
+     "pixelsPerUnit": 6.0645,
+     "facing": "front",
+     "loop": false,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "both",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/blinblin/art_runs/blinblin-v1-20261107c",
+      "pose": "crossed.settle",
+      "sha256": "bd311ce122b67c57cd6eee9e12e5525f59e583e96550f013689b51edfc28d2fa",
+      "selected": null,
+      "frameKey": "1c956d165a10005a35a7a0ab2c039cafc3ca53fb6e311c28de382fdad0b2ee36",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "contrapposto",
+       "follow-through",
+       "no-twinning",
+       "timing-on-beat"
+      ]
+     }
+    },
+    "defeat_nod": {
+     "rect": [
+      693,
+      1744,
+      87,
+      242
+     ],
+     "anchor": [
+      49.0,
+      239.4
+     ],
+     "pixelsPerUnit": 6.0645,
+     "facing": "front",
+     "loop": false,
+     "durationBeats": 2.0,
+     "events": [
+      {
+       "beat": 1.0,
+       "type": "accent",
+       "drawing": "nod_down"
+      }
+     ],
+     "supportFoot": "both",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/blinblin/art_runs/blinblin-v1-20261107c",
+      "pose": "crossed.nod_down",
+      "sha256": "d6b796d76834518d59b9e96375d51df1b32ea39585a2f7f7372e9b8de5e0e999",
+      "selected": null,
+      "frameKey": "05c65d810d9e78ddb990d01712b24f80152278eb66c76ce68270c11ae2083190",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "line-of-action",
+       "contrapposto",
+       "exaggeration-accent",
+       "no-twinning",
+       "timing-on-beat"
+      ]
+     },
+     "aliasOf": "crossed_nod_down"
+    },
+    "defeat_stance": {
+     "rect": [
+      855,
+      754,
+      87,
+      247
+     ],
+     "anchor": [
+      49.0,
+      244.4
+     ],
+     "pixelsPerUnit": 6.0645,
+     "facing": "front",
+     "loop": false,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "both",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/blinblin/art_runs/blinblin-v1-20261107c",
+      "pose": "crossed.hold",
+      "sha256": "58f3e0421fef0a2fb9effdcf56fbcff0b1c317eda9e9962a6cc6870fc990bde8",
+      "selected": null,
+      "frameKey": "7452f4f7055d750e1849fc3aac46d14fa177c7978f63bbde1c8854d583f328c3",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "contrapposto",
+       "follow-through",
+       "secondary-action",
+       "no-twinning",
+       "timing-on-beat"
+      ]
+     },
+     "aliasOf": "crossed_hold"
+    },
+    "enter_forward_contact_l": {
+     "rect": [
+      136,
+      2474,
+      121,
+      238
+     ],
+     "anchor": [
+      75.9,
+      235.4
+     ],
+     "pixelsPerUnit": 6.0645,
+     "facing": "front_3q",
+     "loop": true,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "both",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/blinblin/art_runs/blinblin-v1-20261107c",
+      "pose": "enter_forward.contact_l",
+      "sha256": "464d27201955374557a2af40d9df6d359184cc1dacad06da63a3f2cce9f57eed",
+      "selected": null,
+      "frameKey": "643b1ba3eb93c83b0d185828dad038b0eb8e60a5334f3f402ddb5e29e16658ae",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "contrapposto",
+       "anticipation",
+       "no-twinning",
+       "timing-on-beat",
+       "planted-pivot"
+      ]
+     }
+    },
+    "enter_forward_contact_r": {
+     "rect": [
+      259,
+      2474,
+      114,
+      238
+     ],
+     "anchor": [
+      52.0,
+      235.4
+     ],
+     "pixelsPerUnit": 6.0645,
+     "facing": "front_3q",
+     "loop": true,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "both",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/blinblin/art_runs/blinblin-v1-20261107c",
+      "pose": "enter_forward.contact_r",
+      "sha256": "369597cddf9e3246e9989fe1a8e5230a7d319cbdf7f31d16013255bbe220d444",
+      "selected": null,
+      "frameKey": "fbe9e39f11842f171a6987d38f8db7cfc8c92c0ff8f82b5661b51c67dc43c038",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "contrapposto",
+       "anticipation",
+       "no-twinning",
+       "timing-on-beat",
+       "planted-pivot"
+      ]
+     }
+    },
+    "enter_forward_down_l": {
+     "rect": [
+      184,
+      1744,
+      141,
+      242
+     ],
+     "anchor": [
+      84.2,
+      239.4
+     ],
+     "pixelsPerUnit": 6.0645,
+     "facing": "front_3q",
+     "loop": true,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "left",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/blinblin/art_runs/blinblin-v1-20261107c",
+      "pose": "enter_forward.down_l",
+      "sha256": "e434f2565b440290a0428a7367b95db10a214964a510b4c77f536b61a913e57e",
+      "selected": null,
+      "frameKey": "6ebcfe39db965a88a105f682b7e836dcf46cff1d5fa975ae90bb388d6f1823f0",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "contrapposto",
+       "no-twinning",
+       "timing-on-beat",
+       "planted-pivot"
+      ]
+     }
+    },
+    "enter_forward_down_r": {
+     "rect": [
+      327,
+      1744,
+      152,
+      242
+     ],
+     "anchor": [
+      48.8,
+      239.4
+     ],
+     "pixelsPerUnit": 6.0645,
+     "facing": "front_3q",
+     "loop": true,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "right",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/blinblin/art_runs/blinblin-v1-20261107c",
+      "pose": "enter_forward.down_r",
+      "sha256": "465f5d425a44ef70af81e15072c89d3efb94209dc8e466508ce2d36cc0aba7f6",
+      "selected": null,
+      "frameKey": "48522dffcf98b0db7230f107d6ae4e1a5152cc8ccb6c0a695e77d93ddd2095ab",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "contrapposto",
+       "no-twinning",
+       "timing-on-beat",
+       "planted-pivot"
+      ]
+     }
+    },
+    "enter_forward_pass_l": {
+     "rect": [
+      2,
+      2,
+      116,
+      249
+     ],
+     "anchor": [
+      78.2,
+      246.4
+     ],
+     "pixelsPerUnit": 6.0645,
+     "facing": "front_3q",
+     "loop": true,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "left",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/blinblin/art_runs/blinblin-v1-20261107c",
+      "pose": "enter_forward.pass_l",
+      "sha256": "f1ac787a84add50b09223fb55be1594c8d48dd350ddea66db830156892f8db5a",
+      "selected": null,
+      "frameKey": "5f5395e7784af4a7f9ad49c9e033b0229557b5d0aa65af994d132b3b39187cf9",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "contrapposto",
+       "no-twinning",
+       "timing-on-beat",
+       "planted-pivot"
+      ]
+     }
+    },
+    "enter_forward_pass_r": {
+     "rect": [
+      120,
+      2,
+      115,
+      249
+     ],
+     "anchor": [
+      35.8,
+      246.4
+     ],
+     "pixelsPerUnit": 6.0645,
+     "facing": "front_3q",
+     "loop": true,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "right",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/blinblin/art_runs/blinblin-v1-20261107c",
+      "pose": "enter_forward.pass_r",
+      "sha256": "618679689319f47b3df320d01755c19a581e3121600da0726a4016768b81b6b2",
+      "selected": null,
+      "frameKey": "6edb3844904ff9eb5dd486a1a75535e0a765f4e41e81e2e4542a5ffafca0635e",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "contrapposto",
+       "no-twinning",
+       "timing-on-beat",
+       "planted-pivot"
+      ]
+     }
+    },
+    "facing_away": {
+     "rect": [
+      323,
+      2714,
+      165,
+      235
+     ],
+     "anchor": [
+      60.8,
+      232.4
+     ],
+     "pixelsPerUnit": 6.0645,
+     "facing": "rear",
+     "loop": true,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "left",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/blinblin/art_runs/blinblin-v1-20261107c",
+      "pose": "back_groove.down_l",
+      "sha256": "25dbd38ab10837e907a6d163c63c61af1f621a9c956fa0a0852870d5376bc124",
+      "selected": null,
+      "frameKey": "743bc44061925bd58f5c2feedc06c75bbdc431ffacee91c0390d2e5885f681f2",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "contrapposto",
+       "no-twinning",
+       "timing-on-beat",
+       "planted-pivot"
+      ]
+     },
+     "aliasOf": "back_groove_down_l"
+    },
+    "finish": {
+     "rect": [
+      107,
+      1251,
+      130,
+      245
+     ],
+     "anchor": [
+      68.8,
+      242.4
+     ],
+     "pixelsPerUnit": 6.0645,
+     "facing": "front",
+     "loop": false,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "right",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/blinblin/art_runs/blinblin-v1-20261107c",
+      "pose": "finish_turn.finish_b",
+      "sha256": "0d9c10b13e187dce2aca56d94d269e963b1906eccb47f774b08e52de65a66979",
+      "selected": null,
+      "frameKey": "f49bebb3c86ee59b6d7abebd3ab904da69665b90587a01b5ec925516441a21ed",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "line-of-action",
+       "contrapposto",
+       "exaggeration-accent",
+       "no-twinning",
+       "timing-on-beat"
+      ]
+     },
+     "aliasOf": "finish_turn_finish_b"
+    },
+    "finish_turn_finish_a": {
+     "rect": [
+      454,
+      1003,
+      124,
+      246
+     ],
+     "anchor": [
+      52.8,
+      243.4
+     ],
+     "pixelsPerUnit": 6.0645,
+     "facing": "front",
+     "loop": false,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "right",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/blinblin/art_runs/blinblin-v1-20261107c",
+      "pose": "finish_turn.finish_a",
+      "sha256": "f494a6fb7b01bbadcef2b32eda7c41f05b413fac10f333fcc070f068bdc8885f",
+      "selected": null,
+      "frameKey": "203ac175a9faab4d632db62600a14858b4f408f8e20b74976584172ef0c88eb2",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "contrapposto",
+       "exaggeration-accent",
+       "no-twinning",
+       "timing-on-beat"
+      ]
+     }
+    },
+    "finish_turn_finish_b": {
+     "rect": [
+      107,
+      1251,
+      130,
+      245
+     ],
+     "anchor": [
+      68.8,
+      242.4
+     ],
+     "pixelsPerUnit": 6.0645,
+     "facing": "front",
+     "loop": false,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "right",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/blinblin/art_runs/blinblin-v1-20261107c",
+      "pose": "finish_turn.finish_b",
+      "sha256": "0d9c10b13e187dce2aca56d94d269e963b1906eccb47f774b08e52de65a66979",
+      "selected": null,
+      "frameKey": "f49bebb3c86ee59b6d7abebd3ab904da69665b90587a01b5ec925516441a21ed",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "line-of-action",
+       "contrapposto",
+       "exaggeration-accent",
+       "no-twinning",
+       "timing-on-beat"
+      ]
+     }
+    },
+    "finish_turn_turn_in": {
+     "rect": [
+      239,
+      1251,
+      168,
+      245
+     ],
+     "anchor": [
+      40.0,
+      242.4
+     ],
+     "pixelsPerUnit": 6.0645,
+     "facing": "front_3q",
+     "loop": false,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "both",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/blinblin/art_runs/blinblin-v1-20261107c",
+      "pose": "finish_turn.turn_in",
+      "sha256": "7f85405f39f14cb52e4532f3b55b95c11502a2b6052cfb2bba02ff907a4c5c36",
+      "selected": null,
+      "frameKey": "d70e02580b2d9a4fa485cedb4097e8ba6aaae81d58dc37e8ce62f4dc84e59863",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "contrapposto",
+       "no-twinning",
+       "timing-on-beat",
+       "planted-pivot"
+      ]
+     }
+    },
+    "finish_turn_turn_out": {
+     "rect": [
+      409,
+      1251,
+      168,
+      245
+     ],
+     "anchor": [
+      128.0,
+      242.4
+     ],
+     "pixelsPerUnit": 6.0645,
+     "facing": "front_3q",
+     "loop": false,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "both",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/blinblin/art_runs/blinblin-v1-20261107c",
+      "pose": "finish_turn.turn_out",
+      "sha256": "ea029ba5474ef450e48a84f4ae9e5d0da29b0cef99303d0ac3b0a29a9a2877b3",
+      "selected": null,
+      "frameKey": "ae676ff862629313e62ae89b6260e9fea3d8aaa51f0ac06ee2e5f561876dff8e",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "contrapposto",
+       "no-twinning",
+       "timing-on-beat",
+       "planted-pivot"
+      ]
+     }
+    },
+    "follow_left": {
+     "rect": [
+      432,
+      2232,
+      105,
+      239
+     ],
+     "anchor": [
+      30.8,
+      236.4
+     ],
+     "pixelsPerUnit": 6.0645,
+     "facing": "front",
+     "loop": false,
+     "durationBeats": 1.0,
+     "events": [],
+     "supportFoot": "right",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/blinblin/art_runs/blinblin-v1-20261107c",
+      "pose": "left_hand.follow",
+      "sha256": "144d21bfe47dfff9900dc598cf689f253364d1397e21bed6dd9a2f8f4d2a024b",
+      "selected": null,
+      "frameKey": "3d3013979e0ba849a1b8cea3c9a4e8156146a5f9ac23724b318f0ecd1fba1810",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "contrapposto",
+       "follow-through",
+       "no-twinning",
+       "timing-on-beat"
+      ]
+     },
+     "aliasOf": "left_hand_follow"
+    },
+    "follow_right": {
+     "rect": [
+      539,
+      2232,
+      147,
+      239
+     ],
+     "anchor": [
+      107.2,
+      236.4
+     ],
+     "pixelsPerUnit": 6.0645,
+     "facing": "front",
+     "loop": false,
+     "durationBeats": 1.0,
+     "events": [],
+     "supportFoot": "left",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/blinblin/art_runs/blinblin-v1-20261107c",
+      "pose": "right_hand.follow",
+      "sha256": "ff9743dde6cfb4f2a58e18779c2639ab00946358fe329279fb4e61b1b33c0616",
+      "selected": null,
+      "frameKey": "b0b96c4454506e58f3b704b1dcfdf20165a34ef7c2b2a90e8a49055b39533910",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "contrapposto",
+       "follow-through",
+       "no-twinning",
+       "timing-on-beat"
+      ]
+     },
+     "aliasOf": "right_hand_follow"
+    },
+    "groove_down_l": {
+     "rect": [
+      171,
+      2714,
+      150,
+      235
+     ],
+     "anchor": [
+      98.2,
+      232.4
+     ],
+     "pixelsPerUnit": 6.0645,
+     "facing": "front",
+     "loop": true,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "left",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/blinblin/art_runs/blinblin-v1-20261107c",
+      "pose": "groove.down_l",
+      "sha256": "ec520f81be47bad68c896d2572183a8c0cc288fa14df3e123f7e70ede926840f",
+      "selected": null,
+      "frameKey": "9285c82b070064af7f12f1ff7b5d2adb0002dcfd2f1d32fe11a3a7b136c174c9",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "contrapposto",
+       "secondary-action",
+       "no-twinning",
+       "timing-on-beat",
+       "planted-pivot"
+      ]
+     }
+    },
+    "groove_down_r": {
+     "rect": [
+      2,
+      2714,
+      167,
+      236
+     ],
+     "anchor": [
+      76.8,
+      233.4
+     ],
+     "pixelsPerUnit": 6.0645,
+     "facing": "front",
+     "loop": true,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "right",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/blinblin/art_runs/blinblin-v1-20261107c",
+      "pose": "groove.down_r",
+      "sha256": "f689f5a90d1f88e468aab0ec73c9304a7a74c1d3b72a1e30ba16825d0aa3c3eb",
+      "selected": null,
+      "frameKey": "8f705bec9d4d2bb1d7f8dd17f144c11e0cd3e31df789da19dd8a5fd1ee50d3cf",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "contrapposto",
+       "secondary-action",
+       "no-twinning",
+       "timing-on-beat",
+       "planted-pivot"
+      ]
+     }
+    },
+    "groove_pass_l": {
+     "rect": [
+      2,
+      754,
+      168,
+      247
+     ],
+     "anchor": [
+      94.2,
+      243.4
+     ],
+     "pixelsPerUnit": 6.0645,
+     "facing": "front",
+     "loop": true,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "left",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/blinblin/art_runs/blinblin-v1-20261107c",
+      "pose": "groove.pass_l",
+      "sha256": "6305bd1b6a399ebc3dc889d5f8c58accda4f31b3dead4fecbd1e4e39e76110f1",
+      "selected": null,
+      "frameKey": "72fff3df844a8b4707502742a858dad33796ead4df3fd08163d786a9dcaec78e",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "contrapposto",
+       "secondary-action",
+       "no-twinning",
+       "timing-on-beat",
+       "planted-pivot"
+      ]
+     }
+    },
+    "groove_pass_l2": {
+     "rect": [
+      2,
+      1003,
+      167,
+      246
+     ],
+     "anchor": [
+      104.8,
+      243.4
+     ],
+     "pixelsPerUnit": 6.0645,
+     "facing": "front",
+     "loop": true,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "right",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/blinblin/art_runs/blinblin-v1-20261107c",
+      "pose": "groove.pass_l2",
+      "sha256": "6783bdfaaa2da8ed603b679310a383cf255446e692fb63ce891850619e5d174d",
+      "selected": null,
+      "frameKey": "656cc5e128e1cedeafa21b262a398b014552868047e3529a6c95f682566f7efc",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "line-of-action",
+       "contrapposto",
+       "exaggeration-accent",
+       "secondary-action",
+       "no-twinning",
+       "timing-on-beat",
+       "planted-pivot"
+      ]
+     }
+    },
+    "groove_pass_r": {
+     "rect": [
+      172,
+      754,
+      151,
+      247
+     ],
+     "anchor": [
+      72.8,
+      244.4
+     ],
+     "pixelsPerUnit": 6.0645,
+     "facing": "front",
+     "loop": true,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "right",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/blinblin/art_runs/blinblin-v1-20261107c",
+      "pose": "groove.pass_r",
+      "sha256": "beec0a63b6ea97f769a06f843261d652b6731b3135a445d8e134b992704c0ec4",
+      "selected": null,
+      "frameKey": "83e53718f966d0a830fe5f22ced3202d1db16d9b0e7852ff81fb79cdc45a0d23",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "contrapposto",
+       "secondary-action",
+       "no-twinning",
+       "timing-on-beat",
+       "planted-pivot"
+      ]
+     }
+    },
+    "groove_pass_r2": {
+     "rect": [
+      171,
+      1003,
+      171,
+      246
+     ],
+     "anchor": [
+      74.2,
+      243.4
+     ],
+     "pixelsPerUnit": 6.0645,
+     "facing": "front",
+     "loop": true,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "left",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/blinblin/art_runs/blinblin-v1-20261107c",
+      "pose": "groove.pass_r2",
+      "sha256": "d7b4cd3571c895bee14bc6002e32fbd8e58d42c2f140c02c7f6bc6572464065a",
+      "selected": null,
+      "frameKey": "113bebc516b4d9645e94e207b647f06dd47d7740be2cdab8e169d9ba4fb8838c",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "line-of-action",
+       "contrapposto",
+       "exaggeration-accent",
+       "secondary-action",
+       "no-twinning",
+       "timing-on-beat",
+       "planted-pivot"
+      ]
+     }
+    },
+    "groove_up_l": {
+     "rect": [
+      107,
+      253,
+      105,
+      248
+     ],
+     "anchor": [
+      54.0,
+      245.4
+     ],
+     "pixelsPerUnit": 6.0645,
+     "facing": "front",
+     "loop": true,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "both",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/blinblin/art_runs/blinblin-v1-20261107c",
+      "pose": "groove.up_l",
+      "sha256": "181c6b314f3015cc570d34bab15c824660e0e1f91c13c8b0543efd5f4b1a709b",
+      "selected": null,
+      "frameKey": "dc2efa9b8b4684e77b09cf1f7412466af9903dd565b29ab16eb23a0489df20eb",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "contrapposto",
+       "secondary-action",
+       "no-twinning",
+       "timing-on-beat",
+       "planted-pivot"
+      ]
+     }
+    },
+    "groove_up_r": {
+     "rect": [
+      214,
+      253,
+      106,
+      248
+     ],
+     "anchor": [
+      50.0,
+      245.4
+     ],
+     "pixelsPerUnit": 6.0645,
+     "facing": "front",
+     "loop": true,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "both",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/blinblin/art_runs/blinblin-v1-20261107c",
+      "pose": "groove.up_r",
+      "sha256": "83c05178513e39baec6843aca89157b0bd89fd7bbf89272b160c1633ebb9313d",
+      "selected": null,
+      "frameKey": "924c8cc3086a638bf62960eda85899b1f600591ea68c2debaa747ff3ffb117ad",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "contrapposto",
+       "secondary-action",
+       "no-twinning",
+       "timing-on-beat",
+       "planted-pivot"
+      ]
+     }
+    },
+    "invite": {
+     "rect": [
+      102,
+      1498,
+      171,
+      244
+     ],
+     "anchor": [
+      106.8,
+      240.4
+     ],
+     "pixelsPerUnit": 6.0645,
+     "facing": "front",
+     "loop": false,
+     "durationBeats": 2.0,
+     "events": [
+      {
+       "beat": 1.0,
+       "type": "accent",
+       "drawing": "offer"
+      }
+     ],
+     "supportFoot": "right",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/blinblin/art_runs/blinblin-v1-20261107c",
+      "pose": "challenge.offer",
+      "sha256": "16ae23df9a24c9db93ac462234084250515917164fd060d36a955f0ca4f4124c",
+      "selected": null,
+      "frameKey": "0fa7b39992f249097f92edbb6e80850d3259e6c285476c9eae151e023a201aa5",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "line-of-action",
+       "contrapposto",
+       "exaggeration-accent",
+       "no-twinning",
+       "timing-on-beat"
+      ]
+     },
+     "aliasOf": "challenge_offer"
+    },
+    "left_foot": {
+     "rect": [
+      529,
+      1989,
+      161,
+      240
+     ],
+     "anchor": [
+      68.8,
+      237.4
+     ],
+     "pixelsPerUnit": 6.0645,
+     "facing": "front",
+     "loop": false,
+     "durationBeats": 1.0,
+     "events": [
+      {
+       "beat": 0.25,
+       "type": "accent",
+       "drawing": "peak"
+      }
+     ],
+     "supportFoot": "right",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/blinblin/art_runs/blinblin-v1-20261107c",
+      "pose": "left_foot.peak",
+      "sha256": "31691c6e2504f774b0f5d68c3f01cd7fae9d4d83a81d4d1094de8dc217676220",
+      "selected": null,
+      "frameKey": "f955683b16259a183e579ae40a401f9c91172f147a3aa3168e6954f7d2d32b68",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "line-of-action",
+       "contrapposto",
+       "exaggeration-accent",
+       "no-twinning",
+       "timing-on-beat"
+      ]
+     },
+     "aliasOf": "left_foot_peak"
+    },
+    "left_foot_follow": {
+     "rect": [
+      782,
+      1744,
+      165,
+      241
+     ],
+     "anchor": [
+      65.8,
+      238.4
+     ],
+     "pixelsPerUnit": 6.0645,
+     "facing": "front",
+     "loop": false,
+     "durationBeats": 1.0,
+     "events": [],
+     "supportFoot": "right",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/blinblin/art_runs/blinblin-v1-20261107c",
+      "pose": "left_foot.follow",
+      "sha256": "d62a588e1dae607ec628fa97555dbda37824fe658db49f3ea12300619f74edb5",
+      "selected": null,
+      "frameKey": "4639792f2032ac293d685e4c3243d02f59c6c3814e73707bfd5c32fd15906e57",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "contrapposto",
+       "follow-through",
+       "no-twinning",
+       "timing-on-beat"
+      ]
+     }
+    },
+    "left_foot_peak": {
+     "rect": [
+      529,
+      1989,
+      161,
+      240
+     ],
+     "anchor": [
+      68.8,
+      237.4
+     ],
+     "pixelsPerUnit": 6.0645,
+     "facing": "front",
+     "loop": false,
+     "durationBeats": 1.0,
+     "events": [
+      {
+       "beat": 0.25,
+       "type": "accent",
+       "drawing": "peak"
+      }
+     ],
+     "supportFoot": "right",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/blinblin/art_runs/blinblin-v1-20261107c",
+      "pose": "left_foot.peak",
+      "sha256": "31691c6e2504f774b0f5d68c3f01cd7fae9d4d83a81d4d1094de8dc217676220",
+      "selected": null,
+      "frameKey": "f955683b16259a183e579ae40a401f9c91172f147a3aa3168e6954f7d2d32b68",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "line-of-action",
+       "contrapposto",
+       "exaggeration-accent",
+       "no-twinning",
+       "timing-on-beat"
+      ]
+     }
+    },
+    "left_foot_prep": {
+     "rect": [
+      506,
+      2474,
+      154,
+      237
+     ],
+     "anchor": [
+      83.8,
+      234.4
+     ],
+     "pixelsPerUnit": 6.0645,
+     "facing": "front",
+     "loop": false,
+     "durationBeats": 1.0,
+     "events": [],
+     "supportFoot": "right",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/blinblin/art_runs/blinblin-v1-20261107c",
+      "pose": "left_foot.prep",
+      "sha256": "9bbcf5b7ece816dd264b8dbdff02258c5082ee4931c3eca57b72c17401955bb6",
+      "selected": null,
+      "frameKey": "3178c20e8b0491d2346236daabe94100974f15c36451837b7d536cceaf9cc605",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "contrapposto",
+       "anticipation",
+       "no-twinning",
+       "timing-on-beat"
+      ]
+     }
+    },
+    "left_foot_return": {
+     "rect": [
+      634,
+      253,
+      105,
+      248
+     ],
+     "anchor": [
+      54.0,
+      245.4
+     ],
+     "pixelsPerUnit": 6.0645,
+     "facing": "front",
+     "loop": false,
+     "durationBeats": 1.0,
+     "events": [],
+     "supportFoot": "both",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/blinblin/art_runs/blinblin-v1-20261107c",
+      "pose": "left_foot.return",
+      "sha256": "7f7771844c5b5d1f4e4e47f012a8adb46b1e29fec8a2b9e2d5f4f4245fa89502",
+      "selected": null,
+      "frameKey": "0be0444d8db04a14771c8bae759085ef9727c6bc18fded2abc53b7c2868ec9ef",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "contrapposto",
+       "follow-through",
+       "no-twinning",
+       "timing-on-beat"
+      ]
+     }
+    },
+    "left_hand": {
+     "rect": [
+      275,
+      1498,
+      161,
+      243
+     ],
+     "anchor": [
+      43.8,
+      240.4
+     ],
+     "pixelsPerUnit": 6.0645,
+     "facing": "front",
+     "loop": false,
+     "durationBeats": 1.0,
+     "events": [
+      {
+       "beat": 0.25,
+       "type": "accent",
+       "drawing": "peak"
+      }
+     ],
+     "supportFoot": "right",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/blinblin/art_runs/blinblin-v1-20261107c",
+      "pose": "left_hand.peak",
+      "sha256": "ede6ab9a572c1c1db234610d7dd36185761be01c65b08b206147690b456153cf",
+      "selected": null,
+      "frameKey": "0d2ba0aaa73704948623af3e9cd25dd51cd8c1f219c7c7d7d268a73f034bd256",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "line-of-action",
+       "contrapposto",
+       "exaggeration-accent",
+       "no-twinning",
+       "timing-on-beat"
+      ]
+     },
+     "aliasOf": "left_hand_peak"
+    },
+    "left_hand_follow": {
+     "rect": [
+      432,
+      2232,
+      105,
+      239
+     ],
+     "anchor": [
+      30.8,
+      236.4
+     ],
+     "pixelsPerUnit": 6.0645,
+     "facing": "front",
+     "loop": false,
+     "durationBeats": 1.0,
+     "events": [],
+     "supportFoot": "right",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/blinblin/art_runs/blinblin-v1-20261107c",
+      "pose": "left_hand.follow",
+      "sha256": "144d21bfe47dfff9900dc598cf689f253364d1397e21bed6dd9a2f8f4d2a024b",
+      "selected": null,
+      "frameKey": "3d3013979e0ba849a1b8cea3c9a4e8156146a5f9ac23724b318f0ecd1fba1810",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "contrapposto",
+       "follow-through",
+       "no-twinning",
+       "timing-on-beat"
+      ]
+     }
+    },
+    "left_hand_peak": {
+     "rect": [
+      275,
+      1498,
+      161,
+      243
+     ],
+     "anchor": [
+      43.8,
+      240.4
+     ],
+     "pixelsPerUnit": 6.0645,
+     "facing": "front",
+     "loop": false,
+     "durationBeats": 1.0,
+     "events": [
+      {
+       "beat": 0.25,
+       "type": "accent",
+       "drawing": "peak"
+      }
+     ],
+     "supportFoot": "right",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/blinblin/art_runs/blinblin-v1-20261107c",
+      "pose": "left_hand.peak",
+      "sha256": "ede6ab9a572c1c1db234610d7dd36185761be01c65b08b206147690b456153cf",
+      "selected": null,
+      "frameKey": "0d2ba0aaa73704948623af3e9cd25dd51cd8c1f219c7c7d7d268a73f034bd256",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "line-of-action",
+       "contrapposto",
+       "exaggeration-accent",
+       "no-twinning",
+       "timing-on-beat"
+      ]
+     }
+    },
+    "left_hand_prep": {
+     "rect": [
+      375,
+      2474,
+      129,
+      237
+     ],
+     "anchor": [
+      76.8,
+      234.4
+     ],
+     "pixelsPerUnit": 6.0645,
+     "facing": "front",
+     "loop": false,
+     "durationBeats": 1.0,
+     "events": [],
+     "supportFoot": "right",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/blinblin/art_runs/blinblin-v1-20261107c",
+      "pose": "left_hand.prep",
+      "sha256": "ea0c94bbfe51483c3382900a7291ff72a237bd1b08a4c1a49c7c98beb4f2cf77",
+      "selected": null,
+      "frameKey": "80f2a11045bc8e58b1863d26f6eea12cd414efcc3888c6bec91ba3c8706f88e9",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "contrapposto",
+       "anticipation",
+       "no-twinning",
+       "timing-on-beat"
+      ]
+     }
+    },
+    "left_hand_return": {
+     "rect": [
+      322,
+      253,
+      154,
+      248
+     ],
+     "anchor": [
+      65.0,
+      245.4
+     ],
+     "pixelsPerUnit": 6.0645,
+     "facing": "front",
+     "loop": false,
+     "durationBeats": 1.0,
+     "events": [],
+     "supportFoot": "both",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/blinblin/art_runs/blinblin-v1-20261107c",
+      "pose": "left_hand.return",
+      "sha256": "e1454cb2f2b1de45a5efad467dfaa4939ad0a511f51f1cee5d94c5090c92c4d9",
+      "selected": null,
+      "frameKey": "2b2a38e615a59b3e8c21734e1722a11ce6a5fbaa2ccfa2fae77c4bf98b5aa793",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "contrapposto",
+       "follow-through",
+       "no-twinning",
+       "timing-on-beat"
+      ]
+     }
+    },
+    "occupied": {
+     "rect": [
+      171,
+      2714,
+      150,
+      235
+     ],
+     "anchor": [
+      98.2,
+      232.4
+     ],
+     "pixelsPerUnit": 6.0645,
+     "facing": "front",
+     "loop": true,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "left",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/blinblin/art_runs/blinblin-v1-20261107c",
+      "pose": "groove.down_l",
+      "sha256": "ec520f81be47bad68c896d2572183a8c0cc288fa14df3e123f7e70ede926840f",
+      "selected": null,
+      "frameKey": "9285c82b070064af7f12f1ff7b5d2adb0002dcfd2f1d32fe11a3a7b136c174c9",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "contrapposto",
+       "secondary-action",
+       "no-twinning",
+       "timing-on-beat",
+       "planted-pivot"
+      ]
+     },
+     "aliasOf": "groove_down_l"
+    },
+    "ready": {
+     "rect": [
+      755,
+      2,
+      125,
+      249
+     ],
+     "anchor": [
+      69.0,
+      246.4
+     ],
+     "pixelsPerUnit": 6.0645,
+     "facing": "front",
+     "loop": false,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "both",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/blinblin/art_runs/blinblin-v1-20261107c",
+      "pose": "challenge.return",
+      "sha256": "6a1b5a71f3994947fbb62ffe21200ba8bda681590a140283492b8258838d5414",
+      "selected": null,
+      "frameKey": "fa8629d123d4da8e35f932962814588b08a72442f0b420db77035dba980f9721",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "contrapposto",
+       "follow-through",
+       "no-twinning",
+       "timing-on-beat"
+      ]
+     },
+     "aliasOf": "challenge_return"
+    },
+    "reassurance_notice": {
+     "rect": [
+      882,
+      2,
+      126,
+      249
+     ],
+     "anchor": [
+      71.0,
+      245.4
+     ],
+     "pixelsPerUnit": 6.0645,
+     "facing": "front",
+     "loop": false,
+     "durationBeats": 1.5,
+     "events": [],
+     "supportFoot": "both",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/blinblin/art_runs/blinblin-v1-20261107c",
+      "pose": "reassurance.notice",
+      "sha256": "a82bd8c039947d7a84c3140a1613a7840784d4eaa9922e67c347cb6a11a91bf5",
+      "selected": null,
+      "frameKey": "2f089ef2ca76ca080047e6f2a7d1586c0b60ad869eb7563f8cb1801cfcade232",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "contrapposto",
+       "anticipation",
+       "no-twinning",
+       "timing-on-beat"
+      ]
+     }
+    },
+    "reassurance_open_hand": {
+     "rect": [
+      324,
+      1989,
+      203,
+      241
+     ],
+     "anchor": [
+      102.0,
+      238.4
+     ],
+     "pixelsPerUnit": 6.0645,
+     "facing": "front",
+     "loop": false,
+     "durationBeats": 1.5,
+     "events": [
+      {
+       "beat": 0.5,
+       "type": "accent",
+       "drawing": "open_hand"
+      }
+     ],
+     "supportFoot": "both",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/blinblin/art_runs/blinblin-v1-20261107c",
+      "pose": "reassurance.open_hand",
+      "sha256": "31d27c60394209847c6fcb7aded018310a3ee48e9b21044c2a47130ae66efbc8",
+      "selected": null,
+      "frameKey": "fd0a33c03a8c888dc4cb8da1044b4e3027bf64b3f5eb8f1bdcc021458a3b494d",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "line-of-action",
+       "contrapposto",
+       "exaggeration-accent",
+       "no-twinning",
+       "timing-on-beat"
+      ]
+     }
+    },
+    "reassurance_settle": {
+     "rect": [
+      779,
+      2232,
+      161,
+      239
+     ],
+     "anchor": [
+      91.2,
+      236.4
+     ],
+     "pixelsPerUnit": 6.0645,
+     "facing": "front",
+     "loop": false,
+     "durationBeats": 1.5,
+     "events": [],
+     "supportFoot": "left",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/blinblin/art_runs/blinblin-v1-20261107c",
+      "pose": "reassurance.settle",
+      "sha256": "4b1831bc07146cccca6bdd62341a565884f3c175a47f236b966aa84888f315e1",
+      "selected": null,
+      "frameKey": "7a307016462d7da37626e3860e8cac19ba5f956d3361871c24a3652d0152ed56",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "contrapposto",
+       "follow-through",
+       "no-twinning",
+       "timing-on-beat"
+      ]
+     }
+    },
+    "recover": {
+     "rect": [
+      324,
+      1989,
+      203,
+      241
+     ],
+     "anchor": [
+      102.0,
+      238.4
+     ],
+     "pixelsPerUnit": 6.0645,
+     "facing": "front",
+     "loop": false,
+     "durationBeats": 1.5,
+     "events": [
+      {
+       "beat": 0.5,
+       "type": "accent",
+       "drawing": "open_hand"
+      }
+     ],
+     "supportFoot": "both",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/blinblin/art_runs/blinblin-v1-20261107c",
+      "pose": "reassurance.open_hand",
+      "sha256": "31d27c60394209847c6fcb7aded018310a3ee48e9b21044c2a47130ae66efbc8",
+      "selected": null,
+      "frameKey": "fd0a33c03a8c888dc4cb8da1044b4e3027bf64b3f5eb8f1bdcc021458a3b494d",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "line-of-action",
+       "contrapposto",
+       "exaggeration-accent",
+       "no-twinning",
+       "timing-on-beat"
+      ]
+     },
+     "aliasOf": "reassurance_open_hand"
+    },
+    "retreat_backward_contact_l": {
+     "rect": [
+      741,
+      1251,
+      91,
+      244
+     ],
+     "anchor": [
+      54.2,
+      241.4
+     ],
+     "pixelsPerUnit": 6.0645,
+     "facing": "front_3q",
+     "loop": true,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "both",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/blinblin/art_runs/blinblin-v1-20261107c",
+      "pose": "retreat_backward.contact_l",
+      "sha256": "e4a531eec6b59ce8082d661169b97f5a43b22ca31e4dc76e4f23572a2166ec74",
+      "selected": null,
+      "frameKey": "58d0b1d8d510e4c6aa5af40f5ccfe8b0a6075431b5fb0a00c340d867ae369b9e",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "contrapposto",
+       "anticipation",
+       "no-twinning",
+       "timing-on-beat",
+       "planted-pivot"
+      ]
+     }
+    },
+    "retreat_backward_contact_r": {
+     "rect": [
+      834,
+      1251,
+      113,
+      244
+     ],
+     "anchor": [
+      65.6,
+      241.4
+     ],
+     "pixelsPerUnit": 6.0645,
+     "facing": "front_3q",
+     "loop": true,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "both",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/blinblin/art_runs/blinblin-v1-20261107c",
+      "pose": "retreat_backward.contact_r",
+      "sha256": "c914db1e1886731728e604cc40760872612bc001172a38193fff301923937ba5",
+      "selected": null,
+      "frameKey": "705d5b8defb5ffbbd7654ac140597d4d53fb49fda4fa2afdd6cc20e4625afe89",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "contrapposto",
+       "anticipation",
+       "no-twinning",
+       "timing-on-beat",
+       "planted-pivot"
+      ]
+     }
+    },
+    "retreat_backward_down_l": {
+     "rect": [
+      344,
+      1003,
+      108,
+      246
+     ],
+     "anchor": [
+      88.2,
+      242.4
+     ],
+     "pixelsPerUnit": 6.0645,
+     "facing": "front_3q",
+     "loop": true,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "left",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/blinblin/art_runs/blinblin-v1-20261107c",
+      "pose": "retreat_backward.down_l",
+      "sha256": "e0617d6e423e1d86b6737c8359185da7061c12abd5347886703e9459008acdf7",
+      "selected": null,
+      "frameKey": "160deb6f71974f682bb9b0f27c3000844a9d128a57ffb890a675532d0ab6f58b",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "contrapposto",
+       "no-twinning",
+       "timing-on-beat",
+       "planted-pivot"
+      ]
+     }
+    },
+    "retreat_backward_down_r": {
+     "rect": [
+      858,
+      1003,
+      104,
+      245
+     ],
+     "anchor": [
+      45.8,
+      242.4
+     ],
+     "pixelsPerUnit": 6.0645,
+     "facing": "front_3q",
+     "loop": true,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "right",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/blinblin/art_runs/blinblin-v1-20261107c",
+      "pose": "retreat_backward.down_r",
+      "sha256": "402eda1fcc682033e0d02bd339e6034f9caff7d147e086ec5d33531f66d78739",
+      "selected": null,
+      "frameKey": "6005ec5b7796ae3fcbc6e0d539e75f90daa32facb77d684c6833058f151f3932",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "contrapposto",
+       "no-twinning",
+       "timing-on-beat",
+       "planted-pivot"
+      ]
+     }
+    },
+    "retreat_backward_pass_l": {
+     "rect": [
+      846,
+      253,
+      98,
+      248
+     ],
+     "anchor": [
+      84.2,
+      245.4
+     ],
+     "pixelsPerUnit": 6.0645,
+     "facing": "front_3q",
+     "loop": true,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "left",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/blinblin/art_runs/blinblin-v1-20261107c",
+      "pose": "retreat_backward.pass_l",
+      "sha256": "ae73f10b06aef085288ce9f45e46b476038afe43581fa687114e69b5839b3609",
+      "selected": null,
+      "frameKey": "1b5c49679b90d5a81586f22c36e84759cb711e3d9ad8b1a1b3dcc10c862dc1ad",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "contrapposto",
+       "no-twinning",
+       "timing-on-beat",
+       "planted-pivot"
+      ]
+     }
+    },
+    "retreat_backward_pass_r": {
+     "rect": [
+      2,
+      504,
+      92,
+      248
+     ],
+     "anchor": [
+      47.8,
+      245.4
+     ],
+     "pixelsPerUnit": 6.0645,
+     "facing": "front_3q",
+     "loop": true,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "right",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/blinblin/art_runs/blinblin-v1-20261107c",
+      "pose": "retreat_backward.pass_r",
+      "sha256": "05029dfc2da6e5ddb7940c359a7d5ee7a9eb8c75ded40a4d1f515c612dfa2aac",
+      "selected": null,
+      "frameKey": "24744ed30535ee76222baa257de78c7281a4f8c730ffd23e32fccb2b1356545d",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "contrapposto",
+       "no-twinning",
+       "timing-on-beat",
+       "planted-pivot"
+      ]
+     }
+    },
+    "reveal_front_3q": {
+     "rect": [
+      773,
+      754,
+      80,
+      247
+     ],
+     "anchor": [
+      47.0,
+      244.4
+     ],
+     "pixelsPerUnit": 6.0645,
+     "facing": "front_3q",
+     "loop": false,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "both",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/blinblin/art_runs/blinblin-v1-20261107c",
+      "pose": "reveal.front_3q",
+      "sha256": "06f0288151ec3e8cce12a51dc252636e72fd512abb2b969b6998c8e9a6946f11",
+      "selected": null,
+      "frameKey": "7f36078947f8efaaf2c79c2e04546b4553a8a06d7a8ff2234b5c69594de4abd8",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "contrapposto",
+       "follow-through",
+       "no-twinning",
+       "timing-on-beat"
+      ]
+     }
+    },
+    "reveal_glance": {
+     "rect": [
+      2,
+      253,
+      103,
+      249
+     ],
+     "anchor": [
+      56.0,
+      245.4
+     ],
+     "pixelsPerUnit": 6.0645,
+     "facing": "rear",
+     "loop": false,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "both",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/blinblin/art_runs/blinblin-v1-20261107c",
+      "pose": "reveal.glance",
+      "sha256": "353a6a3ad77091f31255d8ea305c1013bc086d7f550213cda90ede735a8e03ee",
+      "selected": null,
+      "frameKey": "c3196ee6ee3e9165cab173b0782934d7863dad00a7e76a58adc8f451a3885b11",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "contrapposto",
+       "no-twinning",
+       "timing-on-beat"
+      ]
+     }
+    },
+    "reveal_profile": {
+     "rect": [
+      744,
+      504,
+      80,
+      248
+     ],
+     "anchor": [
+      43.0,
+      245.4
+     ],
+     "pixelsPerUnit": 6.0645,
+     "facing": "profile",
+     "loop": false,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "both",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/blinblin/art_runs/blinblin-v1-20261107c",
+      "pose": "reveal.profile",
+      "sha256": "6df118d8467b87c93215d806ddfe308f657e33cbf22183e8668fd95883d00b14",
+      "selected": null,
+      "frameKey": "89011101c168617046f13260b15f88b33458ec02de936a8b14a3945b21b8c757",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "contrapposto",
+       "no-twinning",
+       "timing-on-beat",
+       "planted-pivot"
+      ]
+     }
+    },
+    "reveal_rear_3q": {
+     "rect": [
+      653,
+      504,
+      89,
+      248
+     ],
+     "anchor": [
+      44.0,
+      245.4
+     ],
+     "pixelsPerUnit": 6.0645,
+     "facing": "rear_3q",
+     "loop": false,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "both",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/blinblin/art_runs/blinblin-v1-20261107c",
+      "pose": "reveal.rear_3q",
+      "sha256": "66e16780a5b05b0613ff8cf4160aeb95b5f383741f6815657ea81ae2d1cde344",
+      "selected": null,
+      "frameKey": "05e104b12823d10a85727ac23a52f0bead950b701a13c0ee863189a5424c4865",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "contrapposto",
+       "no-twinning",
+       "timing-on-beat",
+       "planted-pivot"
+      ]
+     }
+    },
+    "reveal_turn": {
+     "rect": [
+      744,
+      504,
+      80,
+      248
+     ],
+     "anchor": [
+      43.0,
+      245.4
+     ],
+     "pixelsPerUnit": 6.0645,
+     "facing": "profile",
+     "loop": false,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "both",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/blinblin/art_runs/blinblin-v1-20261107c",
+      "pose": "reveal.profile",
+      "sha256": "6df118d8467b87c93215d806ddfe308f657e33cbf22183e8668fd95883d00b14",
+      "selected": null,
+      "frameKey": "89011101c168617046f13260b15f88b33458ec02de936a8b14a3945b21b8c757",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "contrapposto",
+       "no-twinning",
+       "timing-on-beat",
+       "planted-pivot"
+      ]
+     },
+     "aliasOf": "reveal_profile"
+    },
+    "right_foot": {
+     "rect": [
+      692,
+      1989,
+      179,
+      240
+     ],
+     "anchor": [
+      110.2,
+      237.4
+     ],
+     "pixelsPerUnit": 6.0645,
+     "facing": "front",
+     "loop": false,
+     "durationBeats": 1.0,
+     "events": [
+      {
+       "beat": 0.25,
+       "type": "accent",
+       "drawing": "peak"
+      }
+     ],
+     "supportFoot": "left",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/blinblin/art_runs/blinblin-v1-20261107c",
+      "pose": "right_foot.peak",
+      "sha256": "a1003031d3a11bf03042fdaf3a27d38cc40f860d438d07422ff8db596034199b",
+      "selected": null,
+      "frameKey": "05cf7187e92c1e9006fff28e6e6b8d8a3590ca9269e79f40abd86331aa997c75",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "line-of-action",
+       "contrapposto",
+       "exaggeration-accent",
+       "no-twinning",
+       "timing-on-beat"
+      ]
+     },
+     "aliasOf": "right_foot_peak"
+    },
+    "right_foot_follow": {
+     "rect": [
+      2,
+      1989,
+      171,
+      241
+     ],
+     "anchor": [
+      107.2,
+      238.4
+     ],
+     "pixelsPerUnit": 6.0645,
+     "facing": "front",
+     "loop": false,
+     "durationBeats": 1.0,
+     "events": [],
+     "supportFoot": "left",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/blinblin/art_runs/blinblin-v1-20261107c",
+      "pose": "right_foot.follow",
+      "sha256": "12bc73db9b5cfb520851ae06b4756dd24c52defc4602fc2cde2b232a2d39b535",
+      "selected": null,
+      "frameKey": "f86f96127fb4f8c837f5c40ab19f4b3eded5cdc67b460254aa4c5b2152833304",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "contrapposto",
+       "follow-through",
+       "no-twinning",
+       "timing-on-beat"
+      ]
+     }
+    },
+    "right_foot_peak": {
+     "rect": [
+      692,
+      1989,
+      179,
+      240
+     ],
+     "anchor": [
+      110.2,
+      237.4
+     ],
+     "pixelsPerUnit": 6.0645,
+     "facing": "front",
+     "loop": false,
+     "durationBeats": 1.0,
+     "events": [
+      {
+       "beat": 0.25,
+       "type": "accent",
+       "drawing": "peak"
+      }
+     ],
+     "supportFoot": "left",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/blinblin/art_runs/blinblin-v1-20261107c",
+      "pose": "right_foot.peak",
+      "sha256": "a1003031d3a11bf03042fdaf3a27d38cc40f860d438d07422ff8db596034199b",
+      "selected": null,
+      "frameKey": "05cf7187e92c1e9006fff28e6e6b8d8a3590ca9269e79f40abd86331aa997c75",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "line-of-action",
+       "contrapposto",
+       "exaggeration-accent",
+       "no-twinning",
+       "timing-on-beat"
+      ]
+     }
+    },
+    "right_foot_prep": {
+     "rect": [
+      662,
+      2474,
+      162,
+      237
+     ],
+     "anchor": [
+      72.2,
+      234.4
+     ],
+     "pixelsPerUnit": 6.0645,
+     "facing": "front",
+     "loop": false,
+     "durationBeats": 1.0,
+     "events": [],
+     "supportFoot": "left",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/blinblin/art_runs/blinblin-v1-20261107c",
+      "pose": "right_foot.prep",
+      "sha256": "7544e0cdd3e2a7dcc52a88116fe4c06a43c58e6eefbc5d88f6e8064737968c43",
+      "selected": null,
+      "frameKey": "c821ea8823862b68ae4d0aa9045e7e3a6f00e62bdf3498ec9c6746cd7a47efd9",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "contrapposto",
+       "anticipation",
+       "no-twinning",
+       "timing-on-beat"
+      ]
+     }
+    },
+    "right_foot_return": {
+     "rect": [
+      741,
+      253,
+      103,
+      248
+     ],
+     "anchor": [
+      48.0,
+      245.4
+     ],
+     "pixelsPerUnit": 6.0645,
+     "facing": "front",
+     "loop": false,
+     "durationBeats": 1.0,
+     "events": [],
+     "supportFoot": "both",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/blinblin/art_runs/blinblin-v1-20261107c",
+      "pose": "right_foot.return",
+      "sha256": "e65e78eb7ddb0ecc879e1efafcd8b5ce6c7dfeab161c4573bd304cf9a983e1ba",
+      "selected": null,
+      "frameKey": "ea2b594d651197ce5b64eaee378977f310c6438816d32e75d41eaf920178aef6",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "contrapposto",
+       "follow-through",
+       "no-twinning",
+       "timing-on-beat"
+      ]
+     }
+    },
+    "right_hand": {
+     "rect": [
+      438,
+      1498,
+      169,
+      243
+     ],
+     "anchor": [
+      115.2,
+      240.4
+     ],
+     "pixelsPerUnit": 6.0645,
+     "facing": "front",
+     "loop": false,
+     "durationBeats": 1.0,
+     "events": [
+      {
+       "beat": 0.25,
+       "type": "accent",
+       "drawing": "peak"
+      }
+     ],
+     "supportFoot": "left",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/blinblin/art_runs/blinblin-v1-20261107c",
+      "pose": "right_hand.peak",
+      "sha256": "bdb8ff61907156e6c93b47f872115fca5eeb6f3aca3fe7d08e97c5c6e5420899",
+      "selected": null,
+      "frameKey": "fd377a1f6ca885cfa4a698e5c7e42472850d0b48ec4bf51a0f5fc422f95f2820",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "line-of-action",
+       "contrapposto",
+       "exaggeration-accent",
+       "no-twinning",
+       "timing-on-beat"
+      ]
+     },
+     "aliasOf": "right_hand_peak"
+    },
+    "right_hand_follow": {
+     "rect": [
+      539,
+      2232,
+      147,
+      239
+     ],
+     "anchor": [
+      107.2,
+      236.4
+     ],
+     "pixelsPerUnit": 6.0645,
+     "facing": "front",
+     "loop": false,
+     "durationBeats": 1.0,
+     "events": [],
+     "supportFoot": "left",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/blinblin/art_runs/blinblin-v1-20261107c",
+      "pose": "right_hand.follow",
+      "sha256": "ff9743dde6cfb4f2a58e18779c2639ab00946358fe329279fb4e61b1b33c0616",
+      "selected": null,
+      "frameKey": "b0b96c4454506e58f3b704b1dcfdf20165a34ef7c2b2a90e8a49055b39533910",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "contrapposto",
+       "follow-through",
+       "no-twinning",
+       "timing-on-beat"
+      ]
+     }
+    },
+    "right_hand_peak": {
+     "rect": [
+      438,
+      1498,
+      169,
+      243
+     ],
+     "anchor": [
+      115.2,
+      240.4
+     ],
+     "pixelsPerUnit": 6.0645,
+     "facing": "front",
+     "loop": false,
+     "durationBeats": 1.0,
+     "events": [
+      {
+       "beat": 0.25,
+       "type": "accent",
+       "drawing": "peak"
+      }
+     ],
+     "supportFoot": "left",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/blinblin/art_runs/blinblin-v1-20261107c",
+      "pose": "right_hand.peak",
+      "sha256": "bdb8ff61907156e6c93b47f872115fca5eeb6f3aca3fe7d08e97c5c6e5420899",
+      "selected": null,
+      "frameKey": "fd377a1f6ca885cfa4a698e5c7e42472850d0b48ec4bf51a0f5fc422f95f2820",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "line-of-action",
+       "contrapposto",
+       "exaggeration-accent",
+       "no-twinning",
+       "timing-on-beat"
+      ]
+     }
+    },
+    "right_hand_prep": {
+     "rect": [
+      2,
+      2474,
+      132,
+      238
+     ],
+     "anchor": [
+      85.2,
+      234.4
+     ],
+     "pixelsPerUnit": 6.0645,
+     "facing": "front",
+     "loop": false,
+     "durationBeats": 1.0,
+     "events": [],
+     "supportFoot": "left",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/blinblin/art_runs/blinblin-v1-20261107c",
+      "pose": "right_hand.prep",
+      "sha256": "ea56eb86ad7701d95b7ef6e23b9b9a0d5b2c5093e6a26fe66f20b059ddcf98b0",
+      "selected": null,
+      "frameKey": "ce057fa401e887eb8b2870ec971c9029e8bc8ba232a30592d2016babf41a97a0",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "contrapposto",
+       "anticipation",
+       "no-twinning",
+       "timing-on-beat"
+      ]
+     }
+    },
+    "right_hand_return": {
+     "rect": [
+      478,
+      253,
+      154,
+      248
+     ],
+     "anchor": [
+      87.0,
+      245.4
+     ],
+     "pixelsPerUnit": 6.0645,
+     "facing": "front",
+     "loop": false,
+     "durationBeats": 1.0,
+     "events": [],
+     "supportFoot": "both",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/blinblin/art_runs/blinblin-v1-20261107c",
+      "pose": "right_hand.return",
+      "sha256": "b189ada7f3cebcf7d230b8799c141594bf3cb5185351c92ea031fc4d08c1dc8a",
+      "selected": null,
+      "frameKey": "b6606b25985359a401851bf63b28ec520f77f50da5e80480b2432ab2460513ac",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "contrapposto",
+       "follow-through",
+       "no-twinning",
+       "timing-on-beat"
+      ]
+     }
+    },
+    "settle": {
+     "rect": [
+      322,
+      253,
+      154,
+      248
+     ],
+     "anchor": [
+      65.0,
+      245.4
+     ],
+     "pixelsPerUnit": 6.0645,
+     "facing": "front",
+     "loop": false,
+     "durationBeats": 1.0,
+     "events": [],
+     "supportFoot": "both",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/blinblin/art_runs/blinblin-v1-20261107c",
+      "pose": "left_hand.return",
+      "sha256": "e1454cb2f2b1de45a5efad467dfaa4939ad0a511f51f1cee5d94c5090c92c4d9",
+      "selected": null,
+      "frameKey": "2b2a38e615a59b3e8c21734e1722a11ce6a5fbaa2ccfa2fae77c4bf98b5aa793",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "contrapposto",
+       "follow-through",
+       "no-twinning",
+       "timing-on-beat"
+      ]
+     },
+     "aliasOf": "left_hand_return"
+    },
+    "turn_in": {
+     "rect": [
+      239,
+      1251,
+      168,
+      245
+     ],
+     "anchor": [
+      40.0,
+      242.4
+     ],
+     "pixelsPerUnit": 6.0645,
+     "facing": "front_3q",
+     "loop": false,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "both",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/blinblin/art_runs/blinblin-v1-20261107c",
+      "pose": "finish_turn.turn_in",
+      "sha256": "7f85405f39f14cb52e4532f3b55b95c11502a2b6052cfb2bba02ff907a4c5c36",
+      "selected": null,
+      "frameKey": "d70e02580b2d9a4fa485cedb4097e8ba6aaae81d58dc37e8ce62f4dc84e59863",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "contrapposto",
+       "no-twinning",
+       "timing-on-beat",
+       "planted-pivot"
+      ]
+     },
+     "aliasOf": "finish_turn_turn_in"
+    },
+    "turn_out": {
+     "rect": [
+      409,
+      1251,
+      168,
+      245
+     ],
+     "anchor": [
+      128.0,
+      242.4
+     ],
+     "pixelsPerUnit": 6.0645,
+     "facing": "front_3q",
+     "loop": false,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "both",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/blinblin/art_runs/blinblin-v1-20261107c",
+      "pose": "finish_turn.turn_out",
+      "sha256": "ea029ba5474ef450e48a84f4ae9e5d0da29b0cef99303d0ac3b0a29a9a2877b3",
+      "selected": null,
+      "frameKey": "ae676ff862629313e62ae89b6260e9fea3d8aaa51f0ac06ee2e5f561876dff8e",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "contrapposto",
+       "no-twinning",
+       "timing-on-beat",
+       "planted-pivot"
+      ]
+     },
+     "aliasOf": "finish_turn_turn_out"
+    },
+    "watch_hold_l": {
+     "rect": [
+      481,
+      1744,
+      87,
+      242
+     ],
+     "anchor": [
+      67.2,
+      239.4
+     ],
+     "pixelsPerUnit": 6.0645,
+     "facing": "front_3q",
+     "loop": true,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "left",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/blinblin/art_runs/blinblin-v1-20261107c",
+      "pose": "watch.hold_l",
+      "sha256": "fbe713a8e136ddc0e5ee02810045eb44a6fe109ed103c1e11aa937a1e1c447c8",
+      "selected": null,
+      "frameKey": "bdd04b2a6088d6ed751c8256c2303139d9096ae1e81b80ea4c929ce5748361f8",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "contrapposto",
+       "follow-through",
+       "secondary-action",
+       "no-twinning",
+       "timing-on-beat"
+      ]
+     }
+    },
+    "watch_hold_r": {
+     "rect": [
+      570,
+      1744,
+      121,
+      242
+     ],
+     "anchor": [
+      43.8,
+      239.4
+     ],
+     "pixelsPerUnit": 6.0645,
+     "facing": "front_3q",
+     "loop": true,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "right",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/blinblin/art_runs/blinblin-v1-20261107c",
+      "pose": "watch.hold_r",
+      "sha256": "54b31cf2791f1861cf10266a3e27e71878683f0504c03fbbc7a6e4bee6a9893c",
+      "selected": null,
+      "frameKey": "f91246a00c8ac8f07472a2f5cadabb0dd53e91950c3654c46eeafc33f5a9bb63",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "contrapposto",
+       "follow-through",
+       "secondary-action",
+       "no-twinning",
+       "timing-on-beat"
+      ]
+     }
+    },
+    "watch_left": {
+     "rect": [
+      325,
+      754,
+      87,
+      247
+     ],
+     "anchor": [
+      70.2,
+      244.4
+     ],
+     "pixelsPerUnit": 6.0645,
+     "facing": "front_3q",
+     "loop": true,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "left",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/blinblin/art_runs/blinblin-v1-20261107c",
+      "pose": "watch.shift_l",
+      "sha256": "bbe9bf67586be5df410ca2541a124c4e4bd31e2f6ab3ad9b4bf47ed2bef73267",
+      "selected": null,
+      "frameKey": "23882f9766060c199b661a827555fe01c2b2587631c47d1981834af951ce58d2",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "contrapposto",
+       "secondary-action",
+       "no-twinning",
+       "timing-on-beat",
+       "planted-pivot"
+      ]
+     },
+     "aliasOf": "watch_shift_l"
+    },
+    "watch_right": {
+     "rect": [
+      96,
+      504,
+      108,
+      248
+     ],
+     "anchor": [
+      30.8,
+      245.4
+     ],
+     "pixelsPerUnit": 6.0645,
+     "facing": "front_3q",
+     "loop": true,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "right",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/blinblin/art_runs/blinblin-v1-20261107c",
+      "pose": "watch.shift_r",
+      "sha256": "31813d82a5d946284096f97dbfe591fefceba5c60ce6205e32b9c0f3fd3344ab",
+      "selected": null,
+      "frameKey": "2b6939116b7096204aa0233282ccb7f646d89ccf248816607efcf342b7d6694d",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "contrapposto",
+       "secondary-action",
+       "no-twinning",
+       "timing-on-beat",
+       "planted-pivot"
+      ]
+     },
+     "aliasOf": "watch_shift_r"
+    },
+    "watch_shift_l": {
+     "rect": [
+      325,
+      754,
+      87,
+      247
+     ],
+     "anchor": [
+      70.2,
+      244.4
+     ],
+     "pixelsPerUnit": 6.0645,
+     "facing": "front_3q",
+     "loop": true,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "left",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/blinblin/art_runs/blinblin-v1-20261107c",
+      "pose": "watch.shift_l",
+      "sha256": "bbe9bf67586be5df410ca2541a124c4e4bd31e2f6ab3ad9b4bf47ed2bef73267",
+      "selected": null,
+      "frameKey": "23882f9766060c199b661a827555fe01c2b2587631c47d1981834af951ce58d2",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "contrapposto",
+       "secondary-action",
+       "no-twinning",
+       "timing-on-beat",
+       "planted-pivot"
+      ]
+     }
+    },
+    "watch_shift_r": {
+     "rect": [
+      96,
+      504,
+      108,
+      248
+     ],
+     "anchor": [
+      30.8,
+      245.4
+     ],
+     "pixelsPerUnit": 6.0645,
+     "facing": "front_3q",
+     "loop": true,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "right",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/blinblin/art_runs/blinblin-v1-20261107c",
+      "pose": "watch.shift_r",
+      "sha256": "31813d82a5d946284096f97dbfe591fefceba5c60ce6205e32b9c0f3fd3344ab",
+      "selected": null,
+      "frameKey": "2b6939116b7096204aa0233282ccb7f646d89ccf248816607efcf342b7d6694d",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "contrapposto",
+       "secondary-action",
+       "no-twinning",
+       "timing-on-beat",
+       "planted-pivot"
+      ]
+     }
+    },
+    "yield_side_contact_l": {
+     "rect": [
+      175,
+      1989,
+      147,
+      241
+     ],
+     "anchor": [
+      102.9,
+      238.4
+     ],
+     "pixelsPerUnit": 6.0645,
+     "facing": "front_3q",
+     "loop": true,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "both",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/blinblin/art_runs/blinblin-v1-20261107c",
+      "pose": "yield_side.contact_l",
+      "sha256": "d4c24c0463d815fec0f6e14ef047e8bdea6b5b20eb49d18c78cbdc658333b539",
+      "selected": null,
+      "frameKey": "231d0a00a01350fea8c61c0f59a1f20c7f13b3d02fc15400beafe4157b6c47f3",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "contrapposto",
+       "anticipation",
+       "no-twinning",
+       "timing-on-beat",
+       "planted-pivot"
+      ]
+     }
+    },
+    "yield_side_contact_r": {
+     "rect": [
+      156,
+      2232,
+      141,
+      240
+     ],
+     "anchor": [
+      65.1,
+      237.4
+     ],
+     "pixelsPerUnit": 6.0645,
+     "facing": "front_3q",
+     "loop": true,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "both",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/blinblin/art_runs/blinblin-v1-20261107c",
+      "pose": "yield_side.contact_r",
+      "sha256": "f3386f19781e2d2b907ffc9be1313e46882e3bc5aec99d7f14cc8ba7f06b080d",
+      "selected": null,
+      "frameKey": "04d58d6ce5dd5730e996f2c5ab8781595264cb3772cd941ed62b85c912cf718d",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "contrapposto",
+       "anticipation",
+       "no-twinning",
+       "timing-on-beat",
+       "planted-pivot"
+      ]
+     }
+    },
+    "yield_side_down_l": {
+     "rect": [
+      2,
+      2232,
+      152,
+      240
+     ],
+     "anchor": [
+      69.2,
+      237.4
+     ],
+     "pixelsPerUnit": 6.0645,
+     "facing": "front_3q",
+     "loop": true,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "left",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/blinblin/art_runs/blinblin-v1-20261107c",
+      "pose": "yield_side.down_l",
+      "sha256": "e740a9c6525a981437e458cbcf6068c28528d55fc80072303ecc1349a3039e7e",
+      "selected": null,
+      "frameKey": "d03702fe662b6cdab68f00a6a1088d9ac2ccce6df2705c1cb82d947b77e3eaa1",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "contrapposto",
+       "no-twinning",
+       "timing-on-beat",
+       "planted-pivot"
+      ]
+     }
+    },
+    "yield_side_down_r": {
+     "rect": [
+      2,
+      1498,
+      98,
+      244
+     ],
+     "anchor": [
+      41.8,
+      241.4
+     ],
+     "pixelsPerUnit": 6.0645,
+     "facing": "front_3q",
+     "loop": true,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "right",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/blinblin/art_runs/blinblin-v1-20261107c",
+      "pose": "yield_side.down_r",
+      "sha256": "2e4153f04fadc5420dab7005b80aa1204dcae0edf21bd26c50b7ed172bf9032f",
+      "selected": null,
+      "frameKey": "9491e06229a8b534e04d84ee488bfb5ab6fe71155da3e7b0e1ae37d2eeeb4d64",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "contrapposto",
+       "no-twinning",
+       "timing-on-beat",
+       "planted-pivot"
+      ]
+     }
+    },
+    "yield_side_pass_l": {
+     "rect": [
+      237,
+      2,
+      123,
+      249
+     ],
+     "anchor": [
+      64.2,
+      245.4
+     ],
+     "pixelsPerUnit": 6.0645,
+     "facing": "front_3q",
+     "loop": true,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "left",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/blinblin/art_runs/blinblin-v1-20261107c",
+      "pose": "yield_side.pass_l",
+      "sha256": "62774c15640ed004d46ab50e38d9ac6a31824a40f4ffbdb5e58fd99af0ce7ed8",
+      "selected": null,
+      "frameKey": "14b10aae3db145bdc5c1453a2d3c31cf6a326d523cf7bb30ef8eb1b8e19b1376",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "contrapposto",
+       "no-twinning",
+       "timing-on-beat",
+       "planted-pivot"
+      ]
+     }
+    },
+    "yield_side_pass_r": {
+     "rect": [
+      362,
+      2,
+      128,
+      249
+     ],
+     "anchor": [
+      52.8,
+      245.4
+     ],
+     "pixelsPerUnit": 6.0645,
+     "facing": "front_3q",
+     "loop": true,
+     "durationBeats": 2.0,
+     "events": [],
+     "supportFoot": "right",
+     "status": "candidate",
+     "provenance": {
+      "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/blinblin/art_runs/blinblin-v1-20261107c",
+      "pose": "yield_side.pass_r",
+      "sha256": "aab27ad8a721fbb5c0b246b5e2a09f548ed3eb9ef730f1ffbd9bac2a460e05be",
+      "selected": null,
+      "frameKey": "c4d7c70a235b849dc47c8da848aef051756d9dfeb1f32328b78c7c8414a516a8",
+      "accepted": false,
+      "animationPrinciples": [
+       "staging-silhouette",
+       "line-of-action",
+       "contrapposto",
+       "exaggeration-accent",
+       "no-twinning",
+       "timing-on-beat",
+       "planted-pivot"
+      ]
+     }
+    }
+   }
+  },
   "pool-bg-a": {
    "image": "pool-bg-a-v1.png",
    "imageWidth": 1024,

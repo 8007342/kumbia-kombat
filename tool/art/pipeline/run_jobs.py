@@ -79,7 +79,9 @@ def verify(jobs: list[dict]) -> None:
     good = bad = missing = 0
     for job in jobs:
         want = json.loads((ROOT / job["args"]["workflow"]).read_text())["10"]["inputs"]["prompt"]
-        got = seen.get(job["args"]["inputs"]["pose_proxy"]) or next((v for k, v in seen.items() if k.endswith(job["args"]["inputs"]["pose_proxy"].split("/in/")[-1])), None)
+        # Skeletons share file names across runs, so the run's own folder has to match too.
+        tail = "/".join(job["args"]["inputs"]["pose_proxy"].split("/")[-3:])
+        got = next((v for k, v in seen.items() if k.endswith(tail)), None)
         if not got:
             missing += 1
         elif want in got:

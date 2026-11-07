@@ -598,7 +598,7 @@ PARTY_FLOOR = {
               "back": (Pose(yaw=142, l_arm=(14, 8), l_fore=(10, 22), r_arm=(14, 2), r_fore=(10, 18), l_thigh=(6, 2), l_shin=(5, -2), r_thigh=(6, 2), r_shin=(5, -2), pin="mid", toe_out=10, knee_out=20), "both")},
 }
 
-MOTION_SETS = {"party-floor": PARTY_FLOOR, "opponent-64": OPPONENT_64, "opponent-facing-away": OPPONENT_FACING_AWAY, "band-loop": BAND_LOOP, "macron-pilot": MACRON_PILOT}
+MOTION_SETS = {**MOTION_SETS, "party-floor": PARTY_FLOOR, "band-loop": BAND_LOOP, "macron-pilot": MACRON_PILOT}  # joined at merge with the cue sets above
 
 assert sum(len(v) for v in OPPONENT_64.values()) == 64, "opponent target is 64 drawings"
 
@@ -756,7 +756,7 @@ PARTY_FLOOR_INTENT = {
     "model.back": ("sheet", "from behind in three quarters"),
 }
 
-INTENT_BY_SET = {"party-floor": PARTY_FLOOR_INTENT, "opponent-64": OPPONENT_64_INTENT, "opponent-facing-away": OPPONENT_FACING_AWAY_INTENT, "band-loop": BAND_LOOP_INTENT}
+INTENT_BY_SET = {**INTENT_BY_SET, "party-floor": PARTY_FLOOR_INTENT, "band-loop": BAND_LOOP_INTENT}  # joined at merge with the cue sets above
 
 assert set(PARTY_FLOOR_INTENT) == {f"{c}.{n}" for c, d in PARTY_FLOOR.items() for n in d}, "intent ids != pose ids"
 

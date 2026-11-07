@@ -48,7 +48,7 @@ The rig gives Qwen only a skeleton, and the model sheet gives it the character.
 
 ## Review tools
 
-- `cue_review.py`, `merge_runs.py` and `finish_picks.py` take a family with fixes from several runs to an atlas: gather the runs, read the sheets, write `{picks: {pose: seed}}` in `art_runs/<run>/picks.json`, then finish and pack. `promote.py --new` adds an atlas the manifest doesn't have.
+- `cue_review.py`, `merge_runs.py` and `finish_run_picks.py` take a family with fixes from several runs to an atlas: gather the runs, read the sheets, write `{picks: {pose: seed}}` in `art_runs/<run>/picks.json`, then finish and pack. `promote.py --new` adds an atlas the manifest doesn't have. (`finish_picks.py` is a different tool: it bakes the medallion swing and the nod for the BlinBlin dancer.)
 
 - `score_frames.py` only ranks candidates, and can't see an extra arm, a lost hand or a goatee, so look at every
   candidate. It rewrites `selection.json`, so run it before picking by eye. A knee looks for its `trousers`

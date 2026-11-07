@@ -117,6 +117,7 @@ class GardenSceneGame extends FlameGame {
         'bartender',
         'swing-a',
         'swing-b',
+        'blinblin',
       ]) {
         grammar.requireFrames(
           dancer,

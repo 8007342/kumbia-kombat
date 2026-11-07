@@ -1,0 +1,254 @@
+{
+ "groove.down_l": {
+  "swing": 4
+ },
+ "groove.pass_l": {
+  "swing": 2
+ },
+ "groove.up_l": {
+  "swing": 4
+ },
+ "groove.pass_l2": {
+  "swing": 4
+ },
+ "groove.down_r": {
+  "swing": -4
+ },
+ "groove.pass_r": {
+  "swing": -2
+ },
+ "groove.up_r": {
+  "swing": -4
+ },
+ "groove.pass_r2": {
+  "swing": -4
+ },
+ "left_hand.prep": {
+  "swing": 0
+ },
+ "left_hand.peak": {
+  "swing": -4
+ },
+ "left_hand.follow": {
+  "swing": -1
+ },
+ "left_hand.return": {
+  "swing": 0
+ },
+ "right_hand.prep": {
+  "swing": 0
+ },
+ "right_hand.peak": {
+  "swing": 4
+ },
+ "right_hand.follow": {
+  "swing": 1
+ },
+ "right_hand.return": {
+  "swing": 0
+ },
+ "left_foot.prep": {
+  "swing": 0
+ },
+ "left_foot.peak": {
+  "swing": 4
+ },
+ "left_foot.follow": {
+  "swing": -4
+ },
+ "left_foot.return": {
+  "swing": -4
+ },
+ "right_foot.prep": {
+  "swing": 0
+ },
+ "right_foot.peak": {
+  "swing": -4
+ },
+ "right_foot.follow": {
+  "swing": 4
+ },
+ "right_foot.return": {
+  "swing": 4
+ },
+ "enter_forward.contact_l": {
+  "swing": 0,
+  "note": "only gold near a wrist or the neck"
+ },
+ "enter_forward.down_l": {
+  "swing": -4
+ },
+ "enter_forward.pass_l": {
+  "swing": -1
+ },
+ "enter_forward.contact_r": {
+  "swing": 4
+ },
+ "enter_forward.down_r": {
+  "swing": 0
+ },
+ "enter_forward.pass_r": {
+  "swing": -2
+ },
+ "retreat_backward.contact_l": {
+  "swing": 0,
+  "note": "blob 5x5 isn't medallion shaped"
+ },
+ "retreat_backward.down_l": {
+  "swing": -4
+ },
+ "retreat_backward.pass_l": {
+  "swing": 0,
+  "note": "blob 5x7 isn't medallion shaped"
+ },
+ "retreat_backward.contact_r": {
+  "swing": 4
+ },
+ "retreat_backward.down_r": {
+  "swing": -1
+ },
+ "retreat_backward.pass_r": {
+  "swing": 0,
+  "note": "blob 6x5 isn't medallion shaped"
+ },
+ "yield_side.contact_l": {
+  "swing": 4
+ },
+ "yield_side.down_l": {
+  "swing": -4
+ },
+ "yield_side.pass_l": {
+  "swing": 4
+ },
+ "yield_side.contact_r": {
+  "swing": -4
+ },
+ "yield_side.down_r": {
+  "swing": 4
+ },
+ "yield_side.pass_r": {
+  "swing": 4
+ },
+ "watch.shift_l": {
+  "swing": -4
+ },
+ "watch.hold_l": {
+  "swing": -1
+ },
+ "watch.shift_r": {
+  "swing": 4
+ },
+ "watch.hold_r": {
+  "swing": 2
+ },
+ "clap.open": {
+  "swing": 0
+ },
+ "clap.close": {
+  "swing": 0
+ },
+ "clap.contact": {
+  "swing": 0
+ },
+ "clap.release": {
+  "swing": 0
+ },
+ "challenge.load": {
+  "swing": 0
+ },
+ "challenge.proud": {
+  "swing": 4
+ },
+ "challenge.offer": {
+  "swing": 0
+ },
+ "challenge.return": {
+  "swing": -4
+ },
+ "approval.load": {
+  "swing": 0
+ },
+ "approval.nod": {
+  "swing": -3
+ },
+ "approval.release": {
+  "swing": 3
+ },
+ "reassurance.notice": {
+  "swing": 0
+ },
+ "reassurance.open_hand": {
+  "swing": 4
+ },
+ "reassurance.settle": {
+  "swing": -4
+ },
+ "finish_turn.finish_a": {
+  "swing": 0
+ },
+ "finish_turn.finish_b": {
+  "swing": 1
+ },
+ "finish_turn.turn_in": {
+  "swing": -4
+ },
+ "finish_turn.turn_out": {
+  "swing": 4
+ },
+ "back_groove.down_l": {
+  "swing": 0
+ },
+ "back_groove.pass_l": {
+  "swing": 0
+ },
+ "back_groove.up_l": {
+  "swing": 0
+ },
+ "back_groove.pass_l2": {
+  "swing": 0
+ },
+ "back_groove.down_r": {
+  "swing": 0
+ },
+ "back_groove.pass_r": {
+  "swing": 0
+ },
+ "back_groove.up_r": {
+  "swing": 0
+ },
+ "back_groove.pass_r2": {
+  "swing": 0
+ },
+ "back_accent.arm_l": {
+  "swing": 0
+ },
+ "back_accent.arm_r": {
+  "swing": 0
+ },
+ "reveal.glance": {
+  "swing": 0
+ },
+ "reveal.rear_3q": {
+  "swing": 0
+ },
+ "reveal.profile": {
+  "swing": 0
+ },
+ "reveal.front_3q": {
+  "swing": 1
+ },
+ "crossed.settle": {
+  "swing": 0
+ },
+ "crossed.hold": {
+  "swing": 0
+ },
+ "crossed.nod_down": {
+  "derivedFrom": "crossed.hold",
+  "headDown": 5
+ },
+ "crossed.nod_up": {
+  "derivedFrom": "crossed.hold",
+  "headDown": 1
+ }
+}
