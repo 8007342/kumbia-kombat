@@ -28,6 +28,9 @@ import 'support/recording_canvas.dart';
 /// room now starts nearer still, the waiters' range, and the bar's four more lamp
 /// glows. This harness renders only at its samples, so it barely sees the wake:
 /// `party_up_test.dart` covers that, rendering every step.
+///
+/// Rewritten for the pointing rule, 2026-11-07: a step in time no longer shows
+/// `step_touch_b`. One drawing of one guest moved, in the garden's cleared sample.
 const _goldenPath = 'test/goldens/levels_before.json';
 
 class _Audio implements MusicAudioBackend {

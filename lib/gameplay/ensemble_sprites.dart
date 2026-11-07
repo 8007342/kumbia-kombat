@@ -125,6 +125,13 @@ class EnsembleManifest {
       });
       atlases[id] = definition;
     }
+    // Art a level names by data, such as a band. It says which drawings it needs.
+    for (final entry in raw.entries) {
+      if (atlases.containsKey(entry.key)) continue;
+      atlases[entry.key as String] = EnsembleAtlasDefinition.fromJson(
+        Map<String, dynamic>.from(entry.value as Map),
+      );
+    }
     return EnsembleManifest._(Map.unmodifiable(atlases));
   }
 }
@@ -182,8 +189,23 @@ class EnsembleAtlas {
 String ensembleGuestFrame(
   CrowdGuestSnapshot guest, {
   bool reducedMotion = false,
+}) => ensembleClipFrame(
+  guest.clip,
+  beat: guest.clipBeat,
+  duration: guest.clipDurationBeats,
+  transitioning: guest.transitioning,
+  reducedMotion: reducedMotion,
+);
+
+/// One clip's drawing at [beat] of a [duration] long pass.
+String ensembleClipFrame(
+  CrowdClip clip, {
+  required double beat,
+  required double duration,
+  bool transitioning = false,
+  bool reducedMotion = false,
 }) {
-  final (prefix, count) = switch (guest.clip) {
+  final (prefix, count) = switch (clip) {
     CrowdClip.seatedIdle => ('seated_idle', 2),
     CrowdClip.notice => ('notice', 2),
     CrowdClip.seatedFollow => ('seated_follow', 2),
@@ -194,17 +216,20 @@ String ensembleGuestFrame(
     CrowdClip.cheer => ('cheer', 2),
     CrowdClip.sitDown => ('sit_down', 4),
   };
-  if (!guest.clipBeat.isFinite ||
-      !guest.clipDurationBeats.isFinite ||
-      guest.clipDurationBeats <= 0) {
+  if (!beat.isFinite || !duration.isFinite || duration <= 0) {
     throw ArgumentError('Invalid crowd clip timing');
   }
-  final progress = guest.transitioning
-      ? (guest.clipBeat / guest.clipDurationBeats).clamp(0.0, 1.0)
-      : (guest.clipBeat % guest.clipDurationBeats) / guest.clipDurationBeats;
-  final frame = reducedMotion && !guest.transitioning
+  final progress = transitioning
+      ? (beat / duration).clamp(0.0, 1.0)
+      : (beat % duration) / duration;
+  final frame = reducedMotion && !transitioning
       ? 0
       : (progress * count).floor().clamp(0, count - 1);
+  // `step_touch_b` is a pointing arm, and pointing is reserved for flourishes and
+  // for turning from uninterested to interested, so a step in time never shows it.
+  if (clip == CrowdClip.stepTouch) {
+    return 'step_touch_${const ['a', 'd', 'c', 'd'][frame]}';
+  }
   return '${prefix}_${const ['a', 'b', 'c', 'd'][frame]}';
 }
 

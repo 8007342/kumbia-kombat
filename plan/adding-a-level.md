@@ -30,7 +30,7 @@ A level is one JSON file, `levels/<id>.json`, plus one entry in `levels/index.js
 
 **Still needs code or config:**
 
-- [ ] A new challenger atlas: add its id to `EnsembleManifest.atlasIds` and its frame list to the switch in `ensemble_sprites.dart`. The level file can only name atlases on that list.
+- [ ] A new challenger atlas: add its id to `EnsembleManifest.atlasIds` and its frame list to the switch in `ensemble_sprites.dart`. A band's atlas needs only its manifest entry.
 - [ ] A new art folder: list it in `pubspec.yaml`, because asset folders aren't recursive.
 
 **Before calling it done:** run `flutter test`, which checks that everything a shipping level names exists on disk, then play the level. Only a person can approve the chart.
@@ -40,7 +40,7 @@ A level is one JSON file, `levels/<id>.json`, plus one entry in `levels/index.js
 | What | Where | Why it matters |
 |---|---|---|
 | Second and later challengers aren't drawn. The data is validated, but the scene draws the first | `garden_scene.dart` `_addChallenger` | Two dancers need scene work (audit item 5) |
-| Guests are always seated, and always `guest0`–`guest2` by index | `crowd_interest.dart`, `party_layout.dart` `seatedGuestSlots` | No swimmers, standing tables or level-specific cast (audit item 6) |
+| Guests are seated or on a dance floor (`crowd.seat`), and always `guest0`–`guest2` by index | `crowd_interest.dart`, `party_layout.dart` `seatedGuestSlots` | No swimmers, standing tables or level-specific cast (audit item 6) |
 | Crowd stays at 12 or fewer, and palettes come from the index | `crowd_interest.dart` | Same |
 | Prop and ambient kinds are a switch: chair, table, umbrella, plant, candle | `garden_scene.dart`, `ensemble_sprites.dart` | A new prop kind needs code |
 | Every atlas loads at startup and nothing is freed. The next background loads when its neighbour starts | `garden_scene.dart`, `garden_page.dart` | Separate job. Memory won't scale to many levels (audit pitfall 5) |
@@ -68,6 +68,14 @@ The pipelines are Python and write JSON already, git shows each decision as a da
 ## For the level brief
 
 `level-production-pipeline` D1 should change before anyone writes briefs against it. A brief's `opponent` and flat `room` should compile to this file's `stage.challengers` (plural), `stage` marks and `scenery`. Its `bridge` belongs on the campaign entry, not the level. Camera and posture have no slot yet, because nothing in the game reads them.
+
+## A hidden level
+
+List its id under `review` in `levels/index.json` instead of `campaign`. It's checked on load like any other and plays alone at `?level=<id>`. To join the campaign later, move it and add the previous level's bridge.
+
+## A dance floor and a band
+
+`crowd.seat: "standing"`, `partTo` per guest and `crowd.floorDance` give a crowd that's already dancing and opens the floor. `scenery.platform` and `scenery.band` put a band on a raised floor. The fields, with `levels/cool-crowd.json` as the example, are in `plan/levels/indoor-party-2026-11-07.md`.
 
 ## A pair of opponents
 
