@@ -1,5 +1,5 @@
 {
- "$comment": "The indoor party's band (trumpet), owner's ruling 2026-11-07. Sheet stage only: the instrument lives in the sheet's words because the rig has no instrument props yet, and motion.set is a placeholder that only supplies a skeleton to override, until the band-loop set in plan/levels/indoor-band-2026-11-07.md exists. Do not plan frames from this set.",
+ "$comment": "The indoor party's band (trumpet), owner's ruling 2026-11-07; front sheet approved the same day. Drawn at an angle, playing toward the crowd, from the front_3q view. The instrument is a mask-only garment, and Qwen draws it from the sheet. Plan: plan/levels/indoor-band-2026-11-07.md.",
  "id": "band-trumpet",
  "family": "band-trumpet-v1",
  "style": "party-pixel",
@@ -21,7 +21,7 @@
    "shape": "puff",
    "region": "hair",
    "colour": "#16110F",
-   "text": "tall square black flat-top haircut with shaved sides"
+   "text": "tall flat-topped block of black hair with shaved sides"
   },
   {
    "id": "shirt",
@@ -35,7 +35,14 @@
    "shape": "waistcoat-fitted",
    "region": "cloth",
    "colour": "#EADFC2",
-   "text": "long-sleeved cream dinner jacket with narrow midnight-violet lapels"
+   "text": "long-sleeved cream dinner jacket"
+  },
+  {
+   "id": "lapels",
+   "shape": "jacket-lapels",
+   "region": "apron",
+   "colour": "#3A1F6B",
+   "text": "narrow midnight-violet satin lapels"
   },
   {
    "id": "trousers",
@@ -50,106 +57,222 @@
    "region": "shoes",
    "colour": "#D8C9A0",
    "text": "polished two-tone cream and dark shoes"
+  },
+  {
+   "id": "horn",
+   "shape": "trumpet-horn",
+   "region": "prop",
+   "colour": "#D9A92E",
+   "text": "bright polished brass trumpet"
   }
  ],
  "motion": {
-  "set": "opponent-64",
-  "overrides": {}
+  "set": "band-loop",
+  "overrides": {
+   "relaxed.a": {
+    "pose": {
+     "twist": 0,
+     "l_arm": [
+      -1.4,
+      85.6
+     ],
+     "l_fore": [
+      -137.7,
+      56.0
+     ],
+     "r_arm": [
+      -7.3,
+      71.7
+     ],
+     "r_fore": [
+      -150.7,
+      -18.0
+     ]
+    },
+    "intent": "seen in a three-quarter view from the side: the chest, hips, knees, toes and nose all point toward the lower right corner of the picture, the face in three-quarter view looking that way, playing out toward a crowd on that side, both feet flat on the floor, both hands on the trumpet at their lips, the horn level, its bell pointing toward the right of the picture"
+   },
+   "relaxed.b": {
+    "pose": {
+     "twist": 0,
+     "l_arm": [
+      0.2,
+      70.9
+     ],
+     "l_fore": [
+      -130.1,
+      65.7
+     ],
+     "r_arm": [
+      -4.7,
+      57.6
+     ],
+     "r_fore": [
+      -148.7,
+      17.6
+     ]
+    },
+    "intent": "seen in a three-quarter view from the side: the chest, hips, knees, toes and nose all point toward the lower right corner of the picture, the face in three-quarter view looking that way, playing out toward a crowd on that side, both feet flat on the floor, both hands on the trumpet at their lips, the horn dipped a little"
+   },
+   "tap.up_a": {
+    "pose": {
+     "twist": 0,
+     "l_arm": [
+      -1.4,
+      85.6
+     ],
+     "l_fore": [
+      -137.7,
+      56.0
+     ],
+     "r_arm": [
+      -7.3,
+      71.7
+     ],
+     "r_fore": [
+      -150.7,
+      -18.0
+     ]
+    },
+    "intent": "seen in a three-quarter view from the side: the chest, hips, knees, toes and nose all point toward the lower right corner of the picture, the face in three-quarter view looking that way, playing out toward a crowd on that side, the right heel of the foot on the left of the picture lifted off the floor, its toe touching, tapping time, the other foot flat, both hands on the trumpet at their lips, the horn level"
+   },
+   "tap.up_b": {
+    "pose": {
+     "twist": 0,
+     "l_arm": [
+      0.2,
+      70.9
+     ],
+     "l_fore": [
+      -130.1,
+      65.7
+     ],
+     "r_arm": [
+      -4.7,
+      57.6
+     ],
+     "r_fore": [
+      -148.7,
+      17.6
+     ]
+    },
+    "intent": "seen in a three-quarter view from the side: the chest, hips, knees, toes and nose all point toward the lower right corner of the picture, the face in three-quarter view looking that way, playing out toward a crowd on that side, the right heel of the foot on the left of the picture lifted off the floor, its toe touching, tapping time, the other foot flat, both hands on the trumpet at their lips, the horn dipped a little"
+   },
+   "swing.a": {
+    "pose": {
+     "twist": 8,
+     "l_arm": [
+      -25.0,
+      119.2
+     ],
+     "l_fore": [
+      -141.9,
+      51.3
+     ],
+     "r_arm": [
+      4.4,
+      101.8
+     ],
+     "r_fore": [
+      -137.9,
+      -53.4
+     ]
+    },
+    "intent": "seen in a three-quarter view from the side: the chest, hips, knees, toes and nose all point toward the lower right corner of the picture, the face in three-quarter view looking that way, playing out toward a crowd on that side, both feet flat on the floor, swinging the horn high, bell pointing up at the ceiling toward the right of the picture, chin lifted, both hands on the trumpet at their lips"
+   },
+   "swing.b": {
+    "pose": {
+     "twist": 0,
+     "l_arm": [
+      -1.0,
+      81.9
+     ],
+     "l_fore": [
+      -136.7,
+      57.3
+     ],
+     "r_arm": [
+      -6.7,
+      67.6
+     ],
+     "r_fore": [
+      -151.3,
+      -9.2
+     ]
+    },
+    "intent": "seen in a three-quarter view from the side: the chest, hips, knees, toes and nose all point toward the lower right corner of the picture, the face in three-quarter view looking that way, playing out toward a crowd on that side, both feet flat on the floor, the horn passing level, both hands on the trumpet at their lips"
+   },
+   "swing.c": {
+    "pose": {
+     "twist": -8,
+     "l_arm": [
+      12.0,
+      41.6
+     ],
+     "l_fore": [
+      -92.6,
+      92.8
+     ],
+     "r_arm": [
+      -3.7,
+      38.4
+     ],
+     "r_fore": [
+      -111.8,
+      66.0
+     ]
+    },
+    "intent": "seen in a three-quarter view from the side: the chest, hips, knees, toes and nose all point toward the lower right corner of the picture, the face in three-quarter view looking that way, playing out toward a crowd on that side, both feet flat on the floor, swinging the horn low, bell pointing down toward the floor on the right of the picture, chin tucked, both hands on the trumpet at their lips"
+   },
+   "swing.d": {
+    "pose": {
+     "twist": 0,
+     "l_arm": [
+      -1.0,
+      81.9
+     ],
+     "l_fore": [
+      -136.7,
+      57.3
+     ],
+     "r_arm": [
+      -6.7,
+      67.6
+     ],
+     "r_fore": [
+      -151.3,
+      -9.2
+     ]
+    },
+    "intent": "seen in a three-quarter view from the side: the chest, hips, knees, toes and nose all point toward the lower right corner of the picture, the face in three-quarter view looking that way, playing out toward a crowd on that side, the right heel of the foot on the left of the picture lifted off the floor, its toe touching, tapping time, the other foot flat, the horn passing level, both hands on the trumpet at their lips"
+   }
+  }
  },
  "drawing": {
   "noun": "musician",
   "fits": "the top of their flat-top, both shoes, both hands and the whole trumpet",
   "look": "small, slight, wiry adult build, narrow shoulders, slim angular face, tall flat-topped block of black hair with shaved sides, light olive skin, long-sleeved cream dinner jacket buttoned closed, its narrow midnight-violet satin lapels lying flat on the chest, a small midnight-violet bow tie at a closed cream shirt collar, slim dark charcoal trousers and polished two-tone cream and dark shoes, and thick dark ink outline, playing a bright polished brass trumpet with a wide flared bell",
-  "extra": "They are a grown adult of about thirty. The trumpet is at their lips, tilted up and out toward the right side of the picture, its wide round brass bell well clear of their head and easy to see against the background. ",
-  "skeletonOverrides": {
-   "groove.down_l": {
-    "0": [
-     350,
-     330
-    ],
-    "1": [
-     340,
-     411
-    ],
-    "2": [
-     280,
-     407
-    ],
-    "3": [
-     262,
-     490
-    ],
-    "4": [
-     368,
-     372
-    ],
-    "5": [
-     400,
-     407
-    ],
-    "6": [
-     445,
-     445
-    ],
-    "7": [
-     432,
-     322
-    ],
-    "8": [
-     302,
-     575
-    ],
-    "9": [
-     295,
-     722
-    ],
-    "10": [
-     288,
-     855
-    ],
-    "11": [
-     378,
-     575
-    ],
-    "12": [
-     385,
-     722
-    ],
-    "13": [
-     392,
-     855
-    ],
-    "14": [
-     335,
-     315
-    ],
-    "15": [
-     365,
-     315
-    ],
-    "16": [
-     305,
-     318
-    ],
-    "17": [
-     395,
-     318
-    ]
-   }
-  },
+  "extra": "They are a grown adult of about thirty. The trumpet is at their lips with its wide round brass bell well clear of their head, one trumpet of the same size in every picture. ",
   "sheet": {
    "source": {
-    "image": "tool/art/references/bartender/front.png",
-    "styleOnly": true
+    "image": "tool/art/references/band-trumpet/front.png",
+    "poseFrom": "relaxed.a"
    },
    "views": {
     "front": {
      "image": "tool/art/references/band-trumpet/front.png",
      "description": "standing facing the viewer with feet apart and head turned a little toward the right side of the picture, both hands raised to the trumpet at their lips, elbows lifted away from the body"
+    },
+    "front_3q": {
+     "image": "tool/art/references/band-trumpet/front_3q.png",
+     "description": "standing and playing the trumpet, seen in a three-quarter view from the side: the chest, hips, knees, toes and nose all point toward the lower right corner of the picture, the face in three-quarter view looking that way, playing out toward a crowd on that side, feet apart, both hands on the trumpet at their lips, the horn level with its bell toward the right of the picture",
+     "extra": "They are a grown adult of about thirty. The trumpet is at their lips with its wide round brass bell well clear of their head, one trumpet of the same size in every picture. "
     }
    }
   },
-  "seed": 989210
+  "score": {
+   "silhouetteTolerance": 60
+  },
+  "seed": 989710
  },
  "references": {
   "mode": "source",
@@ -167,5 +290,5 @@
    "pixelScale": 3
   }
  ],
- "seedBase": 989210
+ "seedBase": 989710
 }

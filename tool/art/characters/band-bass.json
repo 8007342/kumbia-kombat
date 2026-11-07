@@ -1,5 +1,5 @@
 {
- "$comment": "The indoor party's band (upright bass), owner's ruling 2026-11-07. Sheet stage only: the instrument lives in the sheet's words because the rig has no instrument props yet, and motion.set is a placeholder that only supplies a skeleton to override, until the band-loop set in plan/levels/indoor-band-2026-11-07.md exists. Do not plan frames from this set.",
+ "$comment": "The indoor party's band (upright bass), owner's ruling 2026-11-07; front sheet approved the same day. Drawn at an angle, playing toward the crowd, from the front_3q view. The instrument is a mask-only garment, and Qwen draws it from the sheet. Plan: plan/levels/indoor-band-2026-11-07.md.",
  "id": "band-bass",
  "family": "band-bass-v1",
  "style": "party-pixel",
@@ -35,7 +35,14 @@
    "shape": "waistcoat-fitted",
    "region": "cloth",
    "colour": "#EADFC2",
-   "text": "long-sleeved cream dinner jacket with narrow midnight-violet lapels"
+   "text": "long-sleeved cream dinner jacket"
+  },
+  {
+   "id": "lapels",
+   "shape": "jacket-lapels",
+   "region": "apron",
+   "colour": "#3A1F6B",
+   "text": "narrow midnight-violet satin lapels"
   },
   {
    "id": "trousers",
@@ -50,106 +57,225 @@
    "region": "shoes",
    "colour": "#D8C9A0",
    "text": "polished two-tone cream and dark shoes"
+  },
+  {
+   "id": "bass",
+   "shape": "upright-bass",
+   "region": "prop",
+   "colour": "#C57A22",
+   "text": "big honey-amber wooden upright double bass",
+   "params": {
+    "yaw": 30.0
+   }
   }
  ],
  "motion": {
-  "set": "opponent-64",
-  "overrides": {}
+  "set": "band-loop",
+  "overrides": {
+   "relaxed.a": {
+    "pose": {
+     "twist": 22.0,
+     "l_arm": [
+      12.1,
+      41.5
+     ],
+     "l_fore": [
+      -53.7,
+      96.7
+     ],
+     "r_arm": [
+      -9.0,
+      36.2
+     ],
+     "r_fore": [
+      -22.1,
+      45.3
+     ]
+    },
+    "intent": "seen in a three-quarter view from the side: the chest, hips, knees, toes and nose all point toward the lower right corner of the picture, the face in three-quarter view looking that way, playing out toward a crowd on that side, both feet flat on the floor, the hand on the left of the picture plucking the bass strings with bare fingertips, the other hand on the bass neck"
+   },
+   "relaxed.b": {
+    "pose": {
+     "twist": 22.0,
+     "l_arm": [
+      11.7,
+      38.6
+     ],
+     "l_fore": [
+      -48.0,
+      91.8
+     ],
+     "r_arm": [
+      1.3,
+      34.3
+     ],
+     "r_fore": [
+      -10.4,
+      45.2
+     ]
+    },
+    "intent": "seen in a three-quarter view from the side: the chest, hips, knees, toes and nose all point toward the lower right corner of the picture, the face in three-quarter view looking that way, playing out toward a crowd on that side, both feet flat on the floor, the plucking hand just pulled away from the strings, the other hand on the bass neck, the bass upright"
+   },
+   "tap.up_a": {
+    "pose": {
+     "twist": 22.0,
+     "l_arm": [
+      12.1,
+      41.5
+     ],
+     "l_fore": [
+      -53.7,
+      96.7
+     ],
+     "r_arm": [
+      -9.0,
+      36.2
+     ],
+     "r_fore": [
+      -22.1,
+      45.3
+     ]
+    },
+    "intent": "seen in a three-quarter view from the side: the chest, hips, knees, toes and nose all point toward the lower right corner of the picture, the face in three-quarter view looking that way, playing out toward a crowd on that side, the right heel of the foot on the left of the picture lifted off the floor, its toe touching, tapping time, the other foot flat, plucking the bass strings with bare fingertips, the other hand on the bass neck"
+   },
+   "tap.up_b": {
+    "pose": {
+     "twist": 22.0,
+     "l_arm": [
+      11.7,
+      38.6
+     ],
+     "l_fore": [
+      -48.0,
+      91.8
+     ],
+     "r_arm": [
+      1.3,
+      34.3
+     ],
+     "r_fore": [
+      -10.4,
+      45.2
+     ]
+    },
+    "intent": "seen in a three-quarter view from the side: the chest, hips, knees, toes and nose all point toward the lower right corner of the picture, the face in three-quarter view looking that way, playing out toward a crowd on that side, the right heel of the foot on the left of the picture lifted off the floor, its toe touching, tapping time, the other foot flat, the plucking hand just pulled away from the strings, the other hand on the bass neck"
+   },
+   "swing.a": {
+    "pose": {
+     "twist": 24.0,
+     "l_arm": [
+      20.1,
+      48.8
+     ],
+     "l_fore": [
+      -6.7,
+      93.2
+     ],
+     "r_arm": [
+      -12.8,
+      37.5
+     ],
+     "r_fore": [
+      -26.2,
+      46.2
+     ]
+    },
+    "intent": "seen in a three-quarter view from the side: the chest, hips, knees, toes and nose all point toward the lower right corner of the picture, the face in three-quarter view looking that way, playing out toward a crowd on that side, both feet flat on the floor, rocking the whole bass on its spike so its neck leans toward the right of the picture, plucking hard, swaying with it"
+   },
+   "swing.b": {
+    "pose": {
+     "twist": 22.0,
+     "l_arm": [
+      12.1,
+      41.5
+     ],
+     "l_fore": [
+      -53.7,
+      96.7
+     ],
+     "r_arm": [
+      1.3,
+      34.3
+     ],
+     "r_fore": [
+      -10.4,
+      45.2
+     ]
+    },
+    "intent": "seen in a three-quarter view from the side: the chest, hips, knees, toes and nose all point toward the lower right corner of the picture, the face in three-quarter view looking that way, playing out toward a crowd on that side, both feet flat on the floor, the bass passing upright, the plucking hand pulled away"
+   },
+   "swing.c": {
+    "pose": {
+     "twist": 20.0,
+     "l_arm": [
+      -3.6,
+      36.7
+     ],
+     "l_fore": [
+      -77.3,
+      72.6
+     ],
+     "r_arm": [
+      -2.1,
+      35.7
+     ],
+     "r_fore": [
+      -14.2,
+      46.0
+     ]
+    },
+    "intent": "seen in a three-quarter view from the side: the chest, hips, knees, toes and nose all point toward the lower right corner of the picture, the face in three-quarter view looking that way, playing out toward a crowd on that side, both feet flat on the floor, rocking the whole bass on its spike so its neck leans toward the left of the picture, plucking hard, swaying with it"
+   },
+   "swing.d": {
+    "pose": {
+     "twist": 22.0,
+     "l_arm": [
+      12.1,
+      41.5
+     ],
+     "l_fore": [
+      -53.7,
+      96.7
+     ],
+     "r_arm": [
+      5.4,
+      33.1
+     ],
+     "r_fore": [
+      -5.6,
+      44.7
+     ]
+    },
+    "intent": "seen in a three-quarter view from the side: the chest, hips, knees, toes and nose all point toward the lower right corner of the picture, the face in three-quarter view looking that way, playing out toward a crowd on that side, the right heel of the foot on the left of the picture lifted off the floor, its toe touching, tapping time, the other foot flat, the bass passing upright, the plucking hand pulled away"
+   }
+  }
  },
  "drawing": {
   "noun": "woman",
   "fits": "her tall updo, both shoes, both hands and the whole upright bass from its scroll to its spike",
-  "look": "very tall, rangy, long-limbed adult build, long narrow face with soft smile lines, calm eyes, closed easy smile, deep brown skin, silver-white hair in a tall smooth rounded updo, long-sleeved cream dinner jacket buttoned closed, its narrow midnight-violet satin lapels lying flat on the chest, a small midnight-violet bow tie at a closed cream shirt collar, slim dark charcoal trousers and polished two-tone cream and dark shoes, and thick dark ink outline, beside a big honey-amber wooden upright double bass as tall as she is, with a dark fingerboard, four strings and a curled scroll",
-  "extra": "She is a grown woman of about sixty-five. The upright bass stands on the floor at her left side, on the right of the picture, its big rounded body at her hip and its long neck rising past her shoulder to the height of her head. She plucks the strings with the bare fingertips of her open hand. ",
-  "skeletonOverrides": {
-   "groove.down_l": {
-    "0": [
-     290,
-     330
-    ],
-    "1": [
-     290,
-     411
-    ],
-    "2": [
-     228,
-     407
-    ],
-    "3": [
-     335,
-     505
-    ],
-    "4": [
-     430,
-     555
-    ],
-    "5": [
-     352,
-     407
-    ],
-    "6": [
-     425,
-     450
-    ],
-    "7": [
-     480,
-     372
-    ],
-    "8": [
-     250,
-     575
-    ],
-    "9": [
-     241,
-     722
-    ],
-    "10": [
-     232,
-     855
-    ],
-    "11": [
-     330,
-     575
-    ],
-    "12": [
-     339,
-     722
-    ],
-    "13": [
-     348,
-     855
-    ],
-    "14": [
-     275,
-     315
-    ],
-    "15": [
-     305,
-     315
-    ],
-    "16": [
-     245,
-     318
-    ],
-    "17": [
-     335,
-     318
-    ]
-   }
-  },
+  "look": "very tall, rangy, long-limbed adult build, long narrow face with soft smile lines, calm eyes, closed easy smile, deep brown skin, silver-white hair in a tall smooth rounded updo, long-sleeved cream dinner jacket buttoned closed, its narrow midnight-violet satin lapels lying flat on the chest, a small midnight-violet bow tie at a closed cream shirt collar, slim dark charcoal trousers and polished two-tone cream and dark shoes, and thick dark ink outline, with a big honey-amber wooden upright double bass as tall as she is, with a dark fingerboard, four strings and a curled scroll",
+  "extra": "She is a grown woman of about sixty-five. She plays with bare fingers only and nothing else in her hands. The bass stands on the floor on its spike in front of her, on the right of the picture, its neck rising past her shoulder to the height of her head, and it stays the same size and colour. ",
   "sheet": {
    "source": {
-    "image": "tool/art/references/bartender/front.png",
-    "styleOnly": true
+    "image": "tool/art/references/band-bass/front.png",
+    "poseFrom": "relaxed.a"
    },
    "views": {
     "front": {
      "image": "tool/art/references/band-bass/front.png",
      "description": "standing square facing the viewer and playing the bass, feet apart; the hand on the right of the picture grips the bass neck at shoulder height, and the hand on the left of the picture reaches across her waist to pluck the strings"
+    },
+    "front_3q": {
+     "image": "tool/art/references/band-bass/front_3q.png",
+     "description": "standing and playing the bass, seen in a three-quarter view from the side: the chest, hips, knees, toes and nose all point toward the lower right corner of the picture, the face in three-quarter view looking that way, playing out toward a crowd on that side, feet apart",
+     "extra": "She is a grown woman of about sixty-five. She plays with bare fingers only and nothing else in her hands. The bass stands on the floor on its spike in front of her, on the right of the picture, its neck rising past her shoulder to the height of her head, and it stays the same size and colour. The bass is turned the same way: its strings and f-holes face the lower right corner of the picture, and its wooden side ribs show along its left edge. "
     }
    }
   },
-  "seed": 989010
+  "score": {
+   "silhouetteTolerance": 60
+  },
+  "seed": 989510
  },
  "references": {
   "mode": "source",
@@ -167,5 +293,5 @@
    "pixelScale": 3
   }
  ],
- "seedBase": 989010
+ "seedBase": 989510
 }
