@@ -11,9 +11,9 @@
   "metric": "Charm",
   "cleanSeconds": 110,
   "successesPerTier": 2,
-  "finalChallenges": 2,
+  "finalChallenges": 3,
   "resetAfterFailures": 5,
-  "earlyHitRatio": 0.875
+  "earlyHitRatio": 0.75
  },
  "chart": {
   "introBeats": 12,
@@ -891,7 +891,7 @@
  "hardestCombo": {
   "name": "EL GIRO DE TERCIOPELO",
   "status": "proposal",
-  "note": "Proposal, from the art agent, timed by the wiring agent. A spin into a held line with a cha-cha-chá: one and a half turns on the hands, the fan line lands on the left foot, then two cha-cha-chá triples in the feet (3, 3.5, 4 and 5, 5.5, 6), and the held line closes it with a circle. The art agent's quarter-beat double-time triples are 121 ms apart at 124 BPM, under the 230 ms good window a combo's notes must keep, so they are half beats here. Uses only his atlas's clips. The owner hasn't seen or played it.",
+  "note": "Proposal, from the art agent, timed by the wiring agent. A spin into a held line with a cha-cha-chá: one and a half turns on the hands, the fan line lands on the left foot, then two cha-cha-chá triples in the feet (3, 3.5, 4 and 5, 5.5, 6), and the held line closes it with a circle. The art agent's quarter-beat double-time triples are 121 ms apart at 124 BPM, under the 230 ms good window a combo's notes must keep, so they are half beats here. Uses only his atlas's clips. The owner hasn't seen or played it. The last beat is the shared invite_onward, since his flare runs 1.5 beats and the call has 1 left.",
   "callBeats": 8,
   "moves": [
    {
@@ -907,7 +907,7 @@
    {
     "at": 7,
     "beats": 1,
-    "clip": "flare"
+    "clip": "invite_onward"
    }
   ],
   "notes": [

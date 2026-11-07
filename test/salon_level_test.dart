@@ -114,7 +114,7 @@ void main() {
 
     test('fair at every tier, by the guaranteed window', () {
       for (var tier = 0; tier < 5; tier++) {
-        for (var peak = 0; peak < (tier == 4 ? 2 : 1); peak++) {
+        for (var peak = 0; peak < (tier == 4 ? 3 : 1); peak++) {
           final index = chart.patternIndex(tier, peak);
           expect(
             chart.fairnessProblems(index, _tierBpm[tier]),
