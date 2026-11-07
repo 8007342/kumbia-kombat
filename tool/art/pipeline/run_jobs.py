@@ -9,7 +9,8 @@ host's pins, licence checks and GPU queue all apply.
 Provenance records an empty `prompt` for this route, because the override isn't a $prompt: the baked
 workflow in art_runs/<run>/workflows/ is the record, and --verify compares it with ComfyUI's /history.
 
-Usage: run_jobs.py --run <run> [--skip pose,pose] [--only pose,pose] [--jobs FILE] [--verify]
+Usage: run_jobs.py --run <run> [--skip pose,pose] [--only pose,pose] [--first clip,clip] [--count N] [--jobs FILE] [--verify]
+--first draws those clips or poses ahead of the rest. --count lowers candidates per pose when the GPU is contended.
 Skips a pose that already has its candidates in the art cache, so it is safe to restart.
 """
 from __future__ import annotations
@@ -95,6 +96,8 @@ def main() -> None:
     ap.add_argument("--jobs", default="jobs.json")
     ap.add_argument("--skip", default="")
     ap.add_argument("--only", default="")
+    ap.add_argument("--first", default="", help="clips or poses to draw first, in this order")
+    ap.add_argument("--count", type=int, help="candidates per pose, in place of the plan's")
     ap.add_argument("--verify", action="store_true")
     a = ap.parse_args()
     jobs = json.loads((ROOT / "art_runs" / a.run / a.jobs).read_text())
@@ -102,6 +105,12 @@ def main() -> None:
         verify(jobs)
         return
     skip, only = set(filter(None, a.skip.split(","))), set(filter(None, a.only.split(",")))
+    first = [x for x in a.first.split(",") if x]
+    rank = lambda j: next((i for i, x in enumerate(first) if j["pose"] == x or j["pose"].split(".")[0] == x), len(first))  # noqa: E731
+    jobs = sorted(jobs, key=rank)
+    if a.count:
+        for job in jobs:
+            job["args"]["count"] = a.count
     lane = Lane()
     raw = CACHE / a.run / "raw"
     for i, job in enumerate(jobs):

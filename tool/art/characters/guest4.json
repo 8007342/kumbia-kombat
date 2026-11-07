@@ -1,0 +1,98 @@
+{
+ "$comment": "A floor guest for the indoor party (owner, 2026-11-07: dancing pairs, more party people): a very tall, thin elderly man. Plan: plan/party-art-review-2026-11-07.md.",
+ "id": "guest4",
+ "family": "guest4-v1",
+ "style": "party-pixel",
+ "description": "Indoor party floor guest: a very tall, thin elderly man.",
+ "body": {
+  "preset": "slim-adult"
+ },
+ "pronouns": [
+  "he",
+  "him",
+  "his"
+ ],
+ "skin": "#5A3A24",
+ "traits": "very tall, thin man of about seventy, a gentle closed smile",
+ "demeanor": "lost in the dance with a partner, happy to be here",
+ "garments": [
+  {
+   "id": "hair",
+   "shape": "puff",
+   "region": "hair",
+   "colour": "#E4E0D8",
+   "text": "close-cropped white hair and a thin white moustache"
+  },
+  {
+   "id": "shirt",
+   "shape": "shirt-fitted",
+   "region": "shirt",
+   "colour": "#A99BC4",
+   "text": "buttoned long-sleeved dusty-lavender dress shirt"
+  },
+  {
+   "id": "trousers",
+   "shape": "trousers",
+   "region": "trousers",
+   "colour": "#2A2830",
+   "text": "high-waisted dark charcoal trousers"
+  },
+  {
+   "id": "shoes",
+   "shape": "shoes-flat",
+   "region": "shoes",
+   "colour": "#1A1820",
+   "text": "polished black shoes"
+  }
+ ],
+ "motion": {
+  "set": "party-floor",
+  "overrides": {}
+ },
+ "drawing": {
+  "noun": "man",
+  "fits": "hair, both shoes and both hands",
+  "look": "very tall, thin, long-limbed adult build with narrow shoulders, a long narrow face with a gentle closed smile and deep lines, dark brown skin, close-cropped white hair and a thin white moustache, a buttoned long-sleeved dusty-lavender dress shirt with a closed collar, a small amber bow tie, high-waisted dark charcoal trousers with suspenders the same charcoal, polished black shoes and thick dark ink outline",
+  "extra": "Both eyes are open. He is a grown man of about 70, fully clothed, in modest evening wear. ",
+  "sheet": {
+   "source": {
+    "image": "tool/art/references/guest4/front.png"
+   },
+   "views": {
+    "front": {
+     "image": "tool/art/references/guest4/front.png",
+     "description": "standing square and upright facing the viewer, feet a little apart, both arms relaxed and held a little away from the body, both open hands visible"
+    },
+    "front_3q": {
+     "image": "tool/art/references/guest4/front_3q.png",
+     "poseFrom": "model.q3",
+     "description": "standing relaxed, seen in a three-quarter view from the side: the chest, hips, toes and nose all point toward the lower right corner of the picture, the face in three-quarter view looking that way, both arms relaxed"
+    },
+    "back_3q": {
+     "image": "tool/art/references/guest4/back_3q.png",
+     "poseFrom": "model.back",
+     "look": "very tall, thin, long-limbed adult build, dark brown skin, close-cropped white hair seen from behind, long-sleeved dusty-lavender dress shirt with crossed charcoal suspenders across its back, high-waisted dark charcoal trousers, polished black shoes and thick dark ink outline",
+     "description": "seen from behind at three quarters, turned away from the viewer toward the upper right corner of the picture, the back of the head and the back of the clothes showing, both arms relaxed"
+    }
+   }
+  },
+  "seed": 992000
+ },
+ "references": {
+  "mode": "source",
+  "sources": []
+ },
+ "targets": [
+  {
+   "room": "cool-crowd",
+   "atlas": "guest4",
+   "out": "assets/art/ensemble/guest4-v1.png",
+   "native": [
+    256,
+    320
+   ],
+   "pixelScale": 3
+  }
+ ],
+ "seedBase": 992000
+}

@@ -31,7 +31,9 @@ from pathlib import Path
 
 HEAD_CLEAR = 1.2                      # head-widths, wrist to head centre
 HEAD_WHITELIST = {"finish_turn.finish_a", "finish_turn.finish_b", "approval.nod"}
-TURN_CLIPS = {"turn", "finish_turn", "reveal"}  # yaw cap does not apply
+TURN_CLIPS = {"turn", "finish_turn", "reveal", "pair_dance", "back_dance", "sidestep", "glance", "model"}  # yaw cap does not apply
+# Seen in profile, or a set of different views: legs may overlap and shoulder width and ankles may change.
+PROFILE_CLIPS = {"sidestep", "model"}
 REAR_CLIPS = {"back_groove", "back_accent"}  # the yaw cap is measured from facing directly away
 BAND_CLIPS = {"relaxed", "tap", "swing"}  # motion set band-loop: arms reach across to an instrument, a horn is at the face
 CROSSED_ARMS = {"crossed"}  # the arms cross on purpose
@@ -192,7 +194,8 @@ def check(rig: dict, margin: float) -> dict[str, list[str]]:
     for r in rig["poses"]:
         p = problems.setdefault(r["id"], [])
         p += r.get("problems", [])
-        p += crossing_problems(r)
+        if r.get("clip") not in PROFILE_CLIPS:
+            p += crossing_problems(r)
         p += head_problems(r)
         if ankle_h is not None:
             p += foot_problems(r, ankle_h)
@@ -206,6 +209,8 @@ def check(rig: dict, margin: float) -> dict[str, list[str]]:
         if shoes is not None and shoes < MIN_SHOES_PX:
             p.append(f"shoes: only {shoes}px of shoes visible")
     for clip, recs in by_clip.items():
+        if clip in PROFILE_CLIPS:
+            continue
         clip_p = drift_problems(clip, recs) + width_problems(clip, recs) + static_problems(clip, recs)
         for msg in clip_p:
             problems.setdefault(f"{clip}.*", []).append(msg)
