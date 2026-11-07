@@ -1,0 +1,96 @@
+{
+  "schema": "tillandsias.provenance/v1",
+  "tool": "studio.run_workflow",
+  "parents": [],
+  "pipelineVersion": "56.11.6.2",
+  "engine": {
+    "name": "comfyui",
+    "ref": "v0.40.0",
+    "sha": "3541246a9c997f4b8c32f9f88f3c985d02021c79",
+    "nodes": [
+      {
+        "name": "ComfyUI-GGUF",
+        "commit": "6ea2651e7df66d7585f6ffee804b20e92fb38b8a"
+      },
+      {
+        "name": "ComfyUI-layerdiffuse",
+        "commit": "b4f6a9e024064a4489f774a8b91049ce0b606ea3"
+      },
+      {
+        "name": "ComfyUI_BiRefNet_ll",
+        "commit": "5443a2aa16cfbd98bb2f7dcc8bdcb70439e08529"
+      },
+      {
+        "name": "ComfyUI_IPAdapter_plus",
+        "commit": "a0f451a5113cf9becb0847b92884cb10cbdec0ef"
+      }
+    ]
+  },
+  "workflow": {
+    "path": "wt/rooms/art_runs/pool-player-20261107a/workflows/sheet.back.api.json",
+    "sha256": "aa623b46fe04d8b4e170dc2258ba8a42e0f83441e26c1aba764eb4d029bba749"
+  },
+  "models": [
+    {
+      "file": "qwen_image_edit_2511_fp8mixed.safetensors",
+      "repo": "Comfy-Org/Qwen-Image-Edit",
+      "revision": "f68ace85e60b4a02a323e394253731947657b7d2",
+      "sha256": "c9fdc158e46d3b61ef75f21ae866ca2fe808bf4a53643120d1c1e87c19280a4e",
+      "licence": "apache-2.0",
+      "consent": null
+    },
+    {
+      "file": "Qwen-Image-Edit-2509-Lightning-4steps-V1.0-bf16.safetensors",
+      "repo": "lightx2v/Qwen-Image-Lightning",
+      "revision": "d468c534b360e0754c6bf9e38ed49e1e09cd2e2a",
+      "sha256": "2a32ce938ec71db2b49a817b4844ae86995569518dea56ee0ddc209cbe8e1377",
+      "licence": "apache-2.0",
+      "consent": null
+    },
+    {
+      "file": "model.safetensors",
+      "repo": "ZhengPeng7/BiRefNet",
+      "revision": "e2bf8e4460fc8fa32bba5ea4d94b3233d367b0e4",
+      "sha256": "9ab37426bf4de0567af6b5d21b16151357149139362e6e8992021b8ce356a154",
+      "licence": "mit",
+      "consent": null
+    },
+    {
+      "file": "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+      "repo": "Comfy-Org/Qwen-Image",
+      "revision": "1f12b17be14c89b026c51a91d67c32f84bb047bc",
+      "sha256": "cb5636d852a0ea6a9075ab1bef496c0db7aef13c02350571e388aea959c5c0b4",
+      "licence": "apache-2.0",
+      "consent": null
+    },
+    {
+      "file": "qwen_image_vae.safetensors",
+      "repo": "Comfy-Org/Qwen-Image",
+      "revision": "1f12b17be14c89b026c51a91d67c32f84bb047bc",
+      "sha256": "a70580f0213e67967ee9c95f05bb400e8fb08307e017a924bf3441223e023d1f",
+      "licence": "apache-2.0",
+      "consent": null
+    }
+  ],
+  "cli": null,
+  "inputs": [
+    {
+      "name": "pose_proxy",
+      "path": "/work/tmp/imagegen/kumbia/pool-player-20261107a/in/groove.down_l.skeleton.png",
+      "sha256": "6ac510c59061a8de36ab953fee694536f128d5bc92566980a42215ec47f837d6"
+    },
+    {
+      "name": "sheet_front",
+      "path": "/work/tmp/imagegen/kumbia/pool-player-20261107a/in/sheet_source.png",
+      "sha256": "db009dc40d512fdadfad37da50587f7592b11413e27a74f6809ab27e44614e7d"
+    }
+  ],
+  "seed": 989101,
+  "prompt": "",
+  "negative_prompt": "",
+  "tier": "I1",
+  "placement": "cuda",
+  "family": null,
+  "output_sha256": "e8336253e0e428e5dfb0377dba3bb345fb214904628ebcf031987142925ff0ab",
+  "at": "2026-11-07T01:38:15Z"
+}
