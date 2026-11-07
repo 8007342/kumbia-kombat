@@ -1,29 +1,29 @@
 # Compute ledger, 2026-11-07: cloud against local
 
-First report, taken mid-batch while agents were still working. To refresh it, run `tool/metrics/ledger.py`, and `tool/metrics/ledger.py --json > plan/compute-ledger-2026-11-07.json` for the job-level record. The full table is at the end of this note.
+Refreshed 2026-11-07 14:07 UTC after the party and billiards merged into `game`. The first report, taken mid-batch, said 3h32m, 339 images and 30 takes. To refresh again, run `tool/metrics/ledger.py`, and `tool/metrics/ledger.py --json > plan/compute-ledger-2026-11-07.json` for the job-level record. The full table is at the end of this note.
 
 ## The short answer
 
 - **Pictures and music:** every image and audio generation job in these transcripts ran on the local GPU. No cloud image or audio generator appears among the tools called.
-- **Local GPU:** about 2 hours of model running over a 3h32m session: 339 images and 30 audio takes (42.3 minutes).
-- **Cloud:** still doing all the orchestration: 16 agents, 862 replies, 1.5 million output tokens. At least one cloud model was generating for 1h43m of the 3h32m.
-- **The four art agents** driving the GPU wrote 28% of those output tokens. Most of the rest went to game code, music tools, level wiring and planning.
-- **Cloud vision:** 135 images read into a cloud model, about 200,000 tokens on first reading. Local vision had only just started: 3 ledger lines, all from this trial.
+- **Local GPU:** 9h35m of image model running and 15 minutes of audio model running, over a 15h04m session, for 1,009 image outputs and 79 audio outputs. Queue waits add 3 hours. The checkouts' own `plan/compute-ledger.jsonl` lines, which also count the agents' worktrees, record 19h27m of image GPU work.
+- **Cloud:** still doing all the orchestration: 17 agents, 1,729 replies, 2.49 million output tokens. At least one cloud model was generating for 3h47m of the 15h04m.
+- **Cloud vision:** 297 images read into a cloud model, about 400,000 tokens on first reading.
+- **Local vision:** 347 ledger lines covering 751 checks, 53 minutes of local model time. It works as a pre-filter that counts heads and hands in a crop of one figure. It still misses things a person sees, such as a second head drawn on a coat or a four-armed frame, so the final picks were still made by eye, which means the cloud.
 
 ## What's in `assets/` today
 
-This only covers what's merged on this branch's base. The band, guest and pool art on other branches isn't counted yet.
+On `game` after the party and billiards merges.
 
 | Source | Files | Size |
 | --- | --- | --- |
-| Local model, music | 80 (40 takes, each in two codecs) | 29.0 MB |
-| Local model, art | 47 | 8.5 MB |
+| Local model, music | 50 (25 takes, each in two codecs) | 31.7 MB |
+| Local model, art | 86 | 13.3 MB |
 | Local model editing an older built-in imagegen plate | 4 | 5.1 MB |
-| Built-in imagegen from earlier sessions, not this GPU | 15 | 27.4 MB |
+| Built-in imagegen from earlier sessions, not this GPU | 15 | 26.2 MB |
 
-So of 70 MB of generated art and audio, 54% is purely local, 7% is local edits and 39% is older imagegen art. All the rendered music is local. Those 15 imagegen files are the remaining cloud-era art, including Mācron's own sprites and the original party guests.
+So of 76 MB of generated art and audio, 59% is purely local, 7% is local edits and 34% is older imagegen art. All the rendered music is local. Those 15 imagegen files are the remaining cloud-era art, including Mācron's own sprites and the original party guests.
 
-Sorting is by run and commit, in `tool/metrics/asset_provenance.json`, not by checking each pixel. Three tiny prop images (about 20 KB) have no evidence I could confirm, so they're listed as unclassified. New art needs a line in that file or it will be unclassified too.
+Sorting is by run and commit, in `tool/metrics/asset_provenance.json`, not by checking each pixel. Nothing is unclassified now: the band, BlinBlin, guests, pool players, billiards plate and props have rules. New art needs a line in that file or it will be unclassified.
 
 ## What's measured and what isn't
 
