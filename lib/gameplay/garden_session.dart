@@ -673,10 +673,14 @@ class GardenSession {
   int get _nowMs => (backend.nowSeconds * 1000).round();
 
   /// Set false when a musical bridge has already anchored this transport.
-  void start({bool startTransport = true}) {
+  /// [tier] starts the first phrase partway up the ladder, for a review link
+  /// (`?tier=`). The crowd and band still start cold: only the fight is moved.
+  void start({bool startTransport = true, int tier = 0}) {
     if (phase != GardenPhase.ready) throw StateError('Garden already started');
+    if (tier < 0 || tier > 4) throw RangeError.range(tier, 0, 4, 'tier');
     if (startTransport) {
-      transport.start();
+      progress.tier = tier;
+      transport.start(tier: tier);
     } else if (transport.state != TransportState.playing) {
       throw StateError('Joining requires an already playing transport');
     }

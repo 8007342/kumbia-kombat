@@ -14,6 +14,7 @@ import '../music/rendered_music.dart';
 import '../music/score.dart';
 import '../music/transport.dart';
 import '../music/transition_conductor.dart';
+import '../review_links.dart';
 import 'garden_scene.dart';
 import 'garden_session.dart';
 import 'gesture_glyph.dart';
@@ -71,6 +72,9 @@ class _GardenPageState extends State<GardenPage>
     startFlawless: Uri.base.queryParameters['autoplay'] == 'flawless',
   );
   bool _usedAutoplay = false;
+
+  /// `?tier=<0-4>` starts the first phrase there, once, for review.
+  int? _reviewTier = ReviewLinks.tierFrom(Uri.base.queryParameters);
 
   /// AutoPlay was pressed before the campaign finished loading. A press isn't
   /// dropped just because it came early: it's kept, and the run starts on load.
@@ -583,12 +587,14 @@ class _GardenPageState extends State<GardenPage>
       } else {
         // Bounded: if the take isn't decoded in time, the run starts on the synth
         // at the same tempo, and the take joins at a phrase boundary.
-        await _library?.decodeStart(_level.id, tier: 0);
+        final tier = _reviewTier ?? 0;
+        _reviewTier = null;
+        await _library?.decodeStart(_level.id, tier: tier);
         if (!mounted || !_foreground || activationEpoch != _activationEpoch) {
           return;
         }
         _applyMix();
-        _session!.start();
+        _session!.start(tier: tier);
         unawaited(_warmRenderedMusic());
       }
       _focus.requestFocus();
