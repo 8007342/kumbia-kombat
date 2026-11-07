@@ -67,6 +67,46 @@
         "groove.c": 992000
       },
       "acceptedBy": "agent, proposal: plan/party-art-review-2026-11-07.md"
+    },
+    "guest5-v1.png": {
+      "route": "qwen-frame, 2511 Lightning LoRA, $node overrides; tool/art/pipeline/pack_floor_guest.py",
+      "definition": "tool/art/characters/guest5.json",
+      "run": "guest5-20261107b",
+      "picks": {
+        "pair_dance.a": 998000,
+        "pair_dance.c": 993000,
+        "back_dance.a": 993000,
+        "back_dance.c": 998000,
+        "sidestep.a": 993000,
+        "sidestep.b": 993000,
+        "glance.a": 993000,
+        "clap.a": 993000,
+        "clap.b": 993000,
+        "cheer.a": 993000,
+        "groove.a": 993000,
+        "groove.c": 993000
+      },
+      "acceptedBy": "agent, proposal: plan/party-art-review-2026-11-07.md"
+    },
+    "guest6-v1.png": {
+      "route": "qwen-frame, 2511 Lightning LoRA, $node overrides; tool/art/pipeline/pack_floor_guest.py",
+      "definition": "tool/art/characters/guest6.json",
+      "run": "guest6-20261107b",
+      "picks": {
+        "pair_dance.a": 994000,
+        "pair_dance.c": 994000,
+        "back_dance.a": 994000,
+        "back_dance.c": 994001,
+        "sidestep.a": 994000,
+        "sidestep.b": 994000,
+        "glance.a": 994000,
+        "clap.a": 994000,
+        "clap.b": 994000,
+        "cheer.a": 994000,
+        "groove.a": 994000,
+        "groove.c": 994000
+      },
+      "acceptedBy": "agent, proposal: plan/party-art-review-2026-11-07.md"
     }
   }
 }
