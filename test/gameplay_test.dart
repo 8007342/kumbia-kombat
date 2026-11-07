@@ -3,6 +3,17 @@ import 'package:kumbia_kombat/gameplay/progression.dart';
 import 'package:kumbia_kombat/gameplay/rhythm.dart';
 
 void main() {
+  const late = RhythmJudge.lateWindowMs;
+  const perfect = RhythmJudge.perfectWindowMs;
+
+  test('the windows lean late, and perfect still means something', () {
+    // Late gets the latency estimate's slack; early stays where it was.
+    expect(RhythmJudge.lateWindowMs, greaterThan(RhythmJudge.earlyWindowMs));
+    expect(RhythmJudge.lateWindowMs, inInclusiveRange(200, 250));
+    expect(perfect, lessThan(RhythmJudge.earlyWindowMs / 2));
+    expect(RhythmJudge.guaranteedWindowMs, RhythmJudge.earlyWindowMs);
+  });
+
   test('tap boundaries, matching limb, consumption, and expiry', () {
     final judge = RhythmJudge([
       const RhythmNote('a', Limb.leftHand, 1000),
@@ -11,29 +22,34 @@ void main() {
     expect(judge.tap(Limb.rightFoot, 1000).grade, TapGrade.miss);
     expect(judge.tap(Limb.leftHand, 955).grade, TapGrade.perfect);
     expect(judge.tap(Limb.leftHand, 1000).grade, TapGrade.miss);
-    expect(judge.expire(1680), isEmpty);
-    expect(judge.expire(1681).single.id, 'b');
-    expect(judge.expire(1700), isEmpty);
+    expect(judge.expire(1500 + late), isEmpty);
+    expect(judge.expire(1500 + late + 1).single.id, 'b');
+    expect(judge.expire(1500 + late + 20), isEmpty);
   });
 
   test('wider grace accepts both edges and picks closest repeated note', () {
-    for (final offset in [-180, 180]) {
+    const early = RhythmJudge.earlyWindowMs;
+    for (final offset in [-early, late]) {
       final judge = RhythmJudge([const RhythmNote('a', Limb.leftHand, 1000)]);
       final res = judge.tap(Limb.leftHand, 1000 + offset);
       expect(res.grade, TapGrade.good);
       expect(res.timing, offset < 0 ? TapTiming.early : TapTiming.late);
       expect(res.deltaMs, offset);
     }
-    for (final offset in [-181, 181]) {
+    for (final offset in [-early - 1, late + 1]) {
       final judge = RhythmJudge([const RhythmNote('a', Limb.leftHand, 1000)]);
       expect(judge.tap(Limb.leftHand, 1000 + offset).grade, TapGrade.miss);
     }
-    for (final offset in [-75, 75]) {
+    for (final offset in [-perfect, perfect]) {
       final judge = RhythmJudge([const RhythmNote('a', Limb.leftHand, 1000)]);
       final res = judge.tap(Limb.leftHand, 1000 + offset);
       expect(res.grade, TapGrade.perfect);
       expect(res.timing, TapTiming.perfect);
       expect(res.deltaMs, offset);
+    }
+    for (final offset in [-perfect - 1, perfect + 1]) {
+      final judge = RhythmJudge([const RhythmNote('a', Limb.leftHand, 1000)]);
+      expect(judge.tap(Limb.leftHand, 1000 + offset).grade, TapGrade.good);
     }
     final doubles = RhythmJudge([
       const RhythmNote('a', Limb.leftHand, 1000),

@@ -31,6 +31,13 @@ import 'support/recording_canvas.dart';
 ///
 /// Rewritten for the pointing rule, 2026-11-07: a step in time no longer shows
 /// `step_touch_b`. One drawing of one guest moved, in the garden's cleared sample.
+///
+/// Rewritten for the phone-test feel, 2026-11-07 (`plan/feel-2026-11-07.md`):
+/// the late window went from 180 to 200 ms, and each room asks for a third peak
+/// pass, so each run is a phrase longer (garden 60.667 to 69.918 s). Clear times,
+/// perfects, the crowd numbers sampled along the longer run and the drawings
+/// taken from them moved. Required hits per eight: garden unchanged at 6 and 7;
+/// bar 7 and 7 became 6 and 7.
 const _goldenPath = 'test/goldens/levels_before.json';
 
 class _Audio implements MusicAudioBackend {

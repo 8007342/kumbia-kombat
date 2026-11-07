@@ -1,8 +1,11 @@
+import 'dart:math' as math;
+
 import '../music/transport.dart';
 import 'crowd_interest.dart';
 import 'gesture_shapes.dart';
 import 'progression.dart';
 import 'rhythm.dart';
+import 'sync_calibration.dart';
 import 'thumb_layout.dart';
 
 enum GardenPhase { ready, intro, call, response, paused, cleared }
@@ -151,12 +154,15 @@ class MoveLimits {
   /// Two thumbs, one after the other, unless they are a pair.
   final int crossThumbMs;
 
-  /// One limb in two different steps. Above twice the good window, so a tap can
-  /// never be judged against a note of the wrong step.
+  /// One limb in two different steps. Above twice the guaranteed window, so an
+  /// on-time-ish tap is never judged against a note of the wrong step. In the
+  /// good window's outer 40 ms a tap can reach the neighbour: the judge takes
+  /// whichever note is nearer, as it always has.
   final int sameLimbMs;
 
-  /// How long the last note's good window must end before the phrase does. A
-  /// window that crossed the boundary would be cut off by the next phrase.
+  /// How long before the phrase ends the session decides it. The validator asks
+  /// that the last note's [RhythmJudge.guaranteedWindowMs] ends by then; the
+  /// rest of its good window, and any latency compensation, is cut there.
   final int phraseEndMs;
 }
 
@@ -405,7 +411,7 @@ class FightChart {
       if (played.offers[i] == null) continue;
       final roomMs = (played.offsets[i + 1] - played.offsets[i]) * beatMs;
       if (roomMs <
-          2 * RhythmJudge.goodWindowMs + RhythmJudge.flourishWindowMs + 40) {
+          2 * RhythmJudge.guaranteedWindowMs + RhythmJudge.flourishWindowMs + 40) {
         problems.add(
           'pattern $index at $bpm BPM: no room for the move offered on beat '
           '${played.offsets[i]}',
@@ -413,7 +419,8 @@ class FightChart {
       }
     }
     final end =
-        (callBeats - played.offsets.last) * beatMs - RhythmJudge.goodWindowMs;
+        (callBeats - played.offsets.last) * beatMs -
+        RhythmJudge.guaranteedWindowMs;
     if (end < limits.phraseEndMs) {
       problems.add('pattern $index at $bpm BPM: last note ends the phrase late');
     }
@@ -672,6 +679,64 @@ class GardenSession {
       phase != GardenPhase.cleared;
   int get _nowMs => (backend.nowSeconds * 1000).round();
 
+  /// The most output latency the session will compensate. A report past this
+  /// is a broken estimate, not a phone.
+  static const maxOutputLatencySeconds = .5;
+  int _latencyMs = 0;
+  int _inputLatencyMs = 0;
+
+  /// How long after the audio clock the player hears it: Web Audio's
+  /// `outputLatency`, or the `?latency=` override. Taps are judged, and response
+  /// cues drawn, on the audible clock, which is the audio clock minus this. The
+  /// music is still scheduled on the audio clock. Zero off the web and in tests.
+  double get outputLatencySeconds => _latencyMs / 1000;
+  set outputLatencySeconds(double value) {
+    if (!value.isFinite) return;
+    _latencyMs = (value.clamp(0.0, maxOutputLatencySeconds) * 1000).round();
+  }
+
+  /// How long after a thumb lands the tap reaches the game: the touch screen's
+  /// own delay. Judging only, since it has nothing to do with what's drawn.
+  double get inputLatencySeconds => _inputLatencyMs / 1000;
+  set inputLatencySeconds(double value) {
+    if (!value.isFinite) return;
+    _inputLatencyMs = (value.clamp(0.0, .2) * 1000).round();
+  }
+
+  /// What the player is hearing now, in audio-clock seconds.
+  double get audibleSeconds => backend.nowSeconds - _latencyMs / 1000;
+
+  int _calibrationMs = 0;
+
+  /// What this device's tap-along calibration measured on top of the latency
+  /// estimate: positive when taps land late. Judging only.
+  int get calibrationMs => _calibrationMs;
+  set calibrationMs(int value) => _calibrationMs = value.clamp(
+    -SyncCalibration.maxOffsetMs,
+    SyncCalibration.maxOffsetMs,
+  );
+
+  /// When set, each decided phrase may nudge judging toward where the player's
+  /// taps sit, a little and capped. Shared between a run's sessions.
+  AutoNudge? autoNudge;
+
+  /// The time, in the judge's milliseconds, a tap arriving now is judged at: the
+  /// audible clock, less the touch delay, the calibration and any nudge.
+  int get judgedNowMs =>
+      _nowMs -
+      _latencyMs -
+      _inputLatencyMs -
+      _calibrationMs -
+      (autoNudge?.offsetMs ?? 0);
+
+  /// The latest a response can be decided, on the audio clock: the chart's
+  /// phrase-end margin before the next call. A phone's latency, or the last
+  /// note's late window at a slow tempo, can't push the decision past it, so the
+  /// next tier is still asked for in time. A tap after it costs nothing.
+  int get _decideByMs =>
+      (transport.secondsAt(_cycleStart + chart.cycleBeats) * 1000).round() -
+      chart.limits.phraseEndMs;
+
   /// Set false when a musical bridge has already anchored this transport.
   void start({bool startTransport = true}) {
     if (phase != GardenPhase.ready) throw StateError('Garden already started');
@@ -734,7 +799,7 @@ class GardenSession {
         1000;
     // Leave the full late tap + ornament + next early tap windows unobstructed.
     return gapMs >=
-            2 * RhythmJudge.goodWindowMs + RhythmJudge.flourishWindowMs + 40
+            2 * RhythmJudge.guaranteedWindowMs + RhythmJudge.flourishWindowMs + 40
         ? chart.flourishDestination
         : null;
   }
@@ -746,7 +811,10 @@ class GardenSession {
         transport.countingIn) {
       return const [];
     }
-    final beat = positionBeats;
+    // Drawn on the audible clock, so a cue lands when its beat is heard.
+    final beat = _latencyMs == 0
+        ? positionBeats
+        : transport.beatAt(audibleSeconds);
     final cues = <GardenCue>[];
     for (final demonstration in [true, false]) {
       for (var i = 0; i < activeLimbs.length; i++) {
@@ -757,8 +825,8 @@ class GardenSession {
         final id = '$_phraseIdentity:$i';
         if (!demonstration && _hit.contains(id)) continue;
         if (beat >= target - 2 &&
-            backend.nowSeconds <=
-                transport.secondsAt(target) + RhythmJudge.goodWindowMs / 1000) {
+            audibleSeconds <=
+                transport.secondsAt(target) + RhythmJudge.lateWindowMs / 1000) {
           cues.add(
             GardenCue(
               id: id,
@@ -793,9 +861,9 @@ class GardenSession {
     // The win is decided. At a fast tempo the last swipe's window outlasts the
     // phrase, so settle it here, before the next cycle can replace the judge.
     if (progress.cleared && _judge != null) {
-      if (_nowMs >
+      if (judgedNowMs >
           _judge!.notes.last.atMs +
-              RhythmJudge.goodWindowMs +
+              RhythmJudge.lateWindowMs +
               RhythmJudge.flourishWindowMs) {
         phase = GardenPhase.cleared;
       }
@@ -829,22 +897,30 @@ class GardenSession {
     final judge = _judge!;
     // A step's second press is for skilful play, so missing it breaks nothing.
     // The combo breaks once a whole step has gone by with neither press.
-    for (final missed in judge.expire(_nowMs)) {
+    for (final missed in judge.expire(judgedNowMs)) {
       final step = activeSteps[_indexOf(missed)];
       final lastOfStep =
           _indexOf(missed) == activeSteps.lastIndexOf(step);
       if (lastOfStep && !_stepsLanded.contains(step)) combo = 0;
     }
     if (!_resolved &&
-        _nowMs > judge.notes.last.atMs + RhythmJudge.goodWindowMs) {
+        (judgedNowMs > judge.notes.last.atMs + RhythmJudge.lateWindowMs ||
+            _nowMs > _decideByMs)) {
       _resolved = true;
       final passed = _stepsLanded.length >= requiredHits;
       // Full-arrangement sustain cannot score while its request is pending.
       if (passed && progress.tier == 4 && _responseTier < 4) return;
       lastOutcome = progress.resolve(passed: passed);
+      autoNudge?.phrase(_phraseDeltasMs);
       if (passed) passedPhrases++;
       final resolvedBeat = transport.beatAt(
-        (judge.notes.last.atMs + RhythmJudge.goodWindowMs) / 1000,
+        math.min(
+              judge.notes.last.atMs +
+                  RhythmJudge.lateWindowMs +
+                  (_nowMs - judgedNowMs),
+              _decideByMs,
+            ) /
+            1000,
       );
       lastOutcomeBeat = resolvedBeat;
       crowd.resolvePhrase(
@@ -878,8 +954,28 @@ class GardenSession {
     }
   }
 
-  TapResult tap(Limb limb) {
+  /// The challenger is dancing and the player's turn hasn't opened, not even
+  /// its early grace before the first response note. A tap now is out of turn:
+  /// it's shown a cross, and costs nothing.
+  bool get opponentsTurn {
+    if (phase != GardenPhase.call || transport.countingIn) return false;
+    final firstResponseMs =
+        (transport.secondsAt(_cycleStart + chart.callBeats) * 1000).round();
+    return judgedNowMs < firstResponseMs - RhythmJudge.earlyWindowMs;
+  }
+
+  /// A touch event older than this is a stale time stamp, not a slow frame.
+  static const maxTapAgeMs = 150;
+
+  /// The latest tap came during [opponentsTurn]. It was ignored, never a miss.
+  bool lastTapOutOfTurn = false;
+
+  /// [ageMs] is how long ago the touch happened, by the touch event's own time
+  /// stamp: a busy frame mustn't make a tap late.
+  TapResult tap(Limb limb, {int ageMs = 0}) {
     advance();
+    final judgedAt = judgedNowMs - ageMs.clamp(0, maxTapAgeMs);
+    lastTapOutOfTurn = opponentsTurn;
     if (transport.countingIn) {
       return const TapResult(TapGrade.miss, null);
     }
@@ -888,8 +984,8 @@ class GardenSession {
         : 0;
     final earlyResponse =
         phase == GardenPhase.call &&
-        _nowMs >= firstResponseMs - RhythmJudge.goodWindowMs &&
-        _nowMs < firstResponseMs;
+        judgedAt >= firstResponseMs - RhythmJudge.earlyWindowMs &&
+        judgedAt < firstResponseMs;
     if ((phase != GardenPhase.response && !earlyResponse) ||
         _resolved ||
         progress.cleared) {
@@ -899,7 +995,7 @@ class GardenSession {
       _responseTier = transport.currentTier;
       _judge = _makeJudge();
     }
-    final result = _togetherGrade(_judge!.tap(limb, _nowMs));
+    final result = _togetherGrade(_judge!.tap(limb, judgedAt));
     lastGrade = result.grade;
     lastTiming = result.timing;
     lastDeltaMs = result.deltaMs;
