@@ -48,6 +48,14 @@
       "bars": 32,
       "baseBpm": 128,
       "fullBpm": 160
+    },
+    {
+      "id": "salon_bolero",
+      "title": "Terciopelo",
+      "path": "assets/music/scores/salon_bolero.json",
+      "bars": 32,
+      "baseBpm": 108,
+      "fullBpm": 124
     }
   ],
   "transitions": {
@@ -121,6 +129,16 @@
         "parentScore": "bar_swag",
         "path": "assets/music/scores/bar_swag_finale.json",
         "midiPath": "assets/music/midi/bar_swag_finale.mid"
+      },
+      {
+        "id": "salon_bolero_success",
+        "title": "Terciopelo — Room Approval",
+        "bars": 4,
+        "baseBpm": 108,
+        "fullBpm": 124,
+        "parentScore": "salon_bolero",
+        "path": "assets/music/scores/salon_bolero_success.json",
+        "midiPath": "assets/music/midi/salon_bolero_success.mid"
       }
     ],
     "bridges": [
@@ -200,6 +218,17 @@
         "toScore": "bar_swag",
         "path": "assets/music/scores/pool_to_bar.json",
         "midiPath": "assets/music/midi/pool_to_bar.mid"
+      },
+      {
+        "id": "billiards_to_salon",
+        "title": "Through the Mirrored Doors",
+        "bars": 2,
+        "baseBpm": 108,
+        "fullBpm": 108,
+        "fromScore": "crowd_duende",
+        "toScore": "salon_bolero",
+        "path": "assets/music/scores/billiards_to_salon.json",
+        "midiPath": "assets/music/midi/billiards_to_salon.mid"
       }
     ]
   }
