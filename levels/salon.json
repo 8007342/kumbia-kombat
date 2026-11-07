@@ -3,9 +3,9 @@
  "title": "EL SALÓN DE ESPEJOS",
  "background": "billiards/billiards-room-clean.png",
  "music": {
-  "score": "crowd_duende",
-  "successScore": "bar_swag_finale",
-  "leadShape": "sine"
+  "score": "salon_bolero",
+  "successScore": "salon_bolero_success",
+  "leadShape": "triangle"
  },
  "rules": {
   "metric": "Charm",

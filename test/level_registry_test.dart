@@ -233,7 +233,7 @@ void main() {
         expect(party.next, same(billiards.level));
         expect(party.bridgeToNext, 'crowd_to_restroom');
         expect(billiards.next, same(salon.level));
-        expect(billiards.bridgeToNext, 'crowd_to_restroom');
+        expect(billiards.bridgeToNext, 'billiards_to_salon');
         expect(salon.next, isNull);
         expect(salon.bridgeToNext, isNull);
         expect(levels.exitScoreIds, {
@@ -245,7 +245,8 @@ void main() {
           'bar_to_crowd',
           'crowd_duende_success',
           'crowd_to_restroom',
-          'bar_swag_finale',
+          'billiards_to_salon',
+          'salon_bolero_success',
         });
         expect(garden.level.copy.clearedShout, 'MUCHO MOJO');
         expect(bar.level.copy.clearedShout, 'MUY SUAVE');

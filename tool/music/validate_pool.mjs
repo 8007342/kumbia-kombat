@@ -132,7 +132,7 @@ assert.equal(level.music.score,'pool_swing');assert.equal(level.music.successSco
 assert.equal(level.title,'THE POOL LAWN');assert.ok(['Sabor','Grace'].includes(level.rules.metric));
 const campaign=json('levels/index.json').campaign;
 assert.deepEqual(campaign.map(s=>s.level),['garden','pool-garden','bar','cool-crowd','billiards','salon'],'the owner\'s order, tenth round, then the party, billiards and the salon');
-assert.deepEqual(campaign.map(s=>s.bridgeToNext),['garden_to_pool','pool_to_bar','bar_to_crowd','crowd_to_restroom','crowd_to_restroom',undefined]);
+assert.deepEqual(campaign.map(s=>s.bridgeToNext),['garden_to_pool','pool_to_bar','bar_to_crowd','crowd_to_restroom','billiards_to_salon',undefined]);
 const chart=level.chart, LIMBS=['leftHand','rightHand','leftFoot','rightFoot'];
 assert.equal(chart.callBeats,8);
 assert.equal(chart.offsets.length,chart.limbs.length);
