@@ -1,0 +1,45 @@
+{
+ "id": "band-loop",
+ "description": "Eight drawings a musician, turned toward the crowd: relaxed (energy 0), tap (energy 1, foot on the beat, reusing relaxed as its foot-down), swing (energy 2). Pose tables live in tool/art/rig/poses.py under this id, and each player's arms and words are motion.overrides. plan/levels/indoor-band-2026-11-07.md has the contract.",
+ "human": true,
+ "poseTable": "band-loop",
+ "referencePose": "relaxed.a",
+ "clips": [
+  {
+   "id": "relaxed",
+   "drawings": 2,
+   "view": "front",
+   "sheetView": "front_3q",
+   "promptTemplate": "skeletonTurn",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": []
+  },
+  {
+   "id": "tap",
+   "drawings": 2,
+   "view": "front",
+   "sheetView": "front_3q",
+   "promptTemplate": "skeletonTurn",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": []
+  },
+  {
+   "id": "swing",
+   "drawings": 4,
+   "view": "front",
+   "sheetView": "front_3q",
+   "promptTemplate": "skeletonTurn",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": []
+  }
+ ],
+ "defaultProfile": "moderate",
+ "profileRules": [],
+ "research": [
+  "plan/levels/indoor-band-2026-11-07.md"
+ ],
+ "runtimeAliases": {}
+}

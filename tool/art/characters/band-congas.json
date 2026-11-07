@@ -1,0 +1,307 @@
+{
+ "$comment": "The indoor party's band (congas), owner's ruling 2026-11-07; front sheet approved the same day. Drawn at an angle, playing toward the crowd, from the front_3q view. The instrument is a mask-only garment, and Qwen draws it from the sheet. Plan: plan/levels/indoor-band-2026-11-07.md.",
+ "id": "band-congas",
+ "family": "band-congas-v1",
+ "style": "party-pixel",
+ "description": "Indoor party band, congas: short, stocky, barrel-chested man of about fifty-five, thick grey moustache, smooth bald head.",
+ "body": {
+  "preset": "stocky-adult"
+ },
+ "pronouns": [
+  "he",
+  "him",
+  "his"
+ ],
+ "skin": "#B5804F",
+ "traits": "short, stocky, barrel-chested man of about fifty-five, thick grey moustache, smooth bald head",
+ "demeanor": "the joker of the band: grinning, eyes on the dancers",
+ "garments": [
+  {
+   "id": "hair",
+   "shape": "short-hair-moustache",
+   "region": "hair",
+   "colour": "#8C8782",
+   "text": "smooth bald head with a thick neat grey moustache"
+  },
+  {
+   "id": "shirt",
+   "shape": "shirt-stocky",
+   "region": "shirt",
+   "colour": "#EFE4C8",
+   "text": "closed cream shirt with a small midnight-violet bow tie"
+  },
+  {
+   "id": "jacket",
+   "shape": "waistcoat-fitted",
+   "region": "cloth",
+   "colour": "#EADFC2",
+   "text": "long-sleeved cream dinner jacket"
+  },
+  {
+   "id": "lapels",
+   "shape": "jacket-lapels",
+   "region": "apron",
+   "colour": "#3A1F6B",
+   "text": "narrow midnight-violet satin lapels"
+  },
+  {
+   "id": "trousers",
+   "shape": "trousers",
+   "region": "trousers",
+   "colour": "#26232C",
+   "text": "slim dark charcoal trousers"
+  },
+  {
+   "id": "shoes",
+   "shape": "shoes-flat",
+   "region": "shoes",
+   "colour": "#D8C9A0",
+   "text": "polished two-tone cream and dark shoes"
+  },
+  {
+   "id": "drums",
+   "shape": "conga-shells",
+   "region": "prop",
+   "colour": "#8E1C28",
+   "text": "dark reddish wood conga drums",
+   "params": {
+    "yaw": 30.0
+   }
+  },
+  {
+   "id": "bands",
+   "shape": "conga-bands",
+   "region": "accessory",
+   "colour": "#C9A23A",
+   "text": "brass bands",
+   "params": {
+    "yaw": 30.0
+   }
+  }
+ ],
+ "motion": {
+  "set": "band-loop",
+  "overrides": {
+   "relaxed.a": {
+    "pose": {
+     "twist": 0,
+     "l_arm": [
+      24.3,
+      10.5
+     ],
+     "l_fore": [
+      -20.4,
+      69.5
+     ],
+     "r_arm": [
+      12.4,
+      19.7
+     ],
+     "r_fore": [
+      1.4,
+      30.8
+     ]
+    },
+    "intent": "seen in a three-quarter view from the side: the chest, hips, knees, toes and nose all point toward the lower right corner of the picture, the face in three-quarter view looking that way, playing out toward a crowd on that side, both feet flat on the floor, the hand on the left of the picture flat on its drumhead, the hand on the right of the picture lifted a little above its drumhead"
+   },
+   "relaxed.b": {
+    "pose": {
+     "twist": 0,
+     "l_arm": [
+      12.4,
+      19.7
+     ],
+     "l_fore": [
+      1.4,
+      30.8
+     ],
+     "r_arm": [
+      24.3,
+      10.5
+     ],
+     "r_fore": [
+      -20.4,
+      69.5
+     ]
+    },
+    "intent": "seen in a three-quarter view from the side: the chest, hips, knees, toes and nose all point toward the lower right corner of the picture, the face in three-quarter view looking that way, playing out toward a crowd on that side, both feet flat on the floor, the hand on the right of the picture flat on its drumhead, the hand on the left of the picture lifted a little above its drumhead"
+   },
+   "tap.up_a": {
+    "pose": {
+     "twist": 0,
+     "l_arm": [
+      24.3,
+      10.5
+     ],
+     "l_fore": [
+      -20.4,
+      69.5
+     ],
+     "r_arm": [
+      12.4,
+      19.7
+     ],
+     "r_fore": [
+      1.4,
+      30.8
+     ]
+    },
+    "intent": "seen in a three-quarter view from the side: the chest, hips, knees, toes and nose all point toward the lower right corner of the picture, the face in three-quarter view looking that way, playing out toward a crowd on that side, the right heel of the foot on the left of the picture lifted off the floor, its toe touching, tapping time, the other foot flat, the hand on the left of the picture flat on its drumhead, the other lifted a little"
+   },
+   "tap.up_b": {
+    "pose": {
+     "twist": 0,
+     "l_arm": [
+      12.4,
+      19.7
+     ],
+     "l_fore": [
+      1.4,
+      30.8
+     ],
+     "r_arm": [
+      24.3,
+      10.5
+     ],
+     "r_fore": [
+      -20.4,
+      69.5
+     ]
+    },
+    "intent": "seen in a three-quarter view from the side: the chest, hips, knees, toes and nose all point toward the lower right corner of the picture, the face in three-quarter view looking that way, playing out toward a crowd on that side, the right heel of the foot on the left of the picture lifted off the floor, its toe touching, tapping time, the other foot flat, the hand on the right of the picture flat on its drumhead, the other lifted a little"
+   },
+   "swing.a": {
+    "pose": {
+     "twist": 8,
+     "l_arm": [
+      8.7,
+      23.5
+     ],
+     "l_fore": [
+      -2.6,
+      34.2
+     ],
+     "r_arm": [
+      81.5,
+      23.1
+     ],
+     "r_fore": [
+      -158.1,
+      37.1
+     ]
+    },
+    "intent": "seen in a three-quarter view from the side: the chest, hips, knees, toes and nose all point toward the lower right corner of the picture, the face in three-quarter view looking that way, playing out toward a crowd on that side, both feet flat on the floor, big joyful move: the hand on the left of the picture thrown high above his shoulder, palm open, the other flat on its drumhead, shoulders rolling"
+   },
+   "swing.b": {
+    "pose": {
+     "twist": 0,
+     "l_arm": [
+      26.7,
+      7.7
+     ],
+     "l_fore": [
+      -20.3,
+      82.3
+     ],
+     "r_arm": [
+      27.3,
+      7.0
+     ],
+     "r_fore": [
+      -14.9,
+      83.2
+     ]
+    },
+    "intent": "seen in a three-quarter view from the side: the chest, hips, knees, toes and nose all point toward the lower right corner of the picture, the face in three-quarter view looking that way, playing out toward a crowd on that side, both feet flat on the floor, both hands just above the drumheads, about to come down, shoulders level"
+   },
+   "swing.c": {
+    "pose": {
+     "twist": -8,
+     "l_arm": [
+      81.5,
+      23.1
+     ],
+     "l_fore": [
+      -158.1,
+      37.1
+     ],
+     "r_arm": [
+      8.7,
+      23.5
+     ],
+     "r_fore": [
+      -2.6,
+      34.2
+     ]
+    },
+    "intent": "seen in a three-quarter view from the side: the chest, hips, knees, toes and nose all point toward the lower right corner of the picture, the face in three-quarter view looking that way, playing out toward a crowd on that side, both feet flat on the floor, big joyful move: the hand on the right of the picture thrown high above his shoulder, palm open, the other flat on its drumhead, shoulders rolling"
+   },
+   "swing.d": {
+    "pose": {
+     "twist": 0,
+     "l_arm": [
+      26.7,
+      7.7
+     ],
+     "l_fore": [
+      -20.3,
+      82.3
+     ],
+     "r_arm": [
+      27.3,
+      7.0
+     ],
+     "r_fore": [
+      -14.9,
+      83.2
+     ]
+    },
+    "intent": "seen in a three-quarter view from the side: the chest, hips, knees, toes and nose all point toward the lower right corner of the picture, the face in three-quarter view looking that way, playing out toward a crowd on that side, the right heel of the foot on the left of the picture lifted off the floor, its toe touching, tapping time, the other foot flat, both hands just above the drumheads, about to come down"
+   }
+  }
+ },
+ "drawing": {
+  "noun": "man",
+  "fits": "his head, both shoes, both hands and both drums",
+  "look": "short, stocky, barrel-chested adult build, round belly, thick arms, short neck, round cheerful face with crinkled eyes and a wide open grin, warm tan skin, smooth bald head, thick neat grey moustache, long-sleeved cream dinner jacket buttoned closed, its narrow midnight-violet satin lapels lying flat on the chest, a small midnight-violet bow tie at a closed cream shirt collar, slim dark charcoal trousers and polished two-tone cream and dark shoes, and thick dark ink outline, behind a pair of slim barrel-shaped conga drums of dark reddish wood with cream drumheads and brass bands",
+  "extra": "He is a grown man of about fifty-five. The two slim conga drums stand on the floor close beside his legs and stay in the same place, their cream heads at the height of his hips, with his legs and both shoes showing in the gap between them. ",
+  "sheet": {
+   "source": {
+    "image": "tool/art/references/band-congas/front.png",
+    "poseFrom": "relaxed.a"
+   },
+   "views": {
+    "front": {
+     "image": "tool/art/references/band-congas/front.png",
+     "description": "standing square facing the viewer behind the two conga drums, feet apart, elbows out, both open hands lying flat on top of the cream drumheads, in plain sight"
+    },
+    "front_3q": {
+     "image": "tool/art/references/band-congas/front_3q.png",
+     "description": "standing behind the two conga drums, seen in a three-quarter view from the side: the chest, hips, knees, toes and nose all point toward the lower right corner of the picture, the face in three-quarter view looking that way, playing out toward a crowd on that side, feet apart, both open hands on top of the cream drumheads",
+     "extra": "He is a grown man of about fifty-five. The two slim conga drums stand on the floor close beside his legs and stay in the same place, their cream heads at the height of his hips, with his legs and both shoes showing in the gap between them. The room is seen from the same angle, so the drum nearer the viewer on the left of the picture stands lower in the picture and the other stands higher, one behind the other on a diagonal. "
+    }
+   }
+  },
+  "score": {
+   "silhouetteTolerance": 60
+  },
+  "seed": 989610
+ },
+ "references": {
+  "mode": "source",
+  "sources": []
+ },
+ "targets": [
+  {
+   "room": "cool-crowd",
+   "atlas": "band-congas",
+   "out": "assets/art/ensemble/band-congas-v1.png",
+   "native": [
+    256,
+    320
+   ],
+   "pixelScale": 3
+  }
+ ],
+ "seedBase": 989610
+}
