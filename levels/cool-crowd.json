@@ -1,7 +1,7 @@
 {
  "id": "cool-crowd",
  "title": "THE DANCE ROOM",
- "background": "cool-crowd/cool-crowd-room.png",
+ "background": "cool-crowd/cool-crowd-room-clean.png",
  "music": {
   "score": "crowd_duende",
   "successScore": "crowd_duende_success",
@@ -350,7 +350,7 @@
     "mark": [0.5, 0.47],
     "yieldMark": [0.62, 0.44],
     "stature": 1.1,
-    "meetMark": [0.58, 0.46],
+    "meetMark": [0.44, 0.46],
     "facingAway": {
      "back": {
       "frames": [
@@ -402,63 +402,143 @@
     "beats": 4,
     "stagger": 2,
     "slowTo": 0.5
+   },
+   "occupied": {
+    "pair": {
+     "frames": [
+      "step_touch_a",
+      "step_touch_d",
+      "step_touch_c",
+      "step_touch_d"
+     ],
+     "beatsPerFrame": 1
+    },
+    "solo": {
+     "frames": [
+      "step_touch_a",
+      "standing_idle_a",
+      "step_touch_d",
+      "standing_idle_b"
+     ],
+     "beatsPerFrame": 1
+    }
    }
   },
   "guests": [
    {
-    "at": [0.41, 0.45],
-    "partTo": [0.285, 0.46]
+    "at": [0.4, 0.45],
+    "partTo": [0.28, 0.525],
+    "occupied": "pair",
+    "faces": "left",
+    "partner": 3
    },
    {
-    "at": [0.345, 0.42],
-    "partTo": [0.295, 0.425]
+    "at": [0.37, 0.405],
+    "partTo": [0.295, 0.425],
+    "occupied": "solo",
+    "faces": "right"
    },
    {
-    "at": [0.43, 0.395],
-    "partTo": [0.305, 0.4]
+    "at": [0.43, 0.405],
+    "partTo": [0.305, 0.4],
+    "occupied": "solo",
+    "faces": "left"
    },
    {
-    "at": [0.35, 0.5],
-    "partTo": [0.285, 0.49]
+    "at": [0.345, 0.46],
+    "partTo": [0.225, 0.53],
+    "occupied": "pair",
+    "faces": "right",
+    "partner": 0
    },
    {
     "at": [0.38, 0.53],
-    "partTo": [0.06, 0.525]
+    "partTo": [0.06, 0.525],
+    "occupied": "solo",
+    "faces": "left"
    },
    {
     "at": [0.59, 0.45],
-    "partTo": [0.775, 0.45]
+    "partTo": [0.77, 0.49],
+    "occupied": "pair",
+    "faces": "right",
+    "partner": 6
    },
    {
-    "at": [0.62, 0.52],
-    "partTo": [0.735, 0.5]
+    "at": [0.65, 0.46],
+    "partTo": [0.825, 0.49],
+    "occupied": "pair",
+    "faces": "left",
+    "partner": 5
    },
    {
-    "at": [0.66, 0.41],
-    "partTo": [0.735, 0.435]
+    "at": [0.54, 0.405],
+    "partTo": [0.735, 0.43],
+    "occupied": "pair",
+    "faces": "right",
+    "partner": 8
    },
    {
-    "at": [0.52, 0.405],
-    "partTo": [0.82, 0.47]
+    "at": [0.6, 0.4],
+    "partTo": [0.79, 0.445],
+    "occupied": "pair",
+    "faces": "left",
+    "partner": 7
    },
    {
-    "at": [0.64, 0.49],
-    "partTo": [0.8, 0.515]
+    "at": [0.62, 0.53],
+    "partTo": [0.77, 0.55],
+    "occupied": "pair",
+    "faces": "right",
+    "partner": 10
    },
    {
-    "at": [0.61, 0.56],
-    "partTo": [0.76, 0.55]
+    "at": [0.67, 0.535],
+    "partTo": [0.825, 0.555],
+    "occupied": "pair",
+    "faces": "left",
+    "partner": 9
    },
    {
-    "at": [0.57, 0.4],
-    "partTo": [0.86, 0.5]
+    "at": [0.66, 0.4],
+    "partTo": [0.86, 0.5],
+    "occupied": "solo",
+    "faces": "right"
    },
-   [0.87, 0.555],
-   [0.91, 0.52],
-   [0.83, 0.575],
-   [0.08, 0.575],
-   [0.2, 0.515],
-   [0.135, 0.535]
+   {
+    "at": [0.87, 0.555],
+    "occupied": "pair",
+    "faces": "right",
+    "partner": 13
+   },
+   {
+    "at": [0.93, 0.56],
+    "occupied": "pair",
+    "faces": "left",
+    "partner": 12
+   },
+   {
+    "at": [0.91, 0.52],
+    "occupied": "solo",
+    "faces": "left"
+   },
+   {
+    "at": [0.08, 0.54],
+    "occupied": "pair",
+    "faces": "right",
+    "partner": 16
+   },
+   {
+    "at": [0.135, 0.535],
+    "occupied": "pair",
+    "faces": "left",
+    "partner": 15
+   },
+   {
+    "at": [0.17, 0.515],
+    "occupied": "solo",
+    "faces": "left"
+   }
   ],
   "props": []
  },
@@ -598,6 +678,64 @@
    }
   ]
  },
+ "exitShot": {
+  "plate": "closeups/nod-plate.png",
+  "celebrateUntil": 2,
+  "walkFrom": 1.75,
+  "walkTo": 3,
+  "heroStep": [0.56, 0.53],
+  "heroWaitFrame": "front_idle",
+  "closeupFrom": 3,
+  "contactBeat": 5,
+  "closeupTo": 7.75,
+  "contactPoint": [0.5, 1],
+  "impactBeats": 1,
+  "dust": false,
+  "actors": [
+   {
+    "approach": "closeups/oil-gulp-bt-offer.png",
+    "impact": "closeups/oil-gulp-bt-offer.png",
+    "frames": [
+     {
+      "beat": 3,
+      "image": "closeups/oil-gulp-bt-offer.png"
+     }
+    ],
+    "contact": [431, 384],
+    "scale": 0.46,
+    "entry": [-24, 0],
+    "recoil": [0, 0]
+   },
+   {
+    "approach": "closeups/duet-macron-body-rest.png",
+    "impact": "closeups/duet-macron-body-rest.png",
+    "frames": [
+     {
+      "beat": 3,
+      "image": "closeups/duet-macron-body-rest.png"
+     }
+    ],
+    "contact": [8, 440],
+    "scale": 0.46,
+    "entry": [24, 0],
+    "recoil": [0, 0]
+   }
+  ],
+  "cue": [
+   {
+    "beat": 4,
+    "track": "nod",
+    "pitch": 55,
+    "velocity": 110
+   },
+   {
+    "beat": 5,
+    "track": "nod",
+    "pitch": 60,
+    "velocity": 127
+   }
+  ]
+ },
  "copy": {
   "invitation": "The floor is already taken.",
   "clearedTitle": "QUÉ\nFLOW"
@@ -665,6 +803,96 @@
     "at": 7,
     "limb": "rightFoot",
     "move": "stomp"
+   }
+  ]
+ },
+ "layers": {
+  "plateWidth": 1024,
+  "plateHeight": 1536,
+  "props": [
+   {
+    "id": "lantern-a",
+    "atlas": "cool-crowd/cool-crowd-layers.png",
+    "atlasY": 0,
+    "left": 226,
+    "top": 2,
+    "width": 62,
+    "height": 139,
+    "frames": 7,
+    "motion": "sway",
+    "periodBeats": 4,
+    "instance": 1,
+    "kind": "hanging"
+   },
+   {
+    "id": "lantern-b",
+    "atlas": "cool-crowd/cool-crowd-layers.png",
+    "atlasY": 141,
+    "left": 296,
+    "top": 2,
+    "width": 65,
+    "height": 241,
+    "frames": 7,
+    "motion": "sway",
+    "periodBeats": 4,
+    "instance": 2,
+    "kind": "hanging"
+   },
+   {
+    "id": "lantern-c",
+    "atlas": "cool-crowd/cool-crowd-layers.png",
+    "atlasY": 384,
+    "left": 381,
+    "top": 4,
+    "width": 76,
+    "height": 253,
+    "frames": 7,
+    "motion": "sway",
+    "periodBeats": 4,
+    "instance": 3,
+    "kind": "hanging"
+   },
+   {
+    "id": "lantern-d",
+    "atlas": "cool-crowd/cool-crowd-layers.png",
+    "atlasY": 639,
+    "left": 457,
+    "top": 2,
+    "width": 94,
+    "height": 215,
+    "frames": 7,
+    "motion": "sway",
+    "periodBeats": 4,
+    "instance": 4,
+    "kind": "hanging"
+   },
+   {
+    "id": "lantern-e",
+    "atlas": "cool-crowd/cool-crowd-layers.png",
+    "atlasY": 856,
+    "left": 598,
+    "top": 2,
+    "width": 64,
+    "height": 174,
+    "frames": 7,
+    "motion": "sway",
+    "periodBeats": 4,
+    "instance": 5,
+    "kind": "hanging"
+   },
+   {
+    "id": "candle-left",
+    "atlas": "cool-crowd/cool-crowd-layers.png",
+    "atlasY": 1032,
+    "left": 200,
+    "top": 436,
+    "width": 81,
+    "height": 35,
+    "frames": 4,
+    "motion": "pulse",
+    "periodBeats": 1,
+    "instance": 6,
+    "kind": "flame"
    }
   ]
  }

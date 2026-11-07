@@ -312,10 +312,35 @@ void main() {
       return crowd;
     }
 
-    test('at the start they are dancing, turned away, doing their own thing', () {
+    test('at the start they are dancing, busy with each other or themselves', () {
       final all = poses(run(const []), 0);
       expect(all.every((p) => !p.facesIn), isTrue);
-      expect(all.map((p) => p.frame).toSet(), everyElement(isIn(dance.ownThing.frames)));
+      expect(
+        all.map((p) => p.frame).toSet(),
+        everyElement(isIn(dance.frames)),
+      );
+    });
+
+    test('most of the floor dances in couples, and faces all ways', () {
+      final guests = _level().layout.guests;
+      final coupled = guests.where((g) => g.partner != null).toList();
+      expect(coupled.length, greaterThanOrEqualTo(12));
+      for (final guest in coupled) {
+        final other = guests[guest.partner!];
+        expect(other.partner, guests.indexOf(guest));
+        // Side by side, at both ends of a parting, and facing each other.
+        for (final (mine, theirs) in [
+          (guest.floor, other.floor),
+          if (guest.partTo != null) (guest.partTo!, other.partTo!),
+        ]) {
+          expect((mine.x - theirs.x).abs(), lessThan(.09), reason: guest.id);
+          expect((mine.y - theirs.y).abs(), lessThan(.06), reason: guest.id);
+        }
+        expect(guest.occupiedFacingRight, guest.floor.x < other.floor.x);
+        expect(guest.partDelay, other.partDelay);
+      }
+      final facing = guests.map((g) => g.occupiedFacingRight).toSet();
+      expect(facing, {true, false});
     });
 
     test('nobody ever sits, however the run goes', () {
@@ -795,6 +820,7 @@ void main() {
         final start = level.chart.introBeats + cycle * level.chart.cycleBeats;
         // The call has begun, so these are this phrase's notes.
         advance(music.secondsAt(start + .5));
+        if (session.phase == GardenPhase.cleared) break;
         final limbs = session.activeLimbs;
         final offsets = session.activeOffsets;
         for (var i = 0; i < limbs.length; i++) {
@@ -812,6 +838,35 @@ void main() {
       for (var i = 0; i < session.crowd.guestCount; i++) {
         expect(session.crowd.guest(i, last).state, CrowdGuestState.celebrating);
       }
+      // The win's shot, through the real scene, on the beats that matter.
+      final won = <ui.Image>[];
+      final shot = level.exitShot!;
+      scene.exitCodaBeat = last;
+      for (final beat in [
+        1.0,
+        shot.walkTo - .25,
+        shot.closeupFrom + .25,
+        4.0,
+        shot.contactBeat,
+        shot.closeupTo - .25,
+        shot.closeupTo + .1,
+      ]) {
+        scene.exitBeat = beat;
+        scene.presentationBeat = last + beat;
+        won.add(await still(scene));
+      }
+      scene.exitBeat = null;
+      scene.presentationBeat = null;
+      final winRecorder = ui.PictureRecorder();
+      final winCanvas = ui.Canvas(winRecorder);
+      for (final (i, image) in won.indexed) {
+        winCanvas.drawImage(image, ui.Offset(i * 396.0, 0), ui.Paint());
+      }
+      final winSheet = await winRecorder.endRecording().toImage(396 * won.length, 844);
+      final winPng = await winSheet.toByteData(format: ui.ImageByteFormat.png);
+      Directory('build/stills').createSync(recursive: true);
+      File('build/stills/cool-crowd-win.png').writeAsBytesSync(winPng!.buffer.asUint8List());
+
       final recorder = ui.PictureRecorder();
       final canvas = ui.Canvas(recorder);
       for (final (i, image) in frames.indexed) {

@@ -57,6 +57,8 @@ def colour_rule(rgb, rule):
         return (b >= g * .92) & (b > 120)
     if rule == "string":  # a dark wire with yellow bulbs
         return (np.maximum(np.maximum(r, g), b) < 70) | ((g > 185) & (b < 120) & (r > 200))
+    if rule == "lantern":  # amber glass and near-black iron over violet: violet keeps blue above red
+        return (r > b * 1.12) | (np.maximum(np.maximum(r, g), b) < 42)
     raise ValueError(rule)
 
 

@@ -124,7 +124,23 @@ class PartyGuestSlot {
     this.chairIncluded = false,
     this.partTo,
     this.partDelay = 0,
+    this.atlas,
+    this.occupied,
+    this.occupiedFacingRight,
+    this.partner,
   });
+
+  /// The drawings this guest uses, if not their archetype's: `FloorDance`.
+  final String? atlas;
+
+  /// Which of `FloorDance.occupied` they dance while busy with their own night.
+  final String? occupied;
+
+  /// Which way they face while busy. Facing the fight comes with interest.
+  final bool? occupiedFacingRight;
+
+  /// The guest they're dancing with, by index: they keep one beat, and move together.
+  final int? partner;
 
   /// Where this dance-floor guest moves to when the floor opens, or null if they
   /// dance in place. Their [floor] is where they start.
@@ -229,12 +245,27 @@ class PartyRoomLayout {
   }
 }
 
+/// What a level says about one person on a dance floor, beyond where they stand.
+class FloorGuestCast {
+  const FloorGuestCast({
+    this.atlas,
+    this.occupied,
+    this.facingRight,
+    this.partner,
+  });
+  final String? atlas;
+  final String? occupied;
+  final bool? facingRight;
+  final int? partner;
+}
+
 List<PartyGuestSlot> seatedGuestSlots(
   String room,
   List<PartyPoint> anchors, {
   List<PartySeat>? seats,
   List<PartyPoint?>? partTo,
   List<double>? partDelays,
+  List<FloorGuestCast?>? cast,
 }) =>
     List.unmodifiable([
       for (var i = 0; i < anchors.length; i++)
@@ -248,6 +279,10 @@ List<PartyGuestSlot> seatedGuestSlots(
               : PartyActivity.seatedDrink,
           partTo: partTo?[i],
           partDelay: partDelays?[i] ?? 0,
+          atlas: cast?[i]?.atlas,
+          occupied: cast?[i]?.occupied,
+          occupiedFacingRight: cast?[i]?.facingRight,
+          partner: cast?[i]?.partner,
           archetype: i % 3,
           interestIndex: i,
           paletteIndex: i ~/ 3,

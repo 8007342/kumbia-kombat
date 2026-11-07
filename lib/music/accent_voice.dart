@@ -178,6 +178,39 @@ const accentPatches = <String, List<AccentLayer>>{
       q: .6,
     ),
   ],
+  // A nod of respect: a low, dry knock with a little room in it. Under the bump and
+  // the peck on purpose, so it stays cool: nobody here is impressed out loud.
+  'nod': [
+    AccentLayer(
+      shape: 'sine',
+      fromHz: 240,
+      toHz: 120,
+      sweep: .06,
+      seconds: .16,
+      gain: .42,
+      filter: 'lowpass',
+      filterHz: 1100,
+    ),
+    AccentLayer(
+      shape: 'noise',
+      fromHz: 0,
+      toHz: 0,
+      seconds: .018,
+      gain: .12,
+      filter: 'bandpass',
+      filterHz: 1700,
+      q: .8,
+    ),
+    AccentLayer(
+      shape: 'triangle',
+      fromHz: 480,
+      toHz: 480,
+      seconds: .24,
+      gain: .06,
+      filter: 'lowpass',
+      filterHz: 1500,
+    ),
+  ],
 };
 
 /// The tracks an exit shot may name: the score's voices, and the accents.
