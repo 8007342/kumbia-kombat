@@ -106,15 +106,15 @@
       91.8
      ],
      "r_arm": [
-      1.3,
-      34.3
+      9.7,
+      21.1
      ],
      "r_fore": [
-      -10.4,
-      45.2
+      -2.1,
+      31.8
      ]
     },
-    "intent": "seen in a three-quarter view from the side: the chest, hips, knees, toes and nose all point toward the lower right corner of the picture, the face in three-quarter view looking that way, playing out toward a crowd on that side, both feet flat on the floor, the plucking hand just pulled away from the strings, the other hand on the bass neck, the bass upright"
+    "intent": "seen in a three-quarter view from the side: the chest, hips, knees, toes and nose all point toward the lower right corner of the picture, the face in three-quarter view looking that way, playing out toward a crowd on that side, both feet flat on the floor, the plucking hand pulled well away from the strings, out in the air beside her hip, the other hand on the bass neck, the bass upright"
    },
    "tap.up_a": {
     "pose": {
@@ -136,7 +136,7 @@
       45.3
      ]
     },
-    "intent": "seen in a three-quarter view from the side: the chest, hips, knees, toes and nose all point toward the lower right corner of the picture, the face in three-quarter view looking that way, playing out toward a crowd on that side, the right heel of the foot on the left of the picture lifted off the floor, its toe touching, tapping time, the other foot flat, plucking the bass strings with bare fingertips, the other hand on the bass neck"
+    "intent": "seen in a three-quarter view from the side: the chest, hips, knees, toes and nose all point toward the lower right corner of the picture, the face in three-quarter view looking that way, playing out toward a crowd on that side, the foot on the left of the picture lifted clear off the floor with its knee bent and toe pointing down, tapping time, the other foot flat on the floor, plucking the bass strings with bare fingertips, the other hand on the bass neck"
    },
    "tap.up_b": {
     "pose": {
@@ -150,37 +150,37 @@
       91.8
      ],
      "r_arm": [
-      1.3,
-      34.3
+      9.7,
+      21.1
      ],
      "r_fore": [
-      -10.4,
-      45.2
+      -2.1,
+      31.8
      ]
     },
-    "intent": "seen in a three-quarter view from the side: the chest, hips, knees, toes and nose all point toward the lower right corner of the picture, the face in three-quarter view looking that way, playing out toward a crowd on that side, the right heel of the foot on the left of the picture lifted off the floor, its toe touching, tapping time, the other foot flat, the plucking hand just pulled away from the strings, the other hand on the bass neck"
+    "intent": "seen in a three-quarter view from the side: the chest, hips, knees, toes and nose all point toward the lower right corner of the picture, the face in three-quarter view looking that way, playing out toward a crowd on that side, the foot on the left of the picture lifted clear off the floor with its knee bent and toe pointing down, tapping time, the other foot flat on the floor, the plucking hand just pulled away from the strings, the other hand on the bass neck"
    },
    "swing.a": {
     "pose": {
      "twist": 24.0,
      "l_arm": [
-      20.1,
-      48.8
+      22.0,
+      60.9
      ],
      "l_fore": [
-      -6.7,
-      93.2
+      15.6,
+      76.6
      ],
      "r_arm": [
-      -12.8,
-      37.5
+      -16.0,
+      38.3
      ],
      "r_fore": [
-      -26.2,
-      46.2
+      -29.6,
+      46.5
      ]
     },
-    "intent": "seen in a three-quarter view from the side: the chest, hips, knees, toes and nose all point toward the lower right corner of the picture, the face in three-quarter view looking that way, playing out toward a crowd on that side, both feet flat on the floor, rocking the whole bass on its spike so its neck leans toward the right of the picture, plucking hard, swaying with it"
+    "intent": "seen in a three-quarter view from the side: the chest, hips, knees, toes and nose all point toward the lower right corner of the picture, the face in three-quarter view looking that way, playing out toward a crowd on that side, both feet flat on the floor, the whole bass tipped far over on its spike at a steep angle of twenty degrees, the top of its neck far out toward the right of the picture and the spike still on the floor, her body leaning with it, plucking hard"
    },
    "swing.b": {
     "pose": {
@@ -208,23 +208,23 @@
     "pose": {
      "twist": 20.0,
      "l_arm": [
-      -3.6,
-      36.7
+      -14.6,
+      35.1
      ],
      "l_fore": [
-      -77.3,
-      72.6
+      -81.0,
+      59.9
      ],
      "r_arm": [
-      -2.1,
-      35.7
+      4.9,
+      32.6
      ],
      "r_fore": [
-      -14.2,
-      46.0
+      -8.8,
+      46.4
      ]
     },
-    "intent": "seen in a three-quarter view from the side: the chest, hips, knees, toes and nose all point toward the lower right corner of the picture, the face in three-quarter view looking that way, playing out toward a crowd on that side, both feet flat on the floor, rocking the whole bass on its spike so its neck leans toward the left of the picture, plucking hard, swaying with it"
+    "intent": "seen in a three-quarter view from the side: the chest, hips, knees, toes and nose all point toward the lower right corner of the picture, the face in three-quarter view looking that way, playing out toward a crowd on that side, both feet flat on the floor, the whole bass tipped far over on its spike at a steep angle of twenty degrees, the top of its neck far over toward the left of the picture, in front of her face, and the spike still on the floor, her body leaning with it, plucking hard"
    },
    "swing.d": {
     "pose": {
@@ -246,7 +246,7 @@
       44.7
      ]
     },
-    "intent": "seen in a three-quarter view from the side: the chest, hips, knees, toes and nose all point toward the lower right corner of the picture, the face in three-quarter view looking that way, playing out toward a crowd on that side, the right heel of the foot on the left of the picture lifted off the floor, its toe touching, tapping time, the other foot flat, the bass passing upright, the plucking hand pulled away"
+    "intent": "seen in a three-quarter view from the side: the chest, hips, knees, toes and nose all point toward the lower right corner of the picture, the face in three-quarter view looking that way, playing out toward a crowd on that side, the foot on the left of the picture lifted clear off the floor with its knee bent and toe pointing down, tapping time, the other foot flat on the floor, the bass passing upright, the plucking hand pulled away"
    }
   }
  },
@@ -275,7 +275,9 @@
   "score": {
    "silhouetteTolerance": 60
   },
-  "seed": 989510
+  "skeletonScale": 1.0,
+  "seed": 989510,
+  "count": 2
  },
  "references": {
   "mode": "source",

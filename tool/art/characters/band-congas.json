@@ -102,7 +102,7 @@
       30.8
      ]
     },
-    "intent": "seen in a three-quarter view from the side: the chest, hips, knees, toes and nose all point toward the lower right corner of the picture, the face in three-quarter view looking that way, playing out toward a crowd on that side, both feet flat on the floor, the hand on the left of the picture flat on its drumhead, the hand on the right of the picture lifted a little above its drumhead"
+    "intent": "body and face turned three-quarters toward the right side of the picture, playing out toward a crowd on that side, both feet flat on the floor, the hand on the left of the picture flat on its drumhead, the hand on the right of the picture lifted a little above its drumhead"
    },
    "relaxed.b": {
     "pose": {
@@ -124,7 +124,7 @@
       69.5
      ]
     },
-    "intent": "seen in a three-quarter view from the side: the chest, hips, knees, toes and nose all point toward the lower right corner of the picture, the face in three-quarter view looking that way, playing out toward a crowd on that side, both feet flat on the floor, the hand on the right of the picture flat on its drumhead, the hand on the left of the picture lifted a little above its drumhead"
+    "intent": "body and face turned three-quarters toward the right side of the picture, playing out toward a crowd on that side, both feet flat on the floor, the hand on the right of the picture flat on its drumhead, the hand on the left of the picture lifted a little above its drumhead"
    },
    "tap.up_a": {
     "pose": {
@@ -146,7 +146,7 @@
       30.8
      ]
     },
-    "intent": "seen in a three-quarter view from the side: the chest, hips, knees, toes and nose all point toward the lower right corner of the picture, the face in three-quarter view looking that way, playing out toward a crowd on that side, the right heel of the foot on the left of the picture lifted off the floor, its toe touching, tapping time, the other foot flat, the hand on the left of the picture flat on its drumhead, the other lifted a little"
+    "intent": "body and face turned three-quarters toward the right side of the picture, playing out toward a crowd on that side, the foot on the left of the picture lifted clear off the floor with its knee bent and toe pointing down, tapping time, the other foot flat on the floor, the hand on the left of the picture flat on its drumhead, the other lifted a little"
    },
    "tap.up_b": {
     "pose": {
@@ -168,7 +168,7 @@
       69.5
      ]
     },
-    "intent": "seen in a three-quarter view from the side: the chest, hips, knees, toes and nose all point toward the lower right corner of the picture, the face in three-quarter view looking that way, playing out toward a crowd on that side, the right heel of the foot on the left of the picture lifted off the floor, its toe touching, tapping time, the other foot flat, the hand on the right of the picture flat on its drumhead, the other lifted a little"
+    "intent": "body and face turned three-quarters toward the right side of the picture, playing out toward a crowd on that side, the foot on the left of the picture lifted clear off the floor with its knee bent and toe pointing down, tapping time, the other foot flat on the floor, the hand on the right of the picture flat on its drumhead, the other lifted a little"
    },
    "swing.a": {
     "pose": {
@@ -190,7 +190,7 @@
       37.1
      ]
     },
-    "intent": "seen in a three-quarter view from the side: the chest, hips, knees, toes and nose all point toward the lower right corner of the picture, the face in three-quarter view looking that way, playing out toward a crowd on that side, both feet flat on the floor, big joyful move: the hand on the left of the picture thrown high above his shoulder, palm open, the other flat on its drumhead, shoulders rolling"
+    "intent": "body and face turned three-quarters toward the right side of the picture, playing out toward a crowd on that side, both feet flat on the floor, big joyful move: the hand on the left of the picture thrown high above his shoulder, palm open, the other flat on its drumhead, shoulders rolling"
    },
    "swing.b": {
     "pose": {
@@ -212,7 +212,7 @@
       83.2
      ]
     },
-    "intent": "seen in a three-quarter view from the side: the chest, hips, knees, toes and nose all point toward the lower right corner of the picture, the face in three-quarter view looking that way, playing out toward a crowd on that side, both feet flat on the floor, both hands just above the drumheads, about to come down, shoulders level"
+    "intent": "body and face turned three-quarters toward the right side of the picture, playing out toward a crowd on that side, both feet flat on the floor, both hands just above the drumheads, about to come down, shoulders level"
    },
    "swing.c": {
     "pose": {
@@ -234,7 +234,7 @@
       34.2
      ]
     },
-    "intent": "seen in a three-quarter view from the side: the chest, hips, knees, toes and nose all point toward the lower right corner of the picture, the face in three-quarter view looking that way, playing out toward a crowd on that side, both feet flat on the floor, big joyful move: the hand on the right of the picture thrown high above his shoulder, palm open, the other flat on its drumhead, shoulders rolling"
+    "intent": "body and face turned three-quarters toward the right side of the picture, playing out toward a crowd on that side, both feet flat on the floor, big joyful move: the hand on the right of the picture thrown high above his shoulder, palm open, the other flat on its drumhead, shoulders rolling"
    },
    "swing.d": {
     "pose": {
@@ -256,7 +256,7 @@
       83.2
      ]
     },
-    "intent": "seen in a three-quarter view from the side: the chest, hips, knees, toes and nose all point toward the lower right corner of the picture, the face in three-quarter view looking that way, playing out toward a crowd on that side, the right heel of the foot on the left of the picture lifted off the floor, its toe touching, tapping time, the other foot flat, both hands just above the drumheads, about to come down"
+    "intent": "body and face turned three-quarters toward the right side of the picture, playing out toward a crowd on that side, the foot on the left of the picture lifted clear off the floor with its knee bent and toe pointing down, tapping time, the other foot flat on the floor, both hands just above the drumheads, about to come down"
    }
   }
  },
@@ -277,15 +277,17 @@
     },
     "front_3q": {
      "image": "tool/art/references/band-congas/front_3q.png",
-     "description": "standing behind the two conga drums, seen in a three-quarter view from the side: the chest, hips, knees, toes and nose all point toward the lower right corner of the picture, the face in three-quarter view looking that way, playing out toward a crowd on that side, feet apart, both open hands on top of the cream drumheads",
-     "extra": "He is a grown man of about fifty-five. The two slim conga drums stand on the floor close beside his legs and stay in the same place, their cream heads at the height of his hips, with his legs and both shoes showing in the gap between them. The room is seen from the same angle, so the drum nearer the viewer on the left of the picture stands lower in the picture and the other stands higher, one behind the other on a diagonal. "
+     "description": "standing behind the two conga drums, body and face turned three-quarters toward the right side of the picture, playing out toward a crowd on that side, feet apart, both open hands on top of the cream drumheads",
+     "extra": "He is a grown man of about fifty-five. The two slim conga drums stand on the floor close beside his legs and stay in the same place, their cream heads at the height of his hips, with his legs and both shoes showing in the gap between them. There are exactly two drums and no more: one on the left of the picture and one on the right of the picture, side by side, each with one of his hands on it, with his legs showing between them. "
     }
    }
   },
   "score": {
    "silhouetteTolerance": 60
   },
-  "seed": 989610
+  "skeletonScale": 1.0,
+  "seed": 989620,
+  "count": 2
  },
  "references": {
   "mode": "source",
@@ -303,5 +305,5 @@
    "pixelScale": 3
   }
  ],
- "seedBase": 989610
+ "seedBase": 989620
 }

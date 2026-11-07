@@ -146,7 +146,7 @@
       160.2
      ]
     },
-    "intent": "seen in a three-quarter view from the side: the chest, hips, knees, toes and nose all point toward the lower right corner of the picture, the face in three-quarter view looking that way, playing out toward a crowd on that side, the right heel of the foot on the left of the picture lifted off the floor, its toe touching, tapping time, the other foot flat, standing behind the marimba, the mallet in the hand on the left of the picture raised, the other mallet down on a bar"
+    "intent": "seen in a three-quarter view from the side: the chest, hips, knees, toes and nose all point toward the lower right corner of the picture, the face in three-quarter view looking that way, playing out toward a crowd on that side, the foot on the left of the picture lifted clear off the floor with its knee bent and toe pointing down, tapping time, the other foot flat on the floor, standing behind the marimba, the mallet in the hand on the left of the picture raised, the other mallet down on a bar"
    },
    "tap.up_b": {
     "pose": {
@@ -168,7 +168,7 @@
       61.3
      ]
     },
-    "intent": "seen in a three-quarter view from the side: the chest, hips, knees, toes and nose all point toward the lower right corner of the picture, the face in three-quarter view looking that way, playing out toward a crowd on that side, the right heel of the foot on the left of the picture lifted off the floor, its toe touching, tapping time, the other foot flat, standing behind the marimba, the mallet in the hand on the right of the picture raised, the other mallet down on a bar"
+    "intent": "seen in a three-quarter view from the side: the chest, hips, knees, toes and nose all point toward the lower right corner of the picture, the face in three-quarter view looking that way, playing out toward a crowd on that side, the foot on the left of the picture lifted clear off the floor with its knee bent and toe pointing down, tapping time, the other foot flat on the floor, standing behind the marimba, the mallet in the hand on the right of the picture raised, the other mallet down on a bar"
    },
    "swing.a": {
     "pose": {
@@ -285,7 +285,9 @@
   "score": {
    "silhouetteTolerance": 60
   },
-  "seed": 989810
+  "skeletonScale": 1.0,
+  "seed": 989810,
+  "count": 2
  },
  "references": {
   "mode": "source",
