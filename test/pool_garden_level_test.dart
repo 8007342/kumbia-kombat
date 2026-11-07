@@ -57,6 +57,7 @@ void main() {
       'pool-garden',
       'bar',
       'cool-crowd',
+      'billiards',
     ]);
     expect(levels.campaign[0].bridgeToNext, 'garden_to_pool');
     expect(levels.campaign[1].bridgeToNext, 'pool_to_bar');

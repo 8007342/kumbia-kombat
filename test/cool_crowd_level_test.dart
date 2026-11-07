@@ -795,6 +795,8 @@ void main() {
         final start = level.chart.introBeats + cycle * level.chart.cycleBeats;
         // The call has begun, so these are this phrase's notes.
         advance(music.secondsAt(start + .5));
+        // A last note late in the phrase settles the win after the phrase ends.
+        if (session.phase == GardenPhase.cleared) break;
         final limbs = session.activeLimbs;
         final offsets = session.activeOffsets;
         for (var i = 0; i < limbs.length; i++) {
