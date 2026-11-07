@@ -10,7 +10,6 @@ Each swap is a data edit.
 
 | Where | Today | Replace with | From |
 |---|---|---|---|
-| Her dance | Atlas `bartender`, so The Bartender dances here | `stage.challengers[0].atlas: "pool-player"` once the atlas is packed. Her dancer block is already in `choreography.json` | POOLART |
 | Music | `crowd_duende`, with `bar_swag_finale` as the 16-beat success | The rendered `billiards` key, about 100 BPM, 16-beat final success. Then drop the guard in `rendered_music_test.dart` | MUSIC |
 | Bridge from the party | `crowd_to_restroom` in `index.json`, as the synth fallback | Rendered `cool-crowd.bridge`, 8 beats, read by the runtime | MUSIC |
 
