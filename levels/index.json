@@ -13,7 +13,10 @@
       "level": "bar"
     }
   ],
-  "review": ["cool-crowd"],
+  "review": [
+    "cool-crowd",
+    "billiards"
+  ],
   "upcomingOpponents": [
     {
       "id": "blinblin",
@@ -85,12 +88,6 @@
           }
         ]
       }
-    },
-    {
-      "id": "pool-player",
-      "name": "The Pool Player",
-      "level": "billiards room",
-      "placeholder": true
     }
   ]
 }

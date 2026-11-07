@@ -43,6 +43,7 @@ LevelRegistry _levels() => LevelRegistry.parse(
 const _tierBpm = {
   'pool-garden': [144.0, 144.0, 160.0, 160.0, 136.0],
   'bar': [100.0, 100.0, 106.0, 106.0, 112.0],
+  'billiards': [104.0, 104.0, 104.0, 104.0, 104.0],
 };
 
 void main() {

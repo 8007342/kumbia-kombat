@@ -469,6 +469,75 @@
           ]
         }
       }
+    },
+    "pool-player": {
+      "note": "The Pool Player keeps her cue in every drawing. Mācron's turn: both hands stacked on the planted cue, in place of the walk she has no drawings for. Her spin and flare are the cue's own flourish.",
+      "clips": {
+        "promenade": {
+          "beatsPerFrame": 1,
+          "frames": [
+            "watch_shift_l",
+            "watch_hold_l",
+            "watch_shift_r",
+            "watch_hold_r"
+          ]
+        },
+        "spin_flare": {
+          "note": "A full turn around the cue in two beats, ending on the cue swung out.",
+          "frames": [
+            "spin_front",
+            "spin_34_r",
+            "spin_side_r",
+            "spin_back34_r",
+            "spin_back",
+            "spin_back34_l",
+            "spin_side_l",
+            "spin_34_l",
+            "right_hand_follow"
+          ],
+          "beats": [
+            0.25,
+            0.25,
+            0.25,
+            0.25,
+            0.25,
+            0.25,
+            0.25,
+            0.25,
+            1
+          ]
+        },
+        "flare": {
+          "note": "A quick twirl of the cue.",
+          "frames": [
+            "right_hand_follow"
+          ],
+          "beats": [
+            1.5
+          ]
+        }
+      },
+      "accents": [
+        {
+          "note": "Chalks up as the phrase's second bar starts: a warm room's flourish.",
+          "everyBeats": 8,
+          "atBeat": 4,
+          "minTier": 2,
+          "clip": "show_off"
+        }
+      ],
+      "handoffMoves": [
+        {
+          "note": "Danced on the mark as the call ends, overflowing into Macron's turn, then she steps away. The spin from the first warm tier.",
+          "minTier": 1,
+          "clip": "spin_flare"
+        },
+        {
+          "note": "A cold room still gets a twirl of the cue.",
+          "minTier": 0,
+          "clip": "flare"
+        }
+      ]
     }
   }
 }

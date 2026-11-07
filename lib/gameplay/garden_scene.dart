@@ -436,8 +436,32 @@ class GardenSceneGame extends FlameGame {
     _addChallenger(draws, viewport, room, challenger);
     _addHero(draws, viewport, room, beat, challenger);
     draws.sort((a, b) => compareEnsembleDepth(a.order, b.order));
+    final occluders = _level!.scenery.occluders;
+    final hiding = [
+      for (final occluder in occluders)
+        (
+          viewport.project(PartyPoint(0, occluder.frontY)).y,
+          ui.Path()
+            ..fillType = ui.PathFillType.evenOdd
+            ..addRect(bounds)
+            ..addPolygon([
+              for (final point in occluder.outline)
+                _point(viewport.project(point)),
+            ], true),
+        ),
+    ];
     for (final draw in draws) {
+      final behind = hiding.where((h) => draw.floorY < h.$1);
+      if (behind.isEmpty) {
+        draw.draw(canvas);
+        continue;
+      }
+      canvas.save();
+      for (final (_, outside) in behind) {
+        canvas.clipPath(outside, doAntiAlias: false);
+      }
       draw.draw(canvas);
+      canvas.restore();
     }
     _drawCloseup(canvas, bounds);
     canvas.restore();
