@@ -17,6 +17,8 @@ records it as if it did (seen in ComfyUI's /history on 2026-11-05). Passing none
 
 Hand fixes are data, and survive re-planning:
   drawing.poseOverrides   {pose: {description, props, skeletonScale, why}} when words and skeleton disagree
+  drawing.cue             where a long held prop lies per pose (garments.cue_line); drawn into the skeleton as a white
+                          line unless drawing.cueGuide is false
   drawing.skeletonOverrides {pose: {keypoint index: [x, y]}} moves joints for this drawing only, in
                           canvas pixels. Qwen follows the skeleton over the prompt, and the rig's wrists
                           stop short where its big hands would meet, so a clap reads as arms hanging down.
@@ -156,7 +158,9 @@ def prompt_for(c: dict, backend: dict, pid: str, pose: dict) -> str:
     d = drawing_of(c)
     fix = d.get("poseOverrides", {}).get(pid, {})
     template = backend["prompts"]["reference" if is_drawn(c) else pose.get("template", "skeleton")]
-    props = fix["props"] if "props" in fix else props_text(c, pose["clip"])
+    cue = d.get("cue", {})
+    words = cue.get("poses", {}).get(pid, {}).get("words") or cue.get("clips", {}).get(pose["clip"], {}).get("words")
+    props = fix["props"] if "props" in fix else (words + " " if words else props_text(c, pose["clip"]))
     return template.format(noun=d["noun"], fits=d["fits"], look=_look(c, pose.get("view")), extra=_extra(c, pose.get("view")),
                            description=fix.get("description", pose["description"]), props=props, **grammar(c))
 
@@ -241,12 +245,33 @@ def one_image(workflow: dict) -> dict:
     return wf
 
 
+def hand_on_cue(c: dict, rig_pose: dict, pid: str) -> dict:
+    """The free wrist moved onto the cue, for a pose whose spec says otherHand: pixels along the cue past the grip, or "tip".
+
+    Angles can't land a hand on a line, and Qwen follows the skeleton, so a hand that only nearly reaches stays off it.
+    """
+    cue = drawing_of(c).get("cue") or {}
+    spec = {**cue.get("default", {}), **cue.get("clips", {}).get(pid.split(".")[0], {}), **cue.get("poses", {}).get(pid, {})}
+    where = spec.get("otherHand")
+    line = rig_pose.get("cue")
+    if where is None or not line:
+        return {}
+    (bx, by), (tx, ty) = line
+    length = ((tx - bx) ** 2 + (ty - by) ** 2) ** 0.5
+    ux, uy = (tx - bx) / length, (ty - by) / length
+    if where == "tip":
+        return {"7": [round(tx - ux * 14), round(ty - uy * 14)]}
+    gx, gy = rig_pose["openpose"][4][:2]
+    return {"7": [round(gx + ux * where), round(gy + uy * where)]}
+
+
 def skeleton_png(c: dict, rig_dir: Path, rig_poses: dict, pid: str, lane: Path, scale: float) -> Path:
     from openpose_draw import draw_openpose
 
     skel = lane / f"{pid}.skeleton.png"
     source = rig_dir / f"{pid}.pose.png"
-    moved = drawing_of(c).get("skeletonOverrides", {}).get(pid)
+    moved = dict(drawing_of(c).get("skeletonOverrides", {}).get(pid) or {})
+    moved.update(hand_on_cue(c, rig_poses[pid], pid))
     if moved:
         pts = [list(pt) for pt in rig_poses[pid]["openpose"]]
         for joint, xy in moved.items():
@@ -256,6 +281,16 @@ def skeleton_png(c: dict, rig_dir: Path, rig_poses: dict, pid: str, lane: Path, 
         with Image.open(source) as im:
             draw_openpose(adjusted, pts, [bool(pt[2]) for pt in pts], im.size)
         source = adjusted
+    line = rig_poses[pid].get("cue") if drawing_of(c).get("cueGuide", True) else None
+    if line:
+        # A prop's place belongs with the pose: without a line the model puts the cue wherever the sheet had it.
+        from PIL import ImageDraw
+        guided = lane / f"{pid}.guided.png"
+        with Image.open(source) as im:
+            im = im.convert("RGB")
+            ImageDraw.Draw(im).line([tuple(line[0]), tuple(line[1])], fill=(255, 255, 255), width=6)
+            im.save(guided)
+        source = guided
     scaled(source, skel, scale)
     return skel
 
@@ -299,6 +334,9 @@ def plan_run(c: dict, backend: dict, run: str, *, only: set[str] | None = None, 
                 stage_smaller(source_image, sheet_files[view], spec["stageScale"])
             else:
                 shutil.copy(source_image, sheet_files[view])
+            if spec.get("stageFlip"):
+                # A sheet whose prop is in the wrong hand for this view, with nothing else asymmetric to give it away.
+                Image.open(sheet_files[view]).transpose(Image.FLIP_LEFT_RIGHT).save(sheet_files[view])
 
     def bake(graph: dict, pid: str, prompt: str) -> Path:
         wf = copy.deepcopy(graph)

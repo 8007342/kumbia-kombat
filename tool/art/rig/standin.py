@@ -45,7 +45,7 @@ ROOT = Path(__file__).resolve().parents[3]
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 sys.path.insert(0, str(ROOT / "tool" / "art" / "pipeline"))
 import definitions as D  # noqa: E402
-from garments import build_character  # noqa: E402
+from garments import build_character, cue_line  # noqa: E402
 from poses import INTENT_BY_SET, MOTION_SETS, Pose, apply_overrides, intent_text  # noqa: E402
 from prims import _MATS, emission_mat, srgb_to_linear  # noqa: E402
 
@@ -434,7 +434,7 @@ def render_pose(rig: Rig, camera: str, pose_id: str, pose: Pose, support: str, o
     j = solve(p, pose, support)
     clip, name = pose_id.split(".", 1)
     before = previous_drawing(rig, clip, name) if clip in rig.clips and name in rig.clips[clip] else None
-    build_character(rig.definition, p, j, regions, clip, solve(p, *before) if before else None)
+    build_character(rig.definition, p, j, regions, clip, solve(p, *before) if before else None, pose_id)
     sc = bpy.context.scene
     cam = sc.camera
     cam_fwd = (cam.matrix_world.to_3x3() @ Vector((0, 0, -1))).normalized()
@@ -456,6 +456,10 @@ def render_pose(rig: Rig, camera: str, pose_id: str, pose: Pose, support: str, o
            "joints": {k: [round(v[0], 1), round(v[1], 1)] for k, v in joints2d.items()},
            "problems": problems, "clip": pose_id.split(".")[0], "pin": pin_of(pose, support),
            "bbox": bbox, "regionPixels": counts, "params": asdict(pose)}
+    cue = cue_line(rig.definition, p, j, pose_id)
+    if cue:
+        ends = project({"butt": cue[0], "tip": cue[1]})
+        rec["cue"] = [[round(ends[k][0], 1), round(ends[k][1], 1)] for k in ("butt", "tip")]
     sup = {"left": "l_ank", "l": "l_ank", "right": "r_ank", "r": "r_ank"}.get(support)
     rec["pivotX"] = round(joints2d[sup][0] if sup else (joints2d["l_ank"][0] + joints2d["r_ank"][0]) / 2, 1)
     if p.human:

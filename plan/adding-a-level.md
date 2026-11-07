@@ -73,6 +73,10 @@ The pipelines are Python and write JSON already, git shows each decision as a da
 
 List its id under `review` in `levels/index.json` instead of `campaign`. It's checked on load like any other and plays alone at `?level=<id>`. To join the campaign later, move it and add the previous level's bridge.
 
+## Tables, a cue stroke and a reward sound
+
+From the billiard room, all optional and data only: `scenery.occluders` (a painted table or lamp people stand behind: `outline` and `frontY`), `scenery.band` with no platform (players at tables, on a `tier` ladder), a rich step's `offer` (the move its last press invites in place of the usual one, refused by a test if the next note leaves no room) and `music.moveAccent` (a sound when a move or richer step lands). `plan/levels/billiards-2026-11-07.md`.
+
 ## A dance floor and a band
 
 `crowd.seat: "standing"`, `partTo` per guest and `crowd.floorDance` give a crowd that's already dancing and opens the floor. `scenery.platform` and `scenery.band` put a band on a raised floor. The fields, with `levels/cool-crowd.json` as the example, are in `plan/levels/indoor-party-2026-11-07.md`.

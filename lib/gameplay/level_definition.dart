@@ -83,7 +83,8 @@ class _Fields {
     throw LevelDataError(at(key), 'expected true or false, found $value');
   }
 
-  List<Object?> list(String key) {
+  List<Object?> list(String key, {bool optional = false}) {
+    if (optional && !has(key)) return const [];
     final value = _take(key);
     if (value is List<Object?>) return value;
     throw LevelDataError(at(key), 'expected a list, found $value');
@@ -140,7 +141,12 @@ class LevelMusic {
     required this.score,
     required this.successScore,
     required this.leadShape,
+    this.moveAccent,
   });
+
+  /// A sound over the music when a move or a richer step lands: a room's reward.
+  /// It reads nothing back, so it can't change timing or judging.
+  final ExitShotCue? moveAccent;
   final String score;
   final String successScore;
   final String leadShape;
@@ -334,6 +340,15 @@ class WallLight {
   final double periodBeats;
 }
 
+/// Something painted into the plate that people can stand behind, such as a table
+/// or a hanging lamp. Anyone whose feet are further away than [frontY] is drawn
+/// with [outline] left out, so the painting stays in front of them.
+class SceneOccluder {
+  const SceneOccluder({required this.outline, required this.frontY});
+  final List<PartyPoint> outline;
+  final double frontY;
+}
+
 class LevelScenery {
   const LevelScenery({
     required this.lamps,
@@ -342,7 +357,10 @@ class LevelScenery {
     this.platform,
     this.band,
     this.wallLight,
+    this.occluders = const [],
   });
+
+  final List<SceneOccluder> occluders;
 
   /// A raised floor painted into the plate, which nobody may stand in front of
   /// as if it weren't there.
@@ -458,6 +476,9 @@ class LevelDefinition {
       score: musicFields.text('score'),
       successScore: musicFields.text('successScore'),
       leadShape: leadShape,
+      moveAccent: musicFields.has('moveAccent')
+          ? _moveAccent(musicFields.child('moveAccent'))
+          : null,
     );
     musicFields.finish();
 
@@ -695,6 +716,10 @@ class LevelDefinition {
       wallLight: sceneryFields.has('wallLight')
           ? _wallLight(sceneryFields.child('wallLight'))
           : null,
+      occluders: [
+        for (final (i, raw) in sceneryFields.list('occluders', optional: true).indexed)
+          _occluder(_Fields('${sceneryFields.at('occluders')}[$i]', raw)),
+      ],
     );
     sceneryFields.finish();
     final platform = scenery.platform;
@@ -966,6 +991,37 @@ class LevelDefinition {
     return LevelBand(players: List.unmodifiable(players), standIn: standIn);
   }
 
+  static ExitShotCue _moveAccent(_Fields fields) {
+    final track = fields.text('track');
+    if (!isAccentTrack(track)) {
+      throw LevelDataError(fields.at('track'), 'no such accent: $track');
+    }
+    final accent = ExitShotCue(
+      0,
+      track,
+      fields.whole('pitch', min: 0),
+      fields.whole('velocity', min: 1),
+    );
+    fields.finish();
+    return accent;
+  }
+
+  static SceneOccluder _occluder(_Fields fields) {
+    final path = fields.at('outline');
+    final occluder = SceneOccluder(
+      outline: List.unmodifiable([
+        for (final (i, raw) in fields.list('outline').indexed)
+          _point('$path[$i]', raw),
+      ]),
+      frontY: fields.number('frontY', min: 0, max: 1),
+    );
+    if (occluder.outline.length < 3) {
+      throw LevelDataError(path, 'an outline needs three points');
+    }
+    fields.finish();
+    return occluder;
+  }
+
   static WallLight _wallLight(_Fields fields) {
     final path = fields.at('zones');
     final zones = <List<PartyPoint>>[];
@@ -1195,6 +1251,9 @@ class LevelDefinition {
       move: move,
       partner: fields.has('with') ? fields.named('with', Limb.values) : null,
       gap: fields.has('gap') ? fields.number('gap', min: .001) : 0,
+      offer: fields.has('offer')
+          ? fields.named('offer', GestureKind.values)
+          : null,
     );
     fields.finish();
     return step;

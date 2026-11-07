@@ -7,6 +7,7 @@ import 'package:kumbia_kombat/gameplay/crowd_interest.dart';
 import 'package:kumbia_kombat/gameplay/garden_page.dart';
 import 'package:kumbia_kombat/gameplay/garden_scene.dart';
 import 'package:kumbia_kombat/gameplay/garden_session.dart';
+import 'package:kumbia_kombat/gameplay/gesture_shapes.dart';
 import 'package:kumbia_kombat/gameplay/level_definition.dart';
 import 'package:kumbia_kombat/gameplay/party_layout.dart';
 import 'package:kumbia_kombat/gameplay/progression.dart';
@@ -86,6 +87,14 @@ void main() {
     expect(offbeat(charts[2]), greaterThan(offbeat(charts[1])));
     expect(rich(charts[3]), greaterThan(rich(charts[2])));
     expect(offbeat(charts[3]), greaterThan(offbeat(charts[2])));
+    // "Our next levels grow in complexity", and it can be slow: "we can have fast
+    // simple levels, and slow complex levels".
+    expect(rich(charts[4]), greaterThan(rich(charts[3])));
+    expect(offbeat(charts[4]), greaterThan(offbeat(charts[3])));
+    // Its signature: a cue stroke offered in every pattern.
+    for (var i = 0; i <= charts[4].variants.length; i++) {
+      expect(charts[4].pattern(i).offers.whereType<GestureKind>(), isNotEmpty);
+    }
   });
 
   group('shipping levels match the two-room code they replaced', () {
@@ -201,17 +210,20 @@ void main() {
           'pool-garden',
           'bar',
           'cool-crowd',
+          'billiards',
         ]);
         expect(levels.displayTotal, 5);
-        final [garden, lawn, bar, party] = levels.campaign;
+        final [garden, lawn, bar, party, billiards] = levels.campaign;
         expect(garden.next, same(lawn.level));
         expect(garden.bridgeToNext, 'garden_to_pool');
         expect(lawn.next, same(bar.level));
         expect(lawn.bridgeToNext, 'pool_to_bar');
         expect(bar.next, same(party.level));
         expect(bar.bridgeToNext, 'bar_to_crowd');
-        expect(party.next, isNull);
-        expect(party.bridgeToNext, isNull);
+        expect(party.next, same(billiards.level));
+        expect(party.bridgeToNext, 'crowd_to_restroom');
+        expect(billiards.next, isNull);
+        expect(billiards.bridgeToNext, isNull);
         expect(levels.exitScoreIds, {
           'garden_mojo_success',
           'garden_to_pool',
@@ -220,6 +232,8 @@ void main() {
           'bar_swag_success',
           'bar_to_crowd',
           'crowd_duende_success',
+          'crowd_to_restroom',
+          'bar_swag_finale',
         });
         expect(garden.level.copy.clearedShout, 'MUCHO MOJO');
         expect(bar.level.copy.clearedShout, 'MUY SUAVE');

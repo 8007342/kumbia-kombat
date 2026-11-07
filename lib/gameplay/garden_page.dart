@@ -767,6 +767,7 @@ class _GardenPageState extends State<GardenPage>
       }
       // Both presses of a richer step: the sparks say it landed, as a move's do.
       if (_session!.richStepsCompleted != richBefore) {
+        _moveAccent();
         _addMark(
           FeedbackMark(
             MarkKind.flourish,
@@ -822,7 +823,25 @@ class _GardenPageState extends State<GardenPage>
   }
 
   /// A move landed: the music answers, the trail flares, and Mācron does it.
+  /// The room's reward sound for a move or a finished richer step, if it has one.
+  void _moveAccent() {
+    final accent = _level.music.moveAccent;
+    if (accent == null) return;
+    _audio.schedule(
+      ScoreNote(
+        track: accent.track,
+        beat: 0,
+        pitch: accent.pitch,
+        duration: .25,
+        velocity: accent.velocity,
+      ),
+      _audio.nowSeconds,
+      .25,
+    );
+  }
+
   void _moveLanded(OptionalMove move) {
+    _moveAccent();
     _ornament(move.direction.name);
     _scene.flourishMove = move.kind;
     _scene.flourishLimb = move.limb;

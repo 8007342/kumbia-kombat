@@ -147,6 +147,65 @@ const accentPatches = <String, List<AccentLayer>>{
       filterHz: 4000,
     ),
   ],
+  // Ivory on ivory: a very short, hard knock with two high partials that don't
+  // share a pitch, and a tick for the contact. All of it is in a phone's range.
+  'clack': [
+    AccentLayer(
+      shape: 'sine',
+      fromHz: 2650,
+      toHz: 2350,
+      sweep: .02,
+      seconds: .05,
+      gain: .55,
+      filter: 'lowpass',
+      filterHz: 7000,
+    ),
+    AccentLayer(
+      shape: 'triangle',
+      fromHz: 1180,
+      toHz: 980,
+      sweep: .02,
+      seconds: .045,
+      gain: .4,
+      filter: 'bandpass',
+      filterHz: 1400,
+      q: 1.2,
+    ),
+    AccentLayer(
+      shape: 'noise',
+      fromHz: 0,
+      toHz: 0,
+      seconds: .012,
+      gain: .4,
+      filter: 'bandpass',
+      filterHz: 4200,
+      q: .7,
+    ),
+  ],
+  // Chalk on a cue tip: a soft dry twist, a narrow rasp that lifts a little. Small,
+  // since it's dabbed on a friend's antenna.
+  'chalk': [
+    AccentLayer(
+      shape: 'noise',
+      fromHz: 0,
+      toHz: 0,
+      seconds: .14,
+      gain: .4,
+      filter: 'bandpass',
+      filterHz: 3400,
+      q: 2.5,
+    ),
+    AccentLayer(
+      shape: 'sine',
+      fromHz: 2300,
+      toHz: 3100,
+      sweep: .1,
+      seconds: .12,
+      gain: .16,
+      filter: 'lowpass',
+      filterHz: 6000,
+    ),
+  ],
   // A glass changing hands: two high partials that don't share a pitch, and a tick.
   'clink': [
     AccentLayer(

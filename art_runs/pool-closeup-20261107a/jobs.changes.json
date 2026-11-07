@@ -1,0 +1,32 @@
+[
+ {
+  "pose": "ck.chalk_b",
+  "args": {
+   "workflow": "art_runs/pool-closeup-20261107a/workflows/ck.chalk_b.api.json",
+   "tier": "I1",
+   "count": 3,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/pool-closeup-20261107a/in/key.png",
+    "pose_proxy": "/work/tmp/imagegen/kumbia/pool-closeup-20261107a/in/ck.chalk_b.skeleton.png"
+   },
+   "overrides": {
+    "seed": 989710
+   }
+  }
+ },
+ {
+  "pose": "ck.wink",
+  "args": {
+   "workflow": "art_runs/pool-closeup-20261107a/workflows/ck.wink.api.json",
+   "tier": "I1",
+   "count": 3,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/pool-closeup-20261107a/in/key.png",
+    "pose_proxy": "/work/tmp/imagegen/kumbia/pool-closeup-20261107a/in/ck.wink.skeleton.png"
+   },
+   "overrides": {
+    "seed": 989720
+   }
+  }
+ }
+]

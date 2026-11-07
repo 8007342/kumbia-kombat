@@ -32,6 +32,7 @@ class Ctx:
     params: dict
     prev: dict | None = None   # joints of the previous drawing, for one-drawing lag
     lag: str | None = None     # the garment's secondaryMotion
+    cue: tuple | None = None   # (butt, tip) of a held cue in this pose, from cue_line
 
 
 def hem_lag(c: Ctx) -> Vector:
@@ -157,6 +158,60 @@ def gold_chains(c: Ctx) -> None:
         low = c.j["chest"].lerp(c.j["pelvis"], depth) + front * R["torso"] * 1.08
         for sign in (-1, 1):
             add_capsule(top + side * sign * R["torso"] * 0.5, low, r, c.region, c.regions)
+
+
+def cue_line(definition: dict, p, j: dict, pose_id: str) -> tuple[Vector, Vector] | None:
+    """Where the billiard cue lies in this pose: (butt, tip), from drawing.cue, or None when the pose has no cue.
+
+    drawing.cue = {length, default, clips: {clip: spec}, poses: {pose: spec}}, later wins. A spec says:
+      hand    "r" or "l", the wrist that holds it
+      through a joint the cue passes through in place of the wrist, for a cue propped on a shoulder
+      mode    "planted": the butt on the floor at `butt` [x, y], the line through the wrist (a dance pole).
+              "held": through the wrist along `dir` [x, y, z], with `grip` the fraction of the length below the hand.
+    World axes: x toward the picture's right, y away from the viewer, z up. The tip is the far end from the butt.
+    """
+    table = definition.get("drawing", {}).get("cue")
+    if not table:
+        return None
+    clip = pose_id.split(".", 1)[0]
+    spec = {**table.get("default", {}), **table.get("clips", {}).get(clip, {}), **table.get("poses", {}).get(pose_id, {})}
+    if not spec or spec.get("mode") == "none":
+        return None
+    wrist = j[spec.get("through", f"{spec.get('hand', 'r')}_wri")]
+    length = spec.get("length", table.get("length", 1.5))
+    if spec.get("mode") == "planted":
+        x, y = spec.get("butt", (0, 0))
+        butt = Vector((x, y, 0.0))
+        return butt, butt + (wrist - butt).normalized() * length
+    axis = Vector(spec["dir"]).normalized()
+    butt = wrist - axis * length * spec.get("grip", 0.3)
+    return butt, butt + axis * length
+
+
+def cue_shaft(c: Ctx) -> None:
+    """Masks only, like gold-chains: Qwen draws the cue from the sheet. Slim, pale, the upper part of the cue."""
+    if c.cue:
+        butt, tip = c.cue
+        add_capsule(butt.lerp(tip, c.params.get("from", 0.42)), tip, c.params.get("radius", 0.012), c.region, c.regions)
+
+
+def cue_butt(c: Ctx) -> None:
+    if c.cue:
+        butt, tip = c.cue
+        add_capsule(butt, butt.lerp(tip, c.params.get("to", 0.42)), c.params.get("radius", 0.02), c.region, c.regions)
+
+
+def waistcoat_buttons(c: Ctx) -> None:
+    """Three brass buttons on the chest's front: only so brass has a region for its ramp."""
+    up, _ = _torso_axes(c.j)
+    side = (c.j["l_sho"] - c.j["r_sho"]).normalized()
+    front = side.cross(up).normalized()
+    for t in (0.35, 0.5, 0.65):
+        add_sphere(c.j["chest"].lerp(c.j["pelvis"], t) + front * c.p.limb_r["torso"] * 1.05, 0.016, c.region, c.regions)
+
+
+def palette_only(c: Ctx) -> None:
+    """No geometry: a colour the sheet draws and the rig has no shape for, such as a cube of chalk in a hand."""
 
 
 def shirt_fitted(c: Ctx) -> None:
@@ -354,6 +409,7 @@ SHAPES = {
     "puff": puff, "guayabera-stripes": guayabera_stripes, "shirt-stocky": shirt_stocky, "shirt-fitted": shirt_fitted,
     "waistcoat-fitted": waistcoat_fitted, "sleeve-rolled": sleeve_rolled, "waist-apron": waist_apron,
     "trousers": trousers, "shoes-flat": shoes_flat, "shoes-heeled": shoes_heeled, "gold-chains": gold_chains,
+    "cue-shaft": cue_shaft, "cue-butt": cue_butt, "waistcoat-buttons": waistcoat_buttons, "palette-only": palette_only,
     "upright-bass": upright_bass, "trumpet-horn": trumpet_horn, "conga-shells": conga_shells, "conga-bands": conga_bands,
     "marimba-bars": marimba_bars, "marimba-tubes": marimba_tubes, "jacket-lapels": jacket_lapels,
     "macron-body": macron_body,
@@ -379,12 +435,13 @@ def prop_glass(c: Ctx, at: Vector, axis: Vector) -> None:
 PROPS = {"shaker": prop_shaker, "bottle": prop_bottle, "glass": prop_glass}
 
 
-def build_character(definition: dict, p, j: dict, regions: dict, clip: str, prev: dict | None = None) -> None:
+def build_character(definition: dict, p, j: dict, regions: dict, clip: str, prev: dict | None = None, pose_id: str = "") -> None:
     """All geometry for one pose of one character. prev: joints of the previous drawing."""
+    cue = cue_line(definition, p, j, pose_id or clip)
     if p.human:
         base_body(p, j, regions)
     for g in definition["garments"]:
-        SHAPES[g["shape"]](Ctx(p, j, regions, g["region"], g.get("params", {}), prev, g.get("secondaryMotion")))
+        SHAPES[g["shape"]](Ctx(p, j, regions, g["region"], g.get("params", {}), prev, g.get("secondaryMotion"), cue))
     for pr in definition.get("props", []):
         if pr.get("clips") and clip not in pr["clips"]:
             continue

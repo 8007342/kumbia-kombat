@@ -31,14 +31,15 @@ from pathlib import Path
 
 HEAD_CLEAR = 1.2                      # head-widths, wrist to head centre
 HEAD_WHITELIST = {"finish_turn.finish_a", "finish_turn.finish_b", "approval.nod"}
-TURN_CLIPS = {"turn", "finish_turn", "reveal", "pair_dance", "back_dance", "sidestep", "glance", "model"}  # yaw cap does not apply
+CUE_NEAR_FACE = {"watch", "clap", "challenge", "chalk"}  # both hands on a cue held close: the wrist near the chin is the pose
+TURN_CLIPS = {"turn", "finish_turn", "reveal", "spin", "lean", "pair_dance", "back_dance", "sidestep", "glance", "model"}  # yaw cap does not apply
 # Seen in profile, or a set of different views: legs may overlap and shoulder width and ankles may change.
 PROFILE_CLIPS = {"sidestep", "model"}
 REAR_CLIPS = {"back_groove", "back_accent"}  # the yaw cap is measured from facing directly away
 BAND_CLIPS = {"relaxed", "tap", "swing"}  # motion set band-loop: arms reach across to an instrument, a horn is at the face
 CROSSED_ARMS = {"crossed"}  # the arms cross on purpose
 HEAD_ONLY = {"crossed"}  # a nod moves little but the head, so the static check does not apply
-NO_WIDTH_CHECK = {"turn", "reveal"}            # deliberate 360-degree turn views (no width/drift check)
+NO_WIDTH_CHECK = {"turn", "reveal", "spin"}            # deliberate 360-degree turn views (no width/drift check)
 LOCOMOTION = {"enter_forward", "retreat_backward", "yield_side", "ingress", "egress"}
 LOOPS = {"groove", "watch", "back_groove"}
 MAX_YAW = 35.0
@@ -89,7 +90,7 @@ def crossing_problems(r: dict) -> list[str]:
 
 
 def head_problems(r: dict) -> list[str]:
-    if not r.get("openpose") or r["id"] in HEAD_WHITELIST or r.get("clip") in BAND_CLIPS:
+    if not r.get("openpose") or r["id"] in HEAD_WHITELIST or r.get("clip") in BAND_CLIPS or (r.get("cue") and r.get("clip") in CUE_NEAR_FACE):
         return []
     head = r["joints"]["head"]
     limit = HEAD_CLEAR * r["headWidthPx"]

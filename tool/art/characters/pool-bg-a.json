@@ -1,0 +1,202 @@
+{
+ "$comment": "A background player in the billiards room, written by tool/art/motion/pool-bg-people.py. Agent's design choice; the owner can reverse it.",
+ "id": "pool-bg-a",
+ "family": "pool-bg-a-v1",
+ "style": "party-pixel",
+ "description": "Tall thin older man in a flat cap and shirtsleeves.",
+ "body": {
+  "preset": "slim-adult"
+ },
+ "pronouns": [
+  "he",
+  "him",
+  "his"
+ ],
+ "skin": "#B97F58",
+ "traits": "tall thin adult man of about seventy, long face, grey moustache, a stoop",
+ "demeanor": "absorbed in the shot",
+ "garments": [
+  {
+   "id": "hat",
+   "shape": "brimmed-hat",
+   "region": "hat",
+   "colour": "#6A5138",
+   "text": "flat brown tweed cap"
+  },
+  {
+   "id": "shirt",
+   "shape": "shirt-fitted",
+   "region": "shirt",
+   "colour": "#A9C2D6",
+   "text": "pale blue shirt with rolled sleeves",
+   "alsoIn": [
+    "prop"
+   ]
+  },
+  {
+   "id": "braces",
+   "shape": "waistcoat-fitted",
+   "region": "cloth",
+   "colour": "#4A3020",
+   "text": "dark brown braces"
+  },
+  {
+   "id": "trousers",
+   "shape": "trousers",
+   "region": "trousers",
+   "colour": "#6B6D70",
+   "text": "baggy grey trousers"
+  },
+  {
+   "id": "shoes",
+   "shape": "shoes-flat",
+   "region": "shoes",
+   "colour": "#26222A",
+   "text": "scuffed black shoes"
+  },
+  {
+   "id": "cue_shaft",
+   "shape": "cue-shaft",
+   "region": "prop",
+   "colour": "#C9984F",
+   "alsoIn": [
+    "skin",
+    "shirt",
+    "cloth",
+    "trousers"
+   ],
+   "text": "pale wooden cue shaft with a white tip"
+  },
+  {
+   "id": "cue_butt",
+   "shape": "cue-butt",
+   "region": "prop_dark",
+   "colour": "#5E3320",
+   "alsoIn": [
+    "skin",
+    "trousers",
+    "shoes"
+   ],
+   "text": "dark wooden cue butt"
+  },
+  {
+   "id": "chalk",
+   "shape": "palette-only",
+   "region": "accessory",
+   "colour": "#3E8EDE",
+   "alsoIn": [
+    "skin",
+    "prop"
+   ],
+   "text": "a small cube of blue billiard chalk"
+  }
+ ],
+ "motion": {
+  "set": "pool-bg",
+  "overrides": {}
+ },
+ "drawing": {
+  "noun": "man",
+  "fits": "head, both shoes and both hands",
+  "look": "very tall and thin adult build with a slight stoop, long face with a grey moustache, tan skin, a flat brown tweed cap, pale blue shirt with the sleeves rolled, dark brown braces, baggy grey trousers and scuffed black shoes and thick dark ink outline",
+  "extra": "Both eyes are open. This is a grown adult, fully clothed. There is exactly one pool cue, long, slim, straight and rigid, with a pale wooden shaft, a white tip and a dark wooden butt: it lies along the thin white line in image 2. Do not draw the line itself, and do not draw a table. ",
+  "count": 2,
+  "cue": {
+   "length": 1.5,
+   "default": {
+    "mode": "planted",
+    "hand": "r",
+    "butt": [
+     -0.42,
+     -0.05
+    ]
+   },
+   "clips": {
+    "chalk": {
+     "mode": "held",
+     "hand": "r",
+     "dir": [
+      0.42,
+      -0.2,
+      0.88
+     ],
+     "grip": 0.52,
+     "otherHand": "tip"
+    },
+    "lean": {
+     "mode": "held",
+     "hand": "r",
+     "dir": [
+      0.85,
+      -0.5,
+      -0.02
+     ],
+     "grip": 0.12
+    },
+    "watch": {
+     "mode": "planted",
+     "hand": "r",
+     "butt": [
+      0.1,
+      -0.32
+     ],
+     "otherHand": 50
+    },
+    "clap": {
+     "mode": "planted",
+     "through": "r_sho",
+     "butt": [
+      -0.42,
+      -0.05
+     ]
+    }
+   },
+   "poses": {
+    "lean.stroke": {
+     "mode": "held",
+     "hand": "r",
+     "dir": [
+      0.85,
+      -0.5,
+      -0.02
+     ],
+     "grip": 0.3
+    }
+   }
+  },
+  "seed": 989400,
+  "score": {
+   "silhouetteTolerance": 30
+  },
+  "sheet": {
+   "source": {
+    "image": "tool/art/references/pool-player/front.png",
+    "styleOnly": true
+   },
+   "views": {
+    "front": {
+     "image": "tool/art/references/pool-bg-a/front.png",
+     "description": "standing easy, turned three-quarters toward the right of the picture, a pool cue upright in the right hand with its butt on the floor, looking toward the right",
+     "stageScale": 0.84
+    }
+   }
+  }
+ },
+ "references": {
+  "mode": "source",
+  "sources": []
+ },
+ "targets": [
+  {
+   "room": "billiards",
+   "atlas": "pool-bg-a",
+   "out": "assets/art/ensemble/pool-bg-a-v1.png",
+   "native": [
+    256,
+    320
+   ],
+   "pixelScale": 3
+  }
+ ],
+ "seedBase": 989400
+}

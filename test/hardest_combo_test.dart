@@ -45,9 +45,9 @@ void main() {
         'pool-garden': 'Round Robin',
         'bar': 'Last Call',
         'cool-crowd': 'All That Glitters',
+        'billiards': 'Tres Bandas',
       });
-      final upcoming = {for (final o in registry.upcomingOpponents) o.id: o};
-      expect(upcoming['pool-player']!.hardestCombo, isNull);
+      expect(registry.upcomingOpponents, isEmpty);
       for (final combo in registry.levels.map((l) => l.hardestCombo!)) {
         expect(combo.status, HardestComboStatus.proposal, reason: combo.name);
       }

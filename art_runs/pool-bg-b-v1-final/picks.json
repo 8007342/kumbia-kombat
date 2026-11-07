@@ -1,0 +1,19 @@
+{
+ "picks": {
+  "idle.stand": 989501,
+  "chalk.a": 989500,
+  "lean.a": 989502,
+  "lean.b": 989501,
+  "lean.stroke": 989502,
+  "watch.a": 989500,
+  "watch.b": 989500,
+  "clap.a": 989502,
+  "clap.b": 989500
+ },
+ "derive": {
+  "chalk.b": {
+   "from": "chalk.a",
+   "compress": true
+  }
+ }
+}

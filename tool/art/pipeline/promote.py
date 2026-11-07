@@ -20,6 +20,7 @@ ENSEMBLE = Path("assets/art/ensemble")
 
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__)
+    ap.add_argument("--new", action="store_true", help="the atlas is new to the manifest")
     ap.add_argument("candidate", nargs="+", type=Path)
     ap.add_argument("--new", action="store_true", help="also add an atlas the manifest doesn't have yet")
     a = ap.parse_args()

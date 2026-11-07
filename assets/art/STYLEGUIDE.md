@@ -164,7 +164,7 @@ On a solo level the opponent's dance on the wide shot comes from the shared rule
 
 **Title.** "ONLY TEXT FOR THE CINEMATIC HIGHLIGHT, where we get our simple 2 word messages." `copy.clearedTitle` holds two words, one to a line, and the file is refused otherwise. The second word comes from the party and music theme, a synonym or near meaning of cool, swag, mojo or suave: MUCHO MOJO, MUY SUAVE, QUÉ FINO. It slams in on `contactBeat` and stays for at least 3 beats, because a word takes longer to read than a fist takes to land. It fades over the last half beat, either at the end of a long close-up or at contact + 3, whichever is later. A level with no `exitShot` shows the words only on the end screen, if it's the last level.
 
-**Accents.** A `cue` entry's `track` names a one-shot patch from `lib/music/accent_voice.dart` (`bump`, `glug`, `clink`, `peck`), or one of the score's voices. `pitch` transposes around 60, and `velocity` scales it. Patches have energy a phone can play, on their own louder bus. Levels were computed, not heard. Tender moments are softer: `peck` is quieter than `bump`.
+**Accents.** A `cue` entry's `track` names a one-shot patch from `lib/music/accent_voice.dart` (`bump`, `glug`, `clink`, `peck`, `clack`, `chalk`), or one of the score's voices. `pitch` transposes around 60, and `velocity` scales it. Patches have energy a phone can play, on their own louder bus. Levels were computed, not heard. Tender moments are softer: `peck` is quieter than `bump`.
 
 **Sound on a stall.** The exit queues .6 s ahead, because the transport never plays a note late. A stall longer than that drops the hit.
 
@@ -215,7 +215,8 @@ Beats 0 to 8 are the success score, except the bar's 16; 8 to 16 are the bridge.
 |---|---|---|---|---|
 | Garden, fist bump | 8 | 7 to 10 | 10 to 16 | The GateKeeper claps and grooves, Mācron dances |
 | Lawn, kiss | 4.5 | 3.5 to 12 | 12 to 16 | In the hold: Mācron's arms and the pair's sway. On the wide shot: the pair step out and dance, Mācron between them |
-| Bar, oil gulp | 8 | 6 to 11.5 | 11.5 to 16 | Last level for now, no bridge |
+| Bar, oil gulp | 8 | 6 to 11.5 | 11.5 to 16 | Bridge to the party once it follows |
+| Billiards, chalk dab | 8 | 6 to 11.5 | 11.5 to 16 | She chalks and winks; a chalk dot, his eyes turn to arcs, she sways. Last level: fits its 16-beat success |
 
 ### 8.8 Not built yet
 

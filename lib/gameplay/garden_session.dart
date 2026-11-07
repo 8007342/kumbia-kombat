@@ -162,7 +162,14 @@ class MoveLimits {
 
 /// One step of a richer pattern. A step with no [move] is a single plain note.
 class ChartStep {
-  const ChartStep(this.at, this.limb, {this.move, this.partner, this.gap = 0});
+  const ChartStep(
+    this.at,
+    this.limb, {
+    this.move,
+    this.partner,
+    this.gap = 0,
+    this.offer,
+  });
   final double at;
   final Limb limb;
   final RichMove? move;
@@ -172,13 +179,25 @@ class ChartStep {
 
   /// Beats from the first press to the second, for a double or a split.
   final double gap;
+
+  /// The move this step's last press invites, in place of the usual one: how a
+  /// room gets a signature, such as a cue stroke up the floor. Only an invitation,
+  /// as every move is, and only where the next note leaves room for it.
+  final GestureKind? offer;
 }
 
 /// One phrase as it is played: its notes in time order, each knowing its step.
 /// A step is what clearing counts, so a richer phrase asks for no more than a
 /// plain one. The second press of a step is there for skilful play.
 class ChartPattern {
-  ChartPattern._(this.limbs, this.offsets, this.stepOf, this.moves, this.steps);
+  ChartPattern._(
+    this.limbs,
+    this.offsets,
+    this.stepOf,
+    this.moves,
+    this.steps,
+    this.offers,
+  );
 
   factory ChartPattern.plain(List<Limb> limbs, List<double> offsets) =>
       ChartPattern._(
@@ -187,6 +206,7 @@ class ChartPattern {
         [for (var i = 0; i < limbs.length; i++) i],
         List.filled(limbs.length, null),
         limbs.length,
+        List.filled(limbs.length, null),
       );
 
   factory ChartPattern.rich(List<ChartStep> steps) {
@@ -194,12 +214,14 @@ class ChartPattern {
     final offsets = <double>[];
     final stepOf = <int>[];
     final moves = <RichMove?>[];
+    final offers = <GestureKind?>[];
     for (final (index, step) in steps.indexed) {
       void note(Limb limb, double at) {
         limbs.add(limb);
         offsets.add(at);
         stepOf.add(index);
         moves.add(step.move);
+        offers.add(null);
       }
 
       note(step.limb, step.at);
@@ -213,6 +235,7 @@ class ChartPattern {
         case RichMove.split:
           note(step.partner!, step.at + step.gap);
       }
+      offers[offers.length - 1] = step.offer;
     }
     return ChartPattern._(
       List.unmodifiable(limbs),
@@ -220,6 +243,7 @@ class ChartPattern {
       List.unmodifiable(stepOf),
       List.unmodifiable(moves),
       steps.length,
+      List.unmodifiable(offers),
     );
   }
 
@@ -228,6 +252,9 @@ class ChartPattern {
   final List<int> stepOf;
   final List<RichMove?> moves;
   final int steps;
+
+  /// What each note invites in place of the usual move, if the chart says.
+  final List<GestureKind?> offers;
 
   /// How many steps ask for a second press.
   int get richSteps => limbs.length - steps;
@@ -370,6 +397,19 @@ class FightChart {
             '${ms.round()} ms under $floor',
           );
         }
+      }
+    }
+    // A move a step invites needs the session's room for a move after its press,
+    // or the invitation would never show.
+    for (var i = 0; i + 1 < played.limbs.length; i++) {
+      if (played.offers[i] == null) continue;
+      final roomMs = (played.offsets[i + 1] - played.offsets[i]) * beatMs;
+      if (roomMs <
+          2 * RhythmJudge.goodWindowMs + RhythmJudge.flourishWindowMs + 40) {
+        problems.add(
+          'pattern $index at $bpm BPM: no room for the move offered on beat '
+          '${played.offsets[i]}',
+        );
       }
     }
     final end =
@@ -679,7 +719,7 @@ class GardenSession {
 
   GestureKind? _offerAt(int index) => _flourishDestination(index) == null
       ? null
-      : gestureOffer(
+      : _pattern.offers[index] ?? gestureOffer(
           limb: activeLimbs[index],
           lastNote: index == activeLimbs.length - 1,
           tier: _phraseTier,
