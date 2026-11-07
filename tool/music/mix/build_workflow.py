@@ -3,7 +3,7 @@
 
   python3 -I tool/music/mix/build_workflow.py SPEC.json OUT.api.json
 
-SPEC: {"parent": {seed, tags, bpm, key, seconds, lyrics?}, "children": [{name, tags, denoise, seed?, parent?}]}
+SPEC: {"parent": {seed, tags, bpm, key, seconds, lyrics?}, "children": [{name, tags, denoise, seed?, parent?, codes?}]}
 A child's latent starts from its `parent` child, or from the parent take. Everything is
 written into the graph, so the workflow file alone is the record of the take.
 """
@@ -47,6 +47,8 @@ def build(spec):
         at = 1000 + 10 * i
         seed = child.get("seed", p["seed"])
         graph[str(at)] = encoder(base, child["tags"], seed, p["bpm"], p["key"], p["seconds"], child.get("lyrics", lyrics))
+        if "codes" in child:
+            graph[str(at)]["inputs"]["generate_audio_codes"] = child["codes"]
         graph[str(at + 1)] = {"class_type": "ConditioningZeroOut", "inputs": {"conditioning": [str(at), 0]}}
         graph[str(at + 2)] = {"class_type": "KSampler", "_meta": {"title": child["name"]}, "inputs": {
             "model": ["78", 0], "positive": [str(at), 0], "negative": [str(at + 1), 0],

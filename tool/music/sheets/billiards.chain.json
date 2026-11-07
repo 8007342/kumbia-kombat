@@ -1,0 +1,56 @@
+{
+ "level": "billiards",
+ "parent": {
+  "seed": 57100,
+  "bpm": 100,
+  "key": "G minor",
+  "seconds": 86.4,
+  "tags": "dark elegant tango with a mambo pulse, instrumental, bandoneon lead melody, staccato pizzicato strings, piano stabs, upright bass, claves, dry woodblock clicks, dramatic and sly"
+ },
+ "children": [
+  {
+   "name": "lowB",
+   "tags": "dark elegant tango with a mambo pulse, instrumental, intimate trio, bandoneon lead melody, upright bass, piano, dry woodblock clicks, warm and close, nothing else",
+   "denoise": 0.6,
+   "codes": false
+  },
+  {
+   "name": "lowC",
+   "tags": "dark elegant tango with a mambo pulse, instrumental, intimate trio, bandoneon lead melody, upright bass, piano, dry woodblock clicks, warm and close, nothing else",
+   "denoise": 0.7,
+   "codes": false
+  },
+  {
+   "name": "highB",
+   "tags": "dark elegant tango with a mambo pulse, instrumental, full orchestra, bandoneon lead melody, brass stabs, staccato pizzicato strings, piano stabs, upright bass, timbales, claves, dry woodblock clicks, dramatic and sly",
+   "denoise": 0.6,
+   "codes": false
+  },
+  {
+   "name": "highD",
+   "tags": "dark elegant tango with a mambo pulse, instrumental, full orchestra, bandoneon lead melody, brass stabs, staccato pizzicato strings, piano stabs, upright bass, timbales, claves, dry woodblock clicks, dramatic and sly",
+   "denoise": 0.6,
+   "parent": "highB",
+   "codes": false
+  },
+  {
+   "name": "highE",
+   "tags": "dark elegant tango with a mambo pulse, instrumental, full orchestra, bandoneon lead melody, brass stabs, staccato pizzicato strings, piano stabs, upright bass, timbales, claves, dry woodblock clicks, dramatic and sly",
+   "denoise": 0.6,
+   "parent": "highD",
+   "codes": false
+  },
+  {
+   "name": "highF",
+   "tags": "dark elegant tango with a mambo pulse, instrumental, full orchestra, bandoneon lead melody, brass stabs, staccato pizzicato strings, piano stabs, upright bass, timbales, claves, dry woodblock clicks, dramatic and sly",
+   "denoise": 0.6,
+   "parent": "highE",
+   "codes": false
+  },
+  {
+   "name": "highX",
+   "tags": "dark elegant tango with a mambo pulse, instrumental, full orchestra, bandoneon lead melody, brass stabs, staccato pizzicato strings, piano stabs, upright bass, timbales, claves, dry woodblock clicks, dramatic and sly",
+   "denoise": 0.95
+  }
+ ]
+}

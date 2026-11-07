@@ -1471,6 +1471,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--self-test", action="store_true")
     parser.add_argument("--config")
+    parser.add_argument("--root", help="build and verify here instead of the repository, for trying a config")
     parser.add_argument("command", nargs="?", choices=["build", "verify", "listen"])
     parser.add_argument("target", nargs="?", help="listen: the directory to fill")
     parser.add_argument("--level", action="append", help="build: only this level, and repeatable")
@@ -1481,11 +1482,13 @@ def main():
     if not args.command:
         parser.error("name a command, or --self-test")
     cfg = load_config(args.config)
+    root = pathlib.Path(args.root).resolve() if args.root else REPO
+    log_dir = root if args.root else HERE
     if args.command == "build":
-        build(cfg, set(args.level) if args.level else None)
+        build(cfg, set(args.level) if args.level else None, root, report_path=log_dir / "report.json")
     elif args.command == "verify":
-        results, failures = verify(cfg)
-        (HERE / "verify.json").write_text(json.dumps(results, indent=1) + "\n")
+        results, failures = verify(cfg, root)
+        (log_dir / "verify.json").write_text(json.dumps(results, indent=1) + "\n")
         for failure in failures:
             print("FAIL", failure)
         print(f"{len(failures)} failures")

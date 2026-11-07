@@ -1,0 +1,57 @@
+{
+ "level": "billiards",
+ "title": "Green Felt, Amber Light",
+ "key": "G minor",
+ "bpm": 100,
+ "beatsPerBar": 4,
+ "note": "Written before generation: the guide for the first audio-to-audio run once 2018-auin is live. Today's takes are not generated from this.",
+ "form": [
+  {
+   "section": "A",
+   "bars": 8,
+   "chords": [
+    "Gm",
+    "Gm",
+    "Cm",
+    "Gm",
+    "Eb",
+    "D7",
+    "Gm",
+    "D7"
+   ]
+  },
+  {
+   "section": "B",
+   "bars": 8,
+   "chords": [
+    "Cm",
+    "Gm",
+    "Eb",
+    "Bb",
+    "Cm",
+    "Gm",
+    "D7",
+    "D7"
+   ]
+  },
+  {
+   "section": "A",
+   "bars": 8,
+   "chords": [
+    "Gm",
+    "Gm",
+    "Cm",
+    "Gm",
+    "Eb",
+    "D7",
+    "Gm",
+    "D7"
+   ]
+  }
+ ],
+ "layers": {
+  "bass": "tumbao, root and fifth, anticipating the next bar",
+  "comp": "off-beat chords",
+  "clave": "3-2 son clave, the pool-hall click"
+ }
+}

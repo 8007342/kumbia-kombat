@@ -1,5 +1,46 @@
 # Music asset provenance
 
+Two kinds of music live here: audio rendered by a local model, which the game plays, and the original
+synth scores, which it uses for count-ins, cues and as a fallback.
+
+## Rendered music: `rendered/`
+
+Everything under `rendered/` (`.ogg`, `.m4a`, `manifest.json`) was generated for Kumbia Kombat in 2026-11 on
+the project's own computer, then cut, mastered and encoded by repository code. The generation is recorded
+in `tool/music/workflows/`, `tool/music/sheets/`, `plan/music-themes-2026-11-06.md` and
+`plan/music-pipeline-design-2026-11-07.md`. Each take has a provenance file with its workflow hash and
+model hashes beside its FLAC master, outside the repository, in `~/.cache/tillandsias-project/kumbia-audio/`.
+
+| Component | File | Source | Licence recorded by the studio's pin table |
+|---|---|---|---|
+| ACE-Step 1.5 XL turbo, the generating model | `acestep_v1.5_xl_turbo_bf16.safetensors` | `Comfy-Org/ACE-Step-1.5`, revision `371bb16` | Apache-2.0 |
+| Text encoders | `qwen_0.6b_ace15.safetensors`, `qwen_4b_ace15.safetensors` | same | Apache-2.0 |
+| Audio VAE | `ace_1.5_vae.safetensors` | same | Apache-2.0 |
+| ComfyUI, the runner | v0.40.0 | Comfy-Org | GPL-3.0, tool only: its code doesn't ship in the game |
+| ffmpeg with libopus, native AAC encoder | | | Tool only: no part ships except the encoded files |
+
+The upstream ACE-Step project's Hugging Face tags and README say MIT, where the Comfy-Org repackaging is
+recorded as Apache-2.0 by the studio; both are permissive. The model card states: "You can strictly use the
+generated music for commercial purposes". We checked that as of 2026-11-06. It is the authors' statement.
+
+Inputs were genre words, instrument words, tempo, key and seeds. No artist or song name, reference recording,
+sample library or third-party stem went in. No stem separator was used: none was found with clearly
+permissive weights. Models under non-commercial licences (MusicGen, YuE2, MuLaCover, SheetSage2's weights)
+weren't used, although some of their nodes exist in the studio.
+
+**What this record doesn't claim:**
+
+- It doesn't warrant that a generated melody avoids resembling an existing work: no licence does, and these
+  takes haven't been compared against any database of tunes. The training data is "legally compliant" in the
+  model authors' words, with no published list.
+- It makes no claim about copyright in this audio. The US Copyright Office's 2025 report says protection needs
+  human authorship, so raw generated audio may not be protected. Selection and arrangement of takes may be.
+- This is a record, not legal advice.
+
+The repository currently supplies no public licence, and this record doesn't grant one.
+
+## Original scores: `scores/`, `midi/`, `manifest.json`
+
 All five room compositions, five success mini-themes, four connecting bridges,
 note arrangements, MIDI exports, and four adornment motifs
 per composition in this directory were created for Kumbia Kombat in this repository
