@@ -214,7 +214,7 @@ The trumpeter's `tap_up` frames don't float, though the PARTY agent asked. With 
 
 **A mistake of mine, caught by the PARTY agent:** I first said three atlases were re-finished at `8c0bc64`, but their PNGs hadn't changed. `art.py ingest` doesn't overwrite a frame key already in the store, and `art.py build` then copies the store's old frame back over `final/`, and my attempt to clear the store used the wrong path, so my crops of `final/` looked fixed and the packed atlas wasn't. Fixed after that commit, and this time I checked the pixels by reading them back out of the atlas PNG. Anyone re-finishing frames must delete `frame/<key_of({"frame": key})>` first.
 
-**Conga face:** the yellow on a phone came from old pixels plus a skin ramp that doesn't match the drawing. The approved drawing's skin is more orange than the definition's `#B5804F`, so `band_finish.py` adds three sampled shades to his palette. Those aren't in `tool/art/palettes/band-congas.json`, so the host finisher can't reproduce him.
+**Conga face:** the yellow on a phone came from old pixels plus a skin ramp that doesn't match the drawing. The approved drawing's skin is more orange than the definition's `#B5804F`, so `band_finish.py` adds three sampled shades to his palette, and the trumpeter's too. Those aren't in `tool/art/palettes/`, so the host finisher can't reproduce those two.
 
 ### What the local vision model did
 
