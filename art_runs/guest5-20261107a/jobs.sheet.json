@@ -1,0 +1,32 @@
+[
+ {
+  "pose": "sheet.front_3q",
+  "args": {
+   "workflow": "art_runs/guest5-20261107a/workflows/sheet.front_3q.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/guest5-20261107a/in/sheet_source.png",
+    "pose_proxy": "/work/tmp/imagegen/kumbia/guest5-20261107a/in/model.q3.skeleton.png"
+   },
+   "overrides": {
+    "seed": 993000
+   }
+  }
+ },
+ {
+  "pose": "sheet.back_3q",
+  "args": {
+   "workflow": "art_runs/guest5-20261107a/workflows/sheet.back_3q.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/guest5-20261107a/in/sheet_source.png",
+    "pose_proxy": "/work/tmp/imagegen/kumbia/guest5-20261107a/in/model.back.skeleton.png"
+   },
+   "overrides": {
+    "seed": 993000
+   }
+  }
+ }
+]

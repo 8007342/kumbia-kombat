@@ -1,0 +1,266 @@
+{
+ "1": {
+  "_meta": {
+   "title": "$sheet_front"
+  },
+  "class_type": "LoadImage",
+  "inputs": {
+   "image": "$sheet_front"
+  }
+ },
+ "10": {
+  "_meta": {
+   "title": "prompt, baked per pose by plan_qwen_frames"
+  },
+  "class_type": "TextEncodeQwenImageEditPlus",
+  "inputs": {
+   "clip": [
+    "6",
+    0
+   ],
+   "image1": [
+    "1",
+    0
+   ],
+   "image2": [
+    "2",
+    0
+   ],
+   "prompt": "Image 2 is a coloured stick-figure pose skeleton. Draw the same woman from image 1 in that exact pose, as a clean model sheet view, seen from behind at three quarters, turned away from the viewer toward the upper right corner of the picture, the back of the head and the back of the clothes showing, both arms relaxed, whole figure inside the frame with margin. Keep exactly the same woman: short, round, plump adult build, warm tan skin, short tightly curled silver-grey hair seen from behind, long-sleeved amber-gold dress with a plain back and a full skirt falling to mid-calf, small cream low-heeled shoes and thick dark ink outline, same crisp pixel art style, cel shading and thick dark ink outline as image 1. Both eyes are open. She is a grown woman of about 70, fully clothed, in modest evening wear. Exactly two arms and two hands. Do not draw the skeleton. Plain light grey background, full body.",
+   "vae": [
+    "7",
+    0
+   ]
+  }
+ },
+ "11": {
+  "_meta": {
+   "title": "negative"
+  },
+  "class_type": "TextEncodeQwenImageEditPlus",
+  "inputs": {
+   "clip": [
+    "6",
+    0
+   ],
+   "image1": [
+    "1",
+    0
+   ],
+   "image2": [
+    "2",
+    0
+   ],
+   "prompt": "",
+   "vae": [
+    "7",
+    0
+   ]
+  }
+ },
+ "12": {
+  "_meta": {
+   "title": "$seed"
+  },
+  "class_type": "KSampler",
+  "inputs": {
+   "cfg": 1,
+   "denoise": 1,
+   "latent_image": [
+    "8",
+    0
+   ],
+   "model": [
+    "5",
+    0
+   ],
+   "negative": [
+    "21",
+    0
+   ],
+   "positive": [
+    "20",
+    0
+   ],
+   "sampler_name": "euler",
+   "scheduler": "simple",
+   "seed": 930000,
+   "steps": 4
+  }
+ },
+ "13": {
+  "_meta": {
+   "title": "VAE Decode"
+  },
+  "class_type": "VAEDecode",
+  "inputs": {
+   "samples": [
+    "12",
+    0
+   ],
+   "vae": [
+    "7",
+    0
+   ]
+  }
+ },
+ "14": {
+  "_meta": {
+   "title": "save frame with matte"
+  },
+  "class_type": "SaveImage",
+  "inputs": {
+   "filename_prefix": "kk/qframe",
+   "images": [
+    "41",
+    0
+   ]
+  }
+ },
+ "2": {
+  "_meta": {
+   "title": "$pose_proxy"
+  },
+  "class_type": "LoadImage",
+  "inputs": {
+   "image": "$pose_proxy"
+  }
+ },
+ "20": {
+  "_meta": {
+   "title": "reference latents: positive"
+  },
+  "class_type": "FluxKontextMultiReferenceLatentMethod",
+  "inputs": {
+   "conditioning": [
+    "10",
+    0
+   ],
+   "reference_latents_method": "index_timestep_zero"
+  }
+ },
+ "21": {
+  "_meta": {
+   "title": "reference latents: negative"
+  },
+  "class_type": "FluxKontextMultiReferenceLatentMethod",
+  "inputs": {
+   "conditioning": [
+    "11",
+    0
+   ],
+   "reference_latents_method": "index_timestep_zero"
+  }
+ },
+ "3": {
+  "_meta": {
+   "title": "Load Diffusion Model"
+  },
+  "class_type": "UNETLoader",
+  "inputs": {
+   "unet_name": "qwen_image_edit_2511_fp8mixed.safetensors",
+   "weight_dtype": "default"
+  }
+ },
+ "30": {
+  "_meta": {
+   "title": "Lightning 4-step (built for 2509; unproven on 2511)"
+  },
+  "class_type": "LoraLoaderModelOnly",
+  "inputs": {
+   "lora_name": "Qwen-Image-Edit-2509-Lightning-4steps-V1.0-bf16.safetensors",
+   "model": [
+    "4",
+    0
+   ],
+   "strength_model": 1.0
+  }
+ },
+ "4": {
+  "_meta": {
+   "title": "ModelSamplingAuraFlow"
+  },
+  "class_type": "ModelSamplingAuraFlow",
+  "inputs": {
+   "model": [
+    "3",
+    0
+   ],
+   "sampling": "flow",
+   "shift": 3.1
+  }
+ },
+ "40": {
+  "_meta": {
+   "title": "BiRefNet model"
+  },
+  "class_type": "LoadRembgByBiRefNetModel",
+  "inputs": {
+   "device": "AUTO",
+   "dtype": "float32",
+   "model": "model.safetensors",
+   "use_weight": false
+  }
+ },
+ "41": {
+  "_meta": {
+   "title": "BiRefNet matte"
+  },
+  "class_type": "RembgByBiRefNet",
+  "inputs": {
+   "images": [
+    "13",
+    0
+   ],
+   "model": [
+    "40",
+    0
+   ]
+  }
+ },
+ "5": {
+  "_meta": {
+   "title": "CFGNorm"
+  },
+  "class_type": "CFGNorm",
+  "inputs": {
+   "model": [
+    "30",
+    0
+   ],
+   "pre_cfg": false,
+   "strength": 1
+  }
+ },
+ "6": {
+  "_meta": {
+   "title": "Load CLIP"
+  },
+  "class_type": "CLIPLoader",
+  "inputs": {
+   "clip_name": "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+   "device": "default",
+   "type": "qwen_image"
+  }
+ },
+ "7": {
+  "_meta": {
+   "title": "Load VAE"
+  },
+  "class_type": "VAELoader",
+  "inputs": {
+   "vae_name": "qwen_image_vae.safetensors"
+  }
+ },
+ "8": {
+  "_meta": {
+   "title": "Empty Latent Image"
+  },
+  "class_type": "EmptyLatentImage",
+  "inputs": {
+   "batch_size": 1,
+   "height": 960,
+   "width": 768
+  }
+ }
+}

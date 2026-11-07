@@ -208,7 +208,7 @@ The crowd's ten coupled dancers are real, cast from guest3-6 (`work/1868-gues`),
 
 ## What went wrong
 
-- GUESTS' fixes to guest0-2 moved their atlas rects, so the level golden changed for the garden and bar. I regenerated it and compared old and new: all 684 changed lines are draws from those guest atlases, and nothing else moved. A further guest0 change will move it again.
+- GUESTS' fixes to guest0-2 moved their atlas rects, so the level golden changed for the garden and bar. I regenerated it and compared old and new: all 684 changed lines are draws from those guest atlases, and nothing else moved. The guest0 neckline then moved it again: 228 more lines, the same kind, and nothing else.
 - I pushed one commit (`f927758`) with that golden failing, because I committed without reading the test result first. The next commit fixes it.
 
 - GPU waits ran up to 15 minutes a job, so art lands late.
