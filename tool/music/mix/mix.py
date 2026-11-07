@@ -509,8 +509,11 @@ def beat_samples(bpm):
 
 
 def prepare_tier(args):
-    """Master to grid to chosen loop, mastered. Runs in a worker process."""
-    cfg, level, tier = args
+    """Master to grid to chosen loop, mastered. Runs in a worker process. With `follow`,
+    the take is another layer of one performance: it takes the parent's beat map, bar one
+    and loop, so the layers stay sample-aligned."""
+    cfg, level, tier, *rest = args
+    follow = rest[0] if rest else None
     path = pathlib.Path(cfg["mastersDir"]).expanduser() / tier["source"]
     audio = decode(path)
     mono = decode(path, RATE, 1)
@@ -523,7 +526,10 @@ def prepare_tier(args):
     if timing.exists():
         report["timingFileBpm"] = json.loads(timing.read_text())[path.name]["measured_bpm"]
     report["corrected"] = abs(error_pct) <= cfg["maxCorrectionPct"]
-    if not report["corrected"]:
+    if follow:
+        report["followsGridOf"] = follow["name"]
+        beats, measured = follow["beats"], follow["measured"]
+    elif not report["corrected"]:
         raise ValueError(f"{level['id']}/{tier['name']}: {error_pct:+.2f}% is past the "
                          f"{cfg['maxCorrectionPct']}% allowed, not corrected")
 
@@ -559,6 +565,8 @@ def prepare_tier(args):
     beat_seconds = beat_len / SR
     chroma, band, attack = beat_features(grid_mono, beat_seconds, len(beats))
     first, confidence, margin = find_bar_one(chroma, attack)
+    if follow:
+        first, confidence, margin = follow["first"], follow["confidence"], follow["margin"]
     report.update(bar1Beat=first, bar1Seconds=round(float(beats[first]), 3),
                   bar1Confidence=confidence, bar1Margin=margin)
     key, key_r = measure_key(chroma)
@@ -569,7 +577,7 @@ def prepare_tier(args):
     bar_band = np.stack([band[first + 4 * b:first + 4 * b + 4].mean(axis=0) for b in range(total_bars)])
     bar_len = 4 * beat_len
     # One constant for the take: the grid's beats sit on the median attack.
-    bias = grid_bias_seconds(grid_mono, np.arange(len(beats)) * beat_seconds)
+    bias = follow["bias"] if follow else grid_bias_seconds(grid_mono, np.arange(len(beats)) * beat_seconds)
     report["beatBiasMs"] = round(bias * 1000, 2)
     report["gridErrorAfterMs"] = dict(zip(("typical", "worstBlock"), grid_error_ms(
         grid_mono, np.arange(len(beats)) * beat_seconds + bias)))
@@ -580,7 +588,7 @@ def prepare_tier(args):
         return int(round(origin + b * bar_len))
     bar_rms = np.array([np.sqrt(np.mean(grid[bar_at(b):bar_at(b + 1)] ** 2)) for b in range(total_bars)])
     bars = int(tier["loopBars"])
-    choice = choose_loop(bar_chroma, bar_band, bar_rms, bars)
+    choice = follow["loop"] if follow else choose_loop(bar_chroma, bar_band, bar_rms, bars)
     report["loop"] = choice
     report["totalBars"] = total_bars
 
@@ -616,7 +624,9 @@ def prepare_tier(args):
     return {"level": level["id"], "name": tier["name"], "bpm": target, "bars": bars, "loop": mastered,
             "barChroma": loop_chroma, "gainDb": gain_db, "grid": grid * 10 ** (gain_db / 20),
             "firstBarSample": first * beat_len, "barLen": bar_len, "beatLen": beat_len,
-            "allBarChroma": bar_chroma, "barRms": bar_rms, "report": report}
+            "allBarChroma": bar_chroma, "barRms": bar_rms, "report": report,
+            "follow": {"name": tier["name"], "beats": beats, "measured": measured, "first": first,
+                       "confidence": confidence, "margin": margin, "bias": bias, "loop": choice}}
 
 
 # ---------------------------------------------------------------- joins and exits
@@ -772,6 +782,47 @@ def render_bridge(source, dest, cfg, pad):
     return mix, {"entryBar": entry, "harmonyMatch": match, "limiter": stats, "bars": 2, "beats": beats, "bpm": bpm}
 
 
+def bar_features(tier):
+    """What the cut table compares: per loop bar, chroma, bands at each end, and level."""
+    loop = tier["loop"].mean(axis=1)
+    mono = np.interp(np.arange(int(len(loop) * RATE / SR)) * SR / RATE, np.arange(len(loop)), loop)
+    beat_seconds = tier["beatLen"] / SR
+    wrapped = np.concatenate([mono, mono[:8192]])
+    chroma, band, _ = beat_features(wrapped, beat_seconds, tier["bars"] * 4)
+    size = int(beat_seconds * RATE)
+    rms = np.array([np.sqrt(np.mean(np.take(mono, np.arange(int(b * beat_seconds * RATE), int(b * beat_seconds * RATE) + size), mode="wrap") ** 2))
+                    for b in range(tier["bars"] * 4)])
+    return {"chroma": _unit(chroma.reshape(tier["bars"], 4, 12).sum(axis=1)), "band": band.reshape(tier["bars"], 4, 12),
+            "rmsDb": 20 * np.log10(np.maximum(rms, 1e-6)), "bars": tier["bars"]}
+
+
+def cut_score(out, b, into, e):
+    """Out plays to its bar b, then into plays from its bar e. Harmony across the seam,
+    and against the bar into would have followed, then spectrum and level."""
+    before = (b - 1) % out["bars"]
+    harmony = float(out["chroma"][before] @ into["chroma"][e % into["bars"]])
+    follows = float(out["chroma"][before] @ into["chroma"][(e - 1) % into["bars"]])
+    timbre = float(np.mean(np.abs(out["band"][before, -1] - into["band"][e % into["bars"], 0])))
+    level = abs(float(out["rmsDb"][b * 4 - 1] - into["rmsDb"][e * 4 % len(into["rmsDb"])]))
+    return harmony + 0.25 * follows - 0.15 * timbre - 0.03 * level, harmony, timbre, level
+
+
+def cut_table(source, dest, step=2):
+    """For each exit bar, the even bar to enter. Entries keep the exit's place in a
+    four-bar phrase when bar one is trusted on both sides; otherwise any even bar."""
+    out, into = bar_features(source), bar_features(dest)
+    entries, seams = [], []
+    for b in range(0, out["bars"], step):
+        rows = [(cut_score(out, b, into, e), e) for e in range(0, into["bars"], step)]
+        best = max(rows, key=lambda row: row[0][0])
+        entries.append(best[1])
+        seams.append(best[0][1:])
+    h, t, l = zip(*seams)
+    return entries, {"harmonyMedian": round(float(np.median(h)), 3), "harmonyWorst": round(float(np.min(h)), 3),
+                     "timbreMedian": round(float(np.median(t)), 2), "levelMedianDb": round(float(np.median(l)), 2),
+                     "levelWorstDb": round(float(np.max(l)), 2)}
+
+
 def transition_pairs(order):
     """What the game's tier map can reach: each step both ways, and the reset."""
     a, b, c = order
@@ -802,6 +853,14 @@ def check_config(cfg):
             raise ValueError(f"{level['id']}: the tier map expects three tiers")
 
 
+def tier_gain(level, name):
+    """The owner's per-tier trim, from the game's mixer JSON. Default none."""
+    for tier in level["tiers"]:
+        if tier["name"] == name:
+            return tier.get("gainDb", 0)
+    return 0
+
+
 def good_exit_bars(tier):
     chroma = _unit(tier["barChroma"])
     last = chroma[-1]
@@ -825,9 +884,16 @@ def build(cfg, only=None, root=REPO, workers=None, report_path=None):
         if key not in seen:
             seen.add(key)
             unique.append(job)
+    # A layered level's parent runs first, as the rest take its beat map.
+    def parent_of(job):
+        return job[1].get("gridTier")
     with futures.ProcessPoolExecutor(max_workers=workers or min(os.cpu_count() or 2, 12)) as pool:
-        done = list(pool.map(prepare_tier, unique))
-    ready = {(d["level"], d["name"]): d for d in done}
+        first_round = [j for j in unique if not parent_of(j) or parent_of(j) == j[2]["name"]]
+        done = list(pool.map(prepare_tier, first_round))
+        ready = {(d["level"], d["name"]): d for d in done}
+        rest = [j + (ready[(j[1]["id"], parent_of(j))]["follow"],) for j in unique if j not in first_round]
+        done = list(pool.map(prepare_tier, rest))
+        ready.update({(d["level"], d["name"]): d for d in done})
 
     out_dir = root / cfg["outDir"]
     manifest_path = out_dir / "manifest.json"
@@ -853,11 +919,24 @@ def build(cfg, only=None, root=REPO, workers=None, report_path=None):
             entry["takes"][name] = {
                 "bpm": tier["bpm"], "bars": tier["bars"], "beatsPerBar": 4,
                 "loopStartSeconds": pad / SR, "loopEndSeconds": (pad + len(loop)) / SR,
-                "loopSamples": len(loop), "sampleRate": SR, "gainDb": 0, **written,
+                "loopSamples": len(loop), "sampleRate": SR, "gainDb": tier_gain(level, name), **written,
                 "lufs": rep["lufs"], "bar1Confidence": rep["bar1Confidence"],
                 "goodExitBars": good_exit_bars(tier)}
             level_report["tiers"][name] = rep
-        for a, b in transition_pairs(order):
+        if level.get("gridTier"):
+            entry["layerFadeBeats"] = level.get("layerFadeBeats", 2)
+            entry["gridTier"] = level["gridTier"]
+        if level.get("joinStyle") == "cuts":
+            entry["cuts"] = []
+            level_report["cuts"] = []
+            for a, b in transition_pairs(order):
+                entries, numbers = cut_table(ready[(lid, a)], ready[(lid, b)])
+                entry["cuts"].append({"from": a, "to": b, "exitStep": 2, "entryBars": entries,
+                                      "fadeInBeats": level.get("cutFadeInBeats", 0),
+                                      "fadeOutBeats": level.get("cutFadeOutBeats", 1)})
+                level_report["cuts"].append({"from": a, "to": b, **numbers})
+        wanted_pairs = [] if level.get("gridTier") or level.get("joinStyle") == "cuts" else transition_pairs(order)
+        for a, b in wanted_pairs:
             mix, info = render_transition(ready[(lid, a)], ready[(lid, b)], cfg, pad)
             written, offsets = write_asset(mix, directory / f"trans-{a}-{b}", cfg, root)
             info["decodeOffsetSamples"] = offsets
@@ -893,6 +972,8 @@ def build(cfg, only=None, root=REPO, workers=None, report_path=None):
         manifest["levels"][lid] = entry
         report[lid] = level_report
         print(f"built {lid}", flush=True)
+    if cfg.get("mix"):
+        manifest["mix"] = cfg["mix"]
     out_dir.mkdir(parents=True, exist_ok=True)
     manifest_path.write_text(json.dumps(manifest, indent=1, ensure_ascii=False) + "\n")
     report_path.write_text(json.dumps(report, indent=1, ensure_ascii=False) + "\n")
@@ -1040,6 +1121,8 @@ def verify(cfg, root=REPO):
                     failures.append(f"{lid}/{name} {fmt}: loudness doesn't rise in play order")
             previous = {fmt: row[fmt]["lufs"] for fmt in ("opus", "aac")}
             level["takes"][name] = row
+        if entry.get("gridTier"):
+            level["layers"] = verify_layers(entry, root, failures, lid)
         segments = [(f"{t['from']}>{t['to']}", t) for t in entry["transitions"]] \
             + [(k, entry[k]) for k in ("success", "successShort", "bridge") if k in entry]
         for name, seg in segments:
@@ -1059,6 +1142,43 @@ def verify(cfg, root=REPO):
             level["segments"][name] = row
         results[lid] = level
     return results, failures
+
+
+def verify_layers(entry, root, failures, lid):
+    """Layers must hold the same bars on the same samples. Lag per 8 bars, by attacks."""
+    takes = entry["takes"]
+    parent = takes[entry["gridTier"]]
+    def env(take):
+        audio = decode(root / take["files"]["opus"])
+        a = int(round(take["loopStartSeconds"] * SR))
+        return np.convolve(onset_envelope(decode_mono_from(audio[a:a + take["loopSamples"]])), np.hanning(5) / 2, "same")
+    reference = env(parent)
+    out = {}
+    size = int(8 * 240.0 / parent["bpm"] * ENV_RATE)
+    reach = int(0.08 * ENV_RATE)
+    for name, take in takes.items():
+        if take["bars"] != parent["bars"]:
+            failures.append(f"{lid}/{name}: layer doesn't share the parent's bars")
+        if name == entry["gridTier"]:
+            continue
+        # On the parent's clock, as a layer may run at its own tempo.
+        other = env(take)
+        other = np.interp(np.linspace(0, len(other) - 1, len(reference)), np.arange(len(other)), other)
+        lags, corr = [], []
+        for start in range(reach, min(len(reference), len(other)) - size - reach, size):
+            a = reference[start:start + size] - reference[start:start + size].mean()
+            scores = []
+            for lag in range(-reach, reach + 1):
+                b = other[start + lag:start + lag + size]
+                b = b - b.mean()
+                scores.append(float(a @ b / max(np.linalg.norm(a) * np.linalg.norm(b), 1e-9)))
+            lags.append((int(np.argmax(scores)) - reach) / ENV_RATE * 1000)
+            corr.append(max(scores))
+        out[name] = {"lagMedianMs": round(float(np.median(lags)), 1), "lagWorstMs": round(float(np.max(np.abs(lags))), 1),
+                     "envelopeCorr": round(float(np.median(corr)), 2)}
+        if abs(out[name]["lagMedianMs"]) > 5:
+            failures.append(f"{lid}/{name}: layer sits {out[name]['lagMedianMs']} ms off its parent")
+    return out
 
 
 def decode_mono_from(stereo):
@@ -1351,6 +1471,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--self-test", action="store_true")
     parser.add_argument("--config")
+    parser.add_argument("--root", help="build and verify here instead of the repository, for trying a config")
     parser.add_argument("command", nargs="?", choices=["build", "verify", "listen"])
     parser.add_argument("target", nargs="?", help="listen: the directory to fill")
     parser.add_argument("--level", action="append", help="build: only this level, and repeatable")
@@ -1361,11 +1482,13 @@ def main():
     if not args.command:
         parser.error("name a command, or --self-test")
     cfg = load_config(args.config)
+    root = pathlib.Path(args.root).resolve() if args.root else REPO
+    log_dir = root if args.root else HERE
     if args.command == "build":
-        build(cfg, set(args.level) if args.level else None)
+        build(cfg, set(args.level) if args.level else None, root, report_path=log_dir / "report.json")
     elif args.command == "verify":
-        results, failures = verify(cfg)
-        (HERE / "verify.json").write_text(json.dumps(results, indent=1) + "\n")
+        results, failures = verify(cfg, root)
+        (log_dir / "verify.json").write_text(json.dumps(results, indent=1) + "\n")
         for failure in failures:
             print("FAIL", failure)
         print(f"{len(failures)} failures")
