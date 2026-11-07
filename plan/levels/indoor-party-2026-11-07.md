@@ -191,10 +191,9 @@ Presses a second rise at every tier, and the top is above the lawn's 3.68 and th
 
 | Where | Now | Waiting on |
 |---|---|---|
-| BlinBlin, in play | Bartender atlas | `blinblin` atlas, `work/1860-blwv` |
 | BlinBlin, close-up | `oil-gulp-bt-offer.png`, which is a hand holding a glass and looks wrong | `nod-bb-*` |
 
-The crowd's ten coupled dancers are real, cast from guest3-6 (`work/1868-gues`), with drawn sidesteps, glances and grooves. The eight solos stay on guest0-2, so the room isn't four people repeated. [P] Two of the couples show one partner from behind, using `back_dance`. Mācron's close-up is real: `nod-mc-*`, taken from `work/1860-blwv`. All four band players are real, from `work/1864-band`, on the `form` ladder.
+The crowd's ten coupled dancers are real, cast from guest3-6 (`work/1868-gues`), with drawn sidesteps, glances and grooves. The eight solos stay on guest0-2, so the room isn't four people repeated. [P] Two of the couples show one partner from behind, using `back_dance`. BlinBlin in play is real: atlas `blinblin` from `work/1860-blwv`, with his back to the room, the turn, and arms crossed in the wide shot of the win. His back dance uses five of its eight drawings for now, because BLINBLIN is redrawing the three that show a profile. He dances the shared clip tables, with no moves of his own in the grammar yet. Mācron's close-up is real: `nod-mc-*`, taken from `work/1860-blwv`. All four band players are real, from `work/1864-band`, on the `form` ladder.
 
 **One change from the first version of this note:** under reduced motion, the band's foot-tap rung now holds the same drawing as its calm rung, `relaxed_a`, because the art reuses that drawing so the arms stay continuous between rungs. So reduced motion shows two states, calm and swinging, not three. [F, tested]
 

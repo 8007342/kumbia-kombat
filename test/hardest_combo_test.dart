@@ -55,9 +55,6 @@ void main() {
 
     test('every move is a clip that dancer has today, in whole loops', () {
       for (final level in _registry().levels) {
-        // His own dance arrives with his atlas: until then, the table every dancer
-        // shares is what's left to hold him to (below).
-        if (level.id == 'cool-crowd') continue;
         for (final move in level.hardestCombo!.moves) {
           expect(
             () => grammar.requireClips(move.dancer, [move.clip]),
@@ -96,7 +93,6 @@ void main() {
 
     test('the BlinBlin dancer uses only clips every dancer shares', () {
       final combo = _registry().byId('cool-crowd').hardestCombo!;
-      // He has no atlas yet, so the shared table is all a test can hold him to.
       for (final move in combo.moves) {
         expect(
           () => grammar.requireClips('gatekeeper', [move.clip]),
