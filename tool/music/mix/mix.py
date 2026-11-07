@@ -1116,14 +1116,18 @@ def build(cfg, only=None, root=REPO, workers=None, report_path=None):
             level_report["transitions"].append({"from": a, "to": b, **info})
         last = ready[(lid, order[-1])]
         final = bool(level.get("successFinal"))
-        mix, info = render_success(last, level["key"], level["successBars"], final, cfg, pad)
+        # A tag may land on another chord than the loop's key, such as the relative major.
+        tag_key = level.get("successKey", level["key"])
+        mix, info = render_success(last, tag_key, level["successBars"], final, cfg, pad)
         written, info["decodeOffsetSamples"] = write_asset(mix, directory / "success", cfg, root)
         entry["success"] = {"bpm": info["bpm"], "bars": info["bars"], "beatsPerBar": 4, "gainDb": 0,
                             "startSeconds": pad / SR, "endSeconds": (len(mix) - pad) / SR,
                             "final": final, **written}
+        if "successKey" in level:
+            entry["success"]["key"] = tag_key
         level_report["success"] = info
         if level.get("successShortBars"):
-            mix, info = render_success(last, level["key"], level["successShortBars"], False, cfg, pad)
+            mix, info = render_success(last, tag_key, level["successShortBars"], False, cfg, pad)
             written, info["decodeOffsetSamples"] = write_asset(mix, directory / "success-short", cfg, root)
             entry["successShort"] = {"bpm": info["bpm"], "bars": info["bars"], "beatsPerBar": 4, "gainDb": 0,
                                      "startSeconds": pad / SR, "endSeconds": (len(mix) - pad) / SR,

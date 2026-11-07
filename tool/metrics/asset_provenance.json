@@ -72,6 +72,26 @@
    "evidence": "art_runs/rooms/crowd-props/workflows/prop-edit.api.json, commit f540662"
   },
   {
+   "glob": "assets/music/rendered/salon/*",
+   "class": "local-model",
+   "evidence": "ACE-Step parent seed 58001 of 12 candidates, low and high re-sampled from its latent, tool/music/sheets/salon.chain.json, plan/music-salon-2026-11-07.md"
+  },
+  {
+   "glob": "assets/music/rendered/billiards/bridge.*",
+   "class": "local-model",
+   "evidence": "cut by tool/music/mix from the billiards and salon ACE-Step takes, plan/music-salon-2026-11-07.md"
+  },
+  {
+   "glob": "assets/music/midi/salon_bolero*",
+   "class": "authored-code",
+   "evidence": "tool/music/generate.mjs (composeBolero), assets/music/LICENSE.md"
+  },
+  {
+   "glob": "assets/music/midi/billiards_to_salon.mid",
+   "class": "authored-code",
+   "evidence": "tool/music/generate.mjs (composeBilliardsToSalon), assets/music/LICENSE.md"
+  },
+  {
    "glob": "assets/music/rendered/*.m4a",
    "class": "local-model",
    "evidence": "ACE-Step takes, plan/music-pilot-2026-11-06.md, plan/music-themes-2026-11-06.md"

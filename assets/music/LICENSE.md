@@ -37,6 +37,12 @@ weren't used, although some of their nodes exist in the studio.
   human authorship, so raw generated audio may not be protected. Selection and arrangement of takes may be.
 - This is a record, not legal advice.
 
+The salon (`rendered/salon/`, 2026-11-07) was made the same way: 12 candidate takes from genre and instrument
+words, tempo 116, key D minor and seeds 58000 to 58203, recorded in `tool/music/sheets/salon.candidates.json`; seed
+58001 was chosen by measurement, and its low and high tiers were re-sampled from its latent in one workflow
+(`tool/music/sheets/salon.chain.json`). The billiards bridge into the salon (`rendered/billiards/bridge.*`) is cut by
+repository code from the billiards and salon takes. No other input went in.
+
 The repository currently supplies no public licence, and this record doesn't grant one.
 
 ## Original scores: `scores/`, `midi/`, `manifest.json`
@@ -66,5 +72,10 @@ separate public redistribution license or make claims about copyrightability of
 AI-assisted output. The owner should choose the repository's publication license
 before distributing source/assets under a named open license.
 
-Inventory: `scores/*.json` (17 original event scores), `midi/*.mid` (41 original
+The salon's bolero-cha score `salon_bolero` ("Terciopelo"), its four-bar tag resolving to the relative
+major, and the bridge `billiards_to_salon` were added the same way on 2026-11-07. Cha-cha-chá and bolero
+conventions inform them: the güiro's long-long-long-short-short, the conga tumbao, a montuno figure and
+common minor-key cadences, none of which quotes a song.
+
+Inventory: `scores/*.json` (23 original event scores), `midi/*.mid` (51 original
 Standard MIDI File type 1 arrangements), `manifest.json` (catalog).

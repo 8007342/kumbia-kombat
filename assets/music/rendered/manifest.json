@@ -720,11 +720,115 @@
     "gainDb": 0,
     "startSeconds": 0.25,
     "endSeconds": 9.480770833333333,
-    "final": true,
+    "final": false,
     "files": {
      "opus": "assets/music/rendered/billiards/success.ogg",
      "aac": "assets/music/rendered/billiards/success.m4a"
     }
+   },
+   "bridge": {
+    "to": "salon",
+    "toTake": "low",
+    "entryBar": 18,
+    "bpm": 108.0,
+    "bars": 2,
+    "beatsPerBar": 4,
+    "gainDb": 0,
+    "startSeconds": 0.25,
+    "endSeconds": 4.6944375,
+    "files": {
+     "opus": "assets/music/rendered/billiards/bridge.ogg",
+     "aac": "assets/music/rendered/billiards/bridge.m4a"
+    }
+   }
+  },
+  "salon": {
+   "key": "D minor",
+   "tierTakes": [
+    "low",
+    "low",
+    "mid",
+    "mid",
+    "high"
+   ],
+   "takes": {
+    "low": {
+     "bpm": 108.0,
+     "bars": 24,
+     "beatsPerBar": 4,
+     "loopStartSeconds": 0.25,
+     "loopEndSeconds": 53.583333333333336,
+     "loopSamples": 2560000,
+     "sampleRate": 48000,
+     "gainDb": 0,
+     "files": {
+      "opus": "assets/music/rendered/salon/low.ogg",
+      "aac": "assets/music/rendered/salon/low.m4a"
+     },
+     "lufs": -16.5,
+     "bar1Confidence": 1.0,
+     "goodExitBars": [
+      6,
+      14,
+      22
+     ]
+    },
+    "mid": {
+     "bpm": 116.0,
+     "bars": 24,
+     "beatsPerBar": 4,
+     "loopStartSeconds": 0.25,
+     "loopEndSeconds": 49.905166666666666,
+     "loopSamples": 2383448,
+     "sampleRate": 48000,
+     "gainDb": 0,
+     "files": {
+      "opus": "assets/music/rendered/salon/mid.ogg",
+      "aac": "assets/music/rendered/salon/mid.m4a"
+     },
+     "lufs": -16.0,
+     "bar1Confidence": 1.0,
+     "goodExitBars": [
+      6,
+      14,
+      18,
+      22
+     ]
+    },
+    "high": {
+     "bpm": 124.0,
+     "bars": 24,
+     "beatsPerBar": 4,
+     "loopStartSeconds": 0.25,
+     "loopEndSeconds": 46.70160416666667,
+     "loopSamples": 2229677,
+     "sampleRate": 48000,
+     "gainDb": 0,
+     "files": {
+      "opus": "assets/music/rendered/salon/high.ogg",
+      "aac": "assets/music/rendered/salon/high.m4a"
+     },
+     "lufs": -15.0,
+     "bar1Confidence": 1.0,
+     "goodExitBars": []
+    }
+   },
+   "transitions": [],
+   "layerFadeBeats": 1,
+   "gridTier": "mid",
+   "success": {
+    "bpm": 124.0,
+    "bars": 4,
+    "beatsPerBar": 4,
+    "gainDb": 0,
+    "startSeconds": 0.25,
+    "endSeconds": 7.9919375,
+    "final": true,
+    "files": {
+     "opus": "assets/music/rendered/salon/success.ogg",
+     "aac": "assets/music/rendered/salon/success.m4a"
+    },
+    "key": "F major"
    }
   }
  }

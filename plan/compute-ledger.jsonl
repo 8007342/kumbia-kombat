@@ -391,3 +391,7 @@
 {"ts": "2026-11-07T22:05:00Z", "agent": "SALONART", "what": "band-violin frames, 5 poses x 2 (wall time incl. queue)", "kind": "gpu-image", "seconds": 905, "count": 10}
 {"ts": "2026-11-07T22:05:00Z", "agent": "SALONART", "what": "salon pianist in-place key, 4 takes on a plate crop", "kind": "gpu-image", "seconds": 170.6, "count": 4}
 {"ts": "2026-11-07T22:40:00Z", "agent": "SALONART", "what": "salon pianist in-place frame edits, 3 poses x 2", "kind": "gpu-image", "seconds": 567.9, "count": 6}
+{"agent":"BOLERO","what":"salon bolero-cha candidates, 3 tag sets x 4 seeds, ACE-Step XL turbo","kind":"gpu-audio","seconds":249.93,"count":12}
+{"agent":"BOLERO","what":"salon chain (parent + 6 re-sampled tiers); first run had the wrong parent tags and was discarded","kind":"gpu-audio","seconds":150.4,"count":2}
+{"agent":"BOLERO","what":"salon reproduction checks, single takes to test seed and batch behaviour","kind":"gpu-audio","seconds":74.62,"count":2}
+{"agent":"BOLERO","what":"salon timing, character, chord-ear and grid measures; mixrs builds of salon (4) and billiards (1); verify","kind":"cpu","seconds":180,"count":12}
