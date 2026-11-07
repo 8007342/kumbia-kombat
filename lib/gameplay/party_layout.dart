@@ -98,7 +98,14 @@ enum PartyActivity { seatedChat, seatedDrink, standingChat, sipping, waiting }
 enum PartyPropKind { chair, stool, table, umbrella, drink, candle, plant }
 
 /// What a guest sits on. [painted] is part of the plate, so nothing is drawn.
-enum PartySeat { chair, stool, painted }
+enum PartySeat {
+  chair,
+  stool,
+  painted,
+
+  /// On their feet from the start, on a dance floor. No seat is drawn.
+  standing,
+}
 
 enum PartyCalibration { inspectedStarter, unverifiedStoryboard }
 
@@ -115,7 +122,16 @@ class PartyGuestSlot {
     this.seatHeightInAdults = .37,
     this.paletteIndex = 0,
     this.chairIncluded = false,
+    this.partTo,
+    this.partDelay = 0,
   });
+
+  /// Where this dance-floor guest moves to when the floor opens, or null if they
+  /// dance in place. Their [floor] is where they start.
+  final PartyPoint? partTo;
+
+  /// Beats after the first of them starts: see `CrowdParting`.
+  final double partDelay;
   final String id;
   final PartyPoint floor;
   final PartyActivity activity;
@@ -133,6 +149,9 @@ class PartyGuestSlot {
   bool get seated =>
       activity == PartyActivity.seatedChat ||
       activity == PartyActivity.seatedDrink;
+
+  /// On a dance floor rather than in a seat.
+  bool get onFloor => activity == PartyActivity.standingChat;
 }
 
 class PartyPropSlot {
@@ -190,10 +209,16 @@ class PartyRoomLayout {
   final List<PartyPropSlot> props;
   final PartyCalibration calibration;
 
-  ProjectedPartyGuest projectSlot(PartyViewport viewport, PartyGuestSlot slot) {
-    final ground = viewport.project(slot.floor);
+  /// [at] is where they are now, for someone who moves. Their size follows it.
+  ProjectedPartyGuest projectSlot(
+    PartyViewport viewport,
+    PartyGuestSlot slot, {
+    PartyPoint? at,
+  }) {
+    final place = at ?? slot.floor;
+    final ground = viewport.project(place);
     final height = viewport.sourceHeightToLogical(
-      floor.standingHeightAt(slot.floor.y, stature: slot.stature),
+      floor.standingHeightAt(place.y, stature: slot.stature),
     );
     return ProjectedPartyGuest(
       slot,
@@ -208,20 +233,27 @@ List<PartyGuestSlot> seatedGuestSlots(
   String room,
   List<PartyPoint> anchors, {
   List<PartySeat>? seats,
+  List<PartyPoint?>? partTo,
+  List<double>? partDelays,
 }) =>
     List.unmodifiable([
       for (var i = 0; i < anchors.length; i++)
         PartyGuestSlot(
           '$room-guest-$i',
           anchors[i],
-          activity: i.isEven
+          activity: seats?[i] == PartySeat.standing
+              ? PartyActivity.standingChat
+              : i.isEven
               ? PartyActivity.seatedChat
               : PartyActivity.seatedDrink,
+          partTo: partTo?[i],
+          partDelay: partDelays?[i] ?? 0,
           archetype: i % 3,
           interestIndex: i,
           paletteIndex: i ~/ 3,
           homePropId: '$room-chair-$i',
-          facingRight: anchors[i].x < .5,
+          // Someone who moves faces the way they'll end up, so they never flip.
+          facingRight: (partTo?[i] ?? anchors[i]).x < .5,
           chairIncluded: seats?[i] == PartySeat.painted,
         ),
     ]);
@@ -263,7 +295,9 @@ List<PartyPropSlot> chairSlotsFor(
   List<PartySeat>? seats,
 }) => [
   for (final (i, guest) in guests.indexed)
-    if (seats != null && seats[i] != PartySeat.chair)
+    if (seats?[i] == PartySeat.standing)
+      ...const <PartyPropSlot>[]
+    else if (seats != null && seats[i] != PartySeat.chair)
       PartyPropSlot(
         guest.homePropId!,
         PartyPropKind.stool,

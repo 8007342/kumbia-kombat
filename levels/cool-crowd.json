@@ -1,0 +1,431 @@
+{
+ "id": "cool-crowd",
+ "title": "THE DANCE ROOM",
+ "background": "cool-crowd/cool-crowd-v2.png",
+ "music": {
+  "score": "crowd_duende",
+  "successScore": "crowd_duende_success",
+  "leadShape": "sine"
+ },
+ "rules": {
+  "metric": "Flow",
+  "cleanSeconds": 95,
+  "successesPerTier": 2,
+  "finalChallenges": 3,
+  "resetAfterFailures": 5,
+  "earlyHitRatio": 0.875
+ },
+ "chart": {
+  "introBeats": 12,
+  "callBeats": 8,
+  "flourishDestination": "rightHand",
+  "offsets": [
+   0,
+   1,
+   1.5,
+   2.5,
+   3.5,
+   4.5,
+   5.5,
+   6.5
+  ],
+  "limbs": [
+   "leftFoot",
+   "leftHand",
+   "rightFoot",
+   "rightHand",
+   "leftFoot",
+   "leftHand",
+   "rightFoot",
+   "rightHand"
+  ],
+  "variants": [
+   [
+    "leftHand",
+    "leftFoot",
+    "rightHand",
+    "rightFoot",
+    "leftHand",
+    "leftFoot",
+    "rightHand",
+    "rightFoot"
+   ],
+   [
+    "rightFoot",
+    "rightHand",
+    "leftFoot",
+    "leftHand",
+    "rightFoot",
+    "rightHand",
+    "leftFoot",
+    "leftHand"
+   ],
+   [
+    "leftHand",
+    "rightHand",
+    "leftFoot",
+    "rightFoot",
+    "leftHand",
+    "rightHand",
+    "rightFoot",
+    "leftFoot"
+   ],
+   [
+    "rightFoot",
+    "leftHand",
+    "rightHand",
+    "leftFoot",
+    "leftHand",
+    "rightFoot",
+    "leftFoot",
+    "rightHand"
+   ],
+   [
+    "leftFoot",
+    "rightHand",
+    "leftHand",
+    "rightFoot",
+    "rightHand",
+    "leftFoot",
+    "rightFoot",
+    "leftHand"
+   ]
+  ]
+ },
+ "stage": {
+  "calibration": "unverifiedStoryboard",
+  "floor": {
+   "horizonY": 0.25,
+   "referenceFootY": 0.4,
+   "referenceHeight": 0.1
+  },
+  "heroHome": [0.5, 0.62],
+  "heroEntersAt": 6,
+  "heroEntrance": [0.06, 0.64],
+  "heroRetreat": [0.5, 0.645],
+  "heroWatch": [0.5, 0.645],
+  "heroAside": [0.24, 0.635],
+  "challengers": [
+   {
+    "id": "blinblin",
+    "atlas": "bartender",
+    "mark": [0.5, 0.47],
+    "yieldMark": [0.62, 0.44],
+    "stature": 1.1,
+    "meetMark": [0.58, 0.46],
+    "facingAway": {
+     "back": {
+      "frames": [
+       "spin_back",
+       "spin_back34_l",
+       "spin_back",
+       "spin_back34_r"
+      ],
+      "beatsPerFrame": 1
+     },
+     "turn": [
+      "spin_back34_r",
+      "spin_side_r",
+      "spin_34_r",
+      "spin_front"
+     ],
+     "turnBeats": 2
+    }
+   }
+  ]
+ },
+ "crowd": {
+  "budgets": {
+   "interested": 12,
+   "following": 12,
+   "standing": 12,
+   "cheering": 12
+  },
+  "seat": "standing",
+  "floorDance": {
+   "ownThing": {
+    "frames": [
+     "step_touch_a",
+     "standing_idle_a",
+     "step_touch_d",
+     "standing_idle_b"
+    ],
+    "beatsPerFrame": 1
+   },
+   "glance": {
+    "frames": [
+     "standing_idle_a",
+     "standing_idle_b"
+    ],
+    "beatsPerFrame": 2
+   },
+   "parting": {
+    "from": 6,
+    "beats": 4,
+    "stagger": 2,
+    "slowTo": 0.5
+   }
+  },
+  "guests": [
+   {
+    "at": [0.41, 0.45],
+    "partTo": [0.285, 0.46]
+   },
+   {
+    "at": [0.345, 0.42],
+    "partTo": [0.295, 0.425]
+   },
+   {
+    "at": [0.43, 0.395],
+    "partTo": [0.305, 0.4]
+   },
+   {
+    "at": [0.35, 0.5],
+    "partTo": [0.285, 0.49]
+   },
+   {
+    "at": [0.38, 0.53],
+    "partTo": [0.115, 0.535]
+   },
+   {
+    "at": [0.59, 0.45],
+    "partTo": [0.775, 0.45]
+   },
+   {
+    "at": [0.62, 0.52],
+    "partTo": [0.735, 0.5]
+   },
+   {
+    "at": [0.66, 0.41],
+    "partTo": [0.735, 0.435]
+   },
+   {
+    "at": [0.52, 0.405],
+    "partTo": [0.82, 0.47]
+   },
+   {
+    "at": [0.64, 0.49],
+    "partTo": [0.8, 0.515]
+   },
+   {
+    "at": [0.61, 0.56],
+    "partTo": [0.76, 0.55]
+   },
+   {
+    "at": [0.57, 0.4],
+    "partTo": [0.86, 0.5]
+   },
+   [0.87, 0.555],
+   [0.91, 0.52],
+   [0.83, 0.575],
+   [0.08, 0.575],
+   [0.95, 0.47],
+   [0.05, 0.53]
+  ],
+  "props": []
+ },
+ "scenery": {
+  "lamps": [
+   [0.252, 0.055],
+   [0.32, 0.125],
+   [0.407, 0.14],
+   [0.491, 0.095],
+   [0.613, 0.088]
+  ],
+  "plants": [],
+  "platform": {
+   "lift": 0.365,
+   "outline": [
+    [0, 0.402],
+    [0.3, 0.402],
+    [0.235, 0.505],
+    [0, 0.505]
+   ]
+  },
+  "band": {
+   "standIn": true,
+   "ladders": {
+    "standIn": [
+     {
+      "frames": [
+       "standing_idle_a",
+       "standing_idle_b"
+      ],
+      "beatsPerFrame": 1
+     },
+     {
+      "frames": [
+       "step_touch_a",
+       "standing_idle_b",
+       "step_touch_c",
+       "standing_idle_a"
+      ],
+      "beatsPerFrame": 1
+     },
+     {
+      "frames": [
+       "step_touch_a",
+       "step_touch_d",
+       "step_touch_c",
+       "step_touch_d"
+      ],
+      "beatsPerFrame": 0.5
+     },
+     {
+      "frames": [
+       "clap_a",
+       "clap_b"
+      ],
+      "beatsPerFrame": 0.5
+     }
+    ]
+   },
+   "players": [
+    {
+     "id": "front",
+     "atlas": "guest1",
+     "reference": "standing_idle_a",
+     "palette": 3,
+     "at": [0.175, 0.47],
+     "ladder": "standIn"
+    },
+    {
+     "id": "back",
+     "atlas": "guest2",
+     "reference": "standing_idle_a",
+     "palette": 1,
+     "at": [0.235, 0.435],
+     "ladder": "standIn",
+     "beatOffset": 1
+    },
+    {
+     "id": "left",
+     "atlas": "guest0",
+     "reference": "standing_idle_a",
+     "palette": 2,
+     "at": [0.095, 0.445],
+     "ladder": "standIn",
+     "beatOffset": 2
+    },
+    {
+     "id": "far-left",
+     "atlas": "guest1",
+     "reference": "standing_idle_a",
+     "palette": 0,
+     "at": [0.045, 0.49],
+     "ladder": "standIn",
+     "beatOffset": 1
+    }
+   ]
+  },
+  "wallLight": {
+   "periodBeats": 32,
+   "zones": [
+    {
+     "outline": [
+      [0, 0.05],
+      [0.17, 0.12],
+      [0.17, 0.36],
+      [0, 0.41]
+     ]
+    },
+    {
+     "outline": [
+      [0.66, 0.13],
+      [1, 0],
+      [1, 0.52],
+      [0.66, 0.37]
+     ]
+    }
+   ]
+  }
+ },
+ "departure": {
+  "threshold": "corridor arch",
+  "originY": 0.62,
+  "waypoints": [
+   {
+    "at": 0,
+    "x": 0.5,
+    "y": 0.62,
+    "facing": "rear"
+   },
+   {
+    "at": 1,
+    "x": 0.41,
+    "y": 0.385,
+    "facing": "rear"
+   }
+  ]
+ },
+ "copy": {
+  "invitation": "The floor is already taken.",
+  "clearedTitle": "QUÉ\nFLOW"
+ },
+ "hardestCombo": {
+  "name": "All That Glitters",
+  "status": "proposal",
+  "note": "Proposal. The name and shape need no sign-off to exist, but the owner hasn't seen or played them. He has no atlas yet, so this uses only the shared clips his planned motion set covers. Unhurried in the call, off the beat in the answer.",
+  "callBeats": 8,
+  "moves": [
+   {
+    "at": 0,
+    "beats": 4,
+    "clip": "hip_pops"
+   },
+   {
+    "at": 4,
+    "beats": 2,
+    "clip": "show_off"
+   },
+   {
+    "at": 6,
+    "beats": 2,
+    "clip": "finish_turn"
+   }
+  ],
+  "notes": [
+   {
+    "at": 0,
+    "limb": "rightFoot"
+   },
+   {
+    "at": 0.75,
+    "limb": "leftHand"
+   },
+   {
+    "at": 1.5,
+    "limb": "rightHand"
+   },
+   {
+    "at": 2.5,
+    "limb": "leftFoot"
+   },
+   {
+    "at": 3.25,
+    "limb": "rightFoot"
+   },
+   {
+    "at": 4,
+    "limb": "leftHand"
+   },
+   {
+    "at": 4.75,
+    "limb": "rightHand"
+   },
+   {
+    "at": 5.5,
+    "limb": "leftFoot"
+   },
+   {
+    "at": 6.25,
+    "limb": "leftHand"
+   },
+   {
+    "at": 7,
+    "limb": "rightFoot",
+    "move": "stomp"
+   }
+  ]
+ }
+}

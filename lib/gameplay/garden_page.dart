@@ -51,8 +51,11 @@ class GardenPage extends StatefulWidget {
 
 class _GardenPageState extends State<GardenPage>
     with SingleTickerProviderStateMixin, WidgetsBindingObserver {
+  // `?level=<id>` plays one level alone, for review: nothing else links to it.
   late final Future<LevelRegistry> _levelsLoad =
-      (widget.levels ?? LevelRegistry.loadShipping)();
+      (widget.levels ?? LevelRegistry.loadShipping)().then(
+        (levels) => levels.reviewing(Uri.base.queryParameters['level']),
+      );
   late final _scene = GardenSceneGame(
     firstLevel: () async => (await _levelsLoad).first,
   );
