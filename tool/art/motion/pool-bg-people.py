@@ -70,7 +70,7 @@ for key, p in PEOPLE.items():
             "sheet": {"source": {"image": "tool/art/references/pool-player/front.png", "styleOnly": True},
                       "views": {"front": {"image": f"tool/art/references/{cid}/front.png",
                                           "description": "standing easy, turned three-quarters toward the right of the picture, a pool cue upright in the right hand with its butt on the floor, looking toward the right",
-                                          "stageScale": 0.84}}},
+                                          "stageScale": 1.0 if key == "c" else 0.84}}},
         },
         "references": {"mode": "source", "sources": []},
         "targets": [{"room": "billiards", "atlas": cid, "out": f"assets/art/ensemble/{cid}-v1.png", "native": [256, 320], "pixelScale": 3}],
