@@ -466,7 +466,7 @@
   ],
   "challengers": [
    {
-    "id": "terciopelo",
+    "id": "gatekeeper",
     "atlas": "gatekeeper",
     "mark": [
      0.5,
@@ -822,13 +822,13 @@
  "hardestCombo": {
   "name": "EL GIRO DE TERCIOPELO",
   "status": "proposal",
-  "note": "Proposal, from the art agent, timed by the wiring agent. A spin into a held line with a cha-cha-chá: one and a half turns on the hands, the fan line lands on the left foot, then two cha-cha-chá triples in the feet (3, 3.5, 4 and 5, 5.5, 6), and the held line closes it with a circle. The art agent's quarter-beat double-time triples are 121 ms apart at 124 BPM, under the 230 ms good window a combo's notes must keep, so they are half beats here. Uses only his atlas's clips. The owner hasn't seen or played it.",
+  "note": "Proposal, from the art agent, timed by the wiring agent. A spin into a held line with a cha-cha-chá: one and a half turns on the hands, the fan line lands on the left foot, then two cha-cha-chá triples in the feet (3, 3.5, 4 and 5, 5.5, 6), and the held line closes it with a circle. The art agent's quarter-beat double-time triples are 121 ms apart at 124 BPM, under the 230 ms good window a combo's notes must keep, so they are half beats here. STAND-IN moves until his atlas lands: the GateKeeper's spin_flare, groove_double and clap stand for his giro, groove_double and line_hold. The owner hasn't seen or played it.",
   "callBeats": 8,
   "moves": [
    {
     "at": 0,
     "beats": 3,
-    "clip": "giro"
+    "clip": "spin_flare"
    },
    {
     "at": 3,
@@ -838,7 +838,7 @@
    {
     "at": 7,
     "beats": 1,
-    "clip": "line_hold"
+    "clip": "clap"
    }
   ],
   "notes": [
