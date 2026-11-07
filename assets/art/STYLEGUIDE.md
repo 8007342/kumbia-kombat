@@ -55,6 +55,8 @@ Before spending GPU time, write these down for the level: the opponent's silhoue
 
 **Crowd arc.** A room starts uninterested and ends engaged. A clean run ends fully engaged, and even a poor run that clears feels warm. Unskilful play costs interest, and flawless play gets the full party. Every room can reach full swing, and reaching it should be easy. Guests join one by one, with their own thresholds and delays, never the whole room on one beat. Pointing is reserved for flourishes and for the change from uninterested to interested. How many stand is in each level's `crowd.budgets` (all 12 today).
 
+**A room that's already dancing.** The indoor party starts with people on their feet in the middle of the floor. The same crowd model runs, so all of the above holds, but uninterested means turned away, in small steps, on their own. Those in the middle slow down and move aside before the first call, and everyone stays on their feet through the win (`plan/levels/indoor-party-2026-11-07.md`).
+
 **How much crowd.** Bar: the large layer at the back with two layers of people in front, on stools. Garden and lawn: many more people sprinkled around, with chairs and tables with drinks. Non-dancers stay outside the dance floor.
 
 ## 4. Props

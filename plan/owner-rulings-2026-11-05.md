@@ -189,3 +189,15 @@ Polish, the same day. No finish lamps: "the party engagement and music are indic
 
 Ladders, the same day: progression is right, but the low tiers are too quiet and, on the lawn, too slow. "the low level of the second try lawn pool level is a bit too slow, but the progression is great", "its LOW << MID < HIGH, the low tier is much more quieter in comparison with the mid and high tiers. We need to spike up a little more those low levels." Tiers share themes but "won't crossfade cleanly", so transitions must be made smooth. The implementation is open.
 
+
+## Indoor party round, 2026-11-07: the band and the crowd that's already dancing
+
+The owner's words, whole: "let's use that left platform to add a band playing the music, they'll also play while tapping a foot or swinging their instrument on rythm, and liven their rythm as the player game improves. We can fill a bunch of people dancing already in this room, where our dancing will actually have them slow down and move aside, for Mācron and BlinBlin dancer to take over, the rest will dance in place like at the other levels. They'll start dancing for this one, on the middle, then move over as Mācron and BlinBlin start their dance fight in the middle 😉 The recommended A options are great, I approve"
+
+| Topic | Ruling | Owner's words |
+|---|---|---|
+| Band | A band on the room's left platform plays the music, tapping a foot or swinging an instrument on the beat, and gets livelier as the player improves | "liven their rythm as the player game improves" |
+| Crowd | This room starts full of people already dancing in the middle of the floor. Those in the middle slow down and move aside, and the rest dance in place | "slow down and move aside, for Mācron and BlinBlin dancer to take over" |
+| Options | The "recommended A options" are approved. As the coordinator read it, that includes plate A for this room | "The recommended A options are great, I approve" |
+
+Status: built as a hidden level, with stand-in art. See `plan/levels/indoor-party-2026-11-07.md`.
