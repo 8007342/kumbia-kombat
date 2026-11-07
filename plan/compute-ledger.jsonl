@@ -396,3 +396,11 @@
 {"agent":"BOLERO","what":"salon chain (parent + 6 re-sampled tiers); first run had the wrong parent tags and was discarded","kind":"gpu-audio","seconds":150.4,"count":2}
 {"agent":"BOLERO","what":"salon reproduction checks, single takes to test seed and batch behaviour","kind":"gpu-audio","seconds":74.62,"count":2}
 {"agent":"BOLERO","what":"salon timing, character, chord-ear and grid measures; mixrs builds of salon (4) and billiards (1); verify","kind":"cpu","seconds":180,"count":12}
+{"ts": "2026-11-07T21:36:04Z", "agent": "SALONART", "what": "990700.png", "kind": "local-vision", "seconds": 35.87, "count": 1, "model": "qwen2.5vl:7b", "load_s": 10.81, "eval_tokens": 5}
+{"ts": "2026-11-07T21:36:08Z", "agent": "SALONART", "what": "990700.png", "kind": "local-vision", "seconds": 4.03, "count": 1, "model": "qwen2.5vl:7b", "load_s": 3.12, "eval_tokens": 5}
+{"ts": "2026-11-07T21:36:14Z", "agent": "SALONART", "what": "990700.png", "kind": "local-vision", "seconds": 5.44, "count": 1, "model": "qwen2.5vl:7b", "load_s": 3.9, "eval_tokens": 5}
+{"ts": "2026-11-07T21:36:19Z", "agent": "SALONART", "what": "990700.png", "kind": "local-vision", "seconds": 5.28, "count": 1, "model": "qwen2.5vl:7b", "load_s": 3.67, "eval_tokens": 5}
+{"ts": "2026-11-07T21:37:04Z", "agent": "SALONART", "what": "990700.png", "kind": "local-vision", "seconds": 44.27, "count": 1, "model": "qwen2.5vl:7b", "load_s": 9.96, "eval_tokens": 5}
+{"ts": "2026-11-07T23:00:00Z", "agent": "SALONART", "what": "salon layer fills: 3 chandeliers and 3 floor reflections, 2 seeds each", "kind": "gpu-image", "seconds": 989.6, "count": 12}
+{"ts": "2026-11-07T23:00:00Z", "agent": "SALONART", "what": "band-bongos frames, 5 poses x 2 (wall time incl. queue)", "kind": "gpu-image", "seconds": 939, "count": 10}
+{"ts": "2026-11-07T23:00:00Z", "agent": "SALONART", "what": "salon plate fills, layers, finish, pack, proofs (layers.py, band_finish.py, pianist.py)", "kind": "cpu", "seconds": 120, "count": 1}
