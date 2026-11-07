@@ -74,7 +74,7 @@
   "noun": "man",
   "fits": "hair, both shoes and both hands",
   "look": "tall, lean, angular adult build, narrow face with a trimmed goatee, easy sly half smile with kind, amused eyes, warm brown skin, short slicked-back black hair, several thick gold rope chains of different lengths hanging over his chest down to his belly with one large gold medallion, gold rings on his fingers, a chunky gold wristwatch, gold hoop earring, cream guayabera shirt open at the neck, long open midnight-violet jacket, slim dark trousers, polished two-tone cream and dark shoes and thick dark ink outline",
-  "extra": "Both eyes are open. He is a grown man of about forty-five. The gold chains are big, bright and easy to see, lying on top of the shirt. ",
+  "extra": "Both eyes are open. His mouth stays closed in a cool half smile. He is a grown man of about forty-five. The gold chains are big, bright and easy to see, lying on top of the shirt. ",
   "sheet": {
    "source": {
     "image": "tool/art/references/blinblin/front-draft-f2.png"
@@ -82,12 +82,14 @@
    "views": {
     "front": {
      "image": "tool/art/references/blinblin/front.png",
-     "description": "standing square and upright facing the viewer, feet a little apart, both arms relaxed and held a little away from the body, both open hands visible"
+     "description": "standing square and upright facing the viewer, feet a little apart, both arms relaxed and held a little away from the body, both open hands visible",
+     "stageScale": 0.84
     },
     "back": {
      "image": "tool/art/references/blinblin/back.png",
      "description": "seen from directly behind, his back to the viewer, standing upright with feet a little apart, both arms relaxed, the plain back of his long jacket and the back of his head, a thin gold chain at the nape of his neck",
-     "look": "tall, lean, angular adult build, warm brown skin, short slicked-back black hair, thin gold chain at the nape of his neck, gold rings on his fingers, a chunky gold wristwatch, long midnight-violet jacket with a plain back and a centre vent, slim dark trousers, polished two-tone cream and dark shoes and thick dark ink outline"
+     "look": "tall, lean, angular adult build, warm brown skin, short slicked-back black hair, thin gold chain at the nape of his neck, gold rings on his fingers, a chunky gold wristwatch, long midnight-violet jacket with a plain back and a centre vent, slim dark trousers, polished two-tone cream and dark shoes and thick dark ink outline",
+     "extra": "He is a grown man of about forty-five. The thin gold chain at the nape is the only gold on his back. "
     }
    }
   },
@@ -100,6 +102,10 @@
    "finish_turn.finish_b": {
     "why": "The table's finish touches a hat brim, and he wears no hat. Two fingers off the temple keeps the salute.",
     "description": "right hand at his temple with two fingers out in a cool salute, no hat, head dipped slightly, chest proud, left elbow out with the fist on the hip, left heel forward with the toe up"
+   },
+   "crossed.nod_down": {
+    "why": "Eyes looking down drew a scowl. A warm closed-eye nod reads as approval.",
+    "description": "arms firmly crossed high over his chest with each hand tucked under the other arm, head bowed forward in a slow approving nod with the chin dropped, eyes softly closed, a warm small smile, weight on the right leg"
    }
   },
   "score": {

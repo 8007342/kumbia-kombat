@@ -146,12 +146,18 @@ def _look(c: dict, view: str | None) -> str:
     return (_sheet(c)["views"].get(view) or {}).get("look", d["look"])
 
 
+def _extra(c: dict, view: str | None) -> str:
+    """A view can say what its own words need: chains on the shirt mean nothing from behind."""
+    d = drawing_of(c)
+    return (_sheet(c)["views"].get(view) or {}).get("extra", d.get("extra", ""))
+
+
 def prompt_for(c: dict, backend: dict, pid: str, pose: dict) -> str:
     d = drawing_of(c)
     fix = d.get("poseOverrides", {}).get(pid, {})
     template = backend["prompts"]["reference" if is_drawn(c) else pose.get("template", "skeleton")]
     props = fix["props"] if "props" in fix else props_text(c, pose["clip"])
-    return template.format(noun=d["noun"], fits=d["fits"], look=_look(c, pose.get("view")), extra=d.get("extra", ""),
+    return template.format(noun=d["noun"], fits=d["fits"], look=_look(c, pose.get("view")), extra=_extra(c, pose.get("view")),
                            description=fix.get("description", pose["description"]), props=props, **grammar(c))
 
 
@@ -195,6 +201,16 @@ def scaled(src: Path, dst: Path, scale: float) -> None:
     small = im.resize((int(w * scale), int(h * scale)), Image.BILINEAR)
     out = Image.new("RGB", (w, h), (0, 0, 0))
     out.paste(small, ((w - small.width) // 2, h - small.height - int(h * 0.05)))
+    out.save(dst)
+
+
+def stage_smaller(src, dst: Path, scale: float) -> None:
+    """A sheet view scaled about its bottom centre on its own background, by whole-image nearest neighbour."""
+    im = Image.open(src)
+    w, h = im.size
+    small = im.resize((round(w * scale), round(h * scale)), Image.NEAREST)
+    out = Image.new(im.mode, (w, h), im.getpixel((0, 0)))
+    out.paste(small, ((w - small.width) // 2, h - small.height - int(h * 0.02)))
     out.save(dst)
 
 
@@ -275,7 +291,11 @@ def plan_run(c: dict, backend: dict, run: str, *, only: set[str] | None = None, 
     for view, spec in views.items():
         sheet_files[view] = lane / f"sheet_{view}.png"
         if stage and view not in missing:
-            shutil.copy(sheet if sheet and view == "front" else D.ROOT / spec["image"], sheet_files[view])
+            source_image = sheet if sheet and view == "front" else D.ROOT / spec["image"]
+            if spec.get("stageScale"):
+                stage_smaller(source_image, sheet_files[view], spec["stageScale"])
+            else:
+                shutil.copy(source_image, sheet_files[view])
 
     def bake(graph: dict, pid: str, prompt: str) -> Path:
         wf = copy.deepcopy(graph)
