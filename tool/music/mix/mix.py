@@ -20,6 +20,7 @@ import json
 import os
 import pathlib
 import re
+import resource
 import subprocess
 import sys
 import tempfile
@@ -34,6 +35,15 @@ HOP = 256
 WINDOW = 1024
 ENV_RATE = RATE / HOP
 MAX_DECODED_PEAK_DB = -0.3
+# The forge has 12 GB, shared with other agents, and a stall there freezes everyone. A build
+# at 12 workers took 11 GB and held the forge for 20 minutes on 2026-11-07. So one worker by
+# default, two at most, a limit per process that fails instead of stalling, and no start
+# while the machine is already busy.
+DEFAULT_WORKERS = 1
+MAX_WORKERS = 2
+PROCESS_LIMIT_BYTES = 4 * 1024 ** 3
+BUSY_BYTES = 6 * 10 ** 9
+HPSS_CHUNK_SECONDS = 10
 TONICS = {"C": 0, "C#": 1, "D": 2, "Eb": 3, "E": 4, "F": 5, "F#": 6, "G": 7, "Ab": 8, "A": 9, "Bb": 10, "B": 11}
 MAJOR = np.array([6.35, 2.23, 3.48, 2.33, 4.38, 4.09, 2.52, 5.19, 2.39, 3.66, 2.29, 2.88])
 MINOR = np.array([6.33, 2.68, 3.52, 5.38, 2.60, 3.53, 2.54, 4.75, 3.98, 2.69, 3.34, 3.17])
@@ -77,10 +87,14 @@ def encode(audio, base, cfg):
     common = ["ffmpeg", "-y", "-v", "error", "-f", "f32le", "-ar", str(SR), "-ac", "2", "-i", "-",
               "-map_metadata", "-1", "-fflags", "+bitexact", "-flags", "+bitexact"]
     opus, aac = base.with_suffix(".ogg"), base.with_suffix(".m4a")
+    # Written beside the target and renamed, so a killed build can't leave half a file.
+    part_opus, part_aac = base.with_name(base.name + ".part.ogg"), base.with_name(base.name + ".part.m4a")
     subprocess.run(common + ["-c:a", "libopus", "-b:a", f"{cfg['encode']['opusKbps']}k", "-vbr", "on",
-                             "-application", "audio", str(opus)], input=_pipe(audio), check=True)
+                             "-application", "audio", str(part_opus)], input=_pipe(audio), check=True)
     subprocess.run(common + ["-c:a", "aac", "-b:a", f"{cfg['encode']['aacKbps']}k",
-                             "-movflags", "+faststart", str(aac)], input=_pipe(audio), check=True)
+                             "-movflags", "+faststart", str(part_aac)], input=_pipe(audio), check=True)
+    os.replace(part_opus, opus)
+    os.replace(part_aac, aac)
     return {"opus": opus, "aac": aac}
 
 
@@ -467,8 +481,33 @@ def master_loop(loop, target, ceiling_db):
 # ---------------------------------------------------------------- separation for joins
 
 def hpss(audio, nfft=2048, hop=512, width=17):
-    """Harmonic and percussive parts by median masks. The masks sum to one, so the
-    two parts sum back to the input."""
+    """Harmonic and percussive parts by median masks, a block at a time, as the median
+    filters of a whole take want gigabytes. Blocks crossfade, and the percussive part is
+    the remainder, so the two parts still sum back to the input."""
+    block = HPSS_CHUNK_SECONDS * SR
+    if len(audio) <= block * 3 // 2:
+        return _hpss_block(audio, nfft, hop, width)
+    overlap = SR
+    harmonic = np.zeros_like(audio)
+    weight = np.zeros(len(audio))
+    ramp = (np.arange(overlap) + 0.5) / overlap
+    for start in range(0, len(audio), block - overlap):
+        stop = min(start + block, len(audio))
+        part = _hpss_block(audio[start:stop], nfft, hop, width)[0]
+        shape = np.ones(stop - start)
+        if start > 0:
+            shape[:overlap] = ramp
+        if stop < len(audio):
+            shape[-overlap:] = ramp[::-1]
+        harmonic[start:stop] += part * shape[:, None]
+        weight[start:stop] += shape
+        if stop == len(audio):
+            break
+    harmonic /= np.maximum(weight, 1e-9)[:, None]
+    return harmonic, audio - harmonic
+
+
+def _hpss_block(audio, nfft, hop, width):
     window = np.hanning(nfft + 1)[:-1]
     pad = np.vstack([np.zeros((nfft, 2)), audio, np.zeros((nfft, 2))])
     count = (len(pad) - nfft) // hop + 1
@@ -516,6 +555,13 @@ def prepare_tier(args):
     follow = rest[0] if rest else None
     path = pathlib.Path(cfg["mastersDir"]).expanduser() / tier["source"]
     audio = decode(path)
+    for extra in tier.get("layer") or []:
+        # Another take of the same performance, sample-aligned: its percussion can sit
+        # under a re-sampled layer, which keeps the parent's attacks.
+        other = decode(pathlib.Path(cfg["mastersDir"]).expanduser() / extra["source"])[:len(audio)]
+        harmonic, percussive = hpss(other)
+        part = percussive if extra.get("part") == "percussive" else harmonic
+        audio[:len(part)] += part * 10 ** (extra.get("db", 0) / 20)
     mono = decode(path, RATE, 1)
     target = float(tier["bpm"])
     beats, measured, wander = beat_times(mono, target)
@@ -622,7 +668,7 @@ def prepare_tier(args):
 
     loop_chroma = bar_chroma[choice["startBar"]:choice["startBar"] + bars]
     return {"level": level["id"], "name": tier["name"], "bpm": target, "bars": bars, "loop": mastered,
-            "barChroma": loop_chroma, "gainDb": gain_db, "grid": grid * 10 ** (gain_db / 20),
+            "barChroma": loop_chroma, "gainDb": gain_db, "grid": (grid * 10 ** (gain_db / 20)).astype(np.float32),
             "firstBarSample": first * beat_len, "barLen": bar_len, "beatLen": beat_len,
             "allBarChroma": bar_chroma, "barRms": bar_rms, "report": report,
             "follow": {"name": tier["name"], "beats": beats, "measured": measured, "first": first,
@@ -871,29 +917,10 @@ def good_exit_bars(tier):
 def build(cfg, only=None, root=REPO, workers=None, report_path=None):
     levels = {l["id"]: l for l in cfg["levels"]}
     wanted = [l for l in cfg["levels"] if not only or l["id"] in only]
-    jobs = []
-    for level in wanted:
-        tiers = list(level["tiers"])
-        if level.get("next"):
-            tiers_next = levels[level["next"]]["tiers"][0]
-            jobs.append((cfg, levels[level["next"]], tiers_next))
-        jobs.extend((cfg, level, t) for t in tiers)
-    seen, unique = set(), []
-    for job in jobs:
-        key = (job[1]["id"], job[2]["name"])
-        if key not in seen:
-            seen.add(key)
-            unique.append(job)
-    # A layered level's parent runs first, as the rest take its beat map.
-    def parent_of(job):
-        return job[1].get("gridTier")
-    with futures.ProcessPoolExecutor(max_workers=workers or min(os.cpu_count() or 2, 12)) as pool:
-        first_round = [j for j in unique if not parent_of(j) or parent_of(j) == j[2]["name"]]
-        done = list(pool.map(prepare_tier, first_round))
-        ready = {(d["level"], d["name"]): d for d in done}
-        rest = [j + (ready[(j[1]["id"], parent_of(j))]["follow"],) for j in unique if j not in first_round]
-        done = list(pool.map(prepare_tier, rest))
-        ready.update({(d["level"], d["name"]): d for d in done})
+    workers = max(1, min(workers or DEFAULT_WORKERS, MAX_WORKERS))
+    busy = memory_in_use()
+    if busy is not None and busy > BUSY_BYTES:
+        raise SystemExit(f"{busy / 1e9:.1f} GB in use, over the {BUSY_BYTES / 1e9:.0f} GB limit: not starting")
 
     out_dir = root / cfg["outDir"]
     manifest_path = out_dir / "manifest.json"
@@ -903,7 +930,10 @@ def build(cfg, only=None, root=REPO, workers=None, report_path=None):
     report = json.loads(report_path.read_text()) if report_path.exists() else {}
     pad = int(round(cfg["padSeconds"] * SR))
 
+    # A level at a time, releasing its audio before the next, and the manifest saved after
+    # each: a build that dies keeps the levels it finished, each whole.
     for level in wanted:
+        ready = prepare_level(cfg, level, levels, workers)
         lid = level["id"]
         order = [t["name"] for t in level["tiers"]]
         directory = out_dir / lid
@@ -971,13 +1001,64 @@ def build(cfg, only=None, root=REPO, workers=None, report_path=None):
             level_report["bridge"] = info
         manifest["levels"][lid] = entry
         report[lid] = level_report
-        print(f"built {lid}", flush=True)
-    if cfg.get("mix"):
-        manifest["mix"] = cfg["mix"]
-    out_dir.mkdir(parents=True, exist_ok=True)
-    manifest_path.write_text(json.dumps(manifest, indent=1, ensure_ascii=False) + "\n")
-    report_path.write_text(json.dumps(report, indent=1, ensure_ascii=False) + "\n")
+        del ready
+        if cfg.get("mix"):
+            manifest["mix"] = cfg["mix"]
+        out_dir.mkdir(parents=True, exist_ok=True)
+        _write_atomic(manifest_path, json.dumps(manifest, indent=1, ensure_ascii=False) + "\n")
+        _write_atomic(report_path, json.dumps(report, indent=1, ensure_ascii=False) + "\n")
+        print(f"built {lid}, peak {peak_mb()} MB in a worker", flush=True)
     return manifest, report
+
+
+def _write_atomic(path, text):
+    part = path.with_name(path.name + ".part")
+    part.write_text(text)
+    os.replace(part, path)
+
+
+def memory_in_use():
+    try:
+        return int(pathlib.Path("/sys/fs/cgroup/memory.current").read_text())
+    except (OSError, ValueError):
+        return None
+
+
+def peak_mb():
+    return resource.getrusage(resource.RUSAGE_CHILDREN).ru_maxrss // 1024
+
+
+def limit_process():
+    """Run out of memory here, as an error, before the whole forge stalls."""
+    resource.setrlimit(resource.RLIMIT_AS, (PROCESS_LIMIT_BYTES, PROCESS_LIMIT_BYTES))
+
+
+def prepare_level(cfg, level, levels, workers):
+    """The level's tiers, and the first tier of the level it leads to. A layered level's
+    parent goes first, as the others take its beat map."""
+    def jobs_for(lv, tiers):
+        parent = lv.get("gridTier")
+        if not parent:
+            return [(cfg, lv, t) for t in tiers], []
+        needed = list(tiers)
+        if parent not in [t["name"] for t in needed]:
+            needed += [t for t in lv["tiers"] if t["name"] == parent]
+        return [(cfg, lv, t) for t in needed if t["name"] == parent], \
+            [(cfg, lv, t) for t in needed if t["name"] != parent]
+    first, rest = jobs_for(level, level["tiers"])
+    if level.get("next"):
+        nxt = levels[level["next"]]
+        more_first, more_rest = jobs_for(nxt, [nxt["tiers"][0]])
+        first += more_first
+        rest += more_rest
+    ready = {}
+    with futures.ProcessPoolExecutor(max_workers=workers, initializer=limit_process, max_tasks_per_child=1) as pool:
+        for done in pool.map(prepare_tier, first):
+            ready[(done["level"], done["name"])] = done
+        followers = [j + (ready[(j[1]["id"], j[1]["gridTier"])]["follow"],) for j in rest]
+        for done in pool.map(prepare_tier, followers):
+            ready[(done["level"], done["name"])] = done
+    return ready
 
 
 # ---------------------------------------------------------------- verification
@@ -1353,6 +1434,11 @@ def _synth(path, bpm, seconds, pickup_beats, root_shift, tempo_error=0.0, seed=1
 
 
 def self_test():
+    # Blocks of separation still sum back, and sit close to separating the whole.
+    long_mix = np.random.default_rng(6).normal(0, 0.2, (SR * 24, 2))
+    long_h, long_p = hpss(long_mix)
+    assert np.allclose(long_h + long_p, long_mix, atol=1e-9)
+
     # Stretching keeps pitch, length and the map.
     t = np.arange(SR * 4) / SR
     tone = np.stack([np.sin(2 * np.pi * 440 * t)] * 2, axis=1) * 0.5
@@ -1464,6 +1550,35 @@ def self_test():
         take = manifest["levels"]["test"]["takes"]["low"]
         assert abs(take["loopEndSeconds"] - take["loopStartSeconds"] - 8 * 4 * 60 / 100) < 1 / SR
         assert len(manifest["levels"]["test"]["transitions"]) == 5
+
+        # One performance on one grid: the layers share bars and stay on their parent's
+        # beats at their own tempos, with no written transition.
+        layered = json.loads(json.dumps(cfg))
+        layered["levels"] = [{"id": "layers", "key": "A minor", "next": None, "successBars": 2, "successFinal": True,
+                              "gridTier": "mid", "layerFadeBeats": 1,
+                              "tiers": [{"name": "low", "source": "mid.flac", "bpm": 102, "loopBars": 8, "targetLufs": -17, "eq": []},
+                                        {"name": "mid", "source": "mid.flac", "bpm": 106, "loopBars": 8, "targetLufs": -16, "eq": []},
+                                        {"name": "high", "source": "mid.flac", "bpm": 110, "loopBars": 8, "targetLufs": -15, "eq": [],
+                                         "layer": [{"source": "mid.flac", "part": "percussive", "db": -6}]}]}]
+        (root / "out" / "manifest.json").unlink()
+        manifest, _ = build(layered, None, root, workers=3, report_path=root / "report2.json")
+        entry = manifest["levels"]["layers"]
+        assert entry["layerFadeBeats"] == 1 and entry["transitions"] == []
+        assert {t["bars"] for t in entry["takes"].values()} == {8}
+        results, failures = verify(layered, root)
+        failures = [f for f in failures if "wrap adds top end" not in f]
+        assert not failures, failures
+        assert all(abs(r["lagMedianMs"]) <= 12 for r in results["layers"]["layers"].values()), results["layers"]["layers"]
+
+        # Cuts: an entry for every second exit bar, each a real bar of the destination.
+        cuts = json.loads(json.dumps(cfg))
+        cuts["levels"][0]["joinStyle"] = "cuts"
+        (root / "out" / "manifest.json").unlink()
+        manifest, _ = build(cuts, None, root, workers=3, report_path=root / "report3.json")
+        entry = manifest["levels"]["test"]
+        assert entry["transitions"] == [] and len(entry["cuts"]) == 5
+        for cut in entry["cuts"]:
+            assert len(cut["entryBars"]) == 4 and all(0 <= e < 8 and e % 2 == 0 for e in cut["entryBars"]), cut
     print("self-test passed")
 
 
@@ -1481,6 +1596,7 @@ def main():
         return 0
     if not args.command:
         parser.error("name a command, or --self-test")
+    limit_process()
     cfg = load_config(args.config)
     root = pathlib.Path(args.root).resolve() if args.root else REPO
     log_dir = root if args.root else HERE
