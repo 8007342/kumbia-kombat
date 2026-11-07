@@ -1,0 +1,32 @@
+[
+ {
+  "pose": "crossed.nod_down",
+  "args": {
+   "workflow": "art_runs/blinblin-v1-20261107c/workflows/crossed.nod_down.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/blinblin-v1-20261107c/in/sheet_front.png",
+    "pose_proxy": "/work/tmp/imagegen/kumbia/blinblin-v1-20261107c/in/crossed.nod_down.skeleton.png"
+   },
+   "overrides": {
+    "seed": 987000
+   }
+  }
+ },
+ {
+  "pose": "crossed.nod_up",
+  "args": {
+   "workflow": "art_runs/blinblin-v1-20261107c/workflows/crossed.nod_up.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/blinblin-v1-20261107c/in/sheet_front.png",
+    "pose_proxy": "/work/tmp/imagegen/kumbia/blinblin-v1-20261107c/in/crossed.nod_up.skeleton.png"
+   },
+   "overrides": {
+    "seed": 987000
+   }
+  }
+ }
+]

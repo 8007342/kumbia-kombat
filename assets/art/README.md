@@ -1,5 +1,7 @@
 # Art starter assets
 
+**How art should look: `STYLEGUIDE.md`, the single guide.** This file only records these starter files.
+
 `macron-dance-concepts.png` is an actual built-in imagegen output generated 2026-10-18, transparent RGBA, eight Mācron poses in a 4×2 composition. Inspected visually: ivory robot, cyan antenna/display, two arms, no animal anatomy; rear walk, rear turns, front and dance poses are recognizable. Status: **concept, not runtime animation atlas**. Pose bounds and pixel grid are not uniform, right-arm cuff continuity needs cleanup, and final side pose is not a complete spin cycle. Do not slice evenly or advertise this as production-ready animation.
 
 Prompt (built-in mode):

@@ -85,6 +85,13 @@ floor heights, author a second support plane rather than stretch a walking sprit
 
 ## Twelve reusable guests and persistent furniture
 
+Owner's tenth round, 2026-11-06: the cast is no longer twelve. A level seats what it
+lists, up to `CrowdInterestModel.maxGuests`, and budgets, the warm floor and the
+room's timing keep their proportions at any size. The bar has stools and two rows in
+front of its back row, the garden and lawn many more guests at tables. See
+`tool/art/rooms/README.md`, "Furniture". The rest of this section is the original
+twelve-guest contract, and its chair calibration still stands.
+
 Garden and bar each have twelve authored slots, three archetypes × four outfit
 palettes, with unique `interestIndex` values 0–11. All begin seated, occupied with
 conversation or a drink. Depth rows and silhouette overlap establish a population

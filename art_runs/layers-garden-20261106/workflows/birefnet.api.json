@@ -1,0 +1,43 @@
+{
+ "1": {
+  "_meta": {
+   "title": "$base"
+  },
+  "class_type": "LoadImage",
+  "inputs": {
+   "image": "$base"
+  }
+ },
+ "40": {
+  "class_type": "LoadRembgByBiRefNetModel",
+  "inputs": {
+   "device": "AUTO",
+   "dtype": "float32",
+   "model": "model.safetensors",
+   "use_weight": false
+  }
+ },
+ "41": {
+  "class_type": "RembgByBiRefNet",
+  "inputs": {
+   "images": [
+    "1",
+    0
+   ],
+   "model": [
+    "40",
+    0
+   ]
+  }
+ },
+ "14": {
+  "class_type": "SaveImage",
+  "inputs": {
+   "filename_prefix": "kk/layers-garden-20261106/birefnet",
+   "images": [
+    "41",
+    0
+   ]
+  }
+ }
+}

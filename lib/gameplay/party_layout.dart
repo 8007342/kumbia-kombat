@@ -95,7 +95,17 @@ class PartyFloorPlane {
 
 enum PartyActivity { seatedChat, seatedDrink, standingChat, sipping, waiting }
 
-enum PartyPropKind { chair, table, umbrella, drink, candle, plant }
+enum PartyPropKind { chair, stool, table, umbrella, drink, candle, plant }
+
+/// What a guest sits on. [painted] is part of the plate, so nothing is drawn.
+enum PartySeat {
+  chair,
+  stool,
+  painted,
+
+  /// On their feet from the start, on a dance floor. No seat is drawn.
+  standing,
+}
 
 enum PartyCalibration { inspectedStarter, unverifiedStoryboard }
 
@@ -112,7 +122,32 @@ class PartyGuestSlot {
     this.seatHeightInAdults = .37,
     this.paletteIndex = 0,
     this.chairIncluded = false,
+    this.partTo,
+    this.partDelay = 0,
+    this.atlas,
+    this.occupied,
+    this.occupiedFacingRight,
+    this.partner,
   });
+
+  /// The drawings this guest uses, if not their archetype's: `FloorDance`.
+  final String? atlas;
+
+  /// Which of `FloorDance.occupied` they dance while busy with their own night.
+  final String? occupied;
+
+  /// Which way they face while busy. Facing the fight comes with interest.
+  final bool? occupiedFacingRight;
+
+  /// The guest they're dancing with, by index: they keep one beat, and move together.
+  final int? partner;
+
+  /// Where this dance-floor guest moves to when the floor opens, or null if they
+  /// dance in place. Their [floor] is where they start.
+  final PartyPoint? partTo;
+
+  /// Beats after the first of them starts: see `CrowdParting`.
+  final double partDelay;
   final String id;
   final PartyPoint floor;
   final PartyActivity activity;
@@ -130,6 +165,9 @@ class PartyGuestSlot {
   bool get seated =>
       activity == PartyActivity.seatedChat ||
       activity == PartyActivity.seatedDrink;
+
+  /// On a dance floor rather than in a seat.
+  bool get onFloor => activity == PartyActivity.standingChat;
 }
 
 class PartyPropSlot {
@@ -187,10 +225,16 @@ class PartyRoomLayout {
   final List<PartyPropSlot> props;
   final PartyCalibration calibration;
 
-  ProjectedPartyGuest projectSlot(PartyViewport viewport, PartyGuestSlot slot) {
-    final ground = viewport.project(slot.floor);
+  /// [at] is where they are now, for someone who moves. Their size follows it.
+  ProjectedPartyGuest projectSlot(
+    PartyViewport viewport,
+    PartyGuestSlot slot, {
+    PartyPoint? at,
+  }) {
+    final place = at ?? slot.floor;
+    final ground = viewport.project(place);
     final height = viewport.sourceHeightToLogical(
-      floor.standingHeightAt(slot.floor.y, stature: slot.stature),
+      floor.standingHeightAt(place.y, stature: slot.stature),
     );
     return ProjectedPartyGuest(
       slot,
@@ -201,20 +245,51 @@ class PartyRoomLayout {
   }
 }
 
-List<PartyGuestSlot> seatedGuestSlots(String room, List<PartyPoint> anchors) =>
+/// What a level says about one person on a dance floor, beyond where they stand.
+class FloorGuestCast {
+  const FloorGuestCast({
+    this.atlas,
+    this.occupied,
+    this.facingRight,
+    this.partner,
+  });
+  final String? atlas;
+  final String? occupied;
+  final bool? facingRight;
+  final int? partner;
+}
+
+List<PartyGuestSlot> seatedGuestSlots(
+  String room,
+  List<PartyPoint> anchors, {
+  List<PartySeat>? seats,
+  List<PartyPoint?>? partTo,
+  List<double>? partDelays,
+  List<FloorGuestCast?>? cast,
+}) =>
     List.unmodifiable([
       for (var i = 0; i < anchors.length; i++)
         PartyGuestSlot(
           '$room-guest-$i',
           anchors[i],
-          activity: i.isEven
+          activity: seats?[i] == PartySeat.standing
+              ? PartyActivity.standingChat
+              : i.isEven
               ? PartyActivity.seatedChat
               : PartyActivity.seatedDrink,
+          partTo: partTo?[i],
+          partDelay: partDelays?[i] ?? 0,
+          atlas: cast?[i]?.atlas,
+          occupied: cast?[i]?.occupied,
+          occupiedFacingRight: cast?[i]?.facingRight,
+          partner: cast?[i]?.partner,
           archetype: i % 3,
           interestIndex: i,
           paletteIndex: i ~/ 3,
           homePropId: '$room-chair-$i',
-          facingRight: anchors[i].x < .5,
+          // Someone who moves faces the way they'll end up, so they never flip.
+          facingRight: (partTo?[i] ?? anchors[i]).x < .5,
+          chairIncluded: seats?[i] == PartySeat.painted,
         ),
     ]);
 
@@ -250,17 +325,33 @@ final _barGuests = seatedGuestSlots('bar', const [
   PartyPoint(.77, .335),
 ]);
 
-List<PartyPropSlot> chairSlotsFor(List<PartyGuestSlot> guests) => [
-  for (final guest in guests)
-    PartyPropSlot(
-      guest.homePropId!,
-      PartyPropKind.chair,
-      guest.floor,
-      // Reviewed high-back source: 476 px tall, 317 px wide; its seat is
-      // ~219 px above the floor. At .80 adult heights the seat sits at .368.
-      heightInAdults: .80,
-      widthInAdults: .53,
-    ),
+List<PartyPropSlot> chairSlotsFor(
+  List<PartyGuestSlot> guests, {
+  List<PartySeat>? seats,
+}) => [
+  for (final (i, guest) in guests.indexed)
+    if (seats?[i] == PartySeat.standing)
+      ...const <PartyPropSlot>[]
+    else if (seats != null && seats[i] != PartySeat.chair)
+      PartyPropSlot(
+        guest.homePropId!,
+        PartyPropKind.stool,
+        guest.floor,
+        // Its seat meets the same .37 as a chair's, so the seated poses need no
+        // new drawings: only the back goes, which is the clutter.
+        heightInAdults: .39,
+        widthInAdults: .3,
+      )
+    else
+      PartyPropSlot(
+        guest.homePropId!,
+        PartyPropKind.chair,
+        guest.floor,
+        // Reviewed high-back source: 476 px tall, 317 px wide; its seat is
+        // ~219 px above the floor. At .80 adult heights the seat sits at .368.
+        heightInAdults: .80,
+        widthInAdults: .53,
+      ),
 ];
 
 /// Storyboard layouts. The game reads layouts from `levels/*.json`; garden and
@@ -319,12 +410,14 @@ final partyRoomLayouts = Map<String, PartyRoomLayout>.unmodifiable({
     props: List.unmodifiable(chairSlotsFor(_barGuests)),
   ),
   // Future art contracts, not calibrated existing rooms.
+  // Plate A's camera, `tool/art/rooms/cool-crowd.json`. The level file has its own.
   'cool-crowd': const PartyRoomLayout(
     id: 'cool-crowd',
     floor: PartyFloorPlane(
-      horizonY: .24,
-      referenceFootY: .43,
-      referenceHeight: .12,
+      horizonY: .25,
+      referenceFootY: .40,
+      referenceHeight: .10,
+      vanishingX: .36,
     ),
     guests: [],
   ),

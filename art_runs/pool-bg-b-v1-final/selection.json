@@ -1,0 +1,42 @@
+{
+ "idle.stand": {
+  "k": 989501,
+  "accepted": true
+ },
+ "chalk.a": {
+  "k": 989500,
+  "accepted": true
+ },
+ "lean.a": {
+  "k": 989502,
+  "accepted": true
+ },
+ "lean.b": {
+  "k": 989501,
+  "accepted": true
+ },
+ "lean.stroke": {
+  "k": 989502,
+  "accepted": true
+ },
+ "watch.a": {
+  "k": 989500,
+  "accepted": true
+ },
+ "watch.b": {
+  "k": 989500,
+  "accepted": true
+ },
+ "clap.a": {
+  "k": 989502,
+  "accepted": true
+ },
+ "clap.b": {
+  "k": 989500,
+  "accepted": true
+ },
+ "chalk.b": {
+  "k": "derived from chalk.a",
+  "accepted": true
+ }
+}

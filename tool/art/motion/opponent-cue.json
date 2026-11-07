@@ -1,0 +1,245 @@
+{
+ "id": "opponent-cue",
+ "description": "The 64 opponent drawings plus an eight-view spin, for a dancer who carries a cue through the turn.",
+ "human": true,
+ "poseTable": "opponent-cue",
+ "referencePose": "groove.down_l",
+ "clips": [
+  {
+   "id": "groove",
+   "drawings": 8,
+   "view": "front",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": []
+  },
+  {
+   "id": "left_hand",
+   "drawings": 4,
+   "view": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [
+    {
+     "beat": 0.25,
+     "type": "accent",
+     "drawing": "peak"
+    }
+   ]
+  },
+  {
+   "id": "right_hand",
+   "drawings": 4,
+   "view": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [
+    {
+     "beat": 0.25,
+     "type": "accent",
+     "drawing": "peak"
+    }
+   ]
+  },
+  {
+   "id": "left_foot",
+   "drawings": 4,
+   "view": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [
+    {
+     "beat": 0.25,
+     "type": "accent",
+     "drawing": "peak"
+    }
+   ]
+  },
+  {
+   "id": "right_foot",
+   "drawings": 4,
+   "view": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [
+    {
+     "beat": 0.25,
+     "type": "accent",
+     "drawing": "peak"
+    }
+   ]
+  },
+  {
+   "id": "enter_forward",
+   "drawings": 6,
+   "view": "front",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": []
+  },
+  {
+   "id": "retreat_backward",
+   "drawings": 6,
+   "view": "front",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": []
+  },
+  {
+   "id": "yield_side",
+   "drawings": 6,
+   "view": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": []
+  },
+  {
+   "id": "watch",
+   "drawings": 4,
+   "view": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": []
+  },
+  {
+   "id": "clap",
+   "drawings": 4,
+   "view": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [
+    {
+     "beat": 0.5,
+     "type": "accent",
+     "drawing": "contact"
+    }
+   ]
+  },
+  {
+   "id": "challenge",
+   "drawings": 4,
+   "view": "front",
+   "loop": false,
+   "durationBeats": 2.0,
+   "events": [
+    {
+     "beat": 1.0,
+     "type": "accent",
+     "drawing": "offer"
+    }
+   ]
+  },
+  {
+   "id": "approval",
+   "drawings": 3,
+   "view": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [
+    {
+     "beat": 0.333,
+     "type": "accent",
+     "drawing": "nod"
+    }
+   ]
+  },
+  {
+   "id": "reassurance",
+   "drawings": 3,
+   "view": "front",
+   "loop": false,
+   "durationBeats": 1.5,
+   "events": [
+    {
+     "beat": 0.5,
+     "type": "accent",
+     "drawing": "open_hand"
+    }
+   ]
+  },
+  {
+   "id": "finish_turn",
+   "drawings": 4,
+   "view": "front",
+   "loop": false,
+   "durationBeats": 2.0,
+   "events": []
+  },
+  {
+   "id": "spin",
+   "drawings": 8,
+   "view": "front",
+   "sheetView": "front",
+   "poseViews": {
+    "back34_r": "back",
+    "back": "back",
+    "back34_l": "back"
+   },
+   "promptTemplate": "skeletonTurn",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": []
+  }
+ ],
+ "defaultProfile": "moderate",
+ "profileRules": [
+  {
+   "profile": "turn",
+   "poses": [
+    "finish_turn.turn_in",
+    "finish_turn.turn_out"
+   ]
+  },
+  {
+   "profile": "overlap",
+   "clips": [
+    "clap",
+    "watch",
+    "approval"
+   ],
+   "poses": [
+    "challenge.proud",
+    "challenge.load",
+    "finish_turn.finish_a",
+    "finish_turn.finish_b"
+   ]
+  },
+  {
+   "profile": "peak",
+   "phases": [
+    "accent"
+   ],
+   "poses": [
+    "challenge.offer",
+    "reassurance.open_hand"
+   ]
+  }
+ ],
+ "research": [
+  "plan/research/gatekeeper-dance-2026-11-02.md",
+  "plan/dance-fluidity-pass.md",
+  "plan/opponent-depth-staging-pass.md"
+ ],
+ "runtimeAliases": {
+  "occupied": "groove.down_l",
+  "ready": "challenge.return",
+  "anticipate_left": "left_hand.prep",
+  "anticipate_right": "right_hand.prep",
+  "left_hand": "left_hand.peak",
+  "right_hand": "right_hand.peak",
+  "left_foot": "left_foot.peak",
+  "right_foot": "right_foot.peak",
+  "follow_left": "left_hand.follow",
+  "follow_right": "right_hand.follow",
+  "settle": "left_hand.return",
+  "finish": "finish_turn.finish_b",
+  "cede": "yield_side.pass_r",
+  "invite": "challenge.offer",
+  "watch_left": "watch.shift_l",
+  "watch_right": "watch.shift_r",
+  "approve": "approval.nod",
+  "recover": "reassurance.open_hand",
+  "turn_in": "finish_turn.turn_in",
+  "turn_out": "finish_turn.turn_out"
+ }
+}

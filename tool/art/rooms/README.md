@@ -1,5 +1,7 @@
 # Rooms
 
+How rooms should look: `assets/art/STYLEGUIDE.md`, section 5. This file is how they get made.
+
 A room is one data file, `tool/art/rooms/<id>.json`: primitives, a camera, a phone-safe box, a tap band and marks. From it the compiler makes the greybox guide, id map, `floor.json`, prompts and the level's floor and marks, in `art_runs/rooms/<id>/`. Two Qwen passes turn the guide into a plate.
 
 Python: `~/.cache/tillandsias-project/venvs/kumbia-art/bin/python`. All commands are `rooms.py <command>`.
@@ -14,7 +16,7 @@ Python: `~/.cache/tillandsias-project/venvs/kumbia-art/bin/python`. All commands
 6. **Proof:** `rooms.py proof <room> --run R --plate P` writes the phone row beside the accepted rooms, floor overlay and cast proof.
 7. **Level:** `rooms.py level <room> --out levels/<id>.json --background <path>`, then `rooms.py check <room> --level levels/<id>.json`. Music, rules and chart come from `--base` (default the bar) or the spec's `level` block, until a person writes them.
 
-Outputs land in `~/.cache/tillandsias-project/kumbia-art/<run>/`, because `/work/tmp/imagegen` goes with the forge. Workflows and sheets stay in `art_runs/<run>/`. A prompt change means a new plan and new workflow, because prompts are baked into each one (host bug 2001-stpr). When the override fix is proven, baking can go.
+Outputs land in `~/.cache/tillandsias-project/kumbia-art/<run>/`, because `/work/tmp/imagegen` goes with the forge. Workflows and sheets stay in `art_runs/<run>/`. A prompt change means a new plan and new workflow, because prompts are baked into each one (host bug 2001-stpr). The override fix was proven on 2026-11-06, tray 56.11.6.2, so new work can use `$prompt` on a node with that title. Existing workflows stay baked until someone changes them.
 
 ## What the compiler refuses
 
@@ -35,3 +37,97 @@ Story elements outside the safe box, or a safe box outside the phone crop. Anyth
 - Glow discs on the lawn in the guide came back as glowing saucers, so light goes in the words and tables stay sprites.
 - Word the interior's detail, or it comes back as flat orange.
 - Pass 2 often moves the pool and sometimes the whole building. Expect about a third of the candidates to hold.
+
+## Layers: taking painted props out of a plate
+
+The garden is the pilot, because its plate is flat, has no id map, and is the first room anyone sees. Its umbrellas and tables were never painted: they're already sprites, so this route is for what is painted in.
+
+`layers.py <matte|plate|frames|sheet> <room>` reads `layers/<room>.json`. `frames` writes the atlas and the level's `layers` block; `sheet` writes `before-after.png` and `motion.gif` to the run's cache folder.
+
+**What worked**
+
+1. **Choose props a phone shows.** On a 390x844 phone only x 157-867 of a 1024 plate is in view. The garden's big potted plants and hanging baskets are almost entirely outside it, and guests cover much of the lower sides.
+2. **Matte by hand polygon, plus a colour rule where the backdrop allows.** Fronds against sky use `not-sky`. Flowers and lanterns are polygon only.
+3. **Fill with Qwen removal on a tight crop, one prop at a time,** then paste only under the matte. A crop about 130-140 px wide works, at 832x832. The prompt names what remains and forbids what the model wants to add: "Do not add any plant, bush or flowers."
+4. **Match the seam with a Poisson solve, with each edge difference clamped** (`edgeClamp`). 24 by default; 70 for a prop that lights its surroundings.
+5. **Bend the prop's own pixels into frames.** Frame "rest" is the painting, so at rest the room matches the original, and nothing appears: the layer is there from the first frame and only its range grows.
+6. **Behind glass, skip the plate.** Flames (`keepInside`) bend what's behind a pane and clip to it, so they need no fill or GPU. They change shape, not brightness.
+
+**What failed**
+
+| Try | Result |
+|---|---|
+| BiRefNet on a 320 px crop | Keyed the house, not the fronds or flowers. It finds the salient object, and a plate has no single one |
+| Qwen on a wide crop, 320 px | Sky was clean. On the pier it grew a new bush, with either wording |
+| Magenta-blanked props | Same bush. No better than asking in words |
+| A flat colour shift to match tone | Tinted the fill red beside a bright lantern |
+| An unclamped Poisson solve | Smeared any frond left at the mask's edge across the sky |
+| A colour rule for flowers | Took the lit wall and missed dark leaves |
+
+**GPU, one job at a time** (queue wait excluded; each job's first image includes about 10 s of model load)
+
+| Step | Images | Seconds |
+|---|---|---|
+| Wide crop removal, two wordings | 4 | 64 |
+| BiRefNet probe | 1 | 8 |
+| Tight pier crops, both sides | 6 | 87 |
+| Tight lantern crops, both sides | 4 | 70 |
+| Wide crop, right fronds | 2 | 34 |
+| **Total** | 17 | **263, about 4.4 minutes** |
+
+Mattes, seams, frames and sheets are CPU, seconds each.
+
+**Pitfalls**
+
+- A wide crop's fill is fine for sky, and no use where anything has an edge.
+- Qwen redraws a ledge a little wider and higher than the real one. `cap` discards its ledge and rebuilds that strip from clean stone just below the prop. Check the strip's rows against the matte, or the rest frame stops matching.
+- The dark part of a frond is close to the sky's colour. It left a ghost until near-black counted as frond.
+- Keep polygons a little generous, then read the `rest` comparison's blobs: they name the exact edge that's leaking.
+- **The clean plate is not meant to be seen alone.** The dance exposes 21-27% of the fill behind fronds and lanterns, and 3-4% behind flowers. Pier walls and caps behind the flowers are plain, and would need another pass if a level ever removed the flowers altogether.
+- `level_golden_test` leaves out layer draws. Its recorded file didn't change when the garden moved to the clean plate, which is the proof that the marks didn't move.
+- Workflow paths from a worktree need the `.claude/worktrees/<name>/` prefix, and a job fails at once if its input isn't staged yet.
+
+**The lawn and the bar, 2026-11-07.** Same route. All 11 fills came clean at the first or second of two seeds: 22 images, about 11 s each. `crops <room>` stages each crop and bakes its workflow; the prompt lives in the prop's `fill`. New here: `foliage`, `water` and `string` colour rules, `sag` and `wave` warps, and a `harmonic` fill for a thin wire and its bulbs, which needs no GPU. The fills' dilated edge doesn't match the rest frame exactly: 2,700 pixels differ on the lawn and 6,500 on the bar at full size, mostly along prop edges, mean under .12 at phone size. It reads by eye only as slightly softer edges.
+
+**Reuse.** A level's `layers` block names each prop's atlas, position and motion; there's no kind switch, so a new prop needs no code. Levels can share an atlas. The loader refuses a prop that leaves the plate, reaches the tap band, or reaches the quiet area behind the opponent.
+
+## Furniture: one set of drawings, baked per room
+
+Stools, chairs and tables are sprites on the floor plane, sorted in depth with the guests. `props.py` keeps one drawing of each and bakes it to each room: `props.json` holds the room's pixel (`cell`, plate pixels, read off `props.py measure` and by eye), where its guests sit (`midY`) and its light (a gain, a warmer key from above, a colour count). `props.py masters`, then `bake`, writes `assets/art/props/<room>.png` and `manifest.json`; `sheet OUT` lays them on their plates. A level names its set and seat in `crowd.propSet` and `crowd.seat`, so a new room needs numbers, not drawings.
+
+**Drawn with** `art_runs/rooms/crowd-props/workflows/prop-edit.api.json`: Qwen edit with the 2511 Lightning LoRA, `furniture-v2.png` on grey as the one reference, BiRefNet for the cut. The chairs are still the old sheet's. The seat height is the contract: a stool's seat meets the chair's .37 of an adult, so every seated pose fits both and none had to be redrawn.
+
+**What it took:** 3 jobs, 6 images, about 40 s of GPU a job once it had the queue. `art_runs/rooms/crowd-props/picks/*.provenance.json` has each kept seed.
+
+| Try | Result |
+|---|---|
+| Stool, from words and the sheet | Both seeds usable first time. Kept the plainer one |
+| Table, the word "cafe" in the prompt | The model wrote CAFE across the table top, in both seeds |
+| Table, "plain wood top", "no letters, no words" | Clean. A mirror of the second seed makes the room's second table |
+
+**Laying out a crowd.** The first pass copied the rows further forward and made a wall: a guest's width grows with depth, so the front holds far fewer people than it looks. Keep every guest behind the opponent's mark, so the dancer is always the nearest adult. Thin out toward the viewer, and let the back carry the numbers. `test/crowd_staging_test.dart` holds guests and furniture off the tap band, the hero's marks and the dancers' floor, reading the level files, so moving a mark names any guest in the way. `test/room_stills_test.dart` writes phone-size pictures of each room to `build/stills/`.
+
+**Order in the file matters.** The crowd wakes in columns, every fourth guest first, so a guest's index decides when they get up. Lay the ranks out to alternate sides and mix depths, or the warm floor is all on one side.
+
+## Floors: painted apart from the walls
+
+Words failed on the indoor floor over four rounds: tone swung, joints drifted, amber discs appeared. So a floor can come from `floor.py <matte|paint|texture> <room> <plate-id>`, reading `floors/<room>.json`. The accepted indoor room is the first.
+
+1. **Pick the walls and ignore the floor.** Any plate whose walls and door are right will do.
+2. **Refit the camera to the paint.** Nothing held the old guide's far wall, so `tool/art/rooms/<room>.json` follows the plate: read horizon and vanishing point off the wall lines and the door's foot. Keep `(y - horizon) / eye` honest with a door of about 2.2 adults.
+3. **Trace the floor** in `floors/<room>.json`: a generous polygon, and `alwaysFloor` for spills like a runner the model laid across it. A colour rule cuts it to the floor's own pixels. `matte` shows the result.
+4. **Have Qwen paint only flat stone from above** (`floor_jobs.py`, `workflows/floor-flat.api.json`, bar floor as the sample). It has no perspective to get wrong.
+5. **Let the code do the rest:** warp the stone through the camera, cutting each slab from its own place in the stone; mirror the room into the polish; draw joints from the camera, two pixels fine; grain and limit the colours.
+
+This camera keeps verticals vertical, so mirroring each column about its contact line is the true reflection. Lamps need lifting first, or their streaks don't survive the blur.
+
+| Try | Result |
+|---|---|
+| Coded stone, no painted texture | True and calm, but airbrushed beside the bar |
+| Qwen repainting the coded floor at .35 and .55 denoise | Added no texture, and redrew the walls |
+| Flat stone with loud gold veins (988002) | Veins read as cues across the tap band |
+| Flat stone with faint veins (988001), warped | The owner accepted it. Floor median luma 26 |
+
+GPU: 3 images, 45 s for the stones. Everything else is CPU, about a minute a plate.
+
+**Raised surfaces.** `platforms` names a `box` in `paint`, and `floor.json` lists its extent, height and top corners. Place a figure on one with its feet at `proj(s, t, z)` and its height from the floor point under it. The loader doesn't read them yet.

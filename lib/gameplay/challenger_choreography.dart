@@ -33,6 +33,7 @@ enum ChallengerDanceState {
   finish,
   cede,
   invite,
+  handoffMove,
   watch,
   approve,
   recover,
@@ -66,10 +67,12 @@ class ChallengerPose {
     this.floorYield = 0,
     this.rootOffsetX = 0,
     this.limb,
+    this.partnerLimb,
     this.noteIndex,
     this.movePhase = DanceMovePhase.idle,
     this.playerRole = PlayerDanceRole.waiting,
     this.restBeats,
+    this.moveAge = 0,
   });
 
   final String frameId;
@@ -82,6 +85,9 @@ class ChallengerPose {
   /// A bounded step in logical art pixels. Vertical weight is authored in art.
   final double rootOffsetX;
   final Limb? limb;
+
+  /// The other limb when this note is half of a pair, danced together.
+  final Limb? partnerLimb;
   final int? noteIndex;
   final DanceMovePhase movePhase;
   final PlayerDanceRole playerRole;
@@ -91,16 +97,21 @@ class ChallengerPose {
   /// grammar may groove here; a shorter gap would only flash a stray drawing.
   final double? restBeats;
 
+  /// Beats into a [ChallengerDanceState.handoffMove], for the grammar's clip.
+  final double moveAge;
+
   ChallengerPose withFrame(String frame) => ChallengerPose(
     frameId: frame,
     state: state,
     floorYield: floorYield,
     rootOffsetX: rootOffsetX,
     limb: limb,
+    partnerLimb: partnerLimb,
     noteIndex: noteIndex,
     movePhase: movePhase,
     playerRole: playerRole,
     restBeats: restBeats,
+    moveAge: moveAge,
   );
 }
 
@@ -137,10 +148,11 @@ class ChallengerChoreography {
     for (final offset in offsets) {
       if (!offset.isFinite ||
           offset < 0 ||
-          offset <= previous ||
+          offset < previous ||
           offset >= callBeats) {
         throw ArgumentError(
-          'Challenger note offsets must increase within the call',
+          // Two notes may share an offset: that is a pair, danced together.
+          'Challenger note offsets must not fall back within the call',
         );
       }
       previous = offset;
@@ -161,6 +173,7 @@ class ChallengerChoreography {
     double? outcomeBeat,
     bool? passed,
     bool cleared = false,
+    double handoffMoveBeats = 0,
   }) {
     if (!beat.isFinite ||
         !callStartBeat.isFinite ||
@@ -223,6 +236,8 @@ class ChallengerChoreography {
         state: ChallengerDanceState.ready,
       );
     }
+    final move = reducedMotion ? null : _handoffMove(t, handoffMoveBeats);
+    if (move != null) return move;
     if (t < callBeats) return _call(t, reducedMotion);
 
     // The sidestep finishes on the response's first beat, so it never rushes.
@@ -260,13 +275,56 @@ class ChallengerChoreography {
     );
   }
 
+  /// A showy finish on the demonstration mark. It may overflow into the player's
+  /// turn: only the drawing and the walk wait, never a note. Null outside it, or
+  /// when it wouldn't leave time to step away before the walk back.
+  ChallengerPose? _handoffMove(double t, double beats) {
+    if (beats <= 0) return null;
+    final start = offsets.last + math.min(.5, (callBeats - offsets.last) * .5);
+    final end = start + beats;
+    if (t < start || end + yieldSettleBeats > callBeats * 2 - returnBeats) {
+      return null;
+    }
+    if (t < end) {
+      return ChallengerPose(
+        frameId: 'invite',
+        state: ChallengerDanceState.handoffMove,
+        moveAge: t - start,
+        playerRole: t < callBeats
+            ? PlayerDanceRole.ready
+            : PlayerDanceRole.responding,
+      );
+    }
+    if (t < end + yieldSettleBeats) {
+      return ChallengerPose(
+        frameId: 'invite',
+        state: ChallengerDanceState.invite,
+        floorYield: _ease((t - end) / yieldSettleBeats),
+        playerRole: PlayerDanceRole.responding,
+      );
+    }
+    return null;
+  }
+
   ChallengerPose _anticipation(int index, bool reducedMotion) => ChallengerPose(
     frameId: _left(limbs[index]) ? 'anticipate_left' : 'anticipate_right',
     state: ChallengerDanceState.demonstrate,
     limb: limbs[index],
+    partnerLimb: _partner(index),
     noteIndex: index,
     movePhase: DanceMovePhase.anticipation,
   );
+
+  /// The other note of a pair, which shares this note's offset.
+  Limb? _partner(int index) {
+    if (index > 0 && offsets[index - 1] == offsets[index]) {
+      return limbs[index - 1];
+    }
+    if (index + 1 < offsets.length && offsets[index + 1] == offsets[index]) {
+      return limbs[index + 1];
+    }
+    return null;
+  }
 
   ChallengerPose _call(double t, bool reducedMotion) {
     var previous = -1;
@@ -315,6 +373,7 @@ class ChallengerChoreography {
       );
     }
     final limb = limbs[previous];
+    final partner = _partner(previous);
     final progress = age / duration;
     final side = _left(limb) ? -1.0 : 1.0;
     final foot = limb == Limb.leftFoot || limb == Limb.rightFoot;
@@ -324,6 +383,7 @@ class ChallengerChoreography {
         state: ChallengerDanceState.demonstrate,
         rootOffsetX: !reducedMotion && foot ? side * .8 : 0,
         limb: limb,
+        partnerLimb: partner,
         noteIndex: previous,
         movePhase: DanceMovePhase.accent,
       );
@@ -334,6 +394,7 @@ class ChallengerChoreography {
         state: ChallengerDanceState.demonstrate,
         rootOffsetX: !reducedMotion && foot ? side * 1.1 : 0,
         limb: limb,
+        partnerLimb: partner,
         noteIndex: previous,
         movePhase: DanceMovePhase.followThrough,
       );
@@ -345,6 +406,7 @@ class ChallengerChoreography {
           ? side * (1 - progress).clamp(0, 1)
           : 0,
       limb: limb,
+      partnerLimb: partner,
       noteIndex: previous,
       movePhase: DanceMovePhase.settle,
       restBeats: age > duration && gap - duration - .25 >= minimumRestBeats
@@ -352,6 +414,17 @@ class ChallengerChoreography {
           : null,
     );
   }
+}
+
+/// Mācron's drawing for a pair he landed, from what exists: arms flung wide for
+/// both hands, the crouch for both feet. A hand with a foot has none, so it shows
+/// the latest limb. Drawings wished for: `plan/double-moves-2026-11-07.md`.
+String? playerPairFrame(Limb limb, Limb? partner) {
+  if (partner == null) return null;
+  bool hand(Limb l) => l == Limb.leftHand || l == Limb.rightHand;
+  if (hand(limb) && hand(partner)) return 'spin_front';
+  if (!hand(limb) && !hand(partner)) return 'anticipate';
+  return null;
 }
 
 class PlayerMovePose {
@@ -370,6 +443,7 @@ PlayerMovePose playerMovePose({
   required double targetBeat,
   required double beat,
   double? nextRequiredBeat,
+  Limb? partnerLimb,
 }) {
   if (![
     acceptedBeat,
@@ -390,6 +464,18 @@ PlayerMovePose playerMovePose({
       ? .65
       : (nextRequiredBeat - peak).clamp(.12, .65);
   final age = math.max(0.0, beat - peak);
+  // A pair has no follow-through drawing, and it has to read as both limbs, so
+  // its one drawing holds through the follow-through too.
+  final pair = playerPairFrame(limb, partnerLimb);
+  if (pair != null && age < duration * .70) {
+    return PlayerMovePose(
+      pair,
+      age < duration * .32
+          ? DanceMovePhase.accent
+          : DanceMovePhase.followThrough,
+      peak,
+    );
+  }
   if (age < duration * .32) {
     return PlayerMovePose(limbAccentFrame(limb), DanceMovePhase.accent, peak);
   }

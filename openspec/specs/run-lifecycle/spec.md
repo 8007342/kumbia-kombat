@@ -78,7 +78,7 @@ The UI SHALL support reduced camera motion, independently adjustable music
 and effects, a timing calibration flow, and shape-coded notes. Required
 inputs SHALL never demand simultaneous touches or fast repeated swipes.
 Portrait and safe areas SHALL work at 320–430 logical-pixel widths.
-Camera motion SHALL not move the touch zones or timing targets.
+Camera motion SHALL not move the tap areas or timing targets.
 
 #### Scenario: Reduced motion
 

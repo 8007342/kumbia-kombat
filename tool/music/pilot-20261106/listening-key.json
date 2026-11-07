@@ -1,0 +1,14 @@
+{
+ "garden": {
+  "A": "synth",
+  "B": "take 0003_00001.flac",
+  "C": "take 0002_00001.flac",
+  "D": "take 0000_00001.flac"
+ },
+ "lawn": {
+  "A": "take 0011_00001.flac",
+  "B": "synth",
+  "C": "take 0007_00001.flac",
+  "D": "take 0001_00001.flac"
+ }
+}

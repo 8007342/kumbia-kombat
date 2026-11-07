@@ -1,6 +1,7 @@
 import 'dart:ui' as ui;
 
 import 'crowd_interest.dart';
+import 'gesture_shapes.dart';
 import 'rhythm.dart';
 
 const heroFrameIds = [
@@ -33,10 +34,28 @@ const guestPoseIds = [
 /// Rectangles and anchors are measured from reviewed art, never inferred from
 /// an AI-generated contact sheet's nominal row or column count.
 class PartySpriteFrame {
-  const PartySpriteFrame(this.source, this.anchor, this.pixelsPerUnit);
+  const PartySpriteFrame(
+    this.source,
+    this.anchor,
+    this.pixelsPerUnit, {
+    this.hold,
+  });
   final ui.Rect source;
   final ui.Offset anchor;
   final double pixelsPerUnit;
+
+  /// Where this drawing's holding hand is, in the same pixels as [anchor]. Only
+  /// the drawings that hold a partner's hand have one.
+  final ui.Offset? hold;
+
+  /// The holding hand on screen, for a drawing placed at [ground].
+  ui.Offset? holdAt(ui.Offset ground, double scale, {bool flipX = false}) {
+    final at = hold;
+    if (at == null) return null;
+    final factor = scale / pixelsPerUnit;
+    final across = (at.dx - anchor.dx) * factor;
+    return ground.translate(flipX ? -across : across, (at.dy - anchor.dy) * factor);
+  }
 
   ui.Rect destination(ui.Offset ground, double scale) {
     final factor = scale / pixelsPerUnit;
@@ -104,20 +123,34 @@ class PartyAtlasDefinition {
         (anchor[0] as num).toDouble(),
         (anchor[1] as num).toDouble(),
       );
-      if (source.left < 0 ||
-          source.top < 0 ||
-          source.width <= 0 ||
-          source.height <= 0 ||
-          source.right > width ||
-          source.bottom > height ||
-          rect.any((value) => value != (value as num).roundToDouble()) ||
-          pivot.dx < 0 ||
-          pivot.dy < 0 ||
-          pivot.dx > source.width ||
-          pivot.dy > source.height) {
+      // A measuring frame says how tall this person stands and is never drawn, so
+      // its height may reach past the image.
+      if (frame['measureOnly'] != true &&
+          (source.left < 0 ||
+              source.top < 0 ||
+              source.width <= 0 ||
+              source.height <= 0 ||
+              source.right > width ||
+              source.bottom > height ||
+              rect.any((value) => value != (value as num).roundToDouble()) ||
+              pivot.dx < 0 ||
+              pivot.dy < 0 ||
+              pivot.dx > source.width ||
+              pivot.dy > source.height)) {
         throw FormatException('Party sprite $id extends beyond its image');
       }
-      frames[id] = PartySpriteFrame(source, pivot, units.toDouble());
+      final hold = frame['hold'];
+      if (hold != null && !numbers(hold, 2)) {
+        throw FormatException('Invalid hold for party sprite $id');
+      }
+      frames[id] = PartySpriteFrame(
+        source,
+        pivot,
+        units.toDouble(),
+        hold: hold == null
+            ? null
+            : ui.Offset((hold[0] as num).toDouble(), (hold[1] as num).toDouble()),
+      );
     }
     return PartyAtlasDefinition._(
       image,
@@ -210,6 +243,8 @@ String heroSpriteFrame({
   required double actionAge,
   required Limb? action,
   required double flourishAge,
+  GestureKind flourishMove = GestureKind.spin,
+  Limb flourishLimb = Limb.rightHand,
   bool sideOn = false,
   bool stumbling = false,
 }) {
@@ -225,6 +260,17 @@ String heroSpriteFrame({
       };
     }
     return actionAge < .43 ? 'anticipate' : 'front_idle';
+  }
+  if (flourish && (flourishMove == GestureKind.wave || flourishMove == GestureKind.stomp)) {
+    // No wave or stomp drawings yet, so the limb's own accent says it twice.
+    final accent = switch (flourishLimb) {
+      Limb.leftHand => 'left_hand',
+      Limb.rightHand => 'right_hand',
+      Limb.leftFoot => 'left_foot',
+      Limb.rightFoot => 'right_foot',
+    };
+    if (reducedMotion) return accent;
+    return _cycle([accent, 'anticipate', accent, 'front_idle'], flourishAge, .25);
   }
   if (flourish) {
     if (reducedMotion) return 'spin_front';

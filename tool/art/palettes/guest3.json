@@ -1,0 +1,65 @@
+{
+ "schema": "tillandsias.palette/v1",
+ "name": "guest3",
+ "colours": [
+  "#1A1018",
+  "#744416",
+  "#9C693E",
+  "#C98F5E",
+  "#E4B187",
+  "#797673",
+  "#A09D9A",
+  "#C9C6C2",
+  "#E9E7E3",
+  "#743F00",
+  "#9C6400",
+  "#C98A1E",
+  "#E3AC5E",
+  "#643000",
+  "#8B5500",
+  "#B87A18",
+  "#D29C56",
+  "#968D78",
+  "#BEB59F",
+  "#E9DFC6",
+  "#FFFBE6"
+ ],
+ "transparent": null,
+ "$provenance": {
+  "tool": "tool/art/pipeline/compile_family.py",
+  "definition": "tool/art/characters/guest3.json",
+  "ramps": {
+   "skin": [
+    "#744416",
+    "#9C693E",
+    "#C98F5E",
+    "#E4B187"
+   ],
+   "hair": [
+    "#797673",
+    "#A09D9A",
+    "#C9C6C2",
+    "#E9E7E3"
+   ],
+   "dress": [
+    "#743F00",
+    "#9C6400",
+    "#C98A1E",
+    "#E3AC5E"
+   ],
+   "skirt": [
+    "#643000",
+    "#8B5500",
+    "#B87A18",
+    "#D29C56"
+   ],
+   "shoes": [
+    "#968D78",
+    "#BEB59F",
+    "#E9DFC6",
+    "#FFFBE6"
+   ]
+  },
+  "nudged": {}
+ }
+}

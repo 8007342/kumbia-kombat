@@ -7,6 +7,7 @@ import 'package:kumbia_kombat/gameplay/crowd_interest.dart';
 import 'package:kumbia_kombat/gameplay/garden_page.dart';
 import 'package:kumbia_kombat/gameplay/garden_scene.dart';
 import 'package:kumbia_kombat/gameplay/garden_session.dart';
+import 'package:kumbia_kombat/gameplay/gesture_shapes.dart';
 import 'package:kumbia_kombat/gameplay/level_definition.dart';
 import 'package:kumbia_kombat/gameplay/party_layout.dart';
 import 'package:kumbia_kombat/gameplay/progression.dart';
@@ -62,6 +63,40 @@ class _ClockOnly implements MusicAudioBackend {
 }
 
 void main() {
+  test('play complexity rises through the campaign, whatever the tempo', () {
+    // The owner's rule, tenth round: speed is only one factor, so the slower bar
+    // must still ask more than the lawn before it. Twelfth round: richer moves are
+    // how it grows. So this counts them, along with the offbeat share, across every
+    // pattern a level can play. It says nothing about how a run feels, which needs
+    // a player.
+    List<ChartPattern> patterns(FightChart chart) => [
+      for (var i = 0; i <= chart.variants.length; i++) chart.pattern(i),
+    ];
+    double offbeat(FightChart chart) {
+      final notes = [for (final p in patterns(chart)) ...p.offsets];
+      return notes.where((beat) => beat % 1 != 0).length / notes.length;
+    }
+
+    int rich(FightChart chart) =>
+        patterns(chart).fold(0, (sum, p) => sum + p.richSteps);
+    final charts = [for (final step in _shipping().campaign) step.level.chart];
+    expect(rich(charts[0]), 0, reason: 'the Garden stays simple, as the opener');
+    expect(rich(charts[1]), greaterThan(rich(charts[0])));
+    expect(rich(charts[2]), greaterThan(rich(charts[1])));
+    expect(offbeat(charts[1]), greaterThanOrEqualTo(offbeat(charts[0])));
+    expect(offbeat(charts[2]), greaterThan(offbeat(charts[1])));
+    expect(rich(charts[3]), greaterThan(rich(charts[2])));
+    expect(offbeat(charts[3]), greaterThan(offbeat(charts[2])));
+    // "Our next levels grow in complexity", and it can be slow: "we can have fast
+    // simple levels, and slow complex levels".
+    expect(rich(charts[4]), greaterThan(rich(charts[3])));
+    expect(offbeat(charts[4]), greaterThan(offbeat(charts[3])));
+    // Its signature: a cue stroke offered in every pattern.
+    for (var i = 0; i <= charts[4].variants.length; i++) {
+      expect(charts[4].pattern(i).offers.whereType<GestureKind>(), isNotEmpty);
+    }
+  });
+
   group('shipping levels match the two-room code they replaced', () {
     final levels = _shipping();
 
@@ -112,22 +147,8 @@ void main() {
           level.layout.floor.referenceHeight,
           layout.floor.referenceHeight,
         );
-        String guest(PartyGuestSlot g) =>
-            '${g.id} ${g.floor.x} ${g.floor.y} ${g.activity} ${g.archetype} '
-            '${g.interestIndex} ${g.homePropId} ${g.facingRight} ${g.stature} '
-            '${g.seatHeightInAdults} ${g.paletteIndex} ${g.chairIncluded}';
-        expect(
-          level.layout.guests.map(guest).toList(),
-          layout.guests.map(guest).toList(),
-        );
-        String prop(PartyPropSlot p) =>
-            '${p.id} ${p.kind} ${p.floor.x} ${p.floor.y} ${p.heightInAdults} '
-            '${p.widthInAdults} ${p.bakedIntoStarter}';
-        expect(
-          level.layout.props.map(prop).toList(),
-          layout.props.map(prop).toList(),
-          reason: 'Prop order also sets each ambient animation instance.',
-        );
+        // Who sits where left this comparison with the owner's tenth round: the
+        // rules for it are in crowd_staging_test.dart.
 
         final route = roomDepartures[id]!;
         expect(level.route.threshold, route.threshold);
@@ -144,8 +165,9 @@ void main() {
       final garden = levels.byId('garden');
       final bar = levels.byId('bar');
       for (final (level, homeY, challengerY, sideX, sideY) in [
-        (garden, .69, .53, .61, .52),
-        (bar, .62, .45, .60, .44),
+        // Forward and further aside since the owner's tenth round.
+        (garden, .69, .565, .70, .535),
+        (bar, .62, .48, .69, .455),
       ]) {
         for (final entrance in [0.0, .25, .6, 1.0]) {
           for (final retreat in [0.0, .5, 1.0]) {
@@ -185,33 +207,44 @@ void main() {
       () {
         expect(levels.levels.map((level) => level.id), [
           'garden',
-          'bar',
           'pool-garden',
+          'bar',
+          'cool-crowd',
+          'billiards',
         ]);
         expect(levels.displayTotal, 5);
-        final [garden, bar, lawn] = levels.campaign;
-        expect(garden.next, same(bar.level));
-        expect(garden.bridgeToNext, 'garden_to_bar');
-        expect(bar.next, same(lawn.level));
-        expect(bar.bridgeToNext, 'bar_to_pool');
-        expect(lawn.next, isNull);
-        expect(lawn.bridgeToNext, isNull);
+        final [garden, lawn, bar, party, billiards] = levels.campaign;
+        expect(garden.next, same(lawn.level));
+        expect(garden.bridgeToNext, 'garden_to_pool');
+        expect(lawn.next, same(bar.level));
+        expect(lawn.bridgeToNext, 'pool_to_bar');
+        expect(bar.next, same(party.level));
+        expect(bar.bridgeToNext, 'bar_to_crowd');
+        expect(party.next, same(billiards.level));
+        expect(party.bridgeToNext, 'crowd_to_restroom');
+        expect(billiards.next, isNull);
+        expect(billiards.bridgeToNext, isNull);
         expect(levels.exitScoreIds, {
           'garden_mojo_success',
-          'garden_to_bar',
-          'bar_swag_success',
-          'bar_to_pool',
+          'garden_to_pool',
           'pool_swing_success',
+          'pool_to_bar',
+          'bar_swag_success',
+          'bar_to_crowd',
+          'crowd_duende_success',
+          'crowd_to_restroom',
+          'bar_swag_finale',
         });
-        expect(garden.level.copy.clearedShout, 'MUCHO MOJO.');
-        expect(bar.level.copy.clearedShout, 'PURO SWAG.');
+        expect(garden.level.copy.clearedShout, 'MUCHO MOJO');
+        expect(bar.level.copy.clearedShout, 'MUY SUAVE');
+        expect(lawn.level.copy.clearedShout, 'QUÉ FINO');
         expect(garden.level.rules.metric.toUpperCase(), 'MOJO');
         expect(bar.level.rules.metric.toUpperCase(), 'SWAG');
       },
     );
 
     test('planned rooms stay planned', () {
-      for (final id in ['cool-crowd', 'restroom', 'vip']) {
+      for (final id in ['restroom', 'vip']) {
         expect(fights.map((fight) => fight.id), contains(id));
         expect(() => levels.byId(id), throwsArgumentError);
       }
@@ -225,6 +258,9 @@ void main() {
       for (final step in levels.campaign) {
         final level = step.level;
         expect(File('assets/art/${level.background}').existsSync(), isTrue);
+        for (final prop in level.layers) {
+          expect(File('assets/art/${prop.atlas}').existsSync(), isTrue);
+        }
         for (final score in [
           level.music.score,
           level.music.successScore,
@@ -281,8 +317,7 @@ void main() {
     test('the campaign refuses a level file it cannot find', () {
       expect(
         () => LevelRegistry.parse(
-          '{"campaign": [{"level": "no-such-level", "exitLine": "a", '
-          '"nextLine": "b"}]}',
+          '{"campaign": [{"level": "no-such-level"}]}',
           _file,
         ),
         throwsA(isA<PathNotFoundException>()),
@@ -357,6 +392,18 @@ void main() {
       of(bar, 'stage')['heroHomee'] = [.5, .5];
     });
     refused('a missing section', 'level.copy', (bar) => bar.remove('copy'));
+    refused('a title that is one word', 'copy.clearedTitle', (bar) {
+      of(bar, 'copy')['clearedTitle'] = 'SUAVE';
+    });
+    refused('a title of three words', 'copy.clearedTitle', (bar) {
+      of(bar, 'copy')['clearedTitle'] = 'MUY\nMUY SUAVE';
+    });
+    refused('a text line the game no longer shows', 'copy', (bar) {
+      of(bar, 'copy')['clearedClaim'] = 'THE BAR IS YOURS.';
+    });
+    refused('a cue with no such sound', 'cue[0].track', (bar) {
+      ((of(bar, 'exitShot')['cue'] as List)[0] as Map)['track'] = 'kazoo';
+    });
     refused('a limb that does not exist', 'chart.limbs[0]', (bar) {
       (of(bar, 'chart')['limbs'] as List)[0] = 'tail';
     });
@@ -389,11 +436,38 @@ void main() {
       dancers.add(dancers.first);
     });
     refused('budgets that are not cumulative', 'crowd.budgets', (bar) {
-      of(of(bar, 'crowd'), 'budgets')['cheering'] = 9;
+      of(of(bar, 'crowd'), 'budgets')['following'] = 9;
     });
-    refused('more guests than the crowd model has', 'crowd.guests', (bar) {
-      final guests = of(bar, 'crowd')['guests'] as List;
-      guests.add(guests.first);
+    refused('more guests than a phone is asked to draw', 'crowd.guests', (bar) {
+      final crowd = of(bar, 'crowd');
+      crowd['guests'] = List.filled(CrowdInterestModel.maxGuests + 1, [.2, .4]);
+    });
+    refused('a guest on the tap band', 'crowd.guests[0]', (bar) {
+      of(bar, 'crowd')['guests'] = [
+        [.2, .7],
+      ];
+    });
+    refused('a table on the tap band', 'crowd.props[0]', (bar) {
+      of(bar, 'crowd')['props'] = [
+        {
+          'id': 'x',
+          'kind': 'table',
+          'at': [.2, .7],
+          'heightInAdults': .43,
+          'widthInAdults': .6,
+        },
+      ];
+    });
+    refused('a stool placed by hand', 'props[0].kind', (bar) {
+      of(bar, 'crowd')['props'] = [
+        {
+          'id': 'x',
+          'kind': 'stool',
+          'at': [.5, .5],
+          'heightInAdults': 1,
+          'widthInAdults': 1,
+        },
+      ];
     });
     refused('a chair placed by hand', 'props[0].kind', (bar) {
       of(bar, 'crowd')['props'] = [
@@ -422,13 +496,12 @@ void main() {
 
     String index(List<Map<String, Object?>> campaign, {int? total}) =>
         jsonEncode({'displayTotal': ?total, 'campaign': campaign});
-    const lines = {'exitLine': 'a', 'nextLine': 'b'};
 
     test('a file holding a different level', () {
       expect(
         () => LevelRegistry.parse(
           index([
-            {'level': 'bar', ...lines},
+            {'level': 'bar'},
           ]),
           (_) => _file('garden'),
         ),
@@ -439,8 +512,8 @@ void main() {
       expect(
         () => LevelRegistry.parse(
           index([
-            {'level': 'bar', 'bridgeToNext': 'x', ...lines},
-            {'level': 'bar', ...lines},
+            {'level': 'bar', 'bridgeToNext': 'x'},
+            {'level': 'bar'},
           ]),
           _file,
         ),
@@ -451,8 +524,8 @@ void main() {
       expect(
         () => LevelRegistry.parse(
           index([
-            {'level': 'garden', ...lines},
-            {'level': 'bar', ...lines},
+            {'level': 'garden'},
+            {'level': 'bar'},
           ]),
           _file,
         ),
@@ -463,7 +536,7 @@ void main() {
       expect(
         () => LevelRegistry.parse(
           index([
-            {'level': 'bar', 'bridgeToNext': 'x', ...lines},
+            {'level': 'bar', 'bridgeToNext': 'x'},
           ]),
           _file,
         ),
@@ -480,8 +553,8 @@ void main() {
       expect(
         () => LevelRegistry.parse(
           index([
-            {'level': 'garden', 'bridgeToNext': 'x', ...lines},
-            {'level': 'bar', ...lines},
+            {'level': 'garden', 'bridgeToNext': 'x'},
+            {'level': 'bar'},
           ], total: 1),
           _file,
         ),
@@ -491,7 +564,7 @@ void main() {
     test('the display total defaults to the campaign length', () {
       final levels = LevelRegistry.parse(
         index([
-          {'level': 'bar', ...lines},
+          {'level': 'bar'},
         ]),
         _file,
       );

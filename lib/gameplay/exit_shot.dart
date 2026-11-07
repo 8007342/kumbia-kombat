@@ -1,6 +1,8 @@
 import 'dart:math' as math;
 import 'dart:ui' as ui;
 
+import '../music/score.dart';
+
 /// Data for the moment a level is won: Mācron's celebration, his walk to the
 /// challenger and a close-up on the beat. Beats count from the first beat of
 /// the success score and run on into the bridge, so nothing here can move music.
@@ -18,6 +20,9 @@ class ExitShot {
     required this.actors,
     required this.cue,
     this.impactBeats = .4,
+    this.recoilBeats,
+    this.heroWaitFrame = 'rear_idle',
+    this.throwsDust = true,
   });
 
   final String plate;
@@ -39,9 +44,23 @@ class ExitShot {
   /// How long the actors hold their impact drawings from the contact.
   final double impactBeats;
 
+  /// How long after contact the actors finish easing apart. Unset, it takes the
+  /// whole close-up, so a held close-up needs this or its hit drifts too slowly.
+  final double? recoilBeats;
+
+  /// Mācron's drawing from the end of his dance until the close-up cuts in.
+  final String heroWaitFrame;
+
+  /// Whether the contact throws dust. A fist does; a kiss on the cheek doesn't.
+  final bool throwsDust;
+
   Iterable<String> get images => [
     plate,
-    for (final actor in actors) ...[actor.approach, actor.impact],
+    for (final actor in actors) ...[
+      actor.approach,
+      actor.impact,
+      for (final frame in actor.frames) frame.image,
+    ],
   ];
 
   bool closeupAt(double beat) => beat >= closeupFrom && beat < closeupTo;
@@ -52,8 +71,8 @@ class ExitShot {
 
   bool walkingAt(double beat) => beat >= walkFrom && beat < walkTo;
 
-  /// Departure route progress: it starts once the close-up has returned to the
-  /// wide view, and finishes with the bridge at [endBeat].
+  /// How far the room has cooled after the close-up: it starts once the shot has
+  /// returned to the wide view, and finishes with the bridge at [endBeat].
   double routeAt(double beat, double endBeat) =>
       ((beat - closeupTo) / (endBeat - closeupTo)).clamp(0.0, 1.0);
 
@@ -67,29 +86,77 @@ class ExitShot {
     final closing = 1 - approach * approach;
     // Hold the contact for a moment so the hit reads, then ease apart.
     const hold = .25;
+    final apart = recoilBeats ?? closeupTo - contactBeat;
     final recoil = after <= hold || reducedMotion
         ? 0.0
-        : _easeOut(
-            ((after - hold) / (closeupTo - contactBeat - hold)).clamp(0.0, 1.0),
-          );
+        : _easeOut(((after - hold) / (apart - hold)).clamp(0.0, 1.0));
     final striking = after >= 0 && after < impactBeats;
     return [
       for (final actor in actors)
         ExitShotPlacement(
           actor,
-          striking || reducedMotion ? actor.impact : actor.approach,
+          reducedMotion
+              ? actor.impact
+              : actor.frames.isNotEmpty
+              ? actor.frameAt(beat)
+              : striking
+              ? actor.impact
+              : actor.approach,
           ui.Offset(
-            actor.entry.dx * closing + actor.recoil.dx * recoil,
-            actor.entry.dy * closing + actor.recoil.dy * recoil,
-          ),
+                actor.entry.dx * closing + actor.recoil.dx * recoil,
+                actor.entry.dy * closing + actor.recoil.dy * recoil,
+              ) +
+              (reducedMotion
+                  ? ui.Offset.zero
+                  : actor.sway?.at(beat) ?? ui.Offset.zero),
         ),
     ];
+  }
+
+  /// This shot's hits that fall inside a score starting at [startBeat], mixed in
+  /// as ordinary notes. Beats here are shot beats, so a hit lands in whichever
+  /// score is playing then: the success score or the bridge after it.
+  MusicScore mixCue(MusicScore score, double startBeat) {
+    final notes = [
+      for (final hit in cue)
+        if (hit.beat >= startBeat && hit.beat - startBeat < score.lengthBeats)
+          ScoreNote(
+            track: hit.track,
+            beat: hit.beat - startBeat,
+            pitch: hit.pitch,
+            // A score refuses a note that runs past its end.
+            duration: math.min(
+              .25,
+              score.lengthBeats - (hit.beat - startBeat),
+            ),
+            velocity: hit.velocity,
+          ),
+    ];
+    return notes.isEmpty ? score : score.withNotes(notes);
+  }
+
+  /// How long the level's big two words stay up, from the contact. It can outlast
+  /// a short close-up, because a word needs longer to read than a fist to land.
+  static const titleBeats = 3.0;
+  static const _titleSlamBeats = .3;
+  static const _titleFadeBeats = .5;
+
+  double get titleUntil => math.max(closeupTo, contactBeat + titleBeats);
+
+  /// The title at [beat], or null when it isn't up. It slams in on the contact,
+  /// with the accent, and clears before the room moves on. No text before that.
+  ExitTitlePose? titleAt(double beat, {required bool reducedMotion}) {
+    if (beat < contactBeat || beat >= titleUntil) return null;
+    if (reducedMotion) return const ExitTitlePose(1, 1);
+    final slam = ((beat - contactBeat) / _titleSlamBeats).clamp(0.0, 1.0);
+    final fade = ((titleUntil - beat) / _titleFadeBeats).clamp(0.0, 1.0);
+    return ExitTitlePose(1 + .7 * (1 - _easeOut(slam)), fade);
   }
 
   /// Dust thrown at the contact: four art pixels flying out for half a beat.
   List<ExitShotMote> motes(double beat, {required bool reducedMotion}) {
     final age = beat - contactBeat;
-    if (age < 0 || age >= .5 || reducedMotion) return const [];
+    if (!throwsDust || age < 0 || age >= .5 || reducedMotion) return const [];
     final t = age / .5;
     const headings = [-2.5, -1.2, .9, 2.2];
     return [
@@ -107,6 +174,32 @@ class ExitShot {
   static double _easeOut(double t) => 1 - (1 - t) * (1 - t);
 }
 
+class ExitTitlePose {
+  const ExitTitlePose(this.scale, this.opacity);
+  final double scale;
+  final double opacity;
+}
+
+class ExitShotFrame {
+  const ExitShotFrame(this.beat, this.image);
+  final double beat;
+  final String image;
+}
+
+/// A close-up actor keeping time while a long close-up holds. From [from] it leans
+/// by [by] and back, once every [beats], starting and ending at rest.
+class ExitShotSway {
+  const ExitShotSway({required this.from, required this.beats, required this.by});
+  final double from;
+  final double beats;
+  final ui.Offset by;
+
+  ui.Offset at(double beat) {
+    if (beat <= from) return ui.Offset.zero;
+    return by * math.sin((beat - from) / beats * 2 * math.pi);
+  }
+}
+
 class ExitShotActor {
   const ExitShotActor({
     required this.approach,
@@ -115,9 +208,27 @@ class ExitShotActor {
     required this.scale,
     required this.entry,
     required this.recoil,
+    this.frames = const [],
+    this.keepsReading = false,
+    this.sway,
   });
   final String approach;
   final String impact;
+
+  /// Optional drawings by beat, for sub-second moments such as a gulp. When set
+  /// they replace approach and impact, except that [approach] shows until the
+  /// first frame and [impact] is the one still drawing under reduced motion.
+  final List<ExitShotFrame> frames;
+
+  /// The frame showing at [beat]: the last one that has started.
+  String frameAt(double beat) {
+    var image = approach;
+    for (final frame in frames) {
+      if (frame.beat > beat) break;
+      image = frame.image;
+    }
+    return image;
+  }
 
   /// The art pixel that meets the other actor.
   final ui.Offset contact;
@@ -126,6 +237,13 @@ class ExitShotActor {
   final double scale;
   final ui.Offset entry;
   final ui.Offset recoil;
+
+  /// Lettering: when the whole close-up mirrors, this drawing lands in its
+  /// mirrored place but still reads the right way round.
+  final bool keepsReading;
+
+  /// Keeping time through a long hold; nothing under reduced motion.
+  final ExitShotSway? sway;
 }
 
 class ExitShotPlacement {
@@ -169,6 +287,9 @@ class Celebration {
     'front_idle',
   ];
 
+  /// Where the cycle reaches its groove, skipping the crouch and the jumps.
+  static const grooveBeat = 5.0;
+
   /// [age] is beats since the win. Eight beats, then it repeats: a crouch, two
   /// jumps with the arms up, a full spin, then a groove to the side.
   factory Celebration.at(double age, {required bool reducedMotion}) {
@@ -201,8 +322,12 @@ class Celebration {
 /// again before his first tap can land. 0 is home, 1 is the watching spot.
 class HeroWatch {
   const HeroWatch._();
-  static const stepOutBeats = 1.5;
-  static const stepInBeats = 1.25;
+
+  /// Back and then to the side, a leg each, the way an opponent leaves the floor.
+  static const stepOutBeats = 3.0;
+
+  /// The same two legs in reverse.
+  static const stepInBeats = 2.5;
 
   /// Home a little before the response, inside the earliest tap's window.
   static const homeBeforeResponse = .25;
@@ -212,21 +337,45 @@ class HeroWatch {
     return t * t * (3 - 2 * t);
   }
 
-  /// [t] counts from the call's first beat. The first call of a level has no
-  /// step out, because he walks straight onto the watching spot.
-  static double at(double t, double callBeats, {bool firstCall = false}) {
+  /// A short call fits the same route in the time it has.
+  static double _fit(double callBeats) {
+    final room = callBeats - homeBeforeResponse;
+    return room >= stepOutBeats + stepInBeats
+        ? 1
+        : room / (stepOutBeats + stepInBeats);
+  }
+
+  /// Each leg starts and stops, so the turn at the back mark reads as two steps.
+  static double _legs(double u) {
+    final t = u.clamp(0.0, 1.0);
+    return t < .5 ? _smooth(t * 2) * .5 : .5 + _smooth(t * 2 - 1) * .5;
+  }
+
+  /// How far along his route he is: 0 home, .5 on the back mark, 1 outside the
+  /// floor. [t] counts from the call's first beat. The first call of a level has
+  /// no step out, because he walks straight onto the outside mark. Reduced motion
+  /// cuts at the handoff, so he still leaves the floor without travelling.
+  static double at(
+    double t,
+    double callBeats, {
+    bool firstCall = false,
+    bool reducedMotion = false,
+  }) {
     if (t < 0 || t >= callBeats) return 0;
     final inEnd = callBeats - homeBeforeResponse;
-    final inStart = inEnd - stepInBeats;
-    if (t >= inStart) return 1 - _smooth((t - inStart) / stepInBeats);
-    return firstCall ? 1 : _smooth(t / stepOutBeats);
+    if (reducedMotion) return t < inEnd ? 1 : 0;
+    final fit = _fit(callBeats);
+    final inStart = inEnd - stepInBeats * fit;
+    if (t >= inStart) return _legs(1 - (t - inStart) / (stepInBeats * fit));
+    return firstCall ? 1 : _legs(t / (stepOutBeats * fit));
   }
 
   static bool walking(double t, double callBeats, {bool firstCall = false}) {
     if (t < 0 || t >= callBeats) return false;
     final inEnd = callBeats - homeBeforeResponse;
-    if (t >= inEnd - stepInBeats && t < inEnd) return true;
-    return !firstCall && t < stepOutBeats;
+    final fit = _fit(callBeats);
+    if (t >= inEnd - stepInBeats * fit && t < inEnd) return true;
+    return !firstCall && t < stepOutBeats * fit;
   }
 
   /// Keeps time on the spot, with more of him as the music and the party heat

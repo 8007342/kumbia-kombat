@@ -1,24 +1,39 @@
 import 'rhythm.dart';
 
-/// Logical input stays generous and stable while the beat moves visual markers.
+/// The tap band and its split, as fractions of the screen.
+const thumbBandTop = .65;
+const thumbBandSplit = .81;
+const thumbBandBottom = .97;
+
+/// The middle of the four landing spots, and how far each sits from it.
+const thumbPadCentre = NotePoint(.5, .805);
+const thumbPadReachX = .20;
+const thumbPadReachY = .09;
+
+bool limbIsLeft(Limb limb) => limb == Limb.leftHand || limb == Limb.leftFoot;
+
+bool limbIsUpper(Limb limb) => limb == Limb.leftHand || limb == Limb.rightHand;
+
+/// The pad's quadrant under a point. Tells which ring dents for a stray tap, and
+/// keeps each ring on its own side. Notes are judged near their ring instead:
+/// see `tap_resolution.dart`.
 Limb? thumbLimbAt(double x, double y) {
-  if (!x.isFinite || !y.isFinite || x < 0 || x > 1 || y < .65 || y > .97) {
+  if (!x.isFinite ||
+      !y.isFinite ||
+      x < 0 ||
+      x > 1 ||
+      y < thumbBandTop ||
+      y > thumbBandBottom) {
     return null;
   }
   final left = x < .5;
-  return y < .81
+  return y < thumbBandSplit
       ? (left ? Limb.leftHand : Limb.rightHand)
       : (left ? Limb.leftFoot : Limb.rightFoot);
 }
 
-/// A destination depends only on the authored hit, never the animation clock.
-NotePoint thumbAnchor(Limb limb, double hitBeat) {
-  final left = limb == Limb.leftHand || limb == Limb.leftFoot;
-  final upper = limb == Limb.leftHand || limb == Limb.rightHand;
-  final step = (hitBeat * 2).round();
-  final variation = (step + limb.index * 3) % 5;
-  return NotePoint(
-    (left ? .34 : .66) + (variation - 2) * .018,
-    (upper ? .73 : .88) + ((step + limb.index) % 3 - 1) * .012,
-  );
-}
+/// A limb's resting spot. Each note lands a little off it: see `cue_path.dart`.
+NotePoint thumbHome(Limb limb) => NotePoint(
+  thumbPadCentre.x + (limbIsLeft(limb) ? -thumbPadReachX : thumbPadReachX),
+  thumbPadCentre.y + (limbIsUpper(limb) ? -thumbPadReachY : thumbPadReachY),
+);

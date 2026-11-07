@@ -1,17 +1,26 @@
 import 'dart:ui' as ui;
 
 import 'dart:convert';
+import 'dart:math' as math;
 
 import 'package:flutter/services.dart';
 
+import '../music/accent_voice.dart';
 import '../music/transport.dart';
+import 'band.dart';
 import 'crowd_interest.dart';
+import 'dance_floor.dart';
 import 'garden_session.dart';
+import 'gesture_shapes.dart';
 import 'party_layout.dart';
+import 'party_up.dart';
 import 'progression.dart';
 import 'rhythm.dart';
+import 'duet_staging.dart';
 import 'exit_shot.dart';
 import 'room_departure.dart';
+import 'room_layers.dart';
+import 'thumb_layout.dart';
 
 /// A level file or the campaign index is wrong. Thrown while loading, so a bad
 /// file stops the game at the door instead of playing as some other room.
@@ -48,6 +57,9 @@ class _Fields {
 
   bool has(String key) => _raw.containsKey(key);
 
+  /// For an object whose keys are names the level chooses.
+  Iterable<String> get keys => _raw.keys;
+
   String text(String key) {
     final value = _take(key);
     if (value is String && value.trim().isNotEmpty) return value;
@@ -65,7 +77,14 @@ class _Fields {
 
   PartyPoint point(String key) => _point(at(key), _take(key));
 
-  List<Object?> list(String key) {
+  bool flag(String key) {
+    final value = _take(key);
+    if (value is bool) return value;
+    throw LevelDataError(at(key), 'expected true or false, found $value');
+  }
+
+  List<Object?> list(String key, {bool optional = false}) {
+    if (optional && !has(key)) return const [];
     final value = _take(key);
     if (value is List<Object?>) return value;
     throw LevelDataError(at(key), 'expected a list, found $value');
@@ -122,7 +141,12 @@ class LevelMusic {
     required this.score,
     required this.successScore,
     required this.leadShape,
+    this.moveAccent,
   });
+
+  /// A sound over the music when a move or a richer step lands: a room's reward.
+  /// It reads nothing back, so it can't change timing or judging.
+  final ExitShotCue? moveAccent;
   final String score;
   final String successScore;
   final String leadShape;
@@ -161,8 +185,22 @@ class LevelChallenger {
     required this.yieldMark,
     this.track,
     this.stature = 1,
+    this.meetMark,
+    this.facingAway,
+    this.defeatStance,
   });
   final FloorTrack? track;
+
+  /// Dancing with their back to the room until the first call, if they do.
+  final FacingAway? facingAway;
+
+  /// Taken once as the win's shot begins, and then held: the drawings play in
+  /// order from the shot's walk and stop on the last. Reduced motion shows the last.
+  final FloorClip? defeatStance;
+
+  /// Where this dancer steps in to meet the hero when the level is won. Her
+  /// [yieldMark] is off the floor, too far for the shot's walk to reach.
+  final PartyPoint? meetMark;
 
   /// Height against an adult guest, so a pair can differ in size.
   final double stature;
@@ -185,6 +223,37 @@ class LevelChallenger {
   }
 }
 
+/// A dancer who starts with their back to the room, then turns to face it just
+/// as the first call starts. Reads the music's beat, and only picks a drawing.
+class FacingAway {
+  const FacingAway({
+    required this.back,
+    required this.turn,
+    required this.turnBeats,
+  });
+  final FloorClip back;
+
+  /// The turn, in order, ending just before they face front.
+  final List<String> turn;
+  final double turnBeats;
+
+  Iterable<String> get frames => [...back.frames, ...turn];
+
+  /// Their drawing during the intro, or null once they've turned around.
+  /// Reduced motion keeps their back to the room, then cuts to the front.
+  String? frameAt(double beat, double introBeats, {bool reducedMotion = false}) {
+    if (beat >= introBeats) return null;
+    final into = beat - (introBeats - turnBeats);
+    if (into < 0 || reducedMotion) {
+      return back.at(beat, reducedMotion: reducedMotion);
+    }
+    return turn[(into / turnBeats * turn.length).floor().clamp(
+      0,
+      turn.length - 1,
+    )];
+  }
+}
+
 class LevelStage {
   const LevelStage({
     required this.heroHome,
@@ -192,8 +261,15 @@ class LevelStage {
     required this.heroRetreat,
     required this.challengers,
     PartyPoint? heroWatch,
-  }) : heroWatch = heroWatch ?? heroHome;
+    PartyPoint? heroAside,
+    this.duet,
+    this.heroEntersAt = 0,
+  }) : heroWatch = heroWatch ?? heroHome,
+       heroAside = heroAside ?? heroWatch ?? heroHome;
   final PartyPoint heroHome;
+
+  /// The beat he starts walking in, so a room can be seen without him first.
+  final double heroEntersAt;
 
   /// Where the hero starts walking in from during the intro.
   final PartyPoint heroEntrance;
@@ -201,9 +277,42 @@ class LevelStage {
   /// How far a stumble back to the entrance takes the hero, at its peak.
   final PartyPoint heroRetreat;
 
-  /// Where the hero steps back to and keeps time during the opponent's call.
+  /// The back mark: the hero's first step when the opponent's call starts.
   final PartyPoint heroWatch;
+
+  /// Off the dance floor, where he keeps time through the opponent's call. He gets
+  /// here from [heroWatch], and comes home the same way.
+  final PartyPoint heroAside;
   final List<LevelChallenger> challengers;
+
+  /// A pair's floor pattern, turn by turn. Null for a lone challenger.
+  final LevelDuet? duet;
+
+  /// A place along the hero's route off the floor, [along] as [HeroWatch.at]
+  /// gives it: 0 home, .5 the back mark, 1 outside.
+  PartyPoint heroOffFloor(double along) {
+    final u = along.clamp(0.0, 1.0);
+    final (from, to, t) = u < .5
+        ? (heroHome, heroWatch, u * 2)
+        : (heroWatch, heroAside, u * 2 - 1);
+    return PartyPoint(from.x + (to.x - from.x) * t, from.y + (to.y - from.y) * t);
+  }
+
+  /// Where the hero is [t] beats into a call. Pure, so a floor pattern can read it
+  /// to keep clear of him or to meet him: `duet_staging.dart` needs nothing else.
+  PartyPoint heroDuringCall(
+    double t,
+    double callBeats, {
+    bool firstCall = false,
+    bool reducedMotion = false,
+  }) => heroOffFloor(
+    HeroWatch.at(
+      t,
+      callBeats,
+      firstCall: firstCall,
+      reducedMotion: reducedMotion,
+    ),
+  );
 
   /// [entrance] runs 0 to 1 over the intro; [retreat] is 0 at home.
   PartyPoint heroFloor({required double entrance, required double retreat}) {
@@ -222,12 +331,42 @@ class LevelWaiter {
   final double swayX;
 }
 
+/// Soft light moving slowly over walls and windows, on the music's beat. Clipped
+/// to [zones], which can't reach the tap band or the quiet area behind the
+/// opponent. Never a flash: its brightness only follows the room's waking.
+class WallLight {
+  const WallLight({required this.zones, required this.periodBeats});
+  final List<List<PartyPoint>> zones;
+  final double periodBeats;
+}
+
+/// Something painted into the plate that people can stand behind, such as a table
+/// or a hanging lamp. Anyone whose feet are further away than [frontY] is drawn
+/// with [outline] left out, so the painting stays in front of them.
+class SceneOccluder {
+  const SceneOccluder({required this.outline, required this.frontY});
+  final List<PartyPoint> outline;
+  final double frontY;
+}
+
 class LevelScenery {
   const LevelScenery({
     required this.lamps,
     required this.plants,
     required this.waiter,
+    this.platform,
+    this.band,
+    this.wallLight,
+    this.occluders = const [],
   });
+
+  final List<SceneOccluder> occluders;
+
+  /// A raised floor painted into the plate, which nobody may stand in front of
+  /// as if it weren't there.
+  final RoomPlatform? platform;
+  final LevelBand? band;
+  final WallLight? wallLight;
 
   /// Glow centres, measured against the lamps painted on the background.
   final List<PartyPoint> lamps;
@@ -239,15 +378,14 @@ class LevelCopy {
   const LevelCopy({
     required this.invitation,
     required this.clearedTitle,
-    required this.clearedClaim,
-    required this.resetLine,
   });
   final String invitation;
 
-  /// May hold a line break for the large results title.
+  /// The level's two big words, one to a line: the only text during a run. An
+  /// exit shot shows them at its highlight. A level with no exit shot has no
+  /// highlight, so they wait for the end screen if it's the last level.
   final String clearedTitle;
-  final String clearedClaim;
-  final String resetLine;
+  List<String> get titleWords => clearedTitle.split('\n');
   String get clearedShout => clearedTitle.replaceAll('\n', ' ');
 }
 
@@ -268,7 +406,14 @@ class LevelDefinition {
     required this.routeOriginY,
     required this.copy,
     this.exitShot,
+    this.layers = const [],
+    this.propSet,
+    this.hardestCombo,
+    this.floorDance,
   });
+
+  /// What this room's standing guests dance, if it has any.
+  final FloorDance? floorDance;
 
   final String id;
   final String title;
@@ -290,6 +435,17 @@ class LevelDefinition {
   /// The win's celebration and close-up. Levels without one walk straight out.
   final ExitShot? exitShot;
 
+  /// Props cut out of [background], which party up with the room.
+  final List<RoomLayerProp> layers;
+
+  /// Which room's furniture, from `assets/art/props/manifest.json`: one set of
+  /// drawings, baked to each room's pixel size and light. Null uses the old atlas.
+  final String? propSet;
+
+  /// The opponent's hardest combo, for the late bathroom boss. Every level file
+  /// names one; nothing plays it yet.
+  final HardestCombo? hardestCombo;
+
   PartyPoint heroExitFloor(DeparturePose pose) =>
       PartyPoint(pose.x, stage.heroHome.y + pose.y - routeOriginY);
 
@@ -302,6 +458,7 @@ class LevelDefinition {
     definition: rules,
     chart: chart,
     crowdProfile: crowd,
+    guestCount: layout.guests.length,
   );
 
   factory LevelDefinition.fromJson(Map<String, Object?> json, {String? path}) {
@@ -319,6 +476,9 @@ class LevelDefinition {
       score: musicFields.text('score'),
       successScore: musicFields.text('successScore'),
       leadShape: leadShape,
+      moveAccent: musicFields.has('moveAccent')
+          ? _moveAccent(musicFields.child('moveAccent'))
+          : null,
     );
     musicFields.finish();
 
@@ -345,6 +505,9 @@ class LevelDefinition {
     final horizonY = floorFields.number('horizonY', min: 0, max: 1);
     final referenceFootY = floorFields.number('referenceFootY', max: 1);
     final referenceHeight = floorFields.number('referenceHeight', min: .001);
+    final vanishingX = floorFields.has('vanishingX')
+        ? floorFields.number('vanishingX', min: 0, max: 1)
+        : .5;
     floorFields.finish();
     if (horizonY >= referenceFootY) {
       throw LevelDataError(
@@ -356,6 +519,7 @@ class LevelDefinition {
       horizonY: horizonY,
       referenceFootY: referenceFootY,
       referenceHeight: referenceHeight,
+      vanishingX: vanishingX,
     );
     // A mark on or above the horizon would throw on every painted frame.
     PartyPoint onFloor(String path, PartyPoint mark) {
@@ -367,38 +531,158 @@ class LevelDefinition {
 
     PartyPoint stageMark(_Fields from, String key) =>
         onFloor(from.at(key), from.point(key));
+    final challengers = _challengers(stageFields, stageMark);
     final stage = LevelStage(
+      duet: stageFields.has('duet')
+          ? _duet(
+              stageFields.child('duet'),
+              challengers,
+              chart.cycleBeats,
+              stageMark(stageFields, 'heroHome'),
+            )
+          : null,
       heroHome: stageMark(stageFields, 'heroHome'),
       heroEntrance: stageMark(stageFields, 'heroEntrance'),
       heroRetreat: stageMark(stageFields, 'heroRetreat'),
       heroWatch: stageFields.has('heroWatch')
           ? stageMark(stageFields, 'heroWatch')
           : null,
-      challengers: _challengers(stageFields, stageMark),
+      heroAside: stageFields.has('heroAside')
+          ? stageMark(stageFields, 'heroAside')
+          : null,
+      heroEntersAt: stageFields.has('heroEntersAt')
+          ? stageFields.number('heroEntersAt', min: 0, max: chart.introBeats)
+          : 0,
+      challengers: challengers,
     );
     stageFields.finish();
 
     final crowdFields = fields.child('crowd');
     final crowd = _crowd(id, crowdFields.child('budgets'));
     final guestPath = crowdFields.at('guests');
+    final seat = crowdFields.has('seat')
+        ? crowdFields.named('seat', PartySeat.values)
+        : PartySeat.chair;
+    final propSet = crowdFields.has('propSet')
+        ? crowdFields.text('propSet')
+        : null;
+    final seats = <PartySeat>[];
+    final partTo = <PartyPoint?>[];
+    final cast = <FloorGuestCast?>[];
     final anchors = [
       for (final (i, raw) in crowdFields.list('guests').indexed)
-        onFloor('$guestPath[$i]', _point('$guestPath[$i]', raw)),
+        () {
+          final path = '$guestPath[$i]';
+          // A bare point takes the room's seat; an object may name its own.
+          if (raw is List<Object?>) {
+            seats.add(seat);
+            partTo.add(null);
+            cast.add(null);
+            return onFloor(path, _point(path, raw));
+          }
+          final guest = _Fields(path, raw);
+          seats.add(
+            guest.has('seat') ? guest.named('seat', PartySeat.values) : seat,
+          );
+          final at = onFloor(guest.at('at'), guest.point('at'));
+          partTo.add(
+            guest.has('partTo')
+                ? onFloor(guest.at('partTo'), guest.point('partTo'))
+                : null,
+          );
+          cast.add(
+            FloorGuestCast(
+              atlas: guest.has('atlas') ? guest.text('atlas') : null,
+              occupied: guest.has('occupied') ? guest.text('occupied') : null,
+              facingRight: guest.has('faces')
+                  ? guest.text('faces') == 'right'
+                  : null,
+              partner: guest.has('partner') ? guest.whole('partner', min: 0) : null,
+            ),
+          );
+          guest.finish();
+          return at;
+        }(),
     ];
-    if (anchors.isEmpty || anchors.length > CrowdInterestModel.castSize) {
+    if (anchors.isEmpty || anchors.length > CrowdInterestModel.maxGuests) {
       throw LevelDataError(
         guestPath,
-        'expected 1 to ${CrowdInterestModel.castSize} guests, '
+        'expected 1 to ${CrowdInterestModel.maxGuests} guests, '
         'found ${anchors.length}',
       );
     }
-    final guests = seatedGuestSlots(id, anchors);
+    // The feet decide it: a body rises away from the band, but furniture or feet
+    // inside it would sit right under the thumbs.
+    for (final (i, anchor) in anchors.indexed) {
+      if (anchor.y >= thumbBandTop) {
+        throw LevelDataError('$guestPath[$i]', 'is on the tap band');
+      }
+    }
+    for (final (i, to) in partTo.indexed) {
+      if (to != null && to.y >= thumbBandTop) {
+        throw LevelDataError('$guestPath[$i]', 'parts onto the tap band');
+      }
+    }
+    final floorDance = crowdFields.has('floorDance')
+        ? _floorDance(crowdFields.child('floorDance'), chart.introBeats)
+        : null;
+    if (seats.contains(PartySeat.standing) && floorDance == null) {
+      throw LevelDataError(guestPath, 'standing guests need crowd.floorDance');
+    }
+    for (final (i, to) in partTo.indexed) {
+      if (to == null) continue;
+      if (seats[i] != PartySeat.standing || floorDance?.parting == null) {
+        throw LevelDataError(
+          '$guestPath[$i]',
+          'partTo needs a standing guest and crowd.floorDance.parting',
+        );
+      }
+    }
+    for (final (i, guest) in cast.indexed) {
+      final partner = guest?.partner;
+      final path = '$guestPath[$i]';
+      if (guest?.occupied != null && floorDance?.occupied[guest!.occupied] == null) {
+        throw LevelDataError(path, 'no such occupied clip: ${guest!.occupied}');
+      }
+      if (partner == null) continue;
+      if (partner >= cast.length || partner == i || cast[partner]?.partner != i) {
+        throw LevelDataError(path, 'partner must be a guest naming them back');
+      }
+      if ((partTo[i] == null) != (partTo[partner] == null)) {
+        throw LevelDataError(path, 'partners part together, or not at all');
+      }
+    }
+    final delays = _partDelays(
+      anchors,
+      partTo,
+      stage.challengers.first.mark,
+      floorDance?.parting?.stagger ?? 0,
+    );
+    final guests = seatedGuestSlots(
+      id,
+      anchors,
+      seats: seats,
+      partTo: partTo,
+      // Partners set off together, when the nearer of the two would.
+      partDelays: [
+        for (final (i, delay) in delays.indexed)
+          cast[i]?.partner == null
+              ? delay
+              : math.min(delay, delays[cast[i]!.partner!]),
+      ],
+      cast: cast,
+    );
     final propPath = crowdFields.at('props');
-    final props = [
-      ...chairSlotsFor(guests),
+    final placed = [
       for (final (i, raw) in crowdFields.list('props').indexed)
         _prop(_Fields('$propPath[$i]', raw), onFloor),
     ];
+    for (final (i, prop) in placed.indexed) {
+      if (prop.floor.y >= thumbBandTop) {
+        throw LevelDataError('$propPath[$i]', '${prop.id} is on the tap band');
+      }
+    }
+    final props = [...chairSlotsFor(guests, seats: seats), ...placed];
     crowdFields.finish();
     final propIds = <String>{};
     for (final prop in props) {
@@ -408,6 +692,9 @@ class LevelDefinition {
     }
 
     final sceneryFields = fields.child('scenery');
+    final platformBuilt = sceneryFields.has('platform')
+        ? _platform(sceneryFields.child('platform'), floor)
+        : null;
     final lampPath = sceneryFields.at('lamps');
     final plantPath = sceneryFields.at('plants');
     final scenery = LevelScenery(
@@ -422,8 +709,29 @@ class LevelDefinition {
       waiter: sceneryFields.has('waiter')
           ? _waiter(sceneryFields.child('waiter'), onFloor)
           : null,
+      platform: platformBuilt,
+      band: sceneryFields.has('band')
+          ? _band(sceneryFields.child('band'), onFloor, platformBuilt)
+          : null,
+      wallLight: sceneryFields.has('wallLight')
+          ? _wallLight(sceneryFields.child('wallLight'))
+          : null,
+      occluders: [
+        for (final (i, raw) in sceneryFields.list('occluders', optional: true).indexed)
+          _occluder(_Fields('${sceneryFields.at('occluders')}[$i]', raw)),
+      ],
     );
     sceneryFields.finish();
+    final platform = scenery.platform;
+    if (platform != null) {
+      for (final (i, anchor) in anchors.indexed) {
+        for (final place in [anchor, ?partTo[i]]) {
+          if (platform.covers(place)) {
+            throw LevelDataError('$guestPath[$i]', 'is on the platform');
+          }
+        }
+      }
+    }
 
     final departureFields = fields.child('departure');
     final routeOriginY = departureFields.number('originY', min: 0, max: 1);
@@ -443,13 +751,24 @@ class LevelDefinition {
     final copy = LevelCopy(
       invitation: copyFields.text('invitation'),
       clearedTitle: copyFields.text('clearedTitle'),
-      clearedClaim: copyFields.text('clearedClaim'),
-      resetLine: copyFields.text('resetLine'),
     );
     copyFields.finish();
+    if (!RegExp(r'^\S+\n\S+$').hasMatch(copy.clearedTitle)) {
+      throw LevelDataError(
+        copyFields.at('clearedTitle'),
+        'expected two words, one to a line: ${copy.clearedTitle}',
+      );
+    }
     final exitShot = fields.has('exitShot')
         ? _exitShot(fields.child('exitShot'))
         : null;
+    final hardestCombo = _hardestCombo(
+      fields.child('hardestCombo'),
+      [for (final challenger in stage.challengers) challenger.id],
+    );
+    final layers = fields.has('layers')
+        ? _layers(fields.child('layers'))
+        : const <RoomLayerProp>[];
     fields.finish();
 
     return LevelDefinition(
@@ -473,7 +792,263 @@ class LevelDefinition {
       routeOriginY: routeOriginY,
       copy: copy,
       exitShot: exitShot,
+      layers: layers,
+      propSet: propSet,
+      hardestCombo: hardestCombo,
+      floorDance: floorDance,
     );
+  }
+
+  static FloorClip _floorClip(_Fields fields) {
+    final path = fields.at('frames');
+    final frames = [
+      for (final (i, raw) in fields.list('frames').indexed)
+        raw is String && raw.isNotEmpty
+            ? raw
+            : throw LevelDataError('$path[$i]', 'a drawing name'),
+    ];
+    if (frames.isEmpty) throw LevelDataError(path, 'needs a drawing');
+    final clip = FloorClip(
+      List.unmodifiable(frames),
+      fields.number('beatsPerFrame', min: .125),
+    );
+    fields.finish();
+    return clip;
+  }
+
+  static FloorDance _floorDance(_Fields fields, double introBeats) {
+    final ownThing = _floorClip(fields.child('ownThing'));
+    final glance = _floorClip(fields.child('glance'));
+    final occupied = <String, FloorClip>{};
+    if (fields.has('occupied')) {
+      final clips = fields.child('occupied');
+      for (final name in clips.keys) {
+        occupied[name] = _floorClip(clips.child(name));
+      }
+    }
+    final sidestep = fields.has('sidestep')
+        ? _floorClip(fields.child('sidestep'))
+        : null;
+    final following = fields.has('following')
+        ? _floorClip(fields.child('following'))
+        : null;
+    final castGlance = fields.has('castGlance')
+        ? _floorClip(fields.child('castGlance'))
+        : null;
+    CrowdParting? parting;
+    if (fields.has('parting')) {
+      final part = fields.child('parting');
+      parting = CrowdParting(
+        from: part.number('from', min: 0),
+        beats: part.number('beats', min: .5),
+        stagger: part.number('stagger', min: 0),
+        slowTo: part.number('slowTo', min: .1, max: 1),
+      );
+      part.finish();
+      // The fight's first call has to be readable from its first beat.
+      if (parting.end > introBeats) {
+        throw LevelDataError(
+          part.path,
+          'the floor must be open by beat $introBeats, not ${parting.end}',
+        );
+      }
+    }
+    fields.finish();
+    return FloorDance(
+      ownThing: ownThing,
+      glance: glance,
+      occupied: occupied,
+      castGlance: castGlance,
+      sidestep: sidestep,
+      following: following,
+      parting: parting,
+    );
+  }
+
+  /// Those nearest the dancer move first, as if the fight pushed the floor open.
+  static List<double> _partDelays(
+    List<PartyPoint> anchors,
+    List<PartyPoint?> partTo,
+    PartyPoint heart,
+    double stagger,
+  ) {
+    double distance(PartyPoint p) =>
+        (p.x - heart.x).abs() + (p.y - heart.y).abs();
+    final moving = [
+      for (final (i, anchor) in anchors.indexed)
+        if (partTo[i] != null) distance(anchor),
+    ];
+    if (moving.isEmpty) return List.filled(anchors.length, 0);
+    final near = moving.reduce((a, b) => a < b ? a : b);
+    final far = moving.reduce((a, b) => a > b ? a : b);
+    return [
+      for (final anchor in anchors)
+        far == near ? 0 : stagger * (distance(anchor) - near) / (far - near),
+    ];
+  }
+
+  static List<PartyPoint> _outline(_Fields fields, String key) {
+    final path = fields.at(key);
+    final points = [
+      for (final (i, raw) in fields.list(key).indexed) _point('$path[$i]', raw),
+    ];
+    if (points.length < 3) throw LevelDataError(path, 'needs three corners');
+    return List.unmodifiable(points);
+  }
+
+  /// A platform's corners may run off the plate, so these aren't held to 0..1.
+  static RoomPlatform _platform(_Fields fields, PartyFloorPlane floor) {
+    final path = fields.at('deck');
+    final deck = <PartyPoint>[];
+    for (final (i, raw) in fields.list('deck').indexed) {
+      if (raw is! List<Object?> || raw.length != 2) {
+        throw LevelDataError('$path[$i]', 'expected [x, y]');
+      }
+      deck.add(PartyPoint(_number('$path[$i]', raw[0]), _number('$path[$i]', raw[1])));
+    }
+    if (deck.length < 3) throw LevelDataError(path, 'needs three corners');
+    final lift = fields.number('lift', min: 0, max: 1);
+    fields.finish();
+    return RoomPlatform(
+      lift: lift,
+      deck: List.unmodifiable(deck),
+      horizonY: floor.horizonY,
+      // The same eye the floor plane's numbers come from.
+      eyeHeightAdults:
+          (floor.referenceFootY - floor.horizonY) / floor.referenceHeight,
+    );
+  }
+
+  static LevelBand _band(
+    _Fields fields,
+    PartyPoint Function(String, PartyPoint) onFloor,
+    RoomPlatform? platform,
+  ) {
+    final standIn = fields.flag('standIn');
+    final laddersFields = fields.child('ladders');
+    final ladders = <String, List<BandRung>>{};
+    List<BandRung> ladder(_Fields from, String key) {
+      final name = from.text(key);
+      return ladders[name] ??= () {
+        final path = laddersFields.at(name);
+        final rungs = <BandRung>[];
+        for (final (i, raw) in laddersFields.list(name).indexed) {
+          final rung = _Fields('$path[$i]', raw);
+          final input = rung.named('input', BandInput.values);
+          final fromValue = rung.number('from', min: 0);
+          final clipFields = _Fields(rung.path, {
+            'frames': rung.list('frames'),
+            'beatsPerFrame': rung.number('beatsPerFrame', min: .125),
+          });
+          rungs.add(
+            BandRung(clip: _floorClip(clipFields), input: input, from: fromValue),
+          );
+          rung.finish();
+        }
+        if (rungs.isEmpty) throw LevelDataError(path, 'needs a rung');
+        if (rungs.first.from != 0) {
+          throw LevelDataError('$path[0]', 'the first rung is where they start');
+        }
+        return List<BandRung>.unmodifiable(rungs);
+      }();
+    }
+
+    final path = fields.at('players');
+    final players = [
+      for (final (i, raw) in fields.list('players').indexed)
+        () {
+          final player = _Fields('$path[$i]', raw);
+          final feet = player.point('feet');
+          if (platform != null && !platform.holds(feet)) {
+            throw LevelDataError(player.at('feet'), 'is off the platform');
+          }
+          final parsed = BandPlayer(
+            id: player.text('id'),
+            atlas: player.text('atlas'),
+            feet: feet,
+            at: onFloor(player.at('feet'), platform?.groundUnder(feet) ?? feet),
+            ladder: ladder(player, 'ladder'),
+            reference: player.text('reference'),
+            palette: player.has('palette')
+                ? player.whole('palette', min: 0)
+                : null,
+            stature: player.has('stature')
+                ? player.number('stature', min: .1)
+                : 1,
+            flipX: player.has('flipX') && player.flag('flipX'),
+            beatOffset: player.has('beatOffset')
+                ? player.number('beatOffset', min: 0)
+                : 0,
+            lateBy: player.has('lateBy') ? player.number('lateBy', min: 0) : 0,
+          );
+          player.finish();
+          return parsed;
+        }(),
+    ];
+    if (players.isEmpty) throw LevelDataError(path, 'a band needs a player');
+    laddersFields.finish();
+    fields.finish();
+    return LevelBand(players: List.unmodifiable(players), standIn: standIn);
+  }
+
+  static ExitShotCue _moveAccent(_Fields fields) {
+    final track = fields.text('track');
+    if (!isAccentTrack(track)) {
+      throw LevelDataError(fields.at('track'), 'no such accent: $track');
+    }
+    final accent = ExitShotCue(
+      0,
+      track,
+      fields.whole('pitch', min: 0),
+      fields.whole('velocity', min: 1),
+    );
+    fields.finish();
+    return accent;
+  }
+
+  static SceneOccluder _occluder(_Fields fields) {
+    final path = fields.at('outline');
+    final occluder = SceneOccluder(
+      outline: List.unmodifiable([
+        for (final (i, raw) in fields.list('outline').indexed)
+          _point('$path[$i]', raw),
+      ]),
+      frontY: fields.number('frontY', min: 0, max: 1),
+    );
+    if (occluder.outline.length < 3) {
+      throw LevelDataError(path, 'an outline needs three points');
+    }
+    fields.finish();
+    return occluder;
+  }
+
+  static WallLight _wallLight(_Fields fields) {
+    final path = fields.at('zones');
+    final zones = <List<PartyPoint>>[];
+    for (final (i, raw) in fields.list('zones').indexed) {
+      final zone = _Fields('$path[$i]', raw);
+      final points = _outline(zone, 'outline');
+      zone.finish();
+      for (final point in points) {
+        if (point.y >= thumbBandTop) {
+          throw LevelDataError(zone.path, 'reaches the tap band');
+        }
+        if (point.x > roomLayerQuietLeft &&
+            point.x < roomLayerQuietRight &&
+            point.y > roomLayerQuietTop &&
+            point.y < roomLayerQuietBottom) {
+          throw LevelDataError(zone.path, 'reaches the quiet area');
+        }
+      }
+      zones.add(points);
+    }
+    if (zones.isEmpty) throw LevelDataError(path, 'needs a zone');
+    final light = WallLight(
+      zones: List.unmodifiable(zones),
+      periodBeats: fields.number('periodBeats', min: 4),
+    );
+    fields.finish();
+    return light;
   }
 
   static ExitShot _exitShot(_Fields fields) {
@@ -492,6 +1067,21 @@ class LevelDefinition {
     final actors = <ExitShotActor>[];
     for (final (i, raw) in fields.list('actors').indexed) {
       final actor = _Fields('$actorsPath[$i]', raw);
+      final frames = <ExitShotFrame>[];
+      if (actor.has('frames')) {
+        final framesPath = actor.at('frames');
+        var previous = double.negativeInfinity;
+        for (final (j, rawFrame) in actor.list('frames').indexed) {
+          final frame = _Fields('$framesPath[$j]', rawFrame);
+          final beat = frame.number('beat');
+          if (beat <= previous) {
+            throw FormatException('$framesPath[$j] must start after the frame before it');
+          }
+          previous = beat;
+          frames.add(ExitShotFrame(beat, frame.text('image')));
+          frame.finish();
+        }
+      }
       actors.add(
         ExitShotActor(
           approach: actor.text('approach'),
@@ -500,6 +1090,9 @@ class LevelDefinition {
           scale: actor.number('scale', min: .1),
           entry: offset(actor, 'entry'),
           recoil: offset(actor, 'recoil'),
+          frames: frames,
+          keepsReading: actor.has('keepsReading') && actor.flag('keepsReading'),
+          sway: actor.has('sway') ? _sway(actor.child('sway')) : null,
         ),
       );
       actor.finish();
@@ -508,10 +1101,14 @@ class LevelDefinition {
     final cue = <ExitShotCue>[];
     for (final (i, raw) in fields.list('cue').indexed) {
       final note = _Fields('$cuePath[$i]', raw);
+      final track = note.text('track');
+      if (!isCueTrack(track)) {
+        throw LevelDataError(note.at('track'), 'no such sound: $track');
+      }
       cue.add(
         ExitShotCue(
           note.number('beat', min: 0),
-          note.text('track'),
+          track,
           note.whole('pitch', min: 0),
           note.whole('velocity', min: 1),
         ),
@@ -533,6 +1130,13 @@ class LevelDefinition {
       impactBeats: fields.has('impactBeats')
           ? fields.number('impactBeats', min: .1)
           : .4,
+      recoilBeats: fields.has('recoilBeats')
+          ? fields.number('recoilBeats', min: .5)
+          : null,
+      heroWaitFrame: fields.has('heroWaitFrame')
+          ? fields.text('heroWaitFrame')
+          : 'rear_idle',
+      throwsDust: fields.has('dust') ? fields.flag('dust') : true,
     );
     fields.finish();
     if (!(shot.walkFrom < shot.walkTo &&
@@ -545,6 +1149,23 @@ class LevelDefinition {
       );
     }
     return shot;
+  }
+
+  static ExitShotSway _sway(_Fields fields) {
+    final by = fields.list('by');
+    if (by.length != 2) {
+      throw LevelDataError(fields.at('by'), 'expected [x, y]');
+    }
+    final sway = ExitShotSway(
+      from: fields.number('from', min: 0),
+      beats: fields.number('beats', min: .5),
+      by: ui.Offset(
+        _number(fields.at('by'), by[0]),
+        _number(fields.at('by'), by[1]),
+      ),
+    );
+    fields.finish();
+    return sway;
   }
 
   static FightChart _chart(_Fields fields) {
@@ -560,6 +1181,7 @@ class LevelDefinition {
 
     final offsetsPath = fields.at('offsets');
     final variantsPath = fields.at('variants');
+    final rich = fields.has('rich') ? _rich(fields.child('rich')) : null;
     final chart = FightChart(
       introBeats: fields.number('introBeats', min: .25),
       callBeats: fields.number('callBeats', min: .25),
@@ -573,6 +1195,8 @@ class LevelDefinition {
         for (final (i, variant) in fields.list('variants').indexed)
           limbs('$variantsPath[$i]', variant),
       ]),
+      richPatterns: rich?.patterns ?? const {},
+      limits: rich?.limits ?? const MoveLimits(),
     );
     fields.finish();
     try {
@@ -581,6 +1205,58 @@ class LevelDefinition {
       throw LevelDataError(fields.path, '${error.message}');
     }
     return chart;
+  }
+
+  /// The chart's richer moves: `plan/double-moves-2026-11-07.md`. A chart without
+  /// this field plays exactly as it did before they existed.
+  static ({Map<int, List<ChartStep>> patterns, MoveLimits limits}) _rich(
+    _Fields fields,
+  ) {
+    final limits = fields.child('limits');
+    int ms(String key) => limits.whole(key, min: 0);
+    final parsedLimits = MoveLimits(
+      pairToleranceMs: ms('pairToleranceMs'),
+      sameSpotMs: ms('sameSpotMs'),
+      thumbHopMs: ms('thumbHopMs'),
+      crossThumbMs: ms('crossThumbMs'),
+      sameLimbMs: ms('sameLimbMs'),
+      phraseEndMs: ms('phraseEndMs'),
+    );
+    limits.finish();
+    final patterns = fields.child('patterns');
+    final raw = patterns._raw;
+    final parsed = <int, List<ChartStep>>{};
+    for (final key in raw.keys.toList()) {
+      final index = int.tryParse(key);
+      if (index == null) {
+        throw LevelDataError(patterns.at(key), 'expected a pattern number');
+      }
+      parsed[index] = List.unmodifiable([
+        for (final (i, step) in patterns.list(key).indexed)
+          _step(_Fields('${patterns.at(key)}[$i]', step)),
+      ]);
+    }
+    patterns.finish();
+    fields.finish();
+    return (patterns: Map.unmodifiable(parsed), limits: parsedLimits);
+  }
+
+  static ChartStep _step(_Fields fields) {
+    final move = fields.has('move')
+        ? fields.named('move', RichMove.values)
+        : null;
+    final step = ChartStep(
+      fields.number('at', min: 0),
+      fields.named('limb', Limb.values),
+      move: move,
+      partner: fields.has('with') ? fields.named('with', Limb.values) : null,
+      gap: fields.has('gap') ? fields.number('gap', min: .001) : 0,
+      offer: fields.has('offer')
+          ? fields.named('offer', GestureKind.values)
+          : null,
+    );
+    fields.finish();
+    return step;
   }
 
   static List<LevelChallenger> _challengers(
@@ -603,6 +1279,13 @@ class LevelDefinition {
           stature: fields.has('stature')
               ? fields.number('stature', min: .1)
               : 1,
+          meetMark: fields.has('meetMark') ? mark(fields, 'meetMark') : null,
+          facingAway: fields.has('facingAway')
+              ? _facingAway(fields.child('facingAway'))
+              : null,
+          defeatStance: fields.has('defeatStance')
+              ? _floorClip(fields.child('defeatStance'))
+              : null,
         ),
       );
       fields.finish();
@@ -614,6 +1297,186 @@ class LevelDefinition {
       throw LevelDataError(path, 'challenger ids must be unique');
     }
     return List.unmodifiable(challengers);
+  }
+
+  static FacingAway _facingAway(_Fields fields) {
+    final path = fields.at('turn');
+    final turn = [
+      for (final (i, raw) in fields.list('turn').indexed)
+        raw is String && raw.isNotEmpty
+            ? raw
+            : throw LevelDataError('$path[$i]', 'a drawing name'),
+    ];
+    if (turn.isEmpty) throw LevelDataError(path, 'a turn needs drawings');
+    final away = FacingAway(
+      back: _floorClip(fields.child('back')),
+      turn: List.unmodifiable(turn),
+      turnBeats: fields.number('turnBeats', min: .5),
+    );
+    fields.finish();
+    return away;
+  }
+
+  /// Refuses a pattern the scene couldn't keep: a dancer on the tap band or past
+  /// a phone's edge, a turn that repeats a lead, or an end mark like her last.
+  static LevelDuet _duet(
+    _Fields fields,
+    List<LevelChallenger> challengers,
+    double cycleBeats,
+    PartyPoint heroHome,
+  ) {
+    final path = fields.path;
+    if (challengers.length != 2) {
+      throw LevelDataError(path, 'a duet needs exactly two challengers');
+    }
+    final markFields = fields.child('marks');
+    final marks = <String, PartyPoint>{};
+    PartyPoint mark(_Fields from, String key) {
+      final name = from.text(key);
+      if (!marks.containsKey(name)) {
+        marks[name] = markFields.point(name);
+      }
+      final point = marks[name]!;
+      if (point.y >= thumbBandTop || point.x < .17 || point.x > .83) {
+        throw LevelDataError(from.at(key), '$name is off the dance floor');
+      }
+      return point;
+    }
+
+    final outgoing = fields.number('outgoingBeats', min: .25);
+    final incoming = fields.number('incomingBeats', min: .25);
+    final gap = fields.number('partnerGap', min: .05, max: .6);
+    final upstage = fields.number('partnerUpstage', min: 0, max: .2);
+    PartyPoint beside(bool left) {
+      final point = PartyPoint(heroHome.x + (left ? -gap : gap), heroHome.y - upstage);
+      if (point.y >= thumbBandTop || point.x < .17 || point.x > .83) {
+        throw LevelDataError(fields.at('partnerGap'), 'beside Mācron is off the dance floor');
+      }
+      return point;
+    }
+
+    int dancerOf(_Fields from, String key) {
+      final id = from.text(key);
+      final index = challengers.indexWhere((c) => c.id == id);
+      if (index < 0) {
+        throw LevelDataError(from.at(key), 'no such challenger: $id');
+      }
+      return index;
+    }
+
+    final turnsPath = fields.at('turns');
+    final turns = <DuetTurn>[];
+    for (final (i, raw) in fields.list('turns').indexed) {
+      final turn = _Fields('$turnsPath[$i]', raw);
+      final partner = dancerOf(turn, 'partner');
+      final left = dancerOf(turn, 'left');
+      final steps = <DuetOffStep>[];
+      var last = 0.0;
+      for (final (j, rawStep) in turn.list('offSteps').indexed) {
+        final step = _Fields('${turn.at('offSteps')}[$j]', rawStep);
+        final at = step.number('at', min: cycleBeats / 2, max: cycleBeats - incoming);
+        if (at <= last) {
+          throw LevelDataError(step.path, 'steps must run forward in time');
+        }
+        last = at;
+        steps.add(DuetOffStep(at, mark(step, 'to')));
+        step.finish();
+      }
+      turns.add(
+        DuetTurn(
+          partner: partner,
+          left: left,
+          from: mark(turn, 'from'),
+          to: mark(turn, 'to'),
+          // She steps out from the pair on the side she was already on.
+          dance: beside(partner == left),
+          off: mark(turn, 'off'),
+          offSteps: List.unmodifiable(steps),
+        ),
+      );
+      turn.finish();
+    }
+    if (turns.length.isOdd || turns.isEmpty) {
+      throw LevelDataError(turnsPath, 'turns alternate, so they come in pairs');
+    }
+    for (var i = 0; i < turns.length; i++) {
+      final next = turns[(i + 1) % turns.length];
+      final again = turns[(i + 2) % turns.length];
+      if (turns[i].partner == next.partner) {
+        throw LevelDataError('$turnsPath[$i]', 'his partner must alternate');
+      }
+      if (turns.length > 2 && identical(turns[i].to, again.to)) {
+        throw LevelDataError(
+          '$turnsPath[$i]',
+          'the pair must end somewhere new each turn',
+        );
+      }
+    }
+    final pairFields = fields.child('pairFrames');
+    final pairFrames = DuetPairFrames(
+      rest: List.unmodifiable([
+        for (final (j, frame) in pairFields.list('rest').indexed)
+          frame is String && frame.isNotEmpty
+              ? frame
+              : throw LevelDataError('${pairFields.at('rest')}[$j]', 'a drawing name'),
+      ]),
+      arm: pairFields.text('arm'),
+      kick: pairFields.text('kick'),
+    );
+    pairFields.finish();
+    if (pairFrames.rest.isEmpty) {
+      throw LevelDataError(pairFields.at('rest'), 'a pair needs a resting drawing');
+    }
+    final spinFields = fields.child('spin');
+    final spin = DuetSpinSpec(
+      beats: spinFields.number('beats', min: .25),
+      reachFrame: spinFields.text('reachFrame'),
+      heroFrames: List.unmodifiable([
+        for (final (j, frame) in spinFields.list('heroFrames').indexed)
+          frame is String && frame.isNotEmpty
+              ? frame
+              : throw LevelDataError('${spinFields.at('heroFrames')}[$j]', 'a drawing name'),
+      ]),
+      catchUpBeats: spinFields.number('catchUpBeats', min: .25),
+    );
+    spinFields.finish();
+    if (spin.heroFrames.isEmpty) {
+      throw LevelDataError(spinFields.at('heroFrames'), 'a spin needs drawings');
+    }
+    final exitFields = fields.child('exit');
+    final exit = DuetExit(
+      left: mark(exitFields, 'left'),
+      right: mark(exitFields, 'right'),
+      leftReach: mark(exitFields, 'leftReach'),
+      rightReach: mark(exitFields, 'rightReach'),
+      sideBeats: exitFields.number('sideBeats', min: .25),
+      reachFrom: exitFields.number('reachFrom', min: 0),
+      reachTo: exitFields.number('reachTo', min: 0),
+      reachFrame: exitFields.text('reachFrame'),
+      backBeats: exitFields.number('backBeats', min: .25),
+      danceClip: exitFields.text('danceClip'),
+    );
+    exitFields.finish();
+    if (exit.reachFrom >= exit.reachTo || exit.sideBeats > exit.reachFrom) {
+      throw LevelDataError(
+        exitFields.path,
+        'beats must run to the sides, then reach',
+      );
+    }
+    final duet = LevelDuet(
+      turns: List.unmodifiable(turns),
+      offClip: fields.text('offClip'),
+      partnerClip: fields.text('partnerClip'),
+      outgoingBeats: outgoing,
+      incomingBeats: incoming,
+      spread: fields.number('spread', min: .01, max: .2),
+      pairFrames: pairFrames,
+      spin: spin,
+      exit: exit,
+    );
+    markFields.finish();
+    fields.finish();
+    return duet;
   }
 
   static FloorTrack _floorTrack(_Fields fields) {
@@ -675,9 +1538,11 @@ class LevelDefinition {
     PartyPoint Function(String, PartyPoint) onFloor,
   ) {
     final kind = fields.named('kind', PartyPropKind.values);
-    if (kind == PartyPropKind.chair || kind == PartyPropKind.drink) {
-      // Chairs come with the guests; drinks belong to the seated poses. The
-      // scene would draw neither of these from a prop entry.
+    if (kind == PartyPropKind.chair ||
+        kind == PartyPropKind.stool ||
+        kind == PartyPropKind.drink) {
+      // Seats come with the guests; drinks belong to the tables and the seated
+      // poses. The scene would draw none of these from a prop entry.
       throw LevelDataError(fields.at('kind'), '${kind.name} cannot be placed');
     }
     final prop = PartyPropSlot(
@@ -689,6 +1554,45 @@ class LevelDefinition {
     );
     fields.finish();
     return prop;
+  }
+
+  static List<RoomLayerProp> _layers(_Fields fields) {
+    final plateWidth = fields.whole('plateWidth', min: 1);
+    final plateHeight = fields.whole('plateHeight', min: 1);
+    final propsPath = fields.at('props');
+    final ids = <String>{};
+    final props = [
+      for (final (i, raw) in fields.list('props').indexed)
+        () {
+          final path = '$propsPath[$i]';
+          final prop = _Fields(path, raw);
+          final layer = RoomLayerProp(
+            id: prop.text('id'),
+            atlas: prop.text('atlas'),
+            atlasY: prop.whole('atlasY', min: 0),
+            left: prop.whole('left', min: 0),
+            top: prop.whole('top', min: 0),
+            width: prop.whole('width', min: 1),
+            height: prop.whole('height', min: 1),
+            frames: prop.whole('frames', min: 2),
+            motion: prop.named('motion', RoomLayerMotion.values),
+            periodBeats: prop.number('periodBeats', min: .25),
+            instance: prop.whole('instance', min: 0),
+            kind: prop.named('kind', PartyLifeKind.values),
+          );
+          prop.finish();
+          if (!ids.add(layer.id)) {
+            throw LevelDataError(path, 'duplicate layer id ${layer.id}');
+          }
+          final problem = layer.placementProblem(plateWidth, plateHeight);
+          if (problem != null) {
+            throw LevelDataError(path, '${layer.id} $problem');
+          }
+          return layer;
+        }(),
+    ];
+    fields.finish();
+    return List.unmodifiable(props);
   }
 
   static LevelWaiter _waiter(
@@ -741,27 +1645,174 @@ class LevelDefinition {
   }
 }
 
-/// A level's place in the campaign and what links it to the next. Bridges and
-/// "next" lines are written from one level to another, so they live here:
+/// A level's place in the campaign and what links it to the next. Bridges are
+/// written from one level to another, so they live here:
 /// adding a level changes this list and leaves its neighbours' files alone.
+/// Whether the owner has signed off on a combo's name and shape.
+enum HardestComboStatus { proposal, accepted }
+
+/// One move an opponent dances in a combo's call, from a clip it has today.
+class HardestComboMove {
+  const HardestComboMove({
+    required this.dancer,
+    required this.at,
+    required this.beats,
+    required this.clip,
+  });
+  final String dancer;
+  final double at, beats;
+  final String clip;
+}
+
+/// An opponent's named hardest combo: what they dance in the call, and the notes
+/// the player answers with. Data only. Nothing plays it until the bathroom boss.
+class HardestCombo {
+  const HardestCombo({
+    required this.name,
+    required this.status,
+    required this.callBeats,
+    required this.moves,
+    required this.chart,
+    this.lastNoteMove,
+  });
+  final String name;
+  final HardestComboStatus status;
+  final double callBeats;
+  final List<HardestComboMove> moves;
+
+  /// The player's notes, in the shape the session already plays.
+  final FightChart chart;
+
+  /// The optional move its last note invites, if it asks for a particular one.
+  final GestureKind? lastNoteMove;
+}
+
+/// Someone the campaign doesn't reach yet, who already needs a place in the boss.
+class UpcomingOpponent {
+  const UpcomingOpponent({
+    required this.id,
+    required this.name,
+    required this.level,
+    required this.hardestCombo,
+  });
+  final String id;
+  final String name;
+
+  /// The planned room. It need not exist, so it isn't looked up.
+  final String level;
+
+  /// Null only when the entry says it's a placeholder.
+  final HardestCombo? hardestCombo;
+}
+
+/// Refuses a combo the boss couldn't stage: a clip with no room in the call, two
+/// moves at once for one dancer, a dancer who isn't in the room or who sits it
+/// out, or notes the session's own chart check wouldn't pass.
+HardestCombo _hardestCombo(_Fields fields, List<String> dancers) {
+  final callBeats = fields.number('callBeats', min: .25);
+  final name = fields.text('name');
+  final status = fields.named('status', HardestComboStatus.values);
+  if (fields.has('note')) fields.text('note');
+
+  final movesPath = fields.at('moves');
+  final moves = <HardestComboMove>[];
+  for (final (i, raw) in fields.list('moves').indexed) {
+    final path = '$movesPath[$i]';
+    final move = _Fields(path, raw);
+    final String dancer;
+    if (move.has('dancer')) {
+      dancer = move.text('dancer');
+      if (!dancers.contains(dancer)) {
+        throw LevelDataError(move.at('dancer'), 'no such dancer: $dancer');
+      }
+    } else if (dancers.length == 1) {
+      dancer = dancers.single;
+    } else {
+      throw LevelDataError(path, 'a pair\'s move must name its dancer');
+    }
+    final parsed = HardestComboMove(
+      dancer: dancer,
+      at: move.number('at', min: 0),
+      beats: move.number('beats', min: .25),
+      clip: move.text('clip'),
+    );
+    move.finish();
+    if (parsed.at + parsed.beats > callBeats) {
+      throw LevelDataError(path, '${parsed.clip} runs past the call');
+    }
+    final before = moves.where((m) => m.dancer == dancer).lastOrNull;
+    if (before != null && parsed.at < before.at + before.beats) {
+      throw LevelDataError(path, '${parsed.clip} starts before $dancer is free');
+    }
+    moves.add(parsed);
+  }
+  for (final dancer in dancers) {
+    if (!moves.any((m) => m.dancer == dancer)) {
+      throw LevelDataError(movesPath, '$dancer has no moves');
+    }
+  }
+
+  final notesPath = fields.at('notes');
+  final offsets = <double>[];
+  final limbs = <Limb>[];
+  GestureKind? lastNoteMove;
+  final notes = fields.list('notes');
+  for (final (i, raw) in notes.indexed) {
+    final path = '$notesPath[$i]';
+    final note = _Fields(path, raw);
+    offsets.add(note.number('at', min: 0));
+    limbs.add(note.named('limb', Limb.values));
+    if (note.has('move')) {
+      if (i != notes.length - 1) {
+        throw LevelDataError(
+          note.at('move'),
+          'only the last note has room for a longer shape',
+        );
+      }
+      lastNoteMove = note.named('move', GestureKind.values);
+    }
+    note.finish();
+  }
+  fields.finish();
+  final chart = FightChart(
+    limbs: List.unmodifiable(limbs),
+    offsets: List.unmodifiable(offsets),
+    callBeats: callBeats,
+  );
+  try {
+    chart.validate();
+  } on ArgumentError catch (error) {
+    throw LevelDataError(notesPath, '${error.message}');
+  }
+  return HardestCombo(
+    name: name,
+    status: status,
+    callBeats: callBeats,
+    moves: List.unmodifiable(moves),
+    chart: chart,
+    lastNoteMove: lastNoteMove,
+  );
+}
+
 class LevelStep {
   const LevelStep({
     required this.level,
     required this.next,
     required this.bridgeToNext,
-    required this.exitLine,
-    required this.nextLine,
   });
   final LevelDefinition level;
   final LevelDefinition? next;
   final String? bridgeToNext;
-  final String exitLine;
-  final String nextLine;
 }
 
 /// The ordered campaign, and the single source of level order.
 class LevelRegistry {
-  LevelRegistry._(this.campaign, this.displayTotal);
+  LevelRegistry._(
+    this.campaign,
+    this.displayTotal,
+    this.upcomingOpponents, [
+    this.reviewLevels = const {},
+  ]);
 
   static const folder = 'levels';
 
@@ -769,6 +1820,32 @@ class LevelRegistry {
 
   /// The number the HUD shows after the level number.
   final int displayTotal;
+
+  /// Opponents with no level yet, so the boss can count on them from the start.
+  final List<UpcomingOpponent> upcomingOpponents;
+
+  /// Levels not in the campaign yet, reachable only from a review link. Checked
+  /// like any other, so one that goes bad fails at the door.
+  final Map<String, LevelDefinition> reviewLevels;
+
+  /// This campaign, or for a review link's [id] that one level alone: a level on
+  /// its own has no bridge and ends on its end screen. A level joining the
+  /// campaign needs no change here. An unknown id is an error, never another room.
+  LevelRegistry reviewing(String? id) {
+    if (id == null || id.isEmpty) return this;
+    final level =
+        reviewLevels[id] ?? levels.where((l) => l.id == id).firstOrNull;
+    if (level == null) {
+      throw ArgumentError.value(id, 'level', 'No such level');
+    }
+    return LevelRegistry._(
+      List.unmodifiable([
+        LevelStep(level: level, next: null, bridgeToNext: null),
+      ]),
+      1,
+      upcomingOpponents,
+    );
+  }
 
   Iterable<LevelDefinition> get levels => campaign.map((step) => step.level);
   LevelDefinition get first => campaign.first.level;
@@ -838,8 +1915,6 @@ class LevelRegistry {
           level: levels[i],
           next: last ? null : levels[i + 1],
           bridgeToNext: last ? null : entry.text('bridgeToNext'),
-          exitLine: entry.text('exitLine'),
-          nextLine: entry.text('nextLine'),
         ),
       );
       entry.finish();
@@ -848,8 +1923,56 @@ class LevelRegistry {
     final displayTotal = index.has('displayTotal')
         ? index.whole('displayTotal', min: levels.length)
         : levels.length;
+    final upcomingPath = index.at('upcomingOpponents');
+    final upcoming = <UpcomingOpponent>[];
+    if (index.has('upcomingOpponents')) {
+      for (final (i, raw) in index.list('upcomingOpponents').indexed) {
+        final entry = _Fields('$upcomingPath[$i]', raw);
+        final id = entry.text('id');
+        final placeholder = entry.has('placeholder') && entry.flag('placeholder');
+        if (placeholder == entry.has('hardestCombo')) {
+          throw LevelDataError(
+            entry.path,
+            'needs a hardestCombo, or placeholder: true, and not both',
+          );
+        }
+        upcoming.add(
+          UpcomingOpponent(
+            id: id,
+            name: entry.text('name'),
+            level: entry.text('level'),
+            hardestCombo: placeholder
+                ? null
+                : _hardestCombo(entry.child('hardestCombo'), [id]),
+          ),
+        );
+        entry.finish();
+      }
+    }
+    final review = <String, LevelDefinition>{};
+    if (index.has('review')) {
+      final reviewPath = index.at('review');
+      for (final (i, raw) in index.list('review').indexed) {
+        if (raw is! String || levels.any((l) => l.id == raw)) {
+          throw LevelDataError('$reviewPath[$i]', 'not a level off the campaign: $raw');
+        }
+        final parsed = jsonDecode(readLevel(raw));
+        if (parsed is! Map<String, Object?>) {
+          throw LevelDataError('$raw.json', 'expected an object');
+        }
+        review[raw] = LevelDefinition.fromJson(parsed, path: '$raw.json');
+        if (review[raw]!.id != raw) {
+          throw LevelDataError('$raw.json', 'holds level "${review[raw]!.id}"');
+        }
+      }
+    }
     index.finish();
-    return LevelRegistry._(List.unmodifiable(steps), displayTotal);
+    return LevelRegistry._(
+      List.unmodifiable(steps),
+      displayTotal,
+      List.unmodifiable(upcoming),
+      Map.unmodifiable(review),
+    );
   }
 
   static Future<LevelRegistry> load(AssetBundle bundle) async {
@@ -863,6 +1986,12 @@ class LevelRegistry {
         if (id is String) {
           texts[id] = await bundle.loadString('$folder/$id.json');
         }
+      }
+    }
+    final review = index is Map<String, Object?> ? index['review'] : null;
+    if (review is List<Object?>) {
+      for (final id in review.whereType<String>()) {
+        texts[id] = await bundle.loadString('$folder/$id.json');
       }
     }
     return LevelRegistry.parse(indexText, (id) => texts[id]!);

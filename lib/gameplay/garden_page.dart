@@ -9,16 +9,25 @@ import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../music/game_audio.dart';
+import '../music/rendered_library.dart';
+import '../music/rendered_music.dart';
 import '../music/score.dart';
 import '../music/transport.dart';
 import '../music/transition_conductor.dart';
-import 'exit_shot.dart';
 import 'garden_scene.dart';
 import 'garden_session.dart';
+import 'gesture_glyph.dart';
+import 'gesture_shapes.dart';
 import 'level_definition.dart';
+import 'music_mixer.dart';
 import 'party_autoplay.dart';
+import 'pause_overlay.dart';
 import 'progression.dart';
 import 'rhythm.dart';
+import 'cue_links.dart';
+import 'cue_path.dart';
+import 'tap_feedback.dart';
+import 'tap_resolution.dart';
 import 'thumb_layout.dart';
 import 'touch_gesture.dart';
 
@@ -46,16 +55,26 @@ class GardenPage extends StatefulWidget {
 
 class _GardenPageState extends State<GardenPage>
     with SingleTickerProviderStateMixin, WidgetsBindingObserver {
+  // `?level=<id>` plays one level alone, for review: nothing else links to it.
   late final Future<LevelRegistry> _levelsLoad =
-      (widget.levels ?? LevelRegistry.loadShipping)();
+      (widget.levels ?? LevelRegistry.loadShipping)().then(
+        (levels) => levels.reviewing(Uri.base.queryParameters['level']),
+      );
   late final _scene = GardenSceneGame(
     firstLevel: () async => (await _levelsLoad).first,
   );
   LevelRegistry? _levels;
   final _focus = FocusNode();
-  final _touches = DanceTouchGestures();
-  final _autoplay = PartyAutoplay();
+  late final _touches = DanceTouchGestures(clock: () => _audio.nowSeconds);
+  // `?autoplay=flawless` makes flawless the first press: the top of the ladder.
+  final _autoplay = PartyAutoplay(
+    startFlawless: Uri.base.queryParameters['autoplay'] == 'flawless',
+  );
   bool _usedAutoplay = false;
+
+  /// AutoPlay was pressed before the campaign finished loading. A press isn't
+  /// dropped just because it came early: it's kept, and the run starts on load.
+  bool _startWhenLoaded = false;
   late final GameAudio _audio;
   late final Ticker _ticker;
   Timer? _pump;
@@ -70,12 +89,19 @@ class _GardenPageState extends State<GardenPage>
   LevelDefinition get _level => _step.level;
   String get _levelNumber => (_roomIndex + 1).toString().padLeft(2, '0');
   final _exitScores = <String, MusicScore>{};
+
+  /// Null when this backend has no rendered audio: the synth plays everything.
+  RenderedLibrary? _library;
+  RenderedMix _mix = const RenderedMix();
+  bool _mixEdited = false;
+
+  /// The rendered exit has been decoded, or has failed and the synth will do.
+  bool _exitMusicSettled = true;
   TransitionConductor? _conductor;
   MusicHandoff? _handoff;
   MusicFinish? _finish;
   bool _exitReady = false;
   bool _exitStarted = false;
-  bool _closeupShowing = false;
   bool _handoffPaused = false;
   bool _adoptingRoom = false;
   bool _starting = false;
@@ -83,14 +109,16 @@ class _GardenPageState extends State<GardenPage>
   int _activationEpoch = 0;
   bool _reducedMotion = false;
   String? _error;
-  String? _feedback;
-  Limb? _styleDestination;
   String? _styleNote;
-  double _styleBeat = 0;
-  double _styleUntil = 0;
-  double _feedbackUntil = 0;
-  Color _feedbackColor = _cream;
   String _resultSignature = '';
+  final _marks = <FeedbackMark>[];
+  final _pressedAt = <Limb, double>{};
+  double _sagUntil = 0;
+  Size _stage = Size.zero;
+  Limb? _lastTapLimb;
+  double _lastTapBeat = 0;
+  String _lastTapNote = '';
+  final _resumeFade = ResumeFade();
 
   @override
   void initState() {
@@ -147,13 +175,9 @@ class _GardenPageState extends State<GardenPage>
                 )
               : (bridgeBeat / bridge.score.lengthBeats).clamp(0.0, 1.0);
           if (_audio.nowSeconds >= exitAt) _scene.exitBeat = exitBeat;
-          final closeup = _scene.closeupShowing;
-          if (closeup != _closeupShowing) {
-            _closeupShowing = closeup;
-            if (mounted) setState(() {});
-          }
           _scene.warmDown = bridge == null ? coda : coda * .55 + travel * .45;
-          _scene.exitTravel = travel;
+          // A cinematic replaces the walk out; the room still cools with travel.
+          _scene.exitTravel = shot == null ? travel : 0;
         }
       }
       if (next != null &&
@@ -170,7 +194,10 @@ class _GardenPageState extends State<GardenPage>
     } else if (_transport!.state == TransportState.playing) {
       _transport!.pump();
     }
-    if (session.phase == GardenPhase.cleared && !_exitStarted && _exitReady) {
+    if (session.phase == GardenPhase.cleared &&
+        !_exitStarted &&
+        _exitReady &&
+        _exitMusicSettled) {
       _beginExit();
     }
     if (!session.running) {
@@ -185,7 +212,17 @@ class _GardenPageState extends State<GardenPage>
       _autoplay.pump(
         session,
         onTap: _tap,
-        onFlourish: (direction) => _ornament(direction.name),
+        onMove: _moveLanded,
+        touches: _touches,
+        origin: (note) {
+          final at = _anchor(
+            note.limb,
+            _stage,
+            _transport!.beatAt(note.atMs / 1000),
+            note.id,
+          );
+          return (at.dx, at.dy);
+        },
       );
     } else {
       _autoplay.suspend();
@@ -196,24 +233,44 @@ class _GardenPageState extends State<GardenPage>
     if (signature != _resultSignature) {
       _resultSignature = signature;
       if (session.lastOutcome == ChallengeOutcome.entranceReset) {
+        // His walk back says it all, and the band goes dull behind him.
         _scene.resetEntrance();
-        _showFeedback(_level.copy.resetLine, _gold);
+        _sagUntil = _audio.nowSeconds + TurnLook.sagSeconds;
       } else if (session.lastOutcome == ChallengeOutcome.retry) {
-        _showFeedback('FIND THE GROOVE', _cream);
+        _sagUntil = _audio.nowSeconds + TurnLook.sagSeconds;
       } else if (session.lastOutcome != null) {
-        _showFeedback('${_metricLabel(_level)} +', _mint);
+        _addMark(FeedbackMark(MarkKind.phrase, _bandCentre));
       }
     }
+    _settleStrokes(session);
     if (session.phase == GardenPhase.paused ||
         session.phase == GardenPhase.cleared) {
       if (session.phase == GardenPhase.paused) {
         _scene.presentationPaused = true;
       }
       _touches.clear();
-      _styleDestination = null;
       _styleNote = null;
       if (mounted) setState(() {});
     }
+  }
+
+  /// A thumb held past its time, or still drawing as the room is won, is read as
+  /// it stands: holding on a moment too long must not lose a finished shape.
+  void _settleStrokes(GardenSession session) {
+    final over = session.phase == GardenPhase.cleared;
+    for (final stroke in _touches.live.toList()) {
+      if (stroke.pointer == autoplayPointer && !over) continue;
+      final ends = session.moveEndsAt(stroke.noteId);
+      if (!over && ends != null && _audio.nowSeconds <= ends) continue;
+      final result = _touches.settle(stroke.pointer);
+      if (result != null) _land(session, result);
+    }
+    _touches.prune();
+  }
+
+  void _land(GardenSession session, DanceStrokeResult result) {
+    final move = landStroke(session, result);
+    if (move != null) _moveLanded(move);
   }
 
   Future<void> _loadScore() async {
@@ -221,6 +278,8 @@ class _GardenPageState extends State<GardenPage>
       final levels = await _levelsLoad;
       if (!mounted) return;
       setState(() => _levels = levels);
+      await _loadRenderedManifest();
+      if (!mounted) return;
       for (final id in levels.roomScoreIds) {
         final json = await rootBundle.loadString(
           'assets/music/scores/$id.json',
@@ -231,7 +290,11 @@ class _GardenPageState extends State<GardenPage>
       if (!mounted) return;
       _scoreData = data;
       _newSession();
+      // Compressed bytes need no permission, so the first press finds them here.
+      unawaited(_library?.fetchLevel(_level.id));
       setState(() {});
+      if (_startWhenLoaded && _autoplay.enabled) unawaited(_start());
+      _startWhenLoaded = false;
       await _prepareExits();
     } catch (error) {
       debugPrint('The campaign could not load: $error');
@@ -241,21 +304,83 @@ class _GardenPageState extends State<GardenPage>
     }
   }
 
+  /// A bad manifest costs the rendered music, never the game.
+  Future<void> _loadRenderedManifest() async {
+    final Object audio = _audio;
+    if (audio is! RenderedAudio) return;
+    try {
+      final manifest = RenderedManifest.fromJson(
+        jsonDecode(
+          await rootBundle.loadString('assets/music/rendered/manifest.json'),
+        ),
+      );
+      _library = RenderedLibrary(audio, manifest);
+      _applyMix();
+    } catch (error) {
+      debugPrint('Rendered music is off: $error');
+    }
+  }
+
+  void _applyMix() {
+    final library = _library;
+    if (library == null) return;
+    // What the owner has set by ear outlasts a room change, until the page reloads.
+    if (!_mixEdited) _mix = library.manifest.mixFor(_level.id);
+    library.audio.setMix(_mix);
+  }
+
+  /// The room's song, on its takes' tempos if it has any.
+  MusicScore _roomScore(LevelDefinition level) {
+    final score = MusicScore.fromJson(_roomScores[level.music.score]!);
+    final music = _library?.level(level.id);
+    return music == null ? score : score.withTempos(music.tempos);
+  }
+
+  RenderedPlan? _ladderPlan(LevelDefinition level, {int entryBar = 0}) {
+    final library = _library;
+    final music = library?.level(level.id);
+    if (library == null || music == null) return null;
+    return RenderedPlan.ladder(music, library.audio, entryBar: entryBar);
+  }
+
+  /// Everything past the first beat, in the background and one at a time. The
+  /// exit isn't taken until this settles; the loop just goes round meanwhile.
+  Future<void> _warmRenderedMusic() async {
+    final library = _library;
+    if (library == null) return;
+    final level = _level;
+    final next = _step.next;
+    _exitMusicSettled = false;
+    try {
+      if (next != null) unawaited(library.fetchLevel(next.id));
+      // The exit first: nothing may keep a level from ending, and a tier change
+      // can wait for its take where a level's end has nowhere to wait.
+      await library.decodeExit(level.id, nextId: next?.id);
+      _exitMusicSettled = true;
+      await library.decodeRest(level.id);
+    } catch (error) {
+      debugPrint('Rendered exit is off: $error');
+    } finally {
+      if (identical(level, _level)) _exitMusicSettled = true;
+    }
+  }
+
   void _newSession() {
     _autoplay.suspend();
     _usedAutoplay = _autoplay.enabled;
     _transport?.stop();
     _transport = MusicTransport(
-      MusicScore.fromJson(_scoreData!),
+      _roomScore(_level),
       _audio,
       loop: true,
       lookaheadSeconds: .3,
       starvationGraceSeconds: _starvationGraceSeconds,
+      rendered: _ladderPlan(_level),
     );
     _audio.leadShape = _level.music.leadShape;
     _session = _level.newSession(_transport!, _audio);
     _scene.session = _session;
-    _feedback = null;
+    _marks.clear();
     _resultSignature = '';
     _exitStarted = false;
   }
@@ -271,7 +396,16 @@ class _GardenPageState extends State<GardenPage>
       }
       await _scene.loaded;
       final next = _step.next;
-      if (next != null) await _scene.images.load(next.background);
+      if (next != null) {
+        // All of what the doorway awaits: a late room would miss its own opening.
+        await _scene.images.load(next.background);
+        for (final image in next.exitShot?.images ?? const <String>[]) {
+          await _scene.images.load(image);
+        }
+        for (final prop in next.layers) {
+          await _scene.images.load(prop.atlas);
+        }
+      }
       if (mounted) setState(() => _exitReady = true);
     } catch (error) {
       // The current loop continues safely if the next room cannot be prepared.
@@ -283,72 +417,86 @@ class _GardenPageState extends State<GardenPage>
     }
   }
 
-  /// The shot's hits, placed in whichever score is playing at their beat.
-  MusicScore _withCue(
-    LevelDefinition level,
-    MusicScore score,
-    double startBeat,
-  ) {
-    final cue = level.exitShot?.cue ?? const <ExitShotCue>[];
-    final notes = [
-      for (final hit in cue)
-        if (hit.beat >= startBeat && hit.beat - startBeat < score.lengthBeats)
-          ScoreNote(
-            track: hit.track,
-            beat: hit.beat - startBeat,
-            pitch: hit.pitch,
-            duration: .25,
-            velocity: hit.velocity,
-          ),
-    ];
-    return notes.isEmpty ? score : score.withNotes(notes);
-  }
-
   void _beginExit() {
     _exitStarted = true;
     _finish = null;
     _conductor = TransitionConductor(
       _audio,
-      lookaheadSeconds: .3,
+      // Queued further ahead than play, so a stalled frame at the very moment of
+      // contact can't drop the hit: the transport never plays a note late.
+      lookaheadSeconds: .6,
       starvationGraceSeconds: _starvationGraceSeconds,
     );
     final step = _step;
     final next = step.next;
+    final shot = step.level.exitShot;
+    final library = _library;
+    final music = library?.level(step.level.id);
+    final successClip = _readyClip(music?.successToward(next?.id));
+    final successScore = successClip == null
+        ? _exitScores[step.level.music.successScore]!
+        : _clipScore(successClip);
+    final success = shot?.mixCue(successScore, 0) ?? successScore;
+    final successPlan = successClip == null
+        ? null
+        : RenderedPlan.single(successClip, library!.audio);
     if (next != null) {
+      final bridgeClip = music?.bridgeTo == next.id
+          ? _readyClip(music?.bridge)
+          : null;
+      final bridgeScore = bridgeClip == null
+          ? _exitScores[step.bridgeToNext!]!
+          : _clipScore(bridgeClip);
       _handoff = _conductor!.handoff(
         source: _transport!,
-        success: _withCue(
-          step.level,
-          _exitScores[step.level.music.successScore]!,
-          0,
+        success: success,
+        bridge:
+            shot?.mixCue(bridgeScore, successScore.lengthBeats) ?? bridgeScore,
+        nextScore: _roomScore(next),
+        successPlan: successPlan,
+        bridgePlan: bridgeClip == null
+            ? null
+            : RenderedPlan.single(bridgeClip, library!.audio),
+        nextPlan: _ladderPlan(
+          next,
+          entryBar: bridgeClip == null ? 0 : music!.bridgeEntryBar,
         ),
-        bridge: _withCue(
-          step.level,
-          _exitScores[step.bridgeToNext!]!,
-          _exitScores[step.level.music.successScore]!.lengthBeats,
-        ),
-        nextScore: MusicScore.fromJson(_roomScores[next.music.score]!),
       );
     } else {
       _finish = _conductor!.finish(
         source: _transport!,
-        success: _exitScores[step.level.music.successScore]!,
+        success: success,
+        successPlan: successPlan,
       );
     }
     _scene.exitCodaBeat = _transport!.beatAt(_transport!.retirementSeconds) + 4;
     if (mounted) setState(() {});
   }
 
+  RenderedClip? _readyClip(RenderedClip? clip) =>
+      clip != null && _library!.audio.clipReady(clip) ? clip : null;
+
+  MusicScore _clipScore(RenderedClip clip) => MusicScore.silent(
+    id: clip.id,
+    beatsPerBar: clip.beatsPerBar,
+    bars: clip.bars,
+    bpm: clip.bpm,
+  );
+
   Future<void> _adoptNextRoom() async {
     _adoptingRoom = true;
     final nextIndex = _roomIndex + 1;
     final next = _handoff!.nextTransport;
     try {
-      await _scene.showLevel(_step.next!);
+      await _scene.showLevel(_step.next!, dissolve: true);
       if (!mounted || !_foreground || _conductor?.isPaused == true) return;
       _bankedPizazz += _session!.pizazz;
       _bankedPerfects += _session!.perfects;
+      final leftLevel = _level.id;
       _roomIndex = nextIndex;
+      // The next room's first take is playing, so the old room's audio can go.
+      _library?.releaseLevel(leftLevel, keep: _level.id);
+      _applyMix();
       _scoreData = _roomScores[_level.music.score];
       _transport = next;
       _audio.leadShape = _level.music.leadShape;
@@ -359,14 +507,13 @@ class _GardenPageState extends State<GardenPage>
       _finish = null;
       _conductor = null;
       _exitStarted = false;
-      _closeupShowing = false;
-      _feedback = null;
-      _styleDestination = null;
+      _marks.clear();
       _styleNote = null;
       _resultSignature = '';
       // Ready this level's own exit: its bridge's next room is not loaded yet.
       _exitReady = false;
       unawaited(_prepareExits());
+      unawaited(_warmRenderedMusic());
       setState(() {});
     } catch (error) {
       _conductor?.pause();
@@ -403,10 +550,10 @@ class _GardenPageState extends State<GardenPage>
       }
       _scene.presentationPaused = false;
       if (_handoffPaused) {
-        final barSeconds =
-            4 * 60 / _transport!.score.tempos[_transport!.currentTier];
+        final barSeconds = 4 * 60 / _transport!.currentBpm;
         _conductor!.resume(leadSeconds: barSeconds);
         _playCountIn(barSeconds);
+        _beginResumeFade(_audio.nowSeconds + barSeconds);
         _handoffPaused = false;
         return;
       }
@@ -430,11 +577,19 @@ class _GardenPageState extends State<GardenPage>
       }
       if (_session!.phase == GardenPhase.paused) {
         _session!.resume();
-        _playCountIn(
-          _transport!.secondsAt(_transport!.positionBeats) - _audio.nowSeconds,
-        );
+        final anchor = _transport!.secondsAt(_transport!.positionBeats);
+        _playCountIn(anchor - _audio.nowSeconds);
+        _beginResumeFade(anchor);
       } else {
+        // Bounded: if the take isn't decoded in time, the run starts on the synth
+        // at the same tempo, and the take joins at a phrase boundary.
+        await _library?.decodeStart(_level.id, tier: 0);
+        if (!mounted || !_foreground || activationEpoch != _activationEpoch) {
+          return;
+        }
+        _applyMix();
         _session!.start();
+        unawaited(_warmRenderedMusic());
       }
       _focus.requestFocus();
     } catch (error) {
@@ -460,22 +615,63 @@ class _GardenPageState extends State<GardenPage>
       _session?.pause();
     }
     _touches.clear();
-    _styleDestination = null;
     _styleNote = null;
     setState(() {});
   }
 
-  void _toggleAutoplay() {
+  /// Only while paused. A second tap can arrive after the resume and before the
+  /// next frame takes this callback away, and it must not start anything.
+  void _resumeFromPause() {
+    if (_handoffPaused || _session?.phase == GardenPhase.paused) {
+      unawaited(_start());
+    }
+  }
+
+  /// A second tap right after a resume is one thumb, not a wish to pause again.
+  void _pauseFromButton() {
+    if (!_resumeFade.guardsPauseAt(_audio.nowSeconds)) _pause();
+  }
+
+  bool get _calmPause =>
+      _reducedMotion || MediaQuery.disableAnimationsOf(context);
+
+  /// Volume and opacity only: the transport has already anchored the music, and
+  /// this reads that time without being able to change it.
+  void _beginResumeFade(double anchor) {
+    final calm = _calmPause;
+    _resumeFade.begin(
+      now: _audio.nowSeconds,
+      anchor: anchor,
+      reducedMotion: calm,
+    );
+    final Object audio = _audio;
+    if (audio is MusicFader) {
+      audio.fadeMusicIn(
+        atSeconds: anchor,
+        seconds: calm ? musicFadeSecondsCalm : musicFadeSeconds,
+      );
+    }
+  }
+
+  /// Off, on with errors, flawless, off.
+  void _cycleAutoplay() {
     setState(() {
-      _autoplay.enabled = !_autoplay.enabled;
+      _autoplay.mode = _autoplay.nextMode;
       if (_autoplay.enabled) _usedAutoplay = true;
       _touches.clear();
-      _styleDestination = null;
       _styleNote = null;
     });
-    if (_autoplay.enabled &&
-        _session?.phase == GardenPhase.ready &&
-        !_starting) {
+    if (!_autoplay.enabled) {
+      _startWhenLoaded = false;
+      return;
+    }
+    if (_session == null) {
+      _startWhenLoaded = true;
+      // The browser unlocks sound only inside this press, so ask for it now.
+      unawaited(_audio.activate().catchError((Object _) {}));
+      return;
+    }
+    if (_session!.phase == GardenPhase.ready && !_starting) {
       // Activate sound in this same user gesture on desktop browsers.
       unawaited(_start());
     }
@@ -505,7 +701,8 @@ class _GardenPageState extends State<GardenPage>
     _foreground =
         state == AppLifecycleState.resumed ||
         state == AppLifecycleState.inactive;
-    _scene.presentationPaused = !_foreground;
+    _scene.presentationPaused =
+        !_foreground || _handoffPaused || _session?.phase == GardenPhase.paused;
     if (!_foreground) _activationEpoch++;
     if (!_foreground &&
         (_session?.running == true || _conductor?.isPlaying == true)) {
@@ -525,14 +722,23 @@ class _GardenPageState extends State<GardenPage>
     super.dispose();
   }
 
-  void _showFeedback(String text, Color color) {
-    _feedback = text;
-    _feedbackColor = color;
-    _feedbackUntil = _audio.nowSeconds + .65;
+  void _addMark(FeedbackMark mark) {
+    final now = _audio.nowSeconds;
+    _marks
+      ..removeWhere(
+        (old) => now - (old.bornAt ?? now) >= FeedbackMark.lifeSeconds,
+      )
+      ..add(mark..bornAt = now);
   }
 
+  /// Low in the middle of the tap band, where a passed phrase sprays up from.
+  Offset get _bandCentre => Offset(_stage.width / 2, _stage.height * .8);
+
   TapResult _tap(Limb limb) {
+    final richBefore = _session!.richStepsCompleted;
     final result = _session!.tap(limb);
+    // Heard, before any judgment: a stray tap gets this and nothing else.
+    _pressedAt[limb] = _audio.nowSeconds;
     if (result.note != null) {
       final targetBeat = _transport!.beatAt(result.note!.atMs / 1000);
       final futureBeats = [
@@ -543,48 +749,102 @@ class _GardenPageState extends State<GardenPage>
         limb,
         targetBeat: targetBeat,
         nextRequiredBeat: futureBeats.isEmpty ? null : futureBeats.first,
+        partner: _session!.lastPairPartner,
       );
-      _styleDestination = result.note!.flourishTo == null ? null : limb;
       _styleNote = result.note!.flourishTo == null ? null : result.note!.id;
-      _styleBeat = _transport!.beatAt(result.note!.atMs / 1000);
-      _styleUntil = _audio.nowSeconds + RhythmJudge.flourishWindowMs / 1000;
-      if (result.timing == TapTiming.perfect) {
-        _showFeedback('PERFECT', _gold);
-      } else if (result.timing == TapTiming.early) {
-        _showFeedback('GOOD · a little early', const Color(0xFF72DDF7));
-      } else {
-        _showFeedback('GOOD · a little late', const Color(0xFFFF9E79));
+      _lastTapLimb = limb;
+      _lastTapBeat = targetBeat;
+      _lastTapNote = result.note!.id;
+      if (result.timing != null) {
+        _addMark(
+          FeedbackMark.tap(
+            result.timing!,
+            _anchor(limb, _stage, targetBeat, result.note!.id),
+            deltaMs: result.deltaMs,
+            combo: _session!.combo,
+          ),
+        );
       }
-    } else {
-      _showFeedback('KEEP THE PULSE', _cream);
+      // Both presses of a richer step: the sparks say it landed, as a move's do.
+      if (_session!.richStepsCompleted != richBefore) {
+        _moveAccent();
+        _addMark(
+          FeedbackMark(
+            MarkKind.flourish,
+            _anchor(limb, _stage, targetBeat, result.note!.id),
+          ),
+        );
+      }
     }
     return result;
   }
 
-  Limb? _limbAt(Offset point, Size size) =>
-      thumbLimbAt(point.dx / size.width, point.dy / size.height);
-
-  Offset _anchor(Limb limb, Size size, [double hitBeat = 0]) {
-    final point = thumbAnchor(limb, hitBeat);
-    return Offset(point.x * size.width, point.y * size.height);
+  /// The limb of the nearest ring with an open note whose area holds the point.
+  Limb? _resolveTap(GardenSession session, Offset point, Size size) {
+    session.advance();
+    return resolveTap(
+      x: point.dx,
+      y: point.dy,
+      radius: tapAreaRadius(size.width),
+      candidates: openTapCandidates(
+        cues: session.visibleCues,
+        nowMs: (_audio.nowSeconds * 1000).round(),
+        secondsAt: _transport!.secondsAt,
+        landing: (cue) => _path(cue.limb, cue.beat, cue.id, size).landing,
+      ),
+    )?.limb;
   }
 
+  /// A stray tap in the pad is heard, like a wrong-quadrant tap always was: the
+  /// ring on its side dents, and it costs nothing.
+  void _strayTap(Offset point, Size size) {
+    final limb = thumbLimbAt(point.dx / size.width, point.dy / size.height);
+    if (limb != null) _pressedAt[limb] = _audio.nowSeconds;
+  }
+
+  /// Where a note's feedback belongs: the spot its ring landed on.
+  Offset _anchor(Limb limb, Size size, double beat, String id) {
+    final landing = _path(limb, beat, id, size).landing;
+    return Offset(landing.x, landing.y);
+  }
+
+  CuePath _path(Limb limb, double beat, String id, Size size) => cuePath(
+    limb: limb,
+    beat: beat,
+    id: id,
+    width: size.width,
+    height: size.height,
+    reducedMotion: _reducedMotion,
+  );
+
   Offset _cuePosition(GardenCue cue, Size size) {
-    final path = tornadoPosition(
-      cue.limb,
-      cue.progress,
-      reducedMotion: _reducedMotion,
+    final at = _path(cue.limb, cue.beat, cue.id, size).at(cue.progress);
+    return Offset(at.x, at.y);
+  }
+
+  /// A move landed: the music answers, the trail flares, and Mācron does it.
+  /// The room's reward sound for a move or a finished richer step, if it has one.
+  void _moveAccent() {
+    final accent = _level.music.moveAccent;
+    if (accent == null) return;
+    _audio.schedule(
+      ScoreNote(
+        track: accent.track,
+        beat: 0,
+        pitch: accent.pitch,
+        duration: .25,
+        velocity: accent.velocity,
+      ),
+      _audio.nowSeconds,
+      .25,
     );
-    final target = _anchor(cue.limb, size, cue.beat);
-    final left = cue.limb == Limb.leftHand || cue.limb == Limb.leftFoot;
-    final upper = cue.limb == Limb.leftHand || cue.limb == Limb.rightHand;
-    final tx = ((path.x - .5) / (left ? -.41 : .41)).clamp(0.0, 1.0);
-    final ty = ((path.y - .5) / (upper ? -.40 : .40)).clamp(0.0, 1.0);
-    final origin = Offset(size.width * .5, size.height * .47);
-    return Offset(
-      origin.dx + (target.dx - origin.dx) * tx,
-      origin.dy + (target.dy - origin.dy) * ty,
-    );
+  }
+
+  void _moveLanded(OptionalMove move) {
+    _moveAccent();
+    _ornament(move.direction.name);
+    _scene.flourishMove = move.kind;
+    _scene.flourishLimb = move.limb;
   }
 
   void _ornament(String gesture) {
@@ -603,15 +863,18 @@ class _GardenPageState extends State<GardenPage>
         transport.secondsAt(nextBeat + note.beat + note.duration) - at,
       );
     }
-    _styleDestination = null;
     _styleNote = null;
     _scene.flourishBeat = _session!.positionBeats;
-    _showFeedback(
-      _session!.styleCombo > 1
-          ? '¡STYLE ×${_session!.styleCombo}!'
-          : '¡PIZAZZ!',
-      _mint,
-    );
+    final limb = _lastTapLimb;
+    if (limb != null) {
+      _addMark(
+        FeedbackMark(
+          MarkKind.flourish,
+          _anchor(limb, _stage, _lastTapBeat, _lastTapNote),
+          chain: _session!.styleCombo,
+        ),
+      );
+    }
   }
 
   @override
@@ -621,6 +884,8 @@ class _GardenPageState extends State<GardenPage>
     final phase = _handoffPaused
         ? GardenPhase.paused
         : session?.phase ?? GardenPhase.ready;
+    final paused = phase == GardenPhase.paused;
+    final pauseVeil = paused ? 1.0 : _resumeFade.opacityAt(_audio.nowSeconds);
     return Scaffold(
       backgroundColor: _ink,
       body: KeyboardListener(
@@ -632,6 +897,12 @@ class _GardenPageState extends State<GardenPage>
             _pause();
             return;
           }
+          if (paused &&
+              (event.logicalKey == LogicalKeyboardKey.enter ||
+                  event.logicalKey == LogicalKeyboardKey.space)) {
+            _resumeFromPause();
+            return;
+          }
           if (!active) return;
           final direction = {
             LogicalKeyboardKey.arrowUp: FlourishDirection.up,
@@ -639,12 +910,19 @@ class _GardenPageState extends State<GardenPage>
             LogicalKeyboardKey.arrowDown: FlourishDirection.down,
             LogicalKeyboardKey.arrowLeft: FlourishDirection.left,
           }[event.logicalKey];
-          if (direction != null &&
-              _styleNote != null &&
-              _audio.nowSeconds <= _styleUntil &&
-              session!.flourishGesture(_styleNote!, direction)) {
-            _ornament(direction.name);
-            return;
+          if (direction != null && _styleNote != null) {
+            final move = session!.optionalMove(
+              _styleNote!,
+              direction == FlourishDirection.left ||
+                      direction == FlourishDirection.right
+                  ? GestureKind.spin
+                  : GestureKind.flick,
+              direction,
+            );
+            if (move != null) {
+              _moveLanded(move);
+              return;
+            }
           }
           final limb = {
             LogicalKeyboardKey.keyQ: Limb.leftHand,
@@ -660,6 +938,7 @@ class _GardenPageState extends State<GardenPage>
             child: LayoutBuilder(
               builder: (context, constraints) {
                 final size = constraints.biggest;
+                _stage = size;
                 return Stack(
                   fit: StackFit.expand,
                   children: [
@@ -683,31 +962,34 @@ class _GardenPageState extends State<GardenPage>
                       Listener(
                         behavior: HitTestBehavior.opaque,
                         onPointerDown: (event) {
-                          final limb = _limbAt(event.localPosition, size);
-                          if (limb == null) return;
-                          final result = _tap(limb);
+                          final limb = _resolveTap(
+                            session,
+                            event.localPosition,
+                            size,
+                          );
+                          if (limb == null) _strayTap(event.localPosition, size);
                           _touches.begin(
                             pointer: event.pointer,
                             x: event.localPosition.dx,
                             y: event.localPosition.dy,
-                            at: event.timeStamp,
-                            acceptedNote: result.note,
+                            acceptedNote: limb == null ? null : _tap(limb).note,
                           );
                         },
-                        onPointerUp: (event) {
-                          final flick = _touches.end(
+                        onPointerMove: (event) {
+                          final done = _touches.move(
                             pointer: event.pointer,
                             x: event.localPosition.dx,
                             y: event.localPosition.dy,
-                            at: event.timeStamp,
                           );
-                          if (flick != null &&
-                              session.flourishGesture(
-                                flick.noteId,
-                                flick.direction,
-                              )) {
-                            _ornament(flick.direction.name);
-                          }
+                          if (done != null) _land(session, done);
+                        },
+                        onPointerUp: (event) {
+                          final done = _touches.end(
+                            pointer: event.pointer,
+                            x: event.localPosition.dx,
+                            y: event.localPosition.dy,
+                          );
+                          if (done != null) _land(session, done);
                         },
                         onPointerCancel: (event) =>
                             _touches.cancel(event.pointer),
@@ -719,25 +1001,76 @@ class _GardenPageState extends State<GardenPage>
                               ))
                                 _target(limb, size),
                             for (final cue in session!.visibleCues)
-                              _target(cue.limb, size, cue.beat),
+                              _target(cue.limb, size, cue),
+                            Positioned.fill(
+                              child: IgnorePointer(
+                                child: CustomPaint(
+                                  painter: CueLinkPainter(
+                                    cueLinks(
+                                      session.visibleCues,
+                                      (cue) => _cuePosition(cue, size),
+                                    ),
+                                    demoColor: _gold,
+                                    playColor: _mint,
+                                  ),
+                                ),
+                              ),
+                            ),
                             for (final cue in session.visibleCues)
                               _cue(cue, size),
-                            if (_styleDestination != null &&
-                                _audio.nowSeconds < _styleUntil)
-                              _styleHint(_styleDestination!, size),
                           ],
                         ),
                       ),
                     if (active)
-                      IgnorePointer(child: _fightLabels(session!, size)),
-                    if (!active) _cover(phase, size),
-                    _header(active || _conductor?.isPlaying == true),
-                    if (active)
+                      IgnorePointer(child: _playSignals(session!, size)),
+                    if (!active && !paused) _cover(phase, size),
+                    if (pauseVeil > 0)
+                      Positioned.fill(
+                        child: VcrPauseOverlay(
+                          showPlay: !paused || _starting,
+                          opacity: pauseVeil,
+                          reducedMotion: _calmPause,
+                          onResume: paused ? _resumeFromPause : null,
+                          message: paused ? _error : null,
+                        ),
+                      ),
+                    _header(
+                      active ||
+                          _conductor?.isPlaying == true ||
+                          (phase == GardenPhase.cleared && !_exitStarted),
+                      paused: paused,
+                    ),
+                    if (musicMixerRequested && _library != null)
                       Positioned(
-                        top: MediaQuery.paddingOf(context).top + 68,
-                        left: 20,
-                        right: 20,
-                        child: _respect(session!),
+                        top: 60,
+                        left: 8,
+                        bottom: 60,
+                        child: Align(
+                          alignment: Alignment.topLeft,
+                          child: MusicMixerPanel(
+                            audio: _library!.audio,
+                            library: _library!,
+                            levelId: _level.id,
+                            transport: () => _handoff?.success.state ==
+                                    TransportState.playing
+                                ? _handoff!.success
+                                : _finish?.success.state ==
+                                      TransportState.playing
+                                ? _finish!.success
+                                : _handoff?.bridge.state ==
+                                      TransportState.playing
+                                ? _handoff!.bridge
+                                : _transport,
+                            mix: _mix,
+                            onMix: (mix) {
+                              setState(() {
+                                _mix = mix;
+                                _mixEdited = true;
+                              });
+                              _library!.audio.setMix(mix);
+                            },
+                          ),
+                        ),
                       ),
                   ],
                 );
@@ -749,50 +1082,43 @@ class _GardenPageState extends State<GardenPage>
     );
   }
 
-  Widget _header(bool active) => Positioned(
+  Widget _header(bool active, {required bool paused}) => Positioned(
     top: MediaQuery.paddingOf(context).top + 14,
     left: 20,
     right: 14,
     child: Row(
       children: [
-        const Text(
-          'K / K',
-          style: TextStyle(
-            color: _gold,
-            fontWeight: FontWeight.w900,
-            fontSize: 20,
-            letterSpacing: -1,
-          ),
-        ),
-        const SizedBox(width: 10),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text(
-              'KUMBIA KOLISEUM',
-              style: TextStyle(
-                color: _cream,
-                fontSize: 9,
-                letterSpacing: 2,
-                fontWeight: FontWeight.w600,
-              ),
+        // The wordmark belongs to the cover. In play the room has the screen.
+        if (!active && !paused) ...[
+          const Text(
+            'K / K',
+            style: TextStyle(
+              color: _gold,
+              fontWeight: FontWeight.w900,
+              fontSize: 20,
+              letterSpacing: -1,
             ),
-            if (_usedAutoplay)
-              const Text(
-                'AUTOMATIC RUN',
-                style: TextStyle(color: _mint, fontSize: 8, letterSpacing: 1),
-              ),
-          ],
-        ),
+          ),
+          const SizedBox(width: 10),
+          const Text(
+            'KUMBIA KOLISEUM',
+            style: TextStyle(
+              color: _cream,
+              fontSize: 9,
+              letterSpacing: 2,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+        ],
         const Spacer(),
         if (active)
           IconButton(
-            onPressed: _pause,
+            onPressed: _pauseFromButton,
             tooltip: 'Pause',
             color: _cream,
             icon: const Icon(Icons.pause_rounded),
           )
-        else
+        else if (!paused)
           Text(
             _levels == null
                 ? ''
@@ -803,106 +1129,101 @@ class _GardenPageState extends State<GardenPage>
               fontSize: 11,
             ),
           ),
-        Semantics(
-          toggled: _autoplay.enabled,
-          label: 'AutoPlay',
-          child: IconButton(
-            onPressed: _session == null ? null : _toggleAutoplay,
-            tooltip: _autoplay.enabled
-                ? 'Turn off AutoPlay'
-                : 'AutoPlay · watch the party',
-            color: _autoplay.enabled ? _mint : _cream.withValues(alpha: .65),
-            iconSize: 20,
-            icon: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Icon(
-                  _autoplay.enabled
-                      ? Icons.smart_toy
-                      : Icons.smart_toy_outlined,
-                ),
-                const Text(
-                  'AUTO',
-                  style: TextStyle(fontSize: 7, letterSpacing: .6),
-                ),
-              ],
-            ),
-          ),
-        ),
+        _autoplayButton(),
       ],
     ),
   );
 
-  String _metricLabel(LevelDefinition level) =>
-      level.rules.metric.toUpperCase();
+  /// A press is never ignored, even before the campaign has loaded: it's kept.
+  Widget _autoplayButton() {
+    final mode = _autoplay.mode;
+    final describe = switch (mode) {
+      AutoplayMode.off => 'AutoPlay off',
+      AutoplayMode.withErrors => 'AutoPlay on, with mistakes',
+      AutoplayMode.flawless => 'AutoPlay flawless',
+    };
+    final next = switch (_autoplay.nextMode) {
+      AutoplayMode.off => 'turn it off',
+      AutoplayMode.withErrors => 'watch it with mistakes',
+      AutoplayMode.flawless => 'watch it flawless',
+    };
+    final color = switch (mode) {
+      AutoplayMode.flawless => _gold,
+      AutoplayMode.withErrors => _mint,
+      // Faintly lit for the rest of a run it played in.
+      AutoplayMode.off =>
+        _usedAutoplay
+            ? _mint.withValues(alpha: .55)
+            : _cream.withValues(alpha: .65),
+    };
+    return Semantics(
+      toggled: _autoplay.enabled,
+      label: describe,
+      child: IconButton(
+        key: const ValueKey('autoplay'),
+        onPressed: _cycleAutoplay,
+        tooltip: '$describe. Tap to $next.',
+        color: color,
+        iconSize: 20,
+        icon: Stack(
+          clipBehavior: Clip.none,
+          children: [
+            Icon(
+              mode == AutoplayMode.off
+                  ? Icons.smart_toy_outlined
+                  : Icons.smart_toy,
+              color: color,
+              size: 20,
+            ),
+            // Shape as well as colour says flawless: gold reads poorly for some.
+            if (mode == AutoplayMode.flawless)
+              const Positioned(
+                right: -7,
+                top: -7,
+                child: Icon(Icons.star_rounded, color: _gold, size: 13),
+              ),
+          ],
+        ),
+      ),
+    );
+  }
 
-  Widget _respect(GardenSession session) => Column(
-    children: [
-      Row(
-        children: [
-          Text(
-            _metricLabel(_level),
-            style: const TextStyle(
-              color: _gold,
-              fontWeight: FontWeight.w800,
-              letterSpacing: 3,
-              fontSize: 11,
-            ),
-          ),
-          const Spacer(),
-          Text(
-            '${_bankedPizazz + session.pizazz} PIZAZZ',
-            style: const TextStyle(
-              color: _mint,
-              fontFamily: 'Kumbia',
-              fontSize: 10,
-              letterSpacing: 1,
-            ),
-          ),
-        ],
-      ),
-      const SizedBox(height: 8),
-      Row(
-        children: List.generate(
-          5,
-          (i) => Expanded(
-            child: Container(
-              height: 3,
-              margin: const EdgeInsets.symmetric(horizontal: 2),
-              color: i <= session.progress.tier
-                  ? _gold
-                  : _cream.withValues(alpha: .18),
-            ),
-          ),
-        ),
-      ),
-      if (session.progress.tier == 4) ...[
-        const SizedBox(height: 6),
-        Text(
-          'FULL SUPPORT · ${session.peakChallengesRemaining} FINISH PHRASES',
-          style: const TextStyle(color: _mint, fontSize: 9, letterSpacing: 1),
-        ),
-      ],
-    ],
+  TurnLook _turnLook(GardenSession session) => TurnLook.of(
+    session.phase,
+    beat: _transport!.positionBeats,
+    flow: session.combo,
+    reducedMotion: _reducedMotion,
+    sagging: _audio.nowSeconds < _sagUntil,
   );
 
-  Widget _target(Limb limb, Size size, [double hitBeat = 0]) {
-    final at = _anchor(limb, size, hitBeat);
+  Widget _target(Limb limb, Size size, [GardenCue? cue]) {
+    final at = cue == null
+        ? cueHome(limb, width: size.width, height: size.height)
+        : _path(limb, cue.beat, cue.id, size).landing;
+    final look = _turnLook(_session!);
+    // The ring dents the moment a thumb lands, whatever the judge says next.
+    final pressed = _audio.nowSeconds - (_pressedAt[limb] ?? -1) < .09;
     return Positioned(
-      left: at.dx - 29,
-      top: at.dy - 29,
+      left: at.x - cueRingRadius,
+      top: at.y - cueRingRadius,
       child: IgnorePointer(
         child: Opacity(
-          opacity: .30,
-          child: Container(
-            width: 58,
-            height: 58,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              border: Border.all(color: _cream, width: 1),
+          opacity: pressed ? .85 : look.ring,
+          child: Transform.scale(
+            scale: pressed && !_reducedMotion ? .92 : 1,
+            child: Container(
+              width: 58,
+              height: 58,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                border: Border.all(
+                  color: pressed ? _cream : look.color,
+                  width: 1,
+                ),
+              ),
+              padding: const EdgeInsets.all(14),
+              child: _limbIcon(limb, pressed ? _cream : look.color),
             ),
-            padding: const EdgeInsets.all(14),
-            child: _limbIcon(limb, _cream),
           ),
         ),
       ),
@@ -911,19 +1232,22 @@ class _GardenPageState extends State<GardenPage>
 
   Widget _cue(GardenCue cue, Size size) {
     final at = _cuePosition(cue, size);
-    final extent = 25 + cue.progress * 21;
+    final extent = cueExtent(cue.progress);
     final color = cue.demo ? _gold : _mint;
     return Positioned(
       left: at.dx - extent / 2,
       top: at.dy - extent / 2,
       child: IgnorePointer(
         child: Opacity(
-          opacity: cue.demo ? .45 + cue.progress * .25 : .6 + cue.progress * .4,
+          opacity:
+              cueFadeIn(cue.progress) *
+              (cue.demo ? .45 + cue.progress * .25 : .6 + cue.progress * .4),
           child: SizedBox(
             width: extent,
             height: extent,
             child: Stack(
               alignment: Alignment.center,
+              clipBehavior: Clip.none,
               children: [
                 SizedBox.expand(
                   child: cue.demo
@@ -947,48 +1271,41 @@ class _GardenPageState extends State<GardenPage>
                   padding: const EdgeInsets.all(9),
                   child: _limbIcon(cue.limb, color),
                 ),
-                if (cue.flourishTo != null)
-                  const Positioned(
-                    right: 0,
-                    bottom: 0,
-                    child: Icon(Icons.open_with, color: _mint, size: 16),
+                // A second ring: this spot wants two presses.
+                if (cue.move == RichMove.doubleTap)
+                  Semantics(
+                    label: 'Press twice',
+                    child: Transform.scale(
+                      scale: 1.3,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          border: Border.all(color: color, width: 1.5),
+                        ),
+                      ),
+                    ),
+                  ),
+                // The path itself, from where the thumb lands: press, then this.
+                if (cue.offer != null)
+                  Semantics(
+                    label: 'Optional ${cue.offer!.name}',
+                    child: SizedBox.expand(
+                      child: CustomPaint(
+                        painter: GestureGlyphPainter(
+                          cue.offer!,
+                          color: color,
+                          flip: !limbIsLeft(cue.limb),
+                          pose: GlyphPose.ofCue(
+                            cue.progress,
+                            reducedMotion: _calmPause,
+                          ),
+                        ),
+                      ),
+                    ),
                   ),
               ],
             ),
           ),
-        ),
-      ),
-    );
-  }
-
-  Widget _styleHint(Limb limb, Size size) {
-    final at = _anchor(limb, size, _styleBeat);
-    return Positioned(
-      left: at.dx - 36,
-      top: at.dy - 36,
-      child: IgnorePointer(
-        child: Column(
-          children: [
-            Container(
-              width: 72,
-              height: 72,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: _mint.withValues(alpha: .1),
-                border: Border.all(color: _mint.withValues(alpha: .7)),
-              ),
-              padding: const EdgeInsets.all(23),
-              child: const Icon(Icons.open_with, color: _mint, size: 26),
-            ),
-            Text(
-              'FLICK FOR STYLE',
-              style: const TextStyle(
-                color: _mint,
-                fontSize: 8,
-                letterSpacing: 1,
-              ),
-            ),
-          ],
         ),
       ),
     );
@@ -1005,183 +1322,144 @@ class _GardenPageState extends State<GardenPage>
     semanticsLabel: limb.name,
   );
 
-  Widget _fightLabels(GardenSession session, Size size) {
+  /// Everything a label used to say in play. The words stay for screen readers.
+  Widget _playSignals(GardenSession session, Size size) {
+    final countingIn = _transport!.countingIn;
     final untilStart =
         _transport!.secondsAt(_transport!.positionBeats) - _audio.nowSeconds;
     final count =
-        (untilStart / (60 / _transport!.score.tempos[_transport!.currentTier]))
+        (untilStart / (60 / _transport!.currentBpm))
             .ceil()
             .clamp(1, 4);
-    final label = _transport!.countingIn
-        ? 'READY  $count'
+    final turn = countingIn
+        ? 'Ready, $count'
         : switch (session.phase) {
-            GardenPhase.intro => 'FEEL THE PULSE',
-            GardenPhase.call => 'WATCH THE CALL',
-            _ =>
-              session.progress.tier == 4
-                  ? 'PEAK GROOVE · ${session.peakChallengesRemaining} TO GO'
-                  : 'YOUR TURN',
+            GardenPhase.intro => 'Feel the pulse',
+            GardenPhase.call => 'Watch the call',
+            _ => 'Your turn',
           };
-    return Stack(
-      children: [
-        Positioned(
-          top: size.height * .29,
-          left: 20,
-          right: 20,
-          child: Center(
-            child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-              color: _ink.withValues(alpha: .80),
-              child: Text(
-                label,
-                style: TextStyle(
-                  color: session.phase == GardenPhase.call ? _gold : _mint,
-                  fontSize: 10,
-                  letterSpacing: 2.3,
-                  fontWeight: FontWeight.w800,
-                ),
+    final finishing = session.progress.tier == 4;
+    return Semantics(
+      label: turn,
+      value: finishing
+          ? 'Full support, ${session.peakChallengesRemaining} finish phrases'
+          : 'Level ${session.progress.tier + 1} of 5',
+      liveRegion: true,
+      child: ExcludeSemantics(
+        child: Stack(
+          fit: StackFit.expand,
+          children: [
+            CustomPaint(
+              painter: FeedbackPainter(
+                _marks,
+                _audio.nowSeconds,
+                reducedMotion: _reducedMotion,
               ),
             ),
+            CustomPaint(
+              painter: StrokeTrailPainter(
+                _touches.strokes.toList(),
+                now: _audio.nowSeconds,
+                reducedMotion: _calmPause,
+                flipOf: (stroke) => !limbIsLeft(stroke.limb),
+              ),
+            ),
+            if (countingIn)
+              Positioned(
+                top: size.height * .29,
+                left: 0,
+                right: 0,
+                child: _lamps(4, count, _gold, 12),
+              ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  /// [lit] of [total] small round lamps in a centred row.
+  Widget _lamps(int total, int lit, Color color, double extent) => Row(
+    mainAxisAlignment: MainAxisAlignment.center,
+    children: [
+      for (var i = 0; i < total; i++)
+        Container(
+          width: extent,
+          height: extent,
+          margin: EdgeInsets.symmetric(horizontal: extent * .4),
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: i < lit ? color : color.withValues(alpha: .15),
+            border: Border.all(color: _ink.withValues(alpha: .7)),
           ),
         ),
-        if (session.combo >= 2 && session.phase == GardenPhase.response)
-          Positioned(
-            top: size.height * .53,
-            left: 20,
-            right: 20,
-            child: Center(
-              child: Text(
-                '${session.combo} STEPS IN FLOW',
-                style: const TextStyle(
-                  color: _gold,
-                  letterSpacing: 2,
-                  fontSize: 10,
-                  fontWeight: FontWeight.w800,
-                  shadows: [Shadow(blurRadius: 6, color: _ink)],
-                ),
-              ),
-            ),
-          ),
-        if (session.phase == GardenPhase.cleared && !_closeupShowing)
-          Positioned(
-            top: size.height * .53,
-            left: 20,
-            right: 20,
-            child: const Center(
-              child: Text(
-                'RESPECT EARNED. KEEP DANCING.',
-                style: TextStyle(
-                  color: _mint,
-                  letterSpacing: 2.5,
-                  fontSize: 11,
-                  fontWeight: FontWeight.w900,
-                  shadows: [Shadow(blurRadius: 8, color: _ink)],
-                ),
-              ),
-            ),
-          ),
-        if (_feedback != null && _audio.nowSeconds < _feedbackUntil)
-          Positioned(
-            top: size.height * .57,
-            left: 20,
-            right: 20,
-            child: Center(
-              child: Text(
-                _feedback!,
-                style: TextStyle(
-                  color: _feedbackColor,
-                  letterSpacing: 3,
-                  fontSize: 14,
-                  fontWeight: FontWeight.w900,
-                  shadows: const [Shadow(blurRadius: 8, color: _ink)],
-                ),
-              ),
-            ),
-          ),
-        Positioned(
-          bottom: MediaQuery.paddingOf(context).bottom + 18,
-          left: 20,
-          right: 20,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                session.phase == GardenPhase.call
-                    ? 'LOOK. LISTEN. REPEAT.'
-                    : 'TAP WHEN THE ICON LANDS.',
-                style: TextStyle(
-                  color: _cream.withValues(alpha: .6),
-                  letterSpacing: 1.6,
-                  fontSize: 8,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-            ],
-          ),
-        ),
+    ],
+  );
+
+  /// The level's two big words, the only text in a run. It lands with the hit.
+  Widget _cinematicTitle(Size size) {
+    final shot = _level.exitShot;
+    final beat = _scene.exitBeat;
+    final pose = shot == null || beat == null
+        ? null
+        : shot.titleAt(beat, reducedMotion: _reducedMotion);
+    if (pose == null) return const SizedBox.shrink();
+    final words = _level.copy.titleWords;
+    final fontSize = math.min(size.width * .21, 104.0);
+    TextStyle style(Color color) => TextStyle(
+      color: color,
+      height: 1,
+      fontSize: fontSize,
+      letterSpacing: -2,
+      fontWeight: FontWeight.w900,
+      shadows: const [
+        Shadow(color: _ink, offset: Offset(3, 4)),
+        Shadow(color: _ink, blurRadius: 12),
       ],
+    );
+    return Positioned(
+      // Under the contact point, in the band the close-up keeps clear for this.
+      top: size.height * .58,
+      left: 16,
+      right: 16,
+      height: size.height * .3,
+      child: IgnorePointer(
+        child: Semantics(
+          label: _level.copy.clearedShout,
+          liveRegion: true,
+          child: ExcludeSemantics(
+            child: Opacity(
+              opacity: pose.opacity,
+              child: Transform.scale(
+                scale: pose.scale,
+                child: FittedBox(
+                  fit: BoxFit.scaleDown,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(words.first, style: style(_cream)),
+                      Text(words.last, style: style(_gold)),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
     );
   }
 
   Widget _cover(GardenPhase phase, Size size) {
-    final paused = phase == GardenPhase.paused;
     final cleared = phase == GardenPhase.cleared;
-    if (cleared && _closeupShowing) return const SizedBox.shrink();
-    if (cleared && _conductor?.isPlaying == true) {
-      return Positioned.fill(
-        child: IgnorePointer(
-          child: Stack(
-            children: [
-              Positioned(
-                top: size.height * .18,
-                left: 24,
-                right: 24,
-                child: Column(
-                  children: [
-                    Text(
-                      _level.copy.clearedShout,
-                      style: const TextStyle(
-                        color: _gold,
-                        fontWeight: FontWeight.w900,
-                        fontSize: 32,
-                        letterSpacing: -1,
-                        shadows: [Shadow(color: _ink, blurRadius: 12)],
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    const Text(
-                      'OK, YOU COOL.',
-                      style: TextStyle(
-                        color: _mint,
-                        fontSize: 10,
-                        letterSpacing: 3,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Positioned(
-                bottom: size.height * .12,
-                left: 24,
-                right: 24,
-                child: Text(
-                  _step.exitLine,
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    color: _cream,
-                    fontSize: 10,
-                    letterSpacing: 2,
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-      );
+    // The picture and the music carry a level's end. Only a failure to load the
+    // next room, or the end of the campaign, brings the cover back.
+    if (cleared && _conductor?.isPlaying == true) return _cinematicTitle(size);
+    if (cleared && !_exitStarted && _error == null) {
+      return const SizedBox.shrink();
     }
     return Positioned.fill(
       child: ColoredBox(
-        color: _ink.withValues(alpha: paused ? .82 : .38),
+        color: _ink.withValues(alpha: .38),
         child: SafeArea(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 30),
@@ -1189,11 +1467,7 @@ class _GardenPageState extends State<GardenPage>
               children: [
                 SizedBox(height: math.max(58, size.height * .13)),
                 Text(
-                  cleared
-                      ? 'RESPECT EARNED'
-                      : paused
-                      ? 'TAKE A BREATH'
-                      : 'A LITTLE ROBOT. A BIG NIGHT.',
+                  cleared ? '' : 'A LITTLE ROBOT. A BIG NIGHT.',
                   textAlign: TextAlign.center,
                   style: const TextStyle(
                     color: _mint,
@@ -1204,11 +1478,7 @@ class _GardenPageState extends State<GardenPage>
                 ),
                 const SizedBox(height: 14),
                 Text(
-                  cleared
-                      ? _level.copy.clearedTitle
-                      : paused
-                      ? 'STILL\nGROOVIN’.'
-                      : 'KUMBIA\nKOMBAT',
+                  cleared ? _level.copy.clearedTitle : 'KUMBIA\nKOMBAT',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: _cream,
@@ -1224,9 +1494,7 @@ class _GardenPageState extends State<GardenPage>
                 const SizedBox(height: 18),
                 Text(
                   cleared
-                      ? _level.copy.clearedClaim
-                      : paused
-                      ? 'Your groove will wait for you.'
+                      ? ''
                       : _levels == null
                       ? ''
                       : '$_levelNumber  /  ${_level.title}',
@@ -1238,43 +1506,56 @@ class _GardenPageState extends State<GardenPage>
                 ),
                 const Spacer(),
                 if (cleared)
-                  Text(
-                    '${_bankedPerfects + _session!.perfects} PERFECT  ·  ${_bankedPizazz + _session!.pizazz} PIZAZZ',
-                    style: const TextStyle(
-                      color: _cream,
-                      fontFamily: 'Kumbia',
-                      fontSize: 11,
-                    ),
+                  Semantics(
+                    label:
+                        '${_bankedPerfects + _session!.perfects} perfect, '
+                        '${_bankedPizazz + _session!.pizazz} pizazz',
+                    child: const SizedBox.shrink(),
                   ),
-                if (!cleared && !paused) ...[
+                if (!cleared) ...[
                   Text(
                     _levels == null ? '' : _level.copy.invitation,
                     textAlign: TextAlign.center,
                     style: const TextStyle(color: _cream, fontSize: 13),
                   ),
                   const SizedBox(height: 12),
+                  // A tap, then the four invitations, drawn just as a cue draws them.
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      for (final limb in [
-                        Limb.leftHand,
-                        Limb.rightHand,
-                        Limb.leftHand,
-                        Limb.leftHand,
+                      SizedBox(
+                        width: 20,
+                        height: 25,
+                        child: _limbIcon(Limb.leftHand, _mint),
+                      ),
+                      for (final kind in const [
+                        GestureKind.spin,
+                        GestureKind.wave,
+                        GestureKind.stomp,
+                        GestureKind.circle,
                       ])
                         Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 10),
+                          padding: const EdgeInsets.only(left: 18),
                           child: SizedBox(
-                            width: 20,
+                            width: 25,
                             height: 25,
-                            child: _limbIcon(limb, _mint),
+                            child: CustomPaint(
+                              painter: GestureGlyphPainter(
+                                kind,
+                                color: _mint,
+                                flip: false,
+                                size: 22,
+                                centred: true,
+                                pose: const GlyphPose(1, null),
+                              ),
+                            ),
                           ),
                         ),
                     ],
                   ),
                   const SizedBox(height: 12),
                   Text(
-                    'Tap anywhere in the matching zone.\nFour-arrow cues invite a short flick for style.\nTaps alone keep the party going.',
+                    'Tap near the matching ring.\nDrag along a drawn path for style.\nTaps alone keep the party going.',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: _cream.withValues(alpha: .6),
@@ -1310,12 +1591,8 @@ class _GardenPageState extends State<GardenPage>
                     child: Text(
                       _starting
                           ? 'WAKING THE MUSIC…'
-                          : _conductor?.isPlaying == true
-                          ? 'FOLLOW THE GROOVE'
                           : cleared
                           ? 'OTRA VUELTA  >'
-                          : paused
-                          ? 'SEGUIMOS  >'
                           : 'ENTRA AL RITMO  >',
                       style: const TextStyle(
                         fontWeight: FontWeight.w900,
@@ -1326,24 +1603,23 @@ class _GardenPageState extends State<GardenPage>
                   ),
                 ),
                 const SizedBox(height: 10),
-                if (!paused)
-                  Wrap(
-                    alignment: WrapAlignment.center,
-                    spacing: 6,
-                    children: [
-                      _option(
-                        'CALM CAMERA',
-                        _reducedMotion,
-                        () => setState(() {
-                          _reducedMotion = !_reducedMotion;
-                          _scene.reducedMotion = _reducedMotion;
-                        }),
-                      ),
-                    ],
-                  ),
+                Wrap(
+                  alignment: WrapAlignment.center,
+                  spacing: 6,
+                  children: [
+                    _option(
+                      'CALM CAMERA',
+                      _reducedMotion,
+                      () => setState(() {
+                        _reducedMotion = !_reducedMotion;
+                        _scene.reducedMotion = _reducedMotion;
+                      }),
+                    ),
+                  ],
+                ),
                 const SizedBox(height: 16),
                 Text(
-                  cleared ? _step.nextLine : 'A KUMBIA KOLISEUM NIGHT',
+                  cleared ? '' : 'A KUMBIA KOLISEUM NIGHT',
                   style: TextStyle(
                     color: _cream.withValues(alpha: .4),
                     fontSize: 8,

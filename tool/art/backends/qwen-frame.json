@@ -10,11 +10,19 @@
  "secondsPerJob": 92,
  "skeletonScale": 0.8,
  "negatives": "ineffective",
- "sampler": {"steps": 4, "cfg": 1.0, "name": "euler", "scheduler": "simple"},
+ "sampler": {
+  "steps": 4,
+  "cfg": 1.0,
+  "name": "euler",
+  "scheduler": "simple"
+ },
  "prompts": {
   "skeleton": "Image 2 is a coloured stick-figure pose skeleton. Draw the {noun} from image 1 standing in that exact pose, at the same size and position in the frame as the skeleton, with empty background around {obj}: {poss} whole figure fits inside the frame, {fits} fully visible with margin on every side. {description}. {props}Sides are {poss} own: {sub} {faces} the viewer, so {poss} left is on the right of the picture. {Sub} {keeps} {poss} {look}, exactly as in image 1. Same pixel art style with crisp pixel clusters and cel shading. {Sub} {has} exactly two arms and two hands, each hand complete with fingers. {extra}Do not draw the skeleton. Plain light grey background, full body.",
+  "skeletonBack": "Image 2 is a coloured stick-figure pose skeleton. Draw the {noun} from image 1 standing in that exact pose, at the same size and position in the frame as the skeleton, with empty background around {obj}: {poss} whole figure fits inside the frame, {fits} fully visible with margin on every side. {description}. {props}Sides are {poss} own: {sub} {has} {poss} back to the viewer, so {poss} left is on the left of the picture. {Sub} {keeps} {poss} {look}, exactly as in image 1. Same pixel art style with crisp pixel clusters and cel shading. {Sub} {has} exactly two arms and two hands, each hand complete with fingers. {extra}Do not draw the skeleton. Plain light grey background, full body.",
+  "skeletonTurn": "Image 2 is a coloured stick-figure pose skeleton. Draw the {noun} from image 1 standing in that exact pose, at the same size and position in the frame as the skeleton, with empty background around {obj}: {poss} whole figure fits inside the frame, {fits} fully visible with margin on every side. {description}. {props}{Sub} {keeps} {poss} {look}, exactly as in image 1. Same pixel art style with crisp pixel clusters and cel shading. {Sub} {has} exactly two arms and two hands, each hand complete with fingers. {extra}Do not draw the skeleton. Plain light grey background, full body.",
   "reference": "Draw the {noun} from image 1 {description}. {props}Keep exactly the same {noun}: {look}, same crisp pixel art style. {extra}Whole {noun} visible with margin on all sides, {fits} inside the frame. Plain light grey background, no text.",
   "sheetFromText": "Image 2 is a coloured stick-figure pose skeleton. Image 1 shows the art style only, not the person. Draw a completely new {noun} in that exact pose, full-body model sheet, {description}, whole figure inside the frame with margin. {Sub} {has} {poss} {look}. Same crisp pixel art style, cel shading and thick dark ink outline as image 1. {extra}Exactly two arms and two hands. Do not draw the skeleton. Plain light grey background, full body.",
-  "sheetFromReference": "Draw the {noun} from image 1 again as a clean model sheet view, {description}. Keep exactly the same {noun}: {look}, same crisp pixel art style. {extra}Whole {noun} visible with margin on all sides, {fits} inside the frame. Plain light grey background, no text."
+  "sheetFromReference": "Draw the {noun} from image 1 again as a clean model sheet view, {description}. Keep exactly the same {noun}: {look}, same crisp pixel art style. {extra}Whole {noun} visible with margin on all sides, {fits} inside the frame. Plain light grey background, no text.",
+  "sheetTurned": "Image 2 is a coloured stick-figure pose skeleton. Draw the same {noun} from image 1 in that exact pose, as a clean model sheet view, {description}, whole figure inside the frame with margin. Keep exactly the same {noun} and the same instrument: {look}, same crisp pixel art style, cel shading and thick dark ink outline as image 1. {extra}Exactly two arms and two hands. Do not draw the skeleton. Plain light grey background, full body."
  }
 }

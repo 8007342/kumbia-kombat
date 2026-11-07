@@ -4,26 +4,6 @@ import 'package:kumbia_kombat/gameplay/thumb_layout.dart';
 
 void main() {
   test(
-    'all authored beat destinations remain inside their generous thumb cell',
-    () {
-      for (final limb in Limb.values) {
-        final destinations = <String>{};
-        for (var halfBeat = 0; halfBeat < 2000; halfBeat++) {
-          final beat = halfBeat / 2;
-          final point = thumbAnchor(limb, beat);
-          expect(thumbLimbAt(point.x, point.y), limb);
-          expect(point.x, inInclusiveRange(.29, .71));
-          expect(point.y, inInclusiveRange(.71, .90));
-          expect(thumbAnchor(limb, beat).x, point.x);
-          expect(thumbAnchor(limb, beat).y, point.y);
-          destinations.add('${point.x}:${point.y}');
-        }
-        expect(destinations.length, greaterThan(1));
-      }
-    },
-  );
-
-  test(
     'touch regions remain stable and ignore scene and browser-edge taps',
     () {
       expect(thumbLimbAt(.1, .66), Limb.leftHand);

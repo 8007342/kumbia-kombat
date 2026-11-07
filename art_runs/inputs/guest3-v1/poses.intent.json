@@ -1,0 +1,162 @@
+{
+ "character": "guest3",
+ "note": "Sides are the character's own; she faces the viewer, so her left is on screen right.",
+ "poses": {
+  "groove.a": {
+   "clip": "groove",
+   "phase": "down",
+   "support": "left",
+   "description": "facing the viewer, dancing in place on bent knees with weight on her left foot, arms low and loose below the shoulders, loose relaxed hands, smiling"
+  },
+  "groove.b": {
+   "clip": "groove",
+   "phase": "up",
+   "support": "both",
+   "description": "facing the viewer, dancing in place, a small rise with both feet flat, arms low and loose below the shoulders, loose relaxed hands, smiling"
+  },
+  "groove.c": {
+   "clip": "groove",
+   "phase": "down",
+   "support": "right",
+   "description": "facing the viewer, dancing in place on bent knees with weight on her right foot, arms low and loose below the shoulders, loose relaxed hands, smiling"
+  },
+  "groove.d": {
+   "clip": "groove",
+   "phase": "up",
+   "support": "both",
+   "description": "facing the viewer, dancing in place, a small rise with both feet flat, arms low and loose below the shoulders, loose relaxed hands, smiling"
+  },
+  "pair_dance.a": {
+   "clip": "pair_dance",
+   "phase": "down",
+   "support": "left",
+   "description": "seen in a three-quarter view from the side: the chest, hips, knees, toes and nose all point toward the lower right corner of the picture, the face in three-quarter view looking that way, smiling, absorbed in the dance, both arms held forward in a slow social-dance hold, the upper hand open at chest height and the lower hand open at waist height, both reaching toward the right side of the picture, the fingers relaxed and together, weight on the back foot, the front heel lifted"
+  },
+  "pair_dance.b": {
+   "clip": "pair_dance",
+   "phase": "up",
+   "support": "both",
+   "description": "seen in a three-quarter view from the side: the chest, hips, knees, toes and nose all point toward the lower right corner of the picture, the face in three-quarter view looking that way, smiling, absorbed in the dance, both arms held forward in a slow social-dance hold, the upper hand open at chest height and the lower hand open at waist height, both reaching toward the right side of the picture, the fingers relaxed and together, both feet flat in a small rise"
+  },
+  "pair_dance.c": {
+   "clip": "pair_dance",
+   "phase": "down",
+   "support": "right",
+   "description": "seen in a three-quarter view from the side: the chest, hips, knees, toes and nose all point toward the lower right corner of the picture, the face in three-quarter view looking that way, smiling, absorbed in the dance, both arms held forward in a slow social-dance hold, the upper hand open at chest height and the lower hand open at waist height, both reaching toward the right side of the picture, the fingers relaxed and together, weight on the front foot, the back heel lifted"
+  },
+  "pair_dance.d": {
+   "clip": "pair_dance",
+   "phase": "up",
+   "support": "both",
+   "description": "seen in a three-quarter view from the side: the chest, hips, knees, toes and nose all point toward the lower right corner of the picture, the face in three-quarter view looking that way, smiling, absorbed in the dance, both arms held forward in a slow social-dance hold, the upper hand open at chest height and the lower hand open at waist height, both reaching toward the right side of the picture, the fingers relaxed and together, both feet flat in a small rise"
+  },
+  "back_dance.a": {
+   "clip": "back_dance",
+   "phase": "down",
+   "support": "left",
+   "description": "seen from behind at three quarters, turned away from the viewer toward the upper right corner of the picture: the back of her head and her back show, a sliver of cheek on the right, the face hidden, both arms held forward in a slow social-dance hold, the upper hand open at chest height and the lower hand open at waist height, both reaching toward the right side of the picture, the fingers relaxed and together, weight on one foot, the other heel lifted"
+  },
+  "back_dance.b": {
+   "clip": "back_dance",
+   "phase": "up",
+   "support": "both",
+   "description": "seen from behind at three quarters, turned away from the viewer toward the upper right corner of the picture: the back of her head and her back show, a sliver of cheek on the right, the face hidden, both arms held forward in a slow social-dance hold, the upper hand open at chest height and the lower hand open at waist height, both reaching toward the right side of the picture, the fingers relaxed and together, both feet flat in a small rise"
+  },
+  "back_dance.c": {
+   "clip": "back_dance",
+   "phase": "down",
+   "support": "right",
+   "description": "seen from behind at three quarters, turned away from the viewer toward the upper right corner of the picture: the back of her head and her back show, a sliver of cheek on the right, the face hidden, both arms held forward in a slow social-dance hold, the upper hand open at chest height and the lower hand open at waist height, both reaching toward the right side of the picture, the fingers relaxed and together, weight on the other foot, one heel lifted"
+  },
+  "back_dance.d": {
+   "clip": "back_dance",
+   "phase": "up",
+   "support": "both",
+   "description": "seen from behind at three quarters, turned away from the viewer toward the upper right corner of the picture: the back of her head and her back show, a sliver of cheek on the right, the face hidden, both arms held forward in a slow social-dance hold, the upper hand open at chest height and the lower hand open at waist height, both reaching toward the right side of the picture, the fingers relaxed and together, both feet flat in a small rise"
+  },
+  "sidestep.a": {
+   "clip": "sidestep",
+   "phase": "contact",
+   "support": "left",
+   "description": "seen in a clean side profile walking toward the right side of the picture, the nose and both toes pointing right, one eye showing, taking a long easy step, the front heel just touching the floor and the back foot on its toes, arms swinging low at the sides, relaxed hands"
+  },
+  "sidestep.b": {
+   "clip": "sidestep",
+   "phase": "pass",
+   "support": "left",
+   "description": "seen in a clean side profile walking toward the right side of the picture, the nose and both toes pointing right, one eye showing, mid-step, the weight over one straight leg and the other foot passing it, arms low at the sides, relaxed hands"
+  },
+  "sidestep.c": {
+   "clip": "sidestep",
+   "phase": "contact",
+   "support": "right",
+   "description": "seen in a clean side profile walking toward the right side of the picture, the nose and both toes pointing right, one eye showing, taking a long easy step with the other foot in front, the front heel just touching the floor and the back foot on its toes, arms swinging low at the sides, relaxed hands"
+  },
+  "sidestep.d": {
+   "clip": "sidestep",
+   "phase": "pass",
+   "support": "right",
+   "description": "seen in a clean side profile walking toward the right side of the picture, the nose and both toes pointing right, one eye showing, mid-step on the other leg, the weight over one straight leg and the other foot passing it, arms low at the sides, relaxed hands"
+  },
+  "glance.a": {
+   "clip": "glance",
+   "phase": "hold",
+   "support": "both",
+   "description": "seen from behind, her back to the viewer, head turned to look back over her shoulder toward the right side of the picture so her face shows in profile with one eye, curious and interested, arms relaxed"
+  },
+  "glance.b": {
+   "clip": "glance",
+   "phase": "hold",
+   "support": "both",
+   "description": "seen from behind, her back to the viewer, head turned a little further over her shoulder toward the right side of the picture so her face shows in profile with one eye, smiling and interested, arms relaxed"
+  },
+  "clap.a": {
+   "clip": "clap",
+   "phase": "open",
+   "support": "both",
+   "description": "facing the viewer, hands apart at chest height about to clap, palms facing each other, delighted"
+  },
+  "clap.b": {
+   "clip": "clap",
+   "phase": "contact",
+   "support": "both",
+   "description": "facing the viewer, palms together clapping at chest height, knees softly bent, delighted"
+  },
+  "cheer.a": {
+   "clip": "cheer",
+   "phase": "accent",
+   "support": "both",
+   "description": "facing the viewer, cheering with both arms straight up above her head and open hands, a big smile"
+  },
+  "cheer.b": {
+   "clip": "cheer",
+   "phase": "accent",
+   "support": "left",
+   "description": "facing the viewer, cheering with both arms up above her head and open hands, one hip dropped, a big smile"
+  },
+  "model.front": {
+   "clip": "model",
+   "phase": "sheet",
+   "support": "both",
+   "description": "standing square"
+  },
+  "model.q3": {
+   "clip": "model",
+   "phase": "sheet",
+   "support": "both",
+   "description": "standing in three quarters"
+  },
+  "model.back": {
+   "clip": "model",
+   "phase": "sheet",
+   "support": "both",
+   "description": "from behind in three quarters"
+  },
+  "model.side": {
+   "clip": "model",
+   "phase": "sheet",
+   "support": "both",
+   "description": "in profile"
+  }
+ }
+}

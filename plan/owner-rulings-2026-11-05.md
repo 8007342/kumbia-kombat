@@ -1,7 +1,7 @@
 # Owner rulings, 2026-11-05
 
 These settle the Level 3 discussion's first round. Where an older plan disagrees, this file wins until the
-plan is updated.
+plan is updated. `assets/art/STYLEGUIDE.md` folds the visual rulings into one guide, and this file still outranks it.
 
 | Topic | Ruling | Owner's words |
 |---|---|---|
@@ -59,4 +59,170 @@ Status, 2026-11-06: the handoff, Mācron's clap, opponent spins and the oil gulp
 | Spin timing | Spins must not end the opponent's turn at their resting place. Let the animation finish even if it overflows the turn, then step away, so the full spin happens mid-floor. They can also come a little more often | "let the animation of the opponent end even if it overflows their turn, and step away afterwards" |
 | Skill reward | Optional adornments appear more often and become more rewarding for players doing well, with music, audience and dance moves; opponents gain adornments as challenges for skilled players | "more popular if the player is doing well" |
 | Music direction | Research local audio models that output composable looping segments, crossfaded at runtime from compressed files | "composable segments that loop, that you could then crossfade at runtime" |
+| Music freedom | The current scores no longer limit the music. Audio models may reimagine each level's music from its concept | "give the new models free reign to reimplement the concept of the music in the levels" |
 | Audio in git | Never commit WAV to the remote, only MP3 and other compressed formats | "be mindful not to commit WAV files to remote" |
+
+## Fifth round, 2026-11-06: everything parties up
+
+Backgrounds, the party and other cosmetic assets SHALL be affected by the music score. This is intended by design, and the older specs that said otherwise are obsolete.
+
+As the game progresses, the music gains complexity and the party stands up and dances, the plants, umbrellas, waiters, fire flames and other background items also dance to the beat: "everything should slowly party up".
+
+The method comes from sibling project ranitas: movement introduced without players noticing. See its `docs/quiet-awakening.md` and `docs/research.md` (slow change blindness, Simons, Franconeri & Reimer 2000; Frey et al. 2024). Its own limits carry over: slow changes can escape attention, but nothing guarantees every player misses them, and its timings are artistic choices, not study results. New layers fade in at their final anchors, movement amplitude grows separately, entrances use quintic smootherstep, and motion is never switched on at full speed. Reduced motion still applies.
+
+Layers, the same day: backgrounds and some assets may be regenerated into layers. Party members, umbrellas, cups with straws that dance at full swing, plants, candles and lights can be shared between levels, so they are worth the compute. "it's fine to spend some compute on them"
+
+## Sixth round, 2026-11-06: the room is the meter, and dance input grows
+
+| Topic | Ruling | Owner's words |
+|---|---|---|
+| Tempo | Tiers keep speeding up | "Let's try to keep the speed up" |
+| Music styles | Each level has its own style, with more variety later | "different musical styles for each level are fine" |
+| Meter | The room is the meter. The top progress bar can go | "we'll use the room as the meter, we can even remove the progress bar from the top" |
+| Sound rewards | Cheers, whistles or clapping answer flourishes and optional arrangements | "add the cheers, whistling, or clapping sounds" |
+| Crowd pointing | Reserved for successful flourishes, or for the change from uninterested to interested | "uninterested->oh!_look!(*points)->now_interested" |
+| Crowd arc | The party starts uninterested and is engaged by the time a level clears | "should start uninterested and be engaged by the tame we clear a level" |
+| Input | Optional taps and tap+drag gestures: sideways for spins, a semi-circle for a hand wave, up and down for a foot stomp. Complex traces for skilled players later, such as a left hand tap then a W to the right. Animations match the gesture | "tap+drag sideways for spins, then tap+semi-circle for a handhave, or tap+up_and_down for a foot stomp" |
+| Signature moves | Each dance style has signature moves, made intuitive by its gesture, with fast precise ones in advanced levels such as swing | "signature moves for each kind of dance" |
+| Opponent | The opponent's dance composition grows to match the player's skill, and the player answers it | "shall increase its dance compositions to match the player skill" |
+| Feedback | Get rid of text messages everywhere. Iconography for taps; colours and highlights for early, late and perfect; colours, highlights and sparks for follow-throughs and adornments. Tap+drag gets its own indicators | "let's try to get rid of text messages everywhere" |
+| Full swing | Every room can reach full swing, for skilful players only. Average players get a warm-ish party with some people dancing, but staff, umbrellas and plants don't dance | "average players should get just a warm-ish party", "skillful play should be clearly rewarded" |
+
+This settles the progression report's decisions: no Heat meter, every room can reach full swing, and optional taps and drags are wanted, so flicks alone are no longer the plan. The report's safety rule still applies: ignoring optional play costs nothing. Mācron's own signature step still comes from the salsa teacher.
+
+Answers the same day: the big end-of-level word stays as a consistent theme, each level a synonym or near meaning of cool, swag, mojo or suave. Early and late differ in shape, motion and effects, whatever research shows helps players improve by feel. The owner will ask the salsa teacher for signature moves, on video. See `plan/signature-moves-footage.md`.
+
+## Seventh round, 2026-11-06: music briefs and the purpose of the oil gulp
+
+| Topic | Ruling | Owner's words |
+|---|---|---|
+| Music briefs | The concept briefs in `plan/music-rebuild.md` stand, including a distinct style for the bar | "the music briefs look correct" |
+| Oil gulp | A proof of concept for wiring. Several transitions will need custom moments, so learn the wiring and its pitfalls early | "just a proof of concept for our wiring", "learn to wire them and the pitfalls early on" |
+| Session plan | Approved: relaunch for the pins, fourth-round fixes, music pilot, art between runs | "I approve the plan for today's session" |
+| Infrastructure | Model and pin requests go to macuahuitl-fedora, the agent on the host | "which can fix your infra" |
+
+So the gulp's job is also to leave a repeatable route for later transition moments. Write down what the wiring needed and what went wrong.
+
+## Eighth round, 2026-11-06: the blind music test
+
+The owner listened blind to 30-second excerpts. Generated takes beat the synth in both rooms. Full table, seeds and caveats: `plan/music-pilot-2026-11-06.md`.
+
+| Room | Result, as heard | Owner's words |
+|---|---|---|
+| Garden | C, then B closely, then D, with A out | "the garden option C is the best, then followed closely by B", "D has some slow interesting progressions but it's too slow and not up to par", "A is clearly the old horrible version" |
+| Pool lawn | A, far ahead, then C, D, B | "A >> C > D > B", "option A is nice and simple but properly elegant", "Option C has more adournments but its melody seems simpler most of the time, option D is even simpler", B "the oldest simplest" |
+
+A and B, the ones the owner called old, were the synth in those rooms. Unblinded, the winners are Garden seed 51002 and lawn seed 52011.
+
+Durability, the same day: "make the results durable and push to remote work branches".
+
+## Ninth round, 2026-11-06: only cinematic text, the duet, the campaign order
+
+| Topic | Ruling | Owner's words |
+|---|---|---|
+| Text | Text appears only in the cinematic highlight, as a simple two-word message whose second word comes from the party and music theme | "ONLY TEXT FOR THE CINEMATIC HIGHLIGHT, where we get our simple 2 word messages", examples "MUCHO MOJO" "MUY SUAVE" "QUÉ FINO" |
+| Titles | Garden, bar and lawn each get their own | "MUCHO MOJO", "MUY SUAVE", "QUÉ FINO" |
+| Accents | The fist bump gets a sound accent, and the oil gulp gets one too | "with the sound accent with the fistbump, and some sound accent for the oil gulp" |
+| Lawn duet | The dancers end at different positions after their turns. Off turn they step slowly, playing with their skirts with one hand on the back, even switching sides. Mācron dances with one of them each turn | "dance and step slowly playing with their skirts with one hand on the back, even switching sides while they're off-turn", "have Mācron dance with one of the girs on each turn" |
+| Lawn cinematic | On success they keep dancing at the sides as Mācron dances between them, then reach down quickly: a kiss on each cheek at the same time. His big round eyes turn to smiling arcs, with a small blush | "the two girls giving Mācron a kiss on each cheek at the same time", "big round eyes turn to smiling arcs and a small blush" |
+| Cues | Moves start somewhere random-ish near the centre of the play area, curve to their spots matching the move's direction, and fade in | "take curves to their final spots that match the direction of the dance move" |
+| Tap area | Tap buttons sit slightly farther from their centre, with a little more variation in where taps appear and are required | "their location is great they just need a larger play area" |
+| WebGL | Smooth with sound in Chromium windows, as smooth as the host browser. The one window without sound was my muted measuring run | "as smooth as the host browser" |
+| Level names | Old level numbers are dropped. Levels go by "next level" as they get built | "let's ignore old level numbering, and just go by the organic \"next level\" nomenclature" |
+| Bathroom rush | A late level with more levels before it, and possibly a boss battle: defeat every earlier opponent in their hardest combo to switch places in the bathroom queue. It should stress the pipelines and specs to the maximum | "defeat every previous opponent in their hardest dance combo to switch places in the bathroom queue", "properly epic" |
+| Order | Possibly garden, then pool party, then bar, then into the indoor party | "perhaps we should show the pool party first, then the bar, so past the bar we walk into the indoor party scene" |
+| Music | New models make themes for the levels, and the old levels start being rewritten into high-definition compressed music | "start rewriting the old levels into high definition compressed music" |
+| Forge disk | `src_mb = 4096` committed | "yes, commit the 4 GB src_mb setting" |
+
+Status, 2026-11-06: the lawn duet, its cinematic and QUÉ FINO are on `work/1846-duet` as candidates, not yet merged or reviewed moving.
+
+The owner approved "the changes and recommendations" in the same message. It is not clear which report that covers beyond the on-screen review, so `plan/gameplay-and-taps-pending.md` marks the touch report's decisions as needing confirmation.
+
+Crowd and scoring, the same day: this settles how engaged a cleared room looks and what earns full swing. A clean run ends with the room fully engaged, unskilful play costs the crowd's interest, a level can pass with the party not fully engaged, and flawless play is rewarded with a fully engaged party. The owner's words: "Let's end up with a room fully egaged for all players, and the penalty for unskillful players is that the crowd loses interest", "let a non-fully engaged party pass, but reward flawless play with a fully engaged party". The scoring should value this using the gameflow research on tension and relaxation.
+
+Taps and pause, the same day: taps count near their ring, with a generous area so play stays fair for clumsy thumbs. "Let's try to have taps end near its ring, since we'll be moving the rings around alittle. Just give them a generous surrounding area". The pause screen becomes a transparent frame like an old VCR's paused picture with a big translucent PAUSE icon. "tapping it turns it into play, then it has a smooth fade out with music fade in into restored playstate".
+
+Leniency and layers, the same day, after the crowd scoring was built: full swing should be easy to reach, and even a poor run that clears should feel warm. "we want to be lenient when letting players reach full swing, we want them to enjoy the game at full animations", "A poor run that succeeds still gets some warm-ish interest, we want the players to feel progression rewarding, an uninterested crowd is not rewarding, even on a successful run". Splitting rooms into layers is approved, and props may get their own: "Yes I approve to separating the rooms in layers, even some of the props might need their own layers".
+
+Ladder listening, the same day. Garden: "the ladder garden isgreat, transitions are not clean but the music increases progressively in complexity, it feels like a livelier version". Pool lawn: "does not follow this pattern, the low section is livelier than mid at some points", "the high section is higher but barely, the low composition is still much richer and some ways".
+
+Bar takes, blind, the same day: B is far ahead. "A, C, and D are awesome but too simple, they're plain background scores. B is lively and identifiable: B >> (A, C, D)." The owner's test for a level theme is that it is lively and identifiable, not just pleasant background. The answer key is in `~/.cache/tillandsias-project/kumbia-audio/themes-20261106/`.
+
+Indoor party takes, blind, the same day: A is far ahead, and A was seed53010. "B, C, and D are great background tracks, but A is richer and full of charisma and personality: A >> (B, C, D)". The Bar winner, B, was seed55005. Rich, charismatic and identifiable is what wins: three times out of four, generated takes that passed timing were only pleasant background.
+
+## Tenth round, 2026-11-06, after playing the merged build
+
+| Topic | Ruling | Owner's words |
+|---|---|---|
+| Fist bump | Works | "The fist bump works nicely" |
+| Bar crowd | Too crowded. Keep the large layer at the bar at the back, with 2 layers of people in front, on stools rather than chairs | "let's have just 2 layers of people on the front, and use stools instead of chairs to reduce clutter" |
+| Garden and lawn crowd | Undercrowded. Many more people sprinkled around, with chairs and tables with drinks | "they could use a lot more people sprinkled around, with chairs and tables with drinks" |
+| Lawn duet | The two always dance as a pair on their turn. On Mācron's turn one of them dances with him, alternating. Spinning needs held hands, so they spin Mācron on the flourishes | "they should always dance in pair during their turn, then alternate one of them dancing with Mācron", "we'll have them spin our cutest tiny Mācron on those flourishes" |
+| Kiss | Needs Mācron's body, showing the "āi" logo on his belly in close-ups | "The Mācron kiss needs a Mācron body, to display its \"āi\" logo on its belly" |
+| Gulp art | Better composed, but the drawing doesn't honour the sprites | "the artwork is still a bit lazy, it doesn't honor the adorable little sprites as Mācron dances" |
+| Mācron's retreat | Back and then to the side, as opponents do. Non-dancers stay outside | "have him step to the side, back and then to the side", "when not dancing non-dancers stay outside" |
+| Opponents | Step forward a little more, with larger sprites, to stand out from the party people | "step forward a little more and increase their sprites a little more" |
+| Turn light | Remove the blue halo at the bottom on the player's turn | "it doesn't add and it's quite confusing, better remove it" |
+| Tap and drag | Still unclear. Lines, semi-circles and full circles should be easy to detect, with a small trained model like sibling project atrapa if needed | "if you need to train a little JEV as our sibling project \"atrapa\" to tell if the input is correct then do it" |
+| Pause | Keep it, with the moving noise band much wider and softer | "The play screen was awesome, let's make the moving noise band much wider but softer" |
+| AutoPlay | Three states: off, on with errors, flawless with a gold icon | "off, on-with-errors, and flawless, with a gold icon" |
+| Four arrows | Remove that requirement in favour of the latest research | "remove the four arrouws requiremn in favor of our latest research" |
+| Pending work | Approved | "I approve the pending work" |
+
+That approval is taken to cover the recommendations awaiting an answer: the level order garden, pool party, bar, indoor party; the indoor party defaults; building ladders from the bar and party winners; layers for the other rooms and party-up for every player. Merging to `game` waits until these fixes land.
+
+Difficulty, the same day: speed is one factor among several, so the lawn keeps its tempos and the dip after it is fine. Levels can be fast and simple, or slow and complex, so long as play complexity keeps rising through the game. "Speed isn't the only factor in level difficulty, we can have fast simple levels, and slow complex levels. Don't worry about reduced speed, as long as the level play complexity increases linearly with gamplay we can get away with this. These soundtracks are complex enough for us to develop gameplay accordingly". So moving the lawn before the bar means the bar's chart has to be the more complex one.
+
+## Eleventh round, 2026-11-06: the next two opponents
+
+| Topic | Ruling | Owner's words |
+|---|---|---|
+| Cast names | The GateKeeper, The Bartender, The Girls, the BlinBlin dancer, the PoolPlayer dancer. "The Girls" is respectful, for women of any age, and a mix of ages is welcome | "they're \"the girls\" respectfully", "mixed age works great" |
+| Indoor party opponent | A male dancer with lots of bling, dancing backwards until Mācron enters. His chains swing as he dances | "a male dancer with lots of blin'-blin', initially dancing backwards, until Mācron enters the scene", "whose chains shall swing around as he dances" |
+| Indoor party cinematic | On defeat he takes an arms-crossed stance with an approving nod. Mācron takes a similar stance on the other side of the shot, nods just as coolly and gets his approval | "will do an arms crossed stance with an approvatory head knod, with Mācron doing a similiar stance on the other side of the cinematic transition" |
+| Level after it | A billiards room. People play pool in the background, uninterested, and a PoolPlayer dancer stops Mācron, using the cue stick as a dancing artifact | "our next levels grow in complexity" |
+| Working style | Push durable work often, tell macuahuitl-fedora about shortcomings, and send it occasional status updates | "push durable work to remote often", "let macuahuitl-fedora of any shortcomings" |
+
+This replaces the plan's lead dancer and the foot-stamp cinematic. The left and right flankers can stay as the mixed-age circle.
+
+Polish, the same day. No finish lamps: "the party engagement and music are indicators enough for the player. We don't like unnecessary UX". The end screen stays as it is for now: "we'll be moving it a lot as we add levels, and figure out the final boss battle". Assets may spill off screen by design: "some of our assets will be placed intentionally at spilling over locations, we only need to see some of them". Cinematic transitions get their own style guide: "to stay consistent, and gently flow to the next room".
+
+Ladders, the same day: progression is right, but the low tiers are too quiet and, on the lawn, too slow. "the low level of the second try lawn pool level is a bit too slow, but the progression is great", "its LOW << MID < HIGH, the low tier is much more quieter in comparison with the mid and high tiers. We need to spike up a little more those low levels." Tiers share themes but "won't crossfade cleanly", so transitions must be made smooth. The implementation is open.
+
+
+## Indoor party round, 2026-11-07: the band and the crowd that's already dancing
+
+The owner's words, whole: "let's use that left platform to add a band playing the music, they'll also play while tapping a foot or swinging their instrument on rythm, and liven their rythm as the player game improves. We can fill a bunch of people dancing already in this room, where our dancing will actually have them slow down and move aside, for Mācron and BlinBlin dancer to take over, the rest will dance in place like at the other levels. They'll start dancing for this one, on the middle, then move over as Mācron and BlinBlin start their dance fight in the middle 😉 The recommended A options are great, I approve"
+
+| Topic | Ruling | Owner's words |
+|---|---|---|
+| Band | A band on the room's left platform plays the music, tapping a foot or swinging an instrument on the beat, and gets livelier as the player improves | "liven their rythm as the player game improves" |
+| Crowd | This room starts full of people already dancing in the middle of the floor. Those in the middle slow down and move aside, and the rest dance in place | "slow down and move aside, for Mācron and BlinBlin dancer to take over" |
+| Band's angle and dancers around it | Players stand at an angle, playing toward the crowd. A few people dance in front of them from our view, all around the band | "they're standing at an angle and playing towards the crowd, and there could be a few people dancing in front of them from our perspective, all around the band playing." |
+| Options | The "recommended A options" are approved. As the coordinator read it, that includes plate A for this room | "The recommended A options are great, I approve" |
+
+Status: built as a hidden level, with stand-in art. See `plan/levels/indoor-party-2026-11-07.md`.
+
+## Twelfth round, 2026-11-07: richer moves, and the ladders by ear
+
+| Topic | Ruling | Owner's words |
+|---|---|---|
+| Richer moves | Charts get double taps and taps in two spots, together or one after the other, inside one beat. Complexity carries the growth, so the lawn's slower top tier is intended | "It's ok, we'll add double taps, even taps in double spots like left and right or left then right, in the same beat, that should compensate for the lower speed. The music feels sharper and more rich, and so should be the dance, even if the tempo is slower ;)" |
+| BlinBlin | Sheets F1 (front) and B1 (back) are approved and accepted | |
+| Campaign order | Garden, pool party, bar is merged. The game should now play the rendered music | "plays great on auto, but it still has the old synth score" |
+| Ladders | By ear, the lawn plays MID, HIGH, LOW: 144, then 160, then 136 BPM. The bar and indoor party ladders stay as they are | "for the song to feel like its growing", "great the way it is" |
+| Mixing | Ladders need mixing, and perhaps some transitional segments re-mixed | "They still need mixing capabilities, and possibly re-mixing some transitional segments." |
+| Local models | Local CPU and GPU are approved for assets, curation, music and vision | |
+
+How the richer moves were built, and what only a thumb can settle: `plan/double-moves-2026-11-07.md`.
+
+## Round of 2026-11-07: The Pool Player and the billiards room
+
+| Topic | Ruling | Owner's words |
+|---|---|---|
+| Name | The Pool Player, she/her | "We'll call her The Pool Player" |
+| Front | Sheet 989001 | "the second front candidate, the one with the smile" |
+| Back | Sheets 989101 and 989103 | "the second and fourth back candidates" |
+| Billiards plate | `art_runs/rooms/billiards/picks/plate-989601.png`, the darkest ceiling, measured | "the glow reflections on the floor and the black ceiling provide the better effect and depth" |
+
+989103 shows a slight turn of the head, and its cue has a hooked foot with a ball. Back 989101 has a stray pale ball at the cue's foot. Both stay as drawn until frames show whether it matters.

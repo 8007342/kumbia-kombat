@@ -45,7 +45,7 @@ ROOT = Path(__file__).resolve().parents[3]
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 sys.path.insert(0, str(ROOT / "tool" / "art" / "pipeline"))
 import definitions as D  # noqa: E402
-from garments import build_character  # noqa: E402
+from garments import build_character, cue_line  # noqa: E402
 from poses import INTENT_BY_SET, MOTION_SETS, Pose, apply_overrides, intent_text  # noqa: E402
 from prims import _MATS, emission_mat, srgb_to_linear  # noqa: E402
 
@@ -213,9 +213,14 @@ def _two_bone(hip: Vector, knee0: Vector, target: Vector, a: float, b: float) ->
     return knee, hip + u * d
 
 
-def home_ankles(p: Proportions) -> dict[str, Vector]:
-    """Rest-pose ankle positions: where a planted foot always sits."""
+def home_ankles(p: Proportions, yaw: float = 0) -> dict[str, Vector]:
+    """Rest-pose ankle positions: where a planted foot always sits.
+
+    Facing away, each foot's spot is the other one's: his left foot is on picture left, or the legs cross.
+    """
     j = _fk_local(p, Pose(), "both")
+    if math.cos(math.radians(yaw)) < -0.1:
+        return {"l": j["r_ank"], "r": j["l_ank"]}
     return {"l": j["l_ank"], "r": j["r_ank"]}
 
 
@@ -244,7 +249,7 @@ def solve(p: Proportions, pose: Pose, support: str) -> dict:
         # Two-foot stance: both ankles on their home spots (2-bone IK in the
         # body frame, knee kept in the authored bend plane), so feet never
         # slide into or out of a two-foot stance.
-        home = home_ankles(p)
+        home = home_ankles(p, pose.yaw)
         inv = rot("Z", -pose.yaw)
         for side, _s in SIDES:
             tgt = inv @ home[side]
@@ -269,7 +274,7 @@ def solve(p: Proportions, pose: Pose, support: str) -> dict:
     body = rot("Z", pose.yaw)
     out = {k: (body @ v if isinstance(v, Vector) else v) for k, v in j.items()}
     out["_head_rot"] = body @ j["_head_rot"]
-    home = home_ankles(p)
+    home = home_ankles(p, pose.yaw)
     pin = pin_of(pose, support)
     if pin == "mid":
         cur = (out["l_ank"] + out["r_ank"]) / 2
@@ -429,7 +434,7 @@ def render_pose(rig: Rig, camera: str, pose_id: str, pose: Pose, support: str, o
     j = solve(p, pose, support)
     clip, name = pose_id.split(".", 1)
     before = previous_drawing(rig, clip, name) if clip in rig.clips and name in rig.clips[clip] else None
-    build_character(rig.definition, p, j, regions, clip, solve(p, *before) if before else None)
+    build_character(rig.definition, p, j, regions, clip, solve(p, *before) if before else None, pose_id)
     sc = bpy.context.scene
     cam = sc.camera
     cam_fwd = (cam.matrix_world.to_3x3() @ Vector((0, 0, -1))).normalized()
@@ -451,6 +456,10 @@ def render_pose(rig: Rig, camera: str, pose_id: str, pose: Pose, support: str, o
            "joints": {k: [round(v[0], 1), round(v[1], 1)] for k, v in joints2d.items()},
            "problems": problems, "clip": pose_id.split(".")[0], "pin": pin_of(pose, support),
            "bbox": bbox, "regionPixels": counts, "params": asdict(pose)}
+    cue = cue_line(rig.definition, p, j, pose_id)
+    if cue:
+        ends = project({"butt": cue[0], "tip": cue[1]})
+        rec["cue"] = [[round(ends[k][0], 1), round(ends[k][1], 1)] for k in ("butt", "tip")]
     sup = {"left": "l_ank", "l": "l_ank", "right": "r_ank", "r": "r_ank"}.get(support)
     rec["pivotX"] = round(joints2d[sup][0] if sup else (joints2d["l_ank"][0] + joints2d["r_ank"][0]) / 2, 1)
     if p.human:

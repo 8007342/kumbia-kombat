@@ -1,4 +1,4 @@
-import 'dart:math' as math;
+import 'gesture_shapes.dart';
 
 enum Limb { leftHand, rightHand, leftFoot, rightFoot }
 
@@ -10,11 +10,20 @@ enum FlourishDirection { up, right, down, left }
 
 /// Times are audible-song milliseconds, after input/output calibration.
 class RhythmNote {
-  const RhythmNote(this.id, this.limb, this.atMs, {this.flourishTo});
+  const RhythmNote(
+    this.id,
+    this.limb,
+    this.atMs, {
+    this.flourishTo,
+    this.offer,
+  });
   final String id;
   final Limb limb;
   final int atMs;
   final Limb? flourishTo;
+
+  /// The move this note invites after its tap, if any. Taps alone are enough.
+  final GestureKind? offer;
 }
 
 class TapResult {
@@ -32,9 +41,6 @@ class RhythmJudge {
   static const flourishWindowMs = 400;
   final List<RhythmNote> notes;
   final Set<String> _resolved = {};
-  final Set<String> _flourished = {};
-  final Map<String, int> _successfulTapAt = {};
-  int pizazz = 0;
 
   TapResult tap(Limb limb, int audibleMs) {
     RhythmNote? closest;
@@ -50,7 +56,6 @@ class RhythmJudge {
     }
     if (closest == null) return const TapResult(TapGrade.miss, null);
     _resolved.add(closest.id);
-    _successfulTapAt[closest.id] = audibleMs;
     final signedDelta = audibleMs - closest.atMs;
     final isPerfect = distance <= perfectWindowMs;
     final timing = isPerfect
@@ -62,29 +67,6 @@ class RhythmJudge {
       deltaMs: signedDelta,
       timing: timing,
     );
-  }
-
-  /// Gesture recognizer supplies the destination of a release, never a tap.
-  bool flourish(String noteId, Limb destination, int audibleMs) {
-    final note = notes.where((note) => note.id == noteId).firstOrNull;
-    if (note == null || note.flourishTo != destination) return false;
-    return flourishGesture(noteId, audibleMs);
-  }
-
-  /// A local directional flick decorates an eligible accepted tap. Its direction
-  /// selects the performance, not another input zone or a future required note.
-  bool flourishGesture(String noteId, int audibleMs) {
-    final tappedAt = _successfulTapAt[noteId];
-    if (tappedAt == null || _flourished.contains(noteId)) return false;
-    final note = notes.firstWhere((note) => note.id == noteId);
-    if (note.flourishTo == null ||
-        audibleMs <= tappedAt ||
-        audibleMs - tappedAt > flourishWindowMs) {
-      return false;
-    }
-    _flourished.add(noteId);
-    pizazz += 100;
-    return true;
   }
 
   List<RhythmNote> expire(int audibleMs) {
@@ -104,23 +86,4 @@ class NotePoint {
   const NotePoint(this.x, this.y);
   final double x;
   final double y;
-}
-
-/// Normalized screen coordinates. A bounded curve cannot cross into another
-/// quadrant: the destination remains readable even while the trail twists.
-NotePoint tornadoPosition(
-  Limb limb,
-  double progress, {
-  bool reducedMotion = false,
-}) {
-  final t = progress.clamp(0.0, 1.0);
-  final left = limb == Limb.leftHand || limb == Limb.leftFoot;
-  final upper = limb == Limb.leftHand || limb == Limb.rightHand;
-  final twist = reducedMotion ? 0.0 : math.sin(t * math.pi * 2) * .025;
-  final dx = .05 + .36 * t;
-  final dy = .05 + .35 * t;
-  return NotePoint(
-    .5 + (left ? -dx : dx) + twist,
-    .5 + (upper ? -dy : dy) - twist,
-  );
 }

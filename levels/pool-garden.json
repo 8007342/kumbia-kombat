@@ -1,7 +1,7 @@
 {
   "id": "pool-garden",
   "title": "THE POOL LAWN",
-  "background": "pool-garden/pool-garden-v1-draft.png",
+  "background": "pool-garden/pool-garden-clean.png",
   "music": {
     "score": "pool_swing",
     "successScore": "pool_swing_success",
@@ -90,7 +90,62 @@
         "rightHand",
         "leftHand"
       ]
-    ]
+    ],
+    "rich": {
+      "limits": {"pairToleranceMs": 80, "sameSpotMs": 285, "thumbHopMs": 330, "crossThumbMs": 170, "sameLimbMs": 400, "phraseEndMs": 100},
+      "patterns": {
+        "1": [
+          {"at": 0, "limb": "leftHand"},
+          {"at": 1, "limb": "rightHand"},
+          {"at": 1.75, "limb": "leftHand"},
+          {"at": 3, "limb": "leftHand", "move": "pair", "with": "rightHand"},
+          {"at": 4, "limb": "leftFoot"},
+          {"at": 5, "limb": "rightFoot"},
+          {"at": 5.75, "limb": "leftFoot"},
+          {"at": 6.75, "limb": "rightFoot"}
+        ],
+        "2": [
+          {"at": 0, "limb": "leftFoot"},
+          {"at": 1, "limb": "rightHand"},
+          {"at": 1.75, "limb": "leftHand", "move": "split", "with": "rightHand", "gap": 0.5},
+          {"at": 3, "limb": "leftFoot"},
+          {"at": 4, "limb": "leftHand", "move": "pair", "with": "rightHand"},
+          {"at": 5, "limb": "leftFoot"},
+          {"at": 5.75, "limb": "rightFoot"},
+          {"at": 6.75, "limb": "leftHand"}
+        ],
+        "3": [
+          {"at": 0.5, "limb": "rightFoot", "move": "split", "with": "leftFoot", "gap": 0.5},
+          {"at": 1.75, "limb": "rightHand"},
+          {"at": 2.5, "limb": "leftFoot"},
+          {"at": 3, "limb": "rightFoot"},
+          {"at": 4, "limb": "leftHand", "move": "pair", "with": "rightHand"},
+          {"at": 5, "limb": "rightFoot"},
+          {"at": 6, "limb": "leftHand", "move": "pair", "with": "rightHand"},
+          {"at": 7, "limb": "rightFoot"}
+        ],
+        "4": [
+          {"at": 0, "limb": "leftHand", "move": "pair", "with": "rightHand"},
+          {"at": 1, "limb": "rightFoot", "move": "doubleTap", "gap": 0.75},
+          {"at": 2.5, "limb": "leftHand"},
+          {"at": 3, "limb": "rightHand", "move": "doubleTap", "gap": 0.75},
+          {"at": 4.5, "limb": "leftFoot"},
+          {"at": 5, "limb": "rightFoot"},
+          {"at": 5.75, "limb": "leftHand", "move": "pair", "with": "rightHand"},
+          {"at": 6.75, "limb": "leftFoot", "move": "split", "with": "rightFoot", "gap": 0.5}
+        ],
+        "5": [
+          {"at": 0, "limb": "leftHand", "move": "split", "with": "rightFoot", "gap": 0.5},
+          {"at": 1, "limb": "leftFoot"},
+          {"at": 1.75, "limb": "leftHand", "move": "pair", "with": "rightHand"},
+          {"at": 3, "limb": "rightFoot", "move": "doubleTap", "gap": 0.75},
+          {"at": 4.5, "limb": "leftHand", "move": "pair", "with": "rightHand"},
+          {"at": 5.5, "limb": "rightFoot"},
+          {"at": 6, "limb": "leftHand"},
+          {"at": 6.75, "limb": "leftFoot", "move": "split", "with": "rightHand", "gap": 0.5}
+        ]
+      }
+    }
   },
   "stage": {
     "calibration": "unverifiedStoryboard",
@@ -116,191 +171,497 @@
         "id": "swing-a",
         "atlas": "swing-a",
         "mark": [
-          0.48,
+          0.47,
           0.54
         ],
         "yieldMark": [
           0.37,
           0.53
         ],
-        "stature": 1,
-        "floorTrack": {
-          "beats": 16,
-          "points": [
-            {
-              "at": 0,
-              "floor": [
-                0.48,
-                0.54
-              ]
-            },
-            {
-              "at": 4,
-              "floor": [
-                0.48,
-                0.54
-              ]
-            },
-            {
-              "at": 5.5,
-              "floor": [
-                0.58,
-                0.56
-              ]
-            },
-            {
-              "at": 7,
-              "floor": [
-                0.68,
-                0.47
-              ]
-            },
-            {
-              "at": 8.75,
-              "floor": [
-                0.58,
-                0.44
-              ]
-            },
-            {
-              "at": 10.5,
-              "floor": [
-                0.48,
-                0.54
-              ]
-            }
-          ]
-        }
+        "stature": 1.12
       },
       {
         "id": "swing-b",
         "atlas": "swing-b",
         "mark": [
-          0.68,
+          0.74,
           0.47
         ],
         "yieldMark": [
           0.77,
           0.47
         ],
-        "stature": 0.9,
-        "floorTrack": {
-          "beats": 16,
-          "points": [
-            {
-              "at": 0,
-              "floor": [
-                0.68,
-                0.47
-              ]
-            },
-            {
-              "at": 4,
-              "floor": [
-                0.68,
-                0.47
-              ]
-            },
-            {
-              "at": 5.5,
-              "floor": [
-                0.58,
-                0.44
-              ]
-            },
-            {
-              "at": 7,
-              "floor": [
-                0.48,
-                0.54
-              ]
-            },
-            {
-              "at": 8.75,
-              "floor": [
-                0.58,
-                0.56
-              ]
-            },
-            {
-              "at": 10.5,
-              "floor": [
-                0.68,
-                0.47
-              ]
-            }
-          ]
-        }
+        "stature": 1.02
       }
     ],
     "heroWatch": [
       0.41,
       0.69
-    ]
+    ],
+    "heroAside": [
+      0.23,
+      0.7
+    ],
+    "duet": {
+      "marks": {
+        "pair0From": [
+          0.45,
+          0.5
+        ],
+        "pair0To": [
+          0.54,
+          0.46
+        ],
+        "pair1From": [
+          0.5,
+          0.47
+        ],
+        "pair1To": [
+          0.4,
+          0.54
+        ],
+        "pair2From": [
+          0.44,
+          0.52
+        ],
+        "pair2To": [
+          0.52,
+          0.56
+        ],
+        "pair3From": [
+          0.53,
+          0.5
+        ],
+        "pair3To": [
+          0.42,
+          0.46
+        ],
+        "pair4From": [
+          0.46,
+          0.5
+        ],
+        "pair4To": [
+          0.56,
+          0.54
+        ],
+        "pair5From": [
+          0.5,
+          0.53
+        ],
+        "pair5To": [
+          0.43,
+          0.48
+        ],
+        "rightSway1": [
+          0.7,
+          0.51
+        ],
+        "rightSway2": [
+          0.72,
+          0.49
+        ],
+        "rightSway3": [
+          0.72,
+          0.47
+        ],
+        "rightSway4": [
+          0.69,
+          0.5
+        ],
+        "backRight": [
+          0.74,
+          0.46
+        ],
+        "leftSway1": [
+          0.3,
+          0.47
+        ],
+        "leftSway2": [
+          0.26,
+          0.49
+        ],
+        "leftSway3": [
+          0.25,
+          0.5
+        ],
+        "leftArrive": [
+          0.27,
+          0.48
+        ],
+        "crossLeft": [
+          0.45,
+          0.43
+        ],
+        "crossRight": [
+          0.6,
+          0.43
+        ],
+        "crossLeftHigh": [
+          0.44,
+          0.42
+        ],
+        "crossRightHigh": [
+          0.6,
+          0.42
+        ],
+        "exitLeft": [
+          0.31,
+          0.56
+        ],
+        "exitRight": [
+          0.59,
+          0.56
+        ],
+        "reachLeft": [
+          0.37,
+          0.585
+        ],
+        "reachRight": [
+          0.53,
+          0.585
+        ]
+      },
+      "offClip": "skirt_play",
+      "partnerClip": "dance_with",
+      "outgoingBeats": 1.25,
+      "incomingBeats": 2.5,
+      "partnerGap": 0.137,
+      "partnerUpstage": 0.012,
+      "spread": 0.095,
+      "pairFrames": {
+        "rest": [
+          "pair_rest_a",
+          "pair_rest_b"
+        ],
+        "arm": "pair_arm",
+        "kick": "pair_kick"
+      },
+      "spin": {
+        "beats": 2,
+        "reachFrame": "spin_reach",
+        "catchUpBeats": 1,
+        "heroFrames": [
+          "held_front",
+          "held_front34",
+          "held_side",
+          "held_rear34",
+          "held_rear",
+          "held_rear34b",
+          "held_sideb",
+          "held_front34b"
+        ]
+      },
+      "turns": [
+        {
+          "partner": "swing-a",
+          "left": "swing-a",
+          "from": "pair0From",
+          "to": "pair0To",
+          "off": "rightSway1",
+          "offSteps": [
+            {
+              "at": 11,
+              "to": "rightSway2"
+            },
+            {
+              "at": 13,
+              "to": "backRight"
+            }
+          ]
+        },
+        {
+          "partner": "swing-b",
+          "left": "swing-a",
+          "from": "pair1From",
+          "to": "pair1To",
+          "off": "leftSway1",
+          "offSteps": [
+            {
+              "at": 11,
+              "to": "crossLeft"
+            },
+            {
+              "at": 13.5,
+              "to": "crossRight"
+            }
+          ]
+        },
+        {
+          "partner": "swing-a",
+          "left": "swing-b",
+          "from": "pair2From",
+          "to": "pair2To",
+          "off": "leftSway2",
+          "offSteps": [
+            {
+              "at": 11,
+              "to": "leftArrive"
+            },
+            {
+              "at": 13,
+              "to": "leftSway1"
+            }
+          ]
+        },
+        {
+          "partner": "swing-b",
+          "left": "swing-b",
+          "from": "pair3From",
+          "to": "pair3To",
+          "off": "rightSway3",
+          "offSteps": [
+            {
+              "at": 11,
+              "to": "crossRightHigh"
+            },
+            {
+              "at": 13.5,
+              "to": "crossLeftHigh"
+            }
+          ]
+        },
+        {
+          "partner": "swing-a",
+          "left": "swing-a",
+          "from": "pair4From",
+          "to": "pair4To",
+          "off": "rightSway4",
+          "offSteps": [
+            {
+              "at": 11,
+              "to": "rightSway1"
+            },
+            {
+              "at": 13,
+              "to": "rightSway2"
+            }
+          ]
+        },
+        {
+          "partner": "swing-b",
+          "left": "swing-a",
+          "from": "pair5From",
+          "to": "pair5To",
+          "off": "leftSway3",
+          "offSteps": [
+            {
+              "at": 11,
+              "to": "leftSway2"
+            },
+            {
+              "at": 13,
+              "to": "leftArrive"
+            }
+          ]
+        }
+      ],
+      "exit": {
+        "left": "exitLeft",
+        "right": "exitRight",
+        "leftReach": "reachLeft",
+        "rightReach": "reachRight",
+        "sideBeats": 1.5,
+        "reachFrom": 2.75,
+        "reachTo": 3.5,
+        "reachFrame": "left_hand_prep",
+        "backBeats": 1.5,
+        "danceClip": "dance_with"
+      }
+    }
   },
   "crowd": {
     "budgets": {
-      "interested": 5,
-      "following": 4,
-      "standing": 2,
-      "cheering": 1
+      "interested": 12,
+      "following": 12,
+      "standing": 12,
+      "cheering": 12
     },
+    "seat": "chair",
+    "propSet": "pool-garden",
     "guests": [
       [
-        0.301,
-        0.418
+        0.18,
+        0.435
       ],
       [
-        0.191,
-        0.408
+        0.82,
+        0.42
       ],
       [
-        0.296,
-        0.364
+        0.3,
+        0.392
       ],
       [
-        0.198,
-        0.357
+        0.3,
+        0.315
       ],
       [
-        0.403,
-        0.338
+        0.39,
+        0.39
       ],
       [
-        0.327,
-        0.334
+        0.22,
+        0.315
+      ],
+      [
+        0.78,
+        0.318
+      ],
+      [
+        0.2,
+        0.39
+      ],
+      [
+        0.835,
+        0.46
+      ],
+      [
+        0.73,
+        0.345
+      ],
+      [
+        0.27,
+        0.352
+      ],
+      [
+        0.42,
+        0.352
+      ],
+      [
+        0.19,
+        0.35
+      ],
+      [
+        0.72,
+        0.4
+      ],
+      [
+        0.35,
+        0.35
+      ],
+      [
+        0.38,
+        0.318
+      ],
+      [
+        0.79,
+        0.365
+      ],
+      [
+        0.685,
+        0.335
+      ],
+      [
+        0.84,
+        0.385
+      ],
+      [
+        0.655,
+        0.312
       ]
     ],
     "props": [
+      { "id": "pool-umbrella-left", "kind": "umbrella", "at": [0.3, 0.335], "heightInAdults": 1.35, "widthInAdults": 1.5 },
+      { "id": "pool-umbrella-right", "kind": "umbrella", "at": [0.77, 0.33], "heightInAdults": 1.35, "widthInAdults": 1.5 },
+      {
+        "id": "pool-table-0",
+        "kind": "table",
+        "at": [
+          0.26,
+          0.318
+        ],
+        "heightInAdults": 0.43,
+        "widthInAdults": 0.6
+      },
       {
         "id": "pool-table-1",
         "kind": "table",
-        "heightInAdults": 0.43,
-        "widthInAdults": 0.9,
         "at": [
-          0.244,
-          0.413
-        ]
+          0.34,
+          0.32
+        ],
+        "heightInAdults": 0.43,
+        "widthInAdults": 0.6
       },
       {
         "id": "pool-table-2",
         "kind": "table",
-        "heightInAdults": 0.43,
-        "widthInAdults": 0.9,
         "at": [
-          0.246,
-          0.361
-        ]
+          0.23,
+          0.352
+        ],
+        "heightInAdults": 0.43,
+        "widthInAdults": 0.6
       },
       {
         "id": "pool-table-3",
         "kind": "table",
-        "heightInAdults": 0.43,
-        "widthInAdults": 0.9,
         "at": [
-          0.365,
-          0.336
-        ]
+          0.31,
+          0.354
+        ],
+        "heightInAdults": 0.43,
+        "widthInAdults": 0.6
+      },
+      {
+        "id": "pool-table-4",
+        "kind": "table",
+        "at": [
+          0.25,
+          0.392
+        ],
+        "heightInAdults": 0.43,
+        "widthInAdults": 0.6
+      },
+      {
+        "id": "pool-table-5",
+        "kind": "table",
+        "at": [
+          0.35,
+          0.393
+        ],
+        "heightInAdults": 0.43,
+        "widthInAdults": 0.6
+      },
+      {
+        "id": "pool-table-6",
+        "kind": "table",
+        "at": [
+          0.76,
+          0.348
+        ],
+        "heightInAdults": 0.43,
+        "widthInAdults": 0.6
+      },
+      {
+        "id": "pool-table-7",
+        "kind": "table",
+        "at": [
+          0.77,
+          0.402
+        ],
+        "heightInAdults": 0.43,
+        "widthInAdults": 0.6
+      },
+      {
+        "id": "pool-table-8",
+        "kind": "table",
+        "at": [
+          0.8,
+          0.445
+        ],
+        "heightInAdults": 0.43,
+        "widthInAdults": 0.6
+      },
+      {
+        "id": "pool-table-9",
+        "kind": "table",
+        "at": [
+          0.725,
+          0.318
+        ],
+        "heightInAdults": 0.43,
+        "widthInAdults": 0.6
       }
     ]
   },
@@ -313,9 +674,14 @@
       [
         0.4433,
         0.2368
-      ]
+      ],
+      [0.236, 0.189],
+      [0.336, 0.185],
+      [0.73, 0.221],
+      [0.816, 0.309]
     ],
-    "plants": []
+    "plants": [],
+    "waiter": { "home": [0.57, 0.335], "swayX": 0.09 }
   },
   "departure": {
     "threshold": "the carved gateway at the top of the path",
@@ -361,8 +727,344 @@
   },
   "copy": {
     "invitation": "Two dancers hold the lawn. Answer them.",
-    "clearedTitle": "SUCH\nGRACE.",
-    "clearedClaim": "THE PATH IS OPEN.",
-    "resetLine": "BACK DOWN THE PATH"
+    "clearedTitle": "QUÉ\nFINO"
+  },
+  "exitShot": {
+    "plate": "closeups/duet-plate.png",
+    "celebrateUntil": 3,
+    "walkFrom": 0.5,
+    "walkTo": 1.25,
+    "heroStep": [
+      0.45,
+      0.605
+    ],
+    "heroWaitFrame": "front_idle",
+    "dust": false,
+    "closeupFrom": 3.5,
+    "contactBeat": 4.5,
+    "closeupTo": 12,
+    "contactPoint": [
+      0.5,
+      0.29
+    ],
+    "impactBeats": 1,
+    "actors": [
+      {
+        "approach": "closeups/duet-macron-round.png",
+        "impact": "closeups/duet-macron-arc-blush.png",
+        "frames": [
+          {
+            "beat": 3.5,
+            "image": "closeups/duet-macron-round.png"
+          },
+          {
+            "beat": 4.5,
+            "image": "closeups/duet-macron-wide.png"
+          },
+          {
+            "beat": 4.75,
+            "image": "closeups/duet-macron-squash.png"
+          },
+          {
+            "beat": 5,
+            "image": "closeups/duet-macron-arc.png"
+          },
+          {
+            "beat": 5.5,
+            "image": "closeups/duet-macron-arc-blush.png"
+          }
+        ],
+        "contact": [
+          200,
+          165
+        ],
+        "scale": 0.36,
+        "entry": [
+          0,
+          0
+        ],
+        "recoil": [
+          0,
+          0
+        ]
+      },
+      {
+        "approach": "closeups/duet-a-smile.png",
+        "impact": "closeups/duet-a-kiss.png",
+        "frames": [
+          {
+            "beat": 3.5,
+            "image": "closeups/duet-a-smile.png"
+          },
+          {
+            "beat": 4.25,
+            "image": "closeups/duet-a-kiss.png"
+          },
+          {
+            "beat": 5.5,
+            "image": "closeups/duet-a-smile.png"
+          }
+        ],
+        "contact": [
+          346,
+          113
+        ],
+        "scale": 0.36,
+        "entry": [
+          -70,
+          8
+        ],
+        "recoil": [
+          -13,
+          2
+        ],
+        "sway": {
+          "from": 8,
+          "beats": 2,
+          "by": [
+            -2.5,
+            1
+          ]
+        }
+      },
+      {
+        "approach": "closeups/duet-b-smile.png",
+        "impact": "closeups/duet-b-kiss.png",
+        "frames": [
+          {
+            "beat": 3.5,
+            "image": "closeups/duet-b-smile.png"
+          },
+          {
+            "beat": 4.25,
+            "image": "closeups/duet-b-kiss.png"
+          },
+          {
+            "beat": 5.5,
+            "image": "closeups/duet-b-smile.png"
+          }
+        ],
+        "contact": [
+          -49,
+          119
+        ],
+        "scale": 0.36,
+        "entry": [
+          70,
+          8
+        ],
+        "recoil": [
+          13,
+          2
+        ],
+        "sway": {
+          "from": 8,
+          "beats": 2,
+          "by": [
+            2.5,
+            1
+          ]
+        }
+      },
+      {
+        "approach": "closeups/duet-hedge.png",
+        "impact": "closeups/duet-hedge.png",
+        "contact": [
+          350,
+          -97
+        ],
+        "scale": 0.36,
+        "entry": [
+          0,
+          0
+        ],
+        "recoil": [
+          0,
+          0
+        ]
+      },
+      {
+        "approach": "closeups/duet-macron-body-rest.png",
+        "impact": "closeups/duet-macron-body-shy.png",
+        "frames": [
+          {
+            "beat": 3.5,
+            "image": "closeups/duet-macron-body-rest.png"
+          },
+          {
+            "beat": 4.5,
+            "image": "closeups/duet-macron-body-kiss.png"
+          },
+          {
+            "beat": 5.5,
+            "image": "closeups/duet-macron-body-shy.png"
+          },
+          {
+            "beat": 8,
+            "image": "closeups/duet-macron-body-rest.png"
+          },
+          {
+            "beat": 9,
+            "image": "closeups/duet-macron-body-shy.png"
+          },
+          {
+            "beat": 10,
+            "image": "closeups/duet-macron-body-rest.png"
+          },
+          {
+            "beat": 11,
+            "image": "closeups/duet-macron-body-shy.png"
+          }
+        ],
+        "contact": [
+          200,
+          165
+        ],
+        "scale": 0.36,
+        "entry": [
+          0,
+          0
+        ],
+        "recoil": [
+          0,
+          0
+        ]
+      },
+      {
+        "approach": "closeups/duet-macron-logo.png",
+        "impact": "closeups/duet-macron-logo.png",
+        "contact": [
+          200,
+          165
+        ],
+        "scale": 0.36,
+        "entry": [
+          0,
+          0
+        ],
+        "recoil": [
+          0,
+          0
+        ],
+        "keepsReading": true
+      }
+    ],
+    "cue": [
+      {
+        "beat": 4.5,
+        "track": "peck",
+        "pitch": 60,
+        "velocity": 120
+      },
+      {
+        "beat": 5.25,
+        "track": "peck",
+        "pitch": 72,
+        "velocity": 70
+      }
+    ],
+    "recoilBeats": 3.25
+  },
+  "hardestCombo": {
+    "name": "Round Robin",
+    "status": "proposal",
+    "note": "Proposal. The name and shape need no sign-off to exist, but the owner hasn't seen or played them. The Girls answer each other in the call, then finish together. Hands and feet, where their chart is mostly hands.",
+    "callBeats": 8,
+    "moves": [
+      {
+        "dancer": "swing-a",
+        "at": 0,
+        "beats": 2,
+        "clip": "show_off"
+      },
+      {
+        "dancer": "swing-a",
+        "at": 2,
+        "beats": 4,
+        "clip": "step_touch"
+      },
+      {
+        "dancer": "swing-a",
+        "at": 6,
+        "beats": 2,
+        "clip": "finish_turn"
+      },
+      {
+        "dancer": "swing-b",
+        "at": 0,
+        "beats": 4,
+        "clip": "skirt_play"
+      },
+      {
+        "dancer": "swing-b",
+        "at": 4,
+        "beats": 2,
+        "clip": "show_off"
+      },
+      {
+        "dancer": "swing-b",
+        "at": 6,
+        "beats": 2,
+        "clip": "finish_turn"
+      }
+    ],
+    "notes": [
+      {
+        "at": 0,
+        "limb": "leftHand"
+      },
+      {
+        "at": 1,
+        "limb": "rightHand"
+      },
+      {
+        "at": 1.75,
+        "limb": "leftHand"
+      },
+      {
+        "at": 2.5,
+        "limb": "rightFoot"
+      },
+      {
+        "at": 3.25,
+        "limb": "leftFoot"
+      },
+      {
+        "at": 4,
+        "limb": "rightHand"
+      },
+      {
+        "at": 5,
+        "limb": "leftHand"
+      },
+      {
+        "at": 5.75,
+        "limb": "rightFoot"
+      },
+      {
+        "at": 6.5,
+        "limb": "leftFoot"
+      },
+      {
+        "at": 7.25,
+        "limb": "rightHand",
+        "move": "circle"
+      }
+    ]
+  },
+  "layers": {
+    "plateWidth": 1024,
+    "plateHeight": 1536,
+    "props": [
+      {"id": "palm", "atlas": "pool-garden/pool-garden-layers.png", "atlasY": 0, "left": 758, "top": 0, "width": 246, "height": 184, "frames": 7, "motion": "sway", "periodBeats": 2, "instance": 1, "kind": "plant"},
+      {"id": "plant-left", "atlas": "pool-garden/pool-garden-layers.png", "atlasY": 186, "left": 203, "top": 344, "width": 65, "height": 47, "frames": 7, "motion": "sway", "periodBeats": 2, "instance": 2, "kind": "plant"},
+      {"id": "plant-mid", "atlas": "pool-garden/pool-garden-layers.png", "atlasY": 235, "left": 408, "top": 304, "width": 40, "height": 36, "frames": 7, "motion": "sway", "periodBeats": 2, "instance": 3, "kind": "plant"},
+      {"id": "plant-right", "atlas": "pool-garden/pool-garden-layers.png", "atlasY": 273, "left": 519, "top": 312, "width": 50, "height": 36, "frames": 7, "motion": "sway", "periodBeats": 2, "instance": 4, "kind": "plant"},
+      {"id": "string", "atlas": "pool-garden/pool-garden-layers.png", "atlasY": 311, "left": 190, "top": 205, "width": 393, "height": 61, "frames": 7, "motion": "sway", "periodBeats": 4, "instance": 5, "kind": "hanging"},
+      {"id": "water", "atlas": "pool-garden/pool-garden-layers.png", "atlasY": 374, "left": 235, "top": 362, "width": 323, "height": 69, "frames": 4, "motion": "pulse", "periodBeats": 2, "instance": 6, "kind": "light"},
+      {"id": "post-lamp", "atlas": "pool-garden/pool-garden-layers.png", "atlasY": 445, "left": 452, "top": 357, "width": 21, "height": 21, "frames": 4, "motion": "pulse", "periodBeats": 1, "instance": 7, "kind": "flame"},
+      {"id": "gate-lamp", "atlas": "pool-garden/pool-garden-layers.png", "atlasY": 468, "left": 575, "top": 314, "width": 20, "height": 19, "frames": 4, "motion": "pulse", "periodBeats": 1, "instance": 8, "kind": "flame"},
+      {"id": "far-lamp", "atlas": "pool-garden/pool-garden-layers.png", "atlasY": 489, "left": 735, "top": 322, "width": 26, "height": 29, "frames": 4, "motion": "pulse", "periodBeats": 1, "instance": 9, "kind": "flame"}
+    ]
   }
 }

@@ -6,6 +6,11 @@
     "followThrough": "{limb}_follow",
     "settle": "{limb}_return"
   },
+  "pairHit": {
+    "anticipation": "clap_close",
+    "accent": "clap_contact",
+    "followThrough": "clap_release"
+  },
   "inviteHoldBeats": 0.5,
   "travelOutUntilYield": 0.75,
   "clips": {
@@ -296,18 +301,16 @@
           ]
         }
       },
-      "accents": [
+      "accents": [],
+      "handoffMoves": [
         {
-          "note": "Mācron's turn, right after the handover, in the gap before the shared downbeat claps. The spin takes over once the party warms up.",
-          "everyBeats": 16,
-          "atBeat": 13,
-          "minTier": 2,
+          "note": "Danced on the mark as the call ends, overflowing into Macron's turn, then the opponent steps away. The spin from the first warm tier.",
+          "minTier": 1,
           "clip": "spin_flare"
         },
         {
-          "everyBeats": 16,
-          "atBeat": 13,
-          "minTier": 1,
+          "note": "A cold room still gets a small flourish, so a move closes every call.",
+          "minTier": 0,
           "clip": "flare"
         }
       ]
@@ -399,23 +402,145 @@
           ]
         }
       },
-      "accents": [
+      "accents": [],
+      "handoffMoves": [
         {
-          "note": "Mācron's turn, right after the handover, in the gap before the shared downbeat claps. The spin takes over once the party warms up.",
-          "everyBeats": 16,
-          "atBeat": 13,
-          "minTier": 2,
+          "note": "Danced on the mark as the call ends, overflowing into Macron's turn, then the opponent steps away. The spin from the first warm tier.",
+          "minTier": 1,
           "clip": "spin_flare"
         },
         {
-          "everyBeats": 16,
-          "atBeat": 13,
-          "minTier": 1,
+          "note": "A cold room still gets a small flourish, so a move closes every call.",
+          "minTier": 0,
           "clip": "flare"
         }
       ]
     },
-    "swing-a": {},
-    "swing-b": {}
+    "swing-a": {
+      "note": "One hand on the back and the other playing with the skirt, while the other dancer has the turn. Mirrors are flips of two drawings. dance_with reaches toward the picture's left; the scene mirrors it when she is on Macron's left.",
+      "clips": {
+        "skirt_play": {
+          "beatsPerFrame": 1,
+          "frames": [
+            "skirt_sway_r",
+            "skirt_pass_r",
+            "skirt_sway_l",
+            "skirt_pass_l"
+          ]
+        },
+        "dance_with": {
+          "beatsPerFrame": 1,
+          "frames": [
+            "challenge_offer",
+            "groove_pass_l",
+            "approval_release",
+            "groove_pass_l2",
+            "right_hand_return",
+            "groove_down_l",
+            "challenge_offer",
+            "watch_shift_l"
+          ]
+        }
+      }
+    },
+    "swing-b": {
+      "note": "One hand on the back and the other playing with the skirt, while the other dancer has the turn. Mirrors are flips of two drawings. dance_with reaches toward the picture's left; the scene mirrors it when she is on Macron's left.",
+      "clips": {
+        "skirt_play": {
+          "beatsPerFrame": 1,
+          "frames": [
+            "skirt_sway_r",
+            "skirt_pass_r",
+            "skirt_sway_l",
+            "skirt_pass_l"
+          ]
+        },
+        "dance_with": {
+          "beatsPerFrame": 1,
+          "frames": [
+            "challenge_offer",
+            "groove_pass_l",
+            "approval_release",
+            "groove_pass_l2",
+            "right_hand_return",
+            "groove_down_l",
+            "challenge_offer",
+            "watch_shift_l"
+          ]
+        }
+      }
+    },
+    "blinblin": {
+      "note": "Dances the shared tables. His back-to-the-room, reveal and crossed clips are the level's, not the grammar's."
+    },
+    "pool-player": {
+      "note": "The Pool Player keeps her cue in every drawing. Mācron's turn: both hands stacked on the planted cue, in place of the walk she has no drawings for. Her spin and flare are the cue's own flourish.",
+      "clips": {
+        "promenade": {
+          "beatsPerFrame": 1,
+          "frames": [
+            "watch_shift_l",
+            "watch_hold_l",
+            "watch_shift_r",
+            "watch_hold_r"
+          ]
+        },
+        "spin_flare": {
+          "note": "A full turn around the cue in two beats, ending on the cue swung out.",
+          "frames": [
+            "spin_front",
+            "spin_34_r",
+            "spin_side_r",
+            "spin_back34_r",
+            "spin_back",
+            "spin_back34_l",
+            "spin_side_l",
+            "spin_34_l",
+            "right_hand_follow"
+          ],
+          "beats": [
+            0.25,
+            0.25,
+            0.25,
+            0.25,
+            0.25,
+            0.25,
+            0.25,
+            0.25,
+            1
+          ]
+        },
+        "flare": {
+          "note": "A quick twirl of the cue.",
+          "frames": [
+            "right_hand_follow"
+          ],
+          "beats": [
+            1.5
+          ]
+        }
+      },
+      "accents": [
+        {
+          "note": "Chalks up as the phrase's second bar starts: a warm room's flourish.",
+          "everyBeats": 8,
+          "atBeat": 4,
+          "minTier": 2,
+          "clip": "show_off"
+        }
+      ],
+      "handoffMoves": [
+        {
+          "note": "Danced on the mark as the call ends, overflowing into Macron's turn, then she steps away. The spin from the first warm tier.",
+          "minTier": 1,
+          "clip": "spin_flare"
+        },
+        {
+          "note": "A cold room still gets a twirl of the cue.",
+          "minTier": 0,
+          "clip": "flare"
+        }
+      ]
+    }
   }
 }

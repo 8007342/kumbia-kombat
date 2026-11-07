@@ -1,0 +1,329 @@
+{
+ "id": "billiards",
+ "title": "THE BILLIARD ROOM",
+ "styleRef": "cool-crowd",
+ "comment": "Accepted plate 989601, 2026-11-07. The camera follows the paint: cornice and wainscot lines meet at (.494, .268), and the table's height gives eye 1.27 adults. The marks here are not the level's: levels/billiards.json holds them, checked against the painted floor in its own test. Floor painted by the model and kept: the owner likes it.",
+ "camera": {
+  "horizonY": 0.268,
+  "eyeHeightAdults": 1.27,
+  "focalPx": 1200,
+  "vanishingX": 0.494,
+  "originBottomX": 0.4
+ },
+ "phone": {
+  "width": 390,
+  "height": 844
+ },
+ "safe": {
+  "x": [
+   0.17,
+   0.83
+  ],
+  "y": [
+   0.17,
+   0.65
+  ]
+ },
+ "tapBand": {
+  "y": [
+   0.65,
+   0.97
+  ],
+  "allow": [
+   "floor",
+   "joint"
+  ]
+ },
+ "cast": {
+  "heroStature": 0.35,
+  "minHeroLogical": 34
+ },
+ "walkable": [
+  "floor",
+  "joint"
+ ],
+ "standable": [
+  "floor",
+  "joint"
+ ],
+ "paint": [
+  {
+   "kind": "paving",
+   "id": "floor",
+   "s": [
+    -2,
+    9
+   ],
+   "t": [
+    -2.6,
+    2.6
+   ],
+   "every": 1.2,
+   "lanes": 5
+  },
+  {
+   "kind": "wall",
+   "id": "panel",
+   "a": [
+    9,
+    -2.6
+   ],
+   "b": [
+    9,
+    2.6
+   ],
+   "z": [
+    0,
+    3.2
+   ]
+  },
+  {
+   "kind": "wall",
+   "id": "door",
+   "a": [
+    9,
+    -0.6
+   ],
+   "b": [
+    9,
+    0.6
+   ],
+   "z": [
+    0,
+    2.2
+   ]
+  },
+  {
+   "kind": "wall",
+   "id": "panel",
+   "a": [
+    -2,
+    -2.6
+   ],
+   "b": [
+    9,
+    -2.6
+   ],
+   "z": [
+    0,
+    3.2
+   ]
+  },
+  {
+   "kind": "wall",
+   "id": "panel",
+   "a": [
+    -2,
+    2.6
+   ],
+   "b": [
+    9,
+    2.6
+   ],
+   "z": [
+    0,
+    3.2
+   ]
+  },
+  {
+   "kind": "repeat",
+   "of": "wall",
+   "count": 3,
+   "start": 0,
+   "step": 2.4,
+   "id": "pilaster",
+   "a": [
+    2,
+    -2.6
+   ],
+   "b": [
+    2.3,
+    -2.6
+   ],
+   "z": [
+    0,
+    3.2
+   ]
+  },
+  {
+   "kind": "repeat",
+   "of": "wall",
+   "count": 3,
+   "start": 0,
+   "step": 2.4,
+   "id": "pilaster",
+   "a": [
+    2,
+    2.6
+   ],
+   "b": [
+    2.3,
+    2.6
+   ],
+   "z": [
+    0,
+    3.2
+   ]
+  },
+  {
+   "kind": "box",
+   "id": "stage",
+   "s": [
+    4.4,
+    6.6
+   ],
+   "t": [
+    -2.25,
+    -1.15
+   ],
+   "z": [
+    0,
+    0.55
+   ]
+  },
+  {
+   "kind": "box",
+   "id": "stage",
+   "s": [
+    4.4,
+    6.6
+   ],
+   "t": [
+    1.15,
+    2.25
+   ],
+   "z": [
+    0,
+    0.55
+   ]
+  },
+  {
+   "kind": "discs",
+   "id": "lamp",
+   "at": [
+    [
+     5.5,
+     -1.7,
+     1.6
+    ],
+    [
+     5.5,
+     1.7,
+     1.6
+    ]
+   ],
+   "r": 0.16
+  }
+ ],
+ "story": [
+  {
+   "name": "far-door",
+   "ids": [
+    "door"
+   ],
+   "ignoreTop": true
+  }
+ ],
+ "marks": {
+  "heroHome": [
+   1.45,
+   0
+  ],
+  "heroEntrance": [
+   0.9,
+   0.05
+  ],
+  "heroRetreat": [
+   1.15,
+   0
+  ],
+  "challengers": [
+   {
+    "id": "pool-player",
+    "atlas": "bartender",
+    "mark": [
+     3.0,
+     0
+    ],
+    "yieldMark": [
+     3.3,
+     0.7
+    ]
+   }
+  ],
+  "pathEnd": [
+   8.6,
+   0
+  ],
+  "route": [
+   [
+    1.45,
+    0
+   ],
+   [
+    1.7,
+    0.2
+   ],
+   [
+    3.5,
+    0.2
+   ],
+   [
+    6.5,
+    0
+   ],
+   [
+    8.6,
+    0
+   ]
+  ],
+  "guests": [
+   [
+    4.2,
+    -0.7
+   ],
+   [
+    4.2,
+    0.85
+   ],
+   [
+    7.0,
+    -0.6
+   ],
+   [
+    7.0,
+    0.9
+   ]
+  ],
+  "plants": []
+ },
+ "props": [],
+ "scene": "It is the mansion's private billiard room at night: a grown-up, intimate room of dark green and old wood, lit low over two billiard tables.",
+ "keep": "every wall edge, pilaster, both billiard tables, the far doorway and the horizon",
+ "zones": {
+  "floor": {
+   "layout": "a dark wooden floor, one even tone across its whole area out to every edge of the picture, with the same grid as image 1.",
+   "paint": "The floor is plain dark polished wood, one even tone from end to end, lying open and clear down to the bottom edge of the picture."
+  },
+  "panel": {
+   "layout": "dark green wall panels above dark carved wood wainscot, with a deep moulded cornice.",
+   "paint": "The walls are deep bottle-green panels with thin old-gold mouldings above a dark carved wood wainscot, with framed old sporting prints in small gilt frames, small brass wall sconces and a deep moulded cornice, all in soft dim light."
+  },
+  "door": {
+   "layout": "a tall doorway at the far end.",
+   "paint": "A dark wood doorway at the far end, the same width and height as in image 1 with its foot on the same line, opens onto a dim warm corridor, seen only as soft amber depth."
+  },
+  "pilaster": {
+   "layout": "carved dark wood pilasters on both walls.",
+   "paint": "Carved dark wood pilasters with brass capitals run along both walls."
+  },
+  "stage": {
+   "layout": "two full-size billiard tables with green felt tops and heavy carved wooden legs.",
+   "paint": "Two full-size billiard tables stand empty and exactly the size of the blocks in image 1, with bright green felt tops, heavy dark carved wooden rails and legs, and a triangle of coloured balls on each."
+  },
+  "lamp": {
+   "layout": "low green glass billiard lamps hanging over each table.",
+   "paint": "A long low billiard lamp with green glass shades hangs on brass rods over each table, casting warm light on the felt."
+  }
+ }
+}

@@ -1,6 +1,28 @@
 # Cinematics: the shot book
 
-**Draft, 2026-11-05. Nothing here is built.** The game has one kind of transition today: a sprite walking a
+**The rules now live in `assets/art/STYLEGUIDE.md`, section 8.** This file keeps the history, what the wiring taught, and notes on each shot. The next paragraph and the draft format and storyboards below date from 2026-11-05, before anything was built.
+
+## Lawn kiss: the stillness after it, 2026-11-07
+
+**What was wrong, from the code and from rendered frames.** The Girls took their reach drawing at beat 2.75 and never left it. The scene returned to the wide shot at 7.75 with both of them frozen in that lean, on their reach marks, until the room dissolved: 8.25 beats, about 5 s at the bridge's 100 BPM. Only tiny Mācron moved, while the guests sat down behind them. So the ninth round's "they keep dancing at the sides as Mācron dances between them" was only partly built.
+
+**What changed.**
+- Close-up to beat 12, the start of the bridge's second bar (it was 7.75). The title stays up with it. The blush and kiss timing is unchanged.
+- During that hold: from the bridge's first beat, Mācron's arms swing a beat at a time and the pair sway a little, as mirror images. Those are new `frames` on his body and a new `sway` field. `recoilBeats` keeps the kiss's easing apart at its old pace.
+- Back on the wide shot: the pair step out to their side marks over 1.5 beats while dancing `dance_with`, facing him. They also dance it at the sides before the reach, in place of the win's held pose. New fields in the duet's exit: `backBeats` and `danceClip`.
+- Garden: the wide shot wasn't frozen. The GateKeeper claps and grooves, and Mācron dances. The close-up now ends on beat 10 instead of 9.6, so the cut lands on a beat. The owner likes this bump, so I kept the change small.
+
+All of it is in beats. It needs only the bridge to be 8 beats long, not any tempo. Calm camera is unchanged: held pictures, no sway.
+
+**What's left.** The crowd still sits during the wide shot, most by about beat 11, and that's now the stillest part of the picture. See the guide, section 11, item 1. Proposal only, since it's in crowd and page code other agents hold.
+
+**How it was checked.** `flutter test` 460 pass, `flutter analyze lib test` shows the same 4 notes. I rendered 33 frames of each shot, before and after, through the real scene at half-beat steps, and looked at them as contact sheets. That harness set the clock by hand instead of using the music, and isn't committed. **Nobody has seen this moving, with sound.** Whether 3.8 s or so of close-up after the kiss feels like a held moment or too long is for the owner: `closeupTo` is one number.
+
+**What went wrong.** The shared disk filled during the test edits and truncated two test files. They were restored and redone. The first full test run then failed 33 tests while the build folder was being removed; the rerun passed.
+
+## Before anything was built
+
+**Draft, 2026-11-05. Nothing here was built then.** The game has one kind of transition today: a sprite walking a
 route (`DepartureRoute`). It has no close-ups, no cuts and no shot layer. The owner ruled that the fist bump is an
 extreme close-up, which makes this a foundation rather than a one-off. Every level's exit and the ending will use it.
 
@@ -35,8 +57,27 @@ code. We have not watched it play.
 4. **The tap band stays where it is**, dimmed and inactive. Shots use the top area. Nothing jumps when play resumes.
 5. **Same pixel size as the world.** Mixed pixel sizes are the flaw that already made the draft pool room look blocky.
    Paint a close-up at the logical size it fills, divided by the room's pixel scale. Exact number to be measured.
-6. **No text baked into art.** Captions stay in the UI.
+6. **No text baked into art.** The level's two big words, `copy.clearedTitle`, are the only text in a run, drawn by the UI from the contact beat. See "Titles and accents" below.
 7. **Glint is reserved** for the finale's high five (from `plan/storyboard.md`).
+
+## Titles and accents, as built
+
+The owner, 2026-11-06: "ONLY TEXT FOR THE CINEMATIC HIGHLIGHT, where we get our simple 2 word messages, where the second word is one of the semantic pop culture for the party and music theme."
+
+**Title.** `copy.clearedTitle` holds two words, one to a line, and the level file is refused otherwise. `ExitShot.titleAt` puts it up from `contactBeat` for at least 3 beats, because the garden's close-up lasts only 2 beats after contact. It can outlast the close-up and sit over the wide shot. A level with no `exitShot` shows no title in its transition; if it's the last level, the end screen still shows the words.
+
+**Accents.** A `cue` entry's `track` can name a one-shot patch from `lib/music/accent_voice.dart`: `bump`, `glug` or `clink`. `pitch` transposes it around 60, and `velocity` scales it. Any other track must be one of the score's voices, and the level file is refused otherwise.
+
+What the wiring needed, and what went wrong when we traced it, for the next custom moment:
+
+| Finding | What it did | Now |
+|---|---|---|
+| Cues did reach the backend, on time | Mixed into the success score or bridge, then queued by the transport like any note | Unchanged, and a test follows them through the real conductor to the device time |
+| They were built from the song's own drum voices, at the song's level | The garden's hit was a kick and snare, on a beat where the bridge plays its own kick. The kick is a 110 Hz sine falling to 50 Hz, which a phone can't play. The gulps were 160 Hz sines falling to 72 Hz | Own patches on their own louder bus, each with energy a phone can play. Levels are computed, not yet heard |
+| A last level's score never got its cue | `finish()` was handed the bare success score | Mixed in, as for a handoff |
+| A cue within a quarter beat of a score's end would crash the win | `MusicScore` refuses a note that runs past its end | Clipped |
+| A stalled frame over the contact drops the hit | The transport never plays a note late, and a browser without WebGL can stall for a second | The exit queues .6 s ahead instead of .3 s. A longer stall still drops it |
+| On a last level, a close-up past the end of the success score never closes | The beat clock stops with the music. The score is 8 beats on the lawn | A test on shipped levels fails if `closeupTo`, `titleUntil` or a cue runs past the music. **A lawn shot must fit in 8 beats** |
 
 ## Proposed format
 
@@ -103,4 +144,33 @@ It needs a story decision first: what Mācron wants, and whether the player lear
 | Close-up art route | Probes exist for fists and gulp at full-figure framing. Not yet tried as a large close-up |
 | Close-up plates | One per room, from the room's palette. Not started |
 | One-shot sound cues on their own bus | Not built. `lib/music/web_audio_backend.dart` to be extended |
-| Style guide section for close-ups | Not written; depends on the first pilot |
+| Style guide section for close-ups | Written: `assets/art/STYLEGUIDE.md`, section 8 |
+
+## Oil gulp redraw: what the wiring taught, 2026-11-06
+
+The owner asked for the gulp to leave a repeatable route for later moments.
+
+- **Sub-second moments use `frames`.** An actor can list `{beat, image}` drawings, which replace approach and impact, with `impact` as the one still under calm camera. Put a frame on each sound accent.
+- **Qwen can't drive a chain of moments here.** From a key frame plus a layout it kept the robot consistent, which is good, but clung to the key's glass: tilt and oil barely changed, and it left stray shapes.
+- **So puppet it.** `art_runs/oil-gulp-v2-20261106/scripts/puppet.py` cuts head, torso and arm from one clean Qwen drawing, and draws the glass and oil by code, so nothing flickers and the oil's volume falls exactly. Snap to one pixel grid by majority colour, then tidy the edge teeth, or rotated parts look fuzzy. The arm goes behind the glass and only the mitten in front, or it hides what the shot is about.
+- **A body needs somewhere to end.** A close-up with a torso shows a cut edge, so a foreground actor (the counter) covers it.
+- **The close-up's view is 180 units wide,** not screen pixels. Check `scale` against that.
+- **Pitfall:** the first guide drew almost no oil at the start, because the glass tilts before the oil reaches the rim. Set the fill by volume, not by a y value.
+- **LoRA:** the 2511 Lightning LoRA drew crisper pixels than 2509 on the same seeds, in 2 seeds each, judged by eye.
+
+`tool/art/closeups/pack_oil_gulp.py` describes the old pieces and no longer matches. Nothing has played this in a browser yet.
+
+## Lawn kiss: what the wiring taught, 2026-11-06
+
+The owner: "the two girls giving Mācron a kiss on each cheek at the same time, we see Mācrons big round eyes turn to smiling arcs and a small blush." The dancers are adults, and this stays warm: a friendly peck on a little robot's cheeks, with heads, collars and shoulders only in frame.
+
+Beats as first built, inside the 8-beat success score (see the 2026-11-07 note at the top for today's hold): to the sides by 1.5, Mācron dancing between the two until 3, a quick reach from 2.75, close-up from 3.5, contact and QUÉ FINO on 4.5, eyes to arcs by 5, blush growing to 5.5, back to wide at 7.75. Nothing names a next room, so a bridge can be added to the campaign without touching the shot.
+
+- **Puppet again, with less cutting.** Mācron is one drawing with code-drawn eyes and blush, so only those change. A test holds every pixel outside the face and cheeks equal between his frames.
+- **Qwen could hold this one.** From the kiss drawing as its only reference, it changed eye and mouth to a smile and left the head within a few pixels, measured by the outline, so the swap should barely show. Nobody has seen it moving. It held for one change, not for a chain. The 2511 LoRA and `$node:30.lora_name` worked as noted.
+- **A whole close-up can mirror.** Each dancer keeps the side she won on, so nobody crosses to reach the shot. The art is drawn with swing-a on the left, and the scene flips the actors about the contact point when she won on the right. This only works because Mācron's face is near symmetrical and there is no text in the art.
+- **A plate and a foreground from the room's own painting** cost no GPU and keep the palette: the pavilion crop behind, the hedge in front. The hedge hides where his body ends. A body that ran below it showed a stray cream block, so the drawing stops above the hedge's bottom edge.
+- **New fields.** `heroWaitFrame`, what he shows between his dance and the cut, since `rear_idle` means facing a challenger; and `dust: false`, because a kiss doesn't throw dust.
+- **`titleUntil` is the later of the close-up's end and contact + 3 beats.** Here that is the close-up's end.
+
+Nothing here has played moving, or with sound, in a browser.

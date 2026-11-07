@@ -1,0 +1,529 @@
+{
+ "definition": {
+  "$comment": "The owner's indoor-party opponent, eleventh round: a male dancer with lots of bling, facing away until Macron enters, chains swinging as he dances. Violet jacket over a guayabera is the approved default for this room's lead. The chains are drawn at rest here; their swing is planned as a beat-driven puppet layer, which the pipeline has not done yet. Garment colours are the accepted sheets' medians, measured 2026-11-07: reference art outranks the hexes first written here.",
+  "id": "blinblin",
+  "family": "blinblin-v1",
+  "style": "party-pixel",
+  "description": "Indoor party opponent, the BlinBlin dancer: a confident adult man dripping in gold, who starts with his back to the room.",
+  "body": {
+   "preset": "slim-adult"
+  },
+  "pronouns": [
+   "he",
+   "him",
+   "his"
+  ],
+  "skin": "#A75E35",
+  "traits": "lean confident adult man of about forty-five, slow unimpressed half smile, layered gold chains",
+  "demeanor": "cool, unhurried and unimpressed, until he is impressed",
+  "garments": [
+   {
+    "id": "hair",
+    "shape": "puff",
+    "region": "hair",
+    "colour": "#14161E",
+    "text": "short slicked-back black hair"
+   },
+   {
+    "id": "shirt",
+    "shape": "shirt-fitted",
+    "region": "shirt",
+    "colour": "#F6ECC8",
+    "text": "cream guayabera shirt, open at the neck"
+   },
+   {
+    "id": "jacket",
+    "shape": "waistcoat-fitted",
+    "region": "cloth",
+    "colour": "#3B1555",
+    "text": "long open midnight-violet jacket",
+    "secondaryMotion": "lag-1"
+   },
+   {
+    "id": "gold",
+    "shape": "gold-chains",
+    "region": "accessory",
+    "colour": "#F0CC22",
+    "alsoIn": [
+     "shirt",
+     "cloth",
+     "skin",
+     "hair"
+    ],
+    "text": "layered gold rope chains, medallion, rings, watch and earring"
+   },
+   {
+    "id": "trousers",
+    "shape": "trousers",
+    "region": "trousers",
+    "colour": "#1E2633",
+    "text": "slim dark trousers"
+   },
+   {
+    "id": "shoes",
+    "shape": "shoes-flat",
+    "region": "shoes",
+    "colour": "#F4E2B0",
+    "text": "polished two-tone cream and dark shoes"
+   }
+  ],
+  "motion": {
+   "set": "opponent-facing-away",
+   "overrides": {}
+  },
+  "drawing": {
+   "noun": "man",
+   "fits": "hair, both shoes and both hands",
+   "look": "tall, lean, angular adult build, narrow face with a trimmed goatee, easy sly half smile with kind, amused eyes, warm brown skin, short slicked-back black hair, several thick gold rope chains of different lengths hanging over his chest down to his belly with one large gold medallion, gold rings on his fingers, a chunky gold wristwatch, gold hoop earring, cream guayabera shirt open at the neck, long open midnight-violet jacket, slim dark trousers, polished two-tone cream and dark shoes and thick dark ink outline",
+   "extra": "Both eyes are open. His mouth stays closed in a cool half smile. He is a grown man of about forty-five. The gold chains are big, bright and easy to see, lying on top of the shirt. ",
+   "sheet": {
+    "source": {
+     "image": "tool/art/references/blinblin/front-draft-f2.png"
+    },
+    "views": {
+     "front": {
+      "image": "tool/art/references/blinblin/front.png",
+      "description": "standing square and upright facing the viewer, feet a little apart, both arms relaxed and held a little away from the body, both open hands visible",
+      "stageScale": 0.84
+     },
+     "back": {
+      "image": "tool/art/references/blinblin/back.png",
+      "description": "seen from directly behind, his back to the viewer, standing upright with feet a little apart, both arms relaxed, the plain back of his long jacket and the back of his head, a thin gold chain at the nape of his neck",
+      "look": "tall, lean, angular adult build, warm brown skin, short slicked-back black hair, thin gold chain at the nape of his neck, gold rings on his fingers, a chunky gold wristwatch, long midnight-violet jacket with a plain back and a centre vent, slim dark trousers, polished two-tone cream and dark shoes and thick dark ink outline",
+      "extra": "He is a grown man of about forty-five. The thin gold chain at the nape is the only gold on his back. "
+     }
+    }
+   },
+   "seed": 987000,
+   "poseOverrides": {
+    "finish_turn.finish_a": {
+     "why": "The table's finish touches a hat brim, and he wears no hat. The words follow the skeleton's raised hand.",
+     "description": "weight on the straight right leg, left heel set forward with the toe up, left fist on the hip, right hand rising beside his head with two fingers out, chest proud, chin up"
+    },
+    "finish_turn.finish_b": {
+     "why": "The table's finish touches a hat brim, and he wears no hat. Two fingers off the temple keeps the salute.",
+     "description": "right hand at his temple with two fingers out in a cool salute, no hat, head dipped slightly, chest proud, left elbow out with the fist on the hip, left heel forward with the toe up"
+    },
+    "crossed.nod_down": {
+     "why": "Eyes looking down drew a scowl. A warm closed-eye nod reads as approval.",
+     "description": "arms firmly crossed high over his chest with each hand tucked under the other arm, head bowed forward in a slow approving nod with the chin dropped, eyes softly closed, a warm small smile, weight on the right leg"
+    },
+    "back_groove.pass_l2": {
+     "why": "Both candidates turned the head to profile, which undercuts facing away.",
+     "description": "seen from directly behind, his back to the viewer, the back of his head pointing straight at the viewer with no face, nose or cheek showing, looking straight ahead away from the viewer: hip popped out to his right over the straight right leg, right hip high, right shoulder dipped, left knee bent with the left foot resting on its toe, right arm lifted out at hip height"
+    },
+    "back_groove.down_r": {
+     "why": "Both candidates turned the head to profile, which undercuts facing away.",
+     "description": "seen from directly behind, his back to the viewer, the back of his head pointing straight at the viewer with no face, nose or cheek showing, looking straight ahead away from the viewer: weight sunk on his bent right knee, left foot stepped back on its ball with the heel raised, right hip high and pushed out, shoulders tilted the other way, right arm low, left arm low and out"
+    },
+    "back_groove.pass_r2": {
+     "why": "Both candidates turned the head to profile, which undercuts facing away.",
+     "description": "seen from directly behind, his back to the viewer, the back of his head pointing straight at the viewer with no face, nose or cheek showing, looking straight ahead away from the viewer: hip popped out to his left over the straight left leg, left hip high, left shoulder dipped, right knee bent with the right foot resting on its toe, left arm lifted out at hip height"
+    },
+    "left_hand.follow": {
+     "why": "All four raised the wrong arm, on the left of the picture. The hand is now named by picture side.",
+     "description": "the arm on the right side of the picture reaching high up and out to the right of the picture, the palm open, torso leaning to the right of the picture, the other fist on the hip with the elbow pushed back, the foot on the right side of the picture on its toe out wide, head turned up toward the raised hand"
+    },
+    "retreat_backward.down_r": {
+     "why": "Both candidates crossed one leg over the other, which the owner dislikes. The words now say the legs stay apart.",
+     "description": "both legs apart and straight down to the floor, weight on the leg on the left of the picture with the knee a little bent, the other foot flat on the floor out to the right of the picture with space between the legs, one hand behind the back, one arm low, head nodding"
+    },
+    "clap.open": {
+     "why": "The pose table raises the forearms over a skeleton with arms down, which drew hands too high or a bar across the chest (LESSONS_LEARNED A5).",
+     "description": "standing square and upright, both arms held out to the sides and angled down, elbows soft, both open hands at hip height away from the body, palms forward, chin up"
+    }
+   },
+   "score": {
+    "silhouetteTolerance": 30
+   },
+   "$comment": "The sheet's long coat reaches below the knee and the rig has no coat shape, so silhouettes need a wide tolerance.",
+   "skeletonOverrides": {
+    "clap.open": {
+     "3": [
+      262,
+      462
+     ],
+     "4": [
+      328,
+      392
+     ],
+     "6": [
+      506,
+      462
+     ],
+     "7": [
+      440,
+      392
+     ]
+    },
+    "clap.close": {
+     "3": [
+      268,
+      466
+     ],
+     "4": [
+      352,
+      412
+     ],
+     "6": [
+      500,
+      466
+     ],
+     "7": [
+      416,
+      412
+     ]
+    },
+    "clap.contact": {
+     "3": [
+      272,
+      490
+     ],
+     "4": [
+      378,
+      432
+     ],
+     "6": [
+      496,
+      490
+     ],
+     "7": [
+      390,
+      432
+     ]
+    },
+    "clap.release": {
+     "3": [
+      262,
+      468
+     ],
+     "4": [
+      338,
+      430
+     ],
+     "6": [
+      506,
+      468
+     ],
+     "7": [
+      430,
+      430
+     ]
+    },
+    "finish_turn.finish_a": {
+     "3": [
+      175,
+      372
+     ],
+     "4": [
+      205,
+      265
+     ]
+    },
+    "finish_turn.finish_b": {
+     "3": [
+      168,
+      334
+     ],
+     "4": [
+      248,
+      225
+     ]
+    }
+   }
+  },
+  "references": {
+   "mode": "source",
+   "sources": []
+  },
+  "targets": [
+   {
+    "room": "cool-crowd",
+    "atlas": "blinblin",
+    "out": "assets/art/ensemble/blinblin-v1.png",
+    "native": [
+     256,
+     320
+    ],
+    "pixelScale": 3
+   }
+  ],
+  "seedBase": 987000
+ },
+ "style": {
+  "prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background",
+  "negative": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render",
+  "frame": {
+   "margin": {
+    "minClear": 0.03,
+    "units": "fraction-of-generation-canvas",
+    "failOnBorderTouch": true
+   },
+   "units": "native-px",
+   "generationCanvas": {
+    "width": 768,
+    "height": 960
+   },
+   "camera": "floor-perspective"
+  },
+  "ramp": {
+   "shades": 4
+  },
+  "outline": "#1A1018",
+  "reservedRamps": [
+   {
+    "id": "kumbia-outfit",
+    "appliesToRegions": [
+     "cloth"
+    ],
+    "recolor": false,
+    "$comment": "Gates from shaders/party_palette.frag on unpremultiplied RGB 0-1; matches if ANY gate's ALL conditions hold. Structured, never eval'd: lhs is a channel or {sub:[a,b]}, rhs a literal or {mul:[k,channel]}.",
+    "gates": [
+     {
+      "id": "cool",
+      "all": [
+       {
+        "lhs": "b",
+        "op": ">=",
+        "rhs": 0.12
+       },
+       {
+        "lhs": "r",
+        "op": ">=",
+        "rhs": {
+         "mul": [
+          0.7,
+          "b"
+         ]
+        }
+       },
+       {
+        "lhs": "b",
+        "op": ">=",
+        "rhs": {
+         "mul": [
+          0.99,
+          "r"
+         ]
+        }
+       },
+       {
+        "lhs": "g",
+        "op": ">=",
+        "rhs": {
+         "mul": [
+          0.2,
+          "b"
+         ]
+        }
+       },
+       {
+        "lhs": "g",
+        "op": "<=",
+        "rhs": {
+         "mul": [
+          0.66,
+          "b"
+         ]
+        }
+       }
+      ]
+     },
+     {
+      "id": "plum",
+      "all": [
+       {
+        "lhs": "r",
+        "op": ">=",
+        "rhs": 0.392157
+       },
+       {
+        "lhs": "r",
+        "op": ">=",
+        "rhs": {
+         "mul": [
+          0.7,
+          "b"
+         ]
+        }
+       },
+       {
+        "lhs": "b",
+        "op": ">=",
+        "rhs": {
+         "mul": [
+          0.32,
+          "r"
+         ]
+        }
+       },
+       {
+        "lhs": "g",
+        "op": "<=",
+        "rhs": {
+         "mul": [
+          0.55,
+          "b"
+         ]
+        }
+       },
+       {
+        "lhs": {
+         "sub": [
+          "b",
+          "g"
+         ]
+        },
+        "op": ">=",
+        "rhs": 0.047059
+       }
+      ]
+     },
+     {
+      "id": "pink",
+      "all": [
+       {
+        "lhs": "r",
+        "op": ">=",
+        "rhs": 0.705882
+       },
+       {
+        "lhs": "r",
+        "op": ">=",
+        "rhs": {
+         "mul": [
+          0.7,
+          "b"
+         ]
+        }
+       },
+       {
+        "lhs": "b",
+        "op": ">=",
+        "rhs": {
+         "mul": [
+          0.32,
+          "r"
+         ]
+        }
+       },
+       {
+        "lhs": "g",
+        "op": "<=",
+        "rhs": {
+         "mul": [
+          0.86,
+          "b"
+         ]
+        }
+       },
+       {
+        "lhs": {
+         "sub": [
+          "b",
+          "g"
+         ]
+        },
+        "op": ">=",
+        "rhs": 0.047059
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  "generation": {
+   "count_per_pose": 4,
+   "seed_policy": "seed = seed_base + 100*pose_index + k; fixed per pose while tuning",
+   "tier": "I1"
+  }
+ },
+ "styleKey": "678ab4fca1ded9f95c38fad960356fa18d5651aea6ef3a4346ae687ff556ec48",
+ "backend": "qwen-frame",
+ "rigKey": "0842013a9e972bd20fb542f6fa8a8929dc47d3d9d1575782fca227cdcfe5c7b2",
+ "frameKeys": {
+  "groove.down_l": "9285c82b070064af7f12f1ff7b5d2adb0002dcfd2f1d32fe11a3a7b136c174c9",
+  "groove.pass_l": "72fff3df844a8b4707502742a858dad33796ead4df3fd08163d786a9dcaec78e",
+  "groove.up_l": "dc2efa9b8b4684e77b09cf1f7412466af9903dd565b29ab16eb23a0489df20eb",
+  "groove.pass_l2": "656cc5e128e1cedeafa21b262a398b014552868047e3529a6c95f682566f7efc",
+  "groove.down_r": "8f705bec9d4d2bb1d7f8dd17f144c11e0cd3e31df789da19dd8a5fd1ee50d3cf",
+  "groove.pass_r": "83e53718f966d0a830fe5f22ced3202d1db16d9b0e7852ff81fb79cdc45a0d23",
+  "groove.up_r": "924c8cc3086a638bf62960eda85899b1f600591ea68c2debaa747ff3ffb117ad",
+  "groove.pass_r2": "113bebc516b4d9645e94e207b647f06dd47d7740be2cdab8e169d9ba4fb8838c",
+  "left_hand.prep": "80f2a11045bc8e58b1863d26f6eea12cd414efcc3888c6bec91ba3c8706f88e9",
+  "left_hand.peak": "0d2ba0aaa73704948623af3e9cd25dd51cd8c1f219c7c7d7d268a73f034bd256",
+  "left_hand.follow": "5055ed0568258460c2b1bd2b60664040e9af15a2badd270cc7f277188e947a19",
+  "left_hand.return": "2b2a38e615a59b3e8c21734e1722a11ce6a5fbaa2ccfa2fae77c4bf98b5aa793",
+  "right_hand.prep": "ce057fa401e887eb8b2870ec971c9029e8bc8ba232a30592d2016babf41a97a0",
+  "right_hand.peak": "fd377a1f6ca885cfa4a698e5c7e42472850d0b48ec4bf51a0f5fc422f95f2820",
+  "right_hand.follow": "b0b96c4454506e58f3b704b1dcfdf20165a34ef7c2b2a90e8a49055b39533910",
+  "right_hand.return": "b6606b25985359a401851bf63b28ec520f77f50da5e80480b2432ab2460513ac",
+  "left_foot.prep": "3178c20e8b0491d2346236daabe94100974f15c36451837b7d536cceaf9cc605",
+  "left_foot.peak": "f955683b16259a183e579ae40a401f9c91172f147a3aa3168e6954f7d2d32b68",
+  "left_foot.follow": "4639792f2032ac293d685e4c3243d02f59c6c3814e73707bfd5c32fd15906e57",
+  "left_foot.return": "0be0444d8db04a14771c8bae759085ef9727c6bc18fded2abc53b7c2868ec9ef",
+  "right_foot.prep": "c821ea8823862b68ae4d0aa9045e7e3a6f00e62bdf3498ec9c6746cd7a47efd9",
+  "right_foot.peak": "05cf7187e92c1e9006fff28e6e6b8d8a3590ca9269e79f40abd86331aa997c75",
+  "right_foot.follow": "f86f96127fb4f8c837f5c40ab19f4b3eded5cdc67b460254aa4c5b2152833304",
+  "right_foot.return": "ea2b594d651197ce5b64eaee378977f310c6438816d32e75d41eaf920178aef6",
+  "enter_forward.contact_l": "643b1ba3eb93c83b0d185828dad038b0eb8e60a5334f3f402ddb5e29e16658ae",
+  "enter_forward.down_l": "6ebcfe39db965a88a105f682b7e836dcf46cff1d5fa975ae90bb388d6f1823f0",
+  "enter_forward.pass_l": "5f5395e7784af4a7f9ad49c9e033b0229557b5d0aa65af994d132b3b39187cf9",
+  "enter_forward.contact_r": "fbe9e39f11842f171a6987d38f8db7cfc8c92c0ff8f82b5661b51c67dc43c038",
+  "enter_forward.down_r": "48522dffcf98b0db7230f107d6ae4e1a5152cc8ccb6c0a695e77d93ddd2095ab",
+  "enter_forward.pass_r": "6edb3844904ff9eb5dd486a1a75535e0a765f4e41e81e2e4542a5ffafca0635e",
+  "retreat_backward.contact_l": "58d0b1d8d510e4c6aa5af40f5ccfe8b0a6075431b5fb0a00c340d867ae369b9e",
+  "retreat_backward.down_l": "160deb6f71974f682bb9b0f27c3000844a9d128a57ffb890a675532d0ab6f58b",
+  "retreat_backward.pass_l": "1b5c49679b90d5a81586f22c36e84759cb711e3d9ad8b1a1b3dcc10c862dc1ad",
+  "retreat_backward.contact_r": "705d5b8defb5ffbbd7654ac140597d4d53fb49fda4fa2afdd6cc20e4625afe89",
+  "retreat_backward.down_r": "7f86ad4d45a4d0b58933c7e24f914cf127837823cda59e20d5418d492934c526",
+  "retreat_backward.pass_r": "24744ed30535ee76222baa257de78c7281a4f8c730ffd23e32fccb2b1356545d",
+  "yield_side.contact_l": "231d0a00a01350fea8c61c0f59a1f20c7f13b3d02fc15400beafe4157b6c47f3",
+  "yield_side.down_l": "d03702fe662b6cdab68f00a6a1088d9ac2ccce6df2705c1cb82d947b77e3eaa1",
+  "yield_side.pass_l": "14b10aae3db145bdc5c1453a2d3c31cf6a326d523cf7bb30ef8eb1b8e19b1376",
+  "yield_side.contact_r": "04d58d6ce5dd5730e996f2c5ab8781595264cb3772cd941ed62b85c912cf718d",
+  "yield_side.down_r": "9491e06229a8b534e04d84ee488bfb5ab6fe71155da3e7b0e1ae37d2eeeb4d64",
+  "yield_side.pass_r": "c4d7c70a235b849dc47c8da848aef051756d9dfeb1f32328b78c7c8414a516a8",
+  "watch.shift_l": "23882f9766060c199b661a827555fe01c2b2587631c47d1981834af951ce58d2",
+  "watch.hold_l": "bdd04b2a6088d6ed751c8256c2303139d9096ae1e81b80ea4c929ce5748361f8",
+  "watch.shift_r": "2b6939116b7096204aa0233282ccb7f646d89ccf248816607efcf342b7d6694d",
+  "watch.hold_r": "f91246a00c8ac8f07472a2f5cadabb0dd53e91950c3654c46eeafc33f5a9bb63",
+  "clap.open": "b4140ccae9815c9bf52c7da7c4dcb36995493e5700991997d4a217ba01970d26",
+  "clap.close": "11038502dd0e89bfb18810250e6245e05cacbff6809cc389d2d745dd580f9fce",
+  "clap.contact": "3ed5ae29682061546a5d6bb000eb200f9e7a9617470ae84664803f1ee0131ebe",
+  "clap.release": "c7aae638493f99a5e1e85b9f0d194197814984360b254aae7532a567fcfc3a9c",
+  "challenge.load": "b906f304308308d6cd00c8ac9226af9c5d9a1a4ae32710501bcb1219a99f52e8",
+  "challenge.proud": "9b7907f3b4257b14cf8a8dd78f1c8074c3956cc143510859395016dcdc104a63",
+  "challenge.offer": "0fa7b39992f249097f92edbb6e80850d3259e6c285476c9eae151e023a201aa5",
+  "challenge.return": "fa8629d123d4da8e35f932962814588b08a72442f0b420db77035dba980f9721",
+  "approval.load": "850b303a44a1de3f4218a16b119074121cfc4b2aa2e5e57286054df3ff20ac60",
+  "approval.nod": "4601759eb41176cbdaa64cac5f2620db9b94ecf2cb67c6d3c09637892ecadf4f",
+  "approval.release": "31b8d20e703ffa3b8f18ca0d38375243e108df75d3382229cd7c8454fd1e6ba3",
+  "reassurance.notice": "2f089ef2ca76ca080047e6f2a7d1586c0b60ad869eb7563f8cb1801cfcade232",
+  "reassurance.open_hand": "fd0a33c03a8c888dc4cb8da1044b4e3027bf64b3f5eb8f1bdcc021458a3b494d",
+  "reassurance.settle": "7a307016462d7da37626e3860e8cac19ba5f956d3361871c24a3652d0152ed56",
+  "finish_turn.finish_a": "203ac175a9faab4d632db62600a14858b4f408f8e20b74976584172ef0c88eb2",
+  "finish_turn.finish_b": "f49bebb3c86ee59b6d7abebd3ab904da69665b90587a01b5ec925516441a21ed",
+  "finish_turn.turn_in": "d70e02580b2d9a4fa485cedb4097e8ba6aaae81d58dc37e8ce62f4dc84e59863",
+  "finish_turn.turn_out": "ae676ff862629313e62ae89b6260e9fea3d8aaa51f0ac06ee2e5f561876dff8e",
+  "back_groove.down_l": "743bc44061925bd58f5c2feedc06c75bbdc431ffacee91c0390d2e5885f681f2",
+  "back_groove.pass_l": "ca17cf316fee9b98440c6cf4d2a1f663fe83145268af8e7b112df79fed762100",
+  "back_groove.up_l": "7bc9a72c9c500dcaa5c0c1595e4c5100e996e055e1d73774d503d82222f6a6e1",
+  "back_groove.pass_l2": "23f2243e9da5e27c937426a0ece1447ace479de4217264cbce688f36da4333b6",
+  "back_groove.down_r": "831907cd036afac706f0774a0a8591ea161c830bf9cc9fba9dff0b2c098b1cde",
+  "back_groove.pass_r": "ec1837b2740b593cef852e0c136a446656c9a31781497e45a244883a44221deb",
+  "back_groove.up_r": "b0ba5a0a49367d4f46bb7bbdd1ce6479a608bc35847cd73341aa0768e04770a4",
+  "back_groove.pass_r2": "480f322273b83b7407100d3c5a7b9cce8004e9a3d187e11a319607384a793a17",
+  "back_accent.arm_l": "bdb8e841e589415cfd642997cdc9955c615c7abe345fa909f789b2c9de0b9e5a",
+  "back_accent.arm_r": "4ef7bdbe6f1ea4f7f92694a35860234273bd898aa522e54c01fd77fcdd4ed964",
+  "reveal.glance": "c3196ee6ee3e9165cab173b0782934d7863dad00a7e76a58adc8f451a3885b11",
+  "reveal.rear_3q": "05e104b12823d10a85727ac23a52f0bead950b701a13c0ee863189a5424c4865",
+  "reveal.profile": "89011101c168617046f13260b15f88b33458ec02de936a8b14a3945b21b8c757",
+  "reveal.front_3q": "7f36078947f8efaaf2c79c2e04546b4553a8a06d7a8ff2234b5c69594de4abd8",
+  "crossed.settle": "1c956d165a10005a35a7a0ab2c039cafc3ca53fb6e311c28de382fdad0b2ee36",
+  "crossed.hold": "7452f4f7055d750e1849fc3aac46d14fa177c7978f63bbde1c8854d583f328c3",
+  "crossed.nod_down": "05c65d810d9e78ddb990d01712b24f80152278eb66c76ce68270c11ae2083190",
+  "crossed.nod_up": "dfe39b77490c3b25e6d31dd78a2892114cdb6a7c9e17d399f419f0c8a1591882"
+ },
+ "run": "blinblin-v1-20261107c"
+}

@@ -1,7 +1,7 @@
 {
   "id": "bar",
   "title": "THE BAR",
-  "background": "bar/bar-interior.png",
+  "background": "bar/bar-interior-clean.png",
   "music": {
     "score": "bar_swag",
     "successScore": "bar_swag_success",
@@ -19,50 +19,237 @@
     "introBeats": 4,
     "callBeats": 8,
     "flourishDestination": "leftHand",
-    "offsets": [0, 1, 2, 2.5, 4, 5, 6, 6.5],
-    "limbs": ["rightHand", "leftHand", "rightHand", "rightFoot", "leftFoot", "rightHand", "leftHand", "rightFoot"],
+    "offsets": [
+      0.5,
+      1,
+      2.25,
+      3,
+      4.5,
+      5.25,
+      6,
+      6.75
+    ],
+    "limbs": [
+      "rightHand",
+      "leftHand",
+      "rightHand",
+      "rightFoot",
+      "leftFoot",
+      "rightHand",
+      "leftHand",
+      "rightFoot"
+    ],
     "variants": [
-      ["rightFoot", "leftFoot", "rightHand", "leftHand", "rightFoot", "leftFoot", "leftHand", "rightHand"],
-      ["leftHand", "rightFoot", "rightHand", "leftFoot", "leftHand", "rightHand", "rightFoot", "leftFoot"],
-      ["rightHand", "leftHand", "leftFoot", "rightFoot", "leftHand", "rightHand", "rightFoot", "leftFoot"],
-      ["rightFoot", "leftHand", "leftFoot", "rightHand", "rightFoot", "leftFoot", "rightHand", "leftHand"],
-      ["leftHand", "rightHand", "rightFoot", "leftFoot", "rightHand", "leftHand", "leftFoot", "rightFoot"]
-    ]
+      [
+        "rightFoot",
+        "leftFoot",
+        "rightHand",
+        "leftHand",
+        "rightFoot",
+        "leftHand",
+        "leftFoot",
+        "rightHand"
+      ],
+      [
+        "leftHand",
+        "rightFoot",
+        "rightHand",
+        "leftFoot",
+        "leftHand",
+        "rightHand",
+        "rightFoot",
+        "leftFoot"
+      ],
+      [
+        "rightHand",
+        "leftHand",
+        "leftFoot",
+        "rightFoot",
+        "leftHand",
+        "rightHand",
+        "rightFoot",
+        "leftFoot"
+      ],
+      [
+        "rightFoot",
+        "leftHand",
+        "leftFoot",
+        "rightHand",
+        "rightFoot",
+        "leftFoot",
+        "rightHand",
+        "leftHand"
+      ],
+      [
+        "leftHand",
+        "rightHand",
+        "rightFoot",
+        "leftFoot",
+        "rightHand",
+        "leftHand",
+        "leftFoot",
+        "rightFoot"
+      ]
+    ],
+    "rich": {
+      "limits": {"pairToleranceMs": 80, "sameSpotMs": 285, "thumbHopMs": 330, "crossThumbMs": 170, "sameLimbMs": 400, "phraseEndMs": 100},
+      "patterns": {
+        "1": [
+          {"at": 0.5, "limb": "rightFoot"},
+          {"at": 1.5, "limb": "leftHand", "move": "pair", "with": "rightHand"},
+          {"at": 2.5, "limb": "leftFoot"},
+          {"at": 3.25, "limb": "leftHand", "move": "pair", "with": "rightHand"},
+          {"at": 4.25, "limb": "leftFoot"},
+          {"at": 4.75, "limb": "rightFoot"},
+          {"at": 5.5, "limb": "rightHand"},
+          {"at": 6.25, "limb": "leftHand"}
+        ],
+        "2": [
+          {"at": 0, "limb": "rightFoot", "move": "split", "with": "leftFoot", "gap": 0.5},
+          {"at": 1.25, "limb": "leftHand", "move": "pair", "with": "rightHand"},
+          {"at": 2.25, "limb": "leftFoot"},
+          {"at": 3.25, "limb": "rightFoot"},
+          {"at": 3.75, "limb": "leftFoot"},
+          {"at": 4.5, "limb": "rightHand"},
+          {"at": 5.5, "limb": "rightFoot"},
+          {"at": 6.5, "limb": "leftHand", "move": "pair", "with": "rightHand"}
+        ],
+        "3": [
+          {"at": 0, "limb": "leftFoot"},
+          {"at": 0.5, "limb": "rightFoot", "move": "split", "with": "leftHand", "gap": 0.5},
+          {"at": 1.75, "limb": "rightHand"},
+          {"at": 3, "limb": "leftFoot", "move": "doubleTap", "gap": 0.75},
+          {"at": 4.5, "limb": "leftHand", "move": "pair", "with": "rightHand"},
+          {"at": 5.5, "limb": "rightFoot"},
+          {"at": 6.5, "limb": "leftHand", "move": "pair", "with": "rightHand"},
+          {"at": 7.5, "limb": "rightFoot"}
+        ],
+        "4": [
+          {"at": 0.5, "limb": "rightHand"},
+          {"at": 1, "limb": "leftFoot", "move": "split", "with": "rightFoot", "gap": 0.5},
+          {"at": 2.25, "limb": "leftHand", "move": "pair", "with": "rightHand"},
+          {"at": 3, "limb": "rightFoot", "move": "doubleTap", "gap": 0.75},
+          {"at": 4.5, "limb": "leftHand", "move": "pair", "with": "rightHand"},
+          {"at": 5.25, "limb": "leftFoot"},
+          {"at": 6.25, "limb": "leftHand"},
+          {"at": 7, "limb": "rightFoot"}
+        ],
+        "5": [
+          {"at": 0, "limb": "leftHand", "move": "pair", "with": "rightHand"},
+          {"at": 1, "limb": "rightFoot", "move": "doubleTap", "gap": 0.75},
+          {"at": 2.5, "limb": "leftHand", "move": "pair", "with": "rightHand"},
+          {"at": 3.5, "limb": "rightFoot"},
+          {"at": 4, "limb": "leftHand", "move": "split", "with": "rightHand", "gap": 0.5},
+          {"at": 5.25, "limb": "rightFoot", "move": "split", "with": "leftHand", "gap": 0.5},
+          {"at": 6.5, "limb": "rightHand"},
+          {"at": 7.25, "limb": "leftFoot"}
+        ]
+      }
+    }
   },
   "stage": {
     "calibration": "inspectedStarter",
-    "floor": { "horizonY": 0.205, "referenceFootY": 0.40, "referenceHeight": 0.23 },
-    "heroHome": [0.50, 0.62],
-    "heroEntrance": [0.50, 0.69],
-    "heroRetreat": [0.50, 0.66],
-    "heroWatch": [0.50, 0.655],
+    "floor": {
+      "horizonY": 0.205,
+      "referenceFootY": 0.4,
+      "referenceHeight": 0.23
+    },
+    "heroHome": [
+      0.5,
+      0.62
+    ],
+    "heroEntrance": [
+      0.5,
+      0.69
+    ],
+    "heroRetreat": [
+      0.5,
+      0.66
+    ],
+    "heroWatch": [0.5, 0.655],
+    "heroAside": [0.26, 0.645],
     "challengers": [
-      { "id": "bartender", "atlas": "bartender", "mark": [0.50, 0.45], "yieldMark": [0.60, 0.44] }
+      {
+        "id": "bartender",
+        "atlas": "bartender",
+        "mark": [0.5, 0.48],
+        "yieldMark": [0.69, 0.455],
+        "stature": 1.08,
+        "meetMark": [0.6, 0.44]
+      }
     ]
   },
   "crowd": {
-    "budgets": { "interested": 5, "following": 4, "standing": 2, "cheering": 1 },
+    "budgets": { "interested": 12, "following": 12, "standing": 12, "cheering": 12 },
+    "seat": "stool",
+    "propSet": "bar",
     "guests": [
-      [0.20, 0.480], [0.80, 0.480],
-      [0.23, 0.400], [0.77, 0.400],
-      [0.31, 0.370], [0.69, 0.370],
-      [0.23, 0.335], [0.32, 0.335], [0.41, 0.335],
-      [0.59, 0.335], [0.68, 0.335], [0.77, 0.335]
+      [0.19, 0.445],
+      [0.81, 0.335],
+      [0.22, 0.378],
+      { "at": [0.345, 0.322], "seat": "painted" },
+      [0.835, 0.445],
+      [0.645, 0.378],
+      [0.78, 0.378],
+      [0.355, 0.378],
+      { "at": [0.24, 0.322], "seat": "painted" },
+      { "at": [0.585, 0.322], "seat": "painted" },
+      { "at": [0.705, 0.322], "seat": "painted" },
+      { "at": [0.46, 0.322], "seat": "painted" }
     ],
     "props": []
   },
   "scenery": {
-    "lamps": [[0.198, 0.204], [0.471, 0.204], [0.676, 0.204], [0.706, 0.082]],
-    "plants": [[0.14, 0.43], [0.86, 0.43]],
-    "waiter": { "home": [0.51, 0.345], "swayX": 0.055 }
+    "lamps": [
+      [
+        0.198,
+        0.204
+      ],
+      [
+        0.471,
+        0.204
+      ],
+      [
+        0.676,
+        0.204
+      ],
+      [
+        0.706,
+        0.082
+      ],
+      [0.22, 0.115],
+      [0.277, 0.081],
+      [0.478, 0.02],
+      [0.754, 0.11]
+    ],
+    "plants": [
+      [0.14, 0.43],
+      [0.86, 0.43]
+    ],
+    "waiter": { "home": [0.51, 0.345], "swayX": 0.12 }
   },
   "departure": {
     "threshold": "counter-end passage",
     "originY": 0.67,
     "waypoints": [
-      { "at": 0, "x": 0.50, "y": 0.67, "facing": "sideRight" },
-      { "at": 0.65, "x": 0.82, "y": 0.64, "facing": "rear" },
-      { "at": 1, "x": 0.88, "y": 0.48, "facing": "rear" }
+      {
+        "at": 0,
+        "x": 0.5,
+        "y": 0.67,
+        "facing": "sideRight"
+      },
+      {
+        "at": 0.65,
+        "x": 0.82,
+        "y": 0.64,
+        "facing": "rear"
+      },
+      {
+        "at": 1,
+        "x": 0.88,
+        "y": 0.48,
+        "facing": "rear"
+      }
     ]
   },
   "exitShot": {
@@ -76,15 +263,35 @@
     ],
     "closeupFrom": 6,
     "contactBeat": 8,
-    "closeupTo": 11,
-    "contactPoint": [0.52, 0.36],
+    "closeupTo": 11.5,
+    "contactPoint": [
+      0.52,
+      0.36
+    ],
     "actors": [
+      {
+        "approach": "closeups/oil-gulp-counter.png",
+        "impact": "closeups/oil-gulp-counter.png",
+        "contact": [
+          600,
+          -147
+        ],
+        "scale": 0.31,
+        "entry": [
+          0,
+          0
+        ],
+        "recoil": [
+          0,
+          0
+        ]
+      },
       {
         "approach": "closeups/oil-gulp-bt-offer.png",
         "impact": "closeups/oil-gulp-bt-empty.png",
         "contact": [
-          126,
-          206
+          90,
+          169
         ],
         "scale": 0.31,
         "entry": [
@@ -97,66 +304,189 @@
         ]
       },
       {
-        "approach": "closeups/oil-gulp-mc-reach.png",
-        "impact": "closeups/oil-gulp-empty.png",
+        "approach": "closeups/oil-gulp-mc3-reach.png",
+        "impact": "closeups/oil-gulp-mc3-gulp3.png",
+        "frames": [
+          {
+            "beat": 6,
+            "image": "closeups/oil-gulp-mc3-sway1.png"
+          },
+          {
+            "beat": 6.5,
+            "image": "closeups/oil-gulp-mc3-sway2.png"
+          },
+          {
+            "beat": 7,
+            "image": "closeups/oil-gulp-mc3-sway1.png"
+          },
+          {
+            "beat": 7.5,
+            "image": "closeups/oil-gulp-mc3-reach.png"
+          },
+          {
+            "beat": 8,
+            "image": "closeups/oil-gulp-mc3-gulp1.png"
+          },
+          {
+            "beat": 8.5,
+            "image": "closeups/oil-gulp-mc3-gulp2.png"
+          },
+          {
+            "beat": 9,
+            "image": "closeups/oil-gulp-mc3-gulp3.png"
+          },
+          {
+            "beat": 9.5,
+            "image": "closeups/oil-gulp-mc3-gulp4.png"
+          },
+          {
+            "beat": 10,
+            "image": "closeups/oil-gulp-mc3-gulp5.png"
+          },
+          {
+            "beat": 10.5,
+            "image": "closeups/oil-gulp-mc3-relief.png"
+          },
+          {
+            "beat": 10.75,
+            "image": "closeups/oil-gulp-mc3-wiggle1.png"
+          },
+          {
+            "beat": 11,
+            "image": "closeups/oil-gulp-mc3-wiggle2.png"
+          },
+          {
+            "beat": 11.25,
+            "image": "closeups/oil-gulp-mc3-hop.png"
+          }
+        ],
         "contact": [
-          370,
-          118
+          298,
+          341
         ],
         "scale": 0.31,
         "entry": [
-          -98,
-          60
+          0,
+          0
         ],
         "recoil": [
-          -240,
-          100
-        ]
-      },
-      {
-        "approach": "closeups/oil-gulp-mc-low.png",
-        "impact": "closeups/oil-gulp-mc-gulp.png",
-        "contact": [
-          294,
-          260
-        ],
-        "scale": 0.31,
-        "entry": [
-          -24000,
-          8000
-        ],
-        "recoil": [
-          -2,
-          -3
+          0,
+          0
         ]
       }
     ],
     "cue": [
       {
         "beat": 8,
-        "track": "pulse",
-        "pitch": 75,
+        "track": "clink",
+        "pitch": 60,
         "velocity": 127
       },
       {
         "beat": 8.5,
-        "track": "pulse",
+        "track": "glug",
+        "pitch": 57,
+        "velocity": 120
+      },
+      {
+        "beat": 9,
+        "track": "glug",
         "pitch": 60,
-        "velocity": 96
+        "velocity": 120
       },
       {
         "beat": 9.5,
-        "track": "pulse",
-        "pitch": 60,
-        "velocity": 96
+        "track": "glug",
+        "pitch": 64,
+        "velocity": 127
       }
     ],
     "impactBeats": 1.5
   },
   "copy": {
     "invitation": "The bartender has a rhythm of their own.",
-    "clearedTitle": "PURO\nSWAG.",
-    "clearedClaim": "THE BAR IS YOURS.",
-    "resetLine": "BACK TO THE GATE"
+    "clearedTitle": "MUY\nSUAVE"
+  },
+  "hardestCombo": {
+    "name": "Last Call",
+    "status": "proposal",
+    "note": "Proposal. The name and shape need no sign-off to exist, but the owner hasn't seen or played them. The Bartender opens on the spin, where other opponents end on it, then doubles time over the bar's off-beats.",
+    "callBeats": 8,
+    "moves": [
+      {
+        "at": 0,
+        "beats": 3,
+        "clip": "spin_flare"
+      },
+      {
+        "at": 3,
+        "beats": 1,
+        "clip": "clap"
+      },
+      {
+        "at": 4,
+        "beats": 4,
+        "clip": "groove_double"
+      }
+    ],
+    "notes": [
+      {
+        "at": 0.5,
+        "limb": "rightHand"
+      },
+      {
+        "at": 1,
+        "limb": "leftHand"
+      },
+      {
+        "at": 1.75,
+        "limb": "rightFoot"
+      },
+      {
+        "at": 2.25,
+        "limb": "rightHand"
+      },
+      {
+        "at": 3,
+        "limb": "leftFoot"
+      },
+      {
+        "at": 3.75,
+        "limb": "leftHand"
+      },
+      {
+        "at": 4.5,
+        "limb": "rightFoot"
+      },
+      {
+        "at": 5.25,
+        "limb": "leftFoot"
+      },
+      {
+        "at": 6,
+        "limb": "leftHand"
+      },
+      {
+        "at": 6.75,
+        "limb": "rightFoot",
+        "move": "stomp"
+      }
+    ]
+  },
+  "layers": {
+    "plateWidth": 1024,
+    "plateHeight": 1536,
+    "props": [
+      {"id": "lantern-top", "atlas": "bar/bar-layers.png", "atlasY": 0, "left": 432, "top": 0, "width": 122, "height": 93, "frames": 7, "motion": "sway", "periodBeats": 4, "instance": 1, "kind": "hanging"},
+      {"id": "lantern-l2", "atlas": "bar/bar-layers.png", "atlasY": 95, "left": 247, "top": 1, "width": 78, "height": 175, "frames": 7, "motion": "sway", "periodBeats": 4, "instance": 2, "kind": "hanging"},
+      {"id": "lantern-r2", "atlas": "bar/bar-layers.png", "atlasY": 272, "left": 686, "top": 1, "width": 75, "height": 175, "frames": 7, "motion": "sway", "periodBeats": 4, "instance": 3, "kind": "hanging"},
+      {"id": "lantern-l1", "atlas": "bar/bar-layers.png", "atlasY": 449, "left": 199, "top": 80, "width": 57, "height": 153, "frames": 7, "motion": "sway", "periodBeats": 4, "instance": 4, "kind": "hanging"},
+      {"id": "lantern-r1", "atlas": "bar/bar-layers.png", "atlasY": 604, "left": 748, "top": 80, "width": 55, "height": 153, "frames": 7, "motion": "sway", "periodBeats": 4, "instance": 5, "kind": "hanging"},
+      {"id": "fern-right", "atlas": "bar/bar-layers.png", "atlasY": 759, "left": 794, "top": 0, "width": 170, "height": 168, "frames": 7, "motion": "sway", "periodBeats": 2, "instance": 6, "kind": "plant"},
+      {"id": "fern-left", "atlas": "bar/bar-layers.png", "atlasY": 929, "left": 1, "top": 0, "width": 193, "height": 264, "frames": 7, "motion": "sway", "periodBeats": 2, "instance": 7, "kind": "plant"},
+      {"id": "candle-left", "atlas": "bar/bar-layers.png", "atlasY": 1195, "left": 188, "top": 297, "width": 33, "height": 36, "frames": 4, "motion": "pulse", "periodBeats": 1, "instance": 8, "kind": "flame"},
+      {"id": "candle-mid", "atlas": "bar/bar-layers.png", "atlasY": 1233, "left": 466, "top": 297, "width": 32, "height": 36, "frames": 4, "motion": "pulse", "periodBeats": 1, "instance": 9, "kind": "flame"},
+      {"id": "candle-right", "atlas": "bar/bar-layers.png", "atlasY": 1271, "left": 676, "top": 297, "width": 32, "height": 36, "frames": 4, "motion": "pulse", "periodBeats": 1, "instance": 10, "kind": "flame"}
+    ]
   }
 }

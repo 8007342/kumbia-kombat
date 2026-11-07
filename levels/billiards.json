@@ -1,0 +1,1250 @@
+{
+ "id": "billiards",
+ "title": "THE BILLIARD ROOM",
+ "background": "billiards/billiards-room-clean.png",
+ "music": {
+  "score": "crowd_duende",
+  "successScore": "bar_swag_finale",
+  "leadShape": "sine",
+  "moveAccent": {
+   "track": "clack",
+   "pitch": 60,
+   "velocity": 110
+  }
+ },
+ "rules": {
+  "metric": "Finesse",
+  "cleanSeconds": 110,
+  "successesPerTier": 2,
+  "finalChallenges": 2,
+  "resetAfterFailures": 5,
+  "earlyHitRatio": 0.875
+ },
+ "chart": {
+  "introBeats": 12,
+  "callBeats": 8,
+  "flourishDestination": "rightHand",
+  "offsets": [
+   0,
+   1,
+   1.5,
+   2.5,
+   3.5,
+   4.5,
+   5.5,
+   6.5
+  ],
+  "limbs": [
+   "leftFoot",
+   "leftHand",
+   "rightFoot",
+   "rightHand",
+   "leftFoot",
+   "leftHand",
+   "rightFoot",
+   "rightHand"
+  ],
+  "variants": [
+   [
+    "leftHand",
+    "leftFoot",
+    "rightHand",
+    "rightFoot",
+    "leftHand",
+    "leftFoot",
+    "rightHand",
+    "rightFoot"
+   ],
+   [
+    "rightFoot",
+    "rightHand",
+    "leftFoot",
+    "leftHand",
+    "rightFoot",
+    "rightHand",
+    "leftFoot",
+    "leftHand"
+   ],
+   [
+    "leftHand",
+    "rightHand",
+    "leftFoot",
+    "rightFoot",
+    "leftHand",
+    "rightHand",
+    "rightFoot",
+    "leftFoot"
+   ],
+   [
+    "rightFoot",
+    "leftHand",
+    "rightHand",
+    "leftFoot",
+    "leftHand",
+    "rightFoot",
+    "leftFoot",
+    "rightHand"
+   ],
+   [
+    "leftFoot",
+    "rightHand",
+    "leftHand",
+    "rightFoot",
+    "rightHand",
+    "leftFoot",
+    "rightFoot",
+    "leftHand"
+   ]
+  ],
+  "rich": {
+   "limits": {
+    "pairToleranceMs": 80,
+    "sameSpotMs": 285,
+    "thumbHopMs": 330,
+    "crossThumbMs": 170,
+    "sameLimbMs": 400,
+    "phraseEndMs": 100
+   },
+   "patterns": {
+    "0": [
+     {
+      "at": 0,
+      "limb": "leftFoot"
+     },
+     {
+      "at": 1,
+      "limb": "leftHand"
+     },
+     {
+      "at": 1.5,
+      "limb": "rightFoot"
+     },
+     {
+      "at": 2.5,
+      "limb": "rightHand"
+     },
+     {
+      "at": 3.5,
+      "limb": "leftFoot"
+     },
+     {
+      "at": 4.5,
+      "limb": "leftHand"
+     },
+     {
+      "at": 5.5,
+      "limb": "rightFoot"
+     },
+     {
+      "at": 6.5,
+      "limb": "rightHand",
+      "offer": "flick"
+     }
+    ],
+    "1": [
+     {
+      "at": 0.25,
+      "limb": "rightHand",
+      "offer": "flick"
+     },
+     {
+      "at": 1.75,
+      "limb": "leftHand",
+      "move": "pair",
+      "with": "rightHand"
+     },
+     {
+      "at": 2.75,
+      "limb": "rightFoot"
+     },
+     {
+      "at": 3.5,
+      "limb": "leftHand",
+      "move": "pair",
+      "with": "rightHand"
+     },
+     {
+      "at": 4.5,
+      "limb": "leftFoot"
+     },
+     {
+      "at": 5.25,
+      "limb": "rightHand"
+     },
+     {
+      "at": 6.25,
+      "limb": "leftHand",
+      "move": "pair",
+      "with": "rightHand"
+     },
+     {
+      "at": 7.0,
+      "limb": "leftFoot",
+      "move": "split",
+      "with": "rightHand",
+      "gap": 0.5
+     }
+    ],
+    "2": [
+     {
+      "at": 0.5,
+      "limb": "leftHand",
+      "move": "pair",
+      "with": "rightHand"
+     },
+     {
+      "at": 1.5,
+      "limb": "leftFoot"
+     },
+     {
+      "at": 2.0,
+      "limb": "rightFoot",
+      "move": "doubleTap",
+      "gap": 0.5
+     },
+     {
+      "at": 3.25,
+      "limb": "leftHand",
+      "move": "pair",
+      "with": "rightHand"
+     },
+     {
+      "at": 4.25,
+      "limb": "leftFoot"
+     },
+     {
+      "at": 4.75,
+      "limb": "rightHand",
+      "offer": "flick"
+     },
+     {
+      "at": 6.25,
+      "limb": "rightHand"
+     },
+     {
+      "at": 6.75,
+      "limb": "leftFoot",
+      "move": "split",
+      "with": "rightFoot",
+      "gap": 0.5
+     }
+    ],
+    "3": [
+     {
+      "at": 0.25,
+      "limb": "leftHand",
+      "move": "pair",
+      "with": "rightHand"
+     },
+     {
+      "at": 1.25,
+      "limb": "rightHand",
+      "offer": "flick"
+     },
+     {
+      "at": 2.75,
+      "limb": "leftHand",
+      "move": "doubleTap",
+      "gap": 0.5
+     },
+     {
+      "at": 4.25,
+      "limb": "leftHand",
+      "move": "pair",
+      "with": "rightHand"
+     },
+     {
+      "at": 5.0,
+      "limb": "rightFoot"
+     },
+     {
+      "at": 5.5,
+      "limb": "leftHand",
+      "move": "split",
+      "with": "rightHand",
+      "gap": 0.5
+     },
+     {
+      "at": 6.5,
+      "limb": "leftFoot"
+     },
+     {
+      "at": 7.25,
+      "limb": "leftHand",
+      "move": "pair",
+      "with": "rightHand"
+     }
+    ],
+    "4": [
+     {
+      "at": 0.25,
+      "limb": "leftHand",
+      "move": "pair",
+      "with": "rightHand"
+     },
+     {
+      "at": 1.0,
+      "limb": "leftFoot",
+      "move": "doubleTap",
+      "gap": 0.5,
+      "offer": "flick"
+     },
+     {
+      "at": 3.0,
+      "limb": "leftHand",
+      "move": "pair",
+      "with": "rightHand"
+     },
+     {
+      "at": 3.75,
+      "limb": "leftFoot"
+     },
+     {
+      "at": 4.25,
+      "limb": "rightHand"
+     },
+     {
+      "at": 4.75,
+      "limb": "leftHand",
+      "move": "split",
+      "with": "rightHand",
+      "gap": 0.5
+     },
+     {
+      "at": 6.0,
+      "limb": "rightFoot",
+      "move": "doubleTap",
+      "gap": 0.5
+     },
+     {
+      "at": 7.25,
+      "limb": "leftHand",
+      "move": "pair",
+      "with": "rightHand"
+     }
+    ],
+    "5": [
+     {
+      "at": 0.0,
+      "limb": "rightFoot",
+      "move": "split",
+      "with": "leftHand",
+      "gap": 0.5
+     },
+     {
+      "at": 1.0,
+      "limb": "rightHand",
+      "move": "doubleTap",
+      "gap": 0.75,
+      "offer": "flick"
+     },
+     {
+      "at": 3.25,
+      "limb": "leftHand",
+      "move": "pair",
+      "with": "rightHand"
+     },
+     {
+      "at": 4.0,
+      "limb": "rightFoot"
+     },
+     {
+      "at": 4.5,
+      "limb": "leftHand",
+      "move": "split",
+      "with": "rightHand",
+      "gap": 0.5
+     },
+     {
+      "at": 5.5,
+      "limb": "leftFoot"
+     },
+     {
+      "at": 6.0,
+      "limb": "rightFoot",
+      "move": "doubleTap",
+      "gap": 0.5
+     },
+     {
+      "at": 7.25,
+      "limb": "leftHand",
+      "move": "pair",
+      "with": "rightHand"
+     }
+    ]
+   }
+  }
+ },
+ "stage": {
+  "calibration": "unverifiedStoryboard",
+  "floor": {
+   "horizonY": 0.268,
+   "referenceFootY": 0.4,
+   "referenceHeight": 0.104,
+   "vanishingX": 0.494
+  },
+  "heroHome": [
+   0.5,
+   0.62
+  ],
+  "heroEntersAt": 6,
+  "heroEntrance": [
+   0.08,
+   0.635
+  ],
+  "heroRetreat": [
+   0.5,
+   0.645
+  ],
+  "heroWatch": [
+   0.5,
+   0.645
+  ],
+  "heroAside": [
+   0.26,
+   0.625
+  ],
+  "challengers": [
+   {
+    "id": "pool-player",
+    "atlas": "pool-player",
+    "mark": [
+     0.5,
+     0.5
+    ],
+    "yieldMark": [
+     0.6,
+     0.53
+    ],
+    "stature": 1.08,
+    "meetMark": [
+     0.46,
+     0.52
+    ],
+    "facingAway": {
+     "back": {
+      "frames": [
+       "spin_back",
+       "spin_back34_l",
+       "spin_back",
+       "spin_back34_r"
+      ],
+      "beatsPerFrame": 1
+     },
+     "turn": [
+      "spin_back34_r",
+      "spin_side_r",
+      "spin_34_r",
+      "spin_front"
+     ],
+     "turnBeats": 2
+    }
+   }
+  ]
+ },
+ "crowd": {
+  "budgets": {
+   "interested": 12,
+   "following": 12,
+   "standing": 12,
+   "cheering": 12
+  },
+  "seat": "standing",
+  "floorDance": {
+   "ownThing": {
+    "frames": [
+     "standing_idle_a",
+     "standing_idle_b"
+    ],
+    "beatsPerFrame": 2
+   },
+   "glance": {
+    "frames": [
+     "standing_idle_a",
+     "standing_idle_b"
+    ],
+    "beatsPerFrame": 2
+   },
+   "occupied": {
+    "pair": {
+     "frames": [
+      "pair_dance_a",
+      "pair_dance_b",
+      "pair_dance_c",
+      "pair_dance_d"
+     ],
+     "beatsPerFrame": 2
+    },
+    "back": {
+     "frames": [
+      "back_dance_a",
+      "back_dance_b",
+      "back_dance_c",
+      "back_dance_d"
+     ],
+     "beatsPerFrame": 1
+    }
+   },
+   "castGlance": {
+    "frames": [
+     "glance_a",
+     "glance_b"
+    ],
+    "beatsPerFrame": 2
+   },
+   "following": {
+    "frames": [
+     "groove_a",
+     "groove_b",
+     "groove_c",
+     "groove_d"
+    ],
+    "beatsPerFrame": 1
+   },
+   "sidestep": {
+    "frames": [
+     "sidestep_a",
+     "sidestep_b",
+     "sidestep_c",
+     "sidestep_d"
+    ],
+    "beatsPerFrame": 0.5
+   }
+  },
+  "guests": [
+   {
+    "at": [
+     0.2,
+     0.41
+    ],
+    "occupied": "pair",
+    "faces": "right",
+    "partner": 2,
+    "atlas": "guest3"
+   },
+   {
+    "at": [
+     0.8,
+     0.41
+    ],
+    "occupied": "pair",
+    "faces": "left",
+    "partner": 3,
+    "atlas": "guest4"
+   },
+   {
+    "at": [
+     0.266,
+     0.41
+    ],
+    "occupied": "pair",
+    "faces": "left",
+    "partner": 0,
+    "atlas": "guest6"
+   },
+   {
+    "at": [
+     0.734,
+     0.41
+    ],
+    "occupied": "pair",
+    "faces": "right",
+    "partner": 1,
+    "atlas": "guest5"
+   },
+   [
+    0.11,
+    0.44
+   ],
+   [
+    0.89,
+    0.44
+   ],
+   [
+    0.06,
+    0.46
+   ],
+   [
+    0.94,
+    0.46
+   ],
+   [
+    0.02,
+    0.47
+   ],
+   [
+    0.98,
+    0.47
+   ],
+   [
+    0.13,
+    0.415
+   ],
+   [
+    0.87,
+    0.415
+   ]
+  ],
+  "props": []
+ },
+ "scenery": {
+  "lamps": [
+   [
+    0.184,
+    0.325
+   ],
+   [
+    0.231,
+    0.316
+   ],
+   [
+    0.267,
+    0.31
+   ],
+   [
+    0.733,
+    0.31
+   ],
+   [
+    0.769,
+    0.316
+   ],
+   [
+    0.816,
+    0.325
+   ],
+   [
+    0.35,
+    0.228
+   ],
+   [
+    0.7,
+    0.228
+   ],
+   [
+    0.54,
+    0.3
+   ]
+  ],
+  "plants": [],
+  "occluders": [
+   {
+    "frontY": 0.47,
+    "outline": [
+     [
+      0,
+      0.43
+     ],
+     [
+      0.04,
+      0.43
+     ],
+     [
+      0.195,
+      0.378
+     ],
+     [
+      0.4,
+      0.378
+     ],
+     [
+      0.4,
+      0.4
+     ],
+     [
+      0.335,
+      0.46
+     ],
+     [
+      0.32,
+      0.56
+     ],
+     [
+      0,
+      0.56
+     ],
+     [
+      0,
+      0.56
+     ]
+    ]
+   },
+   {
+    "frontY": 0.47,
+    "outline": [
+     [
+      1,
+      0.43
+     ],
+     [
+      0.96,
+      0.43
+     ],
+     [
+      0.805,
+      0.378
+     ],
+     [
+      0.61,
+      0.378
+     ],
+     [
+      0.61,
+      0.4
+     ],
+     [
+      0.675,
+      0.46
+     ],
+     [
+      0.69,
+      0.56
+     ],
+     [
+      1,
+      0.56
+     ],
+     [
+      1,
+      0.56
+     ]
+    ]
+   },
+   {
+    "frontY": 0.47,
+    "outline": [
+     [
+      0.14182692307692307,
+      0.31650641025641024
+     ],
+     [
+      0.17067307692307693,
+      0.2980769230769231
+     ],
+     [
+      0.18028846153846154,
+      0.27724358974358976
+     ],
+     [
+      0.25961538461538464,
+      0.27724358974358976
+     ],
+     [
+      0.2692307692307692,
+      0.2900641025641026
+     ],
+     [
+      0.2980769230769231,
+      0.30849358974358976
+     ],
+     [
+      0.2980769230769231,
+      0.3245192307692308
+     ],
+     [
+      0.2668269230769231,
+      0.32371794871794873
+     ],
+     [
+      0.2668269230769231,
+      0.3301282051282051
+     ],
+     [
+      0.22235576923076922,
+      0.3301282051282051
+     ],
+     [
+      0.22235576923076922,
+      0.33974358974358976
+     ],
+     [
+      0.14182692307692307,
+      0.33974358974358976
+     ]
+    ]
+   },
+   {
+    "frontY": 0.47,
+    "outline": [
+     [
+      0.8581730769230769,
+      0.31650641025641024
+     ],
+     [
+      0.8293269230769231,
+      0.2980769230769231
+     ],
+     [
+      0.8197115384615384,
+      0.27724358974358976
+     ],
+     [
+      0.7403846153846154,
+      0.27724358974358976
+     ],
+     [
+      0.7307692307692307,
+      0.2900641025641026
+     ],
+     [
+      0.7019230769230769,
+      0.30849358974358976
+     ],
+     [
+      0.7019230769230769,
+      0.3245192307692308
+     ],
+     [
+      0.7331730769230769,
+      0.32371794871794873
+     ],
+     [
+      0.7331730769230769,
+      0.3301282051282051
+     ],
+     [
+      0.7776442307692307,
+      0.3301282051282051
+     ],
+     [
+      0.7776442307692307,
+      0.33974358974358976
+     ],
+     [
+      0.8581730769230769,
+      0.33974358974358976
+     ]
+    ]
+   }
+  ],
+  "band": {
+   "standIn": false,
+   "ladders": {
+    "atTable": [
+     {
+      "input": "tier",
+      "from": 0,
+      "frames": [
+       "chalk_a",
+       "chalk_b",
+       "lean_a",
+       "lean_b",
+       "stroke",
+       "lean_b",
+       "lean_a",
+       "chalk_a"
+      ],
+      "beatsPerFrame": 1
+     },
+     {
+      "input": "tier",
+      "from": 1,
+      "frames": [
+       "watch_a",
+       "watch_b"
+      ],
+      "beatsPerFrame": 1
+     },
+     {
+      "input": "tier",
+      "from": 3,
+      "frames": [
+       "clap_a",
+       "clap_b"
+      ],
+      "beatsPerFrame": 0.5
+     }
+    ]
+   },
+   "players": [
+    {
+     "id": "far-left",
+     "atlas": "pool-bg-a",
+     "reference": "stand",
+     "feet": [
+      0.3,
+      0.445
+     ],
+     "ladder": "atTable"
+    },
+    {
+     "id": "end-left",
+     "atlas": "pool-bg-c",
+     "reference": "stand",
+     "feet": [
+      0.385,
+      0.43
+     ],
+     "ladder": "atTable",
+     "flipX": true,
+     "lateBy": 1,
+     "beatOffset": 1
+    },
+    {
+     "id": "far-right",
+     "atlas": "pool-bg-b",
+     "reference": "stand",
+     "feet": [
+      0.7,
+      0.445
+     ],
+     "ladder": "atTable",
+     "flipX": true,
+     "beatOffset": 2,
+     "stature": 0.88
+    },
+    {
+     "id": "end-right",
+     "atlas": "pool-bg-a",
+     "reference": "stand",
+     "feet": [
+      0.615,
+      0.43
+     ],
+     "ladder": "atTable",
+     "lateBy": 1,
+     "beatOffset": 3
+    }
+   ]
+  }
+ },
+ "departure": {
+  "threshold": "door",
+  "originY": 0.62,
+  "waypoints": [
+   {
+    "at": 0,
+    "x": 0.5,
+    "y": 0.62,
+    "facing": "rear"
+   },
+   {
+    "at": 1,
+    "x": 0.5,
+    "y": 0.39,
+    "facing": "rear"
+   }
+  ]
+ },
+ "copy": {
+  "invitation": "Rack them up.",
+  "clearedTitle": "QUÉ\nCARAMBOLA"
+ },
+ "hardestCombo": {
+  "name": "Tres Bandas",
+  "status": "proposal",
+  "note": "Proposal, from the art agent. Three-cushion billiards: the ball banks off three rails before it scores. She chalks and sights, spins round the planted cue, then the notes ricochet corner to corner, each pair a diagonal, and speed up into the last hit. Uses only clips her atlas will have. The owner hasn't seen or played it.",
+  "callBeats": 8,
+  "moves": [
+   {
+    "at": 0,
+    "beats": 2,
+    "clip": "show_off"
+   },
+   {
+    "at": 2,
+    "beats": 2,
+    "clip": "finish_turn"
+   },
+   {
+    "at": 4,
+    "beats": 4,
+    "clip": "step_touch"
+   }
+  ],
+  "notes": [
+   {
+    "at": 0,
+    "limb": "leftHand"
+   },
+   {
+    "at": 1,
+    "limb": "rightFoot"
+   },
+   {
+    "at": 2,
+    "limb": "rightHand"
+   },
+   {
+    "at": 2.75,
+    "limb": "leftFoot"
+   },
+   {
+    "at": 3.5,
+    "limb": "rightHand"
+   },
+   {
+    "at": 4.25,
+    "limb": "leftFoot"
+   },
+   {
+    "at": 5,
+    "limb": "leftHand"
+   },
+   {
+    "at": 5.5,
+    "limb": "rightFoot"
+   },
+   {
+    "at": 6,
+    "limb": "leftHand"
+   },
+   {
+    "at": 6.5,
+    "limb": "rightFoot"
+   },
+   {
+    "at": 7,
+    "limb": "rightHand",
+    "move": "circle"
+   }
+  ]
+ },
+ "layers": {
+  "plateWidth": 832,
+  "plateHeight": 1248,
+  "props": [
+   {
+    "id": "lamps-left",
+    "atlas": "billiards/billiards-layers.png",
+    "atlasY": 0,
+    "left": 113,
+    "top": 345,
+    "width": 141,
+    "height": 81,
+    "frames": 7,
+    "motion": "sway",
+    "periodBeats": 4,
+    "instance": 1,
+    "kind": "hanging"
+   },
+   {
+    "id": "lamps-right",
+    "atlas": "billiards/billiards-layers.png",
+    "atlasY": 83,
+    "left": 579,
+    "top": 345,
+    "width": 141,
+    "height": 81,
+    "frames": 7,
+    "motion": "sway",
+    "periodBeats": 4,
+    "instance": 2,
+    "kind": "hanging"
+   }
+  ]
+ },
+ "exitShot": {
+  "plate": "closeups/pool-chalk-plate.png",
+  "celebrateUntil": 3.5,
+  "walkFrom": 3.5,
+  "walkTo": 5.75,
+  "heroStep": [
+   0.56,
+   0.57
+  ],
+  "heroWaitFrame": "front_idle",
+  "dust": false,
+  "closeupFrom": 6,
+  "contactBeat": 8,
+  "closeupTo": 11.5,
+  "contactPoint": [
+   0.66,
+   0.2
+  ],
+  "impactBeats": 1,
+  "recoilBeats": 1.5,
+  "cue": [
+   {
+    "beat": 6,
+    "track": "chalk",
+    "pitch": 60,
+    "velocity": 70
+   },
+   {
+    "beat": 6.5,
+    "track": "chalk",
+    "pitch": 64,
+    "velocity": 70
+   },
+   {
+    "beat": 8,
+    "track": "chalk",
+    "pitch": 60,
+    "velocity": 125
+   },
+   {
+    "beat": 8.75,
+    "track": "peck",
+    "pitch": 72,
+    "velocity": 60
+   }
+  ],
+  "actors": [
+   {
+    "approach": "closeups/duet-macron-body-rest.png",
+    "impact": "closeups/duet-macron-body-shy.png",
+    "contact": [
+     200,
+     22
+    ],
+    "scale": 0.36,
+    "entry": [
+     0,
+     0
+    ],
+    "recoil": [
+     0,
+     0
+    ],
+    "frames": [
+     {
+      "beat": 6,
+      "image": "closeups/duet-macron-body-rest.png"
+     },
+     {
+      "beat": 9,
+      "image": "closeups/duet-macron-body-shy.png"
+     },
+     {
+      "beat": 10,
+      "image": "closeups/duet-macron-body-rest.png"
+     },
+     {
+      "beat": 11,
+      "image": "closeups/duet-macron-body-shy.png"
+     }
+    ]
+   },
+   {
+    "approach": "closeups/duet-macron-logo.png",
+    "impact": "closeups/duet-macron-logo.png",
+    "contact": [
+     200,
+     22
+    ],
+    "scale": 0.36,
+    "entry": [
+     0,
+     0
+    ],
+    "recoil": [
+     0,
+     0
+    ],
+    "keepsReading": true
+   },
+   {
+    "approach": "closeups/duet-macron-round.png",
+    "impact": "closeups/pool-macron-arc-blush.png",
+    "contact": [
+     200,
+     22
+    ],
+    "scale": 0.36,
+    "entry": [
+     0,
+     0
+    ],
+    "recoil": [
+     0,
+     0
+    ],
+    "frames": [
+     {
+      "beat": 6,
+      "image": "closeups/duet-macron-round.png"
+     },
+     {
+      "beat": 8,
+      "image": "closeups/pool-macron-wide.png"
+     },
+     {
+      "beat": 8.25,
+      "image": "closeups/pool-macron-squash.png"
+     },
+     {
+      "beat": 8.75,
+      "image": "closeups/pool-macron-arc.png"
+     },
+     {
+      "beat": 9.5,
+      "image": "closeups/pool-macron-arc-blush.png"
+     }
+    ]
+   },
+   {
+    "approach": "closeups/pool-player-chalk-a.png",
+    "impact": "closeups/pool-player-dab.png",
+    "contact": [
+     436,
+     203
+    ],
+    "scale": 0.36,
+    "entry": [
+     -34,
+     4
+    ],
+    "recoil": [
+     -10,
+     1
+    ],
+    "sway": {
+     "from": 9.5,
+     "beats": 2,
+     "by": [
+      -2,
+      0
+     ]
+    },
+    "frames": [
+     {
+      "beat": 6,
+      "image": "closeups/pool-player-chalk-a.png"
+     },
+     {
+      "beat": 6.5,
+      "image": "closeups/pool-player-chalk-b.png"
+     },
+     {
+      "beat": 7,
+      "image": "closeups/pool-player-wink.png"
+     },
+     {
+      "beat": 7.5,
+      "image": "closeups/pool-player-reach.png"
+     },
+     {
+      "beat": 8,
+      "image": "closeups/pool-player-dab.png"
+     },
+     {
+      "beat": 9,
+      "image": "closeups/pool-player-wink.png"
+     },
+     {
+      "beat": 10,
+      "image": "closeups/pool-player-chalk-b.png"
+     }
+    ]
+   },
+   {
+    "approach": "closeups/pool-chalk-table.png",
+    "impact": "closeups/pool-chalk-table.png",
+    "contact": [
+     214,
+     -264
+    ],
+    "scale": 0.5556,
+    "entry": [
+     0,
+     0
+    ],
+    "recoil": [
+     0,
+     0
+    ]
+   }
+  ]
+ }
+}

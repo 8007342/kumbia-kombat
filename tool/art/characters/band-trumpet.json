@@ -1,0 +1,296 @@
+{
+ "$comment": "The indoor party's band (trumpet), owner's ruling 2026-11-07; front sheet approved the same day. Drawn at an angle, playing toward the crowd, from the front_3q view. The instrument is a mask-only garment, and Qwen draws it from the sheet. Plan: plan/levels/indoor-band-2026-11-07.md.",
+ "id": "band-trumpet",
+ "family": "band-trumpet-v1",
+ "style": "party-pixel",
+ "description": "Indoor party band, trumpet: slight, wiry musician of about thirty, tall black flat-top haircut.",
+ "body": {
+  "preset": "slim-adult"
+ },
+ "pronouns": [
+  "they",
+  "them",
+  "their"
+ ],
+ "skin": "#D0A179",
+ "traits": "slight, wiry musician of about thirty, tall black flat-top haircut",
+ "demeanor": "the band's spark: up on the toes, playing to the ceiling",
+ "garments": [
+  {
+   "id": "hair",
+   "shape": "puff",
+   "region": "hair",
+   "colour": "#16110F",
+   "text": "tall flat-topped block of black hair with shaved sides"
+  },
+  {
+   "id": "shirt",
+   "shape": "shirt-fitted",
+   "region": "shirt",
+   "colour": "#EFE4C8",
+   "text": "closed cream shirt with a small midnight-violet bow tie"
+  },
+  {
+   "id": "jacket",
+   "shape": "waistcoat-fitted",
+   "region": "cloth",
+   "colour": "#EADFC2",
+   "text": "long-sleeved cream dinner jacket"
+  },
+  {
+   "id": "lapels",
+   "shape": "jacket-lapels",
+   "region": "apron",
+   "colour": "#3A1F6B",
+   "text": "narrow midnight-violet satin lapels"
+  },
+  {
+   "id": "trousers",
+   "shape": "trousers",
+   "region": "trousers",
+   "colour": "#26232C",
+   "text": "slim dark charcoal trousers"
+  },
+  {
+   "id": "shoes",
+   "shape": "shoes-flat",
+   "region": "shoes",
+   "colour": "#D8C9A0",
+   "text": "polished two-tone cream and dark shoes"
+  },
+  {
+   "id": "horn",
+   "shape": "trumpet-horn",
+   "region": "prop",
+   "colour": "#D9A92E",
+   "text": "bright polished brass trumpet"
+  }
+ ],
+ "motion": {
+  "set": "band-loop",
+  "overrides": {
+   "relaxed.a": {
+    "pose": {
+     "twist": 0,
+     "l_arm": [
+      -1.4,
+      85.6
+     ],
+     "l_fore": [
+      -137.7,
+      56.0
+     ],
+     "r_arm": [
+      -7.3,
+      71.7
+     ],
+     "r_fore": [
+      -150.7,
+      -18.0
+     ]
+    },
+    "intent": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, both feet flat on the floor, both hands on the trumpet at their lips, the horn level, its bell pointing toward the right of the picture"
+   },
+   "relaxed.b": {
+    "pose": {
+     "twist": 0,
+     "l_arm": [
+      0.2,
+      70.9
+     ],
+     "l_fore": [
+      -130.1,
+      65.7
+     ],
+     "r_arm": [
+      -4.7,
+      57.6
+     ],
+     "r_fore": [
+      -148.7,
+      17.6
+     ]
+    },
+    "intent": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, both feet flat on the floor, both hands on the trumpet at their lips, the horn dipped a little"
+   },
+   "tap.up_a": {
+    "pose": {
+     "twist": 0,
+     "l_arm": [
+      -1.4,
+      85.6
+     ],
+     "l_fore": [
+      -137.7,
+      56.0
+     ],
+     "r_arm": [
+      -7.3,
+      71.7
+     ],
+     "r_fore": [
+      -150.7,
+      -18.0
+     ]
+    },
+    "intent": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, the foot on the left of the picture lifted clear off the floor with its knee bent and toe pointing down, tapping time, the other foot flat on the floor, both hands on the trumpet at their lips, the horn level"
+   },
+   "tap.up_b": {
+    "pose": {
+     "twist": 0,
+     "l_arm": [
+      0.2,
+      70.9
+     ],
+     "l_fore": [
+      -130.1,
+      65.7
+     ],
+     "r_arm": [
+      -4.7,
+      57.6
+     ],
+     "r_fore": [
+      -148.7,
+      17.6
+     ]
+    },
+    "intent": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, the foot on the left of the picture lifted clear off the floor with its knee bent and toe pointing down, tapping time, the other foot flat on the floor, both hands on the trumpet at their lips, the horn dipped a little"
+   },
+   "swing.a": {
+    "pose": {
+     "twist": 8,
+     "l_arm": [
+      -25.0,
+      119.2
+     ],
+     "l_fore": [
+      -141.9,
+      51.3
+     ],
+     "r_arm": [
+      4.4,
+      101.8
+     ],
+     "r_fore": [
+      -137.9,
+      -53.4
+     ]
+    },
+    "intent": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, both feet flat on the floor, swinging the horn high, bell pointing up at the ceiling toward the right of the picture, chin lifted, both hands on the trumpet at their lips"
+   },
+   "swing.b": {
+    "pose": {
+     "twist": 0,
+     "l_arm": [
+      -1.0,
+      81.9
+     ],
+     "l_fore": [
+      -136.7,
+      57.3
+     ],
+     "r_arm": [
+      -6.7,
+      67.6
+     ],
+     "r_fore": [
+      -151.3,
+      -9.2
+     ]
+    },
+    "intent": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, both feet flat on the floor, the horn passing level, both hands on the trumpet at their lips"
+   },
+   "swing.c": {
+    "pose": {
+     "twist": -8,
+     "l_arm": [
+      12.0,
+      41.6
+     ],
+     "l_fore": [
+      -92.6,
+      92.8
+     ],
+     "r_arm": [
+      -3.7,
+      38.4
+     ],
+     "r_fore": [
+      -111.8,
+      66.0
+     ]
+    },
+    "intent": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, both feet flat on the floor, swinging the horn low, bell pointing down toward the floor on the right of the picture, chin tucked, both hands on the trumpet at their lips"
+   },
+   "swing.d": {
+    "pose": {
+     "twist": 0,
+     "l_arm": [
+      -1.0,
+      81.9
+     ],
+     "l_fore": [
+      -136.7,
+      57.3
+     ],
+     "r_arm": [
+      -6.7,
+      67.6
+     ],
+     "r_fore": [
+      -151.3,
+      -9.2
+     ]
+    },
+    "intent": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, the foot on the left of the picture lifted clear off the floor with its knee bent and toe pointing down, tapping time, the other foot flat on the floor, the horn passing level, both hands on the trumpet at their lips"
+   }
+  }
+ },
+ "drawing": {
+  "noun": "musician",
+  "fits": "the top of their flat-top, both shoes, both hands and the whole trumpet",
+  "look": "small, slight, wiry adult build, narrow shoulders, slim angular face, tall flat-topped block of black hair with shaved sides, light olive skin, long-sleeved cream dinner jacket buttoned closed, its narrow midnight-violet satin lapels lying flat on the chest, a small midnight-violet bow tie at a closed cream shirt collar, slim dark charcoal trousers and polished two-tone cream and dark shoes, and thick dark ink outline, playing a bright polished brass trumpet with a wide flared bell",
+  "extra": "They are a grown adult of about thirty. The trumpet is at their lips with its wide round brass bell well clear of their head, one trumpet of the same size in every picture. ",
+  "sheet": {
+   "source": {
+    "image": "tool/art/references/band-trumpet/front.png",
+    "poseFrom": "relaxed.a"
+   },
+   "views": {
+    "front": {
+     "image": "tool/art/references/band-trumpet/front.png",
+     "description": "standing facing the viewer with feet apart and head turned a little toward the right side of the picture, both hands raised to the trumpet at their lips, elbows lifted away from the body"
+    },
+    "front_3q": {
+     "image": "tool/art/references/band-trumpet/front_3q.png",
+     "description": "standing and playing the trumpet, seen in a three-quarter view from the side: the chest, hips, knees, toes and nose all point toward the lower right corner of the picture, the face in three-quarter view looking that way, playing out toward a crowd on that side, feet apart, both hands on the trumpet at their lips, the horn level with its bell toward the right of the picture",
+     "extra": "They are a grown adult of about thirty. The trumpet is at their lips with its wide round brass bell well clear of their head, one trumpet of the same size in every picture. "
+    }
+   }
+  },
+  "score": {
+   "silhouetteTolerance": 60
+  },
+  "skeletonScale": 0.92,
+  "seed": 989710,
+  "count": 2
+ },
+ "references": {
+  "mode": "source",
+  "sources": []
+ },
+ "targets": [
+  {
+   "room": "cool-crowd",
+   "atlas": "band-trumpet",
+   "out": "assets/art/ensemble/band-trumpet-v1.png",
+   "native": [
+    256,
+    320
+   ],
+   "pixelScale": 3
+  }
+ ],
+ "seedBase": 989710
+}

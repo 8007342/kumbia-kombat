@@ -1,0 +1,22 @@
+{
+ "room": "cool-crowd",
+ "run": "room-cool-crowd-v1-a",
+ "passNo": 1,
+ "steps": 4,
+ "promptSha256": "00f3b578943a21e1dcad3490369fe6a48ece3fd2beb053557e58d5e45218e7a6",
+ "jobs": [
+  {
+   "name": "p1c",
+   "workflow": "art_runs/room-cool-crowd-v1-a/workflows/p1c.api.json",
+   "inputs": {
+    "layout": "/work/tmp/imagegen/kumbia/room-cool-crowd-v1-a/in/greybox.png",
+    "style": "/work/tmp/imagegen/kumbia/room-cool-crowd-v1-a/in/style.png"
+   },
+   "overrides": {
+    "seed": 987000
+   },
+   "count": 8
+  }
+ ],
+ "how": "Queue one studio.run_workflow per job, one at a time. Then: rooms.py collect --run room-cool-crowd-v1-a"
+}

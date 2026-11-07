@@ -1,0 +1,126 @@
+{
+ "contactPoint": [
+  0.5,
+  0.29
+ ],
+ "actors": [
+  {
+   "approach": "closeups/duet-macron-round.png",
+   "impact": "closeups/duet-macron-arc-blush.png",
+   "frames": [
+    {
+     "beat": 3.5,
+     "image": "closeups/duet-macron-round.png"
+    },
+    {
+     "beat": 4.5,
+     "image": "closeups/duet-macron-wide.png"
+    },
+    {
+     "beat": 4.75,
+     "image": "closeups/duet-macron-squash.png"
+    },
+    {
+     "beat": 5,
+     "image": "closeups/duet-macron-arc.png"
+    },
+    {
+     "beat": 5.5,
+     "image": "closeups/duet-macron-arc-blush.png"
+    }
+   ],
+   "contact": [
+    165,
+    138
+   ],
+   "scale": 0.36,
+   "entry": [
+    0,
+    0
+   ],
+   "recoil": [
+    0,
+    0
+   ]
+  },
+  {
+   "approach": "closeups/duet-a-smile.png",
+   "impact": "closeups/duet-a-kiss.png",
+   "frames": [
+    {
+     "beat": 3.5,
+     "image": "closeups/duet-a-smile.png"
+    },
+    {
+     "beat": 4.25,
+     "image": "closeups/duet-a-kiss.png"
+    },
+    {
+     "beat": 5.5,
+     "image": "closeups/duet-a-smile.png"
+    }
+   ],
+   "contact": [
+    326,
+    113
+   ],
+   "scale": 0.36,
+   "entry": [
+    -70,
+    8
+   ],
+   "recoil": [
+    -13,
+    2
+   ]
+  },
+  {
+   "approach": "closeups/duet-b-smile.png",
+   "impact": "closeups/duet-b-kiss.png",
+   "frames": [
+    {
+     "beat": 3.5,
+     "image": "closeups/duet-b-smile.png"
+    },
+    {
+     "beat": 4.25,
+     "image": "closeups/duet-b-kiss.png"
+    },
+    {
+     "beat": 5.5,
+     "image": "closeups/duet-b-smile.png"
+    }
+   ],
+   "contact": [
+    -29,
+    119
+   ],
+   "scale": 0.36,
+   "entry": [
+    70,
+    8
+   ],
+   "recoil": [
+    13,
+    2
+   ]
+  },
+  {
+   "approach": "closeups/duet-hedge.png",
+   "impact": "closeups/duet-hedge.png",
+   "contact": [
+    350,
+    -97
+   ],
+   "scale": 0.36,
+   "entry": [
+    0,
+    0
+   ],
+   "recoil": [
+    0,
+    0
+   ]
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "mid.flac": {
+  "target_bpm": 124.0,
+  "measured_bpm": 124.99,
+  "error_pct": 0.8,
+  "clarity": 17.8,
+  "half_time_ratio": 0.23,
+  "wander_ms": 7.2,
+  "seconds": 85.16,
+  "passed": true,
+  "reasons": []
+ }
+}

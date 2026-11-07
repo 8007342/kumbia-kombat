@@ -1,0 +1,416 @@
+{
+ "version": 1,
+ "sets": {
+  "garden": {
+   "image": "garden.png",
+   "imageWidth": 198,
+   "imageHeight": 52,
+   "frames": {
+    "chair_right": {
+     "rect": [
+      0,
+      0,
+      34,
+      52
+     ],
+     "anchor": [
+      17.0,
+      52
+     ],
+     "pixelsPerUnit": 8.0
+    },
+    "chair_left": {
+     "rect": [
+      36,
+      0,
+      34,
+      52
+     ],
+     "anchor": [
+      17.0,
+      52
+     ],
+     "pixelsPerUnit": 8.0
+    },
+    "stool": {
+     "rect": [
+      72,
+      27,
+      17,
+      25
+     ],
+     "anchor": [
+      8.5,
+      25
+     ],
+     "pixelsPerUnit": 8.0
+    },
+    "table_a": {
+     "rect": [
+      91,
+      24,
+      21,
+      28
+     ],
+     "anchor": [
+      10.5,
+      28
+     ],
+     "pixelsPerUnit": 8.0
+    },
+    "table_b": {
+     "rect": [
+      114,
+      24,
+      21,
+      28
+     ],
+     "anchor": [
+      10.5,
+      28
+     ],
+     "pixelsPerUnit": 8.0
+    },
+    "cup_0": {
+     "rect": [
+      137,
+      36,
+      13,
+      16
+     ],
+     "anchor": [
+      6.5,
+      16
+     ],
+     "pixelsPerUnit": 8.0
+    },
+    "cup_1": {
+     "rect": [
+      152,
+      36,
+      10,
+      16
+     ],
+     "anchor": [
+      5.0,
+      16
+     ],
+     "pixelsPerUnit": 8.0
+    },
+    "cup_2": {
+     "rect": [
+      164,
+      36,
+      7,
+      16
+     ],
+     "anchor": [
+      3.5,
+      16
+     ],
+     "pixelsPerUnit": 8.0
+    },
+    "cup_3": {
+     "rect": [
+      173,
+      36,
+      10,
+      16
+     ],
+     "anchor": [
+      5.0,
+      16
+     ],
+     "pixelsPerUnit": 8.0
+    },
+    "cup_4": {
+     "rect": [
+      185,
+      36,
+      13,
+      16
+     ],
+     "anchor": [
+      6.5,
+      16
+     ],
+     "pixelsPerUnit": 8.0
+    }
+   }
+  },
+  "bar": {
+   "image": "bar.png",
+   "imageWidth": 236,
+   "imageHeight": 62,
+   "frames": {
+    "chair_right": {
+     "rect": [
+      0,
+      0,
+      41,
+      62
+     ],
+     "anchor": [
+      20.5,
+      62
+     ],
+     "pixelsPerUnit": 8.0
+    },
+    "chair_left": {
+     "rect": [
+      43,
+      0,
+      41,
+      62
+     ],
+     "anchor": [
+      20.5,
+      62
+     ],
+     "pixelsPerUnit": 8.0
+    },
+    "stool": {
+     "rect": [
+      86,
+      32,
+      21,
+      30
+     ],
+     "anchor": [
+      10.5,
+      30
+     ],
+     "pixelsPerUnit": 8.0
+    },
+    "table_a": {
+     "rect": [
+      109,
+      29,
+      25,
+      33
+     ],
+     "anchor": [
+      12.5,
+      33
+     ],
+     "pixelsPerUnit": 8.0
+    },
+    "table_b": {
+     "rect": [
+      136,
+      29,
+      25,
+      33
+     ],
+     "anchor": [
+      12.5,
+      33
+     ],
+     "pixelsPerUnit": 8.0
+    },
+    "cup_0": {
+     "rect": [
+      163,
+      43,
+      16,
+      19
+     ],
+     "anchor": [
+      8.0,
+      19
+     ],
+     "pixelsPerUnit": 8.0
+    },
+    "cup_1": {
+     "rect": [
+      181,
+      43,
+      12,
+      19
+     ],
+     "anchor": [
+      6.0,
+      19
+     ],
+     "pixelsPerUnit": 8.0
+    },
+    "cup_2": {
+     "rect": [
+      195,
+      43,
+      9,
+      19
+     ],
+     "anchor": [
+      4.5,
+      19
+     ],
+     "pixelsPerUnit": 8.0
+    },
+    "cup_3": {
+     "rect": [
+      206,
+      43,
+      12,
+      19
+     ],
+     "anchor": [
+      6.0,
+      19
+     ],
+     "pixelsPerUnit": 8.0
+    },
+    "cup_4": {
+     "rect": [
+      220,
+      43,
+      16,
+      19
+     ],
+     "anchor": [
+      8.0,
+      19
+     ],
+     "pixelsPerUnit": 8.0
+    }
+   }
+  },
+  "pool-garden": {
+   "image": "pool-garden.png",
+   "imageWidth": 114,
+   "imageHeight": 27,
+   "frames": {
+    "chair_right": {
+     "rect": [
+      0,
+      0,
+      18,
+      27
+     ],
+     "anchor": [
+      9.0,
+      27
+     ],
+     "pixelsPerUnit": 8.0
+    },
+    "chair_left": {
+     "rect": [
+      20,
+      0,
+      18,
+      27
+     ],
+     "anchor": [
+      9.0,
+      27
+     ],
+     "pixelsPerUnit": 8.0
+    },
+    "stool": {
+     "rect": [
+      40,
+      14,
+      9,
+      13
+     ],
+     "anchor": [
+      4.5,
+      13
+     ],
+     "pixelsPerUnit": 8.0
+    },
+    "table_a": {
+     "rect": [
+      51,
+      12,
+      12,
+      15
+     ],
+     "anchor": [
+      6.0,
+      15
+     ],
+     "pixelsPerUnit": 8.0
+    },
+    "table_b": {
+     "rect": [
+      65,
+      12,
+      11,
+      15
+     ],
+     "anchor": [
+      5.5,
+      15
+     ],
+     "pixelsPerUnit": 8.0
+    },
+    "cup_0": {
+     "rect": [
+      78,
+      19,
+      7,
+      8
+     ],
+     "anchor": [
+      3.5,
+      8
+     ],
+     "pixelsPerUnit": 8.0
+    },
+    "cup_1": {
+     "rect": [
+      87,
+      19,
+      5,
+      8
+     ],
+     "anchor": [
+      2.5,
+      8
+     ],
+     "pixelsPerUnit": 8.0
+    },
+    "cup_2": {
+     "rect": [
+      94,
+      19,
+      4,
+      8
+     ],
+     "anchor": [
+      2.0,
+      8
+     ],
+     "pixelsPerUnit": 8.0
+    },
+    "cup_3": {
+     "rect": [
+      100,
+      19,
+      5,
+      8
+     ],
+     "anchor": [
+      2.5,
+      8
+     ],
+     "pixelsPerUnit": 8.0
+    },
+    "cup_4": {
+     "rect": [
+      107,
+      19,
+      7,
+      8
+     ],
+     "anchor": [
+      3.5,
+      8
+     ],
+     "pixelsPerUnit": 8.0
+    }
+   }
+  }
+ }
+}

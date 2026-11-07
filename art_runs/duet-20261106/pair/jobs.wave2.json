@@ -1,0 +1,92 @@
+[
+ {
+  "pose": "a.pair_rest_b",
+  "args": {
+   "workflow": ".claude/worktrees/agent-a13beeb7ce7bd8cae/art_runs/duet-20261106/pair/workflows/a.pair_rest_b.api.json",
+   "tier": "I1",
+   "count": 3,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/duet-20261106/in/a_front.png"
+   },
+   "overrides": {
+    "seed": 1850200,
+    "$node:30.lora_name": "Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors"
+   }
+  }
+ },
+ {
+  "pose": "b.pair_rest_b",
+  "args": {
+   "workflow": ".claude/worktrees/agent-a13beeb7ce7bd8cae/art_runs/duet-20261106/pair/workflows/b.pair_rest_b.api.json",
+   "tier": "I1",
+   "count": 3,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/duet-20261106/in/b_front.png"
+   },
+   "overrides": {
+    "seed": 1850700,
+    "$node:30.lora_name": "Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors"
+   }
+  }
+ },
+ {
+  "pose": "a.pair_arm",
+  "args": {
+   "workflow": ".claude/worktrees/agent-a13beeb7ce7bd8cae/art_runs/duet-20261106/pair/workflows/a.pair_arm.api.json",
+   "tier": "I1",
+   "count": 3,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/duet-20261106/in/a_front.png"
+   },
+   "overrides": {
+    "seed": 1850300,
+    "$node:30.lora_name": "Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors"
+   }
+  }
+ },
+ {
+  "pose": "b.pair_arm",
+  "args": {
+   "workflow": ".claude/worktrees/agent-a13beeb7ce7bd8cae/art_runs/duet-20261106/pair/workflows/b.pair_arm.api.json",
+   "tier": "I1",
+   "count": 3,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/duet-20261106/in/b_front.png"
+   },
+   "overrides": {
+    "seed": 1850800,
+    "$node:30.lora_name": "Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors"
+   }
+  }
+ },
+ {
+  "pose": "a.pair_kick",
+  "args": {
+   "workflow": ".claude/worktrees/agent-a13beeb7ce7bd8cae/art_runs/duet-20261106/pair/workflows/a.pair_kick.api.json",
+   "tier": "I1",
+   "count": 3,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/duet-20261106/in/a_front.png"
+   },
+   "overrides": {
+    "seed": 1850400,
+    "$node:30.lora_name": "Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors"
+   }
+  }
+ },
+ {
+  "pose": "b.pair_kick",
+  "args": {
+   "workflow": ".claude/worktrees/agent-a13beeb7ce7bd8cae/art_runs/duet-20261106/pair/workflows/b.pair_kick.api.json",
+   "tier": "I1",
+   "count": 3,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/duet-20261106/in/b_front.png"
+   },
+   "overrides": {
+    "seed": 1850900,
+    "$node:30.lora_name": "Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors"
+   }
+  }
+ }
+]

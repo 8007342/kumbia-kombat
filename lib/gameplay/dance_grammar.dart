@@ -1,4 +1,5 @@
 import 'challenger_choreography.dart';
+import 'rhythm.dart';
 
 /// One drawn dance clip. Loops index from the absolute music beat, so a groove
 /// keeps its phase however it is entered. One-shots index from their own start.
@@ -52,12 +53,28 @@ class DanceAccent {
 }
 
 class _Dancer {
-  _Dancer(this.clips, this.frames, this.accents);
+  _Dancer(this.clips, this.frames, this.accents, this.handoffMoves);
   final Map<String, DanceClip> clips;
   final Map<String, String> frames;
 
   /// This dancer's own flares. They come ahead of the shared accents.
   final List<DanceAccent> accents;
+
+  /// Finishes danced on the mark as the call ends, by the lowest tier for each.
+  final List<DanceHandoffMove> handoffMoves;
+
+  DanceClip? handoffClip(int tier) {
+    for (final move in handoffMoves) {
+      if (tier >= move.minTier) return clips[move.clip];
+    }
+    return null;
+  }
+}
+
+class DanceHandoffMove {
+  const DanceHandoffMove(this.minTier, this.clip);
+  final int minTier;
+  final String clip;
 }
 
 /// The art layer over the call: groove, accents, travel and celebration, read
@@ -105,6 +122,10 @@ class DanceGrammar {
         {...shared, ...clips(dancer['clips'] as Map?)},
         Map<String, String>.from(dancer['frames'] as Map? ?? const {}),
         _accentsFrom(dancer['accents'] as List? ?? const []),
+        [
+          for (final m in dancer['handoffMoves'] as List? ?? const [])
+            DanceHandoffMove(m['minTier'] as int, m['clip'] as String),
+        ],
       );
     }
     final grammar = DanceGrammar._(data, dancers);
@@ -134,7 +155,11 @@ class DanceGrammar {
       'return_in',
     };
     for (final dancer in _dancers.values) {
-      for (final name in [...named, ...dancer.accents.map((a) => a.clip)]) {
+      for (final name in [
+        ...named,
+        ...dancer.accents.map((a) => a.clip),
+        ...dancer.handoffMoves.map((m) => m.clip),
+      ]) {
         if (!dancer.clips.containsKey(name)) {
           throw FormatException('Choreography rule names missing clip $name');
         }
@@ -146,6 +171,42 @@ class DanceGrammar {
       }
     }
   }
+
+  /// How long [dancer] holds the mark past the call's last note at [tier], for
+  /// the sampler. Zero when this dancer has no finish for that tier.
+  double handoffBeats(String dancer, int tier) =>
+      _require(dancer).handoffClip(tier.clamp(0, 4))?.lengthBeats ?? 0;
+
+  /// A named clip's drawing at [beat], looped from the absolute beat.
+  String clipFrame(String dancer, String clip, double beat) {
+    final d = _require(dancer);
+    return _alias(d, _requireClip(d, clip).loop(beat));
+  }
+
+  /// A named clip's drawing, [progress] of the way along, for a walk.
+  String clipAlong(String dancer, String clip, double progress) {
+    final d = _require(dancer);
+    return _alias(d, _requireClip(d, clip).along(progress));
+  }
+
+  /// The one still drawing for someone standing by under reduced motion.
+  String calmFrame(String dancer) =>
+      _alias(_require(dancer), _rules['reducedMotionHold'] as String);
+
+  /// How long one pass of this dancer's clip is, in beats.
+  double clipBeats(String dancer, String clip) =>
+      _requireClip(_require(dancer), clip).lengthBeats;
+
+  /// Fails closed when a level names a clip this dancer doesn't have.
+  void requireClips(String dancer, Iterable<String> clips) {
+    final d = _require(dancer);
+    for (final clip in clips) {
+      _requireClip(d, clip);
+    }
+  }
+
+  DanceClip _requireClip(_Dancer d, String clip) =>
+      d.clips[clip] ?? (throw StateError('No dance clip $clip'));
 
   /// Every drawing this grammar can name for [dancer], before art lookups.
   Set<String> framesFor(String dancer) {
@@ -164,6 +225,7 @@ class DanceGrammar {
           'right_foot',
         ])
           (template as String).replaceAll('{limb}', limb),
+      ...((_data['pairHit'] as Map?)?.values.cast<String>() ?? const <String>[]),
       ...List<String>.from(rules['finishByTier'] as List),
       rules['reducedMotionHold'] as String,
       rules['reducedMotionCelebration'] as String,
@@ -216,6 +278,8 @@ class DanceGrammar {
     bool reducedMotion = false,
   }) {
     final d = _require(dancer);
+    final pair = _pairFrame(pose);
+    if (pair != null) return pose.withFrame(_alias(d, pair));
     if (pose.movePhase == DanceMovePhase.accent) return pose;
     final frame = _frame(
       d,
@@ -228,6 +292,14 @@ class DanceGrammar {
       reducedMotion,
     );
     return pose.withFrame(_alias(d, frame));
+  }
+
+  /// Both hands at once: the clap every dancer already has, with its contact on
+  /// the note. Any other pair dances its own limb's accent.
+  String? _pairFrame(ChallengerPose pose) {
+    bool hand(Limb? l) => l == Limb.leftHand || l == Limb.rightHand;
+    if (!hand(pose.limb) || !hand(pose.partnerLimb)) return null;
+    return (_data['pairHit'] as Map?)?[pose.movePhase.name] as String?;
   }
 
   String _frame(
@@ -284,6 +356,8 @@ class DanceGrammar {
         return reduced
             ? pose.frameId
             : d.clips[rules['recover'] as String]!.once(outcomeAge ?? 0);
+      case ChallengerDanceState.handoffMove:
+        return d.handoffClip(tier)?.once(pose.moveAge) ?? pose.frameId;
       case ChallengerDanceState.watch:
         if (reduced) return rules['reducedMotionHold'] as String;
         final hold = (_data['inviteHoldBeats'] as num).toDouble();

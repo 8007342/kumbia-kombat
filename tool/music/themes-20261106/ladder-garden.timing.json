@@ -1,0 +1,37 @@
+{
+ "low.flac": {
+  "target_bpm": 92.0,
+  "measured_bpm": 92.5,
+  "error_pct": 0.55,
+  "clarity": 12.3,
+  "half_time_ratio": 0.12,
+  "wander_ms": 25.1,
+  "seconds": 88.72,
+  "passed": true,
+  "reasons": []
+ },
+ "mid.flac": {
+  "target_bpm": 98.0,
+  "measured_bpm": 98.04,
+  "error_pct": 0.05,
+  "clarity": 11.2,
+  "half_time_ratio": 0.86,
+  "wander_ms": 20.1,
+  "seconds": 88.16,
+  "passed": false,
+  "reasons": [
+   "half-time (0.86)"
+  ]
+ },
+ "high.flac": {
+  "target_bpm": 104.0,
+  "measured_bpm": 104.06,
+  "error_pct": 0.06,
+  "clarity": 7.0,
+  "half_time_ratio": 0.26,
+  "wander_ms": 22.4,
+  "seconds": 87.68,
+  "passed": true,
+  "reasons": []
+ }
+}

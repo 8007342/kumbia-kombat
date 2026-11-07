@@ -337,12 +337,12 @@ function composeSwingSuccess(p){
  result.musicalIntent='Quote the lawn call an octave up, then thin the band as the tonic answer settles.';
  return result;
 }
-function composeBarToPool(to){
+function composeIntoSwing(to,{id,title,fromScore,clave,intent}){
  const events=[], note=(track,beat,pitch,duration,velocity)=>events.push({track,beat,pitch,duration,velocity,minTier:0,maxTier:4});
  // Bar one is percussion on a straight grid, the last of the bar's feel. Bar two
  // swings: the bass starts on the bar's C and walks the circle of fifths to the
  // lawn's E-flat. C minor and E-flat major share every note, so nothing jars.
- for(const beat of [0,1.5,3])note('pulse',beat,75,.1,62);
+ for(const beat of clave)note('pulse',beat,75,.1,62);
  for(let beat=0;beat<3.5;beat+=.5)note('pulse',beat,73,.13,beat%1===0?40:28);
  for(const beat of [0,2])note('pulse',beat,36,.16,78);
  for(const [beat,pitch,velocity] of [[2.5,60,56],[3,63,62],[3.5,65,68]])note('pulse',beat,pitch,.14,velocity);
@@ -357,10 +357,48 @@ function composeBarToPool(to){
  for(const index of [1,3,2])note('brass',7.5,tonePitch(60,[10,'7'],index,67),.4,52);
  note('pulse',7.75,65,.12,72);
  const fraction=swingFraction(to.bpms[0],to.swing);
- const result=transitionBase('bar_to_pool','Out to the Lawn',to,to.bpms[0],events.map(e=>e.beat<4?e:swingNote(e,fraction)),'bridge');
- result.style='Original synth swing instrumental';result.fromScore='bar_swag';result.toScore=to.id;result.swing=to.swing;
- result.musicalIntent='The bar\'s straight C-minor feel ends in a drum break; the bass walks C, F, B-flat into E-flat major and the band starts to swing.';
+ const result=transitionBase(id,title,to,to.bpms[0],events.map(e=>e.beat<4?e:swingNote(e,fraction)),'bridge');
+ result.style='Original synth swing instrumental';result.fromScore=fromScore;result.toScore=to.id;result.swing=to.swing;
+ result.musicalIntent=intent;
  result.tempoIntent='Takes the lawn\'s base tempo at its downbeat, as every bridge does, so the count-in already has the new pulse. No pitch or time crossfade.';
+ return result;
+}
+function composePoolToBar(from,to){
+ const events=[], note=(track,beat,pitch,duration,velocity)=>events.push({track,beat,pitch,duration,velocity,minTier:0,maxTier:4});
+ // The mirror of the way in. Bar one still swings, on drums alone; bar two is
+ // straight, and the bass steps from the lawn's E-flat down to the bar's C minor.
+ for(const beat of [0,1,2.5,3])note('pulse',beat,75,.1,62);
+ for(let beat=0;beat<3.5;beat+=.5)note('pulse',beat,73,.13,beat%1===0?40:28);
+ for(const beat of [0,2])note('pulse',beat,36,.16,78);
+ for(const [beat,pitch,velocity] of [[2.5,67,56],[3,65,62],[3.5,63,68]])note('pulse',beat,pitch,.14,velocity);
+ for(const x of [4,5,6,6.5,7])note('pulse',x,73,.12,x%1?36:48);
+ for(const x of [4,6])note('pulse',x,36,.14,70);
+ for(const [x,pitch] of [[4,51],[5,56],[6,55],[7,43]])note('bass',x,pitch-12,.85,x===4?82:74);
+ for(const [x,kind,semis] of [[4,'6',3],[5.5,'6',8],[6,'7',7],[7.5,'7',7]])for(const index of [1,3])note('guitar',x,tonePitch(60,[semis,kind],index,55),.26,48);
+ for(const [offset,interval,duration] of to.motif.filter(n=>n[0]<3.5))note('answer',4+offset,to.root+interval,Math.min(duration,3.4-offset),72);
+ note('pulse',7.75,65,.12,72);
+ const fraction=swingFraction(to.bpm,from.swing);
+ const result=transitionBase('pool_to_bar','In from the Lawn',to,to.bpm,events.map(e=>e.beat<4?swingNote(e,fraction):e),'bridge');
+ result.fromScore=from.id;result.toScore=to.id;
+ result.musicalIntent='The lawn\'s swing thins to a drum break; the band comes in straight, and the bass steps E-flat, A-flat, G into the bar\'s C minor.';
+ result.tempoIntent='Takes the bar\'s base tempo at its downbeat, as every bridge does. The drop from the lawn\'s top tempo is intended: the bar is slower and more complex. No pitch or time crossfade.';
+ return result;
+}
+// The bar closes the campaign for now, and its oil gulp lands on beat 8, past a
+// two-bar tag. When the indoor party ships, point bar.json back at bar_swag_success
+// and let bar_to_crowd carry the gulp.
+function composeBarFinale(success,to){
+ const events=success.events.map(e=>({...e})), note=(track,beat,pitch,duration,velocity)=>events.push({track,beat,pitch,duration,velocity,minTier:0,maxTier:4});
+ for(const beat of [8,9.5,11])note('pulse',beat,75,.1,62);
+ for(let beat=8;beat<12;beat+=.5)note('pulse',beat,73,.13,beat%1===0?40:28);
+ for(const beat of [8,10])note('pulse',beat,36,.16,78);
+ for(const [x,pitch] of [[12,48],[13,55],[14,43]])note('bass',x,pitch-12,.9,78);
+ for(const x of [12,13.5])for(const interval of [0,3,7])note('guitar',x,to.root+interval,.26,48);
+ note('bass',15,36,.95,84);
+ for(const interval of [0,3,7,12])note('guitar',15,to.root+interval,.95,52);
+ const result={...success,id:'bar_swag_finale',title:success.title+', with the Last Drop',bars:4,phraseBars:4,
+  sections:[{bar:0,bars:2,name:'Recognition and tonic answer'},{bar:2,bars:2,name:'Drum break under the gulp, then the last cadence'}],
+  events:events.sort((a,b)=>a.beat-b.beat||a.track.localeCompare(b.track)||a.pitch-b.pitch)};
  return result;
 }
 function variable(n){const a=[n&127];while(n>>=7)a.unshift((n&127)|128);return Buffer.from(a)}
@@ -420,10 +458,22 @@ for(const piece of swingPieces){
  writeFileSync(resolve(root,'assets/music/midi/'+success.id+'.mid'),midi(success,4));
  manifest.transitions.successes.push({id:success.id,title:success.title,bars:2,baseBpm:success.tiers[0].bpm,fullBpm:success.tiers[4].bpm,parentScore:piece.id,path:'assets/music/scores/'+success.id+'.json',midiPath:'assets/music/midi/'+success.id+'.mid'});
  console.log(success.id+': original two-bar success phrase');
- const bridge=composeBarToPool(piece);
- writeFileSync(resolve(root,'assets/music/scores/'+bridge.id+'.json'),JSON.stringify(bridge)+'\n');
- writeFileSync(resolve(root,'assets/music/midi/'+bridge.id+'.mid'),midi(bridge,0));
- manifest.transitions.bridges.push({id:bridge.id,title:bridge.title,bars:2,baseBpm:bridge.tiers[0].bpm,fullBpm:bridge.tiers[4].bpm,fromScore:'bar_swag',toScore:piece.id,path:'assets/music/scores/'+bridge.id+'.json',midiPath:'assets/music/midi/'+bridge.id+'.mid'});
- console.log(bridge.id+': original two-bar percussion pivot and pickup');
+ const bar=pieces.find(p=>p.id==='bar_swag');
+ for(const bridge of [
+  composeIntoSwing(piece,{id:'bar_to_pool',title:'Out to the Lawn',fromScore:'bar_swag',clave:[0,1.5,3],intent:'The bar\'s straight C-minor feel ends in a drum break; the bass walks C, F, B-flat into E-flat major and the band starts to swing.'}),
+  composeIntoSwing(piece,{id:'garden_to_pool',title:'Up the Lantern Path',fromScore:'garden_mojo',clave:[0,.75,2.5],intent:'The garden\'s A minor dissolves in a drum break; C is common to both keys, and the bass walks C, F, B-flat into E-flat major as the band starts to swing.'}),
+  composePoolToBar(piece,bar),
+ ]){
+  writeFileSync(resolve(root,'assets/music/scores/'+bridge.id+'.json'),JSON.stringify(bridge)+'\n');
+  writeFileSync(resolve(root,'assets/music/midi/'+bridge.id+'.mid'),midi(bridge,0));
+  manifest.transitions.bridges.push({id:bridge.id,title:bridge.title,bars:2,baseBpm:bridge.tiers[0].bpm,fullBpm:bridge.tiers[4].bpm,fromScore:bridge.fromScore,toScore:bridge.toScore,path:'assets/music/scores/'+bridge.id+'.json',midiPath:'assets/music/midi/'+bridge.id+'.mid'});
+  console.log(bridge.id+': original two-bar percussion pivot and pickup');
+ }
+ const barPiece=pieces.findIndex(p=>p.id==='bar_swag');
+ const finale=composeBarFinale(composeSuccess(pieces[barPiece],barPiece),pieces[barPiece]);
+ writeFileSync(resolve(root,'assets/music/scores/'+finale.id+'.json'),JSON.stringify(finale)+'\n');
+ writeFileSync(resolve(root,'assets/music/midi/'+finale.id+'.mid'),midi(finale,4));
+ manifest.transitions.successes.push({id:finale.id,title:finale.title,bars:4,baseBpm:finale.tiers[0].bpm,fullBpm:finale.tiers[4].bpm,parentScore:'bar_swag',path:'assets/music/scores/'+finale.id+'.json',midiPath:'assets/music/midi/'+finale.id+'.mid'});
+ console.log(finale.id+': the bar\'s tag with room for the gulp');
 }
 writeFileSync(resolve(root,'assets/music/manifest.json'),JSON.stringify(manifest,null,2)+'\n');

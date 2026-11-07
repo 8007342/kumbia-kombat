@@ -1,0 +1,54 @@
+{
+ "character": "band-congas",
+ "note": "Sides are the character's own; he faces the viewer, so his left is on screen right.",
+ "poses": {
+  "relaxed.a": {
+   "clip": "relaxed",
+   "phase": "settle",
+   "support": "both",
+   "description": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, both feet flat on the floor, the hand on the left of the picture flat on its drumhead, the hand on the right of the picture lifted a little above its drumhead"
+  },
+  "relaxed.b": {
+   "clip": "relaxed",
+   "phase": "settle",
+   "support": "both",
+   "description": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, both feet flat on the floor, the hand on the right of the picture flat on its drumhead, the hand on the left of the picture lifted a little above its drumhead"
+  },
+  "tap.up_a": {
+   "clip": "tap",
+   "phase": "pass",
+   "support": "left",
+   "description": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, the foot on the left of the picture lifted clear off the floor with its knee bent and toe pointing down, tapping time, the other foot flat on the floor, the hand on the left of the picture flat on its drumhead, the other lifted a little"
+  },
+  "tap.up_b": {
+   "clip": "tap",
+   "phase": "pass",
+   "support": "left",
+   "description": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, the foot on the left of the picture lifted clear off the floor with its knee bent and toe pointing down, tapping time, the other foot flat on the floor, the hand on the right of the picture flat on its drumhead, the other lifted a little"
+  },
+  "swing.a": {
+   "clip": "swing",
+   "phase": "accent",
+   "support": "both",
+   "description": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, both feet flat on the floor, the hand on the left of the picture lifted up to the height of his shoulder above the near drum, palm open, about to slap down, the other hand flat on the far drumhead, both drums exactly as in image 1"
+  },
+  "swing.b": {
+   "clip": "swing",
+   "phase": "pass",
+   "support": "both",
+   "description": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, both feet flat on the floor, both hands just above the drumheads, about to come down, shoulders level"
+  },
+  "swing.c": {
+   "clip": "swing",
+   "phase": "accent",
+   "support": "both",
+   "description": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, both feet flat on the floor, big joyful move: the hand on the right of the picture thrown high above his shoulder, palm open, the other flat on its drumhead, shoulders rolling"
+  },
+  "swing.d": {
+   "clip": "swing",
+   "phase": "pass",
+   "support": "left",
+   "description": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, the foot on the left of the picture lifted clear off the floor with its knee bent and toe pointing down, tapping time, the other foot flat on the floor, both hands just above the drumheads, about to come down"
+  }
+ }
+}

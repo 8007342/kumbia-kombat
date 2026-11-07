@@ -71,17 +71,33 @@ def torso_x(rgb: np.ndarray, mask: np.ndarray, shirt: np.ndarray) -> float:
     return float(np.median(xs)) if xs.size else float(np.median(np.where(mask)[1]))
 
 
-def register(src: Path, dst: Path, rig: Path, pose: str, shirt: np.ndarray, torso: np.ndarray) -> dict:
+# Rig regions of a long thin prop, and the width in canvas pixels a shape must have to count as body.
+THIN_PROP_REGIONS = ("00ff80", "80ff00")
+THIN_PROP_WIDTH = 25
+
+
+def without_thin_prop(mask: np.ndarray) -> np.ndarray:
+    """The figure with a cue-like prop removed: an opening drops anything narrower than the structure."""
+    return ndi.binary_opening(mask, structure=np.ones((THIN_PROP_WIDTH, THIN_PROP_WIDTH)))
+
+
+def register(src: Path, dst: Path, rig: Path, pose: str, shirt: np.ndarray, torso: np.ndarray, thin_prop: bool = False) -> dict:
     source = Image.open(src)
     im = source.convert("RGB")
     rgb = np.array(im)
     mask = matte_mask(np.array(source.convert("RGBA"))[..., 3]) if source.mode == "RGBA" else figure_mask(rgb)
-    x0, y0, x1, y1 = bbox(mask)
+    # A cue's reach changes with the pose and with the model's whim, so with one in the hand the body alone sets
+    # height and floor, on both sides of the comparison. Where the cue lands is then left to the drawing.
+    body = without_thin_prop(mask) if thin_prop and without_thin_prop(mask).any() else mask
+    x0, y0, x1, y1 = bbox(body)
 
     regions = np.array(Image.open(rig / f"{pose}.regions.png").convert("RGBA"))
     rmask = regions[..., 3] > 0
     if rmask.all():
         rmask = regions[..., :3].max(axis=-1) > 8
+    if thin_prop:
+        for h in THIN_PROP_REGIONS:
+            rmask &= ~np.all(regions[..., :3] == np.array([int(h[i:i + 2], 16) for i in (0, 2, 4)]), axis=-1)
     _, ry0, _, ry1 = bbox(rmask)
     rtorso = np.where(np.all(regions[..., :3] == torso, axis=-1))[1]
     rx = float(np.median(rtorso)) if rtorso.size else im.width / 2
@@ -168,6 +184,7 @@ def main() -> None:
     ap.add_argument("--character", help="register to this character's drawing.register, with no rig")
     ap.add_argument("--shirt", default="5f1f5f")
     ap.add_argument("--rig-torso", default="0000ff", help="the torso's colour in the rig's regions image")
+    ap.add_argument("--thin-prop", action="store_true", help="a long thin prop (a cue) doesn't count toward height or floor")
     ap.add_argument("--root", default="", help="folder holding raw/, if not art_runs/<run>")
     a = ap.parse_args()
     if a.character:
@@ -185,7 +202,7 @@ def main() -> None:
     for src in sorted((root / "raw").rglob("*.png")):
         rel = src.relative_to(root / "raw")
         pose = rel.stem if rel.parent == Path(".") else rel.parent.name
-        report[str(rel.with_suffix(""))] = register(src, out / rel, rig, pose, shirt, torso)
+        report[str(rel.with_suffix(""))] = register(src, out / rel, rig, pose, shirt, torso, a.thin_prop)
     out.mkdir(exist_ok=True)
     (out / "registration.json").write_text(json.dumps(report, indent=1) + "\n")
     print(f"{len(report)} registered, {sum(v['touchesFrame'] for v in report.values())} touch the frame")

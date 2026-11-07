@@ -1,0 +1,72 @@
+{
+ "schema": "tillandsias.palette/v1",
+ "name": "guest4",
+ "colours": [
+  "#1A1018",
+  "#130100",
+  "#351A06",
+  "#5A3A24",
+  "#745744",
+  "#918E87",
+  "#BAB6AF",
+  "#E4E0D8",
+  "#FFFBF4",
+  "#5C5071",
+  "#817599",
+  "#A99BC4",
+  "#C8C1E0",
+  "#000000",
+  "#0C0A11",
+  "#2A2830",
+  "#434249",
+  "#000001",
+  "#020204",
+  "#1A1820",
+  "#323038"
+ ],
+ "transparent": null,
+ "$provenance": {
+  "tool": "tool/art/pipeline/compile_family.py",
+  "definition": "tool/art/characters/guest4.json",
+  "ramps": {
+   "skin": [
+    "#130100",
+    "#351A06",
+    "#5A3A24",
+    "#745744"
+   ],
+   "hair": [
+    "#918E87",
+    "#BAB6AF",
+    "#E4E0D8",
+    "#FFFBF4"
+   ],
+   "shirt": [
+    "#5C5071",
+    "#817599",
+    "#A99BC4",
+    "#C8C1E0"
+   ],
+   "trousers": [
+    "#000000",
+    "#0C0A11",
+    "#2A2830",
+    "#434249"
+   ],
+   "shoes": [
+    "#000001",
+    "#020204",
+    "#1A1820",
+    "#323038"
+   ]
+  },
+  "nudged": {
+   "shirt": {
+    "#C8BCE0": "#C8C1E0"
+   },
+   "shoes": {
+    "#000000": "#000001"
+   }
+  }
+ }
+}

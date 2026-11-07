@@ -1,0 +1,731 @@
+{
+ "schemaVersion": 1,
+ "mix": {
+  "masterDb": -1.5,
+  "musicDb": 0,
+  "accentsDb": 0,
+  "rewardsDb": 0
+ },
+ "levels": {
+  "bar": {
+   "key": "C minor",
+   "tierTakes": [
+    "low",
+    "low",
+    "mid",
+    "mid",
+    "high"
+   ],
+   "takes": {
+    "low": {
+     "bpm": 100.0,
+     "bars": 24,
+     "beatsPerBar": 4,
+     "loopStartSeconds": 0.25,
+     "loopEndSeconds": 57.85,
+     "loopSamples": 2764800,
+     "sampleRate": 48000,
+     "gainDb": 0,
+     "files": {
+      "opus": "assets/music/rendered/bar/low.ogg",
+      "aac": "assets/music/rendered/bar/low.m4a"
+     },
+     "lufs": -16.5,
+     "bar1Confidence": 0.26,
+     "goodExitBars": [
+      0,
+      4,
+      6,
+      8,
+      10,
+      12,
+      16,
+      20,
+      22
+     ]
+    },
+    "mid": {
+     "bpm": 106.0,
+     "bars": 24,
+     "beatsPerBar": 4,
+     "loopStartSeconds": 0.25,
+     "loopEndSeconds": 54.589625,
+     "loopSamples": 2608302,
+     "sampleRate": 48000,
+     "gainDb": 0,
+     "files": {
+      "opus": "assets/music/rendered/bar/mid.ogg",
+      "aac": "assets/music/rendered/bar/mid.m4a"
+     },
+     "lufs": -16.0,
+     "bar1Confidence": 0.26,
+     "goodExitBars": [
+      0,
+      2,
+      4,
+      6,
+      8,
+      10,
+      12,
+      14,
+      16,
+      18,
+      20,
+      22
+     ]
+    },
+    "high": {
+     "bpm": 112.0,
+     "bars": 24,
+     "beatsPerBar": 4,
+     "loopStartSeconds": 0.25,
+     "loopEndSeconds": 51.6785625,
+     "loopSamples": 2468571,
+     "sampleRate": 48000,
+     "gainDb": 0,
+     "files": {
+      "opus": "assets/music/rendered/bar/high.ogg",
+      "aac": "assets/music/rendered/bar/high.m4a"
+     },
+     "lufs": -15.0,
+     "bar1Confidence": 0.26,
+     "goodExitBars": [
+      2,
+      4,
+      6,
+      8,
+      12,
+      18,
+      20,
+      22
+     ]
+    }
+   },
+   "transitions": [],
+   "layerFadeBeats": 1,
+   "gridTier": "mid",
+   "success": {
+    "bpm": 112.0,
+    "bars": 4,
+    "beatsPerBar": 4,
+    "gainDb": 0,
+    "startSeconds": 0.25,
+    "endSeconds": 8.8214375,
+    "final": true,
+    "files": {
+     "opus": "assets/music/rendered/bar/success.ogg",
+     "aac": "assets/music/rendered/bar/success.m4a"
+    }
+   },
+   "successShort": {
+    "bpm": 112.0,
+    "bars": 2,
+    "beatsPerBar": 4,
+    "gainDb": 0,
+    "startSeconds": 0.25,
+    "endSeconds": 4.535708333333333,
+    "files": {
+     "opus": "assets/music/rendered/bar/success-short.ogg",
+     "aac": "assets/music/rendered/bar/success-short.m4a"
+    }
+   },
+   "bridge": {
+    "to": "cool-crowd",
+    "toTake": "low",
+    "entryBar": 22,
+    "bpm": 112.0,
+    "bars": 2,
+    "beatsPerBar": 4,
+    "gainDb": 0,
+    "startSeconds": 0.25,
+    "endSeconds": 4.535708333333333,
+    "files": {
+     "opus": "assets/music/rendered/bar/bridge.ogg",
+     "aac": "assets/music/rendered/bar/bridge.m4a"
+    }
+   }
+  },
+  "garden": {
+   "key": "A minor",
+   "tierTakes": [
+    "low",
+    "low",
+    "mid",
+    "mid",
+    "high"
+   ],
+   "takes": {
+    "low": {
+     "bpm": 92.0,
+     "bars": 20,
+     "beatsPerBar": 4,
+     "loopStartSeconds": 0.25,
+     "loopEndSeconds": 52.42391666666666,
+     "loopSamples": 2504348,
+     "sampleRate": 48000,
+     "gainDb": 0,
+     "files": {
+      "opus": "assets/music/rendered/garden/low.ogg",
+      "aac": "assets/music/rendered/garden/low.m4a"
+     },
+     "lufs": -16.5,
+     "bar1Confidence": 0.7,
+     "goodExitBars": [
+      0,
+      2,
+      4,
+      6,
+      8,
+      10
+     ]
+    },
+    "mid": {
+     "bpm": 98.0,
+     "bars": 20,
+     "beatsPerBar": 4,
+     "loopStartSeconds": 0.25,
+     "loopEndSeconds": 49.22958333333333,
+     "loopSamples": 2351020,
+     "sampleRate": 48000,
+     "gainDb": 0,
+     "files": {
+      "opus": "assets/music/rendered/garden/mid.ogg",
+      "aac": "assets/music/rendered/garden/mid.m4a"
+     },
+     "lufs": -16.0,
+     "bar1Confidence": 0.7,
+     "goodExitBars": [
+      0,
+      2,
+      4,
+      6,
+      8,
+      10,
+      12,
+      16
+     ]
+    },
+    "high": {
+     "bpm": 104.0,
+     "bars": 20,
+     "beatsPerBar": 4,
+     "loopStartSeconds": 0.25,
+     "loopEndSeconds": 46.40385416666667,
+     "loopSamples": 2215385,
+     "sampleRate": 48000,
+     "gainDb": 0,
+     "files": {
+      "opus": "assets/music/rendered/garden/high.ogg",
+      "aac": "assets/music/rendered/garden/high.m4a"
+     },
+     "lufs": -15.0,
+     "bar1Confidence": 0.7,
+     "goodExitBars": [
+      0,
+      2,
+      4,
+      6,
+      8,
+      10,
+      12,
+      16
+     ]
+    }
+   },
+   "transitions": [],
+   "layerFadeBeats": 1,
+   "gridTier": "mid",
+   "success": {
+    "bpm": 104.0,
+    "bars": 2,
+    "beatsPerBar": 4,
+    "gainDb": 0,
+    "startSeconds": 0.25,
+    "endSeconds": 4.865375,
+    "final": false,
+    "files": {
+     "opus": "assets/music/rendered/garden/success.ogg",
+     "aac": "assets/music/rendered/garden/success.m4a"
+    }
+   },
+   "bridge": {
+    "to": "pool-garden",
+    "toTake": "mid",
+    "entryBar": 22,
+    "bpm": 144.0,
+    "bars": 2,
+    "beatsPerBar": 4,
+    "gainDb": 0,
+    "startSeconds": 0.25,
+    "endSeconds": 3.5833333333333335,
+    "files": {
+     "opus": "assets/music/rendered/garden/bridge.ogg",
+     "aac": "assets/music/rendered/garden/bridge.m4a"
+    }
+   }
+  },
+  "pool-garden": {
+   "key": "C major",
+   "tierTakes": [
+    "mid",
+    "mid",
+    "high",
+    "high",
+    "low"
+   ],
+   "takes": {
+    "mid": {
+     "bpm": 144.0,
+     "bars": 32,
+     "beatsPerBar": 4,
+     "loopStartSeconds": 0.25,
+     "loopEndSeconds": 53.583333333333336,
+     "loopSamples": 2560000,
+     "sampleRate": 48000,
+     "gainDb": 0,
+     "files": {
+      "opus": "assets/music/rendered/pool-garden/mid.ogg",
+      "aac": "assets/music/rendered/pool-garden/mid.m4a"
+     },
+     "lufs": -17.0,
+     "bar1Confidence": 0.82,
+     "goodExitBars": []
+    },
+    "high": {
+     "bpm": 160.0,
+     "bars": 32,
+     "beatsPerBar": 4,
+     "loopStartSeconds": 0.25,
+     "loopEndSeconds": 48.25,
+     "loopSamples": 2304000,
+     "sampleRate": 48000,
+     "gainDb": 0,
+     "files": {
+      "opus": "assets/music/rendered/pool-garden/high.ogg",
+      "aac": "assets/music/rendered/pool-garden/high.m4a"
+     },
+     "lufs": -16.0,
+     "bar1Confidence": 1.0,
+     "goodExitBars": [
+      0,
+      2,
+      4,
+      6,
+      8,
+      10,
+      12,
+      14,
+      16,
+      20,
+      22,
+      24,
+      26,
+      28,
+      30
+     ]
+    },
+    "low": {
+     "bpm": 136.0,
+     "bars": 32,
+     "beatsPerBar": 4,
+     "loopStartSeconds": 0.25,
+     "loopEndSeconds": 56.72058333333333,
+     "loopSamples": 2710588,
+     "sampleRate": 48000,
+     "gainDb": 0,
+     "files": {
+      "opus": "assets/music/rendered/pool-garden/low.ogg",
+      "aac": "assets/music/rendered/pool-garden/low.m4a"
+     },
+     "lufs": -15.0,
+     "bar1Confidence": 1.0,
+     "goodExitBars": []
+    }
+   },
+   "transitions": [],
+   "cuts": [
+    {
+     "from": "mid",
+     "to": "high",
+     "exitStep": 2,
+     "entryBars": [
+      10,
+      0,
+      0,
+      2,
+      16,
+      24,
+      10,
+      0,
+      16,
+      8,
+      0,
+      2,
+      16,
+      0,
+      18,
+      0
+     ],
+     "fadeInBeats": 0,
+     "fadeOutBeats": 1
+    },
+    {
+     "from": "high",
+     "to": "low",
+     "exitStep": 2,
+     "entryBars": [
+      4,
+      24,
+      20,
+      24,
+      30,
+      24,
+      20,
+      24,
+      26,
+      20,
+      20,
+      24,
+      20,
+      24,
+      30,
+      24
+     ],
+     "fadeInBeats": 0,
+     "fadeOutBeats": 1
+    },
+    {
+     "from": "low",
+     "to": "high",
+     "exitStep": 2,
+     "entryBars": [
+      18,
+      18,
+      0,
+      4,
+      18,
+      18,
+      0,
+      28,
+      18,
+      18,
+      0,
+      18,
+      18,
+      18,
+      8,
+      18
+     ],
+     "fadeInBeats": 0,
+     "fadeOutBeats": 1
+    },
+    {
+     "from": "high",
+     "to": "mid",
+     "exitStep": 2,
+     "entryBars": [
+      26,
+      26,
+      26,
+      26,
+      18,
+      26,
+      26,
+      26,
+      26,
+      18,
+      26,
+      26,
+      26,
+      26,
+      18,
+      26
+     ],
+     "fadeInBeats": 0,
+     "fadeOutBeats": 1
+    },
+    {
+     "from": "low",
+     "to": "mid",
+     "exitStep": 2,
+     "entryBars": [
+      10,
+      10,
+      18,
+      2,
+      10,
+      26,
+      8,
+      18,
+      10,
+      26,
+      18,
+      10,
+      10,
+      10,
+      18,
+      10
+     ],
+     "fadeInBeats": 0,
+     "fadeOutBeats": 1
+    }
+   ],
+   "success": {
+    "bpm": 136.0,
+    "bars": 2,
+    "beatsPerBar": 4,
+    "gainDb": 0,
+    "startSeconds": 0.25,
+    "endSeconds": 3.7794166666666666,
+    "final": false,
+    "files": {
+     "opus": "assets/music/rendered/pool-garden/success.ogg",
+     "aac": "assets/music/rendered/pool-garden/success.m4a"
+    }
+   },
+   "bridge": {
+    "to": "bar",
+    "toTake": "low",
+    "entryBar": 8,
+    "bpm": 100.0,
+    "bars": 2,
+    "beatsPerBar": 4,
+    "gainDb": 0,
+    "startSeconds": 0.25,
+    "endSeconds": 5.05,
+    "files": {
+     "opus": "assets/music/rendered/pool-garden/bridge.ogg",
+     "aac": "assets/music/rendered/pool-garden/bridge.m4a"
+    }
+   }
+  },
+  "cool-crowd": {
+   "key": "D minor",
+   "tierTakes": [
+    "low",
+    "low",
+    "mid",
+    "mid",
+    "high"
+   ],
+   "takes": {
+    "low": {
+     "bpm": 112.0,
+     "bars": 28,
+     "beatsPerBar": 4,
+     "loopStartSeconds": 0.25,
+     "loopEndSeconds": 60.25,
+     "loopSamples": 2880000,
+     "sampleRate": 48000,
+     "gainDb": 0,
+     "files": {
+      "opus": "assets/music/rendered/cool-crowd/low.ogg",
+      "aac": "assets/music/rendered/cool-crowd/low.m4a"
+     },
+     "lufs": -16.5,
+     "bar1Confidence": 0.02,
+     "goodExitBars": [
+      0,
+      2,
+      4,
+      6,
+      8,
+      10,
+      14,
+      16,
+      18,
+      20,
+      22,
+      24,
+      26
+     ]
+    },
+    "mid": {
+     "bpm": 124.0,
+     "bars": 28,
+     "beatsPerBar": 4,
+     "loopStartSeconds": 0.25,
+     "loopEndSeconds": 54.44354166666667,
+     "loopSamples": 2601290,
+     "sampleRate": 48000,
+     "gainDb": 0,
+     "files": {
+      "opus": "assets/music/rendered/cool-crowd/mid.ogg",
+      "aac": "assets/music/rendered/cool-crowd/mid.m4a"
+     },
+     "lufs": -16.0,
+     "bar1Confidence": 0.02,
+     "goodExitBars": [
+      0,
+      2,
+      4,
+      8,
+      10,
+      12,
+      14,
+      16,
+      18,
+      20,
+      22,
+      24,
+      26
+     ]
+    },
+    "high": {
+     "bpm": 136.0,
+     "bars": 28,
+     "beatsPerBar": 4,
+     "loopStartSeconds": 0.25,
+     "loopEndSeconds": 49.661770833333335,
+     "loopSamples": 2371765,
+     "sampleRate": 48000,
+     "gainDb": 0,
+     "files": {
+      "opus": "assets/music/rendered/cool-crowd/high.ogg",
+      "aac": "assets/music/rendered/cool-crowd/high.m4a"
+     },
+     "lufs": -15.0,
+     "bar1Confidence": 0.02,
+     "goodExitBars": [
+      0,
+      2,
+      4,
+      8,
+      14,
+      16,
+      18,
+      20,
+      24,
+      26
+     ]
+    }
+   },
+   "transitions": [],
+   "layerFadeBeats": 0.5,
+   "gridTier": "mid",
+   "success": {
+    "bpm": 136.0,
+    "bars": 2,
+    "beatsPerBar": 4,
+    "gainDb": 0,
+    "startSeconds": 0.25,
+    "endSeconds": 3.7794166666666666,
+    "final": false,
+    "files": {
+     "opus": "assets/music/rendered/cool-crowd/success.ogg",
+     "aac": "assets/music/rendered/cool-crowd/success.m4a"
+    }
+   },
+   "bridge": {
+    "to": "billiards",
+    "toTake": "low",
+    "entryBar": 10,
+    "bpm": 96.0,
+    "bars": 2,
+    "beatsPerBar": 4,
+    "gainDb": 0,
+    "startSeconds": 0.25,
+    "endSeconds": 5.25,
+    "files": {
+     "opus": "assets/music/rendered/cool-crowd/bridge.ogg",
+     "aac": "assets/music/rendered/cool-crowd/bridge.m4a"
+    }
+   }
+  },
+  "billiards": {
+   "key": "G minor",
+   "tierTakes": [
+    "low",
+    "low",
+    "mid",
+    "mid",
+    "high"
+   ],
+   "takes": {
+    "low": {
+     "bpm": 96.0,
+     "bars": 28,
+     "beatsPerBar": 4,
+     "loopStartSeconds": 0.25,
+     "loopEndSeconds": 70.25,
+     "loopSamples": 3360000,
+     "sampleRate": 48000,
+     "gainDb": 0,
+     "files": {
+      "opus": "assets/music/rendered/billiards/low.ogg",
+      "aac": "assets/music/rendered/billiards/low.m4a"
+     },
+     "lufs": -16.5,
+     "bar1Confidence": 1.0,
+     "goodExitBars": [
+      2,
+      10,
+      18,
+      26
+     ]
+    },
+    "mid": {
+     "bpm": 100.0,
+     "bars": 28,
+     "beatsPerBar": 4,
+     "loopStartSeconds": 0.25,
+     "loopEndSeconds": 67.45,
+     "loopSamples": 3225600,
+     "sampleRate": 48000,
+     "gainDb": 0,
+     "files": {
+      "opus": "assets/music/rendered/billiards/mid.ogg",
+      "aac": "assets/music/rendered/billiards/mid.m4a"
+     },
+     "lufs": -16.0,
+     "bar1Confidence": 1.0,
+     "goodExitBars": [
+      16,
+      26
+     ]
+    },
+    "high": {
+     "bpm": 104.0,
+     "bars": 28,
+     "beatsPerBar": 4,
+     "loopStartSeconds": 0.25,
+     "loopEndSeconds": 64.865375,
+     "loopSamples": 3101538,
+     "sampleRate": 48000,
+     "gainDb": 0,
+     "files": {
+      "opus": "assets/music/rendered/billiards/high.ogg",
+      "aac": "assets/music/rendered/billiards/high.m4a"
+     },
+     "lufs": -15.0,
+     "bar1Confidence": 1.0,
+     "goodExitBars": [
+      0,
+      2,
+      6,
+      10,
+      18,
+      24,
+      26
+     ]
+    }
+   },
+   "transitions": [],
+   "layerFadeBeats": 1,
+   "gridTier": "mid",
+   "success": {
+    "bpm": 104.0,
+    "bars": 4,
+    "beatsPerBar": 4,
+    "gainDb": 0,
+    "startSeconds": 0.25,
+    "endSeconds": 9.480770833333333,
+    "final": true,
+    "files": {
+     "opus": "assets/music/rendered/billiards/success.ogg",
+     "aac": "assets/music/rendered/billiards/success.m4a"
+    }
+   }
+  }
+ }
+}

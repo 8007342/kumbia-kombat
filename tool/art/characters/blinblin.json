@@ -1,0 +1,251 @@
+{
+ "$comment": "The owner's indoor-party opponent, eleventh round: a male dancer with lots of bling, facing away until Macron enters, chains swinging as he dances. Violet jacket over a guayabera is the approved default for this room's lead. The chains are drawn at rest here; their swing is planned as a beat-driven puppet layer, which the pipeline has not done yet. Garment colours are the accepted sheets' medians, measured 2026-11-07: reference art outranks the hexes first written here.",
+ "id": "blinblin",
+ "family": "blinblin-v1",
+ "style": "party-pixel",
+ "description": "Indoor party opponent, the BlinBlin dancer: a confident adult man dripping in gold, who starts with his back to the room.",
+ "body": {
+  "preset": "slim-adult"
+ },
+ "pronouns": [
+  "he",
+  "him",
+  "his"
+ ],
+ "skin": "#A75E35",
+ "traits": "lean confident adult man of about forty-five, slow unimpressed half smile, layered gold chains",
+ "demeanor": "cool, unhurried and unimpressed, until he is impressed",
+ "garments": [
+  {
+   "id": "hair",
+   "shape": "puff",
+   "region": "hair",
+   "colour": "#14161E",
+   "text": "short slicked-back black hair"
+  },
+  {
+   "id": "shirt",
+   "shape": "shirt-fitted",
+   "region": "shirt",
+   "colour": "#F6ECC8",
+   "text": "cream guayabera shirt, open at the neck"
+  },
+  {
+   "id": "jacket",
+   "shape": "waistcoat-fitted",
+   "region": "cloth",
+   "colour": "#3B1555",
+   "text": "long open midnight-violet jacket",
+   "secondaryMotion": "lag-1"
+  },
+  {
+   "id": "gold",
+   "shape": "gold-chains",
+   "region": "accessory",
+   "colour": "#F0CC22",
+   "alsoIn": [
+    "shirt",
+    "cloth",
+    "skin",
+    "hair"
+   ],
+   "text": "layered gold rope chains, medallion, rings, watch and earring"
+  },
+  {
+   "id": "trousers",
+   "shape": "trousers",
+   "region": "trousers",
+   "colour": "#1E2633",
+   "text": "slim dark trousers"
+  },
+  {
+   "id": "shoes",
+   "shape": "shoes-flat",
+   "region": "shoes",
+   "colour": "#F4E2B0",
+   "text": "polished two-tone cream and dark shoes"
+  }
+ ],
+ "motion": {
+  "set": "opponent-facing-away",
+  "overrides": {}
+ },
+ "drawing": {
+  "noun": "man",
+  "fits": "hair, both shoes and both hands",
+  "look": "tall, lean, angular adult build, narrow face with a trimmed goatee, easy sly half smile with kind, amused eyes, warm brown skin, short slicked-back black hair, several thick gold rope chains of different lengths hanging over his chest down to his belly with one large gold medallion, gold rings on his fingers, a chunky gold wristwatch, gold hoop earring, cream guayabera shirt open at the neck, long open midnight-violet jacket, slim dark trousers, polished two-tone cream and dark shoes and thick dark ink outline",
+  "extra": "Both eyes are open. His mouth stays closed in a cool half smile. He is a grown man of about forty-five. The gold chains are big, bright and easy to see, lying on top of the shirt. ",
+  "sheet": {
+   "source": {
+    "image": "tool/art/references/blinblin/front-draft-f2.png"
+   },
+   "views": {
+    "front": {
+     "image": "tool/art/references/blinblin/front.png",
+     "description": "standing square and upright facing the viewer, feet a little apart, both arms relaxed and held a little away from the body, both open hands visible",
+     "stageScale": 0.84
+    },
+    "back": {
+     "image": "tool/art/references/blinblin/back.png",
+     "description": "seen from directly behind, his back to the viewer, standing upright with feet a little apart, both arms relaxed, the plain back of his long jacket and the back of his head, a thin gold chain at the nape of his neck",
+     "look": "tall, lean, angular adult build, warm brown skin, short slicked-back black hair, thin gold chain at the nape of his neck, gold rings on his fingers, a chunky gold wristwatch, long midnight-violet jacket with a plain back and a centre vent, slim dark trousers, polished two-tone cream and dark shoes and thick dark ink outline",
+     "extra": "He is a grown man of about forty-five. The thin gold chain at the nape is the only gold on his back. "
+    }
+   }
+  },
+  "seed": 987000,
+  "poseOverrides": {
+   "finish_turn.finish_a": {
+    "why": "The table's finish touches a hat brim, and he wears no hat. The words follow the skeleton's raised hand.",
+    "description": "weight on the straight right leg, left heel set forward with the toe up, left fist on the hip, right hand rising beside his head with two fingers out, chest proud, chin up"
+   },
+   "finish_turn.finish_b": {
+    "why": "The table's finish touches a hat brim, and he wears no hat. Two fingers off the temple keeps the salute.",
+    "description": "right hand at his temple with two fingers out in a cool salute, no hat, head dipped slightly, chest proud, left elbow out with the fist on the hip, left heel forward with the toe up"
+   },
+   "crossed.nod_down": {
+    "why": "Eyes looking down drew a scowl. A warm closed-eye nod reads as approval.",
+    "description": "arms firmly crossed high over his chest with each hand tucked under the other arm, head bowed forward in a slow approving nod with the chin dropped, eyes softly closed, a warm small smile, weight on the right leg"
+   },
+   "back_groove.pass_l2": {
+    "why": "Both candidates turned the head to profile, which undercuts facing away.",
+    "description": "seen from directly behind, his back to the viewer, the back of his head pointing straight at the viewer with no face, nose or cheek showing, looking straight ahead away from the viewer: hip popped out to his right over the straight right leg, right hip high, right shoulder dipped, left knee bent with the left foot resting on its toe, right arm lifted out at hip height"
+   },
+   "back_groove.down_r": {
+    "why": "Both candidates turned the head to profile, which undercuts facing away.",
+    "description": "seen from directly behind, his back to the viewer, the back of his head pointing straight at the viewer with no face, nose or cheek showing, looking straight ahead away from the viewer: weight sunk on his bent right knee, left foot stepped back on its ball with the heel raised, right hip high and pushed out, shoulders tilted the other way, right arm low, left arm low and out"
+   },
+   "back_groove.pass_r2": {
+    "why": "Both candidates turned the head to profile, which undercuts facing away.",
+    "description": "seen from directly behind, his back to the viewer, the back of his head pointing straight at the viewer with no face, nose or cheek showing, looking straight ahead away from the viewer: hip popped out to his left over the straight left leg, left hip high, left shoulder dipped, right knee bent with the right foot resting on its toe, left arm lifted out at hip height"
+   },
+   "left_hand.follow": {
+    "why": "All four raised the wrong arm, on the left of the picture. The hand is now named by picture side.",
+    "description": "the arm on the right side of the picture reaching high up and out to the right of the picture, the palm open, torso leaning to the right of the picture, the other fist on the hip with the elbow pushed back, the foot on the right side of the picture on its toe out wide, head turned up toward the raised hand"
+   },
+   "retreat_backward.down_r": {
+    "why": "Both candidates crossed one leg over the other, which the owner dislikes. The words now say the legs stay apart.",
+    "description": "both legs apart and straight down to the floor, weight on the leg on the left of the picture with the knee a little bent, the other foot flat on the floor out to the right of the picture with space between the legs, one hand behind the back, one arm low, head nodding"
+   },
+   "clap.open": {
+    "why": "The pose table raises the forearms over a skeleton with arms down, which drew hands too high or a bar across the chest (LESSONS_LEARNED A5).",
+    "description": "standing square and upright, both arms held out to the sides and angled down, elbows soft, both open hands at hip height away from the body, palms forward, chin up"
+   }
+  },
+  "score": {
+   "silhouetteTolerance": 30
+  },
+  "$comment": "The sheet's long coat reaches below the knee and the rig has no coat shape, so silhouettes need a wide tolerance.",
+  "skeletonOverrides": {
+   "clap.open": {
+    "3": [
+     262,
+     462
+    ],
+    "4": [
+     328,
+     392
+    ],
+    "6": [
+     506,
+     462
+    ],
+    "7": [
+     440,
+     392
+    ]
+   },
+   "clap.close": {
+    "3": [
+     268,
+     466
+    ],
+    "4": [
+     352,
+     412
+    ],
+    "6": [
+     500,
+     466
+    ],
+    "7": [
+     416,
+     412
+    ]
+   },
+   "clap.contact": {
+    "3": [
+     272,
+     490
+    ],
+    "4": [
+     378,
+     432
+    ],
+    "6": [
+     496,
+     490
+    ],
+    "7": [
+     390,
+     432
+    ]
+   },
+   "clap.release": {
+    "3": [
+     262,
+     468
+    ],
+    "4": [
+     338,
+     430
+    ],
+    "6": [
+     506,
+     468
+    ],
+    "7": [
+     430,
+     430
+    ]
+   },
+   "finish_turn.finish_a": {
+    "3": [
+     175,
+     372
+    ],
+    "4": [
+     205,
+     265
+    ]
+   },
+   "finish_turn.finish_b": {
+    "3": [
+     168,
+     334
+    ],
+    "4": [
+     248,
+     225
+    ]
+   }
+  }
+ },
+ "references": {
+  "mode": "source",
+  "sources": []
+ },
+ "targets": [
+  {
+   "room": "cool-crowd",
+   "atlas": "blinblin",
+   "out": "assets/art/ensemble/blinblin-v1.png",
+   "native": [
+    256,
+    320
+   ],
+   "pixelScale": 3
+  }
+ ],
+ "seedBase": 987000
+}

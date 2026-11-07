@@ -111,6 +111,16 @@
         "parentScore": "pool_swing",
         "path": "assets/music/scores/pool_swing_success.json",
         "midiPath": "assets/music/midi/pool_swing_success.mid"
+      },
+      {
+        "id": "bar_swag_finale",
+        "title": "Copper Counter Shuffle — Room Approval, with the Last Drop",
+        "bars": 4,
+        "baseBpm": 100,
+        "fullBpm": 112,
+        "parentScore": "bar_swag",
+        "path": "assets/music/scores/bar_swag_finale.json",
+        "midiPath": "assets/music/midi/bar_swag_finale.mid"
       }
     ],
     "bridges": [
@@ -168,6 +178,28 @@
         "toScore": "pool_swing",
         "path": "assets/music/scores/bar_to_pool.json",
         "midiPath": "assets/music/midi/bar_to_pool.mid"
+      },
+      {
+        "id": "garden_to_pool",
+        "title": "Up the Lantern Path",
+        "bars": 2,
+        "baseBpm": 128,
+        "fullBpm": 128,
+        "fromScore": "garden_mojo",
+        "toScore": "pool_swing",
+        "path": "assets/music/scores/garden_to_pool.json",
+        "midiPath": "assets/music/midi/garden_to_pool.mid"
+      },
+      {
+        "id": "pool_to_bar",
+        "title": "In from the Lawn",
+        "bars": 2,
+        "baseBpm": 100,
+        "fullBpm": 100,
+        "fromScore": "pool_swing",
+        "toScore": "bar_swag",
+        "path": "assets/music/scores/pool_to_bar.json",
+        "midiPath": "assets/music/midi/pool_to_bar.mid"
       }
     ]
   }

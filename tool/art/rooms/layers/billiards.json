@@ -1,0 +1,14 @@
+{
+  "room": "billiards",
+  "run": "layers-billiards-20261107",
+  "source": "art_runs/rooms/billiards/picks/plate-989601.png",
+  "plate": "assets/art/billiards/billiards-room-clean.png",
+  "atlas": "assets/art/billiards/billiards-layers.png",
+  "level": "levels/billiards.json",
+  "previewBpm": 100,
+  "keepWords": "Keep everything else exactly as it is: same pixel art, same camera, same colours.",
+  "props": [
+    {"id": "lamps-left", "kind": "hanging", "polygon": [[118, 395], [142, 372], [150, 346], [216, 346], [224, 362], [248, 385], [248, 405], [222, 404], [222, 412], [185, 412], [185, 424], [118, 424]], "fill": {"image": "lamps-left-73001.png", "box": [90, 270, 280, 460], "edgeClamp": 70, "dilate": 2, "prompt": "Remove the three glowing green billiard lamps and their brass fittings at the centre of this picture. Where they were, show the same dark green wall and dark carved wood panelling that continues behind them, in the same dim warm light. Do not add any lamp, lantern or object."}, "motion": "sway", "periodBeats": 4, "frames": 7, "instance": 1, "warp": {"pivot": [180, 120], "far": 290, "reachPx": 5, "power": 1}},
+    {"id": "lamps-right", "kind": "hanging", "polygon": [[714, 395], [690, 372], [682, 346], [616, 346], [608, 362], [584, 385], [584, 405], [610, 404], [610, 412], [647, 412], [647, 424], [714, 424]], "fill": {"image": "lamps-right-73101.png", "box": [552, 270, 742, 460], "edgeClamp": 70, "dilate": 2, "prompt": "Remove the three glowing green billiard lamps and their brass fittings at the centre of this picture. Where they were, show the same dark green wall and dark carved wood panelling that continues behind them, in the same dim warm light. Do not add any lamp, lantern or object."}, "motion": "sway", "periodBeats": 4, "frames": 7, "instance": 2, "warp": {"pivot": [650, 120], "far": 290, "reachPx": 5, "power": 1}}
+  ]
+}

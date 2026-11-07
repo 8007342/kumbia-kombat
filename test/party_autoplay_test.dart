@@ -86,7 +86,8 @@ void main() {
         }
         expect(session.phase, GardenPhase.cleared);
         expect(failures, 2);
-        expect(decreases, 2);
+        // The two failures, plus slow cooling after any dropped note.
+        expect(decreases, greaterThanOrEqualTo(2));
         expect(session.pizazz, greaterThan(0));
         expect(session.crowd.peakSupported, isTrue);
       }

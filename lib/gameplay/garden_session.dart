@@ -1,9 +1,87 @@
 import '../music/transport.dart';
 import 'crowd_interest.dart';
+import 'gesture_shapes.dart';
 import 'progression.dart';
 import 'rhythm.dart';
+import 'thumb_layout.dart';
 
 enum GardenPhase { ready, intro, call, response, paused, cleared }
+
+/// What a note invites after its tap. A sideways drag everywhere at first, and
+/// from tier 1 a phrase's last note, the only one with room for a longer shape,
+/// asks for its limb's own move: a hand waves, a foot stomps. A full circle comes
+/// last. Each is only an invitation: any move drawn on any eligible note counts.
+GestureKind gestureOffer({
+  required Limb limb,
+  required bool lastNote,
+  required int tier,
+}) {
+  if (!lastNote || tier == 0) return GestureKind.spin;
+  if (limb == Limb.leftFoot || limb == Limb.rightFoot) return GestureKind.stomp;
+  return tier >= 3 ? GestureKind.circle : GestureKind.wave;
+}
+
+/// How long a phrase's last note leaves for its move, in beats from the press,
+/// so a fast room isn't harder than the shape asks. Mid-phrase notes get
+/// [RhythmJudge.flourishWindowMs], which their clearance rule was built around.
+const lastNoteMoveBeats = 2.0;
+const lastNoteCircleBeats = 2.5;
+
+/// A stroke judged on the frame after its deadline still counts: its points came
+/// in time, and a stalled frame isn't the player's fault.
+const moveDeadlineGraceMs = 100;
+
+/// An optional move that landed. This is the hook for anything that reacts to
+/// one, such as a partner on the floor: read [GardenSession.lastOptionalMove].
+/// Nothing here feeds back into notes, timing or clearing.
+class OptionalMove {
+  const OptionalMove({
+    required this.noteId,
+    required this.limb,
+    required this.kind,
+    required this.offered,
+    required this.direction,
+    required this.beat,
+    required this.credited,
+  });
+  final String noteId;
+  final Limb limb;
+
+  /// What the thumb actually drew.
+  final GestureKind kind;
+
+  /// What the note invited. It may differ from [kind]; both count.
+  final GestureKind? offered;
+
+  /// Which way it went: picks the ornament and the look.
+  final FlourishDirection direction;
+
+  /// When it landed, on the transport's beat.
+  final double beat;
+
+  /// False when this exact performance was already paid for, as after a pause.
+  final bool credited;
+}
+
+/// One accepted tap's chance at a move. It outlives the judge, because at speed
+/// a late tap's move can still be in the air when the phrase rolls over.
+class _OpenMove {
+  _OpenMove(
+    this.limb,
+    this.offered,
+    this.tappedMs,
+    this.endsMs,
+    this.sequence,
+    this.creditKey,
+  );
+  final Limb limb;
+  final GestureKind? offered;
+  final int tappedMs;
+  final int endsMs;
+  final int sequence;
+  final String creditKey;
+  bool landed = false;
+}
 
 class GardenCue {
   const GardenCue({
@@ -13,6 +91,10 @@ class GardenCue {
     required this.progress,
     required this.demonstration,
     this.flourishTo,
+    this.offer,
+    this.index = 0,
+    this.step = 0,
+    this.move,
   });
   final String id;
   final Limb limb;
@@ -21,7 +103,165 @@ class GardenCue {
   final bool demonstration;
   bool get demo => demonstration;
   final Limb? flourishTo;
+
+  /// The move this note invites: what its glyph draws.
+  final GestureKind? offer;
+
+  /// This note's place in the phrase, and the step it belongs to.
+  final int index;
+  final int step;
+
+  /// The richer move this note is part of, if any. Two cues of one step are drawn
+  /// linked: see `cue_links.dart`.
+  final RichMove? move;
 }
+
+/// Richer moves inside a beat, the owner's twelfth round. Each is one step of a
+/// phrase with two presses:
+/// - [doubleTap]: the same spot twice.
+/// - [pair]: two spots at once, one thumb on each.
+/// - [split]: one spot, then a spot on the other side.
+enum RichMove { doubleTap, pair, split }
+
+/// How close together a chart may ask for presses. The grip assumed is one thumb
+/// on each side of the phone. Every number is a starting value that a level can
+/// tune, and none of them has met a real thumb: see
+/// `plan/double-moves-2026-11-07.md`.
+class MoveLimits {
+  const MoveLimits({
+    this.pairToleranceMs = 80,
+    this.sameSpotMs = 285,
+    this.thumbHopMs = 330,
+    this.crossThumbMs = 170,
+    this.sameLimbMs = 400,
+    this.phraseEndMs = 100,
+  });
+
+  /// Two presses of a pair this close share the better grade, because they are
+  /// one gesture to the player. Each press counts whatever this is: a pair's
+  /// notes each keep the judge's whole window.
+  final int pairToleranceMs;
+
+  /// One thumb, one spot, inside one step. The progression report's 285 ms.
+  final int sameSpotMs;
+
+  /// One thumb moving to the other spot on its own side.
+  final int thumbHopMs;
+
+  /// Two thumbs, one after the other, unless they are a pair.
+  final int crossThumbMs;
+
+  /// One limb in two different steps. Above twice the good window, so a tap can
+  /// never be judged against a note of the wrong step.
+  final int sameLimbMs;
+
+  /// How long the last note's good window must end before the phrase does. A
+  /// window that crossed the boundary would be cut off by the next phrase.
+  final int phraseEndMs;
+}
+
+/// One step of a richer pattern. A step with no [move] is a single plain note.
+class ChartStep {
+  const ChartStep(
+    this.at,
+    this.limb, {
+    this.move,
+    this.partner,
+    this.gap = 0,
+    this.offer,
+  });
+  final double at;
+  final Limb limb;
+  final RichMove? move;
+
+  /// The second limb of a pair or a split.
+  final Limb? partner;
+
+  /// Beats from the first press to the second, for a double or a split.
+  final double gap;
+
+  /// The move this step's last press invites, in place of the usual one: how a
+  /// room gets a signature, such as a cue stroke up the floor. Only an invitation,
+  /// as every move is, and only where the next note leaves room for it.
+  final GestureKind? offer;
+}
+
+/// One phrase as it is played: its notes in time order, each knowing its step.
+/// A step is what clearing counts, so a richer phrase asks for no more than a
+/// plain one. The second press of a step is there for skilful play.
+class ChartPattern {
+  ChartPattern._(
+    this.limbs,
+    this.offsets,
+    this.stepOf,
+    this.moves,
+    this.steps,
+    this.offers,
+  );
+
+  factory ChartPattern.plain(List<Limb> limbs, List<double> offsets) =>
+      ChartPattern._(
+        limbs,
+        offsets,
+        [for (var i = 0; i < limbs.length; i++) i],
+        List.filled(limbs.length, null),
+        limbs.length,
+        List.filled(limbs.length, null),
+      );
+
+  factory ChartPattern.rich(List<ChartStep> steps) {
+    final limbs = <Limb>[];
+    final offsets = <double>[];
+    final stepOf = <int>[];
+    final moves = <RichMove?>[];
+    final offers = <GestureKind?>[];
+    for (final (index, step) in steps.indexed) {
+      void note(Limb limb, double at) {
+        limbs.add(limb);
+        offsets.add(at);
+        stepOf.add(index);
+        moves.add(step.move);
+        offers.add(null);
+      }
+
+      note(step.limb, step.at);
+      switch (step.move) {
+        case null:
+          break;
+        case RichMove.doubleTap:
+          note(step.limb, step.at + step.gap);
+        case RichMove.pair:
+          note(step.partner!, step.at);
+        case RichMove.split:
+          note(step.partner!, step.at + step.gap);
+      }
+      offers[offers.length - 1] = step.offer;
+    }
+    return ChartPattern._(
+      List.unmodifiable(limbs),
+      List.unmodifiable(offsets),
+      List.unmodifiable(stepOf),
+      List.unmodifiable(moves),
+      steps.length,
+      List.unmodifiable(offers),
+    );
+  }
+
+  final List<Limb> limbs;
+  final List<double> offsets;
+  final List<int> stepOf;
+  final List<RichMove?> moves;
+  final int steps;
+
+  /// What each note invites in place of the usual move, if the chart says.
+  final List<GestureKind?> offers;
+
+  /// How many steps ask for a second press.
+  int get richSteps => limbs.length - steps;
+}
+
+/// What finishing a richer step adds to the score. An optional move adds 100.
+const richStepPizazz = 50;
 
 /// Two-bar demonstrations and responses. Bar currently runs about 90–95 s
 /// for ten clean responses; its 80 s design budget remains a tuning target.
@@ -33,6 +273,8 @@ class FightChart {
     this.introBeats = 4,
     this.flourishDestination = Limb.rightFoot,
     this.variants = const [],
+    this.richPatterns = const {},
+    this.limits = const MoveLimits(),
   });
   final List<Limb> limbs;
   final List<double> offsets;
@@ -40,9 +282,26 @@ class FightChart {
   final double introBeats;
   final Limb flourishDestination;
   final List<List<Limb>> variants;
-  List<Limb> limbsFor(int tier, int peakPhrase) => variants.isEmpty || tier == 0
-      ? limbs
-      : variants[(tier == 4 ? 3 + peakPhrase : tier - 1) % variants.length];
+
+  /// Patterns played as richer steps instead of their plain limbs and offsets:
+  /// key 0 is [limbs], and key n is `variants[n - 1]`. Empty on a plain chart.
+  final Map<int, List<ChartStep>> richPatterns;
+  final MoveLimits limits;
+
+  /// 0 is [limbs], and n is `variants[n - 1]`.
+  int patternIndex(int tier, int peakPhrase) => variants.isEmpty || tier == 0
+      ? 0
+      : 1 + (tier == 4 ? 3 + peakPhrase : tier - 1) % variants.length;
+  List<Limb> limbsFor(int tier, int peakPhrase) =>
+      patternFor(tier, peakPhrase).limbs;
+  ChartPattern patternFor(int tier, int peakPhrase) =>
+      pattern(patternIndex(tier, peakPhrase));
+  ChartPattern pattern(int index) {
+    final rich = richPatterns[index];
+    if (rich != null) return ChartPattern.rich(rich);
+    return ChartPattern.plain(index == 0 ? limbs : variants[index - 1], offsets);
+  }
+
   double get cycleBeats => callBeats * 2;
 
   void validate() {
@@ -67,6 +326,98 @@ class FightChart {
     if (variants.any((pattern) => pattern.length != limbs.length)) {
       throw ArgumentError('Chart variants must preserve note count');
     }
+    richPatterns.forEach(_validateRich);
+  }
+
+  /// Every pattern keeps the same number of steps, so "one dropped step in eight"
+  /// means the same thing at every tier, however many presses a step holds.
+  void _validateRich(int index, List<ChartStep> steps) {
+    if (index < 0 || index > variants.length) {
+      throw ArgumentError('Rich pattern $index has no plain pattern to replace');
+    }
+    if (steps.length != limbs.length) {
+      throw ArgumentError('Rich pattern $index must keep ${limbs.length} steps');
+    }
+    var previous = -1.0;
+    for (final (i, step) in steps.indexed) {
+      final where = 'Rich pattern $index step $i';
+      if (!step.at.isFinite || step.at <= previous) {
+        throw ArgumentError('$where must start after the last press before it');
+      }
+      final move = step.move;
+      final partner = step.partner;
+      final timed = move == RichMove.doubleTap || move == RichMove.split;
+      final paired = move == RichMove.pair || move == RichMove.split;
+      if (paired != (partner != null)) {
+        throw ArgumentError('$where names its second limb only for a pair or split');
+      }
+      if (timed != (step.gap > 0) || !step.gap.isFinite) {
+        throw ArgumentError('$where has a gap only for a double or split');
+      }
+      // One thumb on each side: it can't press both, or jump across the phone.
+      if (paired && limbIsLeft(partner!) == limbIsLeft(step.limb)) {
+        throw ArgumentError('$where must use both sides of the phone');
+      }
+      previous = step.at + step.gap;
+      if (previous >= callBeats) {
+        throw ArgumentError('$where runs past the call');
+      }
+    }
+  }
+
+  /// Which fairness limits a pattern breaks at [bpm]. Tempo belongs to the music,
+  /// so this is for tests and tools, not for loading. Empty when all is well.
+  List<String> fairnessProblems(int index, double bpm) {
+    final beatMs = 60000 / bpm;
+    final played = pattern(index);
+    final problems = <String>[];
+    for (var i = 0; i < played.limbs.length; i++) {
+      for (var j = i + 1; j < played.limbs.length; j++) {
+        final a = played.limbs[i];
+        final b = played.limbs[j];
+        final beats = played.offsets[j] - played.offsets[i];
+        final ms = beats * beatMs;
+        final sameStep = played.stepOf[i] == played.stepOf[j];
+        if (beats == 0) continue;
+        final String rule;
+        final int floor;
+        if (a == b) {
+          (rule, floor) = sameStep
+              ? ('same spot', limits.sameSpotMs)
+              : ('same limb', limits.sameLimbMs);
+        } else if (limbIsLeft(a) == limbIsLeft(b)) {
+          (rule, floor) = ('thumb hop', limits.thumbHopMs);
+        } else {
+          (rule, floor) = ('cross thumb', limits.crossThumbMs);
+        }
+        if (ms < floor) {
+          problems.add(
+            'pattern $index at $bpm BPM: $rule, beats '
+            '${played.offsets[i]} and ${played.offsets[j]}, '
+            '${ms.round()} ms under $floor',
+          );
+        }
+      }
+    }
+    // A move a step invites needs the session's room for a move after its press,
+    // or the invitation would never show.
+    for (var i = 0; i + 1 < played.limbs.length; i++) {
+      if (played.offers[i] == null) continue;
+      final roomMs = (played.offsets[i + 1] - played.offsets[i]) * beatMs;
+      if (roomMs <
+          2 * RhythmJudge.goodWindowMs + RhythmJudge.flourishWindowMs + 40) {
+        problems.add(
+          'pattern $index at $bpm BPM: no room for the move offered on beat '
+          '${played.offsets[i]}',
+        );
+      }
+    }
+    final end =
+        (callBeats - played.offsets.last) * beatMs - RhythmJudge.goodWindowMs;
+    if (end < limits.phraseEndMs) {
+      problems.add('pattern $index at $bpm BPM: last note ends the phrase late');
+    }
+    return problems;
   }
 
   /// Frozen reference for `levels/garden.json`, which is what the game plays.
@@ -149,7 +500,7 @@ class FightChart {
       Limb.leftHand,
       Limb.rightFoot,
     ],
-    offsets: [0, 1, 2, 2.5, 4, 5, 6, 6.5],
+    offsets: [.5, 1, 2.25, 3, 4.5, 5.25, 6, 6.75],
     variants: [
       [
         Limb.rightFoot,
@@ -157,8 +508,8 @@ class FightChart {
         Limb.rightHand,
         Limb.leftHand,
         Limb.rightFoot,
-        Limb.leftFoot,
         Limb.leftHand,
+        Limb.leftFoot,
         Limb.rightHand,
       ],
       [
@@ -216,27 +567,43 @@ class GardenSession {
     FightDefinition? definition,
     this.chart = FightChart.garden,
     CrowdStageProfile? crowdProfile,
+    int guestCount = CrowdInterestModel.castSize,
   }) : progress = FightProgress(definition ?? fights.first),
        crowd = CrowdInterestModel(
          rampPhrases: 4 * (definition ?? fights.first).successesPerTier,
+         arcPhrases:
+             4 * (definition ?? fights.first).successesPerTier +
+             (definition ?? fights.first).finalChallenges,
+         phraseBeats: chart.cycleBeats,
+         guestCount: guestCount,
          profile:
              crowdProfile ??
              CrowdStageProfile.forRoom((definition ?? fights.first).id),
        ),
        _cycleStart = chart.introBeats {
     chart.validate();
-    _activeLimbs = chart.limbs;
+    _pattern = chart.pattern(0);
   }
   final MusicTransport transport;
   final MusicAudioBackend backend;
   final FightProgress progress;
   final FightChart chart;
   final CrowdInterestModel crowd;
-  late List<Limb> _activeLimbs;
-  List<Limb> get activeLimbs => _activeLimbs;
-  List<double> get activeOffsets => chart.offsets;
+  late ChartPattern _pattern;
+
+  /// Every note of this phrase, in time order. A pair's two notes share an offset.
+  List<Limb> get activeLimbs => _pattern.limbs;
+  List<double> get activeOffsets => _pattern.offsets;
+
+  /// The step each active note belongs to, and that step's richer move if any.
+  List<int> get activeSteps => _pattern.stepOf;
+  List<RichMove?> get activeMoves => _pattern.moves;
+  int get stepCount => _pattern.steps;
+
+  /// Steps needed to pass, not notes: a richer phrase asks for no more than a
+  /// plain one. See [ChartPattern].
   int get requiredHits => progress.definition.requiredHits(
-    _activeLimbs.length,
+    stepCount,
     atPeak: _phraseTier == 4,
   );
   int get peakChallengesRemaining =>
@@ -251,20 +618,43 @@ class GardenSession {
   double? lastOutcomeBeat;
   int pizazz = 0;
   int styleCombo = 0;
-  FlourishDirection? _lastStyleDirection;
+  String? _lastStyleMove;
   double _lastStyleBeat = -100;
   int perfects = 0;
   int combo = 0;
+
+  /// Both presses of a richer step landed, this run. Never reset by a replay of
+  /// the same performance, and read by whatever wants to celebrate one.
+  int richStepsCompleted = 0;
+
+  /// The other limb of the pair the latest press completed, or null.
+  Limb? lastPairPartner;
   int passedPhrases = 0;
   double? completedAtSeconds;
   double? completedAtBeat;
   double _cycleStart;
   RhythmJudge? _judge;
   bool _resolved = false;
-  int _hits = 0;
+  final Set<int> _stepsLanded = {};
+  final Set<int> _stepsPerfect = {};
+  final Map<int, int> _pressedMs = {};
+  final Map<int, String> _pressedPlain = {};
+  int _phraseRich = 0;
+  int _phraseGestures = 0;
+  final List<int> _phraseDeltasMs = [];
   int _responseTier = 0;
   int _phraseTier = 0;
   int _responseSequence = 0;
+
+  /// Bumps only when the music reaches a new performance of a phrase, never for
+  /// a pause's replay. A recovering player's retry is new; a replay isn't.
+  int _performance = 0;
+  final Map<String, _OpenMove> _openMoves = {};
+
+  /// The latest optional move that landed, by touch, key or AutoPlay. Stable for
+  /// anything that reacts to moves: compare it by identity each frame, and use
+  /// [OptionalMove.limb] and [OptionalMove.kind]. Null again after a pause.
+  OptionalMove? lastOptionalMove;
   CrowdCheckpoint? _crowdCheckpoint;
   final Set<String> _credited = {};
   final Set<String> _perfectCredited = {};
@@ -298,35 +688,49 @@ class GardenSession {
     if (newOccurrence) _responseSequence++;
     _judge = null;
     _resolved = false;
-    _hits = 0;
+    _stepsLanded.clear();
+    _stepsPerfect.clear();
+    _pressedMs.clear();
+    _pressedPlain.clear();
+    _phraseRich = 0;
+    lastPairPartner = null;
+    _phraseGestures = 0;
+    _phraseDeltasMs.clear();
     _hit.clear();
     _phraseTier = progress.tier;
-    _activeLimbs = List.unmodifiable(
-      chart.limbsFor(_phraseTier, progress.fullTierSuccesses),
-    );
+    _pattern = chart.patternFor(_phraseTier, progress.fullTierSuccesses);
     _crowdCheckpoint = crowd.checkpoint();
     _phraseIdentity =
         '${progress.definition.id}:${progress.tier}:${progress.successesAtTier}:${progress.fullTierSuccesses}';
   }
 
   RhythmJudge _makeJudge() => RhythmJudge([
-    for (var i = 0; i < _activeLimbs.length; i++)
+    for (var i = 0; i < activeLimbs.length; i++)
       RhythmNote(
         '$_phraseIdentity:$i',
-        _activeLimbs[i],
-        (transport.secondsAt(_cycleStart + chart.callBeats + chart.offsets[i]) *
+        activeLimbs[i],
+        (transport.secondsAt(_cycleStart + chart.callBeats + activeOffsets[i]) *
                 1000)
             .round(),
         flourishTo: _flourishDestination(i),
+        offer: _offerAt(i),
       ),
   ]);
 
+  GestureKind? _offerAt(int index) => _flourishDestination(index) == null
+      ? null
+      : _pattern.offers[index] ?? gestureOffer(
+          limb: activeLimbs[index],
+          lastNote: index == activeLimbs.length - 1,
+          tier: _phraseTier,
+        );
+
   Limb? _flourishDestination(int index) {
-    if (index == _activeLimbs.length - 1) return chart.flourishDestination;
+    if (index == activeLimbs.length - 1) return chart.flourishDestination;
     final response = _cycleStart + chart.callBeats;
     final gapMs =
-        (transport.secondsAt(response + chart.offsets[index + 1]) -
-            transport.secondsAt(response + chart.offsets[index])) *
+        (transport.secondsAt(response + activeOffsets[index + 1]) -
+            transport.secondsAt(response + activeOffsets[index])) *
         1000;
     // Leave the full late tap + ornament + next early tap windows unobstructed.
     return gapMs >=
@@ -345,11 +749,11 @@ class GardenSession {
     final beat = positionBeats;
     final cues = <GardenCue>[];
     for (final demonstration in [true, false]) {
-      for (var i = 0; i < _activeLimbs.length; i++) {
+      for (var i = 0; i < activeLimbs.length; i++) {
         final target =
             _cycleStart +
             (demonstration ? 0 : chart.callBeats) +
-            chart.offsets[i];
+            activeOffsets[i];
         final id = '$_phraseIdentity:$i';
         if (!demonstration && _hit.contains(id)) continue;
         if (beat >= target - 2 &&
@@ -358,11 +762,15 @@ class GardenSession {
           cues.add(
             GardenCue(
               id: id,
-              limb: _activeLimbs[i],
+              limb: activeLimbs[i],
               beat: target,
               progress: ((beat - target + 2) / 2).clamp(0, 1),
               demonstration: demonstration,
               flourishTo: _flourishDestination(i),
+              offer: _offerAt(i),
+              index: i,
+              step: activeSteps[i],
+              move: activeMoves[i],
             ),
           );
         }
@@ -405,6 +813,7 @@ class GardenSession {
     }
     if (beat >= _cycleStart + chart.cycleBeats) {
       _cycleStart += chart.cycleBeats;
+      _performance++;
       _prepareCycle(newOccurrence: true);
     }
     // Use the same millisecond precision as judgment. At a handoff the beat
@@ -418,13 +827,18 @@ class GardenSession {
       _judge = _makeJudge();
     }
     final judge = _judge!;
-    if (judge.expire(_nowMs).isNotEmpty) {
-      combo = 0;
+    // A step's second press is for skilful play, so missing it breaks nothing.
+    // The combo breaks once a whole step has gone by with neither press.
+    for (final missed in judge.expire(_nowMs)) {
+      final step = activeSteps[_indexOf(missed)];
+      final lastOfStep =
+          _indexOf(missed) == activeSteps.lastIndexOf(step);
+      if (lastOfStep && !_stepsLanded.contains(step)) combo = 0;
     }
     if (!_resolved &&
         _nowMs > judge.notes.last.atMs + RhythmJudge.goodWindowMs) {
       _resolved = true;
-      final passed = _hits >= requiredHits;
+      final passed = _stepsLanded.length >= requiredHits;
       // Full-arrangement sustain cannot score while its request is pending.
       if (passed && progress.tier == 4 && _responseTier < 4) return;
       lastOutcome = progress.resolve(passed: passed);
@@ -438,6 +852,14 @@ class GardenSession {
         passed: passed,
         beat: resolvedBeat,
         cleared: progress.cleared,
+        report: PhraseReport(
+          notes: stepCount,
+          hits: _stepsLanded.length,
+          perfects: _stepsPerfect.length,
+          // A finished richer step is skill the room can see, like a move.
+          gestures: _phraseGestures + _phraseRich,
+          spreadMs: PhraseReport.spreadOf(_phraseDeltasMs),
+        ),
       );
       if (!passed) {
         lastStumbleBeat = resolvedBeat;
@@ -477,69 +899,189 @@ class GardenSession {
       _responseTier = transport.currentTier;
       _judge = _makeJudge();
     }
-    final result = _judge!.tap(limb, _nowMs);
+    final result = _togetherGrade(_judge!.tap(limb, _nowMs));
     lastGrade = result.grade;
     lastTiming = result.timing;
     lastDeltaMs = result.deltaMs;
+    lastPairPartner = null;
     if (result.note != null) {
-      _hits++;
+      final index = _indexOf(result.note!);
+      final step = activeSteps[index];
+      final firstOfStep = !_stepsLanded.contains(step);
+      _stepsLanded.add(step);
       combo++;
       _hit.add(result.note!.id);
-      if (result.grade == TapGrade.perfect &&
-          _perfectCredited.add(result.note!.id)) {
-        perfects++;
+      _phraseDeltasMs.add(result.deltaMs);
+      _openMove(result.note!);
+      if (result.grade == TapGrade.perfect) {
+        _stepsPerfect.add(step);
+        _creditPerfect(result.note!.id);
+      }
+      if (!firstOfStep) _richStepLanded(index, step);
+      _pressedMs[step] = _nowMs;
+      if (result.grade != TapGrade.perfect) {
+        _pressedPlain[step] = result.note!.id;
       }
     }
     return result;
   }
 
-  /// Host verifies same pointer and minimum swipe distance before invoking.
-  bool flourish(String noteId, Limb destination) {
-    if ((phase != GardenPhase.response && phase != GardenPhase.call) ||
-        transport.countingIn ||
-        _judge == null) {
-      return false;
-    }
-    final accepted = _judge!.flourish(noteId, destination, _nowMs);
-    _creditFlourish(noteId, accepted);
-    return accepted;
+  int _indexOf(RhythmNote note) => _judge!.notes.indexOf(note);
+
+  void _creditPerfect(String noteId) {
+    if (_perfectCredited.add(noteId)) perfects++;
   }
 
-  bool flourishGesture(String noteId, FlourishDirection direction) {
-    if ((phase != GardenPhase.response && phase != GardenPhase.call) ||
-        transport.countingIn ||
-        _judge == null) {
-      return false;
+  /// Two thumbs a few milliseconds apart are one gesture, so a pair's presses
+  /// that land together share the better grade, either way round.
+  TapResult _togetherGrade(TapResult result) {
+    final note = result.note;
+    if (note == null) return result;
+    final index = _indexOf(note);
+    if (activeMoves[index] != RichMove.pair) return result;
+    final step = activeSteps[index];
+    final other = _pressedMs[step];
+    if (other == null ||
+        (_nowMs - other).abs() > chart.limits.pairToleranceMs) {
+      return result;
     }
-    final accepted = _judge!.flourishGesture(noteId, _nowMs);
-    _creditFlourish(noteId, accepted, direction: direction);
-    return accepted;
+    final otherPlain = _pressedPlain[step];
+    if (result.grade == TapGrade.perfect) {
+      // The first press was the one just outside: its credit comes now.
+      if (otherPlain != null) _creditPerfect(otherPlain);
+      return result;
+    }
+    if (otherPlain != null) return result;
+    return TapResult(
+      TapGrade.perfect,
+      note,
+      deltaMs: result.deltaMs,
+      timing: TapTiming.perfect,
+    );
   }
 
-  void _creditFlourish(
+  /// Both presses of a step landed. It pays like a smaller optional move, and only
+  /// once per performance, so a pause's replay can't farm it.
+  void _richStepLanded(int index, int step) {
+    _phraseRich++;
+    if (activeMoves[index] == RichMove.pair) {
+      final first = activeSteps.indexOf(step);
+      lastPairPartner = activeLimbs[index == first ? index + 1 : first];
+    }
+    final key = '${progress.definition.id}:$_phraseIdentity:rich:$step:$_performance';
+    if (_credited.add(key)) {
+      richStepsCompleted++;
+      pizazz += richStepPizazz;
+      crowd.adorn(_responseSequence % crowd.guestCount, positionBeats);
+    }
+  }
+
+  void _openMove(RhythmNote note) {
+    _openMoves.removeWhere(
+      (_, open) => _nowMs > open.endsMs + moveDeadlineGraceMs,
+    );
+    if (note.flourishTo == null) return;
+    final last = identical(note, _judge!.notes.last);
+    var windowMs = RhythmJudge.flourishWindowMs;
+    if (last) {
+      final beats = note.offer == GestureKind.circle
+          ? lastNoteCircleBeats
+          : lastNoteMoveBeats;
+      final beat = transport.beatAt(note.atMs / 1000);
+      final ms =
+          ((transport.secondsAt(beat + beats) - transport.secondsAt(beat)) *
+                  1000)
+              .round();
+      if (ms > windowMs) windowMs = ms;
+    }
+    _openMoves[note.id] = _OpenMove(
+      note.limb,
+      note.offer,
+      _nowMs,
+      _nowMs + windowMs,
+      _responseSequence,
+      '${progress.definition.id}:${note.id}:$_performance',
+    );
+  }
+
+  /// When the note's chance at a move ends, in audio seconds, or null if none.
+  double? moveEndsAt(String noteId) {
+    final open = _openMoves[noteId];
+    return open == null || open.landed ? null : open.endsMs / 1000;
+  }
+
+  /// The one route for every optional move: touch, keyboard and AutoPlay. Touches
+  /// nothing a required note reads: not hits, combo, grades, tier or the clock.
+  OptionalMove? optionalMove(
     String noteId,
-    bool accepted, {
-    FlourishDirection? direction,
-  }) {
-    if (accepted && _credited.add('${progress.definition.id}:$noteId')) {
+    GestureKind kind,
+    FlourishDirection direction,
+  ) {
+    if (phase == GardenPhase.ready ||
+        phase == GardenPhase.paused ||
+        transport.countingIn) {
+      return null;
+    }
+    final open = _openMoves[noteId];
+    if (open == null ||
+        open.landed ||
+        _nowMs <= open.tappedMs ||
+        _nowMs > open.endsMs + moveDeadlineGraceMs) {
+      return null;
+    }
+    open.landed = true;
+    // Counted per phrase, so a replay rebuilds it from nothing and the crowd
+    // can't be farmed; the Pizazz ledger below keeps its own stricter key.
+    if (open.sequence == _responseSequence && !_resolved) {
+      _phraseGestures++;
+    } else if (crowd.gestureAfterPhrase(
+      sequence: open.sequence,
+      beat: positionBeats,
+    )) {
+      _crowdCheckpoint = crowd.checkpoint();
+    }
+    final credited = _credited.add(open.creditKey);
+    if (credited) {
       pizazz += 100;
       final elapsed = positionBeats - _lastStyleBeat;
+      final move = '${kind.name}:${direction.name}';
       final varied =
-          direction != null &&
-          _lastStyleDirection != null &&
-          direction != _lastStyleDirection &&
+          _lastStyleMove != null &&
+          move != _lastStyleMove &&
           elapsed >= 0 &&
           elapsed <= styleChainWindowBeats;
       styleCombo = varied ? (styleCombo + 1).clamp(1, 4) : 1;
-      _lastStyleDirection = direction;
+      _lastStyleMove = move;
       _lastStyleBeat = positionBeats;
       crowd.adorn(
-        _responseSequence % crowd.guestCount,
+        open.sequence % crowd.guestCount,
         positionBeats,
         chain: styleCombo,
       );
     }
+    return lastOptionalMove = OptionalMove(
+      noteId: noteId,
+      limb: open.limb,
+      kind: kind,
+      offered: open.offered,
+      direction: direction,
+      beat: positionBeats,
+      credited: credited,
+    );
   }
+
+  /// A plain directional flick: sideways is a spin, and up or down the flick.
+  /// This is what the arrow keys perform.
+  bool flourishGesture(String noteId, FlourishDirection direction) =>
+      optionalMove(
+        noteId,
+        direction == FlourishDirection.left ||
+                direction == FlourishDirection.right
+            ? GestureKind.spin
+            : GestureKind.flick,
+        direction,
+      ) !=
+      null;
 
   void pause() {
     if (phase == GardenPhase.ready ||
@@ -554,7 +1096,9 @@ class GardenSession {
     _prepareCycle(newOccurrence: _resolved);
     lastStumbleBeat = -100;
     styleCombo = 0;
-    _lastStyleDirection = null;
+    _lastStyleMove = null;
+    _openMoves.clear();
+    lastOptionalMove = null;
     _lastStyleBeat = -100;
     phase = GardenPhase.paused;
     combo = 0;
@@ -564,9 +1108,7 @@ class GardenSession {
     if (phase != GardenPhase.paused) throw StateError('Garden is not paused');
     transport.resume(
       leadSeconds:
-          transport.score.beatsPerBar *
-          60 /
-          transport.score.tempos[transport.currentTier],
+          transport.score.beatsPerBar * 60 / transport.currentBpm,
     );
     phase = positionBeats < chart.introBeats
         ? GardenPhase.intro

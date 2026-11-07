@@ -93,6 +93,52 @@ void main() {
     },
   );
 
+  test('a handoff move finishes on the mark, then steps away', () {
+    final choreography = routine();
+    ChallengerPose move(double t) => choreography.sample(
+      beat: 100 + t,
+      callStartBeat: 100,
+      handoffMoveBeats: 3,
+    );
+    // It starts after the last note's accent and overflows the player's turn.
+    expect(move(6.9).state, isNot(ChallengerDanceState.handoffMove));
+    expect(move(7).state, ChallengerDanceState.handoffMove);
+    expect(move(7).moveAge, closeTo(0, 1e-6));
+    expect(move(7.7).playerRole, PlayerDanceRole.ready);
+    expect(move(9.5).state, ChallengerDanceState.handoffMove);
+    expect(move(9.5).moveAge, closeTo(2.5, 1e-6));
+    expect(move(9.5).playerRole, PlayerDanceRole.responding);
+    // The floor is held for the whole move, and only then does the walk start.
+    for (final t in [7.0, 8.0, 9.0, 9.99]) {
+      expect(move(t).floorYield, 0);
+    }
+    expect(move(10.5).state, ChallengerDanceState.invite);
+    expect(move(10.5).floorYield, inExclusiveRange(0, 1));
+    expect(move(11).state, ChallengerDanceState.watch);
+    expect(move(11).floorYield, 1);
+    expect(move(15.8).state, ChallengerDanceState.ready);
+  });
+
+  test(
+    'a handoff move yields to calm camera and to a move too long to fit',
+    () {
+      final choreography = routine();
+      final calm = choreography.sample(
+        beat: 108,
+        callStartBeat: 100,
+        reducedMotion: true,
+        handoffMoveBeats: 3,
+      );
+      expect(calm.state, isNot(ChallengerDanceState.handoffMove));
+      final tooLong = choreography.sample(
+        beat: 108,
+        callStartBeat: 100,
+        handoffMoveBeats: 7,
+      );
+      expect(tooLong.state, isNot(ChallengerDanceState.handoffMove));
+    },
+  );
+
   test('clearance and recovery are explicit short social gestures', () {
     final choreography = routine();
     ChallengerPose result(

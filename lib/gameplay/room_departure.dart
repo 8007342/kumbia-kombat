@@ -74,8 +74,8 @@ class RoomDeparture extends DepartureRoute {
 const roomDepartures = <String, RoomDeparture>{
   'garden': RoomDeparture(
     roomId: 'garden',
-    nextRoomId: 'bar',
-    bridgeScoreId: 'garden_to_bar',
+    nextRoomId: 'pool-garden',
+    bridgeScoreId: 'garden_to_pool',
     threshold: 'copper garden door',
     waypoints: [
       DepartureWaypoint(

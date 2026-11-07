@@ -1,0 +1,407 @@
+{
+ "atlas": "band-congas",
+ "image": "band-congas-v1.png",
+ "imageWidth": 1024,
+ "imageHeight": 236,
+ "referenceFrame": "relaxed_a",
+ "family": "/home/forge/.cache/tillandsias-project/kumbia-wt/band/tool/art/families/band-congas-v1.json",
+ "animationReferences": {
+  "registry": "tool/art/references/animation-principles.json",
+  "research": [
+   "plan/levels/indoor-band-2026-11-07.md"
+  ],
+  "principlesUsed": [
+   "contrapposto",
+   "exaggeration-accent",
+   "follow-through",
+   "line-of-action",
+   "no-twinning",
+   "planted-pivot",
+   "staging-silhouette",
+   "timing-on-beat"
+  ],
+  "sourcesUsed": [
+   "cartwright-gdc2014",
+   "contrapposto-fonseca",
+   "dead-cells-pipeline",
+   "disney-process",
+   "illusion-of-life",
+   "silhouette-test",
+   "simogo-bsb",
+   "slynyrd-53",
+   "slynyrd-55",
+   "twinning",
+   "ubisoft-foot-ik",
+   "williams-survival-kit"
+  ]
+ },
+ "ramps": {
+  "skin": {
+   "region": "skin",
+   "alsoIn": [],
+   "shades": [
+    "#623703",
+    "#895B2F",
+    "#B5804F",
+    "#D0A178"
+   ]
+  },
+  "hair": {
+   "region": "hair",
+   "alsoIn": [],
+   "shades": [
+    "#423E3A",
+    "#66615D",
+    "#8C8782",
+    "#AAA6A1"
+   ]
+  },
+  "shirt": {
+   "region": "shirt",
+   "alsoIn": [],
+   "shades": [
+    "#9B927A",
+    "#C4BAA1",
+    "#EFE4C8",
+    "#FFFBE3"
+   ]
+  },
+  "jacket": {
+   "region": "cloth",
+   "alsoIn": [],
+   "shades": [
+    "#968D74",
+    "#BFB59B",
+    "#EADFC2",
+    "#FFFBE2"
+   ]
+  },
+  "lapels": {
+   "region": "apron",
+   "alsoIn": [],
+   "shades": [
+    "#05001D",
+    "#1B0041",
+    "#3A1F6B",
+    "#524081"
+   ]
+  },
+  "trousers": {
+   "region": "trousers",
+   "alsoIn": [],
+   "shades": [
+    "#000001",
+    "#09070D",
+    "#26232C",
+    "#3F3C45"
+   ]
+  },
+  "shoes": {
+   "region": "shoes",
+   "alsoIn": [],
+   "shades": [
+    "#867956",
+    "#ADA07C",
+    "#D8C9A0",
+    "#F7EAC6"
+   ]
+  },
+  "drums": {
+   "region": "prop",
+   "alsoIn": [],
+   "shades": [
+    "#360000",
+    "#5F0009",
+    "#8E1C28",
+    "#A7484A"
+   ]
+  },
+  "bands": {
+   "region": "accessory",
+   "alsoIn": [],
+   "shades": [
+    "#765500",
+    "#9D7B14",
+    "#C9A23A",
+    "#E5C371"
+   ]
+  }
+ },
+ "frames": {
+  "relaxed_a": {
+   "rect": [
+    258,
+    2,
+    127,
+    226
+   ],
+   "anchor": [
+    31.0,
+    225.0
+   ],
+   "pixelsPerUnit": 5.8065,
+   "facing": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/band/art_runs/band-congas-v1-4e0b0a5d53",
+    "pose": "relaxed.a",
+    "sha256": "7dbcab15ef6947158cb1fe578e4abe18f30695fef41efa0d7b056d615e599254",
+    "selected": null,
+    "frameKey": "9494378e78043f03059cea0e6f7f7b306dbf1ca51674fd8a96e5bfd7b61b4dd0",
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "follow-through",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "relaxed_b": {
+   "rect": [
+    774,
+    2,
+    124,
+    224
+   ],
+   "anchor": [
+    30.0,
+    223.0
+   ],
+   "pixelsPerUnit": 5.8065,
+   "facing": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/band/art_runs/band-congas-v1-4e0b0a5d53",
+    "pose": "relaxed.b",
+    "sha256": "84511fcf702a4048b22caadecd527042d7c4a7a547dcbfb39939717ed58487ce",
+    "selected": null,
+    "frameKey": "c0f19ce0cb80c7fa0f9058bc5d7f25adc43ee90f29221493c2c56856cb3e773a",
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "follow-through",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "swing_a": {
+   "rect": [
+    2,
+    2,
+    127,
+    233
+   ],
+   "anchor": [
+    32.0,
+    232.0
+   ],
+   "pixelsPerUnit": 5.8065,
+   "facing": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/band/art_runs/band-congas-v1-4e0b0a5d53",
+    "pose": "swing.a",
+    "sha256": "28a71f544bf5f33dbadde8ddf47d7176e795bd72ef5f48d33ea98f49759af1d5",
+    "selected": null,
+    "frameKey": "32d413596974cee3e691fcd3024e4f33afcefff53b726565fbe8c072170e015b",
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "line-of-action",
+     "contrapposto",
+     "exaggeration-accent",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "swing_b": {
+   "rect": [
+    516,
+    2,
+    127,
+    226
+   ],
+   "anchor": [
+    31.0,
+    225.0
+   ],
+   "pixelsPerUnit": 5.8065,
+   "facing": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/band/art_runs/band-congas-v1-4e0b0a5d53",
+    "pose": "swing.b",
+    "sha256": "7dbcab15ef6947158cb1fe578e4abe18f30695fef41efa0d7b056d615e599254",
+    "selected": null,
+    "frameKey": "fd83754daba2f0ce7f301eb55eabb8541343456e1b335577e1f9adb4ebbbe3ee",
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  },
+  "swing_c": {
+   "rect": [
+    131,
+    2,
+    125,
+    232
+   ],
+   "anchor": [
+    30.0,
+    231.0
+   ],
+   "pixelsPerUnit": 5.8065,
+   "facing": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/band/art_runs/band-congas-v1-4e0b0a5d53",
+    "pose": "swing.c",
+    "sha256": "ae56a96e2f68a6018584b3be42399fefd9eef6d8d0b007541fb187ce68e0fb9d",
+    "selected": null,
+    "frameKey": "37b257c476a752b2ba5986d89b427f50aec7f761a03de2f4de0a4de2eae9eed6",
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "line-of-action",
+     "contrapposto",
+     "exaggeration-accent",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "swing_d": {
+   "rect": [
+    645,
+    2,
+    127,
+    226
+   ],
+   "anchor": [
+    31.0,
+    225.0
+   ],
+   "pixelsPerUnit": 5.8065,
+   "facing": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "left",
+   "status": "candidate",
+   "provenance": {
+    "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/band/art_runs/band-congas-v1-4e0b0a5d53",
+    "pose": "swing.d",
+    "sha256": "91e7e4effc3df0e33d88883aebf623c805e2af5b4633f56c5eb51d7b2b72fd2d",
+    "selected": null,
+    "frameKey": "b757d67642f71f7167f7cce641f8246af8071d147856bd6c25da719b0d4b72c6",
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  },
+  "tap_up_a": {
+   "rect": [
+    387,
+    2,
+    127,
+    226
+   ],
+   "anchor": [
+    31.0,
+    225.0
+   ],
+   "pixelsPerUnit": 5.8065,
+   "facing": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "left",
+   "status": "candidate",
+   "provenance": {
+    "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/band/art_runs/band-congas-v1-4e0b0a5d53",
+    "pose": "tap.up_a",
+    "sha256": "91e7e4effc3df0e33d88883aebf623c805e2af5b4633f56c5eb51d7b2b72fd2d",
+    "selected": null,
+    "frameKey": "74637af08535018dcd7fd4172b400fbf034c2e7ffdabdc51221c09c64b74b9b7",
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  },
+  "tap_up_b": {
+   "rect": [
+    900,
+    2,
+    124,
+    224
+   ],
+   "anchor": [
+    30.0,
+    223.0
+   ],
+   "pixelsPerUnit": 5.8065,
+   "facing": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "left",
+   "status": "candidate",
+   "provenance": {
+    "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/band/art_runs/band-congas-v1-4e0b0a5d53",
+    "pose": "tap.up_b",
+    "sha256": "a237fb10fb88475021a020195fb032c04a14c45efaacb3903fa02cf6f7f2742a",
+    "selected": null,
+    "frameKey": "e67d3ab2b302d7e0265d8cf027d545965d543bda16dabeed26d48f6e272bc79a",
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  }
+ },
+ "playerHeightPx": 225
+}

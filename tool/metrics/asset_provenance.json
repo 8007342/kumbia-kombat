@@ -1,0 +1,140 @@
+{
+ "_note": "First match wins, shell-style globs on paths under the repo root. Add a line when new art or audio lands; anything unmatched is reported as unclassified. local-model = made by a model on this GPU (ComfyUI or ACE-Step). local-edit-of-imagegen = a built-in imagegen plate changed by a local model. builtin-imagegen = the chat tool's image generation in earlier sessions, not this GPU. Classification is by run and commit, not per pixel.",
+ "rules": [
+  {
+   "glob": "assets/art/billiards/*",
+   "class": "local-model",
+   "evidence": "Qwen-Image-Edit plate 989601 and its layers, plan/levels/billiards-2026-11-07.md"
+  },
+  {
+   "glob": "assets/art/ensemble/band-*",
+   "class": "local-model",
+   "evidence": "ComfyUI Qwen frames, plan/levels/indoor-band-2026-11-07.md"
+  },
+  {
+   "glob": "assets/art/ensemble/blinblin-*",
+   "class": "local-model",
+   "evidence": "ComfyUI Qwen frames, art_runs/blinblin-v1-20261107c, plan/levels/blinblin-sprites-2026-11-07.md"
+  },
+  {
+   "glob": "assets/art/ensemble/guest[0-9]-*",
+   "class": "local-model",
+   "evidence": "ComfyUI Qwen frames, commit 1440aaf, plan/party-art-review-2026-11-07.md"
+  },
+  {
+   "glob": "assets/art/ensemble/pool-bg-*",
+   "class": "local-model",
+   "evidence": "ComfyUI Qwen frames, commit 5f63249, plan/levels/billiards-2026-11-07.md"
+  },
+  {
+   "glob": "assets/art/ensemble/pool-player-*",
+   "class": "local-model",
+   "evidence": "ComfyUI Qwen frames, plan/levels/pool-player-sprites-2026-11-07.md"
+  },
+  {
+   "glob": "assets/art/props/*.png",
+   "class": "local-model",
+   "evidence": "art_runs/rooms/crowd-props/workflows/prop-edit.api.json, commit f540662"
+  },
+  {
+   "glob": "assets/music/rendered/*.m4a",
+   "class": "local-model",
+   "evidence": "ACE-Step takes, plan/music-pilot-2026-11-06.md, plan/music-themes-2026-11-06.md"
+  },
+  {
+   "glob": "assets/music/rendered/*.ogg",
+   "class": "local-model",
+   "evidence": "same takes as the m4a, second codec"
+  },
+  {
+   "glob": "assets/music/midi/*",
+   "class": "authored-code",
+   "evidence": "tool/music/generate.mjs, assets/music/LICENSE.md"
+  },
+  {
+   "glob": "assets/art/ensemble/*-v2.png",
+   "class": "builtin-imagegen",
+   "evidence": "assets/art/ensemble/README.md"
+  },
+  {
+   "glob": "assets/art/ensemble/gatekeeper-v3.png",
+   "class": "local-model",
+   "evidence": "commit e3c292b, local ComfyUI"
+  },
+  {
+   "glob": "assets/art/ensemble/*-v[345].png",
+   "class": "local-model",
+   "evidence": "art_runs/gatekeeper-*q, bartender-v1-*q, swing-*; commits 411601e, 0159514, f731ce6, fd802c4"
+  },
+  {
+   "glob": "assets/art/closeups/*",
+   "class": "local-model",
+   "evidence": "art_runs/closeups-*, oil-gulp-*, duet-20261106 hold the workflows; some Macron pieces are puppeted from his sprite"
+  },
+  {
+   "glob": "assets/art/cool-crowd/*",
+   "class": "local-model",
+   "evidence": "art_runs/room-cool-crowd-v1-a, commit 0c259d1"
+  },
+  {
+   "glob": "assets/art/pool-garden/*",
+   "class": "local-model",
+   "evidence": "art_runs/room-pool-garden-v1-*, plan/rooms-and-layers-2026-11-07.md"
+  },
+  {
+   "glob": "assets/art/garden/garden-mansion-clean.png",
+   "class": "local-edit-of-imagegen",
+   "evidence": "art_runs/layers-garden-20261106, commit bed2f06"
+  },
+  {
+   "glob": "assets/art/garden/garden-layers.png",
+   "class": "local-edit-of-imagegen",
+   "evidence": "art_runs/layers-garden-20261106"
+  },
+  {
+   "glob": "assets/art/bar/bar-interior-clean.png",
+   "class": "local-edit-of-imagegen",
+   "evidence": "plan/rooms-and-layers-2026-11-07.md"
+  },
+  {
+   "glob": "assets/art/bar/bar-layers.png",
+   "class": "local-edit-of-imagegen",
+   "evidence": "plan/rooms-and-layers-2026-11-07.md"
+  },
+  {
+   "glob": "assets/art/bar/*.png",
+   "class": "builtin-imagegen",
+   "evidence": "assets/art/bar/README.md, 2026-10-18"
+  },
+  {
+   "glob": "assets/art/garden/*.png",
+   "class": "builtin-imagegen",
+   "evidence": "assets/art/garden/manifest.json, 2026-10-18"
+  },
+  {
+   "glob": "assets/art/party/*.png",
+   "class": "builtin-imagegen",
+   "evidence": "assets/art/party/README.md; macron-dance-v3 adds held frames puppeted locally"
+  },
+  {
+   "glob": "assets/art/macron-dance-concepts.png",
+   "class": "builtin-imagegen",
+   "evidence": "assets/art/README.md"
+  },
+  {
+   "glob": "assets/art/references/*",
+   "class": "reference-not-shipped",
+   "evidence": "assets/art/README.md, upstream reference"
+  },
+  {
+   "glob": "assets/ui/*.svg",
+   "class": "authored-code",
+   "evidence": "plan/assets.md, project-authored paths"
+  },
+  {
+   "glob": "assets/fonts/*.otf",
+   "class": "third-party",
+   "evidence": "assets/fonts/README.md"
+  }
+ ]
+}

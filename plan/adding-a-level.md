@@ -17,8 +17,8 @@ A level is one JSON file, `levels/<id>.json`, plus one entry in `levels/index.js
   - `crowd`: budgets, guest marks and props. Each guest gets a chair
   - `scenery`: lamps and plants, and an optional waiter
   - `departure`: exit route. Waypoint y is relative to `originY`, so set `originY` to the hero's home y to write absolute marks
-  - `copy`: invitation, cleared lines, reset line
-- [ ] `levels/index.json`: add the level where it belongs. That entry and the one before it hold the bridge, exit line and next line. Neighbouring level files don't change.
+  - `copy`: the invitation for the title screen, and `clearedTitle`: two words, one to a line, the second from the party and music theme. It's the only text in a run, shown from an exit shot's contact. A level with no `exitShot` shows it only on the end screen, if it's the last level. An exit shot's fields, sounds and rules are in `assets/art/STYLEGUIDE.md`, section 8
+- [ ] `levels/index.json`: add the level where it belongs. That entry and the one before it hold the bridge. Neighbouring level files don't change.
 - [ ] `displayTotal`: the HUD's "/ 05". It's a stated number today, not the level count, because the HUD showed 05 with two levels. Remove the field to show the real count.
 
 **Needs assets, from a pipeline and a person's review:**
@@ -30,7 +30,7 @@ A level is one JSON file, `levels/<id>.json`, plus one entry in `levels/index.js
 
 **Still needs code or config:**
 
-- [ ] A new challenger atlas: add its id to `EnsembleManifest.atlasIds` and its frame list to the switch in `ensemble_sprites.dart`. The level file can only name atlases on that list.
+- [ ] A new challenger atlas: add its id to `EnsembleManifest.atlasIds` and its frame list to the switch in `ensemble_sprites.dart`. A band's atlas needs only its manifest entry.
 - [ ] A new art folder: list it in `pubspec.yaml`, because asset folders aren't recursive.
 
 **Before calling it done:** run `flutter test`, which checks that everything a shipping level names exists on disk, then play the level. Only a person can approve the chart.
@@ -40,7 +40,7 @@ A level is one JSON file, `levels/<id>.json`, plus one entry in `levels/index.js
 | What | Where | Why it matters |
 |---|---|---|
 | Second and later challengers aren't drawn. The data is validated, but the scene draws the first | `garden_scene.dart` `_addChallenger` | Two dancers need scene work (audit item 5) |
-| Guests are always seated, and always `guest0`–`guest2` by index | `crowd_interest.dart`, `party_layout.dart` `seatedGuestSlots` | No swimmers, standing tables or level-specific cast (audit item 6) |
+| Guests are seated or on a dance floor (`crowd.seat`), and always `guest0`–`guest2` by index | `crowd_interest.dart`, `party_layout.dart` `seatedGuestSlots` | No swimmers, standing tables or level-specific cast (audit item 6) |
 | Crowd stays at 12 or fewer, and palettes come from the index | `crowd_interest.dart` | Same |
 | Prop and ambient kinds are a switch: chair, table, umbrella, plant, candle | `garden_scene.dart`, `ensemble_sprites.dart` | A new prop kind needs code |
 | Every atlas loads at startup and nothing is freed. The next background loads when its neighbour starts | `garden_scene.dart`, `garden_page.dart` | Separate job. Memory won't scale to many levels (audit pitfall 5) |
@@ -68,3 +68,19 @@ The pipelines are Python and write JSON already, git shows each decision as a da
 ## For the level brief
 
 `level-production-pipeline` D1 should change before anyone writes briefs against it. A brief's `opponent` and flat `room` should compile to this file's `stage.challengers` (plural), `stage` marks and `scenery`. Its `bridge` belongs on the campaign entry, not the level. Camera and posture have no slot yet, because nothing in the game reads them.
+
+## A hidden level
+
+List its id under `review` in `levels/index.json` instead of `campaign`. It's checked on load like any other and plays alone at `?level=<id>`. To join the campaign later, move it and add the previous level's bridge.
+
+## Tables, a cue stroke and a reward sound
+
+From the billiard room, all optional and data only: `scenery.occluders` (a painted table or lamp people stand behind: `outline` and `frontY`), `scenery.band` with no platform (players at tables, on a `tier` ladder), a rich step's `offer` (the move its last press invites in place of the usual one, refused by a test if the next note leaves no room) and `music.moveAccent` (a sound when a move or richer step lands). `plan/levels/billiards-2026-11-07.md`.
+
+## A dance floor and a band
+
+`crowd.seat: "standing"`, `partTo` per guest and `crowd.floorDance` give a crowd that's already dancing and opens the floor. `scenery.platform` and `scenery.band` put a band on a raised floor. The fields, with `levels/cool-crowd.json` as the example, are in `plan/levels/indoor-party-2026-11-07.md`.
+
+## A pair of opponents
+
+Add `stage.duet` to a level with two challengers: named `marks`, a list of `turns` that alternate leads, `offClip`, `partnerClip`, and an `exit`. Each dancer in `assets/art/ensemble/choreography.json` needs the two clips, reaching toward the picture's left in `partnerClip`. An example is the lawn, and the rules are in `test/duet_staging_test.dart`.

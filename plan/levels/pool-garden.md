@@ -4,7 +4,7 @@
 
 **In the campaign as a draft, 2026-11-06.** The level plays third, after the bar, with the draft plate and the candidate atlases `swing-a` and `swing-b`. The owner asked for a draft level 3 but has not accepted its art, music or cast. What the draft does not do yet:
 
-- The pair dance in unison. Partner work, hand connection and swing-outs wait on `plan/duet-foundations.md`.
+- The pair dance the call hand in hand, as one figure, and one partners Mācron on his turn: `plan/duet-foundations.md`, "As built: the pair". Swing-outs still wait.
 - They glide along their 16-beat floor tracks, with no travelling steps in the art.
 - Both skeletons are borrowed from the bartender and Gatekeeper, because the rig would not run in the forge.
 - All atlases still load at startup, so the dancers cost memory in the first two rooms.

@@ -1,0 +1,340 @@
+{
+ "id": "cool-crowd",
+ "title": "THE DANCE ROOM",
+ "styleRef": "bar",
+ "comment": "Third room, accepted 2026-11-07 as plate A: assets/art/cool-crowd/cool-crowd-room.png. Camera and geometry were refitted to the painted walls, since no plate held the old guide's far wall: horizon .25, adult .12 at foot .43, the same as party_layout's contract at its reference foot. The floor is painted separately: tool/art/rooms/floor.py.",
+ "camera": {
+  "horizonY": 0.25,
+  "eyeHeightAdults": 1.5,
+  "focalPx": 1200,
+  "vanishingX": 0.36,
+  "originBottomX": 0.7
+ },
+ "phone": {
+  "width": 390,
+  "height": 844
+ },
+ "safe": {
+  "x": [
+   0.17,
+   0.83
+  ],
+  "y": [
+   0.17,
+   0.65
+  ]
+ },
+ "tapBand": {
+  "y": [
+   0.65,
+   0.97
+  ],
+  "allow": [
+   "floor",
+   "joint"
+  ]
+ },
+ "cast": {
+  "heroStature": 0.35,
+  "minHeroLogical": 34
+ },
+ "walkable": [
+  "floor",
+  "joint"
+ ],
+ "standable": [
+  "floor",
+  "joint"
+ ],
+ "paint": [
+  {
+   "kind": "paving",
+   "id": "floor",
+   "s": [
+    -2,
+    9
+   ],
+   "t": [
+    -2.05,
+    1.85
+   ],
+   "every": 1.2,
+   "lanes": 4
+  },
+  {
+   "kind": "wall",
+   "id": "panel",
+   "a": [
+    9,
+    -2.05
+   ],
+   "b": [
+    9,
+    1.85
+   ],
+   "z": [
+    0,
+    3.2
+   ]
+  },
+  {
+   "kind": "wall",
+   "id": "door",
+   "a": [
+    9,
+    -0.7
+   ],
+   "b": [
+    9,
+    0.7
+   ],
+   "z": [
+    0,
+    2.2
+   ]
+  },
+  {
+   "kind": "wall",
+   "id": "panel",
+   "a": [
+    -2,
+    -2.05
+   ],
+   "b": [
+    9,
+    -2.05
+   ],
+   "z": [
+    0,
+    3.2
+   ]
+  },
+  {
+   "kind": "wall",
+   "id": "panel",
+   "a": [
+    -2,
+    1.85
+   ],
+   "b": [
+    9,
+    1.85
+   ],
+   "z": [
+    0,
+    3.2
+   ]
+  },
+  {
+   "kind": "repeat",
+   "of": "wall",
+   "count": 3,
+   "start": 0,
+   "step": 2,
+   "id": "window",
+   "a": [
+    3.3,
+    -2.05
+   ],
+   "b": [
+    4.3,
+    -2.05
+   ],
+   "z": [
+    0.5,
+    2.6
+   ]
+  },
+  {
+   "kind": "repeat",
+   "of": "wall",
+   "count": 4,
+   "start": 0,
+   "step": 1.8,
+   "id": "pilaster",
+   "a": [
+    1.8,
+    1.85
+   ],
+   "b": [
+    2.1,
+    1.85
+   ],
+   "z": [
+    0,
+    3.2
+   ]
+  },
+  {
+   "kind": "box",
+   "id": "stage",
+   "s": [
+    3.24,
+    5.61
+   ],
+   "t": [
+    -2.05,
+    -0.9
+   ],
+   "z": [
+    0,
+    0.36
+   ]
+  },
+  {
+   "kind": "discs",
+   "id": "lamp",
+   "at": [
+    [
+     4,
+     -0.6,
+     2.8
+    ],
+    [
+     6,
+     0.6,
+     2.8
+    ]
+   ],
+   "r": 0.14
+  }
+ ],
+ "story": [
+  {
+   "name": "corridor-door",
+   "ids": [
+    "door"
+   ],
+   "ignoreTop": true
+  }
+ ],
+ "marks": {
+  "heroHome": [
+   1.45,
+   0
+  ],
+  "heroEntrance": [
+   0.9,
+   0.05
+  ],
+  "heroRetreat": [
+   1.15,
+   0
+  ],
+  "challengers": [
+   {
+    "id": "gatekeeper",
+    "atlas": "gatekeeper",
+    "mark": [
+     3.0,
+     0.1
+    ],
+    "yieldMark": [
+     3.3,
+     0.6
+    ]
+   }
+  ],
+  "pathEnd": [
+   8.6,
+   0
+  ],
+  "route": [
+   [
+    1.45,
+    0
+   ],
+   [
+    1.7,
+    0.2
+   ],
+   [
+    3.5,
+    0.2
+   ],
+   [
+    6.5,
+    0
+   ],
+   [
+    8.6,
+    0
+   ]
+  ],
+  "guests": [
+   [
+    3.2,
+    1.0
+   ],
+   [
+    3.9,
+    -0.5
+   ],
+   [
+    4.4,
+    1.0
+   ],
+   [
+    2.6,
+    1.05
+   ],
+   [
+    5.2,
+    0.5
+   ],
+   [
+    5.9,
+    1.2
+   ],
+   [
+    6.8,
+    -0.3
+   ],
+   [
+    7.4,
+    0.9
+   ]
+  ],
+  "plants": []
+ },
+ "props": [],
+ "scene": "It is the mansion's dance room at night, seen at an angle: a grown-up, intimate hall of soft greyed violet, warm cream plaster and low amber lamps.",
+ "keep": "every wall edge, window, pilaster, the far bandstand and doorway, every floor joint and the horizon",
+ "zones": {
+  "floor": {
+   "layout": "a dark polished stone dance floor, one even tone across its whole area out to every edge of the picture, with the same grid as image 1.",
+   "paint": "The floor is plain dark polished stone, a deep dark grey-violet, close in tone to the shadows on the walls, in large square slabs with thin straight joints: the joints stay exactly where they are, with fine mottled texture and one even, soft low sheen from end to end, with a short soft warm glow just in front of the doorway, and it lies open, calm and clear down to the bottom edge of the picture."
+  },
+  "panel": {
+   "layout": "muted greyed violet carved wood panelling with raised panels, gilded scrollwork borders and a deep moulded cornice.",
+   "paint": "The walls are deep muted violet-plum wood panels with a soft lacquer, in the rich ornate style of an old Latin dance palace: carved raised panels with gilded scrollwork borders, an upper wall of damask pattern in dim plum and old gold, a dark carved wainscot, a deep moulded cornice, tall gilt-framed mirrors holding small points of amber light, small warm brass wall sconces and thin cream mouldings, all in soft dim light."
+  },
+  "door": {
+   "layout": "a tall doorway at the far end.",
+   "paint": "A cream stone archway at the far end, the same width and height as the doorway in image 1 with its foot on the same line, opens onto a dim warm corridor, seen only as soft amber depth."
+  },
+  "window": {
+   "layout": "tall arched windows on the left wall.",
+   "paint": "Tall arched windows on the left wall only, with fine leaded glass, are a dark grey-blue with a thin pale cyan line along the leading."
+  },
+  "pilaster": {
+   "layout": "carved pilasters on the right wall.",
+   "paint": "Carved cream pilasters with fluted shafts and gilded leaf capitals run along the right wall between deep muted violet panels, lit warm from below."
+  },
+  "stage": {
+   "layout": "a low bandstand at the far left.",
+   "paint": "A low dark wooden platform with a short muted violet velvet skirt in fine pleats, knee high and exactly the size of the block in image 1, stands empty at the far left."
+  },
+  "lamp": {
+   "layout": "glowing chandeliers hanging from the ceiling.",
+   "paint": "Small amber lantern chandeliers with fine metalwork hang high in the air."
+  }
+ },
+ "platforms": [
+  {
+   "id": "bandstand",
+   "box": "stage",
+   "note": "Measured on the accepted plate: top front-right corner at plate (238, 677), its foot at (238, 770), rear corner (300, 575). The owner keeps it for a band. It runs off the phone's left edge by design."
+  }
+ ]
+}

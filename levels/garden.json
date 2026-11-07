@@ -1,7 +1,7 @@
 {
   "id": "garden",
   "title": "THE GARDEN",
-  "background": "garden/garden-mansion.png",
+  "background": "garden/garden-mansion-clean.png",
   "music": {
     "score": "garden_mojo",
     "successScore": "garden_mojo_success",
@@ -36,30 +36,59 @@
     "heroEntrance": [0.50, 0.76],
     "heroRetreat": [0.50, 0.73],
     "heroWatch": [0.50, 0.735],
+    "heroAside": [0.25, 0.72],
     "challengers": [
-      { "id": "gatekeeper", "atlas": "gatekeeper", "mark": [0.50, 0.53], "yieldMark": [0.61, 0.52] }
+      { "id": "gatekeeper", "atlas": "gatekeeper", "mark": [0.50, 0.565], "yieldMark": [0.70, 0.535], "stature": 1.14, "meetMark": [0.61, 0.52] }
     ]
   },
   "crowd": {
-    "budgets": { "interested": 3, "following": 2, "standing": 1, "cheering": 0 },
+    "budgets": { "interested": 12, "following": 12, "standing": 12, "cheering": 12 },
+    "seat": "chair",
+    "propSet": "garden",
     "guests": [
-      [0.20, 0.610], [0.80, 0.610],
-      [0.24, 0.460], [0.76, 0.460],
-      [0.31, 0.408], [0.69, 0.408],
-      [0.24, 0.360], [0.31, 0.360], [0.38, 0.360],
-      [0.62, 0.360], [0.69, 0.360], [0.76, 0.360]
+      [0.17, 0.56],
+      [0.62, 0.35],
+      [0.75, 0.35],
+      [0.29, 0.385],
+      [0.82, 0.51],
+      [0.36, 0.38],
+      [0.68, 0.455],
+      [0.33, 0.352],
+      [0.18, 0.46],
+      [0.82, 0.46],
+      [0.72, 0.385],
+      [0.21, 0.505],
+      [0.81, 0.42],
+      [0.72, 0.415],
+      [0.34, 0.51],
+      [0.29, 0.42],
+      [0.19, 0.415],
+      [0.385, 0.35],
+      [0.68, 0.352],
+      [0.21, 0.38],
+      [0.64, 0.38],
+      [0.79, 0.38],
+      [0.3, 0.455],
+      [0.25, 0.35]
     ],
     "props": [
-      { "id": "garden-table-left", "kind": "table", "at": [0.31, 0.370], "heightInAdults": 0.43, "widthInAdults": 0.9 },
-      { "id": "garden-table-right", "kind": "table", "at": [0.69, 0.370], "heightInAdults": 0.43, "widthInAdults": 0.9 },
-      { "id": "garden-umbrella-left", "kind": "umbrella", "at": [0.30, 0.350], "heightInAdults": 1.35, "widthInAdults": 1.5 },
-      { "id": "garden-umbrella-right", "kind": "umbrella", "at": [0.70, 0.350], "heightInAdults": 1.35, "widthInAdults": 1.5 }
+      { "id": "garden-table-0", "kind": "table", "at": [0.24, 0.418], "heightInAdults": 0.43, "widthInAdults": 0.6 },
+      { "id": "garden-table-1", "kind": "table", "at": [0.24, 0.458], "heightInAdults": 0.43, "widthInAdults": 0.6 },
+      { "id": "garden-table-2", "kind": "table", "at": [0.275, 0.508], "heightInAdults": 0.43, "widthInAdults": 0.6 },
+      { "id": "garden-table-3", "kind": "table", "at": [0.235, 0.56], "heightInAdults": 0.43, "widthInAdults": 0.6 },
+      { "id": "garden-table-4", "kind": "table", "at": [0.765, 0.418], "heightInAdults": 0.43, "widthInAdults": 0.6 },
+      { "id": "garden-table-5", "kind": "table", "at": [0.76, 0.46], "heightInAdults": 0.43, "widthInAdults": 0.6 },
+      { "id": "garden-table-6", "kind": "table", "at": [0.77, 0.512], "heightInAdults": 0.43, "widthInAdults": 0.6 },
+      { "id": "garden-table-7", "kind": "table", "at": [0.325, 0.385], "heightInAdults": 0.43, "widthInAdults": 0.6 },
+      { "id": "garden-table-8", "kind": "table", "at": [0.68, 0.385], "heightInAdults": 0.43, "widthInAdults": 0.6 },
+      { "id": "garden-umbrella-left", "kind": "umbrella", "at": [0.3, 0.35], "heightInAdults": 1.35, "widthInAdults": 1.5 },
+      { "id": "garden-umbrella-right", "kind": "umbrella", "at": [0.7, 0.35], "heightInAdults": 1.35, "widthInAdults": 1.5 }
     ]
   },
   "scenery": {
     "lamps": [[0.177, 0.129], [0.856, 0.129], [0.205, 0.280], [0.796, 0.280]],
     "plants": [[0.14, 0.49], [0.86, 0.49]],
-    "waiter": { "home": [0.51, 0.385], "swayX": 0.055 }
+    "waiter": { "home": [0.51, 0.385], "swayX": 0.12 }
   },
   "departure": {
     "threshold": "copper garden door",
@@ -72,9 +101,7 @@
   },
   "copy": {
     "invitation": "Mirror the rhythm. Earn your way in.",
-    "clearedTitle": "MUCHO\nMOJO.",
-    "clearedClaim": "THE GATE IS YOURS.",
-    "resetLine": "BACK TO THE GATE"
+    "clearedTitle": "MUCHO\nMOJO"
   },
   "exitShot": {
     "plate": "closeups/garden-plate.png",
@@ -87,7 +114,7 @@
     ],
     "closeupFrom": 7,
     "contactBeat": 8,
-    "closeupTo": 9.25,
+    "closeupTo": 10,
     "contactPoint": [
       0.5,
       0.32
@@ -129,17 +156,91 @@
       }
     ],
     "cue": [
+      { "beat": 8, "track": "bump", "pitch": 60, "velocity": 127 }
+    ]
+  },
+  "layers": {
+    "plateWidth": 1024,
+    "plateHeight": 1536,
+    "props": [
+      {"id": "fronds-left", "atlas": "garden/garden-layers.png", "atlasY": 0, "left": 202, "top": 0, "width": 143, "height": 124, "frames": 7, "motion": "sway", "periodBeats": 2, "instance": 1, "kind": "plant"},
+      {"id": "fronds-right", "atlas": "garden/garden-layers.png", "atlasY": 126, "left": 700, "top": 0, "width": 172, "height": 162, "frames": 7, "motion": "sway", "periodBeats": 2, "instance": 2, "kind": "plant"},
+      {"id": "flowers-left", "atlas": "garden/garden-layers.png", "atlasY": 290, "left": 240, "top": 204, "width": 108, "height": 68, "frames": 4, "motion": "pulse", "periodBeats": 1, "instance": 3, "kind": "plant"},
+      {"id": "flowers-right", "atlas": "garden/garden-layers.png", "atlasY": 360, "left": 684, "top": 202, "width": 107, "height": 70, "frames": 4, "motion": "pulse", "periodBeats": 1, "instance": 4, "kind": "plant"},
+      {"id": "lantern-left", "atlas": "garden/garden-layers.png", "atlasY": 432, "left": 151, "top": 150, "width": 60, "height": 83, "frames": 7, "motion": "sway", "periodBeats": 4, "instance": 5, "kind": "hanging"},
+      {"id": "lantern-right", "atlas": "garden/garden-layers.png", "atlasY": 517, "left": 846, "top": 150, "width": 60, "height": 83, "frames": 7, "motion": "sway", "periodBeats": 4, "instance": 6, "kind": "hanging"},
+      {"id": "flame-left", "atlas": "garden/garden-layers.png", "atlasY": 602, "left": 195, "top": 416, "width": 27, "height": 37, "frames": 4, "motion": "pulse", "periodBeats": 1, "instance": 7, "kind": "flame"},
+      {"id": "flame-right", "atlas": "garden/garden-layers.png", "atlasY": 641, "left": 807, "top": 415, "width": 26, "height": 38, "frames": 4, "motion": "pulse", "periodBeats": 1, "instance": 8, "kind": "flame"}
+    ]
+  },
+  "hardestCombo": {
+    "name": "The Velvet Rope",
+    "status": "proposal",
+    "note": "Proposal. The name and shape need no sign-off to exist, but the owner hasn't seen or played them. The Gatekeeper's garden call with two more notes, closed by his spin.",
+    "callBeats": 8,
+    "moves": [
       {
-        "beat": 8,
-        "track": "pulse",
-        "pitch": 36,
-        "velocity": 127
+        "at": 0,
+        "beats": 2,
+        "clip": "show_off"
       },
       {
-        "beat": 8,
-        "track": "pulse",
-        "pitch": 38,
-        "velocity": 120
+        "at": 2,
+        "beats": 1,
+        "clip": "clap"
+      },
+      {
+        "at": 3,
+        "beats": 3,
+        "clip": "spin_flare"
+      },
+      {
+        "at": 6,
+        "beats": 2,
+        "clip": "finish_turn"
+      }
+    ],
+    "notes": [
+      {
+        "at": 0,
+        "limb": "leftHand"
+      },
+      {
+        "at": 1,
+        "limb": "rightHand"
+      },
+      {
+        "at": 2,
+        "limb": "leftFoot"
+      },
+      {
+        "at": 2.5,
+        "limb": "rightFoot"
+      },
+      {
+        "at": 3.5,
+        "limb": "leftHand"
+      },
+      {
+        "at": 4,
+        "limb": "rightHand"
+      },
+      {
+        "at": 5,
+        "limb": "leftFoot"
+      },
+      {
+        "at": 6,
+        "limb": "rightFoot"
+      },
+      {
+        "at": 6.5,
+        "limb": "leftHand"
+      },
+      {
+        "at": 7,
+        "limb": "rightHand",
+        "move": "circle"
       }
     ]
   }
