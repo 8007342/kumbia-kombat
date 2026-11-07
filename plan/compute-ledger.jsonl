@@ -344,3 +344,11 @@
 {"ts": "2026-11-07T07:49:06Z", "agent": "POOLART", "what": "c.png", "kind": "local-vision", "seconds": 3.27, "count": 1, "model": "qwen2.5vl:7b", "load_s": 2.5, "eval_tokens": 2}
 {"ts": "2026-11-07T07:49:10Z", "agent": "POOLART", "what": "c.png", "kind": "local-vision", "seconds": 3.24, "count": 1, "model": "qwen2.5vl:7b", "load_s": 2.45, "eval_tokens": 2}
 {"ts": "2026-11-07T07:49:13Z", "agent": "POOLART", "what": "c.png", "kind": "local-vision", "seconds": 3.26, "count": 1, "model": "qwen2.5vl:7b", "load_s": 2.47, "eval_tokens": 2}
+{"ts": "2026-11-07T04:00:00Z", "agent": "music", "what": "chained-latent tests, bar sweeps and structure-tag takes (ACE XL turbo); seconds are sampler time, excluding queue waits", "kind": "gpu-audio", "seconds": 225, "count": 27}
+{"ts": "2026-11-07T04:00:00Z", "agent": "music", "what": "billiards themes, 4 styles of 6 seeds (ACE XL turbo); first style measured 72 s, others assumed alike", "kind": "gpu-audio", "seconds": 288, "count": 24}
+{"ts": "2026-11-07T04:00:00Z", "agent": "music", "what": "billiards trial on ACE XL base, 40 steps, cfg 4", "kind": "gpu-audio", "seconds": 61, "count": 2}
+{"ts": "2026-11-07T04:00:00Z", "agent": "music", "what": "one-performance ladders for 4 levels, 8 takes each; garden measured 47 s, others assumed alike", "kind": "gpu-audio", "seconds": 188, "count": 32}
+{"ts": "2026-11-07T02:30:37Z", "agent": "ledger", "what": "first test: pass1-review", "kind": "local-vision", "seconds": 11.11, "count": 1, "model": "qwen2.5vl:7b", "load_s": 0.01, "eval_tokens": 83}
+{"ts": "2026-11-07T02:33:33Z", "agent": "ledger", "what": "vision trial: extra limbs, facing, crossed legs, pointing", "kind": "local-vision", "seconds": 113.63, "count": 43, "model": "qwen2.5vl:7b", "load_s": 0.03, "eval_tokens": 996}
+{"ts": "2026-11-07T02:35:03Z", "agent": "ledger", "what": "vision trial: counting heads and hands", "kind": "local-vision", "seconds": 10.78, "count": 14, "model": "qwen2.5vl:7b", "load_s": 0, "eval_tokens": 26}
+{"agent":"MIXRS","what":"Python and mixrs builds and comparisons, 5 levels and 2 older levels","kind":"cpu","seconds":900,"count":8}

@@ -15,11 +15,14 @@ Each file holds its loop between pads of wrapped audio, so codec edges stay outs
 the loop points. Stdlib, numpy and ffmpeg only; one file, so `python -I` can run it.
 """
 import argparse
+import atexit
 import concurrent.futures as futures
 import json
 import os
 import pathlib
 import re
+import resource
+import shutil
 import subprocess
 import sys
 import tempfile
@@ -34,6 +37,15 @@ HOP = 256
 WINDOW = 1024
 ENV_RATE = RATE / HOP
 MAX_DECODED_PEAK_DB = -0.3
+# The forge has 12 GB, shared with other agents, and a stall there freezes everyone. A build
+# at 12 workers took 11 GB and held the forge for 20 minutes on 2026-11-07. So one worker by
+# default, two at most, a limit per process that fails instead of stalling, and no start
+# while the machine is already busy.
+DEFAULT_WORKERS = 1
+MAX_WORKERS = 2
+PROCESS_LIMIT_BYTES = 4 * 1024 ** 3
+BUSY_BYTES = 6 * 10 ** 9
+HPSS_CHUNK_SECONDS = 10
 TONICS = {"C": 0, "C#": 1, "D": 2, "Eb": 3, "E": 4, "F": 5, "F#": 6, "G": 7, "Ab": 8, "A": 9, "Bb": 10, "B": 11}
 MAJOR = np.array([6.35, 2.23, 3.48, 2.33, 4.38, 4.09, 2.52, 5.19, 2.39, 3.66, 2.29, 2.88])
 MINOR = np.array([6.33, 2.68, 3.52, 5.38, 2.60, 3.53, 2.54, 4.75, 3.98, 2.69, 3.34, 3.17])
@@ -77,10 +89,14 @@ def encode(audio, base, cfg):
     common = ["ffmpeg", "-y", "-v", "error", "-f", "f32le", "-ar", str(SR), "-ac", "2", "-i", "-",
               "-map_metadata", "-1", "-fflags", "+bitexact", "-flags", "+bitexact"]
     opus, aac = base.with_suffix(".ogg"), base.with_suffix(".m4a")
+    # Written beside the target and renamed, so a killed build can't leave half a file.
+    part_opus, part_aac = base.with_name(base.name + ".part.ogg"), base.with_name(base.name + ".part.m4a")
     subprocess.run(common + ["-c:a", "libopus", "-b:a", f"{cfg['encode']['opusKbps']}k", "-vbr", "on",
-                             "-application", "audio", str(opus)], input=_pipe(audio), check=True)
+                             "-application", "audio", str(part_opus)], input=_pipe(audio), check=True)
     subprocess.run(common + ["-c:a", "aac", "-b:a", f"{cfg['encode']['aacKbps']}k",
-                             "-movflags", "+faststart", str(aac)], input=_pipe(audio), check=True)
+                             "-movflags", "+faststart", str(part_aac)], input=_pipe(audio), check=True)
+    os.replace(part_opus, opus)
+    os.replace(part_aac, aac)
     return {"opus": opus, "aac": aac}
 
 
@@ -90,10 +106,18 @@ def onset_envelope(mono):
     count = (len(mono) - WINDOW) // HOP
     if count < 2:
         raise ValueError("take is too short to measure")
-    idx = np.arange(WINDOW) + HOP * np.arange(count)[:, None]
-    spec = np.log1p(100.0 * np.abs(np.fft.rfft(mono[idx] * np.hanning(WINDOW), axis=1)))
+    window = np.hanning(WINDOW)
     env = np.zeros(count)
-    env[1:] = np.maximum(spec[1:] - spec[:-1], 0.0).sum(axis=1)
+    previous = None
+    # In batches: a whole take's frames at once cost hundreds of MB for one sum per frame.
+    for at in range(0, count, 1024):
+        idx = np.arange(WINDOW) + HOP * np.arange(at, min(at + 1024, count))[:, None]
+        spec = np.log1p(100.0 * np.abs(np.fft.rfft(mono[idx] * window, axis=1)))
+        if previous is not None:
+            spec = np.vstack([previous, spec])
+        flux = np.maximum(spec[1:] - spec[:-1], 0.0).sum(axis=1)
+        env[at + idx.shape[0] - len(flux):at + idx.shape[0]] = flux
+        previous = spec[-1:]
     size = int(ENV_RATE)
     trend = np.convolve(env, np.ones(size) / size, mode="same")
     return np.maximum(env - trend, 0.0)
@@ -106,7 +130,7 @@ def env_times(count):
 def fit_tempo(env, target, span_pct=3.0):
     t = env_times(len(env))
     grid = target * (1 + np.linspace(-span_pct, span_pct, 601) / 100)
-    power = np.abs(np.exp(-2j * np.pi * np.outer(grid / 60, t)) @ env)
+    power = np.array([abs(np.exp(-2j * np.pi * g / 60 * t) @ env) for g in grid])
     i = int(np.argmax(power))
     bpm = grid[i]
     if 0 < i < len(grid) - 1:
@@ -303,17 +327,23 @@ def beat_features(mono, beat_seconds, beats):
     """Per beat: low-band attack, chroma and coarse band energy, on an exact grid."""
     size, step = 4096, 512
     count = (len(mono) - size) // step
-    idx = np.arange(size) + step * np.arange(count)[:, None]
-    mag = np.abs(np.fft.rfft(mono[idx] * np.hanning(size), axis=1))
+    window = np.hanning(size)
     freq = np.fft.rfftfreq(size, 1 / RATE)
     tone = (freq >= 80) & (freq <= 2000)
     pc = np.mod(np.round(12 * np.log2(freq[tone] / 261.626)).astype(int), 12)
-    chroma_frames = np.zeros((count, 12))
-    np.add.at(chroma_frames.T, pc, (mag[:, tone] ** 2).T)
     edges = np.geomspace(60, 10000, 13)
-    bands = np.stack([np.log1p((mag[:, (freq >= a) & (freq < b)] ** 2).sum(axis=1))
-                      for a, b in zip(edges[:-1], edges[1:])], axis=1)
-    low = np.sqrt((mag[:, freq < 180] ** 2).sum(axis=1))
+    chroma_frames, bands, low = np.zeros((count, 12)), np.zeros((count, 12)), np.zeros(count)
+    # In batches, each frame reduced to these 25 numbers: whole spectrograms took a gigabyte.
+    for at in range(0, count, 256):
+        rows = np.arange(at, min(at + 256, count))
+        idx = np.arange(size) + step * rows[:, None]
+        mag = np.abs(np.fft.rfft(mono[idx] * window, axis=1))
+        part = np.zeros((len(rows), 12))
+        np.add.at(part.T, pc, (mag[:, tone] ** 2).T)
+        chroma_frames[rows] = part
+        bands[rows] = np.stack([np.log1p((mag[:, (freq >= a) & (freq < b)] ** 2).sum(axis=1))
+                                for a, b in zip(edges[:-1], edges[1:])], axis=1)
+        low[rows] = np.sqrt((mag[:, freq < 180] ** 2).sum(axis=1))
     low_rise = np.maximum(np.diff(low, prepend=low[0]), 0.0)
     frame_at = (np.arange(beats + 1) * beat_seconds * RATE - size / 2) / step
     frame_at = np.clip(frame_at.astype(int), 0, count)
@@ -467,8 +497,33 @@ def master_loop(loop, target, ceiling_db):
 # ---------------------------------------------------------------- separation for joins
 
 def hpss(audio, nfft=2048, hop=512, width=17):
-    """Harmonic and percussive parts by median masks. The masks sum to one, so the
-    two parts sum back to the input."""
+    """Harmonic and percussive parts by median masks, a block at a time, as the median
+    filters of a whole take want gigabytes. Blocks crossfade, and the percussive part is
+    the remainder, so the two parts still sum back to the input."""
+    block = HPSS_CHUNK_SECONDS * SR
+    if len(audio) <= block * 3 // 2:
+        return _hpss_block(audio, nfft, hop, width)
+    overlap = SR
+    harmonic = np.zeros_like(audio)
+    weight = np.zeros(len(audio))
+    ramp = (np.arange(overlap) + 0.5) / overlap
+    for start in range(0, len(audio), block - overlap):
+        stop = min(start + block, len(audio))
+        part = _hpss_block(audio[start:stop], nfft, hop, width)[0]
+        shape = np.ones(stop - start)
+        if start > 0:
+            shape[:overlap] = ramp
+        if stop < len(audio):
+            shape[-overlap:] = ramp[::-1]
+        harmonic[start:stop] += part * shape[:, None]
+        weight[start:stop] += shape
+        if stop == len(audio):
+            break
+    harmonic /= np.maximum(weight, 1e-9)[:, None]
+    return harmonic, audio - harmonic
+
+
+def _hpss_block(audio, nfft, hop, width):
     window = np.hanning(nfft + 1)[:-1]
     pad = np.vstack([np.zeros((nfft, 2)), audio, np.zeros((nfft, 2))])
     count = (len(pad) - nfft) // hop + 1
@@ -502,6 +557,114 @@ def circ(loop, start, count):
     return loop[np.mod(np.arange(start, start + count), len(loop))]
 
 
+# ---------------------------------------------------------------- the Rust engine
+
+# tool/music/mixrs does the prepare, render and verify measuring without holding spectrograms.
+# The Python below stays as the reference it's compared against (mixrs/compare/compare.py),
+# and as the fallback when cargo isn't there. MIX_ENGINE=python chooses it.
+_mixrs_path = False
+_work = None
+
+
+def find_mixrs():
+    """The built binary, or None for the Python engine. Cargo does nothing if it's current."""
+    global _mixrs_path
+    if _mixrs_path is not False:
+        return _mixrs_path
+    _mixrs_path = None
+    if os.environ.get("MIX_ENGINE") == "python":
+        return None
+    if os.environ.get("MIXRS"):
+        _mixrs_path = os.environ["MIXRS"]
+        return _mixrs_path
+    if shutil.which("cargo"):
+        target = pathlib.Path(os.environ.get("CARGO_TARGET_DIR") or "~/.cache/tillandsias-project/cargo/target").expanduser()
+        env = {**os.environ, "CARGO_TARGET_DIR": str(target)}
+        built = subprocess.run(["cargo", "build", "--release", "--quiet", "-j", "4", "--manifest-path",
+                                str(HERE.parent / "mixrs" / "Cargo.toml")], env=env)
+        if built.returncode == 0:
+            _mixrs_path = str(target / "release" / "mixrs")
+            return _mixrs_path
+    print("mixrs isn't available: using the Python engine, one worker", file=sys.stderr, flush=True)
+    return None
+
+
+def _rs(*args):
+    done = subprocess.run([find_mixrs(), *map(str, args)], check=True, stdout=subprocess.PIPE)
+    return json.loads(done.stdout)
+
+
+def _work_dir():
+    """Tiers wait on the cache disk, not in memory. /home/forge/src is a small tmpfs."""
+    global _work
+    if _work is None:
+        base = pathlib.Path("~/.cache/tillandsias-project/mixrs-work").expanduser()
+        base.mkdir(parents=True, exist_ok=True)
+        _work = pathlib.Path(tempfile.mkdtemp(dir=base))
+        atexit.register(_clear_work)
+    return _work
+
+
+def _clear_work():
+    global _work
+    if _work is not None:
+        shutil.rmtree(_work, ignore_errors=True)
+        _work = None
+
+
+def _rs_cfg(cfg):
+    cfg = {k: v for k, v in cfg.items() if k != "levels"}
+    cfg["mastersDir"] = str(pathlib.Path(cfg["mastersDir"]).expanduser())
+    return cfg
+
+
+def _rs_job(cfg):
+    path = _work_dir() / "cfg.json"
+    if not path.exists():
+        path.write_text(json.dumps({"cfg": _rs_cfg(cfg)}))
+    return path
+
+
+def _rs_raw(path):
+    return np.memmap(path, dtype=np.float32, mode="r").reshape(-1, 2)
+
+
+def _rs_prepare(cfg, level, tier, follow):
+    out = _work_dir() / level["id"] / tier["name"]
+    out.mkdir(parents=True, exist_ok=True)
+    job = out / "job.json"
+    job.write_text(json.dumps({"cfg": _rs_cfg(cfg), "level": {k: v for k, v in level.items() if k != "tiers"},
+                               "tier": tier, "follow": follow}))
+    try:
+        data = _rs("prepare", "--job", job, "--out", out)
+    except subprocess.CalledProcessError as failed:
+        raise ValueError(f"{level['id']}/{tier['name']}: mixrs prepare failed ({failed.returncode})") from failed
+    data["dir"] = str(out)
+    data["loop"] = _rs_raw(out / "loop.f32")
+    for key in ("barChroma", "allBarChroma", "barRms"):
+        data[key] = np.array(data[key])
+    return data
+
+
+def _rs_render(command, cfg, *args):
+    out = _work_dir() / f"segment-{next(tempfile._get_candidate_names())}.f32"
+    info = _rs(command, *args, "--job", _rs_job(cfg), "--out", out)
+    info.pop("samples", None)
+    return _rs_raw(out), info
+
+
+def _rs_write_asset(audio, base, cfg):
+    work = _work_dir()
+    if isinstance(audio, np.memmap) and audio.filename and audio.size * 4 == os.path.getsize(audio.filename):
+        raw = pathlib.Path(audio.filename)
+    else:
+        raw = work / f"asset-{next(tempfile._get_candidate_names())}.f32"
+        np.asarray(audio, dtype=np.float32).tofile(raw)
+    got = _rs("write-asset", "--audio", raw, "--base", base, "--job", _rs_job(cfg), "--scratch", work / "scratch")
+    raw.unlink(missing_ok=True)
+    return {"opus": pathlib.Path(got["opus"]), "aac": pathlib.Path(got["aac"])}, got["offsets"]
+
+
 # ---------------------------------------------------------------- one tier
 
 def beat_samples(bpm):
@@ -509,10 +672,22 @@ def beat_samples(bpm):
 
 
 def prepare_tier(args):
-    """Master to grid to chosen loop, mastered. Runs in a worker process."""
-    cfg, level, tier = args
+    """Master to grid to chosen loop, mastered. Runs in a worker process. With `follow`,
+    the take is another layer of one performance: it takes the parent's beat map, bar one
+    and loop, so the layers stay sample-aligned."""
+    cfg, level, tier, *rest = args
+    follow = rest[0] if rest else None
+    if find_mixrs():
+        return _rs_prepare(cfg, level, tier, follow)
     path = pathlib.Path(cfg["mastersDir"]).expanduser() / tier["source"]
     audio = decode(path)
+    for extra in tier.get("layer") or []:
+        # Another take of the same performance, sample-aligned: its percussion can sit
+        # under a re-sampled layer, which keeps the parent's attacks.
+        other = decode(pathlib.Path(cfg["mastersDir"]).expanduser() / extra["source"])[:len(audio)]
+        harmonic, percussive = hpss(other)
+        part = percussive if extra.get("part") == "percussive" else harmonic
+        audio[:len(part)] += part * 10 ** (extra.get("db", 0) / 20)
     mono = decode(path, RATE, 1)
     target = float(tier["bpm"])
     beats, measured, wander = beat_times(mono, target)
@@ -523,7 +698,10 @@ def prepare_tier(args):
     if timing.exists():
         report["timingFileBpm"] = json.loads(timing.read_text())[path.name]["measured_bpm"]
     report["corrected"] = abs(error_pct) <= cfg["maxCorrectionPct"]
-    if not report["corrected"]:
+    if follow:
+        report["followsGridOf"] = follow["name"]
+        beats, measured = follow["beats"], follow["measured"]
+    elif not report["corrected"]:
         raise ValueError(f"{level['id']}/{tier['name']}: {error_pct:+.2f}% is past the "
                          f"{cfg['maxCorrectionPct']}% allowed, not corrected")
 
@@ -559,6 +737,8 @@ def prepare_tier(args):
     beat_seconds = beat_len / SR
     chroma, band, attack = beat_features(grid_mono, beat_seconds, len(beats))
     first, confidence, margin = find_bar_one(chroma, attack)
+    if follow:
+        first, confidence, margin = follow["first"], follow["confidence"], follow["margin"]
     report.update(bar1Beat=first, bar1Seconds=round(float(beats[first]), 3),
                   bar1Confidence=confidence, bar1Margin=margin)
     key, key_r = measure_key(chroma)
@@ -569,7 +749,7 @@ def prepare_tier(args):
     bar_band = np.stack([band[first + 4 * b:first + 4 * b + 4].mean(axis=0) for b in range(total_bars)])
     bar_len = 4 * beat_len
     # One constant for the take: the grid's beats sit on the median attack.
-    bias = grid_bias_seconds(grid_mono, np.arange(len(beats)) * beat_seconds)
+    bias = follow["bias"] if follow else grid_bias_seconds(grid_mono, np.arange(len(beats)) * beat_seconds)
     report["beatBiasMs"] = round(bias * 1000, 2)
     report["gridErrorAfterMs"] = dict(zip(("typical", "worstBlock"), grid_error_ms(
         grid_mono, np.arange(len(beats)) * beat_seconds + bias)))
@@ -580,7 +760,7 @@ def prepare_tier(args):
         return int(round(origin + b * bar_len))
     bar_rms = np.array([np.sqrt(np.mean(grid[bar_at(b):bar_at(b + 1)] ** 2)) for b in range(total_bars)])
     bars = int(tier["loopBars"])
-    choice = choose_loop(bar_chroma, bar_band, bar_rms, bars)
+    choice = follow["loop"] if follow else choose_loop(bar_chroma, bar_band, bar_rms, bars)
     report["loop"] = choice
     report["totalBars"] = total_bars
 
@@ -614,9 +794,11 @@ def prepare_tier(args):
 
     loop_chroma = bar_chroma[choice["startBar"]:choice["startBar"] + bars]
     return {"level": level["id"], "name": tier["name"], "bpm": target, "bars": bars, "loop": mastered,
-            "barChroma": loop_chroma, "gainDb": gain_db, "grid": grid * 10 ** (gain_db / 20),
+            "barChroma": loop_chroma, "gainDb": gain_db, "grid": (grid * 10 ** (gain_db / 20)).astype(np.float32),
             "firstBarSample": first * beat_len, "barLen": bar_len, "beatLen": beat_len,
-            "allBarChroma": bar_chroma, "barRms": bar_rms, "report": report}
+            "allBarChroma": bar_chroma, "barRms": bar_rms, "report": report,
+            "follow": {"name": tier["name"], "beats": beats, "measured": measured, "first": first,
+                       "confidence": confidence, "margin": margin, "bias": bias, "loop": choice}}
 
 
 # ---------------------------------------------------------------- joins and exits
@@ -624,6 +806,12 @@ def prepare_tier(args):
 def write_asset(audio, base, cfg, root):
     """Encode, lowering any peak the codecs push too high, then measure where ffmpeg's
     decoder puts the content. The manifest carries an offset only where one exists."""
+    if find_mixrs():
+        files, offsets = _rs_write_asset(audio, base, cfg)
+        entry = {"files": {k: str(v.relative_to(root)) for k, v in files.items()}}
+        if any(offsets.values()):
+            entry["decodeOffsetSamples"] = {k: v for k, v in offsets.items() if v}
+        return entry, offsets
     ceiling = cfg["ceilingDb"]
     for _ in range(5):
         worst = codec_peak(audio, cfg)
@@ -664,6 +852,8 @@ def best_entry(source_chroma, dest):
 
 
 def render_transition(source, dest, cfg, pad):
+    if source.get("dir"):
+        return _rs_render("transition", cfg, "--a", source["dir"], "--b", dest["dir"])
     beats = cfg["transition"]["beats"]
     width = cfg["transition"]["crossfadeBeats"]
     fill = 10 ** (cfg["transition"]["fillDb"] / 20)
@@ -717,6 +907,9 @@ def choose_tag(tier, key, bars):
 
 
 def render_success(tier, key, bars, final, cfg, pad):
+    if tier.get("dir"):
+        args = ["--tier", tier["dir"], "--key", key, "--bars", bars] + (["--final"] if final else [])
+        return _rs_render("success", cfg, *args)
     start_bar, score = choose_tag(tier, key, bars)
     beat_len = tier["beatLen"]
     length = segment_bpm_len(tier["bpm"], bars * 4)
@@ -748,6 +941,8 @@ def render_success(tier, key, bars, final, cfg, pad):
 def render_bridge(source, dest, cfg, pad):
     """Two bars at the next level's tempo: its percussion from the downbeat, the
     outgoing harmony dissolving, its harmony arriving into the loop."""
+    if source.get("dir"):
+        return _rs_render("bridge", cfg, "--a", source["dir"], "--b", dest["dir"])
     beats = 8
     bpm = dest["bpm"]
     beat_len = beat_samples(bpm)
@@ -770,6 +965,47 @@ def render_bridge(source, dest, cfg, pad):
     mix[done:] = incoming[done:]
     mix, stats = limit(mix, cfg["ceilingDb"])
     return mix, {"entryBar": entry, "harmonyMatch": match, "limiter": stats, "bars": 2, "beats": beats, "bpm": bpm}
+
+
+def bar_features(tier):
+    """What the cut table compares: per loop bar, chroma, bands at each end, and level."""
+    loop = tier["loop"].mean(axis=1)
+    mono = np.interp(np.arange(int(len(loop) * RATE / SR)) * SR / RATE, np.arange(len(loop)), loop)
+    beat_seconds = tier["beatLen"] / SR
+    wrapped = np.concatenate([mono, mono[:8192]])
+    chroma, band, _ = beat_features(wrapped, beat_seconds, tier["bars"] * 4)
+    size = int(beat_seconds * RATE)
+    rms = np.array([np.sqrt(np.mean(np.take(mono, np.arange(int(b * beat_seconds * RATE), int(b * beat_seconds * RATE) + size), mode="wrap") ** 2))
+                    for b in range(tier["bars"] * 4)])
+    return {"chroma": _unit(chroma.reshape(tier["bars"], 4, 12).sum(axis=1)), "band": band.reshape(tier["bars"], 4, 12),
+            "rmsDb": 20 * np.log10(np.maximum(rms, 1e-6)), "bars": tier["bars"]}
+
+
+def cut_score(out, b, into, e):
+    """Out plays to its bar b, then into plays from its bar e. Harmony across the seam,
+    and against the bar into would have followed, then spectrum and level."""
+    before = (b - 1) % out["bars"]
+    harmony = float(out["chroma"][before] @ into["chroma"][e % into["bars"]])
+    follows = float(out["chroma"][before] @ into["chroma"][(e - 1) % into["bars"]])
+    timbre = float(np.mean(np.abs(out["band"][before, -1] - into["band"][e % into["bars"], 0])))
+    level = abs(float(out["rmsDb"][b * 4 - 1] - into["rmsDb"][e * 4 % len(into["rmsDb"])]))
+    return harmony + 0.25 * follows - 0.15 * timbre - 0.03 * level, harmony, timbre, level
+
+
+def cut_table(source, dest, step=2):
+    """For each exit bar, the even bar to enter. Entries keep the exit's place in a
+    four-bar phrase when bar one is trusted on both sides; otherwise any even bar."""
+    out, into = bar_features(source), bar_features(dest)
+    entries, seams = [], []
+    for b in range(0, out["bars"], step):
+        rows = [(cut_score(out, b, into, e), e) for e in range(0, into["bars"], step)]
+        best = max(rows, key=lambda row: row[0][0])
+        entries.append(best[1])
+        seams.append(best[0][1:])
+    h, t, l = zip(*seams)
+    return entries, {"harmonyMedian": round(float(np.median(h)), 3), "harmonyWorst": round(float(np.min(h)), 3),
+                     "timbreMedian": round(float(np.median(t)), 2), "levelMedianDb": round(float(np.median(l)), 2),
+                     "levelWorstDb": round(float(np.max(l)), 2)}
 
 
 def transition_pairs(order):
@@ -802,6 +1038,14 @@ def check_config(cfg):
             raise ValueError(f"{level['id']}: the tier map expects three tiers")
 
 
+def tier_gain(level, name):
+    """The owner's per-tier trim, from the game's mixer JSON. Default none."""
+    for tier in level["tiers"]:
+        if tier["name"] == name:
+            return tier.get("gainDb", 0)
+    return 0
+
+
 def good_exit_bars(tier):
     chroma = _unit(tier["barChroma"])
     last = chroma[-1]
@@ -812,22 +1056,10 @@ def good_exit_bars(tier):
 def build(cfg, only=None, root=REPO, workers=None, report_path=None):
     levels = {l["id"]: l for l in cfg["levels"]}
     wanted = [l for l in cfg["levels"] if not only or l["id"] in only]
-    jobs = []
-    for level in wanted:
-        tiers = list(level["tiers"])
-        if level.get("next"):
-            tiers_next = levels[level["next"]]["tiers"][0]
-            jobs.append((cfg, levels[level["next"]], tiers_next))
-        jobs.extend((cfg, level, t) for t in tiers)
-    seen, unique = set(), []
-    for job in jobs:
-        key = (job[1]["id"], job[2]["name"])
-        if key not in seen:
-            seen.add(key)
-            unique.append(job)
-    with futures.ProcessPoolExecutor(max_workers=workers or min(os.cpu_count() or 2, 12)) as pool:
-        done = list(pool.map(prepare_tier, unique))
-    ready = {(d["level"], d["name"]): d for d in done}
+    workers = max(1, min(workers or DEFAULT_WORKERS, MAX_WORKERS))
+    busy = memory_in_use()
+    if busy is not None and busy > BUSY_BYTES:
+        raise SystemExit(f"{busy / 1e9:.1f} GB in use, over the {BUSY_BYTES / 1e9:.0f} GB limit: not starting")
 
     out_dir = root / cfg["outDir"]
     manifest_path = out_dir / "manifest.json"
@@ -837,7 +1069,10 @@ def build(cfg, only=None, root=REPO, workers=None, report_path=None):
     report = json.loads(report_path.read_text()) if report_path.exists() else {}
     pad = int(round(cfg["padSeconds"] * SR))
 
+    # A level at a time, releasing its audio before the next, and the manifest saved after
+    # each: a build that dies keeps the levels it finished, each whole.
     for level in wanted:
+        ready = prepare_level(cfg, level, levels, workers)
         lid = level["id"]
         order = [t["name"] for t in level["tiers"]]
         directory = out_dir / lid
@@ -853,11 +1088,24 @@ def build(cfg, only=None, root=REPO, workers=None, report_path=None):
             entry["takes"][name] = {
                 "bpm": tier["bpm"], "bars": tier["bars"], "beatsPerBar": 4,
                 "loopStartSeconds": pad / SR, "loopEndSeconds": (pad + len(loop)) / SR,
-                "loopSamples": len(loop), "sampleRate": SR, "gainDb": 0, **written,
+                "loopSamples": len(loop), "sampleRate": SR, "gainDb": tier_gain(level, name), **written,
                 "lufs": rep["lufs"], "bar1Confidence": rep["bar1Confidence"],
                 "goodExitBars": good_exit_bars(tier)}
             level_report["tiers"][name] = rep
-        for a, b in transition_pairs(order):
+        if level.get("gridTier"):
+            entry["layerFadeBeats"] = level.get("layerFadeBeats", 2)
+            entry["gridTier"] = level["gridTier"]
+        if level.get("joinStyle") == "cuts":
+            entry["cuts"] = []
+            level_report["cuts"] = []
+            for a, b in transition_pairs(order):
+                entries, numbers = cut_table(ready[(lid, a)], ready[(lid, b)])
+                entry["cuts"].append({"from": a, "to": b, "exitStep": 2, "entryBars": entries,
+                                      "fadeInBeats": level.get("cutFadeInBeats", 0),
+                                      "fadeOutBeats": level.get("cutFadeOutBeats", 1)})
+                level_report["cuts"].append({"from": a, "to": b, **numbers})
+        wanted_pairs = [] if level.get("gridTier") or level.get("joinStyle") == "cuts" else transition_pairs(order)
+        for a, b in wanted_pairs:
             mix, info = render_transition(ready[(lid, a)], ready[(lid, b)], cfg, pad)
             written, offsets = write_asset(mix, directory / f"trans-{a}-{b}", cfg, root)
             info["decodeOffsetSamples"] = offsets
@@ -892,11 +1140,70 @@ def build(cfg, only=None, root=REPO, workers=None, report_path=None):
             level_report["bridge"] = info
         manifest["levels"][lid] = entry
         report[lid] = level_report
-        print(f"built {lid}", flush=True)
-    out_dir.mkdir(parents=True, exist_ok=True)
-    manifest_path.write_text(json.dumps(manifest, indent=1, ensure_ascii=False) + "\n")
-    report_path.write_text(json.dumps(report, indent=1, ensure_ascii=False) + "\n")
+        del ready
+        _clear_work()
+        if cfg.get("mix"):
+            manifest["mix"] = cfg["mix"]
+        out_dir.mkdir(parents=True, exist_ok=True)
+        _write_atomic(manifest_path, json.dumps(manifest, indent=1, ensure_ascii=False) + "\n")
+        _write_atomic(report_path, json.dumps(report, indent=1, ensure_ascii=False) + "\n")
+        print(f"built {lid}, peak {peak_mb()} MB in a worker", flush=True)
     return manifest, report
+
+
+def _write_atomic(path, text):
+    part = path.with_name(path.name + ".part")
+    part.write_text(text)
+    os.replace(part, path)
+
+
+def memory_in_use():
+    try:
+        return int(pathlib.Path("/sys/fs/cgroup/memory.current").read_text())
+    except (OSError, ValueError):
+        return None
+
+
+def peak_mb():
+    return resource.getrusage(resource.RUSAGE_CHILDREN).ru_maxrss // 1024
+
+
+def limit_process():
+    """Run out of memory here, as an error, before the whole forge stalls."""
+    resource.setrlimit(resource.RLIMIT_AS, (PROCESS_LIMIT_BYTES, PROCESS_LIMIT_BYTES))
+
+
+def prepare_level(cfg, level, levels, workers):
+    """The level's tiers, and the first tier of the level it leads to. A layered level's
+    parent goes first, as the others take its beat map."""
+    def jobs_for(lv, tiers):
+        parent = lv.get("gridTier")
+        if not parent:
+            return [(cfg, lv, t) for t in tiers], []
+        needed = list(tiers)
+        if parent not in [t["name"] for t in needed]:
+            needed += [t for t in lv["tiers"] if t["name"] == parent]
+        return [(cfg, lv, t) for t in needed if t["name"] == parent], \
+            [(cfg, lv, t) for t in needed if t["name"] != parent]
+    first, rest = jobs_for(level, level["tiers"])
+    if level.get("next"):
+        nxt = levels[level["next"]]
+        more_first, more_rest = jobs_for(nxt, [nxt["tiers"][0]])
+        first += more_first
+        rest += more_rest
+    ready = {}
+    # With mixrs a worker only waits on its subprocess, so threads will do.
+    if find_mixrs():
+        _work_dir()  # made here, before two threads can both make it
+    pool_of = (lambda: futures.ThreadPoolExecutor(max_workers=workers)) if find_mixrs() else \
+        (lambda: futures.ProcessPoolExecutor(max_workers=workers, initializer=limit_process, max_tasks_per_child=1))
+    with pool_of() as pool:
+        for done in pool.map(prepare_tier, first):
+            ready[(done["level"], done["name"])] = done
+        followers = [j + (ready[(j[1]["id"], j[1]["gridTier"])]["follow"],) for j in rest]
+        for done in pool.map(prepare_tier, followers):
+            ready[(done["level"], done["name"])] = done
+    return ready
 
 
 # ---------------------------------------------------------------- verification
@@ -1004,24 +1311,30 @@ def verify(cfg, root=REPO):
             take = entry["takes"][name]
             row = {}
             for fmt in ("opus", "aac"):
-                audio = decode(root / take["files"][fmt])
                 start = int(round(take["loopStartSeconds"] * SR))
                 end = int(round(take["loopEndSeconds"] * SR))
-                loop = audio[start:end]
-                level_now = loudness(np.vstack([loop, loop]))
-                mono = decode_mono_from(loop)
-                env = onset_envelope(mono)
-                ends, worst_block = pattern_drift(mono, take["bpm"])
-                seconds = len(loop) / SR
-                expected = take["bars"] * 4 * 60 / take["bpm"]
-                row[fmt] = {
-                    "lufs": level_now["lufs"], "truePeakDb": level_now["truePeakDb"],
-                    "driftEndsMs": ends, "driftWorstMs": worst_block,
-                    "pulseBpm": round(fit_tempo(env, take["bpm"], 1.0), 3),
-                    "wanderMs": round(phase_wander_ms(env, take["bpm"]), 2),
-                    "seam": seam_numbers(audio, start, end, take["bars"]),
-                    "wrapResidualDb": wrap_residual(audio, start, end),
-                    "decodedSamples": len(audio), "lengthErrorMs": round((seconds - expected) * 1000, 3)}
+                if find_mixrs():
+                    row[fmt] = _rs("verify-take", "--file", root / take["files"][fmt], "--bpm", take["bpm"],
+                                   "--bars", take["bars"], "--start", start, "--end", end)
+                    level_now = row[fmt]
+                    ends = row[fmt]["driftEndsMs"]
+                else:
+                    audio = decode(root / take["files"][fmt])
+                    loop = audio[start:end]
+                    level_now = loudness(np.vstack([loop, loop]))
+                    mono = decode_mono_from(loop)
+                    env = onset_envelope(mono)
+                    ends, worst_block = pattern_drift(mono, take["bpm"])
+                    seconds = len(loop) / SR
+                    expected = take["bars"] * 4 * 60 / take["bpm"]
+                    row[fmt] = {
+                        "lufs": level_now["lufs"], "truePeakDb": level_now["truePeakDb"],
+                        "driftEndsMs": ends, "driftWorstMs": worst_block,
+                        "pulseBpm": round(fit_tempo(env, take["bpm"], 1.0), 3),
+                        "wanderMs": round(phase_wander_ms(env, take["bpm"]), 2),
+                        "seam": seam_numbers(audio, start, end, take["bars"]),
+                        "wrapResidualDb": wrap_residual(audio, start, end),
+                        "decodedSamples": len(audio), "lengthErrorMs": round((seconds - expected) * 1000, 3)}
                 # Half a step: the codecs move level a little, and the 1 LU steps must survive.
                 if abs(level_now["lufs"] - targets[name]) > 0.5:
                     failures.append(f"{lid}/{name} {fmt}: {level_now['lufs']} LUFS, asked {targets[name]}")
@@ -1040,25 +1353,69 @@ def verify(cfg, root=REPO):
                     failures.append(f"{lid}/{name} {fmt}: loudness doesn't rise in play order")
             previous = {fmt: row[fmt]["lufs"] for fmt in ("opus", "aac")}
             level["takes"][name] = row
+        if entry.get("gridTier"):
+            level["layers"] = verify_layers(entry, root, failures, lid)
         segments = [(f"{t['from']}>{t['to']}", t) for t in entry["transitions"]] \
             + [(k, entry[k]) for k in ("success", "successShort", "bridge") if k in entry]
         for name, seg in segments:
             row = {}
             for fmt in ("opus", "aac"):
-                audio = decode(root / seg["files"][fmt])
                 a, z = int(round(seg["startSeconds"] * SR)), int(round(seg["endSeconds"] * SR))
-                body = audio[a:z]
-                row[fmt] = {"truePeakDb": loudness(np.vstack([audio, audio]))["truePeakDb"],
-                            "seconds": round(len(body) / SR, 4),
-                            "beatRmsDb": beat_rms(body, seg["bpm"])}
+                if find_mixrs():
+                    row[fmt] = _rs("verify-segment", "--file", root / seg["files"][fmt], "--bpm", seg["bpm"],
+                                   "--start", a, "--end", z)
+                else:
+                    audio = decode(root / seg["files"][fmt])
+                    body = audio[a:z]
+                    row[fmt] = {"truePeakDb": loudness(np.vstack([audio, audio]))["truePeakDb"],
+                                "seconds": round(len(body) / SR, 4),
+                                "beatRmsDb": beat_rms(body, seg["bpm"])}
                 beats = seg["bars"] * 4
-                if abs(len(body) / SR - beats * 60 / seg["bpm"]) > 0.001:
+                if abs(row[fmt]["seconds"] - beats * 60 / seg["bpm"]) > 0.001:
                     failures.append(f"{lid}/{name} {fmt}: length differs from its beats")
                 if row[fmt]["truePeakDb"] > ceiling_tp:
                     failures.append(f"{lid}/{name} {fmt}: true peak {row[fmt]['truePeakDb']} dB")
             level["segments"][name] = row
         results[lid] = level
     return results, failures
+
+
+def verify_layers(entry, root, failures, lid):
+    """Layers must hold the same bars on the same samples. Lag per 8 bars, by attacks."""
+    takes = entry["takes"]
+    parent = takes[entry["gridTier"]]
+    def env(take):
+        audio = decode(root / take["files"]["opus"])
+        a = int(round(take["loopStartSeconds"] * SR))
+        return np.convolve(onset_envelope(decode_mono_from(audio[a:a + take["loopSamples"]])), np.hanning(5) / 2, "same")
+    reference = env(parent)
+    out = {}
+    reach = int(0.08 * ENV_RATE)
+    # Eight bars, or half a loop shorter than that, so a short loop still gets a window.
+    size = min(int(8 * 240.0 / parent["bpm"] * ENV_RATE), (len(reference) - 2 * reach) // 2)
+    for name, take in takes.items():
+        if take["bars"] != parent["bars"]:
+            failures.append(f"{lid}/{name}: layer doesn't share the parent's bars")
+        if name == entry["gridTier"]:
+            continue
+        # On the parent's clock, as a layer may run at its own tempo.
+        other = env(take)
+        other = np.interp(np.linspace(0, len(other) - 1, len(reference)), np.arange(len(other)), other)
+        lags, corr = [], []
+        for start in range(reach, min(len(reference), len(other)) - size - reach, size):
+            a = reference[start:start + size] - reference[start:start + size].mean()
+            scores = []
+            for lag in range(-reach, reach + 1):
+                b = other[start + lag:start + lag + size]
+                b = b - b.mean()
+                scores.append(float(a @ b / max(np.linalg.norm(a) * np.linalg.norm(b), 1e-9)))
+            lags.append((int(np.argmax(scores)) - reach) / ENV_RATE * 1000)
+            corr.append(max(scores))
+        out[name] = {"lagMedianMs": round(float(np.median(lags)), 1), "lagWorstMs": round(float(np.max(np.abs(lags))), 1),
+                     "envelopeCorr": round(float(np.median(corr)), 2)}
+        if abs(out[name]["lagMedianMs"]) > 5:
+            failures.append(f"{lid}/{name}: layer sits {out[name]['lagMedianMs']} ms off its parent")
+    return out
 
 
 def decode_mono_from(stereo):
@@ -1233,6 +1590,11 @@ def _synth(path, bpm, seconds, pickup_beats, root_shift, tempo_error=0.0, seed=1
 
 
 def self_test():
+    # Blocks of separation still sum back, and sit close to separating the whole.
+    long_mix = np.random.default_rng(6).normal(0, 0.2, (SR * 24, 2))
+    long_h, long_p = hpss(long_mix)
+    assert np.allclose(long_h + long_p, long_mix, atol=1e-9)
+
     # Stretching keeps pitch, length and the map.
     t = np.arange(SR * 4) / SR
     tone = np.stack([np.sin(2 * np.pi * 440 * t)] * 2, axis=1) * 0.5
@@ -1344,6 +1706,35 @@ def self_test():
         take = manifest["levels"]["test"]["takes"]["low"]
         assert abs(take["loopEndSeconds"] - take["loopStartSeconds"] - 8 * 4 * 60 / 100) < 1 / SR
         assert len(manifest["levels"]["test"]["transitions"]) == 5
+
+        # One performance on one grid: the layers share bars and stay on their parent's
+        # beats at their own tempos, with no written transition.
+        layered = json.loads(json.dumps(cfg))
+        layered["levels"] = [{"id": "layers", "key": "A minor", "next": None, "successBars": 2, "successFinal": True,
+                              "gridTier": "mid", "layerFadeBeats": 1,
+                              "tiers": [{"name": "low", "source": "mid.flac", "bpm": 102, "loopBars": 8, "targetLufs": -17, "eq": []},
+                                        {"name": "mid", "source": "mid.flac", "bpm": 106, "loopBars": 8, "targetLufs": -16, "eq": []},
+                                        {"name": "high", "source": "mid.flac", "bpm": 110, "loopBars": 8, "targetLufs": -15, "eq": [],
+                                         "layer": [{"source": "mid.flac", "part": "percussive", "db": -6}]}]}]
+        (root / "out" / "manifest.json").unlink()
+        manifest, _ = build(layered, None, root, workers=3, report_path=root / "report2.json")
+        entry = manifest["levels"]["layers"]
+        assert entry["layerFadeBeats"] == 1 and entry["transitions"] == []
+        assert {t["bars"] for t in entry["takes"].values()} == {8}
+        results, failures = verify(layered, root)
+        failures = [f for f in failures if "wrap adds top end" not in f]
+        assert not failures, failures
+        assert all(abs(r["lagMedianMs"]) <= 12 for r in results["layers"]["layers"].values()), results["layers"]["layers"]
+
+        # Cuts: an entry for every second exit bar, each a real bar of the destination.
+        cuts = json.loads(json.dumps(cfg))
+        cuts["levels"][0]["joinStyle"] = "cuts"
+        (root / "out" / "manifest.json").unlink()
+        manifest, _ = build(cuts, None, root, workers=3, report_path=root / "report3.json")
+        entry = manifest["levels"]["test"]
+        assert entry["transitions"] == [] and len(entry["cuts"]) == 5
+        for cut in entry["cuts"]:
+            assert len(cut["entryBars"]) == 4 and all(0 <= e < 8 and e % 2 == 0 for e in cut["entryBars"]), cut
     print("self-test passed")
 
 
@@ -1351,6 +1742,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--self-test", action="store_true")
     parser.add_argument("--config")
+    parser.add_argument("--root", help="build and verify here instead of the repository, for trying a config")
     parser.add_argument("command", nargs="?", choices=["build", "verify", "listen"])
     parser.add_argument("target", nargs="?", help="listen: the directory to fill")
     parser.add_argument("--level", action="append", help="build: only this level, and repeatable")
@@ -1360,12 +1752,15 @@ def main():
         return 0
     if not args.command:
         parser.error("name a command, or --self-test")
+    limit_process()
     cfg = load_config(args.config)
+    root = pathlib.Path(args.root).resolve() if args.root else REPO
+    log_dir = root if args.root else HERE
     if args.command == "build":
-        build(cfg, set(args.level) if args.level else None)
+        build(cfg, set(args.level) if args.level else None, root, report_path=log_dir / "report.json")
     elif args.command == "verify":
-        results, failures = verify(cfg)
-        (HERE / "verify.json").write_text(json.dumps(results, indent=1) + "\n")
+        results, failures = verify(cfg, root)
+        (log_dir / "verify.json").write_text(json.dumps(results, indent=1) + "\n")
         for failure in failures:
             print("FAIL", failure)
         print(f"{len(failures)} failures")

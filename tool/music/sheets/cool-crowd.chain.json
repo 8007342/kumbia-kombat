@@ -1,0 +1,56 @@
+{
+ "level": "cool-crowd",
+ "parent": {
+  "seed": 53010,
+  "bpm": 124,
+  "key": "D minor",
+  "seconds": 85.16,
+  "tags": "cool midnight Latin boogaloo with a salsa-disco lift for a circle of dancers, instrumental, walking upright bass, piano montuno, congas, timbales, cowbell, handclaps on the backbeat, marimba call and flute answer, muted brass"
+ },
+ "children": [
+  {
+   "name": "lowB",
+   "tags": "cool midnight Latin boogaloo for a circle of dancers, instrumental, intimate combo, characterful flute lead melody, walking upright bass, soft congas, piano montuno, warm and close, nothing else",
+   "denoise": 0.6,
+   "codes": false
+  },
+  {
+   "name": "lowC",
+   "tags": "cool midnight Latin boogaloo for a circle of dancers, instrumental, intimate combo, characterful flute lead melody, walking upright bass, soft congas, piano montuno, warm and close, nothing else",
+   "denoise": 0.7,
+   "codes": false
+  },
+  {
+   "name": "highB",
+   "tags": "cool midnight Latin boogaloo with a salsa-disco lift for a circle of dancers, instrumental, full salsa orchestra, lively lead melody on marimba and flute, brass section shouts, trumpets, trombones, saxophones, walking upright bass, piano montuno, congas, timbales, cowbell, handclaps on the backbeat",
+   "denoise": 0.6,
+   "codes": false
+  },
+  {
+   "name": "highD",
+   "tags": "cool midnight Latin boogaloo with a salsa-disco lift for a circle of dancers, instrumental, full salsa orchestra, lively lead melody on marimba and flute, brass section shouts, trumpets, trombones, saxophones, walking upright bass, piano montuno, congas, timbales, cowbell, handclaps on the backbeat",
+   "denoise": 0.6,
+   "parent": "highB",
+   "codes": false
+  },
+  {
+   "name": "highE",
+   "tags": "cool midnight Latin boogaloo with a salsa-disco lift for a circle of dancers, instrumental, full salsa orchestra, lively lead melody on marimba and flute, brass section shouts, trumpets, trombones, saxophones, walking upright bass, piano montuno, congas, timbales, cowbell, handclaps on the backbeat",
+   "denoise": 0.6,
+   "parent": "highD",
+   "codes": false
+  },
+  {
+   "name": "highF",
+   "tags": "cool midnight Latin boogaloo with a salsa-disco lift for a circle of dancers, instrumental, full salsa orchestra, lively lead melody on marimba and flute, brass section shouts, trumpets, trombones, saxophones, walking upright bass, piano montuno, congas, timbales, cowbell, handclaps on the backbeat",
+   "denoise": 0.6,
+   "parent": "highE",
+   "codes": false
+  },
+  {
+   "name": "highX",
+   "tags": "cool midnight Latin boogaloo with a salsa-disco lift for a circle of dancers, instrumental, full salsa orchestra, lively lead melody on marimba and flute, brass section shouts, trumpets, trombones, saxophones, walking upright bass, piano montuno, congas, timbales, cowbell, handclaps on the backbeat",
+   "denoise": 0.95
+  }
+ ]
+}

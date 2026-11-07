@@ -20,6 +20,7 @@ class FakeVoice implements ClipVoice {
   final double offset;
   double? stoppedAt;
   double? fade;
+  double fadeIn = 0;
   @override
   void stopAt(double atSeconds, {double fadeSeconds = .01}) {
     stoppedAt = atSeconds;
@@ -47,7 +48,8 @@ class FakeDeck implements MusicAudioBackend, ClipDeck {
     required double offsetSeconds,
     double fadeInSeconds = 0,
   }) {
-    final voice = FakeVoice(clip, atSeconds, offsetSeconds);
+    final voice = FakeVoice(clip, atSeconds, offsetSeconds)
+      ..fadeIn = fadeInSeconds;
     voices.add(voice);
     return voice;
   }
@@ -313,6 +315,102 @@ void main() {
       expect(deck.voices.first.stoppedAt, closeTo(at, 1e-9));
       expect(deck.voices.last.at, closeTo(at, 1e-9));
       expect(deck.voices.last.offset, closeTo(.25, 1e-9));
+    });
+
+    test('layered takes change on the same bar, crossfading, with no clip', () {
+      final level = RenderedLevel(
+        id: 'layers',
+        tierTakes: const ['low', 'low', 'mid', 'mid', 'high'],
+        takes: {
+          'low': take('low', 100),
+          'mid': take('mid', 100),
+          'high': take('high', 100),
+        },
+        layerFadeBeats: 2,
+      );
+      final deck = FakeDeck();
+      final transport = ladder(deck, level: level)..start();
+      run(deck, 1, transport.pump);
+      final boundary = transport.requestTier(2);
+      final at = transport.secondsAt(boundary);
+      run(deck, at + 1, transport.pump);
+      expect(deck.voices.map((v) => v.clip.id), ['low', 'mid']);
+      final [outgoing, next] = deck.voices;
+      expect(next.at, closeTo(at, 1e-9));
+      // The incoming file is at the bar the outgoing one has reached.
+      expect(
+        next.offset,
+        closeTo(level.takes['low']!.fileSecondsAt(boundary), 1e-9),
+      );
+      expect(next.fadeIn, closeTo(1.2, 1e-9));
+      expect(outgoing.fade, closeTo(1.2, 1e-9));
+      expect(transport.currentBpm, closeTo(100, 1e-9));
+      expect(transport.secondsAt(boundary + 4), closeTo(at + 2.4, 1e-9));
+    });
+
+    test('layered takes at another tempo keep the bar, on the new clock', () {
+      final level = RenderedLevel(
+        id: 'layers',
+        tierTakes: const ['low', 'low', 'high', 'high', 'high'],
+        takes: {'low': take('low', 100), 'high': take('high', 110)},
+        layerFadeBeats: .5,
+      );
+      final deck = FakeDeck();
+      final transport = ladder(deck, level: level)..start();
+      run(deck, 1, transport.pump);
+      final boundary = transport.requestTier(2);
+      run(deck, transport.secondsAt(boundary) + 1, transport.pump);
+      expect(
+        deck.voices.last.offset,
+        closeTo(level.takes['high']!.fileSecondsAt(boundary), 1e-9),
+      );
+      expect(transport.currentBpm, closeTo(110, 1e-9));
+    });
+
+    test('a cut takes the entry written for the bar it leaves on', () {
+      final level = RenderedLevel(
+        id: 'cuts',
+        tierTakes: const ['mid', 'mid', 'high', 'high', 'high'],
+        takes: {'mid': take('mid', 144, bars: 8), 'high': take('high', 160, bars: 8)},
+        cuts: [
+          RenderedCut(
+            from: 'mid',
+            to: 'high',
+            entryBars: const [6, 4, 2, 0],
+            fadeOutBeats: 1,
+          ),
+        ],
+      );
+      final deck = FakeDeck();
+      final transport = ladder(deck, level: level)..start();
+      run(deck, 1, transport.pump);
+      final boundary = transport.requestTier(2);
+      final at = transport.secondsAt(boundary);
+      run(deck, at + 1, transport.pump);
+      expect(deck.voices.map((v) => v.clip.id), ['mid', 'high']);
+      // The first phrase boundary is bar 2, the table's second entry.
+      expect(boundary, 8);
+      final [outgoing, next] = deck.voices;
+      expect(next.offset, closeTo(.25 + 4 * 4 * 60 / 160, 1e-9));
+      expect(next.fadeIn, closeTo(RenderedLevel.defaultJoinSeconds, 1e-9));
+      expect(outgoing.fade, closeTo(60 / 160, 1e-9));
+      // The loop then runs on from there, on the new clock.
+      expect(
+        deck.filePosition(next, at + 1),
+        closeTo(next.offset + 1, 1e-9),
+      );
+    });
+
+    test('a cut past the end of its take is refused', () {
+      expect(
+        () => RenderedLevel(
+          id: 'cuts',
+          tierTakes: const ['mid', 'mid', 'high', 'high', 'high'],
+          takes: {'mid': take('mid', 144), 'high': take('high', 160)},
+          cuts: [RenderedCut(from: 'mid', to: 'high', entryBars: const [9])],
+        ),
+        throwsA(isA<RenderedManifestError>()),
+      );
     });
 
     test('a request during a transition waits for it to finish', () {

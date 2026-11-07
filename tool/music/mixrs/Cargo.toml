@@ -1,0 +1,23 @@
+[package]
+name = "mixrs"
+version = "0.1.0"
+edition = "2021"
+description = "Streaming analysis and rendering for tool/music/mix/mix.py, with ffmpeg kept for encode and loudness"
+license = "MIT OR Apache-2.0"
+publish = false
+
+# Not part of any wider workspace.
+[workspace]
+
+[dependencies]
+clap = { version = "4", features = ["derive"] }
+num-complex = "0.4"
+rayon = "1"
+realfft = "3"
+serde_json = { version = "1", features = ["preserve_order", "float_roundtrip"] }
+
+[profile.release]
+opt-level = 3
+lto = "thin"
+codegen-units = 4
+debug = false

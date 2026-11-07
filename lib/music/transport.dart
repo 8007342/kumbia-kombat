@@ -30,7 +30,8 @@ class TempoSection {
     this.originBeat = 0,
     this.take,
     this.fadeInSeconds = RenderedLevel.defaultJoinSeconds,
-  });
+    double? fadeOutSeconds,
+  }) : fadeOutSeconds = fadeOutSeconds ?? fadeInSeconds;
   final double beat;
   final double seconds;
   final int tier;
@@ -47,6 +48,10 @@ class TempoSection {
   /// The take this section is, or the one its transition is heading for.
   final String? take;
   final double fadeInSeconds;
+
+  /// How long the clip this section replaces takes to leave. A cut can bring its
+  /// downbeat in cleanly while the old take's tail thins out underneath.
+  final double fadeOutSeconds;
 }
 
 /// What a transport plays when it plays rendered audio. Either a level's ladder
@@ -284,6 +289,7 @@ class MusicTransport {
     originBeat: section.originBeat,
     take: section.take,
     fadeInSeconds: section.fadeInSeconds,
+    fadeOutSeconds: section.fadeOutSeconds,
   );
 
   void _forgetVoice() {
@@ -358,6 +364,47 @@ class MusicTransport {
       return [TempoSection(boundary, when, tier, score.tempos[tier])];
     }
     final from = previous.take;
+    final playing = previous.clip;
+    if (from != null && playing != null && playing.loops) {
+      final bar = ((boundary - previous.originBeat) / playing.beatsPerBar)
+          .floor() % playing.bars;
+      if (level.layered) {
+        // One performance: the same bar in the next layer, whatever its tempo.
+        // Beats are the file's beats, so the origin carries across unchanged.
+        final fade = level.layerFadeBeats! * 60 / clip.bpm;
+        return [
+          TempoSection(
+            boundary,
+            when,
+            tier,
+            clip.bpm,
+            clip: clip,
+            originBeat: previous.originBeat,
+            take: target,
+            fadeInSeconds: fade,
+          ),
+        ];
+      }
+      final cut = level.cut(from, target);
+      if (cut != null) {
+        return [
+          TempoSection(
+            boundary,
+            when,
+            tier,
+            clip.bpm,
+            clip: clip,
+            originBeat: boundary - cut.entryFor(bar) * clip.beatsPerBar,
+            take: target,
+            fadeInSeconds: math.max(
+              cut.fadeInBeats * 60 / clip.bpm,
+              RenderedLevel.defaultJoinSeconds,
+            ),
+            fadeOutSeconds: cut.fadeOutBeats * 60 / clip.bpm,
+          ),
+        ];
+      }
+    }
     final join = from == null ? null : level.transition(from, target);
     if (join != null && deck.clipReady(join.clip)) {
       final landBeat = boundary + join.clip.lengthBeats;
@@ -412,7 +459,7 @@ class MusicTransport {
         continue;
       }
       final at = math.max(now, section.seconds);
-      _voice?.stopAt(at, fadeSeconds: section.fadeInSeconds);
+      _voice?.stopAt(at, fadeSeconds: section.fadeOutSeconds);
       _forgetVoice();
       if (clip == null) continue;
       if (at >= endSeconds) continue;
