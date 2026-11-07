@@ -451,7 +451,7 @@
   {
    "id": "bow",
    "drawings": 3,
-   "view": "front",
+   "view": "front_3q",
    "loop": false,
    "durationBeats": 3.0,
    "events": [
@@ -460,7 +460,8 @@
      "type": "accent",
      "drawing": "b"
     }
-   ]
+   ],
+   "promptTemplate": "skeletonTurn"
   },
   {
    "id": "sweep",
@@ -3395,7 +3396,7 @@
    "accent": false,
    "phase": "anticipation",
    "phaseNote": "anticipation (bow)",
-   "intent": "turned three quarters toward the right of the picture, beginning a slow ballroom bow: standing on the right leg, the right hand placed flat on his chest, the left hand behind the back, leaning forward slightly from the waist, head beginning to lower",
+   "intent": "turned well toward the left of the picture toward the right of the picture, beginning a slow ballroom bow: standing on the right leg, the right hand placed flat on his chest, the left hand behind the back, leaning forward slightly from the waist, head beginning to lower",
    "profile": "moderate",
    "animationPrinciples": [
     "staging-silhouette",
@@ -3428,7 +3429,7 @@
    "accent": true,
    "phase": "accent",
    "phaseNote": "accent (bow)",
-   "intent": "turned three quarters toward the right of the picture, a deep slow ballroom bow from the waist with a straight back, the right hand flat on his chest, the left hand behind the back, head bowed, eyes lowered, gracious",
+   "intent": "seen from the side, his face and chest toward the left edge of the picture and his back toward the right edge, a deep slow ballroom bow: bent forward from the waist with a straight back so his head and shoulders lean toward the left of the picture, his legs straight and together, the right hand flat on his chest, the left hand tucked behind the small of his back, head bowed, eyes lowered, gracious and elegant",
    "profile": "peak",
    "animationPrinciples": [
     "staging-silhouette",
@@ -3463,7 +3464,7 @@
    "accent": false,
    "phase": "settle",
    "phaseNote": "settle (bow)",
-   "intent": "turned three quarters toward the right of the picture, holding the deepest point of a slow ballroom bow, bent far forward from the waist with a straight back, the right hand flat on his chest, the left hand behind the back, head bowed low, gracious",
+   "intent": "seen from the side, his face and chest toward the left edge of the picture and his back toward the right edge, holding the deepest point of a slow ballroom bow: bent forward from the waist with a straight back, his head and shoulders lowered toward the left of the picture, his legs straight and together, both hands off his knees, the right hand flat on his chest, the left hand tucked behind the small of his back, head bowed low, gracious and elegant",
    "profile": "moderate",
    "animationPrinciples": [
     "staging-silhouette",

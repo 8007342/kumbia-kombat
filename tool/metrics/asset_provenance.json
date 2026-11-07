@@ -67,6 +67,11 @@
    "evidence": "ComfyUI Qwen frames, plan/levels/pool-player-sprites-2026-11-07.md"
   },
   {
+   "glob": "assets/art/ensemble/terciopelo-*",
+   "class": "local-model",
+   "evidence": "ComfyUI Qwen frames, art_runs/terciopelo-v1-20261107m (runs c, d, g, h), plan/levels/terciopelo-sprites-2026-11-07.md"
+  },
+  {
    "glob": "assets/art/props/*.png",
    "class": "local-model",
    "evidence": "art_runs/rooms/crowd-props/workflows/prop-edit.api.json, commit f540662"
@@ -120,6 +125,21 @@
    "glob": "assets/art/ensemble/*-v[345].png",
    "class": "local-model",
    "evidence": "art_runs/gatekeeper-*q, bartender-v1-*q, swing-*; commits 411601e, 0159514, f731ce6, fd802c4"
+  },
+  {
+   "glob": "assets/art/closeups/salon-dt-*",
+   "class": "local-model",
+   "evidence": "Qwen edits of a bust crop of his accepted sheet, art_runs/salon-closeups-20261107/source and scripts/salon_bust.py, plan/levels/terciopelo-sprites-2026-11-07.md"
+  },
+  {
+   "glob": "assets/art/closeups/salon-mc-*",
+   "class": "authored-code",
+   "evidence": "drawn from parts by art_runs/salon-closeups-20261107/scripts/salon_macron.py with the close-up rig"
+  },
+  {
+   "glob": "assets/art/closeups/salon-rose.png",
+   "class": "authored-code",
+   "evidence": "pixels written by art_runs/salon-closeups-20261107/scripts/salon_macron.py"
   },
   {
    "glob": "assets/art/closeups/*",

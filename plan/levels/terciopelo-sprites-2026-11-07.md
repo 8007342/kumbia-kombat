@@ -4,7 +4,11 @@ Branch `work/1875-terc`. The coordinator delegated acceptance for the salon (`pl
 
 ## What exists
 
-STATUS_ATLAS
+- **Atlas `terciopelo`:** `assets/art/ensemble/terciopelo-v1.png`, 1024 by 3320.
+  - It was promoted into `assets/art/ensemble/manifest.json` with `promote.py --new`, and it loads by data.
+  - 86 drawings and 22 aliases, 108 frames in all, at `pixelsPerUnit` 6.6323.
+  - **The bow is mirrored:** `bow_a`, `bow_b` and `bow_hold` carry `"mirror": true`. Qwen drew the deep bow facing left. LEVEL asked for the flag so he bows to the picture's right, toward Mācron, which keeps the close-up's sides (style guide 8.1, rule 3). During the bow the lapel rose shows on his other side, about 2 px, until he plucks it.
+  - **Picks:** `art_runs/terciopelo-v1-20261107m/picks.json`, merged from runs `c`, `d`, `g` and `h` (later runs win per pose). Thirteen of the scorer's picks were changed by eye, each with its reason in `why`.
 
 - **Definition:** `tool/art/characters/terciopelo.json`, with pronouns he/him.
   - He uses a new body preset, `tall-slim-adult` in `tool/art/rig/bodies.json`: longer legs and neck, narrower shoulders and hips, and a smaller head for his height than `slim-adult`.
@@ -19,13 +23,13 @@ STATUS_ATLAS
   - **New clips:**
     - `spin` (8 views in a ballroom frame) and `flare.line` (a held line);
     - charisma: `moustache.a/b`, `glance.a/b` (mirror glance) and `offer_hand.a/b`;
-    - the win: `bow.a/b/hold`, turned three quarters to the picture's right, and `sweep.a/b`, an arm sweep to the picture's right;
+    - the win: `bow.a/b/hold`, a deep bow drawn facing the picture's left (mirrored in the manifest), and `sweep.a/b`, an arm sweep to the picture's right;
     - `rose.pluck` and `rose.offer`.
   - **New aliases:** `mirror_look` (= `glance.b`) and `flare_open` (= `flare.line`).
 - **Pose check:** `tool/art/rig/check_poses.py` gets three exemptions, each named:
   - a hand at the moustache, hair or lapel, or the head coming down in a deep bow (`FACE_TOUCH_CLIPS`);
   - the profile spin views (`SPIN_SIDE`);
-  - the three-quarter bow, where the hand behind the back crosses the near arm in 2D (`TURNED_BEHIND`).
+  - the bow, which is a turn and a profile clip, and whose hand behind the back crosses the near arm in 2D (`TURNED_BEHIND`, `TURN_CLIPS`, `PROFILE_CLIPS`).
 - **Choreography:** `dancers.terciopelo` in `assets/art/ensemble/choreography.json`.
   - Clips: `spin_flare`, `flare`, `line_hold`, `giro`, `moustache`, `mirror_glance`, `hand_offer`, `bow`, `sweep` and `rose_offer`.
   - Charisma accents, one per clip:
@@ -54,7 +58,35 @@ STATUS_ATLAS
 
 ## How it was made and checked
 
-STATUS_CHECK
+- **Route:** the Qwen frame route, run from this worktree with `run_jobs.py`, mostly at 2 candidates a pose (3 or 4 for the redrawn bow and moustache).
+  - The 2511 Lightning LoRA was passed by override.
+  - The finish was `finish_run_picks.py`, the local finish on his own palette, which isn't on `game` yet.
+- **Pilot first, on 12 hard poses.** Four needed new words or a new skeleton; see "What went wrong". The bow took three more tries:
+  - at three quarters the bend didn't show;
+  - turned to profile and asked to face right, Qwen drew the deepest bow facing left in 4 of 4;
+  - so the data now says left, and the manifest mirrors those frames.
+  
+  `moustache.b` was redrawn once (run `h`): neither first candidate had a hand at the face.
+- **Review:**
+  - `score_frames.py` ranked first.
+  - The local vision pass counted heads and hands on all 175 registered candidates: qwen2.5vl:7b, 131 s, 5 flagged.
+  - I looked at every candidate beside its skeleton in contact sheets, then at the packed atlas at native size.
+- **Local vision against my eyes:**
+  - It flagged 5. One was a real miss of mine to check: `bow.b` 991002, which it saw with 2 heads; it wasn't picked. Four were hands it couldn't find behind the back or clasped, which were fine.
+  - It caught none of the actual faults:
+    - two candidates holding a cigarette-like stick at the moustache;
+    - the rose drawn on his back in a rear spin view;
+    - puffed-up hair in four frames;
+    - a caricatured face;
+    - a hand fan and a hand mirror in the held line;
+    - no hand at the face in either `moustache.b` candidate.
+  - As before, it's a pre-filter only.
+- **Scorer:** it flagged 21 poses as weak matches and still picked badly in 13. Its picks for faces and hair aren't to be trusted.
+- **Character check:** frames came out 36% narrower than the sheet by its build measure. He is meant to be the narrowest opponent, and at native size he reads as tall and slim beside the sheet. Advisory only.
+- **Tests:**
+  - `tool/art/tests` ran 226: 4 failures and 11 errors, all from files the sparse worktree doesn't have (`art_runs/` beyond rooms). None comes from this change.
+  - Flutter refuses to run outside the main checkout, so `flutter test` wasn't run here. LEVEL runs the suite when it swaps the GateKeeper stand-in for this atlas.
+- **Compute:** about 2.2 hours of GPU wall time on the shared queue, 7,937 s for frames plus 1,561 s for sheets and busts; 131 s of local vision; a few minutes of CPU. Lines are in `plan/compute-ledger.jsonl`.
 
 ## What went wrong
 
@@ -63,14 +95,26 @@ STATUS_CHECK
 - **Pilot misses:**
   - "a held ballroom fan line" drew a hand fan, and once a hand mirror;
   - the hand offer stood the palm up like a wave;
-  - the bow's swept arm read as reaching forward;
+  - the bow's swept arm read as reaching forward (and the bow then took three more runs, `e`, `f`, `g`);
   - the rose offer kept a second rose in the lapel.
   
   All four were fixed as data and redrawn in run `terciopelo-v1-20261107d`.
 - **I restarted the wave after the fixes, and `collect_qwen.py` brought back the superseded candidates.** It files by skeleton name, not by prompt. So the fixes went into their own run rather than into run `c`.
 - **The offer bust's redraw reused the empty bust's seed (991530),** from a bug in my runner. It's named by its real seed now and the runner is fixed.
+- **My kill command killed its own shell, twice interrupting the session:** `pgrep -f` matched the calling shell. A later `rm` with `~` paths was blocked by a hook and hung. Use `pgrep -af`, then `kill` with a literal PID, and delete with Python.
 - **The busts:** Qwen redrew the whole bust for each drawing, so the jacket's folds differ a little between cuts. Only the head and shoulders are held still.
 
 ## Not done, or not seen
 
-STATUS_NOT
+- **Nobody has seen him moving, or in a browser.** Flutter doesn't run in this worktree, and the preview isn't mine to update.
+- **Needs eyes:**
+  - The cha-cha groove at tempo: does the held landing on 1 read as cha-cha-chá, and does the hip settle?
+  - The charisma accents between phrases.
+  - Whether the mirrored bow looks right with the rose flipped.
+  - The bust's jacket folds changing between cuts.
+  - Mācron's rose behind his antenna.
+- **Weak picks, kept as the best of their candidates:**
+  - a few frames carry a burgundy waistcoat under the jacket, the bow tie's colour spreading;
+  - `spin.side_*` hold the arms forward more than in a frame;
+  - `bow.a` was drawn with contradictory words ("toward the left of the picture toward the right of the picture"). Its picture matches the fixed words, and `poses.py` now holds only the fixed ones.
+- **No walk set with the rose:** the wide shot uses `salon-rose.png` placed by data on Mācron's antenna. This was the fallback the brief allowed.

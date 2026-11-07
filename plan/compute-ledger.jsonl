@@ -408,3 +408,12 @@
 {"ts": "2026-11-07T23:00:00Z", "agent": "SALONART", "what": "salon layer fills: 3 chandeliers and 3 floor reflections, 2 seeds each", "kind": "gpu-image", "seconds": 989.6, "count": 12}
 {"ts": "2026-11-07T23:00:00Z", "agent": "SALONART", "what": "band-bongos frames, 5 poses x 2 (wall time incl. queue)", "kind": "gpu-image", "seconds": 939, "count": 10}
 {"ts": "2026-11-07T23:00:00Z", "agent": "SALONART", "what": "salon plate fills, layers, finish, pack, proofs (layers.py, band_finish.py, pianist.py)", "kind": "cpu", "seconds": 120, "count": 1}
+{"agent": "terciopelo", "what": "Don Terciopelo frame wave run c, pilot 12 poses, 2 candidates each; wall time per job, shared GPU queue", "kind": "gpu-image", "seconds": 1827, "count": 24}
+{"agent": "terciopelo", "what": "Don Terciopelo frame wave run c, the other 67 poses, 2 candidates each; wall time per job, shared GPU queue", "kind": "gpu-image", "seconds": 4459, "count": 140}
+{"agent": "terciopelo", "what": "Don Terciopelo pilot fixes, run d: held line, hand offer, bow, rose offer, 2 candidates each; wall time per job, shared GPU queue", "kind": "gpu-image", "seconds": 751, "count": 14}
+{"agent": "terciopelo", "what": "Don Terciopelo bow redraw at profile, run e (superseded), 2 candidates each; wall time per job, shared GPU queue", "kind": "gpu-image", "seconds": 272, "count": 6}
+{"agent": "terciopelo", "what": "Don Terciopelo bow redraw facing right, run f (superseded: drawn facing left), 4 candidates each; wall time per job, shared GPU queue", "kind": "gpu-image", "seconds": 238, "count": 8}
+{"agent": "terciopelo", "what": "Don Terciopelo bow facing left, run g, 3 candidates each; wall time per job, shared GPU queue", "kind": "gpu-image", "seconds": 320, "count": 9}
+{"agent": "terciopelo", "what": "Don Terciopelo moustache.b redraw, run h, 3 candidates; wall time per job, shared GPU queue", "kind": "gpu-image", "seconds": 70, "count": 3}
+{"agent": "terciopelo", "what": "Don Terciopelo first-pass curation: heads and hands counted per registered candidate with qwen2.5vl:7b (vision_curate.py)", "kind": "local-vision", "seconds": 131, "count": 175}
+{"agent": "terciopelo", "what": "Don Terciopelo rig renders, register, score, finish and pack (CPU)", "kind": "cpu", "seconds": 420, "count": 1}
