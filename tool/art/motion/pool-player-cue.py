@@ -34,13 +34,13 @@ for pid, text in {
     pose(pid, text, **HOLD)
 
 # Free-hand call: she leans away from the planted cue at arm's length, free arm thrown high.
-pose("left_hand.prep", "crouched low with weight on the bent right leg, left hand scooped down low in front of the left hip, torso turned away to {his} right, head glancing down at the left hand", r_arm=[30, 12], r_fore=[50, 30])
+pose("left_hand.prep", "crouched low with weight on the bent right leg, left hand scooped down low in front of the left hip, facing the viewer with the chest and face toward us, shoulders only slightly twisted, head glancing down at the left hand", r_arm=[30, 12], r_fore=[50, 30])
 pose("left_hand.peak", "leaning far away from the planted cue with the right arm stretched straight out to hold it, like a dancer swinging out from a pole, one long diagonal from the cue hand through the chest to the left palm thrust high and out at about 45 degrees, left foot on its toe out to the side, head turned up toward the raised hand", r_arm=[62, 8], r_fore=[66, 12])
 pose("left_hand.follow", "same lean pushed further: right arm straight, hanging out from the planted cue, left arm reaching higher and the palm rolling forward, left toe touch out wider, head following the hand", r_arm=[68, 8], r_fore=[70, 12])
 pose("left_hand.return", "left arm sweeping down in an arc at shoulder height with the elbow bent, right hand on the planted cue, both feet flat and close, torso returning upright", r_arm=[32, 10], r_fore=[46, 30])
 
 # Cue-hand call: the twirl, an arc round the hand across four drawings.
-pose("right_hand.prep", "crouched low with weight on the bent left leg, left fist on the hip, right hand low in front of the right hip holding the cue near its butt, the cue slanting up and out across the picture, torso turned away to {his} left, head glancing at the cue", r_arm=[36, 26], r_fore=[34, 60])
+pose("right_hand.prep", "crouched low with weight on the bent left leg, left fist on the hip, right hand low in front of the right hip holding the cue near its butt, the cue slanting up and out across the picture, facing the viewer with the chest and face toward us, shoulders only slightly twisted, head glancing at the cue", r_arm=[36, 26], r_fore=[34, 60])
 pose("right_hand.peak", "weight on the straight left foot, left fist on the hip, body leaning toward {his} right, right arm thrust high and out holding the cue near its butt, the long cue swung up over {his} head and slanting across the top of the picture, right foot on its toe out to the side, head turned up toward the cue", r_arm=[122, 14], r_fore=[132, 10])
 pose("right_hand.follow", "right arm high, the cue swung further round so that it lies nearly level above {his} head, torso leaning further toward {his} right, left elbow pushed back on the hip, right toe touch out wider, head following the cue", r_arm=[130, 16], r_fore=[150, 16])
 pose("right_hand.return", "the right arm coming down with the elbow bent, the cue swinging back upright beside {him} with its butt nearing the floor, left hand low on the hip, both feet flat and close, torso returning upright", r_arm=[38, 12], r_fore=[50, 34])
