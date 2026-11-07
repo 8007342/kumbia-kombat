@@ -38,7 +38,7 @@ Pointing direction elsewhere is right: guest0 and guest1 `notice_b` point pictur
 
 - Hand fixes paste only the hand's box back.
 - Whole redraws move to their own place in the atlas, at the frame's old height, with the anchor at the feet. Qwen draws a little larger, which would otherwise grow a person between drawings.
-- Clip and frame names are unchanged. Atlas sizes changed: guest0 is now 1536 by 777 (down from 1024 tall, repacked), guest1 is 1254 by 1517, and guest2 is 1536 by 1257. The old drawings are still in guest1 and guest2 under their new ones, unused. [F]
+- Clip and frame names are unchanged. Atlas sizes changed: guest0 is now 1536 by 777 (down from 1024 tall, repacked), guest1 is 1254 by 1503, and guest2 is 1536 by 1258. The old drawings are still in guest1 and guest2 under their new ones, unused. [F]
 - Guest0's blouse pink wandered between frames, so `repack_guest0.py` evens it out with per-channel gains. By eye it no longer flickers on a sheet. Nobody has seen it moving. [F for the gains]
 - **Recolor gates:** I recomputed the gates from `plan/asset-inventory-contract.md` on the new art. Share of opaque pixels recoloured on repaired frames: guest0 about .23 to .31 before the neckline, guest1 .32 to .35, guest2 .26 (each atlas's old frames averaged .28, .27 and .21). For guest0's final atlas I simulated the sample areas in `test/outfit_palette_test.dart`: the four protected areas have no recolouring, and the two clothing areas are 85% and 94%, against the test's .35. That is my own arithmetic, not the test: Flutter won't run in this worktree. [F]
 
