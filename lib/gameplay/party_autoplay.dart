@@ -124,20 +124,17 @@ class PartyAutoplay {
     final dropCount = flawless
         ? 0
         : failPhrase
-        ? session.activeLimbs.length - session.requiredHits + 1
+        ? session.stepCount - session.requiredHits + 1
         : _responseOrdinal % 3 == 1
         ? 1
         : 0;
     final dropped = <int>[
       for (final i in [1, 2, 4, 5, 0, 3, 6, 7])
-        if (i < session.activeLimbs.length) i,
+        if (i < session.stepCount) i,
     ].take(dropCount).toSet();
 
     for (final cue in session.visibleCues.where((cue) => !cue.demo)) {
-      final index = session.activeOffsets.indexWhere(
-        (offset) => (responseBeat + offset - cue.beat).abs() < .00001,
-      );
-      if (index < 0) continue;
+      final index = cue.index;
       final noteAt = transport.secondsAt(cue.beat);
       final key = '${(noteAt * 1000).round()}:${cue.id}';
       if (_attempted.contains(key)) continue;
@@ -146,7 +143,14 @@ class PartyAutoplay {
           : const [.025, .105, -.09, .035][(index + _responseOrdinal) % 4];
       if (now < noteAt + offset) continue;
       _attempted.add(key);
-      if (dropped.contains(index) ||
+      // Imperfect play drops whole steps, and now and then a richer step's second
+      // press, which is what a real player would let go first.
+      final secondPress = cue.move != null &&
+          session.activeSteps.indexOf(cue.step) != index;
+      if (dropped.contains(cue.step) ||
+          (!flawless &&
+              secondPress &&
+              (_responseOrdinal + cue.step) % 3 == 0) ||
           now > noteAt + RhythmJudge.goodWindowMs / 1000) {
         continue;
       }

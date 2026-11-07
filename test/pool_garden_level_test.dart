@@ -155,7 +155,7 @@ void main() {
       for (var i = 0; i < session.activeLimbs.length; i++) {
         advance(
           music.secondsAt(
-            start + session.chart.callBeats + session.chart.offsets[i],
+            start + session.chart.callBeats + session.activeOffsets[i],
           ),
         );
         expect(session.tap(session.activeLimbs[i]).note, isNotNull);
