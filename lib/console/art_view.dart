@@ -197,13 +197,15 @@ class SpriteStill extends StatelessWidget {
       cache: cache,
       assets: [atlas.image],
       placeholder: const SizedBox.shrink(),
-      builder: (context, images) => CustomPaint(
-        painter: SpritePainter(
-          image: images.single,
-          frame: f,
-          fit: SpritePainter.fitFor([f]),
-          flip: flip,
-          shadow: shadow,
+      builder: (context, images) => SizedBox.expand(
+        child: CustomPaint(
+          painter: SpritePainter(
+            image: images.single,
+            frame: f,
+            fit: SpritePainter.fitFor([f]),
+            flip: flip,
+            shadow: shadow,
+          ),
         ),
       ),
     );

@@ -438,4 +438,26 @@ void main() {
       expect(transport.state, TransportState.playing);
     },
   );
+
+  test('a review start at a tier judges the first phrase at that tier', () {
+    final fresh = MusicTransport(
+      MusicScore(
+        id: 'garden',
+        beatsPerBar: 4,
+        bars: 4,
+        phraseBars: 1,
+        tempos: [120, 120, 120, 120, 120],
+        notes: [],
+      ),
+      audio,
+      loop: true,
+    );
+    final session = GardenSession(fresh, audio)..start(tier: 3);
+    expect(session.progress.tier, 3);
+    expect(fresh.currentTier, 3);
+    expect(
+      () => GardenSession(fresh, audio).start(tier: 5),
+      throwsRangeError,
+    );
+  });
 }

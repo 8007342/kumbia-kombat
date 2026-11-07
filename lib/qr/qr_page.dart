@@ -309,8 +309,10 @@ class _Dancer extends StatelessWidget {
       cache: art,
       assets: [atlas.image],
       placeholder: const SizedBox.shrink(),
-      builder: (context, images) => CustomPaint(
-        painter: SpritePainter(image: images.single, frame: frame, fit: fit),
+      builder: (context, images) => SizedBox.expand(
+        child: CustomPaint(
+          painter: SpritePainter(image: images.single, frame: frame, fit: fit),
+        ),
       ),
     );
   }
