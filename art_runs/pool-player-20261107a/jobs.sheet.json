@@ -1,0 +1,32 @@
+[
+ {
+  "pose": "sheet.front",
+  "args": {
+   "workflow": "art_runs/pool-player-20261107a/workflows/sheet.front.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/pool-player-20261107a/in/sheet_source.png",
+    "pose_proxy": "/work/tmp/imagegen/kumbia/pool-player-20261107a/in/groove.down_l.skeleton.png"
+   },
+   "overrides": {
+    "seed": 989000
+   }
+  }
+ },
+ {
+  "pose": "sheet.back",
+  "args": {
+   "workflow": "art_runs/pool-player-20261107a/workflows/sheet.back.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/pool-player-20261107a/in/sheet_source.png",
+    "pose_proxy": "/work/tmp/imagegen/kumbia/pool-player-20261107a/in/groove.down_l.skeleton.png"
+   },
+   "overrides": {
+    "seed": 989000
+   }
+  }
+ }
+]
