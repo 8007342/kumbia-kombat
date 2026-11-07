@@ -171,6 +171,56 @@ class RenderedTransition {
   final double crossfadeSeconds;
 }
 
+/// A join with no audio of its own: the outgoing take plays right up to the
+/// boundary, so leaving at any bar can't jump, and the incoming take starts at the
+/// bar written for that exit. The table comes from `tool/music/mix/`, which picks
+/// the closest harmony, spectrum and level for each exit bar.
+class RenderedCut {
+  RenderedCut({
+    required this.from,
+    required this.to,
+    required this.entryBars,
+    this.exitStep = 2,
+    this.fadeInBeats = 0,
+    this.fadeOutBeats = 1,
+  }) {
+    if (entryBars.isEmpty || exitStep <= 0) {
+      throw RenderedManifestError('$from-$to', 'needs an entry for each exit');
+    }
+  }
+  final String from;
+  final String to;
+
+  /// The incoming bar for each exit, one entry per [exitStep] bars of the loop.
+  final List<int> entryBars;
+  final int exitStep;
+  final double fadeInBeats;
+  final double fadeOutBeats;
+
+  int entryFor(int exitBar) =>
+      entryBars[(exitBar ~/ exitStep) % entryBars.length];
+
+  static RenderedCut fromJson(String path, Object? raw) {
+    final json = _object(path, raw);
+    final bars = json['entryBars'];
+    if (bars is! List || bars.any((bar) => bar is! int || bar < 0)) {
+      throw RenderedManifestError(path, 'entryBars must be whole bars');
+    }
+    return RenderedCut(
+      from: _text('$path.from', json['from']),
+      to: _text('$path.to', json['to']),
+      entryBars: bars.cast<int>(),
+      exitStep: json['exitStep'] as int? ?? 2,
+      fadeInBeats: json['fadeInBeats'] == null
+          ? 0
+          : _number('$path.fadeInBeats', json['fadeInBeats'], min: 0, max: 32),
+      fadeOutBeats: json['fadeOutBeats'] == null
+          ? 1
+          : _number('$path.fadeOutBeats', json['fadeOutBeats'], min: 0, max: 32),
+    );
+  }
+}
+
 /// One level's music. Five game tiers map onto its takes through [tierTakes], so
 /// tempo is data: nothing assumes a higher tier is a faster take.
 class RenderedLevel {
@@ -185,6 +235,8 @@ class RenderedLevel {
     this.bridgeTo,
     this.bridgeEntryBar = 0,
     this.mix,
+    this.cuts = const [],
+    this.layerFadeBeats,
   }) {
     if (tierTakes.length != 5) {
       throw RenderedManifestError(id, 'tierTakes must name five takes');
@@ -197,6 +249,20 @@ class RenderedLevel {
     for (final join in transitions) {
       if (!takes.containsKey(join.from) || !takes.containsKey(join.to)) {
         throw RenderedManifestError(id, 'a transition names an unknown take');
+      }
+    }
+    for (final cut in cuts) {
+      if (!takes.containsKey(cut.from) || !takes.containsKey(cut.to)) {
+        throw RenderedManifestError(id, 'a cut names an unknown take');
+      }
+      if (cut.entryBars.any((bar) => bar >= takes[cut.to]!.bars)) {
+        throw RenderedManifestError(id, 'a cut lands past the end of ${cut.to}');
+      }
+    }
+    if (layerFadeBeats != null) {
+      final bars = {for (final take in takes.values) take.bars};
+      if (bars.length != 1) {
+        throw RenderedManifestError(id, 'layered takes must share their bars');
       }
     }
   }
@@ -219,6 +285,12 @@ class RenderedLevel {
   final String? bridgeTo;
   final int bridgeEntryBar;
   final RenderedMix? mix;
+  final List<RenderedCut> cuts;
+
+  /// Set when the takes are one performance on one grid: a change of tier stays
+  /// on the same bar, crossfading over this many beats, with no clip of its own.
+  final double? layerFadeBeats;
+  bool get layered => layerFadeBeats != null;
 
   /// The success tag for leaving this level toward [nextId], or for ending on it.
   /// The short tag only ever plays when the bridge that follows it leads there.
@@ -233,6 +305,13 @@ class RenderedLevel {
   RenderedTransition? transition(String from, String to) {
     for (final join in transitions) {
       if (join.from == from && join.to == to) return join;
+    }
+    return null;
+  }
+
+  RenderedCut? cut(String from, String to) {
+    for (final cut in cuts) {
+      if (cut.from == from && cut.to == to) return cut;
     }
     return null;
   }
@@ -282,6 +361,13 @@ class RenderedLevel {
       mix: json['mix'] == null
           ? null
           : RenderedMix.fromJson('$path.mix', json['mix']),
+      cuts: [
+        for (final (i, raw) in ((json['cuts'] as List?) ?? []).indexed)
+          RenderedCut.fromJson('$path.cuts[$i]', raw),
+      ],
+      layerFadeBeats: json['layerFadeBeats'] == null
+          ? null
+          : _number('$path.layerFadeBeats', json['layerFadeBeats'], min: 0, max: 32),
     );
   }
 

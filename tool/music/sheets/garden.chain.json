@@ -1,0 +1,56 @@
+{
+ "level": "garden",
+ "parent": {
+  "seed": 51002,
+  "bpm": 98,
+  "key": "A minor",
+  "seconds": 88.16,
+  "tags": "warm night cumbia at the mansion gates, inviting, instrumental, accordion, guira, congas, bass, gentle brass, grows from a small band to a full party"
+ },
+ "children": [
+  {
+   "name": "lowB",
+   "tags": "warm night cumbia at the mansion gates, inviting, instrumental, intimate small band, accordion melody, guira, soft congas, warm bass, nothing else",
+   "denoise": 0.6,
+   "codes": false
+  },
+  {
+   "name": "lowC",
+   "tags": "warm night cumbia at the mansion gates, inviting, instrumental, intimate small band, accordion melody, guira, soft congas, warm bass, nothing else",
+   "denoise": 0.7,
+   "codes": false
+  },
+  {
+   "name": "highB",
+   "tags": "warm night cumbia at the mansion gates, inviting, instrumental, big full party band, accordion melody, full brass section answers, trumpets, trombones, busy congas, timbales, guira, handclaps",
+   "denoise": 0.6,
+   "codes": false
+  },
+  {
+   "name": "highD",
+   "tags": "warm night cumbia at the mansion gates, inviting, instrumental, big full party band, accordion melody, full brass section answers, trumpets, trombones, busy congas, timbales, guira, handclaps",
+   "denoise": 0.6,
+   "parent": "highB",
+   "codes": false
+  },
+  {
+   "name": "highE",
+   "tags": "warm night cumbia at the mansion gates, inviting, instrumental, big full party band, accordion melody, full brass section answers, trumpets, trombones, busy congas, timbales, guira, handclaps",
+   "denoise": 0.6,
+   "parent": "highD",
+   "codes": false
+  },
+  {
+   "name": "highF",
+   "tags": "warm night cumbia at the mansion gates, inviting, instrumental, big full party band, accordion melody, full brass section answers, trumpets, trombones, busy congas, timbales, guira, handclaps",
+   "denoise": 0.6,
+   "parent": "highE",
+   "codes": false
+  },
+  {
+   "name": "highX",
+   "tags": "warm night cumbia at the mansion gates, inviting, instrumental, big full party band, accordion melody, full brass section answers, trumpets, trombones, busy congas, timbales, guira, handclaps",
+   "denoise": 0.95
+  }
+ ]
+}

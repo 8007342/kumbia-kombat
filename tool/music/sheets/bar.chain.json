@@ -1,0 +1,56 @@
+{
+ "level": "bar",
+ "parent": {
+  "seed": 55005,
+  "bpm": 106,
+  "key": "C minor",
+  "seconds": 86.04,
+  "tags": "cool swaggering indoor cumbia under lanterns, instrumental, electric keys, twangy electric guitar, rounded bass, tight congas, guira, muted trumpet"
+ },
+ "children": [
+  {
+   "name": "lowB",
+   "tags": "cool swaggering indoor cumbia, instrumental, intimate trio, lead melody on twangy electric guitar, rounded bass, soft congas, guira, warm and close, nothing else",
+   "denoise": 0.6,
+   "codes": false
+  },
+  {
+   "name": "lowC",
+   "tags": "cool swaggering indoor cumbia, instrumental, intimate trio, lead melody on twangy electric guitar, rounded bass, soft congas, guira, warm and close, nothing else",
+   "denoise": 0.7,
+   "codes": false
+  },
+  {
+   "name": "highB",
+   "tags": "cool swaggering indoor cumbia, instrumental, big full band, lively lead melody on twangy electric guitar and muted trumpet, loud brass section answers, trombones, saxophones, electric keys, walking bass, busy congas, timbales, guira, handclaps",
+   "denoise": 0.6,
+   "codes": false
+  },
+  {
+   "name": "highD",
+   "tags": "cool swaggering indoor cumbia, instrumental, big full band, lively lead melody on twangy electric guitar and muted trumpet, loud brass section answers, trombones, saxophones, electric keys, walking bass, busy congas, timbales, guira, handclaps",
+   "denoise": 0.6,
+   "parent": "highB",
+   "codes": false
+  },
+  {
+   "name": "highE",
+   "tags": "cool swaggering indoor cumbia, instrumental, big full band, lively lead melody on twangy electric guitar and muted trumpet, loud brass section answers, trombones, saxophones, electric keys, walking bass, busy congas, timbales, guira, handclaps",
+   "denoise": 0.6,
+   "parent": "highD",
+   "codes": false
+  },
+  {
+   "name": "highF",
+   "tags": "cool swaggering indoor cumbia, instrumental, big full band, lively lead melody on twangy electric guitar and muted trumpet, loud brass section answers, trombones, saxophones, electric keys, walking bass, busy congas, timbales, guira, handclaps",
+   "denoise": 0.6,
+   "parent": "highE",
+   "codes": false
+  },
+  {
+   "name": "highX",
+   "tags": "cool swaggering indoor cumbia, instrumental, big full band, lively lead melody on twangy electric guitar and muted trumpet, loud brass section answers, trombones, saxophones, electric keys, walking bass, busy congas, timbales, guira, handclaps",
+   "denoise": 0.95
+  }
+ ]
+}
