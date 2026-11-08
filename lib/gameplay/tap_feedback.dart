@@ -48,7 +48,30 @@ class MarkPose {
 
 /// Born when a tap is judged. Pure, so a test can check early and late differ.
 class FeedbackMark {
-  FeedbackMark(this.kind, this.point, {this.miss = 0, this.chain = 0});
+  FeedbackMark(
+    this.kind,
+    this.point, {
+    this.miss = 0,
+    this.chain = 0,
+    this.faint = false,
+  });
+
+  /// A tap aimed at a note but outside its window. It counts for nothing, so
+  /// it's drawn faint, open as wide as a ring goes, with no sparks: enough to
+  /// see the tap arrived and which way it was off.
+  factory FeedbackMark.nearMiss(
+    TapTiming timing,
+    Offset point, {
+    required int deltaMs,
+  }) => FeedbackMark(
+    timing == TapTiming.early ? MarkKind.early : MarkKind.late,
+    point,
+    miss: 1,
+    faint: true,
+  );
+
+  /// How much a faint mark is drawn, against a counted one.
+  static const faintOpacity = .45;
 
   /// Accepted tap at its timing, with [deltaMs] sized against the judge's windows.
   factory FeedbackMark.tap(
@@ -97,6 +120,9 @@ class FeedbackMark {
 
   /// Steps in a row, or the style chain. More of it, more sparks.
   final int chain;
+
+  /// A near miss: drawn at [faintOpacity], without sparks.
+  final bool faint;
   double? bornAt;
 
   Color get color => switch (kind) {
@@ -114,13 +140,15 @@ class FeedbackMark {
   /// Ringed and crossed marks are drawn round the touch and lifted above it.
   bool get hasHalo => hasRing || kind == MarkKind.outOfTurn;
 
-  int get sparkCount => switch (kind) {
-    MarkKind.perfect => 3 + math.min(chain, 5),
-    MarkKind.early || MarkKind.late => 2,
-    MarkKind.flourish => 6 + 3 * math.min(chain, 4),
-    MarkKind.phrase => 10,
-    MarkKind.outOfTurn => 0,
-  };
+  int get sparkCount => faint
+      ? 0
+      : switch (kind) {
+          MarkKind.perfect => 3 + math.min(chain, 5),
+          MarkKind.early || MarkKind.late => 2,
+          MarkKind.flourish => 6 + 3 * math.min(chain, 4),
+          MarkKind.phrase => 10,
+          MarkKind.outOfTurn => 0,
+        };
 
   MarkPose pose(double age, {required bool reducedMotion}) {
     final t = (age / life).clamp(0.0, 1.0);
@@ -129,8 +157,9 @@ class FeedbackMark {
       MarkKind.late => 1.12 + .28 * miss,
       _ => 1.0,
     };
+    final dim = faint ? faintOpacity : 1.0;
     if (reducedMotion) {
-      return MarkPose(sweep: sweep, scale: 1, opacity: 1, sparks: const []);
+      return MarkPose(sweep: sweep, scale: 1, opacity: dim, sparks: const []);
     }
     final eased = 1 - (1 - t) * (1 - t);
     final scale = switch (kind) {
@@ -143,7 +172,7 @@ class FeedbackMark {
     return MarkPose(
       sweep: sweep,
       scale: scale,
-      opacity: t < .6 ? 1 : (1 - t) / .4,
+      opacity: dim * (t < .6 ? 1 : (1 - t) / .4),
       sparks: _sparks(t, eased),
     );
   }

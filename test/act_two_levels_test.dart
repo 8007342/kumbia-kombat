@@ -261,7 +261,7 @@ void main() {
         for (var i = 1; i < notes.length; i++) {
           expect(
             (notes[i] - notes[i - 1]) * 60000 / top,
-            greaterThanOrEqualTo(RhythmJudge.goodWindowMs),
+            greaterThanOrEqualTo(RhythmJudge.guaranteedWindowMs),
           );
         }
       });

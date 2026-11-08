@@ -314,7 +314,7 @@ void main() {
       until(response(0, 0));
       session.tap(Limb.leftHand);
       expect(session.combo, 1);
-      until(response(0, 1.75) + .25);
+      until(response(0, 1.75) + .4);
       expect(session.combo, 0);
     });
 

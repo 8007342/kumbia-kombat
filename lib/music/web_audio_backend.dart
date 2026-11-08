@@ -190,8 +190,9 @@ class WebAudioMusicBackend
     // Zero is a synthesized event with no stamp.
     if (timeStamp == Duration.zero) return null;
     final age = (_performanceNow() - timeStamp.inMicroseconds / 1000) / 1000;
-    // Anything outside this is a stamp on some other clock.
-    return age >= 0 && age <= .15 ? age : null;
+    // Anything outside this is a stamp on some other clock. A busy phone frame
+    // can hold a touch for a few hundred milliseconds; the session caps it.
+    return age >= 0 && age <= .5 ? age : null;
   }
 
   @override

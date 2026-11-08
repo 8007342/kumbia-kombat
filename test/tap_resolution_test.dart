@@ -176,13 +176,40 @@ void main() {
           landing: (_) => const NotePoint(0, 0),
         );
 
-    test('exactly the judge\'s Good window, either way', () {
+    test('in window exactly the judge\'s Good window, either way', () {
       final note = [cue('a', 10)];
-      expect(open(note, 10000 - RhythmJudge.earlyWindowMs), hasLength(1));
-      expect(open(note, 10000 - RhythmJudge.earlyWindowMs - 1), isEmpty);
-      expect(open(note, 10000 + RhythmJudge.lateWindowMs), hasLength(1));
-      expect(open(note, 10000 + RhythmJudge.lateWindowMs + 1), isEmpty);
+      bool inWindow(int ms) => open(note, ms).single.inWindow;
+      expect(inWindow(10000 - RhythmJudge.earlyWindowMs), isTrue);
+      expect(inWindow(10000 - RhythmJudge.earlyWindowMs - 1), isFalse);
+      expect(inWindow(10000 + RhythmJudge.lateWindowMs), isTrue);
+      expect(inWindow(10000 + RhythmJudge.lateWindowMs + 1), isFalse);
       expect(open(note, 10050).single.timingOffMs, 50);
+    });
+
+    test('a near miss is in reach, and nothing past it', () {
+      final note = [cue('a', 10)];
+      expect(open(note, 10000 - RhythmJudge.nearEarlyMs), hasLength(1));
+      expect(open(note, 10000 - RhythmJudge.nearEarlyMs - 1), isEmpty);
+      expect(open(note, 10000 + RhythmJudge.nearLateMs), hasLength(1));
+      expect(open(note, 10000 + RhythmJudge.nearLateMs + 1), isEmpty);
+    });
+
+    test('a ring in its window beats a nearer near miss', () {
+      const hit = TapCandidate(Limb.leftHand, NotePoint(60, 0), 100);
+      const near = TapCandidate(
+        Limb.rightHand,
+        NotePoint(0, 0),
+        350,
+        inWindow: false,
+      );
+      expect(
+        resolveTap(x: 0, y: 0, radius: 72, candidates: [near, hit])!.limb,
+        Limb.leftHand,
+      );
+      expect(
+        resolveTap(x: 0, y: 0, radius: 72, candidates: [near])!.limb,
+        Limb.rightHand,
+      );
     });
 
     test('a demonstration is never a tap target', () {

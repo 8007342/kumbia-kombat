@@ -7,11 +7,16 @@ void main() {
   const perfect = RhythmJudge.perfectWindowMs;
 
   test('the windows lean late, and perfect still means something', () {
-    // Late gets the latency estimate's slack; early stays where it was.
+    // Both sides are wider than StepMania's widest grade (180) for a phone's
+    // latency, and late gets more, since unmeasured delays only read late.
     expect(RhythmJudge.lateWindowMs, greaterThan(RhythmJudge.earlyWindowMs));
-    expect(RhythmJudge.lateWindowMs, inInclusiveRange(200, 250));
+    expect(RhythmJudge.earlyWindowMs, greaterThan(180));
+    expect(RhythmJudge.lateWindowMs, inInclusiveRange(220, 300));
     expect(perfect, lessThan(RhythmJudge.earlyWindowMs / 2));
-    expect(RhythmJudge.guaranteedWindowMs, RhythmJudge.earlyWindowMs);
+    // Charts keep only the old window clear; the rest is best effort.
+    expect(RhythmJudge.guaranteedWindowMs, 180);
+    expect(RhythmJudge.nearLateMs, greaterThan(RhythmJudge.lateWindowMs));
+    expect(RhythmJudge.nearEarlyMs, greaterThan(RhythmJudge.earlyWindowMs));
   });
 
   test('tap boundaries, matching limb, consumption, and expiry', () {
