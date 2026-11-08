@@ -69,7 +69,8 @@
     ],
     "edgeClamp": 70,
     "dilate": 2,
-    "prompt": "Remove the glowing crystal chandelier at the centre of this picture, but keep its thin chains above. Where the chandelier was, show the same deep wine-red damask wall, the cream niche arch and the edge of the gilt picture frame behind it, in the same warm candle light. Do not add any chandelier, lamp or object."
+    "prompt": "Remove the glowing crystal chandelier at the centre of this picture, but keep its thin chains above. Where the chandelier was, show the same deep wine-red damask wall, the cream niche arch and the edge of the gilt picture frame behind it, in the same warm candle light. Do not add any chandelier, lamp or object.",
+    "image": "chandelier-left-77000.png"
    },
    "motion": "sway",
    "periodBeats": 4,
@@ -135,7 +136,8 @@
     ],
     "edgeClamp": 70,
     "dilate": 2,
-    "prompt": "Remove the glowing crystal chandelier at the centre of this picture, but keep its thin chains above. Where the chandelier was, show the same deep wine-red damask wall, the gilt picture frame and the top of the dark wooden door behind it, in the same warm candle light. Do not add any chandelier, lamp or object."
+    "prompt": "Remove the glowing crystal chandelier at the centre of this picture, but keep its thin chains above. Where the chandelier was, show the same deep wine-red damask wall, the gilt picture frame and the top of the dark wooden door behind it, in the same warm candle light. Do not add any chandelier, lamp or object.",
+    "image": "chandelier-right-77101.png"
    },
    "motion": "sway",
    "periodBeats": 4,
@@ -182,7 +184,8 @@
     ],
     "edgeClamp": 24,
     "dilate": 2,
-    "prompt": "Remove the round orange disc on the wall in the middle of this picture. Show the same deep wine-red damask wall with its faint woven pattern running straight through, in the same warm light. Do not add any lamp, disc or object."
+    "prompt": "Remove the round orange disc on the wall in the middle of this picture. Show the same deep wine-red damask wall with its faint woven pattern running straight through, in the same warm light. Do not add any lamp, disc or object.",
+    "image": "disc-left-77200.png"
    }
   },
   {
@@ -215,7 +218,8 @@
     ],
     "edgeClamp": 24,
     "dilate": 2,
-    "prompt": "Remove the round orange disc on the wall in the middle of this picture. Show the same deep wine-red damask wall with its faint woven pattern running straight through, in the same warm light. Do not add any lamp, disc or object."
+    "prompt": "Remove the round orange disc on the wall in the middle of this picture. Show the same deep wine-red damask wall with its faint woven pattern running straight through, in the same warm light. Do not add any lamp, disc or object.",
+    "image": "disc-right-77300.png"
    }
   },
   {
@@ -248,7 +252,26 @@
     ],
     "edgeClamp": 24,
     "dilate": 2,
-    "prompt": "Remove the black dining chair standing in front of the table in the middle of this picture. Where it was, show the front of the same cream damask tablecloth hanging straight down to the dark wooden floor, with the same table setting on top, in the same warm candle light. Do not add any chair, person or object."
+    "prompt": "Remove the black dining chair standing in front of the table in the middle of this picture. Where it was, show the front of the same cream damask tablecloth hanging straight down to the dark wooden floor, with the same table setting on top, in the same warm candle light. Do not add any chair, person or object.",
+    "image": "near-chair-1-77401.png",
+    "polygon": [
+     [
+      212,
+      440
+     ],
+     [
+      266,
+      440
+     ],
+     [
+      266,
+      463
+     ],
+     [
+      212,
+      463
+     ]
+    ]
    }
   },
   {
@@ -281,7 +304,26 @@
     ],
     "edgeClamp": 24,
     "dilate": 2,
-    "prompt": "Remove the black dining chair standing in front of the table in the middle of this picture. Where it was, show the front of the same cream damask tablecloth hanging straight down to the dark wooden floor, with the same table setting on top, in the same warm candle light. Do not add any chair, person or object."
+    "prompt": "Remove the black dining chair standing in front of the table in the middle of this picture. Where it was, show the front of the same cream damask tablecloth hanging straight down to the dark wooden floor, with the same table setting on top, in the same warm candle light. Do not add any chair, person or object.",
+    "image": "near-chair-2-77500.png",
+    "polygon": [
+     [
+      294,
+      440
+     ],
+     [
+      343,
+      440
+     ],
+     [
+      343,
+      463
+     ],
+     [
+      294,
+      463
+     ]
+    ]
    }
   },
   {
@@ -314,7 +356,26 @@
     ],
     "edgeClamp": 24,
     "dilate": 2,
-    "prompt": "Remove the black dining chair standing in front of the table in the middle of this picture. Where it was, show the front of the same cream damask tablecloth hanging straight down to the dark wooden floor, with the same table setting on top, in the same warm candle light. Do not add any chair, person or object."
+    "prompt": "Remove the black dining chair standing in front of the table in the middle of this picture. Where it was, show the front of the same cream damask tablecloth hanging straight down to the dark wooden floor, with the same table setting on top, in the same warm candle light. Do not add any chair, person or object.",
+    "image": "near-chair-3-77601.png",
+    "polygon": [
+     [
+      364,
+      440
+     ],
+     [
+      416,
+      440
+     ],
+     [
+      416,
+      463
+     ],
+     [
+      364,
+      463
+     ]
+    ]
    }
   },
   {
@@ -347,7 +408,26 @@
     ],
     "edgeClamp": 24,
     "dilate": 2,
-    "prompt": "Remove the black dining chair standing in front of the table in the middle of this picture. Where it was, show the front of the same cream damask tablecloth hanging straight down to the dark wooden floor, with the same table setting on top, in the same warm candle light. Do not add any chair, person or object."
+    "prompt": "Remove the black dining chair standing in front of the table in the middle of this picture. Where it was, show the front of the same cream damask tablecloth hanging straight down to the dark wooden floor, with the same table setting on top, in the same warm candle light. Do not add any chair, person or object.",
+    "image": "near-chair-4-77700.png",
+    "polygon": [
+     [
+      442,
+      440
+     ],
+     [
+      493,
+      440
+     ],
+     [
+      493,
+      463
+     ],
+     [
+      442,
+      463
+     ]
+    ]
    }
   },
   {
@@ -380,7 +460,26 @@
     ],
     "edgeClamp": 24,
     "dilate": 2,
-    "prompt": "Remove the black dining chair standing in front of the table in the middle of this picture. Where it was, show the front of the same cream damask tablecloth hanging straight down to the dark wooden floor, with the same table setting on top, in the same warm candle light. Do not add any chair, person or object."
+    "prompt": "Remove the black dining chair standing in front of the table in the middle of this picture. Where it was, show the front of the same cream damask tablecloth hanging straight down to the dark wooden floor, with the same table setting on top, in the same warm candle light. Do not add any chair, person or object.",
+    "image": "near-chair-5-77801.png",
+    "polygon": [
+     [
+      547,
+      440
+     ],
+     [
+      596,
+      440
+     ],
+     [
+      596,
+      463
+     ],
+     [
+      547,
+      463
+     ]
+    ]
    }
   },
   {
@@ -600,6 +699,57 @@
    "frames": 2,
    "instance": 6,
    "minTier": 4
+  },
+  {
+   "id": "cloth-front",
+   "fillOnly": true,
+   "polygon": [
+    [
+     200,
+     462
+    ],
+    [
+     612,
+     462
+    ],
+    [
+     612,
+     546
+    ],
+    [
+     200,
+     546
+    ]
+   ],
+   "fill": {
+    "tile": [
+     503,
+     456,
+     537,
+     552
+    ],
+    "polygon": [
+     [
+      200,
+      462
+     ],
+     [
+      612,
+      462
+     ],
+     [
+      612,
+      546
+     ],
+     [
+      200,
+      546
+     ]
+    ],
+    "dilate": 1,
+    "edgeClamp": 24
+   },
+   "$comment": "The near chairs' legs and the Qwen fills' damask patterns made the cloth patchy, so the whole front is one clean strip of the painted cloth (between the fourth and fifth chairs) tiled across."
   }
  ]
 }

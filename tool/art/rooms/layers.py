@@ -156,6 +156,15 @@ def build_plate(spec):
             continue
         mask = polygon_mask((w, h), fill["polygon"]) if "polygon" in fill else matte(rgb, prop)
         mask = ndimage.binary_dilation(mask, iterations=fill.get("dilate", 2))
+        if fill.get("tile"):  # a plain repeating surface (a tablecloth's folds): tile a clean strip of the source across
+            sx0, sy0, sx1, sy1 = fill["tile"]
+            strip = rgb[sy0:sy1, sx0:sx1].astype(float)
+            layer = plate.copy()
+            ys, xs = np.nonzero(mask)
+            layer[ys, xs] = strip[np.clip(ys - sy0, 0, sy1 - sy0 - 1), (xs - sx0) % (sx1 - sx0)]
+            plate = seamless(plate, layer, mask, fill.get("edgeClamp", 24.0))
+            report[prop["id"]] = dict(maskPixels=int(mask.sum()), route="tile")
+            continue
         if fill.get("harmonic"):  # thin things only: a wire and its bulbs close up from their edges, with no GPU
             plate = seamless(plate, np.full_like(plate, plate[mask].mean()), mask, 1000.0)
             report[prop["id"]] = dict(maskPixels=int(mask.sum()), route="harmonic")

@@ -1,0 +1,221 @@
+{
+ "10": {
+  "_meta": {
+   "title": "prompt, baked per pose by plan_qwen_frames"
+  },
+  "class_type": "TextEncodeQwenImageEditPlus",
+  "inputs": {
+   "clip": [
+    "6",
+    0
+   ],
+   "image1": [
+    "60",
+    0
+   ],
+   "prompt": "Image 1 is part of a pixel art game background at night: a banquet table with a cream damask tablecloth, soup bowls, wine glasses and two silver candelabra, in front of a wine-red wall. Add seven diners seated in a row on the far side of the table, facing the viewer, all in formal dinner dress, from left to right: an older gentleman with white hair and a short grey beard in a black tailcoat and white bow tie; a woman of about forty with dark hair in a chignon, in an emerald satin evening gown; a plump bald man of about sixty in a burgundy velvet dinner jacket and black bow tie; a young woman with long black hair in a braid, in a gold evening dress; a man of about thirty-five with a neat dark beard, in a navy suit and tie; an elderly woman with a silver updo and a pearl necklace, in a lavender gown with long sleeves; a young man with round glasses, in a grey suit and a dark green bow tie. Each sits on a chair behind the table so only the upper body shows above the tablecloth, eating soup with a spoon, heads bowed a little over the bowls, drawn with a thick dark ink outline in the same crisp pixel art as the picture, at the size the table allows. They are grown-ups of mixed ages, elegant and covered, with long sleeves or modest necklines. Keep everything else in image 1 exactly as it is: the same table and its setting, the same wall, portraits, statue and door, the same pixel art, the same camera and the same colours.",
+   "vae": [
+    "7",
+    0
+   ]
+  }
+ },
+ "11": {
+  "_meta": {
+   "title": "negative"
+  },
+  "class_type": "TextEncodeQwenImageEditPlus",
+  "inputs": {
+   "clip": [
+    "6",
+    0
+   ],
+   "image1": [
+    "60",
+    0
+   ],
+   "prompt": "",
+   "vae": [
+    "7",
+    0
+   ]
+  }
+ },
+ "12": {
+  "_meta": {
+   "title": "$seed"
+  },
+  "class_type": "KSampler",
+  "inputs": {
+   "cfg": 1.0,
+   "denoise": 1,
+   "latent_image": [
+    "8",
+    0
+   ],
+   "model": [
+    "5",
+    0
+   ],
+   "negative": [
+    "21",
+    0
+   ],
+   "positive": [
+    "20",
+    0
+   ],
+   "sampler_name": "euler",
+   "scheduler": "simple",
+   "seed": 930000,
+   "steps": 4
+  }
+ },
+ "13": {
+  "_meta": {
+   "title": "VAE Decode"
+  },
+  "class_type": "VAEDecode",
+  "inputs": {
+   "samples": [
+    "12",
+    0
+   ],
+   "vae": [
+    "7",
+    0
+   ]
+  }
+ },
+ "14": {
+  "_meta": {
+   "title": "save frame with matte"
+  },
+  "class_type": "SaveImage",
+  "inputs": {
+   "filename_prefix": "kk/rooms/comedor/diners/key",
+   "images": [
+    "13",
+    0
+   ]
+  }
+ },
+ "20": {
+  "_meta": {
+   "title": "reference latents: positive"
+  },
+  "class_type": "FluxKontextMultiReferenceLatentMethod",
+  "inputs": {
+   "conditioning": [
+    "10",
+    0
+   ],
+   "reference_latents_method": "index_timestep_zero"
+  }
+ },
+ "21": {
+  "_meta": {
+   "title": "reference latents: negative"
+  },
+  "class_type": "FluxKontextMultiReferenceLatentMethod",
+  "inputs": {
+   "conditioning": [
+    "11",
+    0
+   ],
+   "reference_latents_method": "index_timestep_zero"
+  }
+ },
+ "3": {
+  "_meta": {
+   "title": "Load Diffusion Model"
+  },
+  "class_type": "UNETLoader",
+  "inputs": {
+   "unet_name": "qwen_image_edit_2511_fp8mixed.safetensors",
+   "weight_dtype": "default"
+  }
+ },
+ "30": {
+  "_meta": {
+   "title": "Lightning 4-step (built for 2509; unproven on 2511)"
+  },
+  "class_type": "LoraLoaderModelOnly",
+  "inputs": {
+   "lora_name": "Qwen-Image-Edit-2509-Lightning-4steps-V1.0-bf16.safetensors",
+   "model": [
+    "4",
+    0
+   ],
+   "strength_model": 1.0
+  }
+ },
+ "4": {
+  "_meta": {
+   "title": "ModelSamplingAuraFlow"
+  },
+  "class_type": "ModelSamplingAuraFlow",
+  "inputs": {
+   "model": [
+    "3",
+    0
+   ],
+   "sampling": "flow",
+   "shift": 3.1
+  }
+ },
+ "5": {
+  "_meta": {
+   "title": "CFGNorm"
+  },
+  "class_type": "CFGNorm",
+  "inputs": {
+   "model": [
+    "30",
+    0
+   ],
+   "pre_cfg": false,
+   "strength": 1
+  }
+ },
+ "6": {
+  "_meta": {
+   "title": "Load CLIP"
+  },
+  "class_type": "CLIPLoader",
+  "inputs": {
+   "clip_name": "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+   "device": "default",
+   "type": "qwen_image"
+  }
+ },
+ "7": {
+  "_meta": {
+   "title": "Load VAE"
+  },
+  "class_type": "VAELoader",
+  "inputs": {
+   "vae_name": "qwen_image_vae.safetensors"
+  }
+ },
+ "8": {
+  "_meta": {
+   "title": "Empty Latent Image"
+  },
+  "class_type": "EmptyLatentImage",
+  "inputs": {
+   "batch_size": 1,
+   "height": 810,
+   "width": 1500
+  }
+ },
+ "60": {
+  "_meta": {
+   "title": "$base"
+  },
+  "class_type": "LoadImage",
+  "inputs": {
+   "image": "$base"
+  }
+ }
+}
