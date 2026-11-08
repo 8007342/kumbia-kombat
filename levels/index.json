@@ -1,5 +1,5 @@
 {
-  "displayTotal": 7,
+  "displayTotal": 8,
   "campaign": [
     {
       "level": "garden",
@@ -26,7 +26,11 @@
       "bridgeToNext": "comedor_to_salon"
     },
     {
-      "level": "salon"
+      "level": "salon",
+      "bridgeToNext": "salon_to_galeria"
+    },
+    {
+      "level": "galeria"
     }
   ],
   "upcomingOpponents": [],

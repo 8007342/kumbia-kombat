@@ -48,6 +48,7 @@ void main() {
         'billiards': 'Tres Bandas',
         'comedor': 'LA TORRE DE CHAROLAS',
         'salon': 'EL GIRO DE TERCIOPELO',
+        'galeria': 'EL MURO DE TACONES',
       });
       expect(registry.upcomingOpponents, isEmpty);
       for (final combo in registry.levels.map((l) => l.hardestCombo!)) {

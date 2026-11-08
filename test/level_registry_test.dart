@@ -9,6 +9,7 @@ import 'package:kumbia_kombat/gameplay/garden_scene.dart';
 import 'package:kumbia_kombat/gameplay/garden_session.dart';
 import 'package:kumbia_kombat/gameplay/gesture_shapes.dart';
 import 'package:kumbia_kombat/gameplay/level_definition.dart';
+import 'package:kumbia_kombat/gameplay/thumb_layout.dart';
 import 'package:kumbia_kombat/gameplay/party_layout.dart';
 import 'package:kumbia_kombat/gameplay/progression.dart';
 import 'package:kumbia_kombat/gameplay/room_departure.dart';
@@ -95,11 +96,35 @@ void main() {
     // offbeat share drops on purpose. It grows by richer steps instead, and asks
     // more presses a second at its top tier than the billiard room, being faster.
     // A proposal, from the wiring agent (plan/levels/salon-wiring-2026-11-07.md).
-    expect(rich(charts[5]), greaterThan(rich(charts[4])));
+    FightChart chart(String id) =>
+        _shipping().campaign.firstWhere((s) => s.level.id == id).level.chart;
     double topRate(FightChart chart, double bpm) =>
         chart.pattern(chart.variants.length).offsets.length /
         (chart.callBeats * 60 / bpm);
-    expect(topRate(charts[5], 124), greaterThan(topRate(charts[4], 104)));
+    expect(rich(chart('salon')), greaterThan(rich(charts[4])));
+    expect(topRate(chart('salon'), 124), greaterThan(topRate(charts[4], 104)));
+    // Act two is tension and release, not a steady climb
+    // (plan/levels/act-two-wiring-2026-11-08.md, proposals). The comedor's polka
+    // asks more richer steps than billiards before it; the galería's reel the
+    // most feet a second of any level.
+    expect(rich(chart('comedor')), greaterThan(rich(charts[4])));
+    if (_shipping().levels.any((l) => l.id == 'galeria')) {
+      double feetRate(FightChart chart, double bpm) =>
+          chart
+              .pattern(chart.variants.length)
+              .limbs
+              .where((l) => !limbIsUpper(l))
+              .length /
+          (chart.callBeats * 60 / bpm);
+      final reel = feetRate(chart('galeria'), 130);
+      for (final (id, bpm) in [
+        ('billiards', 104.0),
+        ('comedor', 136.0),
+        ('salon', 124.0),
+      ]) {
+        expect(reel, greaterThan(feetRate(chart(id), bpm)), reason: id);
+      }
+    }
     // Its signature: a cue stroke offered in every pattern.
     for (var i = 0; i <= charts[4].variants.length; i++) {
       expect(charts[4].pattern(i).offers.whereType<GestureKind>(), isNotEmpty);
@@ -234,9 +259,10 @@ void main() {
           'billiards',
           'comedor',
           'salon',
+          'galeria',
         ]);
-        expect(levels.displayTotal, 7);
-        final [garden, lawn, bar, party, billiards, comedor, salon] =
+        expect(levels.displayTotal, 8);
+        final [garden, lawn, bar, party, billiards, comedor, salon, galeria] =
             levels.campaign;
         expect(garden.next, same(lawn.level));
         expect(garden.bridgeToNext, 'garden_to_pool');
@@ -250,8 +276,10 @@ void main() {
         expect(billiards.bridgeToNext, 'billiards_to_comedor');
         expect(comedor.next, same(salon.level));
         expect(comedor.bridgeToNext, 'comedor_to_salon');
-        expect(salon.next, isNull);
-        expect(salon.bridgeToNext, isNull);
+        expect(salon.next, same(galeria.level));
+        expect(salon.bridgeToNext, 'salon_to_galeria');
+        expect(galeria.next, isNull);
+        expect(galeria.bridgeToNext, isNull);
         expect(levels.exitScoreIds, {
           'garden_mojo_success',
           'garden_to_pool',
@@ -265,6 +293,8 @@ void main() {
           'comedor_polka_success',
           'comedor_to_salon',
           'salon_bolero_success',
+          'salon_to_galeria',
+          'galeria_reel_success',
         });
         expect(garden.level.copy.clearedShout, 'MUCHO MOJO');
         expect(bar.level.copy.clearedShout, 'MUY SUAVE');

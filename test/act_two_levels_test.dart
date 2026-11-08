@@ -7,6 +7,7 @@ import 'package:flame/game.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:kumbia_kombat/gameplay/crowd_interest.dart';
 import 'package:kumbia_kombat/gameplay/dance_floor.dart';
+import 'package:kumbia_kombat/gameplay/dance_line.dart';
 import 'package:kumbia_kombat/gameplay/garden_scene.dart';
 import 'package:kumbia_kombat/gameplay/garden_session.dart';
 import 'package:kumbia_kombat/gameplay/level_definition.dart';
@@ -92,6 +93,18 @@ void _polka(String id, ChartPattern pattern, int index) {
   expect(offBeat, greaterThanOrEqualTo(hands.length ~/ 2), reason: '$id $index');
 }
 
+/// Reel: foot-heavy and relentless. Feet carry all but a hand or two of every
+/// pattern, and the top tier keeps them going on the eighths.
+void _reel(String id, ChartPattern pattern, int index) {
+  final hands = pattern.limbs.where(limbIsUpper).length;
+  expect(hands, lessThanOrEqualTo(2), reason: '$id pattern $index');
+  expect(
+    pattern.limbs.length - hands,
+    greaterThanOrEqualTo(pattern.limbs.length * .8),
+    reason: '$id pattern $index',
+  );
+}
+
 const _specs = [
   _Spec(
     'comedor',
@@ -101,6 +114,15 @@ const _specs = [
     cleared: 'QUÉ BANQUETE',
     combo: 'LA TORRE DE CHAROLAS',
     style: _polka,
+  ),
+  _Spec(
+    'galeria',
+    after: 'salon',
+    title: 'LA GALERÍA',
+    metric: 'Drive',
+    cleared: 'QUÉ ZAPATEO',
+    combo: 'EL MURO DE TACONES',
+    style: _reel,
   ),
 ];
 
@@ -331,6 +353,67 @@ void main() {
       });
     });
   }
+
+  group('the galería line, five as one', () {
+    final level = _registry().byId('galeria');
+    final lead = level.stage.challengers.single;
+    final line = lead.line!;
+
+    test('five dancers, each at most half a beat behind the lead', () {
+      expect(line.dancers, hasLength(4));
+      for (final dancer in line.dancers) {
+        expect(dancer.lagBeats, inInclusiveRange(0, DanceLine.maxLagBeats));
+      }
+      // The ripple runs out from the centre: the ends are the latest.
+      expect(line.dancers.first.lagBeats, line.dancers.last.lagBeats);
+    });
+
+    test('the arch is drawn, and he walks out between its two sides', () {
+      final arch = line.arch!;
+      expect(_frames(lead.atlas), containsAll(arch.frames));
+      final shot = level.exitShot!;
+      expect(arch.from + arch.beats, lessThanOrEqualTo(shot.closeupFrom));
+      final meet = lead.meetMark!;
+      final sides = [
+        for (final d in line.dancers) meet.x + d.archOffset!.x,
+      ];
+      final door = level.heroExitFloor(level.route.sample(1));
+      expect(sides.where((x) => x < door.x), hasLength(2));
+      expect(sides.where((x) => x > door.x), hasLength(2));
+      // Facing each other across the arch.
+      for (final d in line.dancers) {
+        expect(d.archMirrored, meet.x + d.archOffset!.x > door.x);
+      }
+    });
+
+    test('the loader refuses a dancer too late, or off the floor', () {
+      Map<String, dynamic> json() =>
+          jsonDecode(_read('galeria')) as Map<String, dynamic>;
+      Map<String, dynamic> first(Map<String, dynamic> j) =>
+          ((((j['stage'] as Map)['challengers'] as List).single as Map)['line']
+                  as Map)['dancers'][0]
+              as Map<String, dynamic>;
+      final late = json();
+      first(late)['lagBeats'] = 1;
+      expect(() => LevelDefinition.fromJson(late), throwsA(isA<LevelDataError>()));
+      final off = json();
+      first(off)['offset'] = [0, .3];
+      expect(() => LevelDefinition.fromJson(off), throwsA(isA<LevelDataError>()));
+    });
+
+    test('a late dancer holds the arch\'s drawing once it forms', () {
+      const arch = LineArch(from: 1, beats: 2, frames: ['up_a', 'up_b']);
+      expect(arch.frameAt(1.5), isNull);
+      expect(arch.frameAt(2), 'up_a');
+      expect(arch.frameAt(3), 'up_b');
+      expect(arch.frameAt(2, reducedMotion: true), 'up_b');
+      const still = DanceLine(dancers: [], arch: LineArch(from: 1, beats: 2));
+      expect(still.archAt(1), 0);
+      expect(still.archAt(3), 1);
+      expect(still.archAt(2), closeTo(.5, 1e-9));
+      expect(still.archAt(1.9, reducedMotion: true), 0);
+    });
+  });
 
   group('the general pieces, refused when wrong', () {
     Map<String, dynamic> comedor() =>

@@ -656,7 +656,7 @@ const actTwoPieces=[
   sectionNames:['First course','Second helping','The trio, in B-flat','Sobremesa'],
   success:{plan:[['F',0],['Bb',4],['C7',8],['F',12]],final:false},
   intent:'Quote the polka\'s call over F, then B-flat and C7 bring it home to F; the band thins to the tololoche and snare as Don Charolas lifts the cloche.'},
- {id:'galeria_reel',title:'Trébol',stat:'Drive',level:'galeria',bars:32,bpms:[112,116,120,124,128],key:57,root:69,mode:'dorian',
+ {id:'galeria_reel',title:'Trébol',stat:'Drive',level:'galeria',bars:32,bpms:[114,118,122,126,130],key:57,root:69,mode:'dorian',
   chords:{Am:[0,'m'],G:[10,'M'],D:[5,'M'],Em:[7,'m'],C:[3,'M']},
   form:[['Am'],['G'],['Am'],['G'],['Am'],['D'],['Em'],['Am'], ['Am'],['G'],['Am'],['G'],['Am'],['D'],['Em'],['Am'],
    ['C'],['G'],['D'],['Am'],['C'],['G'],['Em'],['Am'], ['C'],['G'],['D'],['Am'],['C'],['G'],['Em'],['Am']],

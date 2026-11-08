@@ -131,8 +131,8 @@ assert.ok(['sine','square','sawtooth','triangle'].includes(level.music.leadShape
 assert.equal(level.music.score,'pool_swing');assert.equal(level.music.successScore,'pool_swing_success');
 assert.equal(level.title,'THE POOL LAWN');assert.ok(['Sabor','Grace'].includes(level.rules.metric));
 const campaign=json('levels/index.json').campaign;
-assert.deepEqual(campaign.map(s=>s.level),['garden','pool-garden','bar','cool-crowd','billiards','comedor','salon'],'the owner\'s order, tenth round, then the party, billiards, the comedor and the salon');
-assert.deepEqual(campaign.map(s=>s.bridgeToNext),['garden_to_pool','pool_to_bar','bar_to_crowd','crowd_to_restroom','billiards_to_comedor','comedor_to_salon',undefined]);
+assert.deepEqual(campaign.map(s=>s.level),['garden','pool-garden','bar','cool-crowd','billiards','comedor','salon','galeria'],'the owner\'s order, tenth round, then the party, billiards, the comedor, the salon and the gallery');
+assert.deepEqual(campaign.map(s=>s.bridgeToNext),['garden_to_pool','pool_to_bar','bar_to_crowd','crowd_to_restroom','billiards_to_comedor','comedor_to_salon','salon_to_galeria',undefined]);
 const chart=level.chart, LIMBS=['leftHand','rightHand','leftFoot','rightFoot'];
 assert.equal(chart.callBeats,8);
 assert.equal(chart.offsets.length,chart.limbs.length);

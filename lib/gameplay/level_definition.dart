@@ -78,6 +78,9 @@ class _Fields {
 
   PartyPoint point(String key) => _point(at(key), _take(key));
 
+  /// A move from somewhere, so either way: [dx, dy] in -1..1.
+  PartyPoint offset(String key) => _point(at(key), _take(key), min: -1);
+
   bool flag(String key) {
     final value = _take(key);
     if (value is bool) return value;
@@ -116,13 +119,13 @@ double _number(String path, Object? value, {double? min, double? max}) {
   return number;
 }
 
-PartyPoint _point(String path, Object? value) {
+PartyPoint _point(String path, Object? value, {double min = 0}) {
   if (value is! List<Object?> || value.length != 2) {
     throw LevelDataError(path, 'expected [x, y], found $value');
   }
   return PartyPoint(
-    _number('$path[0]', value[0], min: 0, max: 1),
-    _number('$path[1]', value[1], min: 0, max: 1),
+    _number('$path[0]', value[0], min: min, max: 1),
+    _number('$path[1]', value[1], min: min, max: 1),
   );
 }
 
@@ -1491,8 +1494,8 @@ class LevelDefinition {
     final dancers = <LineDancer>[];
     for (final (i, entry) in raw.indexed) {
       final dancer = _Fields('$path[$i]', entry);
-      final offset = dancer.point('offset');
-      final arch = dancer.has('archOffset') ? dancer.point('archOffset') : null;
+      final offset = dancer.offset('offset');
+      final arch = dancer.has('archOffset') ? dancer.offset('archOffset') : null;
       final lag = dancer.has('lagBeats')
           ? dancer.number('lagBeats', min: 0, max: DanceLine.maxLagBeats)
           : 0.0;
@@ -1520,9 +1523,21 @@ class LevelDefinition {
     LineArch? arch;
     if (fields.has('arch')) {
       final a = fields.child('arch');
+      final framesPath = a.at('frames');
       arch = LineArch(
         from: a.number('from', min: 0),
         beats: a.number('beats', min: .25),
+        frames: a.has('frames')
+            ? [
+                for (final (i, f) in a.list('frames').indexed)
+                  f is String && f.isNotEmpty
+                      ? f
+                      : throw LevelDataError('$framesPath[$i]', 'a drawing name'),
+              ]
+            : const [],
+        beatsPerFrame: a.has('beatsPerFrame')
+            ? a.number('beatsPerFrame', min: .25)
+            : 1,
       );
       a.finish();
     }
