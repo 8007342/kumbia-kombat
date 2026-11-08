@@ -867,6 +867,9 @@ class GardenSceneGame extends FlameGame {
   void _drawRoomLayers(ui.Canvas canvas, PartyViewport viewport, double beat) {
     final swing = _partySwing(beat);
     final paint = ui.Paint()..filterQuality = ui.FilterQuality.none;
+    // Lights also bloom with the win's flare, which the warm-down doesn't cool:
+    // fireworks fill the sky as the lamps swell.
+    final flare = _flareNow;
     for (final prop in _level!.layers) {
       // A prop waiting for a tier holds still below it, even at full swing.
       final gate = prop.minTier == null
@@ -874,7 +877,9 @@ class GardenSceneGame extends FlameGame {
           : _partyUp.wake(beat, first: prop.minTier!) * (1 - warmDown);
       final frame = prop.frameAt(
         beat: beat,
-        swing: swing * gate,
+        swing: prop.kind == PartyLifeKind.light
+            ? math.max(swing * gate, flare)
+            : swing * gate,
         reducedMotion: reducedMotion,
         life: prop.minTier == null
             ? _life(prop.kind, beat, prop.instance)

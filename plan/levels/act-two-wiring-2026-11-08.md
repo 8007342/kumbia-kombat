@@ -117,6 +117,26 @@ All three follow the design note. Galería and terraza each walk Mācron out wit
 
 Siobhán herself and the gallery's room-life layers are still to come.
 
+**Swapped in, 2026-11-08:** waiter-a (`work/1881-cmdr` be4e516), on a `waiter` clip set that hops the polka (`groove_*` at half a beat a drawing). He faces right, so he isn't mirrored and the tray stays on his picture-right.
+
+**Swapped in, 2026-11-08:** TERRAZA's room (`work/1886-terr` cbac883):
+- the plate, with its floor at horizon .36;
+- the marks: she meets him on his left, so she stays on the picture's left in the close-up;
+- the route to the stair head;
+- 12 guests: couples from guest3–6 on `pair_dance`, and guest0–2 dancing alone on a `solo` clip set of their step-touch drawings;
+- the lamps;
+- the layers: five firework bursts (light, growing with every tier), palms and festoon bulbs (artwork, tier 4);
+- the close-up plate, and Mācron's rest, kissed and sparking drawings;
+- the lipstick kiss mark as his keepsake from beat 6.
+
+**Code, at TERRAZA's request:** layers of kind `light` now also bloom with the win's `exitShot.flare`, which the warm-down doesn't cool, so the fireworks fill the sky as the lamps swell (`_drawRoomLayers`). Seen on the terraza's win stills, not in a unit test. [F]
+
+**Swapped in, 2026-11-08:** COMEDOR's eight diners (`work/1881-cmdr` 451fd0b), `diner-a` to `diner-h`, on the `diner` clip set:
+- the meter: eat, watch, clap, then rise and raise the glass; at the win they rise and toast;
+- drawn in place 1:1 with the plate, never mirrored, and scaled from `playerHeightPx` 168.
+
+Their first atlases put the anchor (the floor under the chair) below the frames, which stop at the table top. The loader refuses an anchor outside its frame, so COMEDOR padded every frame down to it, and nothing moved on screen. [F]
+
 `pubspec.yaml` now lists `assets/art/comedor/` and `galeria/`, plus `assets/music/rendered/comedor/` and `galeria/`, which were missing: the web build wouldn't have bundled those takes. A test now holds every folder a level or a rendered take names. [F]
 
 Each swap is a data edit in the level's file and re-running the generator (`make_<level>.py` in my scratch folder, to be folded in by hand when the art lands), plus a test run.
@@ -124,11 +144,11 @@ Each swap is a data edit in the level's file and re-running the generator (`make
 | Level | What | Stand-in today | Real piece from |
 |---|---|---|---|
 | Comedor | Don Charolas | terciopelo's atlas, `id: terciopelo` so his combo finds a choreography | `charolas`, plus a dancer entry in `choreography.json` |
-| Comedor | diners, waiters | guest0–2 seated, guest3–5 standing, on clip sets | `diner-a`… on the `diner` set, `waiter-a`… on the `waiter` set. COMEDOR's plan is 7 diners, 3 waiters and 2 late guests, making 12 |
+| Comedor | waiters b and c, late guest | guest5 and 6 on the `waiterStandIn` set; guest4 on the `guest` set | `waiter-b`, `waiter-c` on the `waiter` set |
 | Comedor | the cloche close-up | the bar's oil gulp | `comedor-dc-*`, `comedor-can.png`, `comedor-mc-*` |
 | Galería | Siobhán and Las Tréboles | swing-a's atlas, five times | GALERIA art (later wave) |
 | Terraza | Tía Purpurina | blinblin's atlas | TERRAZA art (later wave) |
-| Terraza | plate, crowd, close-up, fireworks | the salon's room and couples, the lawn's kiss with one kisser, the flare for fireworks. No kiss-mark keepsake yet | TERRAZA art |
+| Terraza | her bust in the close-up | the lawn's `duet-a` with a hedge | `terraza-tp-{rest,kiss}.png` |
 
 ## What was checked, and how
 
