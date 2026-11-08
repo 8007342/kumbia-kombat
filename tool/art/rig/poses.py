@@ -1049,3 +1049,11 @@ OPPONENT_POLKA_INTENT = POLKA_INTENT
 assert set(OPPONENT_POLKA_INTENT) == {f"{c}.{n}" for c, d in OPPONENT_POLKA.items() for n in d}, "intent ids != pose ids"
 MOTION_SETS = {**MOTION_SETS, "opponent-polka": OPPONENT_POLKA}
 INTENT_BY_SET = {**INTENT_BY_SET, "opponent-polka": OPPONENT_POLKA_INTENT}
+
+# Motion set staff-polka: the comedor's junior waiters (plan/levels/comedor-art-2026-11-08.md). Only what the staff
+# line dances: Don Charolas' polka hop with the tray, and one standing drawing to rest and scale from.
+STAFF_POLKA = {"groove": OPPONENT_POLKA["groove"], "idle": {"a": OPPONENT_POLKA["challenge"]["return"]}}
+STAFF_POLKA_INTENT = {k: v for k, v in OPPONENT_POLKA_INTENT.items() if k.startswith("groove.")}
+STAFF_POLKA_INTENT["idle.a"] = OPPONENT_POLKA_INTENT["challenge.return"]
+MOTION_SETS = {**MOTION_SETS, "staff-polka": STAFF_POLKA}
+INTENT_BY_SET = {**INTENT_BY_SET, "staff-polka": STAFF_POLKA_INTENT}

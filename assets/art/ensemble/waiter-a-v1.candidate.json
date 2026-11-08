@@ -1,0 +1,477 @@
+{
+ "atlas": "waiter-a",
+ "image": "waiter-a-v1.png",
+ "imageWidth": 1024,
+ "imageHeight": 514,
+ "referenceFrame": "idle_a",
+ "family": "tool/art/families/waiter-a-v1.json",
+ "animationReferences": {
+  "registry": "tool/art/references/animation-principles.json",
+  "research": [
+   "plan/levels/mansion-act-two-2026-11-08.md"
+  ],
+  "principlesUsed": [
+   "contrapposto",
+   "exaggeration-accent",
+   "follow-through",
+   "line-of-action",
+   "no-twinning",
+   "planted-pivot",
+   "secondary-action",
+   "staging-silhouette",
+   "timing-on-beat"
+  ],
+  "sourcesUsed": [
+   "cartwright-gdc2014",
+   "contrapposto-fonseca",
+   "dead-cells-pipeline",
+   "disney-process",
+   "illusion-of-life",
+   "silhouette-test",
+   "simogo-bsb",
+   "slynyrd-53",
+   "slynyrd-55",
+   "twinning",
+   "ubisoft-foot-ik",
+   "williams-survival-kit"
+  ]
+ },
+ "ramps": {
+  "skin": {
+   "region": "skin",
+   "alsoIn": [],
+   "shades": [
+    "#3C1600",
+    "#61371D",
+    "#8A5A3C",
+    "#A4795F"
+   ]
+  },
+  "hair": {
+   "region": "hair",
+   "alsoIn": [],
+   "shades": [
+    "#000000",
+    "#040201",
+    "#201814",
+    "#38302D"
+   ]
+  },
+  "shirt": {
+   "region": "shirt",
+   "alsoIn": [],
+   "shades": [
+    "#9D9B96",
+    "#C5C4BE",
+    "#F0EEE8",
+    "#FDFCF7"
+   ]
+  },
+  "waistcoat": {
+   "region": "cloth",
+   "alsoIn": [],
+   "shades": [
+    "#000001",
+    "#020204",
+    "#1A1A20",
+    "#323238"
+   ]
+  },
+  "apron": {
+   "region": "cloth",
+   "alsoIn": [],
+   "shades": [
+    "#000002",
+    "#06060B",
+    "#22222A",
+    "#3B3B42"
+   ]
+  },
+  "bowtie": {
+   "region": "accessory",
+   "alsoIn": [
+    "shirt",
+    "cloth",
+    "skin"
+   ],
+   "shades": [
+    "#000003",
+    "#010102",
+    "#141418",
+    "#2C2C2F"
+   ]
+  },
+  "silver": {
+   "region": "accessory",
+   "alsoIn": [
+    "cloth",
+    "skin",
+    "shirt",
+    "hair"
+   ],
+   "shades": [
+    "#6A6D74",
+    "#90949B",
+    "#B8BCC4",
+    "#D9DCE3"
+   ]
+  },
+  "wine": {
+   "region": "accessory",
+   "alsoIn": [
+    "cloth",
+    "skin",
+    "shirt",
+    "hair"
+   ],
+   "shades": [
+    "#240000",
+    "#4D0007",
+    "#7A1424",
+    "#933E43"
+   ]
+  },
+  "trousers": {
+   "region": "trousers",
+   "alsoIn": [],
+   "shades": [
+    "#000004",
+    "#010103",
+    "#15151A",
+    "#2D2D31"
+   ]
+  },
+  "shoes": {
+   "region": "shoes",
+   "alsoIn": [
+    "trousers"
+   ],
+   "shades": [
+    "#000005",
+    "#000006",
+    "#0E0E12",
+    "#252529"
+   ]
+  }
+ },
+ "frames": {
+  "groove_down_l": {
+   "rect": [
+    194,
+    263,
+    184,
+    242
+   ],
+   "anchor": [
+    85.2,
+    239.4
+   ],
+   "pixelsPerUnit": 6.4258,
+   "facing": "front",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "left",
+   "status": "candidate",
+   "provenance": {
+    "run": "waiter-a-v1-20261108a",
+    "pose": "groove.down_l",
+    "sha256": "576d24389fce97ab20aabbc2859ac916c6bd41df6d10d662c7e1101fdaf6d50e",
+    "selected": 994000,
+    "frameKey": null,
+    "accepted": true,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "secondary-action",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  },
+  "groove_down_r": {
+   "rect": [
+    380,
+    263,
+    165,
+    242
+   ],
+   "anchor": [
+    42.8,
+    239.4
+   ],
+   "pixelsPerUnit": 6.4258,
+   "facing": "front",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "right",
+   "status": "candidate",
+   "provenance": {
+    "run": "waiter-a-v1-20261108a",
+    "pose": "groove.down_r",
+    "sha256": "f6b566aeacd1d9fc1ff061f6d471a7b9fa524d952404ef38088541895a074e48",
+    "selected": 994001,
+    "frameKey": null,
+    "accepted": true,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "secondary-action",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  },
+  "groove_pass_l": {
+   "rect": [
+    479,
+    2,
+    196,
+    256
+   ],
+   "anchor": [
+    79.0,
+    247.4
+   ],
+   "pixelsPerUnit": 6.4258,
+   "facing": "front",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "waiter-a-v1-20261108a",
+    "pose": "groove.pass_l",
+    "sha256": "be8459939d6f179119e3138778d3cdeabdc24bf340d00a07b619d9fd1b6da448",
+    "selected": 994001,
+    "frameKey": null,
+    "accepted": true,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "secondary-action",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  },
+  "groove_pass_l2": {
+   "rect": [
+    2,
+    2,
+    232,
+    259
+   ],
+   "anchor": [
+    137.2,
+    246.4
+   ],
+   "pixelsPerUnit": 6.4258,
+   "facing": "front",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "left",
+   "status": "candidate",
+   "provenance": {
+    "run": "waiter-a-v1-20261108a",
+    "pose": "groove.pass_l2",
+    "sha256": "5aa561c2648b130ff85c20f72990beeb933df4e151a6ffcabcfbceb931ed616f",
+    "selected": 994000,
+    "frameKey": null,
+    "accepted": true,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "line-of-action",
+     "contrapposto",
+     "exaggeration-accent",
+     "secondary-action",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  },
+  "groove_pass_r": {
+   "rect": [
+    677,
+    2,
+    175,
+    256
+   ],
+   "anchor": [
+    62.0,
+    247.4
+   ],
+   "pixelsPerUnit": 6.4258,
+   "facing": "front",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "waiter-a-v1-20261108a",
+    "pose": "groove.pass_r",
+    "sha256": "5bbf61b788a652c738f1cce2449613b55c4cbb47401606c9b7c1b0975901a0e0",
+    "selected": 994000,
+    "frameKey": null,
+    "accepted": true,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "secondary-action",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  },
+  "groove_pass_r2": {
+   "rect": [
+    236,
+    2,
+    241,
+    259
+   ],
+   "anchor": [
+    99.8,
+    246.4
+   ],
+   "pixelsPerUnit": 6.4258,
+   "facing": "front",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "right",
+   "status": "candidate",
+   "provenance": {
+    "run": "waiter-a-v1-20261108a",
+    "pose": "groove.pass_r2",
+    "sha256": "40092462bde24788fb57c2a06f2b97cb75801516e10ef0339bea8fa932649948",
+    "selected": 994000,
+    "frameKey": null,
+    "accepted": true,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "line-of-action",
+     "contrapposto",
+     "exaggeration-accent",
+     "secondary-action",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  },
+  "groove_up_l": {
+   "rect": [
+    547,
+    263,
+    233,
+    239
+   ],
+   "anchor": [
+    130.2,
+    236.4
+   ],
+   "pixelsPerUnit": 6.4258,
+   "facing": "front",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "left",
+   "status": "candidate",
+   "provenance": {
+    "run": "waiter-a-v1-20261108a",
+    "pose": "groove.up_l",
+    "sha256": "a50b3aea305796f4c754d707f87c735ff4e96f1c8d4aaa8eca7e7c3e259667b1",
+    "selected": 994000,
+    "frameKey": null,
+    "accepted": true,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "secondary-action",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  },
+  "groove_up_r": {
+   "rect": [
+    782,
+    263,
+    208,
+    239
+   ],
+   "anchor": [
+    83.8,
+    236.4
+   ],
+   "pixelsPerUnit": 6.4258,
+   "facing": "front",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "right",
+   "status": "candidate",
+   "provenance": {
+    "run": "waiter-a-v1-20261108a",
+    "pose": "groove.up_r",
+    "sha256": "5afc3bcdc629a89c718fce60aaa9c6980ec8fbe264dab971700d564050b31d30",
+    "selected": 994000,
+    "frameKey": null,
+    "accepted": true,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "secondary-action",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  },
+  "idle_a": {
+   "rect": [
+    2,
+    263,
+    190,
+    249
+   ],
+   "anchor": [
+    83.0,
+    246.4
+   ],
+   "pixelsPerUnit": 6.4258,
+   "facing": "front",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "waiter-a-v1-20261108a",
+    "pose": "idle.a",
+    "sha256": "47791e3e1622d408a3c510904c11a29d8f161fdefa0f5f3592302b9a41dd1678",
+    "selected": 994000,
+    "frameKey": null,
+    "accepted": true,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "follow-through",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  }
+ }
+}

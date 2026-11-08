@@ -1,5 +1,5 @@
 {
- "$comment": "A junior waiter in the comedor's staff line (plan/levels/mansion-act-two-2026-11-08.md, section 6): hops the polka behind Don Charolas with a tray on the left hand (motion set opponent-polka, groove clip only). Black waistcoats against his white jacket, so the head waiter stays the one in white. COMEDOR, 2026-11-08, reversible.",
+ "$comment": "A junior waiter in the comedor's staff line (plan/levels/mansion-act-two-2026-11-08.md, section 6): hops the polka behind Don Charolas with a tray on the left hand (motion set staff-polka: the polka groove and one standing drawing). Black waistcoats against his white jacket, so the head waiter stays the one in white. COMEDOR, 2026-11-08, reversible.",
  "id": "waiter-a",
  "family": "waiter-a-v1",
  "style": "party-pixel",
@@ -102,7 +102,7 @@
   }
  ],
  "motion": {
-  "set": "opponent-polka",
+  "set": "staff-polka",
   "overrides": {}
  },
  "drawing": {

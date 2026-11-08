@@ -1,0 +1,31 @@
+{
+ "id": "staff-polka",
+ "description": "The comedor's junior waiters: Don Charolas' polka hop step with a silver tray on the left hand (the groove clip, 8 drawings) and one standing drawing (idle.a) to rest and scale from. Pose tables in tool/art/rig/poses.py under this id.",
+ "human": true,
+ "poseTable": "staff-polka",
+ "referencePose": "idle.a",
+ "clips": [
+  {
+   "id": "groove",
+   "drawings": 8,
+   "view": "front",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": []
+  },
+  {
+   "id": "idle",
+   "drawings": 1,
+   "view": "front",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": []
+  }
+ ],
+ "defaultProfile": "moderate",
+ "profileRules": [],
+ "research": [
+  "plan/levels/mansion-act-two-2026-11-08.md"
+ ],
+ "runtimeAliases": {}
+}
