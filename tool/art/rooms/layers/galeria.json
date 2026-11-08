@@ -1,0 +1,168 @@
+{
+ "room": "galeria",
+ "run": "layers-galeria-20261108",
+ "source": "art_runs/rooms/galeria/picks/plate-993301.png",
+ "plate": "assets/art/galeria/galeria-room.png",
+ "atlas": "assets/art/galeria/galeria-layers.png",
+ "level": "art_runs/rooms/galeria/layers-level.json",
+ "previewBpm": 122,
+ "keepWords": "Keep everything else exactly as it is: same pixel art, same camera, same colours.",
+ "$comment": "GALERIA, 2026-11-08. Room life at full party (minTier 4), the comedor's route: warped props bend the painting's own pixels about a pivot; drawn props are Qwen edits of a small box cut to a polygon, with the plate itself as the rest frame.",
+ "props": [
+  {
+   "id": "portrait-full",
+   "kind": "artwork",
+   "polygon": [
+    [
+     252,
+     242
+    ],
+    [
+     342,
+     242
+    ],
+    [
+     342,
+     368
+    ],
+    [
+     252,
+     368
+    ]
+   ],
+   "drawn": {
+    "box": [
+     226,
+     214,
+     370,
+     394
+    ],
+    "images": [],
+    "prompt": "Image 1 is part of a pixel art painting: an old oil portrait in a heavy gilt frame of a gentleman in a dark coat, hanging on a blue wall under a small brass picture light. Draw exactly the same picture, the same frame, wall, light and colours at the same place and size, and change only the painting inside the frame: the same gentleman is now painted at full length, standing on a dark floor, his dark trousers and his polished black shoes showing at the bottom of the painting."
+   },
+   "motion": "pulse",
+   "periodBeats": 2,
+   "frames": 2,
+   "instance": 1,
+   "minTier": 4
+  },
+  {
+   "id": "bust-nod",
+   "kind": "artwork",
+   "rule": "all",
+   "polygon": [
+    [
+     605,
+     315
+    ],
+    [
+     629,
+     315
+    ],
+    [
+     629,
+     341
+    ],
+    [
+     605,
+     341
+    ]
+   ],
+   "fill": {
+    "harmonic": true,
+    "polygon": [
+     [
+      603,
+      313
+     ],
+     [
+      631,
+      313
+     ],
+     [
+      631,
+      342
+     ],
+     [
+      603,
+      342
+     ]
+    ],
+    "dilate": 1
+   },
+   "motion": "pulse",
+   "periodBeats": 2,
+   "frames": 3,
+   "instance": 3,
+   "minTier": 4,
+   "warp": {
+    "pivot": [
+     617,
+     342
+    ],
+    "far": 26,
+    "reachPx": 2,
+    "power": 1
+   }
+  },
+  {
+   "id": "portrait-sway",
+   "kind": "artwork",
+   "rule": "all",
+   "polygon": [
+    [
+     543,
+     262
+    ],
+    [
+     597,
+     262
+    ],
+    [
+     597,
+     358
+    ],
+    [
+     543,
+     358
+    ]
+   ],
+   "fill": {
+    "harmonic": true,
+    "polygon": [
+     [
+      541,
+      260
+     ],
+     [
+      599,
+      260
+     ],
+     [
+      599,
+      359
+     ],
+     [
+      541,
+      359
+     ]
+    ],
+    "dilate": 1
+   },
+   "motion": "sway",
+   "periodBeats": 4,
+   "frames": 5,
+   "instance": 5,
+   "minTier": 4,
+   "warp": {
+    "pivot": [
+     566,
+     360
+    ],
+    "far": 96,
+    "reachPx": 2,
+    "power": 1
+   }
+  }
+ ]
+}
