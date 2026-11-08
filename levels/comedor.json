@@ -469,8 +469,8 @@
   ],
   "challengers": [
    {
-    "id": "terciopelo",
-    "atlas": "terciopelo",
+    "id": "charolas",
+    "atlas": "charolas",
     "mark": [
      0.5,
      0.5
@@ -973,18 +973,28 @@
  "hardestCombo": {
   "name": "LA TORRE DE CHAROLAS",
   "status": "proposal",
-  "note": "Proposal, from the wiring agent. The tower of trays: the polka step on the feet, then the hands stacking tray on tray, a press each three quarters of a beat as the tower grows, and two stamps to hold it steady. Three-quarter gaps keep every note 331 ms apart at 136 BPM, over the 230 ms a combo note must keep. Danced on the shared groove clips until Don Charolas' torre drawings land. The owner hasn't seen or played it.",
+  "note": "Proposal from COMEDOR and the wiring agent. The tower of trays: a polka spin, then the tower of five trays goes up on the left hand and he hops the polka under it, and lands it with the tray thrust high. The notes keep three quarters of a beat or more apart (half a beat is 221 ms at 136 BPM, under the 230 ms good window): the feet on the polka, the hands stacking the tower in the middle, closing on a stomp. The owner hasn't seen or played it.",
   "callBeats": 8,
   "moves": [
    {
     "at": 0,
-    "beats": 4,
-    "clip": "groove_double"
+    "beats": 2,
+    "clip": "polka_spin"
    },
    {
-    "at": 4,
+    "at": 2,
+    "beats": 1,
+    "clip": "torre"
+   },
+   {
+    "at": 3,
     "beats": 4,
-    "clip": "groove_double"
+    "clip": "torre_hop"
+   },
+   {
+    "at": 7,
+    "beats": 1,
+    "clip": "torre"
    }
   ],
   "notes": [
@@ -1176,10 +1186,10 @@
    {
     "from": 2,
     "frames": [
-     "offer_hand_a",
-     "offer_hand_b"
+     "cloche_stop",
+     "cloche_present"
     ],
-    "beatsPerFrame": 1.5
+    "beatsPerFrame": 1
    },
    {
     "from": 11.5,

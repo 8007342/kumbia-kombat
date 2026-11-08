@@ -124,6 +124,15 @@ The four Tréboles wear GALERIA's recoloured copies of her atlas (raven, honey, 
 
 **Swapped in, 2026-11-08:** the gallery's room life (`work/1885-galr` 2fd90ac): a repainted plate where the far-left portrait is full length, so its gentleman can tap his foot; plus that foot tap, a bust's nod and a portrait's sway, all artwork at tier 4.
 
+**Swapped in, 2026-11-08:** Don Charolas himself (`work/1881-cmdr` 2892b75):
+- his atlas `charolas` and dancer entry: the polka hop on the groove, a tray saved, a napkin flick and the tower as accents, and a polka spin into Mācron's turn;
+- on the win's wide shot, the spin to a stop (8 drawings at a quarter beat) and the cloche presented;
+- LA TORRE DE CHAROLAS on his own clips (polka_spin, torre, torre_hop, torre), with the re-timed notes.
+
+**Two fixes to COMEDOR's data, made here because COMEDOR had finished:**
+- 20 of his frames had their anchor up to 4.1 atlas px below the frame's rect, which the loader refuses. I clamped each to the rect's bottom edge, about 1.5 screen px at play size.
+- `polka_spin` listed 9 drawings against 8 beat lengths. I dropped the untimed ninth (`groove_pass_l2`), so the spin is 2 beats, as the combo and the handoff expect. [F]
+
 **Swapped in, 2026-11-08:** the banquet close-up (`work/1881-cmdr` 745213a), with the salon's geometry: Don Charolas' four drawings (present, lift, offer, empty), Mācron's four (reach, take, sip, happy) and the plate cut from the room. The rendered page test now expects two `glug`s, not three. [F]
 
 **Swapped in, 2026-11-08:** all three waiters, `waiter-a` (`work/1881-cmdr` be4e516), `waiter-b` (9b73c6e) and `waiter-c` (e4611fb), on a `waiter` clip set that hops the polka (`groove_*` at half a beat a drawing). A waiter facing right keeps the tray on his picture-right. Waiter-b faces left, so he is mirrored and his tray moves to the other hand, which COMEDOR accepted.
@@ -156,7 +165,6 @@ Each swap is a data edit in the level's file and re-running the generator (`make
 
 | Level | What | Stand-in today | Real piece from |
 |---|---|---|---|
-| Comedor | Don Charolas | terciopelo's atlas, `id: terciopelo` so his combo finds a choreography | `charolas`, plus a dancer entry in `choreography.json` |
 | Comedor | late guest | guest4 on the `guest` set, by COMEDOR's choice (reused, in evening dress) | none planned |
 | Terraza | Tía Purpurina | blinblin's atlas | TERRAZA art (later wave) |
 
