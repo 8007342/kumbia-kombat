@@ -260,10 +260,20 @@ void main() {
           'comedor',
           'salon',
           'galeria',
+          'terraza',
         ]);
-        expect(levels.displayTotal, 8);
-        final [garden, lawn, bar, party, billiards, comedor, salon, galeria] =
-            levels.campaign;
+        expect(levels.displayTotal, 9);
+        final [
+          garden,
+          lawn,
+          bar,
+          party,
+          billiards,
+          comedor,
+          salon,
+          galeria,
+          terraza,
+        ] = levels.campaign;
         expect(garden.next, same(lawn.level));
         expect(garden.bridgeToNext, 'garden_to_pool');
         expect(lawn.next, same(bar.level));
@@ -278,8 +288,10 @@ void main() {
         expect(comedor.bridgeToNext, 'comedor_to_salon');
         expect(salon.next, same(galeria.level));
         expect(salon.bridgeToNext, 'salon_to_galeria');
-        expect(galeria.next, isNull);
-        expect(galeria.bridgeToNext, isNull);
+        expect(galeria.next, same(terraza.level));
+        expect(galeria.bridgeToNext, 'galeria_to_terraza');
+        expect(terraza.next, isNull);
+        expect(terraza.bridgeToNext, isNull);
         expect(levels.exitScoreIds, {
           'garden_mojo_success',
           'garden_to_pool',
@@ -295,6 +307,8 @@ void main() {
           'salon_bolero_success',
           'salon_to_galeria',
           'galeria_reel_success',
+          'galeria_to_terraza',
+          'terraza_samba_success',
         });
         expect(garden.level.copy.clearedShout, 'MUCHO MOJO');
         expect(bar.level.copy.clearedShout, 'MUY SUAVE');

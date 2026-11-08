@@ -1,0 +1,1075 @@
+{
+ "id": "terraza",
+ "title": "LA TERRAZA",
+ "background": "salon/salon-room.png",
+ "music": {
+  "score": "terraza_samba",
+  "successScore": "terraza_samba_success",
+  "leadShape": "triangle"
+ },
+ "rules": {
+  "metric": "Joy",
+  "cleanSeconds": 110,
+  "successesPerTier": 2,
+  "finalChallenges": 3,
+  "resetAfterFailures": 5,
+  "earlyHitRatio": 0.75
+ },
+ "chart": {
+  "introBeats": 12,
+  "callBeats": 8,
+  "flourishDestination": "rightHand",
+  "offsets": [
+   0,
+   0.75,
+   2,
+   2.75,
+   4,
+   4.75,
+   6,
+   6.75
+  ],
+  "limbs": [
+   "leftFoot",
+   "rightHand",
+   "rightFoot",
+   "leftHand",
+   "leftFoot",
+   "rightHand",
+   "rightFoot",
+   "leftHand"
+  ],
+  "variants": [
+   [
+    "leftFoot",
+    "rightFoot",
+    "leftFoot",
+    "leftHand",
+    "leftFoot",
+    "rightFoot",
+    "leftFoot",
+    "leftHand"
+   ],
+   [
+    "leftFoot",
+    "rightFoot",
+    "leftFoot",
+    "rightFoot",
+    "leftFoot",
+    "rightFoot",
+    "leftFoot",
+    "leftHand"
+   ],
+   [
+    "leftFoot",
+    "rightFoot",
+    "leftFoot",
+    "rightFoot",
+    "leftFoot",
+    "rightFoot",
+    "leftFoot",
+    "leftHand"
+   ],
+   [
+    "leftFoot",
+    "rightFoot",
+    "leftFoot",
+    "rightFoot",
+    "leftFoot",
+    "rightFoot",
+    "leftFoot",
+    "leftHand"
+   ],
+   [
+    "rightFoot",
+    "leftFoot",
+    "rightFoot",
+    "leftFoot",
+    "rightFoot",
+    "leftFoot",
+    "rightFoot",
+    "rightHand"
+   ],
+   [
+    "leftFoot",
+    "rightHand",
+    "rightFoot",
+    "leftFoot",
+    "rightFoot",
+    "leftFoot",
+    "rightFoot",
+    "leftFoot"
+   ]
+  ],
+  "rich": {
+   "limits": {
+    "pairToleranceMs": 80,
+    "sameSpotMs": 285,
+    "thumbHopMs": 330,
+    "crossThumbMs": 170,
+    "sameLimbMs": 400,
+    "phraseEndMs": 100
+   },
+   "patterns": {
+    "0": [
+     {
+      "at": 0,
+      "limb": "leftFoot"
+     },
+     {
+      "at": 0.75,
+      "limb": "rightHand"
+     },
+     {
+      "at": 2,
+      "limb": "rightFoot"
+     },
+     {
+      "at": 2.75,
+      "limb": "leftHand"
+     },
+     {
+      "at": 4,
+      "limb": "leftFoot"
+     },
+     {
+      "at": 4.75,
+      "limb": "rightHand"
+     },
+     {
+      "at": 6,
+      "limb": "rightFoot"
+     },
+     {
+      "at": 6.75,
+      "limb": "leftHand"
+     }
+    ],
+    "1": [
+     {
+      "at": 0,
+      "limb": "leftFoot",
+      "move": "split",
+      "with": "rightHand",
+      "gap": 0.75
+     },
+     {
+      "at": 1.5,
+      "limb": "rightFoot"
+     },
+     {
+      "at": 2,
+      "limb": "leftFoot"
+     },
+     {
+      "at": 2.75,
+      "limb": "leftHand"
+     },
+     {
+      "at": 4,
+      "limb": "leftFoot",
+      "move": "split",
+      "with": "rightHand",
+      "gap": 0.75
+     },
+     {
+      "at": 5.5,
+      "limb": "rightFoot"
+     },
+     {
+      "at": 6,
+      "limb": "leftFoot"
+     },
+     {
+      "at": 6.75,
+      "limb": "leftHand"
+     }
+    ],
+    "2": [
+     {
+      "at": 0,
+      "limb": "leftFoot",
+      "move": "split",
+      "with": "rightHand",
+      "gap": 0.75
+     },
+     {
+      "at": 1.5,
+      "limb": "rightFoot"
+     },
+     {
+      "at": 2,
+      "limb": "leftFoot",
+      "move": "split",
+      "with": "rightHand",
+      "gap": 0.75
+     },
+     {
+      "at": 3.5,
+      "limb": "rightFoot"
+     },
+     {
+      "at": 4,
+      "limb": "leftFoot",
+      "move": "split",
+      "with": "rightHand",
+      "gap": 0.75
+     },
+     {
+      "at": 5.5,
+      "limb": "rightFoot"
+     },
+     {
+      "at": 6,
+      "limb": "leftFoot"
+     },
+     {
+      "at": 6.75,
+      "limb": "leftHand"
+     }
+    ],
+    "3": [
+     {
+      "at": 0,
+      "limb": "leftFoot",
+      "move": "split",
+      "with": "rightHand",
+      "gap": 0.75
+     },
+     {
+      "at": 1.5,
+      "limb": "rightFoot"
+     },
+     {
+      "at": 2,
+      "limb": "leftFoot",
+      "move": "split",
+      "with": "rightHand",
+      "gap": 0.75
+     },
+     {
+      "at": 3.5,
+      "limb": "rightFoot"
+     },
+     {
+      "at": 4,
+      "limb": "leftFoot",
+      "move": "split",
+      "with": "rightHand",
+      "gap": 0.75
+     },
+     {
+      "at": 5.5,
+      "limb": "rightFoot"
+     },
+     {
+      "at": 6,
+      "limb": "leftFoot"
+     },
+     {
+      "at": 6.75,
+      "limb": "leftHand",
+      "move": "pair",
+      "with": "rightHand"
+     }
+    ],
+    "4": [
+     {
+      "at": 0,
+      "limb": "leftFoot",
+      "move": "split",
+      "with": "rightHand",
+      "gap": 0.75
+     },
+     {
+      "at": 1.5,
+      "limb": "rightFoot"
+     },
+     {
+      "at": 2,
+      "limb": "leftFoot",
+      "move": "split",
+      "with": "rightHand",
+      "gap": 0.75
+     },
+     {
+      "at": 3.5,
+      "limb": "rightFoot"
+     },
+     {
+      "at": 4,
+      "limb": "leftFoot",
+      "move": "split",
+      "with": "rightHand",
+      "gap": 0.75
+     },
+     {
+      "at": 5.5,
+      "limb": "rightFoot"
+     },
+     {
+      "at": 6,
+      "limb": "leftFoot"
+     },
+     {
+      "at": 6.75,
+      "limb": "leftHand",
+      "move": "pair",
+      "with": "rightHand"
+     }
+    ],
+    "5": [
+     {
+      "at": 0,
+      "limb": "rightFoot",
+      "move": "split",
+      "with": "leftHand",
+      "gap": 0.75
+     },
+     {
+      "at": 1.5,
+      "limb": "leftFoot"
+     },
+     {
+      "at": 2,
+      "limb": "rightFoot",
+      "move": "split",
+      "with": "leftHand",
+      "gap": 0.75
+     },
+     {
+      "at": 3.5,
+      "limb": "leftFoot"
+     },
+     {
+      "at": 4,
+      "limb": "rightFoot",
+      "move": "split",
+      "with": "leftHand",
+      "gap": 0.75
+     },
+     {
+      "at": 5.5,
+      "limb": "leftFoot"
+     },
+     {
+      "at": 6,
+      "limb": "rightFoot"
+     },
+     {
+      "at": 6.75,
+      "limb": "rightHand",
+      "move": "pair",
+      "with": "leftHand"
+     }
+    ],
+    "6": [
+     {
+      "at": 0,
+      "limb": "leftFoot",
+      "move": "pair",
+      "with": "rightFoot"
+     },
+     {
+      "at": 0.75,
+      "limb": "rightHand"
+     },
+     {
+      "at": 1.5,
+      "limb": "rightFoot"
+     },
+     {
+      "at": 2,
+      "limb": "leftFoot",
+      "move": "split",
+      "with": "rightHand",
+      "gap": 0.75
+     },
+     {
+      "at": 3.5,
+      "limb": "rightFoot"
+     },
+     {
+      "at": 4,
+      "limb": "leftFoot",
+      "move": "split",
+      "with": "rightHand",
+      "gap": 0.75
+     },
+     {
+      "at": 5.5,
+      "limb": "rightFoot"
+     },
+     {
+      "at": 6,
+      "limb": "leftFoot",
+      "move": "split",
+      "with": "rightHand",
+      "gap": 0.75
+     }
+    ]
+   }
+  }
+ },
+ "stage": {
+  "calibration": "unverifiedStoryboard",
+  "floor": {
+   "horizonY": 0.27,
+   "referenceFootY": 0.6,
+   "referenceHeight": 0.33,
+   "vanishingX": 0.505
+  },
+  "heroHome": [
+   0.5,
+   0.6
+  ],
+  "heroEntersAt": 6,
+  "heroEntrance": [
+   0.3,
+   0.64
+  ],
+  "heroRetreat": [
+   0.5,
+   0.625
+  ],
+  "heroWatch": [
+   0.5,
+   0.625
+  ],
+  "heroAside": [
+   0.38,
+   0.61
+  ],
+  "challengers": [
+   {
+    "id": "blinblin",
+    "atlas": "blinblin",
+    "mark": [
+     0.5,
+     0.5
+    ],
+    "yieldMark": [
+     0.62,
+     0.5
+    ],
+    "stature": 0.95,
+    "meetMark": [
+     0.46,
+     0.52
+    ]
+   }
+  ]
+ },
+ "crowd": {
+  "budgets": {
+   "interested": 12,
+   "following": 12,
+   "standing": 12,
+   "cheering": 12
+  },
+  "seat": "standing",
+  "floorDance": {
+   "ownThing": {
+    "frames": [
+     "standing_idle_a",
+     "standing_idle_b"
+    ],
+    "beatsPerFrame": 2
+   },
+   "glance": {
+    "frames": [
+     "standing_idle_a",
+     "standing_idle_b"
+    ],
+    "beatsPerFrame": 2
+   },
+   "occupied": {
+    "pair": {
+     "frames": [
+      "pair_dance_a",
+      "pair_dance_b",
+      "pair_dance_c",
+      "pair_dance_d"
+     ],
+     "beatsPerFrame": 2
+    },
+    "back": {
+     "frames": [
+      "back_dance_a",
+      "back_dance_b",
+      "back_dance_c",
+      "back_dance_d"
+     ],
+     "beatsPerFrame": 1
+    }
+   },
+   "castGlance": {
+    "frames": [
+     "glance_a",
+     "glance_b"
+    ],
+    "beatsPerFrame": 2
+   },
+   "following": {
+    "frames": [
+     "groove_a",
+     "groove_b",
+     "groove_c",
+     "groove_d"
+    ],
+    "beatsPerFrame": 1
+   },
+   "sidestep": {
+    "frames": [
+     "sidestep_a",
+     "sidestep_b",
+     "sidestep_c",
+     "sidestep_d"
+    ],
+    "beatsPerFrame": 0.5
+   }
+  },
+  "guests": [
+   {
+    "at": [
+     0.765,
+     0.388
+    ],
+    "occupied": "pair",
+    "faces": "right",
+    "partner": 1,
+    "atlas": "guest5"
+   },
+   {
+    "at": [
+     0.84,
+     0.388
+    ],
+    "occupied": "pair",
+    "faces": "left",
+    "partner": 0,
+    "atlas": "guest6"
+   },
+   {
+    "at": [
+     0.62,
+     0.4
+    ],
+    "occupied": "pair",
+    "faces": "right",
+    "partner": 3,
+    "atlas": "guest4"
+   },
+   {
+    "at": [
+     0.7,
+     0.4
+    ],
+    "occupied": "pair",
+    "faces": "left",
+    "partner": 2,
+    "atlas": "guest3"
+   },
+   {
+    "at": [
+     0.67,
+     0.455
+    ],
+    "occupied": "pair",
+    "faces": "right",
+    "partner": 5,
+    "atlas": "guest6"
+   },
+   {
+    "at": [
+     0.78,
+     0.455
+    ],
+    "occupied": "pair",
+    "faces": "left",
+    "partner": 4,
+    "atlas": "guest5"
+   },
+   {
+    "at": [
+     0.875,
+     0.42
+    ],
+    "occupied": "pair",
+    "faces": "right",
+    "partner": 7,
+    "atlas": "guest3"
+   },
+   {
+    "at": [
+     0.95,
+     0.42
+    ],
+    "occupied": "pair",
+    "faces": "left",
+    "partner": 6,
+    "atlas": "guest4"
+   },
+   {
+    "at": [
+     0.86,
+     0.46
+    ],
+    "occupied": "pair",
+    "faces": "right",
+    "partner": 9,
+    "atlas": "guest5"
+   },
+   {
+    "at": [
+     0.94,
+     0.46
+    ],
+    "occupied": "pair",
+    "faces": "left",
+    "partner": 8,
+    "atlas": "guest3"
+   },
+   {
+    "at": [
+     0.885,
+     0.495
+    ],
+    "occupied": "pair",
+    "faces": "right",
+    "partner": 11,
+    "atlas": "guest4"
+   },
+   {
+    "at": [
+     0.965,
+     0.495
+    ],
+    "occupied": "pair",
+    "faces": "left",
+    "partner": 10,
+    "atlas": "guest6"
+   }
+  ],
+  "props": []
+ },
+ "scenery": {
+  "lamps": [
+   [
+    0.254,
+    0.15
+   ],
+   [
+    0.511,
+    0.148
+   ],
+   [
+    0.767,
+    0.152
+   ],
+   [
+    0.11,
+    0.245
+   ],
+   [
+    0.4,
+    0.245
+   ],
+   [
+    0.62,
+    0.245
+   ],
+   [
+    0.91,
+    0.245
+   ]
+  ],
+  "plants": []
+ },
+ "departure": {
+  "threshold": "the stairs down from the terrace",
+  "originY": 0.6,
+  "waypoints": [
+   {
+    "at": 0,
+    "x": 0.5,
+    "y": 0.6,
+    "facing": "sideRight"
+   },
+   {
+    "at": 0.4,
+    "x": 0.64,
+    "y": 0.55,
+    "facing": "sideRight"
+   },
+   {
+    "at": 0.8,
+    "x": 0.8,
+    "y": 0.5,
+    "facing": "sideRight"
+   },
+   {
+    "at": 1,
+    "x": 0.88,
+    "y": 0.48,
+    "facing": "sideRight"
+   }
+  ]
+ },
+ "copy": {
+  "invitation": "¡Ay, mi amor, a bailar!",
+  "clearedTitle": "QUÉ\nCHISPA"
+ },
+ "hardestCombo": {
+  "name": "LA LLUVIA DE CONFETI",
+  "status": "proposal",
+  "note": "Proposal, from the wiring agent. The rain of confetti: the samba's tresillo in the feet, then the hands throwing confetti high, left, right, left, right, on the off-beats, and a stamp. Every gap is at least three quarters of a beat, 402 ms at 112 BPM, over the 230 ms a combo note must keep. Danced on the shared groove clips until Tía Purpurina's own drawings land. The owner hasn't seen or played it.",
+  "callBeats": 8,
+  "moves": [
+   {
+    "at": 0,
+    "beats": 4,
+    "clip": "groove_double"
+   },
+   {
+    "at": 4,
+    "beats": 4,
+    "clip": "groove_double"
+   }
+  ],
+  "notes": [
+   {
+    "at": 0,
+    "limb": "leftFoot"
+   },
+   {
+    "at": 0.75,
+    "limb": "rightHand"
+   },
+   {
+    "at": 1.5,
+    "limb": "rightFoot"
+   },
+   {
+    "at": 2.25,
+    "limb": "leftHand"
+   },
+   {
+    "at": 3,
+    "limb": "rightHand"
+   },
+   {
+    "at": 3.75,
+    "limb": "leftHand"
+   },
+   {
+    "at": 4.5,
+    "limb": "rightHand"
+   },
+   {
+    "at": 5.25,
+    "limb": "leftHand"
+   },
+   {
+    "at": 6,
+    "limb": "rightFoot"
+   },
+   {
+    "at": 7,
+    "limb": "leftFoot",
+    "move": "stomp"
+   }
+  ]
+ },
+ "exitShot": {
+  "plate": "closeups/duet-plate.png",
+  "celebrateUntil": 2,
+  "walkFrom": 2,
+  "walkTo": 3.25,
+  "heroStep": [
+   0.56,
+   0.55
+  ],
+  "heroWaitFrame": "front_idle",
+  "dust": false,
+  "closeupFrom": 3.5,
+  "contactBeat": 5,
+  "closeupTo": 10,
+  "contactPoint": [
+   0.5,
+   0.29
+  ],
+  "impactBeats": 1,
+  "recoilBeats": 3.5,
+  "cue": [
+   {
+    "beat": 5,
+    "track": "peck",
+    "pitch": 60,
+    "velocity": 120
+   },
+   {
+    "beat": 5.75,
+    "track": "clink",
+    "pitch": 84,
+    "velocity": 70
+   },
+   {
+    "beat": 6.25,
+    "track": "clink",
+    "pitch": 88,
+    "velocity": 55
+   }
+  ],
+  "actors": [
+   {
+    "approach": "closeups/duet-macron-round.png",
+    "impact": "closeups/duet-macron-arc-blush.png",
+    "frames": [
+     {
+      "beat": 4.0,
+      "image": "closeups/duet-macron-round.png"
+     },
+     {
+      "beat": 5.0,
+      "image": "closeups/duet-macron-wide.png"
+     },
+     {
+      "beat": 5.25,
+      "image": "closeups/duet-macron-squash.png"
+     },
+     {
+      "beat": 5.5,
+      "image": "closeups/duet-macron-arc.png"
+     },
+     {
+      "beat": 6.0,
+      "image": "closeups/duet-macron-arc-blush.png"
+     }
+    ],
+    "contact": [
+     200,
+     165
+    ],
+    "scale": 0.36,
+    "entry": [
+     0,
+     0
+    ],
+    "recoil": [
+     0,
+     0
+    ]
+   },
+   {
+    "approach": "closeups/duet-a-smile.png",
+    "impact": "closeups/duet-a-kiss.png",
+    "frames": [
+     {
+      "beat": 4.0,
+      "image": "closeups/duet-a-smile.png"
+     },
+     {
+      "beat": 4.75,
+      "image": "closeups/duet-a-kiss.png"
+     },
+     {
+      "beat": 6.0,
+      "image": "closeups/duet-a-smile.png"
+     }
+    ],
+    "contact": [
+     346,
+     113
+    ],
+    "scale": 0.36,
+    "entry": [
+     -70,
+     8
+    ],
+    "recoil": [
+     -13,
+     2
+    ],
+    "sway": {
+     "from": 8,
+     "beats": 2,
+     "by": [
+      -2.5,
+      1
+     ]
+    }
+   },
+   {
+    "approach": "closeups/duet-hedge.png",
+    "impact": "closeups/duet-hedge.png",
+    "contact": [
+     350,
+     -97
+    ],
+    "scale": 0.36,
+    "entry": [
+     0,
+     0
+    ],
+    "recoil": [
+     0,
+     0
+    ]
+   },
+   {
+    "approach": "closeups/duet-macron-body-rest.png",
+    "impact": "closeups/duet-macron-body-shy.png",
+    "frames": [
+     {
+      "beat": 4.0,
+      "image": "closeups/duet-macron-body-rest.png"
+     },
+     {
+      "beat": 5.0,
+      "image": "closeups/duet-macron-body-kiss.png"
+     },
+     {
+      "beat": 6.0,
+      "image": "closeups/duet-macron-body-shy.png"
+     },
+     {
+      "beat": 8.5,
+      "image": "closeups/duet-macron-body-rest.png"
+     }
+    ],
+    "contact": [
+     200,
+     165
+    ],
+    "scale": 0.36,
+    "entry": [
+     0,
+     0
+    ],
+    "recoil": [
+     0,
+     0
+    ]
+   },
+   {
+    "approach": "closeups/duet-macron-logo.png",
+    "impact": "closeups/duet-macron-logo.png",
+    "contact": [
+     200,
+     165
+    ],
+    "scale": 0.36,
+    "entry": [
+     0,
+     0
+    ],
+    "recoil": [
+     0,
+     0
+    ],
+    "keepsReading": true
+   }
+  ],
+  "opponent": [
+   {
+    "from": 0,
+    "frames": [
+     "challenge_load",
+     "challenge_offer"
+    ],
+    "beatsPerFrame": 1
+   },
+   {
+    "from": 2,
+    "frames": [
+     "approve"
+    ],
+    "beatsPerFrame": 1
+   },
+   {
+    "from": 10,
+    "frames": [
+     "groove_down_l",
+     "groove_pass_l",
+     "groove_up_l",
+     "groove_pass_l2",
+     "groove_down_r",
+     "groove_pass_r",
+     "groove_up_r",
+     "groove_pass_r2"
+    ],
+    "beatsPerFrame": 0.5,
+    "loop": true
+   }
+  ],
+  "flare": {
+   "from": 10,
+   "beats": 4,
+   "rise": 1,
+   "gain": 1
+  },
+  "applause": {
+   "from": 10.25,
+   "frames": [
+    "clap_a",
+    "clap_b"
+   ],
+   "beatsPerFrame": 0.5,
+   "loop": true
+  },
+  "walkOut": {
+   "from": 11,
+   "to": 15.5,
+   "fadeBeats": 1.25
+  }
+ },
+ "layers": {
+  "plateWidth": 832,
+  "plateHeight": 1248,
+  "props": [
+   {
+    "id": "chandelier-left",
+    "atlas": "salon/salon-layers.png",
+    "atlasY": 0,
+    "left": 164,
+    "top": 119,
+    "width": 95,
+    "height": 107,
+    "frames": 7,
+    "motion": "sway",
+    "periodBeats": 4,
+    "instance": 1,
+    "kind": "hanging"
+   },
+   {
+    "id": "chandelier-middle",
+    "atlas": "salon/salon-layers.png",
+    "atlasY": 109,
+    "left": 377,
+    "top": 119,
+    "width": 97,
+    "height": 104,
+    "frames": 7,
+    "motion": "sway",
+    "periodBeats": 4,
+    "instance": 2,
+    "kind": "hanging"
+   },
+   {
+    "id": "chandelier-right",
+    "atlas": "salon/salon-layers.png",
+    "atlasY": 215,
+    "left": 583,
+    "top": 119,
+    "width": 99,
+    "height": 114,
+    "frames": 7,
+    "motion": "sway",
+    "periodBeats": 4,
+    "instance": 3,
+    "kind": "hanging"
+   }
+  ]
+ }
+}
