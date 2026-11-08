@@ -1,0 +1,224 @@
+{
+ "$comment": "GALERIA, 2026-11-08. Marks for levels/galeria.json as plate fractions (x, y) of the accepted plate 993301 (art_runs/rooms/galeria/picks/plate-993301.png, 832x1248), read off the paint by eye. Camera refit to the paint: the far doors' leaves run y .214 to .361 (183 px), 1.75 adults at eye 1.0 gives horizon .277; the runner's edges and the wall bases meet near x .515. Proposals the owner can reverse.",
+ "plate": "galeria/galeria-room.png",
+ "floor": {
+  "horizonY": 0.277,
+  "referenceFootY": 0.6,
+  "referenceHeight": 0.323,
+  "vanishingX": 0.515
+ },
+ "heroHome": [
+  0.5,
+  0.6
+ ],
+ "heroEntrance": [
+  0.3,
+  0.64
+ ],
+ "heroRetreat": [
+  0.5,
+  0.625
+ ],
+ "heroWatch": [
+  0.5,
+  0.625
+ ],
+ "heroAside": [
+  0.38,
+  0.61
+ ],
+ "challenger": {
+  "atlas": "siobhan",
+  "mark": [
+   0.5,
+   0.5
+  ],
+  "yieldMark": [
+   0.5,
+   0.44
+  ],
+  "meetMark": [
+   0.64,
+   0.43
+  ],
+  "line": [
+   {
+    "offset": [
+     -0.2,
+     0
+    ],
+    "archOffset": [
+     -0.1,
+     0.03
+    ],
+    "archMirrored": false
+   },
+   {
+    "offset": [
+     -0.1,
+     0
+    ],
+    "archOffset": [
+     -0.1,
+     -0.04
+    ],
+    "archMirrored": false
+   },
+   {
+    "offset": [
+     0.1,
+     0
+    ],
+    "archOffset": [
+     0.1,
+     -0.04
+    ],
+    "archMirrored": true
+   },
+   {
+    "offset": [
+     0.2,
+     0
+    ],
+    "archOffset": [
+     0.1,
+     0.03
+    ],
+    "archMirrored": true
+   }
+  ],
+  "archNote": "Two pairs face each other across the route, .2 of the plate apart (about 1.2 adults at y .5), so arms raised from both sides meet over Mācron's head; the near pair at y .53, the far pair at .46. Siobhán waits at meetMark, past the tunnel's far end on the right, and nods as he passes."
+ },
+ "departure": [
+  [
+   0.5,
+   0.6
+  ],
+  [
+   0.5,
+   0.5
+  ],
+  [
+   0.505,
+   0.43
+  ],
+  [
+   0.516,
+   0.37
+  ]
+ ],
+ "exitThreshold": [
+  0.516,
+  0.365
+ ],
+ "guests": [
+  {
+   "at": [
+    0.15,
+    0.455
+   ],
+   "faces": "right",
+   "partner": 1
+  },
+  {
+   "at": [
+    0.24,
+    0.455
+   ],
+   "faces": "left",
+   "partner": 0
+  },
+  {
+   "at": [
+    0.85,
+    0.455
+   ],
+   "faces": "left",
+   "partner": 3
+  },
+  {
+   "at": [
+    0.76,
+    0.455
+   ],
+   "faces": "right",
+   "partner": 2
+  },
+  {
+   "at": [
+    0.2,
+    0.405
+   ],
+   "faces": "right",
+   "partner": 5
+  },
+  {
+   "at": [
+    0.275,
+    0.405
+   ],
+   "faces": "left",
+   "partner": 4
+  },
+  {
+   "at": [
+    0.875,
+    0.405
+   ],
+   "faces": "left",
+   "partner": 7
+  },
+  {
+   "at": [
+    0.8,
+    0.405
+   ],
+   "faces": "right",
+   "partner": 6
+  },
+  {
+   "at": [
+    0.31,
+    0.375
+   ],
+   "faces": "right",
+   "partner": 9
+  },
+  {
+   "at": [
+    0.37,
+    0.375
+   ],
+   "faces": "left",
+   "partner": 8
+  },
+  {
+   "at": [
+    0.69,
+    0.375
+   ],
+   "faces": "left",
+   "partner": 11
+  },
+  {
+   "at": [
+    0.63,
+    0.375
+   ],
+   "faces": "right",
+   "partner": 10
+  }
+ ],
+ "guestNote": "Twelve, in pairs along both walls behind the line, alternating sides so the crowd wakes on both. Pair spacing is .42 adult at each depth. The quiet box behind Siobhán (x .4-.6, y .3-.5) and the route up the runner stay clear. The right far statue (x .73-.76) is left uncovered because it nods at full party.",
+ "lamps": [
+  [
+   0.356,
+   0.192
+  ],
+  [
+   0.674,
+   0.192
+  ]
+ ],
+ "lampNote": "The brass picture lights over the far wall's two portraits: warm glow points for an outro flare. The moon in the left window is at (.03, .23)."
+}

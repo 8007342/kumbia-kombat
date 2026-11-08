@@ -1,0 +1,58 @@
+[
+ {
+  "file": "p2-p1-993100-993300.png",
+  "sat": 0.57,
+  "val": 0.36,
+  "bandLuma": 33.1,
+  "bandP98": 134.0,
+  "bandEdge": 1.1,
+  "drift": {
+   "median": 21.0,
+   "p90": 39.0,
+   "n": 389
+  },
+  "waterIoU": null
+ },
+ {
+  "file": "p2-p1-993100-993301.png",
+  "sat": 0.61,
+  "val": 0.41,
+  "bandLuma": 71.9,
+  "bandP98": 198.0,
+  "bandEdge": 1.7,
+  "drift": {
+   "median": 20.0,
+   "p90": 38.4,
+   "n": 397
+  },
+  "waterIoU": null
+ },
+ {
+  "file": "p2-p1-993100-993302.png",
+  "sat": 0.58,
+  "val": 0.38,
+  "bandLuma": 42.1,
+  "bandP98": 152.0,
+  "bandEdge": 1.7,
+  "drift": {
+   "median": 20.0,
+   "p90": 38.0,
+   "n": 385
+  },
+  "waterIoU": null
+ },
+ {
+  "file": "p2-p1-993100-993303.png",
+  "sat": 0.57,
+  "val": 0.34,
+  "bandLuma": 50.5,
+  "bandP98": 135.0,
+  "bandEdge": 1.3,
+  "drift": {
+   "median": 21.0,
+   "p90": 38.0,
+   "n": 389
+  },
+  "waterIoU": null
+ }
+]

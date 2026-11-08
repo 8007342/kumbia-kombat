@@ -3,24 +3,24 @@
   1024,
   1536
  ],
- "horizonY": 0.27,
- "vanishingX": 0.505,
+ "horizonY": 0.277,
+ "vanishingX": 0.515,
  "eyeHeightAdults": 1.0,
  "focalPx": 1200,
  "floorHomography_st_to_px": [
   [
-   483.1925298942329,
-   1119.2285846324025,
-   512.0
+   488.0000630721557,
+   1104.3725699204283,
+   512.0000000000003
   ],
   [
-   387.51084080626606,
-   -1.6533795874400972,
+   393.7165557407393,
+   -5.039571913481064,
    1536.0000000000002
   ],
   [
-   0.9343914949996769,
-   -0.003986737045331975,
+   0.9253641972697128,
+   -0.011844661725052033,
    1.0
   ]
  ],
@@ -2542,6 +2542,6 @@
   ]
  },
  "lampsNormalized": [],
- "walkablePixels": 980820,
+ "walkablePixels": 969537,
  "note": "Adult height at foot y, as a fraction of image height: (y - horizonY) / eyeHeightAdults"
 }

@@ -2,12 +2,12 @@
  "id": "galeria",
  "title": "LA GALERÍA",
  "styleRef": "billiards",
- "comment": "GALERIA, 2026-11-08. Forked from salon.json. The mansion's long portrait gallery seen straight down its length: tall arched windows full of moonlight on the left wall, gilt-framed portraits under small warm picture lights on the right wall, white marble statues on plinths standing against both walls between them, a long carpet runner down the far half of the hall, and tall double doors at the far end, the way out. The near floor is open polished marble for footwork. Ids reused from the shared set: window = moonlit windows, glass = portraits, pilaster = statues on plinths, stage = the carpet runner, door = far doors.",
+ "comment": "GALERIA, 2026-11-08. Forked from salon.json. The mansion's long portrait gallery seen straight down its length: tall arched windows full of moonlight on the left wall, gilt-framed portraits under small warm picture lights on the right wall, white marble statues on plinths standing against both walls between them, a long carpet runner down the far half of the hall, and tall double doors at the far end, the way out. The near floor is open polished marble for footwork. Ids reused from the shared set: window = moonlit windows, glass = portraits, pilaster = statues on plinths, stage = the carpet runner, door = far doors. Accepted plate 993301 (run-b, pass 2 from 993100), chosen by GALERIA. The camera follows the paint: doors 1.75 adults, leaves y .214-.361, horizon .277, vanishing x .515. Marks as plate fractions are in art_runs/rooms/galeria/marks.json; the floor units here are the guide's.",
  "camera": {
-  "horizonY": 0.27,
+  "horizonY": 0.277,
   "eyeHeightAdults": 1.0,
   "focalPx": 1200,
-  "vanishingX": 0.505,
+  "vanishingX": 0.515,
   "originBottomX": 0.5
  },
  "phone": {
@@ -465,7 +465,7 @@
    }
   ],
   "pathEnd": [
-   8.85,
+   8.6,
    0.0
   ],
   "route": [
@@ -486,7 +486,7 @@
     0.0
    ],
    [
-    8.85,
+    8.6,
     0.0
    ]
   ],
