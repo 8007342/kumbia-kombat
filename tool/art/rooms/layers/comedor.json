@@ -29,6 +29,14 @@
     ],
     [
      246,
+     194
+    ],
+    [
+     229,
+     196
+    ],
+    [
+     229,
      262
     ],
     [
@@ -119,8 +127,16 @@
      276
     ],
     [
+     612,
+     262
+    ],
+    [
+     612,
+     196
+    ],
+    [
      598,
-     240
+     194
     ],
     [
      598,
@@ -485,7 +501,7 @@
   {
    "id": "statue-nod",
    "kind": "artwork",
-   "rule": "all",
+   "rule": "marble",
    "polygon": [
     [
      152,
@@ -544,7 +560,7 @@
   {
    "id": "statue-tap",
    "kind": "artwork",
-   "rule": "all",
+   "rule": "marble",
    "polygon": [
     [
      166,
@@ -606,20 +622,36 @@
    "rule": "all",
    "polygon": [
     [
-     551,
-     216
+     558,
+     215
+    ],
+    [
+     573,
+     215
     ],
     [
      580,
-     216
+     222
     ],
     [
      580,
+     240
+    ],
+    [
+     572,
+     248
+    ],
+    [
+     559,
      248
     ],
     [
      551,
-     248
+     240
+    ],
+    [
+     551,
+     222
     ]
    ],
    "fill": {
@@ -688,7 +720,7 @@
      352
     ],
     "images": [
-     "portrait-snap-pick.png"
+     "portrait-snap-78301.png"
     ],
     "threshold": 30,
     "prompt": "Image 1 is part of a pixel art painting: an old oil portrait in a gilt frame of a gentleman in a dark coat with his hands folded at his waist. Draw exactly the same picture, the same gentleman, frame and colours at the same place and size, and change only his hands: they are no longer folded. His hand on the right of the picture rests alone at his waist, and his hand on the left of the picture is raised beside his shoulder, snapping its fingers, the thumb and middle finger pressed together. He has exactly two hands."
@@ -699,7 +731,8 @@
    "frames": 2,
    "instance": 6,
    "minTier": 4,
-   "$comment": "First pair (78200, 78201) raised a hand but kept both folded hands at the waist: three hands. Redrawn with the hands named one by one (78300...)."
+   "$comment": "First pair (78200, 78201) raised a hand but kept both folded hands at the waist: three hands. Redrawn with the hands named one by one (78300...).",
+   "run": "layers-comedor-20261108"
   },
   {
    "id": "cloth-front",

@@ -63,6 +63,9 @@ def colour_rule(rgb, rule):
         return (np.maximum(np.maximum(r, g), b) > 105) & ~((g > r * 1.15) & (g > b))
     if rule == "crystal":  # crystal, brass and candle flames over red damask: bright, and green well above a red wall's
         return (np.maximum(np.maximum(r, g), b) > 100) & (g > r * .5)
+    if rule == "marble":  # a white marble figure in a lit cream niche: bright and nearly grey
+        mx, mn = np.maximum(np.maximum(r, g), b), np.minimum(np.minimum(r, g), b)
+        return (mx > 110) & (mx - mn < 45)
     raise ValueError(rule)
 
 
@@ -276,7 +279,9 @@ def drawn_frames(rgb, prop):
     for name in d["images"]:
         small, _ = align(Image.open(CACHE / prop.get("run", d.get("run", "")) / name), base, [poly])
         frames.append(np.where(area[..., None], small, np.asarray(base)).astype("uint8"))
-    keep = ndimage.binary_dilation(np.any([np.abs(f.astype(int) - frames[0]).sum(-1) > d.get("threshold", 30) for f in frames[1:]], axis=0), iterations=1) & area
+    # The whole polygon, opaque: its rest frame is the plate itself, and a ragged changed-pixels mask would mix the
+    # plate and the edit at the peak.
+    keep = area
     bx0, by0, bx1, by1 = bbox(keep, 1)
     out = []
     for f in frames:

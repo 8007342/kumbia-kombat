@@ -1,4 +1,16 @@
 {
   "id": "comedor",
-  "background": "comedor/comedor-room.png"
+  "background": "comedor/comedor-room.png",
+  "layers": {
+    "plateWidth": 832,
+    "plateHeight": 1248,
+    "props": [
+      {"id": "chandelier-left", "atlas": "comedor/comedor-layers.png", "atlasY": 0, "left": 120, "top": 155, "width": 120, "height": 103, "frames": 7, "motion": "sway", "periodBeats": 4, "instance": 1, "kind": "hanging", "minTier": 3},
+      {"id": "chandelier-right", "atlas": "comedor/comedor-layers.png", "atlasY": 105, "left": 603, "top": 155, "width": 128, "height": 117, "frames": 7, "motion": "sway", "periodBeats": 4, "instance": 2, "kind": "hanging", "minTier": 3},
+      {"id": "statue-nod", "atlas": "comedor/comedor-layers.png", "atlasY": 224, "left": 156, "top": 287, "width": 22, "height": 26, "frames": 3, "motion": "pulse", "periodBeats": 2, "instance": 3, "kind": "artwork", "minTier": 4},
+      {"id": "statue-tap", "atlas": "comedor/comedor-layers.png", "atlasY": 252, "left": 163, "top": 394, "width": 18, "height": 17, "frames": 3, "motion": "pulse", "periodBeats": 1, "instance": 4, "kind": "artwork", "minTier": 4},
+      {"id": "portrait-lady", "atlas": "comedor/comedor-layers.png", "atlasY": 271, "left": 549, "top": 215, "width": 34, "height": 34, "frames": 5, "motion": "sway", "periodBeats": 4, "instance": 5, "kind": "artwork", "minTier": 4},
+      {"id": "portrait-snap", "atlas": "comedor/comedor-layers.png", "atlasY": 307, "left": 235, "top": 237, "width": 89, "height": 105, "frames": 2, "motion": "pulse", "periodBeats": 2, "instance": 6, "kind": "artwork", "minTier": 4, "phaseBeats": 1}
+    ]
+  }
 }

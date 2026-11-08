@@ -131,3 +131,24 @@ This camera keeps verticals vertical, so mirroring each column about its contact
 GPU: 3 images, 45 s for the stones. Everything else is CPU, about a minute a plate.
 
 **Raised surfaces.** `platforms` names a `box` in `paint`, and `floor.json` lists its extent, height and top corners. Place a figure on one with its feet at `proj(s, t, z)` and its height from the floor point under it. The loader doesn't read them yet.
+
+## Room life at full party: a reusable layer type
+
+The owner: "Full party should also have the chandeliers and elegant paintings on the wall doing gently invisible motions, like tapping their foot or snapping their fingers, even the paintings got engaged ;) or a sculpture by the corner." The comedor is the first room with it (`layers/comedor.json`, `plan/levels/comedor-art-2026-11-08.md`). Any room can use it with data alone.
+
+**What a life prop is.** An ordinary layer prop with `kind: "artwork"` and a `minTier`. It sits at its rest frame, which is the painting itself, so nothing shows until the music's tier reaches `minTier`. Then it wakes over that tier's entrance and grows with the crowd's swing, like every other prop (style guide section 7: slow introduction, never at full size at once). The game code is WIRE2's, on `work/1883-lvls`. This is the data contract:
+
+| Field | Meaning |
+|---|---|
+| `kind: "artwork"` | A painting or sculpture: its own `periodBeats`, its full drawn range, top tier only |
+| `minTier` | The tier it wakes at. 4 for paintings and statues; the comedor's chandeliers use 3 |
+| `motion: "pulse"` | Frame 0 is rest, the last frame is the peak, reached on the beat: a tap, a snap, a nod |
+| `motion: "sway"` | Rest in the middle: a head tilt, a chandelier |
+| `periodBeats` | 1 = every beat (a foot tap), 2 = every other beat (a nod, a snap), 4 = a slow sway |
+| `phaseBeats` | Shifts the peak: a snap on 2 and 4 is `periodBeats 2, phaseBeats 1` |
+
+**Two ways to make the frames, both in `layers.py`:**
+- **Warp** (no GPU): bend the painting's own pixels about a `warp.pivot`. A nod pivots a head at the neck, a tap pivots a toe at the heel (a negative `reachPx` lifts it), and a tilt pivots a portrait's head. Put a `harmonic` fill under the moving part, so the sliver it uncovers isn't the old head. `rule: "marble"` takes a white statue off a cream niche.
+- **Drawn** (GPU, two images): `drawn.prompt` is a Qwen edit of a small box at 3x, for anything a warp can't fake, such as a hand raised to snap. `layers.py crops` stages it. `drawn.images` names the kept edit. The frame is the whole polygon, opaque, with the plate itself as frame 0. Name every hand in the words, or the model adds a third (see the comedor note).
+
+**Keep it subliminal.** Reach 2 px for heads and chandeliers, 3 px for a toe, one or two drawn frames for a snap. These are felt more than seen. Layer rects must stay out of the tap band and the quiet box behind the opponent (x .35-.65, y .3-.6), and the loader refuses them otherwise.
