@@ -69,7 +69,7 @@
 ## Marks for WIRE2
 
 All marks are in `art_runs/rooms/galeria/marks.json`. WIRE2 wired them on `work/1883-lvls` at 6f805c0.
-- **Hero and Siobhán:** heroHome (.5,.6). Siobhán's mark (.5,.5), yield (.5,.44), meetMark (.72,.44), outside the right pair. This moved from (.64,.43) after WIRE2 saw her half hidden behind the right pair.
+- **Hero and Siobhán:** heroHome (.5,.6). Siobhán's mark (.5,.5), yield (.5,.44), meetMark (.70,.49), beside the arch's right pair and in front of the right wall's guests. It was (.64,.43), then (.72,.44). WIRE2 found her hidden behind the right pair at the first and behind a guest at the second, and checked (.70,.49) on stills.
 - **The line** [P]: dancers at ±.1 and ±.2 from her at y .5.
 - **The arch** [P]: two facing pairs .2 apart across the runner, near pair at y .53 and far pair at .46. The right pair is mirrored. That's about 1.2 adults apart at that depth, so raised arms from both sides meet over Mācron. No paths cross.
 - **Departure:** straight up the runner to the door threshold (.516,.37).
@@ -213,7 +213,7 @@ Lines are in `plan/compute-ledger.jsonl`, agent GALERIA. Studio seconds include 
 
 - [ ] The reel at tempo, 114 to 130 BPM. Do the hop, treble, toes and hop-back read as step dancing with the arms still? Do the five read "as one" with WIRE2's lag?
 - [ ] The high kicks out to the side, and the rigid arm snap.
-- [ ] The arch: do the V arms of facing pairs read as an arch over Mācron? Is Siobhán visible at her new meetMark?
+- [ ] The arch: do the V arms of facing pairs read as an arch over Mācron? Is Siobhán in plain view at meetMark (.70,.49)?
 - [ ] The hair variants' faces at play size. The raven one has a dark fleck on a cheek at 3x.
 - [ ] Room life at full party: the portrait's foot tap, the bust's nod and the portrait's sway. Are they felt and not seen? Do the sway's ragged edges show?
 - [ ] The moonlight patches on the floor, with cues moving over them.
