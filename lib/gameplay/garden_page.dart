@@ -8,6 +8,8 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '../credits/credits_data.dart';
+import '../credits/credits_page.dart';
 import '../music/game_audio.dart';
 import '../music/rendered_library.dart';
 import '../music/rendered_music.dart';
@@ -46,12 +48,25 @@ const _ink = Color(0xFF101F29);
 const _starvationGraceSeconds = 1.5;
 
 class GardenPage extends StatefulWidget {
-  const GardenPage({super.key, this.audioFactory, this.levels});
+  const GardenPage({
+    super.key,
+    this.audioFactory,
+    this.levels,
+    this.credits,
+    this.creditsAfter = const Duration(seconds: 8),
+  });
 
   final GameAudio Function()? audioFactory;
 
   /// The campaign to play; the shipping `levels/` files unless a test says so.
   final Future<LevelRegistry> Function()? levels;
+
+  /// The credits roll's data; `assets/credits.json` unless a test says so.
+  final Future<CreditsData> Function()? credits;
+
+  /// How long the campaign's last end screen stays before the credits roll.
+  /// Null leaves the end screen up. A level played alone has no credits.
+  final Duration? creditsAfter;
 
   @override
   State<GardenPage> createState() => _GardenPageState();
@@ -109,6 +124,7 @@ class _GardenPageState extends State<GardenPage>
   MusicFinish? _finish;
   bool _exitReady = false;
   bool _exitStarted = false;
+  Timer? _creditsTimer;
   bool _handoffPaused = false;
   bool _adoptingRoom = false;
   bool _starting = false;
@@ -278,6 +294,7 @@ class _GardenPageState extends State<GardenPage>
       }
       if (_conductor!.completed && _handoff == null) {
         _conductor = null;
+        _scheduleCredits();
         if (mounted) setState(() {});
       }
     } else if (_transport!.state == TransportState.playing) {
@@ -506,6 +523,24 @@ class _GardenPageState extends State<GardenPage>
     }
   }
 
+  /// After the campaign's last room, the end screen, then the credits roll.
+  /// For now the last room is whichever ends the campaign; later the VIP.
+  void _scheduleCredits() {
+    final wait = widget.creditsAfter;
+    final levels = _levels;
+    if (wait == null || levels == null || _step.next != null) return;
+    if (levels.campaign.length < 2) return;
+    _creditsTimer?.cancel();
+    _creditsTimer = Timer(wait, () {
+      if (!mounted || !_foreground) return;
+      Navigator.of(context).push(
+        MaterialPageRoute<void>(
+          builder: (_) => CreditsPage(load: widget.credits, closeWhenDone: true),
+        ),
+      );
+    });
+  }
+
   void _beginExit() {
     _exitStarted = true;
     _finish = null;
@@ -619,6 +654,7 @@ class _GardenPageState extends State<GardenPage>
 
   Future<void> _start() async {
     if (_starting || _session == null) return;
+    _creditsTimer?.cancel();
     setState(() {
       _starting = true;
       _error = null;
@@ -804,6 +840,7 @@ class _GardenPageState extends State<GardenPage>
   @override
   void dispose() {
     WidgetsBinding.instance.removeObserver(this);
+    _creditsTimer?.cancel();
     _ticker.dispose();
     _pump?.cancel();
     _conductor?.stop();

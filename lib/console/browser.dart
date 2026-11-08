@@ -18,7 +18,8 @@ abstract class ConsoleBrowser {
 /// One track at a time, from an asset path like `assets/music/...`.
 abstract class ConsoleAudio {
   /// Picks Opus where the browser plays it, else AAC (Safari before 17).
-  void play({required String opus, required String aac});
+  /// [loop] goes round again at the end, for the credits.
+  void play({required String opus, required String aac, bool loop = false});
   void pause();
   void resume();
   void seek(double seconds);

@@ -316,6 +316,9 @@ void main() {
     expect(browser.opened.last, '/?level=${first.id}');
     await tester.tap(find.byKey(const Key('link:/?autoplay=flawless:AUTOPLAY FLAWLESS')));
     expect(browser.opened.last, '/?autoplay=flawless');
+    // The credits roll has its own entry in the campaign card.
+    await tester.tap(find.byKey(const Key('link:/credits/:CREDITS')));
+    expect(browser.opened.last, '/credits/');
 
     await tester.tap(find.byKey(Key('add-note:${first.ref}')));
     await tester.pump();

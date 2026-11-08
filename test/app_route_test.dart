@@ -4,7 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:kumbia_kombat/review_links.dart';
 
 void main() {
-  test('/console and /qr open their pages, by path, query or hash', () {
+  test('/console, /qr and /credits open their pages, by path, query or hash', () {
     AppRoute at(String url) => routeFor(Uri.parse(url));
     expect(at('https://kumbias.tlatoani.net/'), AppRoute.game);
     expect(at('https://kumbias.tlatoani.net/?level=bar'), AppRoute.game);
@@ -13,6 +13,9 @@ void main() {
     expect(at('https://kumbias.tlatoani.net/CONSOLE/'), AppRoute.console);
     expect(at('https://kumbias.tlatoani.net/qr'), AppRoute.qr);
     expect(at('https://kumbias.tlatoani.net/qr/'), AppRoute.qr);
+    expect(at('https://kumbias.tlatoani.net/credits/'), AppRoute.credits);
+    expect(at('http://www.kumbia-kombat.localhost/?page=credits'), AppRoute.credits);
+    expect(at('http://www.kumbia-kombat.localhost/#/credits'), AppRoute.credits);
     expect(at('http://www.kumbia-kombat.localhost/?page=console'), AppRoute.console);
     expect(at('http://www.kumbia-kombat.localhost/#/qr'), AppRoute.qr);
     expect(at('https://kumbias.tlatoani.net/?capture=gestures'), AppRoute.gestures);
@@ -46,9 +49,9 @@ void main() {
     expect(ReviewLinks.tierFrom({}), isNull);
   });
 
-  test('the /console/ and /qr/ entry pages are the app page with a fixed base', () {
+  test('the /console/, /qr/ and /credits/ entry pages are the app page with a fixed base', () {
     final app = File('web/index.html').readAsStringSync();
-    for (final page in ['console', 'qr']) {
+    for (final page in ['console', 'qr', 'credits']) {
       final entry = File('web/$page/index.html').readAsStringSync();
       expect(entry, contains('<base href="/">'), reason: page);
       expect(entry, contains('<script src="flutter_bootstrap.js" async></script>'));

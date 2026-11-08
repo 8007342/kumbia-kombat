@@ -22,11 +22,13 @@ class MemoryConsoleBrowser implements ConsoleBrowser {
 
 class SilentConsoleAudio implements ConsoleAudio {
   String? source;
+  bool looping = false;
   bool _playing = false;
 
   @override
-  void play({required String opus, required String aac}) {
+  void play({required String opus, required String aac, bool loop = false}) {
     source = opus;
+    looping = loop;
     _playing = true;
   }
 
