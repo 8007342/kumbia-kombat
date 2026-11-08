@@ -842,11 +842,13 @@ def outgoing_at(source, bpm_out, beats_out, pad):
     return stretch_linear(raw, int(round(len(raw) / ratio)))
 
 
-def best_entry(source_chroma, dest):
-    """The even destination bar whose lead-in best matches the given chroma."""
+def best_entry(source_chroma, dest, phase=(2, 0)):
+    """The destination bar whose lead-in best matches the given chroma: every even bar, or
+    bars offset, offset + step, ... when the next level asks for a phase (`bridgeEntry`)."""
+    step, offset = phase
     chroma = _unit(dest["barChroma"])
     count = len(chroma)
-    scores = [(float(chroma[(k - 1) % count] @ _unit(source_chroma)), -k) for k in range(0, count, 2)]
+    scores = [(float(chroma[(k - 1) % count] @ _unit(source_chroma)), -k) for k in range(offset % count, count, max(1, step))]
     score, k = max(scores)
     return -k, round(score, 3)
 
@@ -938,17 +940,18 @@ def render_success(tier, key, bars, final, cfg, pad):
                  "bars": bars, "beats": beats, "bpm": tier["bpm"]}
 
 
-def render_bridge(source, dest, cfg, pad):
+def render_bridge(source, dest, cfg, pad, phase=(2, 0)):
     """Two bars at the next level's tempo: its percussion from the downbeat, the
     outgoing harmony dissolving, its harmony arriving into the loop."""
     if source.get("dir"):
-        return _rs_render("bridge", cfg, "--a", source["dir"], "--b", dest["dir"])
+        return _rs_render("bridge", cfg, "--a", source["dir"], "--b", dest["dir"],
+                          "--entry-step", phase[0], "--entry-offset", phase[1])
     beats = 8
     bpm = dest["bpm"]
     beat_len = beat_samples(bpm)
     length = segment_bpm_len(bpm, beats)
     total = pad + length + pad
-    entry, match = best_entry(source["barChroma"][-1], dest)
+    entry, match = best_entry(source["barChroma"][-1], dest, phase)
     incoming = circ(dest["loop"], int(round(entry * dest["barLen"])) - length - pad, total)
     outgoing = outgoing_at(source, bpm, beats, pad)
     if len(outgoing) < total:
@@ -1136,7 +1139,10 @@ def build(cfg, only=None, root=REPO, workers=None, report_path=None):
         if level.get("next"):
             nxt = levels[level["next"]]
             first = nxt["tiers"][0]["name"]
-            mix, info = render_bridge(last, ready[(nxt["id"], first)], cfg, pad)
+            # The next level can ask for its entry bar's phase, so its chart's calls start on the
+            # take's phrase: entryBar + introBeats / 4 on the phrase's first bar.
+            phase = tuple(nxt.get("bridgeEntry", {}).get(k, d) for k, d in (("step", 2), ("offset", 0)))
+            mix, info = render_bridge(last, ready[(nxt["id"], first)], cfg, pad, phase)
             written, info["decodeOffsetSamples"] = write_asset(mix, directory / "bridge", cfg, root)
             entry["bridge"] = {"to": nxt["id"], "toTake": first, "entryBar": info["entryBar"],
                                "bpm": info["bpm"], "bars": info["bars"], "beatsPerBar": 4, "gainDb": 0,

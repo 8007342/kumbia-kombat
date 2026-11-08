@@ -351,12 +351,12 @@ pub fn transition(a: &Loaded, b: &Loaded, cfg: &Value, out: &Path) -> Value {
            "beats": jc.beats, "bpm": dest.bpm, "samples": j.mix.len()})
 }
 
-pub fn bridge(a: &Loaded, b: &Loaded, cfg: &Value, out: &Path) -> Value {
+pub fn bridge(a: &Loaded, b: &Loaded, cfg: &Value, out: &Path, phase: (usize, usize)) -> Value {
     let jc = join_cfg(cfg);
     let chroma_a = parse_rows(&a.meta["barChroma"]);
     let chroma_b = parse_rows(&b.meta["barChroma"]);
     let dest = b.source();
-    let j = render_bridge(&a.source(), &chroma_a[chroma_a.len() - 1], &dest, &chroma_b, &jc, pad_samples(cfg));
+    let j = render_bridge(&a.source(), &chroma_a[chroma_a.len() - 1], &dest, &chroma_b, &jc, pad_samples(cfg), phase);
     audio::write_raw(out, &j.mix);
     json!({"entryBar": j.entry, "harmonyMatch": j.match_score, "limiter": limit_json(&j.stats),
            "bars": 2, "beats": 8, "bpm": dest.bpm, "samples": j.mix.len()})

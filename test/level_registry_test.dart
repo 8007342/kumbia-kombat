@@ -9,7 +9,6 @@ import 'package:kumbia_kombat/gameplay/garden_scene.dart';
 import 'package:kumbia_kombat/gameplay/garden_session.dart';
 import 'package:kumbia_kombat/gameplay/gesture_shapes.dart';
 import 'package:kumbia_kombat/gameplay/level_definition.dart';
-import 'package:kumbia_kombat/gameplay/thumb_layout.dart';
 import 'package:kumbia_kombat/gameplay/party_layout.dart';
 import 'package:kumbia_kombat/gameplay/progression.dart';
 import 'package:kumbia_kombat/gameplay/room_departure.dart';
@@ -105,26 +104,9 @@ void main() {
     expect(topRate(chart('salon'), 124), greaterThan(topRate(charts[4], 104)));
     // Act two is tension and release, not a steady climb
     // (plan/levels/act-two-wiring-2026-11-08.md, proposals). The comedor's polka
-    // asks more richer steps than billiards before it; the galería's reel the
-    // most feet a second of any level.
+    // asks more richer steps than billiards before it. The galería's reel and
+    // the terraza's samba hold their own shapes in act_two_levels_test.dart.
     expect(rich(chart('comedor')), greaterThan(rich(charts[4])));
-    if (_shipping().levels.any((l) => l.id == 'galeria')) {
-      double feetRate(FightChart chart, double bpm) =>
-          chart
-              .pattern(chart.variants.length)
-              .limbs
-              .where((l) => !limbIsUpper(l))
-              .length /
-          (chart.callBeats * 60 / bpm);
-      final reel = feetRate(chart('galeria'), 130);
-      for (final (id, bpm) in [
-        ('billiards', 104.0),
-        ('comedor', 136.0),
-        ('salon', 124.0),
-      ]) {
-        expect(reel, greaterThan(feetRate(chart(id), bpm)), reason: id);
-      }
-    }
     // Its signature: a cue stroke offered in every pattern.
     for (var i = 0; i <= charts[4].variants.length; i++) {
       expect(charts[4].pattern(i).offers.whereType<GestureKind>(), isNotEmpty);
