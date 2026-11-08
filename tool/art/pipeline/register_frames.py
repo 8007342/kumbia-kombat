@@ -74,6 +74,7 @@ def torso_x(rgb: np.ndarray, mask: np.ndarray, shirt: np.ndarray) -> float:
 # Rig regions of a long thin prop, and the width in canvas pixels a shape must have to count as body.
 THIN_PROP_REGIONS = ("00ff80", "80ff00")
 THIN_PROP_WIDTH = 25
+LOOSE_MIN = 12  # pixels: a confetti flake at the 768x960 drawing size
 
 
 def without_thin_prop(mask: np.ndarray) -> np.ndarray:
@@ -81,11 +82,20 @@ def without_thin_prop(mask: np.ndarray) -> np.ndarray:
     return ndi.binary_opening(mask, structure=np.ones((THIN_PROP_WIDTH, THIN_PROP_WIDTH)))
 
 
-def register(src: Path, dst: Path, rig: Path, pose: str, shirt: np.ndarray, torso: np.ndarray, thin_prop: bool = False) -> dict:
+def register(src: Path, dst: Path, rig: Path, pose: str, shirt: np.ndarray, torso: np.ndarray, thin_prop: bool = False,
+             loose: bool = False) -> dict:
     source = Image.open(src)
     im = source.convert("RGB")
     rgb = np.array(im)
     mask = matte_mask(np.array(source.convert("RGBA"))[..., 3]) if source.mode == "RGBA" else figure_mask(rgb)
+    # Loose pieces that belong to the pose (thrown confetti): the figure alone sets height and floor, and the
+    # pieces of at least LOOSE_MIN pixels come along in the matte.
+    keep = mask
+    if loose and source.mode == "RGBA":
+        solid = np.array(source.convert("RGBA"))[..., 3] >= 128
+        labels, n = ndi.label(solid)
+        sizes = ndi.sum(solid, labels, range(1, n + 1))
+        keep = mask | np.isin(labels, 1 + np.nonzero(sizes >= LOOSE_MIN)[0])
     # A cue's reach changes with the pose and with the model's whim, so with one in the hand the body alone sets
     # height and floor, on both sides of the comparison. Where the cue lands is then left to the drawing.
     body = without_thin_prop(mask) if thin_prop and without_thin_prop(mask).any() else mask
@@ -106,7 +116,7 @@ def register(src: Path, dst: Path, rig: Path, pose: str, shirt: np.ndarray, tors
     tx = torso_x(rgb, mask, shirt)
     w, h = im.size
     rgba = im.convert("RGBA")
-    rgba.putalpha(Image.fromarray((mask * 255).astype(np.uint8)))
+    rgba.putalpha(Image.fromarray((keep * 255).astype(np.uint8)))
     big = rgba.resize((round(w * s), round(h * s)), Image.LANCZOS)
     canvas = Image.new("RGBA", (w, h), (0, 0, 0, 0))
     # Slide a wide pose back inside the frame sideways; a pose wider than the frame still crops,
@@ -144,7 +154,7 @@ def register_fixed(src: Path, dst: Path, spec: dict, height_scale: float = 1.0) 
     foot_x = float(np.median(np.where(feet)[1]))
     w, h = im.size
     rgba = im.convert("RGBA")
-    rgba.putalpha(Image.fromarray((mask * 255).astype(np.uint8)))
+    rgba.putalpha(Image.fromarray((keep * 255).astype(np.uint8)))
     big = rgba.resize((round(w * s), round(h * s)), Image.LANCZOS)
     canvas = Image.new("RGBA", (w, h), (0, 0, 0, 0))
     canvas.paste(big, (round(spec["centerX"] - foot_x * s), round(spec["floorY"] - y1 * s)))
@@ -186,6 +196,7 @@ def main() -> None:
     ap.add_argument("--rig-torso", default="0000ff", help="the torso's colour in the rig's regions image")
     ap.add_argument("--thin-prop", action="store_true", help="a long thin prop (a cue) doesn't count toward height or floor")
     ap.add_argument("--root", default="", help="folder holding raw/, if not art_runs/<run>")
+    ap.add_argument("--loose", default="", help="poses whose loose pieces (thrown confetti) stay in the matte, comma-separated")
     a = ap.parse_args()
     if a.character:
         main_fixed(a)
@@ -202,7 +213,8 @@ def main() -> None:
     for src in sorted((root / "raw").rglob("*.png")):
         rel = src.relative_to(root / "raw")
         pose = rel.stem if rel.parent == Path(".") else rel.parent.name
-        report[str(rel.with_suffix(""))] = register(src, out / rel, rig, pose, shirt, torso, a.thin_prop)
+        report[str(rel.with_suffix(""))] = register(src, out / rel, rig, pose, shirt, torso, a.thin_prop,
+                                                       pose in a.loose.split(","))
     out.mkdir(exist_ok=True)
     (out / "registration.json").write_text(json.dumps(report, indent=1) + "\n")
     print(f"{len(report)} registered, {sum(v['touchesFrame'] for v in report.values())} touch the frame")
