@@ -202,8 +202,8 @@ Each holds the tray on the picture's right.
 
 qwen2.5vl:7b through `vision_curate.py`, heads and hands on all 96 registered candidates of Don Charolas: 227 s, 8 flagged. [F]
 - **All 8 flags were wrong.** It counted the apron's bow or the napkin as a third hand. I checked the five clearest at 2x.
-- **It missed every real fault my eyes caught:**
-  - the tray in each hand (it was moved aside before the pass, but it also passed the two-tray watch frame in the pilot sheet stage);
+- **It missed every real fault my eyes caught that it was asked about:**
+  - the tray in each hand (that candidate had been set aside before the pass, so it was never asked);
   - the swapped tray;
   - the white socks;
   - the floor shadows;
