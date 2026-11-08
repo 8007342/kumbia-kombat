@@ -1,0 +1,2922 @@
+{
+ "contract": "1935-k2ib/v1",
+ "pipelineVersion": null,
+ "family": "siobhan-v1",
+ "version": 1,
+ "project": "kumbia-kombat",
+ "description": "Galería opponent, Siobhán: a young Irish step dancer in a dark green velvet dress with silver embroidery and black hard shoes, arms rigid at her sides.",
+ "kind": "character-frames",
+ "frame": {
+  "baselineY": null,
+  "pivot": {
+   "x": null,
+   "y": null,
+   "normalized": false
+  },
+  "scale": {
+   "mode": "fixed-per-family",
+   "referencePose": "challenge.return",
+   "resolved": null
+  },
+  "native": {
+   "perRoom": true,
+   "galeria": {
+    "width": 256,
+    "height": 320,
+    "pixelScale": 3
+   }
+  },
+  "margin": {
+   "minClear": 0.03,
+   "units": "fraction-of-generation-canvas",
+   "failOnBorderTouch": true
+  },
+  "units": "native-px",
+  "generationCanvas": {
+   "width": 768,
+   "height": 960
+  },
+  "camera": "floor-perspective"
+ },
+ "transparency": {
+  "byBackend": {
+   "sdxl": "matte",
+   "default": "matte"
+  },
+  "matte": "birefnet",
+  "alpha": "binary"
+ },
+ "outline": "#1A1018",
+ "symmetry": "none",
+ "references": [],
+ "regions": {
+  "#FF0000": "skin",
+  "#00FF00": "hair",
+  "#8000FF": "shirt",
+  "#FF0080": "apron",
+  "#FF00FF": "accessory",
+  "#00FFFF": "shoes"
+ },
+ "reservedRamps": [
+  {
+   "id": "kumbia-outfit",
+   "appliesToRegions": [
+    "cloth"
+   ],
+   "recolor": false,
+   "$comment": "Gates from shaders/party_palette.frag on unpremultiplied RGB 0-1; matches if ANY gate's ALL conditions hold. Structured, never eval'd: lhs is a channel or {sub:[a,b]}, rhs a literal or {mul:[k,channel]}.",
+   "gates": [
+    {
+     "id": "cool",
+     "all": [
+      {
+       "lhs": "b",
+       "op": ">=",
+       "rhs": 0.12
+      },
+      {
+       "lhs": "r",
+       "op": ">=",
+       "rhs": {
+        "mul": [
+         0.7,
+         "b"
+        ]
+       }
+      },
+      {
+       "lhs": "b",
+       "op": ">=",
+       "rhs": {
+        "mul": [
+         0.99,
+         "r"
+        ]
+       }
+      },
+      {
+       "lhs": "g",
+       "op": ">=",
+       "rhs": {
+        "mul": [
+         0.2,
+         "b"
+        ]
+       }
+      },
+      {
+       "lhs": "g",
+       "op": "<=",
+       "rhs": {
+        "mul": [
+         0.66,
+         "b"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "id": "plum",
+     "all": [
+      {
+       "lhs": "r",
+       "op": ">=",
+       "rhs": 0.392157
+      },
+      {
+       "lhs": "r",
+       "op": ">=",
+       "rhs": {
+        "mul": [
+         0.7,
+         "b"
+        ]
+       }
+      },
+      {
+       "lhs": "b",
+       "op": ">=",
+       "rhs": {
+        "mul": [
+         0.32,
+         "r"
+        ]
+       }
+      },
+      {
+       "lhs": "g",
+       "op": "<=",
+       "rhs": {
+        "mul": [
+         0.55,
+         "b"
+        ]
+       }
+      },
+      {
+       "lhs": {
+        "sub": [
+         "b",
+         "g"
+        ]
+       },
+       "op": ">=",
+       "rhs": 0.047059
+      }
+     ]
+    },
+    {
+     "id": "pink",
+     "all": [
+      {
+       "lhs": "r",
+       "op": ">=",
+       "rhs": 0.705882
+      },
+      {
+       "lhs": "r",
+       "op": ">=",
+       "rhs": {
+        "mul": [
+         0.7,
+         "b"
+        ]
+       }
+      },
+      {
+       "lhs": "b",
+       "op": ">=",
+       "rhs": {
+        "mul": [
+         0.32,
+         "r"
+        ]
+       }
+      },
+      {
+       "lhs": "g",
+       "op": "<=",
+       "rhs": {
+        "mul": [
+         0.86,
+         "b"
+        ]
+       }
+      },
+      {
+       "lhs": {
+        "sub": [
+         "b",
+         "g"
+        ]
+       },
+       "op": ">=",
+       "rhs": 0.047059
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "palette": {
+  "locked": "tool/art/palettes/siobhan.json"
+ },
+ "style_prompt": "pixel art game sprite, full body, single character, 16-bit, crisp pixel clusters, clean dark outline, flat shading, plain light grey background",
+ "style_negative": "multiple characters, sprite sheet, grid, text, logo, watermark, blur, motion blur, cropped feet, cropped hat, floor shadow, photorealistic, 3d render",
+ "character_prompt": "slim upright young woman of about twenty-five, fair freckled skin, copper-red hair in a high round bun, a cool composed look, copper-red hair pulled up in a high round bun, long-sleeved dark green velvet bodice with a high round neck and silver embroidery, dark green velvet skirt of the dress, stiff and flared, reaching the knee, with a silver embroidered hem, silver knotwork embroidery on the bodice, cuffs and hem, and a small silver clover pin in the bun, black opaque tights, black leather hard shoes with thick heels and a small silver buckle, stern, precise and proud, perfectly in step with her line, until she is won over",
+ "clips": [
+  {
+   "id": "groove",
+   "drawings": 8,
+   "view": "front",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": []
+  },
+  {
+   "id": "left_hand",
+   "drawings": 4,
+   "view": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [
+    {
+     "beat": 0.25,
+     "type": "accent",
+     "drawing": "peak"
+    }
+   ]
+  },
+  {
+   "id": "right_hand",
+   "drawings": 4,
+   "view": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [
+    {
+     "beat": 0.25,
+     "type": "accent",
+     "drawing": "peak"
+    }
+   ]
+  },
+  {
+   "id": "left_foot",
+   "drawings": 4,
+   "view": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [
+    {
+     "beat": 0.25,
+     "type": "accent",
+     "drawing": "peak"
+    }
+   ]
+  },
+  {
+   "id": "right_foot",
+   "drawings": 4,
+   "view": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [
+    {
+     "beat": 0.25,
+     "type": "accent",
+     "drawing": "peak"
+    }
+   ]
+  },
+  {
+   "id": "enter_forward",
+   "drawings": 6,
+   "view": "front",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": []
+  },
+  {
+   "id": "retreat_backward",
+   "drawings": 6,
+   "view": "front",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": []
+  },
+  {
+   "id": "yield_side",
+   "drawings": 6,
+   "view": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": []
+  },
+  {
+   "id": "watch",
+   "drawings": 4,
+   "view": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": []
+  },
+  {
+   "id": "clap",
+   "drawings": 4,
+   "view": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [
+    {
+     "beat": 0.5,
+     "type": "accent",
+     "drawing": "contact"
+    }
+   ]
+  },
+  {
+   "id": "challenge",
+   "drawings": 4,
+   "view": "front",
+   "loop": false,
+   "durationBeats": 2.0,
+   "events": [
+    {
+     "beat": 1.0,
+     "type": "accent",
+     "drawing": "offer"
+    }
+   ]
+  },
+  {
+   "id": "approval",
+   "drawings": 3,
+   "view": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [
+    {
+     "beat": 0.333,
+     "type": "accent",
+     "drawing": "nod"
+    }
+   ]
+  },
+  {
+   "id": "reassurance",
+   "drawings": 3,
+   "view": "front",
+   "loop": false,
+   "durationBeats": 1.5,
+   "events": [
+    {
+     "beat": 0.5,
+     "type": "accent",
+     "drawing": "open_hand"
+    }
+   ]
+  },
+  {
+   "id": "finish_turn",
+   "drawings": 4,
+   "view": "front",
+   "loop": false,
+   "durationBeats": 2.0,
+   "events": []
+  },
+  {
+   "id": "arch",
+   "drawings": 2,
+   "view": "front_3q",
+   "promptTemplate": "skeletonTurn",
+   "loop": false,
+   "durationBeats": 2.0,
+   "events": [
+    {
+     "beat": 1.0,
+     "type": "accent",
+     "drawing": "hold"
+    }
+   ]
+  },
+  {
+   "id": "freeze",
+   "drawings": 1,
+   "view": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [
+    {
+     "beat": 0.0,
+     "type": "accent",
+     "drawing": "hold"
+    }
+   ]
+  }
+ ],
+ "generation": {
+  "count_per_pose": 4,
+  "seed_base": 994000,
+  "seed_policy": "seed = seed_base + 100*pose_index + k; fixed per pose while tuning",
+  "backend": "comfyui-api",
+  "workflow": "tool/art/workflows/qwen-frame.api.json",
+  "tiers": {
+   "I1": {
+    "model": "qwen-frame",
+    "steps": 4
+   }
+  },
+  "workflowsByProfile": {
+   "moderate": "tool/art/workflows/qwen-frame.api.json",
+   "peak": "tool/art/workflows/qwen-frame.api.json",
+   "overlap": "tool/art/workflows/qwen-frame.api.json",
+   "turn": "tool/art/workflows/qwen-frame.api.json"
+  },
+  "defaultProfile": "moderate",
+  "profileRules": [
+   {
+    "profile": "turn",
+    "poses": [
+     "finish_turn.turn_in",
+     "finish_turn.turn_out"
+    ]
+   },
+   {
+    "profile": "overlap",
+    "clips": [
+     "clap",
+     "watch",
+     "approval"
+    ],
+    "poses": [
+     "challenge.proud",
+     "challenge.load",
+     "finish_turn.finish_a",
+     "finish_turn.finish_b"
+    ]
+   },
+   {
+    "profile": "peak",
+    "phases": [
+     "accent"
+    ],
+    "poses": [
+     "challenge.offer",
+     "reassurance.open_hand"
+    ]
+   }
+  ]
+ },
+ "qa": {
+  "inherit": [
+   "coverage",
+   "single_object",
+   "border_touch",
+   "slot_fill"
+  ],
+  "add": [
+   {
+    "id": "baseline_drift",
+    "maxPx": 1,
+    "scope": "consecutive drawings sharing a planted support foot",
+    "camera": "from target"
+   },
+   {
+    "id": "head_size_variance",
+    "maxPct": 4,
+    "scope": "family"
+   },
+   {
+    "id": "region_gate_agreement",
+    "rule": "non-cloth pixels outside all reservedRamps gates; cloth pixels inside one"
+   },
+   {
+    "id": "identity_similarity",
+    "against": "references",
+    "threshold": "TBD",
+    "embedding": {
+     "model": "facebook/dinov2-small",
+     "licence": "apache-2.0",
+     "status": "pending operator approval"
+    }
+   }
+  ],
+  "static": [
+   {
+    "id": "palette_fails_all_gates",
+    "rule": "outline and palette entries outside cloth fail every kumbia-outfit gate"
+   },
+   {
+    "id": "region_mask_colours_declared",
+    "rule": "every regionMask pixel is a declared regions colour or fully transparent"
+   }
+  ]
+ },
+ "targets": [
+  {
+   "type": "kumbiaManifest",
+   "atlas": "siobhan",
+   "out": "assets/art/ensemble/siobhan-v1.png",
+   "manifest": "assets/art/ensemble/manifest.json",
+   "frameId": "{clip}_{drawing}",
+   "fields": [
+    "rect",
+    "anchor",
+    "pixelsPerUnit",
+    "facing",
+    "loop",
+    "durationBeats",
+    "events",
+    "supportFoot",
+    "status",
+    "provenance",
+    "ramps"
+   ],
+   "packing": {
+    "gutterPx": 2,
+    "trim": true,
+    "anchorRelativeTo": "trimmed-rect"
+   },
+   "requireHumanAcceptance": true,
+   "room": "galeria",
+   "camera": "floor-perspective"
+  }
+ ],
+ "adapters": {
+  "enum": [
+   "ip-adapter-sdxl",
+   "qwen-image-edit",
+   "img2img"
+  ]
+ },
+ "regionsRender": {
+  "antialias": false,
+  "filtering": "none"
+ },
+ "$notes": {
+  "spec": "Generated by tool/art/pipeline/compile_family.py from tool/art/characters/siobhan.json. Do not edit by hand.",
+  "character": "siobhan",
+  "motionSet": "opponent-reel"
+ },
+ "rigInputs": "art_runs/inputs/siobhan-v1",
+ "regionProxyColours": {
+  "skin": "#E2AE8C",
+  "hair": "#A8441E",
+  "shirt": "#163A26",
+  "apron": "#163A27",
+  "accessory": "#C4C8CE",
+  "shoes": "#0E0C10"
+ },
+ "poses": [
+  {
+   "id": "groove.down_l",
+   "clip": "groove",
+   "order": 0,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/siobhan-v1/groove.down_l.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/siobhan-v1/groove.down_l.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/siobhan-v1/groove.down_l.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/siobhan-v1/groove.down_l.regions.png",
+   "supportFoot": "right",
+   "accent": false,
+   "phase": "down",
+   "phaseNote": "down (the hop)",
+   "intent": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, hopping up on the ball of the foot on the left of the picture, the knee on the right of the picture lifted high in front of the body with the foot pointed down and crossed in front of the other leg, chin up, eyes straight ahead",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "secondary-action",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
+  },
+  {
+   "id": "groove.pass_l",
+   "clip": "groove",
+   "order": 1,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/siobhan-v1/groove.pass_l.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/siobhan-v1/groove.pass_l.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/siobhan-v1/groove.pass_l.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/siobhan-v1/groove.pass_l.regions.png",
+   "supportFoot": "right",
+   "accent": false,
+   "phase": "pass",
+   "phaseNote": "pass (the treble)",
+   "intent": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, standing tall on the ball of the foot on the left of the picture, the leg on the right of the picture straight and crossed in front with its pointed toe striking the floor, chin up, eyes straight ahead",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "secondary-action",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
+  },
+  {
+   "id": "groove.up_l",
+   "clip": "groove",
+   "order": 2,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/siobhan-v1/groove.up_l.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/siobhan-v1/groove.up_l.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/siobhan-v1/groove.up_l.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/siobhan-v1/groove.up_l.regions.png",
+   "supportFoot": "both",
+   "accent": false,
+   "phase": "up",
+   "phaseNote": "up (on the toes)",
+   "intent": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, up high on the balls of both feet with the legs straight and the feet crossed tightly one in front of the other and turned out, very tall and still, chin up, eyes straight ahead",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "secondary-action",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
+  },
+  {
+   "id": "groove.pass_l2",
+   "clip": "groove",
+   "order": 3,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/siobhan-v1/groove.pass_l2.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/siobhan-v1/groove.pass_l2.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/siobhan-v1/groove.pass_l2.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/siobhan-v1/groove.pass_l2.regions.png",
+   "supportFoot": "left",
+   "accent": true,
+   "phase": "accent",
+   "phaseNote": "accent (the hop-back)",
+   "intent": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, hopping on the ball of the foot on the right of the picture, the other leg on the left of the picture kicked up behind with the knee bent and the heel flicked up toward the seat, chin up, eyes straight ahead",
+   "profile": "peak",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "line-of-action",
+    "contrapposto",
+    "exaggeration-accent",
+    "secondary-action",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
+  },
+  {
+   "id": "groove.down_r",
+   "clip": "groove",
+   "order": 4,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/siobhan-v1/groove.down_r.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/siobhan-v1/groove.down_r.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/siobhan-v1/groove.down_r.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/siobhan-v1/groove.down_r.regions.png",
+   "supportFoot": "left",
+   "accent": false,
+   "phase": "down",
+   "phaseNote": "down (the hop)",
+   "intent": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, hopping up on the ball of the foot on the right of the picture, the knee on the left of the picture lifted high in front of the body with the foot pointed down and crossed in front of the other leg, chin up, eyes straight ahead",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "secondary-action",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
+  },
+  {
+   "id": "groove.pass_r",
+   "clip": "groove",
+   "order": 5,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/siobhan-v1/groove.pass_r.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/siobhan-v1/groove.pass_r.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/siobhan-v1/groove.pass_r.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/siobhan-v1/groove.pass_r.regions.png",
+   "supportFoot": "left",
+   "accent": false,
+   "phase": "pass",
+   "phaseNote": "pass (the treble)",
+   "intent": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, standing tall on the ball of the foot on the right of the picture, the leg on the left of the picture straight and crossed in front with its pointed toe striking the floor, chin up, eyes straight ahead",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "secondary-action",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
+  },
+  {
+   "id": "groove.up_r",
+   "clip": "groove",
+   "order": 6,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/siobhan-v1/groove.up_r.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/siobhan-v1/groove.up_r.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/siobhan-v1/groove.up_r.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/siobhan-v1/groove.up_r.regions.png",
+   "supportFoot": "both",
+   "accent": false,
+   "phase": "up",
+   "phaseNote": "up (on the toes)",
+   "intent": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, up high on the balls of both feet with the legs straight and the feet crossed tightly one in front of the other and turned out, very tall and still, chin up, eyes straight ahead",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "secondary-action",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
+  },
+  {
+   "id": "groove.pass_r2",
+   "clip": "groove",
+   "order": 7,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/siobhan-v1/groove.pass_r2.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/siobhan-v1/groove.pass_r2.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/siobhan-v1/groove.pass_r2.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/siobhan-v1/groove.pass_r2.regions.png",
+   "supportFoot": "right",
+   "accent": true,
+   "phase": "accent",
+   "phaseNote": "accent (the hop-back)",
+   "intent": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, hopping on the ball of the foot on the left of the picture, the other leg on the right of the picture kicked up behind with the knee bent and the heel flicked up toward the seat, chin up, eyes straight ahead",
+   "profile": "peak",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "line-of-action",
+    "contrapposto",
+    "exaggeration-accent",
+    "secondary-action",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
+  },
+  {
+   "id": "left_hand.prep",
+   "clip": "left_hand",
+   "order": 0,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/siobhan-v1/left_hand.prep.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/siobhan-v1/left_hand.prep.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/siobhan-v1/left_hand.prep.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/siobhan-v1/left_hand.prep.regions.png",
+   "supportFoot": "both",
+   "accent": false,
+   "phase": "anticipation",
+   "phaseNote": "anticipation",
+   "intent": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, up on the balls of both feet with the feet crossed and turned out, chin up, still and tall, about to snap one arm out",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "anticipation",
+    "no-twinning",
+    "timing-on-beat"
+   ]
+  },
+  {
+   "id": "left_hand.peak",
+   "clip": "left_hand",
+   "order": 1,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/siobhan-v1/left_hand.peak.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/siobhan-v1/left_hand.peak.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/siobhan-v1/left_hand.peak.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/siobhan-v1/left_hand.peak.regions.png",
+   "supportFoot": "right",
+   "accent": true,
+   "phase": "accent",
+   "phaseNote": "accent (the arm snap)",
+   "intent": "Irish step dancing, upright: the arm on the right of the picture flung straight and rigid out to the side at about 45 degrees with the hand flat, the other arm held straight and rigid down at the side, standing on the ball of the foot on the left of the picture with the other toe crossed in front, chin up, eyes straight ahead",
+   "profile": "peak",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "line-of-action",
+    "contrapposto",
+    "exaggeration-accent",
+    "no-twinning",
+    "timing-on-beat"
+   ]
+  },
+  {
+   "id": "left_hand.follow",
+   "clip": "left_hand",
+   "order": 2,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/siobhan-v1/left_hand.follow.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/siobhan-v1/left_hand.follow.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/siobhan-v1/left_hand.follow.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/siobhan-v1/left_hand.follow.regions.png",
+   "supportFoot": "right",
+   "accent": false,
+   "phase": "follow-through",
+   "phaseNote": "follow-through",
+   "intent": "Irish step dancing, upright: the straight arm on the right of the picture swinging back down to slap against the skirt, the other arm rigid at the side, up on the balls of the feet with the feet crossed, chin up",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "follow-through",
+    "no-twinning",
+    "timing-on-beat"
+   ]
+  },
+  {
+   "id": "left_hand.return",
+   "clip": "left_hand",
+   "order": 3,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/siobhan-v1/left_hand.return.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/siobhan-v1/left_hand.return.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/siobhan-v1/left_hand.return.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/siobhan-v1/left_hand.return.regions.png",
+   "supportFoot": "both",
+   "accent": false,
+   "phase": "settle",
+   "phaseNote": "settle",
+   "intent": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, up on the balls of both feet with the legs straight and the feet crossed tightly and turned out, chin up, eyes straight ahead",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "follow-through",
+    "no-twinning",
+    "timing-on-beat"
+   ]
+  },
+  {
+   "id": "right_hand.prep",
+   "clip": "right_hand",
+   "order": 0,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/siobhan-v1/right_hand.prep.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/siobhan-v1/right_hand.prep.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/siobhan-v1/right_hand.prep.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/siobhan-v1/right_hand.prep.regions.png",
+   "supportFoot": "both",
+   "accent": false,
+   "phase": "anticipation",
+   "phaseNote": "anticipation",
+   "intent": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, up on the balls of both feet with the feet crossed and turned out, chin up, still and tall, about to snap one arm out",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "anticipation",
+    "no-twinning",
+    "timing-on-beat"
+   ]
+  },
+  {
+   "id": "right_hand.peak",
+   "clip": "right_hand",
+   "order": 1,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/siobhan-v1/right_hand.peak.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/siobhan-v1/right_hand.peak.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/siobhan-v1/right_hand.peak.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/siobhan-v1/right_hand.peak.regions.png",
+   "supportFoot": "left",
+   "accent": true,
+   "phase": "accent",
+   "phaseNote": "accent (the arm snap)",
+   "intent": "Irish step dancing, upright: the arm on the left of the picture flung straight and rigid out to the side at about 45 degrees with the hand flat, the other arm held straight and rigid down at the side, standing on the ball of the foot on the right of the picture with the other toe crossed in front, chin up, eyes straight ahead",
+   "profile": "peak",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "line-of-action",
+    "contrapposto",
+    "exaggeration-accent",
+    "no-twinning",
+    "timing-on-beat"
+   ]
+  },
+  {
+   "id": "right_hand.follow",
+   "clip": "right_hand",
+   "order": 2,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/siobhan-v1/right_hand.follow.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/siobhan-v1/right_hand.follow.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/siobhan-v1/right_hand.follow.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/siobhan-v1/right_hand.follow.regions.png",
+   "supportFoot": "left",
+   "accent": false,
+   "phase": "follow-through",
+   "phaseNote": "follow-through",
+   "intent": "Irish step dancing, upright: the straight arm on the left of the picture swinging back down to slap against the skirt, the other arm rigid at the side, up on the balls of the feet with the feet crossed, chin up",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "follow-through",
+    "no-twinning",
+    "timing-on-beat"
+   ]
+  },
+  {
+   "id": "right_hand.return",
+   "clip": "right_hand",
+   "order": 3,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/siobhan-v1/right_hand.return.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/siobhan-v1/right_hand.return.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/siobhan-v1/right_hand.return.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/siobhan-v1/right_hand.return.regions.png",
+   "supportFoot": "both",
+   "accent": false,
+   "phase": "settle",
+   "phaseNote": "settle",
+   "intent": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, up on the balls of both feet with the legs straight and the feet crossed tightly and turned out, chin up, eyes straight ahead",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "follow-through",
+    "no-twinning",
+    "timing-on-beat"
+   ]
+  },
+  {
+   "id": "left_foot.prep",
+   "clip": "left_foot",
+   "order": 0,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/siobhan-v1/left_foot.prep.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/siobhan-v1/left_foot.prep.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/siobhan-v1/left_foot.prep.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/siobhan-v1/left_foot.prep.regions.png",
+   "supportFoot": "right",
+   "accent": false,
+   "phase": "anticipation",
+   "phaseNote": "anticipation",
+   "intent": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, standing on the ball of the foot on the left of the picture, the knee on the right of the picture drawn up high in front with the foot pointed down, chin up",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "anticipation",
+    "no-twinning",
+    "timing-on-beat"
+   ]
+  },
+  {
+   "id": "left_foot.peak",
+   "clip": "left_foot",
+   "order": 1,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/siobhan-v1/left_foot.peak.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/siobhan-v1/left_foot.peak.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/siobhan-v1/left_foot.peak.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/siobhan-v1/left_foot.peak.regions.png",
+   "supportFoot": "right",
+   "accent": true,
+   "phase": "accent",
+   "phaseNote": "accent (the high kick)",
+   "intent": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, a high kick: standing straight on the ball of the foot on the left of the picture, the leg on the right of the picture kicked straight up high and out to the side at waist height with the toe pointed, the skirt swinging, chin up, eyes straight ahead",
+   "profile": "peak",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "line-of-action",
+    "contrapposto",
+    "exaggeration-accent",
+    "no-twinning",
+    "timing-on-beat"
+   ]
+  },
+  {
+   "id": "left_foot.follow",
+   "clip": "left_foot",
+   "order": 2,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/siobhan-v1/left_foot.follow.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/siobhan-v1/left_foot.follow.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/siobhan-v1/left_foot.follow.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/siobhan-v1/left_foot.follow.regions.png",
+   "supportFoot": "right",
+   "accent": false,
+   "phase": "follow-through",
+   "phaseNote": "follow-through",
+   "intent": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, the straight leg on the right of the picture coming down from a high kick, still lifted out to the side with the toe pointed, standing on the ball of the other foot, chin up",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "follow-through",
+    "no-twinning",
+    "timing-on-beat"
+   ]
+  },
+  {
+   "id": "left_foot.return",
+   "clip": "left_foot",
+   "order": 3,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/siobhan-v1/left_foot.return.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/siobhan-v1/left_foot.return.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/siobhan-v1/left_foot.return.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/siobhan-v1/left_foot.return.regions.png",
+   "supportFoot": "both",
+   "accent": false,
+   "phase": "settle",
+   "phaseNote": "settle (the stamp)",
+   "intent": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, both feet planted flat side by side with a heel stamp, knees straight, chin up, eyes straight ahead",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "follow-through",
+    "no-twinning",
+    "timing-on-beat"
+   ]
+  },
+  {
+   "id": "right_foot.prep",
+   "clip": "right_foot",
+   "order": 0,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/siobhan-v1/right_foot.prep.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/siobhan-v1/right_foot.prep.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/siobhan-v1/right_foot.prep.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/siobhan-v1/right_foot.prep.regions.png",
+   "supportFoot": "left",
+   "accent": false,
+   "phase": "anticipation",
+   "phaseNote": "anticipation",
+   "intent": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, standing on the ball of the foot on the right of the picture, the knee on the left of the picture drawn up high in front with the foot pointed down, chin up",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "anticipation",
+    "no-twinning",
+    "timing-on-beat"
+   ]
+  },
+  {
+   "id": "right_foot.peak",
+   "clip": "right_foot",
+   "order": 1,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/siobhan-v1/right_foot.peak.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/siobhan-v1/right_foot.peak.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/siobhan-v1/right_foot.peak.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/siobhan-v1/right_foot.peak.regions.png",
+   "supportFoot": "left",
+   "accent": true,
+   "phase": "accent",
+   "phaseNote": "accent (the high kick)",
+   "intent": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, a high kick: standing straight on the ball of the foot on the right of the picture, the leg on the left of the picture kicked straight up high and out to the side at waist height with the toe pointed, the skirt swinging, chin up, eyes straight ahead",
+   "profile": "peak",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "line-of-action",
+    "contrapposto",
+    "exaggeration-accent",
+    "no-twinning",
+    "timing-on-beat"
+   ]
+  },
+  {
+   "id": "right_foot.follow",
+   "clip": "right_foot",
+   "order": 2,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/siobhan-v1/right_foot.follow.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/siobhan-v1/right_foot.follow.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/siobhan-v1/right_foot.follow.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/siobhan-v1/right_foot.follow.regions.png",
+   "supportFoot": "left",
+   "accent": false,
+   "phase": "follow-through",
+   "phaseNote": "follow-through",
+   "intent": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, the straight leg on the left of the picture coming down from a high kick, still lifted out to the side with the toe pointed, standing on the ball of the other foot, chin up",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "follow-through",
+    "no-twinning",
+    "timing-on-beat"
+   ]
+  },
+  {
+   "id": "right_foot.return",
+   "clip": "right_foot",
+   "order": 3,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/siobhan-v1/right_foot.return.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/siobhan-v1/right_foot.return.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/siobhan-v1/right_foot.return.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/siobhan-v1/right_foot.return.regions.png",
+   "supportFoot": "both",
+   "accent": false,
+   "phase": "settle",
+   "phaseNote": "settle (the stamp)",
+   "intent": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, both feet planted flat side by side with a heel stamp, knees straight, chin up, eyes straight ahead",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "follow-through",
+    "no-twinning",
+    "timing-on-beat"
+   ]
+  },
+  {
+   "id": "enter_forward.contact_l",
+   "clip": "enter_forward",
+   "order": 0,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/siobhan-v1/enter_forward.contact_l.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/siobhan-v1/enter_forward.contact_l.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/siobhan-v1/enter_forward.contact_l.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/siobhan-v1/enter_forward.contact_l.regions.png",
+   "supportFoot": "right",
+   "accent": true,
+   "phase": "contact",
+   "phaseNote": "contact",
+   "intent": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, skipping forward toward the viewer on a slight diagonal on the balls of the feet, the foot on the right of the picture landing in front on its toe, the other foot behind on its toe",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "anticipation",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
+  },
+  {
+   "id": "enter_forward.down_l",
+   "clip": "enter_forward",
+   "order": 1,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/siobhan-v1/enter_forward.down_l.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/siobhan-v1/enter_forward.down_l.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/siobhan-v1/enter_forward.down_l.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/siobhan-v1/enter_forward.down_l.regions.png",
+   "supportFoot": "left",
+   "accent": false,
+   "phase": "down",
+   "phaseNote": "down",
+   "intent": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, landed on the ball of the foot on the right of the picture, the other foot flicked up behind with the knee bent, skipping forward on a slight diagonal, chin up",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
+  },
+  {
+   "id": "enter_forward.pass_l",
+   "clip": "enter_forward",
+   "order": 2,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/siobhan-v1/enter_forward.pass_l.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/siobhan-v1/enter_forward.pass_l.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/siobhan-v1/enter_forward.pass_l.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/siobhan-v1/enter_forward.pass_l.regions.png",
+   "supportFoot": "left",
+   "accent": false,
+   "phase": "pass",
+   "phaseNote": "pass",
+   "intent": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, standing on the ball of the foot on the right of the picture, the other knee lifted in front with the foot pointed, skipping forward on a slight diagonal, chin up",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
+  },
+  {
+   "id": "enter_forward.contact_r",
+   "clip": "enter_forward",
+   "order": 3,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/siobhan-v1/enter_forward.contact_r.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/siobhan-v1/enter_forward.contact_r.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/siobhan-v1/enter_forward.contact_r.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/siobhan-v1/enter_forward.contact_r.regions.png",
+   "supportFoot": "left",
+   "accent": true,
+   "phase": "contact",
+   "phaseNote": "contact",
+   "intent": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, skipping forward toward the viewer on a slight diagonal on the balls of the feet, the foot on the left of the picture landing in front on its toe, the other foot behind on its toe",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "anticipation",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
+  },
+  {
+   "id": "enter_forward.down_r",
+   "clip": "enter_forward",
+   "order": 4,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/siobhan-v1/enter_forward.down_r.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/siobhan-v1/enter_forward.down_r.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/siobhan-v1/enter_forward.down_r.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/siobhan-v1/enter_forward.down_r.regions.png",
+   "supportFoot": "right",
+   "accent": false,
+   "phase": "down",
+   "phaseNote": "down",
+   "intent": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, landed on the ball of the foot on the left of the picture, the other foot flicked up behind with the knee bent, skipping forward on a slight diagonal, chin up",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
+  },
+  {
+   "id": "enter_forward.pass_r",
+   "clip": "enter_forward",
+   "order": 5,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/siobhan-v1/enter_forward.pass_r.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/siobhan-v1/enter_forward.pass_r.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/siobhan-v1/enter_forward.pass_r.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/siobhan-v1/enter_forward.pass_r.regions.png",
+   "supportFoot": "right",
+   "accent": false,
+   "phase": "pass",
+   "phaseNote": "pass",
+   "intent": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, standing on the ball of the foot on the left of the picture, the other knee lifted in front with the foot pointed, skipping forward on a slight diagonal, chin up",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
+  },
+  {
+   "id": "retreat_backward.contact_l",
+   "clip": "retreat_backward",
+   "order": 0,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/siobhan-v1/retreat_backward.contact_l.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/siobhan-v1/retreat_backward.contact_l.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/siobhan-v1/retreat_backward.contact_l.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/siobhan-v1/retreat_backward.contact_l.regions.png",
+   "supportFoot": "right",
+   "accent": true,
+   "phase": "contact",
+   "phaseNote": "contact",
+   "intent": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, skipping backward while still facing the viewer, on the balls of the feet, the foot on the right of the picture reaching back on its toe",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "anticipation",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
+  },
+  {
+   "id": "retreat_backward.down_l",
+   "clip": "retreat_backward",
+   "order": 1,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/siobhan-v1/retreat_backward.down_l.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/siobhan-v1/retreat_backward.down_l.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/siobhan-v1/retreat_backward.down_l.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/siobhan-v1/retreat_backward.down_l.regions.png",
+   "supportFoot": "left",
+   "accent": false,
+   "phase": "down",
+   "phaseNote": "down",
+   "intent": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, landed on the ball of the foot on the right of the picture, the other foot lifted in front with the toe pointed, skipping backward while facing the viewer, chin up",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
+  },
+  {
+   "id": "retreat_backward.pass_l",
+   "clip": "retreat_backward",
+   "order": 2,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/siobhan-v1/retreat_backward.pass_l.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/siobhan-v1/retreat_backward.pass_l.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/siobhan-v1/retreat_backward.pass_l.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/siobhan-v1/retreat_backward.pass_l.regions.png",
+   "supportFoot": "left",
+   "accent": false,
+   "phase": "pass",
+   "phaseNote": "pass",
+   "intent": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, standing on the ball of the foot on the right of the picture, the other knee lifted with the foot pointed, skipping backward while facing the viewer, chin up",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
+  },
+  {
+   "id": "retreat_backward.contact_r",
+   "clip": "retreat_backward",
+   "order": 3,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/siobhan-v1/retreat_backward.contact_r.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/siobhan-v1/retreat_backward.contact_r.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/siobhan-v1/retreat_backward.contact_r.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/siobhan-v1/retreat_backward.contact_r.regions.png",
+   "supportFoot": "left",
+   "accent": true,
+   "phase": "contact",
+   "phaseNote": "contact",
+   "intent": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, skipping backward while still facing the viewer, on the balls of the feet, the foot on the left of the picture reaching back on its toe",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "anticipation",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
+  },
+  {
+   "id": "retreat_backward.down_r",
+   "clip": "retreat_backward",
+   "order": 4,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/siobhan-v1/retreat_backward.down_r.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/siobhan-v1/retreat_backward.down_r.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/siobhan-v1/retreat_backward.down_r.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/siobhan-v1/retreat_backward.down_r.regions.png",
+   "supportFoot": "right",
+   "accent": false,
+   "phase": "down",
+   "phaseNote": "down",
+   "intent": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, landed on the ball of the foot on the left of the picture, the other foot lifted in front with the toe pointed, skipping backward while facing the viewer, chin up",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
+  },
+  {
+   "id": "retreat_backward.pass_r",
+   "clip": "retreat_backward",
+   "order": 5,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/siobhan-v1/retreat_backward.pass_r.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/siobhan-v1/retreat_backward.pass_r.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/siobhan-v1/retreat_backward.pass_r.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/siobhan-v1/retreat_backward.pass_r.regions.png",
+   "supportFoot": "right",
+   "accent": false,
+   "phase": "pass",
+   "phaseNote": "pass",
+   "intent": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, standing on the ball of the foot on the left of the picture, the other knee lifted with the foot pointed, skipping backward while facing the viewer, chin up",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
+  },
+  {
+   "id": "yield_side.contact_l",
+   "clip": "yield_side",
+   "order": 0,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/siobhan-v1/yield_side.contact_l.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/siobhan-v1/yield_side.contact_l.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/siobhan-v1/yield_side.contact_l.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/siobhan-v1/yield_side.contact_l.regions.png",
+   "supportFoot": "right",
+   "accent": true,
+   "phase": "contact",
+   "phaseNote": "contact",
+   "intent": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, skipping sideways on the balls of the feet, the foot on the right of the picture landing on its toe, body turned a little, chin up",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "anticipation",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
+  },
+  {
+   "id": "yield_side.down_l",
+   "clip": "yield_side",
+   "order": 1,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/siobhan-v1/yield_side.down_l.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/siobhan-v1/yield_side.down_l.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/siobhan-v1/yield_side.down_l.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/siobhan-v1/yield_side.down_l.regions.png",
+   "supportFoot": "left",
+   "accent": false,
+   "phase": "down",
+   "phaseNote": "down",
+   "intent": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, landed on the ball of the foot on the right of the picture, the other foot flicked up behind, skipping sideways, chin up",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
+  },
+  {
+   "id": "yield_side.pass_l",
+   "clip": "yield_side",
+   "order": 2,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/siobhan-v1/yield_side.pass_l.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/siobhan-v1/yield_side.pass_l.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/siobhan-v1/yield_side.pass_l.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/siobhan-v1/yield_side.pass_l.regions.png",
+   "supportFoot": "left",
+   "accent": false,
+   "phase": "pass",
+   "phaseNote": "pass",
+   "intent": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, standing on the ball of the foot on the right of the picture, the other knee lifted with the foot pointed, skipping sideways, chin up",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
+  },
+  {
+   "id": "yield_side.contact_r",
+   "clip": "yield_side",
+   "order": 3,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/siobhan-v1/yield_side.contact_r.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/siobhan-v1/yield_side.contact_r.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/siobhan-v1/yield_side.contact_r.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/siobhan-v1/yield_side.contact_r.regions.png",
+   "supportFoot": "left",
+   "accent": true,
+   "phase": "contact",
+   "phaseNote": "contact",
+   "intent": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, skipping sideways on the balls of the feet, the foot on the left of the picture landing on its toe, body turned a little, chin up",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "anticipation",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
+  },
+  {
+   "id": "yield_side.down_r",
+   "clip": "yield_side",
+   "order": 4,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/siobhan-v1/yield_side.down_r.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/siobhan-v1/yield_side.down_r.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/siobhan-v1/yield_side.down_r.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/siobhan-v1/yield_side.down_r.regions.png",
+   "supportFoot": "right",
+   "accent": false,
+   "phase": "down",
+   "phaseNote": "down",
+   "intent": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, landed on the ball of the foot on the left of the picture, the other foot flicked up behind, skipping sideways, chin up",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
+  },
+  {
+   "id": "yield_side.pass_r",
+   "clip": "yield_side",
+   "order": 5,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/siobhan-v1/yield_side.pass_r.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/siobhan-v1/yield_side.pass_r.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/siobhan-v1/yield_side.pass_r.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/siobhan-v1/yield_side.pass_r.regions.png",
+   "supportFoot": "right",
+   "accent": false,
+   "phase": "pass",
+   "phaseNote": "pass",
+   "intent": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, standing on the ball of the foot on the left of the picture, the other knee lifted with the foot pointed, skipping sideways, chin up",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
+  },
+  {
+   "id": "watch.shift_l",
+   "clip": "watch",
+   "order": 0,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/siobhan-v1/watch.shift_l.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/siobhan-v1/watch.shift_l.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/siobhan-v1/watch.shift_l.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/siobhan-v1/watch.shift_l.regions.png",
+   "supportFoot": "both",
+   "accent": false,
+   "phase": "pass",
+   "phaseNote": "pass (watching)",
+   "intent": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, standing with the feet crossed and turned out, turned a little toward the right of the picture, head turned to watch the other dancer, composed and stern",
+   "profile": "overlap",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "secondary-action",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
+  },
+  {
+   "id": "watch.hold_l",
+   "clip": "watch",
+   "order": 1,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/siobhan-v1/watch.hold_l.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/siobhan-v1/watch.hold_l.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/siobhan-v1/watch.hold_l.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/siobhan-v1/watch.hold_l.regions.png",
+   "supportFoot": "both",
+   "accent": false,
+   "phase": "settle",
+   "phaseNote": "settle (nod)",
+   "intent": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, up on the balls of the feet with the feet crossed, turned a little toward the right of the picture, a small crisp nod in time while watching",
+   "profile": "overlap",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "follow-through",
+    "secondary-action",
+    "no-twinning",
+    "timing-on-beat"
+   ]
+  },
+  {
+   "id": "watch.shift_r",
+   "clip": "watch",
+   "order": 2,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/siobhan-v1/watch.shift_r.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/siobhan-v1/watch.shift_r.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/siobhan-v1/watch.shift_r.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/siobhan-v1/watch.shift_r.regions.png",
+   "supportFoot": "both",
+   "accent": false,
+   "phase": "pass",
+   "phaseNote": "pass (watching)",
+   "intent": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, standing with the feet crossed and turned out, turned a little toward the right of the picture, head turned further to watch the other dancer, one eyebrow raised",
+   "profile": "overlap",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "secondary-action",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
+  },
+  {
+   "id": "watch.hold_r",
+   "clip": "watch",
+   "order": 3,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/siobhan-v1/watch.hold_r.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/siobhan-v1/watch.hold_r.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/siobhan-v1/watch.hold_r.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/siobhan-v1/watch.hold_r.regions.png",
+   "supportFoot": "both",
+   "accent": false,
+   "phase": "settle",
+   "phaseNote": "settle",
+   "intent": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, up on the balls of the feet with the feet crossed, turned a little toward the right of the picture, head tilted, watching closely",
+   "profile": "overlap",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "follow-through",
+    "secondary-action",
+    "no-twinning",
+    "timing-on-beat"
+   ]
+  },
+  {
+   "id": "clap.open",
+   "clip": "clap",
+   "order": 0,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/siobhan-v1/clap.open.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/siobhan-v1/clap.open.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/siobhan-v1/clap.open.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/siobhan-v1/clap.open.regions.png",
+   "supportFoot": "both",
+   "accent": false,
+   "phase": "anticipation",
+   "phaseNote": "anticipation",
+   "intent": "standing upright with both feet flat and crossed, both forearms raised in front of the chest with the palms apart, about to clap, chin up",
+   "profile": "overlap",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "anticipation",
+    "no-twinning",
+    "timing-on-beat"
+   ]
+  },
+  {
+   "id": "clap.close",
+   "clip": "clap",
+   "order": 1,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/siobhan-v1/clap.close.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/siobhan-v1/clap.close.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/siobhan-v1/clap.close.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/siobhan-v1/clap.close.regions.png",
+   "supportFoot": "both",
+   "accent": false,
+   "phase": "pass",
+   "phaseNote": "pass",
+   "intent": "standing upright with both feet flat and crossed, both hands swinging together in front of the chest, chin up",
+   "profile": "overlap",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
+  },
+  {
+   "id": "clap.contact",
+   "clip": "clap",
+   "order": 2,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/siobhan-v1/clap.contact.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/siobhan-v1/clap.contact.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/siobhan-v1/clap.contact.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/siobhan-v1/clap.contact.regions.png",
+   "supportFoot": "both",
+   "accent": true,
+   "phase": "contact",
+   "phaseNote": "contact (on the beat)",
+   "intent": "standing upright with both feet flat and crossed, palms clapped together in front of the chest, a small smile",
+   "profile": "overlap",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "anticipation",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
+  },
+  {
+   "id": "clap.release",
+   "clip": "clap",
+   "order": 3,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/siobhan-v1/clap.release.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/siobhan-v1/clap.release.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/siobhan-v1/clap.release.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/siobhan-v1/clap.release.regions.png",
+   "supportFoot": "both",
+   "accent": false,
+   "phase": "follow-through",
+   "phaseNote": "follow-through",
+   "intent": "standing upright with both feet flat and crossed, hands bouncing apart in front of the chest, chin up",
+   "profile": "overlap",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "follow-through",
+    "no-twinning",
+    "timing-on-beat"
+   ]
+  },
+  {
+   "id": "challenge.load",
+   "clip": "challenge",
+   "order": 0,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/siobhan-v1/challenge.load.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/siobhan-v1/challenge.load.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/siobhan-v1/challenge.load.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/siobhan-v1/challenge.load.regions.png",
+   "supportFoot": "both",
+   "accent": false,
+   "phase": "anticipation",
+   "phaseNote": "anticipation",
+   "intent": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, both knees dipped with the feet crossed and turned out, chin dipping, gathering for a challenge",
+   "profile": "overlap",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "anticipation",
+    "no-twinning",
+    "timing-on-beat"
+   ]
+  },
+  {
+   "id": "challenge.proud",
+   "clip": "challenge",
+   "order": 1,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/siobhan-v1/challenge.proud.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/siobhan-v1/challenge.proud.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/siobhan-v1/challenge.proud.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/siobhan-v1/challenge.proud.regions.png",
+   "supportFoot": "both",
+   "accent": true,
+   "phase": "accent",
+   "phaseNote": "accent",
+   "intent": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, very tall on the balls of both feet with the feet crossed tightly and turned out, chin lifted high, a cool proud look straight at the viewer",
+   "profile": "overlap",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "line-of-action",
+    "contrapposto",
+    "exaggeration-accent",
+    "no-twinning",
+    "timing-on-beat"
+   ]
+  },
+  {
+   "id": "challenge.offer",
+   "clip": "challenge",
+   "order": 2,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/siobhan-v1/challenge.offer.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/siobhan-v1/challenge.offer.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/siobhan-v1/challenge.offer.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/siobhan-v1/challenge.offer.regions.png",
+   "supportFoot": "left",
+   "accent": true,
+   "phase": "accent",
+   "phaseNote": "accent (invitation)",
+   "intent": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, standing on the foot on the right of the picture, the leg on the left of the picture extended out to the side with the pointed toe touching the floor toward the left of the picture, head turned toward the pointed toe, a challenging look: your turn",
+   "profile": "peak",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "line-of-action",
+    "contrapposto",
+    "exaggeration-accent",
+    "no-twinning",
+    "timing-on-beat"
+   ]
+  },
+  {
+   "id": "challenge.return",
+   "clip": "challenge",
+   "order": 3,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/siobhan-v1/challenge.return.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/siobhan-v1/challenge.return.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/siobhan-v1/challenge.return.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/siobhan-v1/challenge.return.regions.png",
+   "supportFoot": "both",
+   "accent": false,
+   "phase": "settle",
+   "phaseNote": "settle",
+   "intent": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, standing with both feet flat and crossed, turned out, chin up, composed",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "follow-through",
+    "no-twinning",
+    "timing-on-beat"
+   ]
+  },
+  {
+   "id": "approval.load",
+   "clip": "approval",
+   "order": 0,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/siobhan-v1/approval.load.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/siobhan-v1/approval.load.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/siobhan-v1/approval.load.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/siobhan-v1/approval.load.regions.png",
+   "supportFoot": "both",
+   "accent": false,
+   "phase": "anticipation",
+   "phaseNote": "anticipation",
+   "intent": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, up on the balls of both feet with the feet crossed, chin lifted, eyes on the viewer, considering",
+   "profile": "overlap",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "anticipation",
+    "secondary-action",
+    "no-twinning",
+    "timing-on-beat"
+   ]
+  },
+  {
+   "id": "approval.nod",
+   "clip": "approval",
+   "order": 1,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/siobhan-v1/approval.nod.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/siobhan-v1/approval.nod.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/siobhan-v1/approval.nod.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/siobhan-v1/approval.nod.regions.png",
+   "supportFoot": "both",
+   "accent": true,
+   "phase": "accent",
+   "phaseNote": "accent (the nod)",
+   "intent": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, both knees dipped with the feet flat and crossed, one firm approving nod with the head bowed and the chin down, a small approving smile",
+   "profile": "overlap",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "line-of-action",
+    "contrapposto",
+    "exaggeration-accent",
+    "secondary-action",
+    "no-twinning",
+    "timing-on-beat"
+   ]
+  },
+  {
+   "id": "approval.release",
+   "clip": "approval",
+   "order": 2,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/siobhan-v1/approval.release.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/siobhan-v1/approval.release.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/siobhan-v1/approval.release.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/siobhan-v1/approval.release.regions.png",
+   "supportFoot": "both",
+   "accent": false,
+   "phase": "settle",
+   "phaseNote": "settle",
+   "intent": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, standing with both feet flat and crossed, head tilted slightly, a small approving smile at the viewer",
+   "profile": "overlap",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "follow-through",
+    "secondary-action",
+    "no-twinning",
+    "timing-on-beat"
+   ]
+  },
+  {
+   "id": "reassurance.notice",
+   "clip": "reassurance",
+   "order": 0,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/siobhan-v1/reassurance.notice.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/siobhan-v1/reassurance.notice.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/siobhan-v1/reassurance.notice.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/siobhan-v1/reassurance.notice.regions.png",
+   "supportFoot": "both",
+   "accent": false,
+   "phase": "anticipation",
+   "phaseNote": "anticipation",
+   "intent": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, standing with both feet flat and crossed, head tilted with a softer look",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "anticipation",
+    "no-twinning",
+    "timing-on-beat"
+   ]
+  },
+  {
+   "id": "reassurance.open_hand",
+   "clip": "reassurance",
+   "order": 1,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/siobhan-v1/reassurance.open_hand.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/siobhan-v1/reassurance.open_hand.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/siobhan-v1/reassurance.open_hand.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/siobhan-v1/reassurance.open_hand.regions.png",
+   "supportFoot": "both",
+   "accent": true,
+   "phase": "accent",
+   "phaseNote": "accent",
+   "intent": "Irish step dancer standing with both feet flat and crossed, the arm on the right of the picture rigid at the side, the forearm on the left of the picture lifted at waist height with the palm open and up, head tilted, encouraging",
+   "profile": "peak",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "line-of-action",
+    "contrapposto",
+    "exaggeration-accent",
+    "no-twinning",
+    "timing-on-beat"
+   ]
+  },
+  {
+   "id": "reassurance.settle",
+   "clip": "reassurance",
+   "order": 2,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/siobhan-v1/reassurance.settle.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/siobhan-v1/reassurance.settle.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/siobhan-v1/reassurance.settle.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/siobhan-v1/reassurance.settle.regions.png",
+   "supportFoot": "both",
+   "accent": false,
+   "phase": "settle",
+   "phaseNote": "settle",
+   "intent": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, up high on the balls of both feet with the legs straight and the feet crossed tightly one in front of the other, chin up",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "follow-through",
+    "no-twinning",
+    "timing-on-beat"
+   ]
+  },
+  {
+   "id": "finish_turn.finish_a",
+   "clip": "finish_turn",
+   "order": 0,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/siobhan-v1/finish_turn.finish_a.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/siobhan-v1/finish_turn.finish_a.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/siobhan-v1/finish_turn.finish_a.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/siobhan-v1/finish_turn.finish_a.regions.png",
+   "supportFoot": "left",
+   "accent": false,
+   "phase": "anticipation",
+   "phaseNote": "anticipation (the finish)",
+   "intent": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, standing on the foot on the right of the picture, the other leg straight and extended forward with the toe pointed on the floor, chin up, a proud look",
+   "profile": "overlap",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "exaggeration-accent",
+    "no-twinning",
+    "timing-on-beat"
+   ]
+  },
+  {
+   "id": "finish_turn.finish_b",
+   "clip": "finish_turn",
+   "order": 1,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/siobhan-v1/finish_turn.finish_b.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/siobhan-v1/finish_turn.finish_b.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/siobhan-v1/finish_turn.finish_b.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/siobhan-v1/finish_turn.finish_b.regions.png",
+   "supportFoot": "left",
+   "accent": true,
+   "phase": "accent",
+   "phaseNote": "accent (the finish)",
+   "intent": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, standing on the foot on the right of the picture, the other leg straight and extended forward with the toe pointed on the floor, a crisp small bow from the waist with the head bowed, proud",
+   "profile": "overlap",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "line-of-action",
+    "contrapposto",
+    "exaggeration-accent",
+    "no-twinning",
+    "timing-on-beat"
+   ]
+  },
+  {
+   "id": "finish_turn.turn_in",
+   "clip": "finish_turn",
+   "order": 2,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/siobhan-v1/finish_turn.turn_in.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/siobhan-v1/finish_turn.turn_in.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/siobhan-v1/finish_turn.turn_in.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/siobhan-v1/finish_turn.turn_in.regions.png",
+   "supportFoot": "both",
+   "accent": false,
+   "phase": "pass",
+   "phaseNote": "pass (turn)",
+   "intent": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, up on the balls of the feet, body turned about 30 degrees toward the right of the picture, the feet crossed",
+   "profile": "turn",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
+  },
+  {
+   "id": "finish_turn.turn_out",
+   "clip": "finish_turn",
+   "order": 3,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/siobhan-v1/finish_turn.turn_out.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/siobhan-v1/finish_turn.turn_out.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/siobhan-v1/finish_turn.turn_out.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/siobhan-v1/finish_turn.turn_out.regions.png",
+   "supportFoot": "both",
+   "accent": false,
+   "phase": "pass",
+   "phaseNote": "pass (turn)",
+   "intent": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, up on the balls of the feet, body turned about 30 degrees toward the left of the picture, the feet crossed",
+   "profile": "turn",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "no-twinning",
+    "timing-on-beat",
+    "planted-pivot"
+   ]
+  },
+  {
+   "id": "arch.rise",
+   "clip": "arch",
+   "order": 0,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/siobhan-v1/arch.rise.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/siobhan-v1/arch.rise.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/siobhan-v1/arch.rise.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/siobhan-v1/arch.rise.regions.png",
+   "supportFoot": "both",
+   "accent": false,
+   "phase": "anticipation",
+   "phaseNote": "anticipation (the arch)",
+   "intent": "turned three quarters toward the right of the picture, standing with the feet crossed and turned out, both arms rising straight up in front at shoulder height, reaching up toward a partner on the right of the picture, chin up",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "no-twinning",
+    "timing-on-beat"
+   ]
+  },
+  {
+   "id": "arch.hold",
+   "clip": "arch",
+   "order": 1,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/siobhan-v1/arch.hold.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/siobhan-v1/arch.hold.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/siobhan-v1/arch.hold.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/siobhan-v1/arch.hold.regions.png",
+   "supportFoot": "both",
+   "accent": true,
+   "phase": "accent",
+   "phaseNote": "accent (the arch)",
+   "intent": "turned three quarters toward the right of the picture, up on the balls of the feet with the feet crossed, both arms raised straight up high above the head and leaning a little toward the right of the picture, the hands open as if joining a partner's hands to make an arch, chin up, proud",
+   "profile": "peak",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "line-of-action",
+    "contrapposto",
+    "exaggeration-accent",
+    "secondary-action",
+    "no-twinning",
+    "timing-on-beat"
+   ]
+  },
+  {
+   "id": "freeze.hold",
+   "clip": "freeze",
+   "order": 0,
+   "view": "front",
+   "control": {
+    "type": "openpose",
+    "image": "art_runs/inputs/siobhan-v1/freeze.hold.pose.png",
+    "aux": [
+     {
+      "type": "depth",
+      "image": "art_runs/inputs/siobhan-v1/freeze.hold.depth.png"
+     },
+     {
+      "type": "lineart",
+      "image": "art_runs/inputs/siobhan-v1/freeze.hold.lineart.png"
+     }
+    ]
+   },
+   "regionMask": "art_runs/inputs/siobhan-v1/freeze.hold.regions.png",
+   "supportFoot": "both",
+   "accent": false,
+   "phase": "settle",
+   "phaseNote": "settle (the freeze)",
+   "intent": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, frozen perfectly still up on the balls of both feet with the legs straight and the feet crossed tightly and turned out, chin lifted, a cool stern look straight ahead",
+   "profile": "moderate",
+   "animationPrinciples": [
+    "staging-silhouette",
+    "contrapposto",
+    "follow-through",
+    "secondary-action",
+    "no-twinning",
+    "timing-on-beat"
+   ]
+  }
+ ],
+ "animationReferences": {
+  "registry": "tool/art/references/animation-principles.json",
+  "research": [
+   "plan/dance-fluidity-pass.md",
+   "plan/levels/mansion-act-two-2026-11-08.md"
+  ],
+  "principlesUsed": [
+   "anticipation",
+   "contrapposto",
+   "exaggeration-accent",
+   "follow-through",
+   "line-of-action",
+   "no-twinning",
+   "planted-pivot",
+   "secondary-action",
+   "staging-silhouette",
+   "timing-on-beat"
+  ],
+  "sourcesUsed": [
+   "cartwright-gdc2014",
+   "contrapposto-fonseca",
+   "dead-cells-pipeline",
+   "disney-process",
+   "illusion-of-life",
+   "silhouette-test",
+   "simogo-bsb",
+   "slynyrd-53",
+   "slynyrd-55",
+   "twinning",
+   "ubisoft-foot-ik",
+   "williams-survival-kit"
+  ]
+ }
+}

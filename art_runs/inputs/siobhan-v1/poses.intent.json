@@ -1,0 +1,408 @@
+{
+ "character": "siobhan",
+ "note": "Sides are the character's own; she faces the viewer, so her left is on screen right.",
+ "poses": {
+  "groove.down_l": {
+   "clip": "groove",
+   "phase": "down (the hop)",
+   "support": "right",
+   "description": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, hopping up on the ball of the foot on the left of the picture, the knee on the right of the picture lifted high in front of the body with the foot pointed down and crossed in front of the other leg, chin up, eyes straight ahead"
+  },
+  "groove.pass_l": {
+   "clip": "groove",
+   "phase": "pass (the treble)",
+   "support": "right",
+   "description": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, standing tall on the ball of the foot on the left of the picture, the leg on the right of the picture straight and crossed in front with its pointed toe striking the floor, chin up, eyes straight ahead"
+  },
+  "groove.up_l": {
+   "clip": "groove",
+   "phase": "up (on the toes)",
+   "support": "both",
+   "description": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, up high on the balls of both feet with the legs straight and the feet crossed tightly one in front of the other and turned out, very tall and still, chin up, eyes straight ahead"
+  },
+  "groove.pass_l2": {
+   "clip": "groove",
+   "phase": "accent (the hop-back)",
+   "support": "left",
+   "description": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, hopping on the ball of the foot on the right of the picture, the other leg on the left of the picture kicked up behind with the knee bent and the heel flicked up toward the seat, chin up, eyes straight ahead"
+  },
+  "groove.down_r": {
+   "clip": "groove",
+   "phase": "down (the hop)",
+   "support": "left",
+   "description": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, hopping up on the ball of the foot on the right of the picture, the knee on the left of the picture lifted high in front of the body with the foot pointed down and crossed in front of the other leg, chin up, eyes straight ahead"
+  },
+  "groove.pass_r": {
+   "clip": "groove",
+   "phase": "pass (the treble)",
+   "support": "left",
+   "description": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, standing tall on the ball of the foot on the right of the picture, the leg on the left of the picture straight and crossed in front with its pointed toe striking the floor, chin up, eyes straight ahead"
+  },
+  "groove.up_r": {
+   "clip": "groove",
+   "phase": "up (on the toes)",
+   "support": "both",
+   "description": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, up high on the balls of both feet with the legs straight and the feet crossed tightly one in front of the other and turned out, very tall and still, chin up, eyes straight ahead"
+  },
+  "groove.pass_r2": {
+   "clip": "groove",
+   "phase": "accent (the hop-back)",
+   "support": "right",
+   "description": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, hopping on the ball of the foot on the left of the picture, the other leg on the right of the picture kicked up behind with the knee bent and the heel flicked up toward the seat, chin up, eyes straight ahead"
+  },
+  "left_hand.prep": {
+   "clip": "left_hand",
+   "phase": "anticipation",
+   "support": "both",
+   "description": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, up on the balls of both feet with the feet crossed and turned out, chin up, still and tall, about to snap one arm out"
+  },
+  "left_hand.peak": {
+   "clip": "left_hand",
+   "phase": "accent (the arm snap)",
+   "support": "right",
+   "description": "Irish step dancing, upright: the arm on the right of the picture flung straight and rigid out to the side at about 45 degrees with the hand flat, the other arm held straight and rigid down at the side, standing on the ball of the foot on the left of the picture with the other toe crossed in front, chin up, eyes straight ahead"
+  },
+  "left_hand.follow": {
+   "clip": "left_hand",
+   "phase": "follow-through",
+   "support": "right",
+   "description": "Irish step dancing, upright: the straight arm on the right of the picture swinging back down to slap against the skirt, the other arm rigid at the side, up on the balls of the feet with the feet crossed, chin up"
+  },
+  "left_hand.return": {
+   "clip": "left_hand",
+   "phase": "settle",
+   "support": "both",
+   "description": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, up on the balls of both feet with the legs straight and the feet crossed tightly and turned out, chin up, eyes straight ahead"
+  },
+  "right_hand.prep": {
+   "clip": "right_hand",
+   "phase": "anticipation",
+   "support": "both",
+   "description": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, up on the balls of both feet with the feet crossed and turned out, chin up, still and tall, about to snap one arm out"
+  },
+  "right_hand.peak": {
+   "clip": "right_hand",
+   "phase": "accent (the arm snap)",
+   "support": "left",
+   "description": "Irish step dancing, upright: the arm on the left of the picture flung straight and rigid out to the side at about 45 degrees with the hand flat, the other arm held straight and rigid down at the side, standing on the ball of the foot on the right of the picture with the other toe crossed in front, chin up, eyes straight ahead"
+  },
+  "right_hand.follow": {
+   "clip": "right_hand",
+   "phase": "follow-through",
+   "support": "left",
+   "description": "Irish step dancing, upright: the straight arm on the left of the picture swinging back down to slap against the skirt, the other arm rigid at the side, up on the balls of the feet with the feet crossed, chin up"
+  },
+  "right_hand.return": {
+   "clip": "right_hand",
+   "phase": "settle",
+   "support": "both",
+   "description": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, up on the balls of both feet with the legs straight and the feet crossed tightly and turned out, chin up, eyes straight ahead"
+  },
+  "left_foot.prep": {
+   "clip": "left_foot",
+   "phase": "anticipation",
+   "support": "right",
+   "description": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, standing on the ball of the foot on the left of the picture, the knee on the right of the picture drawn up high in front with the foot pointed down, chin up"
+  },
+  "left_foot.peak": {
+   "clip": "left_foot",
+   "phase": "accent (the high kick)",
+   "support": "right",
+   "description": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, a high kick: standing straight on the ball of the foot on the left of the picture, the leg on the right of the picture kicked straight up high and out to the side at waist height with the toe pointed, the skirt swinging, chin up, eyes straight ahead"
+  },
+  "left_foot.follow": {
+   "clip": "left_foot",
+   "phase": "follow-through",
+   "support": "right",
+   "description": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, the straight leg on the right of the picture coming down from a high kick, still lifted out to the side with the toe pointed, standing on the ball of the other foot, chin up"
+  },
+  "left_foot.return": {
+   "clip": "left_foot",
+   "phase": "settle (the stamp)",
+   "support": "both",
+   "description": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, both feet planted flat side by side with a heel stamp, knees straight, chin up, eyes straight ahead"
+  },
+  "right_foot.prep": {
+   "clip": "right_foot",
+   "phase": "anticipation",
+   "support": "left",
+   "description": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, standing on the ball of the foot on the right of the picture, the knee on the left of the picture drawn up high in front with the foot pointed down, chin up"
+  },
+  "right_foot.peak": {
+   "clip": "right_foot",
+   "phase": "accent (the high kick)",
+   "support": "left",
+   "description": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, a high kick: standing straight on the ball of the foot on the right of the picture, the leg on the left of the picture kicked straight up high and out to the side at waist height with the toe pointed, the skirt swinging, chin up, eyes straight ahead"
+  },
+  "right_foot.follow": {
+   "clip": "right_foot",
+   "phase": "follow-through",
+   "support": "left",
+   "description": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, the straight leg on the left of the picture coming down from a high kick, still lifted out to the side with the toe pointed, standing on the ball of the other foot, chin up"
+  },
+  "right_foot.return": {
+   "clip": "right_foot",
+   "phase": "settle (the stamp)",
+   "support": "both",
+   "description": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, both feet planted flat side by side with a heel stamp, knees straight, chin up, eyes straight ahead"
+  },
+  "enter_forward.contact_l": {
+   "clip": "enter_forward",
+   "phase": "contact",
+   "support": "right",
+   "description": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, skipping forward toward the viewer on a slight diagonal on the balls of the feet, the foot on the right of the picture landing in front on its toe, the other foot behind on its toe"
+  },
+  "enter_forward.down_l": {
+   "clip": "enter_forward",
+   "phase": "down",
+   "support": "left",
+   "description": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, landed on the ball of the foot on the right of the picture, the other foot flicked up behind with the knee bent, skipping forward on a slight diagonal, chin up"
+  },
+  "enter_forward.pass_l": {
+   "clip": "enter_forward",
+   "phase": "pass",
+   "support": "left",
+   "description": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, standing on the ball of the foot on the right of the picture, the other knee lifted in front with the foot pointed, skipping forward on a slight diagonal, chin up"
+  },
+  "enter_forward.contact_r": {
+   "clip": "enter_forward",
+   "phase": "contact",
+   "support": "left",
+   "description": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, skipping forward toward the viewer on a slight diagonal on the balls of the feet, the foot on the left of the picture landing in front on its toe, the other foot behind on its toe"
+  },
+  "enter_forward.down_r": {
+   "clip": "enter_forward",
+   "phase": "down",
+   "support": "right",
+   "description": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, landed on the ball of the foot on the left of the picture, the other foot flicked up behind with the knee bent, skipping forward on a slight diagonal, chin up"
+  },
+  "enter_forward.pass_r": {
+   "clip": "enter_forward",
+   "phase": "pass",
+   "support": "right",
+   "description": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, standing on the ball of the foot on the left of the picture, the other knee lifted in front with the foot pointed, skipping forward on a slight diagonal, chin up"
+  },
+  "retreat_backward.contact_l": {
+   "clip": "retreat_backward",
+   "phase": "contact",
+   "support": "right",
+   "description": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, skipping backward while still facing the viewer, on the balls of the feet, the foot on the right of the picture reaching back on its toe"
+  },
+  "retreat_backward.down_l": {
+   "clip": "retreat_backward",
+   "phase": "down",
+   "support": "left",
+   "description": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, landed on the ball of the foot on the right of the picture, the other foot lifted in front with the toe pointed, skipping backward while facing the viewer, chin up"
+  },
+  "retreat_backward.pass_l": {
+   "clip": "retreat_backward",
+   "phase": "pass",
+   "support": "left",
+   "description": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, standing on the ball of the foot on the right of the picture, the other knee lifted with the foot pointed, skipping backward while facing the viewer, chin up"
+  },
+  "retreat_backward.contact_r": {
+   "clip": "retreat_backward",
+   "phase": "contact",
+   "support": "left",
+   "description": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, skipping backward while still facing the viewer, on the balls of the feet, the foot on the left of the picture reaching back on its toe"
+  },
+  "retreat_backward.down_r": {
+   "clip": "retreat_backward",
+   "phase": "down",
+   "support": "right",
+   "description": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, landed on the ball of the foot on the left of the picture, the other foot lifted in front with the toe pointed, skipping backward while facing the viewer, chin up"
+  },
+  "retreat_backward.pass_r": {
+   "clip": "retreat_backward",
+   "phase": "pass",
+   "support": "right",
+   "description": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, standing on the ball of the foot on the left of the picture, the other knee lifted with the foot pointed, skipping backward while facing the viewer, chin up"
+  },
+  "yield_side.contact_l": {
+   "clip": "yield_side",
+   "phase": "contact",
+   "support": "right",
+   "description": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, skipping sideways on the balls of the feet, the foot on the right of the picture landing on its toe, body turned a little, chin up"
+  },
+  "yield_side.down_l": {
+   "clip": "yield_side",
+   "phase": "down",
+   "support": "left",
+   "description": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, landed on the ball of the foot on the right of the picture, the other foot flicked up behind, skipping sideways, chin up"
+  },
+  "yield_side.pass_l": {
+   "clip": "yield_side",
+   "phase": "pass",
+   "support": "left",
+   "description": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, standing on the ball of the foot on the right of the picture, the other knee lifted with the foot pointed, skipping sideways, chin up"
+  },
+  "yield_side.contact_r": {
+   "clip": "yield_side",
+   "phase": "contact",
+   "support": "left",
+   "description": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, skipping sideways on the balls of the feet, the foot on the left of the picture landing on its toe, body turned a little, chin up"
+  },
+  "yield_side.down_r": {
+   "clip": "yield_side",
+   "phase": "down",
+   "support": "right",
+   "description": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, landed on the ball of the foot on the left of the picture, the other foot flicked up behind, skipping sideways, chin up"
+  },
+  "yield_side.pass_r": {
+   "clip": "yield_side",
+   "phase": "pass",
+   "support": "right",
+   "description": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, standing on the ball of the foot on the left of the picture, the other knee lifted with the foot pointed, skipping sideways, chin up"
+  },
+  "watch.shift_l": {
+   "clip": "watch",
+   "phase": "pass (watching)",
+   "support": "both",
+   "description": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, standing with the feet crossed and turned out, turned a little toward the right of the picture, head turned to watch the other dancer, composed and stern"
+  },
+  "watch.hold_l": {
+   "clip": "watch",
+   "phase": "settle (nod)",
+   "support": "both",
+   "description": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, up on the balls of the feet with the feet crossed, turned a little toward the right of the picture, a small crisp nod in time while watching"
+  },
+  "watch.shift_r": {
+   "clip": "watch",
+   "phase": "pass (watching)",
+   "support": "both",
+   "description": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, standing with the feet crossed and turned out, turned a little toward the right of the picture, head turned further to watch the other dancer, one eyebrow raised"
+  },
+  "watch.hold_r": {
+   "clip": "watch",
+   "phase": "settle",
+   "support": "both",
+   "description": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, up on the balls of the feet with the feet crossed, turned a little toward the right of the picture, head tilted, watching closely"
+  },
+  "clap.open": {
+   "clip": "clap",
+   "phase": "anticipation",
+   "support": "both",
+   "description": "standing upright with both feet flat and crossed, both forearms raised in front of the chest with the palms apart, about to clap, chin up"
+  },
+  "clap.close": {
+   "clip": "clap",
+   "phase": "pass",
+   "support": "both",
+   "description": "standing upright with both feet flat and crossed, both hands swinging together in front of the chest, chin up"
+  },
+  "clap.contact": {
+   "clip": "clap",
+   "phase": "contact (on the beat)",
+   "support": "both",
+   "description": "standing upright with both feet flat and crossed, palms clapped together in front of the chest, a small smile"
+  },
+  "clap.release": {
+   "clip": "clap",
+   "phase": "follow-through",
+   "support": "both",
+   "description": "standing upright with both feet flat and crossed, hands bouncing apart in front of the chest, chin up"
+  },
+  "challenge.load": {
+   "clip": "challenge",
+   "phase": "anticipation",
+   "support": "both",
+   "description": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, both knees dipped with the feet crossed and turned out, chin dipping, gathering for a challenge"
+  },
+  "challenge.proud": {
+   "clip": "challenge",
+   "phase": "accent",
+   "support": "both",
+   "description": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, very tall on the balls of both feet with the feet crossed tightly and turned out, chin lifted high, a cool proud look straight at the viewer"
+  },
+  "challenge.offer": {
+   "clip": "challenge",
+   "phase": "accent (invitation)",
+   "support": "left",
+   "description": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, standing on the foot on the right of the picture, the leg on the left of the picture extended out to the side with the pointed toe touching the floor toward the left of the picture, head turned toward the pointed toe, a challenging look: your turn"
+  },
+  "challenge.return": {
+   "clip": "challenge",
+   "phase": "settle",
+   "support": "both",
+   "description": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, standing with both feet flat and crossed, turned out, chin up, composed"
+  },
+  "approval.load": {
+   "clip": "approval",
+   "phase": "anticipation",
+   "support": "both",
+   "description": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, up on the balls of both feet with the feet crossed, chin lifted, eyes on the viewer, considering"
+  },
+  "approval.nod": {
+   "clip": "approval",
+   "phase": "accent (the nod)",
+   "support": "both",
+   "description": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, both knees dipped with the feet flat and crossed, one firm approving nod with the head bowed and the chin down, a small approving smile"
+  },
+  "approval.release": {
+   "clip": "approval",
+   "phase": "settle",
+   "support": "both",
+   "description": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, standing with both feet flat and crossed, head tilted slightly, a small approving smile at the viewer"
+  },
+  "reassurance.notice": {
+   "clip": "reassurance",
+   "phase": "anticipation",
+   "support": "both",
+   "description": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, standing with both feet flat and crossed, head tilted with a softer look"
+  },
+  "reassurance.open_hand": {
+   "clip": "reassurance",
+   "phase": "accent",
+   "support": "both",
+   "description": "Irish step dancer standing with both feet flat and crossed, the arm on the right of the picture rigid at the side, the forearm on the left of the picture lifted at waist height with the palm open and up, head tilted, encouraging"
+  },
+  "reassurance.settle": {
+   "clip": "reassurance",
+   "phase": "settle",
+   "support": "both",
+   "description": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, up high on the balls of both feet with the legs straight and the feet crossed tightly one in front of the other, chin up"
+  },
+  "finish_turn.finish_a": {
+   "clip": "finish_turn",
+   "phase": "anticipation (the finish)",
+   "support": "left",
+   "description": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, standing on the foot on the right of the picture, the other leg straight and extended forward with the toe pointed on the floor, chin up, a proud look"
+  },
+  "finish_turn.finish_b": {
+   "clip": "finish_turn",
+   "phase": "accent (the finish)",
+   "support": "left",
+   "description": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, standing on the foot on the right of the picture, the other leg straight and extended forward with the toe pointed on the floor, a crisp small bow from the waist with the head bowed, proud"
+  },
+  "finish_turn.turn_in": {
+   "clip": "finish_turn",
+   "phase": "pass (turn)",
+   "support": "both",
+   "description": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, up on the balls of the feet, body turned about 30 degrees toward the right of the picture, the feet crossed"
+  },
+  "finish_turn.turn_out": {
+   "clip": "finish_turn",
+   "phase": "pass (turn)",
+   "support": "both",
+   "description": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, up on the balls of the feet, body turned about 30 degrees toward the left of the picture, the feet crossed"
+  },
+  "arch.rise": {
+   "clip": "arch",
+   "phase": "anticipation (the arch)",
+   "support": "both",
+   "description": "turned three quarters toward the right of the picture, standing with the feet crossed and turned out, both arms rising straight up in front at shoulder height, reaching up toward a partner on the right of the picture, chin up"
+  },
+  "arch.hold": {
+   "clip": "arch",
+   "phase": "accent (the arch)",
+   "support": "both",
+   "description": "turned three quarters toward the right of the picture, up on the balls of the feet with the feet crossed, both arms raised straight up high above the head and leaning a little toward the right of the picture, the hands open as if joining a partner's hands to make an arch, chin up, proud"
+  },
+  "freeze.hold": {
+   "clip": "freeze",
+   "phase": "settle (the freeze)",
+   "support": "both",
+   "description": "Irish step dancing, upright with both arms held straight and rigid down at her sides, the hands in fists against the skirt, frozen perfectly still up on the balls of both feet with the legs straight and the feet crossed tightly and turned out, chin lifted, a cool stern look straight ahead"
+  }
+ }
+}

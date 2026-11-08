@@ -75,6 +75,11 @@ def dist(a, b) -> float:
     return math.hypot(a[0] - b[0], a[1] - b[1])
 
 
+# motion set opponent-reel: the arms stay rigid at the sides, so a high kick out to the side passes in front of the
+# same side's arm in 2D. Only that arm and that leg are excused.
+KICK_OVER_ARM = {"left_foot.peak", "right_foot.peak"}
+
+
 def crossing_problems(r: dict) -> list[str]:
     op = r.get("openpose")
     if not op or r.get("clip") in BAND_CLIPS:
@@ -86,6 +91,8 @@ def crossing_problems(r: dict) -> list[str]:
             if not all(op[i][2] for i in (a1, a2, b1, b2)):
                 continue
             if crossed and {la, lb} == {"l_arm", "r_arm"}:
+                continue
+            if r["id"] in KICK_OVER_ARM and {la[2:], lb[2:]} == {"arm", "leg"} and la[0] == lb[0]:
                 continue
             if segments_cross(op[a1], op[a2], op[b1], op[b2]):
                 out.append(f"crossing: {la} segment {a1}-{a2} crosses {lb} segment {b1}-{b2}")

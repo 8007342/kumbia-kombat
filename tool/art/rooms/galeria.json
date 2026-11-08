@@ -495,11 +495,11 @@
  },
  "props": [],
  "scene": "It is the mansion's long portrait gallery at night, seen straight down its length from the near end: a hushed, tense, elegant hall of cool silver moonlight, midnight blue and white marble, with small warm pools of gold light on the paintings.",
- "keep": "every wall edge, every tall arched window on the left wall, every gilt-framed portrait on the right wall and the two full-length portraits on the far wall, every marble statue on its plinth, the long carpet runner down the far half of the hall, the tall double doors at the far end, every floor joint and the horizon",
+ "keep": "every wall edge, every tall arched window on the left wall, every gilt-framed portrait on the right wall and the two full-length portraits on the far wall, every marble statue on its plinth, the carpet runner from the far doors to the middle of the hall and the bare marble in front of it, the tall double doors at the far end, every floor joint and the horizon",
  "zones": {
   "floor": {
    "layout": "a polished marble floor running straight away from the viewer, with the same grid as image 1.",
-   "paint": "The floor is polished dark grey marble in large square slabs with thin fine joints, one calm dim even tone across its whole area. The near half of the floor is plain, smooth and dark, reaching the bottom edge and lying open and clear for dancing, and only the far half carries a faint silver sheen of moonlight."
+   "paint": "The floor is polished dark grey marble in large square slabs with thin fine joints, one calm dim even tone. The whole near half of the floor, from the end of the carpet runner down to the bottom edge, is bare polished marble, plain, smooth and dark, open and clear for dancing, and only the far half carries a faint silver sheen of moonlight."
   },
   "panel": {
    "layout": "tall midnight-blue walls with gilded mouldings and a vaulted ceiling.",
@@ -523,7 +523,7 @@
   },
   "stage": {
    "layout": "a long carpet runner down the far half of the gallery.",
-   "paint": "A long narrow deep green carpet runner with a thin gold border lies down the middle of the far half of the gallery, running straight to the far doors and ending on the marble in the middle of the hall."
+   "paint": "A deep green carpet runner with a thin gold border lies on the marble from the foot of the far doors toward the viewer and ends in the middle of the hall, exactly where the rug ends in image 1, its square end resting on the bare marble."
   }
  }
 }
