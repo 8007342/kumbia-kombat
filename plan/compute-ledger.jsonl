@@ -439,3 +439,8 @@
 {"agent": "terraza", "what": "Tía Purpurina close-up busts, rest and kiss, 2 candidates each; wall time, shared queue", "kind": "gpu-image", "seconds": 400, "count": 4}
 {"agent": "terraza", "what": "Tía Purpurina back sheet from the accepted front, 3 candidates; wall time, shared queue", "kind": "gpu-image", "seconds": 294, "count": 3}
 {"agent": "terraza", "what": "terrace floor grade, room layers (mattes, harmonic fills, frames, sheets), fireworks by code, close-up plate, Mācron's heads by the rig, bust finish (CPU)", "kind": "cpu", "seconds": 180, "count": 1}
+{"agent": "terraza", "what": "Tía Purpurina frame pilot, 8 hard poses, 2 candidates each; wall time per job, shared GPU queue", "kind": "gpu-image", "seconds": 1597, "count": 16}
+{"agent": "terraza", "what": "Tía Purpurina frame wave, 50 poses at 2 candidates; wall time per job, shared GPU queue", "kind": "gpu-image", "seconds": 7078, "count": 100}
+{"agent": "terraza", "what": "Tía Purpurina locomotion and watch, 22 poses at 1 candidate; wall time per job, shared GPU queue", "kind": "gpu-image", "seconds": 1677, "count": 22}
+{"agent": "terraza", "what": "Tía Purpurina first-pass curation: heads and hands counted per registered candidate with qwen2.5vl:7b (vision_curate.py); 17 flagged, none a real fault", "kind": "local-vision", "seconds": 145, "count": 138}
+{"agent": "terraza", "what": "Tía Purpurina rig renders, registration, review sheets, finish and pack (CPU)", "kind": "cpu", "seconds": 600, "count": 1}
