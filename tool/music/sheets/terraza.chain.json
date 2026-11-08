@@ -1,0 +1,52 @@
+{
+ "level": "terraza",
+ "note": "Parent is candidate seed 61201, tag set C, of 12 (tool/music/sheets/terraza.candidates.json). Tiers are re-sampled from its latent in one graph.",
+ "parent": {
+  "seed": 61201,
+  "bpm": 104,
+  "key": "C major",
+  "seconds": 74.5,
+  "tags": "happy samba, instrumental, cavaquinho melody, seven-string guitar, pandeiro, surdo, tamborim, agogô, whistle, horn section, festive fireworks, sunny major key"
+ },
+ "children": [
+  {
+   "name": "lowB",
+   "tags": "happy samba, instrumental, small roda de samba, cavaquinho melody, seven-string guitar, pandeiro, soft surdo, tamborim, warm and close, nothing else",
+   "denoise": 0.6,
+   "codes": false
+  },
+  {
+   "name": "lowC",
+   "tags": "happy samba, instrumental, small roda de samba, cavaquinho melody, seven-string guitar, pandeiro, soft surdo, tamborim, warm and close, nothing else",
+   "denoise": 0.7,
+   "codes": false
+  },
+  {
+   "name": "highB",
+   "tags": "happy samba, instrumental, full carnival bateria, cavaquinho melody, seven-string guitar, booming surdos, rolling caixa, tamborim, agogô, apito whistle calls, bright horn section lifts with trumpets and trombones, festive fireworks, sunny major key",
+   "denoise": 0.6,
+   "codes": false
+  },
+  {
+   "name": "highC",
+   "tags": "happy samba, instrumental, full carnival bateria, cavaquinho melody, seven-string guitar, booming surdos, rolling caixa, tamborim, agogô, apito whistle calls, bright horn section lifts with trumpets and trombones, festive fireworks, sunny major key",
+   "denoise": 0.6,
+   "parent": "highB",
+   "codes": false
+  },
+  {
+   "name": "highD",
+   "tags": "happy samba, instrumental, full carnival bateria, cavaquinho melody, seven-string guitar, booming surdos, rolling caixa, tamborim, agogô, apito whistle calls, bright horn section lifts with trumpets and trombones, festive fireworks, sunny major key",
+   "denoise": 0.6,
+   "parent": "highC",
+   "codes": false
+  },
+  {
+   "name": "highE",
+   "tags": "happy samba, instrumental, full carnival bateria, cavaquinho melody, seven-string guitar, booming surdos, rolling caixa, tamborim, agogô, apito whistle calls, bright horn section lifts with trumpets and trombones, festive fireworks, sunny major key",
+   "denoise": 0.6,
+   "parent": "highD",
+   "codes": false
+  }
+ ]
+}
