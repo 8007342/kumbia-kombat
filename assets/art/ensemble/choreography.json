@@ -727,6 +727,141 @@
           "clip": "flare"
         }
       ]
+    },
+    "purpurina": {
+      "note": "Tía Purpurina, the terrace. Her groove_* drawings are samba no pé, so the shared groove tables dance it: a flat step down on 1, a ball change behind on e, the same foot again on and, and the hip rolled out high on a, where the chart's hip-hand sits. Between phrases she twirls her boa, laughs with her head thrown back and blows Mācron a kiss. confetti is the win's throw, played by the level's data, and lluvia_open, confetti_rain and lluvia_close are LA LLUVIA DE CONFETI's moves. Proposals from TERRAZA, 2026-11-08; the owner hasn't seen them moving.",
+      "clips": {
+        "spin_boa": {
+          "note": "A joyful turn in two beats with the arms up and the boa flying, landing on the hip roll.",
+          "frames": [
+            "spin_front",
+            "spin_34_r",
+            "spin_side_r",
+            "spin_back34_r",
+            "spin_back",
+            "spin_back34_l",
+            "spin_side_l",
+            "spin_34_l",
+            "groove_pass_l2"
+          ],
+          "beats": [
+            0.25,
+            0.25,
+            0.25,
+            0.25,
+            0.25,
+            0.25,
+            0.25,
+            0.25,
+            1
+          ]
+        },
+        "hip_roll": {
+          "note": "The hip rolled out and held, a cold room's answer.",
+          "frames": [
+            "groove_pass_l2",
+            "groove_pass_r2"
+          ],
+          "beats": [
+            0.75,
+            0.75
+          ]
+        },
+        "boa_twirl": {
+          "note": "Twirls the boa over her head one way, then the other.",
+          "frames": [
+            "boa_a",
+            "boa_b"
+          ],
+          "beats": [
+            0.75,
+            1.25
+          ]
+        },
+        "laugh": {
+          "note": "The laugh you can see: head thrown back, then both hands on her belly.",
+          "frames": [
+            "laugh_a",
+            "laugh_b"
+          ],
+          "beats": [
+            0.75,
+            1.25
+          ]
+        },
+        "blow_kiss": {
+          "note": "Fingertips to her lips, then the kiss flung toward Mācron, to the picture's right.",
+          "frames": [
+            "kiss_a",
+            "kiss_b"
+          ],
+          "beats": [
+            0.75,
+            1.25
+          ]
+        },
+        "confetti": {
+          "note": "The win's throw: a handful scooped at the hip, then flung high. One beat each.",
+          "frames": [
+            "confetti_a",
+            "confetti_b"
+          ],
+          "beats": [
+            1,
+            1
+          ]
+        },
+        "lluvia_open": {
+          "note": "LA LLUVIA DE CONFETI, beats 0-1.75: a samba step on the left, the hip held through the right hand's note, the right foot down on 1.5.",
+          "frames": ["groove_down_l", "groove_pass_l", "groove_up_l", "groove_pass_l2", "groove_down_r"],
+          "beats": [0.25, 0.25, 0.25, 0.75, 0.25]
+        },
+        "confetti_rain": {
+          "note": "LA LLUVIA DE CONFETI's hands, beats 1.75-5.5, five loops: scoop, then throw on the loop's last quarter, so the throws land on the hand notes at 2.25, 3, 3.75, 4.5 and 5.25.",
+          "frames": ["confetti_a", "confetti_b"],
+          "beats": [0.5, 0.25]
+        },
+        "lluvia_close": {
+          "note": "LA LLUVIA DE CONFETI, beats 5.5-8: the hip, the right foot down on 6, a samba on the right, and the left foot stamped on 7.",
+          "frames": ["groove_pass_l2", "groove_down_r", "groove_pass_r", "groove_up_r", "groove_pass_r2", "groove_down_l", "groove_pass_l2"],
+          "beats": [0.5, 0.25, 0.25, 0.25, 0.25, 0.5, 0.5]
+        }
+      },
+      "accents": [
+        {
+          "note": "Between phrases, a warm room: the boa twirl, as the second bar of the phrase starts.",
+          "everyBeats": 16,
+          "atBeat": 4,
+          "minTier": 1,
+          "clip": "boa_twirl"
+        },
+        {
+          "note": "The laugh, once every two phrases.",
+          "everyBeats": 16,
+          "atBeat": 12,
+          "minTier": 2,
+          "clip": "laugh"
+        },
+        {
+          "note": "A kiss blown to Mācron, a hot room's flirt.",
+          "everyBeats": 32,
+          "atBeat": 28,
+          "minTier": 3,
+          "clip": "blow_kiss"
+        }
+      ],
+      "handoffMoves": [
+        {
+          "note": "Danced on the mark as the call ends, overflowing into Mācron's turn, then she steps away. The turn from the first warm tier.",
+          "minTier": 1,
+          "clip": "spin_boa"
+        },
+        {
+          "note": "A cold room still gets the hip roll.",
+          "minTier": 0,
+          "clip": "hip_roll"
+        }
+      ]
     }
   }
 }

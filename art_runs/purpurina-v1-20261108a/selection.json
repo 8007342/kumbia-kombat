@@ -1,0 +1,322 @@
+{
+ "groove.down_l": {
+  "k": 996500,
+  "accepted": true
+ },
+ "groove.pass_l": {
+  "k": 996500,
+  "accepted": true
+ },
+ "groove.up_l": {
+  "k": 996501,
+  "accepted": true
+ },
+ "groove.pass_l2": {
+  "k": 996501,
+  "accepted": true
+ },
+ "groove.down_r": {
+  "k": 996501,
+  "accepted": true
+ },
+ "groove.pass_r": {
+  "k": 996500,
+  "accepted": true
+ },
+ "groove.up_r": {
+  "k": 996501,
+  "accepted": true
+ },
+ "groove.pass_r2": {
+  "k": 996500,
+  "accepted": true
+ },
+ "spin.side_r": {
+  "k": 996501,
+  "accepted": true
+ },
+ "spin.back": {
+  "k": 996500,
+  "accepted": true
+ },
+ "kiss.b": {
+  "k": 996500,
+  "accepted": true
+ },
+ "confetti.a": {
+  "k": 996501,
+  "accepted": true
+ },
+ "confetti.b": {
+  "k": 996500,
+  "accepted": true
+ },
+ "boa.a": {
+  "k": 996501,
+  "accepted": true
+ },
+ "boa.b": {
+  "k": 996500,
+  "accepted": true
+ },
+ "laugh.a": {
+  "k": 996501,
+  "accepted": true
+ },
+ "laugh.b": {
+  "k": 996500,
+  "accepted": true
+ },
+ "kiss.a": {
+  "k": 996501,
+  "accepted": true
+ },
+ "spin.front": {
+  "k": 996500,
+  "accepted": true
+ },
+ "spin.34_r": {
+  "k": 996500,
+  "accepted": true
+ },
+ "spin.back34_r": {
+  "k": 996500,
+  "accepted": true
+ },
+ "spin.back34_l": {
+  "k": 996500,
+  "accepted": true
+ },
+ "spin.side_l": {
+  "k": 996500,
+  "accepted": true
+ },
+ "spin.34_l": {
+  "k": 996501,
+  "accepted": true
+ },
+ "left_hand.prep": {
+  "k": 996501,
+  "accepted": true
+ },
+ "right_hand.prep": {
+  "k": 996500,
+  "accepted": true
+ },
+ "left_hand.peak": {
+  "k": 996500,
+  "accepted": true
+ },
+ "right_hand.peak": {
+  "k": 996500,
+  "accepted": true
+ },
+ "left_hand.follow": {
+  "k": 996501,
+  "accepted": true
+ },
+ "right_hand.follow": {
+  "k": 996500,
+  "accepted": true
+ },
+ "left_hand.return": {
+  "k": 996500,
+  "accepted": true
+ },
+ "right_hand.return": {
+  "k": 996500,
+  "accepted": true
+ },
+ "left_foot.prep": {
+  "k": 996500,
+  "accepted": true
+ },
+ "right_foot.prep": {
+  "k": 996500,
+  "accepted": true
+ },
+ "left_foot.peak": {
+  "k": 996500,
+  "accepted": true
+ },
+ "right_foot.peak": {
+  "k": 996500,
+  "accepted": true
+ },
+ "left_foot.follow": {
+  "k": 996500,
+  "accepted": true
+ },
+ "right_foot.follow": {
+  "k": 996500,
+  "accepted": true
+ },
+ "left_foot.return": {
+  "k": 996501,
+  "accepted": true
+ },
+ "right_foot.return": {
+  "k": 996501,
+  "accepted": true
+ },
+ "clap.open": {
+  "k": 996500,
+  "accepted": true
+ },
+ "clap.close": {
+  "k": 996500,
+  "accepted": true
+ },
+ "clap.contact": {
+  "k": 996501,
+  "accepted": true
+ },
+ "clap.release": {
+  "k": 996500,
+  "accepted": true
+ },
+ "challenge.load": {
+  "k": 996500,
+  "accepted": true
+ },
+ "challenge.proud": {
+  "k": 996501,
+  "accepted": true
+ },
+ "challenge.offer": {
+  "k": 996500,
+  "accepted": true
+ },
+ "challenge.return": {
+  "k": 996500,
+  "accepted": true
+ },
+ "approval.load": {
+  "k": 996501,
+  "accepted": true
+ },
+ "approval.nod": {
+  "k": 996500,
+  "accepted": true
+ },
+ "approval.release": {
+  "k": 996500,
+  "accepted": true
+ },
+ "reassurance.notice": {
+  "k": 996500,
+  "accepted": true
+ },
+ "reassurance.open_hand": {
+  "k": 996501,
+  "accepted": true
+ },
+ "reassurance.settle": {
+  "k": 996500,
+  "accepted": true
+ },
+ "finish_turn.finish_a": {
+  "k": 996500,
+  "accepted": true
+ },
+ "finish_turn.finish_b": {
+  "k": 996501,
+  "accepted": true
+ },
+ "finish_turn.turn_in": {
+  "k": 996500,
+  "accepted": true
+ },
+ "finish_turn.turn_out": {
+  "k": 996500,
+  "accepted": true
+ },
+ "enter_forward.contact_l": {
+  "k": 996500,
+  "accepted": true
+ },
+ "enter_forward.contact_r": {
+  "k": 996500,
+  "accepted": true
+ },
+ "enter_forward.down_l": {
+  "k": 996500,
+  "accepted": true
+ },
+ "enter_forward.down_r": {
+  "k": 996500,
+  "accepted": true
+ },
+ "enter_forward.pass_l": {
+  "k": 996500,
+  "accepted": true
+ },
+ "enter_forward.pass_r": {
+  "k": 996500,
+  "accepted": true
+ },
+ "retreat_backward.contact_l": {
+  "k": 996500,
+  "accepted": true
+ },
+ "retreat_backward.contact_r": {
+  "k": 996500,
+  "accepted": true
+ },
+ "retreat_backward.down_l": {
+  "k": 996500,
+  "accepted": true
+ },
+ "retreat_backward.down_r": {
+  "k": 996500,
+  "accepted": true
+ },
+ "retreat_backward.pass_l": {
+  "k": 996500,
+  "accepted": true
+ },
+ "retreat_backward.pass_r": {
+  "k": 996500,
+  "accepted": true
+ },
+ "watch.hold_l": {
+  "k": 996500,
+  "accepted": true
+ },
+ "watch.hold_r": {
+  "k": 996500,
+  "accepted": true
+ },
+ "watch.shift_l": {
+  "k": 996500,
+  "accepted": true
+ },
+ "watch.shift_r": {
+  "k": 996500,
+  "accepted": true
+ },
+ "yield_side.contact_l": {
+  "k": 996500,
+  "accepted": true
+ },
+ "yield_side.contact_r": {
+  "k": 996500,
+  "accepted": true
+ },
+ "yield_side.down_l": {
+  "k": 996500,
+  "accepted": true
+ },
+ "yield_side.down_r": {
+  "k": 996500,
+  "accepted": true
+ },
+ "yield_side.pass_l": {
+  "k": 996500,
+  "accepted": true
+ },
+ "yield_side.pass_r": {
+  "k": 996500,
+  "accepted": true
+ }
+}
