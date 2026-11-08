@@ -154,7 +154,7 @@ def register_fixed(src: Path, dst: Path, spec: dict, height_scale: float = 1.0) 
     foot_x = float(np.median(np.where(feet)[1]))
     w, h = im.size
     rgba = im.convert("RGBA")
-    rgba.putalpha(Image.fromarray((keep * 255).astype(np.uint8)))
+    rgba.putalpha(Image.fromarray((mask * 255).astype(np.uint8)))
     big = rgba.resize((round(w * s), round(h * s)), Image.LANCZOS)
     canvas = Image.new("RGBA", (w, h), (0, 0, 0, 0))
     canvas.paste(big, (round(spec["centerX"] - foot_x * s), round(spec["floorY"] - y1 * s)))
