@@ -21,6 +21,14 @@
    "class": "local-model",
    "evidence": "Qwen edits of plate 991002's dais, art_runs/rooms/salon/pianist, tool/art/rooms/pianist.py, plan/levels/salon-art-2026-11-07.md"
   },
+  {"glob": "assets/art/terraza/terraza-fireworks.png", "class": "authored-code", "evidence": "Drawn as pixels by tool/art/rooms/fireworks.py from tool/art/rooms/fireworks/terraza.json, clipped to the sky of plate 996100; plan/levels/terraza-art-2026-11-08.md"},
+  {"glob": "assets/art/terraza/*", "class": "local-model", "evidence": "Qwen-Image-Edit plate 996100 (art_runs/rooms/terraza/run-a), floor graded by tool/art/rooms/terraza_plate.py, palm and bulb layers by tool/art/rooms/layers/terraza.json (harmonic fills, no GPU); plan/levels/terraza-art-2026-11-08.md"},
+  {"glob": "assets/art/closeups/terraza-mc-*", "class": "authored-code", "evidence": "Drawn from parts by the close-up rig, tool/art/closeups/terraza_kiss.py"},
+  {"glob": "assets/art/closeups/terraza-kissmark.png", "class": "authored-code", "evidence": "Pixels written by tool/art/closeups/terraza_kiss.py"},
+  {"glob": "assets/art/closeups/terraza-tp-*", "class": "local-model", "evidence": "Qwen busts 996600 and 996611 (art_runs/rooms/terraza/closeup-source, words in tool/art/closeups/purpurina_bust.py), finished by purpurina_bust_finish.py"},
+  {"glob": "assets/art/closeups/terraza-*", "class": "local-model", "evidence": "Crops of plate 996100 with the fireworks' blooms (terraza_plate_closeup.py) and its balustrade (purpurina_bust_finish.py)"},
+  {"glob": "assets/art/ensemble/purpurina-*", "class": "local-model", "evidence": "ComfyUI Qwen frames, art_runs/purpurina-v1-20261108*, plan/levels/terraza-art-2026-11-08.md"},
+  {"glob": "tool/art/references/purpurina/*", "class": "local-model", "evidence": "ComfyUI Qwen sheets, art_runs/purpurina-sheet-20261108a (front 996500) and -b (back 996501)"},
   {
    "glob": "tool/art/references/band-violin/*",
    "class": "local-model",
