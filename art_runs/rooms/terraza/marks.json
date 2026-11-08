@@ -1,0 +1,278 @@
+{
+ "comment": "TERRAZA -> WIRE2, 2026-11-08. Everything as plate fractions of assets/art/terraza/terraza-room.png (832x1248, the clean plate from accepted 996100, floor graded to night by tool/art/rooms/terraza_plate.py). Camera: tool/art/rooms/terraza.json, unchanged from the guide, because pass 2 kept the guide's floor: the balustrade's foot is at y .455 and the painted tile lines meet the guide's lanes near x .5. Proposals; WIRE2 may move marks, but keep them on the floor.",
+ "plate": "terraza/terraza-room.png",
+ "plateSize": [
+  832,
+  1248
+ ],
+ "floorCamera": {
+  "horizonY": 0.36,
+  "eyeHeightAdults": 0.85,
+  "vanishingX": 0.5,
+  "referenceFootY": 0.68,
+  "referenceHeight": 0.3765,
+  "note": "Standing adult height at foot y = (y - 0.36) / 0.85, as a fraction of plate height. Mācron at heroHome is 45.6 logical px (garden 38.4, salon 45)."
+ },
+ "floor": {
+  "outline": [
+   [
+    0.0,
+    0.455
+   ],
+   [
+    1.0,
+    0.455
+   ],
+   [
+    1.0,
+    1.0
+   ],
+   [
+    0.0,
+    1.0
+   ]
+  ],
+  "note": "The whole width below the balustrade's foot (y .455) is open terrace floor. The planters at the far corners stand on it at x < .2 and x > .8, y .41-.47; the near corner planters are outside a phone's crop."
+ },
+ "marks": {
+  "heroHome": [
+   0.5,
+   0.644
+  ],
+  "heroEntrance": [
+   0.297,
+   0.68
+  ],
+  "heroRetreat": [
+   0.5,
+   0.666
+  ],
+  "heroAside": [
+   0.4,
+   0.655
+  ],
+  "heroWatch": [
+   0.5,
+   0.666
+  ],
+  "challenger": {
+   "id": "purpurina",
+   "atlas": "purpurina",
+   "mark": [
+    0.5,
+    0.557
+   ],
+   "yieldMark": [
+    0.618,
+    0.557
+   ],
+   "meetMark": [
+    0.44,
+    0.565
+   ],
+   "note": "meetMark is on Mācron's left, so in the close-up she is on the picture's left, as the art is drawn (style guide 8.1, rule 3). His heroStep for the win: (.56, .56)."
+  },
+  "exit": {
+   "route": [
+    [
+     0.5,
+     0.644
+    ],
+    [
+     0.57,
+     0.6
+    ],
+    [
+     0.625,
+     0.54
+    ],
+    [
+     0.65,
+     0.49
+    ],
+    [
+     0.66,
+     0.462
+    ]
+   ],
+   "threshold": [
+    0.66,
+    0.458
+   ],
+   "stairs": {
+    "steps": [
+     [
+      0.613,
+      0.37
+     ],
+     [
+      0.709,
+      0.457
+     ]
+    ],
+    "posts": [
+     [
+      0.565,
+      0.4
+     ],
+     [
+      0.75,
+      0.457
+     ]
+    ],
+    "arch": [
+     [
+      0.565,
+      0.29
+     ],
+     [
+      0.75,
+      0.37
+     ]
+    ]
+   },
+   "note": "Mācron dances off to the right and up to the stair head between the two lantern posts (x .58-.73, foot y .455). Every point is on the floor and inside a 390x844 phone crop (x .153-.847). Guests are kept off x .58-.74 below y .60 so he is seen all the way."
+  }
+ },
+ "guests": {
+  "note": "Twelve places. Reused atlases in summer evening wear [P]: guest3-6 (amber-gold dress, lavender shirt and bow tie, plum wrap dress, rust suit jacket) dance as couples with their pair_dance clips; guest0-2 (the lawn's blouse and palazzo trousers, linen waistcoat, guayabera and panama) dance alone. All are behind her mark (y < .557), thinning toward the viewer, and nobody stands in the exit route or the middle behind her (x .40-.58).",
+  "places": [
+   {
+    "at": [
+     0.19,
+     0.49
+    ],
+    "atlas": "guest3",
+    "occupied": "pair",
+    "faces": "right",
+    "partner": 1
+   },
+   {
+    "at": [
+     0.28,
+     0.49
+    ],
+    "atlas": "guest4",
+    "occupied": "pair",
+    "faces": "left",
+    "partner": 0
+   },
+   {
+    "at": [
+     0.235,
+     0.535
+    ],
+    "atlas": "guest5",
+    "occupied": "pair",
+    "faces": "right",
+    "partner": 3
+   },
+   {
+    "at": [
+     0.33,
+     0.535
+    ],
+    "atlas": "guest6",
+    "occupied": "pair",
+    "faces": "left",
+    "partner": 2
+   },
+   {
+    "at": [
+     0.165,
+     0.462
+    ],
+    "atlas": "guest2",
+    "occupied": "solo",
+    "note": "dances alone: step_touch for guest0-2 (their clip set has no pair dance)"
+   },
+   {
+    "at": [
+     0.31,
+     0.462
+    ],
+    "atlas": "guest1",
+    "occupied": "solo",
+    "note": "dances alone: step_touch for guest0-2 (their clip set has no pair dance)"
+   },
+   {
+    "at": [
+     0.375,
+     0.47
+    ],
+    "atlas": "guest0",
+    "occupied": "solo",
+    "note": "dances alone: step_touch for guest0-2 (their clip set has no pair dance)"
+   },
+   {
+    "at": [
+     0.745,
+     0.49
+    ],
+    "atlas": "guest5",
+    "occupied": "pair",
+    "faces": "right",
+    "partner": 8
+   },
+   {
+    "at": [
+     0.835,
+     0.49
+    ],
+    "atlas": "guest4",
+    "occupied": "pair",
+    "faces": "left",
+    "partner": 7
+   },
+   {
+    "at": [
+     0.765,
+     0.462
+    ],
+    "atlas": "guest6",
+    "occupied": "pair",
+    "faces": "right",
+    "partner": 10
+   },
+   {
+    "at": [
+     0.84,
+     0.462
+    ],
+    "atlas": "guest3",
+    "occupied": "pair",
+    "faces": "left",
+    "partner": 9
+   },
+   {
+    "at": [
+     0.8,
+     0.54
+    ],
+    "atlas": "guest1",
+    "occupied": "solo",
+    "note": "dances alone: step_touch for guest0-2 (their clip set has no pair dance)"
+   }
+  ]
+ },
+ "layers": {
+  "files": [
+   "art_runs/rooms/terraza/layers-level.json",
+   "art_runs/rooms/terraza/fireworks-level.json"
+  ],
+  "note": "List the fireworks first, then the palms and bulbs. Fireworks: kind light, pulse, five bursts over 8 beats. Palms (sway, periodBeats 2) and bulbs (pulse, every beat) are kind artwork, minTier 4."
+ },
+ "glow": {
+  "lamps": [
+   [
+    0.585,
+    0.382
+   ],
+   [
+    0.73,
+    0.385
+   ]
+  ],
+  "note": "The stair-head lanterns, measured on the plate. For the flare, the festoon bulbs' middle string is at y .22-.27 between x .30 and .72."
+ }
+}
