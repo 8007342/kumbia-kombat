@@ -121,7 +121,7 @@ Siobhán herself is still to come.
 
 **Swapped in, 2026-11-08:** the banquet close-up (`work/1881-cmdr` 745213a), with the salon's geometry: Don Charolas' four drawings (present, lift, offer, empty), Mācron's four (reach, take, sip, happy) and the plate cut from the room. The rendered page test now expects two `glug`s, not three. [F]
 
-**Swapped in, 2026-11-08:** waiter-a (`work/1881-cmdr` be4e516), on a `waiter` clip set that hops the polka (`groove_*` at half a beat a drawing). He faces right, so he isn't mirrored and the tray stays on his picture-right.
+**Swapped in, 2026-11-08:** waiter-a (`work/1881-cmdr` be4e516) and waiter-b (9b73c6e; he faces left, so he is mirrored and his tray moves to the other hand, which COMEDOR accepted), on a `waiter` clip set that hops the polka (`groove_*` at half a beat a drawing). He faces right, so he isn't mirrored and the tray stays on his picture-right.
 
 **Swapped in, 2026-11-08:** TERRAZA's room (`work/1886-terr` cbac883):
 - the plate, with its floor at horizon .36;
@@ -152,7 +152,7 @@ Each swap is a data edit in the level's file and re-running the generator (`make
 | Level | What | Stand-in today | Real piece from |
 |---|---|---|---|
 | Comedor | Don Charolas | terciopelo's atlas, `id: terciopelo` so his combo finds a choreography | `charolas`, plus a dancer entry in `choreography.json` |
-| Comedor | waiters b and c, late guest | guest5 and 6 on the `waiterStandIn` set; guest4 on the `guest` set | `waiter-b`, `waiter-c` on the `waiter` set |
+| Comedor | waiter c, late guest | guest6 on the `waiterStandIn` set; guest4 on the `guest` set | `waiter-c` on the `waiter` set |
 | Galería | Siobhán and Las Tréboles | swing-a's atlas, five times | GALERIA art (later wave) |
 | Terraza | Tía Purpurina | blinblin's atlas | TERRAZA art (later wave) |
 
