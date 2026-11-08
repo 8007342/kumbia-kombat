@@ -61,6 +61,13 @@ def colour_rule(rgb, rule):
         return (r > b * 1.12) | (np.maximum(np.maximum(r, g), b) < 42)
     if rule == "bright":  # crystal and candle flames over emerald wall and a near-black ceiling: bright, and not green
         return (np.maximum(np.maximum(r, g), b) > 105) & ~((g > r * 1.15) & (g > b))
+    if rule == "bulb":  # festoon bulbs against a night sky: bright and warm, red well above blue
+        return (np.maximum(np.maximum(r, g), b) > 150) & (r > b + 40)
+    if rule == "crystal":  # crystal, brass and candle flames over red damask: bright, and green well above a red wall's
+        return (np.maximum(np.maximum(r, g), b) > 100) & (g > r * .5)
+    if rule == "marble":  # a white marble figure in a lit cream niche: bright and nearly grey
+        mx, mn = np.maximum(np.maximum(r, g), b), np.minimum(np.minimum(r, g), b)
+        return (mx > 110) & (mx - mn < 45)
     raise ValueError(rule)
 
 
@@ -154,6 +161,15 @@ def build_plate(spec):
             continue
         mask = polygon_mask((w, h), fill["polygon"]) if "polygon" in fill else matte(rgb, prop)
         mask = ndimage.binary_dilation(mask, iterations=fill.get("dilate", 2))
+        if fill.get("tile"):  # a plain repeating surface (a tablecloth's folds): tile a clean strip of the source across
+            sx0, sy0, sx1, sy1 = fill["tile"]
+            strip = rgb[sy0:sy1, sx0:sx1].astype(float)
+            layer = plate.copy()
+            ys, xs = np.nonzero(mask)
+            layer[ys, xs] = strip[np.clip(ys - sy0, 0, sy1 - sy0 - 1), (xs - sx0) % (sx1 - sx0)]
+            plate = seamless(plate, layer, mask, fill.get("edgeClamp", 24.0))
+            report[prop["id"]] = dict(maskPixels=int(mask.sum()), route="tile")
+            continue
         if fill.get("harmonic"):  # thin things only: a wire and its bulbs close up from their edges, with no GPU
             plate = seamless(plate, np.full_like(plate, plate[mask].mean()), mask, 1000.0)
             report[prop["id"]] = dict(maskPixels=int(mask.sum()), route="harmonic")
@@ -190,6 +206,14 @@ def cmd_crops(room):
     out = REPO / "art_runs/rooms/layers" / room
     out.mkdir(parents=True, exist_ok=True)
     for prop in spec["props"]:
+        drawn = prop.get("drawn") or {}
+        if "prompt" in drawn:  # a drawn prop: the crop at 3x, edited, so inplace.align can find it again
+            x0, y0, x1, y1 = drawn["box"]
+            size = ((x1 - x0) * 3, (y1 - y0) * 3)
+            rgb.crop(drawn["box"]).resize(size, Image.NEAREST).save(stage / f"{prop['id']}.png")
+            wf = bake_workflow(["base"], drawn["prompt"] + " " + spec["keepWords"], f"kk/{run}/{prop['id']}", 4, size)
+            (out / f"{prop['id']}.api.json").write_text(json.dumps(wf, indent=1, ensure_ascii=False) + "\n")
+            print(prop["id"], "drawn", stage / f"{prop['id']}.png", out / f"{prop['id']}.api.json")
         fill = prop.get("fill") or {}
         if "prompt" not in fill:
             continue
@@ -218,6 +242,18 @@ def warp_frame(rgb, alpha, warp, v):
         drop = v * warp["sag"]["px"] * np.sin(np.pi * np.clip((xs - x0) / (x1 - x0), 0, 1))
         iy = np.clip(np.round(ys - drop).astype(int), 0, h - 1)
         return rgb[iy, xs.astype(int)], alpha[iy, xs.astype(int)]
+    if "glow" in warp:  # a bulb that brightens on the beat: the same pixels, warmer and brighter, nothing moves
+        g = warp["glow"]
+        lift = 1 + v * g.get("gain", .3)
+        warm = np.array(g.get("tint", [1.0, .96, .82]))
+        out = rgb.astype(float)
+        out[alpha] = np.clip(out[alpha] * lift * (1 + v * (warm - 1)) + v * g.get("add", 18), 0, 255)
+        if g.get("grow") and v >= .5:  # at the peak a one-pixel halo of the bulb's light round each bulb
+            ring = ndimage.binary_dilation(alpha, iterations=g["grow"]) & ~alpha
+            halo = np.array(g.get("halo", [255, 186, 92]), float)
+            out[ring] = out[ring] * (1 - .55 * v) + halo * .55 * v
+            return out.astype("uint8"), alpha | ring
+        return out.astype("uint8"), alpha
     if "wave" in warp:  # ripples across a surface
         shift = v * warp["wave"]["px"] * np.sin(2 * np.pi * ys / warp["wave"]["every"] + xs / warp["wave"].get("along", 40))
         ix = np.clip(np.round(xs + shift).astype(int), 0, w - 1)
@@ -244,8 +280,37 @@ def frame_values(prop):
     return [i / (n - 1) for i in range(n)]
 
 
+def drawn_frames(rgb, prop):
+    """Frames that are drawings: Qwen edits of the prop's box, each cut to the polygon. The first frame is the plate
+    itself, so at rest nothing differs. Each edit is aligned to the plate around the polygon first, as inplace.py does."""
+    from inplace import align
+    d = prop["drawn"]
+    x0, y0, x1, y1 = d["box"]
+    base = Image.fromarray(rgb).crop((x0, y0, x1, y1))
+    poly = [[px - x0, py - y0] for px, py in prop["polygon"]]
+    area = polygon_mask(base.size, poly)
+    frames = [np.asarray(base)]
+    for name in d["images"]:
+        small, _ = align(Image.open(CACHE / prop.get("run", d.get("run", "")) / name), base, [poly])
+        frames.append(np.where(area[..., None], small, np.asarray(base)).astype("uint8"))
+    # The whole polygon, opaque: its rest frame is the plate itself, and a ragged changed-pixels mask would mix the
+    # plate and the edit at the peak.
+    keep = area
+    bx0, by0, bx1, by1 = bbox(keep, 1)
+    out = []
+    for f in frames:
+        fr = np.zeros((by1 - by0, bx1 - bx0, 4), "uint8")
+        fr[..., :3] = f[by0:by1, bx0:bx1]
+        fr[..., 3] = keep[by0:by1, bx0:bx1] * 255
+        fr[fr[..., 3] == 0] = 0
+        out.append(fr)
+    return (x0 + bx0, y0 + by0, bx1 - bx0, by1 - by0), out
+
+
 def prop_frames(rgb, prop):
     """All frames on the full plate's grid, cropped to a box that holds the prop at any frame."""
+    if "drawn" in prop:
+        return drawn_frames(rgb, prop)
     h, w = rgb.shape[:2]
     m = matte(rgb, prop)
     warped = [warp_frame(rgb, m, prop["warp"], v) for v in frame_values(prop)]
@@ -282,7 +347,8 @@ def bake(spec):
             x = i * (w + GUTTER)
             atlas[y:y + h, x:x + w] = frame
         entries.append(dict(id=prop["id"], atlas=spec["atlas"].removeprefix("assets/art/"), atlasY=y, left=left, top=top, width=w, height=h,
-                            frames=len(frames), motion=prop["motion"], periodBeats=prop["periodBeats"], instance=prop["instance"], kind=prop["kind"]))
+                            frames=len(frames), motion=prop["motion"], periodBeats=prop["periodBeats"], instance=prop["instance"], kind=prop["kind"],
+                            **{k: prop[k] for k in ("minTier", "phaseBeats") if k in prop}))
         y += h + GUTTER
     return atlas, entries, rows
 
@@ -356,7 +422,7 @@ def preview_frame(prop, frames, beat, swing):
     """RoomLayerProp.frameAt and partyPropStrength, for a preview only: the game's own code is the rule."""
     wake = (prop["instance"] * .371 % 1) * .35
     strength = min(max((swing - wake) / (1 - wake), 0), 1)
-    on_beat = np.cos(2 * np.pi * beat / prop["periodBeats"])
+    on_beat = np.cos(2 * np.pi * (beat - prop.get("phaseBeats", 0)) / prop["periodBeats"])
     if prop["motion"] == "sway":
         mid = len(frames) // 2
         return mid + int(np.floor(mid * strength * on_beat + .5))
