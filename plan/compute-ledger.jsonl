@@ -426,3 +426,9 @@
 {"ts": "2026-11-08T01:16:55Z", "agent": "comedor", "what": "comedor room first pass p1-992102.png", "kind": "local-vision", "seconds": 4.14, "count": 1, "model": "qwen2.5vl:7b", "load_s": 2.43, "eval_tokens": 68}
 {"ts": "2026-11-08T01:16:59Z", "agent": "comedor", "what": "comedor room first pass p1-992103.png", "kind": "local-vision", "seconds": 4.17, "count": 1, "model": "qwen2.5vl:7b", "load_s": 2.43, "eval_tokens": 70}
 {"agent": "comedor", "what": "El Gran Comedor room plates: pass 1 (runs a and b, styles salon and billiards) and pass 2 (run b); studio elapsed, shared queue", "kind": "gpu-image", "seconds": 393, "count": 14}
+{"agent": "comedor", "what": "El Gran Comedor room plates, pass 2 retry (run-c); studio elapsed or wall time per job on the shared queue", "kind": "gpu-image", "seconds": 64, "count": 4}
+{"agent": "comedor", "what": "Comedor layer fills (chandeliers, discs, chairs) and the portrait snap, two tries; studio elapsed or wall time per job on the shared queue", "kind": "gpu-image", "seconds": 1308, "count": 22}
+{"agent": "comedor", "what": "Comedor diners: key (3) and eight group edits (2 each), in place on the plate; studio elapsed or wall time per job on the shared queue", "kind": "gpu-image", "seconds": 2191, "count": 19}
+{"agent": "comedor", "what": "Don Charolas sheets: pass 1 front (4), pass 2 front and back (3 each); studio elapsed or wall time per job on the shared queue", "kind": "gpu-image", "seconds": 142, "count": 10}
+{"agent": "comedor", "what": "Junior waiter sheets, three fronts at 3 candidates; studio elapsed or wall time per job on the shared queue", "kind": "gpu-image", "seconds": 759, "count": 9}
+{"agent": "comedor", "what": "Don Charolas close-up busts, four drawings at 2 candidates; studio elapsed or wall time per job on the shared queue", "kind": "gpu-image", "seconds": 941, "count": 8}
