@@ -1,0 +1,16 @@
+[
+ {
+  "pose": "sheet.back",
+  "args": {
+   "workflow": "art_runs/purpurina-sheet-20261108b/workflows/sheet.back.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/purpurina-sheet-20261108b/in/sheet_source.png"
+   },
+   "overrides": {
+    "seed": 996500
+   }
+  }
+ }
+]
