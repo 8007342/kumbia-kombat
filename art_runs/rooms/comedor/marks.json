@@ -195,7 +195,7 @@
   ]
  },
  "waiters": {
-  "note": "The staff line: junior waiters hop the polka behind Don Charolas, outside the quiet box (x .35-.65). All behind his mark, so he stays the nearest adult.",
+  "note": "The staff line: junior waiters hop the polka behind Don Charolas, outside the quiet box (x .35-.65). All behind his mark, so he stays the nearest adult. waiter-b moved from (.76,.47) to (.66,.455): Mācron's exit passed behind it (WIRE2's stills, beat 15).",
   "line": [
    {
     "at": [
@@ -207,8 +207,8 @@
    },
    {
     "at": [
-     0.76,
-     0.47
+     0.66,
+     0.455
     ],
     "atlas": "waiter-b",
     "faces": "left"
