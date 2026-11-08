@@ -61,6 +61,21 @@ def shoe_rule(c: dict, rows: int | None):
     return apply
 
 
+def drop_floor_shadow(im: Image.Image) -> Image.Image:
+    """The model sometimes paints a soft grey floor shadow under the shoes, and the matte keeps it. Style: no floor
+    shadow in frames. Clear grey, mid-value pixels in the bottom tenth of the figure that the shoes don't cover."""
+    a = np.asarray(im.convert("RGBA")).copy()
+    ys = np.where(a[..., 3].max(axis=1) > 0)[0]
+    if not len(ys):
+        return im
+    top, bot = int(ys.min()), int(ys.max())
+    band = slice(bot - max(4, (bot - top) // 10), bot + 1)
+    rgb = a[band, :, :3].astype(int)
+    grey = (rgb.max(-1) - rgb.min(-1) < 26) & (rgb.max(-1) > 90) & (rgb.max(-1) < 215) & (a[band, :, 3] > 0)
+    sub = a[band]; sub[grey] = 0; a[band] = sub
+    return Image.fromarray(a, "RGBA")
+
+
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("character")
@@ -76,7 +91,8 @@ def main() -> None:
     shoes_only = shoe_rule(c, doc.get("shoesBelow"))
     for pose, seed in doc["picks"].items():
         src = CACHE / a.run / "registered" / pose / f"{seed}.png"
-        shoes_only(finish(src, palette, c["targets"][0].get("pixelScale", 3)), src).save(final / f"{pose}.png")
+        im = shoes_only(finish(src, palette, c["targets"][0].get("pixelScale", 3)), src)
+        (drop_floor_shadow(im) if doc.get("dropFloorShadow") else im).save(final / f"{pose}.png")
         selection[pose] = {"k": seed, "accepted": True}
     for pose, how in doc.get("derive", {}).items():
         compress(Image.open(final / f"{how['from']}.png")).save(final / f"{pose}.png")

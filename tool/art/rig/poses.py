@@ -946,8 +946,9 @@ POLKA_GROOVE = {k: ((replace(p, r_arm=p.l_arm, r_fore=p.l_fore) if k.endswith("_
 # The tray call: the tray itself is thrust high on the left hand, the right fist on the hip.
 TRAY_CALL = {
     "prep": (replace(LEFT_HAND["prep"][0], l_arm=(40, 20), l_fore=(120, 30)), "right"),
-    "peak": (replace(LEFT_HAND["peak"][0], l_arm=(132, 10), l_fore=(146, 6)), "right"),
-    "follow": (replace(LEFT_HAND["follow"][0], l_arm=(140, 14), l_fore=(150, 8)), "right"),
+    # First wave: at a diagonal (132/146) every candidate kept the tray at shoulder height. Straight up, exempt from the head check.
+    "peak": (replace(LEFT_HAND["peak"][0], l_arm=(158, 8), l_fore=(174, 4)), "right"),
+    "follow": (replace(LEFT_HAND["follow"][0], l_arm=(164, 10), l_fore=(180, 4)), "right"),
     "return": (replace(LEFT_HAND["return"][0], **TRAY_L), "both"),
 }
 _THIGH = {"open": ((54, 20), (104, 30)), "close": ((32, 14), (44, 24)), "contact": ((14, 8), (6, 12)), "release": ((38, 16), (64, 26))}
@@ -1015,8 +1016,8 @@ POLKA_INTENT |= {
     "groove.up_r": ("up (count 2, step)", _PK + "a second bouncy step onto the bent right leg, the left foot lifting behind, hips dropped over the right foot, the right forearm swinging out at waist height, head bobbing down"),
     "groove.pass_r2": ("accent (count and, the hop)", _PK + "a little hop up off the right foot, the left knee lifted high in front with the toe pointed down, leaning back slightly, the right arm swung out to the side with the open hand, chin up, a jolly grin"),
     "left_hand.prep": ("anticipation", "crouched low with weight on the bent right leg, the right fist on the hip, {his} left hand on the right side of the picture lowered to chest height carrying a round silver tray with two glasses of red wine on it, head glancing at the tray"),
-    "left_hand.peak": ("accent", "weight on the straight right leg, the right fist on the hip, {his} left arm on the right side of the picture thrust straight up high above {his} head, balancing a round silver tray with two glasses of red wine flat on the fingertips, left foot on its toe out to the side, head turned up toward the tray, proud"),
-    "left_hand.follow": ("follow-through", "up on the toes of the right foot, the right elbow out with the fist on the hip, {his} left arm on the right side of the picture stretched even higher above {his} head with a round silver tray spinning flat on the fingertips, two glasses of red wine on it, head tipped back watching it, delighted"),
+    "left_hand.peak": ("accent", "weight on the straight right leg, the right fist on the hip, {his} left arm on the right side of the picture stretched straight up to its full length with the elbow locked, the hand high above the top of {his} head, the round silver tray with two glasses of red wine balanced flat on the fingertips far above his head, left foot on its toe out to the side, head tipped back looking up at the tray, proud"),
+    "left_hand.follow": ("follow-through", "up on the toes of the right foot, the right elbow out with the fist on the hip, {his} left arm on the right side of the picture stretched straight up to its full length with the elbow locked, the hand high above the top of {his} head, a round silver tray spinning flat on the fingertips far above his head, two glasses of red wine on it, head tipped back watching it, delighted"),
     "left_hand.return": ("settle", "both feet flat and close, the right hand low on the hip, " + _TRAY_WORDS + ", torso returning upright"),
     "clap.open": ("anticipation", "standing square and upright, the right hand lifted off the right thigh at hip height, knees soft, chin up, " + _TRAY_WORDS),
     "clap.close": ("pass", "the right hand swinging down toward the right thigh, knees starting to bend, head starting to nod, " + _TRAY_WORDS),

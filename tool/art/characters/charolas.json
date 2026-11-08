@@ -130,7 +130,12 @@
    }
   },
   "seed": 993100,
-  "poseOverrides": {},
+  "poseOverrides": {
+   "watch.hold_l": {
+    "description": "relaxed stance turned slightly to his left, his right hand tucked behind his back, weight sunk on the left foot with both knees softer, head nodding along to the music while watching, his left hand on the right side of the picture held up beside his head with the palm flat, balancing one round silver tray with two glasses of red wine on it. He carries exactly one tray.",
+    "why": "First wave drew a tray on each hand."
+   }
+  },
   "score": {
    "knee": [
     "apron"
