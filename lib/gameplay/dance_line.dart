@@ -29,12 +29,21 @@ class DanceLine {
     return CrowdEngagement.reveal(u);
   }
 
-  /// Where [dancer] stands when the lead stands at [lead].
-  PartyPoint place(LineDancer dancer, PartyPoint lead, double arch) {
-    final to = dancer.archOffset ?? dancer.offset;
+  /// Where [dancer] stands when the lead stands at [lead]. The arch is a place
+  /// in the room, set from the lead's [mark], so it stays put while she steps
+  /// away to meet the hero.
+  PartyPoint place(
+    LineDancer dancer,
+    PartyPoint lead,
+    PartyPoint mark,
+    double arch,
+  ) {
+    final from = PartyPoint(lead.x + dancer.offset.x, lead.y + dancer.offset.y);
+    final by = dancer.archOffset;
+    if (by == null || arch <= 0) return from;
     return PartyPoint(
-      lead.x + dancer.offset.x + (to.x - dancer.offset.x) * arch,
-      lead.y + dancer.offset.y + (to.y - dancer.offset.y) * arch,
+      from.x + (mark.x + by.x - from.x) * arch,
+      from.y + (mark.y + by.y - from.y) * arch,
     );
   }
 }
@@ -52,7 +61,7 @@ class LineDancer {
   final PartyPoint offset;
   final double lagBeats;
 
-  /// From the lead's feet, once the arch has formed.
+  /// From the lead's mark, once the arch has formed.
   final PartyPoint? archOffset;
 
   /// Facing back along the line in the arch, to reach the dancer opposite.

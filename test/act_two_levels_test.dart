@@ -409,16 +409,16 @@ void main() {
       expect(_frames(lead.atlas), containsAll(arch.frames));
       final shot = level.exitShot!;
       expect(arch.from + arch.beats, lessThanOrEqualTo(shot.closeupFrom));
-      final meet = lead.meetMark!;
+      final mark = lead.mark;
       final sides = [
-        for (final d in line.dancers) meet.x + d.archOffset!.x,
+        for (final d in line.dancers) mark.x + d.archOffset!.x,
       ];
       final door = level.heroExitFloor(level.route.sample(1));
       expect(sides.where((x) => x < door.x), hasLength(2));
       expect(sides.where((x) => x > door.x), hasLength(2));
       // Facing each other across the arch.
       for (final d in line.dancers) {
-        expect(d.archMirrored, meet.x + d.archOffset!.x > door.x);
+        expect(d.archMirrored, mark.x + d.archOffset!.x > door.x);
       }
     });
 

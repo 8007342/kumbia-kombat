@@ -108,7 +108,16 @@ All three follow the design note. Galería and terraza each walk Mācron out wit
 - their marks: floor camera, hero marks, Don Charolas' marks, the banquet table as an occluder (its front edge at y .37, so the diners' hands stay in view), and the route round the table's right end to the service door;
 - the cast's places: 8 diner seats, 3 waiters and 1 late guest (12). Diner atlases carry `playerHeightPx` (168 plate px at y .405), which the scale reads ahead of any frame's height, so any of their drawings can be a clip set's `reference`.
 
-`pubspec.yaml` now lists `assets/art/comedor/`, plus `assets/music/rendered/comedor/` and `galeria/`, which were missing: the web build wouldn't have bundled those takes. A test now holds every folder a level or a rendered take names. [F]
+**Swapped in, 2026-11-08:** GALERIA's room (`work/1885-galr` 95bdd19, 56ecd52), taken as files:
+- the plate `galeria/galeria-room.png` and its floor, refit to the painted doors;
+- the hero marks, and Siobhán's mark with her meet mark past the tunnel's far end;
+- the line's arch, two facing pairs .2 apart across the runner. Arch offsets now count from the lead's *mark*, not from where she stands, so the arch stays put while she steps over to meet him;
+- the route up the runner to the far doors, the 12 guests in pairs along both walls, and the two picture lights;
+- the close-up: a floor plate, and Mācron's feet and proud face on full-screen canvases (360x780 at scale .5), so no cut edge shows.
+
+Siobhán herself and the gallery's room-life layers are still to come.
+
+`pubspec.yaml` now lists `assets/art/comedor/` and `galeria/`, plus `assets/music/rendered/comedor/` and `galeria/`, which were missing: the web build wouldn't have bundled those takes. A test now holds every folder a level or a rendered take names. [F]
 
 Each swap is a data edit in the level's file and re-running the generator (`make_<level>.py` in my scratch folder, to be folded in by hand when the art lands), plus a test run.
 
@@ -118,7 +127,6 @@ Each swap is a data edit in the level's file and re-running the generator (`make
 | Comedor | diners, waiters | guest0–2 seated, guest3–5 standing, on clip sets | `diner-a`… on the `diner` set, `waiter-a`… on the `waiter` set. COMEDOR's plan is 7 diners, 3 waiters and 2 late guests, making 12 |
 | Comedor | the cloche close-up | the bar's oil gulp | `comedor-dc-*`, `comedor-can.png`, `comedor-mc-*` |
 | Galería | Siobhán and Las Tréboles | swing-a's atlas, five times | GALERIA art (later wave) |
-| Galería | plate, crowd, close-up | the salon's room and couples. Mācron's nod rig is the feet close-up | GALERIA art |
 | Terraza | Tía Purpurina | blinblin's atlas | TERRAZA art (later wave) |
 | Terraza | plate, crowd, close-up, fireworks | the salon's room and couples, the lawn's kiss with one kisser, the flare for fireworks. No kiss-mark keepsake yet | TERRAZA art |
 

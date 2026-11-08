@@ -1324,7 +1324,7 @@ class GardenSceneGame extends FlameGame {
             ? line.arch?.frameAt(exitBeat! - late, reducedMotion: reducedMotion)
             : null;
         if (raised != null) theirs = theirs.withFrame(raised);
-        final at = line.place(dancer, floor, arch);
+        final at = line.place(dancer, floor, challenger.mark, arch);
         final where = viewport.project(at);
         final tall = _adultHeight(
           viewport,
