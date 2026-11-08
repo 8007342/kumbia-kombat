@@ -208,5 +208,5 @@ Each swap is a data edit in the level's file and re-running the generator (`make
 - [ ] The diners' meter with COMEDOR's real drawings: eat, watch, clap, rise and toast. Does the rise read at the win?
 - [ ] Room life at tier 4: felt more than seen?
 - [ ] The line of five: does a half-beat lag read as "as one" with a ripple, or as sloppy? Try `lagBeats` .25 at the ends.
-- [ ] The arch, once real arms-up drawings exist.
+- [ ] The arch of raised arms over Mācron, and Siobhán's nod beside it. Her meet mark is (.70, .49), beside the arch's right pair and in front of the guests. GALERIA's first move, to (.72, .44), still left her mostly behind the clapping guest at (.76, .455). [P]
 - [ ] Each walk out: comedor through the service door, galería under the arch, terraza to the stairs. On the comedor's stills he first vanished behind waiter-b near the door. COMEDOR moved waiter-b to (.66, .455), and he is now seen heading for the door at beat 15 and is gone by 18.
