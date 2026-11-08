@@ -115,7 +115,12 @@ All three follow the design note. Galería and terraza each walk Mācron out wit
 - the route up the runner to the far doors, the 12 guests in pairs along both walls, and the two picture lights;
 - the close-up: a floor plate, and Mācron's feet and proud face on full-screen canvases (360x780 at scale .5), so no cut edge shows.
 
-Siobhán herself is still to come.
+**Swapped in, 2026-11-08:** Siobhán herself (`work/1885-galr` c07b366):
+- her atlas `siobhan` and her dancer entry: a reel lead-round on the groove, high kicks and rigid arm snaps on her calls, a stamp, trebles and hop-backs;
+- the line on her frames, rising into the arch (`arch_rise`, then `arch_hold` held) and frozen at the win's start (`freeze_hold`);
+- EL MURO DE TACONES on her `trebles`.
+
+The four Tréboles wear GALERIA's recoloured copies of her atlas (raven, honey, chestnut, ash). A new optional field, `line.dancers[].image`, draws the lead's frames from another PNG of the same size, so one set of drawings reads as five people. A test holds each copy's size to hers, and the scene refuses one that differs.
 
 **Swapped in, 2026-11-08:** the gallery's room life (`work/1885-galr` 2fd90ac): a repainted plate where the far-left portrait is full length, so its gentleman can tap his foot; plus that foot tap, a bust's nod and a portrait's sway, all artwork at tier 4.
 
@@ -153,7 +158,6 @@ Each swap is a data edit in the level's file and re-running the generator (`make
 |---|---|---|---|
 | Comedor | Don Charolas | terciopelo's atlas, `id: terciopelo` so his combo finds a choreography | `charolas`, plus a dancer entry in `choreography.json` |
 | Comedor | late guest | guest4 on the `guest` set, by COMEDOR's choice (reused, in evening dress) | none planned |
-| Galería | Siobhán and Las Tréboles | swing-a's atlas, five times | GALERIA art (later wave) |
 | Terraza | Tía Purpurina | blinblin's atlas | TERRAZA art (later wave) |
 
 ## What was checked, and how

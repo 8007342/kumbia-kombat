@@ -727,6 +727,98 @@
           "clip": "flare"
         }
       ]
+    },
+    "siobhan": {
+      "note": "Siobhán and Las Tréboles, the gallery (galeria). Her groove_* drawings are a reel's lead-round with the arms rigid at the sides: hop with the knee high (down), treble (pass), up on both toes with the feet crossed (up), hop-back (the hold). Foot calls are high kicks out to the side, hand calls a rigid arm snap. The line of four draws these same frames up to half a beat late (stage.challengers[0].line). arch, freeze and the nod are the win's, played by the level's data. Proposals from GALERIA; the owner hasn't seen them moving.",
+      "clips": {
+        "trebles": {
+          "note": "EL MURO DE TACONES' wall of heels: treble, up, treble, up, side to side, two drawings a beat.",
+          "frames": [
+            "groove_pass_l",
+            "groove_up_l",
+            "groove_pass_r",
+            "groove_up_r"
+          ],
+          "beatsPerFrame": 0.5
+        },
+        "high_kicks": {
+          "note": "Two high kicks, one each side, a beat apiece: knee up, the kick, the stamp.",
+          "frames": [
+            "left_foot_prep",
+            "left_foot_peak",
+            "right_foot_prep",
+            "right_foot_peak"
+          ],
+          "beatsPerFrame": 0.5
+        },
+        "hop_backs": {
+          "note": "Hop-backs side to side on the beat.",
+          "frames": [
+            "groove_pass_l2",
+            "groove_up_l",
+            "groove_pass_r2",
+            "groove_up_r"
+          ],
+          "beatsPerFrame": 0.5
+        },
+        "arch": {
+          "note": "The win's arch: arms rising, then held high. Drawn facing the picture's right; the level mirrors the dancers on the right of the tunnel.",
+          "frames": [
+            "arch_rise",
+            "arch_hold"
+          ],
+          "beats": [
+            1,
+            2
+          ]
+        },
+        "freeze": {
+          "note": "The line freezes on the win's first beat.",
+          "frames": [
+            "freeze_hold"
+          ],
+          "beats": [
+            1
+          ]
+        },
+        "stamp": {
+          "note": "A heel stamp, both feet flat, the arms rigid.",
+          "frames": [
+            "left_foot_return"
+          ],
+          "beats": [
+            1
+          ]
+        }
+      },
+      "accents": [
+        {
+          "note": "A hard-shoe stamp as each phrase starts, from a warm room.",
+          "everyBeats": 8,
+          "atBeat": 0,
+          "minTier": 1,
+          "clip": "stamp"
+        },
+        {
+          "note": "High kicks closing every other phrase, a hot room's show.",
+          "everyBeats": 16,
+          "atBeat": 14,
+          "minTier": 3,
+          "clip": "high_kicks"
+        }
+      ],
+      "handoffMoves": [
+        {
+          "note": "Hop-backs overflowing into Mācron's turn, then she skips aside. From the first warm tier.",
+          "minTier": 1,
+          "clip": "hop_backs"
+        },
+        {
+          "note": "A cold room still gets the stamp.",
+          "minTier": 0,
+          "clip": "stamp"
+        }
+      ]
     }
   }
 }

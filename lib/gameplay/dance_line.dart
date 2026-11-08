@@ -55,7 +55,13 @@ class LineDancer {
     this.archOffset,
     this.archMirrored = false,
     this.stature = 1,
+    this.image,
   });
+
+  /// A recoloured copy of the lead's atlas image under `assets/art/ensemble/`,
+  /// the same frames at the same places, so the line can differ in hair or
+  /// dress while dancing one set of drawings. Null draws the lead's own.
+  final String? image;
 
   /// From the lead's feet, in plate fractions: the line yields and meets with her.
   final PartyPoint offset;

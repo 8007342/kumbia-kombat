@@ -421,8 +421,8 @@
   ],
   "challengers": [
    {
-    "id": "swing-a",
-    "atlas": "swing-a",
+    "id": "siobhan",
+    "atlas": "siobhan",
     "mark": [
      0.5,
      0.5
@@ -448,7 +448,8 @@
         0.03
        ],
        "archMirrored": false,
-       "lagBeats": 0.5
+       "lagBeats": 0.5,
+       "image": "siobhan-v1-raven.png"
       },
       {
        "offset": [
@@ -460,7 +461,8 @@
         -0.04
        ],
        "archMirrored": false,
-       "lagBeats": 0.25
+       "lagBeats": 0.25,
+       "image": "siobhan-v1-honey.png"
       },
       {
        "offset": [
@@ -472,7 +474,8 @@
         -0.04
        ],
        "archMirrored": true,
-       "lagBeats": 0.25
+       "lagBeats": 0.25,
+       "image": "siobhan-v1-chestnut.png"
       },
       {
        "offset": [
@@ -484,14 +487,16 @@
         0.03
        ],
        "archMirrored": true,
-       "lagBeats": 0.5
+       "lagBeats": 0.5,
+       "image": "siobhan-v1-ash.png"
       }
      ],
      "arch": {
       "from": 1,
       "beats": 2,
       "frames": [
-       "challenge_offer"
+       "arch_rise",
+       "arch_hold"
       ],
       "beatsPerFrame": 1
      }
@@ -742,18 +747,18 @@
  "hardestCombo": {
   "name": "EL MURO DE TACONES",
   "status": "proposal",
-  "note": "Proposal, from the wiring agent. The wall of heels: eight eighths of heels, left and right, then three more heels and a stamp. Half-beat gaps are 234 ms at 128 BPM, over the 230 ms a combo note must keep, so this is as close as a combo can ask at the top tempo. Danced on the shared groove clips until Siobhán's own drawings land. The owner hasn't seen or played it.",
+  "note": "Proposal, from the wiring agent. The wall of heels: eight eighths of heels, left and right, then three more heels and a stamp. Half-beat gaps are 234 ms at 128 BPM, over the 230 ms a combo note must keep, so this is as close as a combo can ask at the top tempo. Danced on her trebles. The owner hasn't seen or played it.",
   "callBeats": 8,
   "moves": [
    {
     "at": 0,
     "beats": 4,
-    "clip": "groove_double"
+    "clip": "trebles"
    },
    {
     "at": 4,
     "beats": 4,
-    "clip": "groove_double"
+    "clip": "trebles"
    }
   ],
   "notes": [
@@ -903,15 +908,7 @@
    {
     "from": 0,
     "frames": [
-     "finish"
-    ],
-    "beatsPerFrame": 1
-   },
-   {
-    "from": 1,
-    "frames": [
-     "challenge_load",
-     "challenge_offer"
+     "freeze_hold"
     ],
     "beatsPerFrame": 1
    },

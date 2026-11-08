@@ -422,6 +422,19 @@ void main() {
       }
     });
 
+    test('each Trébol\'s recoloured image is the lead\'s atlas to the pixel', () {
+      final atlas = _atlases()[lead.atlas] as Map;
+      for (final dancer in line.dancers) {
+        final image = dancer.image;
+        if (image == null) continue;
+        final bytes = File('assets/art/ensemble/$image').readAsBytesSync();
+        // PNG width and height, big-endian, at bytes 16 and 20.
+        int at(int i) =>
+            bytes[i] << 24 | bytes[i + 1] << 16 | bytes[i + 2] << 8 | bytes[i + 3];
+        expect([at(16), at(20)], [atlas['imageWidth'], atlas['imageHeight']]);
+      }
+    });
+
     test('the loader refuses a dancer too late, or off the floor', () {
       Map<String, dynamic> json() =>
           jsonDecode(_read('galeria')) as Map<String, dynamic>;

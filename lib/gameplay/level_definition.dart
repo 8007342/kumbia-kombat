@@ -1516,6 +1516,7 @@ class LevelDefinition {
           stature: dancer.has('stature')
               ? dancer.number('stature', min: .1)
               : 1,
+          image: dancer.has('image') ? dancer.text('image') : null,
         ),
       );
       dancer.finish();
