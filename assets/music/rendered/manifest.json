@@ -829,6 +829,21 @@
      "aac": "assets/music/rendered/salon/success.m4a"
     },
     "key": "F major"
+   },
+   "bridge": {
+    "to": "galeria",
+    "toTake": "low",
+    "entryBar": 2,
+    "bpm": 114.0,
+    "bars": 2,
+    "beatsPerBar": 4,
+    "gainDb": 0,
+    "startSeconds": 0.25,
+    "endSeconds": 4.460520833333334,
+    "files": {
+     "opus": "assets/music/rendered/salon/bridge.ogg",
+     "aac": "assets/music/rendered/salon/bridge.m4a"
+    }
    }
   },
   "comedor": {
@@ -967,6 +982,130 @@
     "files": {
      "opus": "assets/music/rendered/comedor/bridge.ogg",
      "aac": "assets/music/rendered/comedor/bridge.m4a"
+    }
+   }
+  },
+  "galeria": {
+   "key": "A minor",
+   "tierTakes": [
+    "low",
+    "low",
+    "mid",
+    "mid",
+    "high"
+   ],
+   "takes": {
+    "low": {
+     "bpm": 114.0,
+     "bars": 32,
+     "beatsPerBar": 4,
+     "loopStartSeconds": 0.25,
+     "loopEndSeconds": 67.61841666666666,
+     "loopSamples": 3233684,
+     "sampleRate": 48000,
+     "gainDb": 0,
+     "files": {
+      "opus": "assets/music/rendered/galeria/low.ogg",
+      "aac": "assets/music/rendered/galeria/low.m4a"
+     },
+     "lufs": -16.5,
+     "bar1Confidence": 0.88,
+     "goodExitBars": [
+      0,
+      2,
+      4,
+      6,
+      8,
+      10,
+      12,
+      14,
+      16,
+      18,
+      20,
+      22,
+      24,
+      26,
+      28,
+      30
+     ]
+    },
+    "mid": {
+     "bpm": 122.0,
+     "bars": 32,
+     "beatsPerBar": 4,
+     "loopStartSeconds": 0.25,
+     "loopEndSeconds": 63.2008125,
+     "loopSamples": 3021639,
+     "sampleRate": 48000,
+     "gainDb": 0,
+     "files": {
+      "opus": "assets/music/rendered/galeria/mid.ogg",
+      "aac": "assets/music/rendered/galeria/mid.m4a"
+     },
+     "lufs": -16.0,
+     "bar1Confidence": 0.88,
+     "goodExitBars": [
+      0,
+      2,
+      4,
+      6,
+      8,
+      10,
+      12,
+      14,
+      16,
+      18,
+      20,
+      22,
+      24,
+      26,
+      28,
+      30
+     ]
+    },
+    "high": {
+     "bpm": 130.0,
+     "bars": 32,
+     "beatsPerBar": 4,
+     "loopStartSeconds": 0.25,
+     "loopEndSeconds": 59.32691666666667,
+     "loopSamples": 2835692,
+     "sampleRate": 48000,
+     "gainDb": 0,
+     "files": {
+      "opus": "assets/music/rendered/galeria/high.ogg",
+      "aac": "assets/music/rendered/galeria/high.m4a"
+     },
+     "lufs": -15.0,
+     "bar1Confidence": 0.88,
+     "goodExitBars": [
+      4,
+      8,
+      10,
+      14,
+      16,
+      20,
+      24,
+      26,
+      28,
+      30
+     ]
+    }
+   },
+   "transitions": [],
+   "layerFadeBeats": 1,
+   "gridTier": "mid",
+   "success": {
+    "bpm": 130.0,
+    "bars": 4,
+    "beatsPerBar": 4,
+    "gainDb": 0,
+    "startSeconds": 0.25,
+    "endSeconds": 7.634625,
+    "final": false,
+    "files": {
+     "opus": "assets/music/rendered/galeria/success.ogg",
+     "aac": "assets/music/rendered/galeria/success.m4a"
     }
    }
   }

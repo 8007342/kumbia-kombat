@@ -87,6 +87,16 @@
    "evidence": "cut by tool/music/mix from the billiards and comedor ACE-Step takes, plan/music-act-two-2026-11-08.md"
   },
   {
+   "glob": "assets/music/rendered/galeria/*",
+   "class": "local-model",
+   "evidence": "ACE-Step parent seed 60101 of 12 candidates, low and high re-sampled from its latent, tool/music/sheets/galeria.chain.json, plan/music-act-two-2026-11-08.md"
+  },
+  {
+   "glob": "assets/music/rendered/salon/bridge.*",
+   "class": "local-model",
+   "evidence": "cut by tool/music/mix from the salon and galeria ACE-Step takes, plan/music-act-two-2026-11-08.md"
+  },
+  {
    "glob": "assets/music/rendered/comedor/*",
    "class": "local-model",
    "evidence": "ACE-Step parent seed 59202 of 20 candidates, low and high re-sampled from its latent, tool/music/sheets/comedor.chain.json, plan/music-act-two-2026-11-08.md"
