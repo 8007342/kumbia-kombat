@@ -1,0 +1,52 @@
+{
+ "level": "galeria",
+ "note": "Parent is candidate seed 60101, tag set B, of 12 (tool/music/sheets/galeria.candidates.json). It was asked for 120 BPM and plays at 122.0, so the tiers are 114, 122 and 130. Tiers are re-sampled from its latent in one graph.",
+ "parent": {
+  "seed": 60101,
+  "bpm": 120,
+  "key": "A minor",
+  "seconds": 74.5,
+  "tags": "traditional Irish reel, instrumental, two fiddles in unison, tin whistle ornaments, uilleann pipes, bouzouki, bodhrán, heavy hard shoe taps on every beat, dark and driving, dorian mode"
+ },
+ "children": [
+  {
+   "name": "lowB",
+   "tags": "traditional Irish reel, instrumental, a lone fiddle with bouzouki, soft bodhrán, light hard shoe taps, small session in a quiet gallery, sparse and tense, dorian mode, nothing else",
+   "denoise": 0.6,
+   "codes": false
+  },
+  {
+   "name": "lowC",
+   "tags": "traditional Irish reel, instrumental, a lone fiddle with bouzouki, soft bodhrán, light hard shoe taps, small session in a quiet gallery, sparse and tense, dorian mode, nothing else",
+   "denoise": 0.7,
+   "codes": false
+  },
+  {
+   "name": "highB",
+   "tags": "traditional Irish reel, instrumental, full step dance troupe, two fiddles in unison, tin whistle doubling the tune, uilleann pipes swelling with drones, bouzouki, pounding bodhrán, thunderous hard shoes stamping in unison, dark and driving, dorian mode, relentless",
+   "denoise": 0.6,
+   "codes": false
+  },
+  {
+   "name": "highC",
+   "tags": "traditional Irish reel, instrumental, full step dance troupe, two fiddles in unison, tin whistle doubling the tune, uilleann pipes swelling with drones, bouzouki, pounding bodhrán, thunderous hard shoes stamping in unison, dark and driving, dorian mode, relentless",
+   "denoise": 0.6,
+   "parent": "highB",
+   "codes": false
+  },
+  {
+   "name": "highD",
+   "tags": "traditional Irish reel, instrumental, full step dance troupe, two fiddles in unison, tin whistle doubling the tune, uilleann pipes swelling with drones, bouzouki, pounding bodhrán, thunderous hard shoes stamping in unison, dark and driving, dorian mode, relentless",
+   "denoise": 0.6,
+   "parent": "highC",
+   "codes": false
+  },
+  {
+   "name": "highE",
+   "tags": "traditional Irish reel, instrumental, full step dance troupe, two fiddles in unison, tin whistle doubling the tune, uilleann pipes swelling with drones, bouzouki, pounding bodhrán, thunderous hard shoes stamping in unison, dark and driving, dorian mode, relentless",
+   "denoise": 0.6,
+   "parent": "highD",
+   "codes": false
+  }
+ ]
+}
