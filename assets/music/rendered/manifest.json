@@ -725,21 +725,6 @@
      "opus": "assets/music/rendered/billiards/success.ogg",
      "aac": "assets/music/rendered/billiards/success.m4a"
     }
-   },
-   "bridge": {
-    "to": "salon",
-    "toTake": "low",
-    "entryBar": 18,
-    "bpm": 108.0,
-    "bars": 2,
-    "beatsPerBar": 4,
-    "gainDb": 0,
-    "startSeconds": 0.25,
-    "endSeconds": 4.6944375,
-    "files": {
-     "opus": "assets/music/rendered/billiards/bridge.ogg",
-     "aac": "assets/music/rendered/billiards/bridge.m4a"
-    }
    }
   },
   "salon": {
@@ -823,7 +808,7 @@
     "gainDb": 0,
     "startSeconds": 0.25,
     "endSeconds": 7.9919375,
-    "final": true,
+    "final": false,
     "files": {
      "opus": "assets/music/rendered/salon/success.ogg",
      "aac": "assets/music/rendered/salon/success.m4a"
