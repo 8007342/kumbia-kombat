@@ -1,7 +1,7 @@
 {
  "name": "LA TORRE DE CHAROLAS",
  "status": "proposal",
- "note": "Proposal from COMEDOR for levels/comedor.json. The tower of trays: a polka spin, then the tower of five trays goes up on the left hand and he hops the polka under it, feet on the hops, and lands it with the tray thrust high. Half-beat spacing at least, so the notes keep the good window at 136 BPM (221 ms per half beat; WIRE2 to check against hardest_combo_test). Uses only his atlas's clips.",
+ "note": "Proposal from COMEDOR for levels/comedor.json. The tower of trays: a polka spin, then the tower of five trays goes up on the left hand and he hops the polka under it, feet on the hops, and lands it with the tray thrust high. Notes re-timed by WIRE2 to gaps of three quarters of a beat or more (half a beat is 221 ms at 136 BPM, under the 230 ms good window), hands stacking the tower in the middle, closing on a stomp.",
  "callBeats": 8,
  "moves": [
   {
@@ -28,44 +28,44 @@
  "notes": [
   {
    "at": 0,
+   "limb": "leftFoot"
+  },
+  {
+   "at": 0.75,
    "limb": "rightHand"
   },
   {
-   "at": 1,
-   "limb": "rightHand"
+   "at": 1.5,
+   "limb": "rightFoot"
   },
   {
-   "at": 2,
+   "at": 2.25,
    "limb": "leftHand"
   },
   {
    "at": 3,
-   "limb": "leftFoot"
+   "limb": "rightHand"
   },
   {
-   "at": 3.5,
-   "limb": "rightFoot"
+   "at": 3.75,
+   "limb": "leftHand"
   },
   {
-   "at": 4,
-   "limb": "leftFoot"
+   "at": 4.5,
+   "limb": "rightHand"
   },
   {
-   "at": 5,
-   "limb": "rightFoot"
-  },
-  {
-   "at": 5.5,
-   "limb": "leftFoot"
+   "at": 5.25,
+   "limb": "leftHand"
   },
   {
    "at": 6,
-   "limb": "rightFoot"
+   "limb": "leftFoot"
   },
   {
    "at": 7,
-   "limb": "leftHand",
-   "move": "circle"
+   "limb": "rightFoot",
+   "move": "stomp"
   }
  ]
 }
