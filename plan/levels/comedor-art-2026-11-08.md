@@ -9,16 +9,15 @@
 | Room spec | `tool/art/rooms/comedor.json` | Done |
 | Accepted plate (the source) | `art_runs/rooms/comedor/picks/plate-992300.png` | Done |
 | Clean plate the game draws | `assets/art/comedor/comedor-room.png` | Done |
-| Layers: chandeliers and room life | `tool/art/rooms/layers/comedor.json`, `assets/art/comedor/comedor-layers.png`, level block in `art_runs/rooms/comedor/layers-level.json` | See "Room life" |
+| Layers: chandeliers and room life | `tool/art/rooms/layers/comedor.json`, `assets/art/comedor/comedor-layers.png`, level block in `art_runs/rooms/comedor/layers-level.json` | Done, wired by WIRE2 |
 | Marks for WIRE2 | `art_runs/rooms/comedor/marks.json` (plate fractions) | Done, sent |
-| Diners | atlases `diner-a` to `diner-g`, `tool/art/rooms/inplace.py`, `tool/art/rooms/inplace/diners.json` | See "Diners" |
-| Junior waiters | atlases `waiter-a`, `waiter-b`, `waiter-c` | See "Staff" |
-| Don Charolas | atlas `charolas`, `tool/art/characters/charolas.json`, motion set `opponent-polka` | See "Don Charolas" |
+| Diners | atlases `diner-a` to `diner-h`, `tool/art/rooms/inplace.py`, `tool/art/rooms/inplace/diners.json` | Done, in the manifest, wired by WIRE2 |
+| Junior waiters | atlases `waiter-a`, `waiter-b`, `waiter-c`, motion set `staff-polka` | Done, in the manifest, wired by WIRE2 |
+| Don Charolas | atlas `charolas` (81 drawings, 104 frames), `tool/art/characters/charolas.json`, motion set `opponent-polka` | Done, in the manifest (2892b75); WIRE2 swaps it in |
 | His choreography | `dancers.charolas` in `assets/art/ensemble/choreography.json` | Done |
 | LA TORRE DE CHAROLAS | `art_runs/rooms/comedor/hardest-combo.json`, a proposal for the level file | Done, sent |
-| Close-up | `assets/art/closeups/comedor-*`, `art_runs/comedor-closeups-20261108/scripts/` | See "Close-up" |
+| Close-up | `assets/art/closeups/comedor-*`, `art_runs/comedor-closeups-20261108/scripts/` | Done, wired by WIRE2 (beats 5 to 11.5) |
 
-(Each section below closes with what landed and what didn't.)
 
 ## The room
 
@@ -185,3 +184,87 @@ Each holds the tray on the picture's right.
   - The cloche runs off the top edge in *empty*, and a little off the right in *lift*, because the source drawings put it at their own edge.
   - His cheeks snap browner than his sprite's in *present*.
   - Between present and lift the tray drops from head height to chest height. Those are cuts on beats, but it's a jump.
+
+**Frames** [F]:
+- The route: the Qwen frame route from this worktree with `run_jobs.py` and the 2511 Lightning LoRA.
+  - A pilot of 12 hard poses ran at 2 candidates; the rest ran at 2, then 1 once the shared queue was taking 250 s a job.
+  - Registered, then the local vision pass, then picked by eye on contact sheets of every candidate.
+  - Finished with `finish_run_picks.py` on his own palette, packed and promoted with `promote.py --new`.
+- Picks are in `art_runs/charolas-v1-20261108a/picks.json`, with the reasons.
+- **Redrawn:**
+  - `watch.hold_l` had a tray in each hand. A pose override that says "exactly one tray" fixed it (993500).
+  - `left_hand.peak/follow`, the tray call, never lift the tray above his shoulder: 4 candidates over two skeletons, the second with the arm straight up. I kept the best of them (993501). **Weakest drawing in the set.**
+- **Rejected by eye:** a tray that swapped hands (tray_wobble.a 993101), invented white shoes or socks, and spin side views with the tray on the far side.
+- **New in `finish_run_picks.py`:** `dropFloorShadow`. Qwen sometimes paints a soft grey floor shadow under the shoes, and the matte keeps it. Style guide: no floor shadow in frames.
+- **Pilot findings, kept as data:** clap slaps the thigh (one hand holds the tray); spin side views at three quarters are exempt from the wrist-near-head rule.
+
+## Local vision against my eyes
+
+qwen2.5vl:7b through `vision_curate.py`, heads and hands on all 96 registered candidates of Don Charolas: 227 s, 8 flagged. [F]
+- **All 8 flags were wrong.** It counted the apron's bow or the napkin as a third hand. I checked the five clearest at 2x.
+- **It missed every real fault my eyes caught:**
+  - the tray in each hand (it was moved aside before the pass, but it also passed the two-tray watch frame in the pilot sheet stage);
+  - the swapped tray;
+  - the white socks;
+  - the floor shadows;
+  - the tray that never rises.
+- On room plates it answered the easy questions right and the question that mattered (where the table runs) not at all.
+- It remains a pre-filter that, here, filtered nothing.
+
+## Compute
+
+In `plan/compute-ledger.jsonl`, agent `comedor`. GPU seconds are studio elapsed or wall time per job on the shared host queue, so they are an upper bound: other agents' jobs were interleaved.
+
+| Batch | Images | Seconds |
+|---|---|---|
+| Room plates, runs a, b and c | 18 | 457 |
+| Layer fills and the drawn snap | 22 | 1,308 |
+| Diners: key and eight edits | 19 | 2,191 |
+| Don Charolas sheets | 10 | 142 |
+| Waiter sheets | 9 | 759 |
+| Close-up busts | 8 | 941 |
+| Don Charolas frames | about 115 | 13,572 |
+| Waiter frames | 54 | 5,952 |
+| **GPU total** | **about 255** | **about 25,300, or 7 hours of queue time** |
+| Local vision | 104 calls | 371 |
+| CPU (estimate) | | 900 |
+
+## What was checked, and how
+
+- `rooms.py compile comedor` passes. The `tool/art/tests` room, rig and definition suites pass (39, 7 skipped). Every opponent-polka and staff-polka pose passes `check_poses.py`, with the exemptions named above. [F]
+- **Diner atlases:** every anchor lies inside its rect. I checked this in code after WIRE2's loader refused the first version. [F]
+- **My eyes saw:** every room candidate at phone crop beside the salon and billiard plates; every layer fill; the layer atlas and a rest-against-original composite; every diner group edit; every candidate of all four figure families beside its skeleton; each packed atlas; and the close-up drawings. [F]
+- **Not run by me:** `flutter test`. WIRE2 runs the suite on its wiring branch and reported 788 passing at 913f36a, with my plate, layers, close-up and diners.
+- **Nobody has seen any of it moving.**
+
+## What went wrong
+
+- **Run-a's salon style reference** gave a deep room with a tiny far table: the style image's perspective overrode the layout.
+- **Five of six pass-2 candidates, and all four of a reworded run-c,** turned the banquet table to run toward the viewer. A "long banquet table" pulls into depth. Next time, say "a table seen from its long side, across the picture" and leave out "long".
+- **The plate painted chairs on the table's near side.** Painting them out took Qwen fills for the table top and a tiled strip for the cloth, because Qwen's cloth fills came back as patchwork damask.
+- **My first chandelier mattes** took the gilt edge of the portrait frames and the niche's arch with them. Tightened by polygon. A thin arc of the arch still sways with the left chandelier.
+- **The snap's first wording** drew a third hand.
+- **The crowd needs exactly 12** (WIRE2). My first marks gave 7, which became 8 diners, 3 waiters and 1 late guest.
+- **Engine and data mismatches, both fixed in data:**
+  - The diners' first atlases put the floor anchor outside the frame rect, and the loader refused them. Rects are now padded to the anchor.
+  - The waiters on the opponent motion set needed runtime aliases for clips they never dance. A small `staff-polka` set fixed that.
+- **`/home/forge/src` filled up at 02:13** and git failed in every worktree. Nothing of mine was lost: my output never went there.
+- **My own errors:**
+  - A `pgrep -f` wait loop matched its own shell, the brief's warned trap. I caught it before it hung and replaced it with `kill -0` on a literal PID.
+  - A `mv` into an existing directory nested one folder in another; I removed it.
+
+## Needs eyes, on a phone, moving
+
+- [ ] The room at full party: do the statue's nod and tap, the lady's head tilt and the gentleman's snap read as "felt more than seen", or not at all? Are the chandeliers' halos and the swaying arch arc invisible?
+- [ ] The diners' meter: does eat, then watch, then clap, then the lean-up and toast read across the room? Do the candelabra shimmer as single diners change?
+- [ ] Don Charolas' polka hop at tempo, and the tray save and napkin flick between phrases.
+- [ ] The tray call (`left_hand`): does the cue read without the tray going up?
+- [ ] waiter-b mirrored, with the tray in the other hand.
+- [ ] The close-up: the jump from present to lift, and Mācron's sip.
+- [ ] The tablecloth's tiled folds in the tap band's upper edge: regular enough to read as cloth, not as a pattern?
+
+## Not done
+
+- **A real stand-up for the diners.** No candidate stood them up behind the table. A drawn standing pose would need another key.
+- **The centre parting** in Don Charolas' hair.
+- **A drawn foot tap on a portrait.** Neither portrait shows a foot; the statue taps instead.

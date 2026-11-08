@@ -432,3 +432,7 @@
 {"agent": "comedor", "what": "Don Charolas sheets: pass 1 front (4), pass 2 front and back (3 each); studio elapsed or wall time per job on the shared queue", "kind": "gpu-image", "seconds": 142, "count": 10}
 {"agent": "comedor", "what": "Junior waiter sheets, three fronts at 3 candidates; studio elapsed or wall time per job on the shared queue", "kind": "gpu-image", "seconds": 759, "count": 9}
 {"agent": "comedor", "what": "Don Charolas close-up busts, four drawings at 2 candidates; studio elapsed or wall time per job on the shared queue", "kind": "gpu-image", "seconds": 941, "count": 8}
+{"agent": "comedor", "what": "Don Charolas frames: pilot (12 poses x2), wave (x2 then x1), three redraws (x2); 84 jobs, about 115 images", "kind": "gpu-image", "seconds": 13572, "count": 115}
+{"agent": "comedor", "what": "Junior waiter frames: three waiters x 9 poses x 2 candidates", "kind": "gpu-image", "seconds": 5952, "count": 54}
+{"agent": "comedor", "what": "Don Charolas first-pass curation: heads and hands per registered candidate, qwen2.5vl:7b (vision_curate.py); 8 flagged, all false", "kind": "local-vision", "seconds": 227, "count": 96}
+{"agent": "comedor", "what": "Comedor CPU: room compile, mattes, fills, layer frames, in-place cuts, register, score, finish and pack for 12 atlases (estimate)", "kind": "cpu", "seconds": 900, "count": 1}
