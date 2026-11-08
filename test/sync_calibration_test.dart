@@ -57,18 +57,29 @@ void main() {
   });
 
   group('the auto-nudge', () {
-    test('moves half of a steady lean, and no further than its cap', () {
+    test('takes a steady lean whole at first, then half, up to its cap', () {
+      // Deltas are measured on the judged clock, so after a move they're what
+      // is left over.
       final nudge = AutoNudge();
-      expect(nudge.phrase([60, 60, 60, 60]), 30);
-      expect(nudge.phrase([60, 60, 60, 60]), 60);
-      expect(nudge.phrase([90, 90, 90, 90]), AutoNudge.capMs);
+      expect(nudge.phrase([150, 140, 160, 150]), 150);
+      expect(nudge.phrase([40, 40, 40, 40]), 170);
+      expect(nudge.phrase([400, 400, 400, 400]), AutoNudge.capMs);
+      expect(AutoNudge.capMs, SyncCalibration.maxOffsetMs);
+    });
+
+    test('learns from near misses: a Bluetooth lean past the window', () {
+      // Every tap missed the 260 ms late window; the near misses still say
+      // where the player is.
+      final nudge = AutoNudge();
+      expect(nudge.phrase([300, 320, 310, 290, 305]), AutoNudge.capMs);
     });
 
     test('leaves small leans and short phrases alone', () {
       final nudge = AutoNudge();
-      expect(nudge.phrase([30, 35, 40, 20]), 0);
+      expect(nudge.phrase([20, 25, 30, 10]), 0);
       expect(nudge.phrase([100, 100, 100]), 0);
-      expect(nudge.phrase([-70, -70, -70, -70]), -35);
+      expect(nudge.phrase([-70, -70, -70, -70]), -70);
+      expect(nudge.phrase([-70, -70, -70, -70]), -105);
     });
   });
 

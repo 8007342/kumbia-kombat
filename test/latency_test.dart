@@ -169,7 +169,7 @@ void main() {
       }
       at(heard(18.5) + RhythmJudge.lateWindowMs / 500 + .02 + .24);
       expect(garden.passedPhrases, 1);
-      expect(garden.autoNudge!.offsetMs, 60);
+      expect(garden.autoNudge!.offsetMs, 120);
     });
 
     test('latency never pushes the decision past the phrase end margin', () {

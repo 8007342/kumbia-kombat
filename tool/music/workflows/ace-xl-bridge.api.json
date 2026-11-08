@@ -122,7 +122,7 @@
  "200": {
   "class_type": "LoadAudio",
   "inputs": {
-   "audio": "garden_low_mid_join.flac"
+   "audio": "$join"
   },
   "_meta": {
    "title": "join"

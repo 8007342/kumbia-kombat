@@ -135,7 +135,9 @@ class PartyAutoplay {
         if (i < session.stepCount) i,
     ].take(dropCount).toSet();
 
-    for (final cue in session.visibleCues.where((cue) => !cue.demo)) {
+    // The tap cues, as a thumb's: timed on the judge's clock, like [now], so a
+    // nudge or calibration can't hide a cue from a tap still in its window.
+    for (final cue in session.tapCues) {
       final index = cue.index;
       final noteAt = transport.secondsAt(cue.beat);
       final key = '${(noteAt * 1000).round()}:${cue.id}';

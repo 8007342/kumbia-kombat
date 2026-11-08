@@ -84,26 +84,35 @@ class SyncCalibration {
   }
 }
 
-/// A small, capped correction from play itself: at a phrase's end, if the
-/// player's taps sat steadily off by more than [thresholdMs], judging moves
-/// half of it. A proposal from the research, off unless the page turns it on.
+/// A correction from play itself: at a phrase's end, if the player's taps sat
+/// steadily off by more than [thresholdMs], judging moves toward them, capped
+/// like the tap-along. On while the player hasn't calibrated.
 class AutoNudge {
-  static const thresholdMs = 40;
-  static const capMs = 60;
+  /// A phrase whose median sits closer than this moves nothing: that's the
+  /// player's own wobble, not the device.
+  static const thresholdMs = 30;
+
+  /// As far as the tap-along may go. Was 60, which left any phone more than
+  /// 60 ms off the browser's estimate (Bluetooth adds 150 to 300) reading late
+  /// for the whole run.
+  static const capMs = SyncCalibration.maxOffsetMs;
   static const minimumTaps = 4;
 
   int offsetMs = 0;
+  bool _moved = false;
 
-  /// Feeds one phrase's signed tap deltas (positive is late). Returns the new
-  /// offset.
+  /// Feeds one phrase's signed tap deltas (positive is late), hits and near
+  /// misses alike: a phone far enough off misses most notes, and its misses
+  /// are the evidence. The first move takes the whole median, since a device
+  /// offset is there from the first phrase; later ones take half, so one
+  /// sloppy phrase can't swing it. Returns the new offset.
   int phrase(List<int> deltasMs) {
     if (deltasMs.length < minimumTaps) return offsetMs;
     final middle = SyncCalibration._median(deltasMs);
     if (middle.abs() <= thresholdMs) return offsetMs;
-    offsetMs = math.max(
-      -capMs,
-      math.min(capMs, offsetMs + (middle / 2).round()),
-    );
+    final step = _moved ? (middle / 2).round() : middle.round();
+    _moved = true;
+    offsetMs = math.max(-capMs, math.min(capMs, offsetMs + step));
     return offsetMs;
   }
 }
