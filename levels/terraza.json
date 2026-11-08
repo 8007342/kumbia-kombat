@@ -944,25 +944,11 @@
     ]
    },
    {
-    "approach": "closeups/duet-a-smile.png",
-    "impact": "closeups/duet-a-kiss.png",
-    "frames": [
-     {
-      "beat": 4.0,
-      "image": "closeups/duet-a-smile.png"
-     },
-     {
-      "beat": 4.75,
-      "image": "closeups/duet-a-kiss.png"
-     },
-     {
-      "beat": 6.0,
-      "image": "closeups/duet-a-smile.png"
-     }
-    ],
+    "approach": "closeups/terraza-tp-rest.png",
+    "impact": "closeups/terraza-tp-kiss.png",
     "contact": [
-     346,
-     113
+     323,
+     90
     ],
     "scale": 0.36,
     "entry": [
@@ -972,6 +958,20 @@
     "recoil": [
      -13,
      2
+    ],
+    "frames": [
+     {
+      "beat": 3.5,
+      "image": "closeups/terraza-tp-rest.png"
+     },
+     {
+      "beat": 4.75,
+      "image": "closeups/terraza-tp-kiss.png"
+     },
+     {
+      "beat": 6,
+      "image": "closeups/terraza-tp-rest.png"
+     }
     ],
     "sway": {
      "from": 8,
@@ -983,11 +983,11 @@
     }
    },
    {
-    "approach": "closeups/duet-hedge.png",
-    "impact": "closeups/duet-hedge.png",
+    "approach": "closeups/terraza-rail.png",
+    "impact": "closeups/terraza-rail.png",
     "contact": [
      350,
-     -97
+     -198
     ],
     "scale": 0.36,
     "entry": [

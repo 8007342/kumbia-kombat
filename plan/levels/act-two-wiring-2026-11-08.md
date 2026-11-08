@@ -96,7 +96,7 @@ All three follow the design note. Galería and terraza each walk Mācron out wit
 
 | Level | Beats |
 |---|---|
-| Comedor | 0–2 Don Charolas spins to a stop. 2–4 he presents the cloche while Mācron walks over. Close-up 4–10: the lid comes off on 6 (`clink`), the sips on 6.5, 7 and 7.5 (`glug`), QUÉ / BANQUETE. From 10, the diners rise and toast (their applause clip) and the lamps swell. 12–19 Mācron walks out past the waiters to the service door. The bridge ends at 24 |
+| Comedor | 0–2 Don Charolas spins to a stop. 2–5 he presents the cloche while Mācron walks over. Close-up 5–11.5 (COMEDOR's beats): presented on 5; the cloche lifts on 6, revealing the oil can with its birthday candle (`clink`); he offers it and Mācron takes it on 7; the sip on 8, with QUÉ / BANQUETE and `glug`s on 8 and 8.5; from 10, Mācron's happy arcs while both sway. From 11.5 the diners rise and toast and the lamps swell. 12.5–19.5 Mācron walks out past the waiters to the service door. The bridge ends at 24 |
 | Galería | 0 the line freezes. 1–3 it splits into the arch, arms up. 2–3.75 Mācron walks to his mark. Close-up 4–9: the double tap on 6 and 6.5 (`clack`, `clack`), QUÉ / ZAPATEO, then his proud face. 9.5–16 he walks out between the arch's two sides. Siobhán nods at 10.5 and dances from 13 |
 | Terraza | 0–2 Tía Purpurina throws confetti. Close-up 3.5–10: the kiss on 5 (`peck`), the antenna spark on 5.75 and 6.25 (soft high `clink`s), QUÉ / CHISPA. From 10 the sky lights up (the flare), the guests applaud, and 11–15.5 Mācron dances off to the stairs. The last level: everything fits its 16-beat success |
 
@@ -115,7 +115,11 @@ All three follow the design note. Galería and terraza each walk Mācron out wit
 - the route up the runner to the far doors, the 12 guests in pairs along both walls, and the two picture lights;
 - the close-up: a floor plate, and Mācron's feet and proud face on full-screen canvases (360x780 at scale .5), so no cut edge shows.
 
-Siobhán herself and the gallery's room-life layers are still to come.
+Siobhán herself is still to come.
+
+**Swapped in, 2026-11-08:** the gallery's room life (`work/1885-galr` 2fd90ac): a repainted plate where the far-left portrait is full length, so its gentleman can tap his foot; plus that foot tap, a bust's nod and a portrait's sway, all artwork at tier 4.
+
+**Swapped in, 2026-11-08:** the banquet close-up (`work/1881-cmdr` 745213a), with the salon's geometry: Don Charolas' four drawings (present, lift, offer, empty), Mācron's four (reach, take, sip, happy) and the plate cut from the room. The rendered page test now expects two `glug`s, not three. [F]
 
 **Swapped in, 2026-11-08:** waiter-a (`work/1881-cmdr` be4e516), on a `waiter` clip set that hops the polka (`groove_*` at half a beat a drawing). He faces right, so he isn't mirrored and the tray stays on his picture-right.
 
@@ -128,6 +132,10 @@ Siobhán herself and the gallery's room-life layers are still to come.
 - the layers: five firework bursts (light, growing with every tier), palms and festoon bulbs (artwork, tier 4);
 - the close-up plate, and Mācron's rest, kissed and sparking drawings;
 - the lipstick kiss mark as his keepsake from beat 6.
+
+**Swapped in, 2026-11-08:** her side of the kiss (`work/1886-terr` 41ce628):
+- `terraza-tp-rest` and `terraza-tp-kiss` take the lawn's place. His head stays anchored where the lawn's was, at (200, 165). Her contact (323, 90) puts her kiss-frame lips on his kiss mark at (124, 221).
+- The balustrade strip `terraza-rail` stands in front of her where the lawn had its hedge. It sits 198 px below the contact, not the hedge's 97, so that it ends where her canvas does, which is 350 px below her lips. With the hedge's offset, her dress and its cut edge showed under the rail. [F, seen on stills]
 
 **Code, at TERRAZA's request:** layers of kind `light` now also bloom with the win's `exitShot.flare`, which the warm-down doesn't cool, so the fireworks fill the sky as the lamps swell (`_drawRoomLayers`). Seen on the terraza's win stills, not in a unit test. [F]
 
@@ -145,10 +153,8 @@ Each swap is a data edit in the level's file and re-running the generator (`make
 |---|---|---|---|
 | Comedor | Don Charolas | terciopelo's atlas, `id: terciopelo` so his combo finds a choreography | `charolas`, plus a dancer entry in `choreography.json` |
 | Comedor | waiters b and c, late guest | guest5 and 6 on the `waiterStandIn` set; guest4 on the `guest` set | `waiter-b`, `waiter-c` on the `waiter` set |
-| Comedor | the cloche close-up | the bar's oil gulp | `comedor-dc-*`, `comedor-can.png`, `comedor-mc-*` |
 | Galería | Siobhán and Las Tréboles | swing-a's atlas, five times | GALERIA art (later wave) |
 | Terraza | Tía Purpurina | blinblin's atlas | TERRAZA art (later wave) |
-| Terraza | her bust in the close-up | the lawn's `duet-a` with a hedge | `terraza-tp-{rest,kiss}.png` |
 
 ## What was checked, and how
 
