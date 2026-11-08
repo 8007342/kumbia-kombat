@@ -6,14 +6,13 @@
  "tolerance": 26,
  "key": {
   "frame": "idle_stand",
-  "prompt": "The bald bearded man in picture 1 is a guest at an elegant evening party in a mansion's billiard room, and is dressed for it. Change only his clothes: a tailored deep red wool dinner jacket, a crisp white dress shirt, a black bow tie, charcoal grey dress trousers and polished brown leather brogues. He keeps his red beard.",
-  "seed": 990850,
+  "prompt": "The bald bearded man in picture 1 is a guest at an elegant evening party, and is dressed for it. Change only his clothes: a tailored deep red wool dinner jacket, a crisp white dress shirt, a black bow tie, charcoal grey dress trousers and polished brown leather brogues. He keeps his red beard.",
+  "seed": 990852,
   "count": 2,
-  "pick": null
+  "pick": "key-990852.png"
  },
- "framePrompt": "Picture 1 is the drawing to change. Picture 2 shows the same person already dressed for the party. Dress the person in picture 1 in exactly the outfit picture 2 wears: the same garments, the same colours, the same details.",
- "keepWords": "Keep the pose, the hands, the face, the hair, the skin, the pool cue and where it is, the figure's size and place in the picture and the plain flat green background of picture 1 exactly as they are, in the same crisp late 16-bit pixel art style with a thick dark outline.",
- "frameSeed": 990860,
+ "keepWords": "Keep the pose, the hands and anything they hold, the face, the hair, the skin, the figure's size and place in the picture and the plain flat green background of picture 1 exactly as they are, in the same crisp late 16-bit pixel art style with a thick dark outline.",
+ "frameSeed": 990865,
  "count": 2,
  "derive": {
   "chalk_b": {
@@ -21,6 +20,114 @@
    "compress": true
   }
  },
- "palette": null,
- "picks": {}
+ "palette": "tool/art/palettes/pool-bg-c.json",
+ "picks": {},
+ "ramps": {
+  "skin": {
+   "region": "skin",
+   "alsoIn": [],
+   "shades": [
+    "#845937",
+    "#AC7F5C",
+    "#D9A67E",
+    "#F5C8A5"
+   ]
+  },
+  "beard": {
+   "region": "hair",
+   "alsoIn": [],
+   "shades": [
+    "#2B0000",
+    "#501E02",
+    "#7A3F22",
+    "#935F46"
+   ]
+  },
+  "jacket": {
+   "region": "shirt",
+   "alsoIn": [
+    "prop"
+   ],
+   "shades": [
+    "#230000",
+    "#4B0007",
+    "#771A24",
+    "#904143"
+   ]
+  },
+  "shirt": {
+   "region": "cloth",
+   "alsoIn": [
+    "shirt"
+   ],
+   "shades": [
+    "#878C8E",
+    "#AFB4B6",
+    "#D8DEE0",
+    "#F8FDFF"
+   ]
+  },
+  "trousers": {
+   "region": "trousers",
+   "alsoIn": [],
+   "shades": [
+    "#040509",
+    "#1F2026",
+    "#3F4148",
+    "#5A5C63"
+   ]
+  },
+  "shoes": {
+   "region": "shoes",
+   "alsoIn": [],
+   "shades": [
+    "#110000",
+    "#331204",
+    "#593221",
+    "#724F40"
+   ]
+  },
+  "cue_shaft": {
+   "region": "prop",
+   "alsoIn": [
+    "skin",
+    "shirt",
+    "cloth",
+    "trousers"
+   ],
+   "shades": [
+    "#754C00",
+    "#9D722F",
+    "#C9984F",
+    "#E4B97D"
+   ]
+  },
+  "cue_butt": {
+   "region": "prop_dark",
+   "alsoIn": [
+    "skin",
+    "trousers",
+    "shoes"
+   ],
+   "shades": [
+    "#150000",
+    "#371303",
+    "#5E3320",
+    "#775040"
+   ]
+  },
+  "chalk": {
+   "region": "accessory",
+   "alsoIn": [
+    "skin",
+    "prop"
+   ],
+   "shades": [
+    "#004083",
+    "#1B67AD",
+    "#3E8EDE",
+    "#6CAEF3"
+   ]
+  }
+ }
 }

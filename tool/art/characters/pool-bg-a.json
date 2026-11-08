@@ -1,9 +1,9 @@
 {
- "$comment": "A background player in the billiards room, written by tool/art/motion/pool-bg-people.py. Agent's design choice; the owner can reverse it.",
+ "$comment": "A background player in the billiards room, written by tool/art/motion/pool-bg-people.py. Agent's design choice; the owner can reverse it. Redressed for the party 2026-11-08 (DRESS, plan/levels/dress-code-2026-11-08.md): agent's design choice; the owner can reverse it.",
  "id": "pool-bg-a",
  "family": "pool-bg-a-v1",
  "style": "party-pixel",
- "description": "Tall thin older man in a flat cap and shirtsleeves.",
+ "description": "Tall thin older man in a brown tweed waistcoat and tie, dressed for the party.",
  "body": {
   "preset": "slim-adult"
  },
@@ -17,42 +17,52 @@
  "demeanor": "absorbed in the shot",
  "garments": [
   {
-   "id": "hat",
-   "shape": "brimmed-hat",
+   "id": "hair",
+   "shape": "palette-only",
    "region": "hat",
-   "colour": "#6A5138",
-   "text": "flat brown tweed cap"
+   "colour": "#ADADAD",
+   "text": "neat silver-grey hair combed back"
   },
   {
    "id": "shirt",
    "shape": "shirt-fitted",
    "region": "shirt",
    "colour": "#A9C2D6",
-   "text": "pale blue shirt with rolled sleeves",
+   "text": "crisp pale blue dress shirt with long sleeves buttoned at the wrist",
    "alsoIn": [
     "prop"
    ]
   },
   {
-   "id": "braces",
+   "id": "waistcoat",
    "shape": "waistcoat-fitted",
    "region": "cloth",
-   "colour": "#4A3020",
-   "text": "dark brown braces"
+   "colour": "#4A3428",
+   "text": "buttoned dark brown tweed waistcoat"
+  },
+  {
+   "id": "tie",
+   "shape": "palette-only",
+   "region": "cloth",
+   "colour": "#6E1A2A",
+   "alsoIn": [
+    "shirt"
+   ],
+   "text": "dark burgundy silk tie"
   },
   {
    "id": "trousers",
    "shape": "trousers",
    "region": "trousers",
-   "colour": "#6B6D70",
-   "text": "baggy grey trousers"
+   "colour": "#58595C",
+   "text": "well-pressed charcoal grey dress trousers"
   },
   {
    "id": "shoes",
    "shape": "shoes-flat",
    "region": "shoes",
    "colour": "#26222A",
-   "text": "scuffed black shoes"
+   "text": "polished black oxford shoes"
   },
   {
    "id": "cue_shaft",
@@ -98,7 +108,7 @@
  "drawing": {
   "noun": "man",
   "fits": "head, both shoes and both hands",
-  "look": "very tall and thin adult build with a slight stoop, long face with a grey moustache, tan skin, a flat brown tweed cap, pale blue shirt with the sleeves rolled, dark brown braces, baggy grey trousers and scuffed black shoes and thick dark ink outline",
+  "look": "very tall and thin adult build with a slight stoop, long face with a grey moustache, tan skin, neat silver-grey hair combed back, a crisp pale blue dress shirt with long sleeves, a buttoned dark brown tweed waistcoat, a dark burgundy silk tie, charcoal grey dress trousers and polished black oxford shoes and thick dark ink outline",
   "extra": "Both eyes are open. This is a grown adult, fully clothed. There is exactly one pool cue, long, slim, straight and rigid, with a pale wooden shaft, a white tip and a dark wooden butt: it lies along the thin white line in image 2. Do not draw the line itself, and do not draw a table. ",
   "count": 2,
   "cue": {

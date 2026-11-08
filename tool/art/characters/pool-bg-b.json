@@ -1,9 +1,9 @@
 {
- "$comment": "A background player in the billiards room, written by tool/art/motion/pool-bg-people.py. Agent's design choice; the owner can reverse it.",
+ "$comment": "A background player in the billiards room, written by tool/art/motion/pool-bg-people.py. Agent's design choice; the owner can reverse it. Redressed for the party 2026-11-08 (DRESS, plan/levels/dress-code-2026-11-08.md): agent's design choice; the owner can reverse it.",
  "id": "pool-bg-b",
  "family": "pool-bg-b-v1",
  "style": "party-pixel",
- "description": "Short round woman of about forty-five with a big halo of curls and a mustard cardigan.",
+ "description": "Short round woman of about forty-five with a big halo of curls, in a mustard-gold satin blouse and navy dress trousers.",
  "body": {
   "preset": "stocky-adult"
  },
@@ -27,8 +27,8 @@
    "id": "shirt",
    "shape": "shirt-stocky",
    "region": "shirt",
-   "colour": "#D8A32E",
-   "text": "long-sleeved mustard cardigan",
+   "colour": "#D59A2A",
+   "text": "fitted mustard-gold satin blouse with long sleeves, a modest round neckline and a slim gold belt",
    "alsoIn": [
     "prop"
    ]
@@ -37,15 +37,15 @@
    "id": "trousers",
    "shape": "trousers",
    "region": "trousers",
-   "colour": "#28345C",
-   "text": "wide navy trousers"
+   "colour": "#2A355E",
+   "text": "tailored navy blue wide-leg dress trousers with a pressed crease"
   },
   {
    "id": "shoes",
    "shape": "shoes-flat",
    "region": "shoes",
-   "colour": "#E4E0D6",
-   "text": "flat white shoes"
+   "colour": "#1B2244",
+   "text": "navy low-heeled court shoes"
   },
   {
    "id": "cue_shaft",
@@ -91,7 +91,7 @@
  "drawing": {
   "noun": "woman",
   "fits": "head, both shoes and both hands",
-  "look": "short, round, sturdy adult build, deep brown skin, a big round halo of dark curly hair, round glasses, a long-sleeved buttoned mustard cardigan, wide navy trousers and flat white shoes and thick dark ink outline",
+  "look": "short, round, sturdy adult build, deep brown skin, a big round halo of dark curly hair, round glasses, small gold earrings, a fitted mustard-gold satin blouse with long sleeves and a slim gold belt, tailored navy wide-leg dress trousers and navy low-heeled court shoes and thick dark ink outline",
   "extra": "Both eyes are open. This is a grown adult, fully clothed. There is exactly one pool cue, long, slim, straight and rigid, with a pale wooden shaft, a white tip and a dark wooden butt: it lies along the thin white line in image 2. Do not draw the line itself, and do not draw a table. ",
   "count": 2,
   "cue": {

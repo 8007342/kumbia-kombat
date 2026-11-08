@@ -1,9 +1,9 @@
 {
- "$comment": "A background player in the billiards room, written by tool/art/motion/pool-bg-people.py. Agent's design choice; the owner can reverse it.",
+ "$comment": "A background player in the billiards room, written by tool/art/motion/pool-bg-people.py. Agent's design choice; the owner can reverse it. Redressed for the party 2026-11-08 (DRESS, plan/levels/dress-code-2026-11-08.md): agent's design choice; the owner can reverse it.",
  "id": "pool-bg-c",
  "family": "pool-bg-c-v1",
  "style": "party-pixel",
- "description": "Broad bald bearded man of about fifty in a plaid shirt.",
+ "description": "Broad bald bearded man of about fifty in a deep red dinner jacket and black bow tie.",
  "body": {
   "preset": "stocky-adult"
  },
@@ -24,28 +24,38 @@
    "text": "thick red-brown beard"
   },
   {
-   "id": "shirt",
+   "id": "jacket",
    "shape": "shirt-stocky",
    "region": "shirt",
-   "colour": "#A32A2A",
-   "text": "red and black plaid flannel shirt",
+   "colour": "#771A24",
+   "text": "tailored deep red wool dinner jacket",
    "alsoIn": [
     "prop"
    ]
   },
   {
+   "id": "shirt",
+   "shape": "palette-only",
+   "region": "cloth",
+   "colour": "#D8DEE0",
+   "alsoIn": [
+    "shirt"
+   ],
+   "text": "crisp white dress shirt with a black bow tie"
+  },
+  {
    "id": "trousers",
    "shape": "trousers",
    "region": "trousers",
-   "colour": "#2C3A58",
-   "text": "dark blue jeans"
+   "colour": "#3F4148",
+   "text": "charcoal grey dress trousers"
   },
   {
    "id": "shoes",
    "shape": "shoes-flat",
    "region": "shoes",
-   "colour": "#A8784A",
-   "text": "tan work boots"
+   "colour": "#593221",
+   "text": "polished brown leather brogues"
   },
   {
    "id": "cue_shaft",
@@ -91,7 +101,7 @@
  "drawing": {
   "noun": "man",
   "fits": "head, both shoes and both hands",
-  "look": "broad, heavy adult build with big shoulders, a bald head, a thick red-brown beard, light skin, a red and black plaid flannel shirt with long sleeves, dark blue jeans and tan work boots and thick dark ink outline",
+  "look": "broad, heavy adult build with big shoulders, a bald head, a thick red-brown beard, light skin, a tailored deep red wool dinner jacket, a crisp white dress shirt, a black bow tie, charcoal grey dress trousers and polished brown leather brogues and thick dark ink outline",
   "extra": "Both eyes are open. This is a grown adult, fully clothed. There is exactly one pool cue, long, slim, straight and rigid, with a pale wooden shaft, a white tip and a dark wooden butt: it lies along the thin white line in image 2. Do not draw the line itself, and do not draw a table. ",
   "count": 2,
   "cue": {

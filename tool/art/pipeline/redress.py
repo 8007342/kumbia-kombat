@@ -3,8 +3,7 @@
 
 Each drawing is cut from the shipped atlas, set on a flat backdrop in the 256 by 320 native canvas with its floor anchor
 at a fixed point, and grown x3 by nearest neighbour. Qwen-Image-Edit then redresses it: first one key drawing from words
-alone, then every other drawing from two pictures, the drawing itself and the accepted key ("wear exactly what picture 2
-wears"), so the outfit holds from frame to frame. Back at native size each drawing is keyed off the backdrop, snapped to the
+alone, then every other drawing from the same words, picked against the key so the outfit holds from frame to frame. Back at native size each drawing is keyed off the backdrop, snapped to the
 character's locked palette (finish_local.py) and packed into the same rects at the same anchors, so the manifest's frame ids,
 anchors and pixelsPerUnit stay what the game already plays.
 
@@ -107,19 +106,20 @@ def stage(s, which, only=""):
                          overrides={"seed": k["seed"]}, count=k["count"]))
         pass_no = 2
     else:
-        shutil.copy(CACHE / run / s["key"]["pick"], st / "key.png")
         ids, _ = unique_frames(atlas_entry(s))
-        ids = [i for i in ids if i not in s.get("derive", {}) and i != s["key"]["frame"] and (not only or i in only.split(","))]
-        text = f"{s['framePrompt']} {s['keepWords']}"
-        wf = bake_workflow(["layout", "style"], text, f"kk/{run}/frame", 4, size)
+        ids = [i for i in ids if i not in s.get("derive", {}) and (i != s["key"]["frame"] or s["key"].get("redrawFrame")) and (not only or i in only.split(","))]
+        # Words alone, the key's own prompt, on every drawing. The two-picture route (drawing plus key) was tried first and
+        # Qwen copied the key's figure in beside the old one (pilot lean_b, 2026-11-08), so the key serves as the bar to pick by.
+        text = f"{s['key']['prompt']} {s['keepWords']}"
+        wf = bake_workflow(["base"], text, f"kk/{run}/frame", 4, size)
         path = out / "workflows" / "frame.api.json"
         path.write_text(json.dumps(wf, indent=1, ensure_ascii=False) + "\n")
         (out / "workflows" / "frame.prompt.txt").write_text(text + "\n")
         for fid in ids:
             staged_input(s, fid).save(st / f"{fid}.png")
-            jobs.append(dict(name=fid, workflow=str(path.relative_to(REPO)), inputs={"layout": str(st / f"{fid}.png"), "style": str(st / "key.png")},
+            jobs.append(dict(name=fid, workflow=str(path.relative_to(REPO)), inputs={"base": str(st / f"{fid}.png")},
                              overrides={"seed": s["frameSeed"]}, count=s["count"]))
-        pass_no = 1  # two input pictures: run_room_jobs stands in the billiards p1 graph
+        pass_no = 2
     doc = dict(room="billiards", run=run, passNo=pass_no, steps=4, jobs=jobs, how="tool/art/rooms/run_room_jobs.py --jobs <this file>")
     f = out / f"jobs-{which}.json"
     f.write_text(json.dumps(doc, indent=1) + "\n")
@@ -179,7 +179,7 @@ def finish_image(rgba, s):
 
 
 def candidates(s, fid):
-    if fid == s["key"]["frame"]:
+    if fid == s["key"]["frame"] and not s["key"].get("redrawFrame"):
         return sorted((CACHE / s["run"]).glob("key-*.png"))
     return sorted((CACHE / s["run"]).glob(f"{fid}-*.png"))
 

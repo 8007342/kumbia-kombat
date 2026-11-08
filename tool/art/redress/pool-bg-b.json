@@ -6,14 +6,15 @@
  "tolerance": 26,
  "key": {
   "frame": "idle_stand",
-  "prompt": "The woman in picture 1 is a guest at an elegant evening party in a mansion's billiard room, and is dressed for it. Change only her clothes: a fitted mustard-gold satin blouse with long sleeves and a modest round neckline, a slim gold belt, tailored navy blue wide-leg dress trousers with a pressed crease, small gold earrings and navy low-heeled court shoes. She keeps her round glasses and her hair.",
+  "prompt": "The woman in picture 1 is a guest at an elegant evening party, and is dressed for it. Change only her clothes: a fitted mustard-gold satin blouse with long sleeves and a modest round neckline, a slim gold belt, tailored navy blue wide-leg dress trousers with a pressed crease, small gold earrings and navy low-heeled court shoes. She keeps her round glasses and her hair.",
   "seed": 990830,
   "count": 2,
-  "pick": null
+  "pick": "key-990831.png",
+  "redrawFrame": true,
+  "why": "the key drew a cue her idle drawing doesn't hold, so it serves as the outfit reference only"
  },
- "framePrompt": "Picture 1 is the drawing to change. Picture 2 shows the same person already dressed for the party. Dress the person in picture 1 in exactly the outfit picture 2 wears: the same garments, the same colours, the same details.",
- "keepWords": "Keep the pose, the hands, the face, the hair, the skin, the pool cue and where it is, the figure's size and place in the picture and the plain flat green background of picture 1 exactly as they are, in the same crisp late 16-bit pixel art style with a thick dark outline.",
- "frameSeed": 990840,
+ "keepWords": "Keep the pose, the hands and anything they hold, the face, the hair, the skin, the figure's size and place in the picture and the plain flat green background of picture 1 exactly as they are, in the same crisp late 16-bit pixel art style with a thick dark outline.",
+ "frameSeed": 990845,
  "count": 2,
  "derive": {
   "chalk_b": {
@@ -21,6 +22,102 @@
    "compress": true
   }
  },
- "palette": null,
- "picks": {}
+ "palette": "tool/art/palettes/pool-bg-b.json",
+ "picks": {},
+ "ramps": {
+  "skin": {
+   "region": "skin",
+   "alsoIn": [],
+   "shades": [
+    "#230300",
+    "#46220D",
+    "#6E432C",
+    "#88614D"
+   ]
+  },
+  "hair": {
+   "region": "hair",
+   "alsoIn": [],
+   "shades": [
+    "#000000",
+    "#030100",
+    "#1C1412",
+    "#342C2A"
+   ]
+  },
+  "shirt": {
+   "region": "shirt",
+   "alsoIn": [
+    "prop"
+   ],
+   "shades": [
+    "#7F4D00",
+    "#A77300",
+    "#D59A2A",
+    "#EFBC68"
+   ]
+  },
+  "trousers": {
+   "region": "trousers",
+   "alsoIn": [],
+   "shades": [
+    "#010015",
+    "#0D1537",
+    "#2A355E",
+    "#465176"
+   ]
+  },
+  "shoes": {
+   "region": "shoes",
+   "alsoIn": [],
+   "shades": [
+    "#010007",
+    "#030420",
+    "#1B2244",
+    "#353C5B"
+   ]
+  },
+  "cue_shaft": {
+   "region": "prop",
+   "alsoIn": [
+    "skin",
+    "shirt",
+    "cloth",
+    "trousers"
+   ],
+   "shades": [
+    "#754C00",
+    "#9D722F",
+    "#C9984F",
+    "#E4B97D"
+   ]
+  },
+  "cue_butt": {
+   "region": "prop_dark",
+   "alsoIn": [
+    "skin",
+    "trousers",
+    "shoes"
+   ],
+   "shades": [
+    "#150000",
+    "#371303",
+    "#5E3320",
+    "#775040"
+   ]
+  },
+  "chalk": {
+   "region": "accessory",
+   "alsoIn": [
+    "skin",
+    "prop"
+   ],
+   "shades": [
+    "#004083",
+    "#1B67AD",
+    "#3E8EDE",
+    "#6CAEF3"
+   ]
+  }
+ }
 }
