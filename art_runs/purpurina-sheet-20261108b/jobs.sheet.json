@@ -6,7 +6,8 @@
    "tier": "I1",
    "count": 4,
    "inputs": {
-    "sheet_front": "/work/tmp/imagegen/kumbia/purpurina-sheet-20261108b/in/sheet_source.png"
+    "sheet_front": "/work/tmp/imagegen/kumbia/purpurina-sheet-20261108b/in/sheet_source.png",
+    "pose_proxy": "/work/tmp/imagegen/kumbia/purpurina-sheet-20261108b/in/sheet_source.png"
    },
    "overrides": {
     "seed": 996500
