@@ -1,7 +1,7 @@
 {
  "id": "comedor",
  "title": "EL GRAN COMEDOR",
- "background": "salon/salon-room.png",
+ "background": "comedor/comedor-room.png",
  "music": {
   "score": "comedor_polka",
   "successScore": "comedor_polka_success",
@@ -444,7 +444,7 @@
    "horizonY": 0.27,
    "referenceFootY": 0.6,
    "referenceHeight": 0.33,
-   "vanishingX": 0.505
+   "vanishingX": 0.5
   },
   "heroHome": [
    0.5,
@@ -481,7 +481,7 @@
     ],
     "stature": 0.95,
     "meetMark": [
-     0.46,
+     0.57,
      0.52
     ]
    }
@@ -660,118 +660,192 @@
      ],
      "beatsPerFrame": 1
     }
+   },
+   "guest": {
+    "reference": "standing_idle_a",
+    "seatedIdle": {
+     "frames": [
+      "standing_idle_a"
+     ],
+     "beatsPerFrame": 1
+    },
+    "notice": {
+     "frames": [
+      "glance_a",
+      "glance_b"
+     ],
+     "beatsPerFrame": 2
+    },
+    "seatedFollow": {
+     "frames": [
+      "clap_a",
+      "clap_b"
+     ],
+     "beatsPerFrame": 0.5
+    },
+    "standUp": {
+     "frames": [
+      "clap_a",
+      "clap_b"
+     ],
+     "beatsPerFrame": 0.5
+    },
+    "standingIdle": {
+     "frames": [
+      "standing_idle_a"
+     ],
+     "beatsPerFrame": 1
+    },
+    "stepTouch": {
+     "frames": [
+      "groove_a",
+      "groove_b",
+      "groove_c",
+      "groove_d"
+     ],
+     "beatsPerFrame": 1
+    },
+    "clap": {
+     "frames": [
+      "clap_a",
+      "clap_b"
+     ],
+     "beatsPerFrame": 0.5
+    },
+    "cheer": {
+     "frames": [
+      "cheer_a",
+      "cheer_b"
+     ],
+     "beatsPerFrame": 1
+    },
+    "sitDown": {
+     "frames": [
+      "standing_idle_a"
+     ],
+     "beatsPerFrame": 1
+    },
+    "applause": {
+     "frames": [
+      "cheer_a",
+      "cheer_a",
+      "cheer_b"
+     ],
+     "beatsPerFrame": 1
+    }
    }
   },
   "guests": [
    {
     "at": [
-     0.08,
-     0.37
+     0.225,
+     0.405
     ],
-    "seat": "chair",
+    "seat": "painted",
     "atlas": "guest0",
     "clips": "diner"
    },
    {
     "at": [
-     0.17,
-     0.37
+     0.293,
+     0.405
     ],
-    "seat": "chair",
+    "seat": "painted",
     "atlas": "guest1",
     "clips": "diner"
    },
    {
     "at": [
-     0.26,
-     0.37
+     0.353,
+     0.405
     ],
-    "seat": "chair",
+    "seat": "painted",
     "atlas": "guest2",
     "clips": "diner"
    },
    {
     "at": [
-     0.74,
-     0.37
+     0.438,
+     0.405
     ],
-    "seat": "chair",
+    "seat": "painted",
     "atlas": "guest0",
     "clips": "diner"
    },
    {
     "at": [
-     0.83,
-     0.37
+     0.506,
+     0.405
     ],
-    "seat": "chair",
+    "seat": "painted",
     "atlas": "guest1",
     "clips": "diner"
    },
    {
     "at": [
-     0.92,
-     0.37
+     0.572,
+     0.405
     ],
-    "seat": "chair",
+    "seat": "painted",
     "atlas": "guest2",
     "clips": "diner"
    },
    {
     "at": [
-     0.13,
-     0.42
+     0.662,
+     0.405
     ],
-    "seat": "chair",
+    "seat": "painted",
     "atlas": "guest0",
     "clips": "diner"
    },
    {
     "at": [
-     0.22,
-     0.42
+     0.738,
+     0.405
     ],
-    "seat": "chair",
+    "seat": "painted",
     "atlas": "guest1",
     "clips": "diner"
    },
    {
     "at": [
-     0.87,
-     0.42
-    ],
-    "seat": "chair",
-    "atlas": "guest2",
-    "clips": "diner"
-   },
-   {
-    "at": [
-     0.7,
+     0.27,
      0.47
     ],
     "seat": "standing",
     "atlas": "guest3",
     "clips": "waiter",
-    "faces": "left"
+    "faces": "right"
    },
    {
     "at": [
-     0.79,
-     0.5
-    ],
-    "seat": "standing",
-    "atlas": "guest4",
-    "clips": "waiter",
-    "faces": "left"
-   },
-   {
-    "at": [
-     0.88,
-     0.53
+     0.76,
+     0.47
     ],
     "seat": "standing",
     "atlas": "guest5",
     "clips": "waiter",
+    "faces": "left"
+   },
+   {
+    "at": [
+     0.2,
+     0.53
+    ],
+    "seat": "standing",
+    "atlas": "guest6",
+    "clips": "waiter",
+    "faces": "right"
+   },
+   {
+    "at": [
+     0.84,
+     0.47
+    ],
+    "seat": "standing",
+    "atlas": "guest4",
+    "clips": "guest",
     "faces": "left"
    }
   ],
@@ -780,63 +854,72 @@
  "scenery": {
   "lamps": [
    [
-    0.254,
-    0.15
+    0.217,
+    0.16
    ],
    [
-    0.511,
-    0.148
-   ],
-   [
-    0.767,
-    0.152
-   ],
-   [
-    0.11,
-    0.245
-   ],
-   [
-    0.4,
-    0.245
-   ],
-   [
-    0.62,
-    0.245
-   ],
-   [
-    0.91,
-    0.245
+    0.805,
+    0.16
    ]
   ],
-  "plants": []
+  "plants": [],
+  "occluders": [
+   {
+    "frontY": 0.437,
+    "outline": [
+     [
+      0.198,
+      0.37
+     ],
+     [
+      0.763,
+      0.37
+     ],
+     [
+      0.766,
+      0.437
+     ],
+     [
+      0.195,
+      0.437
+     ]
+    ]
+   }
+  ]
  },
  "departure": {
   "threshold": "service door",
   "originY": 0.6,
   "waypoints": [
    {
-    "at": 0,
+    "at": 0.0,
     "x": 0.5,
     "y": 0.6,
     "facing": "sideRight"
    },
    {
-    "at": 0.35,
+    "at": 0.25,
     "x": 0.62,
-    "y": 0.56,
+    "y": 0.54,
     "facing": "sideRight"
    },
    {
-    "at": 0.7,
-    "x": 0.75,
-    "y": 0.5,
+    "at": 0.5,
+    "x": 0.73,
+    "y": 0.475,
     "facing": "sideRight"
    },
    {
-    "at": 1,
-    "x": 0.84,
-    "y": 0.47,
+    "at": 0.75,
+    "x": 0.785,
+    "y": 0.425,
     "facing": "sideRight"
+   },
+   {
+    "at": 1.0,
+    "x": 0.79,
+    "y": 0.398,
+    "facing": "rear"
    }
   ]
  },
@@ -911,7 +994,7 @@
   "walkFrom": 2,
   "walkTo": 3.75,
   "heroStep": [
-   0.56,
+   0.62,
    0.55
   ],
   "heroWaitFrame": "front_idle",
@@ -1123,48 +1206,94 @@
   "props": [
    {
     "id": "chandelier-left",
-    "atlas": "salon/salon-layers.png",
+    "atlas": "comedor/comedor-layers.png",
     "atlasY": 0,
-    "left": 164,
-    "top": 119,
-    "width": 95,
-    "height": 107,
+    "left": 120,
+    "top": 155,
+    "width": 120,
+    "height": 103,
     "frames": 7,
     "motion": "sway",
     "periodBeats": 4,
     "instance": 1,
-    "kind": "artwork",
-    "minTier": 4
+    "kind": "hanging",
+    "minTier": 3
    },
    {
-    "id": "chandelier-middle",
-    "atlas": "salon/salon-layers.png",
-    "atlasY": 109,
-    "left": 377,
-    "top": 119,
-    "width": 97,
-    "height": 104,
+    "id": "chandelier-right",
+    "atlas": "comedor/comedor-layers.png",
+    "atlasY": 105,
+    "left": 603,
+    "top": 155,
+    "width": 128,
+    "height": 117,
     "frames": 7,
     "motion": "sway",
     "periodBeats": 4,
     "instance": 2,
+    "kind": "hanging",
+    "minTier": 3
+   },
+   {
+    "id": "statue-nod",
+    "atlas": "comedor/comedor-layers.png",
+    "atlasY": 224,
+    "left": 156,
+    "top": 287,
+    "width": 22,
+    "height": 26,
+    "frames": 3,
+    "motion": "pulse",
+    "periodBeats": 2,
+    "instance": 3,
     "kind": "artwork",
     "minTier": 4
    },
    {
-    "id": "chandelier-right",
-    "atlas": "salon/salon-layers.png",
-    "atlasY": 215,
-    "left": 583,
-    "top": 119,
-    "width": 99,
-    "height": 114,
-    "frames": 7,
-    "motion": "sway",
-    "periodBeats": 4,
-    "instance": 3,
+    "id": "statue-tap",
+    "atlas": "comedor/comedor-layers.png",
+    "atlasY": 252,
+    "left": 163,
+    "top": 394,
+    "width": 18,
+    "height": 17,
+    "frames": 3,
+    "motion": "pulse",
+    "periodBeats": 1,
+    "instance": 4,
     "kind": "artwork",
     "minTier": 4
+   },
+   {
+    "id": "portrait-lady",
+    "atlas": "comedor/comedor-layers.png",
+    "atlasY": 271,
+    "left": 549,
+    "top": 215,
+    "width": 34,
+    "height": 34,
+    "frames": 5,
+    "motion": "sway",
+    "periodBeats": 4,
+    "instance": 5,
+    "kind": "artwork",
+    "minTier": 4
+   },
+   {
+    "id": "portrait-snap",
+    "atlas": "comedor/comedor-layers.png",
+    "atlasY": 307,
+    "left": 235,
+    "top": 237,
+    "width": 89,
+    "height": 105,
+    "frames": 2,
+    "motion": "pulse",
+    "periodBeats": 2,
+    "instance": 6,
+    "kind": "artwork",
+    "minTier": 4,
+    "phaseBeats": 1
    }
   ]
  }

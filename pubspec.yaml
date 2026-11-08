@@ -73,6 +73,7 @@ flutter:
     - assets/art/cool-crowd/
     - assets/art/billiards/
     - assets/art/salon/
+    - assets/art/comedor/
     - assets/art/pool-garden/
     - assets/art/cool-crowd/
     - assets/art/props/
@@ -87,6 +88,8 @@ flutter:
     - assets/music/rendered/cool-crowd/
     - assets/music/rendered/billiards/
     - assets/music/rendered/salon/
+    - assets/music/rendered/comedor/
+    - assets/music/rendered/galeria/
     - levels/
     # The credits roll's data, from tool/credits/build_credits.py.
     - assets/credits.json

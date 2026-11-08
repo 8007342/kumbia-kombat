@@ -48,7 +48,7 @@ Pattern 5 mirrors pattern 4. Pattern 6 opens on a two-foot stamp. In all, 29 ric
 
 ### Galería: a reel [P]
 
-Foot-heavy and relentless, and on the music. The feet stamp the beats the take accents. Both feet land together on the one from tier 1. The rigid arms slap only where a foot can't follow its own stamp. At the peak, sixteenth pickups at 3.25 and 7.25 run into beats 4 and 8, where the take plays them.
+Foot-heavy and relentless, and on the music. The feet stamp the beats the take accents. Both feet land together on the one from tier 1. The rigid arms slap only where a foot can't follow its own stamp. Every note is on a beat.
 
 | Pattern | Tier | BPM | Presses | Richer steps | Feet |
 |---|---|---|---|---|---|
@@ -59,7 +59,9 @@ Foot-heavy and relentless, and on the music. The feet stamp the beats the take a
 | 4, 5 | the peak | 130 | 12 | 4 | 7 |
 | 6 | the peak | 130 | 13 | 5 | 7 |
 
-**How it got here.** My first draft ran the feet in the treble's 3+3+2 eighths. MUSIC2's audit of the rendered reel scored it 68: 15% of its notes sat on silence, because this take accents the beats and its "and"s are weak. The worst note was the 1.5 at the peak, at .21. This rework follows the audit's suggestion: feet on the beats, both feet on the one, syncopation only on the peak's pickups. MUSIC2 re-audits it. Two drafts before that put sixteenth hands next to feet, which breaks the 170 ms cross-thumb limit (a quarter beat is 115 ms at 130). In two peak drafts a pickup before a stamp on the same side crossed cue paths on a 320x454 screen. MUSIC2 moved the ladder from 112–128 to 114–130 for the steadiest take, and the chart is checked at 130.
+**MUSIC2's re-audit** of the beat-stamping version: 91, up from 68. 94% of notes on an accent, none weak, none on silence. By tier: 96, 97, 98, 98, 85. The peak scored lowest because its pickups at 3.25 and 7.25 sat just after the take's strong hits on 3 and 7. I moved them onto 3 and 7, which also keeps two cue paths apart. That last move hasn't been re-audited.
+
+**How it got here.** My first draft ran the feet in the treble's 3+3+2 eighths. MUSIC2's audit of the rendered reel scored it 68: 15% of its notes sat on silence, because this take accents the beats and its "and"s are weak. The worst note was the 1.5 at the peak, at .21. This rework follows the audit's suggestion: feet on the beats, both feet on the one. Two drafts before that put sixteenth hands next to feet, which breaks the 170 ms cross-thumb limit (a quarter beat is 115 ms at 130). In two peak drafts a pickup at 3.25 before a stamp on the same side crossed cue paths on a 320x454 screen. MUSIC2 moved the ladder from 112–128 to 114–130 for the steadiest take, and the chart is checked at 130.
 
 EL MURO DE TACONES: eight straight eighths of heels, 231 ms apart at 130 BPM, just over the 230 ms a combo note must keep. Then three more heels and a stamp. Nothing plays the combos yet, and nobody has audited them.
 
@@ -100,14 +102,20 @@ All three follow the design note. Galería and terraza each walk Mācron out wit
 
 ## Still stand-ins
 
+**Swapped in, 2026-11-08:** COMEDOR's room (`work/1881-cmdr` 97a61c9), taken as its two files:
+- the clean plate `comedor/comedor-room.png`;
+- its layers `comedor-layers.png`: two chandeliers (hanging, `minTier` 3), plus a statue's nod, a statue's foot tap, a portrait lady's head tilt and a portrait's finger snap on 2 and 4 (artwork, `minTier` 4);
+- their marks: floor camera, hero marks, Don Charolas' marks, the banquet table as an occluder (its front edge at y .37, so the diners' hands stay in view), and the route round the table's right end to the service door;
+- the cast's places: 8 diner seats, 3 waiters and 1 late guest (12).
+
+`pubspec.yaml` now lists `assets/art/comedor/`, plus `assets/music/rendered/comedor/` and `galeria/`, which were missing: the web build wouldn't have bundled those takes. A test now holds every folder a level or a rendered take names. [F]
+
 Each swap is a data edit in the level's file and re-running the generator (`make_<level>.py` in my scratch folder, to be folded in by hand when the art lands), plus a test run.
 
 | Level | What | Stand-in today | Real piece from |
 |---|---|---|---|
-| Comedor | plate, marks, floor | the salon's | COMEDOR (`work/1881-cmdr`: `comedor-room.png`, marks with the table occluder and the route to the service door) |
 | Comedor | Don Charolas | terciopelo's atlas, `id: terciopelo` so his combo finds a choreography | `charolas`, plus a dancer entry in `choreography.json` |
 | Comedor | diners, waiters | guest0–2 seated, guest3–5 standing, on clip sets | `diner-a`… on the `diner` set, `waiter-a`… on the `waiter` set. COMEDOR's plan is 7 diners, 3 waiters and 2 late guests, making 12 |
-| Comedor | room life | the salon's chandeliers, as artwork with `minTier` 4 | `comedor-layers.png`: chandeliers, portrait foot tap, portrait snap, bust nod, statue |
 | Comedor | the cloche close-up | the bar's oil gulp | `comedor-dc-*`, `comedor-can.png`, `comedor-mc-*` |
 | Galería | Siobhán and Las Tréboles | swing-a's atlas, five times | GALERIA art (later wave) |
 | Galería | plate, crowd, close-up | the salon's room and couples. Mācron's nod rig is the feet close-up | GALERIA art |
@@ -156,4 +164,4 @@ Each swap is a data edit in the level's file and re-running the generator (`make
 - [ ] Room life at tier 4: felt more than seen?
 - [ ] The line of five: does a half-beat lag read as "as one" with a ripple, or as sloppy? Try `lagBeats` .25 at the ends.
 - [ ] The arch, once real arms-up drawings exist.
-- [ ] Each walk out: comedor through the service door, galería under the arch, terraza to the stairs.
+- [ ] Each walk out: comedor through the service door, galería under the arch, terraza to the stairs. On the comedor's stills at beat 15 he isn't visible near the door. The door at x .79 is inside the phone's crop (about x .15–.85), so he's most likely passing behind waiter-b at (.76, .47).
