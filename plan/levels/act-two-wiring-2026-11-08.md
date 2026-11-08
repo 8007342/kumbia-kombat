@@ -117,6 +117,12 @@ All three follow the design note. Galería and terraza each walk Mācron out wit
 
 Siobhán herself and the gallery's room-life layers are still to come.
 
+**Swapped in, 2026-11-08:** COMEDOR's eight diners (`work/1881-cmdr` 451fd0b), `diner-a` to `diner-h`, on the `diner` clip set:
+- the meter: eat, watch, clap, then rise and raise the glass; at the win they rise and toast;
+- drawn in place 1:1 with the plate, never mirrored, and scaled from `playerHeightPx` 168.
+
+Their first atlases put the anchor (the floor under the chair) below the frames, which stop at the table top. The loader refuses an anchor outside its frame, so COMEDOR padded every frame down to it, and nothing moved on screen. [F]
+
 `pubspec.yaml` now lists `assets/art/comedor/` and `galeria/`, plus `assets/music/rendered/comedor/` and `galeria/`, which were missing: the web build wouldn't have bundled those takes. A test now holds every folder a level or a rendered take names. [F]
 
 Each swap is a data edit in the level's file and re-running the generator (`make_<level>.py` in my scratch folder, to be folded in by hand when the art lands), plus a test run.
@@ -124,7 +130,7 @@ Each swap is a data edit in the level's file and re-running the generator (`make
 | Level | What | Stand-in today | Real piece from |
 |---|---|---|---|
 | Comedor | Don Charolas | terciopelo's atlas, `id: terciopelo` so his combo finds a choreography | `charolas`, plus a dancer entry in `choreography.json` |
-| Comedor | diners, waiters | guest0–2 seated, guest3–5 standing, on clip sets | `diner-a`… on the `diner` set, `waiter-a`… on the `waiter` set. COMEDOR's plan is 7 diners, 3 waiters and 2 late guests, making 12 |
+| Comedor | waiters, late guest | guest3, 5 and 6 on the `waiter` set; guest4 on the `guest` set | `waiter-a`… on the `waiter` set |
 | Comedor | the cloche close-up | the bar's oil gulp | `comedor-dc-*`, `comedor-can.png`, `comedor-mc-*` |
 | Galería | Siobhán and Las Tréboles | swing-a's atlas, five times | GALERIA art (later wave) |
 | Terraza | Tía Purpurina | blinblin's atlas | TERRAZA art (later wave) |
