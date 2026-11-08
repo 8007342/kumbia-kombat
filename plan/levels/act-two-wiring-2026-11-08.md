@@ -121,7 +121,7 @@ Siobhán herself is still to come.
 
 **Swapped in, 2026-11-08:** the banquet close-up (`work/1881-cmdr` 745213a), with the salon's geometry: Don Charolas' four drawings (present, lift, offer, empty), Mācron's four (reach, take, sip, happy) and the plate cut from the room. The rendered page test now expects two `glug`s, not three. [F]
 
-**Swapped in, 2026-11-08:** waiter-a (`work/1881-cmdr` be4e516) waiter-b (9b73c6e) and waiter-c (e4611fb), all three on the `waiter` set (waiter-b he faces left, so he is mirrored and his tray moves to the other hand, which COMEDOR accepted), on a `waiter` clip set that hops the polka (`groove_*` at half a beat a drawing). He faces right, so he isn't mirrored and the tray stays on his picture-right.
+**Swapped in, 2026-11-08:** all three waiters, `waiter-a` (`work/1881-cmdr` be4e516), `waiter-b` (9b73c6e) and `waiter-c` (e4611fb), on a `waiter` clip set that hops the polka (`groove_*` at half a beat a drawing). A waiter facing right keeps the tray on his picture-right. Waiter-b faces left, so he is mirrored and his tray moves to the other hand, which COMEDOR accepted.
 
 **Swapped in, 2026-11-08:** TERRAZA's room (`work/1886-terr` cbac883):
 - the plate, with its floor at horizon .36;
