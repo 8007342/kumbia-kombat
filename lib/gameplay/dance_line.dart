@@ -63,8 +63,26 @@ class LineDancer {
 }
 
 class LineArch {
-  const LineArch({required this.from, required this.beats});
+  const LineArch({
+    required this.from,
+    required this.beats,
+    this.frames = const [],
+    this.beatsPerFrame = 1,
+  });
 
   /// Beats of the win's shot, counted like every other part of it.
   final double from, beats;
+
+  /// What the rest of the line draws once the arch is half formed, in place of
+  /// the lead's own: arms raised, held or looped. Empty keeps the lead's.
+  final List<String> frames;
+  final double beatsPerFrame;
+
+  /// The arch's drawing [beats] into the shot, or null if it has none yet.
+  String? frameAt(double beat, {bool reducedMotion = false}) {
+    if (frames.isEmpty || beat < from + beats / 2) return null;
+    if (reducedMotion) return frames.last;
+    final step = ((beat - from - beats / 2) / beatsPerFrame).floor();
+    return frames[step % frames.length];
+  }
 }

@@ -183,6 +183,10 @@ class GardenSceneGame extends FlameGame {
       if (away != null) {
         _ensemble![challenger.atlas]!.definition.art.requireFrames(away.frames);
       }
+      final arch = challenger.line?.arch;
+      if (arch != null) {
+        _ensemble![challenger.atlas]!.definition.art.requireFrames(arch.frames);
+      }
       final stance = challenger.defeatStance;
       if (stance != null) {
         _ensemble![challenger.atlas]!.definition.art.requireFrames(stance.frames);
@@ -1316,6 +1320,10 @@ class GardenSceneGame extends FlameGame {
             ? shot?.opponentFrameAt(exitBeat! - late, reducedMotion: reducedMotion)
             : null;
         if (theirWin != null) theirs = theirs.withFrame(theirWin);
+        final raised = won
+            ? line.arch?.frameAt(exitBeat! - late, reducedMotion: reducedMotion)
+            : null;
+        if (raised != null) theirs = theirs.withFrame(raised);
         final at = line.place(dancer, floor, arch);
         final where = viewport.project(at);
         final tall = _adultHeight(

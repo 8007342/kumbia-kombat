@@ -69,6 +69,7 @@ Map<String, List<_Note>> _charts() {
     'billiards',
     'comedor',
     'salon',
+    'galeria',
   ]) {
     final chart = LevelDefinition.fromJson(
       jsonDecode(File('levels/$level.json').readAsStringSync())
