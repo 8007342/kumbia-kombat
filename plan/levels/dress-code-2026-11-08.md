@@ -63,3 +63,7 @@ Checked by eye: every candidate sheet, every packed atlas on a green ground, and
 ## Compute
 
 Qwen-Image-Edit on the local GPU: 32 jobs and 65 images, 1452 s of GPU run time (queue wait not counted). The two-picture pilot is included. Local CPU for finishing and packing: a few minutes. Both are in `plan/compute-ledger.jsonl`.
+
+## Tests (fact)
+
+Run in the run copy `wt/drss-run` against this branch: `flutter test` gave 788 passed, 0 failed. `flutter analyze lib test` gave the 4 baseline notes in battle_staging.dart and nothing else. Tests show that the manifest and atlases load and line up; they say nothing about how the clothes look.
