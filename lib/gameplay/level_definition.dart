@@ -410,10 +410,15 @@ class LevelDefinition {
     this.propSet,
     this.hardestCombo,
     this.floorDance,
+    this.guestClips = const {},
   });
 
   /// What this room's standing guests dance, if it has any.
   final FloorDance? floorDance;
+
+  /// `crowd.clipSets`: drawings for each step of the meter, for guests cast with
+  /// their own atlas, such as diners and waiters. A guest names one by `clips`.
+  final Map<String, GuestClipSet> guestClips;
 
   final String id;
   final String title;
@@ -559,6 +564,9 @@ class LevelDefinition {
 
     final crowdFields = fields.child('crowd');
     final crowd = _crowd(id, crowdFields.child('budgets'));
+    final guestClips = crowdFields.has('clipSets')
+        ? _clipSets(crowdFields.child('clipSets'))
+        : const <String, GuestClipSet>{};
     final guestPath = crowdFields.at('guests');
     final seat = crowdFields.has('seat')
         ? crowdFields.named('seat', PartySeat.values)
@@ -598,6 +606,7 @@ class LevelDefinition {
                   ? guest.text('faces') == 'right'
                   : null,
               partner: guest.has('partner') ? guest.whole('partner', min: 0) : null,
+              clips: guest.has('clips') ? guest.text('clips') : null,
             ),
           );
           guest.finish();
@@ -626,7 +635,27 @@ class LevelDefinition {
     final floorDance = crowdFields.has('floorDance')
         ? _floorDance(crowdFields.child('floorDance'), chart.introBeats)
         : null;
-    if (seats.contains(PartySeat.standing) && floorDance == null) {
+    for (final (i, guest) in cast.indexed) {
+      final clips = guest?.clips;
+      if (clips == null) continue;
+      if (!guestClips.containsKey(clips)) {
+        throw LevelDataError('$guestPath[$i]', 'no such clip set: $clips');
+      }
+      if (guest!.atlas == null) {
+        throw LevelDataError('$guestPath[$i]', 'clips needs the guest\'s atlas');
+      }
+      if (partTo[i] != null || guest.occupied != null) {
+        throw LevelDataError(
+          '$guestPath[$i]',
+          'a guest with clips draws only those: no partTo or occupied',
+        );
+      }
+    }
+    final dancers = [
+      for (final (i, seated) in seats.indexed)
+        if (seated == PartySeat.standing && cast[i]?.clips == null) i,
+    ];
+    if (dancers.isNotEmpty && floorDance == null) {
       throw LevelDataError(guestPath, 'standing guests need crowd.floorDance');
     }
     for (final (i, to) in partTo.indexed) {
@@ -796,6 +825,7 @@ class LevelDefinition {
       propSet: propSet,
       hardestCombo: hardestCombo,
       floorDance: floorDance,
+      guestClips: guestClips,
     );
   }
 
@@ -814,6 +844,52 @@ class LevelDefinition {
     );
     fields.finish();
     return clip;
+  }
+
+  static Map<String, GuestClipSet> _clipSets(_Fields fields) {
+    final sets = <String, GuestClipSet>{};
+    for (final name in fields.keys.toList()) {
+      final set = fields.child(name);
+      final reference = set.text('reference');
+      final clips = <CrowdClip, GuestClip>{};
+      for (final clip in CrowdClip.values) {
+        final entry = set.child(clip.name);
+        final frames = entry.list('frames');
+        if (frames.isEmpty || frames.any((f) => f is! String)) {
+          throw LevelDataError(entry.at('frames'), 'expected drawing names');
+        }
+        final once = entry.has('once') && entry.flag('once');
+        clips[clip] = GuestClip(
+          List.unmodifiable(frames.cast<String>()),
+          once: once,
+          beatsPerFrame: once
+              ? 1
+              : entry.number('beatsPerFrame', min: .25),
+        );
+        entry.finish();
+      }
+      GuestClip? applause;
+      if (set.has('applause')) {
+        final entry = set.child('applause');
+        final frames = entry.list('frames');
+        if (frames.isEmpty || frames.any((f) => f is! String)) {
+          throw LevelDataError(entry.at('frames'), 'expected drawing names');
+        }
+        applause = GuestClip(
+          List.unmodifiable(frames.cast<String>()),
+          beatsPerFrame: entry.number('beatsPerFrame', min: .25),
+        );
+        entry.finish();
+      }
+      set.finish();
+      sets[name] = GuestClipSet(
+        reference: reference,
+        clips: Map.unmodifiable(clips),
+        applause: applause,
+      );
+    }
+    fields.finish();
+    return Map.unmodifiable(sets);
   }
 
   static FloorDance _floorDance(_Fields fields, double introBeats) {
@@ -1678,8 +1754,18 @@ class LevelDefinition {
             periodBeats: prop.number('periodBeats', min: .25),
             instance: prop.whole('instance', min: 0),
             kind: prop.named('kind', PartyLifeKind.values),
+            minTier: prop.has('minTier') ? prop.whole('minTier', min: 1) : null,
+            phaseBeats: prop.has('phaseBeats')
+                ? prop.number('phaseBeats', min: 0)
+                : 0,
           );
           prop.finish();
+          if ((layer.minTier ?? 0) > PartyUp.topTier) {
+            throw LevelDataError(
+              '$path.minTier',
+              'the top tier is ${PartyUp.topTier}',
+            );
+          }
           if (!ids.add(layer.id)) {
             throw LevelDataError(path, 'duplicate layer id ${layer.id}');
           }

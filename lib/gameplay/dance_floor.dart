@@ -181,3 +181,87 @@ PartyPoint floorGuestAt(PartyGuestSlot slot, double along) {
     slot.floor.y + (to.y - slot.floor.y) * along,
   );
 }
+
+/// One of a [GuestClipSet]'s drawings for a crowd clip.
+class GuestClip {
+  const GuestClip(this.frames, {this.beatsPerFrame = 1, this.once = false});
+  final List<String> frames;
+
+  /// For a loop: how long each drawing holds, on the music's beat.
+  final double beatsPerFrame;
+
+  /// A change of pose, such as rising: played through once over the clip.
+  final bool once;
+}
+
+/// A level's own drawings for each step of the crowd's meter, for people cast by
+/// atlas: diners who eat, then watch, then clap, then rise and toast; waiters who
+/// hop. Every [CrowdClip] is named, so whatever the model asks for is drawn. The
+/// model still decides who is where on the meter, and reads nothing back.
+class GuestClipSet {
+  const GuestClipSet({
+    required this.reference,
+    required this.clips,
+    this.applause,
+  });
+
+  /// A drawing at full standing height, which sets everyone's scale.
+  final String reference;
+  final Map<CrowdClip, GuestClip> clips;
+
+  /// What they do from the win's `exitShot.applause` cue on, in its stagger:
+  /// diners rising with their glasses. A change of pose runs from the cue, then
+  /// its last drawings loop on the beat. Without it they follow the meter.
+  final GuestClip? applause;
+
+  Iterable<String> get frames => {
+    reference,
+    for (final clip in clips.values) ...clip.frames,
+    ...?applause?.frames,
+  };
+
+  /// The applause drawing [beats] after this guest's cue: the first drawing is
+  /// the rise, held for one [GuestClip.beatsPerFrame], then the rest loop.
+  String applauseFrame(double beats, {bool reducedMotion = false}) {
+    final clip = applause!;
+    final frames = clip.frames;
+    if (reducedMotion) return frames.last;
+    final step = (beats / clip.beatsPerFrame).floor();
+    if (frames.length == 1 || step <= 0) return frames.first;
+    return frames[1 + (step - 1) % (frames.length - 1)];
+  }
+
+  /// The drawing for [guest] at the music's [beat]. Loops change on the beat,
+  /// each guest a whole number of drawings off the others so the room isn't in
+  /// lockstep; a change of pose runs once and holds its last drawing.
+  String frame(
+    CrowdGuestSnapshot guest,
+    double beat, {
+    bool reducedMotion = false,
+  }) {
+    final clip = clips[guest.clip]!;
+    final count = clip.frames.length;
+    if (clip.once) {
+      final duration = guest.clipDurationBeats;
+      final progress = duration > 0 && guest.clipBeat.isFinite
+          ? (guest.clipBeat / duration).clamp(0.0, 1.0)
+          : 1.0;
+      return clip.frames[(progress * count).floor().clamp(0, count - 1)];
+    }
+    return idle(clip, beat, guest.phaseOffset, reducedMotion: reducedMotion);
+  }
+
+  /// A loop's drawing with no crowd model yet (the title screen).
+  static String idle(
+    GuestClip clip,
+    double beat,
+    double phaseOffset, {
+    bool reducedMotion = false,
+  }) {
+    if (reducedMotion || !beat.isFinite) return clip.frames.first;
+    final steps = (phaseOffset / clip.beatsPerFrame).round();
+    final step = ((beat / clip.beatsPerFrame).floor() + steps) %
+        clip.frames.length;
+    return clip.frames[step];
+  }
+}

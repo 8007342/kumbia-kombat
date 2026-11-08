@@ -41,6 +41,8 @@ class RoomLayerProp {
     required this.periodBeats,
     required this.instance,
     required this.kind,
+    this.minTier,
+    this.phaseBeats = 0,
   });
 
   final String id;
@@ -61,6 +63,14 @@ class RoomLayerProp {
   /// What it is, which decides how the music's tier wakes it.
   final PartyLifeKind kind;
 
+  /// The music's tier it waits for, when set: below it the prop holds its rest
+  /// drawing whatever the crowd does, then it wakes over that tier's entrance.
+  /// Room life ("only at the top tiers") sets 4.
+  final int? minTier;
+
+  /// Shifts its beat: a finger snap with a 2-beat period on 2 and 4 sets 1.
+  final double phaseBeats;
+
   /// How much of its range the tier alone can bring out: full swing has the rest.
   /// Plants get the smallest, and drift too slowly to read as dancing.
   double get _lifeReach => switch (kind) {
@@ -68,6 +78,7 @@ class RoomLayerProp {
     PartyLifeKind.light ||
     PartyLifeKind.hanging ||
     PartyLifeKind.flame => .5,
+    PartyLifeKind.artwork => 1,
   };
 
   double get _lifePeriodBeats => switch (kind) {
@@ -75,7 +86,8 @@ class RoomLayerProp {
       periodBeats * 4,
     PartyLifeKind.light ||
     PartyLifeKind.hanging ||
-    PartyLifeKind.flame => periodBeats,
+    PartyLifeKind.flame ||
+    PartyLifeKind.artwork => periodBeats,
   };
 
   /// Empty pixels between frames, so nearest sampling can't bleed.
@@ -95,6 +107,7 @@ class RoomLayerProp {
     double life = 0,
   }) {
     if (reducedMotion || !beat.isFinite || beat < 0) return restFrame;
+    beat += phaseBeats;
     final strength = partyPropStrength(swing, instance);
     final drift = life * _lifeReach * (1 - strength);
     if (strength <= 0 && drift <= 0) return restFrame;
