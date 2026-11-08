@@ -1,0 +1,71 @@
+{
+ "name": "LA TORRE DE CHAROLAS",
+ "status": "proposal",
+ "note": "Proposal from COMEDOR for levels/comedor.json. The tower of trays: a polka spin, then the tower of five trays goes up on the left hand and he hops the polka under it, feet on the hops, and lands it with the tray thrust high. Half-beat spacing at least, so the notes keep the good window at 136 BPM (221 ms per half beat; WIRE2 to check against hardest_combo_test). Uses only his atlas's clips.",
+ "callBeats": 8,
+ "moves": [
+  {
+   "at": 0,
+   "beats": 2,
+   "clip": "polka_spin"
+  },
+  {
+   "at": 2,
+   "beats": 1,
+   "clip": "torre"
+  },
+  {
+   "at": 3,
+   "beats": 4,
+   "clip": "torre_hop"
+  },
+  {
+   "at": 7,
+   "beats": 1,
+   "clip": "torre"
+  }
+ ],
+ "notes": [
+  {
+   "at": 0,
+   "limb": "rightHand"
+  },
+  {
+   "at": 1,
+   "limb": "rightHand"
+  },
+  {
+   "at": 2,
+   "limb": "leftHand"
+  },
+  {
+   "at": 3,
+   "limb": "leftFoot"
+  },
+  {
+   "at": 3.5,
+   "limb": "rightFoot"
+  },
+  {
+   "at": 4,
+   "limb": "leftFoot"
+  },
+  {
+   "at": 5,
+   "limb": "rightFoot"
+  },
+  {
+   "at": 5.5,
+   "limb": "leftFoot"
+  },
+  {
+   "at": 6,
+   "limb": "rightFoot"
+  },
+  {
+   "at": 7,
+   "limb": "leftHand",
+   "move": "circle"
+  }
+ ]
+}

@@ -1,0 +1,19 @@
+{
+ "room": "comedor",
+ "run": "layers-comedor-20261108",
+ "passNo": 2,
+ "steps": 4,
+ "jobs": [
+  {
+   "name": "portrait-snap",
+   "workflow": "art_runs/rooms/layers/comedor/portrait-snap.api.json",
+   "inputs": {
+    "base": "/work/tmp/imagegen/kumbia/layers-comedor-20261108/in/portrait-snap.png"
+   },
+   "overrides": {
+    "seed": 78300
+   },
+   "count": 2
+  }
+ ]
+}

@@ -727,6 +727,161 @@
           "clip": "flare"
         }
       ]
+    },
+    "charolas": {
+      "note": "Don Charolas, the comedor's head waiter. His groove_* drawings are the norteño polka hop step with a silver tray on his left hand (picture right) throughout, so the shared groove tables dance it: step (1), close (and), step (2), hop (and). Between phrases the tray nearly falls and is saved at the last second, and he flicks a napkin. torre and torre_hop are LA TORRE DE CHAROLAS. cloche_present and cloche_lift are the win's, played by the level's data. Proposals from COMEDOR; nobody has seen them moving.",
+      "clips": {
+        "polka_spin": {
+          "note": "A quick polka turn in two beats, the tray held up the whole way round, landing on a hop.",
+          "frames": [
+            "spin_front",
+            "spin_34_r",
+            "spin_side_r",
+            "spin_back34_r",
+            "spin_back",
+            "spin_back34_l",
+            "spin_side_l",
+            "spin_34_l",
+            "groove_pass_l2"
+          ],
+          "beats": [
+            0.25,
+            0.25,
+            0.25,
+            0.25,
+            0.25,
+            0.25,
+            0.25,
+            0.25
+          ]
+        },
+        "tray_save": {
+          "note": "The tray tips and the glasses slide, then he catches it level with a smug flourish.",
+          "frames": [
+            "tray_wobble_a",
+            "tray_wobble_b"
+          ],
+          "beats": [
+            0.75,
+            1.25
+          ]
+        },
+        "napkin_flick": {
+          "note": "The napkin off his forearm, snapped open in the air.",
+          "frames": [
+            "napkin_a",
+            "napkin_b"
+          ],
+          "beats": [
+            1,
+            1
+          ]
+        },
+        "torre": {
+          "note": "The tower of five trays raised high, held a beat.",
+          "frames": [
+            "torre_a"
+          ],
+          "beats": [
+            1
+          ]
+        },
+        "torre_hop": {
+          "note": "Polka hops under the tower: hop, land, hop, land.",
+          "frames": [
+            "torre_b",
+            "torre_a",
+            "torre_b",
+            "torre_a"
+          ],
+          "beats": [
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ]
+        },
+        "spin_stop": {
+          "note": "The win: a last spin that stops dead, ta-da.",
+          "frames": [
+            "spin_front",
+            "spin_34_r",
+            "spin_side_r",
+            "spin_back34_r",
+            "spin_back",
+            "spin_back34_l",
+            "spin_side_l",
+            "spin_34_l",
+            "cloche_stop"
+          ],
+          "beats": [
+            0.125,
+            0.125,
+            0.125,
+            0.125,
+            0.125,
+            0.125,
+            0.125,
+            0.125,
+            1
+          ]
+        },
+        "cloche_present": {
+          "note": "The win: the tray with its domed cloche held out toward Mācron.",
+          "frames": [
+            "cloche_present"
+          ],
+          "beats": [
+            2
+          ]
+        },
+        "cloche_lift": {
+          "note": "The win: the cloche lifted off.",
+          "frames": [
+            "cloche_present",
+            "cloche_lift"
+          ],
+          "beats": [
+            1,
+            2
+          ]
+        }
+      },
+      "accents": [
+        {
+          "note": "A warm room: the tray nearly goes, and is saved, as the second bar of the phrase starts.",
+          "everyBeats": 16,
+          "atBeat": 4,
+          "minTier": 1,
+          "clip": "tray_save"
+        },
+        {
+          "note": "The napkin flick, once every two phrases.",
+          "everyBeats": 16,
+          "atBeat": 12,
+          "minTier": 2,
+          "clip": "napkin_flick"
+        },
+        {
+          "note": "A hot room: the tower goes up for a bar.",
+          "everyBeats": 32,
+          "atBeat": 28,
+          "minTier": 3,
+          "clip": "torre"
+        }
+      ],
+      "handoffMoves": [
+        {
+          "note": "Danced on the mark as the call ends, overflowing into Mācron's turn, then he steps away. From the first warm tier.",
+          "minTier": 1,
+          "clip": "polka_spin"
+        },
+        {
+          "note": "A cold room still gets the tray saved.",
+          "minTier": 0,
+          "clip": "tray_save"
+        }
+      ]
     }
   }
 }
