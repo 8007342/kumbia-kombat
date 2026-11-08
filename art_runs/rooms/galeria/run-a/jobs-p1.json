@@ -1,0 +1,22 @@
+{
+ "room": "galeria",
+ "run": "rooms/galeria/run-a",
+ "passNo": 1,
+ "steps": 4,
+ "promptSha256": "e3050a24673ad6725540acff0b216fed8a4bf829f2811c9b66c03024be3f8cd2",
+ "jobs": [
+  {
+   "name": "p1",
+   "workflow": "art_runs/rooms/galeria/run-a/workflows/p1.api.json",
+   "inputs": {
+    "layout": "/work/tmp/imagegen/kumbia/rooms/galeria/run-a/in/greybox.png",
+    "style": "/work/tmp/imagegen/kumbia/rooms/galeria/run-a/in/style.png"
+   },
+   "overrides": {
+    "seed": 993100
+   },
+   "count": 6
+  }
+ ],
+ "how": "Queue one studio.run_workflow per job, one at a time. Then: rooms.py collect --run rooms/galeria/run-a"
+}

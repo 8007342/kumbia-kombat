@@ -1,0 +1,124 @@
+{
+ "$comment": "La Galería's opponent, Siobhán, the lead of Las Tréboles (plan/levels/mansion-act-two-2026-11-08.md, section 8): a line of five Irish step dancers who dance as one, so the line shares this one frame set. Original costume, not any real show's: a dark green velvet dress with silver embroidery, black tights and black hard shoes. Arms rigid at the sides, fast high precise feet (motion set opponent-reel). A slim upright vertical with a high bun, between the narrow Don Terciopelo and the round Don Charolas. Acceptance delegated to GALERIA, 2026-11-08, each choice reversible.",
+ "id": "siobhan",
+ "family": "siobhan-v1",
+ "style": "party-pixel",
+ "description": "Galería opponent, Siobhán: a young Irish step dancer in a dark green velvet dress with silver embroidery and black hard shoes, arms rigid at her sides.",
+ "body": {
+  "preset": "slim-adult"
+ },
+ "pronouns": [
+  "she",
+  "her",
+  "her"
+ ],
+ "skin": "#E2AE8C",
+ "traits": "slim upright young woman of about twenty-five, fair freckled skin, copper-red hair in a high round bun, a cool composed look",
+ "demeanor": "stern, precise and proud, perfectly in step with her line, until she is won over",
+ "garments": [
+  {
+   "id": "hair",
+   "shape": "puff",
+   "region": "hair",
+   "colour": "#A8441E",
+   "text": "copper-red hair pulled up in a high round bun"
+  },
+  {
+   "id": "bodice",
+   "shape": "shirt-fitted",
+   "region": "shirt",
+   "colour": "#163A26",
+   "text": "long-sleeved dark green velvet bodice with a high round neck and silver embroidery"
+  },
+  {
+   "id": "dress",
+   "shape": "waist-apron",
+   "region": "apron",
+   "colour": "#163A26",
+   "text": "dark green velvet skirt of the dress, stiff and flared, reaching the knee, with a silver embroidered hem",
+   "params": {
+    "length": 1.0
+   },
+   "secondaryMotion": "lag-1"
+  },
+  {
+   "id": "silver",
+   "shape": "palette-only",
+   "region": "accessory",
+   "colour": "#C4C8CE",
+   "alsoIn": [
+    "shirt",
+    "apron",
+    "hair"
+   ],
+   "text": "silver knotwork embroidery on the bodice, cuffs and hem, and a small silver clover pin in the bun"
+  },
+  {
+   "id": "tights",
+   "shape": "palette-only",
+   "region": "accessory",
+   "colour": "#16141A",
+   "alsoIn": [
+    "skin",
+    "shoes"
+   ],
+   "text": "black opaque tights"
+  },
+  {
+   "id": "shoes",
+   "shape": "shoes-flat",
+   "region": "shoes",
+   "colour": "#0E0C10",
+   "text": "black leather hard shoes with thick heels and a small silver buckle"
+  }
+ ],
+ "props": [],
+ "motion": {
+  "set": "opponent-reel",
+  "overrides": {}
+ },
+ "drawing": {
+  "noun": "woman",
+  "fits": "hair, both shoes and both hands",
+  "look": "slim, upright, athletic young adult build with long straight legs, an oval face with a few freckles, fair skin, copper-red hair pulled up in a neat high round bun with a small silver clover pin, a long-sleeved dark green velvet dress with a high round neck, a fitted bodice and a stiff flared skirt reaching the knee, silver knotwork embroidery on the bodice, cuffs and hem, black opaque tights, black leather hard shoes with thick heels and small silver buckles, and thick dark ink outline",
+  "extra": "She is a grown woman of about twenty-five. Both eyes are open. Her mouth is closed in a cool, composed expression. Her dress closes high at the neck, its sleeves reach her wrists, and its skirt covers her to the knee. ",
+  "sheet": {
+   "source": {
+    "image": "tool/art/references/terciopelo/front.png",
+    "styleOnly": true
+   },
+   "views": {
+    "front": {
+     "image": "tool/art/references/siobhan/front.png",
+     "description": "standing tall and very upright facing the viewer, the feet together and turned out, both arms held straight down at her sides with the hands visible against the skirt",
+     "stageScale": 0.84
+    }
+   }
+  },
+  "seed": 994000,
+  "poseOverrides": {},
+  "score": {
+   "knee": [
+    "dress"
+   ],
+   "silhouetteTolerance": 40
+  }
+ },
+ "references": {
+  "mode": "source",
+  "sources": []
+ },
+ "targets": [
+  {
+   "room": "galeria",
+   "atlas": "siobhan",
+   "out": "assets/art/ensemble/siobhan-v1.png",
+   "native": [
+    256,
+    320
+   ],
+   "pixelScale": 3
+  }
+ ],
+ "seedBase": 994000
+}

@@ -1,0 +1,79 @@
+{
+ "stage": {
+  "calibration": "unverifiedStoryboard",
+  "floor": {
+   "horizonY": 0.27,
+   "referenceFootY": 0.4,
+   "referenceHeight": 0.13
+  },
+  "heroHome": [
+   0.503,
+   0.6
+  ],
+  "heroEntrance": [
+   0.303,
+   0.64
+  ],
+  "heroRetreat": [
+   0.503,
+   0.625
+  ],
+  "challengers": [
+   {
+    "id": "siobhan",
+    "atlas": "siobhan",
+    "mark": [
+     0.503,
+     0.5
+    ],
+    "yieldMark": [
+     0.504,
+     0.483
+    ]
+   }
+  ]
+ },
+ "crowd": {
+  "guests": [],
+  "props": []
+ },
+ "scenery": {
+  "lamps": [],
+  "plants": []
+ },
+ "departure": {
+  "originY": 0.6,
+  "waypoints": [
+   {
+    "at": 0.0,
+    "x": 0.503,
+    "y": 0.6,
+    "facing": "sideRight"
+   },
+   {
+    "at": 0.119,
+    "x": 0.521,
+    "y": 0.509,
+    "facing": "rear"
+   },
+   {
+    "at": 0.305,
+    "x": 0.504,
+    "y": 0.437,
+    "facing": "rear"
+   },
+   {
+    "at": 0.623,
+    "x": 0.504,
+    "y": 0.38,
+    "facing": "rear"
+   },
+   {
+    "at": 1.0,
+    "x": 0.504,
+    "y": 0.349,
+    "facing": "rear"
+   }
+  ]
+ }
+}

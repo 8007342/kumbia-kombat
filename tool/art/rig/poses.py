@@ -906,3 +906,194 @@ OPPONENT_CHACHA_INTENT = {**OPPONENT_64_INTENT, **CHACHA_INTENT}
 assert set(OPPONENT_CHACHA_INTENT) == {f"{c}.{n}" for c, d in OPPONENT_CHACHA.items() for n in d}, "intent ids != pose ids"
 MOTION_SETS = {**MOTION_SETS, "opponent-chacha": OPPONENT_CHACHA}
 INTENT_BY_SET = {**INTENT_BY_SET, "opponent-chacha": OPPONENT_CHACHA_INTENT}
+
+# Motion set opponent-reel: Siobhán and Las Tréboles, the gallery's line of Irish step dancers
+# (plan/levels/mansion-act-two-2026-11-08.md, section 8). The 64 shared names, every drawing with the arms held
+# straight and rigid at the sides unless a call needs a hand, upright, on the balls of the feet, the feet crossed
+# and turned out. The groove is a reel's lead-round: a hop with the knee lifted high (down), a treble with the toe
+# striking the floor crossed in front (pass), up on both toes with the feet crossed tight (up), and a hop-back with
+# the other heel kicked up behind (the hold). Foot calls are high kicks; hand calls are a rigid straight arm flung
+# out and slapped back to the skirt. Then the win's arch (arms raised, facing the picture's right, mirrored in the
+# level for the other side) and the line's freeze. Acceptance delegated to GALERIA, 2026-11-08, each choice reversible.
+
+_RIGID = dict(l_arm=(5, 0), l_fore=(4, 0), r_arm=(5, 0), r_fore=(4, 0))  # straight arms pressed to the sides
+_TOES = dict(toe_out=30, knee_out=20)
+_RL_HOP_L = Pose(pin="r", **_RIGID, **_TOES, head_nod=-4, both_home=False,
+                 r_thigh=(2, 0), r_shin=(2, 0), r_foot=25,
+                 l_thigh=(-10, 80), l_shin=(-8, 0), l_foot=45)
+_RL_TREBLE_L = Pose(pin="r", **_RIGID, **_TOES, head_nod=-4,
+                    r_thigh=(3, 0), r_shin=(3, 0), r_foot=20,
+                    l_thigh=(-12, 22), l_shin=(-12, 22), l_foot=40)
+_RL_UP_L = Pose(pin="mid", **_RIGID, **_TOES, head_nod=-8,
+                l_thigh=(-7, 4), l_shin=(-7, 4), l_foot=30, r_thigh=(5, -2), r_shin=(5, -2), r_foot=30)
+_RL_HOPBACK_L = Pose(pin="l", yaw=10, **_RIGID, **_TOES, head_nod=-4, both_home=False,
+                     l_thigh=(2, 0), l_shin=(2, 0), l_foot=25,
+                     r_thigh=(4, -12), r_shin=(4, -125), r_foot=40)
+REEL_GROOVE = {"down_l": (_RL_HOP_L, "right"), "pass_l": (_RL_TREBLE_L, "right"),
+               "up_l": (_RL_UP_L, "both"), "pass_l2": (_RL_HOPBACK_L, "left")}
+REEL_GROOVE |= mirror_clip(REEL_GROOVE, {"down_l": "down_r", "pass_l": "pass_r", "up_l": "up_r", "pass_l2": "pass_r2"})
+REEL_GROOVE = ordered(REEL_GROOVE, ["down_l", "pass_l", "up_l", "pass_l2", "down_r", "pass_r", "up_r", "pass_r2"])
+
+# Hand call: the arm snaps out straight and rigid, then slaps back to the skirt. The body never bends.
+_RL_ARM_L = {
+    "prep": (Pose(pin="mid", **_TOES, head_nod=-6, l_thigh=(-6, 3), l_shin=(-6, 3), l_foot=30,
+                  r_thigh=(5, -2), r_shin=(5, -2), r_foot=30, **_RIGID), "both"),
+    "peak": (Pose(pin="r", **_TOES, head_turn=10, head_nod=-6, r_thigh=(3, 0), r_shin=(3, 0), r_foot=25,
+                  l_thigh=(-10, 20), l_shin=(-10, 20), l_foot=40,
+                  l_arm=(62, 0), l_fore=(62, 0), r_arm=(5, 0), r_fore=(4, 0)), "right"),
+    "follow": (Pose(pin="r", **_TOES, head_turn=6, head_nod=-6, r_thigh=(3, 0), r_shin=(3, 0), r_foot=25,
+                    l_thigh=(-8, 6), l_shin=(-8, 6), l_foot=30,
+                    l_arm=(30, 0), l_fore=(30, 0), r_arm=(5, 0), r_fore=(4, 0)), "right"),
+    "return": (Pose(pin="mid", **_TOES, head_nod=-6, l_thigh=(-7, 4), l_shin=(-7, 4), l_foot=30,
+                    r_thigh=(5, -2), r_shin=(5, -2), r_foot=30, **_RIGID), "both"),
+}
+# Foot call: the high kick. Knee drawn up, the straight leg kicked up to waist height, a stamp beside the other.
+_RL_KICK_L = {
+    "prep": (Pose(pin="r", **_RIGID, **_TOES, head_nod=-4, both_home=False, r_thigh=(2, 0), r_shin=(2, 0), r_foot=25,
+                  l_thigh=(-6, 70), l_shin=(-6, 0), l_foot=45), "right"),
+    "peak": (Pose(pin="r", **_RIGID, **_TOES, lean=-4, head_nod=-6, both_home=False, r_thigh=(2, 0), r_shin=(2, 0), r_foot=25,
+                  l_thigh=(42, 78), l_shin=(46, 82), l_foot=40), "right"),
+    "follow": (Pose(pin="r", **_RIGID, **_TOES, head_nod=-4, both_home=False, r_thigh=(2, 0), r_shin=(2, 0), r_foot=25,
+                    l_thigh=(26, 50), l_shin=(28, 54), l_foot=35), "right"),
+    "return": (Pose(pin="mid", **_RIGID, head_nod=6, toe_out=30, knee_out=10, l_thigh=(6, 2), l_shin=(6, 2), l_foot=-10,
+                    r_thigh=(4, 0), r_shin=(4, 0), r_foot=0), "both"),
+}
+# Travel: the sevens, light skips on the balls of the feet with the arms rigid, staged on the usual diagonals.
+def _reel_steps(yaw: float, back: bool = False) -> dict:
+    s = -1 if back else 1
+    out = {}
+    for side, (a, b) in (("l", ("l", "r")), ("r", ("r", "l"))):
+        lead, trail = a, b
+        out[f"contact_{side}"] = (Pose(yaw=yaw, pin=trail, **_RIGID, **_TOES, both_home=False,
+                                       **{f"{lead}_thigh": (6, 22 * s), f"{lead}_shin": (6, 18 * s), f"{lead}_foot": 30,
+                                          f"{trail}_thigh": (4, -6 * s), f"{trail}_shin": (4, -14 * s), f"{trail}_foot": 30}),
+                                  "left" if trail == "l" else "right")
+        out[f"down_{side}"] = (Pose(yaw=yaw, pin=lead, **_RIGID, **_TOES, head_nod=4, both_home=False,
+                                    **{f"{lead}_thigh": (4, 4), f"{lead}_shin": (4, 0), f"{lead}_foot": 25,
+                                       f"{trail}_thigh": (4, -10 * s), f"{trail}_shin": (4, -60 * s), f"{trail}_foot": 40}),
+                               "left" if lead == "l" else "right")
+        out[f"pass_{side}"] = (Pose(yaw=yaw, pin=lead, **_RIGID, **_TOES, head_nod=-6, both_home=False,
+                                    **{f"{lead}_thigh": (3, 0), f"{lead}_shin": (3, 0), f"{lead}_foot": 30,
+                                       f"{trail}_thigh": (-6, 30), f"{trail}_shin": (-6, 0), f"{trail}_foot": 45}),
+                               "left" if lead == "l" else "right")
+    return ordered(out, WALK_ORDER)
+
+_RL_STAND = dict(pin="mid", **_TOES, l_thigh=(-7, 4), l_shin=(-7, 4), l_foot=30, r_thigh=(5, -2), r_shin=(5, -2), r_foot=30)
+_RL_FLAT = dict(pin="mid", toe_out=30, knee_out=20, l_thigh=(-6, 3), l_shin=(-6, 3), r_thigh=(5, -1), r_shin=(5, -1))
+_RL_DIP = dict(pin="mid", toe_out=30, knee_out=20, l_thigh=(-6, 26), l_shin=(-6, -16), r_thigh=(5, 24), r_shin=(5, -18))
+REEL_WATCH = {
+    "shift_l": (Pose(yaw=14, head_turn=-12, **_RIGID, **_RL_FLAT), "both"),
+    "hold_l": (Pose(yaw=14, head_turn=-12, head_nod=10, **_RIGID, **_RL_STAND), "both"),
+    "shift_r": (Pose(yaw=14, head_turn=-16, **_RIGID, **_RL_FLAT), "both"),
+    "hold_r": (Pose(yaw=14, head_turn=-16, head_nod=8, **_RIGID, **_RL_STAND), "both"),
+}
+REEL_CHALLENGE = {
+    "load": (Pose(head_nod=8, **_RIGID, **_RL_DIP), "both"),
+    "proud": (Pose(head_nod=-12, lean=-3, **_RIGID, **_RL_STAND), "both"),
+    # the toe pointed out toward the picture's left, where Mācron dances: your turn
+    "offer": (Pose(head_turn=-14, head_nod=-6, pin="l", **_RIGID, **_TOES, l_thigh=(2, 0), l_shin=(2, 0), l_foot=20,
+                   r_thigh=(28, 14), r_shin=(30, 14), r_foot=55), "left"),
+    "return": (Pose(head_nod=-4, **_RIGID, **_RL_FLAT), "both"),
+}
+REEL_APPROVAL = {
+    "load": (Pose(head_nod=-12, **_RIGID, **_RL_STAND), "both"),
+    "nod": (Pose(head_nod=24, **_RIGID, **_RL_DIP), "both"),
+    "release": (Pose(head_nod=-2, head_side=4, **_RIGID, **_RL_FLAT), "both"),
+}
+REEL_REASSURANCE = {
+    "notice": (Pose(head_side=-8, **_RIGID, **_RL_FLAT), "both"),
+    "open_hand": (Pose(head_side=-8, head_nod=4, **_RL_FLAT, l_arm=(5, 0), l_fore=(4, 0), r_arm=(24, 20), r_fore=(40, 60)), "both"),
+    "settle": REEL_GROOVE["up_l"],
+}
+REEL_FINISH = {
+    # The step dancer's finish: one toe pointed forward, then a crisp small bow from the neck.
+    "finish_a": (Pose(pin="l", head_nod=-8, **_RIGID, **_TOES, l_thigh=(2, 0), l_shin=(2, 0), l_foot=10,
+                      r_thigh=(-6, 18), r_shin=(-6, 22), r_foot=60), "left"),
+    "finish_b": (Pose(pin="l", head_nod=24, lean=16, **_RIGID, **_TOES, l_thigh=(2, 0), l_shin=(2, 0), l_foot=10,
+                      r_thigh=(-6, 18), r_shin=(-6, 22), r_foot=60), "left"),
+    "turn_in": (Pose(yaw=30, **_RIGID, **_RL_STAND), "both"),
+    "turn_out": (Pose(yaw=-30, **_RIGID, **_RL_STAND), "both"),
+}
+REEL_CLAP = {k: (Pose(**{**v[0].__dict__, **_RL_FLAT, "toe_out": 30}), v[1]) for k, v in CLAP.items()}
+# The win: the line splits and its dancers raise their joined hands into an arch, drawn facing the picture's right.
+REEL_ARCH = {
+    "rise": (Pose(yaw=35, head_turn=-6, head_nod=-6, **_RL_FLAT, l_arm=(70, 30), l_fore=(110, 40), r_arm=(70, 30), r_fore=(110, 40)), "both"),
+    "hold": (Pose(yaw=35, head_turn=-6, head_nod=-10, **_RL_STAND, l_arm=(115, 25), l_fore=(130, 15), r_arm=(115, 25), r_fore=(130, 15)), "both"),
+}
+REEL_FREEZE = {"hold": (Pose(head_nod=-12, **_RIGID, **_RL_STAND), "both")}
+
+OPPONENT_REEL = {**OPPONENT_64, "groove": REEL_GROOVE, "left_hand": _RL_ARM_L, "right_hand": mirror_clip(_RL_ARM_L),
+                 "left_foot": _RL_KICK_L, "right_foot": mirror_clip(_RL_KICK_L),
+                 "enter_forward": _reel_steps(16), "retreat_backward": _reel_steps(16, back=True),
+                 "yield_side": _reel_steps(26), "watch": REEL_WATCH, "clap": REEL_CLAP, "challenge": REEL_CHALLENGE,
+                 "approval": REEL_APPROVAL, "reassurance": REEL_REASSURANCE, "finish_turn": REEL_FINISH,
+                 "arch": REEL_ARCH, "freeze": REEL_FREEZE}
+
+_RA = "Irish step dancing, upright with both arms held straight and rigid down at {his} sides, the hands in fists against the skirt, "
+_SIDES = {"L": "on the right of the picture", "R": "on the left of the picture"}
+
+
+def _reel_side_words(words: dict) -> dict:
+    """Words written once for the drawing named _l (her left = the picture's right), swapped for _r."""
+    out = {}
+    for key, (phase, text) in words.items():
+        out[key] = (phase, text.replace("{P}", "right").replace("{Q}", "left"))
+        rkey = key.replace("_l2", "_r2").replace("_l", "_r").replace("left_", "right_")
+        if rkey != key:
+            out[rkey] = (phase, text.replace("{P}", "left").replace("{Q}", "right"))
+    return out
+
+
+REEL_INTENT = _reel_side_words({
+    "groove.down_l": ("down (the hop)", _RA + "hopping up on the ball of the foot on the {Q} of the picture, the knee on the {P} of the picture lifted high in front of the body with the foot pointed down and crossed in front of the other leg, chin up, eyes straight ahead"),
+    "groove.pass_l": ("pass (the treble)", _RA + "standing tall on the ball of the foot on the {Q} of the picture, the leg on the {P} of the picture straight and crossed in front with its pointed toe striking the floor, chin up, eyes straight ahead"),
+    "groove.up_l": ("up (on the toes)", _RA + "up high on the balls of both feet with the legs straight and the feet crossed tightly one in front of the other and turned out, very tall and still, chin up, eyes straight ahead"),
+    "groove.pass_l2": ("accent (the hop-back)", _RA + "hopping on the ball of the foot on the {P} of the picture, the other leg on the {Q} of the picture kicked up behind with the knee bent and the heel flicked up toward the seat, chin up, eyes straight ahead"),
+    "left_hand.prep": ("anticipation", _RA + "up on the balls of both feet with the feet crossed and turned out, chin up, still and tall, about to snap one arm out"),
+    "left_hand.peak": ("accent (the arm snap)", "Irish step dancing, upright: the arm on the {P} of the picture flung straight and rigid out to the side at about 45 degrees with the hand flat, the other arm held straight and rigid down at the side, standing on the ball of the foot on the {Q} of the picture with the other toe crossed in front, chin up, eyes straight ahead"),
+    "left_hand.follow": ("follow-through", "Irish step dancing, upright: the straight arm on the {P} of the picture swinging back down to slap against the skirt, the other arm rigid at the side, up on the balls of the feet with the feet crossed, chin up"),
+    "left_hand.return": ("settle", _RA + "up on the balls of both feet with the legs straight and the feet crossed tightly and turned out, chin up, eyes straight ahead"),
+    "left_foot.prep": ("anticipation", _RA + "standing on the ball of the foot on the {Q} of the picture, the knee on the {P} of the picture drawn up high in front with the foot pointed down, chin up"),
+    "left_foot.peak": ("accent (the high kick)", _RA + "a high kick: standing straight on the ball of the foot on the {Q} of the picture, the leg on the {P} of the picture kicked straight up high and out to the side at waist height with the toe pointed, the skirt swinging, chin up, eyes straight ahead"),
+    "left_foot.follow": ("follow-through", _RA + "the straight leg on the {P} of the picture coming down from a high kick, still lifted out to the side with the toe pointed, standing on the ball of the other foot, chin up"),
+    "left_foot.return": ("settle (the stamp)", _RA + "both feet planted flat side by side with a heel stamp, knees straight, chin up, eyes straight ahead"),
+    "enter_forward.contact_l": ("contact", _RA + "skipping forward toward the viewer on a slight diagonal on the balls of the feet, the foot on the {P} of the picture landing in front on its toe, the other foot behind on its toe"),
+    "enter_forward.down_l": ("down", _RA + "landed on the ball of the foot on the {P} of the picture, the other foot flicked up behind with the knee bent, skipping forward on a slight diagonal, chin up"),
+    "enter_forward.pass_l": ("pass", _RA + "standing on the ball of the foot on the {P} of the picture, the other knee lifted in front with the foot pointed, skipping forward on a slight diagonal, chin up"),
+    "retreat_backward.contact_l": ("contact", _RA + "skipping backward while still facing the viewer, on the balls of the feet, the foot on the {P} of the picture reaching back on its toe"),
+    "retreat_backward.down_l": ("down", _RA + "landed on the ball of the foot on the {P} of the picture, the other foot lifted in front with the toe pointed, skipping backward while facing the viewer, chin up"),
+    "retreat_backward.pass_l": ("pass", _RA + "standing on the ball of the foot on the {P} of the picture, the other knee lifted with the foot pointed, skipping backward while facing the viewer, chin up"),
+    "yield_side.contact_l": ("contact", _RA + "skipping sideways on the balls of the feet, the foot on the {P} of the picture landing on its toe, body turned a little, chin up"),
+    "yield_side.down_l": ("down", _RA + "landed on the ball of the foot on the {P} of the picture, the other foot flicked up behind, skipping sideways, chin up"),
+    "yield_side.pass_l": ("pass", _RA + "standing on the ball of the foot on the {P} of the picture, the other knee lifted with the foot pointed, skipping sideways, chin up"),
+    "watch.shift_l": ("pass (watching)", _RA + "standing with the feet crossed and turned out, turned a little toward the right of the picture, head turned to watch the other dancer, composed and stern"),
+    "watch.hold_l": ("settle (nod)", _RA + "up on the balls of the feet with the feet crossed, turned a little toward the right of the picture, a small crisp nod in time while watching"),
+    "watch.shift_r": ("pass (watching)", _RA + "standing with the feet crossed and turned out, turned a little toward the right of the picture, head turned further to watch the other dancer, one eyebrow raised"),
+    "watch.hold_r": ("settle", _RA + "up on the balls of the feet with the feet crossed, turned a little toward the right of the picture, head tilted, watching closely"),
+    "challenge.load": ("anticipation", _RA + "both knees dipped with the feet crossed and turned out, chin dipping, gathering for a challenge"),
+    "challenge.proud": ("accent", _RA + "very tall on the balls of both feet with the feet crossed tightly and turned out, chin lifted high, a cool proud look straight at the viewer"),
+    "challenge.offer": ("accent (invitation)", _RA + "standing on the foot on the right of the picture, the leg on the left of the picture extended out to the side with the pointed toe touching the floor toward the left of the picture, head turned toward the pointed toe, a challenging look: your turn"),
+    "challenge.return": ("settle", _RA + "standing with both feet flat and crossed, turned out, chin up, composed"),
+    "approval.load": ("anticipation", _RA + "up on the balls of both feet with the feet crossed, chin lifted, eyes on the viewer, considering"),
+    "approval.nod": ("accent (the nod)", _RA + "both knees dipped with the feet flat and crossed, one firm approving nod with the head bowed and the chin down, a small approving smile"),
+    "approval.release": ("settle", _RA + "standing with both feet flat and crossed, head tilted slightly, a small approving smile at the viewer"),
+    "reassurance.notice": ("anticipation", _RA + "standing with both feet flat and crossed, head tilted with a softer look"),
+    "reassurance.open_hand": ("accent", "Irish step dancer standing with both feet flat and crossed, the arm on the right of the picture rigid at the side, the forearm on the left of the picture lifted at waist height with the palm open and up, head tilted, encouraging"),
+    "reassurance.settle": ("settle", _RA + "up high on the balls of both feet with the legs straight and the feet crossed tightly one in front of the other, chin up"),
+    "finish_turn.finish_a": ("anticipation (the finish)", _RA + "standing on the foot on the right of the picture, the other leg straight and extended forward with the toe pointed on the floor, chin up, a proud look"),
+    "finish_turn.finish_b": ("accent (the finish)", _RA + "standing on the foot on the right of the picture, the other leg straight and extended forward with the toe pointed on the floor, a crisp small bow from the waist with the head bowed, proud"),
+    "finish_turn.turn_in": ("pass (turn)", _RA + "up on the balls of the feet, body turned about 30 degrees toward the right of the picture, the feet crossed"),
+    "finish_turn.turn_out": ("pass (turn)", _RA + "up on the balls of the feet, body turned about 30 degrees toward the left of the picture, the feet crossed"),
+    "clap.open": ("anticipation", "standing upright with both feet flat and crossed, both forearms raised in front of the chest with the palms apart, about to clap, chin up"),
+    "clap.close": ("pass", "standing upright with both feet flat and crossed, both hands swinging together in front of the chest, chin up"),
+    "clap.contact": ("contact (on the beat)", "standing upright with both feet flat and crossed, palms clapped together in front of the chest, a small smile"),
+    "clap.release": ("follow-through", "standing upright with both feet flat and crossed, hands bouncing apart in front of the chest, chin up"),
+    "arch.rise": ("anticipation (the arch)", "turned three quarters toward the right of the picture, standing with the feet crossed and turned out, both arms rising straight up in front at shoulder height, reaching up toward a partner on the right of the picture, chin up"),
+    "arch.hold": ("accent (the arch)", "turned three quarters toward the right of the picture, up on the balls of the feet with the feet crossed, both arms raised straight up high above the head and leaning a little toward the right of the picture, the hands open as if joining a partner's hands to make an arch, chin up, proud"),
+    "freeze.hold": ("settle (the freeze)", _RA + "frozen perfectly still up on the balls of both feet with the legs straight and the feet crossed tightly and turned out, chin lifted, a cool stern look straight ahead"),
+})
+OPPONENT_REEL_INTENT = {**OPPONENT_64_INTENT, **REEL_INTENT}
+assert set(OPPONENT_REEL_INTENT) == {f"{c}.{n}" for c, d in OPPONENT_REEL.items() for n in d}, \
+    sorted(set(OPPONENT_REEL_INTENT) ^ {f"{c}.{n}" for c, d in OPPONENT_REEL.items() for n in d})
+MOTION_SETS = {**MOTION_SETS, "opponent-reel": OPPONENT_REEL}
+INTENT_BY_SET = {**INTENT_BY_SET, "opponent-reel": OPPONENT_REEL_INTENT}
