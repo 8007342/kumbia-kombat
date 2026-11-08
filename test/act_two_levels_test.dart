@@ -105,6 +105,21 @@ void _reel(String id, ChartPattern pattern, int index) {
   );
 }
 
+/// Samba: the feet take the beat and its "and", the hips and hands the
+/// syncopated sixteenths; every hand stands off the beat.
+void _samba(String id, ChartPattern pattern, int index) {
+  for (var i = 0; i < pattern.limbs.length; i++) {
+    final at = pattern.offsets[i];
+    if (limbIsUpper(pattern.limbs[i])) {
+      expect(_onBeat(at), isFalse, reason: '$id pattern $index hand at $at');
+    } else {
+      expect(at % .5, 0, reason: '$id pattern $index foot at $at');
+    }
+  }
+  final sixteenths = pattern.offsets.where((at) => at % .5 != 0).length;
+  expect(sixteenths, greaterThanOrEqualTo(3), reason: '$id $index');
+}
+
 const _specs = [
   _Spec(
     'comedor',
@@ -123,6 +138,15 @@ const _specs = [
     cleared: 'QUÉ ZAPATEO',
     combo: 'EL MURO DE TACONES',
     style: _reel,
+  ),
+  _Spec(
+    'terraza',
+    after: 'galeria',
+    title: 'LA TERRAZA',
+    metric: 'Joy',
+    cleared: 'QUÉ CHISPA',
+    combo: 'LA LLUVIA DE CONFETI',
+    style: _samba,
   ),
 ];
 

@@ -297,9 +297,9 @@
    "id": "salon",
    "key": "D minor",
    "successKey": "F major",
-   "next": null,
+   "next": "galeria",
    "successBars": 4,
-   "successFinal": true,
+   "successFinal": false,
    "gridTier": "mid",
    "layerFadeBeats": 1,
    "tiers": [
@@ -335,6 +335,54 @@
      "layer": [
       {
        "source": "pipeline-20261107/chains/salon/parent.flac",
+       "part": "percussive",
+       "db": -6
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "galeria",
+   "key": "A minor",
+   "next": null,
+   "successBars": 4,
+   "successFinal": false,
+   "gridTier": "mid",
+   "layerFadeBeats": 1,
+   "tiers": [
+    {
+     "name": "low",
+     "source": "act2-20261108/chains/galeria/lowC.flac",
+     "bpm": 114,
+     "loopBars": 32,
+     "targetLufs": -16.5,
+     "eq": [
+      {
+       "type": "highshelf",
+       "freq": 1500,
+       "gain": -3
+      }
+     ]
+    },
+    {
+     "name": "mid",
+     "source": "act2-20261108/chains/galeria/parent.flac",
+     "bpm": 122,
+     "loopBars": 32,
+     "targetLufs": -16,
+     "eq": []
+    },
+    {
+     "name": "high",
+     "source": "act2-20261108/chains/galeria/highE.flac",
+     "bpm": 130,
+     "loopBars": 32,
+     "targetLufs": -15,
+     "eq": [],
+     "layer": [
+      {
+       "source": "act2-20261108/chains/galeria/parent.flac",
        "part": "percussive",
        "db": -6
       }
