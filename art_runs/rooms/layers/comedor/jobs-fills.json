@@ -1,0 +1,118 @@
+{
+ "room": "comedor",
+ "run": "layers-comedor-20261108",
+ "passNo": 2,
+ "steps": 4,
+ "jobs": [
+  {
+   "name": "chandelier-left",
+   "workflow": "art_runs/rooms/layers/comedor/chandelier-left.api.json",
+   "inputs": {
+    "base": "/work/tmp/imagegen/kumbia/layers-comedor-20261108/in/chandelier-left.png"
+   },
+   "overrides": {
+    "seed": 77000
+   },
+   "count": 2
+  },
+  {
+   "name": "chandelier-right",
+   "workflow": "art_runs/rooms/layers/comedor/chandelier-right.api.json",
+   "inputs": {
+    "base": "/work/tmp/imagegen/kumbia/layers-comedor-20261108/in/chandelier-right.png"
+   },
+   "overrides": {
+    "seed": 77100
+   },
+   "count": 2
+  },
+  {
+   "name": "disc-left",
+   "workflow": "art_runs/rooms/layers/comedor/disc-left.api.json",
+   "inputs": {
+    "base": "/work/tmp/imagegen/kumbia/layers-comedor-20261108/in/disc-left.png"
+   },
+   "overrides": {
+    "seed": 77200
+   },
+   "count": 2
+  },
+  {
+   "name": "disc-right",
+   "workflow": "art_runs/rooms/layers/comedor/disc-right.api.json",
+   "inputs": {
+    "base": "/work/tmp/imagegen/kumbia/layers-comedor-20261108/in/disc-right.png"
+   },
+   "overrides": {
+    "seed": 77300
+   },
+   "count": 2
+  },
+  {
+   "name": "near-chair-1",
+   "workflow": "art_runs/rooms/layers/comedor/near-chair-1.api.json",
+   "inputs": {
+    "base": "/work/tmp/imagegen/kumbia/layers-comedor-20261108/in/near-chair-1.png"
+   },
+   "overrides": {
+    "seed": 77400
+   },
+   "count": 2
+  },
+  {
+   "name": "near-chair-2",
+   "workflow": "art_runs/rooms/layers/comedor/near-chair-2.api.json",
+   "inputs": {
+    "base": "/work/tmp/imagegen/kumbia/layers-comedor-20261108/in/near-chair-2.png"
+   },
+   "overrides": {
+    "seed": 77500
+   },
+   "count": 2
+  },
+  {
+   "name": "near-chair-3",
+   "workflow": "art_runs/rooms/layers/comedor/near-chair-3.api.json",
+   "inputs": {
+    "base": "/work/tmp/imagegen/kumbia/layers-comedor-20261108/in/near-chair-3.png"
+   },
+   "overrides": {
+    "seed": 77600
+   },
+   "count": 2
+  },
+  {
+   "name": "near-chair-4",
+   "workflow": "art_runs/rooms/layers/comedor/near-chair-4.api.json",
+   "inputs": {
+    "base": "/work/tmp/imagegen/kumbia/layers-comedor-20261108/in/near-chair-4.png"
+   },
+   "overrides": {
+    "seed": 77700
+   },
+   "count": 2
+  },
+  {
+   "name": "near-chair-5",
+   "workflow": "art_runs/rooms/layers/comedor/near-chair-5.api.json",
+   "inputs": {
+    "base": "/work/tmp/imagegen/kumbia/layers-comedor-20261108/in/near-chair-5.png"
+   },
+   "overrides": {
+    "seed": 77800
+   },
+   "count": 2
+  },
+  {
+   "name": "portrait-snap",
+   "workflow": "art_runs/rooms/layers/comedor/portrait-snap.api.json",
+   "inputs": {
+    "base": "/work/tmp/imagegen/kumbia/layers-comedor-20261108/in/portrait-snap.png"
+   },
+   "overrides": {
+    "seed": 78200
+   },
+   "count": 2
+  }
+ ]
+}

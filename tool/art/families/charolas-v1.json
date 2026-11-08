@@ -456,7 +456,7 @@
  ],
  "generation": {
   "count_per_pose": 4,
-  "seed_base": 993000,
+  "seed_base": 993100,
   "seed_policy": "seed = seed_base + 100*pose_index + k; fixed per pose while tuning",
   "backend": "comfyui-api",
   "workflow": "tool/art/workflows/qwen-frame.api.json",

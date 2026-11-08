@@ -109,12 +109,11 @@
  "drawing": {
   "noun": "man",
   "fits": "hair, both shoes, both hands and the whole tray",
-  "look": "short, round, plump build with a round belly, short legs and a big round head, round rosy cheeks, slick shiny black hair parted in the centre and combed flat, a tiny neat black moustache, warm tan skin, a short white waiter's jacket with brass buttons, a white shirt collar with a black bow tie, a long white apron tied at the waist reaching to his shins, black trousers and polished black shoes, and thick dark ink outline",
+  "look": "short, round, plump build with a round belly, short legs and a big round head, round rosy cheeks, shiny black hair slicked flat with a straight parting exactly down the middle of his head, a tiny neat black moustache, warm tan skin, a short white waiter's jacket with brass buttons, a white shirt collar with a black bow tie, a long white apron tied at the waist reaching to his shins, black trousers and polished black shoes, and thick dark ink outline",
   "extra": "He is a grown man of about fifty, short and round and light on his feet. Both eyes are open. He smiles a jolly closed-mouth smile under the tiny moustache. ",
   "sheet": {
    "source": {
-    "image": "tool/art/references/terciopelo/front.png",
-    "styleOnly": true
+    "image": "tool/art/references/charolas/front-draft-a2.png"
    },
    "views": {
     "front": {
@@ -130,10 +129,12 @@
     }
    }
   },
-  "seed": 993000,
+  "seed": 993100,
   "poseOverrides": {},
   "score": {
-   "knee": ["apron"],
+   "knee": [
+    "apron"
+   ],
    "silhouetteTolerance": 30
   }
  },
@@ -153,5 +154,5 @@
    "pixelScale": 3
   }
  ],
- "seedBase": 993000
+ "seedBase": 993100
 }

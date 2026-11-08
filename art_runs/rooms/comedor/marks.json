@@ -1,0 +1,210 @@
+{
+ "comment": "COMEDOR -> WIRE2, 2026-11-08. Plate fractions of assets/art/comedor/comedor-room.png (832x1248, the clean plate from accepted 992300). Camera: tool/art/rooms/comedor.json (horizon .27, eye 1.0 adult); measured on the paint: the far wall's foot at y .394 (s 5.23), the table cloth's foot at y .437 (s 3.61). Proposals; WIRE2 may move marks, but keep them on 'floor'.",
+ "plate": "comedor/comedor-room.png",
+ "plateSize": [
+  832,
+  1248
+ ],
+ "floorCamera": {
+  "horizonY": 0.27,
+  "eyeHeightAdults": 1.0,
+  "vanishingX": 0.5,
+  "referenceFootY": 0.6,
+  "referenceHeight": 0.33,
+  "note": "Standing adult height at foot y = (y - 0.27) / 1.0, as a fraction of plate height. Mācron at heroHome is about 45 logical px, the salon's size."
+ },
+ "floor": {
+  "outline": [
+   [
+    0.0,
+    0.394
+   ],
+   [
+    1.0,
+    0.394
+   ],
+   [
+    1.0,
+    1.0
+   ],
+   [
+    0.0,
+    1.0
+   ]
+  ],
+  "note": "Floor is everything below the far wall's foot (y .394), minus the table: x .198-.763, y .35-.437 (cloth to the floor). The niche's plinth sits on the wall at x .17-.23."
+ },
+ "occluder": {
+  "outline": [
+   [
+    0.198,
+    0.355
+   ],
+   [
+    0.763,
+    0.355
+   ],
+   [
+    0.766,
+    0.437
+   ],
+   [
+    0.195,
+    0.437
+   ]
+  ],
+  "frontY": 0.437,
+  "note": "The banquet table, cloth to the floor. Diners' feet are above frontY, so they draw behind it: scenery.occluders."
+ },
+ "marks": {
+  "heroHome": [
+   0.5,
+   0.6
+  ],
+  "heroEntrance": [
+   0.3,
+   0.64
+  ],
+  "heroRetreat": [
+   0.5,
+   0.625
+  ],
+  "heroAside": [
+   0.38,
+   0.61
+  ],
+  "heroWatch": [
+   0.5,
+   0.625
+  ],
+  "challenger": {
+   "id": "don-charolas",
+   "atlas": "charolas",
+   "mark": [
+    0.5,
+    0.5
+   ],
+   "yieldMark": [
+    0.62,
+    0.5
+   ],
+   "meetMark": [
+    0.57,
+    0.52
+   ]
+  },
+  "exit": {
+   "route": [
+    [
+     0.5,
+     0.6
+    ],
+    [
+     0.62,
+     0.54
+    ],
+    [
+     0.73,
+     0.475
+    ],
+    [
+     0.785,
+     0.425
+    ],
+    [
+     0.79,
+     0.398
+    ]
+   ],
+   "threshold": [
+    0.79,
+    0.396
+   ],
+   "door": [
+    [
+     0.751,
+     0.218
+    ],
+    [
+     0.841,
+     0.394
+    ]
+   ],
+   "note": "Mācron hops the polka right, round the table's right end, to the service door (leaves x .751-.841, top .218, foot .394, round window, brass plate). The waiters' line for the outro is waitersOutro."
+  }
+ },
+ "diners": {
+  "note": "Seated behind the table on its far side, facing the room. 'at' is the floor point under each chair (hidden by the table). Drawn in place on the plate (tool/art/rooms/inplace.py), so each atlas is 1:1 with the plate when its anchor sits at 'at'. Candelabra stand at x .39 and .62 between seats 2-3 and 4-5.",
+  "seats": [
+   {
+    "at": [
+     0.282,
+     0.405
+    ],
+    "atlas": "diner-a"
+   },
+   {
+    "at": [
+     0.363,
+     0.405
+    ],
+    "atlas": "diner-b"
+   },
+   {
+    "at": [
+     0.464,
+     0.405
+    ],
+    "atlas": "diner-c"
+   },
+   {
+    "at": [
+     0.55,
+     0.405
+    ],
+    "atlas": "diner-d"
+   },
+   {
+    "at": [
+     0.665,
+     0.405
+    ],
+    "atlas": "diner-e"
+   }
+  ]
+ },
+ "waiters": {
+  "note": "The staff line: junior waiters hop the polka behind Don Charolas, outside the quiet box (x .35-.65). All behind his mark, so he stays the nearest adult.",
+  "line": [
+   {
+    "at": [
+     0.27,
+     0.47
+    ],
+    "atlas": "waiter-a",
+    "faces": "right"
+   },
+   {
+    "at": [
+     0.76,
+     0.47
+    ],
+    "atlas": "waiter-b",
+    "faces": "left"
+   }
+  ],
+  "waitersOutro": [
+   [
+    0.66,
+    0.5
+   ],
+   [
+    0.76,
+    0.46
+   ]
+  ]
+ },
+ "life": {
+  "note": "Room life at full party: tool/art/rooms/layers/comedor.json, rects in art_runs/rooms/comedor/layers-level.json. Glow marks for a candle flare: chandeliers (.21,.17) and (.80,.17); candelabra (.39,.335) and (.62,.335)."
+ }
+}

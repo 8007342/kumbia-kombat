@@ -1,0 +1,605 @@
+{
+ "room": "comedor",
+ "run": "layers-comedor-20261108",
+ "source": "art_runs/rooms/comedor/picks/plate-992300.png",
+ "plate": "assets/art/comedor/comedor-room.png",
+ "atlas": "assets/art/comedor/comedor-layers.png",
+ "level": "art_runs/rooms/comedor/layers-level.json",
+ "previewBpm": 128,
+ "keepWords": "Keep everything else exactly as it is: same pixel art, same camera, same colours.",
+ "$comment": "COMEDOR, 2026-11-08. Chandeliers lift out as hanging props (the salon's route). Room life at full party: props with minTier only wake at the top tiers. pulse = frame 0 is rest, the last is the peak, reached on the beat (shifted by phaseBeats); sway = rest in the middle. Warped props bend the painting's own pixels about a pivot; drawn props (drawn.images) are Qwen edits of a small box, cut to the polygon. fillOnly props are painted out of the plate and never drawn: the near-side chairs (so diners can sit behind the table) and two orange lamp discs the guide left on the wall.",
+ "props": [
+  {
+   "id": "chandelier-left",
+   "kind": "hanging",
+   "rule": "crystal",
+   "close": 2,
+   "polygon": [
+    [
+     150,
+     150
+    ],
+    [
+     205,
+     150
+    ],
+    [
+     246,
+     180
+    ],
+    [
+     246,
+     262
+    ],
+    [
+     214,
+     262
+    ],
+    [
+     196,
+     253
+    ],
+    [
+     168,
+     249
+    ],
+    [
+     140,
+     253
+    ],
+    [
+     124,
+     262
+    ],
+    [
+     116,
+     262
+    ],
+    [
+     116,
+     180
+    ]
+   ],
+   "fill": {
+    "box": [
+     111,
+     140,
+     251,
+     280
+    ],
+    "edgeClamp": 70,
+    "dilate": 2,
+    "prompt": "Remove the glowing crystal chandelier at the centre of this picture, but keep its thin chains above. Where the chandelier was, show the same deep wine-red damask wall, the cream niche arch and the edge of the gilt picture frame behind it, in the same warm candle light. Do not add any chandelier, lamp or object."
+   },
+   "motion": "sway",
+   "periodBeats": 4,
+   "frames": 7,
+   "instance": 1,
+   "minTier": 3,
+   "warp": {
+    "pivot": [
+     175,
+     0
+    ],
+    "far": 272,
+    "reachPx": 2,
+    "power": 1
+   },
+   "$comment": "The polygon's foot follows the niche's arch, so the arch never sways: the few drops painted over it stay put, and the sway is held to 2 px so they don't part from it."
+  },
+  {
+   "id": "chandelier-right",
+   "kind": "hanging",
+   "rule": "crystal",
+   "close": 2,
+   "polygon": [
+    [
+     630,
+     150
+    ],
+    [
+     700,
+     150
+    ],
+    [
+     732,
+     180
+    ],
+    [
+     732,
+     240
+    ],
+    [
+     700,
+     276
+    ],
+    [
+     630,
+     276
+    ],
+    [
+     598,
+     240
+    ],
+    [
+     598,
+     180
+    ]
+   ],
+   "fill": {
+    "box": [
+     595,
+     140,
+     735,
+     280
+    ],
+    "edgeClamp": 70,
+    "dilate": 2,
+    "prompt": "Remove the glowing crystal chandelier at the centre of this picture, but keep its thin chains above. Where the chandelier was, show the same deep wine-red damask wall, the gilt picture frame and the top of the dark wooden door behind it, in the same warm candle light. Do not add any chandelier, lamp or object."
+   },
+   "motion": "sway",
+   "periodBeats": 4,
+   "frames": 7,
+   "instance": 2,
+   "minTier": 3,
+   "warp": {
+    "pivot": [
+     676,
+     0
+    ],
+    "far": 276,
+    "reachPx": 2,
+    "power": 1
+   }
+  },
+  {
+   "id": "disc-left",
+   "fillOnly": true,
+   "polygon": [
+    [
+     256,
+     124
+    ],
+    [
+     298,
+     124
+    ],
+    [
+     298,
+     174
+    ],
+    [
+     256,
+     174
+    ]
+   ],
+   "fill": {
+    "box": [
+     207,
+     80,
+     347,
+     220
+    ],
+    "edgeClamp": 24,
+    "dilate": 2,
+    "prompt": "Remove the round orange disc on the wall in the middle of this picture. Show the same deep wine-red damask wall with its faint woven pattern running straight through, in the same warm light. Do not add any lamp, disc or object."
+   }
+  },
+  {
+   "id": "disc-right",
+   "fillOnly": true,
+   "polygon": [
+    [
+     532,
+     124
+    ],
+    [
+     574,
+     124
+    ],
+    [
+     574,
+     174
+    ],
+    [
+     532,
+     174
+    ]
+   ],
+   "fill": {
+    "box": [
+     483,
+     80,
+     623,
+     220
+    ],
+    "edgeClamp": 24,
+    "dilate": 2,
+    "prompt": "Remove the round orange disc on the wall in the middle of this picture. Show the same deep wine-red damask wall with its faint woven pattern running straight through, in the same warm light. Do not add any lamp, disc or object."
+   }
+  },
+  {
+   "id": "near-chair-1",
+   "fillOnly": true,
+   "polygon": [
+    [
+     212,
+     442
+    ],
+    [
+     266,
+     442
+    ],
+    [
+     268,
+     548
+    ],
+    [
+     210,
+     548
+    ]
+   ],
+   "fill": {
+    "box": [
+     179,
+     428,
+     299,
+     548
+    ],
+    "edgeClamp": 24,
+    "dilate": 2,
+    "prompt": "Remove the black dining chair standing in front of the table in the middle of this picture. Where it was, show the front of the same cream damask tablecloth hanging straight down to the dark wooden floor, with the same table setting on top, in the same warm candle light. Do not add any chair, person or object."
+   }
+  },
+  {
+   "id": "near-chair-2",
+   "fillOnly": true,
+   "polygon": [
+    [
+     294,
+     442
+    ],
+    [
+     343,
+     442
+    ],
+    [
+     345,
+     548
+    ],
+    [
+     292,
+     548
+    ]
+   ],
+   "fill": {
+    "box": [
+     258,
+     428,
+     378,
+     548
+    ],
+    "edgeClamp": 24,
+    "dilate": 2,
+    "prompt": "Remove the black dining chair standing in front of the table in the middle of this picture. Where it was, show the front of the same cream damask tablecloth hanging straight down to the dark wooden floor, with the same table setting on top, in the same warm candle light. Do not add any chair, person or object."
+   }
+  },
+  {
+   "id": "near-chair-3",
+   "fillOnly": true,
+   "polygon": [
+    [
+     364,
+     442
+    ],
+    [
+     416,
+     442
+    ],
+    [
+     418,
+     548
+    ],
+    [
+     362,
+     548
+    ]
+   ],
+   "fill": {
+    "box": [
+     330,
+     428,
+     450,
+     548
+    ],
+    "edgeClamp": 24,
+    "dilate": 2,
+    "prompt": "Remove the black dining chair standing in front of the table in the middle of this picture. Where it was, show the front of the same cream damask tablecloth hanging straight down to the dark wooden floor, with the same table setting on top, in the same warm candle light. Do not add any chair, person or object."
+   }
+  },
+  {
+   "id": "near-chair-4",
+   "fillOnly": true,
+   "polygon": [
+    [
+     442,
+     442
+    ],
+    [
+     493,
+     442
+    ],
+    [
+     495,
+     548
+    ],
+    [
+     440,
+     548
+    ]
+   ],
+   "fill": {
+    "box": [
+     407,
+     428,
+     527,
+     548
+    ],
+    "edgeClamp": 24,
+    "dilate": 2,
+    "prompt": "Remove the black dining chair standing in front of the table in the middle of this picture. Where it was, show the front of the same cream damask tablecloth hanging straight down to the dark wooden floor, with the same table setting on top, in the same warm candle light. Do not add any chair, person or object."
+   }
+  },
+  {
+   "id": "near-chair-5",
+   "fillOnly": true,
+   "polygon": [
+    [
+     547,
+     442
+    ],
+    [
+     596,
+     442
+    ],
+    [
+     598,
+     548
+    ],
+    [
+     545,
+     548
+    ]
+   ],
+   "fill": {
+    "box": [
+     511,
+     428,
+     631,
+     548
+    ],
+    "edgeClamp": 24,
+    "dilate": 2,
+    "prompt": "Remove the black dining chair standing in front of the table in the middle of this picture. Where it was, show the front of the same cream damask tablecloth hanging straight down to the dark wooden floor, with the same table setting on top, in the same warm candle light. Do not add any chair, person or object."
+   }
+  },
+  {
+   "id": "statue-nod",
+   "kind": "plant",
+   "rule": "all",
+   "polygon": [
+    [
+     152,
+     284
+    ],
+    [
+     176,
+     284
+    ],
+    [
+     176,
+     311
+    ],
+    [
+     152,
+     311
+    ]
+   ],
+   "fill": {
+    "harmonic": true,
+    "polygon": [
+     [
+      150,
+      282
+     ],
+     [
+      178,
+      282
+     ],
+     [
+      178,
+      312
+     ],
+     [
+      150,
+      312
+     ]
+    ],
+    "dilate": 1
+   },
+   "motion": "pulse",
+   "periodBeats": 2,
+   "frames": 3,
+   "instance": 3,
+   "minTier": 4,
+   "warp": {
+    "pivot": [
+     164,
+     312
+    ],
+    "far": 28,
+    "reachPx": 2,
+    "power": 1
+   }
+  },
+  {
+   "id": "statue-tap",
+   "kind": "plant",
+   "rule": "all",
+   "polygon": [
+    [
+     166,
+     396
+    ],
+    [
+     184,
+     396
+    ],
+    [
+     184,
+     410
+    ],
+    [
+     166,
+     410
+    ]
+   ],
+   "fill": {
+    "harmonic": true,
+    "polygon": [
+     [
+      164,
+      392
+     ],
+     [
+      186,
+      392
+     ],
+     [
+      186,
+      410
+     ],
+     [
+      164,
+      410
+     ]
+    ],
+    "dilate": 1
+   },
+   "motion": "pulse",
+   "periodBeats": 1,
+   "frames": 3,
+   "instance": 4,
+   "minTier": 4,
+   "warp": {
+    "pivot": [
+     168,
+     410
+    ],
+    "far": 16,
+    "reachPx": -3,
+    "power": 1
+   }
+  },
+  {
+   "id": "portrait-lady",
+   "kind": "plant",
+   "rule": "all",
+   "polygon": [
+    [
+     551,
+     216
+    ],
+    [
+     580,
+     216
+    ],
+    [
+     580,
+     248
+    ],
+    [
+     551,
+     248
+    ]
+   ],
+   "fill": {
+    "harmonic": true,
+    "polygon": [
+     [
+      549,
+      214
+     ],
+     [
+      582,
+      214
+     ],
+     [
+      582,
+      249
+     ],
+     [
+      549,
+      249
+     ]
+    ],
+    "dilate": 1
+   },
+   "motion": "sway",
+   "periodBeats": 4,
+   "frames": 5,
+   "instance": 5,
+   "minTier": 4,
+   "warp": {
+    "pivot": [
+     565,
+     250
+    ],
+    "far": 34,
+    "reachPx": 2,
+    "power": 1
+   }
+  },
+  {
+   "id": "portrait-snap",
+   "kind": "plant",
+   "polygon": [
+    [
+     240,
+     268
+    ],
+    [
+     322,
+     268
+    ],
+    [
+     322,
+     340
+    ],
+    [
+     240,
+     340
+    ]
+   ],
+   "drawn": {
+    "box": [
+     226,
+     196,
+     330,
+     352
+    ],
+    "images": [
+     "portrait-snap-pick.png"
+    ],
+    "threshold": 30,
+    "prompt": "Image 1 is part of a pixel art painting: an old oil portrait in a gilt frame of a gentleman in a dark coat with his hands folded at his waist. Draw exactly the same picture, the same gentleman, frame and colours at the same place and size, and change only his hand on the right of the picture: it is raised beside his shoulder, snapping its fingers, the thumb and middle finger pressed together."
+   },
+   "motion": "pulse",
+   "periodBeats": 2,
+   "phaseBeats": 1,
+   "frames": 2,
+   "instance": 6,
+   "minTier": 4
+  }
+ ]
+}
