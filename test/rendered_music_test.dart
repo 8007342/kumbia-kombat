@@ -559,7 +559,11 @@ void main() {
         // Garden declares no limits of its own. Its plain chart is as it was, at
         // the tempos it always had, including 326 ms for one limb at 92 BPM.
         if (level.chart.richPatterns.isEmpty) continue;
-        final tempos = manifest.levels[level.id]!.tempos;
+        // A level whose takes aren't rendered yet plays the synth score, whose
+        // tempos its own level test holds the chart to.
+        final rendered = manifest.levels[level.id];
+        if (rendered == null) continue;
+        final tempos = rendered.tempos;
         for (var tier = 0; tier < 5; tier++) {
           final peaks = tier == 4 ? level.rules.finalChallenges : 1;
           for (var peak = 0; peak < peaks; peak++) {

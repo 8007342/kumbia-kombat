@@ -1,0 +1,407 @@
+{
+ "atlas": "band-violin",
+ "image": "band-violin-v1.png",
+ "imageWidth": 1024,
+ "imageHeight": 232,
+ "referenceFrame": "relaxed_a",
+ "family": "/home/forge/.cache/tillandsias-project/kumbia-wt/salon/tool/art/families/band-violin-v1.json",
+ "animationReferences": {
+  "registry": "tool/art/references/animation-principles.json",
+  "research": [
+   "plan/levels/indoor-band-2026-11-07.md"
+  ],
+  "principlesUsed": [
+   "contrapposto",
+   "exaggeration-accent",
+   "follow-through",
+   "line-of-action",
+   "no-twinning",
+   "planted-pivot",
+   "staging-silhouette",
+   "timing-on-beat"
+  ],
+  "sourcesUsed": [
+   "cartwright-gdc2014",
+   "contrapposto-fonseca",
+   "dead-cells-pipeline",
+   "disney-process",
+   "illusion-of-life",
+   "silhouette-test",
+   "simogo-bsb",
+   "slynyrd-53",
+   "slynyrd-55",
+   "twinning",
+   "ubisoft-foot-ik",
+   "williams-survival-kit"
+  ]
+ },
+ "ramps": {
+  "skin": {
+   "region": "skin",
+   "alsoIn": [],
+   "shades": [
+    "#6C4017",
+    "#94653D",
+    "#C08A5E",
+    "#DBAB86"
+   ]
+  },
+  "hair": {
+   "region": "hair",
+   "alsoIn": [],
+   "shades": [
+    "#010000",
+    "#0B0301",
+    "#2A1C16",
+    "#423530"
+   ]
+  },
+  "shirt": {
+   "region": "shirt",
+   "alsoIn": [],
+   "shades": [
+    "#9B9486",
+    "#C4BDAE",
+    "#EFE7D6",
+    "#FFFBED"
+   ]
+  },
+  "jacket": {
+   "region": "cloth",
+   "alsoIn": [],
+   "shades": [
+    "#000000",
+    "#040306",
+    "#1E1B22",
+    "#36343A"
+   ]
+  },
+  "lapels": {
+   "region": "apron",
+   "alsoIn": [],
+   "shades": [
+    "#765B0D",
+    "#9E813C",
+    "#C9A85C",
+    "#E5C989"
+   ]
+  },
+  "trousers": {
+   "region": "trousers",
+   "alsoIn": [],
+   "shades": [
+    "#000001",
+    "#010102",
+    "#17151B",
+    "#2F2D33"
+   ]
+  },
+  "shoes": {
+   "region": "shoes",
+   "alsoIn": [],
+   "shades": [
+    "#000002",
+    "#010001",
+    "#141216",
+    "#2B292D"
+   ]
+  },
+  "violin": {
+   "region": "prop",
+   "alsoIn": [],
+   "shades": [
+    "#460400",
+    "#6E2C00",
+    "#9A4E22",
+    "#B3704D"
+   ]
+  },
+  "bow": {
+   "region": "accessory",
+   "alsoIn": [],
+   "shades": [
+    "#877B5B",
+    "#AEA281",
+    "#D9CBA6",
+    "#F8ECCC"
+   ]
+  }
+ },
+ "frames": {
+  "relaxed_a": {
+   "rect": [
+    118,
+    2,
+    114,
+    228
+   ],
+   "anchor": [
+    33.0,
+    227.0
+   ],
+   "pixelsPerUnit": 5.8581,
+   "facing": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/salon/art_runs/band-violin-v1-20261107a",
+    "pose": "relaxed.a",
+    "sha256": "1ccefd4c1a4dee05002f27b517d4deb4142bd390314d31fcd058d00840af02c7",
+    "selected": null,
+    "frameKey": "9945ee19b886402296798f60763d58e5a6a33ae15b2eae570f61342cbaa18095",
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "follow-through",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "relaxed_b": {
+   "rect": [
+    234,
+    2,
+    119,
+    228
+   ],
+   "anchor": [
+    35.0,
+    227.0
+   ],
+   "pixelsPerUnit": 5.8581,
+   "facing": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/salon/art_runs/band-violin-v1-20261107a",
+    "pose": "relaxed.b",
+    "sha256": "055f2af3f546b1f0af41850c24297f45410e443d2e2dccc56a594c2a8728471f",
+    "selected": null,
+    "frameKey": "27a5c17c105db5a7bda19b22d63bde541f1353846497b6afcfebc3a1d23a2a29",
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "follow-through",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "swing_a": {
+   "rect": [
+    355,
+    2,
+    112,
+    228
+   ],
+   "anchor": [
+    33.0,
+    227.0
+   ],
+   "pixelsPerUnit": 5.8581,
+   "facing": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/salon/art_runs/band-violin-v1-20261107a",
+    "pose": "swing.a",
+    "sha256": "1dfaf22c93f210e39192d37317e28d205518145bf40c0c39e27d62dca3a4c608",
+    "selected": null,
+    "frameKey": "1afad26a9deefd5879432fccfbc761b8c82d475a4864a2270827899bda3bfc84",
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "line-of-action",
+     "contrapposto",
+     "exaggeration-accent",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "swing_b": {
+   "rect": [
+    469,
+    2,
+    118,
+    228
+   ],
+   "anchor": [
+    35.0,
+    227.0
+   ],
+   "pixelsPerUnit": 5.8581,
+   "facing": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/salon/art_runs/band-violin-v1-20261107a",
+    "pose": "swing.b",
+    "sha256": "22c83976c629ec71226e8ef08352ef10045e5766e94836d01be44e57a6151ce7",
+    "selected": null,
+    "frameKey": "5f4d224974c0b5fff848aca95d1abe02bf321389e0c39a0d510611834582ff0a",
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  },
+  "swing_c": {
+   "rect": [
+    2,
+    2,
+    114,
+    229
+   ],
+   "anchor": [
+    33.0,
+    228.0
+   ],
+   "pixelsPerUnit": 5.8581,
+   "facing": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/salon/art_runs/band-violin-v1-20261107a",
+    "pose": "swing.c",
+    "sha256": "d7487db963ccfe70cc39a1154354a15bf497ba9c44d6489d80395bbd15c4ff09",
+    "selected": null,
+    "frameKey": "94cbea1a1848af9962619938080e0707101bc9a16762281dbacd3c618210a483",
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "line-of-action",
+     "contrapposto",
+     "exaggeration-accent",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "swing_d": {
+   "rect": [
+    710,
+    2,
+    118,
+    228
+   ],
+   "anchor": [
+    35.0,
+    227.0
+   ],
+   "pixelsPerUnit": 5.8581,
+   "facing": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "left",
+   "status": "candidate",
+   "provenance": {
+    "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/salon/art_runs/band-violin-v1-20261107a",
+    "pose": "swing.d",
+    "sha256": "d29a6b7aaa1e6afa90da5152faa7774a956c3408ab826d2933b63256c8c52822",
+    "selected": null,
+    "frameKey": "2617a83710cf9cf251abcc5fc1d4c7b4d3a47d9cdda6a4651bb18517d1d008b3",
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  },
+  "tap_up_a": {
+   "rect": [
+    830,
+    2,
+    114,
+    228
+   ],
+   "anchor": [
+    33.0,
+    227.0
+   ],
+   "pixelsPerUnit": 5.8581,
+   "facing": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "left",
+   "status": "candidate",
+   "provenance": {
+    "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/salon/art_runs/band-violin-v1-20261107a",
+    "pose": "tap.up_a",
+    "sha256": "69f51233b5afc4db29d40fc359a0f489d029af8f54185e0ba8fe2ded50d1c940",
+    "selected": null,
+    "frameKey": "1175cd7defa098ef4c377063d4369a85b31939142e84faac1ad4968b1213b9c5",
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  },
+  "tap_up_b": {
+   "rect": [
+    589,
+    2,
+    119,
+    228
+   ],
+   "anchor": [
+    35.0,
+    227.0
+   ],
+   "pixelsPerUnit": 5.8581,
+   "facing": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "left",
+   "status": "candidate",
+   "provenance": {
+    "run": "/home/forge/.cache/tillandsias-project/kumbia-wt/salon/art_runs/band-violin-v1-20261107a",
+    "pose": "tap.up_b",
+    "sha256": "0a771c69b0fe5e4727918ebabc7b1bf7caa2bd12fa61f69e5e81aa968818f2a2",
+    "selected": null,
+    "frameKey": "b3c23d887293fad6ccab1541093d25c97fbb84fc7726442abdd95d762d840817",
+    "accepted": false,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  }
+ },
+ "playerHeightPx": 227
+}

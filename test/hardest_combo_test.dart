@@ -46,6 +46,10 @@ void main() {
         'bar': 'Last Call',
         'cool-crowd': 'All That Glitters',
         'billiards': 'Tres Bandas',
+        'comedor': 'LA TORRE DE CHAROLAS',
+        'salon': 'EL GIRO DE TERCIOPELO',
+        'galeria': 'EL MURO DE TACONES',
+        'terraza': 'LA LLUVIA DE CONFETI',
       });
       expect(registry.upcomingOpponents, isEmpty);
       for (final combo in registry.levels.map((l) => l.hardestCombo!)) {

@@ -91,6 +91,22 @@ void main() {
     // simple levels, and slow complex levels".
     expect(rich(charts[4]), greaterThan(rich(charts[3])));
     expect(offbeat(charts[4]), greaterThan(offbeat(charts[3])));
+    // The salon is a cha-cha: its triple lands its chá on the beat, so the
+    // offbeat share drops on purpose. It grows by richer steps instead, and asks
+    // more presses a second at its top tier than the billiard room, being faster.
+    // A proposal, from the wiring agent (plan/levels/salon-wiring-2026-11-07.md).
+    FightChart chart(String id) =>
+        _shipping().campaign.firstWhere((s) => s.level.id == id).level.chart;
+    double topRate(FightChart chart, double bpm) =>
+        chart.pattern(chart.variants.length).offsets.length /
+        (chart.callBeats * 60 / bpm);
+    expect(rich(chart('salon')), greaterThan(rich(charts[4])));
+    expect(topRate(chart('salon'), 124), greaterThan(topRate(charts[4], 104)));
+    // Act two is tension and release, not a steady climb
+    // (plan/levels/act-two-wiring-2026-11-08.md, proposals). The comedor's polka
+    // asks more richer steps than billiards before it. The galería's reel and
+    // the terraza's samba hold their own shapes in act_two_levels_test.dart.
+    expect(rich(chart('comedor')), greaterThan(rich(charts[4])));
     // Its signature: a cue stroke offered in every pattern.
     for (var i = 0; i <= charts[4].variants.length; i++) {
       expect(charts[4].pattern(i).offers.whereType<GestureKind>(), isNotEmpty);
@@ -106,7 +122,19 @@ void main() {
     ]) {
       test('$id rules, chart and crowd numbers', () {
         final level = levels.byId(id);
-        final rules = fights[index];
+        // Re-tuned after the owner's phone test, 2026-11-07, and nothing else:
+        // a third peak pass, and early tiers that forgive two dropped steps of
+        // eight. See plan/feel-2026-11-07.md.
+        final frozen = fights[index];
+        final rules = FightDefinition(
+          frozen.id,
+          frozen.metric,
+          frozen.cleanSeconds,
+          frozen.successesPerTier,
+          3,
+          frozen.resetAfterFailures,
+          earlyHitRatio: .75,
+        );
         expect(level.rules.id, rules.id);
         expect(level.rules.metric, rules.metric);
         expect(level.rules.cleanSeconds, rules.cleanSeconds);
@@ -211,9 +239,23 @@ void main() {
           'bar',
           'cool-crowd',
           'billiards',
+          'comedor',
+          'salon',
+          'galeria',
+          'terraza',
         ]);
-        expect(levels.displayTotal, 5);
-        final [garden, lawn, bar, party, billiards] = levels.campaign;
+        expect(levels.displayTotal, 9);
+        final [
+          garden,
+          lawn,
+          bar,
+          party,
+          billiards,
+          comedor,
+          salon,
+          galeria,
+          terraza,
+        ] = levels.campaign;
         expect(garden.next, same(lawn.level));
         expect(garden.bridgeToNext, 'garden_to_pool');
         expect(lawn.next, same(bar.level));
@@ -222,8 +264,16 @@ void main() {
         expect(bar.bridgeToNext, 'bar_to_crowd');
         expect(party.next, same(billiards.level));
         expect(party.bridgeToNext, 'crowd_to_restroom');
-        expect(billiards.next, isNull);
-        expect(billiards.bridgeToNext, isNull);
+        expect(billiards.next, same(comedor.level));
+        expect(billiards.bridgeToNext, 'billiards_to_comedor');
+        expect(comedor.next, same(salon.level));
+        expect(comedor.bridgeToNext, 'comedor_to_salon');
+        expect(salon.next, same(galeria.level));
+        expect(salon.bridgeToNext, 'salon_to_galeria');
+        expect(galeria.next, same(terraza.level));
+        expect(galeria.bridgeToNext, 'galeria_to_terraza');
+        expect(terraza.next, isNull);
+        expect(terraza.bridgeToNext, isNull);
         expect(levels.exitScoreIds, {
           'garden_mojo_success',
           'garden_to_pool',
@@ -233,7 +283,14 @@ void main() {
           'bar_to_crowd',
           'crowd_duende_success',
           'crowd_to_restroom',
-          'bar_swag_finale',
+          'billiards_to_comedor',
+          'comedor_polka_success',
+          'comedor_to_salon',
+          'salon_bolero_success',
+          'salon_to_galeria',
+          'galeria_reel_success',
+          'galeria_to_terraza',
+          'terraza_samba_success',
         });
         expect(garden.level.copy.clearedShout, 'MUCHO MOJO');
         expect(bar.level.copy.clearedShout, 'MUY SUAVE');

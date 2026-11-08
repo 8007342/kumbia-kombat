@@ -1,0 +1,141 @@
+{
+ "$comment": "Redress of a shipped atlas, tool/art/pipeline/redress.py. Agent's design choice (DRESS, 2026-11-08); the owner can reverse it.",
+ "atlas": "pool-bg-b",
+ "run": "dress-pool-bg-b-20261108a",
+ "backdrop": "#50B050",
+ "tolerance": 26,
+ "key": {
+  "frame": "idle_stand",
+  "prompt": "The woman in picture 1 is a guest at an elegant evening party, and is dressed for it. Change only her clothes: a fitted mustard-gold satin blouse with long sleeves and a modest round neckline, a slim gold belt, tailored navy blue wide-leg dress trousers with a pressed crease, small gold earrings and navy low-heeled court shoes. She keeps her round glasses and her hair.",
+  "seed": 990830,
+  "count": 2,
+  "pick": "key-990831.png",
+  "redrawFrame": true,
+  "why": "the key drew a cue her idle drawing doesn't hold, so it serves as the outfit reference only"
+ },
+ "keepWords": "Keep the pose, the hands and anything they hold, the face, the hair, the skin, the figure's size and place in the picture and the plain flat green background of picture 1 exactly as they are, in the same crisp late 16-bit pixel art style with a thick dark outline.",
+ "frameSeed": 990845,
+ "count": 2,
+ "derive": {
+  "chalk_b": {
+   "from": "chalk_a",
+   "compress": true
+  }
+ },
+ "palette": "tool/art/palettes/pool-bg-b.json",
+ "picks": {
+  "chalk_a": "chalk_a-990845.png",
+  "clap_a": "clap_a-990845.png",
+  "clap_b": "clap_b-990845.png",
+  "idle_stand": "idle_stand-990845.png",
+  "lean_a": "lean_a-990845.png",
+  "lean_b": "lean_b-990845.png",
+  "lean_stroke": "lean_stroke-990845.png",
+  "watch_a": "watch_a-990871.png",
+  "watch_b": "watch_b-990845.png"
+ },
+ "ramps": {
+  "skin": {
+   "region": "skin",
+   "alsoIn": [],
+   "shades": [
+    "#230300",
+    "#46220D",
+    "#6E432C",
+    "#88614D"
+   ]
+  },
+  "hair": {
+   "region": "hair",
+   "alsoIn": [],
+   "shades": [
+    "#000000",
+    "#030100",
+    "#1C1412",
+    "#342C2A"
+   ]
+  },
+  "shirt": {
+   "region": "shirt",
+   "alsoIn": [
+    "prop"
+   ],
+   "shades": [
+    "#7F4D00",
+    "#A77300",
+    "#D59A2A",
+    "#EFBC68"
+   ]
+  },
+  "trousers": {
+   "region": "trousers",
+   "alsoIn": [],
+   "shades": [
+    "#010015",
+    "#0D1537",
+    "#2A355E",
+    "#465176"
+   ]
+  },
+  "shoes": {
+   "region": "shoes",
+   "alsoIn": [],
+   "shades": [
+    "#010007",
+    "#030420",
+    "#1B2244",
+    "#353C5B"
+   ]
+  },
+  "cue_shaft": {
+   "region": "prop",
+   "alsoIn": [
+    "skin",
+    "shirt",
+    "cloth",
+    "trousers"
+   ],
+   "shades": [
+    "#754C00",
+    "#9D722F",
+    "#C9984F",
+    "#E4B97D"
+   ]
+  },
+  "cue_butt": {
+   "region": "prop_dark",
+   "alsoIn": [
+    "skin",
+    "trousers",
+    "shoes"
+   ],
+   "shades": [
+    "#150000",
+    "#371303",
+    "#5E3320",
+    "#775040"
+   ]
+  },
+  "chalk": {
+   "region": "accessory",
+   "alsoIn": [
+    "skin",
+    "prop"
+   ],
+   "shades": [
+    "#004083",
+    "#1B67AD",
+    "#3E8EDE",
+    "#6CAEF3"
+   ]
+  }
+ },
+ "frameWords": {
+  "watch_a": {
+   "words": "She holds a long pool cue upright in front of her with both hands, its dark butt resting on the floor between her shoes and its pale tip above her shoulder.",
+   "seed": 990870,
+   "count": 3,
+   "why": "both first-wave candidates dropped the cue; putting the old cue back on top brought the old cardigan's hem with it"
+  }
+ }
+}

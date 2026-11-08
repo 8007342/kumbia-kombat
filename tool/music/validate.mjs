@@ -5,9 +5,9 @@ import {resolve,dirname} from 'node:path';
 import {fileURLToPath} from 'node:url';
 const root=resolve(dirname(fileURLToPath(import.meta.url)),'../..');
 const manifest=JSON.parse(readFileSync(resolve(root,'assets/music/manifest.json')));
-assert.equal(manifest.scores.length,6);
-assert.equal(manifest.transitions.successes.length,7);
-assert.equal(manifest.transitions.bridges.length,7);
+assert.equal(manifest.scores.length,10);
+assert.equal(manifest.transitions.successes.length,11);
+assert.equal(manifest.transitions.bridges.length,11);
 const signatures=new Set(), transitionSignatures=new Set();let notes=0, midiCount=0;
 function validateMidi(path,score,tier){
  const events=score.events.filter(n=>n.minTier<=tier&&n.maxTier>=tier);
@@ -54,7 +54,11 @@ for(const entry of all){
    assert.ok(heard.some(n=>n.track==='guitar'),'Opening tier has harmonic accompaniment');
    assert.ok(heard.some(n=>n.track==='bass')&&heard.some(n=>n.track==='pulse'),'Opening tier keeps bass and percussion');
   }
-  if(!score.swing)for(let tier=1;tier<5;tier++)assert.equal(score.tiers[tier].bpm-score.tiers[tier-1].bpm,3,'Orchestration revision preserves authored tempo steps');
+  if(score.tierBpms){
+   assert.deepEqual(score.tiers.map(t=>t.bpm),score.tierBpms,'An explicit tempo ladder is what the tiers play');
+   for(let tier=1;tier<5;tier++)assert.ok(score.tiers[tier].bpm>score.tiers[tier-1].bpm,'Tempo rises with each tier');
+  }
+  else if(!score.swing)for(let tier=1;tier<5;tier++)assert.equal(score.tiers[tier].bpm-score.tiers[tier-1].bpm,3,'Orchestration revision preserves authored tempo steps');
   signatures.add(JSON.stringify(score.events.filter(n=>n.track==='lead'&&n.minTier===3).slice(0,9)));
   let previousCount=0;
   for(let tier=0;tier<5;tier++){
@@ -63,7 +67,8 @@ for(const entry of all){
    validateMidi(`assets/music/midi/${score.id}_tier${tier}.mid`,score,tier);
   }
  } else {
-  assert.equal(score.bars,entry.id==='bar_swag_finale'?4:2);assert.equal(score.adornments.length,0);
+  const fourBars=['bar_swag_finale','salon_bolero_success','comedor_polka_success','galeria_reel_success','terraza_samba_success'];
+  assert.equal(score.bars,fourBars.includes(entry.id)?4:2);assert.equal(score.adornments.length,0);
   transitionSignatures.add(JSON.stringify(score.events));
   assert.ok(score.events.every(e=>e.minTier===0&&e.maxTier===4),'Successes and bridges are complete authored phrases');
   if(score.kind==='bridge'){
@@ -74,17 +79,26 @@ for(const entry of all){
    const tag=JSON.parse(readFileSync(resolve(root,'assets/music/scores/bar_swag_success.json')));
    assert.deepEqual(score.events.filter(e=>e.beat<8),tag.events,'The finale opens with the bar\'s tag, unchanged');
   } else {
-   const opening=score.events.filter(e=>e.beat<4), settling=score.events.filter(e=>e.beat>=4);
+   const half=score.bars*2;
+   const opening=score.events.filter(e=>e.beat<half), settling=score.events.filter(e=>e.beat>=half);
    assert.ok(settling.length<opening.length,'Success second bar thins the ensemble');
    assert.ok(settling.reduce((sum,e)=>sum+e.velocity,0)<opening.reduce((sum,e)=>sum+e.velocity,0),'Success second bar has gentler authored attacks (not a loudness measurement)');
    assert.ok(settling.some(e=>e.track==='lead'),'Warm-down retains the tonic answer');
-   assert.ok([4,6].every(beat=>settling.some(e=>e.track==='pulse'&&e.pitch===36&&e.beat===beat)),'Warm-down retains the beat');
+   if(score.resolvesTo){
+    // The last sounding chord is the tonic triad of the key it resolves to.
+    const end=Math.max(...score.events.filter(e=>e.track!=='pulse').map(e=>e.beat));
+    const pcs=new Set(score.events.filter(e=>e.beat===end&&e.track!=='pulse').map(e=>e.pitch%12));
+    const t=score.resolvesTo.midiTonic%12, triad=[t,(t+(score.resolvesTo.mode==='major'?4:3))%12,(t+7)%12];
+    assert.deepEqual([...pcs].sort((a,b)=>a-b),[...triad].sort((a,b)=>a-b),'Success lands on its resolving triad');
+    assert.equal((score.resolvesTo.midiTonic-score.key.midiTonic+12)%12,3,'A minor key resolves to its relative major');
+   }
+   assert.ok([half,half+2].every(beat=>settling.some(e=>e.track==='pulse'&&e.pitch===36&&e.beat===beat)),'Warm-down retains the beat');
   }
   validateMidi(entry.midiPath,score,score.kind==='success'?4:0);
  }
 }
-assert.equal(signatures.size,6,'All room lead compositions differ');
-assert.equal(transitionSignatures.size,14,'Every success and bridge has distinct composed content');
-assert.equal(readdirSync(resolve(root,'assets/music/midi')).filter(f=>f.endsWith('.mid')).length,44);
-assert.equal(readdirSync(resolve(root,'assets/music/scores')).filter(f=>f.endsWith('.json')).length,20);
-console.log(`PASS: 6 room scores + 7 successes + 7 bridges, ${notes} valid notes; ${midiCount} MIDI files parsed with balanced attacks/releases; distinct transition phrases and pitched destination pickups`);
+assert.equal(signatures.size,10,'All room lead compositions differ');
+assert.equal(transitionSignatures.size,22,'Every success and bridge has distinct composed content');
+assert.equal(readdirSync(resolve(root,'assets/music/midi')).filter(f=>f.endsWith('.mid')).length,72);
+assert.equal(readdirSync(resolve(root,'assets/music/scores')).filter(f=>f.endsWith('.json')).length,32);
+console.log(`PASS: 10 room scores + 11 successes + 11 bridges, ${notes} valid notes; ${midiCount} MIDI files parsed with balanced attacks/releases; distinct transition phrases and pitched destination pickups`);

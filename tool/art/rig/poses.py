@@ -784,3 +784,125 @@ def apply_overrides(clips: dict, overrides: dict) -> dict:
             pose, sup = out[clip][name]
             out[clip][name] = (replace(pose, **params), sup)
     return out
+
+# ---------------------------------------------------------------- cha-cha
+# Motion set opponent-chacha: Don Terciopelo, the salon's ballroom gentleman (plan/levels/salon-2026-11-07.md).
+# The 64 shared drawing names, so every shared choreography table plays him, with the groove redrawn as the
+# cha-cha-chá basic: per side, rock step forward (count 2), replace back (3), chassé to the side (4 and), and the
+# landing held on 1 with the hip settled over a straight leg (Cuban motion) and the arms in long lines. Then an
+# eight-view spin with a held line (never say fan: the pilot drew a hand fan), his charisma between phrases, the win's bow and arm sweep, and the rose.
+
+_LINE_L = dict(l_arm=(118, 10), l_fore=(128, 8))     # left arm long and high on the diagonal
+_LINE_R_LOW = dict(r_arm=(66, -8), r_fore=(72, -6))  # right arm long and low, out to the side
+_FRAME_R = dict(r_arm=(40, 46), r_fore=(-24, 78))    # right arm curved in front of the chest, a partner's frame
+_CC_ROCK_L = Pose(twist=-6, lean=2, side_bend=4, pelvis_x=0.05, pelvis_roll=7, head_turn=6, head_nod=-6, pin="l",
+                  both_home=False, l_thigh=(6, 22), l_shin=(6, 20), r_thigh=(6, -14), r_shin=(6, -30), r_foot=30,
+                  l_arm=(84, 10), l_fore=(90, 12), **_FRAME_R)
+_CC_REPLACE_L = Pose(twist=4, lean=-2, side_bend=-5, pelvis_x=-0.05, pelvis_roll=-8, head_turn=4, head_nod=-4, pin="r",
+                     both_home=False, r_thigh=(5, -4), r_shin=(4, -6), l_thigh=(8, 22), l_shin=(8, 18),
+                     l_arm=(62, 20), l_fore=(70, 30), r_arm=(46, 40), r_fore=(10, 76))
+_CC_CHASSE_L = Pose(twist=2, lean=1, side_bend=2, pelvis_x=0.02, pelvis_roll=3, head_nod=-6, pin="mid",
+                    l_thigh=(16, 6), l_shin=(14, -4), r_thigh=(6, 6), r_shin=(5, -6), toe_out=18,
+                    l_arm=(72, 10), l_fore=(104, 10), r_arm=(30, 30), r_fore=(-30, 70))
+_CC_HOLD_L = Pose(twist=-4, lean=-4, side_bend=8, pelvis_x=0.08, pelvis_roll=12, head_turn=14, head_nod=-8, pin="l",
+                  l_thigh=(6, 2), l_shin=(5, -2), r_thigh=(22, 10), r_shin=(26, 6), r_foot=40,
+                  **_LINE_L, **_LINE_R_LOW)
+CHACHA_GROOVE = {"down_l": (_CC_ROCK_L, "left"), "pass_l": (_CC_REPLACE_L, "right"),
+                 "up_l": (_CC_CHASSE_L, "both"), "pass_l2": (_CC_HOLD_L, "left")}
+CHACHA_GROOVE |= mirror_clip(CHACHA_GROOVE, {"down_l": "down_r", "pass_l": "pass_r", "up_l": "up_r", "pass_l2": "pass_r2"})
+CHACHA_GROOVE = ordered(CHACHA_GROOVE, ["down_l", "pass_l", "up_l", "pass_l2", "down_r", "pass_r", "up_r", "pass_r2"])
+
+# The spin turns about the feet with the arms in a partner's frame, upright, then opens into a held fan line.
+SPIN_LINE = {name: (Pose(yaw=45 * i, pin="mid", head_nod=-6, l_arm=(82, 10), l_fore=(90, 12), **_FRAME_R,
+                         l_thigh=(4, 6), l_shin=(4, -4), r_thigh=(8, 10), r_shin=(6, -6)), "both")
+             for i, name in enumerate(_SPIN_NAMES)}
+FLARE_LINE = {"line": (Pose(lean=-6, side_bend=-6, pelvis_x=-0.07, pelvis_roll=-10, head_turn=16, head_nod=-10, pin="r",
+                            r_thigh=(3, 4), r_shin=(3, -2), l_thigh=(30, 2), l_shin=(32, 0), l_foot=50,
+                            **_LINE_L, **_LINE_R_LOW), "right")}
+
+_EASY_R = dict(side_bend=-3, pelvis_x=-0.04, pelvis_roll=-6, pin="r",
+               r_thigh=(4, 4), r_shin=(3, -2), l_thigh=(10, 12), l_shin=(6, -6))
+MOUSTACHE = {
+    "a": (Pose(head_nod=-10, head_side=4, **_EASY_R, **BEHIND_L, r_arm=(30, 50), r_fore=(-160, 40)), "both"),
+    "b": (Pose(head_nod=-12, head_side=-4, head_turn=-6, **_EASY_R, **BEHIND_L, r_arm=(36, 46), r_fore=(-168, 28)), "both"),
+}
+GLANCE = {
+    "a": (Pose(yaw=40, head_turn=24, head_nod=-8, **_EASY_R, r_arm=(16, 4), r_fore=(12, 22),
+               l_arm=(22, 44), l_fore=(-138, 60)), "both"),
+    "b": (Pose(yaw=40, head_turn=40, head_nod=-12, head_side=4, **_EASY_R, **BEHIND_L,
+               r_arm=(118, 22), r_fore=(-108, 12)), "both"),
+}
+OFFER_HAND = {
+    # Pilot: offered straight at the viewer, the arm foreshortened and the palm stood up like a wave. Out to the side and low, palm up.
+    "a": (Pose(lean=8, head_nod=8, **_EASY_R, **BEHIND_L, r_arm=(44, 34), r_fore=(52, 46)), "both"),
+    "b": (Pose(lean=14, head_nod=12, head_side=-4, side_bend=-3, pelvis_x=-0.04, pelvis_roll=-6, pin="r",
+               r_thigh=(4, 4), r_shin=(3, -2), l_thigh=(6, 22), l_shin=(6, 20), l_foot=30,
+               **BEHIND_L, r_arm=(56, 30), r_fore=(62, 36)), "right"),
+}
+BOW = {
+    # Pilot: with the free arm swept out, the 3/4 bow read as reaching forward. A gentleman's bow keeps it behind the back.
+    # Second try: at three quarters the bend at the waist didn't show, so the deep drawings turn nearly to profile.
+    # Third: asked to face the picture's right, Qwen drew the deepest bow facing left in 4 of 4, so he bows to the left.
+    "a": (Pose(yaw=-50, lean=14, head_nod=6, **_EASY_R, r_arm=(24, 32), r_fore=(-100, 56), **BEHIND_L), "both"),
+    "b": (Pose(yaw=-62, lean=40, head_nod=16, **_EASY_R, r_arm=(24, 40), r_fore=(-100, 60), **BEHIND_L), "both"),
+    "hold": (Pose(yaw=-62, lean=48, head_nod=20, **_EASY_R, r_arm=(24, 44), r_fore=(-100, 62), **BEHIND_L), "both"),
+}
+SWEEP = {
+    "a": (Pose(yaw=-14, twist=6, head_turn=10, **_EASY_R, **BEHIND_R, l_arm=(64, 34), l_fore=(76, 46)), "both"),
+    "b": (Pose(yaw=-18, twist=10, lean=-4, head_turn=22, head_nod=-6, **_EASY_R, **BEHIND_R,
+               l_arm=(104, 6), l_fore=(116, -4)), "both"),
+}
+ROSE = {
+    "pluck": (Pose(head_nod=16, head_turn=8, **_EASY_R, **BEHIND_L, r_arm=(20, 44), r_fore=(-112, 52)), "both"),
+    # Pilot: offered at the viewer, the rose came up by his shoulder. Turned toward the picture's right, where Mācron is.
+    "offer": (Pose(yaw=30, lean=10, head_nod=6, **_EASY_R, **BEHIND_L, r_arm=(36, 74), r_fore=(38, 84)), "both"),
+}
+OPPONENT_CHACHA = {**OPPONENT_64, "groove": CHACHA_GROOVE, "spin": SPIN_LINE, "flare": FLARE_LINE,
+                   "moustache": MOUSTACHE, "glance": GLANCE, "offer_hand": OFFER_HAND, "bow": BOW, "sweep": SWEEP,
+                   "rose": ROSE}
+
+_CC = "cha-cha-chá: "
+CHACHA_INTENT = {
+    "groove.down_l": ("down (count 2, rock step)", _CC + "rock step forward onto the straight left leg, the right foot behind on its toe with the heel raised, hips settled over the left foot, chest upright and proud, left arm extended out to the side at shoulder height in a long line, right arm curved in front of the chest, chin lifted"),
+    "groove.pass_l": ("pass (count 3, replace)", _CC + "weight replaced back onto the straight right leg, the left foot forward resting on its toe, hips settling to {his} right, upright and elegant, left arm lowering out to the side, right arm curved in front of the chest"),
+    "groove.up_l": ("up (count 4 and, chassé)", _CC + "a small quick chassé to the side, the left foot stepping out with both knees softly bent and the feet a little apart, hips level, upright, left wrist flicked up with the arm out to the side, right arm curved in front of the chest"),
+    "groove.pass_l2": ("accent (count 1, the hold)", _CC + "landed on the straight left leg with the hip settled out to {his} left, the right leg extended out to the side with the toe pointed on the floor, chest high, left arm in a long line high on the diagonal, right arm long and low out to the side, head turned toward the raised hand, chin up"),
+    "groove.down_r": ("down (count 2, rock step)", _CC + "rock step forward onto the straight right leg, the left foot behind on its toe with the heel raised, hips settled over the right foot, chest upright and proud, right arm extended out to the side at shoulder height in a long line, left arm curved in front of the chest, chin lifted"),
+    "groove.pass_r": ("pass (count 3, replace)", _CC + "weight replaced back onto the straight left leg, the right foot forward resting on its toe, hips settling to {his} left, upright and elegant, right arm lowering out to the side, left arm curved in front of the chest"),
+    "groove.up_r": ("up (count 4 and, chassé)", _CC + "a small quick chassé to the side, the right foot stepping out with both knees softly bent and the feet a little apart, hips level, upright, right wrist flicked up with the arm out to the side, left arm curved in front of the chest"),
+    "groove.pass_r2": ("accent (count 1, the hold)", _CC + "landed on the straight right leg with the hip settled out to {his} right, the left leg extended out to the side with the toe pointed on the floor, chest high, right arm in a long line high on the diagonal, left arm long and low out to the side, head turned toward the raised hand, chin up"),
+    "flare.line": ("accent (held line)", "a held ballroom line, nothing in his hands: standing tall on the straight right leg, the left leg extended out to the side with the toe pointed on the floor, chest lifted and leaning back slightly, the left arm stretched up high on the diagonal ending in an open empty hand, the right arm long and low out to the side with an open empty hand, head turned toward the raised hand, chin up, a proud elegant look"),
+    "moustache.a": ("rest (charisma)", "standing tall and easy on the right leg, left hand behind the back, the right index finger and thumb raised to {his} upper lip smoothing one side of the thin pencil moustache, chin lifted, eyes half closed, pleased with himself"),
+    "moustache.b": ("rest (charisma)", "standing tall and easy on the right leg, left hand behind the back, the right hand raised to {his} face with the index finger laid along the thin grey pencil moustache, stroking it out toward the corner of his mouth, the hand touching his upper lip, head tilted, a satisfied little smile"),
+    "glance.a": ("rest (charisma)", "turned three quarters toward the left of the picture, glancing sideways at his reflection in a mirror outside the picture, chin lifted, the left hand adjusting the velvet bow tie at {his} throat, right arm relaxed low"),
+    "glance.b": ("accent (charisma)", "turned three quarters toward the left of the picture, admiring his reflection in a mirror outside the picture, head turned further toward it, the right hand smoothing back the silver hair above {his} ear, left hand behind the back, chin up, a knowing half smile"),
+    "offer_hand.a": ("anticipation (charisma)", "inviting the viewer to dance: a slight courtly bow from the waist, left hand behind the back, the right arm held out low to the side on the left of the picture, the hand at waist height with the palm turned up as if to take a partner's hand, head inclined, a warm gallant smile"),
+    "offer_hand.b": ("accent (charisma)", "inviting the viewer to dance: bowing a little deeper from the waist, left hand behind the back, the right arm extended out to the side on the left of the picture, the open hand at waist height with the palm turned up toward the sky, waiting for a partner's hand, the left foot pointed forward on its toe, eyes on the viewer, a warm gallant smile"),
+    "bow.a": ("anticipation (bow)", "turned well toward the left of the picture, beginning a slow ballroom bow: standing on the right leg, the right hand placed flat on {his} chest, the left hand behind the back, leaning forward slightly from the waist, head beginning to lower"),
+    "bow.b": ("accent (bow)", "seen from the side, his face and chest toward the left edge of the picture and his back toward the right edge, a deep slow ballroom bow: bent forward from the waist with a straight back so his head and shoulders lean toward the left of the picture, his legs straight and together, the right hand flat on {his} chest, the left hand tucked behind the small of {his} back, head bowed, eyes lowered, gracious and elegant"),
+    "bow.hold": ("settle (bow)", "seen from the side, his face and chest toward the left edge of the picture and his back toward the right edge, holding the deepest point of a slow ballroom bow: bent forward from the waist with a straight back, his head and shoulders lowered toward the left of the picture, his legs straight and together, both hands off his knees, the right hand flat on {his} chest, the left hand tucked behind the small of {his} back, head bowed low, gracious and elegant"),
+    "sweep.a": ("anticipation (sweep)", "turned a little toward the right of the picture, the right hand behind the back, the left arm starting a grand sweep out toward the right of the picture at chest height, head following the hand"),
+    "sweep.b": ("accent (sweep)", "turned a little toward the right of the picture, the right hand behind the back, the left arm swept out high and wide toward the right of the picture with the palm open, showing the way to a far door, head turned along the arm, chin up, a gracious smile"),
+    "rose.pluck": ("anticipation (the rose)", "standing tall on the right leg, left hand behind the back, the right hand crossing to {his} left lapel and plucking the red rose from it, head bowed looking down at the rose, a fond smile"),
+    "rose.offer": ("accent (the rose)", "turned a little toward the right of the picture, a slight courtly bow from the waist, left hand behind the back, the right arm extended forward toward the right of the picture at chest height holding out the single red rose by its stem, his lapel bare with no flower in it, head inclined, a warm gallant smile"),
+}
+_SPIN_LINE_WORDS = {
+    "front": "facing the viewer in the middle of a ballroom spin on the spot, upright, left arm extended out to the side in a long line, right arm curved in front of the chest",
+    "34_r": "turned three-quarters toward the right of the picture, spinning on the spot, upright, arms held in a ballroom frame",
+    "side_r": "in profile facing the right of the picture, spinning on the spot, upright, arms held in a ballroom frame",
+    "back34_r": "turned mostly away from the viewer, the face hidden, spinning on the spot, upright, the back of the silver hair showing, arms held in a ballroom frame",
+    "back": "seen from directly behind in the middle of a spin, only the back of {his} head and white jacket showing, upright, arms held out in a ballroom frame",
+    "back34_l": "turned mostly away from the viewer, the face hidden, spinning on the spot, upright, arms held in a ballroom frame",
+    "side_l": "in profile facing the left of the picture, spinning on the spot, upright, arms held in a ballroom frame",
+    "34_l": "turned three-quarters toward the left of the picture, coming back round to the viewer, upright, left arm extended out in a long line",
+}
+CHACHA_INTENT |= {f"spin.{k}": ("pass (spin)", v) for k, v in _SPIN_LINE_WORDS.items()}
+# No hat: the remate ends with the hand smoothing back the silver hair.
+CHACHA_INTENT |= {
+    "finish_turn.finish_a": ("anticipation (remate)", "weight on the straight right leg, left heel set forward with the toe up, left fist on the hip, right hand rising beside the head, chest proud, chin up"),
+    "finish_turn.finish_b": ("accent (remate)", "the right hand smoothing back the silver hair at {his} temple with a flourish, head dipped slightly, chest proud, left elbow out with the fist on the hip, left heel forward with the toe up"),
+}
+OPPONENT_CHACHA_INTENT = {**OPPONENT_64_INTENT, **CHACHA_INTENT}
+assert set(OPPONENT_CHACHA_INTENT) == {f"{c}.{n}" for c, d in OPPONENT_CHACHA.items() for n in d}, "intent ids != pose ids"
+MOTION_SETS = {**MOTION_SETS, "opponent-chacha": OPPONENT_CHACHA}
+INTENT_BY_SET = {**INTENT_BY_SET, "opponent-chacha": OPPONENT_CHACHA_INTENT}

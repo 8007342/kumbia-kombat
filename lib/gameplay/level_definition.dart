@@ -10,6 +10,7 @@ import '../music/transport.dart';
 import 'band.dart';
 import 'crowd_interest.dart';
 import 'dance_floor.dart';
+import 'dance_line.dart';
 import 'garden_session.dart';
 import 'gesture_shapes.dart';
 import 'party_layout.dart';
@@ -77,6 +78,9 @@ class _Fields {
 
   PartyPoint point(String key) => _point(at(key), _take(key));
 
+  /// A move from somewhere, so either way: [dx, dy] in -1..1.
+  PartyPoint offset(String key) => _point(at(key), _take(key), min: -1);
+
   bool flag(String key) {
     final value = _take(key);
     if (value is bool) return value;
@@ -115,13 +119,13 @@ double _number(String path, Object? value, {double? min, double? max}) {
   return number;
 }
 
-PartyPoint _point(String path, Object? value) {
+PartyPoint _point(String path, Object? value, {double min = 0}) {
   if (value is! List<Object?> || value.length != 2) {
     throw LevelDataError(path, 'expected [x, y], found $value');
   }
   return PartyPoint(
-    _number('$path[0]', value[0], min: 0, max: 1),
-    _number('$path[1]', value[1], min: 0, max: 1),
+    _number('$path[0]', value[0], min: min, max: 1),
+    _number('$path[1]', value[1], min: min, max: 1),
   );
 }
 
@@ -188,8 +192,12 @@ class LevelChallenger {
     this.meetMark,
     this.facingAway,
     this.defeatStance,
+    this.line,
   });
   final FloorTrack? track;
+
+  /// Dancers who dance as one with this one, a little late. Null for most.
+  final DanceLine? line;
 
   /// Dancing with their back to the room until the first call, if they do.
   final FacingAway? facingAway;
@@ -410,10 +418,15 @@ class LevelDefinition {
     this.propSet,
     this.hardestCombo,
     this.floorDance,
+    this.guestClips = const {},
   });
 
   /// What this room's standing guests dance, if it has any.
   final FloorDance? floorDance;
+
+  /// `crowd.clipSets`: drawings for each step of the meter, for guests cast with
+  /// their own atlas, such as diners and waiters. A guest names one by `clips`.
+  final Map<String, GuestClipSet> guestClips;
 
   final String id;
   final String title;
@@ -559,6 +572,9 @@ class LevelDefinition {
 
     final crowdFields = fields.child('crowd');
     final crowd = _crowd(id, crowdFields.child('budgets'));
+    final guestClips = crowdFields.has('clipSets')
+        ? _clipSets(crowdFields.child('clipSets'))
+        : const <String, GuestClipSet>{};
     final guestPath = crowdFields.at('guests');
     final seat = crowdFields.has('seat')
         ? crowdFields.named('seat', PartySeat.values)
@@ -598,6 +614,7 @@ class LevelDefinition {
                   ? guest.text('faces') == 'right'
                   : null,
               partner: guest.has('partner') ? guest.whole('partner', min: 0) : null,
+              clips: guest.has('clips') ? guest.text('clips') : null,
             ),
           );
           guest.finish();
@@ -626,7 +643,27 @@ class LevelDefinition {
     final floorDance = crowdFields.has('floorDance')
         ? _floorDance(crowdFields.child('floorDance'), chart.introBeats)
         : null;
-    if (seats.contains(PartySeat.standing) && floorDance == null) {
+    for (final (i, guest) in cast.indexed) {
+      final clips = guest?.clips;
+      if (clips == null) continue;
+      if (!guestClips.containsKey(clips)) {
+        throw LevelDataError('$guestPath[$i]', 'no such clip set: $clips');
+      }
+      if (guest!.atlas == null) {
+        throw LevelDataError('$guestPath[$i]', 'clips needs the guest\'s atlas');
+      }
+      if (partTo[i] != null || guest.occupied != null) {
+        throw LevelDataError(
+          '$guestPath[$i]',
+          'a guest with clips draws only those: no partTo or occupied',
+        );
+      }
+    }
+    final dancers = [
+      for (final (i, seated) in seats.indexed)
+        if (seated == PartySeat.standing && cast[i]?.clips == null) i,
+    ];
+    if (dancers.isNotEmpty && floorDance == null) {
       throw LevelDataError(guestPath, 'standing guests need crowd.floorDance');
     }
     for (final (i, to) in partTo.indexed) {
@@ -796,6 +833,7 @@ class LevelDefinition {
       propSet: propSet,
       hardestCombo: hardestCombo,
       floorDance: floorDance,
+      guestClips: guestClips,
     );
   }
 
@@ -814,6 +852,52 @@ class LevelDefinition {
     );
     fields.finish();
     return clip;
+  }
+
+  static Map<String, GuestClipSet> _clipSets(_Fields fields) {
+    final sets = <String, GuestClipSet>{};
+    for (final name in fields.keys.toList()) {
+      final set = fields.child(name);
+      final reference = set.text('reference');
+      final clips = <CrowdClip, GuestClip>{};
+      for (final clip in CrowdClip.values) {
+        final entry = set.child(clip.name);
+        final frames = entry.list('frames');
+        if (frames.isEmpty || frames.any((f) => f is! String)) {
+          throw LevelDataError(entry.at('frames'), 'expected drawing names');
+        }
+        final once = entry.has('once') && entry.flag('once');
+        clips[clip] = GuestClip(
+          List.unmodifiable(frames.cast<String>()),
+          once: once,
+          beatsPerFrame: once
+              ? 1
+              : entry.number('beatsPerFrame', min: .25),
+        );
+        entry.finish();
+      }
+      GuestClip? applause;
+      if (set.has('applause')) {
+        final entry = set.child('applause');
+        final frames = entry.list('frames');
+        if (frames.isEmpty || frames.any((f) => f is! String)) {
+          throw LevelDataError(entry.at('frames'), 'expected drawing names');
+        }
+        applause = GuestClip(
+          List.unmodifiable(frames.cast<String>()),
+          beatsPerFrame: entry.number('beatsPerFrame', min: .25),
+        );
+        entry.finish();
+      }
+      set.finish();
+      sets[name] = GuestClipSet(
+        reference: reference,
+        clips: Map.unmodifiable(clips),
+        applause: applause,
+      );
+    }
+    fields.finish();
+    return Map.unmodifiable(sets);
   }
 
   static FloorDance _floorDance(_Fields fields, double introBeats) {
@@ -1137,8 +1221,47 @@ class LevelDefinition {
           ? fields.text('heroWaitFrame')
           : 'rear_idle',
       throwsDust: fields.has('dust') ? fields.flag('dust') : true,
+      opponent: [
+        for (final (i, raw) in fields.list('opponent', optional: true).indexed)
+          _shotClip(_Fields('${fields.at('opponent')}[$i]', raw)),
+      ],
+      flare: fields.has('flare') ? _flare(fields.child('flare')) : null,
+      applause: fields.has('applause')
+          ? _shotClip(fields.child('applause'))
+          : null,
+      keepsake: fields.has('keepsake')
+          ? _keepsake(fields.child('keepsake'), offset)
+          : null,
+      walkOut: fields.has('walkOut') ? _walkOut(fields.child('walkOut')) : null,
     );
     fields.finish();
+    for (var i = 1; i < shot.opponent.length; i++) {
+      if (shot.opponent[i].from <= shot.opponent[i - 1].from) {
+        throw LevelDataError(
+          '${fields.at('opponent')}[$i]',
+          'must start after the clip before it',
+        );
+      }
+    }
+    final walkOut = shot.walkOut;
+    if (walkOut != null &&
+        !(walkOut.from >= shot.closeupTo && walkOut.from < walkOut.to)) {
+      throw LevelDataError(
+        fields.at('walkOut'),
+        'starts after the close-up and before it ends',
+      );
+    }
+    final flare = shot.flare;
+    if (flare != null && flare.from < shot.closeupTo) {
+      throw LevelDataError(fields.at('flare'), 'belongs to the wide shot');
+    }
+    final keepsake = shot.keepsake;
+    if (keepsake != null && keepsake.from > shot.closeupTo) {
+      throw LevelDataError(
+        fields.at('keepsake'),
+        'is his from the close-up, so it starts by the cut out',
+      );
+    }
     if (!(shot.walkFrom < shot.walkTo &&
         shot.walkTo <= shot.closeupFrom &&
         shot.closeupFrom < shot.contactBeat &&
@@ -1149,6 +1272,66 @@ class LevelDefinition {
       );
     }
     return shot;
+  }
+
+  static ExitShotClip _shotClip(_Fields fields) {
+    final path = fields.at('frames');
+    final frames = [
+      for (final (i, raw) in fields.list('frames').indexed)
+        raw is String && raw.isNotEmpty
+            ? raw
+            : throw LevelDataError('$path[$i]', 'a drawing name'),
+    ];
+    if (frames.isEmpty) throw LevelDataError(path, 'needs a drawing');
+    final clip = ExitShotClip(
+      from: fields.number('from', min: 0),
+      frames: List.unmodifiable(frames),
+      beatsPerFrame: fields.number('beatsPerFrame', min: .125),
+      loop: fields.has('loop') && fields.flag('loop'),
+    );
+    fields.finish();
+    return clip;
+  }
+
+  static ExitShotFlare _flare(_Fields fields) {
+    final flare = ExitShotFlare(
+      from: fields.number('from', min: 0),
+      beats: fields.number('beats', min: 1),
+      rise: fields.has('rise') ? fields.number('rise', min: .25) : 1,
+      gain: fields.has('gain') ? fields.number('gain', min: 0, max: 1.5) : 1,
+    );
+    fields.finish();
+    if (flare.rise >= flare.beats) {
+      throw LevelDataError(fields.at('rise'), 'must leave time to settle');
+    }
+    return flare;
+  }
+
+  static ExitShotKeepsake _keepsake(
+    _Fields fields,
+    ui.Offset Function(_Fields, String) offset,
+  ) {
+    final keepsake = ExitShotKeepsake(
+      image: fields.text('image'),
+      from: fields.number('from', min: 0),
+      at: offset(fields, 'at'),
+      anchor: offset(fields, 'anchor'),
+      height: fields.number('height', min: .02, max: .6),
+    );
+    fields.finish();
+    return keepsake;
+  }
+
+  static ExitShotWalkOut _walkOut(_Fields fields) {
+    final walk = ExitShotWalkOut(
+      from: fields.number('from', min: 0),
+      to: fields.number('to', min: 0),
+      fadeBeats: fields.has('fadeBeats')
+          ? fields.number('fadeBeats', min: .25)
+          : 1,
+    );
+    fields.finish();
+    return walk;
   }
 
   static ExitShotSway _sway(_Fields fields) {
@@ -1286,6 +1469,9 @@ class LevelDefinition {
           defeatStance: fields.has('defeatStance')
               ? _floorClip(fields.child('defeatStance'))
               : null,
+          line: fields.has('line')
+              ? _line(fields.child('line'), fields.point('mark'))
+              : null,
         ),
       );
       fields.finish();
@@ -1297,6 +1483,67 @@ class LevelDefinition {
       throw LevelDataError(path, 'challenger ids must be unique');
     }
     return List.unmodifiable(challengers);
+  }
+
+  static DanceLine _line(_Fields fields, PartyPoint lead) {
+    final path = fields.at('dancers');
+    final raw = fields.list('dancers');
+    if (raw.isEmpty || raw.length > DanceLine.maxDancers) {
+      throw LevelDataError(path, 'a line has 1 to ${DanceLine.maxDancers} more');
+    }
+    final dancers = <LineDancer>[];
+    for (final (i, entry) in raw.indexed) {
+      final dancer = _Fields('$path[$i]', entry);
+      final offset = dancer.offset('offset');
+      final arch = dancer.has('archOffset') ? dancer.offset('archOffset') : null;
+      final lag = dancer.has('lagBeats')
+          ? dancer.number('lagBeats', min: 0, max: DanceLine.maxLagBeats)
+          : 0.0;
+      // Their marks must be floor a person can stand on, off the thumbs.
+      for (final (key, by) in [('offset', offset), ('archOffset', arch)]) {
+        if (by == null) continue;
+        final at = PartyPoint(lead.x + by.x, lead.y + by.y);
+        if (at.y >= thumbBandTop || at.x < 0 || at.x > 1) {
+          throw LevelDataError(dancer.at(key), 'puts them off the floor: $at');
+        }
+      }
+      dancers.add(
+        LineDancer(
+          offset: offset,
+          lagBeats: lag,
+          archOffset: arch,
+          archMirrored: dancer.has('archMirrored') && dancer.flag('archMirrored'),
+          stature: dancer.has('stature')
+              ? dancer.number('stature', min: .1)
+              : 1,
+          image: dancer.has('image') ? dancer.text('image') : null,
+        ),
+      );
+      dancer.finish();
+    }
+    LineArch? arch;
+    if (fields.has('arch')) {
+      final a = fields.child('arch');
+      final framesPath = a.at('frames');
+      arch = LineArch(
+        from: a.number('from', min: 0),
+        beats: a.number('beats', min: .25),
+        frames: a.has('frames')
+            ? [
+                for (final (i, f) in a.list('frames').indexed)
+                  f is String && f.isNotEmpty
+                      ? f
+                      : throw LevelDataError('$framesPath[$i]', 'a drawing name'),
+              ]
+            : const [],
+        beatsPerFrame: a.has('beatsPerFrame')
+            ? a.number('beatsPerFrame', min: .25)
+            : 1,
+      );
+      a.finish();
+    }
+    fields.finish();
+    return DanceLine(dancers: List.unmodifiable(dancers), arch: arch);
   }
 
   static FacingAway _facingAway(_Fields fields) {
@@ -1579,8 +1826,18 @@ class LevelDefinition {
             periodBeats: prop.number('periodBeats', min: .25),
             instance: prop.whole('instance', min: 0),
             kind: prop.named('kind', PartyLifeKind.values),
+            minTier: prop.has('minTier') ? prop.whole('minTier', min: 1) : null,
+            phaseBeats: prop.has('phaseBeats')
+                ? prop.number('phaseBeats', min: 0)
+                : 0,
           );
           prop.finish();
+          if ((layer.minTier ?? 0) > PartyUp.topTier) {
+            throw LevelDataError(
+              '$path.minTier',
+              'the top tier is ${PartyUp.topTier}',
+            );
+          }
           if (!ids.add(layer.id)) {
             throw LevelDataError(path, 'duplicate layer id ${layer.id}');
           }

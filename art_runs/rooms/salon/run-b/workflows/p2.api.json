@@ -1,0 +1,221 @@
+{
+ "10": {
+  "_meta": {
+   "title": "prompt, baked per pose by plan_qwen_frames"
+  },
+  "class_type": "TextEncodeQwenImageEditPlus",
+  "inputs": {
+   "clip": [
+    "6",
+    0
+   ],
+   "image1": [
+    "60",
+    0
+   ],
+   "prompt": "Image 1 is an unfinished game background. Keep the composition of image 1 exactly: every wall edge, every arched window and arched mirror on the side walls and the far wall, the gilded panels between them, the low dais with the grand piano at the far left, the double doors in the middle of the far wall, the row of three chandeliers, every floor joint and the horizon stay at the same place and size. Repaint image 1 as a richly detailed late 16-bit pixel art night painting with very fine small pixels and high detail, moody low-key lighting, deep soft shadows, restrained muted natural colours and warm amber lamp glow, painterly and grown-up in tone, close to near-black in the shadows. The floor is warm brown polished parquet laid in a fine, even herringbone, one calm dim tone across its whole area. Only the far half of the floor carries soft, faint reflections of the chandeliers, and the near half is plain, even and dark, reaching the bottom edge and lying open and clear. The walls are deep emerald silk panels framed in thin champagne-gold mouldings, under a deep gilded cornice and a dark coffered ceiling, lit only by the chandeliers. Tall closed double doors of dark wood with gilded panels stand at the far end, the same width and height as in image 1 with their foot on the same line. Tall arched windows on the left wall look out onto the dark night garden and its distant lanterns, each hung with heavy burgundy velvet drapes tied back at the sides. Narrow gilded mirror panels stand between the arches, catching the candle light. Tall arched mirrors in carved gilded frames line the right wall and the far wall, facing the windows and softly repeating the chandeliers' warm glow. A wide low dark wooden dais at the far left, the size of the block in image 1, holds a black grand piano with its lid raised, its keyboard facing the middle of the room, with open space beside it for two musicians to stand. A row of three crystal chandeliers hangs across the hall, glowing in warm candle-gold light. The whole place is an empty, quiet set just before the party arrives: bare ground, still water and clear air, and every surface is plain stone, wood, foliage, water or sky. The only lights in the room are the three crystal chandeliers, hung with clear glass drops and small candle flames. The bare parquet runs from wall to wall.",
+   "vae": [
+    "7",
+    0
+   ]
+  }
+ },
+ "11": {
+  "_meta": {
+   "title": "negative"
+  },
+  "class_type": "TextEncodeQwenImageEditPlus",
+  "inputs": {
+   "clip": [
+    "6",
+    0
+   ],
+   "image1": [
+    "60",
+    0
+   ],
+   "prompt": "",
+   "vae": [
+    "7",
+    0
+   ]
+  }
+ },
+ "12": {
+  "_meta": {
+   "title": "$seed"
+  },
+  "class_type": "KSampler",
+  "inputs": {
+   "cfg": 1.0,
+   "denoise": 1,
+   "latent_image": [
+    "8",
+    0
+   ],
+   "model": [
+    "5",
+    0
+   ],
+   "negative": [
+    "21",
+    0
+   ],
+   "positive": [
+    "20",
+    0
+   ],
+   "sampler_name": "euler",
+   "scheduler": "simple",
+   "seed": 930000,
+   "steps": 4
+  }
+ },
+ "13": {
+  "_meta": {
+   "title": "VAE Decode"
+  },
+  "class_type": "VAEDecode",
+  "inputs": {
+   "samples": [
+    "12",
+    0
+   ],
+   "vae": [
+    "7",
+    0
+   ]
+  }
+ },
+ "14": {
+  "_meta": {
+   "title": "save frame with matte"
+  },
+  "class_type": "SaveImage",
+  "inputs": {
+   "filename_prefix": "kk/rooms/salon/run-b/p2",
+   "images": [
+    "13",
+    0
+   ]
+  }
+ },
+ "20": {
+  "_meta": {
+   "title": "reference latents: positive"
+  },
+  "class_type": "FluxKontextMultiReferenceLatentMethod",
+  "inputs": {
+   "conditioning": [
+    "10",
+    0
+   ],
+   "reference_latents_method": "index_timestep_zero"
+  }
+ },
+ "21": {
+  "_meta": {
+   "title": "reference latents: negative"
+  },
+  "class_type": "FluxKontextMultiReferenceLatentMethod",
+  "inputs": {
+   "conditioning": [
+    "11",
+    0
+   ],
+   "reference_latents_method": "index_timestep_zero"
+  }
+ },
+ "3": {
+  "_meta": {
+   "title": "Load Diffusion Model"
+  },
+  "class_type": "UNETLoader",
+  "inputs": {
+   "unet_name": "qwen_image_edit_2511_fp8mixed.safetensors",
+   "weight_dtype": "default"
+  }
+ },
+ "30": {
+  "_meta": {
+   "title": "Lightning 4-step (built for 2509; unproven on 2511)"
+  },
+  "class_type": "LoraLoaderModelOnly",
+  "inputs": {
+   "lora_name": "Qwen-Image-Edit-2509-Lightning-4steps-V1.0-bf16.safetensors",
+   "model": [
+    "4",
+    0
+   ],
+   "strength_model": 1.0
+  }
+ },
+ "4": {
+  "_meta": {
+   "title": "ModelSamplingAuraFlow"
+  },
+  "class_type": "ModelSamplingAuraFlow",
+  "inputs": {
+   "model": [
+    "3",
+    0
+   ],
+   "sampling": "flow",
+   "shift": 3.1
+  }
+ },
+ "5": {
+  "_meta": {
+   "title": "CFGNorm"
+  },
+  "class_type": "CFGNorm",
+  "inputs": {
+   "model": [
+    "30",
+    0
+   ],
+   "pre_cfg": false,
+   "strength": 1
+  }
+ },
+ "6": {
+  "_meta": {
+   "title": "Load CLIP"
+  },
+  "class_type": "CLIPLoader",
+  "inputs": {
+   "clip_name": "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+   "device": "default",
+   "type": "qwen_image"
+  }
+ },
+ "7": {
+  "_meta": {
+   "title": "Load VAE"
+  },
+  "class_type": "VAELoader",
+  "inputs": {
+   "vae_name": "qwen_image_vae.safetensors"
+  }
+ },
+ "8": {
+  "_meta": {
+   "title": "Empty Latent Image"
+  },
+  "class_type": "EmptyLatentImage",
+  "inputs": {
+   "batch_size": 1,
+   "height": 1248,
+   "width": 832
+  }
+ },
+ "60": {
+  "_meta": {
+   "title": "$base"
+  },
+  "class_type": "LoadImage",
+  "inputs": {
+   "image": "$base"
+  }
+ }
+}

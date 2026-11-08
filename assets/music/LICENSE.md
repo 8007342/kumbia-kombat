@@ -37,6 +37,30 @@ weren't used, although some of their nodes exist in the studio.
   human authorship, so raw generated audio may not be protected. Selection and arrangement of takes may be.
 - This is a record, not legal advice.
 
+The salon (`rendered/salon/`, 2026-11-07) was made the same way: 12 candidate takes from genre and instrument
+words, tempo 116, key D minor and seeds 58000 to 58203, recorded in `tool/music/sheets/salon.candidates.json`; seed
+58001 was chosen by measurement, and its low and high tiers were re-sampled from its latent in one workflow
+(`tool/music/sheets/salon.chain.json`). The billiards bridge into the salon (`rendered/billiards/bridge.*`) is cut by
+repository code from the billiards and salon takes. No other input went in.
+
+The comedor (`rendered/comedor/`, 2026-11-08) was made the same way: 20 candidate takes from genre and instrument
+words, tempo 128, key F major and seeds 59000 to 59303, recorded in `tool/music/sheets/comedor.candidates.json`; seed
+59202 was chosen by measurement, and its low and high tiers were re-sampled from its latent in one workflow
+(`tool/music/sheets/comedor.chain.json`). The billiards bridge (`rendered/billiards/bridge.*`) now leads into the
+comedor and is cut by repository code from the billiards and comedor takes. No other input went in.
+
+The gallery (`rendered/galeria/`, 2026-11-08) was made the same way: 12 candidate takes, tempo 120, key A minor
+(with "dorian mode" in the words) and seeds 60000 to 60203, recorded in `tool/music/sheets/galeria.candidates.json`;
+seed 60101 was chosen by measurement and its tiers were re-sampled from its latent
+(`tool/music/sheets/galeria.chain.json`). The words name no show, dancer or tune. The salon's bridge into the gallery
+(`rendered/salon/bridge.*`) is cut by repository code from the salon and gallery takes. No other input went in.
+
+The terrace (`rendered/terraza/`, 2026-11-08) was made the same way: 12 candidate takes, tempo 104, key C major and
+seeds 61000 to 61203, recorded in `tool/music/sheets/terraza.candidates.json`; seed 61201 was chosen by measurement
+and its tiers were re-sampled from its latent (`tool/music/sheets/terraza.chain.json`). The gallery's bridge into the
+terrace (`rendered/galeria/bridge.*`) is cut by repository code from the gallery and terrace takes. No other input
+went in.
+
 The repository currently supplies no public licence, and this record doesn't grant one.
 
 ## Original scores: `scores/`, `midi/`, `manifest.json`
@@ -66,5 +90,20 @@ separate public redistribution license or make claims about copyrightability of
 AI-assisted output. The owner should choose the repository's publication license
 before distributing source/assets under a named open license.
 
-Inventory: `scores/*.json` (17 original event scores), `midi/*.mid` (41 original
+The salon's bolero-cha score `salon_bolero` ("Terciopelo"), its four-bar tag resolving to the relative
+major, and the bridge `billiards_to_salon` were added the same way on 2026-11-07. Cha-cha-chá and bolero
+conventions inform them: the güiro's long-long-long-short-short, the conga tumbao, a montuno figure and
+common minor-key cadences, none of which quotes a song. `billiards_to_salon` was retired on 2026-11-08, when the
+comedor came between the two rooms.
+
+Act two of the mansion added three room scores the same way on 2026-11-08, each with a four-bar tag: the comedor's
+norteño polka `comedor_polka` ("Sobremesa", F major), the gallery's Celtic reel `galeria_reel` ("Trébol", A Dorian)
+and the terrace's samba batucada `terraza_samba` ("Purpurina", C major), with the bridges `billiards_to_comedor`,
+`comedor_to_salon`, `salon_to_galeria` and `galeria_to_terraza`. Genre conventions inform them: the polka's oom-pah
+and its trio in the subdominant; the reel's AABB form in eighths over a drone, the bodhrán and hard-shoe eighths;
+the batucada's surdo on 2 and 4, caixa sixteenths, tamborim and agogô. None quotes a song, a traditional tune or any
+stage show's music. The melodies were written for this project and have not been compared against any database of
+tunes.
+
+Inventory: `scores/*.json` (32 original event scores), `midi/*.mid` (72 original
 Standard MIDI File type 1 arrangements), `manifest.json` (catalog).

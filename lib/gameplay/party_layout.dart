@@ -128,7 +128,12 @@ class PartyGuestSlot {
     this.occupied,
     this.occupiedFacingRight,
     this.partner,
+    this.clips,
   });
+
+  /// Which of the level's `crowd.clipSets` draws them, if any: their own drawing
+  /// for each step of the meter, in [atlas].
+  final String? clips;
 
   /// The drawings this guest uses, if not their archetype's: `FloorDance`.
   final String? atlas;
@@ -252,11 +257,13 @@ class FloorGuestCast {
     this.occupied,
     this.facingRight,
     this.partner,
+    this.clips,
   });
   final String? atlas;
   final String? occupied;
   final bool? facingRight;
   final int? partner;
+  final String? clips;
 }
 
 List<PartyGuestSlot> seatedGuestSlots(
@@ -283,6 +290,7 @@ List<PartyGuestSlot> seatedGuestSlots(
           occupied: cast?[i]?.occupied,
           occupiedFacingRight: cast?[i]?.facingRight,
           partner: cast?[i]?.partner,
+          clips: cast?[i]?.clips,
           archetype: i % 3,
           interestIndex: i,
           paletteIndex: i ~/ 3,

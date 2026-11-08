@@ -2,7 +2,15 @@
 
 **Read this first after the relaunch.** `game` holds all merged work. Start the next work ref from `origin/game`, for example `git switch -c work/1853-ordr origin/game`; ref grammar is `work/[0-9]{3,4}-[a-z0-9]{4}`.
 
-## Latest, 2026-11-07: five levels on `game`, promoted to `main` for the owner's phone test
+## Latest, 2026-11-08: mansion act two, nine levels, promoted to `main` for the owner's phone test
+
+- **Campaign:** garden, pool lawn, bar, party (`cool-crowd`), billiards, **comedor** (norteño polka, Don Charolas), salon (bolero-cha, Don Terciopelo), **galeria** (Celtic reel, Siobhán y Las Tréboles), **terraza** (samba, Tía Purpurina). Terraza is last, followed by the end screen. Design: `plan/levels/mansion-act-two-2026-11-08.md`. The later levels (restroom boss rush, tango, VIP and the credits) are designed in `plan/levels/later-levels-2026-11-08.md` and not built; the credits page `/credits/` and `assets/credits.json` exist.
+- **No stand-ins left** in act two. The only shared atlas is the comedor's late guest (`guest4`). The record is in `plan/levels/act-two-wiring-2026-11-08.md`, and each room's art note (`comedor-art`, `galeria-art`, `terraza-art`, all dated 2026-11-08) lists what to look at in motion.
+- **Dress code:** the only casual figures were the billiards room's three background players (cap, cardigan, flannel). They're redressed in a waistcoat, a satin blouse and a dinner jacket by `tool/art/pipeline/redress.py`. See `plan/levels/dress-code-2026-11-08.md`.
+- **Checks at merge:** 789 tests pass, analyze shows the 4 usual notes, and both validators pass. A headless phone-size run of comedor, galería and terraza with `autoplay=flawless` had no page errors. Nobody has seen act two on a real phone.
+- **Local vision** (qwen2.5vl:7b) was wrong on every flag in act two; agents checked everything by eye. Don't rely on it for figure faults.
+
+## 2026-11-07: five levels on `game`, promoted to `main` for the owner's phone test
 
 - **Campaign:** garden, pool lawn, bar, indoor party (`cool-crowd`), billiards. Bridges: `garden_to_pool`, `pool_to_bar`, `bar_to_crowd`, `crowd_to_restroom` (the party into billiards). Billiards is last, followed by the end screen.
 - **Music:** every tier of the garden, bar, party and billiards comes from one performance. The owner's approved mid is kept exactly, and low and high are re-sampled from its latent in one workflow, so a tier change stays on the bar with a 1-beat crossfade. The lawn keeps its takes and uses an entry table per exit bar; its joins are the likeliest to still sound obvious. The fix is audio-in (`LoadAudio`) after the relaunch, with `tool/music/workflows/ace-xl-bridge.api.json`. Billiards is a tango-mambo in G minor at 96, 100 and 104 BPM. The Rust mixer `tool/music/mixrs` builds all five levels in 66 s and 331 MB; don't go back to the NumPy path for full builds.
@@ -12,6 +20,9 @@
 - **Disk:** `/home/forge/src` is a 1.5 GB tmpfs. Keep worktrees in `~/.cache/tillandsias-project/kumbia-wt/` with sparse checkout. The main checkout's `build/` must be a real directory, because the preview container can't follow a symlink out of the project. Never write `cat > /tmp/x` in a command: it waits on stdin forever, and it hung an agent for 3.5 hours.
 
 ## First, after the relaunch
+
+Report to macuahuitl-fedora: tray_build, the `src_mb` line or `df -h /home/forge/src`, the first `LoadAudio` run, `uv python install 3.13`, and whether `flutter test` runs from a worktree under `~/.cache/tillandsias-project/kumbia-wt/`.
+
 
 1. `df -h /home/forge/src` should show about 4 GB, from `src_mb = 4096`. macuahuitl-fedora read that in the code, and it had never run on a real relaunch. Report the result to it.
 2. `studio.status`, `studio.start`, `studio.models`: tray build differs from `56.11.6.2+8ab23b59434614e2`, and the XL base file shows `on_disk: true`. Report the build label and the result to macuahuitl-fedora. Its first GPU use may spend minutes in the `fetch` stage.

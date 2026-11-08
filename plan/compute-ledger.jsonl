@@ -370,3 +370,62 @@
 {"agent": "blinblin", "what": "BlinBlin nod close-up: rest bust and bowed head, 4 candidates each; the bowed head's elapsed_s 85.9, the rest estimated", "kind": "gpu-image", "seconds": 172, "count": 2}
 {"agent": "blinblin", "what": "BlinBlin first-pass curation: heads and hands counted per cropped candidate with qwen2.5vl:7b", "kind": "local-vision", "seconds": 184.0, "count": 238}
 {"agent": "blinblin", "what": "BlinBlin rig render, register, score, finish and pack (CPU)", "kind": "cpu", "seconds": 240, "count": 1}
+{"agent": "terciopelo", "what": "Don Terciopelo model sheet pass 1, front from text with the BlinBlin sheet as style, 4 candidates", "kind": "gpu-image", "seconds": 125, "count": 4}
+{"agent": "terciopelo", "what": "Don Terciopelo model sheet pass 2 from pass 1's fourth candidate, front and back, 4 candidates each (the first front attempt was refused for an unbound input and drew nothing)", "kind": "gpu-image", "seconds": 434, "count": 8}
+{"agent": "terciopelo", "what": "Don Terciopelo rose-handoff busts: rest, pluck, offer, empty and an offer redraw, 2 candidates each, wall time behind other agents' jobs", "kind": "gpu-image", "seconds": 1002, "count": 10}
+{"agent": "terciopelo", "what": "Mācron's rose handoff close-up and the wide rose, drawn from parts by the close-up rig (CPU, several iterations)", "kind": "cpu", "seconds": 20, "count": 5}
+{"agent":"FEEL","what":"flutter test and analyze runs for timing, difficulty and tap-mark changes","kind":"cpu","seconds":520,"count":9}
+{"agent":"ALIGN","what":"mixrs salience on 16 rendered takes (5 levels + salon) and chart searches","kind":"cpu","seconds":15,"count":16}
+{"ts": "2026-11-07T20:49:16Z", "agent": "SALONART", "what": "p1-990100.png", "kind": "local-vision", "seconds": 18.53, "count": 1, "model": "qwen2.5vl:7b", "load_s": 8.27, "eval_tokens": 28}
+{"ts": "2026-11-07T20:49:22Z", "agent": "SALONART", "what": "p1-990101.png", "kind": "local-vision", "seconds": 6.14, "count": 1, "model": "qwen2.5vl:7b", "load_s": 5.02, "eval_tokens": 28}
+{"ts": "2026-11-07T20:49:26Z", "agent": "SALONART", "what": "p1-990102.png", "kind": "local-vision", "seconds": 4.15, "count": 1, "model": "qwen2.5vl:7b", "load_s": 3.03, "eval_tokens": 28}
+{"ts": "2026-11-07T20:49:31Z", "agent": "SALONART", "what": "p1-990103.png", "kind": "local-vision", "seconds": 4.13, "count": 1, "model": "qwen2.5vl:7b", "load_s": 3.03, "eval_tokens": 28}
+{"ts": "2026-11-07T20:49:35Z", "agent": "SALONART", "what": "p1-990104.png", "kind": "local-vision", "seconds": 3.97, "count": 1, "model": "qwen2.5vl:7b", "load_s": 2.87, "eval_tokens": 28}
+{"ts": "2026-11-07T20:49:38Z", "agent": "SALONART", "what": "p1-990105.png", "kind": "local-vision", "seconds": 3.8, "count": 1, "model": "qwen2.5vl:7b", "load_s": 2.71, "eval_tokens": 28}
+{"ts": "2026-11-07T20:52:00Z", "agent": "SALONART", "what": "salon room plate pass 1, 6 candidates (rooms/salon/run-a p1)", "kind": "gpu-image", "seconds": 135.6, "count": 6}
+{"ts": "2026-11-07T21:05:00Z", "agent": "SALONART", "what": "salon room plate pass 2, 9 candidates from 3 first passes (rooms/salon/run-a p2)", "kind": "gpu-image", "seconds": 299.3, "count": 9}
+{"ts": "2026-11-07T20:59:22Z", "agent": "SALONART", "what": "990500.png", "kind": "local-vision", "seconds": 50.46, "count": 1, "model": "qwen2.5vl:7b", "load_s": 22.22, "eval_tokens": 8}
+{"ts": "2026-11-07T21:00:01Z", "agent": "SALONART", "what": "990501.png", "kind": "local-vision", "seconds": 39.12, "count": 1, "model": "qwen2.5vl:7b", "load_s": 9.2, "eval_tokens": 8}
+{"ts": "2026-11-07T21:00:45Z", "agent": "SALONART", "what": "990502.png", "kind": "local-vision", "seconds": 43.4, "count": 1, "model": "qwen2.5vl:7b", "load_s": 10.55, "eval_tokens": 8}
+{"ts": "2026-11-07T21:00:49Z", "agent": "SALONART", "what": "990503.png", "kind": "local-vision", "seconds": 3.92, "count": 1, "model": "qwen2.5vl:7b", "load_s": 2.99, "eval_tokens": 8}
+{"ts": "2026-11-07T21:20:00Z", "agent": "SALONART", "what": "salon room plate run-b pass 1, 6 candidates", "kind": "gpu-image", "seconds": 274.73, "count": 6}
+{"ts": "2026-11-07T21:40:00Z", "agent": "SALONART", "what": "salon room plate run-b pass 2, 9 candidates (pick 991002)", "kind": "gpu-image", "seconds": 531.2, "count": 9}
+{"ts": "2026-11-07T21:40:00Z", "agent": "SALONART", "what": "band-violin front_3q sheet, 4 takes (wall time incl. queue)", "kind": "gpu-image", "seconds": 179, "count": 4}
+{"ts": "2026-11-07T21:40:00Z", "agent": "SALONART", "what": "band-bongos front_3q sheet, 4 takes (wall time incl. queue)", "kind": "gpu-image", "seconds": 351, "count": 4}
+{"ts": "2026-11-07T22:05:00Z", "agent": "SALONART", "what": "band-violin frames, 5 poses x 2 (wall time incl. queue)", "kind": "gpu-image", "seconds": 905, "count": 10}
+{"ts": "2026-11-07T22:05:00Z", "agent": "SALONART", "what": "salon pianist in-place key, 4 takes on a plate crop", "kind": "gpu-image", "seconds": 170.6, "count": 4}
+{"ts": "2026-11-07T22:40:00Z", "agent": "SALONART", "what": "salon pianist in-place frame edits, 3 poses x 2", "kind": "gpu-image", "seconds": 567.9, "count": 6}
+{"agent":"CONSOLE","what":"flutter test full suite x2, focused runs, zxing QR decode","kind":"cpu","seconds":260,"count":12}
+{"agent":"BOLERO","what":"salon bolero-cha candidates, 3 tag sets x 4 seeds, ACE-Step XL turbo","kind":"gpu-audio","seconds":249.93,"count":12}
+{"agent":"BOLERO","what":"salon chain (parent + 6 re-sampled tiers); first run had the wrong parent tags and was discarded","kind":"gpu-audio","seconds":150.4,"count":2}
+{"agent":"BOLERO","what":"salon reproduction checks, single takes to test seed and batch behaviour","kind":"gpu-audio","seconds":74.62,"count":2}
+{"agent":"BOLERO","what":"salon timing, character, chord-ear and grid measures; mixrs builds of salon (4) and billiards (1); verify","kind":"cpu","seconds":180,"count":12}
+{"ts": "2026-11-07T21:36:04Z", "agent": "SALONART", "what": "990700.png", "kind": "local-vision", "seconds": 35.87, "count": 1, "model": "qwen2.5vl:7b", "load_s": 10.81, "eval_tokens": 5}
+{"ts": "2026-11-07T21:36:08Z", "agent": "SALONART", "what": "990700.png", "kind": "local-vision", "seconds": 4.03, "count": 1, "model": "qwen2.5vl:7b", "load_s": 3.12, "eval_tokens": 5}
+{"ts": "2026-11-07T21:36:14Z", "agent": "SALONART", "what": "990700.png", "kind": "local-vision", "seconds": 5.44, "count": 1, "model": "qwen2.5vl:7b", "load_s": 3.9, "eval_tokens": 5}
+{"ts": "2026-11-07T21:36:19Z", "agent": "SALONART", "what": "990700.png", "kind": "local-vision", "seconds": 5.28, "count": 1, "model": "qwen2.5vl:7b", "load_s": 3.67, "eval_tokens": 5}
+{"ts": "2026-11-07T21:37:04Z", "agent": "SALONART", "what": "990700.png", "kind": "local-vision", "seconds": 44.27, "count": 1, "model": "qwen2.5vl:7b", "load_s": 9.96, "eval_tokens": 5}
+{"ts": "2026-11-07T23:00:00Z", "agent": "SALONART", "what": "salon layer fills: 3 chandeliers and 3 floor reflections, 2 seeds each", "kind": "gpu-image", "seconds": 989.6, "count": 12}
+{"ts": "2026-11-07T23:00:00Z", "agent": "SALONART", "what": "band-bongos frames, 5 poses x 2 (wall time incl. queue)", "kind": "gpu-image", "seconds": 939, "count": 10}
+{"ts": "2026-11-07T23:00:00Z", "agent": "SALONART", "what": "salon plate fills, layers, finish, pack, proofs (layers.py, band_finish.py, pianist.py)", "kind": "cpu", "seconds": 120, "count": 1}
+{"agent": "terciopelo", "what": "Don Terciopelo frame wave run c, pilot 12 poses, 2 candidates each; wall time per job, shared GPU queue", "kind": "gpu-image", "seconds": 1827, "count": 24}
+{"agent": "terciopelo", "what": "Don Terciopelo frame wave run c, the other 67 poses, 2 candidates each; wall time per job, shared GPU queue", "kind": "gpu-image", "seconds": 4459, "count": 140}
+{"agent": "terciopelo", "what": "Don Terciopelo pilot fixes, run d: held line, hand offer, bow, rose offer, 2 candidates each; wall time per job, shared GPU queue", "kind": "gpu-image", "seconds": 751, "count": 14}
+{"agent": "terciopelo", "what": "Don Terciopelo bow redraw at profile, run e (superseded), 2 candidates each; wall time per job, shared GPU queue", "kind": "gpu-image", "seconds": 272, "count": 6}
+{"agent": "terciopelo", "what": "Don Terciopelo bow redraw facing right, run f (superseded: drawn facing left), 4 candidates each; wall time per job, shared GPU queue", "kind": "gpu-image", "seconds": 238, "count": 8}
+{"agent": "terciopelo", "what": "Don Terciopelo bow facing left, run g, 3 candidates each; wall time per job, shared GPU queue", "kind": "gpu-image", "seconds": 320, "count": 9}
+{"agent": "terciopelo", "what": "Don Terciopelo moustache.b redraw, run h, 3 candidates; wall time per job, shared GPU queue", "kind": "gpu-image", "seconds": 70, "count": 3}
+{"agent": "terciopelo", "what": "Don Terciopelo first-pass curation: heads and hands counted per registered candidate with qwen2.5vl:7b (vision_curate.py)", "kind": "local-vision", "seconds": 131, "count": 175}
+{"agent": "terciopelo", "what": "Don Terciopelo rig renders, register, score, finish and pack (CPU)", "kind": "cpu", "seconds": 420, "count": 1}
+{"agent":"FINALE","what":"credits roll: build_credits.py, full flutter test (736 pass) and analyze","kind":"cpu","seconds":95,"count":3}
+{"agent": "music2", "what": "comedor polka candidates, ACE-Step XL turbo, 20 takes of 74.5 s in 5 batches; GPU run time without queue wait (elapsed incl. wait 400 s)", "kind": "gpu-audio", "seconds": 228, "count": 20}
+{"agent": "music2", "what": "comedor chain: parent re-made plus 6 re-sampled children in one graph", "kind": "gpu-audio", "seconds": 31, "count": 7}
+{"agent": "music2", "what": "comedor measures (timing, character, chord ear, chroma, shared grid), 9 mixrs trial builds and verifies, 2 mixrs builds of billiards+comedor", "kind": "cpu", "seconds": 420, "count": 1}
+{"agent": "music2", "what": "galeria reel candidates, ACE-Step XL turbo, 12 takes of 74.5 s in 3 batches; GPU run time without queue wait", "kind": "gpu-audio", "seconds": 135, "count": 12}
+{"agent": "music2", "what": "galeria chain: parent re-made plus 6 re-sampled children in one graph", "kind": "gpu-audio", "seconds": 31, "count": 7}
+{"agent": "music2", "what": "galeria measures, 3 mixrs trial builds and verifies, mixrs build of salon+galeria, align audit of the comedor chart", "kind": "cpu", "seconds": 300, "count": 1}
+{"agent": "music2", "what": "terraza samba candidates, ACE-Step XL turbo, 12 takes of 74.5 s in 3 batches; GPU run time without queue wait", "kind": "gpu-audio", "seconds": 140, "count": 12}
+{"agent": "music2", "what": "terraza chain: parent re-made plus 6 re-sampled children in one graph", "kind": "gpu-audio", "seconds": 31, "count": 7}
+{"agent": "music2", "what": "terraza measures, 3 mixrs trials, mixrs builds of galeria+terraza and billiards and galeria bridges, mixrs entry-phase change with cargo test, 5 align audits", "kind": "cpu", "seconds": 540, "count": 1}
+{"agent": "dress", "what": "billiards background players pool-bg-a/b/c redressed for the party: 3 keys plus a re-key, a 2-job two-picture pilot (failed), 25 frame jobs and a watch_a redraw, Qwen-Image-Edit 2511 Lightning 4 steps; GPU run time without queue wait", "kind": "gpu-image", "seconds": 1452, "count": 65}
+{"agent": "dress", "what": "redress finish, keying, palette snap, candidate sheets and three atlas packs (tool/art/pipeline/redress.py)", "kind": "cpu", "seconds": 240, "count": 3}

@@ -1,0 +1,55 @@
+{
+ "$comment": "The banquet close-up: Don Charolas on the picture's left, Mācron on the right, as in the rose handoff. Every canvas is 400x440 and transparent, nothing mirrored. His four drawings are four Qwen edits of one bust crop of his accepted front sheet, placed by hair top and face centre so his head holds still between cuts; the tray, cloche and arm change. Mācron's are drawn from parts by the close-up rig: only his picture-left arm, his eyes and the can change. One idea: the dessert for a robot. Proposals by COMEDOR, 2026-11-08; the beats are a suggestion for WIRE2.",
+ "canvas": [
+  400,
+  440
+ ],
+ "order": [
+  "present",
+  "lift",
+  "offer",
+  "empty"
+ ],
+ "plate": {
+  "image": "comedor-banquete-plate.png",
+  "source": "assets/art/comedor/comedor-room.png px (300,120)-(770,820): the still life, the lady's portrait, the right chandelier's halo and the service door, above the table's right half. The chandelier layer isn't in it."
+ },
+ "charolas": {
+  "drawings": {
+   "present": "comedor-dc-present.png",
+   "lift": "comedor-dc-lift.png",
+   "offer": "comedor-dc-offer.png",
+   "empty": "comedor-dc-empty.png"
+  },
+  "side": "left",
+  "framing": "bust: the canvas bottom cuts his belly",
+  "can": "under the closed cloche in present; just revealed on the tray in lift; on the tray held out toward the picture's right edge in offer, the cloche raised high like a trophy; gone in empty (Mācron has it)",
+  "source": "art_runs/comedor-closeups-20261108/scripts/comedor_bust.py from Qwen drawings present-996001, lift-996011, offer-996020 and empty-996030 in art_runs/comedor-closeups-20261108/source/; words in scripts/bust_jobs.py",
+  "cell": 2
+ },
+ "macron": {
+  "drawings": {
+   "reach": "comedor-mc-reach.png",
+   "take": "comedor-mc-take.png",
+   "sip": "comedor-mc-sip.png",
+   "happy": "comedor-mc-happy.png"
+  },
+  "side": "right",
+  "framing": "to the knees: the canvas bottom cuts his boots",
+  "floor": [
+   200,
+   470
+  ],
+  "K": 1.4,
+  "can": "in his picture-left hand from take on: held up to look at (take), tipped to the bottom of his face screen with eyes squeezed shut (sip), held low with big arc eyes and a blush (happy). The candle stays lit.",
+  "source": "art_runs/comedor-closeups-20261108/scripts/comedor_macron.py, drawn from parts by art_runs/closeups-v3-20261106/scripts/rig.py",
+  "cell": 2
+ },
+ "can": {
+  "image": "comedor-can.png",
+  "note": "The tiny oil can with its birthday candle alone, for a wide-shot keepsake or a beat on the tray."
+ },
+ "beats": {
+  "suggestion": "closeupFrom 5: charolas present, macron reach. 6: lift (the reveal, a clink accent). 7: charolas offer, macron take. 8 (contact, QUÉ / BANQUETE): charolas empty, macron sip, with a glug accent on 8, 8.5. 10: macron happy, charolas empty, both swaying. closeupTo 11.5."
+ }
+}

@@ -8,8 +8,10 @@ import 'package:flutter/services.dart';
 
 import 'band.dart';
 import 'challenger_choreography.dart';
+import 'crowd_interest.dart';
 import 'dance_floor.dart';
 import 'dance_grammar.dart';
+import 'dance_line.dart';
 import 'duet_staging.dart';
 import 'ensemble_sprites.dart';
 import 'exit_shot.dart';
@@ -69,6 +71,9 @@ class GardenSceneGame extends FlameGame {
   String? artLoadError;
   PartySpriteAtlas? _heroAtlas;
   Map<String, EnsembleAtlas>? _ensemble;
+
+  /// A line dancer's recoloured copy of the lead's atlas, by image file.
+  final _lineAtlases = <String, EnsembleAtlas>{};
   Map<String, EnsembleAtlasDefinition>? _propSets;
   EnsembleAtlas? _props;
   OutfitPalette? _outfits;
@@ -182,6 +187,23 @@ class GardenSceneGame extends FlameGame {
       if (away != null) {
         _ensemble![challenger.atlas]!.definition.art.requireFrames(away.frames);
       }
+      final arch = challenger.line?.arch;
+      if (arch != null) {
+        _ensemble![challenger.atlas]!.definition.art.requireFrames(arch.frames);
+      }
+      for (final dancer in challenger.line?.dancers ?? const <LineDancer>[]) {
+        final image = dancer.image;
+        if (image == null || _lineAtlases.containsKey(image)) continue;
+        final lead = _ensemble![challenger.atlas]!.definition;
+        final loaded = await images.load('ensemble/$image');
+        if (loaded.width != lead.art.width ||
+            loaded.height != lead.art.height) {
+          throw StateError(
+            'Level ${level.id}: $image is not the size of ${lead.art.image}',
+          );
+        }
+        _lineAtlases[image] = EnsembleAtlas(lead, loaded);
+      }
       final stance = challenger.defeatStance;
       if (stance != null) {
         _ensemble![challenger.atlas]!.definition.art.requireFrames(stance.frames);
@@ -194,9 +216,19 @@ class GardenSceneGame extends FlameGame {
       }
       atlas.definition.art.requireFrames(player.frames);
     }
+    for (final slot in level.layout.guests) {
+      final clips = level.guestClips[slot.clips];
+      if (clips == null) continue;
+      final art = _ensemble![slot.atlas!];
+      if (art == null) {
+        throw StateError('Level ${level.id} names unknown atlas ${slot.atlas}');
+      }
+      art.definition.art.requireFrames(clips.frames);
+    }
     final dance = level.floorDance;
     if (dance != null) {
       for (final slot in level.layout.guests) {
+        if (slot.clips != null) continue;
         final atlas = slot.atlas ?? 'guest${slot.archetype}';
         final art = _ensemble![atlas];
         if (art == null) {
@@ -590,6 +622,11 @@ class GardenSceneGame extends FlameGame {
     final s = session;
     final dance = _level!.floorDance;
     for (final slot in room.guests) {
+      final clips = _level!.guestClips[slot.clips];
+      if (clips != null) {
+        _addCastGuest(draws, viewport, room, slot, clips, beat);
+        continue;
+      }
       if (slot.onFloor && dance != null) {
         _addFloorGuest(draws, viewport, room, slot, dance, beat);
         continue;
@@ -631,6 +668,76 @@ class GardenSceneGame extends FlameGame {
         }),
       );
     }
+  }
+
+  /// Someone the level casts with their own drawing for each step of the meter:
+  /// a diner who eats, watches, claps, then rises and toasts; a waiter who hops.
+  void _addCastGuest(
+    List<_WorldDraw> draws,
+    PartyViewport viewport,
+    PartyRoomLayout room,
+    PartyGuestSlot slot,
+    GuestClipSet clips,
+    double beat,
+  ) {
+    final projected = room.projectSlot(viewport, slot);
+    final s = session;
+    final snapshot = s != null && slot.interestIndex != null
+        ? s.crowd.guest(
+            slot.interestIndex!,
+            beat,
+            exitBeat: s.phase == GardenPhase.cleared
+                ? exitCodaBeat ?? s.completedAtBeat
+                : null,
+          )
+        : null;
+    final atlas = _ensemble![slot.atlas!]!;
+    final cue = _applauseCue(slot.interestIndex ?? 0);
+    final frame = cue != null && clips.applause != null
+        ? clips.applauseFrame(cue, reducedMotion: reducedMotion)
+        : snapshot == null
+        ? GuestClipSet.idle(
+            clips.clips[CrowdClip.seatedIdle]!,
+            beat,
+            (slot.interestIndex ?? 0) * 1.0,
+            reducedMotion: reducedMotion,
+          )
+        : clips.frame(snapshot, beat, reducedMotion: reducedMotion);
+    final scale = projected.spriteScale(atlas.nativeHeight(clips.reference));
+    final ground = _point(projected.floor);
+    final facesRight = slot.occupiedFacingRight ?? slot.facingRight;
+    draws.add(
+      _WorldDraw(slot.id, projected.floor.y, 10, (canvas) {
+        if (!slot.chairIncluded) {
+          _shadow(canvas, ground, projected.standingHeight);
+        }
+        atlas.draw(canvas, frame, ground, scale, flipX: !facesRight);
+      }),
+    );
+  }
+
+  /// Beats since guest [index]'s applause cue at the win, or null before it.
+  double? _applauseCue(int index) {
+    final clip = _level?.exitShot?.applause;
+    final at = exitBeat;
+    if (clip == null || at == null || session?.phase != GardenPhase.cleared) {
+      return null;
+    }
+    final late = reducedMotion ? 0.0 : (index % 4) * .25;
+    return at < clip.from + late ? null : at - clip.from - late;
+  }
+
+  /// The win's applause for guest [index], or null before it starts. Each starts
+  /// a step later than the one before, so the room turns rather than switches.
+  String? _applauseAt(int index) {
+    final clip = _level?.exitShot?.applause;
+    final at = exitBeat;
+    if (clip == null || at == null || session?.phase != GardenPhase.cleared) {
+      return null;
+    }
+    final late = reducedMotion ? 0.0 : (index % 4) * .25;
+    if (at < clip.from + late) return null;
+    return clip.frameAt(at - late, reducedMotion: reducedMotion);
   }
 
   /// Someone already on the dance floor. They make way when the fight starts and
@@ -686,10 +793,14 @@ class GardenSceneGame extends FlameGame {
     final along = parting?.along(beat, slot.partDelay, reducedMotion: reducedMotion) ?? 0;
     final moving =
         slot.atlas != null && dance.sidestep != null && along > 0 && along < 1;
-    final frame = moving
-        ? dance.sidestep!.at(danceBeat + index * .25, reducedMotion: reducedMotion)
-        : pose.frame;
-    final facesRight = moving
+    final applause = _applauseAt(index);
+    final frame = applause ??
+        (moving
+            ? dance.sidestep!.at(danceBeat + index * .25, reducedMotion: reducedMotion)
+            : pose.frame);
+    final facesRight = applause != null
+        ? slot.facingRight
+        : moving
         ? floorGuestTravelsRight(slot) ?? slot.facingRight
         : pose.facesIn
         ? slot.facingRight
@@ -773,12 +884,23 @@ class GardenSceneGame extends FlameGame {
   void _drawRoomLayers(ui.Canvas canvas, PartyViewport viewport, double beat) {
     final swing = _partySwing(beat);
     final paint = ui.Paint()..filterQuality = ui.FilterQuality.none;
+    // Lights also bloom with the win's flare, which the warm-down doesn't cool:
+    // fireworks fill the sky as the lamps swell.
+    final flare = _flareNow;
     for (final prop in _level!.layers) {
+      // A prop waiting for a tier holds still below it, even at full swing.
+      final gate = prop.minTier == null
+          ? 1.0
+          : _partyUp.wake(beat, first: prop.minTier!) * (1 - warmDown);
       final frame = prop.frameAt(
         beat: beat,
-        swing: swing,
+        swing: prop.kind == PartyLifeKind.light
+            ? math.max(swing * gate, flare)
+            : swing * gate,
         reducedMotion: reducedMotion,
-        life: _life(prop.kind, beat, prop.instance),
+        life: prop.minTier == null
+            ? _life(prop.kind, beat, prop.instance)
+            : partyPropStrength(gate, prop.instance),
       );
       final at = prop.screenRect(viewport);
       canvas.drawImageRect(
@@ -1038,11 +1160,23 @@ class GardenSceneGame extends FlameGame {
     }
   }
 
+  /// The win's one swell of the lamps, 0 outside it. It isn't cooled by
+  /// [warmDown]: it is the room answering the win.
+  double get _flareNow {
+    final flare = _level?.exitShot?.flare;
+    final at = exitBeat;
+    if (flare == null || at == null || session?.phase != GardenPhase.cleared) {
+      return 0;
+    }
+    return flare.at(at);
+  }
+
   void _drawLampGlows(ui.Canvas canvas, PartyViewport viewport, double beat) {
     _drawWallLight(canvas, viewport, beat);
     // The whole room warms from above, ending before the tap band, with no moving
     // edge: for a room with no layers yet, this and the lamps are most of its life.
-    final warmth = _life(PartyLifeKind.light, beat, 0);
+    final flare = _flareNow;
+    final warmth = math.min(1.0, _life(PartyLifeKind.light, beat, 0) + .6 * flare);
     if (warmth > 0) {
       final bounds = ui.Rect.fromLTWH(
         0,
@@ -1079,15 +1213,18 @@ class GardenSceneGame extends FlameGame {
       final breath = reducedMotion
           ? 1.0
           : 1 + .12 * life * math.cos(2 * math.pi * beat / 4);
-      final radius = 2.0 + 10 * life;
+      final radius = 2.0 + 10 * life + 16 * flare;
       canvas.drawCircle(
         center,
         radius,
         ui.Paint()
           ..shader = ui.Gradient.radial(center, radius, [
-            const ui.Color(
-              0xffffce83,
-            ).withValues(alpha: (.045 + .3 * life) * gain * breath),
+            const ui.Color(0xffffce83).withValues(
+              alpha: math.min(
+                1.0,
+                (.045 + .3 * life) * gain * breath + .5 * flare,
+              ),
+            ),
             const ui.Color(0x00ffce83),
           ]),
       );
@@ -1148,6 +1285,14 @@ class GardenSceneGame extends FlameGame {
               );
         dressed = dressed.withFrame(stance.frames[step]);
       }
+      // A lone opponent's own win, by beat: a bow, a gesture toward the door.
+      final ownWin = !duet &&
+              shot != null &&
+              s?.phase == GardenPhase.cleared &&
+              exitBeat != null
+          ? shot.opponentFrameAt(exitBeat!, reducedMotion: reducedMotion)
+          : null;
+      if (ownWin != null) dressed = dressed.withFrame(ownWin);
       var mirrored = false;
       DuetRole? role;
       final placed = _duetPlace(i, challenger.atlas, dressed, beat);
@@ -1183,6 +1328,46 @@ class GardenSceneGame extends FlameGame {
           role: role,
         ),
       );
+      final line = challenger.line;
+      if (line == null) continue;
+      // The rest of the line: the lead's drawings, each a little late.
+      final won = s?.phase == GardenPhase.cleared && exitBeat != null;
+      final arch = line.archAt(won ? exitBeat : null, reducedMotion: reducedMotion);
+      for (final dancer in line.dancers) {
+        final late = reducedMotion ? 0.0 : dancer.lagBeats;
+        var theirs = late == 0
+            ? dressed
+            : _challengerAt(beat - late, dancer: challenger.atlas);
+        final theirWin = won && !duet
+            ? shot?.opponentFrameAt(exitBeat! - late, reducedMotion: reducedMotion)
+            : null;
+        if (theirWin != null) theirs = theirs.withFrame(theirWin);
+        final raised = won
+            ? line.arch?.frameAt(exitBeat! - late, reducedMotion: reducedMotion)
+            : null;
+        if (raised != null) theirs = theirs.withFrame(raised);
+        final at = line.place(dancer, floor, challenger.mark, arch);
+        final where = viewport.project(at);
+        final tall = _adultHeight(
+          viewport,
+          room,
+          at,
+          stature: challenger.stature * dancer.stature,
+        );
+        final size = tall / atlas.nativeHeight('ready');
+        placements.add(
+          _DancerPlacement(
+            atlas: _lineAtlases[dancer.image] ?? atlas,
+            frame: theirs.frameId,
+            ground: ui.Offset(where.x + theirs.rootOffsetX * size, where.y),
+            footY: where.y,
+            height: tall,
+            scale: size,
+            mirrored: dancer.archMirrored && arch >= .5,
+            role: null,
+          ),
+        );
+      }
     }
     _joinHands(placements, viewport, room, beat);
     for (final dancer in placements) {
@@ -1470,6 +1655,28 @@ class GardenSceneGame extends FlameGame {
       );
       shotWalking = shotBeat != null && shot.walkingAt(shotBeat);
     }
+    // A last level's way out: from his step along the route, through the door.
+    final walkOut = s?.phase == GardenPhase.cleared ? shot?.walkOut : null;
+    var walkingOut = false;
+    var heroOpacity = 1.0;
+    var heroFacesAway = false;
+    if (walkOut != null && shotBeat != null && shotBeat >= walkOut.from) {
+      final along = reducedMotion ? 0.0 : walkOut.along(shotBeat);
+      final pose = level.route.sample(along);
+      final start = level.heroExitFloor(level.route.sample(0));
+      final there = level.heroExitFloor(pose);
+      // The route is written from home; he starts from his step, and the
+      // difference fades out by the threshold.
+      final lead = 1 - along;
+      floor = PartyPoint(
+        there.x + (shot!.heroStep.dx - start.x) * lead,
+        there.y + (shot.heroStep.dy - start.y) * lead,
+      );
+      walkingOut = !reducedMotion && walkOut.walkingAt(shotBeat);
+      shotWalking = walkingOut;
+      heroFacesAway = pose.facing == DepartureFacing.rear;
+      heroOpacity = walkOut.opacityAt(shotBeat, reducedMotion: reducedMotion);
+    }
     final projected = viewport.project(floor);
     final height = _adultHeight(viewport, room, floor, stature: .35);
     final reference = _heroAtlas!.definition.frames['front_idle']!;
@@ -1479,7 +1686,8 @@ class GardenSceneGame extends FlameGame {
       beat: beat,
       phaseBeat: s?.phaseBeat ?? 0,
       front:
-          s?.phase == GardenPhase.response || s?.phase == GardenPhase.cleared,
+          !heroFacesAway &&
+          (s?.phase == GardenPhase.response || s?.phase == GardenPhase.cleared),
       walking:
           s?.phase == GardenPhase.intro ||
           exitTravel > 0 ||
@@ -1575,19 +1783,73 @@ class GardenSceneGame extends FlameGame {
       frame = turning.frame;
       hop = 0;
     }
+    if (heroOpacity <= 0) return;
+    final keepsake = shot?.keepsake;
+    final wearing =
+        keepsake != null &&
+        s?.phase == GardenPhase.cleared &&
+        shotBeat != null &&
+        shotBeat >= keepsake.from &&
+        !shot!.closeupAt(shotBeat);
     draws.add(
       _WorldDraw('macron', projected.y, 10, (canvas) {
+        if (heroOpacity < 1) {
+          canvas.saveLayer(
+            null,
+            ui.Paint()
+              ..color = ui.Color.fromRGBO(0, 0, 0, heroOpacity),
+          );
+        }
         _shadow(canvas, _point(projected), height * (1 - hop * .5));
+        final ground = _point(projected).translate(0, -height * hop);
         _heroAtlas!.draw(
           canvas,
           frame,
-          _point(projected).translate(0, -height * hop),
+          ground,
           scale,
           flipX: turning?.flip ?? false,
           // His art is far larger than he is drawn: mipmaps keep it steady.
           filter: ui.FilterQuality.medium,
         );
+        if (wearing) {
+          _drawKeepsake(
+            canvas,
+            keepsake,
+            ground,
+            height,
+            flipX: turning?.flip ?? false,
+          );
+        }
+        if (heroOpacity < 1) canvas.restore();
       }),
+    );
+  }
+
+  /// What he carries out of the close-up, pinned to him in the wide shot.
+  void _drawKeepsake(
+    ui.Canvas canvas,
+    ExitShotKeepsake keepsake,
+    ui.Offset ground,
+    double heroHeight, {
+    required bool flipX,
+  }) {
+    final image = images.fromCache(keepsake.image);
+    final factor = keepsake.height * heroHeight / image.height;
+    final across = keepsake.at.dx * heroHeight;
+    final at = ground.translate(
+      flipX ? -across : across,
+      keepsake.at.dy * heroHeight,
+    );
+    canvas.drawImageRect(
+      image,
+      ui.Rect.fromLTWH(0, 0, image.width.toDouble(), image.height.toDouble()),
+      ui.Rect.fromLTWH(
+        at.dx - keepsake.anchor.dx * factor,
+        at.dy - keepsake.anchor.dy * factor,
+        image.width * factor,
+        image.height * factor,
+      ),
+      ui.Paint()..filterQuality = ui.FilterQuality.none,
     );
   }
 }

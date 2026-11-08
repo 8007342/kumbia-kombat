@@ -1,0 +1,201 @@
+{
+ "$comment": "The salon's opponent, Don Terciopelo (plan/levels/salon-2026-11-07.md): an older ballroom gentleman who has owned this floor for forty years. A tall narrow vertical, the opposite of the stocky Gatekeeper and the wide BlinBlin dancer. The rose in his lapel is his one red accent. He dances the cha-cha-chá (motion set opponent-chacha). The coordinator delegated acceptance of his sheet to this agent on 2026-11-07, as a choice the owner can reverse. Sheets accepted by this agent, 2026-11-07: front is pass 2 seed 991000 and back is pass 2 seed 991000 (art_runs/terciopelo-sheet-20261107b). Garment colours are the accepted front's medians, with the jacket held just off pure white.",
+ "id": "terciopelo",
+ "family": "terciopelo-v1",
+ "style": "party-pixel",
+ "description": "Salon opponent, Don Terciopelo: a tall, slim, very upright ballroom gentleman of about seventy in a white dinner jacket, with a red rose in his lapel.",
+ "body": {
+  "preset": "tall-slim-adult"
+ },
+ "pronouns": [
+  "he",
+  "him",
+  "his"
+ ],
+ "skin": "#B07E58",
+ "traits": "tall slim upright gentleman of about seventy, swept-back silver hair, pencil moustache, poised and elegantly unimpressed",
+ "demeanor": "absurdly poised, gallant and elegantly unimpressed, until he is won over",
+ "garments": [
+  {
+   "id": "hair",
+   "shape": "puff",
+   "region": "hair",
+   "colour": "#C9CCD0",
+   "text": "swept-back silver hair"
+  },
+  {
+   "id": "shirt",
+   "shape": "shirt-fitted",
+   "region": "shirt",
+   "colour": "#F4F2EC",
+   "text": "white dress shirt"
+  },
+  {
+   "id": "jacket",
+   "shape": "waistcoat-fitted",
+   "region": "cloth",
+   "colour": "#F0EDE6",
+   "text": "white dinner jacket with shawl lapels",
+   "secondaryMotion": "lag-1"
+  },
+  {
+   "id": "lapels",
+   "shape": "jacket-lapels",
+   "region": "cloth",
+   "colour": "#F0EDE6",
+   "text": "shawl lapels"
+  },
+  {
+   "id": "velvet",
+   "shape": "palette-only",
+   "region": "accessory",
+   "colour": "#5A0C22",
+   "alsoIn": [
+    "shirt",
+    "cloth",
+    "skin"
+   ],
+   "text": "burgundy velvet bow tie"
+  },
+  {
+   "id": "rose",
+   "shape": "palette-only",
+   "region": "accessory",
+   "colour": "#C2141A",
+   "alsoIn": [
+    "cloth",
+    "skin",
+    "shirt"
+   ],
+   "text": "a red rose in his left lapel"
+  },
+  {
+   "id": "rose_leaf",
+   "shape": "palette-only",
+   "region": "accessory",
+   "colour": "#2E7038",
+   "alsoIn": [
+    "cloth",
+    "skin",
+    "shirt"
+   ],
+   "text": "the rose's green stem and leaf"
+  },
+  {
+   "id": "trousers",
+   "shape": "trousers",
+   "region": "trousers",
+   "colour": "#14151A",
+   "text": "black dress trousers"
+  },
+  {
+   "id": "shoes",
+   "shape": "shoes-flat",
+   "region": "shoes",
+   "colour": "#F0EDE6",
+   "alsoIn": [
+    "trousers"
+   ],
+   "text": "two-tone white and black spectator shoes"
+  }
+ ],
+ "motion": {
+  "set": "opponent-chacha",
+  "overrides": {}
+ },
+ "drawing": {
+  "noun": "man",
+  "fits": "hair, both shoes and both hands",
+  "look": "tall, slim, very upright elderly build with long legs and narrow shoulders, long narrow face, swept-back silver hair, a thin, neatly trimmed dark pencil moustache along his upper lip, light olive-tan skin, crisp white dinner jacket with shawl lapels, white dress shirt, burgundy velvet bow tie, a single red rose in his left lapel, slim black dress trousers, two-tone white and black spectator shoes and thick dark ink outline",
+  "extra": "He is a grown man of about seventy, lean and elegant, standing very tall and straight. Both eyes are open. His mouth stays closed in a poised, faintly amused smile. The red rose is small and bright on the lapel on the right side of the picture. ",
+  "sheet": {
+   "source": {
+    "image": "tool/art/references/terciopelo/front-draft-f4.png"
+   },
+   "views": {
+    "front": {
+     "image": "tool/art/references/terciopelo/front.png",
+     "description": "standing tall, square and very upright facing the viewer, feet a little apart, both arms relaxed and held a little away from the body, both open hands visible",
+     "stageScale": 0.84
+    },
+    "back": {
+     "image": "tool/art/references/terciopelo/back.png",
+     "description": "seen from directly behind, his back to the viewer, standing tall and upright with feet a little apart, both arms relaxed, the plain back of his white dinner jacket and the back of his swept-back silver hair",
+     "look": "tall, slim, very upright elderly build with long legs and narrow shoulders, light olive-tan skin, swept-back silver hair, crisp white dinner jacket with a plain back, slim black dress trousers, two-tone white and black spectator shoes and thick dark ink outline",
+     "extra": "He is a grown man of about seventy. From behind no face, rose or bow tie shows. "
+    },
+    "front_bare": {
+     "image": "tool/art/references/terciopelo/front-bare.png",
+     "description": "standing tall, square and very upright facing the viewer, the lapel bare",
+     "look": "tall, slim, very upright elderly build with long legs and narrow shoulders, long narrow face, swept-back silver hair, a thin, neatly trimmed dark pencil moustache along his upper lip, light olive-tan skin, crisp white dinner jacket with shawl lapels, white dress shirt, burgundy velvet bow tie, slim black dress trousers, two-tone white and black spectator shoes and thick dark ink outline",
+     "extra": "He is a grown man of about seventy, lean and elegant, standing very tall and straight. Both eyes are open. His mouth stays closed in a poised, faintly amused smile. His lapel is bare: the single red rose is in his hand. "
+    }
+   }
+  },
+  "seed": 991000,
+  "poseOverrides": {},
+  "score": {
+   "silhouetteTolerance": 30
+  },
+  "$comment": "The rose in his hand (clip rose) is in the pose words, not a prop: the rig's prop shapes are shaker, bottle and glass, and a held rose needs no mask. The hand is named by picture side in the words. The rig's arms stop short of the face and the far lapel, so the wrist is moved to the moustache, the bow tie and the left lapel in the skeleton (rig canvas pixels), as the BlinBlin dancer's salute was. front_bare is the accepted front with the lapel's rose painted out by code (rose.offer holds the rose, and the pilot drew a second one in the lapel).",
+  "skeletonOverrides": {
+   "moustache.a": {
+    "3": [
+     268,
+     382
+    ],
+    "4": [
+     338,
+     264
+    ]
+   },
+   "moustache.b": {
+    "3": [
+     262,
+     384
+    ],
+    "4": [
+     326,
+     258
+    ]
+   },
+   "glance.a": {
+    "6": [
+     440,
+     402
+    ],
+    "7": [
+     384,
+     314
+    ]
+   },
+   "rose.pluck": {
+    "3": [
+     300,
+     432
+    ],
+    "4": [
+     396,
+     372
+    ]
+   }
+  }
+ },
+ "references": {
+  "mode": "source",
+  "sources": []
+ },
+ "targets": [
+  {
+   "room": "salon",
+   "atlas": "terciopelo",
+   "out": "assets/art/ensemble/terciopelo-v1.png",
+   "native": [
+    256,
+    320
+   ],
+   "pixelScale": 3
+  }
+ ],
+ "seedBase": 991000
+}

@@ -200,9 +200,9 @@
   {
    "id": "billiards",
    "key": "G minor",
-   "next": null,
+   "next": "comedor",
    "successBars": 4,
-   "successFinal": true,
+   "successFinal": false,
    "gridTier": "mid",
    "layerFadeBeats": 1,
    "tiers": [
@@ -244,6 +244,209 @@
      ]
     }
    ]
+  },
+  {
+   "id": "comedor",
+   "key": "F major",
+   "next": "salon",
+   "successBars": 4,
+   "successFinal": false,
+   "gridTier": "mid",
+   "layerFadeBeats": 1,
+   "tiers": [
+    {
+     "name": "low",
+     "source": "act2-20261108/chains/comedor/lowB.flac",
+     "bpm": 120,
+     "loopBars": 32,
+     "targetLufs": -16.5,
+     "eq": [
+      {
+       "type": "highshelf",
+       "freq": 1200,
+       "gain": -6
+      }
+     ]
+    },
+    {
+     "name": "mid",
+     "source": "act2-20261108/chains/comedor/parent.flac",
+     "bpm": 128,
+     "loopBars": 32,
+     "targetLufs": -16,
+     "eq": []
+    },
+    {
+     "name": "high",
+     "source": "act2-20261108/chains/comedor/highE.flac",
+     "bpm": 136,
+     "loopBars": 32,
+     "targetLufs": -15,
+     "eq": [],
+     "layer": [
+      {
+       "source": "act2-20261108/chains/comedor/parent.flac",
+       "part": "percussive",
+       "db": -6
+      }
+     ]
+    }
+   ],
+   "bridgeEntry": {
+    "step": 4,
+    "offset": 3,
+    "why": "comedor.json introBeats 12: calls start 3 bars after entry, and the take's 4-bar phrase starts on bar 2 mod 4 (align_charts)"
+   }
+  },
+  {
+   "id": "salon",
+   "key": "D minor",
+   "successKey": "F major",
+   "next": "galeria",
+   "successBars": 4,
+   "successFinal": false,
+   "gridTier": "mid",
+   "layerFadeBeats": 1,
+   "tiers": [
+    {
+     "name": "low",
+     "source": "pipeline-20261107/chains/salon/lowC.flac",
+     "bpm": 108,
+     "loopBars": 24,
+     "targetLufs": -16.5,
+     "eq": [
+      {
+       "type": "highshelf",
+       "freq": 1500,
+       "gain": -3
+      }
+     ]
+    },
+    {
+     "name": "mid",
+     "source": "pipeline-20261107/chains/salon/parent.flac",
+     "bpm": 116,
+     "loopBars": 24,
+     "targetLufs": -16,
+     "eq": []
+    },
+    {
+     "name": "high",
+     "source": "pipeline-20261107/chains/salon/highE.flac",
+     "bpm": 124,
+     "loopBars": 24,
+     "targetLufs": -15,
+     "eq": [],
+     "layer": [
+      {
+       "source": "pipeline-20261107/chains/salon/parent.flac",
+       "part": "percussive",
+       "db": -6
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "galeria",
+   "key": "A minor",
+   "next": "terraza",
+   "successBars": 4,
+   "successFinal": false,
+   "gridTier": "mid",
+   "layerFadeBeats": 1,
+   "tiers": [
+    {
+     "name": "low",
+     "source": "act2-20261108/chains/galeria/lowC.flac",
+     "bpm": 114,
+     "loopBars": 32,
+     "targetLufs": -16.5,
+     "eq": [
+      {
+       "type": "highshelf",
+       "freq": 1500,
+       "gain": -3
+      }
+     ]
+    },
+    {
+     "name": "mid",
+     "source": "act2-20261108/chains/galeria/parent.flac",
+     "bpm": 122,
+     "loopBars": 32,
+     "targetLufs": -16,
+     "eq": []
+    },
+    {
+     "name": "high",
+     "source": "act2-20261108/chains/galeria/highE.flac",
+     "bpm": 130,
+     "loopBars": 32,
+     "targetLufs": -15,
+     "eq": [],
+     "layer": [
+      {
+       "source": "act2-20261108/chains/galeria/parent.flac",
+       "part": "percussive",
+       "db": -6
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "terraza",
+   "key": "C major",
+   "next": null,
+   "successBars": 4,
+   "successFinal": true,
+   "gridTier": "mid",
+   "layerFadeBeats": 1,
+   "tiers": [
+    {
+     "name": "low",
+     "source": "act2-20261108/chains/terraza/lowC.flac",
+     "bpm": 96,
+     "loopBars": 24,
+     "targetLufs": -16.5,
+     "eq": [
+      {
+       "type": "highshelf",
+       "freq": 1500,
+       "gain": -3
+      }
+     ]
+    },
+    {
+     "name": "mid",
+     "source": "act2-20261108/chains/terraza/parent.flac",
+     "bpm": 104,
+     "loopBars": 24,
+     "targetLufs": -16,
+     "eq": []
+    },
+    {
+     "name": "high",
+     "source": "act2-20261108/chains/terraza/highE.flac",
+     "bpm": 112,
+     "loopBars": 24,
+     "targetLufs": -15,
+     "eq": [],
+     "layer": [
+      {
+       "source": "act2-20261108/chains/terraza/parent.flac",
+       "part": "percussive",
+       "db": -4
+      }
+     ]
+    }
+   ],
+   "bridgeEntry": {
+    "step": 4,
+    "offset": 2,
+    "why": "terraza.json introBeats 12: calls start 3 bars after entry, and align_charts puts the take's 4-bar phrase on bar 1 mod 4 (weak margins, 1.06 to 1.2)"
+   }
   }
  ],
  "mix": {

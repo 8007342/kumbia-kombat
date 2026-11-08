@@ -1,0 +1,86 @@
+[
+ {
+  "file": "p1-990800.png",
+  "sat": 0.7,
+  "val": 0.53,
+  "bandLuma": 93.6,
+  "bandP98": 116.0,
+  "bandEdge": 1.9,
+  "drift": {
+   "median": 16.0,
+   "p90": 36.2,
+   "n": 399
+  },
+  "waterIoU": null
+ },
+ {
+  "file": "p1-990801.png",
+  "sat": 0.82,
+  "val": 0.45,
+  "bandLuma": 43.3,
+  "bandP98": 121.0,
+  "bandEdge": 1.6,
+  "drift": {
+   "median": 17.5,
+   "p90": 37.0,
+   "n": 450
+  },
+  "waterIoU": null
+ },
+ {
+  "file": "p1-990802.png",
+  "sat": 0.83,
+  "val": 0.43,
+  "bandLuma": 119.9,
+  "bandP98": 204.0,
+  "bandEdge": 2.5,
+  "drift": {
+   "median": 23.0,
+   "p90": 38.0,
+   "n": 464
+  },
+  "waterIoU": null
+ },
+ {
+  "file": "p1-990803.png",
+  "sat": 0.72,
+  "val": 0.57,
+  "bandLuma": 97.9,
+  "bandP98": 140.0,
+  "bandEdge": 1.5,
+  "drift": {
+   "median": 17.5,
+   "p90": 36.5,
+   "n": 496
+  },
+  "waterIoU": null
+ },
+ {
+  "file": "p1-990804.png",
+  "sat": 0.76,
+  "val": 0.47,
+  "bandLuma": 81.1,
+  "bandP98": 139.0,
+  "bandEdge": 2.4,
+  "drift": {
+   "median": 17.0,
+   "p90": 37.0,
+   "n": 464
+  },
+  "waterIoU": null
+ },
+ {
+  "file": "p1-990805.png",
+  "sat": 0.76,
+  "val": 0.53,
+  "bandLuma": 72.4,
+  "bandP98": 135.0,
+  "bandEdge": 1.5,
+  "drift": {
+   "median": 22.0,
+   "p90": 38.0,
+   "n": 442
+  },
+  "waterIoU": null
+ }
+]

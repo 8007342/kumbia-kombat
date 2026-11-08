@@ -1,0 +1,20 @@
+{
+ "room": "billiards",
+ "run": "dress-pool-bg-b-20261108a",
+ "passNo": 2,
+ "steps": 4,
+ "jobs": [
+  {
+   "name": "watch_a",
+   "workflow": "art_runs/dress-pool-bg-b-20261108a/workflows/frame-watch_a.api.json",
+   "inputs": {
+    "base": "/work/tmp/imagegen/kumbia/dress-pool-bg-b-20261108a/in/watch_a.png"
+   },
+   "overrides": {
+    "seed": 990870
+   },
+   "count": 3
+  }
+ ],
+ "how": "tool/art/rooms/run_room_jobs.py --jobs <this file>"
+}

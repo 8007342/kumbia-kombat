@@ -2,6 +2,41 @@
  "_note": "First match wins, shell-style globs on paths under the repo root. Add a line when new art or audio lands; anything unmatched is reported as unclassified. local-model = made by a model on this GPU (ComfyUI or ACE-Step). local-edit-of-imagegen = a built-in imagegen plate changed by a local model. builtin-imagegen = the chat tool's image generation in earlier sessions, not this GPU. Classification is by run and commit, not per pixel.",
  "rules": [
   {
+   "glob": "assets/art/salon/*",
+   "class": "local-model",
+   "evidence": "Qwen-Image-Edit plate 991002 (art_runs/rooms/salon/run-b), its chandelier layers and reflection fills (tool/art/rooms/layers/salon.json), plan/levels/salon-art-2026-11-07.md"
+  },
+  {
+   "glob": "assets/art/ensemble/band-violin-*",
+   "class": "local-model",
+   "evidence": "ComfyUI Qwen frames, art_runs/band-violin-v1-20261107a, plan/levels/salon-art-2026-11-07.md"
+  },
+  {
+   "glob": "assets/art/ensemble/band-bongos-*",
+   "class": "local-model",
+   "evidence": "ComfyUI Qwen frames, art_runs/band-bongos-v1-20261107a, plan/levels/salon-art-2026-11-07.md"
+  },
+  {
+   "glob": "assets/art/ensemble/band-piano-*",
+   "class": "local-model",
+   "evidence": "Qwen edits of plate 991002's dais, art_runs/rooms/salon/pianist, tool/art/rooms/pianist.py, plan/levels/salon-art-2026-11-07.md"
+  },
+  {
+   "glob": "tool/art/references/band-violin/*",
+   "class": "local-model",
+   "evidence": "ComfyUI Qwen sheet, art_runs/band-violin-sheet-20261107a"
+  },
+  {
+   "glob": "tool/art/references/band-bongos/*",
+   "class": "local-model",
+   "evidence": "ComfyUI Qwen sheet, art_runs/band-bongos-sheet-20261107a"
+  },
+  {
+   "glob": "art_runs/rooms/salon/*",
+   "class": "local-model",
+   "evidence": "rooms.py runs run-a and run-b, plan/levels/salon-art-2026-11-07.md"
+  },
+  {
    "glob": "assets/art/billiards/*",
    "class": "local-model",
    "evidence": "Qwen-Image-Edit plate 989601 and its layers, plan/levels/billiards-2026-11-07.md"
@@ -24,7 +59,7 @@
   {
    "glob": "assets/art/ensemble/pool-bg-*",
    "class": "local-model",
-   "evidence": "ComfyUI Qwen frames, commit 5f63249, plan/levels/billiards-2026-11-07.md"
+   "evidence": "ComfyUI Qwen frames, commit 5f63249, plan/levels/billiards-2026-11-07.md; redressed 2026-11-08 by Qwen-Image-Edit of the shipped drawings (art_runs/dress-pool-bg-*-20261108a, tool/art/redress/pool-bg-*.json, tool/art/pipeline/redress.py, plan/levels/dress-code-2026-11-08.md)"
   },
   {
    "glob": "assets/art/ensemble/pool-player-*",
@@ -32,9 +67,74 @@
    "evidence": "ComfyUI Qwen frames, plan/levels/pool-player-sprites-2026-11-07.md"
   },
   {
+   "glob": "assets/art/ensemble/terciopelo-*",
+   "class": "local-model",
+   "evidence": "ComfyUI Qwen frames, art_runs/terciopelo-v1-20261107m (runs c, d, g, h), plan/levels/terciopelo-sprites-2026-11-07.md"
+  },
+  {
    "glob": "assets/art/props/*.png",
    "class": "local-model",
    "evidence": "art_runs/rooms/crowd-props/workflows/prop-edit.api.json, commit f540662"
+  },
+  {
+   "glob": "assets/music/rendered/salon/*",
+   "class": "local-model",
+   "evidence": "ACE-Step parent seed 58001 of 12 candidates, low and high re-sampled from its latent, tool/music/sheets/salon.chain.json, plan/music-salon-2026-11-07.md"
+  },
+  {
+   "glob": "assets/music/rendered/billiards/bridge.*",
+   "class": "local-model",
+   "evidence": "cut by tool/music/mix from the billiards and comedor ACE-Step takes, plan/music-act-two-2026-11-08.md"
+  },
+  {
+   "glob": "assets/music/rendered/terraza/*",
+   "class": "local-model",
+   "evidence": "ACE-Step parent seed 61201 of 12 candidates, low and high re-sampled from its latent, tool/music/sheets/terraza.chain.json, plan/music-act-two-2026-11-08.md"
+  },
+  {
+   "glob": "assets/music/rendered/galeria/bridge.*",
+   "class": "local-model",
+   "evidence": "cut by tool/music/mix from the galeria and terraza ACE-Step takes, plan/music-act-two-2026-11-08.md"
+  },
+  {
+   "glob": "assets/music/rendered/galeria/*",
+   "class": "local-model",
+   "evidence": "ACE-Step parent seed 60101 of 12 candidates, low and high re-sampled from its latent, tool/music/sheets/galeria.chain.json, plan/music-act-two-2026-11-08.md"
+  },
+  {
+   "glob": "assets/music/rendered/salon/bridge.*",
+   "class": "local-model",
+   "evidence": "cut by tool/music/mix from the salon and galeria ACE-Step takes, plan/music-act-two-2026-11-08.md"
+  },
+  {
+   "glob": "assets/music/rendered/comedor/*",
+   "class": "local-model",
+   "evidence": "ACE-Step parent seed 59202 of 20 candidates, low and high re-sampled from its latent, tool/music/sheets/comedor.chain.json, plan/music-act-two-2026-11-08.md"
+  },
+  {
+   "glob": "assets/music/midi/salon_bolero*",
+   "class": "authored-code",
+   "evidence": "tool/music/generate.mjs (composeBolero), assets/music/LICENSE.md"
+  },
+  {
+   "glob": "assets/music/midi/comedor_polka*",
+   "class": "authored-code",
+   "evidence": "tool/music/generate.mjs (composeRoom, composeRoomSuccess), assets/music/LICENSE.md"
+  },
+  {
+   "glob": "assets/music/midi/galeria_reel*",
+   "class": "authored-code",
+   "evidence": "tool/music/generate.mjs (composeRoom, composeRoomSuccess), assets/music/LICENSE.md"
+  },
+  {
+   "glob": "assets/music/midi/terraza_samba*",
+   "class": "authored-code",
+   "evidence": "tool/music/generate.mjs (composeRoom, composeRoomSuccess), assets/music/LICENSE.md"
+  },
+  {
+   "glob": "assets/music/midi/*_to_*.mid",
+   "class": "authored-code",
+   "evidence": "tool/music/generate.mjs (composeActTwoBridge and earlier bridges), assets/music/LICENSE.md"
   },
   {
    "glob": "assets/music/rendered/*.m4a",
@@ -65,6 +165,21 @@
    "glob": "assets/art/ensemble/*-v[345].png",
    "class": "local-model",
    "evidence": "art_runs/gatekeeper-*q, bartender-v1-*q, swing-*; commits 411601e, 0159514, f731ce6, fd802c4"
+  },
+  {
+   "glob": "assets/art/closeups/salon-dt-*",
+   "class": "local-model",
+   "evidence": "Qwen edits of a bust crop of his accepted sheet, art_runs/salon-closeups-20261107/source and scripts/salon_bust.py, plan/levels/terciopelo-sprites-2026-11-07.md"
+  },
+  {
+   "glob": "assets/art/closeups/salon-mc-*",
+   "class": "authored-code",
+   "evidence": "drawn from parts by art_runs/salon-closeups-20261107/scripts/salon_macron.py with the close-up rig"
+  },
+  {
+   "glob": "assets/art/closeups/salon-rose.png",
+   "class": "authored-code",
+   "evidence": "pixels written by art_runs/salon-closeups-20261107/scripts/salon_macron.py"
   },
   {
    "glob": "assets/art/closeups/*",

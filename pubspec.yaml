@@ -36,6 +36,8 @@ dependencies:
   cupertino_icons: ^1.0.8
   flame: ^1.38.2
   flutter_svg: ^2.3.0
+  # The share page's code (/qr): the pure-Dart encoder qr_flutter is built on.
+  qr: ^3.0.2
 
 dev_dependencies:
   flutter_test:
@@ -70,6 +72,10 @@ flutter:
     - assets/art/bar/
     - assets/art/cool-crowd/
     - assets/art/billiards/
+    - assets/art/salon/
+    - assets/art/comedor/
+    - assets/art/galeria/
+    - assets/art/terraza/
     - assets/art/pool-garden/
     - assets/art/cool-crowd/
     - assets/art/props/
@@ -83,7 +89,13 @@ flutter:
     - assets/music/rendered/bar/
     - assets/music/rendered/cool-crowd/
     - assets/music/rendered/billiards/
+    - assets/music/rendered/salon/
+    - assets/music/rendered/comedor/
+    - assets/music/rendered/galeria/
+    - assets/music/rendered/terraza/
     - levels/
+    # The credits roll's data, from tool/credits/build_credits.py.
+    - assets/credits.json
 
   # To add assets to your application, add an assets section, like this:
   # assets:

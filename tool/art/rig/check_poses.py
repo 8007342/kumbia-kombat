@@ -32,12 +32,15 @@ from pathlib import Path
 HEAD_CLEAR = 1.2                      # head-widths, wrist to head centre
 HEAD_WHITELIST = {"finish_turn.finish_a", "finish_turn.finish_b", "approval.nod"}
 CUE_NEAR_FACE = {"watch", "clap", "challenge", "chalk"}  # both hands on a cue held close: the wrist near the chin is the pose
-TURN_CLIPS = {"turn", "finish_turn", "reveal", "spin", "lean", "pair_dance", "back_dance", "sidestep", "glance", "model"}  # yaw cap does not apply
+TURN_CLIPS = {"turn", "finish_turn", "reveal", "spin", "lean", "pair_dance", "back_dance", "sidestep", "glance", "model", "bow"}  # yaw cap does not apply
 # Seen in profile, or a set of different views: legs may overlap and shoulder width and ankles may change.
-PROFILE_CLIPS = {"sidestep", "model"}
+PROFILE_CLIPS = {"sidestep", "model", "bow"}
 REAR_CLIPS = {"back_groove", "back_accent"}  # the yaw cap is measured from facing directly away
 BAND_CLIPS = {"relaxed", "tap", "swing"}  # motion set band-loop: arms reach across to an instrument, a horn is at the face
 CROSSED_ARMS = {"crossed"}  # the arms cross on purpose
+FACE_TOUCH_CLIPS = {"moustache", "glance", "rose", "bow"}  # motion set opponent-chacha: a hand at the moustache, the hair or the lapel is the pose, and in a deep bow the head comes down past the swept arm
+SPIN_SIDE = {"spin.side_l", "spin.side_r"}  # in profile the ballroom frame's arms overlap the head and each other
+TURNED_BEHIND = {"bow"}  # turned three quarters, the hand behind the back crosses the near arm in 2D
 HEAD_ONLY = {"crossed"}  # a nod moves little but the head, so the static check does not apply
 NO_WIDTH_CHECK = {"turn", "reveal", "spin"}            # deliberate 360-degree turn views (no width/drift check)
 LOCOMOTION = {"enter_forward", "retreat_backward", "yield_side", "ingress", "egress"}
@@ -90,7 +93,7 @@ def crossing_problems(r: dict) -> list[str]:
 
 
 def head_problems(r: dict) -> list[str]:
-    if not r.get("openpose") or r["id"] in HEAD_WHITELIST or r.get("clip") in BAND_CLIPS or (r.get("cue") and r.get("clip") in CUE_NEAR_FACE):
+    if not r.get("openpose") or r["id"] in HEAD_WHITELIST or r["id"] in SPIN_SIDE or r.get("clip") in FACE_TOUCH_CLIPS or r.get("clip") in BAND_CLIPS or (r.get("cue") and r.get("clip") in CUE_NEAR_FACE):
         return []
     head = r["joints"]["head"]
     limit = HEAD_CLEAR * r["headWidthPx"]
@@ -195,7 +198,7 @@ def check(rig: dict, margin: float) -> dict[str, list[str]]:
     for r in rig["poses"]:
         p = problems.setdefault(r["id"], [])
         p += r.get("problems", [])
-        if r.get("clip") not in PROFILE_CLIPS:
+        if r.get("clip") not in PROFILE_CLIPS and r["id"] not in SPIN_SIDE and r.get("clip") not in TURNED_BEHIND:
             p += crossing_problems(r)
         p += head_problems(r)
         if ankle_h is not None:

@@ -1,0 +1,20 @@
+{
+ "room": "salon",
+ "run": "rooms/salon/pianist",
+ "passNo": 2,
+ "steps": 4,
+ "jobs": [
+  {
+   "name": "key",
+   "workflow": "art_runs/rooms/salon/pianist/workflows/key.api.json",
+   "inputs": {
+    "base": "/work/tmp/imagegen/kumbia/rooms/salon/pianist/in/crop.png"
+   },
+   "overrides": {
+    "seed": 991400
+   },
+   "count": 4
+  }
+ ],
+ "how": "tool/art/rooms/run_room_jobs.py --jobs <this file>"
+}

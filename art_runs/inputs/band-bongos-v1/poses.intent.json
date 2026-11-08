@@ -1,0 +1,54 @@
+{
+ "character": "band-bongos",
+ "note": "Sides are the character's own; they faces the viewer, so their left is on screen right.",
+ "poses": {
+  "relaxed.a": {
+   "clip": "relaxed",
+   "phase": "settle",
+   "support": "both",
+   "description": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, both feet flat on the floor, the hand on the left of the picture flat on its bongo drum, the hand on the right of the picture lifted a little above the other drum"
+  },
+  "relaxed.b": {
+   "clip": "relaxed",
+   "phase": "settle",
+   "support": "both",
+   "description": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, both feet flat on the floor, the hand on the right of the picture flat on its bongo drum, the hand on the left of the picture lifted a little above the other drum"
+  },
+  "tap.up_a": {
+   "clip": "tap",
+   "phase": "pass",
+   "support": "left",
+   "description": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, both feet flat on the floor, the hand on the left of the picture on its bongo drum, the other lifted a little"
+  },
+  "tap.up_b": {
+   "clip": "tap",
+   "phase": "pass",
+   "support": "left",
+   "description": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, both feet flat on the floor, the hand on the right of the picture on its bongo drum, the other lifted a little"
+  },
+  "swing.a": {
+   "clip": "swing",
+   "phase": "accent",
+   "support": "both",
+   "description": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, both feet flat on the floor, the hand on the left of the picture lifted up to the height of the shoulder, palm open, about to strike, the other hand on its drum, shoulders rolling"
+  },
+  "swing.b": {
+   "clip": "swing",
+   "phase": "pass",
+   "support": "both",
+   "description": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, both feet flat on the floor, both hands low over the two small drums, between strokes"
+  },
+  "swing.c": {
+   "clip": "swing",
+   "phase": "accent",
+   "support": "both",
+   "description": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, both feet flat on the floor, the hand on the right of the picture lifted up to the height of the shoulder, palm open, about to strike, the other hand on its drum, shoulders rolling"
+  },
+  "swing.d": {
+   "clip": "swing",
+   "phase": "pass",
+   "support": "left",
+   "description": "seen from exactly the same angle as image 1, with the same stance and the same way of facing, both feet flat on the floor, both hands low over the two small drums, between strokes"
+  }
+ }
+}

@@ -1,6 +1,7 @@
 //! mixrs: the heavy parts of tool/music/mix/mix.py, without holding whole spectrograms.
 //! mix.py writes a job file, calls a subcommand, and reads JSON back from stdout.
 
+mod align;
 mod analysis;
 mod audio;
 mod np;
@@ -36,7 +37,15 @@ enum Cmd {
     /// A join between two prepared tiers. The job holds cfg.
     Transition { #[arg(long)] a: PathBuf, #[arg(long)] b: PathBuf, #[arg(long)] job: PathBuf, #[arg(long)] out: PathBuf },
     /// Two bars into the next level's first tier.
-    Bridge { #[arg(long)] a: PathBuf, #[arg(long)] b: PathBuf, #[arg(long)] job: PathBuf, #[arg(long)] out: PathBuf },
+    /// `--entry-step 4 --entry-offset 3` limits the entry to bars 3, 7, 11 and so on; the default is every even bar.
+    Bridge {
+        #[arg(long)] a: PathBuf,
+        #[arg(long)] b: PathBuf,
+        #[arg(long)] job: PathBuf,
+        #[arg(long)] out: PathBuf,
+        #[arg(long, default_value_t = 2)] entry_step: usize,
+        #[arg(long, default_value_t = 0)] entry_offset: usize,
+    },
     /// The tag at the end of a level.
     Success {
         #[arg(long)] tier: PathBuf,
@@ -54,6 +63,18 @@ enum Cmd {
     VerifySegment { #[arg(long)] file: PathBuf, #[arg(long)] bpm: f64, #[arg(long)] start: usize, #[arg(long)] end: usize },
     /// Beat and key measures of any audio file, for checking against the Python.
     Analyze { #[arg(long)] file: PathBuf, #[arg(long)] bpm: f64 },
+    /// Onset salience and lag by band on a beat grid, for chart alignment.
+    Salience {
+        #[arg(long)] file: PathBuf,
+        #[arg(long)] bpm: f64,
+        /// Seconds of the file where beat 0 sits (a take's loopStartSeconds).
+        #[arg(long, default_value_t = 0.25)] start: f64,
+        #[arg(long)] beats: usize,
+        /// Grid points per beat. 12 holds sixteenths and triplets.
+        #[arg(long, default_value_t = 12)] div: usize,
+        /// How far from a grid point to look for an attack, in ms.
+        #[arg(long, default_value_t = 60.0)] reach_ms: f64,
+    },
 }
 
 fn read_json(path: &Path) -> Value {
@@ -75,9 +96,9 @@ fn main() {
             let (a, b) = (tier::load(&a), tier::load(&b));
             tier::transition(&a, &b, &read_json(&job)["cfg"], &out)
         }
-        Cmd::Bridge { a, b, job, out } => {
+        Cmd::Bridge { a, b, job, out, entry_step, entry_offset } => {
             let (a, b) = (tier::load(&a), tier::load(&b));
-            tier::bridge(&a, &b, &read_json(&job)["cfg"], &out)
+            tier::bridge(&a, &b, &read_json(&job)["cfg"], &out, (entry_step, entry_offset))
         }
         Cmd::Success { tier: dir, key, bars, r#final, job, out } => {
             tier::success(&dir, &key, bars, r#final, &read_json(&job)["cfg"], &out)
@@ -85,6 +106,10 @@ fn main() {
         Cmd::WriteAsset { audio, base, job, scratch } => tier::write_asset(&audio, &base, &read_json(&job)["cfg"], &scratch),
         Cmd::VerifyTake { file, bpm, bars, start, end } => verify::verify_take(&file, bpm, bars, start, end),
         Cmd::VerifySegment { file, bpm, start, end } => verify::verify_segment(&file, bpm, start, end),
+        Cmd::Salience { file, bpm, start, beats, div, reach_ms } => {
+            let mono = audio::decode_mono(&file, RATE as u32);
+            align::salience(&mono, bpm, start, beats, div, reach_ms)
+        }
         Cmd::Analyze { file, bpm } => {
             let mono = audio::decode_mono(&file, RATE as u32);
             let fit = analysis::beat_times(&mono, bpm);

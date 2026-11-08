@@ -1,0 +1,41 @@
+{
+  "$comment": "What no lock file names: the base the game is built on and the tools the pipelines run. build_credits.py merges these with what it reads from the lock files, the package graph, the venvs and the provenance records. A version here is a fallback: the script replaces it with the one it reads when it can. Degree 0 is the base, 1 is used directly, 2 is used by a degree-1 item. 'via' names the item that brings in a degree-2 one.",
+  "header": {"lead": "Built using", "name": "Tillandsias.org"},
+  "music": {
+    "opus": "assets/music/rendered/garden/high.ogg",
+    "aac": "assets/music/rendered/garden/high.m4a",
+    "status": "stand-in",
+    "note": "A stand-in: the garden's high take, the night's first theme, as a bookend. Credits music is still to be made: a slow cumbia reprise of the VIP theme, once that exists."
+  },
+  "items": [
+    {"name": "Tillandsias", "kind": "platform", "degree": 0, "url": "https://tillandsias.org", "role": "the forge, its agents and host tools"},
+    {"name": "Podman", "kind": "platform", "degree": 0, "role": "containers for the forge, studio and preview"},
+    {"name": "Fedora Linux", "version": "45", "kind": "platform", "degree": 0, "role": "the host"},
+
+    {"name": "Flutter", "kind": "tool", "degree": 1, "role": "the game's framework", "versionFrom": "flutter"},
+    {"name": "Dart", "kind": "tool", "degree": 1, "role": "the game's language", "versionFrom": "dart"},
+    {"name": "CanvasKit", "kind": "tool", "degree": 2, "via": "Flutter", "role": "Flutter's web renderer"},
+    {"name": "Skia", "kind": "tool", "degree": 3, "via": "CanvasKit", "role": "2D graphics"},
+    {"name": "Web Audio", "kind": "tool", "degree": 1, "role": "the browser's audio clock"},
+    {"name": "ComfyUI", "kind": "tool", "degree": 1, "role": "runs the art and music models", "versionFrom": "provenance"},
+    {"name": "Comfy-Org/ACE-Step-1.5", "kind": "model", "degree": 1, "role": "generated the music"},
+    {"name": "Comfy-Org/Qwen-Image-Edit", "kind": "model", "degree": 1, "role": "drew the dancers' frames"},
+    {"name": "Comfy-Org/Qwen-Image", "kind": "model", "degree": 1, "role": "Qwen2.5-VL text encoder and VAE for the frames"},
+    {"name": "lightx2v/Qwen-Image-Lightning", "kind": "model", "degree": 1, "role": "four-step frame drawing"},
+    {"name": "ZhengPeng7/BiRefNet", "kind": "model", "degree": 1, "role": "cuts the dancers from their backgrounds"},
+    {"name": "ollama", "kind": "tool", "degree": 1, "role": "runs the local vision model"},
+    {"name": "qwen2.5vl", "kind": "model", "degree": 1, "via": "ollama", "role": "first-pass curation", "versionFrom": "vision"},
+    {"name": "FFmpeg", "kind": "tool", "degree": 1, "role": "cuts, masters and encodes the music", "versionFrom": "ffmpeg"},
+    {"name": "libopus", "kind": "tool", "degree": 2, "via": "FFmpeg", "role": "the Opus encoder"},
+    {"name": "Blender", "kind": "tool", "degree": 1, "role": "rigs and poses, as the bpy module", "versionFrom": "bpy"},
+    {"name": "uv", "kind": "tool", "degree": 1, "role": "Python environments", "versionFrom": "uv"},
+    {"name": "Python", "kind": "tool", "degree": 1, "role": "the art, music and metrics tools", "versionFrom": "python"},
+    {"name": "Node.js", "kind": "tool", "degree": 1, "role": "chart and preview scripts", "versionFrom": "node"},
+    {"name": "Rust", "kind": "tool", "degree": 1, "role": "the mixrs mixer", "versionFrom": "rust"},
+    {"name": "Git", "kind": "tool", "degree": 1, "role": "every take, frame and rule, kept"},
+    {"name": "OpenSpec", "kind": "tool", "degree": 1, "role": "the specs"},
+    {"name": "Claude Code", "kind": "tool", "degree": 1, "role": "the agents"},
+    {"name": "Cloudflare Workers", "kind": "tool", "degree": 1, "role": "serves the game"},
+    {"name": "Cantarell", "kind": "font", "degree": 1, "role": "the game's typeface"}
+  ]
+}

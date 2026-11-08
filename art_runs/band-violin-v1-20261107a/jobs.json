@@ -1,0 +1,47 @@
+[
+ {
+  "pose": "tap.up_a",
+  "args": {
+   "workflow": "art_runs/band-violin-v1-20261107a/workflows/tap.up_a.api.json",
+   "tier": "I1",
+   "count": 2,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/band-violin-v1-20261107a/in/sheet_front_3q.png",
+    "pose_proxy": "/work/tmp/imagegen/kumbia/band-violin-v1-20261107a/in/tap.up_a.skeleton.png"
+   },
+   "overrides": {
+    "seed": 990500
+   }
+  }
+ },
+ {
+  "pose": "tap.up_b",
+  "args": {
+   "workflow": "art_runs/band-violin-v1-20261107a/workflows/tap.up_b.api.json",
+   "tier": "I1",
+   "count": 2,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/band-violin-v1-20261107a/in/sheet_front_3q.png",
+    "pose_proxy": "/work/tmp/imagegen/kumbia/band-violin-v1-20261107a/in/tap.up_b.skeleton.png"
+   },
+   "overrides": {
+    "seed": 990500
+   }
+  }
+ },
+ {
+  "pose": "swing.d",
+  "args": {
+   "workflow": "art_runs/band-violin-v1-20261107a/workflows/swing.d.api.json",
+   "tier": "I1",
+   "count": 2,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/band-violin-v1-20261107a/in/sheet_front_3q.png",
+    "pose_proxy": "/work/tmp/imagegen/kumbia/band-violin-v1-20261107a/in/swing.d.skeleton.png"
+   },
+   "overrides": {
+    "seed": 990500
+   }
+  }
+ }
+]

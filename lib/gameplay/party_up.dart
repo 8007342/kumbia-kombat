@@ -20,6 +20,13 @@ enum PartyLifeKind {
 
   /// Waiters. They range further, and step in time only at full swing.
   staff,
+
+  /// Paintings, a sculpture, a chandelier joining in: room life at full party.
+  /// The owner, 2026-11-08: "chandeliers and elegant paintings on the wall doing
+  /// gently invisible motions, like tapping their foot or snapping their
+  /// fingers". Wakes only with the top tier step, and its drawings carry the
+  /// subtlety, so it shows its whole drawn range once awake.
+  artwork,
 }
 
 /// One tier step's entrance: quintic, so no speed at either end.
@@ -138,6 +145,7 @@ class PartyUp {
       PartyLifeKind.umbrella ||
       PartyLifeKind.hanging => wake(beat, first: 2),
       PartyLifeKind.flame || PartyLifeKind.staff => wake(beat, first: 3),
+      PartyLifeKind.artwork => wake(beat, first: topTier),
     };
     return partyPropStrength(wakes, instance);
   }

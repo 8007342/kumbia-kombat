@@ -1,0 +1,1012 @@
+{
+ "id": "galeria",
+ "title": "LA GALERÍA",
+ "background": "galeria/galeria-room.png",
+ "music": {
+  "score": "galeria_reel",
+  "successScore": "galeria_reel_success",
+  "leadShape": "sawtooth"
+ },
+ "rules": {
+  "metric": "Drive",
+  "cleanSeconds": 110,
+  "successesPerTier": 2,
+  "finalChallenges": 3,
+  "resetAfterFailures": 5,
+  "earlyHitRatio": 0.75
+ },
+ "chart": {
+  "introBeats": 12,
+  "callBeats": 8,
+  "flourishDestination": "leftFoot",
+  "offsets": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7
+  ],
+  "limbs": [
+   "leftFoot",
+   "rightFoot",
+   "leftFoot",
+   "rightFoot",
+   "leftFoot",
+   "rightFoot",
+   "leftFoot",
+   "leftHand"
+  ],
+  "variants": [
+   [
+    "leftFoot",
+    "rightHand",
+    "leftFoot",
+    "rightFoot",
+    "leftFoot",
+    "rightFoot",
+    "leftFoot",
+    "leftHand"
+   ],
+   [
+    "leftFoot",
+    "rightHand",
+    "leftFoot",
+    "rightFoot",
+    "leftFoot",
+    "rightFoot",
+    "leftFoot",
+    "leftHand"
+   ],
+   [
+    "leftFoot",
+    "rightHand",
+    "leftFoot",
+    "rightFoot",
+    "leftFoot",
+    "rightFoot",
+    "leftFoot",
+    "leftHand"
+   ],
+   [
+    "leftFoot",
+    "leftHand",
+    "leftFoot",
+    "rightFoot",
+    "leftFoot",
+    "rightFoot",
+    "leftFoot",
+    "leftHand"
+   ],
+   [
+    "rightFoot",
+    "rightHand",
+    "rightFoot",
+    "leftFoot",
+    "rightFoot",
+    "leftFoot",
+    "rightFoot",
+    "rightHand"
+   ],
+   [
+    "leftFoot",
+    "leftHand",
+    "leftFoot",
+    "rightFoot",
+    "leftFoot",
+    "rightFoot",
+    "leftFoot",
+    "leftHand"
+   ]
+  ],
+  "rich": {
+   "limits": {
+    "pairToleranceMs": 80,
+    "sameSpotMs": 285,
+    "thumbHopMs": 330,
+    "crossThumbMs": 170,
+    "sameLimbMs": 400,
+    "phraseEndMs": 100
+   },
+   "patterns": {
+    "0": [
+     {
+      "at": 0,
+      "limb": "leftFoot"
+     },
+     {
+      "at": 1,
+      "limb": "rightFoot"
+     },
+     {
+      "at": 2,
+      "limb": "leftFoot"
+     },
+     {
+      "at": 3,
+      "limb": "rightFoot"
+     },
+     {
+      "at": 4,
+      "limb": "leftFoot"
+     },
+     {
+      "at": 5,
+      "limb": "rightFoot"
+     },
+     {
+      "at": 6,
+      "limb": "leftFoot"
+     },
+     {
+      "at": 7,
+      "limb": "leftHand"
+     }
+    ],
+    "1": [
+     {
+      "at": 0,
+      "limb": "leftFoot",
+      "move": "pair",
+      "with": "rightFoot"
+     },
+     {
+      "at": 1,
+      "limb": "rightHand"
+     },
+     {
+      "at": 2,
+      "limb": "leftFoot"
+     },
+     {
+      "at": 3,
+      "limb": "rightFoot"
+     },
+     {
+      "at": 4,
+      "limb": "leftFoot"
+     },
+     {
+      "at": 5,
+      "limb": "rightFoot"
+     },
+     {
+      "at": 6,
+      "limb": "leftFoot"
+     },
+     {
+      "at": 7,
+      "limb": "leftHand"
+     }
+    ],
+    "2": [
+     {
+      "at": 0,
+      "limb": "leftFoot",
+      "move": "pair",
+      "with": "rightFoot"
+     },
+     {
+      "at": 1,
+      "limb": "rightHand"
+     },
+     {
+      "at": 2,
+      "limb": "leftFoot"
+     },
+     {
+      "at": 3,
+      "limb": "rightFoot"
+     },
+     {
+      "at": 4,
+      "limb": "leftFoot",
+      "move": "pair",
+      "with": "rightHand"
+     },
+     {
+      "at": 5,
+      "limb": "rightFoot"
+     },
+     {
+      "at": 6,
+      "limb": "leftFoot"
+     },
+     {
+      "at": 7,
+      "limb": "leftHand"
+     }
+    ],
+    "3": [
+     {
+      "at": 0,
+      "limb": "leftFoot",
+      "move": "pair",
+      "with": "rightFoot"
+     },
+     {
+      "at": 1,
+      "limb": "rightHand"
+     },
+     {
+      "at": 2,
+      "limb": "leftFoot"
+     },
+     {
+      "at": 3,
+      "limb": "rightFoot"
+     },
+     {
+      "at": 4,
+      "limb": "leftFoot",
+      "move": "pair",
+      "with": "rightHand"
+     },
+     {
+      "at": 5,
+      "limb": "rightFoot"
+     },
+     {
+      "at": 6,
+      "limb": "leftFoot",
+      "move": "pair",
+      "with": "rightHand"
+     },
+     {
+      "at": 7,
+      "limb": "leftHand"
+     }
+    ],
+    "4": [
+     {
+      "at": 0,
+      "limb": "leftFoot",
+      "move": "pair",
+      "with": "rightFoot"
+     },
+     {
+      "at": 1,
+      "limb": "leftHand",
+      "move": "pair",
+      "with": "rightHand"
+     },
+     {
+      "at": 2,
+      "limb": "leftFoot"
+     },
+     {
+      "at": 3,
+      "limb": "rightFoot"
+     },
+     {
+      "at": 4,
+      "limb": "leftFoot",
+      "move": "pair",
+      "with": "rightHand"
+     },
+     {
+      "at": 5,
+      "limb": "rightFoot"
+     },
+     {
+      "at": 6,
+      "limb": "leftFoot",
+      "move": "pair",
+      "with": "rightHand"
+     },
+     {
+      "at": 7,
+      "limb": "leftHand"
+     }
+    ],
+    "5": [
+     {
+      "at": 0,
+      "limb": "rightFoot",
+      "move": "pair",
+      "with": "leftFoot"
+     },
+     {
+      "at": 1,
+      "limb": "rightHand",
+      "move": "pair",
+      "with": "leftHand"
+     },
+     {
+      "at": 2,
+      "limb": "rightFoot"
+     },
+     {
+      "at": 3,
+      "limb": "leftFoot"
+     },
+     {
+      "at": 4,
+      "limb": "rightFoot",
+      "move": "pair",
+      "with": "leftHand"
+     },
+     {
+      "at": 5,
+      "limb": "leftFoot"
+     },
+     {
+      "at": 6,
+      "limb": "rightFoot",
+      "move": "pair",
+      "with": "leftHand"
+     },
+     {
+      "at": 7,
+      "limb": "rightHand"
+     }
+    ],
+    "6": [
+     {
+      "at": 0,
+      "limb": "leftFoot",
+      "move": "pair",
+      "with": "rightFoot"
+     },
+     {
+      "at": 1,
+      "limb": "leftHand",
+      "move": "pair",
+      "with": "rightHand"
+     },
+     {
+      "at": 2,
+      "limb": "leftFoot"
+     },
+     {
+      "at": 3,
+      "limb": "rightFoot"
+     },
+     {
+      "at": 4,
+      "limb": "leftFoot",
+      "move": "pair",
+      "with": "rightHand"
+     },
+     {
+      "at": 5,
+      "limb": "rightFoot",
+      "move": "pair",
+      "with": "leftHand"
+     },
+     {
+      "at": 6,
+      "limb": "leftFoot",
+      "move": "pair",
+      "with": "rightHand"
+     },
+     {
+      "at": 7,
+      "limb": "leftHand"
+     }
+    ]
+   }
+  }
+ },
+ "stage": {
+  "calibration": "unverifiedStoryboard",
+  "floor": {
+   "horizonY": 0.277,
+   "referenceFootY": 0.6,
+   "referenceHeight": 0.323,
+   "vanishingX": 0.515
+  },
+  "heroHome": [
+   0.5,
+   0.6
+  ],
+  "heroEntersAt": 6,
+  "heroEntrance": [
+   0.3,
+   0.64
+  ],
+  "heroRetreat": [
+   0.5,
+   0.625
+  ],
+  "heroWatch": [
+   0.5,
+   0.625
+  ],
+  "heroAside": [
+   0.38,
+   0.61
+  ],
+  "challengers": [
+   {
+    "id": "siobhan",
+    "atlas": "siobhan",
+    "mark": [
+     0.5,
+     0.5
+    ],
+    "yieldMark": [
+     0.5,
+     0.44
+    ],
+    "stature": 1,
+    "meetMark": [
+     0.7,
+     0.49
+    ],
+    "line": {
+     "dancers": [
+      {
+       "offset": [
+        -0.2,
+        0
+       ],
+       "archOffset": [
+        -0.1,
+        0.03
+       ],
+       "archMirrored": false,
+       "lagBeats": 0.5,
+       "image": "siobhan-v1-raven.png"
+      },
+      {
+       "offset": [
+        -0.1,
+        0
+       ],
+       "archOffset": [
+        -0.1,
+        -0.04
+       ],
+       "archMirrored": false,
+       "lagBeats": 0.25,
+       "image": "siobhan-v1-honey.png"
+      },
+      {
+       "offset": [
+        0.1,
+        0
+       ],
+       "archOffset": [
+        0.1,
+        -0.04
+       ],
+       "archMirrored": true,
+       "lagBeats": 0.25,
+       "image": "siobhan-v1-chestnut.png"
+      },
+      {
+       "offset": [
+        0.2,
+        0
+       ],
+       "archOffset": [
+        0.1,
+        0.03
+       ],
+       "archMirrored": true,
+       "lagBeats": 0.5,
+       "image": "siobhan-v1-ash.png"
+      }
+     ],
+     "arch": {
+      "from": 1,
+      "beats": 2,
+      "frames": [
+       "arch_rise",
+       "arch_hold"
+      ],
+      "beatsPerFrame": 1
+     }
+    }
+   }
+  ]
+ },
+ "crowd": {
+  "budgets": {
+   "interested": 12,
+   "following": 12,
+   "standing": 12,
+   "cheering": 12
+  },
+  "seat": "standing",
+  "floorDance": {
+   "ownThing": {
+    "frames": [
+     "standing_idle_a",
+     "standing_idle_b"
+    ],
+    "beatsPerFrame": 2
+   },
+   "glance": {
+    "frames": [
+     "standing_idle_a",
+     "standing_idle_b"
+    ],
+    "beatsPerFrame": 2
+   },
+   "occupied": {
+    "pair": {
+     "frames": [
+      "pair_dance_a",
+      "pair_dance_b",
+      "pair_dance_c",
+      "pair_dance_d"
+     ],
+     "beatsPerFrame": 2
+    },
+    "back": {
+     "frames": [
+      "back_dance_a",
+      "back_dance_b",
+      "back_dance_c",
+      "back_dance_d"
+     ],
+     "beatsPerFrame": 1
+    }
+   },
+   "castGlance": {
+    "frames": [
+     "glance_a",
+     "glance_b"
+    ],
+    "beatsPerFrame": 2
+   },
+   "following": {
+    "frames": [
+     "groove_a",
+     "groove_b",
+     "groove_c",
+     "groove_d"
+    ],
+    "beatsPerFrame": 1
+   },
+   "sidestep": {
+    "frames": [
+     "sidestep_a",
+     "sidestep_b",
+     "sidestep_c",
+     "sidestep_d"
+    ],
+    "beatsPerFrame": 0.5
+   }
+  },
+  "guests": [
+   {
+    "at": [
+     0.15,
+     0.455
+    ],
+    "occupied": "pair",
+    "faces": "right",
+    "partner": 1,
+    "atlas": "guest3"
+   },
+   {
+    "at": [
+     0.24,
+     0.455
+    ],
+    "occupied": "pair",
+    "faces": "left",
+    "partner": 0,
+    "atlas": "guest4"
+   },
+   {
+    "at": [
+     0.85,
+     0.455
+    ],
+    "occupied": "pair",
+    "faces": "left",
+    "partner": 3,
+    "atlas": "guest5"
+   },
+   {
+    "at": [
+     0.76,
+     0.455
+    ],
+    "occupied": "pair",
+    "faces": "right",
+    "partner": 2,
+    "atlas": "guest6"
+   },
+   {
+    "at": [
+     0.2,
+     0.405
+    ],
+    "occupied": "pair",
+    "faces": "right",
+    "partner": 5,
+    "atlas": "guest3"
+   },
+   {
+    "at": [
+     0.275,
+     0.405
+    ],
+    "occupied": "pair",
+    "faces": "left",
+    "partner": 4,
+    "atlas": "guest4"
+   },
+   {
+    "at": [
+     0.875,
+     0.405
+    ],
+    "occupied": "pair",
+    "faces": "left",
+    "partner": 7,
+    "atlas": "guest5"
+   },
+   {
+    "at": [
+     0.8,
+     0.405
+    ],
+    "occupied": "pair",
+    "faces": "right",
+    "partner": 6,
+    "atlas": "guest6"
+   },
+   {
+    "at": [
+     0.31,
+     0.375
+    ],
+    "occupied": "pair",
+    "faces": "right",
+    "partner": 9,
+    "atlas": "guest3"
+   },
+   {
+    "at": [
+     0.37,
+     0.375
+    ],
+    "occupied": "pair",
+    "faces": "left",
+    "partner": 8,
+    "atlas": "guest4"
+   },
+   {
+    "at": [
+     0.69,
+     0.375
+    ],
+    "occupied": "pair",
+    "faces": "left",
+    "partner": 11,
+    "atlas": "guest5"
+   },
+   {
+    "at": [
+     0.63,
+     0.375
+    ],
+    "occupied": "pair",
+    "faces": "right",
+    "partner": 10,
+    "atlas": "guest6"
+   }
+  ],
+  "props": []
+ },
+ "scenery": {
+  "lamps": [
+   [
+    0.356,
+    0.192
+   ],
+   [
+    0.674,
+    0.192
+   ]
+  ],
+  "plants": []
+ },
+ "departure": {
+  "threshold": "the far doors, under the arch",
+  "originY": 0.6,
+  "waypoints": [
+   {
+    "at": 0.0,
+    "x": 0.5,
+    "y": 0.6,
+    "facing": "rear"
+   },
+   {
+    "at": 0.333,
+    "x": 0.5,
+    "y": 0.5,
+    "facing": "rear"
+   },
+   {
+    "at": 0.667,
+    "x": 0.505,
+    "y": 0.43,
+    "facing": "rear"
+   },
+   {
+    "at": 1.0,
+    "x": 0.516,
+    "y": 0.37,
+    "facing": "rear"
+   }
+  ]
+ },
+ "copy": {
+  "invitation": "¿Puedes seguirnos el paso?",
+  "clearedTitle": "QUÉ\nZAPATEO"
+ },
+ "hardestCombo": {
+  "name": "EL MURO DE TACONES",
+  "status": "proposal",
+  "note": "Proposal, from the wiring agent. The wall of heels: eight eighths of heels, left and right, then three more heels and a stamp. Half-beat gaps are 234 ms at 128 BPM, over the 230 ms a combo note must keep, so this is as close as a combo can ask at the top tempo. Danced on her trebles. The owner hasn't seen or played it.",
+  "callBeats": 8,
+  "moves": [
+   {
+    "at": 0,
+    "beats": 4,
+    "clip": "trebles"
+   },
+   {
+    "at": 4,
+    "beats": 4,
+    "clip": "trebles"
+   }
+  ],
+  "notes": [
+   {
+    "at": 0,
+    "limb": "leftFoot"
+   },
+   {
+    "at": 0.5,
+    "limb": "rightFoot"
+   },
+   {
+    "at": 1,
+    "limb": "leftFoot"
+   },
+   {
+    "at": 1.5,
+    "limb": "rightFoot"
+   },
+   {
+    "at": 2,
+    "limb": "leftFoot"
+   },
+   {
+    "at": 2.5,
+    "limb": "rightFoot"
+   },
+   {
+    "at": 3,
+    "limb": "leftFoot"
+   },
+   {
+    "at": 3.5,
+    "limb": "rightFoot"
+   },
+   {
+    "at": 4.5,
+    "limb": "leftFoot"
+   },
+   {
+    "at": 5,
+    "limb": "rightFoot"
+   },
+   {
+    "at": 6,
+    "limb": "leftFoot"
+   },
+   {
+    "at": 7,
+    "limb": "rightFoot",
+    "move": "stomp"
+   }
+  ]
+ },
+ "exitShot": {
+  "plate": "closeups/galeria-floor-plate.png",
+  "celebrateUntil": 2,
+  "walkFrom": 2,
+  "walkTo": 3.75,
+  "heroStep": [
+   0.5,
+   0.55
+  ],
+  "heroWaitFrame": "rear_idle",
+  "dust": false,
+  "closeupFrom": 4,
+  "contactBeat": 6,
+  "closeupTo": 9,
+  "contactPoint": [
+   0.5,
+   1
+  ],
+  "impactBeats": 0.5,
+  "recoilBeats": 1,
+  "cue": [
+   {
+    "beat": 6,
+    "track": "clack",
+    "pitch": 72,
+    "velocity": 120
+   },
+   {
+    "beat": 6.5,
+    "track": "clack",
+    "pitch": 76,
+    "velocity": 110
+   }
+  ],
+  "actors": [
+   {
+    "approach": "closeups/galeria-mc-feet-rest.png",
+    "impact": "closeups/galeria-mc-feet-down.png",
+    "contact": [
+     180,
+     780
+    ],
+    "scale": 0.5,
+    "entry": [
+     0,
+     0
+    ],
+    "recoil": [
+     0,
+     0
+    ],
+    "frames": [
+     {
+      "beat": 4,
+      "image": "closeups/galeria-mc-feet-rest.png"
+     },
+     {
+      "beat": 5.5,
+      "image": "closeups/galeria-mc-feet-up.png"
+     },
+     {
+      "beat": 6,
+      "image": "closeups/galeria-mc-feet-down.png"
+     },
+     {
+      "beat": 6.25,
+      "image": "closeups/galeria-mc-feet-up.png"
+     },
+     {
+      "beat": 6.5,
+      "image": "closeups/galeria-mc-feet-down.png"
+     },
+     {
+      "beat": 6.75,
+      "image": "closeups/galeria-mc-feet-rest.png"
+     },
+     {
+      "beat": 7.25,
+      "image": "closeups/galeria-mc-proud.png"
+     },
+     {
+      "beat": 8,
+      "image": "closeups/galeria-mc-proud-blink.png"
+     },
+     {
+      "beat": 8.5,
+      "image": "closeups/galeria-mc-proud.png"
+     }
+    ]
+   }
+  ],
+  "opponent": [
+   {
+    "from": 0,
+    "frames": [
+     "freeze_hold"
+    ],
+    "beatsPerFrame": 1
+   },
+   {
+    "from": 10.5,
+    "frames": [
+     "approval_load",
+     "approval_nod",
+     "approval_release"
+    ],
+    "beatsPerFrame": 0.5
+   },
+   {
+    "from": 13,
+    "frames": [
+     "groove_down_l",
+     "groove_pass_l",
+     "groove_up_l",
+     "groove_pass_l2",
+     "groove_down_r",
+     "groove_pass_r",
+     "groove_up_r",
+     "groove_pass_r2"
+    ],
+    "beatsPerFrame": 0.5,
+    "loop": true
+   }
+  ],
+  "applause": {
+   "from": 9.25,
+   "frames": [
+    "clap_a",
+    "clap_b"
+   ],
+   "beatsPerFrame": 0.5,
+   "loop": true
+  },
+  "walkOut": {
+   "from": 9.5,
+   "to": 16,
+   "fadeBeats": 1.25
+  },
+  "flare": {
+   "from": 9.5,
+   "beats": 4,
+   "rise": 1,
+   "gain": 0.6
+  }
+ },
+ "layers": {
+  "plateWidth": 832,
+  "plateHeight": 1248,
+  "props": [
+   {
+    "id": "portrait-tap",
+    "atlas": "galeria/galeria-layers.png",
+    "atlasY": 0,
+    "left": 267,
+    "top": 327,
+    "width": 62,
+    "height": 39,
+    "frames": 2,
+    "motion": "pulse",
+    "periodBeats": 1,
+    "instance": 1,
+    "kind": "artwork",
+    "minTier": 4
+   },
+   {
+    "id": "bust-nod",
+    "atlas": "galeria/galeria-layers.png",
+    "atlasY": 41,
+    "left": 605,
+    "top": 314,
+    "width": 27,
+    "height": 29,
+    "frames": 3,
+    "motion": "pulse",
+    "periodBeats": 2,
+    "instance": 3,
+    "kind": "artwork",
+    "minTier": 4
+   },
+   {
+    "id": "portrait-sway",
+    "atlas": "galeria/galeria-layers.png",
+    "atlasY": 72,
+    "left": 541,
+    "top": 261,
+    "width": 59,
+    "height": 99,
+    "frames": 5,
+    "motion": "sway",
+    "periodBeats": 4,
+    "instance": 5,
+    "kind": "artwork",
+    "minTier": 4
+   }
+  ]
+ }
+}

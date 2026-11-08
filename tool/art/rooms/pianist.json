@@ -1,0 +1,86 @@
+{
+ "comment": "The salon pianist, drawn in place on plate 991002's bench. Crop and polygon in plate pixels (832 x 1248). tool/art/rooms/pianist.py.",
+ "plate": "art_runs/rooms/salon/picks/plate-991002.png",
+ "crop": [
+  0,
+  300,
+  256,
+  620
+ ],
+ "polygon": [
+  [
+   80,
+   118
+  ],
+  [
+   122,
+   118
+  ],
+  [
+   156,
+   170
+  ],
+  [
+   156,
+   264
+  ],
+  [
+   74,
+   264
+  ],
+  [
+   66,
+   200
+  ]
+ ],
+ "threshold": 24,
+ "keepWords": "Keep everything else in image 1 exactly as it is: the same piano, bench, dais, wall, window and drapes, the same pixel art, the same camera and the same colours.",
+ "key": {
+  "prompt": "Image 1 is part of a pixel art game background at night: a black grand piano on a dark wooden dais, with a small black bench in front of its keyboard. Add one woman pianist sitting on that bench with her back to the viewer, playing the piano. She is a slim, elegant, upright woman of about sixty with a sleek chin-length silver bob, in a long-sleeved black velvet evening gown with a narrow champagne-gold sash at the waist, its skirt falling to the dais, drawn with a thick dark ink outline in the same crisp pixel art as the picture. Her head is turned a little to the left so a sliver of her profile shows, both elbows are bent and her hands rest on the keys in front of her, out of sight. She sits on the bench at the size the bench and piano allow.",
+  "seed": 991400,
+  "count": 4,
+  "pick": "key-991401.png"
+ },
+ "frames": [
+  {
+   "id": "relaxed_a",
+   "reuse": "key"
+  },
+  {
+   "id": "relaxed_b",
+   "prompt": "Image 1 shows a woman pianist in a black velvet gown seated at a grand piano with her back to the viewer. Draw exactly the same picture, the same woman, piano, bench and room at the same place and size, and change only her pose: her head lifted and tipped a little to the right, her hand on the right of the picture reaching further along the keys toward the right, her shoulders swaying a little to the right.",
+   "seed": 991500,
+   "count": 2,
+   "pick": "relaxed_b-991501.png"
+  },
+  {
+   "id": "swing_a",
+   "prompt": "Image 1 shows a woman pianist in a black velvet gown seated at a grand piano with her back to the viewer. Draw exactly the same picture, the same woman, piano, bench and room at the same place and size, and change only her pose: she leans and sways her upper body toward the left of the picture with her head tipped to the left, absorbed in the music, both hands still on the keys.",
+   "seed": 991600,
+   "count": 2,
+   "pick": "swing_a-991600.png"
+  },
+  {
+   "id": "swing_c",
+   "prompt": "Image 1 shows a woman pianist in a black velvet gown seated at a grand piano with her back to the viewer. Draw exactly the same picture, the same woman, piano, bench and room at the same place and size, and change only her pose: she leans and sways her upper body toward the right of the picture with her head tipped to the right, absorbed in the music, both hands still on the keys, the hand on the right of the picture reaching far along the keys.",
+   "seed": 991700,
+   "count": 2,
+   "pick": "swing_c-991700.png"
+  }
+ ],
+ "anchorPlatePx": [
+  110,
+  562
+ ],
+ "camera": {
+  "horizonY": 0.27,
+  "eyeHeightAdults": 1.0,
+  "plateHeight": 1248
+ },
+ "aliases": {
+  "tap_up_a": "relaxed_a",
+  "tap_up_b": "relaxed_b",
+  "swing_b": "relaxed_a",
+  "swing_d": "relaxed_b"
+ }
+}
