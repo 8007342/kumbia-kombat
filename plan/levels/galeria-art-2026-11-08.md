@@ -69,7 +69,7 @@
 ## Marks for WIRE2
 
 All marks are in `art_runs/rooms/galeria/marks.json`. WIRE2 wired them on `work/1883-lvls` at 6f805c0.
-- **Hero and Siobhán:** heroHome (.5,.6). Siobhán's mark (.5,.5), yield (.5,.44), meetMark (.64,.43), past the tunnel's far end on the right.
+- **Hero and Siobhán:** heroHome (.5,.6). Siobhán's mark (.5,.5), yield (.5,.44), meetMark (.72,.44), outside the right pair. This moved from (.64,.43) after WIRE2 saw her half hidden behind the right pair.
 - **The line** [P]: dancers at ±.1 and ±.2 from her at y .5.
 - **The arch** [P]: two facing pairs .2 apart across the runner, near pair at y .53 and far pair at .46. The right pair is mirrored. That's about 1.2 adults apart at that depth, so raised arms from both sides meet over Mācron. No paths cross.
 - **Departure:** straight up the runner to the door threshold (.516,.37).
@@ -114,3 +114,114 @@ These follow the comedor's route (`tool/art/rooms/layers.py` and `inplace.py`, t
 - the five dancers wear long-sleeved velvet dresses to the knee.
 
 No new guest families were drawn, which kept the GPU for Siobhán.
+
+## Siobhán and Las Tréboles
+
+**Who** [P]: Siobhán, she, about 25.
+- Slim and very upright, with fair freckled skin and copper-red hair in a high bun with a silver clover pin. Her look is cool and composed.
+- Original costume, not any show's: a long-sleeved dark green velvet dress with a high neck, a stiff flared skirt to the knee, and silver knotwork at the waist, cuffs and hem.
+- Black opaque tights, and black hard shoes with thick heels and small buckles.
+- Her silhouette, a slim vertical with a bun, sits between the narrow Don Terciopelo and the round Don Charolas.
+- The hem stays at the knee for the style guide's "at or below the knee", even through the high kicks.
+
+**Sheet** [F]: four fronts drawn from words, with Don Terciopelo's front as style only, on the `challenge.return` skeleton. I kept **994003**: its knotwork belt reads as Celtic, she has the freckles and a stern face, and it has the plainest skirt. 994000 had a lace-up waist, 994001 a buttoned bodice front, and 994002 almost no embroidery.
+
+**Motion set `opponent-reel`** (`tool/art/rig/poses.py`, `tool/art/motion/opponent-reel.json`) [P]:
+- It keeps the 64 shared drawing names, so every shared choreography table plays her. Her arms stay rigid at her sides except for a hand call.
+- The groove is a reel's lead-round:
+  - down: a hop with the knee lifted high, crossed in front;
+  - pass: a treble, the toe striking crossed in front;
+  - up: on both toes with the feet crossed tight;
+  - the hold: a hop-back, the other heel kicked up behind.
+- Foot calls are high kicks out to the side at waist height. A kick straight toward the viewer foreshortens to nothing, so it goes to the side.
+- Hand calls are one straight arm snapped out to 45 degrees, then swung back down.
+- Walks are skips on the balls of the feet.
+- Her finish points a toe and gives a small bow. Her approval is one firm nod with the knees dipped.
+- New drawings: `arch.rise`, `arch.hold` (arms raised, turned to the picture's right) and `freeze.hold`.
+- `check_poses.py` gets one exemption, `KICK_OVER_ARM`: in 2D a high kick to the side passes in front of the same side's rigid arm.
+
+**How it was made** [F]:
+- The Qwen frame route, run from this worktree with `run_jobs.py` and the 2511 Lightning LoRA, 2 candidates a pose.
+- First a pilot of 8 hard poses: hop, treble, hop-back, high kick, arm snap, challenge, nod and arch. All of them read on the first try, so no words changed before the wave.
+- The wave drew the other 58 poses.
+- Run b redrew the two arm follow-throughs. In wave a, three of the four candidates held the skirt out, and one crossed an arm over the waist.
+- Picks are in `art_runs/siobhan-v1-20261108m/picks.json`, with a reason wherever the choice wasn't obvious.
+
+**Atlas** [F]: `siobhan`, `assets/art/ensemble/siobhan-v1.png`, 1024x1809, 87 frames: 67 drawings and 20 runtime aliases. Promoted into the manifest with `promote.py --new`.
+- `challenge.return` is the accepted sheet itself, drawn on that same skeleton.
+- The two arm-snap preps reuse the return drawing. Both prep candidates raised fists to the chest, and the prep's skeleton is the return's.
+- `finish_turn.turn_in` is its own drawing with `mirror: true`. Both candidates faced the picture's left, like turn_out.
+
+**The line** [P]: Las Tréboles share her frames. WIRE2's line draws them up to half a beat late, so it dances as one. As a bonus, four colour-only variants change only the hair, giving raven, honey, chestnut and ash for the four beside her:
+- `assets/art/ensemble/siobhan-v1-{raven,honey,chestnut,ash}.png`;
+- made by `tool/art/pipeline/ramp_variants.py` with no GPU.
+
+Qwen's skin shadows had snapped to the hair ramp too, so only connected masses of 40 px or more are recoloured. A few face-edge pixels still change colour: the raven variant has a dark fleck on one cheek at 3x. The variants have no manifest entries. Using them needs a per-dancer image option in the line, which is WIRE2's call.
+
+**Choreography** [P]: `dancers.siobhan` in `assets/art/ensemble/choreography.json`.
+- Clips: `trebles`, `high_kicks`, `hop_backs`, `arch`, `freeze`, `stamp`.
+- Accents: a stamp on every phrase from tier 1, and high kicks every other phrase from tier 3.
+- Hand-off: hop-backs from tier 1, and the stamp in a cold room.
+- `EL MURO DE TACONES` stays as WIRE2 wrote it: groove_double, which is her reel round. `trebles` is offered as the wall of heels.
+
+**Review** [F]:
+- I looked at every candidate beside its skeleton on contact sheets, and at the packed atlas at about native size.
+- The scorer was not run. Its picks for faces and hands weren't trusted on the last two families, and these poses differ mostly in the feet.
+- Local vision (qwen2.5vl:7b) counted heads and hands on the 67 finished frames. Its results are in the next section.
+
+**Weak picks, kept as the best of their two** [F]:
+- `reassurance.open_hand`: both candidates also raise the other hand in a small wave. That breaks the rigid arms, but it's warm.
+- `finish_turn.finish_b`: the small bow hardly shows.
+- `left_hand.follow` and `right_hand.follow` (run b) hold the swinging arm a little away from the skirt.
+- A few frames have a slightly lighter green bodice.
+- `arch.hold` is a symmetric V rather than arms leaning toward the partner. The model kept the arms symmetric.
+
+**Local vision on the finished frames** [F]:
+- qwen2.5vl:7b, 134 calls, one head count and one hand count on each of the 67 frames.
+- 56 frames came back "1 head, 2 hands", which is right.
+- 10 calls returned nothing: the model timed out while it shared the GPU with the studio queue.
+- One frame came back "1 hand": `yield_side.contact_r`. She is turned three quarters there, and her far hand shows small at her side. That's a miss by the model, not a fault in the drawing.
+- It flagged nothing I hadn't already seen, and it missed both real faults. Those were the fists at the chest in both arm-snap preps, and the skirt held out in three of the four first arm follow-throughs. I found both on the contact sheets. As before, it's a pre-filter only.
+
+## Compute
+
+Lines are in `plan/compute-ledger.jsonl`, agent GALERIA. Studio seconds include waiting in the shared host queue, so they're an upper bound on GPU time.
+
+| Batch | Images | Seconds |
+|---|---|---|
+| Room plates, run-a and run-b | 16 | 735 |
+| Siobhán's sheet | 4 | 253 |
+| Pilot, 8 poses | 16 | 2,083 |
+| Wave, 58 poses | 116 | 8,435 |
+| Run b, 2 poses | 4 | 337 |
+| Layer edits (portrait full length, foot tap) | 4 | 363 |
+| **GPU total** | **160** | **about 12,200, or 3.4 hours, queue included** |
+| Local vision | 140 calls | 6 plate calls (about 100 s) plus the frame batch (about 25 min wall, slowed by sharing the GPU) |
+| CPU (rig, finish, pack, layers, close-up, variants) | | about 10 minutes |
+
+## What went wrong
+
+- **The runner in words.** "The far half" didn't hold: pass 2 laid the runner through the tap band 6 times out of 6. Naming the image's own rug as the place it ends ("exactly where the rug ends in image 1") worked in 2 of 4.
+- **The first close-up canvases.** At 400x440, like nod-mc-*, the feet shot cut his belly in the middle of the screen. I redrew them on canvases the shape of the view.
+- **A tap drawn as a rotated toe read as a kick.** From the front, a tap is the boot lifted straight up.
+- **`check_poses`.** It refused the still poses: a rigid dancer's nod and challenge moved under 16 px. They now dip the knees or rise onto the toes. It also refused the side kick crossing the rigid arm, which is now excused by name.
+- **My first sheet job failed.** `run_jobs.py --jobs` takes a path relative to the run's folder.
+- **The sheet's candidates were filed under `challenge.return`**, because the sheet is drawn on that skeleton. So the wave skipped that pose, and the accepted sheet became the frame. That's the right drawing, but it happened by accident.
+- **The forge's tmpfs filled at about 02:13.** My commits and pushes from then on were checked afterwards and had all landed.
+
+## Needs eyes, on a phone
+
+- [ ] The reel at tempo, 114 to 130 BPM. Do the hop, treble, toes and hop-back read as step dancing with the arms still? Do the five read "as one" with WIRE2's lag?
+- [ ] The high kicks out to the side, and the rigid arm snap.
+- [ ] The arch: do the V arms of facing pairs read as an arch over Mācron? Is Siobhán visible at her new meetMark?
+- [ ] The hair variants' faces at play size. The raven one has a dark fleck on a cheek at 3x.
+- [ ] Room life at full party: the portrait's foot tap, the bust's nod and the portrait's sway. Are they felt and not seen? Do the sway's ragged edges show?
+- [ ] The moonlight patches on the floor, with cues moving over them.
+- [ ] The close-up: does one huge boot read as "his tiny feet"? Does the cut from the boot to his face land?
+- [ ] The right far portrait's gentleman, who looks a little like Lincoln when zoomed in.
+
+## Not done
+
+- No new guest families. guest3-6 are already in evening wear, by my call above.
+- No drawn "nod" beyond the shared approval clip. Her approval nod is the 3-drawing approval clip, wired at 10.5.
+- Flutter isn't run in this worktree. WIRE2 ran the suite with this art on `work/1883-lvls`: 789 pass at 5fefa7e.
