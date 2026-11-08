@@ -43,6 +43,12 @@ words, tempo 116, key D minor and seeds 58000 to 58203, recorded in `tool/music/
 (`tool/music/sheets/salon.chain.json`). The billiards bridge into the salon (`rendered/billiards/bridge.*`) is cut by
 repository code from the billiards and salon takes. No other input went in.
 
+The comedor (`rendered/comedor/`, 2026-11-08) was made the same way: 20 candidate takes from genre and instrument
+words, tempo 128, key F major and seeds 59000 to 59303, recorded in `tool/music/sheets/comedor.candidates.json`; seed
+59202 was chosen by measurement, and its low and high tiers were re-sampled from its latent in one workflow
+(`tool/music/sheets/comedor.chain.json`). The billiards bridge (`rendered/billiards/bridge.*`) now leads into the
+comedor and is cut by repository code from the billiards and comedor takes. No other input went in.
+
 The repository currently supplies no public licence, and this record doesn't grant one.
 
 ## Original scores: `scores/`, `midi/`, `manifest.json`

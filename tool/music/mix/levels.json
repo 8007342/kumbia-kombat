@@ -200,7 +200,7 @@
   {
    "id": "billiards",
    "key": "G minor",
-   "next": "salon",
+   "next": "comedor",
    "successBars": 4,
    "successFinal": false,
    "gridTier": "mid",
@@ -238,6 +238,54 @@
      "layer": [
       {
        "source": "pipeline-20261107/chains/billiards/parent.flac",
+       "part": "percussive",
+       "db": -6
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "comedor",
+   "key": "F major",
+   "next": "salon",
+   "successBars": 4,
+   "successFinal": false,
+   "gridTier": "mid",
+   "layerFadeBeats": 1,
+   "tiers": [
+    {
+     "name": "low",
+     "source": "act2-20261108/chains/comedor/lowB.flac",
+     "bpm": 120,
+     "loopBars": 32,
+     "targetLufs": -16.5,
+     "eq": [
+      {
+       "type": "highshelf",
+       "freq": 1200,
+       "gain": -6
+      }
+     ]
+    },
+    {
+     "name": "mid",
+     "source": "act2-20261108/chains/comedor/parent.flac",
+     "bpm": 128,
+     "loopBars": 32,
+     "targetLufs": -16,
+     "eq": []
+    },
+    {
+     "name": "high",
+     "source": "act2-20261108/chains/comedor/highE.flac",
+     "bpm": 136,
+     "loopBars": 32,
+     "targetLufs": -15,
+     "eq": [],
+     "layer": [
+      {
+       "source": "act2-20261108/chains/comedor/parent.flac",
        "part": "percussive",
        "db": -6
       }

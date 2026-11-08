@@ -1027,15 +1027,15 @@
    }
   },
   "bridge": {
-   "entryBar": 18,
-   "harmonyMatch": 0.821,
+   "entryBar": 30,
+   "harmonyMatch": 0.829,
    "limiter": {
     "maxReductionDb": 0.0,
     "limitedShare": 0.0
    },
    "bars": 2,
    "beats": 8,
-   "bpm": 108.0,
+   "bpm": 120.0,
    "decodeOffsetSamples": {
     "opus": 0,
     "aac": 0
@@ -1217,6 +1217,202 @@
    "bars": 4,
    "beats": 16,
    "bpm": 124.0,
+   "decodeOffsetSamples": {
+    "opus": 0,
+    "aac": 0
+   }
+  }
+ },
+ "comedor": {
+  "tiers": {
+   "low": {
+    "source": "act2-20261108/chains/comedor/lowB.flac",
+    "targetBpm": 120.0,
+    "measuredBpm": 119.836,
+    "errorPct": -0.137,
+    "wanderMs": 161.49,
+    "corrected": true,
+    "followsGridOf": "mid",
+    "maxLocalStretchPct": 6.38,
+    "splices": 780,
+    "bpmAfterWarp": 119.995,
+    "wanderAfterMs": 18.06,
+    "gridErrorBeforeMs": {
+     "typical": 15.12,
+     "worstBlock": 19.62
+    },
+    "gridErrorAfterMs": {
+     "typical": 9.34,
+     "worstBlock": 8.05
+    },
+    "bar1Beat": 1,
+    "bar1Seconds": 0.479,
+    "bar1Confidence": 0.07,
+    "bar1Margin": 0.039,
+    "measuredKey": "A minor",
+    "keyCorrelation": 0.611,
+    "askedKey": "F major",
+    "beatBiasMs": 3.76,
+    "loop": {
+     "startBar": 3,
+     "score": 1.789,
+     "harmony": 0.984,
+     "texture": 0.631,
+     "quietShare": 0.0,
+     "candidates": 6
+    },
+    "totalBars": 38,
+    "seamFadeSamples": 24000,
+    "seamCorrelation": 0.004,
+    "makeupDb": -3.5,
+    "limiter": {
+     "maxReductionDb": 0.0,
+     "limitedShare": 0.0
+    },
+    "ceilingDb": -1.5,
+    "decodedPeakDb": -4.7,
+    "lufs": -16.5,
+    "lra": 1.4,
+    "truePeakDb": -5.5,
+    "decodeOffsetSamples": {
+     "opus": 0,
+     "aac": 0
+    }
+   },
+   "mid": {
+    "source": "act2-20261108/chains/comedor/parent.flac",
+    "targetBpm": 128.0,
+    "measuredBpm": 127.975,
+    "errorPct": -0.019,
+    "wanderMs": 17.8,
+    "corrected": true,
+    "maxLocalStretchPct": 0.17,
+    "splices": 1,
+    "bpmAfterWarp": 127.975,
+    "wanderAfterMs": 16.48,
+    "gridErrorBeforeMs": {
+     "typical": 13.81,
+     "worstBlock": 16.63
+    },
+    "gridErrorAfterMs": {
+     "typical": 12.42,
+     "worstBlock": 29.92
+    },
+    "bar1Beat": 1,
+    "bar1Seconds": 0.479,
+    "bar1Confidence": 0.07,
+    "bar1Margin": 0.039,
+    "measuredKey": "C major",
+    "keyCorrelation": 0.849,
+    "askedKey": "F major",
+    "beatBiasMs": 3.76,
+    "loop": {
+     "startBar": 3,
+     "score": 1.789,
+     "harmony": 0.984,
+     "texture": 0.631,
+     "quietShare": 0.0,
+     "candidates": 6
+    },
+    "totalBars": 38,
+    "seamFadeSamples": 22500,
+    "seamCorrelation": 0.053,
+    "makeupDb": -4.8,
+    "limiter": {
+     "maxReductionDb": 0.0,
+     "limitedShare": 0.0
+    },
+    "ceilingDb": -1.5,
+    "decodedPeakDb": -2.8,
+    "lufs": -16.0,
+    "lra": 1.1,
+    "truePeakDb": -3.8,
+    "decodeOffsetSamples": {
+     "opus": 0,
+     "aac": 0
+    }
+   },
+   "high": {
+    "source": "act2-20261108/chains/comedor/highE.flac",
+    "targetBpm": 136.0,
+    "measuredBpm": 132.169,
+    "errorPct": -2.817,
+    "wanderMs": 95.52,
+    "corrected": false,
+    "followsGridOf": "mid",
+    "maxLocalStretchPct": 6.43,
+    "splices": 684,
+    "bpmAfterWarp": 135.995,
+    "wanderAfterMs": 59.78,
+    "gridErrorBeforeMs": {
+     "typical": 20.35,
+     "worstBlock": 25.84
+    },
+    "gridErrorAfterMs": {
+     "typical": 10.79,
+     "worstBlock": 10.69
+    },
+    "bar1Beat": 1,
+    "bar1Seconds": 0.479,
+    "bar1Confidence": 0.07,
+    "bar1Margin": 0.039,
+    "measuredKey": "A minor",
+    "keyCorrelation": 0.594,
+    "askedKey": "F major",
+    "beatBiasMs": 3.76,
+    "loop": {
+     "startBar": 3,
+     "score": 1.789,
+     "harmony": 0.984,
+     "texture": 0.631,
+     "quietShare": 0.0,
+     "candidates": 6
+    },
+    "totalBars": 38,
+    "seamFadeSamples": 21176,
+    "seamCorrelation": 0.274,
+    "makeupDb": -5.9,
+    "limiter": {
+     "maxReductionDb": 0.0,
+     "limitedShare": 0.0
+    },
+    "ceilingDb": -1.5,
+    "decodedPeakDb": -0.9,
+    "lufs": -15.0,
+    "lra": 0.6,
+    "truePeakDb": -3.0,
+    "decodeOffsetSamples": {
+     "opus": 0,
+     "aac": 0
+    }
+   }
+  },
+  "transitions": [],
+  "success": {
+   "sourceBar": 6,
+   "tagScore": 1.754,
+   "limiter": {
+    "maxReductionDb": 0.0,
+    "limitedShare": 0.0
+   },
+   "bars": 4,
+   "beats": 16,
+   "bpm": 136.0,
+   "decodeOffsetSamples": {
+    "opus": 0,
+    "aac": 0
+   }
+  },
+  "bridge": {
+   "entryBar": 12,
+   "harmonyMatch": 0.817,
+   "limiter": {
+    "maxReductionDb": 0.0,
+    "limitedShare": 0.0
+   },
+   "bars": 2,
+   "beats": 8,
+   "bpm": 108.0,
    "decodeOffsetSamples": {
     "opus": 0,
     "aac": 0
