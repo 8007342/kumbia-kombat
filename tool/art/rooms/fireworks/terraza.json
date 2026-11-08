@@ -1,0 +1,86 @@
+{
+ "$comment": "Fireworks over La Terraza's sky (fireworks.py). Five bursts, each a pulse prop of kind light: frame 0 is the painted sky, the last is the full bloom. Over 8 beats they peak on beats 0, 2, 3, 5 and 6 (phaseBeats shifts each), so the sky is never quiet at the top tier and never strobes: each burst blooms once a bar pair. Positions avoid the quiet box behind her (x .35-.65, y .3-.6). TERRAZA, 2026-11-08.",
+ "plate": "/home/forge/.cache/tillandsias-project/kumbia-art/rooms/terraza/run-a/p1-996000.png",
+ "atlas": "terraza/terraza-fireworks.png",
+ "cell": 2,
+ "frames": 6,
+ "sky": {
+  "maxY": 0.34,
+  "rule": {
+   "blueOverRed": 12,
+   "maxLuma": 95
+  }
+ },
+ "bursts": [
+  {
+   "id": "firework-gold",
+   "at": [
+    150,
+    140
+   ],
+   "r": 84,
+   "colours": "gold",
+   "spokes": 26,
+   "periodBeats": 8,
+   "phaseBeats": 0,
+   "instance": 1,
+   "seed": 1
+  },
+  {
+   "id": "firework-turquoise",
+   "at": [
+    680,
+    112
+   ],
+   "r": 78,
+   "colours": "turquoise",
+   "spokes": 24,
+   "periodBeats": 8,
+   "phaseBeats": 5,
+   "instance": 2,
+   "seed": 2
+  },
+  {
+   "id": "firework-red",
+   "at": [
+    416,
+    88
+   ],
+   "r": 64,
+   "colours": "red",
+   "spokes": 22,
+   "periodBeats": 8,
+   "phaseBeats": 2,
+   "instance": 3,
+   "seed": 3
+  },
+  {
+   "id": "firework-green",
+   "at": [
+    280,
+    248
+   ],
+   "r": 46,
+   "colours": "green",
+   "spokes": 18,
+   "periodBeats": 8,
+   "phaseBeats": 6,
+   "instance": 4,
+   "seed": 4
+  },
+  {
+   "id": "firework-white",
+   "at": [
+    566,
+    236
+   ],
+   "r": 50,
+   "colours": "white",
+   "spokes": 18,
+   "periodBeats": 8,
+   "phaseBeats": 3,
+   "instance": 5,
+   "seed": 5
+  }
+ ]
+}
