@@ -1,0 +1,66 @@
+{
+ "name": "LA LLUVIA DE CONFETI",
+ "status": "proposal",
+ "note": "Proposal. The rain of confetti: a samba no pé in the feet, then the hands throwing confetti high on the off-beats, left, right, left, right, then the feet again and a stamp. Her moves are her own clips (choreography.json dancers.purpurina), each a whole number of loops: lluvia_open (1.75 beats) on 0-1.75, confetti_rain (0.75 beats, a scoop then a throw on its last quarter) five times on 1.75-5.5 so every throw lands on a hand note, and lluvia_close (2.5 beats) on 5.5-8 with the right foot on 6 and the stamp on 7. WIRE2's notes, unchanged: every gap is at least three quarters of a beat, 402 ms at 112 BPM. The owner hasn't seen or played it.",
+ "callBeats": 8,
+ "moves": [
+  {
+   "at": 0,
+   "beats": 1.75,
+   "clip": "lluvia_open"
+  },
+  {
+   "at": 1.75,
+   "beats": 3.75,
+   "clip": "confetti_rain"
+  },
+  {
+   "at": 5.5,
+   "beats": 2.5,
+   "clip": "lluvia_close"
+  }
+ ],
+ "notes": [
+  {
+   "at": 0,
+   "limb": "leftFoot"
+  },
+  {
+   "at": 0.75,
+   "limb": "rightHand"
+  },
+  {
+   "at": 1.5,
+   "limb": "rightFoot"
+  },
+  {
+   "at": 2.25,
+   "limb": "leftHand"
+  },
+  {
+   "at": 3,
+   "limb": "rightHand"
+  },
+  {
+   "at": 3.75,
+   "limb": "leftHand"
+  },
+  {
+   "at": 4.5,
+   "limb": "rightHand"
+  },
+  {
+   "at": 5.25,
+   "limb": "leftHand"
+  },
+  {
+   "at": 6,
+   "limb": "rightFoot"
+  },
+  {
+   "at": 7,
+   "limb": "leftFoot",
+   "move": "stomp"
+  }
+ ]
+}
