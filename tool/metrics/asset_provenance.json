@@ -92,9 +92,24 @@
    "evidence": "tool/music/generate.mjs (composeBolero), assets/music/LICENSE.md"
   },
   {
-   "glob": "assets/music/midi/billiards_to_salon.mid",
+   "glob": "assets/music/midi/comedor_polka*",
    "class": "authored-code",
-   "evidence": "tool/music/generate.mjs (composeBilliardsToSalon), assets/music/LICENSE.md"
+   "evidence": "tool/music/generate.mjs (composeRoom, composeRoomSuccess), assets/music/LICENSE.md"
+  },
+  {
+   "glob": "assets/music/midi/galeria_reel*",
+   "class": "authored-code",
+   "evidence": "tool/music/generate.mjs (composeRoom, composeRoomSuccess), assets/music/LICENSE.md"
+  },
+  {
+   "glob": "assets/music/midi/terraza_samba*",
+   "class": "authored-code",
+   "evidence": "tool/music/generate.mjs (composeRoom, composeRoomSuccess), assets/music/LICENSE.md"
+  },
+  {
+   "glob": "assets/music/midi/*_to_*.mid",
+   "class": "authored-code",
+   "evidence": "tool/music/generate.mjs (composeActTwoBridge and earlier bridges), assets/music/LICENSE.md"
   },
   {
    "glob": "assets/music/rendered/*.m4a",
