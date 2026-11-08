@@ -1,0 +1,155 @@
+{
+ "$comment": "A junior waiter in the comedor's staff line (plan/levels/mansion-act-two-2026-11-08.md, section 6): hops the polka behind Don Charolas with a tray on the left hand (motion set opponent-polka, groove clip only). Black waistcoats against his white jacket, so the head waiter stays the one in white. COMEDOR, 2026-11-08, reversible. The stocky-adult rig put two unused poses outside the frame margins, so he is on slim-adult with sturdy in the words.",
+ "id": "waiter-c",
+ "family": "waiter-c-v1",
+ "style": "party-pixel",
+ "description": "Comedor junior waiter: a stocky young man with a shaved head and a neat beard, in a black waistcoat and long black apron, with a tray.",
+ "body": {
+  "preset": "slim-adult"
+ },
+ "pronouns": [
+  "he",
+  "him",
+  "his"
+ ],
+ "skin": "#5E3A26",
+ "traits": "stocky broad young man of about twenty-eight, shaved head, short neat black beard, big friendly grin",
+ "demeanor": "cheerful and quick, keeping up with the head waiter",
+ "garments": [
+  {
+   "id": "hair",
+   "shape": "palette-only",
+   "region": "hair",
+   "colour": "#141010",
+   "alsoIn": [
+    "skin"
+   ],
+   "text": "short neat black beard"
+  },
+  {
+   "id": "shirt",
+   "shape": "shirt-fitted",
+   "region": "shirt",
+   "colour": "#F0EEE8",
+   "text": "white long-sleeved shirt"
+  },
+  {
+   "id": "waistcoat",
+   "shape": "waistcoat-fitted",
+   "region": "cloth",
+   "colour": "#1A1A20",
+   "text": "black waistcoat"
+  },
+  {
+   "id": "apron",
+   "shape": "waist-apron",
+   "region": "cloth",
+   "colour": "#22222A",
+   "text": "long black bistro apron",
+   "secondaryMotion": "lag-1"
+  },
+  {
+   "id": "bowtie",
+   "shape": "palette-only",
+   "region": "accessory",
+   "colour": "#141418",
+   "alsoIn": [
+    "shirt",
+    "cloth",
+    "skin"
+   ],
+   "text": "black bow tie"
+  },
+  {
+   "id": "silver",
+   "shape": "palette-only",
+   "region": "accessory",
+   "colour": "#B8BCC4",
+   "alsoIn": [
+    "cloth",
+    "skin",
+    "shirt",
+    "hair"
+   ],
+   "text": "the round silver tray"
+  },
+  {
+   "id": "wine",
+   "shape": "palette-only",
+   "region": "accessory",
+   "colour": "#7A1424",
+   "alsoIn": [
+    "cloth",
+    "skin",
+    "shirt",
+    "hair"
+   ],
+   "text": "glasses of red wine"
+  },
+  {
+   "id": "trousers",
+   "shape": "trousers",
+   "region": "trousers",
+   "colour": "#15151A",
+   "text": "black trousers"
+  },
+  {
+   "id": "shoes",
+   "shape": "shoes-flat",
+   "region": "shoes",
+   "colour": "#0E0E12",
+   "alsoIn": [
+    "trousers"
+   ],
+   "text": "polished black shoes"
+  }
+ ],
+ "motion": {
+  "set": "opponent-polka",
+  "overrides": {}
+ },
+ "drawing": {
+  "noun": "man",
+  "fits": "hair, both shoes, both hands and the whole tray",
+  "look": "sturdy, broad-shouldered young build, a round face with a big friendly grin, a cleanly shaved head, a short neat black beard, dark brown skin, a white long-sleeved shirt with a black bow tie, a fitted black waistcoat, a long black bistro apron tied at the waist reaching below his knees, black trousers and polished black shoes, and thick dark ink outline",
+  "extra": "He is a grown young man of about twenty-eight, broad and cheerful. Both eyes are open. ",
+  "sheet": {
+   "source": {
+    "image": "tool/art/references/charolas/front.png",
+    "styleOnly": true
+   },
+   "views": {
+    "front": {
+     "image": "tool/art/references/waiter-c/front.png",
+     "description": "standing square facing the viewer, feet a little apart, the right arm relaxed at the side with the open hand visible, the left hand on the right side of the picture held up beside the head with the palm flat, balancing a round silver tray with two glasses of red wine on it",
+     "stageScale": 0.84
+    }
+   }
+  },
+  "seed": 994200,
+  "poseOverrides": {},
+  "score": {
+   "knee": [
+    "apron"
+   ],
+   "silhouetteTolerance": 30
+  }
+ },
+ "references": {
+  "mode": "source",
+  "sources": []
+ },
+ "targets": [
+  {
+   "room": "comedor",
+   "atlas": "waiter-c",
+   "out": "assets/art/ensemble/waiter-c-v1.png",
+   "native": [
+    256,
+    320
+   ],
+   "pixelScale": 3
+  }
+ ],
+ "seedBase": 994200
+}

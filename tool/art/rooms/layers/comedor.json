@@ -385,7 +385,7 @@
   },
   {
    "id": "statue-nod",
-   "kind": "plant",
+   "kind": "artwork",
    "rule": "all",
    "polygon": [
     [
@@ -444,7 +444,7 @@
   },
   {
    "id": "statue-tap",
-   "kind": "plant",
+   "kind": "artwork",
    "rule": "all",
    "polygon": [
     [
@@ -503,7 +503,7 @@
   },
   {
    "id": "portrait-lady",
-   "kind": "plant",
+   "kind": "artwork",
    "rule": "all",
    "polygon": [
     [
@@ -562,7 +562,7 @@
   },
   {
    "id": "portrait-snap",
-   "kind": "plant",
+   "kind": "artwork",
    "polygon": [
     [
      240,

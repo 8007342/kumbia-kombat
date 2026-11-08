@@ -134,42 +134,56 @@
   }
  },
  "diners": {
-  "note": "Seated behind the table on its far side, facing the room. 'at' is the floor point under each chair (hidden by the table). Drawn in place on the plate (tool/art/rooms/inplace.py), so each atlas is 1:1 with the plate when its anchor sits at 'at'. Candelabra stand at x .39 and .62 between seats 2-3 and 4-5.",
+  "note": "Seated behind the table on its far side, facing the room. 'at' is the floor point under each chair (hidden by the table). Drawn in place on the plate (tool/art/rooms/inplace.py), so each atlas is 1:1 with the plate when its anchor sits at 'at'. Candelabra stand at x .39 and .62 between seats 2-3 and 4-5. Seven seats, two left of the left candelabrum, three between them, two right of the right one.",
   "seats": [
    {
     "at": [
-     0.282,
+     0.231,
      0.405
     ],
     "atlas": "diner-a"
    },
    {
     "at": [
-     0.363,
+     0.308,
      0.405
     ],
     "atlas": "diner-b"
    },
    {
     "at": [
-     0.464,
+     0.445,
      0.405
     ],
     "atlas": "diner-c"
    },
    {
     "at": [
-     0.55,
+     0.505,
      0.405
     ],
     "atlas": "diner-d"
    },
    {
     "at": [
-     0.665,
+     0.565,
      0.405
     ],
     "atlas": "diner-e"
+   },
+   {
+    "at": [
+     0.673,
+     0.405
+    ],
+    "atlas": "diner-f"
+   },
+   {
+    "at": [
+     0.738,
+     0.405
+    ],
+    "atlas": "diner-g"
    }
   ]
  },
@@ -191,6 +205,14 @@
     ],
     "atlas": "waiter-b",
     "faces": "left"
+   },
+   {
+    "at": [
+     0.2,
+     0.53
+    ],
+    "atlas": "waiter-c",
+    "faces": "right"
    }
   ],
   "waitersOutro": [
@@ -206,5 +228,26 @@
  },
  "life": {
   "note": "Room life at full party: tool/art/rooms/layers/comedor.json, rects in art_runs/rooms/comedor/layers-level.json. Glow marks for a candle flare: chandeliers (.21,.17) and (.80,.17); candelabra (.39,.335) and (.62,.335)."
+ },
+ "lateGuests": {
+  "note": "Two standing late guests in evening dress, reused atlases (salon cast), against the side walls in front of the table's ends. Standing idle, glance and clap frames; they make the crowd 12 (7 diners, 3 waiters, 2 guests).",
+  "guests": [
+   {
+    "at": [
+     0.2,
+     0.47
+    ],
+    "atlas": "guest5",
+    "faces": "right"
+   },
+   {
+    "at": [
+     0.84,
+     0.47
+    ],
+    "atlas": "guest4",
+    "faces": "left"
+   }
+  ]
  }
 }

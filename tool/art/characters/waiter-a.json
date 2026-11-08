@@ -1,0 +1,152 @@
+{
+ "$comment": "A junior waiter in the comedor's staff line (plan/levels/mansion-act-two-2026-11-08.md, section 6): hops the polka behind Don Charolas with a tray on the left hand (motion set opponent-polka, groove clip only). Black waistcoats against his white jacket, so the head waiter stays the one in white. COMEDOR, 2026-11-08, reversible.",
+ "id": "waiter-a",
+ "family": "waiter-a-v1",
+ "style": "party-pixel",
+ "description": "Comedor junior waiter: a tall, lean young man in a black waistcoat and long black apron, with a tray.",
+ "body": {
+  "preset": "slim-adult"
+ },
+ "pronouns": [
+  "he",
+  "him",
+  "his"
+ ],
+ "skin": "#8A5A3C",
+ "traits": "tall lean young man of about twenty-five, short curly dark hair, clean-shaven, eager grin",
+ "demeanor": "cheerful and quick, keeping up with the head waiter",
+ "garments": [
+  {
+   "id": "hair",
+   "shape": "puff",
+   "region": "hair",
+   "colour": "#201814",
+   "text": "short curly dark brown hair"
+  },
+  {
+   "id": "shirt",
+   "shape": "shirt-fitted",
+   "region": "shirt",
+   "colour": "#F0EEE8",
+   "text": "white long-sleeved shirt"
+  },
+  {
+   "id": "waistcoat",
+   "shape": "waistcoat-fitted",
+   "region": "cloth",
+   "colour": "#1A1A20",
+   "text": "black waistcoat"
+  },
+  {
+   "id": "apron",
+   "shape": "waist-apron",
+   "region": "cloth",
+   "colour": "#22222A",
+   "text": "long black bistro apron",
+   "secondaryMotion": "lag-1"
+  },
+  {
+   "id": "bowtie",
+   "shape": "palette-only",
+   "region": "accessory",
+   "colour": "#141418",
+   "alsoIn": [
+    "shirt",
+    "cloth",
+    "skin"
+   ],
+   "text": "black bow tie"
+  },
+  {
+   "id": "silver",
+   "shape": "palette-only",
+   "region": "accessory",
+   "colour": "#B8BCC4",
+   "alsoIn": [
+    "cloth",
+    "skin",
+    "shirt",
+    "hair"
+   ],
+   "text": "the round silver tray"
+  },
+  {
+   "id": "wine",
+   "shape": "palette-only",
+   "region": "accessory",
+   "colour": "#7A1424",
+   "alsoIn": [
+    "cloth",
+    "skin",
+    "shirt",
+    "hair"
+   ],
+   "text": "glasses of red wine"
+  },
+  {
+   "id": "trousers",
+   "shape": "trousers",
+   "region": "trousers",
+   "colour": "#15151A",
+   "text": "black trousers"
+  },
+  {
+   "id": "shoes",
+   "shape": "shoes-flat",
+   "region": "shoes",
+   "colour": "#0E0E12",
+   "alsoIn": [
+    "trousers"
+   ],
+   "text": "polished black shoes"
+  }
+ ],
+ "motion": {
+  "set": "opponent-polka",
+  "overrides": {}
+ },
+ "drawing": {
+  "noun": "man",
+  "fits": "hair, both shoes, both hands and the whole tray",
+  "look": "tall, lean, long-legged young build, a narrow face with an eager grin, short curly dark brown hair, clean-shaven, medium brown skin, a white long-sleeved shirt with a black bow tie, a fitted black waistcoat, a long black bistro apron tied at the waist reaching below his knees, black trousers and polished black shoes, and thick dark ink outline",
+  "extra": "He is a grown young man of about twenty-five, lean and quick. Both eyes are open. ",
+  "sheet": {
+   "source": {
+    "image": "tool/art/references/charolas/front.png",
+    "styleOnly": true
+   },
+   "views": {
+    "front": {
+     "image": "tool/art/references/waiter-a/front.png",
+     "description": "standing square facing the viewer, feet a little apart, the right arm relaxed at the side with the open hand visible, the left hand on the right side of the picture held up beside the head with the palm flat, balancing a round silver tray with two glasses of red wine on it",
+     "stageScale": 0.84
+    }
+   }
+  },
+  "seed": 994000,
+  "poseOverrides": {},
+  "score": {
+   "knee": [
+    "apron"
+   ],
+   "silhouetteTolerance": 30
+  }
+ },
+ "references": {
+  "mode": "source",
+  "sources": []
+ },
+ "targets": [
+  {
+   "room": "comedor",
+   "atlas": "waiter-a",
+   "out": "assets/art/ensemble/waiter-a-v1.png",
+   "native": [
+    256,
+    320
+   ],
+   "pixelScale": 3
+  }
+ ],
+ "seedBase": 994000
+}

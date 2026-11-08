@@ -1,0 +1,271 @@
+{
+ "room": "comedor",
+ "run": "rooms/comedor/diners",
+ "comment": "The comedor's diners, drawn in place behind the banquet table on the clean plate. Polygons are crop pixels (crop origin 150, 290); each runs from above a standing head down to the table top, so the table stays the plate's. Anchors: the floor under each chair, hidden by the table (marks.json). COMEDOR, 2026-11-08.",
+ "plate": "assets/art/comedor/comedor-room.png",
+ "crop": [
+  150,
+  290,
+  650,
+  560
+ ],
+ "camera": {
+  "horizonY": 0.27,
+  "eyeHeightAdults": 1.0,
+  "plateHeight": 1248
+ },
+ "threshold": 24,
+ "keepWords": "Keep everything else in image 1 exactly as it is: the same table and its setting, the same wall, portraits, statue and door, the same pixel art, the same camera and the same colours.",
+ "figures": [
+  {
+   "id": "diner-a",
+   "atlas": "diner-a",
+   "anchorPlatePx": [
+    192,
+    505
+   ],
+   "polygon": [
+    [
+     10,
+     10
+    ],
+    [
+     74,
+     10
+    ],
+    [
+     74,
+     166
+    ],
+    [
+     10,
+     166
+    ]
+   ]
+  },
+  {
+   "id": "diner-b",
+   "atlas": "diner-b",
+   "anchorPlatePx": [
+    256,
+    505
+   ],
+   "polygon": [
+    [
+     74,
+     10
+    ],
+    [
+     163,
+     10
+    ],
+    [
+     163,
+     166
+    ],
+    [
+     74,
+     166
+    ]
+   ]
+  },
+  {
+   "id": "diner-c",
+   "atlas": "diner-c",
+   "anchorPlatePx": [
+    370,
+    505
+   ],
+   "polygon": [
+    [
+     163,
+     10
+    ],
+    [
+     245,
+     10
+    ],
+    [
+     245,
+     166
+    ],
+    [
+     163,
+     166
+    ]
+   ]
+  },
+  {
+   "id": "diner-d",
+   "atlas": "diner-d",
+   "anchorPlatePx": [
+    420,
+    505
+   ],
+   "polygon": [
+    [
+     245,
+     10
+    ],
+    [
+     295,
+     10
+    ],
+    [
+     295,
+     166
+    ],
+    [
+     245,
+     166
+    ]
+   ]
+  },
+  {
+   "id": "diner-e",
+   "atlas": "diner-e",
+   "anchorPlatePx": [
+    470,
+    505
+   ],
+   "polygon": [
+    [
+     295,
+     10
+    ],
+    [
+     365,
+     10
+    ],
+    [
+     365,
+     166
+    ],
+    [
+     295,
+     166
+    ]
+   ]
+  },
+  {
+   "id": "diner-f",
+   "atlas": "diner-f",
+   "anchorPlatePx": [
+    560,
+    505
+   ],
+   "polygon": [
+    [
+     365,
+     10
+    ],
+    [
+     437,
+     10
+    ],
+    [
+     437,
+     166
+    ],
+    [
+     365,
+     166
+    ]
+   ]
+  },
+  {
+   "id": "diner-g",
+   "atlas": "diner-g",
+   "anchorPlatePx": [
+    614,
+    505
+   ],
+   "polygon": [
+    [
+     437,
+     10
+    ],
+    [
+     498,
+     10
+    ],
+    [
+     498,
+     166
+    ],
+    [
+     437,
+     166
+    ]
+   ]
+  }
+ ],
+ "key": {
+  "prompt": "Image 1 is part of a pixel art game background at night: a banquet table with a cream damask tablecloth, soup bowls, wine glasses and two silver candelabra, in front of a wine-red wall. Add seven diners seated in a row on the far side of the table, facing the viewer, all in formal dinner dress, from left to right: an older gentleman with white hair and a short grey beard in a black tailcoat and white bow tie; a woman of about forty with dark hair in a chignon, in an emerald satin evening gown; a plump bald man of about sixty in a burgundy velvet dinner jacket and black bow tie; a young woman with long black hair in a braid, in a gold evening dress; a man of about thirty-five with a neat dark beard, in a navy suit and tie; an elderly woman with a silver updo and a pearl necklace, in a lavender gown with long sleeves; a young man with round glasses, in a grey suit and a dark green bow tie. Each sits on a chair behind the table so only the upper body shows above the tablecloth, eating soup with a spoon, heads bowed a little over the bowls, drawn with a thick dark ink outline in the same crisp pixel art as the picture, at the size the table allows. They are grown-ups of mixed ages, elegant and covered, with long sleeves or modest necklines.",
+  "seed": 995000,
+  "count": 3,
+  "pick": ""
+ },
+ "frames": [
+  {
+   "id": "eat_a",
+   "reuse": "key"
+  },
+  {
+   "id": "eat_b",
+   "prompt": "Image 1 shows seven diners seated in a row on the far side of the table, facing the viewer, all in formal dinner dress, from left to right: an older gentleman with white hair and a short grey beard in a black tailcoat and white bow tie; a woman of about forty with dark hair in a chignon, in an emerald satin evening gown; a plump bald man of about sixty in a burgundy velvet dinner jacket and black bow tie; a young woman with long black hair in a braid, in a gold evening dress; a man of about thirty-five with a neat dark beard, in a navy suit and tie; an elderly woman with a silver updo and a pearl necklace, in a lavender gown with long sleeves; a young man with round glasses, in a grey suit and a dark green bow tie. Draw exactly the same picture, the same seven diners in the same seats, the same table, room and light at the same place and size, and change only their poses: each diner lifts a spoon of soup up to the mouth, the other hand resting by the bowl, eyes on the spoon.",
+   "seed": 995100,
+   "count": 2,
+   "pick": ""
+  },
+  {
+   "id": "watch_a",
+   "prompt": "Image 1 shows seven diners seated in a row on the far side of the table, facing the viewer, all in formal dinner dress, from left to right: an older gentleman with white hair and a short grey beard in a black tailcoat and white bow tie; a woman of about forty with dark hair in a chignon, in an emerald satin evening gown; a plump bald man of about sixty in a burgundy velvet dinner jacket and black bow tie; a young woman with long black hair in a braid, in a gold evening dress; a man of about thirty-five with a neat dark beard, in a navy suit and tie; an elderly woman with a silver updo and a pearl necklace, in a lavender gown with long sleeves; a young man with round glasses, in a grey suit and a dark green bow tie. Draw exactly the same picture, the same seven diners in the same seats, the same table, room and light at the same place and size, and change only their poses: each diner has put down the spoon and sits up straight, turned to look out toward the viewer with interest, both hands resting on the table.",
+   "seed": 995200,
+   "count": 2,
+   "pick": ""
+  },
+  {
+   "id": "watch_b",
+   "prompt": "Image 1 shows seven diners seated in a row on the far side of the table, facing the viewer, all in formal dinner dress, from left to right: an older gentleman with white hair and a short grey beard in a black tailcoat and white bow tie; a woman of about forty with dark hair in a chignon, in an emerald satin evening gown; a plump bald man of about sixty in a burgundy velvet dinner jacket and black bow tie; a young woman with long black hair in a braid, in a gold evening dress; a man of about thirty-five with a neat dark beard, in a navy suit and tie; an elderly woman with a silver updo and a pearl necklace, in a lavender gown with long sleeves; a young man with round glasses, in a grey suit and a dark green bow tie. Draw exactly the same picture, the same seven diners in the same seats, the same table, room and light at the same place and size, and change only their poses: each diner leans forward a little with a curious smile, watching toward the viewer, one hand at the chin and the other on the table.",
+   "seed": 995300,
+   "count": 2,
+   "pick": ""
+  },
+  {
+   "id": "clap_a",
+   "prompt": "Image 1 shows seven diners seated in a row on the far side of the table, facing the viewer, all in formal dinner dress, from left to right: an older gentleman with white hair and a short grey beard in a black tailcoat and white bow tie; a woman of about forty with dark hair in a chignon, in an emerald satin evening gown; a plump bald man of about sixty in a burgundy velvet dinner jacket and black bow tie; a young woman with long black hair in a braid, in a gold evening dress; a man of about thirty-five with a neat dark beard, in a navy suit and tie; an elderly woman with a silver updo and a pearl necklace, in a lavender gown with long sleeves; a young man with round glasses, in a grey suit and a dark green bow tie. Draw exactly the same picture, the same seven diners in the same seats, the same table, room and light at the same place and size, and change only their poses: each diner smiles and holds both hands apart in front of the chest, about to clap, looking toward the viewer.",
+   "seed": 995400,
+   "count": 2,
+   "pick": ""
+  },
+  {
+   "id": "clap_b",
+   "prompt": "Image 1 shows seven diners seated in a row on the far side of the table, facing the viewer, all in formal dinner dress, from left to right: an older gentleman with white hair and a short grey beard in a black tailcoat and white bow tie; a woman of about forty with dark hair in a chignon, in an emerald satin evening gown; a plump bald man of about sixty in a burgundy velvet dinner jacket and black bow tie; a young woman with long black hair in a braid, in a gold evening dress; a man of about thirty-five with a neat dark beard, in a navy suit and tie; an elderly woman with a silver updo and a pearl necklace, in a lavender gown with long sleeves; a young man with round glasses, in a grey suit and a dark green bow tie. Draw exactly the same picture, the same seven diners in the same seats, the same table, room and light at the same place and size, and change only their poses: each diner claps, both palms pressed together in front of the chest, laughing and looking toward the viewer.",
+   "seed": 995500,
+   "count": 2,
+   "pick": ""
+  },
+  {
+   "id": "rise_a",
+   "prompt": "Image 1 shows seven diners seated in a row on the far side of the table, facing the viewer, all in formal dinner dress, from left to right: an older gentleman with white hair and a short grey beard in a black tailcoat and white bow tie; a woman of about forty with dark hair in a chignon, in an emerald satin evening gown; a plump bald man of about sixty in a burgundy velvet dinner jacket and black bow tie; a young woman with long black hair in a braid, in a gold evening dress; a man of about thirty-five with a neat dark beard, in a navy suit and tie; an elderly woman with a silver updo and a pearl necklace, in a lavender gown with long sleeves; a young man with round glasses, in a grey suit and a dark green bow tie. Draw exactly the same picture, the same seven diners in the same seats, the same table, room and light at the same place and size, and change only their poses: each diner is getting up from the chair, half risen behind the table with both hands on the table edge, smiling toward the viewer.",
+   "seed": 995600,
+   "count": 2,
+   "pick": ""
+  },
+  {
+   "id": "toast_a",
+   "prompt": "Image 1 shows seven diners seated in a row on the far side of the table, facing the viewer, all in formal dinner dress, from left to right: an older gentleman with white hair and a short grey beard in a black tailcoat and white bow tie; a woman of about forty with dark hair in a chignon, in an emerald satin evening gown; a plump bald man of about sixty in a burgundy velvet dinner jacket and black bow tie; a young woman with long black hair in a braid, in a gold evening dress; a man of about thirty-five with a neat dark beard, in a navy suit and tie; an elderly woman with a silver updo and a pearl necklace, in a lavender gown with long sleeves; a young man with round glasses, in a grey suit and a dark green bow tie. Draw exactly the same picture, the same seven diners in the same seats, the same table, room and light at the same place and size, and change only their poses: every diner stands up tall behind the table, each holding a glass of red wine raised high in one hand in a toast, cheering toward the viewer.",
+   "seed": 995700,
+   "count": 2,
+   "pick": ""
+  },
+  {
+   "id": "toast_b",
+   "prompt": "Image 1 shows seven diners seated in a row on the far side of the table, facing the viewer, all in formal dinner dress, from left to right: an older gentleman with white hair and a short grey beard in a black tailcoat and white bow tie; a woman of about forty with dark hair in a chignon, in an emerald satin evening gown; a plump bald man of about sixty in a burgundy velvet dinner jacket and black bow tie; a young woman with long black hair in a braid, in a gold evening dress; a man of about thirty-five with a neat dark beard, in a navy suit and tie; an elderly woman with a silver updo and a pearl necklace, in a lavender gown with long sleeves; a young man with round glasses, in a grey suit and a dark green bow tie. Draw exactly the same picture, the same seven diners in the same seats, the same table, room and light at the same place and size, and change only their poses: every diner stands behind the table, glasses of red wine raised high, the glasses tilted toward each other in a cheerful toast, laughing.",
+   "seed": 995800,
+   "count": 2,
+   "pick": ""
+  }
+ ]
+}
