@@ -151,3 +151,37 @@ All are covered and elegant, and mixed in age and build.
 **LA TORRE DE CHAROLAS** (`art_runs/rooms/comedor/hardest-combo.json`) [P]:
 - Moves: a polka spin (beats 0-2), the tower up (2-3), hops under the tower (3-7), the tower held (7-8).
 - WIRE2 re-timed my notes to gaps of 0.75 beats or more, because half a beat is 221 ms at 136 BPM, under the 230 ms good window. It closes on a right-foot stomp.
+
+## Staff: three junior waiters
+
+[P] The juniors wear black waistcoats, long black bistro aprons and black bow ties over white shirts, so the head waiter stays the one in white.
+- `waiter-a`: a young man with dark hair and an eager grin.
+- `waiter-b`: a young woman with auburn hair in a high bun.
+- `waiter-c`: a young man with a shaved head and a neat beard.
+
+Each holds the tray on the picture's right.
+
+**Route** [F]: the `art-family` skill. Each sheet was drawn from words with Don Charolas' front as the style reference, three candidates each; I kept a 994001, b 994102 and c 994201.
+- All three came out a little rounder than the words asked (lean, slim, sturdy): the style reference pulls build toward his. A's curly hair came out straight.
+- Frames: a new motion set `staff-polka` holds only Don Charolas' polka groove (8 drawings) and one standing drawing, `idle.a`, so the atlas needs no runtime aliases for clips the staff never dance. That's 9 poses at 2 candidates each per waiter, all picked by eye. I rejected a pointing hand (reserved), and a white sock and a white heel the model invented.
+- waiter-c was planned on `stocky-adult`, but the rig put two of the shared poses outside the frame margins, so he's on `slim-adult` with "sturdy" in the words.
+
+**Manifest** [F]: waiter-a, b and c, frames `groove_*` and `idle_a`. WIRE2 mirrors waiter-b, so the tray swaps hands on that one figure. I told WIRE2 that was acceptable.
+
+## Close-up: QUÉ / BANQUETE
+
+`assets/art/closeups/comedor-art.json`, in the salon-art.json shape. WIRE2 wired it on beats 5 to 11.5. [F]
+- **Don Charolas** (`comedor-dc-*`): four Qwen edits of one bust crop of his accepted front (`art_runs/comedor-closeups-20261108/scripts/bust_jobs.py` holds the words), two seeds each, placed by hair top and face centre by `comedor_bust.py`, then snapped to his palette plus the can's colours on a 2-px grid.
+  - **present** (996001): the cloche closed on the tray.
+  - **lift** (996011): the cloche lifted, the tiny green oil can with a lit birthday candle revealed.
+  - **offer** (996020): the tray with the can held out to the right, the cloche raised like a trophy.
+  - **empty** (996030): the tray empty, eyes in happy arcs.
+- **Mācron** (`comedor-mc-*`): drawn from parts by the close-up rig, no GPU (`comedor_macron.py`). The can and candle are code shapes.
+  - **reach**, then **take** (the can held up, round eyes);
+  - **sip**: the can tipped to the bottom of his face screen, eyes shut. He has no mouth, so the screen does the sipping;
+  - **happy**: big arcs, a blush.
+- **Plate:** `comedor-banquete-plate.png`, a crop of the clean plate.
+- **Weak points** [F]:
+  - The cloche runs off the top edge in *empty*, and a little off the right in *lift*, because the source drawings put it at their own edge.
+  - His cheeks snap browner than his sprite's in *present*.
+  - Between present and lift the tray drops from head height to chest height. Those are cuts on beats, but it's a jump.
