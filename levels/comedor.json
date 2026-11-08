@@ -696,93 +696,6 @@
      "beatsPerFrame": 0.5
     }
    },
-   "waiterStandIn": {
-    "reference": "standing_idle_a",
-    "seatedIdle": {
-     "frames": [
-      "groove_a",
-      "groove_b",
-      "groove_c",
-      "groove_d"
-     ],
-     "beatsPerFrame": 1
-    },
-    "notice": {
-     "frames": [
-      "glance_a",
-      "glance_b"
-     ],
-     "beatsPerFrame": 1
-    },
-    "seatedFollow": {
-     "frames": [
-      "groove_a",
-      "groove_b",
-      "groove_c",
-      "groove_d"
-     ],
-     "beatsPerFrame": 1
-    },
-    "standUp": {
-     "frames": [
-      "groove_a",
-      "groove_b",
-      "groove_c",
-      "groove_d"
-     ],
-     "beatsPerFrame": 1
-    },
-    "standingIdle": {
-     "frames": [
-      "groove_a",
-      "groove_b",
-      "groove_c",
-      "groove_d"
-     ],
-     "beatsPerFrame": 1
-    },
-    "stepTouch": {
-     "frames": [
-      "groove_a",
-      "groove_b",
-      "groove_c",
-      "groove_d"
-     ],
-     "beatsPerFrame": 1
-    },
-    "clap": {
-     "frames": [
-      "clap_a",
-      "clap_b"
-     ],
-     "beatsPerFrame": 0.5
-    },
-    "cheer": {
-     "frames": [
-      "cheer_a",
-      "cheer_b"
-     ],
-     "beatsPerFrame": 1
-    },
-    "sitDown": {
-     "frames": [
-      "groove_a",
-      "groove_b",
-      "groove_c",
-      "groove_d"
-     ],
-     "beatsPerFrame": 1
-    },
-    "applause": {
-     "frames": [
-      "groove_a",
-      "groove_b",
-      "groove_c",
-      "groove_d"
-     ],
-     "beatsPerFrame": 1
-    }
-   },
    "guest": {
     "reference": "standing_idle_a",
     "seatedIdle": {
@@ -964,8 +877,8 @@
      0.53
     ],
     "seat": "standing",
-    "atlas": "guest6",
-    "clips": "waiterStandIn",
+    "atlas": "waiter-c",
+    "clips": "waiter",
     "faces": "right"
    },
    {
