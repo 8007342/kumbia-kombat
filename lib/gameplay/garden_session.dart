@@ -649,6 +649,10 @@ class GardenSession {
   int _phraseRich = 0;
   int _phraseGestures = 0;
   final List<int> _phraseDeltasMs = [];
+
+  /// This phrase's near misses, signed like [_phraseDeltasMs]. They teach the
+  /// auto-nudge and nothing else.
+  final List<int> _phraseNearDeltasMs = [];
   int _responseTier = 0;
   int _phraseTier = 0;
   int _responseSequence = 0;
@@ -765,6 +769,7 @@ class GardenSession {
     lastPairPartner = null;
     _phraseGestures = 0;
     _phraseDeltasMs.clear();
+    _phraseNearDeltasMs.clear();
     _hit.clear();
     _phraseTier = progress.tier;
     _pattern = chart.patternFor(_phraseTier, progress.fullTierSuccesses);
@@ -808,7 +813,16 @@ class GardenSession {
         : null;
   }
 
-  List<GardenCue> get visibleCues {
+  List<GardenCue> get visibleCues => _cues(forTaps: false);
+
+  /// The response cues a tap may be aimed at, on the judge's clock. Not the
+  /// drawn ones: those go on the audible clock, which runs ahead of the judge
+  /// by the touch delay, calibration and nudge, so a late player's ring would
+  /// vanish while their tap was still in its window. A superset: the caller
+  /// times each cue with [RhythmJudge.inReach].
+  List<GardenCue> get tapCues => _cues(forTaps: true);
+
+  List<GardenCue> _cues({required bool forTaps}) {
     if (phase == GardenPhase.ready ||
         phase == GardenPhase.paused ||
         phase == GardenPhase.cleared ||
@@ -820,7 +834,10 @@ class GardenSession {
         ? positionBeats
         : transport.beatAt(audibleSeconds);
     final cues = <GardenCue>[];
-    for (final demonstration in [true, false]) {
+    final judgedSeconds = judgedNowMs / 1000;
+    const tapReachSeconds =
+        (RhythmJudge.nearLateMs + tapGraceMs + maxTapAgeMs) / 1000;
+    for (final demonstration in forTaps ? [false] : [true, false]) {
       for (var i = 0; i < activeLimbs.length; i++) {
         final target =
             _cycleStart +
@@ -828,9 +845,13 @@ class GardenSession {
             activeOffsets[i];
         final id = '$_phraseIdentity:$i';
         if (!demonstration && _hit.contains(id)) continue;
-        if (beat >= target - 2 &&
-            audibleSeconds <=
-                transport.secondsAt(target) + RhythmJudge.lateWindowMs / 1000) {
+        final open = forTaps
+            ? judgedSeconds <= transport.secondsAt(target) + tapReachSeconds
+            : beat >= target - 2 &&
+                  audibleSeconds <=
+                      transport.secondsAt(target) +
+                          RhythmJudge.lateWindowMs / 1000;
+        if (open) {
           cues.add(
             GardenCue(
               id: id,
@@ -867,7 +888,7 @@ class GardenSession {
     if (progress.cleared && _judge != null) {
       if (judgedNowMs >
           _judge!.notes.last.atMs +
-              RhythmJudge.lateWindowMs +
+              RhythmJudge.settleLateMs +
               RhythmJudge.flourishWindowMs) {
         phase = GardenPhase.cleared;
       }
@@ -901,7 +922,9 @@ class GardenSession {
     final judge = _judge!;
     // A step's second press is for skilful play, so missing it breaks nothing.
     // The combo breaks once a whole step has gone by with neither press.
-    for (final missed in judge.expire(judgedNowMs)) {
+    // Expiry waits [tapGraceMs]: a touch that landed in time is often handled
+    // a frame or two later, and it must still find its note open.
+    for (final missed in judge.expire(judgedNowMs - tapGraceMs)) {
       final step = activeSteps[_indexOf(missed)];
       final lastOfStep =
           _indexOf(missed) == activeSteps.lastIndexOf(step);
@@ -915,7 +938,7 @@ class GardenSession {
       // Full-arrangement sustain cannot score while its request is pending.
       if (passed && progress.tier == 4 && _responseTier < 4) return;
       lastOutcome = progress.resolve(passed: passed);
-      autoNudge?.phrase(_phraseDeltasMs);
+      autoNudge?.phrase([..._phraseDeltasMs, ..._phraseNearDeltasMs]);
       if (passed) passedPhrases++;
       final resolvedBeat = transport.beatAt(
         math.min(
@@ -969,7 +992,14 @@ class GardenSession {
   }
 
   /// A touch event older than this is a stale time stamp, not a slow frame.
-  static const maxTapAgeMs = 150;
+  /// Was 150; a phone's busy frame can hold a touch longer. It stays under the early window, so a stale stamp can never push an on-time tap out.
+  static const maxTapAgeMs = 200;
+
+  /// How long a note stays open past its late window, so a touch already on
+  /// its way can still land. The phrase is still decided when its last note's
+  /// window ends, so the next tier is asked for on time. The tap is judged at its
+  /// own time stamp; this only keeps the door open while it arrives.
+  static const tapGraceMs = 120;
 
   /// The latest tap came during [opponentsTurn]. It was ignored, never a miss.
   bool lastTapOutOfTurn = false;
@@ -1000,6 +1030,8 @@ class GardenSession {
       _judge = _makeJudge();
     }
     final result = _togetherGrade(_judge!.tap(limb, judgedAt));
+    final near = result.nearMissDeltaMs;
+    if (near != null) _phraseNearDeltasMs.add(near);
     lastGrade = result.grade;
     lastTiming = result.timing;
     lastDeltaMs = result.deltaMs;

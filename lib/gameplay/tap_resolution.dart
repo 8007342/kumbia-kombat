@@ -22,16 +22,27 @@ double tapAreaRadius(double width) =>
 
 /// A ring a tap could belong to right now.
 class TapCandidate {
-  const TapCandidate(this.limb, this.landing, this.timingOffMs);
+  const TapCandidate(
+    this.limb,
+    this.landing,
+    this.timingOffMs, {
+    this.inWindow = true,
+  });
   final Limb limb;
   final NotePoint landing;
+
+  /// False for a near miss: the note is in reach but outside its window, so
+  /// the tap can only be shown and learned from, never counted.
+  final bool inWindow;
 
   /// How far the note is from the tap in time, in milliseconds, either way.
   final int timingOffMs;
 }
 
-/// The response notes a tap could be judged against now. Uses the judge's own
-/// millisecond rounding and window, and leaves out demonstrations.
+/// The response notes a tap could be aimed at: those in their window, and near
+/// misses in [RhythmJudge.inReach]. [nowMs] is when the touch happened, on the
+/// judge's clock, so pass the judged time less the event's age. Uses the
+/// judge's own millisecond rounding, and leaves out demonstrations.
 List<TapCandidate> openTapCandidates({
   required Iterable<GardenCue> cues,
   required int nowMs,
@@ -42,8 +53,15 @@ List<TapCandidate> openTapCandidates({
   for (final cue in cues) {
     if (cue.demo) continue;
     final signed = nowMs - (secondsAt(cue.beat) * 1000).round();
-    if (RhythmJudge.inWindow(signed)) {
-      open.add(TapCandidate(cue.limb, landing(cue), signed.abs()));
+    if (RhythmJudge.inReach(signed)) {
+      open.add(
+        TapCandidate(
+          cue.limb,
+          landing(cue),
+          signed.abs(),
+          inWindow: RhythmJudge.inWindow(signed),
+        ),
+      );
     }
   }
   return open;
@@ -51,7 +69,9 @@ List<TapCandidate> openTapCandidates({
 
 /// The nearest ring whose area holds the point. Areas of different limbs overlap
 /// by design, and nearest splits them down the middle. Equal distances go to the
-/// note closer in time. Null means the tap was stray: it must cost nothing.
+/// note closer in time. A ring whose note is in its window always beats a near
+/// miss, so reach can never steal a hit. Null means the tap was stray: it must
+/// cost nothing.
 TapCandidate? resolveTap({
   required double x,
   required double y,
@@ -59,6 +79,17 @@ TapCandidate? resolveTap({
   required Iterable<TapCandidate> candidates,
 }) {
   if (!x.isFinite || !y.isFinite) return null;
+  final inWindow = candidates.where((c) => c.inWindow).toList();
+  return _nearest(x, y, radius, inWindow) ??
+      _nearest(x, y, radius, candidates.where((c) => !c.inWindow));
+}
+
+TapCandidate? _nearest(
+  double x,
+  double y,
+  double radius,
+  Iterable<TapCandidate> candidates,
+) {
   TapCandidate? best;
   var bestDistance = double.infinity;
   for (final candidate in candidates) {

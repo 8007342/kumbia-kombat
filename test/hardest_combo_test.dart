@@ -127,7 +127,7 @@ void main() {
           final gapMs = (offsets[i] - offsets[i - 1]) * 60000 / top;
           expect(
             gapMs,
-            greaterThanOrEqualTo(RhythmJudge.goodWindowMs),
+            greaterThanOrEqualTo(RhythmJudge.guaranteedWindowMs),
             reason: '${level.id} note $i',
           );
         }

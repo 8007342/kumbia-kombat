@@ -872,6 +872,17 @@ class _GardenPageState extends State<GardenPage>
     if (result.note == null && _session!.lastTapOutOfTurn) {
       _outOfTurn(touch ?? _restingSpot(limb));
     }
+    final near = result.nearMissDeltaMs;
+    if (result.note == null && near != null) {
+      // Aimed at a note but outside its window: say which way, faintly.
+      _addMark(
+        FeedbackMark.nearMiss(
+          near < 0 ? TapTiming.early : TapTiming.late,
+          touch ?? _restingSpot(limb),
+          deltaMs: near,
+        ),
+      );
+    }
     if (result.note != null) {
       final targetBeat = _transport!.beatAt(result.note!.atMs / 1000);
       final futureBeats = [
@@ -913,15 +924,21 @@ class _GardenPageState extends State<GardenPage>
   }
 
   /// The limb of the nearest ring with an open note whose area holds the point.
-  Limb? _resolveTap(GardenSession session, Offset point, Size size) {
+  Limb? _resolveTap(
+    GardenSession session,
+    Offset point,
+    Size size, {
+    int ageMs = 0,
+  }) {
     session.advance();
     return resolveTap(
       x: point.dx,
       y: point.dy,
       radius: tapAreaRadius(size.width),
       candidates: openTapCandidates(
-        cues: session.visibleCues,
-        nowMs: session.judgedNowMs,
+        cues: session.tapCues,
+        // When the thumb landed, as the judge will time it.
+        nowMs: session.judgedNowMs - ageMs.clamp(0, GardenSession.maxTapAgeMs),
         secondsAt: _transport!.secondsAt,
         landing: (cue) => _path(cue.limb, cue.beat, cue.id, size).landing,
       ),
@@ -1124,10 +1141,12 @@ class _GardenPageState extends State<GardenPage>
                       Listener(
                         behavior: HitTestBehavior.opaque,
                         onPointerDown: (event) {
+                          final ageMs = _eventAgeMs(event.timeStamp);
                           final limb = _resolveTap(
                             session,
                             event.localPosition,
                             size,
+                            ageMs: ageMs,
                           );
                           if (limb == null) {
                             _strayTap(event.localPosition, size);
@@ -1144,7 +1163,7 @@ class _GardenPageState extends State<GardenPage>
                                 : _tap(
                                     limb,
                                     touch: event.localPosition,
-                                    ageMs: _eventAgeMs(event.timeStamp),
+                                    ageMs: ageMs,
                                   ).note,
                           );
                         },
