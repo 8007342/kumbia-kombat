@@ -434,3 +434,8 @@
 {"ts": "2026-11-08T02:11:11Z", "agent": "terraza", "what": "p1-996004.png", "kind": "local-vision", "seconds": 4.17, "count": 1, "model": "qwen2.5vl:7b", "load_s": 2.78, "eval_tokens": 25}
 {"ts": "2026-11-08T02:11:17Z", "agent": "terraza", "what": "p1-996005.png", "kind": "local-vision", "seconds": 5.96, "count": 1, "model": "qwen2.5vl:7b", "load_s": 3.78, "eval_tokens": 25}
 {"agent": "terraza", "what": "La Terraza room plates, pass 1, run-a (6 candidates, style garden); studio elapsed, shared queue", "kind": "gpu-image", "seconds": 351, "count": 6}
+{"agent": "terraza", "what": "La Terraza room plates, pass 2 from 996000 and 996004 (3 each); studio elapsed, shared queue", "kind": "gpu-image", "seconds": 470, "count": 6}
+{"agent": "terraza", "what": "Tía Purpurina front sheet from words, 4 candidates; wall time, shared queue", "kind": "gpu-image", "seconds": 258, "count": 4}
+{"agent": "terraza", "what": "Tía Purpurina close-up busts, rest and kiss, 2 candidates each; wall time, shared queue", "kind": "gpu-image", "seconds": 400, "count": 4}
+{"agent": "terraza", "what": "Tía Purpurina back sheet from the accepted front, 3 candidates; wall time, shared queue", "kind": "gpu-image", "seconds": 294, "count": 3}
+{"agent": "terraza", "what": "terrace floor grade, room layers (mattes, harmonic fills, frames, sheets), fireworks by code, close-up plate, Mācron's heads by the rig, bust finish (CPU)", "kind": "cpu", "seconds": 180, "count": 1}
