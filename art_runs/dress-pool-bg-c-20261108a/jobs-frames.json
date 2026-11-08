@@ -1,0 +1,97 @@
+{
+ "room": "billiards",
+ "run": "dress-pool-bg-c-20261108a",
+ "passNo": 2,
+ "steps": 4,
+ "jobs": [
+  {
+   "name": "chalk_a",
+   "workflow": "art_runs/dress-pool-bg-c-20261108a/workflows/frame.api.json",
+   "inputs": {
+    "base": "/work/tmp/imagegen/kumbia/dress-pool-bg-c-20261108a/in/chalk_a.png"
+   },
+   "overrides": {
+    "seed": 990865
+   },
+   "count": 2
+  },
+  {
+   "name": "clap_a",
+   "workflow": "art_runs/dress-pool-bg-c-20261108a/workflows/frame.api.json",
+   "inputs": {
+    "base": "/work/tmp/imagegen/kumbia/dress-pool-bg-c-20261108a/in/clap_a.png"
+   },
+   "overrides": {
+    "seed": 990865
+   },
+   "count": 2
+  },
+  {
+   "name": "clap_b",
+   "workflow": "art_runs/dress-pool-bg-c-20261108a/workflows/frame.api.json",
+   "inputs": {
+    "base": "/work/tmp/imagegen/kumbia/dress-pool-bg-c-20261108a/in/clap_b.png"
+   },
+   "overrides": {
+    "seed": 990865
+   },
+   "count": 2
+  },
+  {
+   "name": "lean_a",
+   "workflow": "art_runs/dress-pool-bg-c-20261108a/workflows/frame.api.json",
+   "inputs": {
+    "base": "/work/tmp/imagegen/kumbia/dress-pool-bg-c-20261108a/in/lean_a.png"
+   },
+   "overrides": {
+    "seed": 990865
+   },
+   "count": 2
+  },
+  {
+   "name": "lean_b",
+   "workflow": "art_runs/dress-pool-bg-c-20261108a/workflows/frame.api.json",
+   "inputs": {
+    "base": "/work/tmp/imagegen/kumbia/dress-pool-bg-c-20261108a/in/lean_b.png"
+   },
+   "overrides": {
+    "seed": 990865
+   },
+   "count": 2
+  },
+  {
+   "name": "lean_stroke",
+   "workflow": "art_runs/dress-pool-bg-c-20261108a/workflows/frame.api.json",
+   "inputs": {
+    "base": "/work/tmp/imagegen/kumbia/dress-pool-bg-c-20261108a/in/lean_stroke.png"
+   },
+   "overrides": {
+    "seed": 990865
+   },
+   "count": 2
+  },
+  {
+   "name": "watch_a",
+   "workflow": "art_runs/dress-pool-bg-c-20261108a/workflows/frame.api.json",
+   "inputs": {
+    "base": "/work/tmp/imagegen/kumbia/dress-pool-bg-c-20261108a/in/watch_a.png"
+   },
+   "overrides": {
+    "seed": 990865
+   },
+   "count": 2
+  },
+  {
+   "name": "watch_b",
+   "workflow": "art_runs/dress-pool-bg-c-20261108a/workflows/frame.api.json",
+   "inputs": {
+    "base": "/work/tmp/imagegen/kumbia/dress-pool-bg-c-20261108a/in/watch_b.png"
+   },
+   "overrides": {
+    "seed": 990865
+   },
+   "count": 2
+  }
+ ],
+ "how": "tool/art/rooms/run_room_jobs.py --jobs <this file>"
+}

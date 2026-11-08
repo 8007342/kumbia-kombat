@@ -427,3 +427,5 @@
 {"agent": "music2", "what": "terraza samba candidates, ACE-Step XL turbo, 12 takes of 74.5 s in 3 batches; GPU run time without queue wait", "kind": "gpu-audio", "seconds": 140, "count": 12}
 {"agent": "music2", "what": "terraza chain: parent re-made plus 6 re-sampled children in one graph", "kind": "gpu-audio", "seconds": 31, "count": 7}
 {"agent": "music2", "what": "terraza measures, 3 mixrs trials, mixrs builds of galeria+terraza and billiards and galeria bridges, mixrs entry-phase change with cargo test, 5 align audits", "kind": "cpu", "seconds": 540, "count": 1}
+{"agent": "dress", "what": "billiards background players pool-bg-a/b/c redressed for the party: 3 keys plus a re-key, a 2-job two-picture pilot (failed), 25 frame jobs and a watch_a redraw, Qwen-Image-Edit 2511 Lightning 4 steps; GPU run time without queue wait", "kind": "gpu-image", "seconds": 1452, "count": 65}
+{"agent": "dress", "what": "redress finish, keying, palette snap, candidate sheets and three atlas packs (tool/art/pipeline/redress.py)", "kind": "cpu", "seconds": 240, "count": 3}
