@@ -84,7 +84,12 @@
   {
    "glob": "assets/music/rendered/billiards/bridge.*",
    "class": "local-model",
-   "evidence": "cut by tool/music/mix from the billiards and salon ACE-Step takes, plan/music-salon-2026-11-07.md"
+   "evidence": "cut by tool/music/mix from the billiards and comedor ACE-Step takes, plan/music-act-two-2026-11-08.md"
+  },
+  {
+   "glob": "assets/music/rendered/comedor/*",
+   "class": "local-model",
+   "evidence": "ACE-Step parent seed 59202 of 20 candidates, low and high re-sampled from its latent, tool/music/sheets/comedor.chain.json, plan/music-act-two-2026-11-08.md"
   },
   {
    "glob": "assets/music/midi/salon_bolero*",
@@ -92,9 +97,24 @@
    "evidence": "tool/music/generate.mjs (composeBolero), assets/music/LICENSE.md"
   },
   {
-   "glob": "assets/music/midi/billiards_to_salon.mid",
+   "glob": "assets/music/midi/comedor_polka*",
    "class": "authored-code",
-   "evidence": "tool/music/generate.mjs (composeBilliardsToSalon), assets/music/LICENSE.md"
+   "evidence": "tool/music/generate.mjs (composeRoom, composeRoomSuccess), assets/music/LICENSE.md"
+  },
+  {
+   "glob": "assets/music/midi/galeria_reel*",
+   "class": "authored-code",
+   "evidence": "tool/music/generate.mjs (composeRoom, composeRoomSuccess), assets/music/LICENSE.md"
+  },
+  {
+   "glob": "assets/music/midi/terraza_samba*",
+   "class": "authored-code",
+   "evidence": "tool/music/generate.mjs (composeRoom, composeRoomSuccess), assets/music/LICENSE.md"
+  },
+  {
+   "glob": "assets/music/midi/*_to_*.mid",
+   "class": "authored-code",
+   "evidence": "tool/music/generate.mjs (composeActTwoBridge and earlier bridges), assets/music/LICENSE.md"
   },
   {
    "glob": "assets/music/rendered/*.m4a",

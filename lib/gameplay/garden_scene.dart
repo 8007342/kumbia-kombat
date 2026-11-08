@@ -8,6 +8,7 @@ import 'package:flutter/services.dart';
 
 import 'band.dart';
 import 'challenger_choreography.dart';
+import 'crowd_interest.dart';
 import 'dance_floor.dart';
 import 'dance_grammar.dart';
 import 'duet_staging.dart';
@@ -194,9 +195,19 @@ class GardenSceneGame extends FlameGame {
       }
       atlas.definition.art.requireFrames(player.frames);
     }
+    for (final slot in level.layout.guests) {
+      final clips = level.guestClips[slot.clips];
+      if (clips == null) continue;
+      final art = _ensemble![slot.atlas!];
+      if (art == null) {
+        throw StateError('Level ${level.id} names unknown atlas ${slot.atlas}');
+      }
+      art.definition.art.requireFrames(clips.frames);
+    }
     final dance = level.floorDance;
     if (dance != null) {
       for (final slot in level.layout.guests) {
+        if (slot.clips != null) continue;
         final atlas = slot.atlas ?? 'guest${slot.archetype}';
         final art = _ensemble![atlas];
         if (art == null) {
@@ -590,6 +601,11 @@ class GardenSceneGame extends FlameGame {
     final s = session;
     final dance = _level!.floorDance;
     for (final slot in room.guests) {
+      final clips = _level!.guestClips[slot.clips];
+      if (clips != null) {
+        _addCastGuest(draws, viewport, room, slot, clips, beat);
+        continue;
+      }
       if (slot.onFloor && dance != null) {
         _addFloorGuest(draws, viewport, room, slot, dance, beat);
         continue;
@@ -631,6 +647,63 @@ class GardenSceneGame extends FlameGame {
         }),
       );
     }
+  }
+
+  /// Someone the level casts with their own drawing for each step of the meter:
+  /// a diner who eats, watches, claps, then rises and toasts; a waiter who hops.
+  void _addCastGuest(
+    List<_WorldDraw> draws,
+    PartyViewport viewport,
+    PartyRoomLayout room,
+    PartyGuestSlot slot,
+    GuestClipSet clips,
+    double beat,
+  ) {
+    final projected = room.projectSlot(viewport, slot);
+    final s = session;
+    final snapshot = s != null && slot.interestIndex != null
+        ? s.crowd.guest(
+            slot.interestIndex!,
+            beat,
+            exitBeat: s.phase == GardenPhase.cleared
+                ? exitCodaBeat ?? s.completedAtBeat
+                : null,
+          )
+        : null;
+    final atlas = _ensemble![slot.atlas!]!;
+    final cue = _applauseCue(slot.interestIndex ?? 0);
+    final frame = cue != null && clips.applause != null
+        ? clips.applauseFrame(cue, reducedMotion: reducedMotion)
+        : snapshot == null
+        ? GuestClipSet.idle(
+            clips.clips[CrowdClip.seatedIdle]!,
+            beat,
+            (slot.interestIndex ?? 0) * 1.0,
+            reducedMotion: reducedMotion,
+          )
+        : clips.frame(snapshot, beat, reducedMotion: reducedMotion);
+    final scale = projected.spriteScale(atlas.nativeHeight(clips.reference));
+    final ground = _point(projected.floor);
+    final facesRight = slot.occupiedFacingRight ?? slot.facingRight;
+    draws.add(
+      _WorldDraw(slot.id, projected.floor.y, 10, (canvas) {
+        if (!slot.chairIncluded) {
+          _shadow(canvas, ground, projected.standingHeight);
+        }
+        atlas.draw(canvas, frame, ground, scale, flipX: !facesRight);
+      }),
+    );
+  }
+
+  /// Beats since guest [index]'s applause cue at the win, or null before it.
+  double? _applauseCue(int index) {
+    final clip = _level?.exitShot?.applause;
+    final at = exitBeat;
+    if (clip == null || at == null || session?.phase != GardenPhase.cleared) {
+      return null;
+    }
+    final late = reducedMotion ? 0.0 : (index % 4) * .25;
+    return at < clip.from + late ? null : at - clip.from - late;
   }
 
   /// The win's applause for guest [index], or null before it starts. Each starts
@@ -791,11 +864,17 @@ class GardenSceneGame extends FlameGame {
     final swing = _partySwing(beat);
     final paint = ui.Paint()..filterQuality = ui.FilterQuality.none;
     for (final prop in _level!.layers) {
+      // A prop waiting for a tier holds still below it, even at full swing.
+      final gate = prop.minTier == null
+          ? 1.0
+          : _partyUp.wake(beat, first: prop.minTier!) * (1 - warmDown);
       final frame = prop.frameAt(
         beat: beat,
-        swing: swing,
+        swing: swing * gate,
         reducedMotion: reducedMotion,
-        life: _life(prop.kind, beat, prop.instance),
+        life: prop.minTier == null
+            ? _life(prop.kind, beat, prop.instance)
+            : partyPropStrength(gate, prop.instance),
       );
       final at = prop.screenRect(viewport);
       canvas.drawImageRect(
@@ -1223,6 +1302,42 @@ class GardenSceneGame extends FlameGame {
           role: role,
         ),
       );
+      final line = challenger.line;
+      if (line == null) continue;
+      // The rest of the line: the lead's drawings, each a little late.
+      final won = s?.phase == GardenPhase.cleared && exitBeat != null;
+      final arch = line.archAt(won ? exitBeat : null, reducedMotion: reducedMotion);
+      for (final dancer in line.dancers) {
+        final late = reducedMotion ? 0.0 : dancer.lagBeats;
+        var theirs = late == 0
+            ? dressed
+            : _challengerAt(beat - late, dancer: challenger.atlas);
+        final theirWin = won && !duet
+            ? shot?.opponentFrameAt(exitBeat! - late, reducedMotion: reducedMotion)
+            : null;
+        if (theirWin != null) theirs = theirs.withFrame(theirWin);
+        final at = line.place(dancer, floor, arch);
+        final where = viewport.project(at);
+        final tall = _adultHeight(
+          viewport,
+          room,
+          at,
+          stature: challenger.stature * dancer.stature,
+        );
+        final size = tall / atlas.nativeHeight('ready');
+        placements.add(
+          _DancerPlacement(
+            atlas: atlas,
+            frame: theirs.frameId,
+            ground: ui.Offset(where.x + theirs.rootOffsetX * size, where.y),
+            footY: where.y,
+            height: tall,
+            scale: size,
+            mirrored: dancer.archMirrored && arch >= .5,
+            role: null,
+          ),
+        );
+      }
     }
     _joinHands(placements, viewport, room, beat);
     for (final dancer in placements) {

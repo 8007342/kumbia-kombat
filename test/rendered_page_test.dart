@@ -249,7 +249,7 @@ void main() {
   }, timeout: const Timeout(Duration(minutes: 5)));
 
   testWidgets(
-    'the real billiard room hands to the real salon, which walks out to the end',
+    'the comedor hands to the real salon over its bridge, and both walk out',
     (tester) async {
       tester.view.physicalSize = const Size(500, 900);
       tester.view.devicePixelRatio = 1;
@@ -258,7 +258,7 @@ void main() {
       rootBundle.clear();
       final audio = _Audio();
       final levels = LevelRegistry.parse(
-        '{ "campaign": [ { "level": "billiards", "bridgeToNext": "billiards_to_salon" }, { "level": "salon" } ] }',
+        '{ "campaign": [ { "level": "comedor", "bridgeToNext": "comedor_to_salon" }, { "level": "salon" } ] }',
         (id) => File('levels/$id.json').readAsStringSync(),
       );
       await tester.pumpWidget(
@@ -293,6 +293,7 @@ void main() {
       bool ended() => find.text('OTRA VUELTA  >').evaluate().isNotEmpty;
       var reachedSalon = false;
       var sawWalkOut = false;
+      var sawComedorWalkOut = false;
       for (var frame = 0; frame < 30000 && !ended(); frame++) {
         audio.nowSeconds += .02;
         await tester.pump(const Duration(milliseconds: 20));
@@ -305,6 +306,10 @@ void main() {
         if (session?.progress.definition.id == 'salon') reachedSalon = true;
         final walk = levels.byId('salon').exitShot!.walkOut!;
         final beat = game.exitBeat;
+        final comedorWalk = levels.byId('comedor').exitShot!.walkOut!;
+        if (!reachedSalon && beat != null && comedorWalk.walkingAt(beat)) {
+          sawComedorWalkOut = true;
+        }
         if (reachedSalon && beat != null && walk.walkingAt(beat)) {
           sawWalkOut = true;
         }
@@ -318,12 +323,15 @@ void main() {
       );
       expect(reachedSalon, isTrue);
       expect(sawWalkOut, isTrue, reason: 'the win walks out before the end');
+      expect(sawComedorWalkOut, isTrue, reason: 'out through the service door');
       final clips = audio.voices.map((v) => v.clip.id).toList();
-      expect(clips, contains('billiards/bridge'));
       expect(clips, contains('salon/low'));
       expect(clips, contains('salon/success'));
       final accents = audio.notes.map((n) => n.track).where(isAccentTrack).toList();
-      expect(accents, containsAllInOrder(['chalk', 'nod', 'peck', 'peck']));
+      expect(
+        accents,
+        containsAllInOrder(['clink', 'glug', 'glug', 'glug', 'nod', 'peck', 'peck']),
+      );
       expect(find.text('QUÉ\nELEGANCIA'), findsWidgets);
       await _end(tester);
     },

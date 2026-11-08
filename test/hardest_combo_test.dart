@@ -46,6 +46,7 @@ void main() {
         'bar': 'Last Call',
         'cool-crowd': 'All That Glitters',
         'billiards': 'Tres Bandas',
+        'comedor': 'LA TORRE DE CHAROLAS',
         'salon': 'EL GIRO DE TERCIOPELO',
       });
       expect(registry.upcomingOpponents, isEmpty);

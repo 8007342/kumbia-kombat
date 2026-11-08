@@ -56,6 +56,30 @@
       "bars": 32,
       "baseBpm": 108,
       "fullBpm": 124
+    },
+    {
+      "id": "comedor_polka",
+      "title": "Sobremesa",
+      "path": "assets/music/scores/comedor_polka.json",
+      "bars": 32,
+      "baseBpm": 120,
+      "fullBpm": 136
+    },
+    {
+      "id": "galeria_reel",
+      "title": "Trébol",
+      "path": "assets/music/scores/galeria_reel.json",
+      "bars": 32,
+      "baseBpm": 112,
+      "fullBpm": 128
+    },
+    {
+      "id": "terraza_samba",
+      "title": "Purpurina",
+      "path": "assets/music/scores/terraza_samba.json",
+      "bars": 32,
+      "baseBpm": 96,
+      "fullBpm": 112
     }
   ],
   "transitions": {
@@ -139,6 +163,39 @@
         "parentScore": "salon_bolero",
         "path": "assets/music/scores/salon_bolero_success.json",
         "midiPath": "assets/music/midi/salon_bolero_success.mid"
+      },
+      {
+        "id": "comedor_polka_success",
+        "title": "Sobremesa — Room Approval",
+        "bars": 4,
+        "baseBpm": 120,
+        "fullBpm": 136,
+        "parentScore": "comedor_polka",
+        "final": false,
+        "path": "assets/music/scores/comedor_polka_success.json",
+        "midiPath": "assets/music/midi/comedor_polka_success.mid"
+      },
+      {
+        "id": "galeria_reel_success",
+        "title": "Trébol — Room Approval",
+        "bars": 4,
+        "baseBpm": 112,
+        "fullBpm": 128,
+        "parentScore": "galeria_reel",
+        "final": false,
+        "path": "assets/music/scores/galeria_reel_success.json",
+        "midiPath": "assets/music/midi/galeria_reel_success.mid"
+      },
+      {
+        "id": "terraza_samba_success",
+        "title": "Purpurina — Room Approval",
+        "bars": 4,
+        "baseBpm": 96,
+        "fullBpm": 112,
+        "parentScore": "terraza_samba",
+        "final": true,
+        "path": "assets/music/scores/terraza_samba_success.json",
+        "midiPath": "assets/music/midi/terraza_samba_success.mid"
       }
     ],
     "bridges": [
@@ -220,15 +277,48 @@
         "midiPath": "assets/music/midi/pool_to_bar.mid"
       },
       {
-        "id": "billiards_to_salon",
-        "title": "Through the Mirrored Doors",
+        "id": "billiards_to_comedor",
+        "title": "Through the Service Door",
+        "bars": 2,
+        "baseBpm": 120,
+        "fullBpm": 120,
+        "fromScore": "crowd_duende",
+        "toScore": "comedor_polka",
+        "path": "assets/music/scores/billiards_to_comedor.json",
+        "midiPath": "assets/music/midi/billiards_to_comedor.mid"
+      },
+      {
+        "id": "comedor_to_salon",
+        "title": "Coffee in the Mirrors",
         "bars": 2,
         "baseBpm": 108,
         "fullBpm": 108,
-        "fromScore": "crowd_duende",
+        "fromScore": "comedor_polka",
         "toScore": "salon_bolero",
-        "path": "assets/music/scores/billiards_to_salon.json",
-        "midiPath": "assets/music/midi/billiards_to_salon.mid"
+        "path": "assets/music/scores/comedor_to_salon.json",
+        "midiPath": "assets/music/midi/comedor_to_salon.mid"
+      },
+      {
+        "id": "salon_to_galeria",
+        "title": "Down the Long Gallery",
+        "bars": 2,
+        "baseBpm": 112,
+        "fullBpm": 112,
+        "fromScore": "salon_bolero",
+        "toScore": "galeria_reel",
+        "path": "assets/music/scores/salon_to_galeria.json",
+        "midiPath": "assets/music/midi/salon_to_galeria.mid"
+      },
+      {
+        "id": "galeria_to_terraza",
+        "title": "Up to the Fireworks",
+        "bars": 2,
+        "baseBpm": 96,
+        "fullBpm": 96,
+        "fromScore": "galeria_reel",
+        "toScore": "terraza_samba",
+        "path": "assets/music/scores/galeria_to_terraza.json",
+        "midiPath": "assets/music/midi/galeria_to_terraza.mid"
       }
     ]
   }

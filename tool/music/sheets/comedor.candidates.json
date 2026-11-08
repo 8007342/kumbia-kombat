@@ -1,0 +1,441 @@
+{
+ "level": "comedor",
+ "workflow": "tool/music/workflows/ace-xl-turbo.api.json",
+ "how": "studio.queue_workflow, count 4, overrides seed and $node:94.tags, 94.bpm 128, 94.keyscale F major, 94.duration 74.5, 98.seconds 74.5",
+ "tagSets": {
+  "A": {
+   "seeds": [
+    59000,
+    59001,
+    59002,
+    59003
+   ],
+   "tags": "happy norteño polka, instrumental, bright button accordion lead melody, bajo sexto strumming chords on the offbeat, tuba bass oom-pah on every beat, snare drum on the offbeat, bouncy polka feel, festive banquet, cheerful major key"
+  },
+  "B": {
+   "seeds": [
+    59100,
+    59101,
+    59102,
+    59103
+   ],
+   "tags": "classic Mexican norteño polka, instrumental, accordion carries a catchy melody with quick runs, bajo sexto, upright tololoche bass on the beat, snare on the off-beat, joyful dance hall, bright and bouncy"
+  },
+  "C": {
+   "seeds": [
+    59200,
+    59201,
+    59202,
+    59203,
+    59204,
+    59205,
+    59206,
+    59207
+   ],
+   "tags": "conjunto norteño polka, instrumental, cheerful two-row accordion lead in thirds, bajo sexto chop on the off-beats, tuba and tololoche bass, snare and cymbal on the pah, lively wedding supper, upbeat and happy"
+  },
+  "D": {
+   "seeds": [
+    59300,
+    59301,
+    59302,
+    59303
+   ],
+   "tags": "joyful norteño polka, instrumental, loud button accordion plays a catchy singable melody up front, accordion runs and trills, bajo sexto on the off-beat, tololoche bass on every beat, snare on the pah, festive banquet, bright major key"
+  }
+ },
+ "chosen": 59202,
+ "runnerUp": 59200,
+ "majorThird": "Whole-take chroma, A minus A-flat relative to the strongest class: 59100 0.37, 59202 0.30, 59200 0.24, 59302 0.22, 59203 0.15, 59102 0.12, 59303 0.11, 59206 0.07, 59000 -0.49 (reads F minor), 59205 -0.18",
+ "takes": {
+  "seed59000.flac": {
+   "timing": {
+    "passed": true,
+    "bpm": 127.47,
+    "clarity": 31.2,
+    "halfTime": 0.03,
+    "wanderMs": 1.6,
+    "reasons": []
+   },
+   "character": {
+    "melodicMotion": 0.067,
+    "leadRangeSemitones": 22.1,
+    "hookRepeat": 0.355,
+    "leadSalience": 61.0,
+    "arrangementMovement": 0.35
+   },
+   "ear": "F Fm F F Fm F F F Fm F F F Fm F F Fm F F F Fm F F C F F Fm Fm F F Fm C F F F F F Fm F F"
+  },
+  "seed59001.flac": {
+   "timing": {
+    "passed": false,
+    "bpm": 128.04,
+    "clarity": 17.9,
+    "halfTime": 0.77,
+    "wanderMs": 8.6,
+    "reasons": [
+     "half-time (0.77)"
+    ]
+   },
+   "character": {
+    "melodicMotion": 0.122,
+    "leadRangeSemitones": 22.2,
+    "hookRepeat": 0.379,
+    "leadSalience": 44.1,
+    "arrangementMovement": 0.283
+   },
+   "ear": "F F C F F C C Am F F C C F C C Am F F C F F C C Am F F C C F C C Am F F C F F C C"
+  },
+  "seed59002.flac": {
+   "timing": {
+    "passed": false,
+    "bpm": 127.84,
+    "clarity": 5.2,
+    "halfTime": 1.2,
+    "wanderMs": 26.0,
+    "reasons": [
+     "half-time (1.20)"
+    ]
+   },
+   "character": {
+    "melodicMotion": 0.061,
+    "leadRangeSemitones": 23.9,
+    "hookRepeat": 0.55,
+    "leadSalience": 48.6,
+    "arrangementMovement": 0.377
+   },
+   "ear": "C C C F C C C C F C C C F C C C Fm C C F F C C C F C C C F C C C F C C C F C F"
+  },
+  "seed59003.flac": {
+   "timing": {
+    "passed": false,
+    "bpm": 137.71,
+    "clarity": 7.0,
+    "halfTime": 1.26,
+    "wanderMs": 95.6,
+    "reasons": [
+     "tempo off by +7.59%",
+     "half-time (1.26)",
+     "beat wanders 96 ms"
+    ]
+   },
+   "character": {
+    "melodicMotion": 0.131,
+    "leadRangeSemitones": 23.9,
+    "hookRepeat": 0.278,
+    "leadSalience": 62.2,
+    "arrangementMovement": 0.263
+   },
+   "ear": "F Fm Fm Fm Fm C Fm Fm Fm F Fm Fm Fm Fm C C Fm Fm Fm F Fm Fm Fm Fm C C Fm Fm Fm F Fm Fm C C Fm Fm Fm Fm Fm"
+  },
+  "seed59100.flac": {
+   "timing": {
+    "passed": true,
+    "bpm": 127.0,
+    "clarity": 20.0,
+    "halfTime": 0.15,
+    "wanderMs": 14.4,
+    "reasons": []
+   },
+   "character": {
+    "melodicMotion": 0.064,
+    "leadRangeSemitones": 24.1,
+    "hookRepeat": 0.211,
+    "leadSalience": 44.9,
+    "arrangementMovement": 0.449
+   },
+   "ear": "Am F F F F Am C Fm F F F F Am C C C Am F F F F F F F F Am C C C F F F F Am C F Am F F"
+  },
+  "seed59101.flac": {
+   "timing": {
+    "passed": false,
+    "bpm": 127.4,
+    "clarity": 8.1,
+    "halfTime": 1.17,
+    "wanderMs": 19.0,
+    "reasons": [
+     "half-time (1.17)"
+    ]
+   },
+   "character": {
+    "melodicMotion": 0.156,
+    "leadRangeSemitones": 24.3,
+    "hookRepeat": 0.406,
+    "leadSalience": 49.7,
+    "arrangementMovement": 0.177
+   },
+   "ear": "F C C C F F Gm C F C C C F C Gm C C F C C F F C C F C Am C F F Gm C C F C C F F C"
+  },
+  "seed59102.flac": {
+   "timing": {
+    "passed": true,
+    "bpm": 128.01,
+    "clarity": 9.8,
+    "halfTime": 0.12,
+    "wanderMs": 10.2,
+    "reasons": []
+   },
+   "character": {
+    "melodicMotion": 0.08,
+    "leadRangeSemitones": 24.1,
+    "hookRepeat": 0.44,
+    "leadSalience": 43.9,
+    "arrangementMovement": 0.227
+   },
+   "ear": "F F C C F F C F F C C F F C C F F C C F Fm C C F F C C F F C C F F C C F F C C"
+  },
+  "seed59103.flac": {
+   "timing": {
+    "passed": false,
+    "bpm": 128.02,
+    "clarity": 5.4,
+    "halfTime": 3.54,
+    "wanderMs": 20.9,
+    "reasons": [
+     "half-time (3.54)"
+    ]
+   },
+   "character": {
+    "melodicMotion": 0.1,
+    "leadRangeSemitones": 22.2,
+    "hookRepeat": 0.528,
+    "leadSalience": 48.2,
+    "arrangementMovement": 0.197
+   },
+   "ear": "F F F C C C C F F F F C C C C Fm F F F C C C C F F F Am C C C C Fm F F F C C C F"
+  },
+  "seed59200.flac": {
+   "timing": {
+    "passed": true,
+    "bpm": 127.01,
+    "clarity": 28.7,
+    "halfTime": 0.15,
+    "wanderMs": 1.9,
+    "reasons": []
+   },
+   "character": {
+    "melodicMotion": 0.044,
+    "leadRangeSemitones": 22.2,
+    "hookRepeat": 0.306,
+    "leadSalience": 50.2,
+    "arrangementMovement": 0.607
+   },
+   "ear": "F F F F C C F F C C F Fm C C F F F Fm Fm Fm C C F Fm C C F F F Fm Fm Fm C C F C F C F"
+  },
+  "seed59201.flac": {
+   "timing": {
+    "passed": false,
+    "bpm": 126.93,
+    "clarity": 8.1,
+    "halfTime": 0.1,
+    "wanderMs": 60.1,
+    "reasons": [
+     "beat wanders 60 ms"
+    ]
+   },
+   "character": {
+    "melodicMotion": 0.044,
+    "leadRangeSemitones": 22.0,
+    "hookRepeat": 0.332,
+    "leadSalience": 58.6,
+    "arrangementMovement": 0.471
+   },
+   "ear": "C F C C F Bb F Dm C C C F C C C C F Bb F Dm C C F C C C C C F Bb F F C C C C C F F"
+  },
+  "seed59202.flac": {
+   "timing": {
+    "passed": true,
+    "bpm": 127.97,
+    "clarity": 14.3,
+    "halfTime": 0.14,
+    "wanderMs": 18.9,
+    "reasons": []
+   },
+   "character": {
+    "melodicMotion": 0.089,
+    "leadRangeSemitones": 20.4,
+    "hookRepeat": 0.577,
+    "leadSalience": 54.9,
+    "arrangementMovement": 0.173
+   },
+   "ear": "F F F F C C Am F F F F F C C Am F F F F F C C F F C C F F C C F Fm C C Am F C C F"
+  },
+  "seed59203.flac": {
+   "timing": {
+    "passed": true,
+    "bpm": 127.45,
+    "clarity": 17.4,
+    "halfTime": 0.55,
+    "wanderMs": 12.9,
+    "reasons": []
+   },
+   "character": {
+    "melodicMotion": 0.047,
+    "leadRangeSemitones": 21.9,
+    "hookRepeat": 0.423,
+    "leadSalience": 55.4,
+    "arrangementMovement": 0.355
+   },
+   "ear": "C C C C C C F C C C C C C C F F F C C C C C F F F C C C C C F C F F F C C C C"
+  },
+  "seed59204.flac": {
+   "timing": {
+    "passed": false,
+    "bpm": 128.08,
+    "clarity": 4.2,
+    "halfTime": 1.09,
+    "wanderMs": 40.4,
+    "reasons": [
+     "half-time (1.09)",
+     "beat wanders 40 ms"
+    ]
+   },
+   "character": {
+    "melodicMotion": 0.117,
+    "leadRangeSemitones": 24.1,
+    "hookRepeat": 0.336,
+    "leadSalience": 47.5,
+    "arrangementMovement": 0.198
+   },
+   "ear": "F F F C F C F Bb F F F C F F C F F F F C F C F Bb F F F C C F F F F F F C F F Bm"
+  },
+  "seed59205.flac": {
+   "timing": {
+    "passed": true,
+    "bpm": 127.03,
+    "clarity": 18.4,
+    "halfTime": 0.16,
+    "wanderMs": 12.6,
+    "reasons": []
+   },
+   "character": {
+    "melodicMotion": 0.092,
+    "leadRangeSemitones": 20.1,
+    "hookRepeat": 0.367,
+    "leadSalience": 45.7,
+    "arrangementMovement": 0.347
+   },
+   "ear": "Dm Fm Fm Fm Fm Fm Fm Fm Fm Fm Fm Fm Fm Fm Fm C Fm Fm Fm Fm Fm Fm Fm Fm Fm C C Fm Fm Fm Fm Fm Fm Fm Fm Fm Fm C Fm"
+  },
+  "seed59206.flac": {
+   "timing": {
+    "passed": true,
+    "bpm": 128.23,
+    "clarity": 9.6,
+    "halfTime": 0.56,
+    "wanderMs": 32.1,
+    "reasons": []
+   },
+   "character": {
+    "melodicMotion": 0.197,
+    "leadRangeSemitones": 22.7,
+    "hookRepeat": 0.39,
+    "leadSalience": 56.8,
+    "arrangementMovement": 0.719
+   },
+   "ear": "F C C Fm Fm Fm Fm Fm C C C Fm C F Fm Fm C C C Fm Fm C Dm F C C C Fm C C Fm F C C C Fm Fm C Am"
+  },
+  "seed59207.flac": {
+   "timing": {
+    "passed": false,
+    "bpm": 130.41,
+    "clarity": 2.7,
+    "halfTime": 0.96,
+    "wanderMs": 117.4,
+    "reasons": [
+     "tempo off by +1.88%",
+     "no clear pulse (2.7)",
+     "half-time (0.96)",
+     "beat wanders 117 ms"
+    ]
+   },
+   "character": {
+    "melodicMotion": 0.049,
+    "leadRangeSemitones": 22.5,
+    "hookRepeat": 0.41,
+    "leadSalience": 55.7,
+    "arrangementMovement": 0.464
+   },
+   "ear": "Am F F F Am C C C Am F F Am Am C C Am Am F F Am C F F F Am C C C C F F F F F Am C C C C"
+  },
+  "seed59300.flac": {
+   "timing": {
+    "passed": false,
+    "bpm": 127.09,
+    "clarity": 11.6,
+    "halfTime": 0.64,
+    "wanderMs": 29.5,
+    "reasons": [
+     "half-time (0.64)"
+    ]
+   },
+   "character": {
+    "melodicMotion": 0.061,
+    "leadRangeSemitones": 20.0,
+    "hookRepeat": 0.662,
+    "leadSalience": 55.3,
+    "arrangementMovement": 0.294
+   },
+   "ear": "F Am Am Am Am Am Am Am F F F F F F F F F Am Am F Am F F Am Am Am Am Am Am Am Am F Am Am Am Am Am Am F"
+  },
+  "seed59301.flac": {
+   "timing": {
+    "passed": false,
+    "bpm": 123.72,
+    "clarity": 3.6,
+    "halfTime": 0.92,
+    "wanderMs": 55.5,
+    "reasons": [
+     "tempo off by -3.35%",
+     "no clear pulse (3.6)",
+     "half-time (0.92)",
+     "beat wanders 56 ms"
+    ]
+   },
+   "character": {
+    "melodicMotion": 0.058,
+    "leadRangeSemitones": 24.1,
+    "hookRepeat": 0.304,
+    "leadSalience": 50.3,
+    "arrangementMovement": 0.34
+   },
+   "ear": "C C C C Gm C C C C C C C Gm C C C C C C C Gm C C C C C C C Gm C C C C C C F Gm F C"
+  },
+  "seed59302.flac": {
+   "timing": {
+    "passed": true,
+    "bpm": 127.64,
+    "clarity": 7.0,
+    "halfTime": 0.5,
+    "wanderMs": 25.8,
+    "reasons": []
+   },
+   "character": {
+    "melodicMotion": 0.147,
+    "leadRangeSemitones": 19.8,
+    "hookRepeat": 0.322,
+    "leadSalience": 57.6,
+    "arrangementMovement": 0.361
+   },
+   "ear": "C C C F C C C F F F F F C C Am F C C C F F F F F C C C F F F F F C C C F C C F"
+  },
+  "seed59303.flac": {
+   "timing": {
+    "passed": true,
+    "bpm": 128.05,
+    "clarity": 13.0,
+    "halfTime": 0.34,
+    "wanderMs": 16.8,
+    "reasons": []
+   },
+   "character": {
+    "melodicMotion": 0.063,
+    "leadRangeSemitones": 22.2,
+    "hookRepeat": 0.412,
+    "leadSalience": 57.6,
+    "arrangementMovement": 0.281
+   },
+   "ear": "F C C C Fm C C C Fm Fm Fm C C C Fm C C C Fm Fm Fm Fm C C F Fm C C Fm Fm F Fm C C C Fm C C C"
+  }
+ }
+}
