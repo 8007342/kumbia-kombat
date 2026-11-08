@@ -62,7 +62,7 @@ def colour_rule(rgb, rule):
     if rule == "bright":  # crystal and candle flames over emerald wall and a near-black ceiling: bright, and not green
         return (np.maximum(np.maximum(r, g), b) > 105) & ~((g > r * 1.15) & (g > b))
     if rule == "bulb":  # festoon bulbs against a night sky: bright and warm, red well above blue
-        return (np.maximum(np.maximum(r, g), b) > 150) & (r > b + 40)
+        return (np.maximum(np.maximum(r, g), b) > 150) & (r > b + 8)
     if rule == "crystal":  # crystal, brass and candle flames over red damask: bright, and green well above a red wall's
         return (np.maximum(np.maximum(r, g), b) > 100) & (g > r * .5)
     if rule == "marble":  # a white marble figure in a lit cream niche: bright and nearly grey

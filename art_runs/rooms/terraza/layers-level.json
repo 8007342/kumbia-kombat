@@ -1,0 +1,12 @@
+{
+  "background": "terraza/terraza-room.png",
+  "layers": {
+    "plateWidth": 832,
+    "plateHeight": 1248,
+    "props": [
+      {"id": "palm-left", "atlas": "terraza/terraza-layers.png", "atlasY": 0, "left": 0, "top": 112, "width": 284, "height": 299, "frames": 7, "motion": "sway", "periodBeats": 2, "instance": 1, "kind": "artwork", "minTier": 4},
+      {"id": "palm-right", "atlas": "terraza/terraza-layers.png", "atlasY": 301, "left": 583, "top": 107, "width": 249, "height": 310, "frames": 7, "motion": "sway", "periodBeats": 2, "instance": 2, "kind": "artwork", "minTier": 4, "phaseBeats": 1},
+      {"id": "festoon-bulbs", "atlas": "terraza/terraza-layers.png", "atlasY": 613, "left": 284, "top": 244, "width": 310, "height": 115, "frames": 4, "motion": "pulse", "periodBeats": 1, "instance": 3, "kind": "artwork", "minTier": 4}
+    ]
+  }
+}

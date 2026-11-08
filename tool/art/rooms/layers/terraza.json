@@ -1,0 +1,198 @@
+{
+ "room": "terraza",
+ "run": "layers-terraza-20261108",
+ "source": "art_runs/rooms/terraza/picks/plate-996100-graded.png",
+ "plate": "assets/art/terraza/terraza-room.png",
+ "atlas": "assets/art/terraza/terraza-layers.png",
+ "level": "art_runs/rooms/terraza/layers-level.json",
+ "previewBpm": 104,
+ "keepWords": "Keep everything else exactly as it is: same pixel art, same camera, same colours.",
+ "$comment": "Room life at full party (kind artwork, minTier 4): the two palms' crowns sway on the beat, pivoting where the crown meets the trunk, and the festoon bulbs between them brighten on the beat with a one-pixel halo at the peak. The crowns' fills are harmonic (plain night sky closes in from the edges, no GPU), because a 6 px sway only ever shows a sliver behind the fronds. The fireworks are a separate atlas (fireworks.py). TERRAZA, 2026-11-08.",
+ "props": [
+  {
+   "id": "palm-left",
+   "kind": "artwork",
+   "minTier": 4,
+   "rule": "not-sky",
+   "close": 1,
+   "polygon": [
+    [
+     0,
+     132
+    ],
+    [
+     50,
+     114
+    ],
+    [
+     115,
+     112
+    ],
+    [
+     160,
+     140
+    ],
+    [
+     220,
+     170
+    ],
+    [
+     275,
+     200
+    ],
+    [
+     283,
+     240
+    ],
+    [
+     270,
+     300
+    ],
+    [
+     222,
+     392
+    ],
+    [
+     150,
+     410
+    ],
+    [
+     78,
+     410
+    ],
+    [
+     0,
+     385
+    ]
+   ],
+   "fill": {
+    "harmonic": true,
+    "dilate": 2
+   },
+   "motion": "sway",
+   "periodBeats": 2,
+   "frames": 7,
+   "instance": 1,
+   "warp": {
+    "pivot": [
+     112,
+     420
+    ],
+    "far": 300,
+    "reachPx": 6,
+    "power": 1.5
+   }
+  },
+  {
+   "id": "palm-right",
+   "kind": "artwork",
+   "minTier": 4,
+   "rule": "not-sky",
+   "close": 1,
+   "polygon": [
+    [
+     832,
+     124
+    ],
+    [
+     790,
+     108
+    ],
+    [
+     742,
+     116
+    ],
+    [
+     700,
+     158
+    ],
+    [
+     640,
+     196
+    ],
+    [
+     596,
+     214
+    ],
+    [
+     586,
+     240
+    ],
+    [
+     586,
+     330
+    ],
+    [
+     640,
+     400
+    ],
+    [
+     700,
+     412
+    ],
+    [
+     770,
+     418
+    ],
+    [
+     832,
+     395
+    ]
+   ],
+   "fill": {
+    "harmonic": true,
+    "dilate": 2
+   },
+   "motion": "sway",
+   "periodBeats": 2,
+   "frames": 7,
+   "instance": 2,
+   "phaseBeats": 1,
+   "warp": {
+    "pivot": [
+     735,
+     420
+    ],
+    "far": 300,
+    "reachPx": 6,
+    "power": 1.5
+   }
+  },
+  {
+   "id": "festoon-bulbs",
+   "kind": "artwork",
+   "minTier": 4,
+   "rule": "bulb",
+   "polygon": [
+    [
+     282,
+     150
+    ],
+    [
+     592,
+     150
+    ],
+    [
+     592,
+     362
+    ],
+    [
+     282,
+     362
+    ]
+   ],
+   "motion": "pulse",
+   "periodBeats": 1,
+   "frames": 4,
+   "instance": 3,
+   "warp": {
+    "glow": {
+     "gain": 0.28,
+     "add": 14,
+     "grow": 1
+    }
+   },
+   "close": 2
+  }
+ ]
+}

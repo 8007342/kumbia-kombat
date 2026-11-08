@@ -1,0 +1,83 @@
+{
+  "schema": "tillandsias.provenance/v1",
+  "tool": "studio.run_workflow",
+  "parents": [],
+  "pipelineVersion": "56.11.6.2",
+  "engine": {
+    "name": "comfyui",
+    "ref": "v0.40.0",
+    "sha": "3541246a9c997f4b8c32f9f88f3c985d02021c79",
+    "nodes": [
+      {
+        "name": "ComfyUI-GGUF",
+        "commit": "6ea2651e7df66d7585f6ffee804b20e92fb38b8a"
+      },
+      {
+        "name": "ComfyUI-layerdiffuse",
+        "commit": "b4f6a9e024064a4489f774a8b91049ce0b606ea3"
+      },
+      {
+        "name": "ComfyUI_BiRefNet_ll",
+        "commit": "5443a2aa16cfbd98bb2f7dcc8bdcb70439e08529"
+      },
+      {
+        "name": "ComfyUI_IPAdapter_plus",
+        "commit": "a0f451a5113cf9becb0847b92884cb10cbdec0ef"
+      }
+    ]
+  },
+  "workflow": {
+    "path": "art_runs/rooms/billiards/run-a/workflows/p2.api.json",
+    "sha256": "1686dad8208bef1cb1fe6dd95e8bdae7b4651ac4cdb517bf1c4599ed7805e9e1"
+  },
+  "models": [
+    {
+      "file": "qwen_image_edit_2511_fp8mixed.safetensors",
+      "repo": "Comfy-Org/Qwen-Image-Edit",
+      "revision": "f68ace85e60b4a02a323e394253731947657b7d2",
+      "sha256": "c9fdc158e46d3b61ef75f21ae866ca2fe808bf4a53643120d1c1e87c19280a4e",
+      "licence": "apache-2.0",
+      "consent": null
+    },
+    {
+      "file": "Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors",
+      "repo": "lightx2v/Qwen-Image-Edit-2511-Lightning",
+      "revision": "107d238d68b8387e32843d0b4a2e24ceb0d3ad86",
+      "sha256": "22226e8d05d354bb356627d428809f5afd7819399b077238a2b70a82883a904f",
+      "licence": "apache-2.0",
+      "consent": null
+    },
+    {
+      "file": "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+      "repo": "Comfy-Org/Qwen-Image",
+      "revision": "1f12b17be14c89b026c51a91d67c32f84bb047bc",
+      "sha256": "cb5636d852a0ea6a9075ab1bef496c0db7aef13c02350571e388aea959c5c0b4",
+      "licence": "apache-2.0",
+      "consent": null
+    },
+    {
+      "file": "qwen_image_vae.safetensors",
+      "repo": "Comfy-Org/Qwen-Image",
+      "revision": "1f12b17be14c89b026c51a91d67c32f84bb047bc",
+      "sha256": "a70580f0213e67967ee9c95f05bb400e8fb08307e017a924bf3441223e023d1f",
+      "licence": "apache-2.0",
+      "consent": null
+    }
+  ],
+  "cli": null,
+  "inputs": [
+    {
+      "name": "base",
+      "path": "/work/tmp/imagegen/kumbia/rooms/terraza/run-a/in/p1-996000.png",
+      "sha256": "88885d032ee4054fd4cd3865e25e91494023309a336da56e29302cd925ffdeae"
+    }
+  ],
+  "seed": 996100,
+  "prompt": "",
+  "negative_prompt": "",
+  "tier": null,
+  "placement": "cuda",
+  "family": null,
+  "output_sha256": "9cd61382930540b54535709b9cbb4498334cb4c9a97c7a6a309a9d5deb78f973",
+  "at": "2026-11-08T02:19:49Z"
+}

@@ -1,6 +1,6 @@
 {
- "$comment": "Fireworks over La Terraza's sky (fireworks.py). Five bursts, each a pulse prop of kind light: frame 0 is the painted sky, the last is the full bloom. Over 8 beats they peak on beats 0, 2, 3, 5 and 6 (phaseBeats shifts each), so the sky is never quiet at the top tier and never strobes: each burst blooms once a bar pair. Positions avoid the quiet box behind her (x .35-.65, y .3-.6). TERRAZA, 2026-11-08.",
- "plate": "/home/forge/.cache/tillandsias-project/kumbia-art/rooms/terraza/run-a/p1-996000.png",
+ "$comment": "Fireworks over La Terraza's sky (fireworks.py). Five bursts, each a pulse prop of kind light: frame 0 is the painted sky, the last is the full bloom. Over 8 beats they peak on beats 0, 2, 3, 5 and 6 (phaseBeats shifts each), so the sky is never quiet at the top tier and never strobes: each burst blooms once a bar pair. Positions avoid the quiet box behind her (x .35-.65, y .3-.6). TERRAZA, 2026-11-08. The sky mask is read from the painted plate with its palms (not the clean plate, where the palms are filled with sky), so no burst ever lands where a frond is. List the fireworks before the palms in the level's layers.",
+ "plate": "art_runs/rooms/terraza/picks/plate-996100-graded.png",
  "atlas": "terraza/terraza-fireworks.png",
  "cell": 2,
  "frames": 6,
