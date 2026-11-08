@@ -1,0 +1,527 @@
+{
+ "id": "terraza",
+ "title": "LA TERRAZA",
+ "styleRef": "garden",
+ "comment": "The mansion's rooftop terrace at midnight, seen from the stair landing toward the city: stone floor, a balustrade across the far side with the city lights below it, festoon strings overhead, potted palms at the corners and the stair head at the right of the balustrade, the way out. The sky above is left open for the fireworks layer (y .02-.30). Ids: panel = stone balustrade, window = the city below, roof = terracotta planters, trees = palm fronds, gate = the stair head's stone posts and arch, lights = festoon strings. TERRAZA, 2026-11-08.",
+ "camera": {
+  "horizonY": 0.36,
+  "eyeHeightAdults": 0.85,
+  "focalPx": 1200,
+  "vanishingX": 0.5,
+  "originBottomX": 0.5
+ },
+ "phone": {
+  "width": 390,
+  "height": 844
+ },
+ "safe": {
+  "x": [
+   0.17,
+   0.83
+  ],
+  "y": [
+   0.17,
+   0.65
+  ]
+ },
+ "tapBand": {
+  "y": [
+   0.65,
+   0.97
+  ],
+  "allow": [
+   "floor",
+   "joint"
+  ]
+ },
+ "cast": {
+  "heroStature": 0.35,
+  "minHeroLogical": 34
+ },
+ "walkable": [
+  "floor",
+  "joint"
+ ],
+ "standable": [
+  "floor",
+  "joint"
+ ],
+ "paint": [
+  {
+   "kind": "ground",
+   "id": "window",
+   "s": [
+    6.3,
+    400
+   ],
+   "t": [
+    -400,
+    400
+   ]
+  },
+  {
+   "kind": "backdrop",
+   "id": "window",
+   "y": [
+    0.352,
+    0.345,
+    0.35,
+    0.338,
+    0.348,
+    0.352,
+    0.342,
+    0.35,
+    0.346,
+    0.336,
+    0.35,
+    0.352,
+    0.344
+   ]
+  },
+  {
+   "kind": "paving",
+   "id": "floor",
+   "s": [
+    -2,
+    6.0
+   ],
+   "t": [
+    -3.2,
+    3.2
+   ],
+   "every": 0.55,
+   "lanes": 12
+  },
+  {
+   "kind": "box",
+   "id": "panel",
+   "s": [
+    6.0,
+    6.3
+   ],
+   "t": [
+    -3.2,
+    0.55
+   ],
+   "z": [
+    0,
+    0.45
+   ]
+  },
+  {
+   "kind": "box",
+   "id": "panel",
+   "s": [
+    6.0,
+    6.3
+   ],
+   "t": [
+    1.2,
+    3.2
+   ],
+   "z": [
+    0,
+    0.45
+   ]
+  },
+  {
+   "kind": "gate",
+   "id": "gate",
+   "s": 6.0,
+   "t": [
+    0.55,
+    1.2
+   ],
+   "height": 1.0,
+   "post": 0.18,
+   "thick": 0.3
+  },
+  {
+   "kind": "box",
+   "id": "roof",
+   "s": [
+    5.2,
+    5.75
+   ],
+   "t": [
+    -2.3,
+    -1.75
+   ],
+   "z": [
+    0,
+    0.45
+   ]
+  },
+  {
+   "kind": "wall",
+   "id": "trees",
+   "a": [
+    5.45,
+    -2.0949999999999998
+   ],
+   "b": [
+    5.45,
+    -1.9549999999999998
+   ],
+   "z": [
+    0.45,
+    1.7999999999999998
+   ]
+  },
+  {
+   "kind": "wall",
+   "id": "trees",
+   "a": [
+    5.45,
+    -2.775
+   ],
+   "b": [
+    5.45,
+    -1.275
+   ],
+   "z": [
+    1.5499999999999998,
+    2.4
+   ]
+  },
+  {
+   "kind": "box",
+   "id": "roof",
+   "s": [
+    5.2,
+    5.75
+   ],
+   "t": [
+    1.75,
+    2.3
+   ],
+   "z": [
+    0,
+    0.45
+   ]
+  },
+  {
+   "kind": "wall",
+   "id": "trees",
+   "a": [
+    5.45,
+    1.9549999999999998
+   ],
+   "b": [
+    5.45,
+    2.0949999999999998
+   ],
+   "z": [
+    0.45,
+    1.7999999999999998
+   ]
+  },
+  {
+   "kind": "wall",
+   "id": "trees",
+   "a": [
+    5.45,
+    1.275
+   ],
+   "b": [
+    5.45,
+    2.775
+   ],
+   "z": [
+    1.5499999999999998,
+    2.4
+   ]
+  },
+  {
+   "kind": "box",
+   "id": "roof",
+   "s": [
+    3.0,
+    3.5
+   ],
+   "t": [
+    -2.3,
+    -1.8
+   ],
+   "z": [
+    0,
+    0.42
+   ]
+  },
+  {
+   "kind": "wall",
+   "id": "trees",
+   "a": [
+    3.25,
+    -2.17
+   ],
+   "b": [
+    3.25,
+    -2.0300000000000002
+   ],
+   "z": [
+    0.42,
+    1.6
+   ]
+  },
+  {
+   "kind": "wall",
+   "id": "trees",
+   "a": [
+    3.25,
+    -2.85
+   ],
+   "b": [
+    3.25,
+    -1.35
+   ],
+   "z": [
+    1.35,
+    2.2
+   ]
+  },
+  {
+   "kind": "box",
+   "id": "roof",
+   "s": [
+    3.0,
+    3.5
+   ],
+   "t": [
+    1.8,
+    2.3
+   ],
+   "z": [
+    0,
+    0.42
+   ]
+  },
+  {
+   "kind": "wall",
+   "id": "trees",
+   "a": [
+    3.25,
+    2.0300000000000002
+   ],
+   "b": [
+    3.25,
+    2.17
+   ],
+   "z": [
+    0.42,
+    1.6
+   ]
+  },
+  {
+   "kind": "wall",
+   "id": "trees",
+   "a": [
+    3.25,
+    1.35
+   ],
+   "b": [
+    3.25,
+    2.85
+   ],
+   "z": [
+    1.35,
+    2.2
+   ]
+  },
+  {
+   "kind": "string",
+   "id": "lights",
+   "a": [
+    6.0,
+    -2.6,
+    1.9
+   ],
+   "b": [
+    6.0,
+    2.6,
+    1.9
+   ],
+   "sag": 0.3,
+   "n": 15
+  },
+  {
+   "kind": "string",
+   "id": "lights",
+   "a": [
+    6.0,
+    -2.6,
+    1.9
+   ],
+   "b": [
+    2.0,
+    2.6,
+    2.2
+   ],
+   "sag": 0.35,
+   "n": 15
+  },
+  {
+   "kind": "string",
+   "id": "lights",
+   "a": [
+    6.0,
+    2.6,
+    1.9
+   ],
+   "b": [
+    2.0,
+    -2.6,
+    2.2
+   ],
+   "sag": 0.35,
+   "n": 15
+  },
+  {
+   "kind": "lantern",
+   "at": [
+    5.9,
+    0.47
+   ],
+   "height": 0.7
+  },
+  {
+   "kind": "lantern",
+   "at": [
+    5.9,
+    1.28
+   ],
+   "height": 0.7
+  }
+ ],
+ "story": [
+  {
+   "name": "stair-head",
+   "ids": [
+    "gate"
+   ],
+   "ignoreTop": true
+  }
+ ],
+ "marks": {
+  "heroHome": [
+   1.3,
+   0
+  ],
+  "heroEntrance": [
+   1.04,
+   -0.36
+  ],
+  "heroRetreat": [
+   1.13,
+   0
+  ],
+  "challengers": [
+   {
+    "id": "purpurina",
+    "atlas": "purpurina",
+    "mark": [
+     2.33,
+     0
+    ],
+    "yieldMark": [
+     2.33,
+     0.34
+    ]
+   }
+  ],
+  "pathEnd": [
+   5.85,
+   0.88
+  ],
+  "route": [
+   [
+    1.3,
+    0
+   ],
+   [
+    1.8,
+    0.3
+   ],
+   [
+    3.0,
+    0.6
+   ],
+   [
+    4.5,
+    0.82
+   ],
+   [
+    5.85,
+    0.88
+   ]
+  ],
+  "guests": [
+   [
+    4.7,
+    -1.3
+   ],
+   [
+    4.7,
+    -0.92
+   ],
+   [
+    3.7,
+    -1.05
+   ],
+   [
+    3.7,
+    -0.68
+   ],
+   [
+    4.9,
+    1.35
+   ],
+   [
+    4.9,
+    1.0
+   ]
+  ],
+  "plants": []
+ },
+ "props": [],
+ "scene": "It is the mansion's rooftop terrace at midnight, seen from the top of the stairs: an open stone terrace high above a glittering city, under a clear starry night sky, festive and warm.",
+ "keep": "the stone balustrade across the far side, the stair head with its two lamp posts at the right of the balustrade, the four terracotta planters with their palms, the three strings of festoon lights, every floor joint, the city's horizon and the wide open night sky",
+ "zones": {
+  "floor": {
+   "layout": "a terrace floor of large square stone tiles running away from the viewer, with the same grid as image 1.",
+   "paint": "The floor is large square tiles of warm honey-coloured limestone with thin dark joints, one calm dim tone across its whole area, softly lit by the festoon lights, and the near half is plain, even and dark, reaching the bottom edge and lying open and clear."
+  },
+  "panel": {
+   "layout": "a low carved stone balustrade with round balusters along the far edge of the terrace.",
+   "paint": "A low cream stone balustrade with round balusters and a flat top rail runs across the far edge of the terrace, lit warm from the festoon lights above."
+  },
+  "window": {
+   "layout": "the city far below, seen over the balustrade, reaching to the horizon.",
+   "paint": "Over the balustrade, far below, a wide city glitters at night: thousands of tiny warm and white window lights, dark rooftops and a few distant towers, fading into a soft blue haze at the horizon."
+  },
+  "gate": {
+   "layout": "the stone posts and small arch at the head of a staircase going down, in a gap in the balustrade.",
+   "paint": "At the right of the balustrade, a gap opens onto the head of a stone staircase going down, framed by two carved cream stone posts under a small round stone arch, the first steps dropping away into shadow."
+  },
+  "lamp": {
+   "layout": "two small lanterns on the stair head's posts.",
+   "paint": "Two small warm lanterns glow on the stair head's posts."
+  },
+  "roof": {
+   "layout": "large terracotta planters on the terrace.",
+   "paint": "Large round terracotta planters stand on the terrace, each holding a palm."
+  },
+  "trees": {
+   "layout": "the fronds of potted palms rising from the planters.",
+   "paint": "Tall potted palms rise from the planters, their dark green fronds fanning out against the night sky."
+  },
+  "lights": {
+   "layout": "strings of festoon light bulbs crossing above the terrace.",
+   "paint": "Three strings of round warm festoon bulbs sag across the terrace from post to post, each bulb a small glowing amber dot."
+  },
+  "sky": {
+   "layout": "a wide, open night sky.",
+   "paint": "Above it all a wide, clear, deep navy night sky with a few faint stars stays open and calm."
+  }
+ }
+}
