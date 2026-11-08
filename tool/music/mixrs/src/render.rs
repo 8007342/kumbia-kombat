@@ -431,17 +431,23 @@ pub fn outgoing_at(s: &Source, bpm_out: f64, beats_out: f64, pad: usize) -> Ster
 
 /// The even destination bar whose lead-in best matches the given chroma.
 pub fn best_entry(source: &V12, dest: &[V12]) -> (i64, f64) {
+    best_entry_on(source, dest, (2, 0))
+}
+
+/// The same, over bars `offset`, `offset + step`, ...: a bridge can land where the
+/// next room's chart starts its calls on the music's phrase.
+pub fn best_entry_on(source: &V12, dest: &[V12], (step, offset): (usize, usize)) -> (i64, f64) {
     let src = unit(source);
     let count = dest.len();
     let mut best: Option<(f64, i64)> = None;
-    let mut k = 0;
+    let mut k = offset % count;
     while k < count {
         let c = unit(&dest[(k + count - 1) % count]);
         let row = (dot(&c, &src), -(k as i64));
         if best.is_none_or(|b| row.0 > b.0 || (row.0 == b.0 && row.1 > b.1)) {
             best = Some(row);
         }
-        k += 2;
+        k += step.max(1);
     }
     let b = best.expect("a destination with bars");
     (-b.1, round_to(b.0, 3))
@@ -508,13 +514,13 @@ pub fn render_transition(src: &Source, src_chroma: &V12, dest: &Source, dest_chr
     JoinOut { mix, entry, match_score, stats }
 }
 
-pub fn render_bridge(src: &Source, src_chroma: &V12, dest: &Source, dest_chroma: &[V12], cfg: &JoinCfg, pad: usize) -> JoinOut {
+pub fn render_bridge(src: &Source, src_chroma: &V12, dest: &Source, dest_chroma: &[V12], cfg: &JoinCfg, pad: usize, phase: (usize, usize)) -> JoinOut {
     let beats = 8.0;
     let bpm = dest.bpm;
     let beat_len = beat_samples(bpm);
     let length = py_round(beats * beat_len) as usize;
     let total = pad + length + pad;
-    let (entry, match_score) = best_entry(src_chroma, dest_chroma);
+    let (entry, match_score) = best_entry_on(src_chroma, dest_chroma, phase);
     let incoming = circ(dest.lp, py_round(entry as f64 * dest.bar_len) - length as i64 - pad as i64, total);
     let mut outgoing = outgoing_at(src, bpm, beats, pad);
     outgoing.resize(total, [0.0, 0.0]);

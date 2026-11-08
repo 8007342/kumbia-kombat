@@ -291,7 +291,12 @@
       }
      ]
     }
-   ]
+   ],
+   "bridgeEntry": {
+    "step": 4,
+    "offset": 3,
+    "why": "comedor.json introBeats 12: calls start 3 bars after entry, and the take's 4-bar phrase starts on bar 2 mod 4 (align_charts)"
+   }
   },
   {
    "id": "salon",
