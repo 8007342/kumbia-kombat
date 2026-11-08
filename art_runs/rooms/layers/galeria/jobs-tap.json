@@ -1,0 +1,19 @@
+{
+ "room": "galeria",
+ "run": "layers-galeria-20261108",
+ "passNo": 2,
+ "steps": 4,
+ "jobs": [
+  {
+   "name": "portrait-tap",
+   "workflow": "art_runs/rooms/layers/galeria/portrait-tap.api.json",
+   "inputs": {
+    "base": "/work/tmp/imagegen/kumbia/layers-galeria-20261108/in/portrait-tap.png"
+   },
+   "overrides": {
+    "seed": 993410
+   },
+   "count": 2
+  }
+ ]
+}
