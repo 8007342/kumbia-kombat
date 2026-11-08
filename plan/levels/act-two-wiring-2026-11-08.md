@@ -115,13 +115,27 @@ All three follow the design note. Galería and terraza each walk Mācron out wit
 - the route up the runner to the far doors, the 12 guests in pairs along both walls, and the two picture lights;
 - the close-up: a floor plate, and Mācron's feet and proud face on full-screen canvases (360x780 at scale .5), so no cut edge shows.
 
-Siobhán herself is still to come.
+**Swapped in, 2026-11-08:** Siobhán herself (`work/1885-galr` c07b366):
+- her atlas `siobhan` and her dancer entry: a reel lead-round on the groove, high kicks and rigid arm snaps on her calls, a stamp, trebles and hop-backs;
+- the line on her frames, rising into the arch (`arch_rise`, then `arch_hold` held) and frozen at the win's start (`freeze_hold`);
+- EL MURO DE TACONES on her `trebles`.
+
+The four Tréboles wear GALERIA's recoloured copies of her atlas (raven, honey, chestnut, ash). A new optional field, `line.dancers[].image`, draws the lead's frames from another PNG of the same size, so one set of drawings reads as five people. A test holds each copy's size to hers, and the scene refuses one that differs.
 
 **Swapped in, 2026-11-08:** the gallery's room life (`work/1885-galr` 2fd90ac): a repainted plate where the far-left portrait is full length, so its gentleman can tap his foot; plus that foot tap, a bust's nod and a portrait's sway, all artwork at tier 4.
 
+**Swapped in, 2026-11-08:** Don Charolas himself (`work/1881-cmdr` 2892b75):
+- his atlas `charolas` and dancer entry: the polka hop on the groove, a tray saved, a napkin flick and the tower as accents, and a polka spin into Mācron's turn;
+- on the win's wide shot, the spin to a stop (8 drawings at a quarter beat) and the cloche presented;
+- LA TORRE DE CHAROLAS on his own clips (polka_spin, torre, torre_hop, torre), with the re-timed notes.
+
+**Two fixes to COMEDOR's data, made here because COMEDOR had finished:**
+- 20 of his frames had their anchor up to 4.1 atlas px below the frame's rect, which the loader refuses. I clamped each to the rect's bottom edge, about 1.5 screen px at play size.
+- `polka_spin` listed 9 drawings against 8 beat lengths. I dropped the untimed ninth (`groove_pass_l2`), so the spin is 2 beats, as the combo and the handoff expect. [F]
+
 **Swapped in, 2026-11-08:** the banquet close-up (`work/1881-cmdr` 745213a), with the salon's geometry: Don Charolas' four drawings (present, lift, offer, empty), Mācron's four (reach, take, sip, happy) and the plate cut from the room. The rendered page test now expects two `glug`s, not three. [F]
 
-**Swapped in, 2026-11-08:** waiter-a (`work/1881-cmdr` be4e516), on a `waiter` clip set that hops the polka (`groove_*` at half a beat a drawing). He faces right, so he isn't mirrored and the tray stays on his picture-right.
+**Swapped in, 2026-11-08:** all three waiters, `waiter-a` (`work/1881-cmdr` be4e516), `waiter-b` (9b73c6e) and `waiter-c` (e4611fb), on a `waiter` clip set that hops the polka (`groove_*` at half a beat a drawing). A waiter facing right keeps the tray on his picture-right. Waiter-b faces left, so he is mirrored and his tray moves to the other hand, which COMEDOR accepted.
 
 **Swapped in, 2026-11-08:** TERRAZA's room (`work/1886-terr` cbac883):
 - the plate, with its floor at horizon .36;
@@ -151,9 +165,7 @@ Each swap is a data edit in the level's file and re-running the generator (`make
 
 | Level | What | Stand-in today | Real piece from |
 |---|---|---|---|
-| Comedor | Don Charolas | terciopelo's atlas, `id: terciopelo` so his combo finds a choreography | `charolas`, plus a dancer entry in `choreography.json` |
-| Comedor | waiters b and c, late guest | guest5 and 6 on the `waiterStandIn` set; guest4 on the `guest` set | `waiter-b`, `waiter-c` on the `waiter` set |
-| Galería | Siobhán and Las Tréboles | swing-a's atlas, five times | GALERIA art (later wave) |
+| Comedor | late guest | guest4 on the `guest` set, by COMEDOR's choice (reused, in evening dress) | none planned |
 | Terraza | Tía Purpurina | blinblin's atlas | TERRAZA art (later wave) |
 
 ## What was checked, and how

@@ -11,6 +11,7 @@ import 'challenger_choreography.dart';
 import 'crowd_interest.dart';
 import 'dance_floor.dart';
 import 'dance_grammar.dart';
+import 'dance_line.dart';
 import 'duet_staging.dart';
 import 'ensemble_sprites.dart';
 import 'exit_shot.dart';
@@ -70,6 +71,9 @@ class GardenSceneGame extends FlameGame {
   String? artLoadError;
   PartySpriteAtlas? _heroAtlas;
   Map<String, EnsembleAtlas>? _ensemble;
+
+  /// A line dancer's recoloured copy of the lead's atlas, by image file.
+  final _lineAtlases = <String, EnsembleAtlas>{};
   Map<String, EnsembleAtlasDefinition>? _propSets;
   EnsembleAtlas? _props;
   OutfitPalette? _outfits;
@@ -186,6 +190,19 @@ class GardenSceneGame extends FlameGame {
       final arch = challenger.line?.arch;
       if (arch != null) {
         _ensemble![challenger.atlas]!.definition.art.requireFrames(arch.frames);
+      }
+      for (final dancer in challenger.line?.dancers ?? const <LineDancer>[]) {
+        final image = dancer.image;
+        if (image == null || _lineAtlases.containsKey(image)) continue;
+        final lead = _ensemble![challenger.atlas]!.definition;
+        final loaded = await images.load('ensemble/$image');
+        if (loaded.width != lead.art.width ||
+            loaded.height != lead.art.height) {
+          throw StateError(
+            'Level ${level.id}: $image is not the size of ${lead.art.image}',
+          );
+        }
+        _lineAtlases[image] = EnsembleAtlas(lead, loaded);
       }
       final stance = challenger.defeatStance;
       if (stance != null) {
@@ -1340,7 +1357,7 @@ class GardenSceneGame extends FlameGame {
         final size = tall / atlas.nativeHeight('ready');
         placements.add(
           _DancerPlacement(
-            atlas: atlas,
+            atlas: _lineAtlases[dancer.image] ?? atlas,
             frame: theirs.frameId,
             ground: ui.Offset(where.x + theirs.rootOffsetX * size, where.y),
             footY: where.y,
