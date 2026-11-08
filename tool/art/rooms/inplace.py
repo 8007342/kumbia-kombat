@@ -111,6 +111,20 @@ def figure_mask(small, plate_crop, polygon, thresh):
     return m
 
 
+def recolour(rgb, m, rule):
+    """Turn one garment's hue inside a figure's mask, keeping value and saturation: a twin's dress, deterministic."""
+    import colorsys
+    out = rgb.copy()
+    lo, hi = rule["hue"]
+    ys, xs = np.nonzero(m)
+    for y, x in zip(ys, xs):
+        r, g, b = out[y, x] / 255.0
+        h, sat, v = colorsys.rgb_to_hsv(r, g, b)
+        if lo <= h * 360 <= hi and sat >= rule.get("minSat", .25):
+            out[y, x] = np.array(colorsys.hsv_to_rgb((h + rule["shift"] / 360) % 1, sat, v)) * 255
+    return out
+
+
 def source(s, f):
     return CACHE / s["run"] / (s["key"]["pick"] if f.get("reuse") == "key" else f["pick"])
 
@@ -126,9 +140,10 @@ def matte(s):
         comp = np.asarray(plate_crop).copy()
         for g in s["figures"]:
             m = figure_mask(small, plate_crop, g["polygon"], s.get("threshold", 24))
-            rgba = np.dstack([small.astype(np.uint8), np.where(m, 255, 0).astype(np.uint8)])
+            px = recolour(small, m, g["recolour"]) if "recolour" in g else small
+            rgba = np.dstack([px.astype(np.uint8), np.where(m, 255, 0).astype(np.uint8)])
             Image.fromarray(rgba, "RGBA").save(out / f"{g['id']}-{f['id']}.png")
-            comp = np.where(m[..., None], small.astype(np.uint8), comp)
+            comp = np.where(m[..., None], px.astype(np.uint8), comp)
         print(f["id"], "shift", best[1:], "residual", round(best[0], 1))
         rows.append(Image.fromarray(comp.astype(np.uint8)).resize((plate_crop.width * 2, plate_crop.height * 2), Image.NEAREST))
     sheet = Image.new("RGB", (rows[0].width, sum(r.height for r in rows)))

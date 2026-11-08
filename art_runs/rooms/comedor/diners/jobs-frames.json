@@ -1,0 +1,97 @@
+{
+ "room": "comedor",
+ "run": "rooms/comedor/diners",
+ "passNo": 2,
+ "steps": 4,
+ "jobs": [
+  {
+   "name": "eat_b",
+   "workflow": "art_runs/rooms/comedor/diners/workflows/eat_b.api.json",
+   "inputs": {
+    "base": "/work/tmp/imagegen/kumbia/rooms/comedor/diners/in/key.png"
+   },
+   "overrides": {
+    "seed": 995100
+   },
+   "count": 2
+  },
+  {
+   "name": "watch_a",
+   "workflow": "art_runs/rooms/comedor/diners/workflows/watch_a.api.json",
+   "inputs": {
+    "base": "/work/tmp/imagegen/kumbia/rooms/comedor/diners/in/key.png"
+   },
+   "overrides": {
+    "seed": 995200
+   },
+   "count": 2
+  },
+  {
+   "name": "watch_b",
+   "workflow": "art_runs/rooms/comedor/diners/workflows/watch_b.api.json",
+   "inputs": {
+    "base": "/work/tmp/imagegen/kumbia/rooms/comedor/diners/in/key.png"
+   },
+   "overrides": {
+    "seed": 995300
+   },
+   "count": 2
+  },
+  {
+   "name": "clap_a",
+   "workflow": "art_runs/rooms/comedor/diners/workflows/clap_a.api.json",
+   "inputs": {
+    "base": "/work/tmp/imagegen/kumbia/rooms/comedor/diners/in/key.png"
+   },
+   "overrides": {
+    "seed": 995400
+   },
+   "count": 2
+  },
+  {
+   "name": "clap_b",
+   "workflow": "art_runs/rooms/comedor/diners/workflows/clap_b.api.json",
+   "inputs": {
+    "base": "/work/tmp/imagegen/kumbia/rooms/comedor/diners/in/key.png"
+   },
+   "overrides": {
+    "seed": 995500
+   },
+   "count": 2
+  },
+  {
+   "name": "rise_a",
+   "workflow": "art_runs/rooms/comedor/diners/workflows/rise_a.api.json",
+   "inputs": {
+    "base": "/work/tmp/imagegen/kumbia/rooms/comedor/diners/in/key.png"
+   },
+   "overrides": {
+    "seed": 995600
+   },
+   "count": 2
+  },
+  {
+   "name": "toast_a",
+   "workflow": "art_runs/rooms/comedor/diners/workflows/toast_a.api.json",
+   "inputs": {
+    "base": "/work/tmp/imagegen/kumbia/rooms/comedor/diners/in/key.png"
+   },
+   "overrides": {
+    "seed": 995700
+   },
+   "count": 2
+  },
+  {
+   "name": "toast_b",
+   "workflow": "art_runs/rooms/comedor/diners/workflows/toast_b.api.json",
+   "inputs": {
+    "base": "/work/tmp/imagegen/kumbia/rooms/comedor/diners/in/key.png"
+   },
+   "overrides": {
+    "seed": 995800
+   },
+   "count": 2
+  }
+ ],
+ "how": "tool/art/rooms/run_room_jobs.py --jobs <this file>"
+}
