@@ -48,7 +48,7 @@ Pattern 5 mirrors pattern 4. Pattern 6 opens on a two-foot stamp. In all, 29 ric
 
 ### Galería: a reel [P]
 
-Foot-heavy and relentless, and on the music. The feet stamp the beats the take accents. Both feet land together on the one from tier 1. The rigid arms slap only where a foot can't follow its own stamp. At the peak, sixteenth pickups at 3.25 and 7.25 run into beats 4 and 8, where the take plays them.
+Foot-heavy and relentless, and on the music. The feet stamp the beats the take accents. Both feet land together on the one from tier 1. The rigid arms slap only where a foot can't follow its own stamp. Every note is on a beat.
 
 | Pattern | Tier | BPM | Presses | Richer steps | Feet |
 |---|---|---|---|---|---|
@@ -59,7 +59,9 @@ Foot-heavy and relentless, and on the music. The feet stamp the beats the take a
 | 4, 5 | the peak | 130 | 12 | 4 | 7 |
 | 6 | the peak | 130 | 13 | 5 | 7 |
 
-**How it got here.** My first draft ran the feet in the treble's 3+3+2 eighths. MUSIC2's audit of the rendered reel scored it 68: 15% of its notes sat on silence, because this take accents the beats and its "and"s are weak. The worst note was the 1.5 at the peak, at .21. This rework follows the audit's suggestion: feet on the beats, both feet on the one, syncopation only on the peak's pickups. MUSIC2 re-audits it. Two drafts before that put sixteenth hands next to feet, which breaks the 170 ms cross-thumb limit (a quarter beat is 115 ms at 130). In two peak drafts a pickup before a stamp on the same side crossed cue paths on a 320x454 screen. MUSIC2 moved the ladder from 112–128 to 114–130 for the steadiest take, and the chart is checked at 130.
+**MUSIC2's re-audit** of the beat-stamping version: 91, up from 68. 94% of notes on an accent, none weak, none on silence. By tier: 96, 97, 98, 98, 85. The peak scored lowest because its pickups at 3.25 and 7.25 sat just after the take's strong hits on 3 and 7. I moved them onto 3 and 7, which also keeps two cue paths apart. That last move hasn't been re-audited.
+
+**How it got here.** My first draft ran the feet in the treble's 3+3+2 eighths. MUSIC2's audit of the rendered reel scored it 68: 15% of its notes sat on silence, because this take accents the beats and its "and"s are weak. The worst note was the 1.5 at the peak, at .21. This rework follows the audit's suggestion: feet on the beats, both feet on the one. Two drafts before that put sixteenth hands next to feet, which breaks the 170 ms cross-thumb limit (a quarter beat is 115 ms at 130). In two peak drafts a pickup at 3.25 before a stamp on the same side crossed cue paths on a 320x454 screen. MUSIC2 moved the ladder from 112–128 to 114–130 for the steadiest take, and the chart is checked at 130.
 
 EL MURO DE TACONES: eight straight eighths of heels, 231 ms apart at 130 BPM, just over the 230 ms a combo note must keep. Then three more heels and a stamp. Nothing plays the combos yet, and nobody has audited them.
 
