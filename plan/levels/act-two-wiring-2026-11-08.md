@@ -129,6 +129,10 @@ Siobhán herself and the gallery's room-life layers are still to come.
 - the close-up plate, and Mācron's rest, kissed and sparking drawings;
 - the lipstick kiss mark as his keepsake from beat 6.
 
+**Swapped in, 2026-11-08:** her side of the kiss (`work/1886-terr` 41ce628):
+- `terraza-tp-rest` and `terraza-tp-kiss` take the lawn's place. His head stays anchored where the lawn's was, at (200, 165). Her contact (323, 90) puts her kiss-frame lips on his kiss mark at (124, 221).
+- The balustrade strip `terraza-rail` stands in front of her where the lawn had its hedge. It sits 198 px below the contact, not the hedge's 97, so that it ends where her canvas does, which is 350 px below her lips. With the hedge's offset, her dress and its cut edge showed under the rail. [F, seen on stills]
+
 **Code, at TERRAZA's request:** layers of kind `light` now also bloom with the win's `exitShot.flare`, which the warm-down doesn't cool, so the fireworks fill the sky as the lamps swell (`_drawRoomLayers`). Seen on the terraza's win stills, not in a unit test. [F]
 
 **Swapped in, 2026-11-08:** COMEDOR's eight diners (`work/1881-cmdr` 451fd0b), `diner-a` to `diner-h`, on the `diner` clip set:
@@ -148,7 +152,6 @@ Each swap is a data edit in the level's file and re-running the generator (`make
 | Comedor | the cloche close-up | the bar's oil gulp | `comedor-dc-*`, `comedor-can.png`, `comedor-mc-*` |
 | Galería | Siobhán and Las Tréboles | swing-a's atlas, five times | GALERIA art (later wave) |
 | Terraza | Tía Purpurina | blinblin's atlas | TERRAZA art (later wave) |
-| Terraza | her bust in the close-up | the lawn's `duet-a` with a hedge | `terraza-tp-{rest,kiss}.png` |
 
 ## What was checked, and how
 
