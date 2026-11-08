@@ -2,7 +2,15 @@
 
 **Read this first after the relaunch.** `game` holds all merged work. Start the next work ref from `origin/game`, for example `git switch -c work/1853-ordr origin/game`; ref grammar is `work/[0-9]{3,4}-[a-z0-9]{4}`.
 
-## Latest, 2026-11-08: mansion act two, nine levels, promoted to `main` for the owner's phone test
+## Latest, 2026-11-08 (evening): taps fixed and live; music and animation wait for better tools
+
+- **Taps:** the windows are wider (perfect ±90, early 220, late 260 ms), lost taps are found, near misses show faint, and the auto-nudge reaches 250 ms. This is on `main` (Cloudflare build `e087b484`), from `work/1891-tapf`. See `plan/feel-2026-11-08.md` and its phone checklist; the owner hasn't reported back yet.
+- **Music is on hold until the audio studio lands.** The high tiers glitch (their stereo image collapses over four re-sampling passes), and the tiers sound like "three songs instead of one song growing up". The owner chose to re-render rather than patch. The plan is in `plan/music-fix-2026-11-08.md`, the measurements are in `plan/research/music-audit-2026-11-08.md`, and the studio orders are 2055-grzz (PR #1034), 2055-d9sa and 2055-dihg, through macuahuitl-fedora.
+- **Animation is also on hold, waiting for better animation references.** Don't re-draw dance frames before those arrive.
+- **Still open for the owner:** whether to merge `work/1881-cmdr`, `work/1885-galr` and `work/1886-terr`. They hold act two's art sources: notes, character definitions, families, palettes, motion sets and art_runs. They conflict only in `assets/art/ensemble/manifest.json` and `choreography.json`; resolve those in favour of `game` and keep every source file.
+- Later levels (restroom, tango, VIP) remain unbuilt.
+
+## 2026-11-08: mansion act two, nine levels, promoted to `main` for the owner's phone test
 
 - **Campaign:** garden, pool lawn, bar, party (`cool-crowd`), billiards, **comedor** (norteño polka, Don Charolas), salon (bolero-cha, Don Terciopelo), **galeria** (Celtic reel, Siobhán y Las Tréboles), **terraza** (samba, Tía Purpurina). Terraza is last, followed by the end screen. Design: `plan/levels/mansion-act-two-2026-11-08.md`. The later levels (restroom boss rush, tango, VIP and the credits) are designed in `plan/levels/later-levels-2026-11-08.md` and not built; the credits page `/credits/` and `assets/credits.json` exist.
 - **No stand-ins left** in act two. The only shared atlas is the comedor's late guest (`guest4`). The record is in `plan/levels/act-two-wiring-2026-11-08.md`, and each room's art note (`comedor-art`, `galeria-art`, `terraza-art`, all dated 2026-11-08) lists what to look at in motion.
