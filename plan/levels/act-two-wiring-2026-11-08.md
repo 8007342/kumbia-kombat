@@ -102,6 +102,8 @@ All three follow the design note. Galería and terraza each walk Mācron out wit
 
 ## Still stand-ins
 
+**None left in act two**, as of 2026-11-08, except the comedor's one late guest, a shared atlas in evening dress, by COMEDOR's choice. The history of each swap follows.
+
 **Swapped in, 2026-11-08:** COMEDOR's room (`work/1881-cmdr` 97a61c9), taken as its two files:
 - the clean plate `comedor/comedor-room.png`;
 - its layers `comedor-layers.png`: two chandeliers (hanging, `minTier` 3), plus a statue's nod, a statue's foot tap, a portrait lady's head tilt and a portrait's finger snap on 2 and 4 (artwork, `minTier` 4);
@@ -151,6 +153,14 @@ The four Tréboles wear GALERIA's recoloured copies of her atlas (raven, honey, 
 - `terraza-tp-rest` and `terraza-tp-kiss` take the lawn's place. His head stays anchored where the lawn's was, at (200, 165). Her contact (323, 90) puts her kiss-frame lips on his kiss mark at (124, 221).
 - The balustrade strip `terraza-rail` stands in front of her where the lawn had its hedge. It sits 198 px below the contact, not the hedge's 97, so that it ends where her canvas does, which is 350 px below her lips. With the hedge's offset, her dress and its cut edge showed under the rail. [F, seen on stills]
 
+**Swapped in, 2026-11-08:** Tía Purpurina herself (`work/1886-terr` bc3ff08):
+- her atlas `purpurina` and dancer entry: samba no pé on the groove; a boa twirl, a laugh and a blown kiss as accents; a boa spin and a hip roll into Mācron's turn;
+- a short, full figure at stature .92 [P];
+- on the win, the confetti thrown on beats 0–2, then her approving nod, then her samba from 10;
+- LA LLUVIA DE CONFETI on her own clips (lluvia_open, five loops of confetti_rain with a throw on each hand note, lluvia_close).
+
+Her data loaded first time: every anchor inside its frame, and every clip's beats matching its drawings.
+
 **Code, at TERRAZA's request:** layers of kind `light` now also bloom with the win's `exitShot.flare`, which the warm-down doesn't cool, so the fireworks fill the sky as the lamps swell (`_drawRoomLayers`). Seen on the terraza's win stills, not in a unit test. [F]
 
 **Swapped in, 2026-11-08:** COMEDOR's eight diners (`work/1881-cmdr` 451fd0b), `diner-a` to `diner-h`, on the `diner` clip set:
@@ -166,7 +176,6 @@ Each swap is a data edit in the level's file and re-running the generator (`make
 | Level | What | Stand-in today | Real piece from |
 |---|---|---|---|
 | Comedor | late guest | guest4 on the `guest` set, by COMEDOR's choice (reused, in evening dress) | none planned |
-| Terraza | Tía Purpurina | blinblin's atlas | TERRAZA art (later wave) |
 
 ## What was checked, and how
 
