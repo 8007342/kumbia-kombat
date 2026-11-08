@@ -116,3 +116,38 @@ All are covered and elegant, and mixed in age and build.
 - Edits shift a few pixels (aligned back, residual 22-38). The candelabra sit on column edges and may shimmer as neighbours change.
 
 **Crowd count** [P]: WIRE2's crowd needs exactly 12. That's 8 diners, 3 junior waiters and 1 late guest (guest4, in evening dress, by the right wall).
+
+## Don Charolas
+
+**Definition** [P]: `tool/art/characters/charolas.json`, he/him.
+- Body preset `short-round-adult` (new in `tool/art/rig/bodies.json`): short legs, a round belly, a big head, a short neck. He's the opposite of Don Terciopelo's tall narrow vertical.
+- Look: round rosy cheeks, slick black hair, a tiny black moustache, a white double-breasted waiter's jacket with brass buttons, a black bow tie, a long white apron, black trousers and shoes.
+- The silver tray (two glasses of red wine), the cloche, the tower and the napkin are in the pose words, not rig props.
+
+**Motion set `opponent-polka`** (new, `tool/art/rig/poses.py` and `tool/art/motion/opponent-polka.json`), 81 drawings:
+- **The 64 shared names, with the tray on his left hand (the picture's right) in every drawing.** Mirrored right-side drawings get the tray put back on the left, so it never changes hands. The shared words are rewritten by code: clauses about his left arm are dropped and the tray clause is added.
+- **Groove: the norteño polka hop step** per side: a bouncy step on 1, the feet closed on the balls on "and", a second step on 2, and a hop with the free knee high on "and".
+- **left_hand** is the tray itself thrust up high. **clap** slaps the free hand on his thigh, because the other hand holds the tray. **finish** smooths his slick hair.
+- **New clips:**
+  - `spin` (8 views, the tray up the whole way round);
+  - charisma: `tray_wobble.a/b` (the tray tips and the glasses slide, then it's saved level with a smug flourish) and `napkin.a/b`;
+  - the tower: `torre.a/b` (five stacked trays held high, then a hop under them);
+  - the win: `cloche.stop/present/lift`.
+- **Pose check:** spin views held at three quarters are exempt from the wrist-near-head rule (`TRAY_TURNS` in `check_poses.py`), because there the tray hand crosses the head in 2D. The shared side-step's trailing knee bends a little more for his short legs.
+
+**Sheets** [F, P]:
+- Pass 1 drew four fronts from words, with Don Terciopelo's front as the style only.
+  - The first wore a red rose: Don Terciopelo's accent, copied. Rejected.
+  - I kept the third, 993002, for its rosy cheeks, tiny moustache and double-breasted jacket.
+- Pass 2 redrew from that one: front 993102 and back 993101.
+- **The centre parting doesn't show** at this size in any candidate, even with words that ask for it twice. His hair reads as slick and black.
+- The back sheet holds the tray on the picture's right, which from behind is his right hand. No back-view frame is planned, so it doesn't matter yet.
+
+**Choreography** (`dancers.charolas`, `assets/art/ensemble/choreography.json`) [P]:
+- Clips: polka_spin, tray_save, napkin_flick, torre, torre_hop, spin_stop, cloche_present and cloche_lift.
+- Accents: the tray save from tier 1 at beat 4 of 16, the napkin flick from tier 2 at beat 12, and the tower from tier 3 every 32.
+- Hand-off moves: polka_spin, and tray_save in a cold room.
+
+**LA TORRE DE CHAROLAS** (`art_runs/rooms/comedor/hardest-combo.json`) [P]:
+- Moves: a polka spin (beats 0-2), the tower up (2-3), hops under the tower (3-7), the tower held (7-8).
+- WIRE2 re-timed my notes to gaps of 0.75 beats or more, because half a beat is 221 ms at 136 BPM, under the 230 ms good window. It closes on a right-foot stomp.
