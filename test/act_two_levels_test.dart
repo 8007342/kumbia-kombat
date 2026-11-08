@@ -442,6 +442,7 @@ void main() {
       expect(arch.frameAt(1.5), isNull);
       expect(arch.frameAt(2), 'up_a');
       expect(arch.frameAt(3), 'up_b');
+      expect(arch.frameAt(9), 'up_b', reason: 'held, not looped');
       expect(arch.frameAt(2, reducedMotion: true), 'up_b');
       const still = DanceLine(dancers: [], arch: LineArch(from: 1, beats: 2));
       expect(still.archAt(1), 0);

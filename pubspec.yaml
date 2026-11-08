@@ -90,6 +90,7 @@ flutter:
     - assets/music/rendered/salon/
     - assets/music/rendered/comedor/
     - assets/music/rendered/galeria/
+    - assets/music/rendered/terraza/
     - levels/
     # The credits roll's data, from tool/credits/build_credits.py.
     - assets/credits.json

@@ -26,7 +26,7 @@ The bridges, synth scores and renders are MUSIC2's (`work/1882-polk`). `billiard
 | Cleared title | QUÉ / BANQUETE | QUÉ / ZAPATEO | QUÉ / CHISPA |
 | Invitation [P] | ¿Un bailecito antes del postre? | ¿Puedes seguirnos el paso? | ¡Ay, mi amor, a bailar! |
 | Synth tiers, BPM | 120 124 128 132 136 | 114 118 122 126 130 | 96 100 104 108 112 |
-| Rendered takes | 120 / 128 / 136 | 114 / 122 / 130 | not yet |
+| Rendered takes | 120 / 128 / 136 | 114 / 122 / 130 | 96 / 104 / 112 |
 | Hardest combo [P] | LA TORRE DE CHAROLAS | EL MURO DE TACONES | LA LLUVIA DE CONFETI |
 | Rules | FEEL's: 6 of 8 before the peak, 3 peak passes | same | same |
 
@@ -77,7 +77,7 @@ One tresillo every two beats: a foot on the beat, the hip-hand on its last sixte
 | 3, 4 | 3 and the peak | 108, 112 | 12 | 4 | 67% |
 | 5, 6 | the peak | 112 | 12 | 4 | 67%, 58% |
 
-It is the slowest level and the most syncopated. It has had no alignment audit yet: the samba isn't rendered.
+It is the slowest level and the most syncopated. **MUSIC2's audit** of the rendered samba: 95. 98% of notes are on an accent, none are weak, and the worst note scores 1.40. By tier: 99, 97, 93, 94, 95. The take's attacks run 12–13 ms early on the low and mid takes.
 
 ## New general behaviour, in code where data couldn't say it
 
@@ -85,7 +85,7 @@ It is the slowest level and the most syncopated. It has had no alignment audit y
 |---|---|---|
 | **Room life at full party.** Paintings, a sculpture or chandeliers that join in only at the top tier. A new layer kind wakes on the last tier step and shows its whole drawn range, so the drawings carry the subtlety. `minTier` holds any layer at rest below a tier, even at full crowd swing. `phaseBeats` shifts the beat, for example a snap on 2 and 4 | `layers.props[].kind: "artwork"`, `minTier`, `phaseBeats` | `PartyLifeKind.artwork`, `RoomLayerProp`, `_drawRoomLayers` |
 | **The diners' meter.** A guest cast with their own atlas names a clip set: one drawing list for each of the crowd model's nine clips. Loops change on the beat, each guest a whole drawing off the others. A change of pose such as rising plays once. An optional `applause` clip runs from the win's applause cue in its quarter-beat stagger: the rise, then the toast on the beat. Standing guests with a clip set need no `floorDance`. The model still decides who is where on the meter | `crowd.clipSets`, a guest's `clips` | `GuestClipSet` (`dance_floor.dart`), `_addCastGuest` |
-| **A line who dance as one.** A challenger's `line`: more dancers, each placed relative to the lead's feet, drawing the lead's own frames up to half a beat late (two quarter-beat drawings), so one set of frames reads as five people and a ripple runs down the line. Their own win frames are just as late. `arch` moves them into new places at the win, turns one side to face the other, and holds the arch drawings once it is half formed | `stage.challengers[].line` | `DanceLine` (`dance_line.dart`), `_addChallenger` |
+| **A line who dance as one.** A challenger's `line`: more dancers, each placed relative to the lead's feet, drawing the lead's own frames up to half a beat late (two quarter-beat drawings), so one set of frames reads as five people and a ripple runs down the line. Their own win frames are just as late. `arch` moves them into new places at the win, turns one side to face the other, and plays the arch drawings once it is half formed, holding the last | `stage.challengers[].line` | `DanceLine` (`dance_line.dart`), `_addChallenger` |
 | **The close-ups** (cloche, feet double tap, kiss mark and spark) | the existing `exitShot.actors[].frames`, `cue`, `keepsake` | none |
 
 The loader refuses: `minTier` above 4, a clip set missing any of the nine clips, a guest naming no such set or naming clips without an atlas, a misspelt clip field, a line dancer more than half a beat late, and a line dancer placed off the floor or on the thumbs. Tests: `test/act_two_levels_test.dart`. [F]
@@ -106,7 +106,7 @@ All three follow the design note. Galería and terraza each walk Mācron out wit
 - the clean plate `comedor/comedor-room.png`;
 - its layers `comedor-layers.png`: two chandeliers (hanging, `minTier` 3), plus a statue's nod, a statue's foot tap, a portrait lady's head tilt and a portrait's finger snap on 2 and 4 (artwork, `minTier` 4);
 - their marks: floor camera, hero marks, Don Charolas' marks, the banquet table as an occluder (its front edge at y .37, so the diners' hands stay in view), and the route round the table's right end to the service door;
-- the cast's places: 8 diner seats, 3 waiters and 1 late guest (12).
+- the cast's places: 8 diner seats, 3 waiters and 1 late guest (12). Diner atlases carry `playerHeightPx` (168 plate px at y .405), which the scale reads ahead of any frame's height, so any of their drawings can be a clip set's `reference`.
 
 `pubspec.yaml` now lists `assets/art/comedor/`, plus `assets/music/rendered/comedor/` and `galeria/`, which were missing: the web build wouldn't have bundled those takes. A test now holds every folder a level or a rendered take names. [F]
 
@@ -121,7 +121,6 @@ Each swap is a data edit in the level's file and re-running the generator (`make
 | Galería | plate, crowd, close-up | the salon's room and couples. Mācron's nod rig is the feet close-up | GALERIA art |
 | Terraza | Tía Purpurina | blinblin's atlas | TERRAZA art (later wave) |
 | Terraza | plate, crowd, close-up, fireworks | the salon's room and couples, the lawn's kiss with one kisser, the flare for fireworks. No kiss-mark keepsake yet | TERRAZA art |
-| Terraza | music | synth `terraza_samba` | MUSIC2's render, `final: true` |
 
 ## What was checked, and how
 
@@ -164,4 +163,4 @@ Each swap is a data edit in the level's file and re-running the generator (`make
 - [ ] Room life at tier 4: felt more than seen?
 - [ ] The line of five: does a half-beat lag read as "as one" with a ripple, or as sloppy? Try `lagBeats` .25 at the ends.
 - [ ] The arch, once real arms-up drawings exist.
-- [ ] Each walk out: comedor through the service door, galería under the arch, terraza to the stairs. On the comedor's stills at beat 15 he isn't visible near the door. The door at x .79 is inside the phone's crop (about x .15–.85), so he's most likely passing behind waiter-b at (.76, .47).
+- [ ] Each walk out: comedor through the service door, galería under the arch, terraza to the stairs. On the comedor's stills he first vanished behind waiter-b near the door. COMEDOR moved waiter-b to (.66, .455), and he is now seen heading for the door at beat 15 and is gone by 18.

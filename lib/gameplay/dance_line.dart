@@ -74,7 +74,7 @@ class LineArch {
   final double from, beats;
 
   /// What the rest of the line draws once the arch is half formed, in place of
-  /// the lead's own: arms raised, held or looped. Empty keeps the lead's.
+  /// the lead's own: arms rising, then held on the last. Empty keeps the lead's.
   final List<String> frames;
   final double beatsPerFrame;
 
@@ -83,6 +83,6 @@ class LineArch {
     if (frames.isEmpty || beat < from + beats / 2) return null;
     if (reducedMotion) return frames.last;
     final step = ((beat - from - beats / 2) / beatsPerFrame).floor();
-    return frames[step % frames.length];
+    return frames[step.clamp(0, frames.length - 1)];
   }
 }
