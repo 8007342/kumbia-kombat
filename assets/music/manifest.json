@@ -70,8 +70,8 @@
       "title": "Trébol",
       "path": "assets/music/scores/galeria_reel.json",
       "bars": 32,
-      "baseBpm": 112,
-      "fullBpm": 128
+      "baseBpm": 114,
+      "fullBpm": 130
     },
     {
       "id": "terraza_samba",
@@ -179,8 +179,8 @@
         "id": "galeria_reel_success",
         "title": "Trébol — Room Approval",
         "bars": 4,
-        "baseBpm": 112,
-        "fullBpm": 128,
+        "baseBpm": 114,
+        "fullBpm": 130,
         "parentScore": "galeria_reel",
         "final": false,
         "path": "assets/music/scores/galeria_reel_success.json",
@@ -302,8 +302,8 @@
         "id": "salon_to_galeria",
         "title": "Down the Long Gallery",
         "bars": 2,
-        "baseBpm": 112,
-        "fullBpm": 112,
+        "baseBpm": 114,
+        "fullBpm": 114,
         "fromScore": "salon_bolero",
         "toScore": "galeria_reel",
         "path": "assets/music/scores/salon_to_galeria.json",
