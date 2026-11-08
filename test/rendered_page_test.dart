@@ -330,7 +330,7 @@ void main() {
       final accents = audio.notes.map((n) => n.track).where(isAccentTrack).toList();
       expect(
         accents,
-        containsAllInOrder(['clink', 'glug', 'glug', 'glug', 'nod', 'peck', 'peck']),
+        containsAllInOrder(['clink', 'glug', 'glug', 'nod', 'peck', 'peck']),
       );
       expect(find.text('QUÉ\nELEGANCIA'), findsWidgets);
       await _end(tester);

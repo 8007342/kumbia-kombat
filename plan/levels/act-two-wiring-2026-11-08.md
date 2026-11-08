@@ -96,7 +96,7 @@ All three follow the design note. Galería and terraza each walk Mācron out wit
 
 | Level | Beats |
 |---|---|
-| Comedor | 0–2 Don Charolas spins to a stop. 2–4 he presents the cloche while Mācron walks over. Close-up 4–10: the lid comes off on 6 (`clink`), the sips on 6.5, 7 and 7.5 (`glug`), QUÉ / BANQUETE. From 10, the diners rise and toast (their applause clip) and the lamps swell. 12–19 Mācron walks out past the waiters to the service door. The bridge ends at 24 |
+| Comedor | 0–2 Don Charolas spins to a stop. 2–5 he presents the cloche while Mācron walks over. Close-up 5–11.5 (COMEDOR's beats): presented on 5; the cloche lifts on 6, revealing the oil can with its birthday candle (`clink`); he offers it and Mācron takes it on 7; the sip on 8, with QUÉ / BANQUETE and `glug`s on 8 and 8.5; from 10, Mācron's happy arcs while both sway. From 11.5 the diners rise and toast and the lamps swell. 12.5–19.5 Mācron walks out past the waiters to the service door. The bridge ends at 24 |
 | Galería | 0 the line freezes. 1–3 it splits into the arch, arms up. 2–3.75 Mācron walks to his mark. Close-up 4–9: the double tap on 6 and 6.5 (`clack`, `clack`), QUÉ / ZAPATEO, then his proud face. 9.5–16 he walks out between the arch's two sides. Siobhán nods at 10.5 and dances from 13 |
 | Terraza | 0–2 Tía Purpurina throws confetti. Close-up 3.5–10: the kiss on 5 (`peck`), the antenna spark on 5.75 and 6.25 (soft high `clink`s), QUÉ / CHISPA. From 10 the sky lights up (the flare), the guests applaud, and 11–15.5 Mācron dances off to the stairs. The last level: everything fits its 16-beat success |
 
@@ -116,6 +116,8 @@ All three follow the design note. Galería and terraza each walk Mācron out wit
 - the close-up: a floor plate, and Mācron's feet and proud face on full-screen canvases (360x780 at scale .5), so no cut edge shows.
 
 Siobhán herself and the gallery's room-life layers are still to come.
+
+**Swapped in, 2026-11-08:** the banquet close-up (`work/1881-cmdr` 745213a), with the salon's geometry: Don Charolas' four drawings (present, lift, offer, empty), Mācron's four (reach, take, sip, happy) and the plate cut from the room. The rendered page test now expects two `glug`s, not three. [F]
 
 **Swapped in, 2026-11-08:** waiter-a (`work/1881-cmdr` be4e516), on a `waiter` clip set that hops the polka (`groove_*` at half a beat a drawing). He faces right, so he isn't mirrored and the tray stays on his picture-right.
 
@@ -149,7 +151,6 @@ Each swap is a data edit in the level's file and re-running the generator (`make
 |---|---|---|---|
 | Comedor | Don Charolas | terciopelo's atlas, `id: terciopelo` so his combo finds a choreography | `charolas`, plus a dancer entry in `choreography.json` |
 | Comedor | waiters b and c, late guest | guest5 and 6 on the `waiterStandIn` set; guest4 on the `guest` set | `waiter-b`, `waiter-c` on the `waiter` set |
-| Comedor | the cloche close-up | the bar's oil gulp | `comedor-dc-*`, `comedor-can.png`, `comedor-mc-*` |
 | Galería | Siobhán and Las Tréboles | swing-a's atlas, five times | GALERIA art (later wave) |
 | Terraza | Tía Purpurina | blinblin's atlas | TERRAZA art (later wave) |
 
