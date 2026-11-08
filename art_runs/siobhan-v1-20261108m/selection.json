@@ -1,0 +1,270 @@
+{
+ "groove.down_l": {
+  "k": "994001",
+  "accepted": true
+ },
+ "groove.pass_l": {
+  "k": "994001",
+  "accepted": true
+ },
+ "groove.up_l": {
+  "k": "994000",
+  "accepted": true
+ },
+ "groove.pass_l2": {
+  "k": "994000",
+  "accepted": true
+ },
+ "groove.down_r": {
+  "k": "994001",
+  "accepted": true
+ },
+ "groove.pass_r": {
+  "k": "994000",
+  "accepted": true
+ },
+ "groove.up_r": {
+  "k": "994000",
+  "accepted": true
+ },
+ "groove.pass_r2": {
+  "k": "994001",
+  "accepted": true
+ },
+ "left_hand.peak": {
+  "k": "994001",
+  "accepted": true
+ },
+ "left_hand.follow": {
+  "k": "994001",
+  "accepted": true
+ },
+ "left_hand.return": {
+  "k": "994000",
+  "accepted": true
+ },
+ "right_hand.peak": {
+  "k": "994001",
+  "accepted": true
+ },
+ "right_hand.follow": {
+  "k": "994001",
+  "accepted": true
+ },
+ "right_hand.return": {
+  "k": "994000",
+  "accepted": true
+ },
+ "left_foot.prep": {
+  "k": "994001",
+  "accepted": true
+ },
+ "left_foot.peak": {
+  "k": "994000",
+  "accepted": true
+ },
+ "left_foot.follow": {
+  "k": "994001",
+  "accepted": true
+ },
+ "left_foot.return": {
+  "k": "994000",
+  "accepted": true
+ },
+ "right_foot.prep": {
+  "k": "994000",
+  "accepted": true
+ },
+ "right_foot.peak": {
+  "k": "994001",
+  "accepted": true
+ },
+ "right_foot.follow": {
+  "k": "994001",
+  "accepted": true
+ },
+ "right_foot.return": {
+  "k": "994000",
+  "accepted": true
+ },
+ "enter_forward.contact_l": {
+  "k": "994001",
+  "accepted": true
+ },
+ "enter_forward.down_l": {
+  "k": "994000",
+  "accepted": true
+ },
+ "enter_forward.pass_l": {
+  "k": "994000",
+  "accepted": true
+ },
+ "enter_forward.contact_r": {
+  "k": "994000",
+  "accepted": true
+ },
+ "enter_forward.down_r": {
+  "k": "994000",
+  "accepted": true
+ },
+ "enter_forward.pass_r": {
+  "k": "994000",
+  "accepted": true
+ },
+ "retreat_backward.contact_l": {
+  "k": "994000",
+  "accepted": true
+ },
+ "retreat_backward.down_l": {
+  "k": "994000",
+  "accepted": true
+ },
+ "retreat_backward.pass_l": {
+  "k": "994000",
+  "accepted": true
+ },
+ "retreat_backward.contact_r": {
+  "k": "994000",
+  "accepted": true
+ },
+ "retreat_backward.down_r": {
+  "k": "994000",
+  "accepted": true
+ },
+ "retreat_backward.pass_r": {
+  "k": "994000",
+  "accepted": true
+ },
+ "yield_side.contact_l": {
+  "k": "994000",
+  "accepted": true
+ },
+ "yield_side.down_l": {
+  "k": "994000",
+  "accepted": true
+ },
+ "yield_side.pass_l": {
+  "k": "994000",
+  "accepted": true
+ },
+ "yield_side.contact_r": {
+  "k": "994000",
+  "accepted": true
+ },
+ "yield_side.down_r": {
+  "k": "994000",
+  "accepted": true
+ },
+ "yield_side.pass_r": {
+  "k": "994000",
+  "accepted": true
+ },
+ "watch.shift_l": {
+  "k": "994000",
+  "accepted": true
+ },
+ "watch.hold_l": {
+  "k": "994000",
+  "accepted": true
+ },
+ "watch.shift_r": {
+  "k": "994000",
+  "accepted": true
+ },
+ "watch.hold_r": {
+  "k": "994000",
+  "accepted": true
+ },
+ "clap.open": {
+  "k": "994001",
+  "accepted": true
+ },
+ "clap.close": {
+  "k": "994001",
+  "accepted": true
+ },
+ "clap.contact": {
+  "k": "994001",
+  "accepted": true
+ },
+ "clap.release": {
+  "k": "994001",
+  "accepted": true
+ },
+ "challenge.load": {
+  "k": "994000",
+  "accepted": true
+ },
+ "challenge.proud": {
+  "k": "994000",
+  "accepted": true
+ },
+ "challenge.offer": {
+  "k": "994001",
+  "accepted": true
+ },
+ "challenge.return": {
+  "k": "994003",
+  "accepted": true
+ },
+ "approval.load": {
+  "k": "994000",
+  "accepted": true
+ },
+ "approval.nod": {
+  "k": "994001",
+  "accepted": true
+ },
+ "approval.release": {
+  "k": "994000",
+  "accepted": true
+ },
+ "reassurance.notice": {
+  "k": "994000",
+  "accepted": true
+ },
+ "reassurance.open_hand": {
+  "k": "994001",
+  "accepted": true
+ },
+ "reassurance.settle": {
+  "k": "994000",
+  "accepted": true
+ },
+ "finish_turn.finish_a": {
+  "k": "994000",
+  "accepted": true
+ },
+ "finish_turn.finish_b": {
+  "k": "994000",
+  "accepted": true
+ },
+ "finish_turn.turn_in": {
+  "k": "994000",
+  "accepted": true
+ },
+ "finish_turn.turn_out": {
+  "k": "994000",
+  "accepted": true
+ },
+ "arch.rise": {
+  "k": "994000",
+  "accepted": true
+ },
+ "arch.hold": {
+  "k": "994001",
+  "accepted": true
+ },
+ "freeze.hold": {
+  "k": "994000",
+  "accepted": true
+ },
+ "left_hand.prep": {
+  "k": "same drawing as left_hand.return",
+  "accepted": true
+ },
+ "right_hand.prep": {
+  "k": "same drawing as right_hand.return",
+  "accepted": true
+ }
+}

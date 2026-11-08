@@ -1,0 +1,32 @@
+[
+ {
+  "pose": "left_hand.follow",
+  "args": {
+   "workflow": "art_runs/siobhan-v1-20261108b/workflows/left_hand.follow.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/siobhan-v1-20261108b/in/sheet_front.png",
+    "pose_proxy": "/work/tmp/imagegen/kumbia/siobhan-v1-20261108b/in/left_hand.follow.skeleton.png"
+   },
+   "overrides": {
+    "seed": 994000
+   }
+  }
+ },
+ {
+  "pose": "right_hand.follow",
+  "args": {
+   "workflow": "art_runs/siobhan-v1-20261108b/workflows/right_hand.follow.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/siobhan-v1-20261108b/in/sheet_front.png",
+    "pose_proxy": "/work/tmp/imagegen/kumbia/siobhan-v1-20261108b/in/right_hand.follow.skeleton.png"
+   },
+   "overrides": {
+    "seed": 994000
+   }
+  }
+ }
+]

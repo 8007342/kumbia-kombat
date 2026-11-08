@@ -96,7 +96,16 @@
    }
   },
   "seed": 994000,
-  "poseOverrides": {},
+  "poseOverrides": {
+   "left_hand.follow": {
+    "why": "Wave a: one candidate crossed the other arm over the waist, the other held the skirt out. The words now keep both arms straight and the hands off the skirt.",
+    "description": "Irish step dancing, upright: the straight arm on the right of the picture swinging stiffly back down to her side, a little away from the skirt, the hand open and flat, the other arm held straight and rigid down at her side with the hand closed, both hands off the skirt, up on the balls of the feet with the feet crossed, chin up"
+   },
+   "right_hand.follow": {
+    "why": "Wave a: both candidates held the skirt out with both hands. The words now keep both arms straight and the hands off the skirt.",
+    "description": "Irish step dancing, upright: the straight arm on the left of the picture swinging stiffly back down to her side, a little away from the skirt, the hand open and flat, the other arm held straight and rigid down at her side with the hand closed, both hands off the skirt, up on the balls of the feet with the feet crossed, chin up"
+   }
+  },
   "score": {
    "knee": [
     "dress"

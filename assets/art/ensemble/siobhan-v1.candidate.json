@@ -1,0 +1,3253 @@
+{
+ "atlas": "siobhan",
+ "image": "siobhan-v1.png",
+ "imageWidth": 1024,
+ "imageHeight": 1809,
+ "referenceFrame": "occupied",
+ "family": "tool/art/families/siobhan-v1.json",
+ "animationReferences": {
+  "registry": "tool/art/references/animation-principles.json",
+  "research": [
+   "plan/dance-fluidity-pass.md",
+   "plan/levels/mansion-act-two-2026-11-08.md"
+  ],
+  "principlesUsed": [
+   "anticipation",
+   "contrapposto",
+   "exaggeration-accent",
+   "follow-through",
+   "line-of-action",
+   "no-twinning",
+   "planted-pivot",
+   "secondary-action",
+   "staging-silhouette",
+   "timing-on-beat"
+  ],
+  "sourcesUsed": [
+   "cartwright-gdc2014",
+   "contrapposto-fonseca",
+   "dead-cells-pipeline",
+   "disney-process",
+   "illusion-of-life",
+   "silhouette-test",
+   "simogo-bsb",
+   "slynyrd-53",
+   "slynyrd-55",
+   "twinning",
+   "ubisoft-foot-ik",
+   "williams-survival-kit"
+  ]
+ },
+ "ramps": {
+  "skin": {
+   "region": "skin",
+   "alsoIn": [],
+   "shades": [
+    "#8C6144",
+    "#B58769",
+    "#E2AE8C",
+    "#FED0B3"
+   ]
+  },
+  "hair": {
+   "region": "hair",
+   "alsoIn": [],
+   "shades": [
+    "#500000",
+    "#792100",
+    "#A8441E",
+    "#C1694B"
+   ]
+  },
+  "bodice": {
+   "region": "shirt",
+   "alsoIn": [],
+   "shades": [
+    "#000100",
+    "#001909",
+    "#163A26",
+    "#365441"
+   ]
+  },
+  "dress": {
+   "region": "apron",
+   "alsoIn": [],
+   "shades": [
+    "#000101",
+    "#00190A",
+    "#163A27",
+    "#365442"
+   ]
+  },
+  "silver": {
+   "region": "accessory",
+   "alsoIn": [
+    "shirt",
+    "apron",
+    "hair"
+   ],
+   "shades": [
+    "#75787D",
+    "#9C9FA4",
+    "#C4C8CE",
+    "#E5E9EE"
+   ]
+  },
+  "tights": {
+   "region": "accessory",
+   "alsoIn": [
+    "skin",
+    "shoes"
+   ],
+   "shades": [
+    "#000000",
+    "#010102",
+    "#16141A",
+    "#2E2C31"
+   ]
+  },
+  "shoes": {
+   "region": "shoes",
+   "alsoIn": [],
+   "shades": [
+    "#000001",
+    "#000002",
+    "#0E0C10",
+    "#252327"
+   ]
+  }
+ },
+ "frames": {
+  "anticipate_left": {
+   "rect": [
+    569,
+    264,
+    79,
+    258
+   ],
+   "anchor": [
+    40.0,
+    246.4
+   ],
+   "pixelsPerUnit": 6.4258,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "siobhan-v1-20261108m",
+    "pose": "left_hand.prep",
+    "sha256": "3384da362329cfc5f2f1440e01c537ecfaecf5ecae893833ea34417dfced88f9",
+    "selected": "same drawing as left_hand.return",
+    "frameKey": null,
+    "accepted": true,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "anticipation",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   },
+   "aliasOf": "left_hand_prep"
+  },
+  "anticipate_right": {
+   "rect": [
+    567,
+    2,
+    79,
+    259
+   ],
+   "anchor": [
+    39.0,
+    246.4
+   ],
+   "pixelsPerUnit": 6.4258,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "siobhan-v1-20261108m",
+    "pose": "right_hand.prep",
+    "sha256": "9088d17d4c15cd367c09797dd34d55a42ec495dd4d7c8c4d8f78e8ceede24c54",
+    "selected": "same drawing as right_hand.return",
+    "frameKey": null,
+    "accepted": true,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "anticipation",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   },
+   "aliasOf": "right_hand_prep"
+  },
+  "approval_load": {
+   "rect": [
+    752,
+    1045,
+    79,
+    257
+   ],
+   "anchor": [
+    39.0,
+    245.4
+   ],
+   "pixelsPerUnit": 6.4258,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "siobhan-v1-20261108m",
+    "pose": "approval.load",
+    "sha256": "9039c0e8dd3812bfdaccbf20da247cc08afb6a02c5a5f54b8dfc02177674ffb9",
+    "selected": "994000",
+    "frameKey": null,
+    "accepted": true,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "anticipation",
+     "secondary-action",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "approval_nod": {
+   "rect": [
+    227,
+    1558,
+    74,
+    241
+   ],
+   "anchor": [
+    37.0,
+    238.4
+   ],
+   "pixelsPerUnit": 6.4258,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [
+    {
+     "beat": 0.333,
+     "type": "accent",
+     "drawing": "nod"
+    }
+   ],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "siobhan-v1-20261108m",
+    "pose": "approval.nod",
+    "sha256": "486d0ac4d6af5e37cb00ac66e187813816117799b9897c9619b1911131ac7966",
+    "selected": "994001",
+    "frameKey": null,
+    "accepted": true,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "line-of-action",
+     "contrapposto",
+     "exaggeration-accent",
+     "secondary-action",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "approval_release": {
+   "rect": [
+    928,
+    1305,
+    76,
+    249
+   ],
+   "anchor": [
+    38.0,
+    246.4
+   ],
+   "pixelsPerUnit": 6.4258,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "siobhan-v1-20261108m",
+    "pose": "approval.release",
+    "sha256": "b13f3c0822a9162b0e6de383bdf542aab4c79e174aa50a67accebee5aea36acb",
+    "selected": "994000",
+    "frameKey": null,
+    "accepted": true,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "follow-through",
+     "secondary-action",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "approve": {
+   "rect": [
+    227,
+    1558,
+    74,
+    241
+   ],
+   "anchor": [
+    37.0,
+    238.4
+   ],
+   "pixelsPerUnit": 6.4258,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [
+    {
+     "beat": 0.333,
+     "type": "accent",
+     "drawing": "nod"
+    }
+   ],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "siobhan-v1-20261108m",
+    "pose": "approval.nod",
+    "sha256": "486d0ac4d6af5e37cb00ac66e187813816117799b9897c9619b1911131ac7966",
+    "selected": "994001",
+    "frameKey": null,
+    "accepted": true,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "line-of-action",
+     "contrapposto",
+     "exaggeration-accent",
+     "secondary-action",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   },
+   "aliasOf": "approval_nod"
+  },
+  "arch_hold": {
+   "rect": [
+    2,
+    1045,
+    194,
+    258
+   ],
+   "anchor": [
+    92.0,
+    245.4
+   ],
+   "pixelsPerUnit": 6.4258,
+   "facing": "front_3q",
+   "loop": false,
+   "durationBeats": 2.0,
+   "events": [
+    {
+     "beat": 1.0,
+     "type": "accent",
+     "drawing": "hold"
+    }
+   ],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "siobhan-v1-20261108m",
+    "pose": "arch.hold",
+    "sha256": "37991b81c06467739330463224b6457f3554792f387436e5c6ef98b98fdaea83",
+    "selected": "994001",
+    "frameKey": null,
+    "accepted": true,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "line-of-action",
+     "contrapposto",
+     "exaggeration-accent",
+     "secondary-action",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "arch_rise": {
+   "rect": [
+    526,
+    1305,
+    168,
+    250
+   ],
+   "anchor": [
+    70.0,
+    246.4
+   ],
+   "pixelsPerUnit": 6.4258,
+   "facing": "front_3q",
+   "loop": false,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "siobhan-v1-20261108m",
+    "pose": "arch.rise",
+    "sha256": "c28358420b97b26ed806a6ee718c0c59bddd330f157803cb68c483ad4ac5d5ff",
+    "selected": "994000",
+    "frameKey": null,
+    "accepted": true,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "cede": {
+   "rect": [
+    810,
+    2,
+    80,
+    259
+   ],
+   "anchor": [
+    18.8,
+    247.4
+   ],
+   "pixelsPerUnit": 6.4258,
+   "facing": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "right",
+   "status": "candidate",
+   "provenance": {
+    "run": "siobhan-v1-20261108m",
+    "pose": "yield_side.pass_r",
+    "sha256": "4220bad2bf23f8ce228a80db50835cca9bcc0adf1f127273bfcae0de1d398f33",
+    "selected": "994000",
+    "frameKey": null,
+    "accepted": true,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   },
+   "aliasOf": "yield_side_pass_r"
+  },
+  "challenge_load": {
+   "rect": [
+    150,
+    1558,
+    75,
+    243
+   ],
+   "anchor": [
+    37.0,
+    239.4
+   ],
+   "pixelsPerUnit": 6.4258,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "siobhan-v1-20261108m",
+    "pose": "challenge.load",
+    "sha256": "58b82b3fc5f32ed2b03c32e2405e54435342a3106d06258e71b951dc014b0bc3",
+    "selected": "994000",
+    "frameKey": null,
+    "accepted": true,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "anticipation",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "challenge_offer": {
+   "rect": [
+    638,
+    1045,
+    112,
+    257
+   ],
+   "anchor": [
+    93.2,
+    247.4
+   ],
+   "pixelsPerUnit": 6.4258,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 2.0,
+   "events": [
+    {
+     "beat": 1.0,
+     "type": "accent",
+     "drawing": "offer"
+    }
+   ],
+   "supportFoot": "left",
+   "status": "candidate",
+   "provenance": {
+    "run": "siobhan-v1-20261108m",
+    "pose": "challenge.offer",
+    "sha256": "d1e5abe81b43a4b587720395fc323aee3f84caa09e8ef4cfb4009fd38795e54b",
+    "selected": "994001",
+    "frameKey": null,
+    "accepted": true,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "line-of-action",
+     "contrapposto",
+     "exaggeration-accent",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "challenge_proud": {
+   "rect": [
+    558,
+    1045,
+    78,
+    257
+   ],
+   "anchor": [
+    38.0,
+    244.4
+   ],
+   "pixelsPerUnit": 6.4258,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "siobhan-v1-20261108m",
+    "pose": "challenge.proud",
+    "sha256": "143031259f239bee0f8b93980c2696079552e1487e03d390041eb781acbd6185",
+    "selected": "994000",
+    "frameKey": null,
+    "accepted": true,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "line-of-action",
+     "contrapposto",
+     "exaggeration-accent",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "challenge_return": {
+   "rect": [
+    850,
+    1305,
+    76,
+    249
+   ],
+   "anchor": [
+    38.0,
+    246.4
+   ],
+   "pixelsPerUnit": 6.4258,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "siobhan-v1-20261108m",
+    "pose": "challenge.return",
+    "sha256": "54a2897f153f3a2f3f5046aab84f31b2ee10c5a42956dc7fd69e7652ca677cba",
+    "selected": "994003",
+    "frameKey": null,
+    "accepted": true,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "follow-through",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "clap_close": {
+   "rect": [
+    343,
+    1305,
+    89,
+    250
+   ],
+   "anchor": [
+    45.0,
+    247.4
+   ],
+   "pixelsPerUnit": 6.4258,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "siobhan-v1-20261108m",
+    "pose": "clap.close",
+    "sha256": "223f6b9dcdde4fb402f8dcbfa197be1d14ce8a7f7beaf9e6fa811003a1ed40f9",
+    "selected": "994001",
+    "frameKey": null,
+    "accepted": true,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  },
+  "clap_contact": {
+   "rect": [
+    772,
+    1305,
+    76,
+    249
+   ],
+   "anchor": [
+    36.0,
+    246.4
+   ],
+   "pixelsPerUnit": 6.4258,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [
+    {
+     "beat": 0.5,
+     "type": "accent",
+     "drawing": "contact"
+    }
+   ],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "siobhan-v1-20261108m",
+    "pose": "clap.contact",
+    "sha256": "33c2641c8126600ad50a7f535168c49892c68d96f30133e6bcb69ffc6382a0d2",
+    "selected": "994001",
+    "frameKey": null,
+    "accepted": true,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "anticipation",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  },
+  "clap_open": {
+   "rect": [
+    696,
+    1305,
+    74,
+    249
+   ],
+   "anchor": [
+    39.0,
+    246.4
+   ],
+   "pixelsPerUnit": 6.4258,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "siobhan-v1-20261108m",
+    "pose": "clap.open",
+    "sha256": "e7c9e5d5b0be95459782f2976c78b47c688806b495544529bb337efbc607ca70",
+    "selected": "994001",
+    "frameKey": null,
+    "accepted": true,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "anticipation",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "clap_release": {
+   "rect": [
+    434,
+    1305,
+    90,
+    250
+   ],
+   "anchor": [
+    45.0,
+    247.4
+   ],
+   "pixelsPerUnit": 6.4258,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "siobhan-v1-20261108m",
+    "pose": "clap.release",
+    "sha256": "9225483e0f018d735b61d2bda4fe6d354e5f64937c169d4716fbf9a36b90adbd",
+    "selected": "994001",
+    "frameKey": null,
+    "accepted": true,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "follow-through",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "enter_forward_contact_l": {
+   "rect": [
+    791,
+    525,
+    83,
+    258
+   ],
+   "anchor": [
+    17.8,
+    245.4
+   ],
+   "pixelsPerUnit": 6.4258,
+   "facing": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "right",
+   "status": "candidate",
+   "provenance": {
+    "run": "siobhan-v1-20261108m",
+    "pose": "enter_forward.contact_l",
+    "sha256": "04fed59f30cb9b84c20022d2daac5ce41a312b1f3603c689be1ec2aac3aa884e",
+    "selected": "994001",
+    "frameKey": null,
+    "accepted": true,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "anticipation",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  },
+  "enter_forward_contact_r": {
+   "rect": [
+    2,
+    785,
+    77,
+    258
+   ],
+   "anchor": [
+    59.2,
+    245.4
+   ],
+   "pixelsPerUnit": 6.4258,
+   "facing": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "left",
+   "status": "candidate",
+   "provenance": {
+    "run": "siobhan-v1-20261108m",
+    "pose": "enter_forward.contact_r",
+    "sha256": "b25fc6d27cbbf7d11e0f1d36076765bc2defe34c4831ab833c30fd1cb4513d8a",
+    "selected": "994000",
+    "frameKey": null,
+    "accepted": true,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "anticipation",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  },
+  "enter_forward_down_l": {
+   "rect": [
+    876,
+    525,
+    94,
+    258
+   ],
+   "anchor": [
+    75.2,
+    247.4
+   ],
+   "pixelsPerUnit": 6.4258,
+   "facing": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "left",
+   "status": "candidate",
+   "provenance": {
+    "run": "siobhan-v1-20261108m",
+    "pose": "enter_forward.down_l",
+    "sha256": "b4a15a30c4ee47065e715ce308e20ca3a8ee97b0f0378d2fb9a9729409076d9c",
+    "selected": "994000",
+    "frameKey": null,
+    "accepted": true,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  },
+  "enter_forward_down_r": {
+   "rect": [
+    81,
+    785,
+    81,
+    258
+   ],
+   "anchor": [
+    18.8,
+    247.4
+   ],
+   "pixelsPerUnit": 6.4258,
+   "facing": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "right",
+   "status": "candidate",
+   "provenance": {
+    "run": "siobhan-v1-20261108m",
+    "pose": "enter_forward.down_r",
+    "sha256": "604ab9823f48aa8a2be1ccb601eafcb280d9ae97d60d74be4358055c23dd4d33",
+    "selected": "994000",
+    "frameKey": null,
+    "accepted": true,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  },
+  "enter_forward_pass_l": {
+   "rect": [
+    2,
+    2,
+    79,
+    260
+   ],
+   "anchor": [
+    62.2,
+    247.4
+   ],
+   "pixelsPerUnit": 6.4258,
+   "facing": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "left",
+   "status": "candidate",
+   "provenance": {
+    "run": "siobhan-v1-20261108m",
+    "pose": "enter_forward.pass_l",
+    "sha256": "be8d2e996a89624afdf7c07896c5a32c68b4d31f7f6977f19db9230f27d3c973",
+    "selected": "994000",
+    "frameKey": null,
+    "accepted": true,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  },
+  "enter_forward_pass_r": {
+   "rect": [
+    83,
+    2,
+    79,
+    260
+   ],
+   "anchor": [
+    19.8,
+    247.4
+   ],
+   "pixelsPerUnit": 6.4258,
+   "facing": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "right",
+   "status": "candidate",
+   "provenance": {
+    "run": "siobhan-v1-20261108m",
+    "pose": "enter_forward.pass_r",
+    "sha256": "2d55da2d685b4a1e63ea726b6f2569ec7690b27eb72d5abcff1bfa7640347d3d",
+    "selected": "994000",
+    "frameKey": null,
+    "accepted": true,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  },
+  "finish": {
+   "rect": [
+    78,
+    1558,
+    70,
+    249
+   ],
+   "anchor": [
+    57.2,
+    238.4
+   ],
+   "pixelsPerUnit": 6.4258,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "left",
+   "status": "candidate",
+   "provenance": {
+    "run": "siobhan-v1-20261108m",
+    "pose": "finish_turn.finish_b",
+    "sha256": "5683b2be473a16ec642bc693dcad839f14bbfb0031a81bb5e0ee52b2cde1d077",
+    "selected": "994000",
+    "frameKey": null,
+    "accepted": true,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "line-of-action",
+     "contrapposto",
+     "exaggeration-accent",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   },
+   "aliasOf": "finish_turn_finish_b"
+  },
+  "finish_turn_finish_a": {
+   "rect": [
+    833,
+    1045,
+    76,
+    257
+   ],
+   "anchor": [
+    60.2,
+    246.4
+   ],
+   "pixelsPerUnit": 6.4258,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "left",
+   "status": "candidate",
+   "provenance": {
+    "run": "siobhan-v1-20261108m",
+    "pose": "finish_turn.finish_a",
+    "sha256": "7fbf0ed0b7612a113b48e480167d43c3b5eab80ab8c71bfa68c751949f218584",
+    "selected": "994000",
+    "frameKey": null,
+    "accepted": true,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "exaggeration-accent",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "finish_turn_finish_b": {
+   "rect": [
+    78,
+    1558,
+    70,
+    249
+   ],
+   "anchor": [
+    57.2,
+    238.4
+   ],
+   "pixelsPerUnit": 6.4258,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "left",
+   "status": "candidate",
+   "provenance": {
+    "run": "siobhan-v1-20261108m",
+    "pose": "finish_turn.finish_b",
+    "sha256": "5683b2be473a16ec642bc693dcad839f14bbfb0031a81bb5e0ee52b2cde1d077",
+    "selected": "994000",
+    "frameKey": null,
+    "accepted": true,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "line-of-action",
+     "contrapposto",
+     "exaggeration-accent",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "finish_turn_turn_in": {
+   "rect": [
+    892,
+    2,
+    77,
+    259
+   ],
+   "anchor": [
+    42.0,
+    246.4
+   ],
+   "pixelsPerUnit": 6.4258,
+   "facing": "front_3q",
+   "loop": false,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "siobhan-v1-20261108m",
+    "pose": "finish_turn.turn_in",
+    "sha256": "c75220081316a01d4e0a51ac5c7abbaedc4df4b0ca4dba9bb699d0a39034853b",
+    "selected": "994000",
+    "frameKey": null,
+    "accepted": true,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   },
+   "mirror": true
+  },
+  "finish_turn_turn_out": {
+   "rect": [
+    2,
+    264,
+    72,
+    259
+   ],
+   "anchor": [
+    39.0,
+    246.4
+   ],
+   "pixelsPerUnit": 6.4258,
+   "facing": "front_3q",
+   "loop": false,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "siobhan-v1-20261108m",
+    "pose": "finish_turn.turn_out",
+    "sha256": "b8bb2eb7f51b75d689e562cb849bea3f948cac7f309c4bf5d785a5178ff0ed51",
+    "selected": "994000",
+    "frameKey": null,
+    "accepted": true,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  },
+  "follow_left": {
+   "rect": [
+    771,
+    264,
+    92,
+    258
+   ],
+   "anchor": [
+    14.8,
+    247.4
+   ],
+   "pixelsPerUnit": 6.4258,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [],
+   "supportFoot": "right",
+   "status": "candidate",
+   "provenance": {
+    "run": "siobhan-v1-20261108m",
+    "pose": "left_hand.follow",
+    "sha256": "0c0bc4027b04073372b789a760897bdf55b0b11e5db3f31374aff4ae53b2b3c5",
+    "selected": "994001",
+    "frameKey": null,
+    "accepted": true,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "follow-through",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   },
+   "aliasOf": "left_hand_follow"
+  },
+  "follow_right": {
+   "rect": [
+    151,
+    525,
+    115,
+    258
+   ],
+   "anchor": [
+    86.2,
+    247.4
+   ],
+   "pixelsPerUnit": 6.4258,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [],
+   "supportFoot": "left",
+   "status": "candidate",
+   "provenance": {
+    "run": "siobhan-v1-20261108m",
+    "pose": "right_hand.follow",
+    "sha256": "e299968b0f06da41c8055d4e1fa575dd2a6f498ed4b98d696ce315b59418bb0b",
+    "selected": "994001",
+    "frameKey": null,
+    "accepted": true,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "follow-through",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   },
+   "aliasOf": "right_hand_follow"
+  },
+  "freeze_hold": {
+   "rect": [
+    198,
+    1045,
+    79,
+    258
+   ],
+   "anchor": [
+    39.0,
+    245.4
+   ],
+   "pixelsPerUnit": 6.4258,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [
+    {
+     "beat": 0.0,
+     "type": "accent",
+     "drawing": "hold"
+    }
+   ],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "siobhan-v1-20261108m",
+    "pose": "freeze.hold",
+    "sha256": "2b82fd9441a77cc193fa2291e6b96f85370dba9d5feeec895c9bea88640cddd6",
+    "selected": "994000",
+    "frameKey": null,
+    "accepted": true,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "follow-through",
+     "secondary-action",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "groove_down_l": {
+   "rect": [
+    76,
+    264,
+    80,
+    258
+   ],
+   "anchor": [
+    16.8,
+    247.4
+   ],
+   "pixelsPerUnit": 6.4258,
+   "facing": "front",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "right",
+   "status": "candidate",
+   "provenance": {
+    "run": "siobhan-v1-20261108m",
+    "pose": "groove.down_l",
+    "sha256": "bc41f9174820681e07eca582bc467521ad78643772abde9eef033a9362a19163",
+    "selected": "994001",
+    "frameKey": null,
+    "accepted": true,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "secondary-action",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  },
+  "groove_down_r": {
+   "rect": [
+    323,
+    264,
+    81,
+    258
+   ],
+   "anchor": [
+    64.2,
+    247.4
+   ],
+   "pixelsPerUnit": 6.4258,
+   "facing": "front",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "left",
+   "status": "candidate",
+   "provenance": {
+    "run": "siobhan-v1-20261108m",
+    "pose": "groove.down_r",
+    "sha256": "1ce2ca2c10a1bfbef157b085a72e42529b12a51238cf59b72f586f89172896b4",
+    "selected": "994001",
+    "frameKey": null,
+    "accepted": true,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "secondary-action",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  },
+  "groove_pass_l": {
+   "rect": [
+    279,
+    1045,
+    78,
+    257
+   ],
+   "anchor": [
+    16.8,
+    247.4
+   ],
+   "pixelsPerUnit": 6.4258,
+   "facing": "front",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "right",
+   "status": "candidate",
+   "provenance": {
+    "run": "siobhan-v1-20261108m",
+    "pose": "groove.pass_l",
+    "sha256": "499b9052b55bba9302d2d6ee280ca13c3697d6eeafd54163ebcb0c2053550ec8",
+    "selected": "994001",
+    "frameKey": null,
+    "accepted": true,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "secondary-action",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  },
+  "groove_pass_l2": {
+   "rect": [
+    239,
+    264,
+    82,
+    258
+   ],
+   "anchor": [
+    63.2,
+    247.4
+   ],
+   "pixelsPerUnit": 6.4258,
+   "facing": "front",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "left",
+   "status": "candidate",
+   "provenance": {
+    "run": "siobhan-v1-20261108m",
+    "pose": "groove.pass_l2",
+    "sha256": "e9b41225b20fedc86b5c5a59865589339360e008b14f764d4da67925addb67ca",
+    "selected": "994000",
+    "frameKey": null,
+    "accepted": true,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "line-of-action",
+     "contrapposto",
+     "exaggeration-accent",
+     "secondary-action",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  },
+  "groove_pass_r": {
+   "rect": [
+    359,
+    1045,
+    79,
+    257
+   ],
+   "anchor": [
+    62.2,
+    247.4
+   ],
+   "pixelsPerUnit": 6.4258,
+   "facing": "front",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "left",
+   "status": "candidate",
+   "provenance": {
+    "run": "siobhan-v1-20261108m",
+    "pose": "groove.pass_r",
+    "sha256": "af8a30305d1146da30e672393333169f1a146b34081157fa3090627dba2b3420",
+    "selected": "994000",
+    "frameKey": null,
+    "accepted": true,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "secondary-action",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  },
+  "groove_pass_r2": {
+   "rect": [
+    487,
+    264,
+    80,
+    258
+   ],
+   "anchor": [
+    16.8,
+    247.4
+   ],
+   "pixelsPerUnit": 6.4258,
+   "facing": "front",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "right",
+   "status": "candidate",
+   "provenance": {
+    "run": "siobhan-v1-20261108m",
+    "pose": "groove.pass_r2",
+    "sha256": "e7b043308a9b0a77bac4fad229d1ed123ed02133941055a31f77be789695dc14",
+    "selected": "994001",
+    "frameKey": null,
+    "accepted": true,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "line-of-action",
+     "contrapposto",
+     "exaggeration-accent",
+     "secondary-action",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  },
+  "groove_up_l": {
+   "rect": [
+    158,
+    264,
+    79,
+    258
+   ],
+   "anchor": [
+    39.0,
+    245.4
+   ],
+   "pixelsPerUnit": 6.4258,
+   "facing": "front",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "siobhan-v1-20261108m",
+    "pose": "groove.up_l",
+    "sha256": "084cb011ee92fd5bb209b128a4b7d627975e04f5cf6cddce7148e4c081d502e7",
+    "selected": "994000",
+    "frameKey": null,
+    "accepted": true,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "secondary-action",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  },
+  "groove_up_r": {
+   "rect": [
+    406,
+    264,
+    79,
+    258
+   ],
+   "anchor": [
+    39.0,
+    245.4
+   ],
+   "pixelsPerUnit": 6.4258,
+   "facing": "front",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "siobhan-v1-20261108m",
+    "pose": "groove.up_r",
+    "sha256": "2c569e6d33fc7a3a3a7b6036c3c0c0a40e7e81055e05e87ac493326c96e003f5",
+    "selected": "994000",
+    "frameKey": null,
+    "accepted": true,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "secondary-action",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  },
+  "invite": {
+   "rect": [
+    638,
+    1045,
+    112,
+    257
+   ],
+   "anchor": [
+    93.2,
+    247.4
+   ],
+   "pixelsPerUnit": 6.4258,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 2.0,
+   "events": [
+    {
+     "beat": 1.0,
+     "type": "accent",
+     "drawing": "offer"
+    }
+   ],
+   "supportFoot": "left",
+   "status": "candidate",
+   "provenance": {
+    "run": "siobhan-v1-20261108m",
+    "pose": "challenge.offer",
+    "sha256": "d1e5abe81b43a4b587720395fc323aee3f84caa09e8ef4cfb4009fd38795e54b",
+    "selected": "994001",
+    "frameKey": null,
+    "accepted": true,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "line-of-action",
+     "contrapposto",
+     "exaggeration-accent",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   },
+   "aliasOf": "challenge_offer"
+  },
+  "left_foot": {
+   "rect": [
+    351,
+    525,
+    116,
+    258
+   ],
+   "anchor": [
+    13.8,
+    246.4
+   ],
+   "pixelsPerUnit": 6.4258,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [
+    {
+     "beat": 0.25,
+     "type": "accent",
+     "drawing": "peak"
+    }
+   ],
+   "supportFoot": "right",
+   "status": "candidate",
+   "provenance": {
+    "run": "siobhan-v1-20261108m",
+    "pose": "left_foot.peak",
+    "sha256": "1553e196e75e82580dda1df0ae381602d003a971f838bb41007beea1d6d72c4f",
+    "selected": "994000",
+    "frameKey": null,
+    "accepted": true,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "line-of-action",
+     "contrapposto",
+     "exaggeration-accent",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   },
+   "aliasOf": "left_foot_peak"
+  },
+  "left_foot_follow": {
+   "rect": [
+    469,
+    525,
+    119,
+    258
+   ],
+   "anchor": [
+    16.8,
+    247.4
+   ],
+   "pixelsPerUnit": 6.4258,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [],
+   "supportFoot": "right",
+   "status": "candidate",
+   "provenance": {
+    "run": "siobhan-v1-20261108m",
+    "pose": "left_foot.follow",
+    "sha256": "7c3b01c3fdfaa43707b9cf7b644297f343cc4ad44bf96b6d10101ea62670a485",
+    "selected": "994001",
+    "frameKey": null,
+    "accepted": true,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "follow-through",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "left_foot_peak": {
+   "rect": [
+    351,
+    525,
+    116,
+    258
+   ],
+   "anchor": [
+    13.8,
+    246.4
+   ],
+   "pixelsPerUnit": 6.4258,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [
+    {
+     "beat": 0.25,
+     "type": "accent",
+     "drawing": "peak"
+    }
+   ],
+   "supportFoot": "right",
+   "status": "candidate",
+   "provenance": {
+    "run": "siobhan-v1-20261108m",
+    "pose": "left_foot.peak",
+    "sha256": "1553e196e75e82580dda1df0ae381602d003a971f838bb41007beea1d6d72c4f",
+    "selected": "994000",
+    "frameKey": null,
+    "accepted": true,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "line-of-action",
+     "contrapposto",
+     "exaggeration-accent",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "left_foot_prep": {
+   "rect": [
+    268,
+    525,
+    81,
+    258
+   ],
+   "anchor": [
+    19.8,
+    247.4
+   ],
+   "pixelsPerUnit": 6.4258,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [],
+   "supportFoot": "right",
+   "status": "candidate",
+   "provenance": {
+    "run": "siobhan-v1-20261108m",
+    "pose": "left_foot.prep",
+    "sha256": "b7c5214523829112884fb38c9178d741e749087b85f4253a60d5acdbae5a7679",
+    "selected": "994001",
+    "frameKey": null,
+    "accepted": true,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "anticipation",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "left_foot_return": {
+   "rect": [
+    186,
+    1305,
+    78,
+    250
+   ],
+   "anchor": [
+    39.0,
+    247.4
+   ],
+   "pixelsPerUnit": 6.4258,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "siobhan-v1-20261108m",
+    "pose": "left_foot.return",
+    "sha256": "4267f42cb24a1dd5f1ea202ca72607b36420d85823fc45af55337e187ba1f348",
+    "selected": "994000",
+    "frameKey": null,
+    "accepted": true,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "follow-through",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "left_hand": {
+   "rect": [
+    650,
+    264,
+    119,
+    258
+   ],
+   "anchor": [
+    13.8,
+    247.4
+   ],
+   "pixelsPerUnit": 6.4258,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [
+    {
+     "beat": 0.25,
+     "type": "accent",
+     "drawing": "peak"
+    }
+   ],
+   "supportFoot": "right",
+   "status": "candidate",
+   "provenance": {
+    "run": "siobhan-v1-20261108m",
+    "pose": "left_hand.peak",
+    "sha256": "e0ecc1bd4a595623a01a5967a7a228289a6298df10a3ac921dd8c9f3f716c2ff",
+    "selected": "994001",
+    "frameKey": null,
+    "accepted": true,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "line-of-action",
+     "contrapposto",
+     "exaggeration-accent",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   },
+   "aliasOf": "left_hand_peak"
+  },
+  "left_hand_follow": {
+   "rect": [
+    771,
+    264,
+    92,
+    258
+   ],
+   "anchor": [
+    14.8,
+    247.4
+   ],
+   "pixelsPerUnit": 6.4258,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [],
+   "supportFoot": "right",
+   "status": "candidate",
+   "provenance": {
+    "run": "siobhan-v1-20261108m",
+    "pose": "left_hand.follow",
+    "sha256": "0c0bc4027b04073372b789a760897bdf55b0b11e5db3f31374aff4ae53b2b3c5",
+    "selected": "994001",
+    "frameKey": null,
+    "accepted": true,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "follow-through",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "left_hand_peak": {
+   "rect": [
+    650,
+    264,
+    119,
+    258
+   ],
+   "anchor": [
+    13.8,
+    247.4
+   ],
+   "pixelsPerUnit": 6.4258,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [
+    {
+     "beat": 0.25,
+     "type": "accent",
+     "drawing": "peak"
+    }
+   ],
+   "supportFoot": "right",
+   "status": "candidate",
+   "provenance": {
+    "run": "siobhan-v1-20261108m",
+    "pose": "left_hand.peak",
+    "sha256": "e0ecc1bd4a595623a01a5967a7a228289a6298df10a3ac921dd8c9f3f716c2ff",
+    "selected": "994001",
+    "frameKey": null,
+    "accepted": true,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "line-of-action",
+     "contrapposto",
+     "exaggeration-accent",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "left_hand_prep": {
+   "rect": [
+    569,
+    264,
+    79,
+    258
+   ],
+   "anchor": [
+    40.0,
+    246.4
+   ],
+   "pixelsPerUnit": 6.4258,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "siobhan-v1-20261108m",
+    "pose": "left_hand.prep",
+    "sha256": "3384da362329cfc5f2f1440e01c537ecfaecf5ecae893833ea34417dfced88f9",
+    "selected": "same drawing as left_hand.return",
+    "frameKey": null,
+    "accepted": true,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "anticipation",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "left_hand_return": {
+   "rect": [
+    865,
+    264,
+    79,
+    258
+   ],
+   "anchor": [
+    40.0,
+    246.4
+   ],
+   "pixelsPerUnit": 6.4258,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "siobhan-v1-20261108m",
+    "pose": "left_hand.return",
+    "sha256": "3384da362329cfc5f2f1440e01c537ecfaecf5ecae893833ea34417dfced88f9",
+    "selected": "994000",
+    "frameKey": null,
+    "accepted": true,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "follow-through",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "occupied": {
+   "rect": [
+    76,
+    264,
+    80,
+    258
+   ],
+   "anchor": [
+    16.8,
+    247.4
+   ],
+   "pixelsPerUnit": 6.4258,
+   "facing": "front",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "right",
+   "status": "candidate",
+   "provenance": {
+    "run": "siobhan-v1-20261108m",
+    "pose": "groove.down_l",
+    "sha256": "bc41f9174820681e07eca582bc467521ad78643772abde9eef033a9362a19163",
+    "selected": "994001",
+    "frameKey": null,
+    "accepted": true,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "secondary-action",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   },
+   "aliasOf": "groove_down_l"
+  },
+  "ready": {
+   "rect": [
+    850,
+    1305,
+    76,
+    249
+   ],
+   "anchor": [
+    38.0,
+    246.4
+   ],
+   "pixelsPerUnit": 6.4258,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "siobhan-v1-20261108m",
+    "pose": "challenge.return",
+    "sha256": "54a2897f153f3a2f3f5046aab84f31b2ee10c5a42956dc7fd69e7652ca677cba",
+    "selected": "994003",
+    "frameKey": null,
+    "accepted": true,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "follow-through",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   },
+   "aliasOf": "challenge_return"
+  },
+  "reassurance_notice": {
+   "rect": [
+    2,
+    1558,
+    74,
+    249
+   ],
+   "anchor": [
+    37.0,
+    246.4
+   ],
+   "pixelsPerUnit": 6.4258,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.5,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "siobhan-v1-20261108m",
+    "pose": "reassurance.notice",
+    "sha256": "a23aaa5a915f3d18fa2b98dc32f8f1d82f119d5a211f0b5018b13c0ebcb17590",
+    "selected": "994000",
+    "frameKey": null,
+    "accepted": true,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "anticipation",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "reassurance_open_hand": {
+   "rect": [
+    79,
+    1305,
+    105,
+    251
+   ],
+   "anchor": [
+    58.0,
+    247.4
+   ],
+   "pixelsPerUnit": 6.4258,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.5,
+   "events": [
+    {
+     "beat": 0.5,
+     "type": "accent",
+     "drawing": "open_hand"
+    }
+   ],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "siobhan-v1-20261108m",
+    "pose": "reassurance.open_hand",
+    "sha256": "e35f1294e3721136eadb2057be48a19059873c3a2ae37ad4f7031613ae93ae0f",
+    "selected": "994001",
+    "frameKey": null,
+    "accepted": true,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "line-of-action",
+     "contrapposto",
+     "exaggeration-accent",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "reassurance_settle": {
+   "rect": [
+    765,
+    785,
+    78,
+    258
+   ],
+   "anchor": [
+    39.0,
+    245.4
+   ],
+   "pixelsPerUnit": 6.4258,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.5,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "siobhan-v1-20261108m",
+    "pose": "reassurance.settle",
+    "sha256": "0fd46a3b64e87876bd9cafb0a6e353fcfe359bd15f67d08768a10b5389da5f52",
+    "selected": "994000",
+    "frameKey": null,
+    "accepted": true,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "follow-through",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "recover": {
+   "rect": [
+    79,
+    1305,
+    105,
+    251
+   ],
+   "anchor": [
+    58.0,
+    247.4
+   ],
+   "pixelsPerUnit": 6.4258,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.5,
+   "events": [
+    {
+     "beat": 0.5,
+     "type": "accent",
+     "drawing": "open_hand"
+    }
+   ],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "siobhan-v1-20261108m",
+    "pose": "reassurance.open_hand",
+    "sha256": "e35f1294e3721136eadb2057be48a19059873c3a2ae37ad4f7031613ae93ae0f",
+    "selected": "994001",
+    "frameKey": null,
+    "accepted": true,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "line-of-action",
+     "contrapposto",
+     "exaggeration-accent",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   },
+   "aliasOf": "reassurance_open_hand"
+  },
+  "retreat_backward_contact_l": {
+   "rect": [
+    164,
+    785,
+    77,
+    258
+   ],
+   "anchor": [
+    15.8,
+    245.4
+   ],
+   "pixelsPerUnit": 6.4258,
+   "facing": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "right",
+   "status": "candidate",
+   "provenance": {
+    "run": "siobhan-v1-20261108m",
+    "pose": "retreat_backward.contact_l",
+    "sha256": "a0f6ef8374b94ff29447819b6e81a91f20e9d13e39cc37b91d6c7614f9191c77",
+    "selected": "994000",
+    "frameKey": null,
+    "accepted": true,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "anticipation",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  },
+  "retreat_backward_contact_r": {
+   "rect": [
+    243,
+    785,
+    89,
+    258
+   ],
+   "anchor": [
+    70.2,
+    245.4
+   ],
+   "pixelsPerUnit": 6.4258,
+   "facing": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "left",
+   "status": "candidate",
+   "provenance": {
+    "run": "siobhan-v1-20261108m",
+    "pose": "retreat_backward.contact_r",
+    "sha256": "160b4539a872821e5055e7e32859ce5d9815803902d2c9eda252d481fd317450",
+    "selected": "994000",
+    "frameKey": null,
+    "accepted": true,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "anticipation",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  },
+  "retreat_backward_down_l": {
+   "rect": [
+    729,
+    2,
+    79,
+    259
+   ],
+   "anchor": [
+    61.2,
+    247.4
+   ],
+   "pixelsPerUnit": 6.4258,
+   "facing": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "left",
+   "status": "candidate",
+   "provenance": {
+    "run": "siobhan-v1-20261108m",
+    "pose": "retreat_backward.down_l",
+    "sha256": "22ed3ef86f2bbe7ed3b1e5c29e05aa71178e7479c25a11bed25ccc65a76a5e38",
+    "selected": "994000",
+    "frameKey": null,
+    "accepted": true,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  },
+  "retreat_backward_down_r": {
+   "rect": [
+    334,
+    785,
+    83,
+    258
+   ],
+   "anchor": [
+    16.8,
+    247.4
+   ],
+   "pixelsPerUnit": 6.4258,
+   "facing": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "right",
+   "status": "candidate",
+   "provenance": {
+    "run": "siobhan-v1-20261108m",
+    "pose": "retreat_backward.down_r",
+    "sha256": "cc6a2cc42caafee7439c560b4128ddde620d527956cff96e0bf7c840d15e6b8a",
+    "selected": "994000",
+    "frameKey": null,
+    "accepted": true,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  },
+  "retreat_backward_pass_l": {
+   "rect": [
+    164,
+    2,
+    78,
+    260
+   ],
+   "anchor": [
+    61.2,
+    247.4
+   ],
+   "pixelsPerUnit": 6.4258,
+   "facing": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "left",
+   "status": "candidate",
+   "provenance": {
+    "run": "siobhan-v1-20261108m",
+    "pose": "retreat_backward.pass_l",
+    "sha256": "9c9fd7b5923bb0ca9f5c5a37f65bb44c6675ec122d9a7bf8036476355535c2d1",
+    "selected": "994000",
+    "frameKey": null,
+    "accepted": true,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  },
+  "retreat_backward_pass_r": {
+   "rect": [
+    244,
+    2,
+    78,
+    260
+   ],
+   "anchor": [
+    17.8,
+    247.4
+   ],
+   "pixelsPerUnit": 6.4258,
+   "facing": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "right",
+   "status": "candidate",
+   "provenance": {
+    "run": "siobhan-v1-20261108m",
+    "pose": "retreat_backward.pass_r",
+    "sha256": "57ec2e142639e20f594b87a6daccd6b340728c611b00f7d8cd3657bc859f733e",
+    "selected": "994000",
+    "frameKey": null,
+    "accepted": true,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  },
+  "right_foot": {
+   "rect": [
+    440,
+    1045,
+    116,
+    257
+   ],
+   "anchor": [
+    101.2,
+    246.4
+   ],
+   "pixelsPerUnit": 6.4258,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [
+    {
+     "beat": 0.25,
+     "type": "accent",
+     "drawing": "peak"
+    }
+   ],
+   "supportFoot": "left",
+   "status": "candidate",
+   "provenance": {
+    "run": "siobhan-v1-20261108m",
+    "pose": "right_foot.peak",
+    "sha256": "720f1c53c01ef89335461f34ba6886518bbe2a1d18531e496cce7f7815e1ecc8",
+    "selected": "994001",
+    "frameKey": null,
+    "accepted": true,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "line-of-action",
+     "contrapposto",
+     "exaggeration-accent",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   },
+   "aliasOf": "right_foot_peak"
+  },
+  "right_foot_follow": {
+   "rect": [
+    674,
+    525,
+    115,
+    258
+   ],
+   "anchor": [
+    97.2,
+    247.4
+   ],
+   "pixelsPerUnit": 6.4258,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [],
+   "supportFoot": "left",
+   "status": "candidate",
+   "provenance": {
+    "run": "siobhan-v1-20261108m",
+    "pose": "right_foot.follow",
+    "sha256": "788a764d2a7b5090a4734f4b844beadcead918c08ded008056484ac431660bf0",
+    "selected": "994001",
+    "frameKey": null,
+    "accepted": true,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "follow-through",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "right_foot_peak": {
+   "rect": [
+    440,
+    1045,
+    116,
+    257
+   ],
+   "anchor": [
+    101.2,
+    246.4
+   ],
+   "pixelsPerUnit": 6.4258,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [
+    {
+     "beat": 0.25,
+     "type": "accent",
+     "drawing": "peak"
+    }
+   ],
+   "supportFoot": "left",
+   "status": "candidate",
+   "provenance": {
+    "run": "siobhan-v1-20261108m",
+    "pose": "right_foot.peak",
+    "sha256": "720f1c53c01ef89335461f34ba6886518bbe2a1d18531e496cce7f7815e1ecc8",
+    "selected": "994001",
+    "frameKey": null,
+    "accepted": true,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "line-of-action",
+     "contrapposto",
+     "exaggeration-accent",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "right_foot_prep": {
+   "rect": [
+    590,
+    525,
+    82,
+    258
+   ],
+   "anchor": [
+    64.2,
+    247.4
+   ],
+   "pixelsPerUnit": 6.4258,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [],
+   "supportFoot": "left",
+   "status": "candidate",
+   "provenance": {
+    "run": "siobhan-v1-20261108m",
+    "pose": "right_foot.prep",
+    "sha256": "04b7178b82771f38930b4b3507373ebc1001d9d012f0c41ee0c9da00e4b9b26f",
+    "selected": "994000",
+    "frameKey": null,
+    "accepted": true,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "anticipation",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "right_foot_return": {
+   "rect": [
+    911,
+    1045,
+    78,
+    251
+   ],
+   "anchor": [
+    39.0,
+    247.4
+   ],
+   "pixelsPerUnit": 6.4258,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "siobhan-v1-20261108m",
+    "pose": "right_foot.return",
+    "sha256": "0bda93e4f42ad57f7c42d8622d761454556c3748d20838d8744786e6dd8220ff",
+    "selected": "994000",
+    "frameKey": null,
+    "accepted": true,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "follow-through",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "right_hand": {
+   "rect": [
+    2,
+    525,
+    147,
+    258
+   ],
+   "anchor": [
+    125.2,
+    247.4
+   ],
+   "pixelsPerUnit": 6.4258,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [
+    {
+     "beat": 0.25,
+     "type": "accent",
+     "drawing": "peak"
+    }
+   ],
+   "supportFoot": "left",
+   "status": "candidate",
+   "provenance": {
+    "run": "siobhan-v1-20261108m",
+    "pose": "right_hand.peak",
+    "sha256": "c90e9d18929bb7898155b5ca57caa0feb9b0a9e59538039ff815567fb3c3896d",
+    "selected": "994001",
+    "frameKey": null,
+    "accepted": true,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "line-of-action",
+     "contrapposto",
+     "exaggeration-accent",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   },
+   "aliasOf": "right_hand_peak"
+  },
+  "right_hand_follow": {
+   "rect": [
+    151,
+    525,
+    115,
+    258
+   ],
+   "anchor": [
+    86.2,
+    247.4
+   ],
+   "pixelsPerUnit": 6.4258,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [],
+   "supportFoot": "left",
+   "status": "candidate",
+   "provenance": {
+    "run": "siobhan-v1-20261108m",
+    "pose": "right_hand.follow",
+    "sha256": "e299968b0f06da41c8055d4e1fa575dd2a6f498ed4b98d696ce315b59418bb0b",
+    "selected": "994001",
+    "frameKey": null,
+    "accepted": true,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "follow-through",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "right_hand_peak": {
+   "rect": [
+    2,
+    525,
+    147,
+    258
+   ],
+   "anchor": [
+    125.2,
+    247.4
+   ],
+   "pixelsPerUnit": 6.4258,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [
+    {
+     "beat": 0.25,
+     "type": "accent",
+     "drawing": "peak"
+    }
+   ],
+   "supportFoot": "left",
+   "status": "candidate",
+   "provenance": {
+    "run": "siobhan-v1-20261108m",
+    "pose": "right_hand.peak",
+    "sha256": "c90e9d18929bb7898155b5ca57caa0feb9b0a9e59538039ff815567fb3c3896d",
+    "selected": "994001",
+    "frameKey": null,
+    "accepted": true,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "line-of-action",
+     "contrapposto",
+     "exaggeration-accent",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "right_hand_prep": {
+   "rect": [
+    567,
+    2,
+    79,
+    259
+   ],
+   "anchor": [
+    39.0,
+    246.4
+   ],
+   "pixelsPerUnit": 6.4258,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "siobhan-v1-20261108m",
+    "pose": "right_hand.prep",
+    "sha256": "9088d17d4c15cd367c09797dd34d55a42ec495dd4d7c8c4d8f78e8ceede24c54",
+    "selected": "same drawing as right_hand.return",
+    "frameKey": null,
+    "accepted": true,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "anticipation",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "right_hand_return": {
+   "rect": [
+    648,
+    2,
+    79,
+    259
+   ],
+   "anchor": [
+    39.0,
+    246.4
+   ],
+   "pixelsPerUnit": 6.4258,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "siobhan-v1-20261108m",
+    "pose": "right_hand.return",
+    "sha256": "9088d17d4c15cd367c09797dd34d55a42ec495dd4d7c8c4d8f78e8ceede24c54",
+    "selected": "994000",
+    "frameKey": null,
+    "accepted": true,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "follow-through",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "settle": {
+   "rect": [
+    865,
+    264,
+    79,
+    258
+   ],
+   "anchor": [
+    40.0,
+    246.4
+   ],
+   "pixelsPerUnit": 6.4258,
+   "facing": "front",
+   "loop": false,
+   "durationBeats": 1.0,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "siobhan-v1-20261108m",
+    "pose": "left_hand.return",
+    "sha256": "3384da362329cfc5f2f1440e01c537ecfaecf5ecae893833ea34417dfced88f9",
+    "selected": "994000",
+    "frameKey": null,
+    "accepted": true,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "follow-through",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   },
+   "aliasOf": "left_hand_return"
+  },
+  "turn_in": {
+   "rect": [
+    892,
+    2,
+    77,
+    259
+   ],
+   "anchor": [
+    42.0,
+    246.4
+   ],
+   "pixelsPerUnit": 6.4258,
+   "facing": "front_3q",
+   "loop": false,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "siobhan-v1-20261108m",
+    "pose": "finish_turn.turn_in",
+    "sha256": "c75220081316a01d4e0a51ac5c7abbaedc4df4b0ca4dba9bb699d0a39034853b",
+    "selected": "994000",
+    "frameKey": null,
+    "accepted": true,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   },
+   "aliasOf": "finish_turn_turn_in",
+   "mirror": true
+  },
+  "turn_out": {
+   "rect": [
+    2,
+    264,
+    72,
+    259
+   ],
+   "anchor": [
+    39.0,
+    246.4
+   ],
+   "pixelsPerUnit": 6.4258,
+   "facing": "front_3q",
+   "loop": false,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "siobhan-v1-20261108m",
+    "pose": "finish_turn.turn_out",
+    "sha256": "b8bb2eb7f51b75d689e562cb849bea3f948cac7f309c4bf5d785a5178ff0ed51",
+    "selected": "994000",
+    "frameKey": null,
+    "accepted": true,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   },
+   "aliasOf": "finish_turn_turn_out"
+  },
+  "watch_hold_l": {
+   "rect": [
+    404,
+    2,
+    80,
+    260
+   ],
+   "anchor": [
+    40.0,
+    247.4
+   ],
+   "pixelsPerUnit": 6.4258,
+   "facing": "front",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "siobhan-v1-20261108m",
+    "pose": "watch.hold_l",
+    "sha256": "efd9fe3862b0b7561cb207ea55d4006ff61084e23a74df9ead987181a0a63adc",
+    "selected": "994000",
+    "frameKey": null,
+    "accepted": true,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "follow-through",
+     "secondary-action",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "watch_hold_r": {
+   "rect": [
+    486,
+    2,
+    79,
+    260
+   ],
+   "anchor": [
+    39.0,
+    247.4
+   ],
+   "pixelsPerUnit": 6.4258,
+   "facing": "front",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "siobhan-v1-20261108m",
+    "pose": "watch.hold_r",
+    "sha256": "6b6dde2bbaaa6ca4773d448c9a171eb7ff4bb0a016e0afd671c5a30e1bbbf492",
+    "selected": "994000",
+    "frameKey": null,
+    "accepted": true,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "follow-through",
+     "secondary-action",
+     "no-twinning",
+     "timing-on-beat"
+    ]
+   }
+  },
+  "watch_left": {
+   "rect": [
+    2,
+    1305,
+    75,
+    251
+   ],
+   "anchor": [
+    37.0,
+    247.4
+   ],
+   "pixelsPerUnit": 6.4258,
+   "facing": "front",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "siobhan-v1-20261108m",
+    "pose": "watch.shift_l",
+    "sha256": "9f905432d838e133aafcc5962a132e49e12d333303b305a5f8a510bd2fb5a6fb",
+    "selected": "994000",
+    "frameKey": null,
+    "accepted": true,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "secondary-action",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   },
+   "aliasOf": "watch_shift_l"
+  },
+  "watch_right": {
+   "rect": [
+    266,
+    1305,
+    75,
+    250
+   ],
+   "anchor": [
+    37.0,
+    247.4
+   ],
+   "pixelsPerUnit": 6.4258,
+   "facing": "front",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "siobhan-v1-20261108m",
+    "pose": "watch.shift_r",
+    "sha256": "c58576b8efa0b2e3c9f2d6384425ca26e00ae2924fc34e5f83020f2f99b863fc",
+    "selected": "994000",
+    "frameKey": null,
+    "accepted": true,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "secondary-action",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   },
+   "aliasOf": "watch_shift_r"
+  },
+  "watch_shift_l": {
+   "rect": [
+    2,
+    1305,
+    75,
+    251
+   ],
+   "anchor": [
+    37.0,
+    247.4
+   ],
+   "pixelsPerUnit": 6.4258,
+   "facing": "front",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "siobhan-v1-20261108m",
+    "pose": "watch.shift_l",
+    "sha256": "9f905432d838e133aafcc5962a132e49e12d333303b305a5f8a510bd2fb5a6fb",
+    "selected": "994000",
+    "frameKey": null,
+    "accepted": true,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "secondary-action",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  },
+  "watch_shift_r": {
+   "rect": [
+    266,
+    1305,
+    75,
+    250
+   ],
+   "anchor": [
+    37.0,
+    247.4
+   ],
+   "pixelsPerUnit": 6.4258,
+   "facing": "front",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "both",
+   "status": "candidate",
+   "provenance": {
+    "run": "siobhan-v1-20261108m",
+    "pose": "watch.shift_r",
+    "sha256": "c58576b8efa0b2e3c9f2d6384425ca26e00ae2924fc34e5f83020f2f99b863fc",
+    "selected": "994000",
+    "frameKey": null,
+    "accepted": true,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "secondary-action",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  },
+  "yield_side_contact_l": {
+   "rect": [
+    419,
+    785,
+    85,
+    258
+   ],
+   "anchor": [
+    18.8,
+    245.4
+   ],
+   "pixelsPerUnit": 6.4258,
+   "facing": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "right",
+   "status": "candidate",
+   "provenance": {
+    "run": "siobhan-v1-20261108m",
+    "pose": "yield_side.contact_l",
+    "sha256": "00a359b19f7f565b7175a34f9dd2c0f2df312122a14af7dbfb8a24167f9afcb7",
+    "selected": "994000",
+    "frameKey": null,
+    "accepted": true,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "anticipation",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  },
+  "yield_side_contact_r": {
+   "rect": [
+    608,
+    785,
+    73,
+    258
+   ],
+   "anchor": [
+    57.2,
+    245.4
+   ],
+   "pixelsPerUnit": 6.4258,
+   "facing": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "left",
+   "status": "candidate",
+   "provenance": {
+    "run": "siobhan-v1-20261108m",
+    "pose": "yield_side.contact_r",
+    "sha256": "6aab7ddf10cf29ff55d8947c3f1d0d4125d81946bc8c37431eb6434377bd3b11",
+    "selected": "994000",
+    "frameKey": null,
+    "accepted": true,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "anticipation",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  },
+  "yield_side_down_l": {
+   "rect": [
+    506,
+    785,
+    100,
+    258
+   ],
+   "anchor": [
+    81.2,
+    247.4
+   ],
+   "pixelsPerUnit": 6.4258,
+   "facing": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "left",
+   "status": "candidate",
+   "provenance": {
+    "run": "siobhan-v1-20261108m",
+    "pose": "yield_side.down_l",
+    "sha256": "16ef4abd22b4938d27462b039fce18e3e215258fcb7e5c9d03cddf6e5a513fcb",
+    "selected": "994000",
+    "frameKey": null,
+    "accepted": true,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  },
+  "yield_side_down_r": {
+   "rect": [
+    683,
+    785,
+    80,
+    258
+   ],
+   "anchor": [
+    16.8,
+    247.4
+   ],
+   "pixelsPerUnit": 6.4258,
+   "facing": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "right",
+   "status": "candidate",
+   "provenance": {
+    "run": "siobhan-v1-20261108m",
+    "pose": "yield_side.down_r",
+    "sha256": "05190be2f1b76999c8b5e8436b7f93272f236c7efa5db04a0c459fc34a70ae7b",
+    "selected": "994000",
+    "frameKey": null,
+    "accepted": true,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  },
+  "yield_side_pass_l": {
+   "rect": [
+    324,
+    2,
+    78,
+    260
+   ],
+   "anchor": [
+    62.2,
+    247.4
+   ],
+   "pixelsPerUnit": 6.4258,
+   "facing": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "left",
+   "status": "candidate",
+   "provenance": {
+    "run": "siobhan-v1-20261108m",
+    "pose": "yield_side.pass_l",
+    "sha256": "876aca2a7968075cd98acdfc062f466ee06145462b30f1dd3c865405527ebc4d",
+    "selected": "994000",
+    "frameKey": null,
+    "accepted": true,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  },
+  "yield_side_pass_r": {
+   "rect": [
+    810,
+    2,
+    80,
+    259
+   ],
+   "anchor": [
+    18.8,
+    247.4
+   ],
+   "pixelsPerUnit": 6.4258,
+   "facing": "front_3q",
+   "loop": true,
+   "durationBeats": 2.0,
+   "events": [],
+   "supportFoot": "right",
+   "status": "candidate",
+   "provenance": {
+    "run": "siobhan-v1-20261108m",
+    "pose": "yield_side.pass_r",
+    "sha256": "4220bad2bf23f8ce228a80db50835cca9bcc0adf1f127273bfcae0de1d398f33",
+    "selected": "994000",
+    "frameKey": null,
+    "accepted": true,
+    "animationPrinciples": [
+     "staging-silhouette",
+     "contrapposto",
+     "no-twinning",
+     "timing-on-beat",
+     "planted-pivot"
+    ]
+   }
+  }
+ }
+}
