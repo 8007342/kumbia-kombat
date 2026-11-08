@@ -417,3 +417,4 @@
 {"agent": "terciopelo", "what": "Don Terciopelo moustache.b redraw, run h, 3 candidates; wall time per job, shared GPU queue", "kind": "gpu-image", "seconds": 70, "count": 3}
 {"agent": "terciopelo", "what": "Don Terciopelo first-pass curation: heads and hands counted per registered candidate with qwen2.5vl:7b (vision_curate.py)", "kind": "local-vision", "seconds": 131, "count": 175}
 {"agent": "terciopelo", "what": "Don Terciopelo rig renders, register, score, finish and pack (CPU)", "kind": "cpu", "seconds": 420, "count": 1}
+{"agent":"FINALE","what":"credits roll: build_credits.py, full flutter test (736 pass) and analyze","kind":"cpu","seconds":95,"count":3}

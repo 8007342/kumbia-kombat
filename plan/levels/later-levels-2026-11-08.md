@@ -427,3 +427,25 @@ for the toilet; this keeps it tasteful by showing it empty and lit, and only Mā
 - VIP's forgiving rueda in place of the storyboard's harsh VIP reset.
 - Tlatoāni's one dance step, and whether they rise at all.
 - The credits roll on a phone: speed, sizes, and the stand-in music.
+
+## Verification, 2026-11-08
+
+- `flutter test`: all 736 pass, in a symlinked run copy (`wt/finale-run`) through the heavy lock.
+  New: `test/credits_test.dart` (the data covers every pubspec.lock and Cargo.lock package with a degree;
+  sizes and columns shrink by degree; the roll rises; looping stand-in music; close; auto return; the
+  shipping data on a 360 by 740 screen without overflow). Extended: the data-only campaign test now waits
+  for the credits after the last end screen (they arrive 8 s later), the console test taps CREDITS, the
+  route test covers `/credits/`, `?page=credits` and `#/credits`.
+- `flutter analyze lib test`: no issues in the new code; 4 older infos in `lib/gameplay/battle_staging.dart`.
+- `openspec validate`: `add-credits-roll` and `design-later-levels` are valid (one "long requirement"
+  warning each).
+- `build_credits.py --check` is idempotent: 142 items, 3 at degree 0, 42 direct, 46 second-degree, 51 deeper.
+- **Not verified:** how the roll looks and reads on a phone, its speed, and whether the stand-in music
+  starts on a real browser after the end screen. Nobody here has seen it run.
+- **What went wrong:** the first generator run credited a node "package" that was a template string in a
+  script, and duplicated two models under two names; both fixed. The Python walk first followed
+  requirements that markers exclude (exceptiongroup); it now follows only installed ones.
+- **Known limits:** Flutter's SDK packages (flutter, sky_engine, flutter_test) have no version in the lock,
+  so they show without one. Windows-only crates appear because Cargo.lock lists them. Tool versions
+  (FFmpeg, uv, Node, Rust) are read from whichever machine runs the script, so regenerating elsewhere may
+  change them.
