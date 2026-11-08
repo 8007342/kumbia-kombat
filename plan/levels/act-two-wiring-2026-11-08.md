@@ -115,7 +115,9 @@ All three follow the design note. Galería and terraza each walk Mācron out wit
 - the route up the runner to the far doors, the 12 guests in pairs along both walls, and the two picture lights;
 - the close-up: a floor plate, and Mācron's feet and proud face on full-screen canvases (360x780 at scale .5), so no cut edge shows.
 
-Siobhán herself and the gallery's room-life layers are still to come.
+Siobhán herself is still to come.
+
+**Swapped in, 2026-11-08:** the gallery's room life (`work/1885-galr` 2fd90ac): a repainted plate where the far-left portrait is full length, so its gentleman can tap his foot; plus that foot tap, a bust's nod and a portrait's sway, all artwork at tier 4.
 
 **Swapped in, 2026-11-08:** the banquet close-up (`work/1881-cmdr` 745213a), with the salon's geometry: Don Charolas' four drawings (present, lift, offer, empty), Mācron's four (reach, take, sip, happy) and the plate cut from the room. The rendered page test now expects two `glug`s, not three. [F]
 
