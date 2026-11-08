@@ -420,3 +420,6 @@
 {"agent": "music2", "what": "comedor polka candidates, ACE-Step XL turbo, 20 takes of 74.5 s in 5 batches; GPU run time without queue wait (elapsed incl. wait 400 s)", "kind": "gpu-audio", "seconds": 228, "count": 20}
 {"agent": "music2", "what": "comedor chain: parent re-made plus 6 re-sampled children in one graph", "kind": "gpu-audio", "seconds": 31, "count": 7}
 {"agent": "music2", "what": "comedor measures (timing, character, chord ear, chroma, shared grid), 9 mixrs trial builds and verifies, 2 mixrs builds of billiards+comedor", "kind": "cpu", "seconds": 420, "count": 1}
+{"agent": "music2", "what": "galeria reel candidates, ACE-Step XL turbo, 12 takes of 74.5 s in 3 batches; GPU run time without queue wait", "kind": "gpu-audio", "seconds": 135, "count": 12}
+{"agent": "music2", "what": "galeria chain: parent re-made plus 6 re-sampled children in one graph", "kind": "gpu-audio", "seconds": 31, "count": 7}
+{"agent": "music2", "what": "galeria measures, 3 mixrs trial builds and verifies, mixrs build of salon+galeria, align audit of the comedor chart", "kind": "cpu", "seconds": 300, "count": 1}
