@@ -1,7 +1,7 @@
 {
  "id": "terraza",
  "title": "LA TERRAZA",
- "background": "salon/salon-room.png",
+ "background": "terraza/terraza-room.png",
  "music": {
   "score": "terraza_samba",
   "successScore": "terraza_samba_success",
@@ -414,31 +414,31 @@
  "stage": {
   "calibration": "unverifiedStoryboard",
   "floor": {
-   "horizonY": 0.27,
-   "referenceFootY": 0.6,
-   "referenceHeight": 0.33,
-   "vanishingX": 0.505
+   "horizonY": 0.36,
+   "referenceFootY": 0.68,
+   "referenceHeight": 0.3765,
+   "vanishingX": 0.5
   },
   "heroHome": [
    0.5,
-   0.6
+   0.644
   ],
   "heroEntersAt": 6,
   "heroEntrance": [
-   0.3,
-   0.64
+   0.297,
+   0.68
   ],
   "heroRetreat": [
    0.5,
-   0.625
+   0.666
   ],
   "heroWatch": [
    0.5,
-   0.625
+   0.666
   ],
   "heroAside": [
-   0.38,
-   0.61
+   0.4,
+   0.655
   ],
   "challengers": [
    {
@@ -446,16 +446,16 @@
     "atlas": "blinblin",
     "mark": [
      0.5,
-     0.5
+     0.557
     ],
     "yieldMark": [
-     0.62,
-     0.5
+     0.618,
+     0.557
     ],
     "stature": 0.95,
     "meetMark": [
-     0.46,
-     0.52
+     0.44,
+     0.565
     ]
    }
   ]
@@ -532,187 +532,261 @@
   "guests": [
    {
     "at": [
-     0.765,
-     0.388
+     0.19,
+     0.49
     ],
+    "atlas": "guest3",
     "occupied": "pair",
     "faces": "right",
-    "partner": 1,
-    "atlas": "guest5"
+    "partner": 1
+   },
+   {
+    "at": [
+     0.28,
+     0.49
+    ],
+    "atlas": "guest4",
+    "occupied": "pair",
+    "faces": "left",
+    "partner": 0
+   },
+   {
+    "at": [
+     0.235,
+     0.535
+    ],
+    "atlas": "guest5",
+    "occupied": "pair",
+    "faces": "right",
+    "partner": 3
+   },
+   {
+    "at": [
+     0.33,
+     0.535
+    ],
+    "atlas": "guest6",
+    "occupied": "pair",
+    "faces": "left",
+    "partner": 2
+   },
+   {
+    "at": [
+     0.165,
+     0.462
+    ],
+    "seat": "standing",
+    "atlas": "guest2",
+    "clips": "solo",
+    "faces": "right"
+   },
+   {
+    "at": [
+     0.31,
+     0.462
+    ],
+    "seat": "standing",
+    "atlas": "guest1",
+    "clips": "solo",
+    "faces": "right"
+   },
+   {
+    "at": [
+     0.375,
+     0.47
+    ],
+    "seat": "standing",
+    "atlas": "guest0",
+    "clips": "solo",
+    "faces": "right"
+   },
+   {
+    "at": [
+     0.745,
+     0.49
+    ],
+    "atlas": "guest5",
+    "occupied": "pair",
+    "faces": "right",
+    "partner": 8
+   },
+   {
+    "at": [
+     0.835,
+     0.49
+    ],
+    "atlas": "guest4",
+    "occupied": "pair",
+    "faces": "left",
+    "partner": 7
+   },
+   {
+    "at": [
+     0.765,
+     0.462
+    ],
+    "atlas": "guest6",
+    "occupied": "pair",
+    "faces": "right",
+    "partner": 10
    },
    {
     "at": [
      0.84,
-     0.388
+     0.462
     ],
+    "atlas": "guest3",
     "occupied": "pair",
     "faces": "left",
-    "partner": 0,
-    "atlas": "guest6"
+    "partner": 9
    },
    {
     "at": [
-     0.62,
-     0.4
+     0.8,
+     0.54
     ],
-    "occupied": "pair",
-    "faces": "right",
-    "partner": 3,
-    "atlas": "guest4"
-   },
-   {
-    "at": [
-     0.7,
-     0.4
-    ],
-    "occupied": "pair",
-    "faces": "left",
-    "partner": 2,
-    "atlas": "guest3"
-   },
-   {
-    "at": [
-     0.67,
-     0.455
-    ],
-    "occupied": "pair",
-    "faces": "right",
-    "partner": 5,
-    "atlas": "guest6"
-   },
-   {
-    "at": [
-     0.78,
-     0.455
-    ],
-    "occupied": "pair",
-    "faces": "left",
-    "partner": 4,
-    "atlas": "guest5"
-   },
-   {
-    "at": [
-     0.875,
-     0.42
-    ],
-    "occupied": "pair",
-    "faces": "right",
-    "partner": 7,
-    "atlas": "guest3"
-   },
-   {
-    "at": [
-     0.95,
-     0.42
-    ],
-    "occupied": "pair",
-    "faces": "left",
-    "partner": 6,
-    "atlas": "guest4"
-   },
-   {
-    "at": [
-     0.86,
-     0.46
-    ],
-    "occupied": "pair",
-    "faces": "right",
-    "partner": 9,
-    "atlas": "guest5"
-   },
-   {
-    "at": [
-     0.94,
-     0.46
-    ],
-    "occupied": "pair",
-    "faces": "left",
-    "partner": 8,
-    "atlas": "guest3"
-   },
-   {
-    "at": [
-     0.885,
-     0.495
-    ],
-    "occupied": "pair",
-    "faces": "right",
-    "partner": 11,
-    "atlas": "guest4"
-   },
-   {
-    "at": [
-     0.965,
-     0.495
-    ],
-    "occupied": "pair",
-    "faces": "left",
-    "partner": 10,
-    "atlas": "guest6"
+    "seat": "standing",
+    "atlas": "guest1",
+    "clips": "solo",
+    "faces": "left"
    }
   ],
-  "props": []
+  "props": [],
+  "clipSets": {
+   "solo": {
+    "reference": "standing_idle_a",
+    "seatedIdle": {
+     "frames": [
+      "step_touch_a",
+      "step_touch_d",
+      "step_touch_c",
+      "step_touch_d"
+     ],
+     "beatsPerFrame": 1
+    },
+    "notice": {
+     "frames": [
+      "standing_idle_a",
+      "standing_idle_b"
+     ],
+     "beatsPerFrame": 2
+    },
+    "seatedFollow": {
+     "frames": [
+      "step_touch_a",
+      "step_touch_d",
+      "step_touch_c",
+      "step_touch_d"
+     ],
+     "beatsPerFrame": 1
+    },
+    "standUp": {
+     "frames": [
+      "step_touch_a",
+      "step_touch_d",
+      "step_touch_c",
+      "step_touch_d"
+     ],
+     "beatsPerFrame": 1
+    },
+    "standingIdle": {
+     "frames": [
+      "step_touch_a",
+      "step_touch_d",
+      "step_touch_c",
+      "step_touch_d"
+     ],
+     "beatsPerFrame": 1
+    },
+    "stepTouch": {
+     "frames": [
+      "step_touch_a",
+      "step_touch_d",
+      "step_touch_c",
+      "step_touch_d"
+     ],
+     "beatsPerFrame": 1
+    },
+    "clap": {
+     "frames": [
+      "clap_a",
+      "clap_b"
+     ],
+     "beatsPerFrame": 0.5
+    },
+    "cheer": {
+     "frames": [
+      "cheer_a",
+      "cheer_b"
+     ],
+     "beatsPerFrame": 1
+    },
+    "sitDown": {
+     "frames": [
+      "step_touch_a",
+      "step_touch_d",
+      "step_touch_c",
+      "step_touch_d"
+     ],
+     "beatsPerFrame": 1
+    },
+    "applause": {
+     "frames": [
+      "clap_a",
+      "clap_a",
+      "clap_b"
+     ],
+     "beatsPerFrame": 0.5
+    }
+   }
+  }
  },
  "scenery": {
   "lamps": [
    [
-    0.254,
-    0.15
+    0.585,
+    0.382
    ],
    [
-    0.511,
-    0.148
-   ],
-   [
-    0.767,
-    0.152
-   ],
-   [
-    0.11,
-    0.245
-   ],
-   [
-    0.4,
-    0.245
-   ],
-   [
-    0.62,
-    0.245
-   ],
-   [
-    0.91,
-    0.245
+    0.73,
+    0.385
    ]
   ],
   "plants": []
  },
  "departure": {
-  "threshold": "the stairs down from the terrace",
-  "originY": 0.6,
+  "threshold": "the stair head, between the lantern posts",
+  "originY": 0.644,
   "waypoints": [
    {
-    "at": 0,
+    "at": 0.0,
     "x": 0.5,
+    "y": 0.644,
+    "facing": "sideRight"
+   },
+   {
+    "at": 0.25,
+    "x": 0.57,
     "y": 0.6,
     "facing": "sideRight"
    },
    {
-    "at": 0.4,
-    "x": 0.64,
-    "y": 0.55,
+    "at": 0.5,
+    "x": 0.625,
+    "y": 0.54,
     "facing": "sideRight"
    },
    {
-    "at": 0.8,
-    "x": 0.8,
-    "y": 0.5,
+    "at": 0.75,
+    "x": 0.65,
+    "y": 0.49,
     "facing": "sideRight"
    },
    {
-    "at": 1,
-    "x": 0.88,
-    "y": 0.48,
-    "facing": "sideRight"
+    "at": 1.0,
+    "x": 0.66,
+    "y": 0.462,
+    "facing": "rear"
    }
   ]
  },
@@ -782,13 +856,13 @@
   ]
  },
  "exitShot": {
-  "plate": "closeups/duet-plate.png",
+  "plate": "closeups/terraza-plate.png",
   "celebrateUntil": 2,
   "walkFrom": 2,
   "walkTo": 3.25,
   "heroStep": [
    0.56,
-   0.55
+   0.56
   ],
   "heroWaitFrame": "front_idle",
   "dust": false,
@@ -823,28 +897,36 @@
   ],
   "actors": [
    {
-    "approach": "closeups/duet-macron-round.png",
-    "impact": "closeups/duet-macron-arc-blush.png",
+    "approach": "closeups/terraza-mc-rest.png",
+    "impact": "closeups/terraza-mc-kissed.png",
     "frames": [
      {
-      "beat": 4.0,
-      "image": "closeups/duet-macron-round.png"
+      "beat": 3.5,
+      "image": "closeups/terraza-mc-rest.png"
      },
      {
-      "beat": 5.0,
-      "image": "closeups/duet-macron-wide.png"
+      "beat": 5,
+      "image": "closeups/terraza-mc-kissed.png"
      },
      {
-      "beat": 5.25,
-      "image": "closeups/duet-macron-squash.png"
+      "beat": 5.75,
+      "image": "closeups/terraza-mc-spark-a.png"
      },
      {
-      "beat": 5.5,
-      "image": "closeups/duet-macron-arc.png"
+      "beat": 6.25,
+      "image": "closeups/terraza-mc-spark-b.png"
      },
      {
-      "beat": 6.0,
-      "image": "closeups/duet-macron-arc-blush.png"
+      "beat": 6.75,
+      "image": "closeups/terraza-mc-spark-a.png"
+     },
+     {
+      "beat": 7.25,
+      "image": "closeups/terraza-mc-spark-b.png"
+     },
+     {
+      "beat": 7.75,
+      "image": "closeups/terraza-mc-kissed.png"
      }
     ],
     "contact": [
@@ -1022,6 +1104,19 @@
    "from": 11,
    "to": 15.5,
    "fadeBeats": 1.25
+  },
+  "keepsake": {
+   "image": "closeups/terraza-kissmark.png",
+   "from": 6,
+   "at": [
+    -0.184,
+    -0.498
+   ],
+   "anchor": [
+    3,
+    3
+   ],
+   "height": 0.07
   }
  },
  "layers": {
@@ -1029,46 +1124,125 @@
   "plateHeight": 1248,
   "props": [
    {
-    "id": "chandelier-left",
-    "atlas": "salon/salon-layers.png",
+    "id": "firework-gold",
+    "atlas": "terraza/terraza-fireworks.png",
     "atlasY": 0,
-    "left": 164,
-    "top": 119,
-    "width": 95,
-    "height": 107,
-    "frames": 7,
-    "motion": "sway",
-    "periodBeats": 4,
+    "left": 32,
+    "top": 22,
+    "width": 235,
+    "height": 235,
+    "frames": 6,
+    "motion": "pulse",
+    "periodBeats": 8,
+    "phaseBeats": 0,
     "instance": 1,
-    "kind": "hanging"
+    "kind": "light"
    },
    {
-    "id": "chandelier-middle",
-    "atlas": "salon/salon-layers.png",
-    "atlasY": 109,
-    "left": 377,
-    "top": 119,
-    "width": 97,
-    "height": 104,
-    "frames": 7,
-    "motion": "sway",
-    "periodBeats": 4,
+    "id": "firework-turquoise",
+    "atlas": "terraza/terraza-fireworks.png",
+    "atlasY": 237,
+    "left": 570,
+    "top": 2,
+    "width": 219,
+    "height": 219,
+    "frames": 6,
+    "motion": "pulse",
+    "periodBeats": 8,
+    "phaseBeats": 5,
     "instance": 2,
-    "kind": "hanging"
+    "kind": "light"
    },
    {
-    "id": "chandelier-right",
-    "atlas": "salon/salon-layers.png",
-    "atlasY": 215,
-    "left": 583,
-    "top": 119,
-    "width": 99,
-    "height": 114,
+    "id": "firework-red",
+    "atlas": "terraza/terraza-fireworks.png",
+    "atlasY": 458,
+    "left": 326,
+    "top": 0,
+    "width": 180,
+    "height": 178,
+    "frames": 6,
+    "motion": "pulse",
+    "periodBeats": 8,
+    "phaseBeats": 2,
+    "instance": 3,
+    "kind": "light"
+   },
+   {
+    "id": "firework-green",
+    "atlas": "terraza/terraza-fireworks.png",
+    "atlasY": 638,
+    "left": 214,
+    "top": 182,
+    "width": 132,
+    "height": 132,
+    "frames": 6,
+    "motion": "pulse",
+    "periodBeats": 8,
+    "phaseBeats": 6,
+    "instance": 4,
+    "kind": "light"
+   },
+   {
+    "id": "firework-white",
+    "atlas": "terraza/terraza-fireworks.png",
+    "atlasY": 772,
+    "left": 494,
+    "top": 164,
+    "width": 143,
+    "height": 143,
+    "frames": 6,
+    "motion": "pulse",
+    "periodBeats": 8,
+    "phaseBeats": 3,
+    "instance": 5,
+    "kind": "light"
+   },
+   {
+    "id": "palm-left",
+    "atlas": "terraza/terraza-layers.png",
+    "atlasY": 0,
+    "left": 0,
+    "top": 112,
+    "width": 284,
+    "height": 299,
     "frames": 7,
     "motion": "sway",
-    "periodBeats": 4,
+    "periodBeats": 2,
+    "instance": 1,
+    "kind": "artwork",
+    "minTier": 4
+   },
+   {
+    "id": "palm-right",
+    "atlas": "terraza/terraza-layers.png",
+    "atlasY": 301,
+    "left": 583,
+    "top": 107,
+    "width": 249,
+    "height": 310,
+    "frames": 7,
+    "motion": "sway",
+    "periodBeats": 2,
+    "instance": 2,
+    "kind": "artwork",
+    "minTier": 4,
+    "phaseBeats": 1
+   },
+   {
+    "id": "festoon-bulbs",
+    "atlas": "terraza/terraza-layers.png",
+    "atlasY": 613,
+    "left": 284,
+    "top": 244,
+    "width": 310,
+    "height": 115,
+    "frames": 4,
+    "motion": "pulse",
+    "periodBeats": 1,
     "instance": 3,
-    "kind": "hanging"
+    "kind": "artwork",
+    "minTier": 4
    }
   ]
  }

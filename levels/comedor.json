@@ -571,6 +571,132 @@
     }
    },
    "waiter": {
+    "reference": "idle_a",
+    "seatedIdle": {
+     "frames": [
+      "groove_down_l",
+      "groove_pass_l",
+      "groove_up_l",
+      "groove_pass_l2",
+      "groove_down_r",
+      "groove_pass_r",
+      "groove_up_r",
+      "groove_pass_r2"
+     ],
+     "beatsPerFrame": 0.5
+    },
+    "notice": {
+     "frames": [
+      "idle_a"
+     ],
+     "beatsPerFrame": 1
+    },
+    "seatedFollow": {
+     "frames": [
+      "groove_down_l",
+      "groove_pass_l",
+      "groove_up_l",
+      "groove_pass_l2",
+      "groove_down_r",
+      "groove_pass_r",
+      "groove_up_r",
+      "groove_pass_r2"
+     ],
+     "beatsPerFrame": 0.5
+    },
+    "standUp": {
+     "frames": [
+      "groove_down_l",
+      "groove_pass_l",
+      "groove_up_l",
+      "groove_pass_l2",
+      "groove_down_r",
+      "groove_pass_r",
+      "groove_up_r",
+      "groove_pass_r2"
+     ],
+     "beatsPerFrame": 0.5
+    },
+    "standingIdle": {
+     "frames": [
+      "groove_down_l",
+      "groove_pass_l",
+      "groove_up_l",
+      "groove_pass_l2",
+      "groove_down_r",
+      "groove_pass_r",
+      "groove_up_r",
+      "groove_pass_r2"
+     ],
+     "beatsPerFrame": 0.5
+    },
+    "stepTouch": {
+     "frames": [
+      "groove_down_l",
+      "groove_pass_l",
+      "groove_up_l",
+      "groove_pass_l2",
+      "groove_down_r",
+      "groove_pass_r",
+      "groove_up_r",
+      "groove_pass_r2"
+     ],
+     "beatsPerFrame": 0.5
+    },
+    "clap": {
+     "frames": [
+      "groove_down_l",
+      "groove_pass_l",
+      "groove_up_l",
+      "groove_pass_l2",
+      "groove_down_r",
+      "groove_pass_r",
+      "groove_up_r",
+      "groove_pass_r2"
+     ],
+     "beatsPerFrame": 0.5
+    },
+    "cheer": {
+     "frames": [
+      "groove_down_l",
+      "groove_pass_l",
+      "groove_up_l",
+      "groove_pass_l2",
+      "groove_down_r",
+      "groove_pass_r",
+      "groove_up_r",
+      "groove_pass_r2"
+     ],
+     "beatsPerFrame": 0.5
+    },
+    "sitDown": {
+     "frames": [
+      "groove_down_l",
+      "groove_pass_l",
+      "groove_up_l",
+      "groove_pass_l2",
+      "groove_down_r",
+      "groove_pass_r",
+      "groove_up_r",
+      "groove_pass_r2"
+     ],
+     "beatsPerFrame": 0.5
+    },
+    "applause": {
+     "frames": [
+      "groove_down_l",
+      "groove_pass_l",
+      "groove_up_l",
+      "groove_pass_l2",
+      "groove_down_r",
+      "groove_pass_r",
+      "groove_up_r",
+      "groove_pass_r2"
+     ],
+     "beatsPerFrame": 0.5
+    }
+   },
+   "waiterStandIn": {
     "reference": "standing_idle_a",
     "seatedIdle": {
      "frames": [
@@ -818,7 +944,7 @@
      0.47
     ],
     "seat": "standing",
-    "atlas": "guest3",
+    "atlas": "waiter-a",
     "clips": "waiter",
     "faces": "right"
    },
@@ -829,7 +955,7 @@
     ],
     "seat": "standing",
     "atlas": "guest5",
-    "clips": "waiter",
+    "clips": "waiterStandIn",
     "faces": "left"
    },
    {
@@ -839,7 +965,7 @@
     ],
     "seat": "standing",
     "atlas": "guest6",
-    "clips": "waiter",
+    "clips": "waiterStandIn",
     "faces": "right"
    },
    {
