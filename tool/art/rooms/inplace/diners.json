@@ -251,56 +251,56 @@
    "prompt": "Image 1 shows eight diners seated in a row behind a banquet table, facing the viewer, in formal dinner dress. Draw exactly the same picture, the same eight diners in the same seats, the same table, candelabra, room and light at the same place and size, and change only their poses: each diner lifts a spoon of soup up to the mouth, the other hand resting by the bowl, eyes on the spoon.",
    "seed": 995100,
    "count": 2,
-   "pick": ""
+   "pick": "eat_b-995100.png"
   },
   {
    "id": "watch_a",
    "prompt": "Image 1 shows eight diners seated in a row behind a banquet table, facing the viewer, in formal dinner dress. Draw exactly the same picture, the same eight diners in the same seats, the same table, candelabra, room and light at the same place and size, and change only their poses: each diner has put down the spoon and sits up straight, turned to look out toward the viewer with interest, both hands resting on the table.",
    "seed": 995200,
    "count": 2,
-   "pick": ""
+   "pick": "watch_a-995200.png"
   },
   {
    "id": "watch_b",
    "prompt": "Image 1 shows eight diners seated in a row behind a banquet table, facing the viewer, in formal dinner dress. Draw exactly the same picture, the same eight diners in the same seats, the same table, candelabra, room and light at the same place and size, and change only their poses: each diner leans forward a little with a curious smile, watching toward the viewer, one hand at the chin and the other on the table.",
    "seed": 995300,
    "count": 2,
-   "pick": ""
+   "pick": "watch_b-995301.png"
   },
   {
    "id": "clap_a",
    "prompt": "Image 1 shows eight diners seated in a row behind a banquet table, facing the viewer, in formal dinner dress. Draw exactly the same picture, the same eight diners in the same seats, the same table, candelabra, room and light at the same place and size, and change only their poses: each diner smiles and holds both hands apart in front of the chest, about to clap, looking toward the viewer.",
    "seed": 995400,
    "count": 2,
-   "pick": ""
+   "pick": "clap_a-995400.png"
   },
   {
    "id": "clap_b",
    "prompt": "Image 1 shows eight diners seated in a row behind a banquet table, facing the viewer, in formal dinner dress. Draw exactly the same picture, the same eight diners in the same seats, the same table, candelabra, room and light at the same place and size, and change only their poses: each diner claps, both palms pressed together in front of the chest, laughing and looking toward the viewer.",
    "seed": 995500,
    "count": 2,
-   "pick": ""
+   "pick": "clap_b-995501.png"
   },
   {
    "id": "rise_a",
    "prompt": "Image 1 shows eight diners seated in a row behind a banquet table, facing the viewer, in formal dinner dress. Draw exactly the same picture, the same eight diners in the same seats, the same table, candelabra, room and light at the same place and size, and change only their poses: each diner is getting up from the chair, half risen behind the table with both hands on the table edge, smiling toward the viewer.",
    "seed": 995600,
    "count": 2,
-   "pick": ""
+   "pick": "rise_a-995600.png"
   },
   {
    "id": "toast_a",
    "prompt": "Image 1 shows eight diners seated in a row behind a banquet table, facing the viewer, in formal dinner dress. Draw exactly the same picture, the same eight diners in the same seats, the same table, candelabra, room and light at the same place and size, and change only their poses: every diner stands up tall behind the table, each holding a glass of red wine raised high in one hand in a toast, cheering toward the viewer.",
    "seed": 995700,
    "count": 2,
-   "pick": ""
+   "pick": "toast_a-995700.png"
   },
   {
    "id": "toast_b",
    "prompt": "Image 1 shows eight diners seated in a row behind a banquet table, facing the viewer, in formal dinner dress. Draw exactly the same picture, the same eight diners in the same seats, the same table, candelabra, room and light at the same place and size, and change only their poses: every diner stands behind the table, glasses of red wine raised high, the glasses tilted toward each other in a cheerful toast, laughing.",
    "seed": 995800,
    "count": 2,
-   "pick": ""
+   "pick": "toast_b-995800.png"
   }
  ]
 }
