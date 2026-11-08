@@ -1,0 +1,52 @@
+{
+ "level": "comedor",
+ "note": "Parent is candidate seed 59202, tag set C, of 20 (tool/music/sheets/comedor.candidates.json). Tiers are re-sampled from its latent in one graph.",
+ "parent": {
+  "seed": 59202,
+  "bpm": 128,
+  "key": "F major",
+  "seconds": 74.5,
+  "tags": "conjunto norteño polka, instrumental, cheerful two-row accordion lead in thirds, bajo sexto chop on the off-beats, tuba and tololoche bass, snare and cymbal on the pah, lively wedding supper, upbeat and happy"
+ },
+ "children": [
+  {
+   "name": "lowB",
+   "tags": "conjunto norteño polka, instrumental, small trio, cheerful two-row accordion lead, bajo sexto chop on the off-beats, tololoche bass on the beat, light snare on the pah, quiet dinner, warm and close, nothing else",
+   "denoise": 0.6,
+   "codes": false
+  },
+  {
+   "name": "lowC",
+   "tags": "conjunto norteño polka, instrumental, small trio, cheerful two-row accordion lead, bajo sexto chop on the off-beats, tololoche bass on the beat, light snare on the pah, quiet dinner, warm and close, nothing else",
+   "denoise": 0.7,
+   "codes": false
+  },
+  {
+   "name": "highB",
+   "tags": "conjunto norteño polka, instrumental, full norteño band, cheerful two-row accordion lead in thirds, bright trumpets join the melody, tuba oom-pah, bajo sexto chop, snare and cymbal on the pah, hand claps, banquet hall on its feet, big and happy",
+   "denoise": 0.6,
+   "codes": false
+  },
+  {
+   "name": "highC",
+   "tags": "conjunto norteño polka, instrumental, full norteño band, cheerful two-row accordion lead in thirds, bright trumpets join the melody, tuba oom-pah, bajo sexto chop, snare and cymbal on the pah, hand claps, banquet hall on its feet, big and happy",
+   "denoise": 0.6,
+   "parent": "highB",
+   "codes": false
+  },
+  {
+   "name": "highD",
+   "tags": "conjunto norteño polka, instrumental, full norteño band, cheerful two-row accordion lead in thirds, bright trumpets join the melody, tuba oom-pah, bajo sexto chop, snare and cymbal on the pah, hand claps, banquet hall on its feet, big and happy",
+   "denoise": 0.6,
+   "parent": "highC",
+   "codes": false
+  },
+  {
+   "name": "highE",
+   "tags": "conjunto norteño polka, instrumental, full norteño band, cheerful two-row accordion lead in thirds, bright trumpets join the melody, tuba oom-pah, bajo sexto chop, snare and cymbal on the pah, hand claps, banquet hall on its feet, big and happy",
+   "denoise": 0.6,
+   "parent": "highD",
+   "codes": false
+  }
+ ]
+}
