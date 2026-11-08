@@ -451,6 +451,34 @@ void main() {
     });
   });
 
+  test('the web build bundles every folder a level or a rendered take names', () {
+    // Asset folders aren't recursive: a folder missing from pubspec.yaml loads
+    // in these tests, which read files, and fails in the browser.
+    final listed = {
+      for (final line in File('pubspec.yaml').readAsLinesSync())
+        if (line.trim().startsWith('- assets/')) line.trim().substring(2),
+    };
+    String folder(String path) => '${path.substring(0, path.lastIndexOf('/'))}/';
+    final registry = _registry();
+    for (final level in registry.levels) {
+      final paths = [
+        level.background,
+        for (final prop in level.layers) prop.atlas,
+        ...?level.exitShot?.images,
+      ];
+      for (final path in paths) {
+        expect(listed, contains(folder('assets/art/$path')), reason: '${level.id} $path');
+      }
+    }
+    final rendered =
+        (jsonDecode(File('assets/music/rendered/manifest.json').readAsStringSync())
+                as Map<String, dynamic>)['levels']
+            as Map<String, dynamic>;
+    for (final id in rendered.keys) {
+      expect(listed, contains('assets/music/rendered/$id/'), reason: id);
+    }
+  });
+
   group('the general pieces, refused when wrong', () {
     Map<String, dynamic> comedor() =>
         jsonDecode(_read('comedor')) as Map<String, dynamic>;
