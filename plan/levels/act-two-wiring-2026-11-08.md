@@ -26,7 +26,7 @@ The bridges, synth scores and renders are MUSIC2's (`work/1882-polk`). `billiard
 | Cleared title | QUÉ / BANQUETE | QUÉ / ZAPATEO | QUÉ / CHISPA |
 | Invitation [P] | ¿Un bailecito antes del postre? | ¿Puedes seguirnos el paso? | ¡Ay, mi amor, a bailar! |
 | Synth tiers, BPM | 120 124 128 132 136 | 114 118 122 126 130 | 96 100 104 108 112 |
-| Rendered takes | 120 / 128 / 136 | 114 / 122 / 130 | not yet |
+| Rendered takes | 120 / 128 / 136 | 114 / 122 / 130 | 96 / 104 / 112 |
 | Hardest combo [P] | LA TORRE DE CHAROLAS | EL MURO DE TACONES | LA LLUVIA DE CONFETI |
 | Rules | FEEL's: 6 of 8 before the peak, 3 peak passes | same | same |
 
@@ -77,7 +77,7 @@ One tresillo every two beats: a foot on the beat, the hip-hand on its last sixte
 | 3, 4 | 3 and the peak | 108, 112 | 12 | 4 | 67% |
 | 5, 6 | the peak | 112 | 12 | 4 | 67%, 58% |
 
-It is the slowest level and the most syncopated. It has had no alignment audit yet: the samba isn't rendered.
+It is the slowest level and the most syncopated. **MUSIC2's audit** of the rendered samba: 95. 98% of notes are on an accent, none are weak, and the worst note scores 1.40. By tier: 99, 97, 93, 94, 95. The take's attacks run 12–13 ms early on the low and mid takes.
 
 ## New general behaviour, in code where data couldn't say it
 
@@ -121,7 +121,6 @@ Each swap is a data edit in the level's file and re-running the generator (`make
 | Galería | plate, crowd, close-up | the salon's room and couples. Mācron's nod rig is the feet close-up | GALERIA art |
 | Terraza | Tía Purpurina | blinblin's atlas | TERRAZA art (later wave) |
 | Terraza | plate, crowd, close-up, fireworks | the salon's room and couples, the lawn's kiss with one kisser, the flare for fireworks. No kiss-mark keepsake yet | TERRAZA art |
-| Terraza | music | synth `terraza_samba` | MUSIC2's render, `final: true` |
 
 ## What was checked, and how
 
