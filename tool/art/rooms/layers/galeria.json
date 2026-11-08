@@ -37,8 +37,12 @@
      370,
      394
     ],
-    "images": [],
-    "prompt": "Image 1 is part of a pixel art painting: an old full-length oil portrait in a heavy gilt frame of a gentleman standing in a dark coat, dark trousers and polished black shoes. Draw exactly the same picture, the same gentleman, frame and colours at the same place and size, and change only his shoe on the right of the picture: its toe is lifted up off the floor, tapping the beat, with the heel still on the floor."
+    "images": [
+     "portrait-tap-993411.png"
+    ],
+    "prompt": "Image 1 is part of a pixel art painting: an old full-length oil portrait in a heavy gilt frame of a gentleman standing in a dark coat, dark trousers and polished black shoes. Draw exactly the same picture, the same gentleman, frame and colours at the same place and size, and change only his shoe on the right of the picture: its toe is lifted up off the floor, tapping the beat, with the heel still on the floor.",
+    "why": "993411 lifts the toe of the shoe on the picture's right and keeps both legs; 993410 swung the other leg out.",
+    "run": "layers-galeria-20261108"
    },
    "motion": "pulse",
    "periodBeats": 1,

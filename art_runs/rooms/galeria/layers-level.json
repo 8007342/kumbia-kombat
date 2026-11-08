@@ -1,0 +1,13 @@
+{
+  "id": "galeria",
+  "background": "galeria/galeria-room.png",
+  "layers": {
+    "plateWidth": 832,
+    "plateHeight": 1248,
+    "props": [
+      {"id": "portrait-tap", "atlas": "galeria/galeria-layers.png", "atlasY": 0, "left": 267, "top": 327, "width": 62, "height": 39, "frames": 2, "motion": "pulse", "periodBeats": 1, "instance": 1, "kind": "artwork", "minTier": 4},
+      {"id": "bust-nod", "atlas": "galeria/galeria-layers.png", "atlasY": 41, "left": 605, "top": 314, "width": 27, "height": 29, "frames": 3, "motion": "pulse", "periodBeats": 2, "instance": 3, "kind": "artwork", "minTier": 4},
+      {"id": "portrait-sway", "atlas": "galeria/galeria-layers.png", "atlasY": 72, "left": 541, "top": 261, "width": 59, "height": 99, "frames": 5, "motion": "sway", "periodBeats": 4, "instance": 5, "kind": "artwork", "minTier": 4}
+    ]
+  }
+}
