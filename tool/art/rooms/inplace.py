@@ -165,10 +165,12 @@ def pack(s):
         boxes = [im.getbbox() for im in ims.values() if im.getbbox()]
         bx0, by0 = min(b[0] for b in boxes), min(b[1] for b in boxes)
         bx1, by1 = max(b[2] for b in boxes), max(b[3] for b in boxes)
-        fw, fh = bx1 - bx0, by1 - by0
+        ax, ay = g["anchorPlatePx"]
+        # The engine wants each anchor inside its rect (party_sprites.dart), so a figure cut at a table top gets
+        # transparent rows down to its floor point. Nothing moves on screen.
+        fw, fh = bx1 - bx0, max(by1 - by0, ay - y0 - by0 + 1)
         gut = 2
         atlas = Image.new("RGBA", (gut + len(ims) * (fw + gut), fh + 2 * gut), (0, 0, 0, 0))
-        ax, ay = g["anchorPlatePx"]
         # 1:1 with the plate: the standing height the floor gives at the anchor, in plate pixels.
         player_px = round((ay / cam["plateHeight"] - cam["horizonY"]) / cam["eyeHeightAdults"] * cam["plateHeight"])
         ppu = round(player_px / 38.75, 4)
