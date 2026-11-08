@@ -1,0 +1,32 @@
+[
+ {
+  "pose": "sheet.front",
+  "args": {
+   "workflow": "art_runs/purpurina-sheet-20261108a/workflows/sheet.front.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/purpurina-sheet-20261108a/in/sheet_source.png",
+    "pose_proxy": "/work/tmp/imagegen/kumbia/purpurina-sheet-20261108a/in/challenge.return.skeleton.png"
+   },
+   "overrides": {
+    "seed": 996500
+   }
+  }
+ },
+ {
+  "pose": "sheet.back",
+  "args": {
+   "workflow": "art_runs/purpurina-sheet-20261108a/workflows/sheet.back.api.json",
+   "tier": "I1",
+   "count": 4,
+   "inputs": {
+    "sheet_front": "/work/tmp/imagegen/kumbia/purpurina-sheet-20261108a/in/sheet_source.png",
+    "pose_proxy": "/work/tmp/imagegen/kumbia/purpurina-sheet-20261108a/in/challenge.return.skeleton.png"
+   },
+   "overrides": {
+    "seed": 996500
+   }
+  }
+ }
+]

@@ -30,5 +30,13 @@
   "shoulder_half": 0.17, "hip_half": 0.08, "upper_arm": 0.17, "forearm": 0.15,
   "thigh": 0.20, "shin": 0.18, "foot": 0.12, "ankle_h": 0.05,
   "limb_r": {"torso": 0.15, "belly": 0.15, "arm": 0.055, "fore": 0.055, "thigh": 0.065, "shin": 0.065}
+ },
+ "curvy-older-adult": {
+  "$comment": "Tía Purpurina (terraza): a shortish, full-figured older lady with wide, round hips, a full bust and soft round arms, a little shorter in the leg than slim-adult. Wider at the hips than at the shoulders, so the samba hips read; the opposite of the tall narrow Don Terciopelo and rounder than BlinBlin.",
+  "human": true, "orthoScale": 2.6, "centerZ": 1.05,
+  "hip_height": 0.86, "torso": 0.47, "neck": 0.05, "head_r": 0.165,
+  "shoulder_half": 0.19, "hip_half": 0.15, "upper_arm": 0.28, "forearm": 0.25,
+  "thigh": 0.42, "shin": 0.40, "foot": 0.20, "ankle_h": 0.07,
+  "limb_r": {"torso": 0.20, "belly": 0.21, "arm": 0.082, "fore": 0.066, "hand": 0.064, "thigh": 0.12, "shin": 0.078, "brim": 0.28, "crown": 0.15}
  }
 }

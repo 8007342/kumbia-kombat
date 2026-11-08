@@ -1,0 +1,32 @@
+{
+ "room": "terraza",
+ "run": "rooms/terraza/run-a",
+ "passNo": 2,
+ "steps": 4,
+ "promptSha256": "ebf7e10335d3b570044341c48bf9e18ae8a0e4bf6471d1ac72a9c8eb3d52e4c6",
+ "jobs": [
+  {
+   "name": "p2-p1-996000",
+   "workflow": "art_runs/rooms/terraza/run-a/workflows/p2.api.json",
+   "inputs": {
+    "base": "/work/tmp/imagegen/kumbia/rooms/terraza/run-a/in/p1-996000.png"
+   },
+   "overrides": {
+    "seed": 996100
+   },
+   "count": 3
+  },
+  {
+   "name": "p2-p1-996004",
+   "workflow": "art_runs/rooms/terraza/run-a/workflows/p2.api.json",
+   "inputs": {
+    "base": "/work/tmp/imagegen/kumbia/rooms/terraza/run-a/in/p1-996004.png"
+   },
+   "overrides": {
+    "seed": 996200
+   },
+   "count": 3
+  }
+ ],
+ "how": "Queue one studio.run_workflow per job, one at a time. Then: rooms.py collect --run rooms/terraza/run-a"
+}

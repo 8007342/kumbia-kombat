@@ -1,0 +1,221 @@
+{
+ "10": {
+  "_meta": {
+   "title": "prompt, baked per pose by plan_qwen_frames"
+  },
+  "class_type": "TextEncodeQwenImageEditPlus",
+  "inputs": {
+   "clip": [
+    "6",
+    0
+   ],
+   "image1": [
+    "60",
+    0
+   ],
+   "prompt": "Image 1 is an unfinished game background. Keep the composition of image 1 exactly: the stone balustrade across the far side, the stair head with its two lamp posts at the right of the balustrade, the four terracotta planters with their palms, the three strings of festoon lights, every floor joint, the city's horizon and the wide open night sky stay at the same place and size. Repaint image 1 as a richly detailed late 16-bit pixel art night painting with very fine small pixels and high detail, moody low-key lighting, deep soft shadows, restrained muted natural colours and warm amber lamp glow, painterly and grown-up in tone, close to near-black in the shadows. The floor is large square tiles of warm honey-coloured limestone with thin dark joints, one calm dim tone across its whole area, softly lit by the festoon lights, and the near half is plain, even and dark, reaching the bottom edge and lying open and clear. A low cream stone balustrade with round balusters and a flat top rail runs across the far edge of the terrace, lit warm from the festoon lights above. Over the balustrade, far below, a wide city glitters at night: thousands of tiny warm and white window lights, dark rooftops and a few distant towers, fading into a soft blue haze at the horizon. At the right of the balustrade, a gap opens onto the head of a stone staircase going down, framed by two carved cream stone posts under a small round stone arch, the first steps dropping away into shadow. Two small warm lanterns glow on the stair head's posts. Large round terracotta planters stand on the terrace, each holding a palm. Tall potted palms rise from the planters, their dark green fronds fanning out against the night sky. Three strings of round warm festoon bulbs sag across the terrace from post to post, each bulb a small glowing amber dot. The whole place is an empty, quiet set just before the party arrives: bare ground, still water and clear air, and every surface is plain stone, wood, foliage, water or sky.",
+   "vae": [
+    "7",
+    0
+   ]
+  }
+ },
+ "11": {
+  "_meta": {
+   "title": "negative"
+  },
+  "class_type": "TextEncodeQwenImageEditPlus",
+  "inputs": {
+   "clip": [
+    "6",
+    0
+   ],
+   "image1": [
+    "60",
+    0
+   ],
+   "prompt": "",
+   "vae": [
+    "7",
+    0
+   ]
+  }
+ },
+ "12": {
+  "_meta": {
+   "title": "$seed"
+  },
+  "class_type": "KSampler",
+  "inputs": {
+   "cfg": 1.0,
+   "denoise": 1,
+   "latent_image": [
+    "8",
+    0
+   ],
+   "model": [
+    "5",
+    0
+   ],
+   "negative": [
+    "21",
+    0
+   ],
+   "positive": [
+    "20",
+    0
+   ],
+   "sampler_name": "euler",
+   "scheduler": "simple",
+   "seed": 930000,
+   "steps": 4
+  }
+ },
+ "13": {
+  "_meta": {
+   "title": "VAE Decode"
+  },
+  "class_type": "VAEDecode",
+  "inputs": {
+   "samples": [
+    "12",
+    0
+   ],
+   "vae": [
+    "7",
+    0
+   ]
+  }
+ },
+ "14": {
+  "_meta": {
+   "title": "save frame with matte"
+  },
+  "class_type": "SaveImage",
+  "inputs": {
+   "filename_prefix": "kk/rooms/terraza/run-a/p2",
+   "images": [
+    "13",
+    0
+   ]
+  }
+ },
+ "20": {
+  "_meta": {
+   "title": "reference latents: positive"
+  },
+  "class_type": "FluxKontextMultiReferenceLatentMethod",
+  "inputs": {
+   "conditioning": [
+    "10",
+    0
+   ],
+   "reference_latents_method": "index_timestep_zero"
+  }
+ },
+ "21": {
+  "_meta": {
+   "title": "reference latents: negative"
+  },
+  "class_type": "FluxKontextMultiReferenceLatentMethod",
+  "inputs": {
+   "conditioning": [
+    "11",
+    0
+   ],
+   "reference_latents_method": "index_timestep_zero"
+  }
+ },
+ "3": {
+  "_meta": {
+   "title": "Load Diffusion Model"
+  },
+  "class_type": "UNETLoader",
+  "inputs": {
+   "unet_name": "qwen_image_edit_2511_fp8mixed.safetensors",
+   "weight_dtype": "default"
+  }
+ },
+ "30": {
+  "_meta": {
+   "title": "Lightning 4-step (built for 2509; unproven on 2511)"
+  },
+  "class_type": "LoraLoaderModelOnly",
+  "inputs": {
+   "lora_name": "Qwen-Image-Edit-2509-Lightning-4steps-V1.0-bf16.safetensors",
+   "model": [
+    "4",
+    0
+   ],
+   "strength_model": 1.0
+  }
+ },
+ "4": {
+  "_meta": {
+   "title": "ModelSamplingAuraFlow"
+  },
+  "class_type": "ModelSamplingAuraFlow",
+  "inputs": {
+   "model": [
+    "3",
+    0
+   ],
+   "sampling": "flow",
+   "shift": 3.1
+  }
+ },
+ "5": {
+  "_meta": {
+   "title": "CFGNorm"
+  },
+  "class_type": "CFGNorm",
+  "inputs": {
+   "model": [
+    "30",
+    0
+   ],
+   "pre_cfg": false,
+   "strength": 1
+  }
+ },
+ "6": {
+  "_meta": {
+   "title": "Load CLIP"
+  },
+  "class_type": "CLIPLoader",
+  "inputs": {
+   "clip_name": "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+   "device": "default",
+   "type": "qwen_image"
+  }
+ },
+ "7": {
+  "_meta": {
+   "title": "Load VAE"
+  },
+  "class_type": "VAELoader",
+  "inputs": {
+   "vae_name": "qwen_image_vae.safetensors"
+  }
+ },
+ "8": {
+  "_meta": {
+   "title": "Empty Latent Image"
+  },
+  "class_type": "EmptyLatentImage",
+  "inputs": {
+   "batch_size": 1,
+   "height": 1248,
+   "width": 832
+  }
+ },
+ "60": {
+  "_meta": {
+   "title": "$base"
+  },
+  "class_type": "LoadImage",
+  "inputs": {
+   "image": "$base"
+  }
+ }
+}

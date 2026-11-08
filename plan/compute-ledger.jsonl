@@ -427,3 +427,10 @@
 {"agent": "music2", "what": "terraza samba candidates, ACE-Step XL turbo, 12 takes of 74.5 s in 3 batches; GPU run time without queue wait", "kind": "gpu-audio", "seconds": 140, "count": 12}
 {"agent": "music2", "what": "terraza chain: parent re-made plus 6 re-sampled children in one graph", "kind": "gpu-audio", "seconds": 31, "count": 7}
 {"agent": "music2", "what": "terraza measures, 3 mixrs trials, mixrs builds of galeria+terraza and billiards and galeria bridges, mixrs entry-phase change with cargo test, 5 align audits", "kind": "cpu", "seconds": 540, "count": 1}
+{"ts": "2026-11-08T02:10:21Z", "agent": "terraza", "what": "p1-996000.png", "kind": "local-vision", "seconds": 42.44, "count": 1, "model": "qwen2.5vl:7b", "load_s": 9.09, "eval_tokens": 24}
+{"ts": "2026-11-08T02:10:28Z", "agent": "terraza", "what": "p1-996001.png", "kind": "local-vision", "seconds": 6.59, "count": 1, "model": "qwen2.5vl:7b", "load_s": 3.62, "eval_tokens": 25}
+{"ts": "2026-11-08T02:10:52Z", "agent": "terraza", "what": "p1-996002.png", "kind": "local-vision", "seconds": 24.09, "count": 1, "model": "qwen2.5vl:7b", "load_s": 14.62, "eval_tokens": 25}
+{"ts": "2026-11-08T02:11:06Z", "agent": "terraza", "what": "p1-996003.png", "kind": "local-vision", "seconds": 14.1, "count": 1, "model": "qwen2.5vl:7b", "load_s": 5.37, "eval_tokens": 24}
+{"ts": "2026-11-08T02:11:11Z", "agent": "terraza", "what": "p1-996004.png", "kind": "local-vision", "seconds": 4.17, "count": 1, "model": "qwen2.5vl:7b", "load_s": 2.78, "eval_tokens": 25}
+{"ts": "2026-11-08T02:11:17Z", "agent": "terraza", "what": "p1-996005.png", "kind": "local-vision", "seconds": 5.96, "count": 1, "model": "qwen2.5vl:7b", "load_s": 3.78, "eval_tokens": 25}
+{"agent": "terraza", "what": "La Terraza room plates, pass 1, run-a (6 candidates, style garden); studio elapsed, shared queue", "kind": "gpu-image", "seconds": 351, "count": 6}

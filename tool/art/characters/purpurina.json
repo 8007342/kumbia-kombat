@@ -1,0 +1,130 @@
+{
+ "$comment": "The terrace's opponent, Tía Purpurina ('Auntie Glitter'), plan/levels/mansion-act-two-2026-11-08.md section 9: a joyful older lady in a sequinned gold cocktail dress, a feather boa and big earrings, with unstoppable samba hips and a laugh you can see. She dances samba no pé (motion set opponent-samba). Built by TERRAZA on 2026-11-08 under the owner's delegation; every choice is a proposal the owner can reverse. The rig has no skirt shape, so the dress's skirt borrows waist-apron for its silhouette, as swing-a's did. The boa is turquoise: pink and plum are the audience's reserved ramps (the definition is refused otherwise), and turquoise against gold reads as carnival and keeps her apart from BlinBlin's violet; her red lipstick is the close-up's kiss mark.",
+ "id": "purpurina",
+ "family": "purpurina-v1",
+ "style": "party-pixel",
+ "description": "Terrace opponent, Tía Purpurina: a joyful, curvy older lady of about seventy in a sequinned gold cocktail dress and a turquoise feather boa.",
+ "body": {
+  "preset": "curvy-older-adult"
+ },
+ "pronouns": [
+  "she",
+  "her",
+  "her"
+ ],
+ "skin": "#9A5A36",
+ "traits": "short curvy joyful lady of about seventy, big copper-red curls, red lipstick, a laugh you can see",
+ "demeanor": "joyful, warm and unstoppable, the life of every party",
+ "garments": [
+  {
+   "id": "hair",
+   "shape": "puff",
+   "region": "hair",
+   "colour": "#A8401E",
+   "text": "big voluminous copper-red curls"
+  },
+  {
+   "id": "bodice",
+   "shape": "shirt-fitted",
+   "region": "shirt",
+   "colour": "#D8A630",
+   "text": "sequinned gold cocktail dress bodice with short sleeves and a modest rounded neckline"
+  },
+  {
+   "id": "dress",
+   "shape": "waist-apron",
+   "region": "apron",
+   "colour": "#D8A630",
+   "text": "full sequinned gold skirt of the dress, falling to just below the knee",
+   "params": {
+    "length": 1.15
+   },
+   "secondaryMotion": "lag-1"
+  },
+  {
+   "id": "boa",
+   "shape": "palette-only",
+   "region": "accessory",
+   "colour": "#2CB8B4",
+   "alsoIn": [
+    "shirt",
+    "apron",
+    "skin",
+    "hair"
+   ],
+   "text": "a fluffy turquoise feather boa round her shoulders"
+  },
+  {
+   "id": "lips",
+   "shape": "palette-only",
+   "region": "accessory",
+   "colour": "#C8102E",
+   "alsoIn": [
+    "skin"
+   ],
+   "text": "bright red lipstick"
+  },
+  {
+   "id": "shoes",
+   "shape": "shoes-heeled",
+   "region": "shoes",
+   "colour": "#E2B442",
+   "text": "low gold dance shoes"
+  }
+ ],
+ "props": [],
+ "motion": {
+  "set": "opponent-samba",
+  "overrides": {}
+ },
+ "drawing": {
+  "noun": "woman",
+  "fits": "hair, both shoes, both hands and the whole boa",
+  "look": "short, full-figured, curvy older build with wide round hips, a full bust and soft round arms, a round cheerful face with laugh lines, bright red lipstick, warm brown skin, a big voluminous mass of copper-red curls, big gold hoop earrings, a sequinned gold cocktail dress with short sleeves and a modest rounded neckline, its full sequinned skirt falling to just below the knee, a fluffy turquoise feather boa draped round her shoulders with both ends hanging down in front, low gold dance shoes and thick dark ink outline",
+  "extra": "She is a grown woman of about seventy, joyful and full of life. Both eyes are open. She smiles a big, open, joyful smile. The gold sequins sparkle with small bright highlights. ",
+  "sheet": {
+   "source": {
+    "image": "tool/art/references/terciopelo/front.png",
+    "styleOnly": true
+   },
+   "views": {
+    "front": {
+     "image": "tool/art/references/purpurina/front.png",
+     "description": "standing square facing the viewer, feet a little apart, both arms relaxed and held a little away from the body, both open hands visible, the feather boa round her shoulders",
+     "stageScale": 0.8
+    },
+    "back": {
+     "image": "tool/art/references/purpurina/back.png",
+     "description": "seen from directly behind, her back to the viewer, standing with feet a little apart, both arms relaxed, the back of her big copper-red curls, the feather boa across the back of her shoulders and the plain back of the gold dress",
+     "look": "short, full-figured, curvy older build with wide round hips and soft round arms, warm brown skin, a big voluminous mass of copper-red curls, big gold hoop earrings, a sequinned gold cocktail dress with short sleeves and a plain back, its full skirt falling to just below the knee, a fluffy turquoise feather boa across the back of her shoulders, low gold dance shoes and thick dark ink outline",
+     "extra": "She is a grown woman of about seventy. From behind no face shows. "
+    }
+   }
+  },
+  "seed": 996500,
+  "poseOverrides": {},
+  "score": {
+   "knee": [
+    "dress"
+   ],
+   "silhouetteTolerance": 40
+  }
+ },
+ "references": {
+  "mode": "source",
+  "sources": []
+ },
+ "targets": [
+  {
+   "room": "terraza",
+   "atlas": "purpurina",
+   "out": "assets/art/ensemble/purpurina-v1.png",
+   "native": [
+    256,
+    320
+   ],
+   "pixelScale": 3
+  }
+ ],
+ "seedBase": 996500
+}

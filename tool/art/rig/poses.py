@@ -906,3 +906,8 @@ OPPONENT_CHACHA_INTENT = {**OPPONENT_64_INTENT, **CHACHA_INTENT}
 assert set(OPPONENT_CHACHA_INTENT) == {f"{c}.{n}" for c, d in OPPONENT_CHACHA.items() for n in d}, "intent ids != pose ids"
 MOTION_SETS = {**MOTION_SETS, "opponent-chacha": OPPONENT_CHACHA}
 INTENT_BY_SET = {**INTENT_BY_SET, "opponent-chacha": OPPONENT_CHACHA_INTENT}
+
+# Motion set opponent-samba (Tía Purpurina, the terrace) lives in poses_samba.py, registered here.
+from poses_samba import OPPONENT_SAMBA, OPPONENT_SAMBA_INTENT  # noqa: E402
+MOTION_SETS = {**MOTION_SETS, "opponent-samba": OPPONENT_SAMBA}
+INTENT_BY_SET = {**INTENT_BY_SET, "opponent-samba": OPPONENT_SAMBA_INTENT}

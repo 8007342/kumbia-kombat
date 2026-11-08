@@ -30,7 +30,8 @@ import sys
 from pathlib import Path
 
 HEAD_CLEAR = 1.2                      # head-widths, wrist to head centre
-HEAD_WHITELIST = {"finish_turn.finish_a", "finish_turn.finish_b", "approval.nod"}
+HEAD_WHITELIST = {"finish_turn.finish_a", "finish_turn.finish_b", "approval.nod",
+                  "kiss.a", "laugh.a"}  # opponent-samba: fingertips at the lips to blow a kiss, a hand on the chest in a laugh
 CUE_NEAR_FACE = {"watch", "clap", "challenge", "chalk"}  # both hands on a cue held close: the wrist near the chin is the pose
 TURN_CLIPS = {"turn", "finish_turn", "reveal", "spin", "lean", "pair_dance", "back_dance", "sidestep", "glance", "model", "bow"}  # yaw cap does not apply
 # Seen in profile, or a set of different views: legs may overlap and shoulder width and ankles may change.
