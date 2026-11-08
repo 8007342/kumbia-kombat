@@ -55,6 +55,12 @@ seed 60101 was chosen by measurement and its tiers were re-sampled from its late
 (`tool/music/sheets/galeria.chain.json`). The words name no show, dancer or tune. The salon's bridge into the gallery
 (`rendered/salon/bridge.*`) is cut by repository code from the salon and gallery takes. No other input went in.
 
+The terrace (`rendered/terraza/`, 2026-11-08) was made the same way: 12 candidate takes, tempo 104, key C major and
+seeds 61000 to 61203, recorded in `tool/music/sheets/terraza.candidates.json`; seed 61201 was chosen by measurement
+and its tiers were re-sampled from its latent (`tool/music/sheets/terraza.chain.json`). The gallery's bridge into the
+terrace (`rendered/galeria/bridge.*`) is cut by repository code from the gallery and terrace takes. No other input
+went in.
+
 The repository currently supplies no public licence, and this record doesn't grant one.
 
 ## Original scores: `scores/`, `midi/`, `manifest.json`

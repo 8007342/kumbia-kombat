@@ -350,7 +350,7 @@
   {
    "id": "galeria",
    "key": "A minor",
-   "next": null,
+   "next": "terraza",
    "successBars": 4,
    "successFinal": false,
    "gridTier": "mid",
@@ -394,6 +394,59 @@
      ]
     }
    ]
+  },
+  {
+   "id": "terraza",
+   "key": "C major",
+   "next": null,
+   "successBars": 4,
+   "successFinal": true,
+   "gridTier": "mid",
+   "layerFadeBeats": 1,
+   "tiers": [
+    {
+     "name": "low",
+     "source": "act2-20261108/chains/terraza/lowC.flac",
+     "bpm": 96,
+     "loopBars": 24,
+     "targetLufs": -16.5,
+     "eq": [
+      {
+       "type": "highshelf",
+       "freq": 1500,
+       "gain": -3
+      }
+     ]
+    },
+    {
+     "name": "mid",
+     "source": "act2-20261108/chains/terraza/parent.flac",
+     "bpm": 104,
+     "loopBars": 24,
+     "targetLufs": -16,
+     "eq": []
+    },
+    {
+     "name": "high",
+     "source": "act2-20261108/chains/terraza/highE.flac",
+     "bpm": 112,
+     "loopBars": 24,
+     "targetLufs": -15,
+     "eq": [],
+     "layer": [
+      {
+       "source": "act2-20261108/chains/terraza/parent.flac",
+       "part": "percussive",
+       "db": -4
+      }
+     ]
+    }
+   ],
+   "bridgeEntry": {
+    "step": 4,
+    "offset": 2,
+    "why": "terraza.json introBeats 12: calls start 3 bars after entry, and align_charts puts the take's 4-bar phrase on bar 1 mod 4 (weak margins, 1.06 to 1.2)"
+   }
   }
  ],
  "mix": {

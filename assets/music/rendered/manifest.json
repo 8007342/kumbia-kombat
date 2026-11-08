@@ -1107,6 +1107,117 @@
      "opus": "assets/music/rendered/galeria/success.ogg",
      "aac": "assets/music/rendered/galeria/success.m4a"
     }
+   },
+   "bridge": {
+    "to": "terraza",
+    "toTake": "low",
+    "entryBar": 22,
+    "bpm": 96.0,
+    "bars": 2,
+    "beatsPerBar": 4,
+    "gainDb": 0,
+    "startSeconds": 0.25,
+    "endSeconds": 5.25,
+    "files": {
+     "opus": "assets/music/rendered/galeria/bridge.ogg",
+     "aac": "assets/music/rendered/galeria/bridge.m4a"
+    }
+   }
+  },
+  "terraza": {
+   "key": "C major",
+   "tierTakes": [
+    "low",
+    "low",
+    "mid",
+    "mid",
+    "high"
+   ],
+   "takes": {
+    "low": {
+     "bpm": 96.0,
+     "bars": 24,
+     "beatsPerBar": 4,
+     "loopStartSeconds": 0.25,
+     "loopEndSeconds": 60.25,
+     "loopSamples": 2880000,
+     "sampleRate": 48000,
+     "gainDb": 0,
+     "files": {
+      "opus": "assets/music/rendered/terraza/low.ogg",
+      "aac": "assets/music/rendered/terraza/low.m4a"
+     },
+     "lufs": -16.5,
+     "bar1Confidence": 0.55,
+     "goodExitBars": [
+      12,
+      20
+     ]
+    },
+    "mid": {
+     "bpm": 104.0,
+     "bars": 24,
+     "beatsPerBar": 4,
+     "loopStartSeconds": 0.25,
+     "loopEndSeconds": 55.634625,
+     "loopSamples": 2658462,
+     "sampleRate": 48000,
+     "gainDb": 0,
+     "files": {
+      "opus": "assets/music/rendered/terraza/mid.ogg",
+      "aac": "assets/music/rendered/terraza/mid.m4a"
+     },
+     "lufs": -16.0,
+     "bar1Confidence": 0.55,
+     "goodExitBars": [
+      12,
+      20,
+      22
+     ]
+    },
+    "high": {
+     "bpm": 112.0,
+     "bars": 24,
+     "beatsPerBar": 4,
+     "loopStartSeconds": 0.25,
+     "loopEndSeconds": 51.6785625,
+     "loopSamples": 2468571,
+     "sampleRate": 48000,
+     "gainDb": 0,
+     "files": {
+      "opus": "assets/music/rendered/terraza/high.ogg",
+      "aac": "assets/music/rendered/terraza/high.m4a"
+     },
+     "lufs": -15.0,
+     "bar1Confidence": 0.55,
+     "goodExitBars": [
+      0,
+      2,
+      6,
+      10,
+      12,
+      14,
+      18,
+      20,
+      22
+     ]
+    }
+   },
+   "transitions": [],
+   "layerFadeBeats": 1,
+   "gridTier": "mid",
+   "success": {
+    "bpm": 112.0,
+    "bars": 4,
+    "beatsPerBar": 4,
+    "gainDb": 0,
+    "startSeconds": 0.25,
+    "endSeconds": 8.8214375,
+    "final": true,
+    "files": {
+     "opus": "assets/music/rendered/terraza/success.ogg",
+     "aac": "assets/music/rendered/terraza/success.m4a"
+    }
    }
   }
  }
