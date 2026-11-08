@@ -42,13 +42,13 @@
   "variants": [
    [
     "leftFoot",
-    "rightFoot",
+    "rightHand",
     "leftFoot",
     "rightFoot",
     "leftFoot",
-    "leftFoot",
     "rightFoot",
-    "leftFoot"
+    "leftFoot",
+    "leftHand"
    ],
    [
     "leftFoot",
@@ -56,49 +56,49 @@
     "leftFoot",
     "rightFoot",
     "leftFoot",
-    "leftFoot",
     "rightFoot",
-    "leftFoot"
+    "leftFoot",
+    "leftHand"
    ],
    [
-    "rightFoot",
+    "leftFoot",
+    "rightHand",
     "leftFoot",
     "rightFoot",
     "leftFoot",
     "rightFoot",
+    "leftFoot",
+    "leftHand"
+   ],
+   [
+    "leftFoot",
     "leftHand",
-    "rightFoot",
-    "rightFoot"
-   ],
-   [
-    "leftFoot",
-    "rightHand",
-    "leftFoot",
-    "leftFoot",
-    "leftFoot",
     "leftFoot",
     "rightFoot",
+    "leftFoot",
+    "rightFoot",
+    "leftFoot",
     "leftHand"
    ],
    [
     "rightFoot",
-    "leftHand",
-    "rightFoot",
-    "rightFoot",
-    "rightFoot",
+    "rightHand",
     "rightFoot",
     "leftFoot",
+    "rightFoot",
+    "leftFoot",
+    "rightFoot",
     "rightHand"
    ],
    [
     "leftFoot",
     "leftHand",
-    "rightFoot",
-    "rightFoot",
-    "rightFoot",
+    "leftFoot",
     "rightFoot",
     "leftFoot",
-    "rightHand"
+    "rightFoot",
+    "leftFoot",
+    "leftHand"
    ]
   ],
   "rich": {
@@ -148,29 +148,24 @@
     "1": [
      {
       "at": 0,
-      "limb": "leftFoot"
+      "limb": "leftFoot",
+      "move": "pair",
+      "with": "rightFoot"
      },
      {
-      "at": 0.5,
-      "limb": "rightFoot"
-     },
-     {
-      "at": 1.5,
-      "limb": "leftFoot"
+      "at": 1,
+      "limb": "rightHand"
      },
      {
       "at": 2,
-      "limb": "rightFoot"
+      "limb": "leftFoot"
      },
      {
       "at": 3,
-      "limb": "leftFoot",
-      "move": "split",
-      "with": "rightFoot",
-      "gap": 0.5
+      "limb": "rightFoot"
      },
      {
-      "at": 4.5,
+      "at": 4,
       "limb": "leftFoot"
      },
      {
@@ -180,6 +175,10 @@
      {
       "at": 6,
       "limb": "leftFoot"
+     },
+     {
+      "at": 7,
+      "limb": "leftHand"
      }
     ],
     "2": [
@@ -194,23 +193,18 @@
       "limb": "rightHand"
      },
      {
-      "at": 1.5,
-      "limb": "leftFoot"
-     },
-     {
       "at": 2,
-      "limb": "rightFoot"
+      "limb": "leftFoot"
      },
      {
       "at": 3,
-      "limb": "leftFoot",
-      "move": "split",
-      "with": "rightFoot",
-      "gap": 0.5
+      "limb": "rightFoot"
      },
      {
-      "at": 4.5,
-      "limb": "leftFoot"
+      "at": 4,
+      "limb": "leftFoot",
+      "move": "pair",
+      "with": "rightHand"
      },
      {
       "at": 5,
@@ -219,49 +213,13 @@
      {
       "at": 6,
       "limb": "leftFoot"
+     },
+     {
+      "at": 7,
+      "limb": "leftHand"
      }
     ],
     "3": [
-     {
-      "at": 0.0,
-      "limb": "rightFoot"
-     },
-     {
-      "at": 1.0,
-      "limb": "leftFoot"
-     },
-     {
-      "at": 1.5,
-      "limb": "rightFoot"
-     },
-     {
-      "at": 2.5,
-      "limb": "leftFoot"
-     },
-     {
-      "at": 3.0,
-      "limb": "rightFoot"
-     },
-     {
-      "at": 3.5,
-      "limb": "leftHand"
-     },
-     {
-      "at": 4.5,
-      "limb": "rightFoot",
-      "move": "split",
-      "with": "leftFoot",
-      "gap": 0.5
-     },
-     {
-      "at": 6.0,
-      "limb": "rightFoot",
-      "move": "split",
-      "with": "leftFoot",
-      "gap": 0.5
-     }
-    ],
-    "4": [
      {
       "at": 0,
       "limb": "leftFoot",
@@ -273,36 +231,73 @@
       "limb": "rightHand"
      },
      {
-      "at": 1.5,
-      "limb": "leftFoot",
-      "move": "split",
-      "with": "rightFoot",
-      "gap": 0.5
-     },
-     {
-      "at": 3,
-      "limb": "leftFoot",
-      "move": "split",
-      "with": "rightFoot",
-      "gap": 0.5
-     },
-     {
-      "at": 4.5,
-      "limb": "leftFoot",
-      "move": "split",
-      "with": "rightFoot",
-      "gap": 0.5
-     },
-     {
-      "at": 6,
+      "at": 2,
       "limb": "leftFoot"
      },
      {
-      "at": 6.5,
+      "at": 3,
       "limb": "rightFoot"
      },
      {
+      "at": 4,
+      "limb": "leftFoot",
+      "move": "pair",
+      "with": "rightHand"
+     },
+     {
+      "at": 5,
+      "limb": "rightFoot"
+     },
+     {
+      "at": 6,
+      "limb": "leftFoot",
+      "move": "pair",
+      "with": "rightHand"
+     },
+     {
       "at": 7,
+      "limb": "leftHand"
+     }
+    ],
+    "4": [
+     {
+      "at": 0,
+      "limb": "leftFoot",
+      "move": "pair",
+      "with": "rightFoot"
+     },
+     {
+      "at": 1,
+      "limb": "leftHand",
+      "move": "pair",
+      "with": "rightHand"
+     },
+     {
+      "at": 2,
+      "limb": "leftFoot"
+     },
+     {
+      "at": 3.25,
+      "limb": "rightFoot"
+     },
+     {
+      "at": 4,
+      "limb": "leftFoot",
+      "move": "pair",
+      "with": "rightHand"
+     },
+     {
+      "at": 5,
+      "limb": "rightFoot"
+     },
+     {
+      "at": 6,
+      "limb": "leftFoot",
+      "move": "pair",
+      "with": "rightHand"
+     },
+     {
+      "at": 7.25,
       "limb": "leftHand"
      }
     ],
@@ -315,39 +310,36 @@
      },
      {
       "at": 1,
-      "limb": "leftHand"
+      "limb": "rightHand",
+      "move": "pair",
+      "with": "leftHand"
      },
      {
-      "at": 1.5,
-      "limb": "rightFoot",
-      "move": "split",
-      "with": "leftFoot",
-      "gap": 0.5
-     },
-     {
-      "at": 3,
-      "limb": "rightFoot",
-      "move": "split",
-      "with": "leftFoot",
-      "gap": 0.5
-     },
-     {
-      "at": 4.5,
-      "limb": "rightFoot",
-      "move": "split",
-      "with": "leftFoot",
-      "gap": 0.5
-     },
-     {
-      "at": 6,
+      "at": 2,
       "limb": "rightFoot"
      },
      {
-      "at": 6.5,
+      "at": 3.25,
       "limb": "leftFoot"
      },
      {
-      "at": 7,
+      "at": 4,
+      "limb": "rightFoot",
+      "move": "pair",
+      "with": "leftHand"
+     },
+     {
+      "at": 5,
+      "limb": "leftFoot"
+     },
+     {
+      "at": 6,
+      "limb": "rightFoot",
+      "move": "pair",
+      "with": "leftHand"
+     },
+     {
+      "at": 7.25,
       "limb": "rightHand"
      }
     ],
@@ -360,40 +352,39 @@
      },
      {
       "at": 1,
-      "limb": "leftHand"
+      "limb": "leftHand",
+      "move": "pair",
+      "with": "rightHand"
      },
      {
-      "at": 1.5,
-      "limb": "rightFoot",
-      "move": "split",
-      "with": "leftFoot",
-      "gap": 0.5
-     },
-     {
-      "at": 3,
-      "limb": "rightFoot",
-      "move": "split",
-      "with": "leftFoot",
-      "gap": 0.5
-     },
-     {
-      "at": 4.5,
-      "limb": "rightFoot",
-      "move": "split",
-      "with": "leftFoot",
-      "gap": 0.5
-     },
-     {
-      "at": 6,
-      "limb": "rightFoot"
-     },
-     {
-      "at": 6.5,
+      "at": 2,
       "limb": "leftFoot"
      },
      {
-      "at": 7,
-      "limb": "rightHand"
+      "at": 3,
+      "limb": "rightFoot"
+     },
+     {
+      "at": 4,
+      "limb": "leftFoot",
+      "move": "pair",
+      "with": "rightHand"
+     },
+     {
+      "at": 5,
+      "limb": "rightFoot",
+      "move": "pair",
+      "with": "leftHand"
+     },
+     {
+      "at": 6,
+      "limb": "leftFoot",
+      "move": "pair",
+      "with": "rightHand"
+     },
+     {
+      "at": 7.25,
+      "limb": "leftHand"
      }
     ]
    }
@@ -771,7 +762,7 @@
  "hardestCombo": {
   "name": "EL MURO DE TACONES",
   "status": "proposal",
-  "note": "Proposal, from the wiring agent. The wall of heels: eight eighths of heels, left and right, then the treble's 3+3+2 and a stamp. Half-beat gaps are 234 ms at 128 BPM, over the 230 ms a combo note must keep, so this is as close as a combo can ask at the top tempo. Danced on the shared groove clips until Siobhán's own drawings land. The owner hasn't seen or played it.",
+  "note": "Proposal, from the wiring agent. The wall of heels: eight eighths of heels, left and right, then three more heels and a stamp. Half-beat gaps are 234 ms at 128 BPM, over the 230 ms a combo note must keep, so this is as close as a combo can ask at the top tempo. Danced on the shared groove clips until Siobhán's own drawings land. The owner hasn't seen or played it.",
   "callBeats": 8,
   "moves": [
    {

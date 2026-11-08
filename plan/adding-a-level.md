@@ -84,3 +84,13 @@ From the billiard room, all optional and data only: `scenery.occluders` (a paint
 ## A pair of opponents
 
 Add `stage.duet` to a level with two challengers: named `marks`, a list of `turns` that alternate leads, `offClip`, `partnerClip`, and an `exit`. Each dancer in `assets/art/ensemble/choreography.json` needs the two clips, reaching toward the picture's left in `partnerClip`. An example is the lawn, and the rules are in `test/duet_staging_test.dart`.
+
+## Room life, a meter of your own, a line who dance as one
+
+From mansion act two, all optional and data only:
+
+- `layers.props[].kind: "artwork"`, plus `minTier` and `phaseBeats`. Paintings, a bust or a chandelier that join in only at the top tier. A layer with `minTier` holds still below that tier, even at full swing.
+- `crowd.clipSets` and a guest's `clips`. A guest cast with their own atlas gets their own drawing for each of the crowd model's nine clips, for example diners who eat, watch, clap, then rise and toast, plus an optional `applause` clip from the win's applause cue.
+- `stage.challengers[].line`. More dancers who draw the opponent's own frames up to half a beat late, with an optional `arch` at the win.
+
+The fields and the levels that use them: `plan/levels/act-two-wiring-2026-11-08.md`. Tests: `test/act_two_levels_test.dart`. Before writing a chart, `node tool/music/chart_check.mjs levels/<id>.json <tier bpms>` runs fairness, the joins between patterns and the cue screen checks.

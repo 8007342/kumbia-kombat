@@ -93,16 +93,28 @@ void _polka(String id, ChartPattern pattern, int index) {
   expect(offBeat, greaterThanOrEqualTo(hands.length ~/ 2), reason: '$id $index');
 }
 
-/// Reel: foot-heavy and relentless. Feet carry all but a hand or two of every
-/// pattern, and the top tier keeps them going on the eighths.
+/// Reel: the feet stamp the beats the take accents, both together on the one
+/// from tier 1. Only the top tier's pickups (x.25) leave the beat, and the
+/// rigid arms never outnumber the feet.
 void _reel(String id, ChartPattern pattern, int index) {
+  final peak = index >= 4;
+  for (var i = 0; i < pattern.limbs.length; i++) {
+    final at = pattern.offsets[i];
+    expect(
+      _onBeat(at) || (peak && at % 1 == .25),
+      isTrue,
+      reason: '$id pattern $index ${pattern.limbs[i]} at $at',
+    );
+  }
   final hands = pattern.limbs.where(limbIsUpper).length;
-  expect(hands, lessThanOrEqualTo(2), reason: '$id pattern $index');
-  expect(
-    pattern.limbs.length - hands,
-    greaterThanOrEqualTo(pattern.limbs.length * .8),
-    reason: '$id pattern $index',
-  );
+  expect(hands, lessThanOrEqualTo(pattern.limbs.length - hands));
+  if (index > 0) {
+    final onOne = [
+      for (var i = 0; i < pattern.limbs.length; i++)
+        if (pattern.offsets[i] == 0) pattern.limbs[i],
+    ];
+    expect(onOne, containsAll([Limb.leftFoot, Limb.rightFoot]));
+  }
 }
 
 /// Samba: the feet take the beat and its "and", the hips and hands the
