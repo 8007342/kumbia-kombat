@@ -1,0 +1,32 @@
+{
+ "room": "comedor",
+ "run": "rooms/comedor/run-b",
+ "passNo": 2,
+ "steps": 4,
+ "promptSha256": "6e653966defad539d1bda18db725bbae44f9b8dee905231fc78fb5cea15ddebd",
+ "jobs": [
+  {
+   "name": "p2-p1-992102",
+   "workflow": "art_runs/rooms/comedor/run-b/workflows/p2.api.json",
+   "inputs": {
+    "base": "/work/tmp/imagegen/kumbia/rooms/comedor/run-b/in/p1-992102.png"
+   },
+   "overrides": {
+    "seed": 992200
+   },
+   "count": 3
+  },
+  {
+   "name": "p2-p1-992100",
+   "workflow": "art_runs/rooms/comedor/run-b/workflows/p2.api.json",
+   "inputs": {
+    "base": "/work/tmp/imagegen/kumbia/rooms/comedor/run-b/in/p1-992100.png"
+   },
+   "overrides": {
+    "seed": 992300
+   },
+   "count": 3
+  }
+ ],
+ "how": "Queue one studio.run_workflow per job, one at a time. Then: rooms.py collect --run rooms/comedor/run-b"
+}

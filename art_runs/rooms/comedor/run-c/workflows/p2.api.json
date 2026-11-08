@@ -1,0 +1,221 @@
+{
+ "10": {
+  "_meta": {
+   "title": "prompt, baked per pose by plan_qwen_frames"
+  },
+  "class_type": "TextEncodeQwenImageEditPlus",
+  "inputs": {
+   "clip": [
+    "6",
+    0
+   ],
+   "image1": [
+    "60",
+    0
+   ],
+   "prompt": "Image 1 is an unfinished game background. Keep the composition of image 1 exactly: every wall edge, the long banquet table across the room and its height, the arched niche at the far left, the portraits and the still life on the far wall, the service door at the far right, the two chandeliers, every floor joint and the horizon stay at the same place and size. Repaint image 1 as a richly detailed late 16-bit pixel art night painting with very fine small pixels and high detail, moody low-key lighting, deep soft shadows, restrained muted natural colours and warm amber lamp glow, painterly and grown-up in tone, close to near-black in the shadows. The floor is dark warm walnut parquet in wide plain boards running from wall to wall, one calm dim tone across its whole area, with a soft warm sheen only near the table, and the near half plain, even and dark, reaching the bottom edge and lying open and clear. The walls are hung with deep wine-red damask silk with a faint woven pattern, under a cream and gilt cornice and a dark coffered ceiling. A cream painted wooden wainscot with gilt mouldings runs along the foot of the walls. A tall arched cream niche in the far wall holds a white marble statue of a classical figure on a plinth, softly lit. Tall oil portraits in heavy carved gilt frames hang on the far wall: a gentleman in a dark old-fashioned coat on the left, a lady in a long gown on the right. A wide oil still life of fruit, flowers and a silver jug in a carved gilt frame hangs in the middle of the far wall. A closed dark wooden service door with a small round window and a brass push plate stands at the far right of the far wall, its foot on the same line as in image 1. One long banquet table runs straight across the picture from left to right, parallel to the far wall and close to it, draped in a cream damask cloth to the floor, set for supper with white soup bowls of steaming soup, silver cutlery, crystal wine glasses, folded napkins and tall silver candelabra with lit candles. A row of empty high-backed dining chairs stands only on the far side of the table, between the table and the far wall, facing the viewer; the near side of the table, toward the viewer, is open with no chairs. Two crystal chandeliers hang high up near the ceiling on short chains, well above the table and the portraits, glowing in warm candle-gold light. The whole place is an empty, quiet set just before the party arrives: bare ground, still water and clear air, and every surface is plain stone, wood, foliage, water or sky.",
+   "vae": [
+    "7",
+    0
+   ]
+  }
+ },
+ "11": {
+  "_meta": {
+   "title": "negative"
+  },
+  "class_type": "TextEncodeQwenImageEditPlus",
+  "inputs": {
+   "clip": [
+    "6",
+    0
+   ],
+   "image1": [
+    "60",
+    0
+   ],
+   "prompt": "",
+   "vae": [
+    "7",
+    0
+   ]
+  }
+ },
+ "12": {
+  "_meta": {
+   "title": "$seed"
+  },
+  "class_type": "KSampler",
+  "inputs": {
+   "cfg": 1.0,
+   "denoise": 1,
+   "latent_image": [
+    "8",
+    0
+   ],
+   "model": [
+    "5",
+    0
+   ],
+   "negative": [
+    "21",
+    0
+   ],
+   "positive": [
+    "20",
+    0
+   ],
+   "sampler_name": "euler",
+   "scheduler": "simple",
+   "seed": 930000,
+   "steps": 4
+  }
+ },
+ "13": {
+  "_meta": {
+   "title": "VAE Decode"
+  },
+  "class_type": "VAEDecode",
+  "inputs": {
+   "samples": [
+    "12",
+    0
+   ],
+   "vae": [
+    "7",
+    0
+   ]
+  }
+ },
+ "14": {
+  "_meta": {
+   "title": "save frame with matte"
+  },
+  "class_type": "SaveImage",
+  "inputs": {
+   "filename_prefix": "kk/rooms/comedor/run-c/p2",
+   "images": [
+    "13",
+    0
+   ]
+  }
+ },
+ "20": {
+  "_meta": {
+   "title": "reference latents: positive"
+  },
+  "class_type": "FluxKontextMultiReferenceLatentMethod",
+  "inputs": {
+   "conditioning": [
+    "10",
+    0
+   ],
+   "reference_latents_method": "index_timestep_zero"
+  }
+ },
+ "21": {
+  "_meta": {
+   "title": "reference latents: negative"
+  },
+  "class_type": "FluxKontextMultiReferenceLatentMethod",
+  "inputs": {
+   "conditioning": [
+    "11",
+    0
+   ],
+   "reference_latents_method": "index_timestep_zero"
+  }
+ },
+ "3": {
+  "_meta": {
+   "title": "Load Diffusion Model"
+  },
+  "class_type": "UNETLoader",
+  "inputs": {
+   "unet_name": "qwen_image_edit_2511_fp8mixed.safetensors",
+   "weight_dtype": "default"
+  }
+ },
+ "30": {
+  "_meta": {
+   "title": "Lightning 4-step (built for 2509; unproven on 2511)"
+  },
+  "class_type": "LoraLoaderModelOnly",
+  "inputs": {
+   "lora_name": "Qwen-Image-Edit-2509-Lightning-4steps-V1.0-bf16.safetensors",
+   "model": [
+    "4",
+    0
+   ],
+   "strength_model": 1.0
+  }
+ },
+ "4": {
+  "_meta": {
+   "title": "ModelSamplingAuraFlow"
+  },
+  "class_type": "ModelSamplingAuraFlow",
+  "inputs": {
+   "model": [
+    "3",
+    0
+   ],
+   "sampling": "flow",
+   "shift": 3.1
+  }
+ },
+ "5": {
+  "_meta": {
+   "title": "CFGNorm"
+  },
+  "class_type": "CFGNorm",
+  "inputs": {
+   "model": [
+    "30",
+    0
+   ],
+   "pre_cfg": false,
+   "strength": 1
+  }
+ },
+ "6": {
+  "_meta": {
+   "title": "Load CLIP"
+  },
+  "class_type": "CLIPLoader",
+  "inputs": {
+   "clip_name": "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+   "device": "default",
+   "type": "qwen_image"
+  }
+ },
+ "7": {
+  "_meta": {
+   "title": "Load VAE"
+  },
+  "class_type": "VAELoader",
+  "inputs": {
+   "vae_name": "qwen_image_vae.safetensors"
+  }
+ },
+ "8": {
+  "_meta": {
+   "title": "Empty Latent Image"
+  },
+  "class_type": "EmptyLatentImage",
+  "inputs": {
+   "batch_size": 1,
+   "height": 1248,
+   "width": 832
+  }
+ },
+ "60": {
+  "_meta": {
+   "title": "$base"
+  },
+  "class_type": "LoadImage",
+  "inputs": {
+   "image": "$base"
+  }
+ }
+}

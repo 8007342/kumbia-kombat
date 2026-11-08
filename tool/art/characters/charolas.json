@@ -1,0 +1,157 @@
+{
+ "$comment": "The comedor's opponent, Don Charolas, the head waiter (plan/levels/mansion-act-two-2026-11-08.md, section 6). Short and round, the opposite of the tall narrow Don Terciopelo. He polkas (motion set opponent-polka) with a silver tray balanced on his left hand, on the picture's right, in every drawing. The tray, the cloche and the napkin are in the pose words, not rig props. Acceptance delegated to COMEDOR, 2026-11-08, each choice reversible.",
+ "id": "charolas",
+ "family": "charolas-v1",
+ "style": "party-pixel",
+ "description": "Comedor opponent, Don Charolas: a short, round-cheeked head waiter in a white waiter's jacket, black bow tie and a long white apron, balancing a silver tray on one hand.",
+ "body": {
+  "preset": "short-round-adult"
+ },
+ "pronouns": [
+  "he",
+  "him",
+  "his"
+ ],
+ "skin": "#C08A60",
+ "traits": "short round-bellied head waiter of about fifty, round rosy cheeks, slick centre-parted black hair, a tiny black moustache, jolly and nimble",
+ "demeanor": "jolly, nimble and proud of never spilling a drop, until he is won over",
+ "garments": [
+  {
+   "id": "hair",
+   "shape": "short-hair-moustache",
+   "region": "hair",
+   "colour": "#1C1A1E",
+   "text": "slick centre-parted black hair and a tiny black moustache"
+  },
+  {
+   "id": "shirt",
+   "shape": "shirt-stocky",
+   "region": "shirt",
+   "colour": "#F2F0EA",
+   "text": "white shirt collar"
+  },
+  {
+   "id": "jacket",
+   "shape": "waistcoat-fitted",
+   "region": "cloth",
+   "colour": "#EEEBE3",
+   "text": "short white waiter's jacket with brass buttons",
+   "secondaryMotion": "lag-1"
+  },
+  {
+   "id": "apron",
+   "shape": "waist-apron",
+   "region": "cloth",
+   "colour": "#F4F2EC",
+   "text": "long white apron from the waist to the shins",
+   "secondaryMotion": "lag-1"
+  },
+  {
+   "id": "bowtie",
+   "shape": "palette-only",
+   "region": "accessory",
+   "colour": "#141418",
+   "alsoIn": [
+    "shirt",
+    "cloth",
+    "skin"
+   ],
+   "text": "black bow tie"
+  },
+  {
+   "id": "silver",
+   "shape": "palette-only",
+   "region": "accessory",
+   "colour": "#B8BCC4",
+   "alsoIn": [
+    "cloth",
+    "skin",
+    "shirt",
+    "hair"
+   ],
+   "text": "the round silver tray"
+  },
+  {
+   "id": "wine",
+   "shape": "palette-only",
+   "region": "accessory",
+   "colour": "#7A1424",
+   "alsoIn": [
+    "cloth",
+    "skin",
+    "shirt",
+    "hair"
+   ],
+   "text": "two glasses of red wine on the tray"
+  },
+  {
+   "id": "trousers",
+   "shape": "trousers",
+   "region": "trousers",
+   "colour": "#15151A",
+   "text": "black trousers"
+  },
+  {
+   "id": "shoes",
+   "shape": "shoes-flat",
+   "region": "shoes",
+   "colour": "#0E0E12",
+   "alsoIn": [
+    "trousers"
+   ],
+   "text": "polished black shoes"
+  }
+ ],
+ "motion": {
+  "set": "opponent-polka",
+  "overrides": {}
+ },
+ "drawing": {
+  "noun": "man",
+  "fits": "hair, both shoes, both hands and the whole tray",
+  "look": "short, round, plump build with a round belly, short legs and a big round head, round rosy cheeks, slick shiny black hair parted in the centre and combed flat, a tiny neat black moustache, warm tan skin, a short white waiter's jacket with brass buttons, a white shirt collar with a black bow tie, a long white apron tied at the waist reaching to his shins, black trousers and polished black shoes, and thick dark ink outline",
+  "extra": "He is a grown man of about fifty, short and round and light on his feet. Both eyes are open. He smiles a jolly closed-mouth smile under the tiny moustache. ",
+  "sheet": {
+   "source": {
+    "image": "tool/art/references/terciopelo/front.png",
+    "styleOnly": true
+   },
+   "views": {
+    "front": {
+     "image": "tool/art/references/charolas/front.png",
+     "description": "standing square facing the viewer, feet a little apart, the right arm relaxed at his side with the open hand visible, the left hand on the right side of the picture held up beside his head with the palm flat, balancing a round silver tray with two glasses of red wine on it",
+     "stageScale": 0.78
+    },
+    "back": {
+     "image": "tool/art/references/charolas/back.png",
+     "description": "seen from directly behind, his back to the viewer, standing with feet a little apart, the right arm relaxed at his side, the left hand held up beside his head balancing a round silver tray, the plain back of his white jacket and the apron's bow at the back of his waist",
+     "look": "short, round, plump build with short legs and a big round head, slick shiny black hair, warm tan skin, a short white waiter's jacket with a plain back, a long white apron tied in a bow at the back of the waist, black trousers and polished black shoes, and thick dark ink outline",
+     "extra": "He is a grown man of about fifty. From behind no face, moustache or bow tie shows. "
+    }
+   }
+  },
+  "seed": 993000,
+  "poseOverrides": {},
+  "score": {
+   "knee": ["apron"],
+   "silhouetteTolerance": 30
+  }
+ },
+ "references": {
+  "mode": "source",
+  "sources": []
+ },
+ "targets": [
+  {
+   "room": "comedor",
+   "atlas": "charolas",
+   "out": "assets/art/ensemble/charolas-v1.png",
+   "native": [
+    256,
+    320
+   ],
+   "pixelScale": 3
+  }
+ ],
+ "seedBase": 993000
+}

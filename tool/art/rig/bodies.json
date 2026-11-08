@@ -23,6 +23,14 @@
   "thigh": 0.50, "shin": 0.46, "foot": 0.22, "ankle_h": 0.07,
   "limb_r": {"torso": 0.15, "belly": 0.13, "arm": 0.062, "fore": 0.054, "hand": 0.066, "thigh": 0.082, "shin": 0.062, "brim": 0.28, "crown": 0.14}
  },
+ "short-round-adult": {
+  "$comment": "Short, round head waiter (Don Charolas): shorter legs than stocky-adult, a round belly, a bigger head for the height and a short neck. The opposite of the tall narrow Don Terciopelo.",
+  "human": true, "orthoScale": 2.6, "centerZ": 1.00,
+  "hip_height": 0.76, "torso": 0.47, "neck": 0.04, "head_r": 0.18,
+  "shoulder_half": 0.21, "hip_half": 0.13, "upper_arm": 0.27, "forearm": 0.24,
+  "thigh": 0.36, "shin": 0.35, "foot": 0.22, "ankle_h": 0.07,
+  "limb_r": {"torso": 0.225, "belly": 0.28, "arm": 0.085, "fore": 0.072, "hand": 0.066, "thigh": 0.11, "shin": 0.085, "brim": 0.28, "crown": 0.15}
+ },
  "macron": {
   "$comment": "Toy robot, about .35 adult stature. Authored at adult scale; final stature comes from the game's floor projection.",
   "human": false, "orthoScale": 1.8, "centerZ": 0.74,

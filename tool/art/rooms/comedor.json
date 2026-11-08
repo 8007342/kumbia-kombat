@@ -1,0 +1,354 @@
+{
+ "id": "comedor",
+ "title": "EL GRAN COMEDOR",
+ "styleRef": "billiards",
+ "comment": "COMEDOR, 2026-11-08. The mansion's long dining hall seen broadside: the banquet table runs across the room in front of the far wall, behind the dance floor, with the diners' places on its far side facing the room. Two chandeliers over the table, gilt-framed portraits and still lifes on wine-red damask, a marble statue in an arched niche at the far left corner, and the service door at the far right, the way out. Ids reused from the shared set: stage = banquet table, window = portraits, glass = still lifes, inner = the niche, pilaster = wainscot and cornice, door = service door, lamp = chandeliers.",
+ "camera": {
+  "horizonY": 0.27,
+  "eyeHeightAdults": 1.0,
+  "focalPx": 1200,
+  "vanishingX": 0.5,
+  "originBottomX": 0.5
+ },
+ "phone": {
+  "width": 390,
+  "height": 844
+ },
+ "safe": {
+  "x": [
+   0.17,
+   0.83
+  ],
+  "y": [
+   0.17,
+   0.65
+  ]
+ },
+ "tapBand": {
+  "y": [
+   0.65,
+   0.97
+  ],
+  "allow": [
+   "floor",
+   "joint"
+  ]
+ },
+ "cast": {
+  "heroStature": 0.35,
+  "minHeroLogical": 34
+ },
+ "walkable": [
+  "floor",
+  "joint"
+ ],
+ "standable": [
+  "floor",
+  "joint"
+ ],
+ "paint": [
+  {
+   "kind": "paving",
+   "id": "floor",
+   "s": [
+    -2,
+    5.0
+   ],
+   "t": [
+    -3,
+    3
+   ],
+   "every": 0.8,
+   "lanes": 5
+  },
+  {
+   "kind": "wall",
+   "id": "panel",
+   "a": [
+    5.0,
+    -3
+   ],
+   "b": [
+    5.0,
+    3
+   ],
+   "z": [
+    0,
+    2.6
+   ]
+  },
+  {
+   "kind": "wall",
+   "id": "panel",
+   "a": [
+    -2,
+    -3
+   ],
+   "b": [
+    5.0,
+    -3
+   ],
+   "z": [
+    0,
+    2.6
+   ]
+  },
+  {
+   "kind": "wall",
+   "id": "panel",
+   "a": [
+    -2,
+    3
+   ],
+   "b": [
+    5.0,
+    3
+   ],
+   "z": [
+    0,
+    2.6
+   ]
+  },
+  {
+   "kind": "wall",
+   "id": "pilaster",
+   "a": [
+    5.0,
+    -3
+   ],
+   "b": [
+    5.0,
+    3
+   ],
+   "z": [
+    0,
+    0.45
+   ]
+  },
+  {
+   "kind": "wall",
+   "id": "inner",
+   "a": [
+    5.0,
+    -1.85
+   ],
+   "b": [
+    5.0,
+    -1.4
+   ],
+   "z": [
+    0.0,
+    1.85
+   ]
+  },
+  {
+   "kind": "wall",
+   "id": "window",
+   "a": [
+    5.0,
+    -1.15
+   ],
+   "b": [
+    5.0,
+    -0.65
+   ],
+   "z": [
+    1.0,
+    1.85
+   ]
+  },
+  {
+   "kind": "wall",
+   "id": "glass",
+   "a": [
+    5.0,
+    -0.4
+   ],
+   "b": [
+    5.0,
+    0.4
+   ],
+   "z": [
+    1.1,
+    1.7
+   ]
+  },
+  {
+   "kind": "wall",
+   "id": "window",
+   "a": [
+    5.0,
+    0.6
+   ],
+   "b": [
+    5.0,
+    1.1
+   ],
+   "z": [
+    1.0,
+    1.85
+   ]
+  },
+  {
+   "kind": "wall",
+   "id": "door",
+   "a": [
+    5.0,
+    1.25
+   ],
+   "b": [
+    5.0,
+    1.7
+   ],
+   "z": [
+    0,
+    1.4
+   ]
+  },
+  {
+   "kind": "box",
+   "id": "stage",
+   "s": [
+    3.95,
+    4.4
+   ],
+   "t": [
+    -1.35,
+    1.05
+   ],
+   "z": [
+    0,
+    0.42
+   ]
+  },
+  {
+   "kind": "discs",
+   "id": "lamp",
+   "at": [
+    [
+     4.0,
+     -0.75,
+     1.95
+    ],
+    [
+     4.0,
+     0.65,
+     1.95
+    ]
+   ],
+   "r": 0.16
+  }
+ ],
+ "story": [
+  {
+   "name": "banquet",
+   "ids": [
+    "stage"
+   ]
+  },
+  {
+   "name": "service-door",
+   "ids": [
+    "door"
+   ],
+   "ignoreTop": true
+  }
+ ],
+ "marks": {
+  "heroHome": [
+   1.3,
+   0
+  ],
+  "heroEntrance": [
+   1.04,
+   -0.36
+  ],
+  "heroRetreat": [
+   1.13,
+   0
+  ],
+  "challengers": [
+   {
+    "id": "don-charolas",
+    "atlas": "charolas",
+    "mark": [
+     2.33,
+     0
+    ],
+    "yieldMark": [
+     2.33,
+     -0.34
+    ]
+   }
+  ],
+  "pathEnd": [
+   4.85,
+   1.45
+  ],
+  "route": [
+   [
+    1.3,
+    0
+   ],
+   [
+    2.2,
+    0.6
+   ],
+   [
+    3.3,
+    1.12
+   ],
+   [
+    4.3,
+    1.35
+   ],
+   [
+    4.85,
+    1.45
+   ]
+  ],
+  "guests": [],
+  "plants": []
+ },
+ "props": [],
+ "scene": "It is the mansion's long grand dining hall at night during a candlelit supper, seen from the dance floor in front of the banquet table: a warm, happy, festive room of wine red, cream and candle gold.",
+ "keep": "every wall edge, the long banquet table across the room and its height, the arched niche at the far left, the portraits and the still life on the far wall, the service door at the far right, the two chandeliers, every floor joint and the horizon",
+ "zones": {
+  "floor": {
+   "layout": "a polished dark wood floor in front of the table, with the same grid as image 1.",
+   "paint": "The floor is dark warm walnut parquet in wide plain boards running from wall to wall, one calm dim tone across its whole area, with a soft warm sheen only near the table, and the near half plain, even and dark, reaching the bottom edge and lying open and clear."
+  },
+  "panel": {
+   "layout": "wine-red damask walls.",
+   "paint": "The walls are hung with deep wine-red damask silk with a faint woven pattern, under a cream and gilt cornice and a dark coffered ceiling."
+  },
+  "pilaster": {
+   "layout": "a cream wainscot along the foot of the walls.",
+   "paint": "A cream painted wooden wainscot with gilt mouldings runs along the foot of the walls."
+  },
+  "inner": {
+   "layout": "a tall arched niche in the far left corner.",
+   "paint": "A tall arched cream niche in the far wall holds a white marble statue of a classical figure on a plinth, softly lit."
+  },
+  "window": {
+   "layout": "tall gilt-framed portraits on the far wall.",
+   "paint": "Tall oil portraits in heavy carved gilt frames hang on the far wall: a gentleman in a dark old-fashioned coat on the left, a lady in a long gown on the right."
+  },
+  "glass": {
+   "layout": "a wide gilt-framed still life in the middle of the far wall.",
+   "paint": "A wide oil still life of fruit, flowers and a silver jug in a carved gilt frame hangs in the middle of the far wall."
+  },
+  "door": {
+   "layout": "a closed service door at the far right.",
+   "paint": "A closed dark wooden service door with a small round window and a brass push plate stands at the far right of the far wall, its foot on the same line as in image 1."
+  },
+  "stage": {
+   "layout": "a long banquet table running across the room.",
+   "paint": "One long banquet table runs straight across the picture from left to right, parallel to the far wall and close to it, draped in a cream damask cloth to the floor, set for supper with white soup bowls of steaming soup, silver cutlery, crystal wine glasses, folded napkins and tall silver candelabra with lit candles. A row of empty high-backed dining chairs stands only on the far side of the table, between the table and the far wall, facing the viewer; the near side of the table, toward the viewer, is open with no chairs."
+  },
+  "lamp": {
+   "layout": "two crystal chandeliers hanging over the table.",
+   "paint": "Two crystal chandeliers hang high up near the ceiling on short chains, well above the table and the portraits, glowing in warm candle-gold light."
+  }
+ }
+}

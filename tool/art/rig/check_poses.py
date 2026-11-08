@@ -39,7 +39,8 @@ REAR_CLIPS = {"back_groove", "back_accent"}  # the yaw cap is measured from faci
 BAND_CLIPS = {"relaxed", "tap", "swing"}  # motion set band-loop: arms reach across to an instrument, a horn is at the face
 CROSSED_ARMS = {"crossed"}  # the arms cross on purpose
 FACE_TOUCH_CLIPS = {"moustache", "glance", "rose", "bow"}  # motion set opponent-chacha: a hand at the moustache, the hair or the lapel is the pose, and in a deep bow the head comes down past the swept arm
-SPIN_SIDE = {"spin.side_l", "spin.side_r"}  # in profile the ballroom frame's arms overlap the head and each other
+SPIN_SIDE = {"spin.side_l", "spin.side_r"}
+TRAY_TURNS = {"spin.34_l", "spin.34_r", "spin.back34_l", "spin.back34_r"}  # motion set opponent-polka: turned three quarters, the tray hand held up beside the head crosses it in 2D  # in profile the ballroom frame's arms overlap the head and each other
 TURNED_BEHIND = {"bow"}  # turned three quarters, the hand behind the back crosses the near arm in 2D
 HEAD_ONLY = {"crossed"}  # a nod moves little but the head, so the static check does not apply
 NO_WIDTH_CHECK = {"turn", "reveal", "spin"}            # deliberate 360-degree turn views (no width/drift check)
@@ -93,7 +94,7 @@ def crossing_problems(r: dict) -> list[str]:
 
 
 def head_problems(r: dict) -> list[str]:
-    if not r.get("openpose") or r["id"] in HEAD_WHITELIST or r["id"] in SPIN_SIDE or r.get("clip") in FACE_TOUCH_CLIPS or r.get("clip") in BAND_CLIPS or (r.get("cue") and r.get("clip") in CUE_NEAR_FACE):
+    if not r.get("openpose") or r["id"] in HEAD_WHITELIST or r["id"] in SPIN_SIDE or r["id"] in TRAY_TURNS or r.get("clip") in FACE_TOUCH_CLIPS or r.get("clip") in BAND_CLIPS or (r.get("cue") and r.get("clip") in CUE_NEAR_FACE):
         return []
     head = r["joints"]["head"]
     limit = HEAD_CLEAR * r["headWidthPx"]

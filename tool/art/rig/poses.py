@@ -906,3 +906,146 @@ OPPONENT_CHACHA_INTENT = {**OPPONENT_64_INTENT, **CHACHA_INTENT}
 assert set(OPPONENT_CHACHA_INTENT) == {f"{c}.{n}" for c, d in OPPONENT_CHACHA.items() for n in d}, "intent ids != pose ids"
 MOTION_SETS = {**MOTION_SETS, "opponent-chacha": OPPONENT_CHACHA}
 INTENT_BY_SET = {**INTENT_BY_SET, "opponent-chacha": OPPONENT_CHACHA_INTENT}
+
+# Motion set opponent-polka: Don Charolas, the comedor's head waiter (plan/levels/mansion-act-two-2026-11-08.md, section 6).
+# The 64 shared names with the groove redrawn as the norteño polka hop step (per side: step on 1, close on "and",
+# step on 2, hop on "and" with the free knee up), and a silver tray balanced on his LEFT hand (the picture's right)
+# in every drawing, held up beside his head on his fingertips. Mirrored right-side drawings get the tray put back
+# on the left hand, so it never changes hands. The left_hand call is the tray itself thrust high; clap pats the
+# free hand on his thigh. Then his charisma (a tray wobble saved at the last second, a napkin flick), the tower of
+# trays for LA TORRE DE CHAROLAS, and the outro: spin to a stop, present the cloche, lift it.
+
+TRAY_L = dict(l_arm=(88, 8), l_fore=(146, 10))  # elbow out at shoulder height, forearm straight up, palm flat under the tray
+
+
+def _tray(clip: dict) -> dict:
+    return {k: (replace(p, **TRAY_L), s) for k, (p, s) in clip.items()}
+
+
+_PK_STEP_L = Pose(twist=-4, lean=4, side_bend=4, pelvis_x=0.05, pelvis_roll=7, head_nod=6, head_side=-4, pin="l",
+                  both_home=False, l_thigh=(8, 24), l_shin=(2, -14), r_thigh=(16, -20), r_shin=(14, -44), r_foot=24,
+                  r_arm=(40, -8), r_fore=(-40, -6))
+_PK_CLOSE_L = Pose(twist=2, lean=1, side_bend=-1, pelvis_x=0.01, pelvis_roll=1, head_nod=-4, pin="mid",
+                   l_thigh=(5, 4), l_shin=(4, -2), r_thigh=(5, 4), r_shin=(4, -2), l_foot=18, r_foot=18,
+                   r_arm=(40, -8), r_fore=(-40, -6))
+_PK_STEP2_L = Pose(twist=-6, lean=5, side_bend=5, pelvis_x=0.06, pelvis_roll=8, head_nod=8, head_side=-6, pin="l",
+                   both_home=False, l_thigh=(10, 28), l_shin=(2, -16), r_thigh=(14, -22), r_shin=(12, -50), r_foot=30,
+                   r_arm=(54, 10), r_fore=(70, 20))
+_PK_HOP_L = Pose(twist=6, lean=-3, side_bend=-4, pelvis_x=0.03, pelvis_roll=-4, pelvis_y=0.05, head_nod=-10,
+                 head_side=6, pin="l", both_home=False,
+                 l_thigh=(4, 4), l_shin=(4, -4), l_foot=30, r_thigh=(12, 62), r_shin=(6, -10), r_foot=20,
+                 r_arm=(70, 16), r_fore=(96, 24))
+POLKA_GROOVE = {"down_l": (_PK_STEP_L, "left"), "pass_l": (_PK_CLOSE_L, "both"),
+                "up_l": (_PK_STEP2_L, "left"), "pass_l2": (_PK_HOP_L, "left")}
+POLKA_GROOVE |= mirror_clip(POLKA_GROOVE, {"down_l": "down_r", "pass_l": "pass_r", "up_l": "up_r", "pass_l2": "pass_r2"})
+POLKA_GROOVE = ordered(POLKA_GROOVE, ["down_l", "pass_l", "up_l", "pass_l2", "down_r", "pass_r", "up_r", "pass_r2"])
+# mirroring moved the free arm to the left; put the free arm back on the right before the tray goes on the left
+POLKA_GROOVE = {k: ((replace(p, r_arm=p.l_arm, r_fore=p.l_fore) if k.endswith("_r") or k.endswith("_r2") else p), s)
+                for k, (p, s) in POLKA_GROOVE.items()}
+
+# The tray call: the tray itself is thrust high on the left hand, the right fist on the hip.
+TRAY_CALL = {
+    "prep": (replace(LEFT_HAND["prep"][0], l_arm=(40, 20), l_fore=(120, 30)), "right"),
+    "peak": (replace(LEFT_HAND["peak"][0], l_arm=(132, 10), l_fore=(146, 6)), "right"),
+    "follow": (replace(LEFT_HAND["follow"][0], l_arm=(140, 14), l_fore=(150, 8)), "right"),
+    "return": (replace(LEFT_HAND["return"][0], **TRAY_L), "both"),
+}
+_THIGH = {"open": ((54, 20), (104, 30)), "close": ((32, 14), (44, 24)), "contact": ((14, 8), (6, 12)), "release": ((38, 16), (64, 26))}
+THIGH_CLAP = {k: (replace(p, r_arm=_THIGH[k][0], r_fore=_THIGH[k][1]), s) for k, (p, s) in CLAP.items()}
+
+SPIN_TRAY = {name: (Pose(yaw=45 * i, pin="mid", head_nod=-4, r_arm=(64, 4), r_fore=(84, 8),
+                         l_thigh=(4, 6), l_shin=(4, -4), r_thigh=(10, 20), r_shin=(6, -10)), "both")
+             for i, name in enumerate(_SPIN_NAMES)}
+_EASY_L = dict(side_bend=3, pelvis_x=0.04, pelvis_roll=6, pin="l",
+               l_thigh=(4, 4), l_shin=(3, -2), r_thigh=(10, 12), r_shin=(6, -6))
+TRAY_WOBBLE = {
+    "a": (Pose(lean=-6, side_bend=10, pelvis_x=-0.06, pelvis_roll=-10, head_turn=18, head_nod=-14, pin="r",
+               r_thigh=(4, 4), r_shin=(3, -2), l_thigh=(24, 18), l_shin=(20, -8), l_foot=20,
+               l_arm=(98, 0), l_fore=(150, -10), r_arm=(84, 20), r_fore=(110, 30)), "right"),
+    "b": (Pose(lean=-2, head_nod=-6, head_side=-6, **_EASY_L, **TRAY_L, r_arm=(60, 20), r_fore=(100, 30)), "both"),
+}
+NAPKIN = {
+    "a": (Pose(twist=8, head_nod=4, head_turn=-8, **_EASY_L, **TRAY_L, r_arm=(20, 30), r_fore=(-70, 60)), "both"),
+    "b": (Pose(twist=-6, head_nod=-6, head_turn=-14, **_EASY_L, **TRAY_L, r_arm=(96, 20), r_fore=(120, 10)), "both"),
+}
+TORRE = {
+    "a": (Pose(lean=-2, head_nod=-16, pin="mid", l_thigh=(6, 6), l_shin=(5, -3), r_thigh=(6, 6), r_shin=(5, -3),
+               l_arm=(134, 8), l_fore=(148, 4), r_arm=(84, 8), r_fore=(96, 10)), "both"),
+    "b": (Pose(lean=-4, head_nod=-20, side_bend=-3, pin="l", both_home=False,
+               l_thigh=(4, 2), l_shin=(4, -2), l_foot=40, r_thigh=(14, 50), r_shin=(6, -12), r_foot=24,
+               l_arm=(138, 6), l_fore=(150, 2), r_arm=(96, 6), r_fore=(110, 4)), "left"),
+}
+CLOCHE = {
+    "stop": (Pose(yaw=-10, head_nod=-6, pin="mid", l_thigh=(4, 4), l_shin=(3, -2), r_thigh=(4, 4), r_shin=(3, -2),
+                  **TRAY_L, r_arm=(110, 10), r_fore=(130, 4)), "both"),
+    "present": (Pose(yaw=24, lean=8, head_nod=6, **_EASY_L, l_arm=(40, 60), l_fore=(30, 88),
+                     r_arm=(30, 50), r_fore=(-20, 80)), "both"),
+    "lift": (Pose(yaw=24, lean=2, head_nod=-6, head_turn=10, **_EASY_L, l_arm=(40, 60), l_fore=(30, 88),
+                  r_arm=(110, 30), r_fore=(150, 20)), "both"),
+}
+_TRAYED = {c: _tray(d) for c, d in OPPONENT_64.items() if c not in ("groove", "left_hand", "clap")}
+OPPONENT_POLKA = {**_TRAYED, "groove": _tray(POLKA_GROOVE), "left_hand": TRAY_CALL, "clap": _tray(THIGH_CLAP),
+                  "spin": _tray(SPIN_TRAY), "tray_wobble": TRAY_WOBBLE, "napkin": NAPKIN, "torre": TORRE,
+                  "cloche": CLOCHE}
+OPPONENT_POLKA = {c: OPPONENT_POLKA[c] for c in [*OPPONENT_64, "spin", "tray_wobble", "napkin", "torre", "cloche"]}
+# His short legs put the trailing foot of the shared side-step a few pixels under the floor: bend that knee a little more.
+OPPONENT_POLKA["yield_side"] = {**OPPONENT_POLKA["yield_side"],
+                                "pass_l": (replace(OPPONENT_POLKA["yield_side"]["pass_l"][0], r_thigh=(6, 8), r_shin=(4, -22)), "left")}
+
+_TRAY_WORDS = "{his} left hand on the right side of the picture held up beside {his} head with the palm flat, balancing a round silver tray with two glasses of red wine on it"
+_LEFT_BITS = ("left arm", "left fist", "left hand", "left forearm", "left elbow", "left palm", "both hands", "both forearms",
+              "arms", "hands", "elbows", "palms", "hat")
+
+
+def _with_tray(words: str) -> str:
+    keep = [c for c in words.split(", ") if not any(b in c for b in _LEFT_BITS)]
+    return ", ".join(keep) + ", " + _TRAY_WORDS
+
+
+_PK = "norteño polka: "
+POLKA_INTENT = {k: (ph, _with_tray(w)) for k, (ph, w) in OPPONENT_64_INTENT.items()
+                if not k.startswith(("groove.", "left_hand.", "clap.", "finish_turn.finish"))}
+POLKA_INTENT |= {
+    "groove.down_l": ("down (count 1, step)", _PK + "a bouncy step onto the bent left leg, the right foot just behind on its toe, hips dropped over the left foot, the right fist on the hip, head bobbing down, a cheerful grin"),
+    "groove.pass_l": ("pass (count and, close)", _PK + "the right foot closed beside the left, both feet together up on the balls with the heels raised, knees springy, upright, the right fist on the hip, chin up"),
+    "groove.up_l": ("up (count 2, step)", _PK + "a second bouncy step onto the bent left leg, the right foot lifting behind, hips dropped over the left foot, the right forearm swinging out at waist height, head bobbing down"),
+    "groove.pass_l2": ("accent (count and, the hop)", _PK + "a little hop up off the left foot, the right knee lifted high in front with the toe pointed down, leaning back slightly, the right arm swung out to the side with the open hand, chin up, a jolly grin"),
+    "groove.down_r": ("down (count 1, step)", _PK + "a bouncy step onto the bent right leg, the left foot just behind on its toe, hips dropped over the right foot, the right fist on the hip, head bobbing down, a cheerful grin"),
+    "groove.pass_r": ("pass (count and, close)", _PK + "the left foot closed beside the right, both feet together up on the balls with the heels raised, knees springy, upright, the right fist on the hip, chin up"),
+    "groove.up_r": ("up (count 2, step)", _PK + "a second bouncy step onto the bent right leg, the left foot lifting behind, hips dropped over the right foot, the right forearm swinging out at waist height, head bobbing down"),
+    "groove.pass_r2": ("accent (count and, the hop)", _PK + "a little hop up off the right foot, the left knee lifted high in front with the toe pointed down, leaning back slightly, the right arm swung out to the side with the open hand, chin up, a jolly grin"),
+    "left_hand.prep": ("anticipation", "crouched low with weight on the bent right leg, the right fist on the hip, {his} left hand on the right side of the picture lowered to chest height carrying a round silver tray with two glasses of red wine on it, head glancing at the tray"),
+    "left_hand.peak": ("accent", "weight on the straight right leg, the right fist on the hip, {his} left arm on the right side of the picture thrust straight up high above {his} head, balancing a round silver tray with two glasses of red wine flat on the fingertips, left foot on its toe out to the side, head turned up toward the tray, proud"),
+    "left_hand.follow": ("follow-through", "up on the toes of the right foot, the right elbow out with the fist on the hip, {his} left arm on the right side of the picture stretched even higher above {his} head with a round silver tray spinning flat on the fingertips, two glasses of red wine on it, head tipped back watching it, delighted"),
+    "left_hand.return": ("settle", "both feet flat and close, the right hand low on the hip, " + _TRAY_WORDS + ", torso returning upright"),
+    "clap.open": ("anticipation", "standing square and upright, the right hand lifted off the right thigh at hip height, knees soft, chin up, " + _TRAY_WORDS),
+    "clap.close": ("pass", "the right hand swinging down toward the right thigh, knees starting to bend, head starting to nod, " + _TRAY_WORDS),
+    "clap.contact": ("contact (on the beat)", "the right palm slapping the right thigh on the beat, both knees dipped, head nodding down with a smile, " + _TRAY_WORDS),
+    "clap.release": ("follow-through", "the right hand bouncing up off the thigh, knees rising, head level, " + _TRAY_WORDS),
+    "finish_turn.finish_a": ("anticipation (remate)", "weight on the straight right leg, left heel set forward with the toe up, the right hand rising beside the head, chest proud, chin up, " + _TRAY_WORDS),
+    "finish_turn.finish_b": ("accent (remate)", "the right hand smoothing the slick centre-parted hair at {his} temple with a flourish, head dipped slightly, chest proud, left heel forward with the toe up, " + _TRAY_WORDS),
+    "tray_wobble.a": ("anticipation (charisma)", "the tray almost falls: leaning back off balance on the right leg, the left knee kicked up, {his} left hand on the right side of the picture held up and tilted with a round silver tray tipping steeply, two glasses of red wine sliding toward its edge, the right hand flung out wide, eyes wide and mouth open in a little gasp"),
+    "tray_wobble.b": ("accent (charisma)", "saved: standing steady on both feet, {his} left hand on the right side of the picture held up beside {his} head, the round silver tray level again with both glasses of red wine upright and unspilt, the right hand held out in a smug little flourish, chin up, a satisfied grin"),
+    "napkin.a": ("anticipation (charisma)", "standing easy on the left leg, a folded white napkin draped over {his} right forearm held in front of {his} waist, " + _TRAY_WORDS + ", head tilted, a sly smile"),
+    "napkin.b": ("accent (charisma)", "standing easy on the left leg, the right hand flicking a white napkin out high to the side so it snaps open in the air, " + _TRAY_WORDS + ", head turned toward the napkin, a jolly grin"),
+    "torre.a": ("anticipation (the tower)", "standing square on both feet, {his} left arm on the right side of the picture stretched straight up high, balancing a tall teetering tower of five stacked silver trays with glasses between them on the fingertips, the right arm out to the side for balance, head tipped back watching the tower, a confident grin"),
+    "torre.b": ("accent (the tower)", "a polka hop on the left foot, the right knee lifted in front, {his} left arm on the right side of the picture stretched straight up high, balancing a tall teetering tower of five stacked silver trays with glasses between them on the fingertips, the right arm out to the side for balance, head tipped back, a triumphant grin"),
+    "cloche.stop": ("settle (spin to a stop)", "just stopped from a spin, feet together, upright, the right arm flung up in a proud ta-da, " + _TRAY_WORDS + ", chin up, beaming"),
+    "cloche.present": ("accent (the cloche)", "turned a little toward the right of the picture, bowing slightly from the waist, holding a round silver tray out in front with both hands at chest height toward the right of the picture, a tall domed silver cloche closed on the tray, eyes on the viewer, a proud grin"),
+    "cloche.lift": ("accent (the cloche)", "turned a little toward the right of the picture, {his} left hand holding the round silver tray out in front at chest height toward the right of the picture, the right hand lifting the domed silver cloche high off the tray by its knob with a flourish, eyes wide with delight, a big grin"),
+}
+_SPIN_TRAY_WORDS = {
+    "front": "facing the viewer in the middle of a quick polka spin on the spot, the right arm out to the side",
+    "34_r": "turned three-quarters toward the right of the picture, spinning on the spot, the right arm out",
+    "side_r": "in profile facing the right of the picture, spinning on the spot, the right arm out",
+    "back34_r": "turned mostly away from the viewer, the face hidden, spinning on the spot, the back of the slick dark hair showing",
+    "back": "seen from directly behind in the middle of a spin, only the back of {his} head, the white jacket and the apron strings showing",
+    "back34_l": "turned mostly away from the viewer, the face hidden, spinning on the spot, the back of the slick dark hair showing",
+    "side_l": "in profile facing the left of the picture, spinning on the spot, the right arm out",
+    "34_l": "turned three-quarters toward the left of the picture, coming back round to the viewer, the right arm out",
+}
+POLKA_INTENT |= {f"spin.{k}": ("pass (spin)", v + ", the left hand held up high balancing a round silver tray flat, two glasses of red wine on it") for k, v in _SPIN_TRAY_WORDS.items()}
+OPPONENT_POLKA_INTENT = POLKA_INTENT
+assert set(OPPONENT_POLKA_INTENT) == {f"{c}.{n}" for c, d in OPPONENT_POLKA.items() for n in d}, "intent ids != pose ids"
+MOTION_SETS = {**MOTION_SETS, "opponent-polka": OPPONENT_POLKA}
+INTENT_BY_SET = {**INTENT_BY_SET, "opponent-polka": OPPONENT_POLKA_INTENT}

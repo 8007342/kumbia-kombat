@@ -1,0 +1,88 @@
+{
+ "stage": {
+  "calibration": "unverifiedStoryboard",
+  "floor": {
+   "horizonY": 0.27,
+   "referenceFootY": 0.4,
+   "referenceHeight": 0.13
+  },
+  "heroHome": [
+   0.5,
+   0.6
+  ],
+  "heroEntrance": [
+   0.3,
+   0.64
+  ],
+  "heroRetreat": [
+   0.5,
+   0.625
+  ],
+  "challengers": [
+   {
+    "id": "don-charolas",
+    "atlas": "charolas",
+    "mark": [
+     0.5,
+     0.5
+    ],
+    "yieldMark": [
+     0.383,
+     0.5
+    ]
+   }
+  ]
+ },
+ "crowd": {
+  "guests": [],
+  "props": []
+ },
+ "scenery": {
+  "lamps": [
+   [
+    0.3267,
+    0.1236
+   ],
+   [
+    0.6502,
+    0.1236
+   ]
+  ],
+  "plants": []
+ },
+ "departure": {
+  "originY": 0.6,
+  "waypoints": [
+   {
+    "at": 0.0,
+    "x": 0.5,
+    "y": 0.6,
+    "facing": "sideRight"
+   },
+   {
+    "at": 0.279,
+    "x": 0.715,
+    "y": 0.509,
+    "facing": "rear"
+   },
+   {
+    "at": 0.592,
+    "x": 0.8,
+    "y": 0.449,
+    "facing": "rear"
+   },
+   {
+    "at": 0.856,
+    "x": 0.795,
+    "y": 0.415,
+    "facing": "rear"
+   },
+   {
+    "at": 1.0,
+    "x": 0.787,
+    "y": 0.402,
+    "facing": "rear"
+   }
+  ]
+ }
+}

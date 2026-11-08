@@ -2,7 +2,7 @@
   "comment": "One prompt block and consistency reference shared by every room (research: style drift across N rooms). Positive wording only; negation backfires.",
   "styleBlock": "a richly detailed late 16-bit pixel art night painting with very fine small pixels and high detail, moody low-key lighting, deep soft shadows, restrained muted natural colours and warm amber lamp glow, painterly and grown-up in tone, close to near-black in the shadows",
   "emptySet": "The whole place is an empty, quiet set just before the party arrives: bare ground, still water and clear air, and every surface is plain stone, wood, foliage, water or sky.",
-  "acceptedRooms": { "garden": "assets/art/garden/garden-mansion.png", "bar": "assets/art/bar/bar-interior.png", "cool-crowd": "assets/art/cool-crowd/cool-crowd-room.png", "billiards": "art_runs/rooms/billiards/picks/plate-989601.png" },
+  "acceptedRooms": { "garden": "assets/art/garden/garden-mansion.png", "bar": "assets/art/bar/bar-interior.png", "cool-crowd": "assets/art/cool-crowd/cool-crowd-room.png", "billiards": "art_runs/rooms/billiards/picks/plate-989601.png", "salon": "assets/art/salon/salon-room.png" },
   "colourNames": {
     "sky": "dark navy", "trees": "dark teal green", "lawn": "bright green", "path": "tan", "joint": "thin brown lines",
     "hedge": "dark green", "wall": "cream", "roof": "terracotta", "glass": "pale blue", "inner": "dull brown",
