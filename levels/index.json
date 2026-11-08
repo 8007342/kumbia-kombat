@@ -1,5 +1,5 @@
 {
-  "displayTotal": 6,
+  "displayTotal": 7,
   "campaign": [
     {
       "level": "garden",
@@ -19,7 +19,11 @@
     },
     {
       "level": "billiards",
-      "bridgeToNext": "billiards_to_salon"
+      "bridgeToNext": "billiards_to_comedor"
+    },
+    {
+      "level": "comedor",
+      "bridgeToNext": "comedor_to_salon"
     },
     {
       "level": "salon"

@@ -1302,6 +1302,42 @@ class GardenSceneGame extends FlameGame {
           role: role,
         ),
       );
+      final line = challenger.line;
+      if (line == null) continue;
+      // The rest of the line: the lead's drawings, each a little late.
+      final won = s?.phase == GardenPhase.cleared && exitBeat != null;
+      final arch = line.archAt(won ? exitBeat : null, reducedMotion: reducedMotion);
+      for (final dancer in line.dancers) {
+        final late = reducedMotion ? 0.0 : dancer.lagBeats;
+        var theirs = late == 0
+            ? dressed
+            : _challengerAt(beat - late, dancer: challenger.atlas);
+        final theirWin = won && !duet
+            ? shot?.opponentFrameAt(exitBeat! - late, reducedMotion: reducedMotion)
+            : null;
+        if (theirWin != null) theirs = theirs.withFrame(theirWin);
+        final at = line.place(dancer, floor, arch);
+        final where = viewport.project(at);
+        final tall = _adultHeight(
+          viewport,
+          room,
+          at,
+          stature: challenger.stature * dancer.stature,
+        );
+        final size = tall / atlas.nativeHeight('ready');
+        placements.add(
+          _DancerPlacement(
+            atlas: atlas,
+            frame: theirs.frameId,
+            ground: ui.Offset(where.x + theirs.rootOffsetX * size, where.y),
+            footY: where.y,
+            height: tall,
+            scale: size,
+            mirrored: dancer.archMirrored && arch >= .5,
+            role: null,
+          ),
+        );
+      }
     }
     _joinHands(placements, viewport, room, beat);
     for (final dancer in placements) {

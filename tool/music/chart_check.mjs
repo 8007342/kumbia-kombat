@@ -78,6 +78,15 @@ for (let i = 0; i < count; i++) {
   console.log(`pattern ${i} @${bpm}: ${notes.length} presses, ${rich} rich, ${(notes.length / (chart.callBeats * beatMs / 1000)).toFixed(2)}/s, off-beat ${(100 * off / notes.length).toFixed(0)}%, feet on beat ${feetOnBeat}/${feet}, hands off beat ${handsOff}/${hands}`);
 }
 const patterns = [...Array(count).keys()].map(i => notesOf(stepsOf(i)));
+// Any answer into any call: a failed phrase can drop the music to another tier.
+for (let i = 0; i < count; i++) for (let j = 0; j < count; j++) {
+  if (i === j || !plays.has(i) || !plays.has(j)) continue;
+  const beatMs = 60000 / Math.max(plays.get(i), plays.get(j));
+  for (const a of patterns[i]) for (const b of patterns[j]) {
+    const beats = b.at + chart.callBeats - a.at;
+    if (beats < 3) checkPair({...a, step: -2}, {...b, step: -1}, beats, beatMs, `pattern ${i} into ${j}`);
+  }
+}
 const cue = cueProblems(testNotes(level.id, patterns));
 if (cue) fail('cue: ' + cue);
 console.log(bad ? `${bad} problems` : 'clean');

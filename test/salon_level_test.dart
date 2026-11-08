@@ -95,14 +95,14 @@ Future<void> _sheet(List<ui.Image> images, String path) async {
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
-  test('the last level, after billiards, with Charm and its title', () {
+  test('after the comedor, with Charm and its title', () {
     final registry = _registry();
     final campaign = registry.campaign;
-    expect(campaign.last.level.id, 'salon');
-    final billiards = campaign[campaign.length - 2];
-    expect(billiards.level.id, 'billiards');
-    expect(billiards.next, same(campaign.last.level));
-    final salon = campaign.last.level;
+    final at = campaign.indexWhere((step) => step.level.id == 'salon');
+    final before = campaign[at - 1];
+    expect(before.level.id, 'comedor');
+    expect(before.next, same(campaign[at].level));
+    final salon = campaign[at].level;
     expect(salon.title, 'EL SALÓN DE ESPEJOS');
     expect(salon.rules.metric, 'Charm');
     expect(salon.copy.clearedShout, 'QUÉ ELEGANCIA');

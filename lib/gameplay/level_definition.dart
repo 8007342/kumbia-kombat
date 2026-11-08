@@ -10,6 +10,7 @@ import '../music/transport.dart';
 import 'band.dart';
 import 'crowd_interest.dart';
 import 'dance_floor.dart';
+import 'dance_line.dart';
 import 'garden_session.dart';
 import 'gesture_shapes.dart';
 import 'party_layout.dart';
@@ -188,8 +189,12 @@ class LevelChallenger {
     this.meetMark,
     this.facingAway,
     this.defeatStance,
+    this.line,
   });
   final FloorTrack? track;
+
+  /// Dancers who dance as one with this one, a little late. Null for most.
+  final DanceLine? line;
 
   /// Dancing with their back to the room until the first call, if they do.
   final FacingAway? facingAway;
@@ -1461,6 +1466,9 @@ class LevelDefinition {
           defeatStance: fields.has('defeatStance')
               ? _floorClip(fields.child('defeatStance'))
               : null,
+          line: fields.has('line')
+              ? _line(fields.child('line'), fields.point('mark'))
+              : null,
         ),
       );
       fields.finish();
@@ -1472,6 +1480,54 @@ class LevelDefinition {
       throw LevelDataError(path, 'challenger ids must be unique');
     }
     return List.unmodifiable(challengers);
+  }
+
+  static DanceLine _line(_Fields fields, PartyPoint lead) {
+    final path = fields.at('dancers');
+    final raw = fields.list('dancers');
+    if (raw.isEmpty || raw.length > DanceLine.maxDancers) {
+      throw LevelDataError(path, 'a line has 1 to ${DanceLine.maxDancers} more');
+    }
+    final dancers = <LineDancer>[];
+    for (final (i, entry) in raw.indexed) {
+      final dancer = _Fields('$path[$i]', entry);
+      final offset = dancer.point('offset');
+      final arch = dancer.has('archOffset') ? dancer.point('archOffset') : null;
+      final lag = dancer.has('lagBeats')
+          ? dancer.number('lagBeats', min: 0, max: DanceLine.maxLagBeats)
+          : 0.0;
+      // Their marks must be floor a person can stand on, off the thumbs.
+      for (final (key, by) in [('offset', offset), ('archOffset', arch)]) {
+        if (by == null) continue;
+        final at = PartyPoint(lead.x + by.x, lead.y + by.y);
+        if (at.y >= thumbBandTop || at.x < 0 || at.x > 1) {
+          throw LevelDataError(dancer.at(key), 'puts them off the floor: $at');
+        }
+      }
+      dancers.add(
+        LineDancer(
+          offset: offset,
+          lagBeats: lag,
+          archOffset: arch,
+          archMirrored: dancer.has('archMirrored') && dancer.flag('archMirrored'),
+          stature: dancer.has('stature')
+              ? dancer.number('stature', min: .1)
+              : 1,
+        ),
+      );
+      dancer.finish();
+    }
+    LineArch? arch;
+    if (fields.has('arch')) {
+      final a = fields.child('arch');
+      arch = LineArch(
+        from: a.number('from', min: 0),
+        beats: a.number('beats', min: .25),
+      );
+      a.finish();
+    }
+    fields.finish();
+    return DanceLine(dancers: List.unmodifiable(dancers), arch: arch);
   }
 
   static FacingAway _facingAway(_Fields fields) {
