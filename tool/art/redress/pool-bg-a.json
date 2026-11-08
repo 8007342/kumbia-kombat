@@ -1,0 +1,26 @@
+{
+ "$comment": "Redress of a shipped atlas, tool/art/pipeline/redress.py. Agent's design choice (DRESS, 2026-11-08); the owner can reverse it.",
+ "atlas": "pool-bg-a",
+ "run": "dress-pool-bg-a-20261108a",
+ "backdrop": "#50B050",
+ "tolerance": 26,
+ "key": {
+  "frame": "idle_stand",
+  "prompt": "The old man in picture 1 is a guest at an elegant evening party in a mansion's billiard room, and is dressed for it. Change only his clothes and his head: he wears no hat now, and his neat silver-grey hair is combed back. He wears a crisp pale blue dress shirt with long sleeves buttoned at the wrist, a buttoned dark brown tweed waistcoat, a dark burgundy silk tie, well-pressed charcoal grey dress trousers and polished black oxford shoes. He keeps his grey moustache.",
+  "seed": 990810,
+  "count": 2,
+  "pick": null
+ },
+ "framePrompt": "Picture 1 is the drawing to change. Picture 2 shows the same person already dressed for the party. Dress the person in picture 1 in exactly the outfit picture 2 wears: the same garments, the same colours, the same details.",
+ "keepWords": "Keep the pose, the hands, the face, the hair, the skin, the pool cue and where it is, the figure's size and place in the picture and the plain flat green background of picture 1 exactly as they are, in the same crisp late 16-bit pixel art style with a thick dark outline.",
+ "frameSeed": 990820,
+ "count": 2,
+ "derive": {
+  "chalk_b": {
+   "from": "chalk_a",
+   "compress": true
+  }
+ },
+ "palette": null,
+ "picks": {}
+}
