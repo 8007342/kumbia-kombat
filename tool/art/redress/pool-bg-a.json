@@ -21,7 +21,17 @@
   }
  },
  "palette": "tool/art/palettes/pool-bg-a.json",
- "picks": {},
+ "picks": {
+  "chalk_a": "chalk_a-990825.png",
+  "clap_a": "clap_a-990825.png",
+  "clap_b": "clap_b-990826.png",
+  "idle_stand": "key-990810.png",
+  "lean_a": "lean_a-990825.png",
+  "lean_b": "lean_b-990825.png",
+  "lean_stroke": "lean_stroke-990825.png",
+  "watch_a": "watch_a-990825.png",
+  "watch_b": "watch_b-990825.png"
+ },
  "ramps": {
   "skin": {
    "region": "skin",
@@ -139,5 +149,29 @@
     "#6CAEF3"
    ]
   }
+ },
+ "restoreProps": {
+  "frames": [
+   "clap_a",
+   "clap_b"
+  ],
+  "colours": [
+   "#754C00",
+   "#9D722F",
+   "#C9984F",
+   "#E4B97D",
+   "#150000",
+   "#371303",
+   "#5E3320",
+   "#775040"
+  ],
+  "minRun": 8,
+  "why": "both candidates of each clap dropped the cue leaning on his shoulder; the old drawing's cue goes back where the new one is empty",
+  "except": [
+   "#221000",
+   "#442F19",
+   "#6A5138",
+   "#856E58"
+  ]
  }
 }

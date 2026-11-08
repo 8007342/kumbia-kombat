@@ -21,7 +21,17 @@
   }
  },
  "palette": "tool/art/palettes/pool-bg-c.json",
- "picks": {},
+ "picks": {
+  "chalk_a": "chalk_a-990865.png",
+  "clap_a": "clap_a-990865.png",
+  "clap_b": "clap_b-990865.png",
+  "lean_a": "lean_a-990865.png",
+  "lean_b": "lean_b-990865.png",
+  "lean_stroke": "lean_stroke-990865.png",
+  "watch_a": "watch_a-990865.png",
+  "watch_b": "watch_b-990865.png",
+  "idle_stand": "key-990852.png"
+ },
  "ramps": {
   "skin": {
    "region": "skin",

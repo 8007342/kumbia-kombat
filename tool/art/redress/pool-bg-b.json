@@ -23,7 +23,17 @@
   }
  },
  "palette": "tool/art/palettes/pool-bg-b.json",
- "picks": {},
+ "picks": {
+  "chalk_a": "chalk_a-990845.png",
+  "clap_a": "clap_a-990845.png",
+  "clap_b": "clap_b-990845.png",
+  "idle_stand": "idle_stand-990845.png",
+  "lean_a": "lean_a-990845.png",
+  "lean_b": "lean_b-990845.png",
+  "lean_stroke": "lean_stroke-990845.png",
+  "watch_a": "watch_a-990845.png",
+  "watch_b": "watch_b-990845.png"
+ },
  "ramps": {
   "skin": {
    "region": "skin",
@@ -119,5 +129,25 @@
     "#6CAEF3"
    ]
   }
+ },
+ "restoreProps": {
+  "frames": [
+   "watch_a"
+  ],
+  "over": [
+   "watch_a"
+  ],
+  "colours": [
+   "#754C00",
+   "#9D722F",
+   "#C9984F",
+   "#E4B97D",
+   "#150000",
+   "#371303",
+   "#5E3320",
+   "#775040"
+  ],
+  "minRun": 8,
+  "why": "both candidates of watch_a dropped the cue she holds upright in front of her; the old drawing's cue goes back on top"
  }
 }

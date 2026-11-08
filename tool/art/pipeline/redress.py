@@ -4,8 +4,8 @@
 Each drawing is cut from the shipped atlas, set on a flat backdrop in the 256 by 320 native canvas with its floor anchor
 at a fixed point, and grown x3 by nearest neighbour. Qwen-Image-Edit then redresses it: first one key drawing from words
 alone, then every other drawing from the same words, picked against the key so the outfit holds from frame to frame. Back at native size each drawing is keyed off the backdrop, snapped to the
-character's locked palette (finish_local.py) and packed into the same rects at the same anchors, so the manifest's frame ids,
-anchors and pixelsPerUnit stay what the game already plays.
+character's locked palette (finish_local.py) and repacked, each rect the union of its old box and the new drawing, so the
+manifest's frame ids, floor anchors, pixelsPerUnit and standing height stay what the game already plays.
 
   redress.py <spec> stage key|frames [ids]  bake jobs into art_runs/<run>/ (run them with tool/art/rooms/run_room_jobs.py)
   redress.py <spec> sheet                   every candidate, keyed and finished, beside the old drawing, to the cache
@@ -138,7 +138,18 @@ def shift_to(drawn, ref_big, backdrop):
         return float(np.abs(np.roll(big, (dy, dx), axis=(0, 1)) - ref).sum(-1)[edge][::3].mean())
     best = min((err2(dy, dx), dy, dx) for dy in range(-24, 25, 3) for dx in range(-24, 25, 3))
     best = min((err2(dy, dx), dy, dx) for dy in range(best[1] - 2, best[1] + 3) for dx in range(best[2] - 2, best[2] + 3))
-    return Image.fromarray(np.roll(big, best[1:], axis=(0, 1)).astype(np.uint8)), best
+    out = np.roll(big, best[1:], axis=(0, 1))
+    dy, dx = best[1:]
+    # what the roll wrapped round from the far edge is backdrop, not shoes over the head
+    if dy > 0:
+        out[:dy] = backdrop
+    elif dy < 0:
+        out[dy:] = backdrop
+    if dx > 0:
+        out[:, :dx] = backdrop
+    elif dx < 0:
+        out[:, dx:] = backdrop
+    return Image.fromarray(out.astype(np.uint8)), best
 
 
 def key_off(big, backdrop, tol):
@@ -164,7 +175,40 @@ def finished(s, fid, src):
     old = staged_input(s, fid)
     aligned, best = shift_to(Image.open(src), old, rgb(s["backdrop"]))
     rgba = key_off(aligned, rgb(s["backdrop"]), s.get("tolerance", 26))
-    return finish_image(rgba, s), best
+    im = finish_image(rgba, s)
+    if fid in s.get("restoreProps", {}).get("frames", []):
+        im = restore_props(s, fid, im)
+    return im, best
+
+
+def restore_props(s, fid, im):
+    """Where Qwen dropped a held prop that doesn't move (a cue leaning on a shoulder), put the old drawing's prop pixels
+    back wherever the new drawing is empty. Only the listed ramps' colours, in runs long enough to be a cue, not a stray."""
+    old = np.asarray(native_drawing(s, fid)).astype(int)
+    new = np.asarray(im).copy()
+    cols = np.array([rgb(h) for h in s["restoreProps"]["colours"]])
+    hit = (old[..., 3] > 0) & (old[..., :3][..., None, :] == cols).all(-1).any(-1)
+    lab, n = ndimage.label(hit, structure=np.ones((3, 3)))
+    if n:  # the prop is the long run; skin-toned specks of the same ramp elsewhere are not
+        sizes = ndimage.sum(hit, lab, range(1, n + 1))
+        hit = np.isin(lab, [i + 1 for i, z in enumerate(sizes) if z >= s["restoreProps"].get("minRun", 8)])
+    # with its outline and its darker butt: every old pixel the new drawing leaves empty, joined to it
+    empty_old = (old[..., 3] > 0) & (new[..., 3] == 0)
+    if s["restoreProps"].get("except"):  # what the old drawing wore, which must not come back with the prop (a cap's brim)
+        ex = np.array([rgb(h) for h in s["restoreProps"]["except"]])
+        empty_old &= ~(old[..., :3][..., None, :] == ex).all(-1).any(-1)
+    lab, n = ndimage.label(empty_old, structure=np.ones((3, 3)))
+    put = np.isin(lab, [i for i in np.unique(lab[hit & empty_old]) if i])
+    lab, n = ndimage.label(put, structure=np.ones((3, 3)))
+    for i in range(1, n + 1):
+        if (lab == i).sum() < s["restoreProps"].get("minRun", 8):
+            put[lab == i] = False
+    if fid in s["restoreProps"].get("over", []):
+        # a prop held in front of the body: the old prop's own pixels go on top, outline and all
+        cue = hit & ~(old[..., :3].sum(-1) < 90)
+        put |= ndimage.binary_dilation(cue, iterations=1) & (old[..., 3] > 0) & (old[..., :3].sum(-1) < 90) | cue
+    new[put] = old[put]
+    return Image.fromarray(new.astype(np.uint8), "RGBA")
 
 
 def finish_image(rgba, s):
@@ -229,25 +273,18 @@ def pack(s):
         for x, y, w, h in edit.get("clear", []):  # native-canvas boxes to clear: a stray the keyer kept
             a[y:y + h, x:x + w] = 0
         finals[fid] = Image.fromarray(a, "RGBA")
-    # Each drawing keeps its rect where it fits; anything that grew gets a fresh shelf below, and the anchor follows.
+    # Each drawing's rect is the union of its old box and its new drawing, repacked on shelves in the old order. Frame ids,
+    # anchors (moved with the rect) and pixelsPerUnit stay; the standing height is pinned to the old reference drawing's,
+    # so a cap taken off doesn't make anyone taller.
+    ref = entry["frames"][entry["referenceFrame"]]
+    entry.setdefault("playerHeightPx", ref["rect"][3])
     rects = {}
-    grow = []
+    width = entry["imageWidth"]
+    cx, cy, shelf = 2, 2, 0
     for fid in ids:
         f = entry["frames"][fid]
-        x, y, w, h = f["rect"]
         ox, oy = offset(f)
-        bbox = finals[fid].getbbox()
-        inside = bbox[0] >= ox and bbox[1] >= oy and bbox[2] <= ox + w and bbox[3] <= oy + h
-        if inside:
-            rects[fid] = ([x, y, w, h], (ox, oy))
-        else:
-            grow.append(fid)
-    width, height = entry["imageWidth"], entry["imageHeight"]
-    cx, cy, shelf = 2, height + 1, 0
-    for fid in grow:
-        f = entry["frames"][fid]
-        ox, oy = offset(f)
-        x, y, w, h = f["rect"]
+        _, _, w, h = f["rect"]
         bx0, by0, bx1, by1 = finals[fid].getbbox()
         nx0, ny0 = min(bx0, ox), min(by0, oy)
         nx1, ny1 = max(bx1, ox + w), max(by1, oy + h)
@@ -257,7 +294,7 @@ def pack(s):
         rects[fid] = ([cx, cy, nw, nh], (nx0, ny0))
         cx += nw + 2
         shelf = max(shelf, nh)
-    height = max(height, cy + shelf + 2) if grow else height
+    height = cy + shelf + 2
     atlas = Image.new("RGBA", (width, height), (0, 0, 0, 0))
     for fid in ids:
         (x, y, w, h), (ox, oy) = rects[fid]
@@ -279,7 +316,7 @@ def pack(s):
     out = REPO / "assets/art/ensemble" / entry["image"]
     atlas.save(out, optimize=True)
     MANIFEST.write_text(json.dumps(doc, indent=1, ensure_ascii=False) + "\n")
-    print(out.relative_to(REPO), atlas.size, "grown:", grow or "none")
+    print(out.relative_to(REPO), atlas.size, "playerHeightPx", entry["playerHeightPx"])
 
 
 if __name__ == "__main__":
