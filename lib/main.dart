@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 
 import 'console/console_page.dart';
+import 'credits/credits_page.dart';
 import 'gameplay/garden_page.dart';
 import 'gameplay/gesture_capture_page.dart';
 import 'qr/qr_page.dart';
@@ -35,6 +36,7 @@ class KumbiaKombatApp extends StatelessWidget {
         AppRoute.gestures => const GestureCapturePage(),
         AppRoute.console => const ConsolePage(),
         AppRoute.qr => const QrPage(),
+        AppRoute.credits => const CreditsPage(),
         AppRoute.game => const GardenPage(),
       },
     );

@@ -27,6 +27,7 @@ extension type _Audio._(JSObject _) implements JSObject {
   external String get src;
   external set src(String value);
   external set preload(String value);
+  external set loop(bool value);
   external bool get paused;
   external double get currentTime;
   external set currentTime(double value);
@@ -68,7 +69,8 @@ class _WebConsoleAudio implements ConsoleAudio {
   final _element = _Audio()..preload = 'auto';
 
   @override
-  void play({required String opus, required String aac}) {
+  void play({required String opus, required String aac, bool loop = false}) {
+    _element.loop = loop;
     final ogg = _element.canPlayType('audio/ogg; codecs="opus"');
     final path = ogg.isEmpty ? aac : opus;
     // Flutter serves an asset `a/b` at `assets/a/b`, under the page's base.

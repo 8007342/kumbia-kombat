@@ -207,6 +207,7 @@ class _ConsolePageState extends State<ConsolePage> {
             _link('SYNC', ReviewLinks.play(sync: true)),
             _link('LISTENING PAGE', '/listen/'),
             _link('SHARE QR', '/qr/'),
+            _link('CREDITS', ReviewLinks.credits),
           ],
         ),
         const SizedBox(height: 8),
@@ -227,7 +228,8 @@ class _ConsolePageState extends State<ConsolePage> {
           'compensation off. A level link plays that level alone and ends on its end screen. '
           'TIER starts the first phrase at that tier: the crowd and band still '
           'start cold. OUTRO is tier 4 on autoplay, the quickest way to the '
-          'close-up and the walk out in the game itself.',
+          'close-up and the walk out in the game itself. CREDITS plays the '
+          'credits roll, which the campaign also plays after its last end screen.',
         ),
         _noteBox('game / campaign', 'levels/index.json'),
       ],

@@ -2,16 +2,17 @@
 /// other than the beginning. One place for every query name, so the console's
 /// buttons and the game read the same words.
 ///
-/// `/console` and `/qr` are real paths. The deploy serves them three ways, and
+/// `/console`, `/qr` and `/credits` are real paths. The deploy serves them three ways, and
 /// the app reads all three, so none depends on the others:
-/// - `web/console/index.html` and `web/qr/index.html` are copied into the build,
+/// - `web/console/index.html`, `web/qr/index.html` and `web/credits/index.html`
+///   are copied into the build,
 ///   so any static server answers `/console/` with a page that boots the app;
 /// - Cloudflare's `not_found_handling = "single-page-application"` answers any
 ///   other path with `index.html`, URL untouched;
 /// - `?page=console` works on the root page of any server at all.
 library;
 
-enum AppRoute { game, console, qr, gestures }
+enum AppRoute { game, console, qr, credits, gestures }
 
 /// [readPath] is false off the web, where `Uri.base` is the working directory
 /// and a folder that happens to be called `console` must not open the console.
@@ -26,6 +27,7 @@ AppRoute routeFor(Uri uri, {bool readPath = true}) {
   for (final name in named) {
     if (name == 'console') return AppRoute.console;
     if (name == 'qr') return AppRoute.qr;
+    if (name == 'credits') return AppRoute.credits;
   }
   return AppRoute.game;
 }
@@ -65,6 +67,9 @@ class ReviewLinks {
     return Uri(path: '/', queryParameters: query.isEmpty ? null : query)
         .toString();
   }
+
+  /// The credits roll, on its own page.
+  static const credits = '/credits/';
 
   static const shareUrl = 'https://kumbias.tlatoani.net';
 }

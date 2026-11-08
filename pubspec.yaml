@@ -88,6 +88,8 @@ flutter:
     - assets/music/rendered/billiards/
     - assets/music/rendered/salon/
     - levels/
+    # The credits roll's data, from tool/credits/build_credits.py.
+    - assets/credits.json
 
   # To add assets to your application, add an assets section, like this:
   # assets:

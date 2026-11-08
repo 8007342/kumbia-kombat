@@ -5,6 +5,8 @@ import 'dart:math' as math;
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:kumbia_kombat/credits/credits_data.dart';
+import 'package:kumbia_kombat/credits/credits_page.dart';
 import 'package:kumbia_kombat/gameplay/garden_page.dart';
 import 'package:kumbia_kombat/gameplay/garden_scene.dart';
 import 'package:kumbia_kombat/gameplay/garden_session.dart';
@@ -355,7 +357,15 @@ void main() {
     final audio = _PageAudio();
     await tester.pumpWidget(
       MaterialApp(
-        home: GardenPage(audioFactory: () => audio, levels: () async => levels),
+        home: GardenPage(
+          audioFactory: () => audio,
+          levels: () async => levels,
+          credits: () async => const CreditsData(
+            lead: 'Built using',
+            name: 'Tillandsias.org',
+            items: [CreditItem(name: 'Podman', kind: 'platform', degree: 0)],
+          ),
+        ),
       ),
     );
 
@@ -415,6 +425,15 @@ void main() {
     expect(find.text('RESPECT EARNED'), findsNothing);
     expect(find.textContaining('PIZAZZ'), findsNothing);
     expect(audio.leadShape, 'square');
+    // The campaign's last end screen stays a while, then the credits roll.
+    var waited = 0;
+    for (; waited < 15000 && find.byType(CreditsPage).evaluate().isEmpty; waited += 100) {
+      audio.nowSeconds += .1;
+      await tester.pump(const Duration(milliseconds: 100));
+    }
+    expect(find.byType(CreditsPage), findsOneWidget);
+    expect(waited, inInclusiveRange(7900, 9000));
+    expect(find.text('Tillandsias.org'), findsOneWidget);
     expect(tester.takeException(), isNull);
     await tester.pumpWidget(const SizedBox.shrink());
   });

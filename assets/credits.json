@@ -1,0 +1,1054 @@
+{
+ "schema": "kumbia.credits/v1",
+ "generatedBy": "tool/credits/build_credits.py",
+ "header": {
+  "lead": "Built using",
+  "name": "Tillandsias.org"
+ },
+ "music": {
+  "opus": "assets/music/rendered/garden/high.ogg",
+  "aac": "assets/music/rendered/garden/high.m4a",
+  "status": "stand-in",
+  "note": "A stand-in: the garden's high take, the night's first theme, as a bookend. Credits music is still to be made: a slow cumbia reprise of the VIP theme, once that exists."
+ },
+ "counts": {
+  "0": 3,
+  "1": 42,
+  "2": 46,
+  "3+": 51
+ },
+ "items": [
+  {
+   "name": "Fedora Linux",
+   "kind": "platform",
+   "degree": 0,
+   "version": "45",
+   "role": "the host"
+  },
+  {
+   "name": "Podman",
+   "kind": "platform",
+   "degree": 0,
+   "role": "containers for the forge, studio and preview"
+  },
+  {
+   "name": "Tillandsias",
+   "kind": "platform",
+   "degree": 0,
+   "url": "https://tillandsias.org",
+   "role": "the forge, its agents and host tools"
+  },
+  {
+   "name": "Blender",
+   "kind": "tool",
+   "degree": 1,
+   "version": "5.2.3",
+   "role": "rigs and poses, as the bpy module"
+  },
+  {
+   "name": "Claude Code",
+   "kind": "tool",
+   "degree": 1,
+   "role": "the agents"
+  },
+  {
+   "name": "Cloudflare Workers",
+   "kind": "tool",
+   "degree": 1,
+   "role": "serves the game"
+  },
+  {
+   "name": "ComfyUI",
+   "kind": "tool",
+   "degree": 1,
+   "version": "v0.40.0",
+   "role": "runs the art and music models"
+  },
+  {
+   "name": "Dart",
+   "kind": "tool",
+   "degree": 1,
+   "version": "3.13.5",
+   "role": "the game's language"
+  },
+  {
+   "name": "FFmpeg",
+   "kind": "tool",
+   "degree": 1,
+   "version": "9.0.2",
+   "role": "cuts, masters and encodes the music"
+  },
+  {
+   "name": "Flutter",
+   "kind": "tool",
+   "degree": 1,
+   "version": "3.47.7",
+   "role": "the game's framework"
+  },
+  {
+   "name": "Git",
+   "kind": "tool",
+   "degree": 1,
+   "role": "every take, frame and rule, kept"
+  },
+  {
+   "name": "Node.js",
+   "kind": "tool",
+   "degree": 1,
+   "version": "22.23.1",
+   "role": "chart and preview scripts"
+  },
+  {
+   "name": "ollama",
+   "kind": "tool",
+   "degree": 1,
+   "role": "runs the local vision model"
+  },
+  {
+   "name": "OpenSpec",
+   "kind": "tool",
+   "degree": 1,
+   "role": "the specs"
+  },
+  {
+   "name": "Python",
+   "kind": "tool",
+   "degree": 1,
+   "version": "3.14",
+   "role": "the art, music and metrics tools"
+  },
+  {
+   "name": "Rust",
+   "kind": "tool",
+   "degree": 1,
+   "version": "1.99.1",
+   "role": "the mixrs mixer"
+  },
+  {
+   "name": "uv",
+   "kind": "tool",
+   "degree": 1,
+   "version": "0.13.5",
+   "role": "Python environments"
+  },
+  {
+   "name": "Web Audio",
+   "kind": "tool",
+   "degree": 1,
+   "role": "the browser's audio clock"
+  },
+  {
+   "name": "Comfy-Org/ACE-Step-1.5",
+   "kind": "model",
+   "degree": 1,
+   "version": "371bb16",
+   "licence": "apache-2.0",
+   "role": "generated the music"
+  },
+  {
+   "name": "Comfy-Org/Qwen-Image",
+   "kind": "model",
+   "degree": 1,
+   "version": "1f12b17",
+   "licence": "apache-2.0",
+   "role": "Qwen2.5-VL text encoder and VAE for the frames"
+  },
+  {
+   "name": "Comfy-Org/Qwen-Image-Edit",
+   "kind": "model",
+   "degree": 1,
+   "version": "f68ace8",
+   "licence": "apache-2.0",
+   "role": "drew the dancers' frames"
+  },
+  {
+   "name": "lightx2v/Qwen-Image-Edit-2511-Lightning",
+   "kind": "model",
+   "degree": 1,
+   "version": "107d238",
+   "licence": "apache-2.0"
+  },
+  {
+   "name": "lightx2v/Qwen-Image-Lightning",
+   "kind": "model",
+   "degree": 1,
+   "version": "d468c53",
+   "licence": "apache-2.0",
+   "role": "four-step frame drawing"
+  },
+  {
+   "name": "qwen2.5vl",
+   "kind": "model",
+   "degree": 1,
+   "version": "7b",
+   "role": "first-pass curation"
+  },
+  {
+   "name": "ZhengPeng7/BiRefNet",
+   "kind": "model",
+   "degree": 1,
+   "version": "e2bf8e4",
+   "licence": "mit",
+   "role": "cuts the dancers from their backgrounds"
+  },
+  {
+   "name": "Cantarell",
+   "kind": "font",
+   "degree": 1,
+   "role": "the game's typeface"
+  },
+  {
+   "name": "cupertino_icons",
+   "kind": "dart",
+   "degree": 1,
+   "version": "1.0.9"
+  },
+  {
+   "name": "flame",
+   "kind": "dart",
+   "degree": 1,
+   "version": "1.38.2"
+  },
+  {
+   "name": "flutter",
+   "kind": "dart",
+   "degree": 1
+  },
+  {
+   "name": "flutter_lints",
+   "kind": "dart",
+   "degree": 1,
+   "version": "6.0.0",
+   "build": true
+  },
+  {
+   "name": "flutter_svg",
+   "kind": "dart",
+   "degree": 1,
+   "version": "2.3.0"
+  },
+  {
+   "name": "flutter_test",
+   "kind": "dart",
+   "degree": 1,
+   "build": true
+  },
+  {
+   "name": "qr",
+   "kind": "dart",
+   "degree": 1,
+   "version": "3.0.3"
+  },
+  {
+   "name": "clap",
+   "kind": "rust",
+   "degree": 1,
+   "version": "4.6.7"
+  },
+  {
+   "name": "num-complex",
+   "kind": "rust",
+   "degree": 1,
+   "version": "0.4.6"
+  },
+  {
+   "name": "rayon",
+   "kind": "rust",
+   "degree": 1,
+   "version": "1.12.0"
+  },
+  {
+   "name": "realfft",
+   "kind": "rust",
+   "degree": 1,
+   "version": "3.5.1"
+  },
+  {
+   "name": "serde_json",
+   "kind": "rust",
+   "degree": 1,
+   "version": "1.0.154"
+  },
+  {
+   "name": "bpy",
+   "kind": "python",
+   "degree": 1,
+   "version": "5.2.3"
+  },
+  {
+   "name": "jsonschema",
+   "kind": "python",
+   "degree": 1,
+   "version": "4.26.0"
+  },
+  {
+   "name": "numpy",
+   "kind": "python",
+   "degree": 1,
+   "version": "2.5.4"
+  },
+  {
+   "name": "pillow",
+   "kind": "python",
+   "degree": 1,
+   "version": "13.0.0"
+  },
+  {
+   "name": "scipy",
+   "kind": "python",
+   "degree": 1,
+   "version": "1.18.1"
+  },
+  {
+   "name": "zxing-cpp",
+   "kind": "python",
+   "degree": 1
+  },
+  {
+   "name": "wrangler",
+   "kind": "node",
+   "degree": 1,
+   "version": "4.0.0",
+   "build": true
+  },
+  {
+   "name": "CanvasKit",
+   "kind": "tool",
+   "degree": 2,
+   "via": "Flutter",
+   "role": "Flutter's web renderer"
+  },
+  {
+   "name": "ComfyUI-GGUF",
+   "kind": "tool",
+   "degree": 2,
+   "version": "6ea2651",
+   "via": "ComfyUI"
+  },
+  {
+   "name": "ComfyUI-layerdiffuse",
+   "kind": "tool",
+   "degree": 2,
+   "version": "b4f6a9e",
+   "via": "ComfyUI"
+  },
+  {
+   "name": "ComfyUI_BiRefNet_ll",
+   "kind": "tool",
+   "degree": 2,
+   "version": "5443a2a",
+   "via": "ComfyUI"
+  },
+  {
+   "name": "ComfyUI_IPAdapter_plus",
+   "kind": "tool",
+   "degree": 2,
+   "version": "a0f451a",
+   "via": "ComfyUI"
+  },
+  {
+   "name": "libopus",
+   "kind": "tool",
+   "degree": 2,
+   "via": "FFmpeg",
+   "role": "the Opus encoder"
+  },
+  {
+   "name": "characters",
+   "kind": "dart",
+   "degree": 2,
+   "version": "1.4.1",
+   "via": "flutter"
+  },
+  {
+   "name": "clock",
+   "kind": "dart",
+   "degree": 2,
+   "version": "1.1.3",
+   "via": "flutter_test",
+   "build": true
+  },
+  {
+   "name": "collection",
+   "kind": "dart",
+   "degree": 2,
+   "version": "1.19.1",
+   "via": "flame"
+  },
+  {
+   "name": "fake_async",
+   "kind": "dart",
+   "degree": 2,
+   "version": "1.3.3",
+   "via": "flutter_test",
+   "build": true
+  },
+  {
+   "name": "http",
+   "kind": "dart",
+   "degree": 2,
+   "version": "1.6.0",
+   "via": "flutter_svg"
+  },
+  {
+   "name": "leak_tracker_flutter_testing",
+   "kind": "dart",
+   "degree": 2,
+   "version": "3.0.10",
+   "via": "flutter_test",
+   "build": true
+  },
+  {
+   "name": "lints",
+   "kind": "dart",
+   "degree": 2,
+   "version": "6.1.0",
+   "via": "flutter_lints",
+   "build": true
+  },
+  {
+   "name": "matcher",
+   "kind": "dart",
+   "degree": 2,
+   "version": "0.12.20",
+   "via": "flutter_test",
+   "build": true
+  },
+  {
+   "name": "material_color_utilities",
+   "kind": "dart",
+   "degree": 2,
+   "version": "0.13.0",
+   "via": "flutter"
+  },
+  {
+   "name": "meta",
+   "kind": "dart",
+   "degree": 2,
+   "version": "1.18.3",
+   "via": "flame"
+  },
+  {
+   "name": "ordered_set",
+   "kind": "dart",
+   "degree": 2,
+   "version": "8.0.1",
+   "via": "flame"
+  },
+  {
+   "name": "sky_engine",
+   "kind": "dart",
+   "degree": 2,
+   "via": "flutter"
+  },
+  {
+   "name": "stack_trace",
+   "kind": "dart",
+   "degree": 2,
+   "version": "1.12.2",
+   "via": "flutter_test",
+   "build": true
+  },
+  {
+   "name": "stream_channel",
+   "kind": "dart",
+   "degree": 2,
+   "version": "2.1.4",
+   "via": "flutter_test",
+   "build": true
+  },
+  {
+   "name": "test_api",
+   "kind": "dart",
+   "degree": 2,
+   "version": "0.7.12",
+   "via": "flutter_test",
+   "build": true
+  },
+  {
+   "name": "vector_graphics",
+   "kind": "dart",
+   "degree": 2,
+   "version": "1.2.3",
+   "via": "flutter_svg"
+  },
+  {
+   "name": "vector_graphics_codec",
+   "kind": "dart",
+   "degree": 2,
+   "version": "1.1.13",
+   "via": "flutter_svg"
+  },
+  {
+   "name": "vector_graphics_compiler",
+   "kind": "dart",
+   "degree": 2,
+   "version": "1.3.2",
+   "via": "flutter_svg"
+  },
+  {
+   "name": "vector_math",
+   "kind": "dart",
+   "degree": 2,
+   "version": "2.4.0",
+   "via": "flame"
+  },
+  {
+   "name": "clap_builder",
+   "kind": "rust",
+   "degree": 2,
+   "version": "4.6.7",
+   "via": "clap"
+  },
+  {
+   "name": "clap_derive",
+   "kind": "rust",
+   "degree": 2,
+   "version": "4.6.7",
+   "via": "clap"
+  },
+  {
+   "name": "either",
+   "kind": "rust",
+   "degree": 2,
+   "version": "1.19.0",
+   "via": "rayon"
+  },
+  {
+   "name": "foldhash",
+   "kind": "rust",
+   "degree": 2,
+   "version": "0.2.0",
+   "via": "serde_json"
+  },
+  {
+   "name": "indexmap",
+   "kind": "rust",
+   "degree": 2,
+   "version": "2.14.2",
+   "via": "serde_json"
+  },
+  {
+   "name": "itoa",
+   "kind": "rust",
+   "degree": 2,
+   "version": "1.0.18",
+   "via": "serde_json"
+  },
+  {
+   "name": "memchr",
+   "kind": "rust",
+   "degree": 2,
+   "version": "2.8.3",
+   "via": "serde_json"
+  },
+  {
+   "name": "num-traits",
+   "kind": "rust",
+   "degree": 2,
+   "version": "0.2.19",
+   "via": "num-complex"
+  },
+  {
+   "name": "rayon-core",
+   "kind": "rust",
+   "degree": 2,
+   "version": "1.13.0",
+   "via": "rayon"
+  },
+  {
+   "name": "rustfft",
+   "kind": "rust",
+   "degree": 2,
+   "version": "6.4.1",
+   "via": "realfft"
+  },
+  {
+   "name": "serde",
+   "kind": "rust",
+   "degree": 2,
+   "version": "1.0.229",
+   "via": "serde_json"
+  },
+  {
+   "name": "serde_core",
+   "kind": "rust",
+   "degree": 2,
+   "version": "1.0.229",
+   "via": "serde_json"
+  },
+  {
+   "name": "zmij",
+   "kind": "rust",
+   "degree": 2,
+   "version": "1.0.23",
+   "via": "serde_json"
+  },
+  {
+   "name": "attrs",
+   "kind": "python",
+   "degree": 2,
+   "version": "26.1.0",
+   "via": "jsonschema"
+  },
+  {
+   "name": "cattrs",
+   "kind": "python",
+   "degree": 2,
+   "version": "26.2.1",
+   "via": "bpy"
+  },
+  {
+   "name": "Cython",
+   "kind": "python",
+   "degree": 2,
+   "version": "3.3.1",
+   "via": "bpy"
+  },
+  {
+   "name": "jsonschema-specifications",
+   "kind": "python",
+   "degree": 2,
+   "version": "2025.9.1",
+   "via": "jsonschema"
+  },
+  {
+   "name": "referencing",
+   "kind": "python",
+   "degree": 2,
+   "version": "0.37.0",
+   "via": "jsonschema"
+  },
+  {
+   "name": "requests",
+   "kind": "python",
+   "degree": 2,
+   "version": "2.34.2",
+   "via": "bpy"
+  },
+  {
+   "name": "rpds-py",
+   "kind": "python",
+   "degree": 2,
+   "version": "2026.9.1",
+   "via": "jsonschema"
+  },
+  {
+   "name": "zstandard",
+   "kind": "python",
+   "degree": 2,
+   "version": "0.25.0",
+   "via": "bpy"
+  },
+  {
+   "name": "Skia",
+   "kind": "tool",
+   "degree": 3,
+   "via": "CanvasKit",
+   "role": "2D graphics"
+  },
+  {
+   "name": "args",
+   "kind": "dart",
+   "degree": 3,
+   "version": "2.7.0",
+   "via": "vector_graphics_compiler"
+  },
+  {
+   "name": "async",
+   "kind": "dart",
+   "degree": 3,
+   "version": "2.13.1",
+   "via": "http"
+  },
+  {
+   "name": "boolean_selector",
+   "kind": "dart",
+   "degree": 3,
+   "version": "2.1.2",
+   "via": "test_api",
+   "build": true
+  },
+  {
+   "name": "http_parser",
+   "kind": "dart",
+   "degree": 3,
+   "version": "4.1.2",
+   "via": "http"
+  },
+  {
+   "name": "leak_tracker",
+   "kind": "dart",
+   "degree": 3,
+   "version": "11.0.2",
+   "via": "leak_tracker_flutter_testing",
+   "build": true
+  },
+  {
+   "name": "leak_tracker_testing",
+   "kind": "dart",
+   "degree": 3,
+   "version": "3.0.2",
+   "via": "leak_tracker_flutter_testing",
+   "build": true
+  },
+  {
+   "name": "path",
+   "kind": "dart",
+   "degree": 3,
+   "version": "1.9.1",
+   "via": "vector_graphics_compiler"
+  },
+  {
+   "name": "path_parsing",
+   "kind": "dart",
+   "degree": 3,
+   "version": "1.1.0",
+   "via": "vector_graphics_compiler"
+  },
+  {
+   "name": "web",
+   "kind": "dart",
+   "degree": 3,
+   "version": "1.1.1",
+   "via": "http"
+  },
+  {
+   "name": "xml",
+   "kind": "dart",
+   "degree": 3,
+   "version": "7.0.1",
+   "via": "vector_graphics_compiler"
+  },
+  {
+   "name": "anstream",
+   "kind": "rust",
+   "degree": 3,
+   "version": "1.0.0",
+   "via": "clap_builder"
+  },
+  {
+   "name": "anstyle",
+   "kind": "rust",
+   "degree": 3,
+   "version": "1.0.14",
+   "via": "clap_builder"
+  },
+  {
+   "name": "autocfg",
+   "kind": "rust",
+   "degree": 3,
+   "version": "1.5.1",
+   "via": "num-traits"
+  },
+  {
+   "name": "clap_lex",
+   "kind": "rust",
+   "degree": 3,
+   "version": "1.1.1",
+   "via": "clap_builder"
+  },
+  {
+   "name": "crossbeam-deque",
+   "kind": "rust",
+   "degree": 3,
+   "version": "0.8.8",
+   "via": "rayon-core"
+  },
+  {
+   "name": "crossbeam-utils",
+   "kind": "rust",
+   "degree": 3,
+   "version": "0.8.23",
+   "via": "rayon-core"
+  },
+  {
+   "name": "equivalent",
+   "kind": "rust",
+   "degree": 3,
+   "version": "1.0.3",
+   "via": "indexmap"
+  },
+  {
+   "name": "hashbrown",
+   "kind": "rust",
+   "degree": 3,
+   "version": "0.17.1",
+   "via": "indexmap"
+  },
+  {
+   "name": "heck",
+   "kind": "rust",
+   "degree": 3,
+   "version": "0.5.0",
+   "via": "clap_derive"
+  },
+  {
+   "name": "num-integer",
+   "kind": "rust",
+   "degree": 3,
+   "version": "0.1.47",
+   "via": "rustfft"
+  },
+  {
+   "name": "primal-check",
+   "kind": "rust",
+   "degree": 3,
+   "version": "0.3.4",
+   "via": "rustfft"
+  },
+  {
+   "name": "proc-macro2",
+   "kind": "rust",
+   "degree": 3,
+   "version": "1.0.107",
+   "via": "clap_derive"
+  },
+  {
+   "name": "quote",
+   "kind": "rust",
+   "degree": 3,
+   "version": "1.0.47",
+   "via": "clap_derive"
+  },
+  {
+   "name": "serde_derive",
+   "kind": "rust",
+   "degree": 3,
+   "version": "1.0.229",
+   "via": "serde_core"
+  },
+  {
+   "name": "strength_reduce",
+   "kind": "rust",
+   "degree": 3,
+   "version": "0.2.4",
+   "via": "rustfft"
+  },
+  {
+   "name": "strsim",
+   "kind": "rust",
+   "degree": 3,
+   "version": "0.11.1",
+   "via": "clap_builder"
+  },
+  {
+   "name": "syn",
+   "kind": "rust",
+   "degree": 3,
+   "version": "3.0.9",
+   "via": "clap_derive"
+  },
+  {
+   "name": "transpose",
+   "kind": "rust",
+   "degree": 3,
+   "version": "0.2.3",
+   "via": "rustfft"
+  },
+  {
+   "name": "certifi",
+   "kind": "python",
+   "degree": 3,
+   "version": "2026.10.23",
+   "via": "requests"
+  },
+  {
+   "name": "charset-normalizer",
+   "kind": "python",
+   "degree": 3,
+   "version": "3.5.2",
+   "via": "requests"
+  },
+  {
+   "name": "idna",
+   "kind": "python",
+   "degree": 3,
+   "version": "3.20",
+   "via": "requests"
+  },
+  {
+   "name": "typing_extensions",
+   "kind": "python",
+   "degree": 3,
+   "version": "4.16.0",
+   "via": "cattrs"
+  },
+  {
+   "name": "urllib3",
+   "kind": "python",
+   "degree": 3,
+   "version": "2.8.0",
+   "via": "requests"
+  },
+  {
+   "name": "petitparser",
+   "kind": "dart",
+   "degree": 4,
+   "version": "7.0.2",
+   "via": "xml"
+  },
+  {
+   "name": "source_span",
+   "kind": "dart",
+   "degree": 4,
+   "version": "1.10.2",
+   "via": "http_parser"
+  },
+  {
+   "name": "string_scanner",
+   "kind": "dart",
+   "degree": 4,
+   "version": "1.4.1",
+   "via": "http_parser"
+  },
+  {
+   "name": "typed_data",
+   "kind": "dart",
+   "degree": 4,
+   "version": "1.4.0",
+   "via": "http_parser"
+  },
+  {
+   "name": "vm_service",
+   "kind": "dart",
+   "degree": 4,
+   "version": "15.4.0",
+   "via": "leak_tracker",
+   "build": true
+  },
+  {
+   "name": "anstyle-parse",
+   "kind": "rust",
+   "degree": 4,
+   "version": "1.0.0",
+   "via": "anstream"
+  },
+  {
+   "name": "anstyle-query",
+   "kind": "rust",
+   "degree": 4,
+   "version": "1.1.5",
+   "via": "anstream"
+  },
+  {
+   "name": "anstyle-wincon",
+   "kind": "rust",
+   "degree": 4,
+   "version": "3.0.11",
+   "via": "anstream"
+  },
+  {
+   "name": "colorchoice",
+   "kind": "rust",
+   "degree": 4,
+   "version": "1.0.5",
+   "via": "anstream"
+  },
+  {
+   "name": "crossbeam-epoch",
+   "kind": "rust",
+   "degree": 4,
+   "version": "0.9.21",
+   "via": "crossbeam-deque"
+  },
+  {
+   "name": "is_terminal_polyfill",
+   "kind": "rust",
+   "degree": 4,
+   "version": "1.70.2",
+   "via": "anstream"
+  },
+  {
+   "name": "unicode-ident",
+   "kind": "rust",
+   "degree": 4,
+   "version": "1.0.27",
+   "via": "proc-macro2"
+  },
+  {
+   "name": "utf8parse",
+   "kind": "rust",
+   "degree": 4,
+   "version": "0.2.2",
+   "via": "anstream"
+  },
+  {
+   "name": "term_glyph",
+   "kind": "dart",
+   "degree": 5,
+   "version": "1.2.2",
+   "via": "source_span"
+  },
+  {
+   "name": "once_cell_polyfill",
+   "kind": "rust",
+   "degree": 5,
+   "version": "1.70.2",
+   "via": "anstyle-wincon"
+  },
+  {
+   "name": "windows-sys",
+   "kind": "rust",
+   "degree": 5,
+   "version": "0.61.2",
+   "via": "anstyle-query"
+  },
+  {
+   "name": "windows-link",
+   "kind": "rust",
+   "degree": 6,
+   "version": "0.2.1",
+   "via": "windows-sys"
+  }
+ ],
+ "sources": [
+  {
+   "what": "Dart packages and versions",
+   "path": "pubspec.lock",
+   "read": true,
+   "note": "42 packages"
+  },
+  {
+   "what": "Dart package graph",
+   "path": "~/src/kumbia-kombat/wt/finale-run/.dart_tool/package_graph.json",
+   "read": true
+  },
+  {
+   "what": "Rust crates",
+   "path": "tool/music/mixrs/Cargo.lock",
+   "read": true,
+   "note": "48 packages"
+  },
+  {
+   "what": "Python tools' imports",
+   "path": "tool/**/*.py",
+   "read": true,
+   "note": "112 files"
+  },
+  {
+   "what": "Python venv",
+   "path": "~/.cache/tillandsias-project/venvs/kumbia-art",
+   "read": true,
+   "note": "3.14.8"
+  },
+  {
+   "what": "Python venv",
+   "path": "~/.cache/tillandsias-project/venvs/kumbia-bpy",
+   "read": true,
+   "note": "3.13"
+  },
+  {
+   "what": "Node scripts and package.json",
+   "path": "package.json, tool/**/*.mjs",
+   "read": true,
+   "note": "10 scripts, 0 third-party imports"
+  },
+  {
+   "what": "Model and engine provenance",
+   "path": "tool/**/*.provenance.json, ~/.cache/tillandsias-project/kumbia-audio",
+   "read": true,
+   "note": "225 records, 6 model repositories"
+  }
+ ]
+}
