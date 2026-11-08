@@ -106,7 +106,7 @@ All three follow the design note. Galería and terraza each walk Mācron out wit
 - the clean plate `comedor/comedor-room.png`;
 - its layers `comedor-layers.png`: two chandeliers (hanging, `minTier` 3), plus a statue's nod, a statue's foot tap, a portrait lady's head tilt and a portrait's finger snap on 2 and 4 (artwork, `minTier` 4);
 - their marks: floor camera, hero marks, Don Charolas' marks, the banquet table as an occluder (its front edge at y .37, so the diners' hands stay in view), and the route round the table's right end to the service door;
-- the cast's places: 8 diner seats, 3 waiters and 1 late guest (12).
+- the cast's places: 8 diner seats, 3 waiters and 1 late guest (12). Diner atlases carry `playerHeightPx` (168 plate px at y .405), which the scale reads ahead of any frame's height, so any of their drawings can be a clip set's `reference`.
 
 `pubspec.yaml` now lists `assets/art/comedor/`, plus `assets/music/rendered/comedor/` and `galeria/`, which were missing: the web build wouldn't have bundled those takes. A test now holds every folder a level or a rendered take names. [F]
 
@@ -164,4 +164,4 @@ Each swap is a data edit in the level's file and re-running the generator (`make
 - [ ] Room life at tier 4: felt more than seen?
 - [ ] The line of five: does a half-beat lag read as "as one" with a ripple, or as sloppy? Try `lagBeats` .25 at the ends.
 - [ ] The arch, once real arms-up drawings exist.
-- [ ] Each walk out: comedor through the service door, galería under the arch, terraza to the stairs. On the comedor's stills at beat 15 he isn't visible near the door. The door at x .79 is inside the phone's crop (about x .15–.85), so he's most likely passing behind waiter-b at (.76, .47).
+- [ ] Each walk out: comedor through the service door, galería under the arch, terraza to the stairs. On the comedor's stills he first vanished behind waiter-b near the door. COMEDOR moved waiter-b to (.66, .455), and he is now seen heading for the door at beat 15 and is gone by 18.
