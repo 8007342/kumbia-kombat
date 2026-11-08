@@ -59,7 +59,7 @@
   {
    "glob": "assets/art/ensemble/pool-bg-*",
    "class": "local-model",
-   "evidence": "ComfyUI Qwen frames, commit 5f63249, plan/levels/billiards-2026-11-07.md"
+   "evidence": "ComfyUI Qwen frames, commit 5f63249, plan/levels/billiards-2026-11-07.md; redressed 2026-11-08 by Qwen-Image-Edit of the shipped drawings (art_runs/dress-pool-bg-*-20261108a, tool/art/redress/pool-bg-*.json, tool/art/pipeline/redress.py, plan/levels/dress-code-2026-11-08.md)"
   },
   {
    "glob": "assets/art/ensemble/pool-player-*",

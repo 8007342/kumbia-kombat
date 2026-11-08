@@ -31,7 +31,7 @@
   "lean_a": "lean_a-990845.png",
   "lean_b": "lean_b-990845.png",
   "lean_stroke": "lean_stroke-990845.png",
-  "watch_a": "watch_a-990845.png",
+  "watch_a": "watch_a-990871.png",
   "watch_b": "watch_b-990845.png"
  },
  "ramps": {
@@ -130,24 +130,12 @@
    ]
   }
  },
- "restoreProps": {
-  "frames": [
-   "watch_a"
-  ],
-  "over": [
-   "watch_a"
-  ],
-  "colours": [
-   "#754C00",
-   "#9D722F",
-   "#C9984F",
-   "#E4B97D",
-   "#150000",
-   "#371303",
-   "#5E3320",
-   "#775040"
-  ],
-  "minRun": 8,
-  "why": "both candidates of watch_a dropped the cue she holds upright in front of her; the old drawing's cue goes back on top"
+ "frameWords": {
+  "watch_a": {
+   "words": "She holds a long pool cue upright in front of her with both hands, its dark butt resting on the floor between her shoes and its pale tip above her shoulder.",
+   "seed": 990870,
+   "count": 3,
+   "why": "both first-wave candidates dropped the cue; putting the old cue back on top brought the old cardigan's hem with it"
+  }
  }
 }

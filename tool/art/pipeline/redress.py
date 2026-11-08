@@ -117,8 +117,15 @@ def stage(s, which, only=""):
         (out / "workflows" / "frame.prompt.txt").write_text(text + "\n")
         for fid in ids:
             staged_input(s, fid).save(st / f"{fid}.png")
-            jobs.append(dict(name=fid, workflow=str(path.relative_to(REPO)), inputs={"base": str(st / f"{fid}.png")},
-                             overrides={"seed": s["frameSeed"]}, count=s["count"]))
+            extra = s.get("frameWords", {}).get(fid)
+            fpath = path
+            if extra:  # a drawing that needs its own words (a prop the first wave dropped) gets its own baked graph
+                ftext = f"{s['key']['prompt']} {extra['words']} {s['keepWords']}"
+                fpath = out / "workflows" / f"frame-{fid}.api.json"
+                fpath.write_text(json.dumps(bake_workflow(["base"], ftext, f"kk/{run}/frame", 4, size), indent=1, ensure_ascii=False) + "\n")
+                (out / "workflows" / f"frame-{fid}.prompt.txt").write_text(ftext + "\n")
+            jobs.append(dict(name=fid, workflow=str(fpath.relative_to(REPO)), inputs={"base": str(st / f"{fid}.png")},
+                             overrides={"seed": extra["seed"] if extra else s["frameSeed"]}, count=extra.get("count", s["count"]) if extra else s["count"]))
         pass_no = 2
     doc = dict(room="billiards", run=run, passNo=pass_no, steps=4, jobs=jobs, how="tool/art/rooms/run_room_jobs.py --jobs <this file>")
     f = out / f"jobs-{which}.json"
