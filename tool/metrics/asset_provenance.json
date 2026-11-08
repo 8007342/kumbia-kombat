@@ -157,6 +157,36 @@
    "evidence": "art_runs/gatekeeper-*q, bartender-v1-*q, swing-*; commits 411601e, 0159514, f731ce6, fd802c4"
   },
   {
+   "glob": "assets/art/galeria/*",
+   "class": "local-model",
+   "evidence": "Qwen-Image-Edit plate 993301 (art_runs/rooms/galeria/run-b), the far-left portrait repainted full length (edit 993400, tool/art/rooms/galeria_source.py), its foot-tap edit 993411 and warped room-life frames (tool/art/rooms/layers/galeria.json), plan/levels/galeria-art-2026-11-08.md"
+  },
+  {
+   "glob": "assets/art/ensemble/siobhan-*",
+   "class": "local-model",
+   "evidence": "ComfyUI Qwen frames, art_runs/siobhan-v1-20261108a and b merged in m (picks.json); the hair variants are code recolours of that atlas (tool/art/pipeline/ramp_variants.py), plan/levels/galeria-art-2026-11-08.md"
+  },
+  {
+   "glob": "tool/art/references/siobhan/*",
+   "class": "local-model",
+   "evidence": "ComfyUI Qwen sheet from words, seed 994003, art_runs/siobhan-v1-20261108a"
+  },
+  {
+   "glob": "assets/art/closeups/galeria-mc-*",
+   "class": "authored-code",
+   "evidence": "Mācron drawn from parts by the close-up rig, art_runs/galeria-closeups-20261108/scripts/galeria_macron.py"
+  },
+  {
+   "glob": "assets/art/closeups/galeria-floor-plate.png",
+   "class": "local-model",
+   "evidence": "A crop of the galeria clean plate (local-model), tool/art/rooms/galeria_closeup.py"
+  },
+  {
+   "glob": "art_runs/rooms/galeria/*",
+   "class": "local-model",
+   "evidence": "Room plate runs a and b, tool/art/rooms/galeria.json"
+  },
+  {
    "glob": "assets/art/closeups/salon-dt-*",
    "class": "local-model",
    "evidence": "Qwen edits of a bust crop of his accepted sheet, art_runs/salon-closeups-20261107/source and scripts/salon_bust.py, plan/levels/terciopelo-sprites-2026-11-07.md"

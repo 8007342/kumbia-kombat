@@ -435,3 +435,23 @@
 {"ts": "2026-11-08T02:02:00Z", "agent": "GALERIA", "what": "Siobhán front sheet from words (4 images)", "kind": "gpu-image", "seconds": 253, "count": 4}
 {"ts": "2026-11-08T02:07:00Z", "agent": "GALERIA", "what": "galeria room plates, run-b pass 2 from 993100 (4 images)", "kind": "gpu-image", "seconds": 239, "count": 4}
 {"ts": "2026-11-08T02:10:00Z", "agent": "GALERIA", "what": "rig render and pose checks for siobhan-v1, close-up drawings and plate cuts", "kind": "cpu", "seconds": 240, "count": 4}
+{"ts": "2026-11-08T05:14:41Z", "agent": "GALERIA", "what": "approval.load.png", "kind": "local-vision", "seconds": 37.64, "count": 1, "model": "qwen2.5vl:7b", "load_s": 9.42, "eval_tokens": 2}
+{"ts": "2026-11-08T05:14:45Z", "agent": "GALERIA", "what": "approval.load.png", "kind": "local-vision", "seconds": 3.73, "count": 1, "model": "qwen2.5vl:7b", "load_s": 2.91, "eval_tokens": 2}
+{"ts": "2026-11-08T05:14:50Z", "agent": "GALERIA", "what": "approval.nod.png", "kind": "local-vision", "seconds": 4.97, "count": 1, "model": "qwen2.5vl:7b", "load_s": 3.9, "eval_tokens": 2}
+{"ts": "2026-11-08T05:14:56Z", "agent": "GALERIA", "what": "approval.nod.png", "kind": "local-vision", "seconds": 5.56, "count": 1, "model": "qwen2.5vl:7b", "load_s": 4.01, "eval_tokens": 2}
+{"ts": "2026-11-08T05:15:29Z", "agent": "GALERIA", "what": "approval.release.png", "kind": "local-vision", "seconds": 32.89, "count": 1, "model": "qwen2.5vl:7b", "load_s": 9.95, "eval_tokens": 2}
+{"ts": "2026-11-08T05:15:32Z", "agent": "GALERIA", "what": "approval.release.png", "kind": "local-vision", "seconds": 3.49, "count": 1, "model": "qwen2.5vl:7b", "load_s": 2.66, "eval_tokens": 2}
+{"ts": "2026-11-08T05:15:38Z", "agent": "GALERIA", "what": "arch.hold.png", "kind": "local-vision", "seconds": 5.14, "count": 1, "model": "qwen2.5vl:7b", "load_s": 3.73, "eval_tokens": 2}
+{"ts": "2026-11-08T05:15:43Z", "agent": "GALERIA", "what": "arch.hold.png", "kind": "local-vision", "seconds": 5.34, "count": 1, "model": "qwen2.5vl:7b", "load_s": 3.79, "eval_tokens": 2}
+{"ts": "2026-11-08T05:16:14Z", "agent": "GALERIA", "what": "arch.rise.png", "kind": "local-vision", "seconds": 31.38, "count": 1, "model": "qwen2.5vl:7b", "load_s": 9.36, "eval_tokens": 2}
+{"ts": "2026-11-08T05:16:18Z", "agent": "GALERIA", "what": "arch.rise.png", "kind": "local-vision", "seconds": 3.6, "count": 1, "model": "qwen2.5vl:7b", "load_s": 2.75, "eval_tokens": 2}
+{"ts": "2026-11-08T05:16:23Z", "agent": "GALERIA", "what": "challenge.load.png", "kind": "local-vision", "seconds": 5.11, "count": 1, "model": "qwen2.5vl:7b", "load_s": 3.67, "eval_tokens": 2}
+{"ts": "2026-11-08T05:16:29Z", "agent": "GALERIA", "what": "challenge.load.png", "kind": "local-vision", "seconds": 5.62, "count": 1, "model": "qwen2.5vl:7b", "load_s": 4.07, "eval_tokens": 2}
+{"ts": "2026-11-08T05:17:06Z", "agent": "GALERIA", "what": "challenge.offer.png", "kind": "local-vision", "seconds": 37.0, "count": 1, "model": "qwen2.5vl:7b", "load_s": 10.13, "eval_tokens": 2}
+{"ts": "2026-11-08T05:17:12Z", "agent": "GALERIA", "what": "challenge.offer.png", "kind": "local-vision", "seconds": 5.55, "count": 1, "model": "qwen2.5vl:7b", "load_s": 3.91, "eval_tokens": 2}
+{"ts": "2026-11-08T05:17:18Z", "agent": "GALERIA", "what": "challenge.proud.png", "kind": "local-vision", "seconds": 6.09, "count": 1, "model": "qwen2.5vl:7b", "load_s": 4.47, "eval_tokens": 2}
+{"ts": "2026-11-08T02:52:00Z", "agent": "GALERIA", "what": "Siobhán pilot, 8 hard poses x 2 (queue wait included)", "kind": "gpu-image", "seconds": 2083, "count": 16}
+{"ts": "2026-11-08T02:30:00Z", "agent": "GALERIA", "what": "galeria room-life edits: the portrait at full length and its foot tap (2 jobs x 2)", "kind": "gpu-image", "seconds": 363, "count": 4}
+{"ts": "2026-11-08T05:20:00Z", "agent": "GALERIA", "what": "Siobhán frame wave, 58 poses x 2 (queue wait included)", "kind": "gpu-image", "seconds": 8435, "count": 116}
+{"ts": "2026-11-08T05:30:00Z", "agent": "GALERIA", "what": "Siobhán run b, two arm follow-throughs redrawn x 2", "kind": "gpu-image", "seconds": 337, "count": 4}
+{"ts": "2026-11-08T05:40:00Z", "agent": "GALERIA", "what": "register, finish, pack Siobhán; layers plate and frames; hair variants", "kind": "cpu", "seconds": 300, "count": 6}
