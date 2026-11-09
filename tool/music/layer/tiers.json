@@ -218,6 +218,30 @@
    },
    "addNovel": true,
    "novelOverDb": 3
+  },
+  "pool-garden": {
+   "why": "The lawn's 136 take is the full arrangement, played at the top tier. Low and mid take parts out of it; nothing is added.",
+   "base": "themes-20261106/lows-lawn/low.flac",
+   "bassHz": 160,
+   "tiers": {
+    "low": {
+     "perc": -3,
+     "bass": 0,
+     "center": -5,
+     "side": -12,
+     "tiltDb": -2,
+     "tiltHz": 1200
+    },
+    "mid": {
+     "perc": -1,
+     "center": -1.5,
+     "side": -5,
+     "tiltDb": -0.75,
+     "tiltHz": 1800
+    },
+    "high": {}
+   },
+   "native": "high"
   }
  }
 }

@@ -61,28 +61,30 @@
    "key": "C major",
    "next": "bar",
    "successBars": 2,
-   "joinStyle": "cuts",
-   "cutFadeInBeats": 0,
-   "cutFadeOutBeats": 1,
+   "why": "2026-11-09, owner: layered from the 136 take (the richest, which used to play last), rising about 3 % a tier in play order. The take plays untouched at its own 136 on the top tier; its chart was written for 136 there.",
+   "gridTier": "high",
+   "layerFadeBeats": 1,
    "tiers": [
     {
-     "name": "mid",
-     "source": "themes-20261106/lows-lawn/mid.flac",
-     "bpm": 144,
+     "name": "low",
+     "source": "layered-20261109/pool-garden/low-128.wav",
+     "bpm": 128,
      "loopBars": 32,
-     "targetLufs": -17,
-     "eq": []
+     "targetLufs": -16.5,
+     "eq": [],
+     "followScale": 1.0625
+    },
+    {
+     "name": "mid",
+     "source": "layered-20261109/pool-garden/mid-132.wav",
+     "bpm": 132,
+     "loopBars": 32,
+     "targetLufs": -16,
+     "eq": [],
+     "followScale": 1.030303
     },
     {
      "name": "high",
-     "source": "themes-20261106/lows-lawn/high.flac",
-     "bpm": 160,
-     "loopBars": 32,
-     "targetLufs": -16,
-     "eq": []
-    },
-    {
-     "name": "low",
      "source": "themes-20261106/lows-lawn/low.flac",
      "bpm": 136,
      "loopBars": 32,

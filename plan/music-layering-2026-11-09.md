@@ -5,6 +5,7 @@ Follows `plan/music-fix-2026-11-08.md`. Branch `work/2612-layr`. **Nobody has he
 ## Owner rulings (2026-11-09)
 
 - **Tempo:** a small lift of about 3 % per tier, stretched with rubberband. Not one tempo per room, and not the old 6–7 % steps.
+- **Pool lawn:** layered from its 136 take, the richest, which used to play last. Tempos rise about 3 % in play order.
 - **Rollout:** all rooms, with no stop after a pilot. Each room is committed once it passes the automatic gates. The owner listens at the end.
 
 ## How a room is built now
@@ -106,6 +107,26 @@ Tempos 118 / 122 / 126 (was 114 / 122 / 130). Its parent was already narrow enou
 - `chart_check`: billiards 44 problems and garden 2, the same counts at the old tempos. `hardest_combo_test` and `billiards_level_test` (fairness at 104, now above its top tier) pass.
 - The party's bridge into billiards now passes: +0.81, 0 %.
 
+## Pool lawn (`pool-garden`, C major), done, detector gate pending
+
+Was three separate takes cut together, at 144 / 160 / 136 in play order. Now it is **one recording, the 136 take**, which the owner called "still much richer". It plays untouched at its own tempo on the top tier, and the two tiers before it take parts out of it. Nothing is added.
+
+- **Tempos 128 / 132 / 136.** The owner's example was 132 / 136 / 140. At 140 the top tier's chart fails fairness: one thumb hop, beats 6.0 to 6.75, comes out 321 ms apart against a 330 ms floor. That chart was written for 136 at the top. So the same 3 % steps end on the take's own tempo, with no stretch on the richest tier. **Reversible if the owner wants 140.**
+- The level now joins like the others (`gridTier: high`, `layerFadeBeats: 1`) instead of `joinStyle: cuts`. The grid is the untouched take. With mid as the grid, verify had put high at −5.7 ms.
+- Low: perc −3, centre −5, sides −12, tilt. Mid: perc −1, centre −1.5, sides −5, a lighter tilt.
+
+| File | Stereo corr | Neg. windows | Centroid Hz | LUFS |
+|---|---|---|---|---|
+| low | +0.84 | 0 % | 261 | −16.5 |
+| mid | +0.70 | 0 % | 381 | −16.0 |
+| high | +0.50 | 4 % | 475 | −15.0 |
+| success | +0.64 | 0 % | 546 | −14.9 |
+| bridge to the bar | +0.65 | 0 % | 489 | −16.2 |
+
+- The flagged dips (2–8 per loop) all fall just before whole beats, the same in every tier: stop-time hits in the swing take.
+- **`align_charts` fell from 83 to 77.** The top tier is unchanged at 80, being the same take at the same tempo. **Tiers 0 and 1 fell from 93 to 70**, and tier 2 from 81 to 64: their charts were tuned to the old 144 and 160 takes, which are different recordings. The lawn's chart needs re-aligning to the 136 take (`align_suggest.mjs`), by its chart owner. `chart_check`: the same 13 problems at the new tempos as at the old.
+- `test/rendered_music_test.dart` and `test/rich_moves_test.dart` hold the new ladder. `mix.py --self-test` does too.
+
 ## Bridges match the room they land in
 
 `mix.py` now gives each bridge the loudness of the take it lands in (new `bridge.maxMatchDb`, 4 dB, then the limiter again). The fade from one room's harmony to the next room's percussion had made bridges quieter: garden into the lawn was 2.4 LU under. Gains applied: garden +2.5, party +1.8, billiards +0.8, salón +0.8, comedor +0.6, bar and galería +0.5, the lawn 0. **Every bridge now sits at −16.2 to −16.9 LUFS, within 0.4 LU of its destination.**
@@ -116,6 +137,7 @@ Tempos 118 / 122 / 126 (was 114 / 122 / 130). Its parent was already narrow enou
 
 ## Next
 
-- **The pool lawn** is the one room left. It has three separate takes, cut together rather than layered, and the owner's own ladder runs mid, high, low (144, 160, 136). Before rebuilding it, the owner chooses which take is the base and what the 3 % ladder means for a ladder that falls.
-- The synth fallback scores in `tool/music/generate.mjs` still carry the old ladders for bar, party, billiards, garden and act two. They play only for a room with no rendered takes, and all nine have them. On a decode failure the synth already runs on the take's clock (`rendered_page_test`). Not changed here.
+- **All nine rooms are layered.** `mix.py verify`: 0 failures on all nine. The full `flutter test` passes (792).
+- **The lawn's chart** wants re-aligning to the 136 take (tiers 0–2, above).
+- The synth fallback scores in `tool/music/generate.mjs` still carry the old ladders for every room. They play only for a room with no rendered takes, and all nine have them. On a decode failure the synth already runs on the take's clock (`rendered_page_test`). Not changed here.
 - **Promotion to `game` waits on `audio.detect_glitches`.** It still didn't return on 2026-11-09 (two calls, both timed out after 30 minutes).

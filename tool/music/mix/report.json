@@ -182,16 +182,16 @@
    }
   },
   "bridge": {
-   "entryBar": 22,
-   "harmonyMatch": 0.915,
+   "entryBar": 4,
+   "harmonyMatch": 0.714,
    "limiter": {
     "maxReductionDb": 0.0,
     "limitedShare": 0.0
    },
    "bars": 2,
    "beats": 8,
-   "bpm": 144.0,
-   "matchGainDb": 2.5,
+   "bpm": 128.0,
+   "matchGainDb": 1.9,
    "decodeOffsetSamples": {
     "opus": 0,
     "aac": 0
@@ -200,115 +200,117 @@
  },
  "pool-garden": {
   "tiers": {
-   "mid": {
-    "source": "themes-20261106/lows-lawn/mid.flac",
-    "targetBpm": 144.0,
-    "measuredBpm": 143.927,
-    "errorPct": -0.051,
-    "wanderMs": 14.38,
-    "timingFileBpm": 143.92,
+   "low": {
+    "source": "layered-20261109/pool-garden/low-128.wav",
+    "targetBpm": 128.0,
+    "measuredBpm": 128.94,
+    "errorPct": 0.735,
+    "wanderMs": 4.12,
     "corrected": true,
-    "maxLocalStretchPct": 0.66,
-    "splices": 10,
-    "bpmAfterWarp": 143.983,
-    "wanderAfterMs": 7.54,
+    "followsGridOf": "high",
+    "followScale": 1.0625,
+    "maxLocalStretchPct": 0.88,
+    "splices": 107,
+    "bpmAfterWarp": 127.991,
+    "wanderAfterMs": 3.47,
     "gridErrorBeforeMs": {
-     "typical": 25.52,
-     "worstBlock": 36.3
+     "typical": 8.26,
+     "worstBlock": 6.57
     },
     "gridErrorAfterMs": {
-     "typical": 10.75,
-     "worstBlock": 9.39
+     "typical": 8.7,
+     "worstBlock": 8.89
     },
     "bar1Beat": 3,
-    "bar1Seconds": 1.718,
-    "bar1Confidence": 0.82,
-    "bar1Margin": 0.137,
+    "bar1Seconds": 1.702,
+    "bar1Confidence": 1.0,
+    "bar1Margin": 0.15,
     "measuredKey": "C major",
-    "keyCorrelation": 0.774,
+    "keyCorrelation": 0.704,
     "askedKey": "C major",
-    "beatBiasMs": -1.0,
+    "beatBiasMs": 2.41,
     "loop": {
-     "startBar": 9,
-     "score": 1.71,
-     "harmony": 0.922,
-     "texture": 0.639,
+     "startBar": 11,
+     "score": 1.977,
+     "harmony": 0.996,
+     "texture": 0.982,
      "quietShare": 0.0,
-     "candidates": 13
+     "candidates": 12
     },
-    "totalBars": 45,
-    "seamFadeSamples": 20000,
-    "seamCorrelation": -0.044,
-    "makeupDb": -6.3,
+    "totalBars": 44,
+    "seamFadeSamples": 22500,
+    "seamCorrelation": 0.121,
+    "makeupDb": -0.5,
     "limiter": {
      "maxReductionDb": 0.0,
      "limitedShare": 0.0
     },
     "ceilingDb": -1.5,
-    "decodedPeakDb": -5.8,
-    "lufs": -17.0,
-    "lra": 1.6,
-    "truePeakDb": -6.2,
+    "decodedPeakDb": -2.3,
+    "lufs": -16.5,
+    "lra": 2.3,
+    "truePeakDb": -2.6,
+    "decodeOffsetSamples": {
+     "opus": 0,
+     "aac": 0
+    }
+   },
+   "mid": {
+    "source": "layered-20261109/pool-garden/mid-132.wav",
+    "targetBpm": 132.0,
+    "measuredBpm": 132.97,
+    "errorPct": 0.735,
+    "wanderMs": 3.69,
+    "corrected": true,
+    "followsGridOf": "high",
+    "followScale": 1.030303,
+    "maxLocalStretchPct": 0.88,
+    "splices": 101,
+    "bpmAfterWarp": 131.989,
+    "wanderAfterMs": 3.17,
+    "gridErrorBeforeMs": {
+     "typical": 8.31,
+     "worstBlock": 6.83
+    },
+    "gridErrorAfterMs": {
+     "typical": 8.39,
+     "worstBlock": 7.31
+    },
+    "bar1Beat": 3,
+    "bar1Seconds": 1.65,
+    "bar1Confidence": 1.0,
+    "bar1Margin": 0.15,
+    "measuredKey": "C major",
+    "keyCorrelation": 0.739,
+    "askedKey": "C major",
+    "beatBiasMs": 2.41,
+    "loop": {
+     "startBar": 11,
+     "score": 1.977,
+     "harmony": 0.996,
+     "texture": 0.982,
+     "quietShare": 0.0,
+     "candidates": 12
+    },
+    "totalBars": 44,
+    "seamFadeSamples": 21818,
+    "seamCorrelation": 0.079,
+    "makeupDb": -2.2,
+    "limiter": {
+     "maxReductionDb": 0.0,
+     "limitedShare": 0.0
+    },
+    "ceilingDb": -1.5,
+    "decodedPeakDb": -2.4,
+    "lufs": -16.0,
+    "lra": 2.2,
+    "truePeakDb": -2.7,
     "decodeOffsetSamples": {
      "opus": 0,
      "aac": 0
     }
    },
    "high": {
-    "source": "themes-20261106/lows-lawn/high.flac",
-    "targetBpm": 160.0,
-    "measuredBpm": 161.979,
-    "errorPct": 1.237,
-    "wanderMs": 9.3,
-    "timingFileBpm": 162.02,
-    "corrected": true,
-    "maxLocalStretchPct": 1.22,
-    "splices": 169,
-    "bpmAfterWarp": 159.98,
-    "wanderAfterMs": 9.68,
-    "gridErrorBeforeMs": {
-     "typical": 8.37,
-     "worstBlock": 20.06
-    },
-    "gridErrorAfterMs": {
-     "typical": 12.01,
-     "worstBlock": 19.77
-    },
-    "bar1Beat": 2,
-    "bar1Seconds": 0.778,
-    "bar1Confidence": 1.0,
-    "bar1Margin": 0.291,
-    "measuredKey": "A minor",
-    "keyCorrelation": 0.625,
-    "askedKey": "C major",
-    "beatBiasMs": 6.65,
-    "loop": {
-     "startBar": 4,
-     "score": 1.9,
-     "harmony": 0.978,
-     "texture": 0.849,
-     "quietShare": 0.0,
-     "candidates": 21
-    },
-    "totalBars": 53,
-    "seamFadeSamples": 18000,
-    "seamCorrelation": -0.299,
-    "makeupDb": -5.3,
-    "limiter": {
-     "maxReductionDb": 0.0,
-     "limitedShare": 0.0
-    },
-    "ceilingDb": -1.5,
-    "decodedPeakDb": -4.1,
-    "lufs": -16.0,
-    "lra": 0.7,
-    "truePeakDb": -5.1,
-    "decodeOffsetSamples": {
-     "opus": 0,
-     "aac": 0
-    }
-   },
-   "low": {
     "source": "themes-20261106/lows-lawn/low.flac",
     "targetBpm": 136.0,
     "measuredBpm": 137.0,
@@ -364,53 +366,6 @@
    }
   },
   "transitions": [],
-  "cuts": [
-   {
-    "from": "mid",
-    "to": "high",
-    "harmonyMedian": 0.887,
-    "harmonyWorst": 0.719,
-    "timbreMedian": 1.28,
-    "levelMedianDb": 1.7,
-    "levelWorstDb": 3.26
-   },
-   {
-    "from": "high",
-    "to": "low",
-    "harmonyMedian": 0.918,
-    "harmonyWorst": 0.882,
-    "timbreMedian": 1.39,
-    "levelMedianDb": 0.73,
-    "levelWorstDb": 3.01
-   },
-   {
-    "from": "low",
-    "to": "high",
-    "harmonyMedian": 0.86,
-    "harmonyWorst": 0.738,
-    "timbreMedian": 1.15,
-    "levelMedianDb": 0.81,
-    "levelWorstDb": 1.73
-   },
-   {
-    "from": "high",
-    "to": "mid",
-    "harmonyMedian": 0.846,
-    "harmonyWorst": 0.798,
-    "timbreMedian": 0.97,
-    "levelMedianDb": 1.27,
-    "levelWorstDb": 2.63
-   },
-   {
-    "from": "low",
-    "to": "mid",
-    "harmonyMedian": 0.893,
-    "harmonyWorst": 0.772,
-    "timbreMedian": 1.08,
-    "levelMedianDb": 1.51,
-    "levelWorstDb": 3.88
-   }
-  ],
   "success": {
    "sourceBar": 9,
    "tagScore": 1.415,

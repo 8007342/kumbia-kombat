@@ -1707,7 +1707,8 @@ def self_test():
         pass
     # The owner's rulings stay in the committed config.
     by_id = {l["id"]: l for l in real["levels"]}
-    assert [(t["name"], t["bpm"]) for t in by_id["pool-garden"]["tiers"]] == [("mid", 144), ("high", 160), ("low", 136)]
+    # 2026-11-09: the lawn is layered from its 136 take, rising about 3 % in play order (owner).
+    assert [(t["name"], t["bpm"]) for t in by_id["pool-garden"]["tiers"]] == [("low", 128), ("mid", 132), ("high", 136)]
     assert [t["bpm"] for t in by_id["garden"]["tiers"]] == [95, 98, 101]
     # 2026-11-09: the owner chose a lift of about 3 % per tier for the layered rebuild.
     assert [t["bpm"] for t in by_id["bar"]["tiers"]] == [103, 106, 109]

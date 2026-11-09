@@ -41,7 +41,7 @@ LevelRegistry _levels() => LevelRegistry.parse(
 /// and the lawn goes mid, high, low. RENDER owns the mapping onto takes, so if
 /// the merged mapping differs, this table and the charts must be looked at again.
 const _tierBpm = {
-  'pool-garden': [144.0, 144.0, 160.0, 160.0, 136.0],
+  'pool-garden': [128.0, 128.0, 132.0, 132.0, 136.0],
   // 2026-11-09: the layered rebuild lifts about 3 % a tier (owner).
   'bar': [103.0, 103.0, 106.0, 106.0, 109.0],
   'cool-crowd': [120.0, 120.0, 124.0, 124.0, 128.0],

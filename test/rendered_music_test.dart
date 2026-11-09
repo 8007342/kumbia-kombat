@@ -853,11 +853,13 @@ void _shippedFilesExist() {
       }
       expect(bytes, lessThan(8 * 1024 * 1024), reason: id);
     }
+    // 2026-11-09: the lawn is layered from its 136 take, rising about 3 % a tier
+    // to that take's own tempo at the top (owner).
     expect(manifest.levels['pool-garden']!.tempos.map((t) => t.round()), [
-      144,
-      144,
-      160,
-      160,
+      128,
+      128,
+      132,
+      132,
       136,
     ]);
   });
