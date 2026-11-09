@@ -124,7 +124,7 @@ Was three separate takes cut together, at 144 / 160 / 136 in play order. Now it 
 | bridge to the bar | +0.65 | 0 % | 489 | −16.2 |
 
 - The flagged dips (2–8 per loop) all fall just before whole beats, the same in every tier: stop-time hits in the swing take.
-- **`align_charts` fell from 83 to 77.** The top tier is unchanged at 80, being the same take at the same tempo. **Tiers 0 and 1 fell from 93 to 70**, and tier 2 from 81 to 64: their charts were tuned to the old 144 and 160 takes, which are different recordings. The lawn's chart needs re-aligning to the 136 take (`align_suggest.mjs`), by its chart owner. `chart_check`: the same 13 problems at the new tempos as at the old.
+- **`align_charts` fell from 83 to 77.** The top tier is unchanged at 80, being the same take at the same tempo. **Tiers 0 and 1 fell from 93 to 70**, and tier 2 from 81 to 64: their charts were tuned to the old 144 and 160 takes, which are different recordings. **Re-aligned the same day** with `align_suggest.mjs --write` (macuahuitl-fedora assigned it here). It moved 10 steps in patterns 0–3, mostly off-beats from .75 onto straight .5 eighths, where the 136 take's accents are. Pattern 1 is also tier 4's replay. Result: **90 overall** (tiers 96, 96, 94, 93, 85), and `chart_check` problems fell from 13 to 6. The off-beat share drops a little; the campaign's off-beat test still passes. Whether the straighter eighths feel right under the thumb is for the owner's play. `chart_check`: the same 13 problems at the new tempos as at the old.
 - `test/rendered_music_test.dart` and `test/rich_moves_test.dart` hold the new ladder. `mix.py --self-test` does too.
 
 ## Bridges match the room they land in
@@ -138,6 +138,5 @@ Was three separate takes cut together, at 144 / 160 / 136 in play order. Now it 
 ## Next
 
 - **All nine rooms are layered.** `mix.py verify`: 0 failures on all nine. The full `flutter test` passes (792).
-- **The lawn's chart** wants re-aligning to the 136 take (tiers 0–2, above).
 - The synth fallback scores in `tool/music/generate.mjs` still carry the old ladders for every room. They play only for a room with no rendered takes, and all nine have them. On a decode failure the synth already runs on the take's clock (`rendered_page_test`). Not changed here.
 - **Promotion to `game` waits on `audio.detect_glitches`.** It still didn't return on 2026-11-09 (two calls, both timed out after 30 minutes).
