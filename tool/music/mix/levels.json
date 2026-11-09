@@ -16,7 +16,8 @@
   "fillDb": 1.5
  },
  "bridge": {
-  "percussionBoostDb": 5
+  "percussionBoostDb": 5,
+  "maxMatchDb": 4
  },
  "levels": [
   {
@@ -29,17 +30,12 @@
    "tiers": [
     {
      "name": "low",
-     "source": "pipeline-20261107/chains/garden/lowB.flac",
-     "bpm": 92,
+     "source": "layered-20261109/garden/low-95.wav",
+     "bpm": 95,
      "loopBars": 20,
      "targetLufs": -16.5,
-     "eq": [
-      {
-       "type": "highshelf",
-       "freq": 1500,
-       "gain": -3
-      }
-     ]
+     "eq": [],
+     "followScale": 1.031579
     },
     {
      "name": "mid",
@@ -51,18 +47,12 @@
     },
     {
      "name": "high",
-     "source": "pipeline-20261107/chains/garden/highF.flac",
-     "bpm": 104,
+     "source": "layered-20261109/garden/high-101.wav",
+     "bpm": 101,
      "loopBars": 20,
      "targetLufs": -15,
      "eq": [],
-     "layer": [
-      {
-       "source": "pipeline-20261107/chains/garden/parent.flac",
-       "part": "percussive",
-       "db": -6
-      }
-     ]
+     "followScale": 0.970297
     }
    ]
   },
@@ -186,21 +176,16 @@
    "tiers": [
     {
      "name": "low",
-     "source": "pipeline-20261107/chains/billiards/lowB.flac",
-     "bpm": 96,
+     "source": "layered-20261109/billiards/low-97.wav",
+     "bpm": 97,
      "loopBars": 28,
      "targetLufs": -16.5,
-     "eq": [
-      {
-       "type": "highshelf",
-       "freq": 1500,
-       "gain": -3
-      }
-     ]
+     "eq": [],
+     "followScale": 1.030928
     },
     {
      "name": "mid",
-     "source": "pipeline-20261107/chains/billiards/parent.flac",
+     "source": "layered-20261109/billiards/mid.wav",
      "bpm": 100,
      "loopBars": 28,
      "targetLufs": -16,
@@ -208,18 +193,12 @@
     },
     {
      "name": "high",
-     "source": "pipeline-20261107/chains/billiards/highF.flac",
-     "bpm": 104,
+     "source": "layered-20261109/billiards/high-103.wav",
+     "bpm": 103,
      "loopBars": 28,
      "targetLufs": -15,
      "eq": [],
-     "layer": [
-      {
-       "source": "pipeline-20261107/chains/billiards/parent.flac",
-       "part": "percussive",
-       "db": -6
-      }
-     ]
+     "followScale": 0.970874
     }
    ]
   },

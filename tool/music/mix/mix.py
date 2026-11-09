@@ -974,6 +974,22 @@ def render_bridge(source, dest, cfg, pad, phase=(2, 0)):
     return mix, {"entryBar": entry, "harmonyMatch": match, "limiter": stats, "bars": 2, "beats": beats, "bpm": bpm}
 
 
+def match_bridge(mix, target_lufs, cfg, pad):
+    """A bridge plays at the loudness of the take it lands in. Its mix fades one
+    room's harmony against the next room's percussion, so it comes out quieter
+    (garden's was 2.4 LU under the lawn). Gain within `bridge.maxMatchDb`, then
+    the limiter again. Measured without the pads."""
+    most = cfg["bridge"].get("maxMatchDb", 0)
+    if not most:
+        return mix, 0.0
+    level = loudness(mix[pad:len(mix) - pad])["lufs"]
+    gain = float(np.clip(target_lufs - level, -most, most))
+    if abs(gain) < 0.25:
+        return mix, 0.0
+    mix, _ = limit(mix * 10 ** (gain / 20), cfg["ceilingDb"])
+    return mix, round(gain, 2)
+
+
 def bar_features(tier):
     """What the cut table compares: per loop bar, chroma, bands at each end, and level."""
     loop = tier["loop"].mean(axis=1)
@@ -1147,6 +1163,7 @@ def build(cfg, only=None, root=REPO, workers=None, report_path=None):
             # take's phrase: entryBar + introBeats / 4 on the phrase's first bar.
             phase = tuple(nxt.get("bridgeEntry", {}).get(k, d) for k, d in (("step", 2), ("offset", 0)))
             mix, info = render_bridge(last, ready[(nxt["id"], first)], cfg, pad, phase)
+            mix, info["matchGainDb"] = match_bridge(mix, nxt["tiers"][0]["targetLufs"], cfg, pad)
             written, info["decodeOffsetSamples"] = write_asset(mix, directory / "bridge", cfg, root)
             entry["bridge"] = {"to": nxt["id"], "toTake": first, "entryBar": info["entryBar"],
                                "bpm": info["bpm"], "bars": info["bars"], "beatsPerBar": 4, "gainDb": 0,
@@ -1691,7 +1708,7 @@ def self_test():
     # The owner's rulings stay in the committed config.
     by_id = {l["id"]: l for l in real["levels"]}
     assert [(t["name"], t["bpm"]) for t in by_id["pool-garden"]["tiers"]] == [("mid", 144), ("high", 160), ("low", 136)]
-    assert [t["bpm"] for t in by_id["garden"]["tiers"]] == [92, 98, 104]
+    assert [t["bpm"] for t in by_id["garden"]["tiers"]] == [95, 98, 101]
     # 2026-11-09: the owner chose a lift of about 3 % per tier for the layered rebuild.
     assert [t["bpm"] for t in by_id["bar"]["tiers"]] == [103, 106, 109]
     assert [t["bpm"] for t in by_id["cool-crowd"]["tiers"]] == [120, 124, 128]

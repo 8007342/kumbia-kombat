@@ -99,8 +99,11 @@
      "tiltDb": -2,
      "tiltHz": 1200
     },
-    "mid": {},
+    "mid": {
+     "side": -6
+    },
     "high": {
+     "side": -6,
      "add": {
       "perc": -2,
       "center": -2,
@@ -109,7 +112,8 @@
     }
    },
    "addNovel": true,
-   "novelOverDb": 3
+   "novelOverDb": 3,
+   "why": "The parent itself is wide (33 % of windows anti-correlated), so every tier narrows its upper sides the same way."
   },
   "comedor": {
    "base": "act2-20261108/chains/comedor/parent.flac",

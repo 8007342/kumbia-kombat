@@ -93,10 +93,29 @@ Tempos 118 / 122 / 126 (was 114 / 122 / 130). Its parent was already narrow enou
 - `mix.py verify` now interpolates the lag peak between envelope frames. Its 5 ms limit is under one frame (5.8 ms), so before this it could only tell 0 frames from 1. With mid untouched, **verify reports 0 failures on all nine levels** for the first time since act two.
 - Bridges rebuilt into the new lows, LUFS against the destination's low (−16.5): billiards into comedor −16.8, comedor into salón −16.9, salón into galería −17.1, galería into terraza −16.9. All are within 1 LU.
 
+## Billiards and garden, done, detector gate pending
+
+| Room | Tempos (was) | Low corr | Mid corr | High corr | Tag corr | align_charts (before) |
+|---|---|---|---|---|---|---|
+| billiards | 97 / 100 / 103 (96 / 100 / 104) | +0.79 | +0.67 | +0.66 | +0.65 | 63 (64) |
+| garden | 95 / 98 / 101 (92 / 98 / 104) | +0.94 | +0.78 | +0.80 | +0.73 | 90 (94) |
+
+- **Billiards' parent fails the gate on its own:** +0.30, with 33 % of windows anti-correlated and 19 clipped runs. The audit called billiards clean, but by this gate it was the widest base of all. Every tier narrows its upper sides by **6 dB**; −4 left mid at exactly 10 %. **This narrows the approved take's image, so it's the owner's to reverse** (`tiers.json`, `billiards.tiers.mid.side`).
+- Billiards' loops show 3–8 flagged dips, all just before beats 32 and 64, the ends of its 8-bar phrases. Mid has them too. They are phrase stops in the take.
+- The garden's parent has 393 clipped runs baked into the ACE render. After the mixer's loudness and limiter, the rendered loops show none. It was declipped by level, not repaired; a true declip waits for the studio.
+- `chart_check`: billiards 44 problems and garden 2, the same counts at the old tempos. `hardest_combo_test` and `billiards_level_test` (fairness at 104, now above its top tier) pass.
+- The party's bridge into billiards now passes: +0.81, 0 %.
+
+## Bridges match the room they land in
+
+`mix.py` now gives each bridge the loudness of the take it lands in (new `bridge.maxMatchDb`, 4 dB, then the limiter again). The fade from one room's harmony to the next room's percussion had made bridges quieter: garden into the lawn was 2.4 LU under. Gains applied: garden +2.5, party +1.8, billiards +0.8, salón +0.8, comedor +0.6, bar and galería +0.5, the lawn 0. **Every bridge now sits at −16.2 to −16.9 LUFS, within 0.4 LU of its destination.**
+
 ## Tests that held the old ladders
 
-`test/rich_moves_test.dart`, `test/cool_crowd_level_test.dart`, `test/rendered_page_test.dart`, `test/salon_level_test.dart` and `test/level_registry_test.dart` (the salón's top rate against billiards', now at 119 against 103) held the old tempos as the owner's ladders. They now hold the 3 % ladders. `mix.py --self-test` holds them too. The full `flutter test` passes, 792 tests.
+`test/rich_moves_test.dart`, `test/cool_crowd_level_test.dart`, `test/rendered_page_test.dart`, `test/salon_level_test.dart` `test/level_registry_test.dart` (the salón's top rate against billiards', now at 119 against 103) and the garden's two first-take checks in `test/rendered_page_test.dart` (95) held the old tempos as the owner's ladders. They now hold the 3 % ladders. `mix.py --self-test` holds them too. The full `flutter test` passes, 792 tests.
 
 ## Next
 
-Billiards, garden, then the pool lawn. Rebuilding billiards also rebuilds the party's bridge into it, the one bridge still failing the stereo gate (20 % of windows anti-correlated).
+- **The pool lawn** is the one room left. It has three separate takes, cut together rather than layered, and the owner's own ladder runs mid, high, low (144, 160, 136). Before rebuilding it, the owner chooses which take is the base and what the 3 % ladder means for a ladder that falls.
+- The synth fallback scores in `tool/music/generate.mjs` still carry the old ladders for bar, party, billiards, garden and act two. They play only for a room with no rendered takes, and all nine have them. On a decode failure the synth already runs on the take's clock (`rendered_page_test`). Not changed here.
+- **Promotion to `game` waits on `audio.detect_glitches`.** It still didn't return on 2026-11-09 (two calls, both timed out after 30 minutes).
