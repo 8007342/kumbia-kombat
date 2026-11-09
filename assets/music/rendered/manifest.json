@@ -597,6 +597,7 @@
       0,
       2,
       4,
+      6,
       8,
       10,
       12,
@@ -740,12 +741,12 @@
     "to": "comedor",
     "toTake": "low",
     "entryBar": 27,
-    "bpm": 120.0,
+    "bpm": 124.0,
     "bars": 2,
     "beatsPerBar": 4,
     "gainDb": 0,
     "startSeconds": 0.25,
-    "endSeconds": 4.25,
+    "endSeconds": 4.120958333333333,
     "files": {
      "opus": "assets/music/rendered/billiards/bridge.ogg",
      "aac": "assets/music/rendered/billiards/bridge.m4a"
@@ -763,12 +764,12 @@
    ],
    "takes": {
     "low": {
-     "bpm": 108.0,
+     "bpm": 113.0,
      "bars": 24,
      "beatsPerBar": 4,
      "loopStartSeconds": 0.25,
-     "loopEndSeconds": 53.583333333333336,
-     "loopSamples": 2560000,
+     "loopEndSeconds": 51.22345833333333,
+     "loopSamples": 2446726,
      "sampleRate": 48000,
      "gainDb": 0,
      "files": {
@@ -780,6 +781,7 @@
      "goodExitBars": [
       6,
       14,
+      18,
       22
      ]
     },
@@ -806,12 +808,12 @@
      ]
     },
     "high": {
-     "bpm": 124.0,
+     "bpm": 119.0,
      "bars": 24,
      "beatsPerBar": 4,
      "loopStartSeconds": 0.25,
-     "loopEndSeconds": 46.70160416666667,
-     "loopSamples": 2229677,
+     "loopEndSeconds": 48.65335416666667,
+     "loopSamples": 2323361,
      "sampleRate": 48000,
      "gainDb": 0,
      "files": {
@@ -820,19 +822,24 @@
      },
      "lufs": -15.0,
      "bar1Confidence": 1.0,
-     "goodExitBars": []
+     "goodExitBars": [
+      6,
+      14,
+      18,
+      22
+     ]
     }
    },
    "transitions": [],
    "layerFadeBeats": 1,
    "gridTier": "mid",
    "success": {
-    "bpm": 124.0,
+    "bpm": 119.0,
     "bars": 4,
     "beatsPerBar": 4,
     "gainDb": 0,
     "startSeconds": 0.25,
-    "endSeconds": 7.9919375,
+    "endSeconds": 8.317229166666667,
     "final": false,
     "files": {
      "opus": "assets/music/rendered/salon/success.ogg",
@@ -843,7 +850,7 @@
    "bridge": {
     "to": "galeria",
     "toTake": "low",
-    "entryBar": 24,
+    "entryBar": 12,
     "bpm": 118.0,
     "bars": 2,
     "beatsPerBar": 4,
@@ -867,12 +874,12 @@
    ],
    "takes": {
     "low": {
-     "bpm": 120.0,
+     "bpm": 124.0,
      "bars": 32,
      "beatsPerBar": 4,
      "loopStartSeconds": 0.25,
-     "loopEndSeconds": 64.25,
-     "loopSamples": 3072000,
+     "loopEndSeconds": 62.18547916666667,
+     "loopSamples": 2972903,
      "sampleRate": 48000,
      "gainDb": 0,
      "files": {
@@ -883,20 +890,15 @@
      "bar1Confidence": 0.07,
      "goodExitBars": [
       0,
-      2,
       4,
       6,
       8,
-      10,
       12,
       14,
       16,
-      18,
       20,
-      22,
       24,
-      28,
-      30
+      28
      ]
     },
     "mid": {
@@ -931,12 +933,12 @@
      ]
     },
     "high": {
-     "bpm": 136.0,
+     "bpm": 132.0,
      "bars": 32,
      "beatsPerBar": 4,
      "loopStartSeconds": 0.25,
-     "loopEndSeconds": 56.72058333333333,
-     "loopSamples": 2710588,
+     "loopEndSeconds": 58.4318125,
+     "loopSamples": 2792727,
      "sampleRate": 48000,
      "gainDb": 0,
      "files": {
@@ -958,7 +960,6 @@
       18,
       20,
       24,
-      26,
       28
      ]
     }
@@ -967,12 +968,12 @@
    "layerFadeBeats": 1,
    "gridTier": "mid",
    "success": {
-    "bpm": 136.0,
+    "bpm": 132.0,
     "bars": 4,
     "beatsPerBar": 4,
     "gainDb": 0,
     "startSeconds": 0.25,
-    "endSeconds": 7.308833333333333,
+    "endSeconds": 7.522729166666666,
     "final": false,
     "files": {
      "opus": "assets/music/rendered/comedor/success.ogg",
@@ -982,13 +983,13 @@
    "bridge": {
     "to": "salon",
     "toTake": "low",
-    "entryBar": 12,
-    "bpm": 108.0,
+    "entryBar": 16,
+    "bpm": 113.0,
     "bars": 2,
     "beatsPerBar": 4,
     "gainDb": 0,
     "startSeconds": 0.25,
-    "endSeconds": 4.6944375,
+    "endSeconds": 4.497791666666667,
     "files": {
      "opus": "assets/music/rendered/comedor/bridge.ogg",
      "aac": "assets/music/rendered/comedor/bridge.m4a"
@@ -1128,12 +1129,12 @@
     "to": "terraza",
     "toTake": "low",
     "entryBar": 22,
-    "bpm": 96.0,
+    "bpm": 101.0,
     "bars": 2,
     "beatsPerBar": 4,
     "gainDb": 0,
     "startSeconds": 0.25,
-    "endSeconds": 5.25,
+    "endSeconds": 5.002479166666666,
     "files": {
      "opus": "assets/music/rendered/galeria/bridge.ogg",
      "aac": "assets/music/rendered/galeria/bridge.m4a"
@@ -1151,12 +1152,12 @@
    ],
    "takes": {
     "low": {
-     "bpm": 96.0,
+     "bpm": 101.0,
      "bars": 24,
      "beatsPerBar": 4,
      "loopStartSeconds": 0.25,
-     "loopEndSeconds": 60.25,
-     "loopSamples": 2880000,
+     "loopEndSeconds": 57.27970833333333,
+     "loopSamples": 2737426,
      "sampleRate": 48000,
      "gainDb": 0,
      "files": {
@@ -1166,8 +1167,9 @@
      "lufs": -16.5,
      "bar1Confidence": 0.55,
      "goodExitBars": [
-      12,
-      20
+      6,
+      18,
+      22
      ]
     },
     "mid": {
@@ -1192,12 +1194,12 @@
      ]
     },
     "high": {
-     "bpm": 112.0,
+     "bpm": 107.0,
      "bars": 24,
      "beatsPerBar": 4,
      "loopStartSeconds": 0.25,
-     "loopEndSeconds": 51.6785625,
-     "loopSamples": 2468571,
+     "loopEndSeconds": 54.08177083333333,
+     "loopSamples": 2583925,
      "sampleRate": 48000,
      "gainDb": 0,
      "files": {
@@ -1209,8 +1211,8 @@
      "goodExitBars": [
       0,
       2,
+      4,
       6,
-      10,
       12,
       14,
       18,
@@ -1223,12 +1225,12 @@
    "layerFadeBeats": 1,
    "gridTier": "mid",
    "success": {
-    "bpm": 112.0,
+    "bpm": 107.0,
     "bars": 4,
     "beatsPerBar": 4,
     "gainDb": 0,
     "startSeconds": 0.25,
-    "endSeconds": 8.8214375,
+    "endSeconds": 9.221958333333333,
     "final": true,
     "files": {
      "opus": "assets/music/rendered/terraza/success.ogg",

@@ -40,12 +40,12 @@ def main():
     elif cmd == "stage":
         (STAGE / lid).mkdir(parents=True, exist_ok=True)
         for t in ("low", "high"):
-            shutil.copy(out / f"{t}.flac", STAGE / lid / f"{t}.flac")
-            print(STAGE / lid / f"{t}.flac", "ratio", ratio[t], "->", STAGE / lid / f"{t}-{bpm[t]}.flac")
+            shutil.copy(out / f"{t}.wav", STAGE / lid / f"{t}.wav")
+            print(STAGE / lid / f"{t}.wav", "ratio", ratio[t], "->", STAGE / lid / f"{t}-{bpm[t]}.wav")
     elif cmd == "wire":
         rel = f"{spec['outDir']}/{lid}"
         for t in ("low", "high"):
-            name = f"{t}-{bpm[t]}.flac"
+            name = f"{t}-{bpm[t]}.wav"
             shutil.copy(STAGE / lid / name, out / name)
             shutil.copy(STAGE / lid / f"{name}.provenance.json", out / f"{name}.provenance.json")
         for t in lv["tiers"]:
@@ -53,7 +53,15 @@ def main():
             t.pop("layer", None)
             t["eq"] = []
             t["bpm"] = bpm[n]
-            t["source"] = f"{rel}/{n}.flac" if n == "mid" else f"{rel}/{n}-{bpm[n]}.flac"
+            # Mid is the approved take's own file, untouched: the mixer's beat and
+            # bar-one analysis is level-sensitive, and a trimmed copy moved terraza's
+            # bar one by a beat.
+            # A mid with gains of its own (the party narrows its sides) is the layered
+            # mid, written unscaled.
+            if n == "mid":
+                t["source"] = f"{rel}/mid.wav" if spec["levels"][lid]["tiers"].get("mid") else spec["levels"][lid]["base"]
+            else:
+                t["source"] = f"{rel}/{n}-{bpm[n]}.wav"
             if n == "mid":
                 t.pop("followScale", None)
             else:

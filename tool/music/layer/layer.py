@@ -135,12 +135,13 @@ def main():
             if part == "side":
                 piece = piece * lv.get("addWidth", 0.5)
             y += piece
+        # Never rescaled: the mixer sets loudness, and its beat and bar-one analysis
+        # is level-sensitive (a trimmed mid moved terraza's bar one by a beat). Float
+        # WAV holds peaks over full scale; rubberband and ffmpeg both read it.
         peak = np.abs(y).max()
-        if peak > db(-1.0):
-            y *= db(-1.0) / peak  # headroom only; loudness is set by the mixer
-        path = out / f"{name}.flac"
-        sf.write(path, y, sr, subtype="PCM_24")
-        report["tiers"][name] = {"file": str(path), "gains": t, "peakBeforeTrim": round(20 * np.log10(peak), 2)}
+        path = out / f"{name}.wav"
+        sf.write(path, y.astype(np.float32), sr, subtype="FLOAT")
+        report["tiers"][name] = {"file": str(path), "gains": t, "peakDb": round(20 * np.log10(peak), 2)}
         print(f"  {name}: {path}")
     (out / "layer.json").write_text(json.dumps(report, indent=1))
 

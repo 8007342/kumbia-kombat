@@ -56,7 +56,8 @@ Set<String> _frames(String atlas) =>
     ((_atlases()[atlas] as Map)['frames'] as Map).keys.cast<String>().toSet();
 
 /// The tempos its tiers play: BOLERO's ladder, 108, 116 and 124 BPM.
-const _tierBpm = [108.0, 108.0, 116.0, 116.0, 124.0];
+// 2026-11-09: the layered rebuild lifts about 3 % a tier (owner).
+const _tierBpm = [113.0, 113.0, 116.0, 116.0, 119.0];
 
 /// The win's beats, as long as the success score that plays them: a last level's
 /// shot must fit it, because the beat clock stops with the music.

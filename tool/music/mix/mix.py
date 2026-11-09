@@ -1423,7 +1423,15 @@ def verify_layers(entry, root, failures, lid):
                 b = other[start + lag:start + lag + size]
                 b = b - b.mean()
                 scores.append(float(a @ b / max(np.linalg.norm(a) * np.linalg.norm(b), 1e-9)))
-            lags.append((int(np.argmax(scores)) - reach) / ENV_RATE * 1000)
+            # The peak between frames (a parabola through it and its neighbours): the
+            # limit below is under one envelope frame, so whole frames can't test it.
+            k = int(np.argmax(scores))
+            frac = 0.0
+            if 0 < k < len(scores) - 1:
+                y0, y1, y2 = scores[k - 1], scores[k], scores[k + 1]
+                bend = y0 - 2 * y1 + y2
+                frac = 0.5 * (y0 - y2) / bend if bend < 0 else 0.0
+            lags.append((k + frac - reach) / ENV_RATE * 1000)
             corr.append(max(scores))
         out[name] = {"lagMedianMs": round(float(np.median(lags)), 1), "lagWorstMs": round(float(np.max(np.abs(lags))), 1),
                      "envelopeCorr": round(float(np.median(corr)), 2)}

@@ -11,7 +11,7 @@ Follows `plan/music-fix-2026-11-08.md`. Branch `work/2612-layr`. **Nobody has he
 
 `tool/music/layer/layer.py LEVEL`, from `tool/music/layer/tiers.json`:
 
-1. **Base:** the approved mid take, the performance whose score was praised.
+1. **Base:** the approved mid take, the performance whose score was praised. **Mid plays that file untouched** (except the party, below). A copy trimmed by 1 dB moved the terraza's bar one by a beat and every room's beat bias by a few ms, because the mixer's beat analysis is level-sensitive. So tiers are written as float WAV and never rescaled.
 2. **Parts:** the base is split with soft masks on one STFT into percussive, bass (under 160 Hz), upper centre and upper sides. The masks come from the mono magnitude, so both channels get the same mask and the image is kept. At unit gain the parts sum back to the base with a −133 dB residual, so **mid is the recording itself**.
 3. **Low** takes parts away from that same recording: percussion −3 dB, centre −5, sides −12, and a −2 dB-per-octave tilt over 1.2 kHz on the upper parts.
 4. **High** adds what one ACE pass (`highB`, one pass at 0.6 from the parent, never a chain) has *that the parent doesn't*: its energy over the parent's, cell by cell, with its own phase (`addNovel`). Doubled hits cancel out of it, so it holds new parts, not a second copy. Its sides are narrowed to 0.4.
@@ -38,7 +38,7 @@ Tempos 103 / 106 / 109 (was 100 / 106 / 112). Loop 24 bars.
 
 - No clipped runs in any file.
 - **High is now only a little brighter than mid** (462 against 404 Hz), not 2.5× as before. The step up comes from added parts and +1 LU, not a change of sound. If the owner hears it as too small a lift, raise `high.add` in `tiers.json`: the added layer is about 8 LU under the base before mixing.
-- The low loop's one flagged 10 ms dip, at 35.16 s, falls exactly on a downbeat (beats 8 and 88 of the stretched take). It is a band rest that low makes deeper by taking parts out, not a fault in the file.
+- The low loop's flagged 10 ms dips fall exactly on downbeats (beats 8 and 88 of the stretched take). They are band rests that low makes deeper by taking parts out, not faults in the file.
 - `mix.py verify`: bar passes (it failed on drift before `followScale`). The one failure left is comedor low's known −11.6 ms.
 - `align_charts`: 86 overall, against 87 before. On-accent 90 % against 87 %.
 - `chart_check` at the new tempos: the same 7 join problems as at the old ones, none new. The Dart tests pass.
@@ -79,10 +79,24 @@ Tempos 118 / 122 / 126 (was 114 / 122 / 130). Its parent was already narrow enou
 - `align_charts`: **97 against 92**, with on-accent at 100 %. `chart_check`: no problems.
 - Rebuilt as a side effect, with no change to their sources: the salón's bridge into galería (+0.85, −16.6 LUFS) and the bar's bridge into the party (+0.72, −16.9 LUFS, within 0.4 LU of the party's low).
 
+## Comedor, salón and terraza, done, detector gate pending
+
+| Room | Tempos (was) | Low corr | Mid corr | High corr | Tag corr | align_charts (before) |
+|---|---|---|---|---|---|---|
+| comedor | 124 / 128 / 132 (120 / 128 / 136) | +0.93 | +0.79 | +0.76 | +0.75 | 97 (95) |
+| salón | 113 / 116 / 119 (108 / 116 / 124) | +0.87 | +0.58 | +0.57 | +0.51 | 99 (96) |
+| terraza | 101 / 104 / 107 (96 / 104 / 112) | +0.93 | +0.80 | +0.79 | +0.77 | 93 (95) |
+
+- No anti-correlated windows, clipped runs or dropouts in any of their files.
+- **Comedor's −11.6 ms low lag is gone.** That was its one long-standing verify failure: low is now the same recording, not a separate pass. Its low centroid is half of mid's (469 against 934 Hz) without the old −6 dB shelf.
+- **Terraza's high now has mid's density** (3.50 onsets a second against 3.42), where the old high had fewer than mid. The act-two note asked for exactly this.
+- `mix.py verify` now interpolates the lag peak between envelope frames. Its 5 ms limit is under one frame (5.8 ms), so before this it could only tell 0 frames from 1. With mid untouched, **verify reports 0 failures on all nine levels** for the first time since act two.
+- Bridges rebuilt into the new lows, LUFS against the destination's low (−16.5): billiards into comedor −16.8, comedor into salón −16.9, salón into galería −17.1, galería into terraza −16.9. All are within 1 LU.
+
 ## Tests that held the old ladders
 
-`test/rich_moves_test.dart`, `test/cool_crowd_level_test.dart` and `test/rendered_page_test.dart` held the old tempos as the owner's ladders. They now hold the 3 % ladders. `mix.py --self-test` holds them too. The full `flutter test` passes, 792 tests.
+`test/rich_moves_test.dart`, `test/cool_crowd_level_test.dart`, `test/rendered_page_test.dart`, `test/salon_level_test.dart` and `test/level_registry_test.dart` (the salón's top rate against billiards', now at 119 against 103) held the old tempos as the owner's ladders. They now hold the 3 % ladders. `mix.py --self-test` holds them too. The full `flutter test` passes, 792 tests.
 
 ## Next
 
-Comedor, salón, terraza, garden, billiards, then the pool lawn. After the last room, the bridges are recut against the new lows, and each bridge's loudness is checked against its destination. The bar's bridge into the party is rebuilt when the party is.
+Billiards, garden, then the pool lawn. Rebuilding billiards also rebuilds the party's bridge into it, the one bridge still failing the stereo gate (20 % of windows anti-correlated).
