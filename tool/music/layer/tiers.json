@@ -1,0 +1,33 @@
+{
+ "why": "Every tier of a room is the same recording: mid is the approved take itself, low takes parts away, high adds parts of one ACE pass on the same clock. See plan/music-layering-2026-11-09.md.",
+ "mastersDir": "~/.cache/tillandsias-project/kumbia-audio",
+ "outDir": "layered-20261109",
+ "levels": {
+  "bar": {
+   "base": "pipeline-20261107/chains/bar/parent.flac",
+   "add": "pipeline-20261107/chains/bar/highB.flac",
+   "addWidth": 0.4,
+   "bassHz": 160,
+   "tiers": {
+    "low": {
+     "perc": -3,
+     "bass": 0,
+     "center": -5,
+     "side": -12,
+     "tiltDb": -2,
+     "tiltHz": 1200
+    },
+    "mid": {},
+    "high": {
+     "add": {
+      "perc": -2,
+      "center": -2,
+      "side": -4
+     }
+    }
+   },
+   "addNovel": true,
+   "novelOverDb": 3
+  }
+ }
+}

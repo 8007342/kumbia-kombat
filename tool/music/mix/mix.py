@@ -700,7 +700,11 @@ def prepare_tier(args):
     report["corrected"] = abs(error_pct) <= cfg["maxCorrectionPct"]
     if follow:
         report["followsGridOf"] = follow["name"]
-        beats, measured = follow["beats"], follow["measured"]
+        # A tier pre-stretched with rubberband from the followed take: its beats sit
+        # at the followed beats times the stretch (output over input duration).
+        scale = tier.get("followScale", 1.0)
+        beats, measured = np.asarray(follow["beats"]) * scale, follow["measured"] / scale
+        report["followScale"] = scale
     elif not report["corrected"]:
         raise ValueError(f"{level['id']}/{tier['name']}: {error_pct:+.2f}% is past the "
                          f"{cfg['maxCorrectionPct']}% allowed, not corrected")
@@ -1680,7 +1684,8 @@ def self_test():
     by_id = {l["id"]: l for l in real["levels"]}
     assert [(t["name"], t["bpm"]) for t in by_id["pool-garden"]["tiers"]] == [("mid", 144), ("high", 160), ("low", 136)]
     assert [t["bpm"] for t in by_id["garden"]["tiers"]] == [92, 98, 104]
-    assert [t["bpm"] for t in by_id["bar"]["tiers"]] == [100, 106, 112]
+    # 2026-11-09: the owner chose a lift of about 3 % per tier for the layered rebuild.
+    assert [t["bpm"] for t in by_id["bar"]["tiers"]] == [103, 106, 109]
     assert [t["bpm"] for t in by_id["cool-crowd"]["tiers"]] == [112, 124, 136]
     assert transition_pairs(["a", "b", "c"]) == [("a", "b"), ("b", "c"), ("c", "b"), ("b", "a"), ("c", "a")]
     assert tier_map(["a", "b", "c"]) == ["a", "a", "b", "b", "c"]

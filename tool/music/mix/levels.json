@@ -113,21 +113,16 @@
    "tiers": [
     {
      "name": "low",
-     "source": "pipeline-20261107/chains/bar/lowB.flac",
-     "bpm": 100,
+     "source": "layered-20261109/bar/low-103.flac",
+     "bpm": 103,
      "loopBars": 24,
      "targetLufs": -16.5,
-     "eq": [
-      {
-       "type": "highshelf",
-       "freq": 1500,
-       "gain": -3
-      }
-     ]
+     "eq": [],
+     "followScale": 1.029126
     },
     {
      "name": "mid",
-     "source": "pipeline-20261107/chains/bar/parent.flac",
+     "source": "layered-20261109/bar/mid.flac",
      "bpm": 106,
      "loopBars": 24,
      "targetLufs": -16,
@@ -135,18 +130,12 @@
     },
     {
      "name": "high",
-     "source": "pipeline-20261107/chains/bar/highF.flac",
-     "bpm": 112,
+     "source": "layered-20261109/bar/high-109.flac",
+     "bpm": 109,
      "loopBars": 24,
      "targetLufs": -15,
      "eq": [],
-     "layer": [
-      {
-       "source": "pipeline-20261107/chains/bar/parent.flac",
-       "part": "percussive",
-       "db": -6
-      }
-     ]
+     "followScale": 0.972477
     }
    ]
   },
