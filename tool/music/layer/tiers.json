@@ -28,6 +28,192 @@
    },
    "addNovel": true,
    "novelOverDb": 3
+  },
+  "garden": {
+   "base": "pipeline-20261107/chains/garden/parent.flac",
+   "add": "pipeline-20261107/chains/garden/highB.flac",
+   "addWidth": 0.4,
+   "bassHz": 160,
+   "tiers": {
+    "low": {
+     "perc": -3,
+     "bass": 0,
+     "center": -5,
+     "side": -12,
+     "tiltDb": -2,
+     "tiltHz": 1200
+    },
+    "mid": {},
+    "high": {
+     "add": {
+      "perc": -2,
+      "center": -2,
+      "side": -4
+     }
+    }
+   },
+   "addNovel": true,
+   "novelOverDb": 3
+  },
+  "cool-crowd": {
+   "base": "pipeline-20261107/chains/cool-crowd/parent.flac",
+   "add": "pipeline-20261107/chains/cool-crowd/highB.flac",
+   "addWidth": 0.4,
+   "bassHz": 160,
+   "tiers": {
+    "low": {
+     "perc": -3,
+     "bass": 0,
+     "center": -5,
+     "side": -12,
+     "tiltDb": -2,
+     "tiltHz": 1200
+    },
+    "mid": {
+     "side": -2.5
+    },
+    "high": {
+     "side": -2.5,
+     "add": {
+      "perc": -2,
+      "center": -2,
+      "side": -4
+     }
+    }
+   },
+   "addNovel": true,
+   "novelOverDb": 3,
+   "why": "The parent itself is wide (14 % of windows anti-correlated), so every tier narrows its upper sides the same way."
+  },
+  "billiards": {
+   "base": "pipeline-20261107/chains/billiards/parent.flac",
+   "add": "pipeline-20261107/chains/billiards/highB.flac",
+   "addWidth": 0.4,
+   "bassHz": 160,
+   "tiers": {
+    "low": {
+     "perc": -3,
+     "bass": 0,
+     "center": -5,
+     "side": -12,
+     "tiltDb": -2,
+     "tiltHz": 1200
+    },
+    "mid": {},
+    "high": {
+     "add": {
+      "perc": -2,
+      "center": -2,
+      "side": -4
+     }
+    }
+   },
+   "addNovel": true,
+   "novelOverDb": 3
+  },
+  "comedor": {
+   "base": "act2-20261108/chains/comedor/parent.flac",
+   "add": "act2-20261108/chains/comedor/highB.flac",
+   "addWidth": 0.4,
+   "bassHz": 160,
+   "tiers": {
+    "low": {
+     "perc": -3,
+     "bass": 0,
+     "center": -5,
+     "side": -12,
+     "tiltDb": -2,
+     "tiltHz": 1200
+    },
+    "mid": {},
+    "high": {
+     "add": {
+      "perc": -2,
+      "center": -2,
+      "side": -4
+     }
+    }
+   },
+   "addNovel": true,
+   "novelOverDb": 3
+  },
+  "salon": {
+   "base": "pipeline-20261107/chains/salon/parent.flac",
+   "add": "pipeline-20261107/chains/salon/highB.flac",
+   "addWidth": 0.4,
+   "bassHz": 160,
+   "tiers": {
+    "low": {
+     "perc": -3,
+     "bass": 0,
+     "center": -5,
+     "side": -12,
+     "tiltDb": -2,
+     "tiltHz": 1200
+    },
+    "mid": {},
+    "high": {
+     "add": {
+      "perc": -2,
+      "center": -2,
+      "side": -4
+     }
+    }
+   },
+   "addNovel": true,
+   "novelOverDb": 3
+  },
+  "galeria": {
+   "base": "act2-20261108/chains/galeria/parent.flac",
+   "add": "act2-20261108/chains/galeria/highB.flac",
+   "addWidth": 0.4,
+   "bassHz": 160,
+   "tiers": {
+    "low": {
+     "perc": -3,
+     "bass": 0,
+     "center": -5,
+     "side": -12,
+     "tiltDb": -2,
+     "tiltHz": 1200
+    },
+    "mid": {},
+    "high": {
+     "add": {
+      "perc": -2,
+      "center": -2,
+      "side": -4
+     }
+    }
+   },
+   "addNovel": true,
+   "novelOverDb": 3
+  },
+  "terraza": {
+   "base": "act2-20261108/chains/terraza/parent.flac",
+   "add": "act2-20261108/chains/terraza/highB.flac",
+   "addWidth": 0.4,
+   "bassHz": 160,
+   "tiers": {
+    "low": {
+     "perc": -3,
+     "bass": 0,
+     "center": -5,
+     "side": -12,
+     "tiltDb": -2,
+     "tiltHz": 1200
+    },
+    "mid": {},
+    "high": {
+     "add": {
+      "perc": -2,
+      "center": -2,
+      "side": -4
+     }
+    }
+   },
+   "addNovel": true,
+   "novelOverDb": 3
   }
  }
 }

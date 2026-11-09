@@ -149,21 +149,16 @@
    "tiers": [
     {
      "name": "low",
-     "source": "pipeline-20261107/chains/cool-crowd/lowB.flac",
-     "bpm": 112,
+     "source": "layered-20261109/cool-crowd/low-120.flac",
+     "bpm": 120,
      "loopBars": 28,
      "targetLufs": -16.5,
-     "eq": [
-      {
-       "type": "highshelf",
-       "freq": 1500,
-       "gain": -3
-      }
-     ]
+     "eq": [],
+     "followScale": 1.033333
     },
     {
      "name": "mid",
-     "source": "pipeline-20261107/chains/cool-crowd/parent.flac",
+     "source": "layered-20261109/cool-crowd/mid.flac",
      "bpm": 124,
      "loopBars": 28,
      "targetLufs": -16,
@@ -171,18 +166,12 @@
     },
     {
      "name": "high",
-     "source": "pipeline-20261107/chains/cool-crowd/highE.flac",
-     "bpm": 136,
+     "source": "layered-20261109/cool-crowd/high-128.flac",
+     "bpm": 128,
      "loopBars": 28,
      "targetLufs": -15,
      "eq": [],
-     "layer": [
-      {
-       "source": "pipeline-20261107/chains/cool-crowd/parent.flac",
-       "part": "percussive",
-       "db": -4
-      }
-     ]
+     "followScale": 0.96875
     }
    ]
   },
@@ -347,21 +336,16 @@
    "tiers": [
     {
      "name": "low",
-     "source": "act2-20261108/chains/galeria/lowC.flac",
-     "bpm": 114,
+     "source": "layered-20261109/galeria/low-118.flac",
+     "bpm": 118,
      "loopBars": 32,
      "targetLufs": -16.5,
-     "eq": [
-      {
-       "type": "highshelf",
-       "freq": 1500,
-       "gain": -3
-      }
-     ]
+     "eq": [],
+     "followScale": 1.033898
     },
     {
      "name": "mid",
-     "source": "act2-20261108/chains/galeria/parent.flac",
+     "source": "layered-20261109/galeria/mid.flac",
      "bpm": 122,
      "loopBars": 32,
      "targetLufs": -16,
@@ -369,18 +353,12 @@
     },
     {
      "name": "high",
-     "source": "act2-20261108/chains/galeria/highE.flac",
-     "bpm": 130,
+     "source": "layered-20261109/galeria/high-126.flac",
+     "bpm": 126,
      "loopBars": 32,
      "targetLufs": -15,
      "eq": [],
-     "layer": [
-      {
-       "source": "act2-20261108/chains/galeria/parent.flac",
-       "part": "percussive",
-       "db": -6
-      }
-     ]
+     "followScale": 0.968254
     }
    ]
   },

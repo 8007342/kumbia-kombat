@@ -42,8 +42,9 @@ LevelRegistry _levels() => LevelRegistry.parse(
 /// the merged mapping differs, this table and the charts must be looked at again.
 const _tierBpm = {
   'pool-garden': [144.0, 144.0, 160.0, 160.0, 136.0],
-  'bar': [100.0, 100.0, 106.0, 106.0, 112.0],
-  'cool-crowd': [112.0, 112.0, 124.0, 124.0, 136.0],
+  // 2026-11-09: the layered rebuild lifts about 3 % a tier (owner).
+  'bar': [103.0, 103.0, 106.0, 106.0, 109.0],
+  'cool-crowd': [120.0, 120.0, 124.0, 124.0, 128.0],
   'billiards': [96.0, 96.0, 100.0, 100.0, 104.0],
   'salon': [108.0, 108.0, 116.0, 116.0, 124.0],
 };

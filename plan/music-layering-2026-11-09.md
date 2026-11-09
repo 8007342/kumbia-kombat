@@ -45,6 +45,44 @@ Tempos 103 / 106 / 109 (was 100 / 106 / 112). Loop 24 bars.
 - `test/cool_crowd_level_test.dart` asserted bridge BPM = bar high BPM, which held only because both were 112. It now asserts the real rule: the bridge plays at the tempo of the take it lands in, the party's low.
 - **The detector gate is pending:** `audio.detect_glitches` didn't return on 2026-11-09 (sent to yoga by macuahuitl-fedora). Bar goes to `game` only after it passes.
 
+## Party (`cool-crowd`, D minor), done, detector gate pending
+
+Tempos 120 / 124 / 128 (was 112 / 124 / 136). The party's parent is wide on its own: 14 % of its windows are anti-correlated, which fails the gate. So **every tier narrows the upper sides the same way** (−2.5 dB on mid and high, −12 on low). That is one mastering choice applied to one recording, not a change between tiers.
+
+| File | Stereo corr | Neg. windows | Centroid Hz | LUFS |
+|---|---|---|---|---|
+| mid, before | +0.56 | | | −16.0 |
+| high, before | −0.15 | | | −15.0 |
+| **low, after** | **+0.89** | 0 % | 234 | −16.5 |
+| **mid, after** | **+0.69** | 0 % | 371 | −16.0 |
+| **high, after** | **+0.62** | 1 % | 418 | −15.0 |
+| success, after | +0.70 | 0 % | 393 | −15.1 |
+| bridge to billiards | +0.49 | **20 %** | 261 | −17.8 |
+
+- **The bridge into billiards fails the gate.** It is cut partly from billiards' old low, and is rebuilt when billiards is.
+- **One stop in the performance:** all three tiers fall to about −75 dB for 50–100 ms near beat 53 of the loop (around bar 14), inside a passage already at −39 dB. The approved mid had it before. It is in the take, not made here. **For the owner's listen:** is it a musical break or a hole?
+- `align_charts`: 67 against 68 before. `chart_check`: the same 37 problems at the new tempos as at the old. They are older than this work; the Dart tests are the authority and pass.
+
+## Galería (`galeria`, A Dorian), done, detector gate pending
+
+Tempos 118 / 122 / 126 (was 114 / 122 / 130). Its parent was already narrow enough (+0.68), so it uses the bar's gains unchanged.
+
+| File | Stereo corr | Neg. windows | Clipped runs | Centroid Hz | LUFS |
+|---|---|---|---|---|---|
+| low | +0.91 | 0 % | 0 | 274 | −16.5 |
+| mid | +0.69 | 0 % | 0 | 419 | −16.0 |
+| high | +0.67 | 0 % | 0 | 506 | −15.0 |
+| success | +0.68 | 0 % | 0 | 478 | −14.5 |
+| bridge to the terraza | +0.77 | 0 % | 0 | 533 | −15.9 |
+
+- The audit's clipping growth (6 to 157 runs over the chain) is gone: high no longer comes from the chain.
+- `align_charts`: **97 against 92**, with on-accent at 100 %. `chart_check`: no problems.
+- Rebuilt as a side effect, with no change to their sources: the salón's bridge into galería (+0.85, −16.6 LUFS) and the bar's bridge into the party (+0.72, −16.9 LUFS, within 0.4 LU of the party's low).
+
+## Tests that held the old ladders
+
+`test/rich_moves_test.dart`, `test/cool_crowd_level_test.dart` and `test/rendered_page_test.dart` held the old tempos as the owner's ladders. They now hold the 3 % ladders. `mix.py --self-test` holds them too. The full `flutter test` passes, 792 tests.
+
 ## Next
 
-Party (`cool-crowd`), galería, comedor, salón, terraza, garden, billiards, then the pool lawn. After the last room, the bridges are recut against the new lows, and each bridge's loudness is checked against its destination. The bar's bridge into the party is rebuilt when the party is.
+Comedor, salón, terraza, garden, billiards, then the pool lawn. After the last room, the bridges are recut against the new lows, and each bridge's loudness is checked against its destination. The bar's bridge into the party is rebuilt when the party is.

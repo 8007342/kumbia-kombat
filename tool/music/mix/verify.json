@@ -219,38 +219,38 @@
    },
    "bridge": {
     "opus": {
-     "truePeakDb": -1.8,
-     "seconds": 4.2857,
+     "truePeakDb": -0.8,
+     "seconds": 4.0,
      "beatRmsDb": [
       -17.0,
-      -19.5,
-      -21.0,
-      -21.6,
-      -20.4,
-      -20.1,
-      -20.1,
-      -22.2
+      -19.7,
+      -19.9,
+      -21.4,
+      -18.7,
+      -18.4,
+      -18.7,
+      -20.2
      ]
     },
     "aac": {
-     "truePeakDb": -1.8,
-     "seconds": 4.2857,
+     "truePeakDb": -0.9,
+     "seconds": 4.0,
      "beatRmsDb": [
       -17.0,
-      -19.6,
-      -21.0,
-      -21.6,
-      -20.4,
-      -20.1,
-      -20.1,
-      -22.1
+      -19.7,
+      -19.9,
+      -21.5,
+      -18.8,
+      -18.5,
+      -18.7,
+      -20.2
      ]
     }
    }
   },
   "megabytes": {
-   "opus": 3.56,
-   "aac": 3.03
+   "opus": 3.55,
+   "aac": 3.02
   },
   "layers": {
    "low": {
@@ -698,91 +698,91 @@
    "low": {
     "opus": {
      "lufs": -16.5,
-     "truePeakDb": -5.2,
+     "truePeakDb": -3.9,
      "driftEndsMs": 0.0,
-     "driftWorstMs": 4.0,
-     "pulseBpm": 111.985,
-     "wanderMs": 12.89,
+     "driftWorstMs": 2.0,
+     "pulseBpm": 120.009,
+     "wanderMs": 8.0,
      "seam": {
-      "stepRatio": 0.39,
-      "wrapJumpDb": 2.64,
-      "otherBarsP90JumpDb": 2.58,
-      "step": 0.0596,
-      "stepStraightThrough": 0.0596,
-      "headMismatch": 0.0,
-      "loopMaxStep": 0.3726,
-      "shareOfLoopStepsAbovePct": 2.325,
-      "burstDb": 0.0
+      "stepRatio": 0.27,
+      "wrapJumpDb": 3.09,
+      "otherBarsP90JumpDb": 2.2,
+      "step": 0.0541,
+      "stepStraightThrough": 0.0646,
+      "headMismatch": 0.0106,
+      "loopMaxStep": 0.3473,
+      "shareOfLoopStepsAbovePct": 2.584,
+      "burstDb": -0.08
      },
-     "wrapResidualDb": -122.2,
-     "decodedSamples": 2904000,
+     "wrapResidualDb": -30.6,
+     "decodedSamples": 2712000,
      "lengthErrorMs": 0.0
     },
     "aac": {
-     "lufs": -16.5,
-     "truePeakDb": -5.3,
+     "lufs": -16.6,
+     "truePeakDb": -4.1,
      "driftEndsMs": 0.0,
-     "driftWorstMs": 4.0,
-     "pulseBpm": 111.982,
-     "wanderMs": 14.91,
+     "driftWorstMs": 2.0,
+     "pulseBpm": 120.016,
+     "wanderMs": 8.96,
      "seam": {
-      "stepRatio": 0.31,
-      "wrapJumpDb": 2.59,
-      "otherBarsP90JumpDb": 2.6,
-      "step": 0.0423,
-      "stepStraightThrough": 0.0466,
-      "headMismatch": 0.0088,
-      "loopMaxStep": 0.3808,
-      "shareOfLoopStepsAbovePct": 4.923,
-      "burstDb": 0.9
+      "stepRatio": 0.23,
+      "wrapJumpDb": 3.12,
+      "otherBarsP90JumpDb": 2.15,
+      "step": 0.0375,
+      "stepStraightThrough": 0.0355,
+      "headMismatch": 0.0316,
+      "loopMaxStep": 0.3749,
+      "shareOfLoopStepsAbovePct": 5.778,
+      "burstDb": 0.88
      },
-     "wrapResidualDb": -14.2,
-     "decodedSamples": 2904000,
+     "wrapResidualDb": -14.6,
+     "decodedSamples": 2712000,
      "lengthErrorMs": 0.0
     }
    },
    "mid": {
     "opus": {
      "lufs": -16.0,
-     "truePeakDb": -4.1,
-     "driftEndsMs": -1.0,
+     "truePeakDb": -3.8,
+     "driftEndsMs": 2.0,
      "driftWorstMs": 2.0,
-     "pulseBpm": 123.994,
-     "wanderMs": 8.93,
+     "pulseBpm": 123.998,
+     "wanderMs": 9.33,
      "seam": {
-      "stepRatio": 0.33,
-      "wrapJumpDb": 2.14,
-      "otherBarsP90JumpDb": 1.72,
-      "step": 0.0662,
-      "stepStraightThrough": 0.0593,
-      "headMismatch": 0.0077,
-      "loopMaxStep": 0.3274,
-      "shareOfLoopStepsAbovePct": 2.499,
-      "burstDb": 0.23
+      "stepRatio": 0.28,
+      "wrapJumpDb": 2.47,
+      "otherBarsP90JumpDb": 1.98,
+      "step": 0.0584,
+      "stepStraightThrough": 0.0346,
+      "headMismatch": 0.0238,
+      "loopMaxStep": 0.3789,
+      "shareOfLoopStepsAbovePct": 3.786,
+      "burstDb": -0.19
      },
-     "wrapResidualDb": -18.3,
+     "wrapResidualDb": -18.6,
      "decodedSamples": 2625290,
      "lengthErrorMs": -0.007
     },
     "aac": {
-     "lufs": -16.1,
-     "truePeakDb": -3.8,
-     "driftEndsMs": 0.0,
+     "lufs": -16.0,
+     "truePeakDb": -3.5,
+     "driftEndsMs": 2.0,
      "driftWorstMs": 2.0,
-     "pulseBpm": 124.0,
-     "wanderMs": 8.25,
+     "pulseBpm": 123.995,
+     "wanderMs": 9.63,
      "seam": {
-      "stepRatio": 0.38,
-      "wrapJumpDb": 2.08,
-      "otherBarsP90JumpDb": 1.76,
-      "step": 0.0608,
-      "stepStraightThrough": 0.06,
-      "headMismatch": 0.0779,
-      "loopMaxStep": 0.3354,
-      "shareOfLoopStepsAbovePct": 3.01,
-      "burstDb": 0.72
+      "stepRatio": 0.42,
+      "wrapJumpDb": 2.45,
+      "otherBarsP90JumpDb": 1.95,
+      "step": 0.0712,
+      "stepStraightThrough": 0.0387,
+      "headMismatch": 0.1042,
+      "loopMaxStep": 0.3836,
+      "shareOfLoopStepsAbovePct": 1.941,
+      "burstDb": 0.74
      },
-     "wrapResidualDb": -13.2,
+     "wrapResidualDb": -13.0,
      "decodedSamples": 2625290,
      "lengthErrorMs": -0.007
     }
@@ -790,126 +790,126 @@
    "high": {
     "opus": {
      "lufs": -15.0,
-     "truePeakDb": -2.5,
+     "truePeakDb": -1.3,
      "driftEndsMs": 0.0,
-     "driftWorstMs": 0.0,
-     "pulseBpm": 135.981,
-     "wanderMs": 16.73,
+     "driftWorstMs": 2.0,
+     "pulseBpm": 127.995,
+     "wanderMs": 8.69,
      "seam": {
-      "stepRatio": 0.03,
-      "wrapJumpDb": 0.65,
-      "otherBarsP90JumpDb": 3.73,
-      "step": 0.0077,
-      "stepStraightThrough": 0.0066,
-      "headMismatch": 0.0045,
-      "loopMaxStep": 0.4442,
-      "shareOfLoopStepsAbovePct": 65.769,
-      "burstDb": -0.05
+      "stepRatio": 0.08,
+      "wrapJumpDb": 1.97,
+      "otherBarsP90JumpDb": 1.83,
+      "step": 0.0179,
+      "stepStraightThrough": 0.0179,
+      "headMismatch": 0.0,
+      "loopMaxStep": 0.4677,
+      "shareOfLoopStepsAbovePct": 36.977,
+      "burstDb": -0.0
      },
-     "wrapResidualDb": -17.6,
-     "decodedSamples": 2395765,
-     "lengthErrorMs": 0.006
+     "wrapResidualDb": -43.1,
+     "decodedSamples": 2544000,
+     "lengthErrorMs": 0.0
     },
     "aac": {
      "lufs": -15.0,
-     "truePeakDb": -1.9,
-     "driftEndsMs": 0.0,
-     "driftWorstMs": 2.0,
-     "pulseBpm": 135.964,
-     "wanderMs": 16.63,
+     "truePeakDb": -1.8,
+     "driftEndsMs": -1.0,
+     "driftWorstMs": 3.0,
+     "pulseBpm": 127.988,
+     "wanderMs": 9.86,
      "seam": {
-      "stepRatio": 0.05,
-      "wrapJumpDb": 0.65,
-      "otherBarsP90JumpDb": 3.78,
-      "step": 0.012,
-      "stepStraightThrough": 0.0037,
-      "headMismatch": 0.0084,
-      "loopMaxStep": 0.3912,
-      "shareOfLoopStepsAbovePct": 52.779,
-      "burstDb": 0.38
+      "stepRatio": 0.73,
+      "wrapJumpDb": 2.0,
+      "otherBarsP90JumpDb": 1.83,
+      "step": 0.1471,
+      "stepStraightThrough": 0.0278,
+      "headMismatch": 0.1749,
+      "loopMaxStep": 0.4454,
+      "shareOfLoopStepsAbovePct": 0.145,
+      "burstDb": 1.18
      },
-     "wrapResidualDb": -14.6,
-     "decodedSamples": 2395765,
-     "lengthErrorMs": 0.006
+     "wrapResidualDb": -12.5,
+     "decodedSamples": 2544000,
+     "lengthErrorMs": 0.0
     }
    }
   },
   "segments": {
    "success": {
     "opus": {
-     "truePeakDb": -3.1,
-     "seconds": 3.5294,
+     "truePeakDb": -2.0,
+     "seconds": 3.75,
      "beatRmsDb": [
-      -17.7,
-      -16.4,
-      -16.9,
-      -16.2,
-      -17.8,
-      -16.4,
-      -16.6,
-      -20.7
+      -16.8,
+      -17.1,
+      -15.6,
+      -17.6,
+      -16.5,
+      -17.9,
+      -15.9,
+      -18.1
      ]
     },
     "aac": {
-     "truePeakDb": -3.3,
-     "seconds": 3.5294,
+     "truePeakDb": -2.4,
+     "seconds": 3.75,
      "beatRmsDb": [
-      -17.8,
-      -16.4,
-      -16.9,
-      -16.2,
-      -17.9,
-      -16.4,
+      -16.7,
+      -17.2,
+      -15.6,
+      -17.6,
       -16.6,
-      -20.7
+      -17.9,
+      -16.0,
+      -18.2
      ]
     }
    },
    "bridge": {
     "opus": {
-     "truePeakDb": -1.8,
+     "truePeakDb": -2.9,
      "seconds": 5.0,
      "beatRmsDb": [
-      -21.3,
-      -23.1,
+      -19.5,
       -21.4,
-      -16.5,
-      -18.9,
-      -20.2,
-      -19.8,
-      -16.9
+      -25.7,
+      -18.5,
+      -17.5,
+      -20.6,
+      -21.4,
+      -18.1
      ]
     },
     "aac": {
-     "truePeakDb": -0.6,
+     "truePeakDb": -2.9,
      "seconds": 5.0,
      "beatRmsDb": [
+      -19.5,
       -21.4,
-      -23.2,
-      -21.6,
-      -16.5,
-      -18.9,
-      -20.2,
-      -19.9,
-      -17.0
+      -25.7,
+      -18.5,
+      -17.6,
+      -20.5,
+      -21.4,
+      -18.1
      ]
     }
    }
   },
   "megabytes": {
-   "opus": 3.43,
-   "aac": 2.89
+   "opus": 3.32,
+   "aac": 2.87
   },
   "layers": {
    "low": {
     "lagMedianMs": 0.0,
     "lagWorstMs": 0.0,
-    "envelopeCorr": 0.92
+    "envelopeCorr": 0.94
    },
    "high": {
     "lagMedianMs": 0.0,
-    "lagWorstMs": 11.6,
-    "envelopeCorr": 0.89
+    "lagWorstMs": 0.0,
+    "envelopeCorr": 0.97
    }
   }
  },
@@ -1339,31 +1339,31 @@
    },
    "bridge": {
     "opus": {
-     "truePeakDb": -0.7,
-     "seconds": 4.2105,
+     "truePeakDb": -0.9,
+     "seconds": 4.0678,
      "beatRmsDb": [
-      -18.5,
-      -21.4,
-      -24.5,
-      -22.1,
-      -15.7,
-      -16.1,
-      -19.6,
-      -20.9
+      -17.4,
+      -21.2,
+      -24.1,
+      -21.9,
+      -13.4,
+      -16.7,
+      -22.8,
+      -21.4
      ]
     },
     "aac": {
-     "truePeakDb": -1.5,
-     "seconds": 4.2105,
+     "truePeakDb": -1.3,
+     "seconds": 4.0678,
      "beatRmsDb": [
-      -18.6,
-      -21.5,
-      -24.6,
-      -22.2,
-      -15.7,
-      -16.3,
-      -19.7,
-      -21.0
+      -17.5,
+      -21.2,
+      -24.2,
+      -22.1,
+      -13.4,
+      -16.8,
+      -22.9,
+      -21.5
      ]
     }
    }
@@ -1626,91 +1626,91 @@
    "low": {
     "opus": {
      "lufs": -16.5,
-     "truePeakDb": -1.4,
+     "truePeakDb": -1.0,
      "driftEndsMs": 0.0,
      "driftWorstMs": 2.0,
-     "pulseBpm": 114.007,
-     "wanderMs": 2.72,
+     "pulseBpm": 118.007,
+     "wanderMs": 1.89,
      "seam": {
-      "stepRatio": 0.6,
-      "wrapJumpDb": 1.58,
-      "otherBarsP90JumpDb": 5.46,
-      "step": 0.1057,
-      "stepStraightThrough": 0.0935,
-      "headMismatch": 0.0122,
-      "loopMaxStep": 0.3223,
-      "shareOfLoopStepsAbovePct": 0.545,
-      "burstDb": -0.35
+      "stepRatio": 0.4,
+      "wrapJumpDb": 0.39,
+      "otherBarsP90JumpDb": 8.13,
+      "step": 0.0801,
+      "stepStraightThrough": 0.0779,
+      "headMismatch": 0.0276,
+      "loopMaxStep": 0.3564,
+      "shareOfLoopStepsAbovePct": 1.299,
+      "burstDb": 0.29
      },
-     "wrapResidualDb": -21.3,
-     "decodedSamples": 3257684,
-     "lengthErrorMs": -0.004
+     "wrapResidualDb": -19.5,
+     "decodedSamples": 3148068,
+     "lengthErrorMs": 0.004
     },
     "aac": {
-     "lufs": -16.6,
-     "truePeakDb": -1.3,
+     "lufs": -16.5,
+     "truePeakDb": -0.6,
      "driftEndsMs": 0.0,
      "driftWorstMs": 2.0,
-     "pulseBpm": 114.004,
-     "wanderMs": 3.29,
+     "pulseBpm": 118.005,
+     "wanderMs": 1.4,
      "seam": {
-      "stepRatio": 0.69,
-      "wrapJumpDb": 1.46,
-      "otherBarsP90JumpDb": 5.47,
-      "step": 0.137,
-      "stepStraightThrough": 0.0643,
-      "headMismatch": 0.0727,
-      "loopMaxStep": 0.3547,
-      "shareOfLoopStepsAbovePct": 0.163,
-      "burstDb": -0.42
+      "stepRatio": 0.13,
+      "wrapJumpDb": 0.6,
+      "otherBarsP90JumpDb": 8.2,
+      "step": 0.0249,
+      "stepStraightThrough": 0.0342,
+      "headMismatch": 0.0268,
+      "loopMaxStep": 0.341,
+      "shareOfLoopStepsAbovePct": 9.238,
+      "burstDb": -0.46
      },
-     "wrapResidualDb": -19.6,
-     "decodedSamples": 3257684,
-     "lengthErrorMs": -0.004
+     "wrapResidualDb": -19.2,
+     "decodedSamples": 3148068,
+     "lengthErrorMs": 0.004
     }
    },
    "mid": {
     "opus": {
      "lufs": -16.0,
-     "truePeakDb": -0.8,
+     "truePeakDb": -1.1,
      "driftEndsMs": 0.0,
      "driftWorstMs": 2.0,
-     "pulseBpm": 122.006,
-     "wanderMs": 3.73,
+     "pulseBpm": 122.005,
+     "wanderMs": 3.58,
      "seam": {
-      "stepRatio": 0.14,
-      "wrapJumpDb": 0.33,
-      "otherBarsP90JumpDb": 5.98,
-      "step": 0.0317,
-      "stepStraightThrough": 0.0472,
-      "headMismatch": 0.0394,
-      "loopMaxStep": 0.3788,
-      "shareOfLoopStepsAbovePct": 8.613,
-      "burstDb": -0.06
+      "stepRatio": 0.69,
+      "wrapJumpDb": 0.27,
+      "otherBarsP90JumpDb": 5.97,
+      "step": 0.1637,
+      "stepStraightThrough": 0.2189,
+      "headMismatch": 0.0552,
+      "loopMaxStep": 0.3781,
+      "shareOfLoopStepsAbovePct": 0.171,
+      "burstDb": -0.29
      },
-     "wrapResidualDb": -19.9,
+     "wrapResidualDb": -20.6,
      "decodedSamples": 3045639,
      "lengthErrorMs": -0.007
     },
     "aac": {
      "lufs": -16.0,
-     "truePeakDb": -0.6,
+     "truePeakDb": -0.9,
      "driftEndsMs": 0.0,
      "driftWorstMs": 2.0,
-     "pulseBpm": 122.004,
-     "wanderMs": 3.99,
+     "pulseBpm": 121.999,
+     "wanderMs": 4.39,
      "seam": {
-      "stepRatio": 0.32,
-      "wrapJumpDb": 0.04,
-      "otherBarsP90JumpDb": 5.99,
-      "step": 0.0695,
-      "stepStraightThrough": 0.0255,
-      "headMismatch": 0.044,
-      "loopMaxStep": 0.3691,
-      "shareOfLoopStepsAbovePct": 2.198,
-      "burstDb": 0.85
+      "stepRatio": 0.54,
+      "wrapJumpDb": 0.17,
+      "otherBarsP90JumpDb": 6.02,
+      "step": 0.1219,
+      "stepStraightThrough": 0.1253,
+      "headMismatch": 0.0175,
+      "loopMaxStep": 0.3746,
+      "shareOfLoopStepsAbovePct": 0.496,
+      "burstDb": -0.68
      },
-     "wrapResidualDb": -18.6,
+     "wrapResidualDb": -18.9,
      "decodedSamples": 3045639,
      "lengthErrorMs": -0.007
     }
@@ -1718,46 +1718,46 @@
    "high": {
     "opus": {
      "lufs": -15.0,
-     "truePeakDb": -1.9,
-     "driftEndsMs": -2.0,
+     "truePeakDb": -0.6,
+     "driftEndsMs": 0.0,
      "driftWorstMs": 2.0,
-     "pulseBpm": 129.988,
-     "wanderMs": 5.17,
+     "pulseBpm": 125.997,
+     "wanderMs": 1.71,
      "seam": {
-      "stepRatio": 0.33,
-      "wrapJumpDb": 0.82,
-      "otherBarsP90JumpDb": 3.82,
-      "step": 0.1158,
-      "stepStraightThrough": 0.1437,
-      "headMismatch": 0.0279,
-      "loopMaxStep": 0.6485,
-      "shareOfLoopStepsAbovePct": 3.395,
-      "burstDb": -0.03
+      "stepRatio": 0.06,
+      "wrapJumpDb": 0.13,
+      "otherBarsP90JumpDb": 5.2,
+      "step": 0.0223,
+      "stepStraightThrough": 0.0298,
+      "headMismatch": 0.014,
+      "loopMaxStep": 0.6913,
+      "shareOfLoopStepsAbovePct": 22.83,
+      "burstDb": 0.04
      },
-     "wrapResidualDb": -17.1,
-     "decodedSamples": 2859692,
+     "wrapResidualDb": -19.8,
+     "decodedSamples": 2949714,
      "lengthErrorMs": -0.006
     },
     "aac": {
-     "lufs": -15.0,
-     "truePeakDb": -1.1,
-     "driftEndsMs": -1.0,
+     "lufs": -15.1,
+     "truePeakDb": -0.5,
+     "driftEndsMs": 0.0,
      "driftWorstMs": 2.0,
-     "pulseBpm": 129.985,
-     "wanderMs": 7.68,
+     "pulseBpm": 126.001,
+     "wanderMs": 1.33,
      "seam": {
-      "stepRatio": 0.3,
-      "wrapJumpDb": 0.76,
-      "otherBarsP90JumpDb": 3.84,
-      "step": 0.1082,
-      "stepStraightThrough": 0.1321,
-      "headMismatch": 0.0239,
-      "loopMaxStep": 0.6784,
-      "shareOfLoopStepsAbovePct": 3.897,
-      "burstDb": 0.73
+      "stepRatio": 0.06,
+      "wrapJumpDb": 0.0,
+      "otherBarsP90JumpDb": 5.16,
+      "step": 0.0199,
+      "stepStraightThrough": 0.0313,
+      "headMismatch": 0.0513,
+      "loopMaxStep": 0.5795,
+      "shareOfLoopStepsAbovePct": 27.76,
+      "burstDb": -0.8
      },
-     "wrapResidualDb": -13.1,
-     "decodedSamples": 2859692,
+     "wrapResidualDb": -18.5,
+     "decodedSamples": 2949714,
      "lengthErrorMs": -0.006
     }
    }
@@ -1765,58 +1765,58 @@
   "segments": {
    "success": {
     "opus": {
-     "truePeakDb": -2.4,
-     "seconds": 7.3846,
+     "truePeakDb": -0.8,
+     "seconds": 7.619,
      "beatRmsDb": [
-      -15.0,
-      -15.9,
-      -18.9,
-      -17.9,
-      -15.2,
+      -14.2,
+      -16.8,
+      -18.6,
+      -19.0,
+      -13.4,
       -16.6,
-      -17.3,
-      -16.5,
-      -15.2,
-      -16.9,
+      -20.6,
+      -19.1,
+      -14.0,
       -16.3,
-      -17.5,
-      -15.6,
-      -17.0,
-      -17.2,
-      -16.5
+      -18.6,
+      -18.5,
+      -14.1,
+      -16.0,
+      -19.8,
+      -19.5
      ]
     },
     "aac": {
-     "truePeakDb": -1.5,
-     "seconds": 7.3846,
+     "truePeakDb": -1.0,
+     "seconds": 7.619,
      "beatRmsDb": [
-      -15.0,
-      -16.0,
+      -14.4,
+      -16.9,
+      -18.7,
       -19.0,
-      -17.9,
-      -15.3,
-      -16.7,
-      -17.3,
+      -13.5,
       -16.6,
-      -15.3,
-      -17.0,
+      -20.6,
+      -19.2,
+      -14.0,
       -16.3,
-      -17.3,
-      -15.6,
-      -17.0,
-      -17.3,
-      -16.5
+      -18.6,
+      -18.5,
+      -14.1,
+      -16.0,
+      -19.9,
+      -19.5
      ]
     }
    },
    "bridge": {
     "opus": {
-     "truePeakDb": -1.4,
+     "truePeakDb": -1.5,
      "seconds": 5.0,
      "beatRmsDb": [
-      -20.0,
-      -20.9,
-      -21.0,
+      -17.8,
+      -20.2,
+      -21.3,
       -19.8,
       -19.0,
       -17.0,
@@ -1825,15 +1825,15 @@
      ]
     },
     "aac": {
-     "truePeakDb": -1.2,
+     "truePeakDb": -1.3,
      "seconds": 5.0,
      "beatRmsDb": [
-      -20.1,
-      -20.9,
-      -21.3,
+      -18.0,
+      -20.2,
+      -21.4,
       -19.9,
       -19.0,
-      -17.1,
+      -17.0,
       -16.9,
       -17.5
      ]
@@ -1841,19 +1841,19 @@
    }
   },
   "megabytes": {
-   "opus": 4.15,
-   "aac": 3.36
+   "opus": 4.05,
+   "aac": 3.37
   },
   "layers": {
    "low": {
     "lagMedianMs": 0.0,
     "lagWorstMs": 0.0,
-    "envelopeCorr": 0.94
+    "envelopeCorr": 0.98
    },
    "high": {
     "lagMedianMs": 0.0,
-    "lagWorstMs": 0.0,
-    "envelopeCorr": 0.9
+    "lagWorstMs": 11.6,
+    "envelopeCorr": 0.97
    }
   }
  },

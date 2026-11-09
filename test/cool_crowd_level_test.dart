@@ -497,9 +497,9 @@ void main() {
       expect(music['tierTakes'], ['low', 'low', 'mid', 'mid', 'high']);
       final takes = music['takes'] as Map<String, dynamic>;
       expect({for (final e in takes.entries) e.key: e.value['bpm']}, {
-        'low': 112.0,
+        'low': 120.0,
         'mid': 124.0,
-        'high': 136.0,
+        'high': 128.0,
       });
       for (final take in takes.values) {
         for (final file in (take['files'] as Map).values) {

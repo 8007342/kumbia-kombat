@@ -1686,7 +1686,7 @@ def self_test():
     assert [t["bpm"] for t in by_id["garden"]["tiers"]] == [92, 98, 104]
     # 2026-11-09: the owner chose a lift of about 3 % per tier for the layered rebuild.
     assert [t["bpm"] for t in by_id["bar"]["tiers"]] == [103, 106, 109]
-    assert [t["bpm"] for t in by_id["cool-crowd"]["tiers"]] == [112, 124, 136]
+    assert [t["bpm"] for t in by_id["cool-crowd"]["tiers"]] == [120, 124, 128]
     assert transition_pairs(["a", "b", "c"]) == [("a", "b"), ("b", "c"), ("c", "b"), ("b", "a"), ("c", "a")]
     assert tier_map(["a", "b", "c"]) == ["a", "a", "b", "b", "c"]
 

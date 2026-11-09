@@ -345,7 +345,7 @@ void main() {
     final session = await _start(tester, audio, level: 'cool-crowd');
     expect(session.transport.currentClip?.id, 'cool-crowd/low');
     expect(audio.voices.single.clip.id, 'cool-crowd/low');
-    expect(session.transport.currentBpm, closeTo(112, .01));
+    expect(session.transport.currentBpm, closeTo(120, .01));
     expect(audio.notes, isEmpty);
     await _end(tester);
   });
