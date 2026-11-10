@@ -137,10 +137,10 @@ Was three separate takes cut together, at 144 / 160 / 136 in play order. Now it 
 
 ## Next
 
-**Next: after the window relaunch, run the game tests and the studio's `audio.detect_glitches` on the re-rendered loops, then report to macuahuitl-fedora for the owner to merge `work/2617-fral`.** The owner chose (B) on 2026-11-10: every loop is a whole number of Opus frames (`loopFrameSamples` 960). All rooms are re-rendered on `work/2617-fral` (c01e6ea, pushed, **not merged**: the coordinator wants the table first, and `main` waits for the owner).
-- **Check first that the detector answering is the new one** (the audio-studio image may still be the old one): `audio.detect_glitches` with loop=true on `/work/tmp/audio/calib/planted/bar--low--offwrap.wav` should give a seam at about 6.9× the interior p99, and `/work/tmp/audio/calib/bar--low--rolled.wav` should not flag. If either fails, report it and stop.
-- Then run it with loop=true on the 27 new game loops in `/work/tmp/audio/b960/loops/<room>--<tier>.wav` (decoded Opus, cut to the loop region), and with loop=false on the 8 bridges in `assets/music/rendered/<room>/bridge.ogg`.
-- `flutter test` was refused as lane-stale on 2026-11-10; it must pass before the merge (the manifest's take tempos are no longer whole numbers).
+**Next: flutter test on work/2617-fral, then the 6.9× check, then the studio detector on b960/loops and the bridges.** Report each step to macuahuitl-fedora; the owner merges `work/2617-fral` and promotes `main`. The owner chose (B) on 2026-11-10: every loop is a whole number of Opus frames (`loopFrameSamples` 960). All rooms are re-rendered on `work/2617-fral` (pushed, **not merged**). The coordinator has reviewed the table and the three design changes below and said to keep them.
+1. `git switch work/2617-fral`, then `flutter test`. It was refused as lane-stale on 2026-11-10, and the manifest's take tempos are no longer whole numbers, so it must pass before the merge.
+2. **The 6.9× check**, that the detector answering is the new one (the audio-studio image may still be the old one): `audio.detect_glitches` with loop=true on `/work/tmp/audio/calib/planted/bar--low--offwrap.wav` should give a seam at about 6.9× the interior p99, and `/work/tmp/audio/calib/bar--low--rolled.wav` should not flag. If either fails, report it and stop.
+3. **The studio detector**: loop=true on the 27 new game loops in `/work/tmp/audio/b960/loops/<room>--<tier>.wav` (decoded Opus, cut to the loop region), and loop=false on the 8 bridges in `assets/music/rendered/<room>/bridge.ogg`. Compare with the local table in the research note.
 
 What the branch does, measured on 2026-11-10 with yoga's v2 code (tillandsias 891e5d9, run locally, SEAM_FACTOR 1.5):
 - **Opus: 0 of 27 wraps flag** (wrap/p99 0.12–1.06; shipped, 11 of 27 were over 1.5, up to 9.47). The table is in `plan/research/music-loop-wraps-2026-11-10.md`.
