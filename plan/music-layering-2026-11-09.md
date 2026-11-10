@@ -16,11 +16,11 @@ Follows `plan/music-fix-2026-11-08.md`. Branch `work/2612-layr`. **Nobody has he
 2. **Parts:** the base is split with soft masks on one STFT into percussive, bass (under 160 Hz), upper centre and upper sides. The masks come from the mono magnitude, so both channels get the same mask and the image is kept. At unit gain the parts sum back to the base with a −133 dB residual, so **mid is the recording itself**.
 3. **Low** takes parts away from that same recording: percussion −3 dB, centre −5, sides −12, and a −2 dB-per-octave tilt over 1.2 kHz on the upper parts.
 4. **High** adds what one ACE pass (`highB`, one pass at 0.6 from the parent, never a chain) has *that the parent doesn't*: its energy over the parent's, cell by cell, with its own phase (`addNovel`). Doubled hits cancel out of it, so it holds new parts, not a second copy. Its sides are narrowed to 0.4.
-5. **Tempo:** low and high are stretched with rubberband (`audio.transform time_stretch`) to their tempos. mixrs follows mid's grid scaled by the stretch (new tier field `followScale`, in mix.py and mixrs), so all three stay on one bar grid.
+5. **Tempo:** `mixrs room plan LEVEL` gives the tempos and stretch ratios; `mixrs room stage LEVEL` copies low and high to `/work/tmp/audio/layered/`, where they are stretched with rubberband (`audio.transform time_stretch`); `mixrs room wire LEVEL` copies them back and points `levels.json` at them. mixrs follows mid's grid scaled by the stretch (new tier field `followScale`, in mix.py and mixrs), so all three stay on one bar grid.
 
 When Demucs lands (2055-d9sa), step 2 can take real stems and steps 3–4 keep their shape. Once ACE lego/repaint lands (2055-dihg), it can make the added layer.
 
-Gate: `tool/music/layer/measure.py` fails a file on stereo correlation under +0.2, more than 10 % of half-second windows anti-correlated, more than 4 clipped runs, or a dropout. Its click count is informational only: it counts thousands on clean takes. Real click finding is `audio.detect_glitches`.
+Gate: `mixrs measure` (was `tool/music/layer/measure.py`) fails a file on stereo correlation under +0.2, more than 10 % of half-second windows anti-correlated, more than 4 clipped runs, or a dropout. Its click count is informational only: it counts thousands on clean takes. Real click finding is `audio.detect_glitches`.
 
 ## Bar (`bar`, C minor), done, detector gate pending
 
@@ -139,4 +139,5 @@ Was three separate takes cut together, at 144 / 160 / 136 in play order. Now it 
 
 - **All nine rooms are layered.** `mix.py verify`: 0 failures on all nine. The full `flutter test` passes (792).
 - The synth fallback scores in `tool/music/generate.mjs` still carry the old ladders for every room. They play only for a room with no rendered takes, and all nine have them. On a decode failure the synth already runs on the take's clock (`rendered_page_test`). Not changed here.
-- **Promotion to `game` waits on `audio.detect_glitches`.** It still didn't return on 2026-11-09 (two calls, both timed out after 30 minutes).
+- **Promoted to `game` on 2026-11-10** (8d3544e), on the owner's approval ahead of the detector. `main` waits for `audio.detect_glitches`: it hung on 2026-11-09 (three calls timed out after 30 minutes); its fix (#1048) is in tray v56.11.10.1, but on 2026-11-10 this forge's audio tools still answered from the 56.11.9.1 app. The 36 files to check are staged in `/work/tmp/audio/after/<room>--{low,mid,high,bridge}.ogg`.
+- **The layer tools are Rust (2026-11-10, operator rule: Lua, then Rust, then Go).** `measure.py`, `lag.py` and `room.py` are now `mixrs measure`, `mixrs lag` and `mixrs room`, and the .py are deleted. `tool/music/mixrs/compare/layer_golden.sh` checks them against the Python's outputs on the bar and salón: every measure on decoded WAV to the last digit, every lag, both plans, and `wire` writing `levels.json` byte for byte. The one allowed difference is the click count on .ogg (ffmpeg against libsndfile decoding, 19685 against 19684 on the bar's high), which isn't a gate. `layer.py` stays Python: its STFT and median filters are the library exception.

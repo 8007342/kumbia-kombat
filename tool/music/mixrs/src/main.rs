@@ -4,8 +4,10 @@
 mod align;
 mod analysis;
 mod audio;
+mod layer;
 mod np;
 mod render;
+mod room;
 mod tier;
 mod verify;
 
@@ -75,6 +77,26 @@ enum Cmd {
         /// How far from a grid point to look for an attack, in ms.
         #[arg(long, default_value_t = 60.0)] reach_ms: f64,
     },
+    /// Gates and measures of layered tiers, one JSON line per file; exits 1 if any fails.
+    Measure { files: Vec<PathBuf> },
+    /// How far STRETCHED's attacks sit from MID's, in ms (positive: late), after dividing its time by RATIO.
+    Lag {
+        mid: PathBuf,
+        stretched: PathBuf,
+        /// Output over input duration of the stretch.
+        ratio: f64,
+        /// Seconds before the loop, the same in both.
+        #[arg(default_value_t = 0.0)] pad: f64,
+    },
+    /// plan, stage or wire one room's layered tiers (tool/music/layer/tiers.json).
+    Room {
+        cmd: String,
+        level: String,
+        /// Another levels.json to read and write.
+        #[arg(long)] levels: Option<PathBuf>,
+        /// Another staging directory.
+        #[arg(long)] stage: Option<PathBuf>,
+    },
 }
 
 fn read_json(path: &Path) -> Value {
@@ -90,7 +112,20 @@ fn main() {
     rayon::ThreadPoolBuilder::new().num_threads(threads).build_global().expect("thread pool");
     let began = std::time::Instant::now();
     let name = std::env::args().skip(1).find(|a| !a.starts_with('-') && a.parse::<usize>().is_err()).unwrap_or_default();
+    if let Cmd::Measure { files } = &cli.command {
+        use rayon::prelude::*;
+        let results: Vec<serde_json::Value> = files.par_iter().map(|f| layer::measure(f)).collect();
+        let mut bad = false;
+        for r in &results {
+            bad |= !r["fails"].as_array().unwrap().is_empty();
+            println!("{r}");
+        }
+        std::process::exit(bad as i32);
+    }
     let result = match cli.command {
+        Cmd::Measure { .. } => unreachable!(),
+        Cmd::Lag { mid, stretched, ratio, pad } => layer::lag(&mid, &stretched, ratio, pad),
+        Cmd::Room { cmd, level, levels, stage } => room::room(&cmd, &level, levels.as_deref(), stage.as_deref()),
         Cmd::Prepare { job, out } => tier::prepare(&read_json(&job), &out),
         Cmd::Transition { a, b, job, out } => {
             let (a, b) = (tier::load(&a), tier::load(&b));
