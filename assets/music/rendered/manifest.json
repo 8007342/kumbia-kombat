@@ -18,12 +18,12 @@
    ],
    "takes": {
     "low": {
-     "bpm": 103.0,
+     "bpm": 103.00429184549357,
      "bars": 24,
      "beatsPerBar": 4,
-     "loopStartSeconds": 0.25,
-     "loopEndSeconds": 56.172333333333334,
-     "loopSamples": 2684272,
+     "loopStartSeconds": 0.4,
+     "loopEndSeconds": 56.32,
+     "loopSamples": 2684160,
      "sampleRate": 48000,
      "gainDb": 0,
      "files": {
@@ -48,12 +48,12 @@
      ]
     },
     "mid": {
-     "bpm": 106.0,
+     "bpm": 105.99926389400073,
      "bars": 24,
      "beatsPerBar": 4,
      "loopStartSeconds": 0.25,
-     "loopEndSeconds": 54.589625,
-     "loopSamples": 2608302,
+     "loopEndSeconds": 54.59,
+     "loopSamples": 2608320,
      "sampleRate": 48000,
      "gainDb": 0,
      "files": {
@@ -78,12 +78,12 @@
      ]
     },
     "high": {
-     "bpm": 109.0,
+     "bpm": 109.00832702498107,
      "bars": 24,
      "beatsPerBar": 4,
-     "loopStartSeconds": 0.25,
-     "loopEndSeconds": 53.09404166666667,
-     "loopSamples": 2536514,
+     "loopStartSeconds": 0.4,
+     "loopEndSeconds": 53.24,
+     "loopSamples": 2536320,
      "sampleRate": 48000,
      "gainDb": 0,
      "files": {
@@ -163,12 +163,12 @@
    ],
    "takes": {
     "low": {
-     "bpm": 95.0,
+     "bpm": 95.01187648456057,
      "bars": 20,
      "beatsPerBar": 4,
      "loopStartSeconds": 0.25,
-     "loopEndSeconds": 50.7763125,
-     "loopSamples": 2425263,
+     "loopEndSeconds": 50.77,
+     "loopSamples": 2424960,
      "sampleRate": 48000,
      "gainDb": 0,
      "files": {
@@ -189,12 +189,12 @@
      ]
     },
     "mid": {
-     "bpm": 98.0,
+     "bpm": 97.99918334013883,
      "bars": 20,
      "beatsPerBar": 4,
-     "loopStartSeconds": 0.25,
-     "loopEndSeconds": 49.22958333333333,
-     "loopSamples": 2351020,
+     "loopStartSeconds": 0.3,
+     "loopEndSeconds": 49.28,
+     "loopSamples": 2351040,
      "sampleRate": 48000,
      "gainDb": 0,
      "files": {
@@ -215,12 +215,12 @@
      ]
     },
     "high": {
-     "bpm": 101.0,
+     "bpm": 101.01010101010101,
      "bars": 20,
      "beatsPerBar": 4,
      "loopStartSeconds": 0.25,
-     "loopEndSeconds": 47.77475,
-     "loopSamples": 2281188,
+     "loopEndSeconds": 47.77,
+     "loopSamples": 2280960,
      "sampleRate": 48000,
      "gainDb": 0,
      "files": {
@@ -287,8 +287,8 @@
      "bpm": 128.0,
      "bars": 32,
      "beatsPerBar": 4,
-     "loopStartSeconds": 0.25,
-     "loopEndSeconds": 60.25,
+     "loopStartSeconds": 0.5,
+     "loopEndSeconds": 60.5,
      "loopSamples": 2880000,
      "sampleRate": 48000,
      "gainDb": 0,
@@ -301,12 +301,12 @@
      "goodExitBars": []
     },
     "mid": {
-     "bpm": 132.0,
+     "bpm": 132.0041251289103,
      "bars": 32,
      "beatsPerBar": 4,
-     "loopStartSeconds": 0.25,
-     "loopEndSeconds": 58.4318125,
-     "loopSamples": 2792727,
+     "loopStartSeconds": 0.5,
+     "loopEndSeconds": 58.68,
+     "loopSamples": 2792640,
      "sampleRate": 48000,
      "gainDb": 0,
      "files": {
@@ -318,12 +318,12 @@
      "goodExitBars": []
     },
     "high": {
-     "bpm": 136.0,
+     "bpm": 135.97733711048159,
      "bars": 32,
      "beatsPerBar": 4,
-     "loopStartSeconds": 0.25,
-     "loopEndSeconds": 56.72058333333333,
-     "loopSamples": 2710588,
+     "loopStartSeconds": 0.5,
+     "loopEndSeconds": 56.98,
+     "loopSamples": 2711040,
      "sampleRate": 48000,
      "gainDb": 0,
      "files": {
@@ -381,8 +381,8 @@
      "bpm": 120.0,
      "bars": 28,
      "beatsPerBar": 4,
-     "loopStartSeconds": 0.25,
-     "loopEndSeconds": 56.25,
+     "loopStartSeconds": 0.5,
+     "loopEndSeconds": 56.5,
      "loopSamples": 2688000,
      "sampleRate": 48000,
      "gainDb": 0,
@@ -409,12 +409,12 @@
      ]
     },
     "mid": {
-     "bpm": 124.0,
+     "bpm": 123.98523985239852,
      "bars": 28,
      "beatsPerBar": 4,
-     "loopStartSeconds": 0.25,
-     "loopEndSeconds": 54.44354166666667,
-     "loopSamples": 2601290,
+     "loopStartSeconds": 0.5,
+     "loopEndSeconds": 54.7,
+     "loopSamples": 2601600,
      "sampleRate": 48000,
      "gainDb": 0,
      "files": {
@@ -443,8 +443,8 @@
      "bpm": 128.0,
      "bars": 28,
      "beatsPerBar": 4,
-     "loopStartSeconds": 0.25,
-     "loopEndSeconds": 52.75,
+     "loopStartSeconds": 0.4,
+     "loopEndSeconds": 52.9,
      "loopSamples": 2520000,
      "sampleRate": 48000,
      "gainDb": 0,
@@ -515,12 +515,12 @@
    ],
    "takes": {
     "low": {
-     "bpm": 97.0,
+     "bpm": 96.99769053117782,
      "bars": 28,
      "beatsPerBar": 4,
-     "loopStartSeconds": 0.25,
-     "loopEndSeconds": 69.52835416666667,
-     "loopSamples": 3325361,
+     "loopStartSeconds": 0.5,
+     "loopEndSeconds": 69.78,
+     "loopSamples": 3325440,
      "sampleRate": 48000,
      "gainDb": 0,
      "files": {
@@ -540,8 +540,8 @@
      "bpm": 100.0,
      "bars": 28,
      "beatsPerBar": 4,
-     "loopStartSeconds": 0.25,
-     "loopEndSeconds": 67.45,
+     "loopStartSeconds": 0.26,
+     "loopEndSeconds": 67.46,
      "loopSamples": 3225600,
      "sampleRate": 48000,
      "gainDb": 0,
@@ -557,12 +557,12 @@
      ]
     },
     "high": {
-     "bpm": 103.0,
+     "bpm": 103.00429184549357,
      "bars": 28,
      "beatsPerBar": 4,
-     "loopStartSeconds": 0.25,
-     "loopEndSeconds": 65.49270833333334,
-     "loopSamples": 3131650,
+     "loopStartSeconds": 0.26,
+     "loopEndSeconds": 65.5,
+     "loopSamples": 3131520,
      "sampleRate": 48000,
      "gainDb": 0,
      "files": {
@@ -621,12 +621,12 @@
    ],
    "takes": {
     "low": {
-     "bpm": 113.0,
+     "bpm": 112.98548450372695,
      "bars": 24,
      "beatsPerBar": 4,
-     "loopStartSeconds": 0.25,
-     "loopEndSeconds": 51.22345833333333,
-     "loopSamples": 2446726,
+     "loopStartSeconds": 0.4,
+     "loopEndSeconds": 51.38,
+     "loopSamples": 2447040,
      "sampleRate": 48000,
      "gainDb": 0,
      "files": {
@@ -643,12 +643,12 @@
      ]
     },
     "mid": {
-     "bpm": 116.0,
+     "bpm": 115.98872331856624,
      "bars": 24,
      "beatsPerBar": 4,
-     "loopStartSeconds": 0.25,
-     "loopEndSeconds": 49.905166666666666,
-     "loopSamples": 2383448,
+     "loopStartSeconds": 0.5,
+     "loopEndSeconds": 50.16,
+     "loopSamples": 2383680,
      "sampleRate": 48000,
      "gainDb": 0,
      "files": {
@@ -665,12 +665,12 @@
      ]
     },
     "high": {
-     "bpm": 119.0,
+     "bpm": 119.00826446280992,
      "bars": 24,
      "beatsPerBar": 4,
-     "loopStartSeconds": 0.25,
-     "loopEndSeconds": 48.65335416666667,
-     "loopSamples": 2323361,
+     "loopStartSeconds": 0.4,
+     "loopEndSeconds": 48.8,
+     "loopSamples": 2323200,
      "sampleRate": 48000,
      "gainDb": 0,
      "files": {
@@ -731,12 +731,12 @@
    ],
    "takes": {
     "low": {
-     "bpm": 124.0,
+     "bpm": 123.99095899257345,
      "bars": 32,
      "beatsPerBar": 4,
-     "loopStartSeconds": 0.25,
-     "loopEndSeconds": 62.18547916666667,
-     "loopSamples": 2972903,
+     "loopStartSeconds": 0.5,
+     "loopEndSeconds": 62.44,
+     "loopSamples": 2973120,
      "sampleRate": 48000,
      "gainDb": 0,
      "files": {
@@ -762,8 +762,8 @@
      "bpm": 128.0,
      "bars": 32,
      "beatsPerBar": 4,
-     "loopStartSeconds": 0.25,
-     "loopEndSeconds": 60.25,
+     "loopStartSeconds": 0.5,
+     "loopEndSeconds": 60.5,
      "loopSamples": 2880000,
      "sampleRate": 48000,
      "gainDb": 0,
@@ -790,12 +790,12 @@
      ]
     },
     "high": {
-     "bpm": 132.0,
+     "bpm": 132.0041251289103,
      "bars": 32,
      "beatsPerBar": 4,
-     "loopStartSeconds": 0.25,
-     "loopEndSeconds": 58.4318125,
-     "loopSamples": 2792727,
+     "loopStartSeconds": 0.3,
+     "loopEndSeconds": 58.48,
+     "loopSamples": 2792640,
      "sampleRate": 48000,
      "gainDb": 0,
      "files": {
@@ -864,12 +864,12 @@
    ],
    "takes": {
     "low": {
-     "bpm": 118.0,
+     "bpm": 118.00860479409957,
      "bars": 32,
      "beatsPerBar": 4,
-     "loopStartSeconds": 0.25,
-     "loopEndSeconds": 65.33475,
-     "loopSamples": 3124068,
+     "loopStartSeconds": 0.4,
+     "loopEndSeconds": 65.48,
+     "loopSamples": 3123840,
      "sampleRate": 48000,
      "gainDb": 0,
      "files": {
@@ -898,12 +898,12 @@
      ]
     },
     "mid": {
-     "bpm": 122.0,
+     "bpm": 121.98221092757306,
      "bars": 32,
      "beatsPerBar": 4,
-     "loopStartSeconds": 0.25,
-     "loopEndSeconds": 63.2008125,
-     "loopSamples": 3021639,
+     "loopStartSeconds": 0.26,
+     "loopEndSeconds": 63.22,
+     "loopSamples": 3022080,
      "sampleRate": 48000,
      "gainDb": 0,
      "files": {
@@ -932,12 +932,12 @@
      ]
     },
     "high": {
-     "bpm": 126.0,
+     "bpm": 125.98425196850394,
      "bars": 32,
      "beatsPerBar": 4,
-     "loopStartSeconds": 0.25,
-     "loopEndSeconds": 61.202375,
-     "loopSamples": 2925714,
+     "loopStartSeconds": 0.26,
+     "loopEndSeconds": 61.22,
+     "loopSamples": 2926080,
      "sampleRate": 48000,
      "gainDb": 0,
      "files": {
@@ -1009,12 +1009,12 @@
    ],
    "takes": {
     "low": {
-     "bpm": 101.0,
+     "bpm": 101.01718695194668,
      "bars": 24,
      "beatsPerBar": 4,
      "loopStartSeconds": 0.25,
-     "loopEndSeconds": 57.27970833333333,
-     "loopSamples": 2737426,
+     "loopEndSeconds": 57.27,
+     "loopSamples": 2736960,
      "sampleRate": 48000,
      "gainDb": 0,
      "files": {
@@ -1030,12 +1030,12 @@
      ]
     },
     "mid": {
-     "bpm": 104.0,
+     "bpm": 104.00866738894908,
      "bars": 24,
      "beatsPerBar": 4,
-     "loopStartSeconds": 0.25,
-     "loopEndSeconds": 55.634625,
-     "loopSamples": 2658462,
+     "loopStartSeconds": 0.5,
+     "loopEndSeconds": 55.88,
+     "loopSamples": 2658240,
      "sampleRate": 48000,
      "gainDb": 0,
      "files": {
@@ -1051,12 +1051,12 @@
      ]
     },
     "high": {
-     "bpm": 107.0,
+     "bpm": 106.98365527488856,
      "bars": 24,
      "beatsPerBar": 4,
-     "loopStartSeconds": 0.25,
-     "loopEndSeconds": 54.08177083333333,
-     "loopSamples": 2583925,
+     "loopStartSeconds": 0.5,
+     "loopEndSeconds": 54.34,
+     "loopSamples": 2584320,
      "sampleRate": 48000,
      "gainDb": 0,
      "files": {
