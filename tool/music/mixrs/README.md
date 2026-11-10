@@ -129,6 +129,15 @@ Tests: 12 in Rust, including a real take where the master exists. `mix.py --self
 engines. That needed one fix to a test failure that was already there: `verify_layers` found no window
 on an 8-bar loop.
 
+## The layer tools
+
+`mixrs measure FILE...` (the layered tiers' gates), `mixrs lag MID STRETCHED RATIO [PAD]` and
+`mixrs room plan|stage|wire LEVEL` were `tool/music/layer/{measure,lag,room}.py`, ported on
+2026-11-10 (`src/layer.rs`, `src/room.rs`). `compare/layer_golden.sh` checks them against the
+Python's own outputs on the bar and salón, kept in `compare/golden/layer/`: exact, but for the
+informational click count on .ogg, where ffmpeg and libsndfile decode a sample or two apart.
+`tool/music/layer/report.sh` calls `mixrs measure`.
+
 ## Would a GPU help?
 
 Not with this, and it wasn't tried: the forge has no general GPU route and none is coming soon.

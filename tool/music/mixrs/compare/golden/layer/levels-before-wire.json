@@ -1,0 +1,411 @@
+{
+ "mastersDir": "~/.cache/tillandsias-project/kumbia-audio",
+ "outDir": "assets/music/rendered",
+ "maxCorrectionPct": 1.5,
+ "budgetMbPerFormat": 8,
+ "padSeconds": 0.25,
+ "ceilingDb": -1.5,
+ "seamFadeBeats": 1,
+ "encode": {
+  "opusKbps": 128,
+  "aacKbps": 128
+ },
+ "transition": {
+  "beats": 8,
+  "crossfadeBeats": 2,
+  "fillDb": 1.5
+ },
+ "bridge": {
+  "percussionBoostDb": 5,
+  "maxMatchDb": 4
+ },
+ "levels": [
+  {
+   "id": "garden",
+   "key": "A minor",
+   "next": "pool-garden",
+   "successBars": 2,
+   "gridTier": "mid",
+   "layerFadeBeats": 1,
+   "tiers": [
+    {
+     "name": "low",
+     "source": "layered-20261109/garden/low-95.wav",
+     "bpm": 95,
+     "loopBars": 20,
+     "targetLufs": -16.5,
+     "eq": [],
+     "followScale": 1.031579
+    },
+    {
+     "name": "mid",
+     "source": "pipeline-20261107/chains/garden/parent.flac",
+     "bpm": 98,
+     "loopBars": 20,
+     "targetLufs": -16,
+     "eq": []
+    },
+    {
+     "name": "high",
+     "source": "layered-20261109/garden/high-101.wav",
+     "bpm": 101,
+     "loopBars": 20,
+     "targetLufs": -15,
+     "eq": [],
+     "followScale": 0.970297
+    }
+   ]
+  },
+  {
+   "id": "pool-garden",
+   "key": "C major",
+   "next": "bar",
+   "successBars": 2,
+   "why": "2026-11-09, owner: layered from the 136 take (the richest, which used to play last), rising about 3 % a tier in play order. The take plays untouched at its own 136 on the top tier; its chart was written for 136 there.",
+   "gridTier": "high",
+   "layerFadeBeats": 1,
+   "tiers": [
+    {
+     "name": "low",
+     "source": "layered-20261109/pool-garden/low-128.wav",
+     "bpm": 128,
+     "loopBars": 32,
+     "targetLufs": -16.5,
+     "eq": [],
+     "followScale": 1.0625
+    },
+    {
+     "name": "mid",
+     "source": "layered-20261109/pool-garden/mid-132.wav",
+     "bpm": 132,
+     "loopBars": 32,
+     "targetLufs": -16,
+     "eq": [],
+     "followScale": 1.030303
+    },
+    {
+     "name": "high",
+     "source": "themes-20261106/lows-lawn/low.flac",
+     "bpm": 136,
+     "loopBars": 32,
+     "targetLufs": -15,
+     "eq": []
+    }
+   ]
+  },
+  {
+   "id": "bar",
+   "key": "C minor",
+   "next": "cool-crowd",
+   "successBars": 4,
+   "successFinal": true,
+   "successShortBars": 2,
+   "gridTier": "mid",
+   "layerFadeBeats": 1,
+   "tiers": [
+    {
+     "name": "low",
+     "source": "x",
+     "bpm": 103,
+     "loopBars": 24,
+     "targetLufs": -16.5,
+     "eq": [
+      {
+       "f": 1
+      }
+     ],
+     "layer": {
+      "a": 1
+     }
+    },
+    {
+     "name": "mid",
+     "source": "x",
+     "bpm": 106,
+     "loopBars": 24,
+     "targetLufs": -16,
+     "eq": [
+      {
+       "f": 1
+      }
+     ],
+     "layer": {
+      "a": 1
+     }
+    },
+    {
+     "name": "high",
+     "source": "x",
+     "bpm": 109,
+     "loopBars": 24,
+     "targetLufs": -15,
+     "eq": [
+      {
+       "f": 1
+      }
+     ],
+     "layer": {
+      "a": 1
+     }
+    }
+   ]
+  },
+  {
+   "id": "cool-crowd",
+   "key": "D minor",
+   "next": "billiards",
+   "successBars": 2,
+   "gridTier": "mid",
+   "layerFadeBeats": 0.5,
+   "tiers": [
+    {
+     "name": "low",
+     "source": "layered-20261109/cool-crowd/low-120.wav",
+     "bpm": 120,
+     "loopBars": 28,
+     "targetLufs": -16.5,
+     "eq": [],
+     "followScale": 1.033333
+    },
+    {
+     "name": "mid",
+     "source": "layered-20261109/cool-crowd/mid.wav",
+     "bpm": 124,
+     "loopBars": 28,
+     "targetLufs": -16,
+     "eq": []
+    },
+    {
+     "name": "high",
+     "source": "layered-20261109/cool-crowd/high-128.wav",
+     "bpm": 128,
+     "loopBars": 28,
+     "targetLufs": -15,
+     "eq": [],
+     "followScale": 0.96875
+    }
+   ]
+  },
+  {
+   "id": "billiards",
+   "key": "G minor",
+   "next": "comedor",
+   "successBars": 4,
+   "successFinal": false,
+   "gridTier": "mid",
+   "layerFadeBeats": 1,
+   "tiers": [
+    {
+     "name": "low",
+     "source": "layered-20261109/billiards/low-97.wav",
+     "bpm": 97,
+     "loopBars": 28,
+     "targetLufs": -16.5,
+     "eq": [],
+     "followScale": 1.030928
+    },
+    {
+     "name": "mid",
+     "source": "layered-20261109/billiards/mid.wav",
+     "bpm": 100,
+     "loopBars": 28,
+     "targetLufs": -16,
+     "eq": []
+    },
+    {
+     "name": "high",
+     "source": "layered-20261109/billiards/high-103.wav",
+     "bpm": 103,
+     "loopBars": 28,
+     "targetLufs": -15,
+     "eq": [],
+     "followScale": 0.970874
+    }
+   ]
+  },
+  {
+   "id": "comedor",
+   "key": "F major",
+   "next": "salon",
+   "successBars": 4,
+   "successFinal": false,
+   "gridTier": "mid",
+   "layerFadeBeats": 1,
+   "tiers": [
+    {
+     "name": "low",
+     "source": "layered-20261109/comedor/low-124.wav",
+     "bpm": 124,
+     "loopBars": 32,
+     "targetLufs": -16.5,
+     "eq": [],
+     "followScale": 1.032258
+    },
+    {
+     "name": "mid",
+     "source": "act2-20261108/chains/comedor/parent.flac",
+     "bpm": 128,
+     "loopBars": 32,
+     "targetLufs": -16,
+     "eq": []
+    },
+    {
+     "name": "high",
+     "source": "layered-20261109/comedor/high-132.wav",
+     "bpm": 132,
+     "loopBars": 32,
+     "targetLufs": -15,
+     "eq": [],
+     "followScale": 0.969697
+    }
+   ],
+   "bridgeEntry": {
+    "step": 4,
+    "offset": 3,
+    "why": "comedor.json introBeats 12: calls start 3 bars after entry, and the take's 4-bar phrase starts on bar 2 mod 4 (align_charts)"
+   }
+  },
+  {
+   "id": "salon",
+   "key": "D minor",
+   "successKey": "F major",
+   "next": "galeria",
+   "successBars": 4,
+   "successFinal": false,
+   "gridTier": "mid",
+   "layerFadeBeats": 1,
+   "tiers": [
+    {
+     "name": "low",
+     "source": "x",
+     "bpm": 113,
+     "loopBars": 24,
+     "targetLufs": -16.5,
+     "eq": [
+      {
+       "f": 1
+      }
+     ],
+     "layer": {
+      "a": 1
+     }
+    },
+    {
+     "name": "mid",
+     "source": "x",
+     "bpm": 116,
+     "loopBars": 24,
+     "targetLufs": -16,
+     "eq": [
+      {
+       "f": 1
+      }
+     ],
+     "layer": {
+      "a": 1
+     }
+    },
+    {
+     "name": "high",
+     "source": "x",
+     "bpm": 119,
+     "loopBars": 24,
+     "targetLufs": -15,
+     "eq": [
+      {
+       "f": 1
+      }
+     ],
+     "layer": {
+      "a": 1
+     }
+    }
+   ]
+  },
+  {
+   "id": "galeria",
+   "key": "A minor",
+   "next": "terraza",
+   "successBars": 4,
+   "successFinal": false,
+   "gridTier": "mid",
+   "layerFadeBeats": 1,
+   "tiers": [
+    {
+     "name": "low",
+     "source": "layered-20261109/galeria/low-118.wav",
+     "bpm": 118,
+     "loopBars": 32,
+     "targetLufs": -16.5,
+     "eq": [],
+     "followScale": 1.033898
+    },
+    {
+     "name": "mid",
+     "source": "act2-20261108/chains/galeria/parent.flac",
+     "bpm": 122,
+     "loopBars": 32,
+     "targetLufs": -16,
+     "eq": []
+    },
+    {
+     "name": "high",
+     "source": "layered-20261109/galeria/high-126.wav",
+     "bpm": 126,
+     "loopBars": 32,
+     "targetLufs": -15,
+     "eq": [],
+     "followScale": 0.968254
+    }
+   ]
+  },
+  {
+   "id": "terraza",
+   "key": "C major",
+   "next": null,
+   "successBars": 4,
+   "successFinal": true,
+   "gridTier": "mid",
+   "layerFadeBeats": 1,
+   "tiers": [
+    {
+     "name": "low",
+     "source": "layered-20261109/terraza/low-101.wav",
+     "bpm": 101,
+     "loopBars": 24,
+     "targetLufs": -16.5,
+     "eq": [],
+     "followScale": 1.029703
+    },
+    {
+     "name": "mid",
+     "source": "act2-20261108/chains/terraza/parent.flac",
+     "bpm": 104,
+     "loopBars": 24,
+     "targetLufs": -16,
+     "eq": []
+    },
+    {
+     "name": "high",
+     "source": "layered-20261109/terraza/high-107.wav",
+     "bpm": 107,
+     "loopBars": 24,
+     "targetLufs": -15,
+     "eq": [],
+     "followScale": 0.971963
+    }
+   ],
+   "bridgeEntry": {
+    "step": 4,
+    "offset": 2,
+    "why": "terraza.json introBeats 12: calls start 3 bars after entry, and align_charts puts the take's 4-bar phrase on bar 1 mod 4 (weak margins, 1.06 to 1.2)"
+   }
+  }
+ ],
+ "mix": {
+  "masterDb": -1.5,
+  "musicDb": 0,
+  "accentsDb": 0,
+  "rewardsDb": 0
+ }
+}

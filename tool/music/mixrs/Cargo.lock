@@ -195,6 +195,7 @@ dependencies = [
  "num-complex",
  "rayon",
  "realfft",
+ "serde",
  "serde_json",
 ]
 
