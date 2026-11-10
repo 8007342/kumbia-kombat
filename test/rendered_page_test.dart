@@ -345,7 +345,7 @@ void main() {
     final session = await _start(tester, audio, level: 'cool-crowd');
     expect(session.transport.currentClip?.id, 'cool-crowd/low');
     expect(audio.voices.single.clip.id, 'cool-crowd/low');
-    expect(session.transport.currentBpm, closeTo(112, .01));
+    expect(session.transport.currentBpm, closeTo(120, .01));
     expect(audio.notes, isEmpty);
     await _end(tester);
   });
@@ -358,7 +358,7 @@ void main() {
     expect(session.transport.currentClip?.id, 'garden/low');
     expect(audio.voices.single.clip.id, 'garden/low');
     expect(audio.voices.single.offset, closeTo(.25, .1));
-    expect(session.transport.currentBpm, closeTo(92, .01));
+    expect(session.transport.currentBpm, closeTo(95, .01));
     expect(audio.notes, isEmpty);
     expect(audio.mixes, isNotEmpty);
     // The mixer is the owner's alone, and needs its flag.
@@ -376,7 +376,7 @@ void main() {
     expect(audio.voices, isEmpty);
     expect(audio.notes, isNotEmpty);
     // Same clock as if the take had played, so the chart's times don't move.
-    expect(session.transport.currentBpm, closeTo(92, .01));
+    expect(session.transport.currentBpm, closeTo(95, .01));
     await _end(tester);
   });
 

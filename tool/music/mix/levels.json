@@ -16,7 +16,8 @@
   "fillDb": 1.5
  },
  "bridge": {
-  "percussionBoostDb": 5
+  "percussionBoostDb": 5,
+  "maxMatchDb": 4
  },
  "levels": [
   {
@@ -29,17 +30,12 @@
    "tiers": [
     {
      "name": "low",
-     "source": "pipeline-20261107/chains/garden/lowB.flac",
-     "bpm": 92,
+     "source": "layered-20261109/garden/low-95.wav",
+     "bpm": 95,
      "loopBars": 20,
      "targetLufs": -16.5,
-     "eq": [
-      {
-       "type": "highshelf",
-       "freq": 1500,
-       "gain": -3
-      }
-     ]
+     "eq": [],
+     "followScale": 1.031579
     },
     {
      "name": "mid",
@@ -51,18 +47,12 @@
     },
     {
      "name": "high",
-     "source": "pipeline-20261107/chains/garden/highF.flac",
-     "bpm": 104,
+     "source": "layered-20261109/garden/high-101.wav",
+     "bpm": 101,
      "loopBars": 20,
      "targetLufs": -15,
      "eq": [],
-     "layer": [
-      {
-       "source": "pipeline-20261107/chains/garden/parent.flac",
-       "part": "percussive",
-       "db": -6
-      }
-     ]
+     "followScale": 0.970297
     }
    ]
   },
@@ -71,28 +61,30 @@
    "key": "C major",
    "next": "bar",
    "successBars": 2,
-   "joinStyle": "cuts",
-   "cutFadeInBeats": 0,
-   "cutFadeOutBeats": 1,
+   "why": "2026-11-09, owner: layered from the 136 take (the richest, which used to play last), rising about 3 % a tier in play order. The take plays untouched at its own 136 on the top tier; its chart was written for 136 there.",
+   "gridTier": "high",
+   "layerFadeBeats": 1,
    "tiers": [
     {
-     "name": "mid",
-     "source": "themes-20261106/lows-lawn/mid.flac",
-     "bpm": 144,
+     "name": "low",
+     "source": "layered-20261109/pool-garden/low-128.wav",
+     "bpm": 128,
      "loopBars": 32,
-     "targetLufs": -17,
-     "eq": []
+     "targetLufs": -16.5,
+     "eq": [],
+     "followScale": 1.0625
+    },
+    {
+     "name": "mid",
+     "source": "layered-20261109/pool-garden/mid-132.wav",
+     "bpm": 132,
+     "loopBars": 32,
+     "targetLufs": -16,
+     "eq": [],
+     "followScale": 1.030303
     },
     {
      "name": "high",
-     "source": "themes-20261106/lows-lawn/high.flac",
-     "bpm": 160,
-     "loopBars": 32,
-     "targetLufs": -16,
-     "eq": []
-    },
-    {
-     "name": "low",
      "source": "themes-20261106/lows-lawn/low.flac",
      "bpm": 136,
      "loopBars": 32,
@@ -113,17 +105,12 @@
    "tiers": [
     {
      "name": "low",
-     "source": "pipeline-20261107/chains/bar/lowB.flac",
-     "bpm": 100,
+     "source": "layered-20261109/bar/low-103.wav",
+     "bpm": 103,
      "loopBars": 24,
      "targetLufs": -16.5,
-     "eq": [
-      {
-       "type": "highshelf",
-       "freq": 1500,
-       "gain": -3
-      }
-     ]
+     "eq": [],
+     "followScale": 1.029126
     },
     {
      "name": "mid",
@@ -135,18 +122,12 @@
     },
     {
      "name": "high",
-     "source": "pipeline-20261107/chains/bar/highF.flac",
-     "bpm": 112,
+     "source": "layered-20261109/bar/high-109.wav",
+     "bpm": 109,
      "loopBars": 24,
      "targetLufs": -15,
      "eq": [],
-     "layer": [
-      {
-       "source": "pipeline-20261107/chains/bar/parent.flac",
-       "part": "percussive",
-       "db": -6
-      }
-     ]
+     "followScale": 0.972477
     }
    ]
   },
@@ -160,21 +141,16 @@
    "tiers": [
     {
      "name": "low",
-     "source": "pipeline-20261107/chains/cool-crowd/lowB.flac",
-     "bpm": 112,
+     "source": "layered-20261109/cool-crowd/low-120.wav",
+     "bpm": 120,
      "loopBars": 28,
      "targetLufs": -16.5,
-     "eq": [
-      {
-       "type": "highshelf",
-       "freq": 1500,
-       "gain": -3
-      }
-     ]
+     "eq": [],
+     "followScale": 1.033333
     },
     {
      "name": "mid",
-     "source": "pipeline-20261107/chains/cool-crowd/parent.flac",
+     "source": "layered-20261109/cool-crowd/mid.wav",
      "bpm": 124,
      "loopBars": 28,
      "targetLufs": -16,
@@ -182,18 +158,12 @@
     },
     {
      "name": "high",
-     "source": "pipeline-20261107/chains/cool-crowd/highE.flac",
-     "bpm": 136,
+     "source": "layered-20261109/cool-crowd/high-128.wav",
+     "bpm": 128,
      "loopBars": 28,
      "targetLufs": -15,
      "eq": [],
-     "layer": [
-      {
-       "source": "pipeline-20261107/chains/cool-crowd/parent.flac",
-       "part": "percussive",
-       "db": -4
-      }
-     ]
+     "followScale": 0.96875
     }
    ]
   },
@@ -208,21 +178,16 @@
    "tiers": [
     {
      "name": "low",
-     "source": "pipeline-20261107/chains/billiards/lowB.flac",
-     "bpm": 96,
+     "source": "layered-20261109/billiards/low-97.wav",
+     "bpm": 97,
      "loopBars": 28,
      "targetLufs": -16.5,
-     "eq": [
-      {
-       "type": "highshelf",
-       "freq": 1500,
-       "gain": -3
-      }
-     ]
+     "eq": [],
+     "followScale": 1.030928
     },
     {
      "name": "mid",
-     "source": "pipeline-20261107/chains/billiards/parent.flac",
+     "source": "layered-20261109/billiards/mid.wav",
      "bpm": 100,
      "loopBars": 28,
      "targetLufs": -16,
@@ -230,18 +195,12 @@
     },
     {
      "name": "high",
-     "source": "pipeline-20261107/chains/billiards/highF.flac",
-     "bpm": 104,
+     "source": "layered-20261109/billiards/high-103.wav",
+     "bpm": 103,
      "loopBars": 28,
      "targetLufs": -15,
      "eq": [],
-     "layer": [
-      {
-       "source": "pipeline-20261107/chains/billiards/parent.flac",
-       "part": "percussive",
-       "db": -6
-      }
-     ]
+     "followScale": 0.970874
     }
    ]
   },
@@ -256,17 +215,12 @@
    "tiers": [
     {
      "name": "low",
-     "source": "act2-20261108/chains/comedor/lowB.flac",
-     "bpm": 120,
+     "source": "layered-20261109/comedor/low-124.wav",
+     "bpm": 124,
      "loopBars": 32,
      "targetLufs": -16.5,
-     "eq": [
-      {
-       "type": "highshelf",
-       "freq": 1200,
-       "gain": -6
-      }
-     ]
+     "eq": [],
+     "followScale": 1.032258
     },
     {
      "name": "mid",
@@ -278,18 +232,12 @@
     },
     {
      "name": "high",
-     "source": "act2-20261108/chains/comedor/highE.flac",
-     "bpm": 136,
+     "source": "layered-20261109/comedor/high-132.wav",
+     "bpm": 132,
      "loopBars": 32,
      "targetLufs": -15,
      "eq": [],
-     "layer": [
-      {
-       "source": "act2-20261108/chains/comedor/parent.flac",
-       "part": "percussive",
-       "db": -6
-      }
-     ]
+     "followScale": 0.969697
     }
    ],
    "bridgeEntry": {
@@ -310,17 +258,12 @@
    "tiers": [
     {
      "name": "low",
-     "source": "pipeline-20261107/chains/salon/lowC.flac",
-     "bpm": 108,
+     "source": "layered-20261109/salon/low-113.wav",
+     "bpm": 113,
      "loopBars": 24,
      "targetLufs": -16.5,
-     "eq": [
-      {
-       "type": "highshelf",
-       "freq": 1500,
-       "gain": -3
-      }
-     ]
+     "eq": [],
+     "followScale": 1.026549
     },
     {
      "name": "mid",
@@ -332,18 +275,12 @@
     },
     {
      "name": "high",
-     "source": "pipeline-20261107/chains/salon/highE.flac",
-     "bpm": 124,
+     "source": "layered-20261109/salon/high-119.wav",
+     "bpm": 119,
      "loopBars": 24,
      "targetLufs": -15,
      "eq": [],
-     "layer": [
-      {
-       "source": "pipeline-20261107/chains/salon/parent.flac",
-       "part": "percussive",
-       "db": -6
-      }
-     ]
+     "followScale": 0.97479
     }
    ]
   },
@@ -358,17 +295,12 @@
    "tiers": [
     {
      "name": "low",
-     "source": "act2-20261108/chains/galeria/lowC.flac",
-     "bpm": 114,
+     "source": "layered-20261109/galeria/low-118.wav",
+     "bpm": 118,
      "loopBars": 32,
      "targetLufs": -16.5,
-     "eq": [
-      {
-       "type": "highshelf",
-       "freq": 1500,
-       "gain": -3
-      }
-     ]
+     "eq": [],
+     "followScale": 1.033898
     },
     {
      "name": "mid",
@@ -380,18 +312,12 @@
     },
     {
      "name": "high",
-     "source": "act2-20261108/chains/galeria/highE.flac",
-     "bpm": 130,
+     "source": "layered-20261109/galeria/high-126.wav",
+     "bpm": 126,
      "loopBars": 32,
      "targetLufs": -15,
      "eq": [],
-     "layer": [
-      {
-       "source": "act2-20261108/chains/galeria/parent.flac",
-       "part": "percussive",
-       "db": -6
-      }
-     ]
+     "followScale": 0.968254
     }
    ]
   },
@@ -406,17 +332,12 @@
    "tiers": [
     {
      "name": "low",
-     "source": "act2-20261108/chains/terraza/lowC.flac",
-     "bpm": 96,
+     "source": "layered-20261109/terraza/low-101.wav",
+     "bpm": 101,
      "loopBars": 24,
      "targetLufs": -16.5,
-     "eq": [
-      {
-       "type": "highshelf",
-       "freq": 1500,
-       "gain": -3
-      }
-     ]
+     "eq": [],
+     "followScale": 1.029703
     },
     {
      "name": "mid",
@@ -428,18 +349,12 @@
     },
     {
      "name": "high",
-     "source": "act2-20261108/chains/terraza/highE.flac",
-     "bpm": 112,
+     "source": "layered-20261109/terraza/high-107.wav",
+     "bpm": 107,
      "loopBars": 24,
      "targetLufs": -15,
      "eq": [],
-     "layer": [
-      {
-       "source": "act2-20261108/chains/terraza/parent.flac",
-       "part": "percussive",
-       "db": -4
-      }
-     ]
+     "followScale": 0.971963
     }
    ],
    "bridgeEntry": {

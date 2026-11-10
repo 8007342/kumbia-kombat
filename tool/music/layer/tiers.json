@@ -1,0 +1,247 @@
+{
+ "why": "Every tier of a room is the same recording: mid is the approved take itself, low takes parts away, high adds parts of one ACE pass on the same clock. See plan/music-layering-2026-11-09.md.",
+ "mastersDir": "~/.cache/tillandsias-project/kumbia-audio",
+ "outDir": "layered-20261109",
+ "levels": {
+  "bar": {
+   "base": "pipeline-20261107/chains/bar/parent.flac",
+   "add": "pipeline-20261107/chains/bar/highB.flac",
+   "addWidth": 0.4,
+   "bassHz": 160,
+   "tiers": {
+    "low": {
+     "perc": -3,
+     "bass": 0,
+     "center": -5,
+     "side": -12,
+     "tiltDb": -2,
+     "tiltHz": 1200
+    },
+    "mid": {},
+    "high": {
+     "add": {
+      "perc": -2,
+      "center": -2,
+      "side": -4
+     }
+    }
+   },
+   "addNovel": true,
+   "novelOverDb": 3
+  },
+  "garden": {
+   "base": "pipeline-20261107/chains/garden/parent.flac",
+   "add": "pipeline-20261107/chains/garden/highB.flac",
+   "addWidth": 0.4,
+   "bassHz": 160,
+   "tiers": {
+    "low": {
+     "perc": -3,
+     "bass": 0,
+     "center": -5,
+     "side": -12,
+     "tiltDb": -2,
+     "tiltHz": 1200
+    },
+    "mid": {},
+    "high": {
+     "add": {
+      "perc": -2,
+      "center": -2,
+      "side": -4
+     }
+    }
+   },
+   "addNovel": true,
+   "novelOverDb": 3
+  },
+  "cool-crowd": {
+   "base": "pipeline-20261107/chains/cool-crowd/parent.flac",
+   "add": "pipeline-20261107/chains/cool-crowd/highB.flac",
+   "addWidth": 0.4,
+   "bassHz": 160,
+   "tiers": {
+    "low": {
+     "perc": -3,
+     "bass": 0,
+     "center": -5,
+     "side": -12,
+     "tiltDb": -2,
+     "tiltHz": 1200
+    },
+    "mid": {
+     "side": -2.5
+    },
+    "high": {
+     "side": -2.5,
+     "add": {
+      "perc": -2,
+      "center": -2,
+      "side": -4
+     }
+    }
+   },
+   "addNovel": true,
+   "novelOverDb": 3,
+   "why": "The parent itself is wide (14 % of windows anti-correlated), so every tier narrows its upper sides the same way."
+  },
+  "billiards": {
+   "base": "pipeline-20261107/chains/billiards/parent.flac",
+   "add": "pipeline-20261107/chains/billiards/highB.flac",
+   "addWidth": 0.4,
+   "bassHz": 160,
+   "tiers": {
+    "low": {
+     "perc": -3,
+     "bass": 0,
+     "center": -5,
+     "side": -12,
+     "tiltDb": -2,
+     "tiltHz": 1200
+    },
+    "mid": {
+     "side": -6
+    },
+    "high": {
+     "side": -6,
+     "add": {
+      "perc": -2,
+      "center": -2,
+      "side": -4
+     }
+    }
+   },
+   "addNovel": true,
+   "novelOverDb": 3,
+   "why": "The parent itself is wide (33 % of windows anti-correlated), so every tier narrows its upper sides the same way."
+  },
+  "comedor": {
+   "base": "act2-20261108/chains/comedor/parent.flac",
+   "add": "act2-20261108/chains/comedor/highB.flac",
+   "addWidth": 0.4,
+   "bassHz": 160,
+   "tiers": {
+    "low": {
+     "perc": -3,
+     "bass": 0,
+     "center": -5,
+     "side": -12,
+     "tiltDb": -2,
+     "tiltHz": 1200
+    },
+    "mid": {},
+    "high": {
+     "add": {
+      "perc": -2,
+      "center": -2,
+      "side": -4
+     }
+    }
+   },
+   "addNovel": true,
+   "novelOverDb": 3
+  },
+  "salon": {
+   "base": "pipeline-20261107/chains/salon/parent.flac",
+   "add": "pipeline-20261107/chains/salon/highB.flac",
+   "addWidth": 0.4,
+   "bassHz": 160,
+   "tiers": {
+    "low": {
+     "perc": -3,
+     "bass": 0,
+     "center": -5,
+     "side": -12,
+     "tiltDb": -2,
+     "tiltHz": 1200
+    },
+    "mid": {},
+    "high": {
+     "add": {
+      "perc": -2,
+      "center": -2,
+      "side": -4
+     }
+    }
+   },
+   "addNovel": true,
+   "novelOverDb": 3
+  },
+  "galeria": {
+   "base": "act2-20261108/chains/galeria/parent.flac",
+   "add": "act2-20261108/chains/galeria/highB.flac",
+   "addWidth": 0.4,
+   "bassHz": 160,
+   "tiers": {
+    "low": {
+     "perc": -3,
+     "bass": 0,
+     "center": -5,
+     "side": -12,
+     "tiltDb": -2,
+     "tiltHz": 1200
+    },
+    "mid": {},
+    "high": {
+     "add": {
+      "perc": -2,
+      "center": -2,
+      "side": -4
+     }
+    }
+   },
+   "addNovel": true,
+   "novelOverDb": 3
+  },
+  "terraza": {
+   "base": "act2-20261108/chains/terraza/parent.flac",
+   "add": "act2-20261108/chains/terraza/highB.flac",
+   "addWidth": 0.4,
+   "bassHz": 160,
+   "tiers": {
+    "low": {
+     "perc": -3,
+     "bass": 0,
+     "center": -5,
+     "side": -12,
+     "tiltDb": -2,
+     "tiltHz": 1200
+    },
+    "mid": {},
+    "high": {
+     "add": {
+      "perc": -2,
+      "center": -2,
+      "side": -4
+     }
+    }
+   },
+   "addNovel": true,
+   "novelOverDb": 3
+  },
+  "pool-garden": {
+   "why": "The lawn's 136 take is the full arrangement, played at the top tier. Low and mid take parts out of it; nothing is added.",
+   "base": "themes-20261106/lows-lawn/low.flac",
+   "bassHz": 160,
+   "tiers": {
+    "low": {
+     "perc": -3,
+     "bass": 0,
+     "center": -5,
+     "side": -12,
+     "tiltDb": -2,
+     "tiltHz": 1200
+    },
+    "mid": {
+     "perc": -1,
+     "center": -1.5,
+     "side": -5,
+     "tiltDb": -0.75,
+     "tiltHz": 1800
+    },
+    "high": {}
+   },
+   "native": "high"
+  }
+ }
+}

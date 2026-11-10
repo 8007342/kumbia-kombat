@@ -101,7 +101,7 @@ void main() {
         chart.pattern(chart.variants.length).offsets.length /
         (chart.callBeats * 60 / bpm);
     expect(rich(chart('salon')), greaterThan(rich(charts[4])));
-    expect(topRate(chart('salon'), 124), greaterThan(topRate(charts[4], 104)));
+    expect(topRate(chart('salon'), 119), greaterThan(topRate(charts[4], 103)));
     // Act two is tension and release, not a steady climb
     // (plan/levels/act-two-wiring-2026-11-08.md, proposals). The comedor's polka
     // asks more richer steps than billiards before it. The galería's reel and

@@ -116,8 +116,12 @@ pub fn prepare(job: &Value, out: &Path) -> Value {
     report.insert("corrected".into(), json!(corrected));
     if let Some(f) = follow {
         report.insert("followsGridOf".into(), f["name"].clone());
-        beats = floats(&f["beats"]);
-        measured = f["measured"].as_f64().expect("measured");
+        // A tier pre-stretched with rubberband from the followed take: its beats sit
+        // at the followed beats times the stretch (output over input duration).
+        let scale = tier["followScale"].as_f64().unwrap_or(1.0);
+        beats = floats(&f["beats"]).iter().map(|b| b * scale).collect();
+        measured = f["measured"].as_f64().expect("measured") / scale;
+        report.insert("followScale".into(), json!(scale));
     } else if !corrected {
         eprintln!("{lid}/{name}: {error_pct:+.2}% is past the {max_pct}% allowed, not corrected");
         std::process::exit(3);

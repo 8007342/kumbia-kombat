@@ -87,11 +87,12 @@ void main() {
       expect(bar.next!.id, 'cool-crowd');
       expect(bar.bridgeToNext, 'bar_to_crowd');
       expect(bar.level.music.successScore, 'bar_swag_success');
-      final manifest = RenderedManifest.fromJson(
+      final levels = RenderedManifest.fromJson(
         jsonDecode(
           File('assets/music/rendered/manifest.json').readAsStringSync(),
         ),
-      ).levels['bar']!;
+      ).levels;
+      final manifest = levels['bar']!;
       final short = manifest.successToward('cool-crowd')!;
       expect(short.id, manifest.successShort!.id);
       // Alone on a review link, the long tag still carries the whole shot.
@@ -105,7 +106,12 @@ void main() {
         lessThanOrEqualTo(length + bridge.bars * bridge.beatsPerBar),
       );
       expect(manifest.bridgeTo, 'cool-crowd');
-      expect(manifest.bridge!.bpm, closeTo(manifest.takes['high']!.bpm, .01));
+      // The bridge plays at the tempo of the take it lands in, the party's low.
+      final crowd = levels['cool-crowd']!;
+      expect(
+        manifest.bridge!.bpm,
+        closeTo(crowd.takes[crowd.tierTakes.first]!.bpm, .01),
+      );
     });
 
     test('everything it names is on disk', () {
@@ -491,9 +497,9 @@ void main() {
       expect(music['tierTakes'], ['low', 'low', 'mid', 'mid', 'high']);
       final takes = music['takes'] as Map<String, dynamic>;
       expect({for (final e in takes.entries) e.key: e.value['bpm']}, {
-        'low': 112.0,
+        'low': 120.0,
         'mid': 124.0,
-        'high': 136.0,
+        'high': 128.0,
       });
       for (final take in takes.values) {
         for (final file in (take['files'] as Map).values) {
