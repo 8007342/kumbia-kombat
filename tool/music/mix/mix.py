@@ -782,6 +782,12 @@ def prepare_tier(args):
     loop[:fade] = follow * fade_out[:, None] + head * fade_in[:, None]
     report["seamFadeSamples"] = fade
     report["seamCorrelation"] = round(corr, 3)
+    loop_bpm = target
+    if tier.get("frameSamples"):
+        if tier["frameSamples"] != len(loop):
+            report["frameStretchPct"] = round((tier["frameSamples"] / len(loop) - 1) * 100, 4)
+            loop = resample_circular(loop, tier["frameSamples"])
+        loop_bpm = bars * 4 * 60.0 * SR / tier["frameSamples"]
 
     # The codecs overshoot what they're given, AAC by up to 3 dB here, so the ceiling
     # that counts is measured on the decoded files; lower it until they clear.
@@ -797,7 +803,7 @@ def prepare_tier(args):
                   decodedPeakDb=worst, **{k: measured_level[k] for k in measured_level})
 
     loop_chroma = bar_chroma[choice["startBar"]:choice["startBar"] + bars]
-    return {"level": level["id"], "name": tier["name"], "bpm": target, "bars": bars, "loop": mastered,
+    return {"level": level["id"], "name": tier["name"], "bpm": target, "loopBpm": loop_bpm, "bars": bars, "loop": mastered,
             "barChroma": loop_chroma, "gainDb": gain_db, "grid": (grid * 10 ** (gain_db / 20)).astype(np.float32),
             "firstBarSample": first * beat_len, "barLen": bar_len, "beatLen": beat_len,
             "allBarChroma": bar_chroma, "barRms": bar_rms, "report": report,
@@ -1051,13 +1057,13 @@ def load_config(path=None):
 
 
 def frame_loops(cfg):
-    """With `loopFrameSamples`, nudge each tier's tempo so its loop is a whole number of
-    that many samples. The .ogg is loop[-pad:] + loop + loop[:pad], so the codec codes
-    loop[0] twice; the codings agree only when the loop starts both times on a frame
-    boundary, and the game jumps from one to the other at every wrap. 15360 is a whole
-    number of Opus (960) and AAC (1024) frames. The warp onto the target grid does the
-    rest, so the tempo moves by under half a frame-multiple over the loop (0.3 % at most
-    on these loops). The asked tempo is kept as `askedBpm`."""
+    """With `loopFrameSamples`, give each tier a loop length that is a whole number of that
+    many samples. The .ogg is loop[-pad:] + loop + loop[:pad], so the codec codes loop[0]
+    twice; the codings agree only when the loop starts both times on a frame boundary, and
+    the game jumps from one to the other at every wrap. 960 is the Opus frame. The tier is
+    still warped at its asked tempo, so a layer keeps its parent's exact ratio; only the
+    finished loop is resampled, as one period, to `frameSamples` (`resample_circular`),
+    which moves its tempo to `frameBpm` (by 0.013 % at most on these loops at 960)."""
     frame = cfg.get("loopFrameSamples")
     if not frame:
         return
@@ -1065,8 +1071,19 @@ def frame_loops(cfg):
         for tier in level["tiers"]:
             beats = tier["loopBars"] * 4
             n = max(1, round(beats * beat_samples(tier["bpm"]) / frame)) * frame
-            tier["askedBpm"] = tier["bpm"]
-            tier["bpm"] = beats * 60.0 * SR / n
+            tier["frameSamples"] = n
+            tier["frameBpm"] = beats * 60.0 * SR / n
+
+
+def resample_circular(loop, n):
+    """The loop resampled to n samples as one period (mixrs' resample_circular)."""
+    spec = np.fft.rfft(loop, axis=0)
+    keep = min(len(loop), n) // 2 + 1
+    cut = np.zeros((n // 2 + 1, loop.shape[1]), dtype=complex)
+    cut[:keep] = spec[:keep]
+    if min(len(loop), n) % 2 == 0:
+        cut[keep - 1] = (2.0 if n < len(loop) else 0.5) * cut[keep - 1].real
+    return np.fft.irfft(cut, n, axis=0) * (n / len(loop))
 
 
 def check_config(cfg):
@@ -1129,7 +1146,7 @@ def build(cfg, only=None, root=REPO, workers=None, report_path=None):
             rep = tier["report"]
             rep["decodeOffsetSamples"] = offsets
             entry["takes"][name] = {
-                "bpm": tier["bpm"], "bars": tier["bars"], "beatsPerBar": 4,
+                "bpm": tier.get("loopBpm", tier["bpm"]), "bars": tier["bars"], "beatsPerBar": 4,
                 "loopStartSeconds": pad / SR, "loopEndSeconds": (pad + len(loop)) / SR,
                 "loopSamples": len(loop), "sampleRate": SR, "gainDb": tier_gain(level, name), **written,
                 "lufs": rep["lufs"], "bar1Confidence": rep["bar1Confidence"],
@@ -1459,32 +1476,45 @@ def verify_layers(entry, root, failures, lid):
             failures.append(f"{lid}/{name}: layer doesn't share the parent's bars")
         if name == entry["gridTier"]:
             continue
-        # On the parent's clock, as a layer may run at its own tempo.
-        other = env(take)
-        other = np.interp(np.linspace(0, len(other) - 1, len(reference)), np.arange(len(other)), other)
-        lags, corr = [], []
-        for start in range(reach, min(len(reference), len(other)) - size - reach, size):
-            a = reference[start:start + size] - reference[start:start + size].mean()
-            scores = []
-            for lag in range(-reach, reach + 1):
-                b = other[start + lag:start + lag + size]
-                b = b - b.mean()
-                scores.append(float(a @ b / max(np.linalg.norm(a) * np.linalg.norm(b), 1e-9)))
-            # The peak between frames (a parabola through it and its neighbours): the
-            # limit below is under one envelope frame, so whole frames can't test it.
-            k = int(np.argmax(scores))
-            frac = 0.0
-            if 0 < k < len(scores) - 1:
-                y0, y1, y2 = scores[k - 1], scores[k], scores[k + 1]
-                bend = y0 - 2 * y1 + y2
-                frac = 0.5 * (y0 - y2) / bend if bend < 0 else 0.0
-            lags.append((k + frac - reach) / ENV_RATE * 1000)
-            corr.append(max(scores))
+        lags, corr = layer_lags(reference, env(take), take["loopSamples"] / parent["loopSamples"], size, reach)
         out[name] = {"lagMedianMs": round(float(np.median(lags)), 1), "lagWorstMs": round(float(np.max(np.abs(lags))), 1),
                      "envelopeCorr": round(float(np.median(corr)), 2)}
         if abs(out[name]["lagMedianMs"]) > 5:
             failures.append(f"{lid}/{name}: layer sits {out[name]['lagMedianMs']} ms off its parent")
     return out
+
+
+def on_parent_clock(other, length, ratio):
+    """A layer's onset envelope on its parent's frames, as a layer may run at its own tempo.
+    By the loops' real length ratio, at each frame's centre: the frame counts are floored,
+    so stretching one count onto the other is off by up to a frame by the loop's end."""
+    centre = WINDOW / 2 / HOP
+    return np.interp((np.arange(length) + centre) * ratio - centre, np.arange(len(other)), other)
+
+
+def layer_lags(reference, other, ratio, size, reach):
+    """Per window of `size` envelope frames, how far the layer sits from its parent in ms,
+    and how well they correlate there. `ratio` is the layer's loop length over the parent's."""
+    other = on_parent_clock(other, len(reference), ratio)
+    lags, corr = [], []
+    for start in range(reach, min(len(reference), len(other)) - size - reach, size):
+        a = reference[start:start + size] - reference[start:start + size].mean()
+        scores = []
+        for lag in range(-reach, reach + 1):
+            b = other[start + lag:start + lag + size]
+            b = b - b.mean()
+            scores.append(float(a @ b / max(np.linalg.norm(a) * np.linalg.norm(b), 1e-9)))
+        # The peak between frames (a parabola through it and its neighbours): the
+        # limit below is under one envelope frame, so whole frames can't test it.
+        k = int(np.argmax(scores))
+        frac = 0.0
+        if 0 < k < len(scores) - 1:
+            y0, y1, y2 = scores[k - 1], scores[k], scores[k + 1]
+            bend = y0 - 2 * y1 + y2
+            frac = 0.5 * (y0 - y2) / bend if bend < 0 else 0.0
+        lags.append((k + frac - reach) / ENV_RATE * 1000)
+        corr.append(max(scores))
+    return lags, corr
 
 
 def decode_mono_from(stereo):
@@ -1675,14 +1705,29 @@ def self_test():
     framed = {"loopFrameSamples": 15360, "levels": [{"id": "x", "tiers": [
         {"name": "low", "bpm": 103, "loopBars": 24}, {"name": "mid", "bpm": 106, "loopBars": 24}]}]}
     frame_loops(framed)
-    for tier in framed["levels"][0]["tiers"]:
-        n = tier["loopBars"] * 4 * 60 * SR / tier["bpm"]
-        assert abs(n - round(n)) < 1e-6 and round(n) % 15360 == 0, (tier, n)
-    assert [t["bpm"] for t in framed["levels"][0]["tiers"]] == [24 * 4 * 60 * SR / 2688000, 24 * 4 * 60 * SR / 2611200]
-    assert framed["levels"][0]["tiers"][0]["askedBpm"] == 103
+    assert [t["frameSamples"] for t in framed["levels"][0]["tiers"]] == [2688000, 2611200]
+    assert [t["frameBpm"] for t in framed["levels"][0]["tiers"]] == [24 * 4 * 60 * SR / 2688000, 24 * 4 * 60 * SR / 2611200]
+    # The warp still runs at the asked tempo, so layers keep their parent's exact ratio.
+    assert [t["bpm"] for t in framed["levels"][0]["tiers"]] == [103, 106]
     unframed = {"levels": [{"id": "x", "tiers": [{"name": "low", "bpm": 103, "loopBars": 24}]}]}
     frame_loops(unframed)
-    assert unframed["levels"][0]["tiers"][0]["bpm"] == 103 and "askedBpm" not in unframed["levels"][0]["tiers"][0]
+    assert "frameSamples" not in unframed["levels"][0]["tiers"][0]
+    # The resample treats the loop as one period: whole cycles stay whole, the level stays.
+    cycles = np.sin(2 * np.pi * 400 * np.arange(48000) / 48000)[:, None] * [0.5, -0.5]
+    for n in (48000 - 37, 48000 + 37, 48000):
+        want = np.sin(2 * np.pi * 400 * np.arange(n) / n)[:, None] * [0.5, -0.5]
+        assert np.abs(resample_circular(cycles, n) - want).max() < 1e-6, n
+
+    # A layer is checked on its parent's clock by its real length, not by its envelope's
+    # frame count: the counts are floored, which alone read comedor's low as 6 ms late
+    # (2026-11-10). The same onsets at the two loop lengths must sit together.
+    def onsets(samples, period_s):
+        count = (int(samples * RATE / SR) - WINDOW) // HOP
+        t = (np.arange(count) * HOP + WINDOW / 2) / RATE / (samples / 2880000)
+        return np.exp(-0.5 * (((t + 0.1) % period_s - 0.1) / 0.004) ** 2) + 0.3 * np.exp(-0.5 * (((t + 0.37) % 0.469 - 0.1) / 0.004) ** 2)
+    parent_env, layer_env = onsets(2880000, 0.46875), onsets(2973120, 0.46875)
+    lags, _ = layer_lags(parent_env, layer_env, 2973120 / 2880000, int(8 * 240.0 / 128 * ENV_RATE), int(0.08 * ENV_RATE))
+    assert max(abs(v) for v in lags) < 1.0, lags
 
     # Blocks of separation still sum back, and sit close to separating the whole.
     long_mix = np.random.default_rng(6).normal(0, 0.2, (SR * 24, 2))
@@ -1762,7 +1807,7 @@ def self_test():
         pass
     # The owner's rulings stay in the committed config.
     by_id = {l["id"]: l for l in real["levels"]}
-    asked = lambda lid: [t.get("askedBpm", t["bpm"]) for t in by_id[lid]["tiers"]]
+    asked = lambda lid: [t["bpm"] for t in by_id[lid]["tiers"]]
     # 2026-11-09: the lawn is layered from its 136 take, rising about 3 % in play order (owner).
     assert [t["name"] for t in by_id["pool-garden"]["tiers"]] == ["low", "mid", "high"]
     assert asked("pool-garden") == [128, 132, 136]
@@ -1774,9 +1819,8 @@ def self_test():
     assert real["loopFrameSamples"] == 960
     for level in real["levels"]:
         for t in level["tiers"]:
-            n = t["loopBars"] * 4 * 60 * SR / t["bpm"]
-            assert abs(n - round(n / 960) * 960) < 1e-6, (level["id"], t["name"], n)
-            assert abs(t["bpm"] / t["askedBpm"] - 1) < 0.0005, (level["id"], t["name"], t["bpm"])
+            assert t["frameSamples"] % 960 == 0, (level["id"], t["name"])
+            assert abs(t["frameBpm"] / t["bpm"] - 1) < 0.0005, (level["id"], t["name"], t["frameBpm"])
     assert transition_pairs(["a", "b", "c"]) == [("a", "b"), ("b", "c"), ("c", "b"), ("b", "a"), ("c", "a")]
     assert tier_map(["a", "b", "c"]) == ["a", "a", "b", "b", "c"]
 

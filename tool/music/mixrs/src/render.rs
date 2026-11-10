@@ -83,6 +83,43 @@ pub fn stretch_linear(audio: &[[f32; 2]], out_len: usize) -> Stereo {
     wsola(audio, |o| o * ratio, out_len).0
 }
 
+/// A loop resampled to `out_len` samples as one period: the spectrum is cut or padded, so
+/// the wrap stays as continuous as it was and the tempo and pitch move by out over in. For
+/// the frame-aligned loop lengths, where that is a few hundredths of a percent.
+pub fn resample_circular(lp: &[[f32; 2]], out_len: usize) -> Stereo {
+    let n = lp.len();
+    let mut planner = RealFftPlanner::<f64>::new();
+    let fwd = planner.plan_fft_forward(n);
+    let inv = planner.plan_fft_inverse(out_len);
+    let mut out = vec![[0f32; 2]; out_len];
+    let keep = n.min(out_len) / 2 + 1;
+    for ch in 0..2 {
+        let mut x: Vec<f64> = lp.iter().map(|f| f[ch] as f64).collect();
+        let mut spec = fwd.make_output_vec();
+        fwd.process(&mut x, &mut spec).expect("fft");
+        let mut cut = inv.make_input_vec();
+        cut[..keep].copy_from_slice(&spec[..keep]);
+        // The top kept bin is a Nyquist bin of the shorter length when that length is even:
+        // half of a pair in the longer spectrum, real in the shorter one.
+        let shorter = n.min(out_len);
+        if shorter % 2 == 0 {
+            let top = &mut cut[keep - 1];
+            *top = realfft::num_complex::Complex::new(if out_len < n { 2.0 * top.re } else { 0.5 * top.re }, 0.0);
+        }
+        cut[0].im = 0.0;
+        if out_len % 2 == 0 {
+            let last = cut.len() - 1;
+            cut[last].im = 0.0;
+        }
+        let mut y = inv.make_output_vec();
+        inv.process(&mut cut, &mut y).expect("ifft");
+        for (o, v) in out.iter_mut().zip(&y) {
+            o[ch] = (v / n as f64) as f32;
+        }
+    }
+    out
+}
+
 const EQ_FFT: usize = 1 << 16;
 
 fn shelf_gain(freq_hz: f64, bands: &[(f64, f64, bool)]) -> f64 {
@@ -592,6 +629,26 @@ mod tests {
             let v = (amp * (2.0 * PI * hz * i as f64 / SR as f64).sin()) as f32;
             [v, v]
         }).collect()
+    }
+
+    #[test]
+    fn a_circular_resample_keeps_whole_cycles_and_level() {
+        // 400 cycles of a tone in a loop, to a loop 37 samples shorter: still 400 cycles,
+        // the same level, and the wrap as smooth as any step inside.
+        let n = 48_000;
+        let input: Stereo = (0..n).map(|i| {
+            let v = (0.5 * (2.0 * PI * 400.0 * i as f64 / n as f64).sin()) as f32;
+            [v, -v]
+        }).collect();
+        for out_len in [n - 37, n + 37, n] {
+            let out = resample_circular(&input, out_len);
+            assert_eq!(out.len(), out_len);
+            for (i, f) in out.iter().enumerate() {
+                let want = 0.5 * (2.0 * PI * 400.0 * i as f64 / out_len as f64).sin();
+                assert!((f[0] as f64 - want).abs() < 1e-4, "{out_len} {i} {} {want}", f[0]);
+                assert!((f[1] as f64 + want).abs() < 1e-4);
+            }
+        }
     }
 
     #[test]

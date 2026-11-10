@@ -252,6 +252,16 @@ pub fn prepare(job: &Value, out: &Path) -> Value {
     }
     report.insert("seamFadeSamples".into(), json!(fade));
     report.insert("seamCorrelation".into(), json!(round_to(corr, 3)));
+    // A frame-aligned loop length (mix.py's frame_loops): the loop is warped at the asked
+    // tempo, so layers keep their parent's exact ratio, and only the finished loop is resampled.
+    let mut loop_bpm = target;
+    if let Some(frame_len) = tier.get("frameSamples").and_then(Value::as_u64).map(|v| v as usize) {
+        if frame_len != lp.len() {
+            report.insert("frameStretchPct".into(), json!(round_to((frame_len as f64 / lp.len() as f64 - 1.0) * 100.0, 4)));
+            lp = resample_circular(&lp, frame_len);
+        }
+        loop_bpm = (bars * 4) as f64 * 60.0 * SR as f64 / frame_len as f64;
+    }
 
     // The grid goes to disk now, so mastering holds only the loop. Its gain travels with it.
     audio::write_raw(&out.join("grid.f32"), &grid);
@@ -289,7 +299,7 @@ pub fn prepare(job: &Value, out: &Path) -> Value {
 
     let loop_chroma = &bar_chroma[start_bar..start_bar + bars];
     let result = json!({
-        "level": lid, "name": name, "bpm": target, "bars": bars, "gainDb": m.gain_db,
+        "level": lid, "name": name, "bpm": target, "loopBpm": loop_bpm, "bars": bars, "gainDb": m.gain_db,
         "barChroma": rows(loop_chroma), "firstBarSample": first as f64 * beat_len,
         "barLen": bar_len, "beatLen": beat_len, "allBarChroma": rows(&bar_chroma), "barRms": bar_rms,
         "loopSamples": m.out.len(),
