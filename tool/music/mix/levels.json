@@ -6,6 +6,7 @@
  "padSeconds": 0.25,
  "ceilingDb": -1.5,
  "seamFadeBeats": 1,
+ "loopFrameSamples": 960,
  "encode": {
   "opusKbps": 128,
   "aacKbps": 128

@@ -1762,12 +1762,21 @@ def self_test():
         pass
     # The owner's rulings stay in the committed config.
     by_id = {l["id"]: l for l in real["levels"]}
+    asked = lambda lid: [t.get("askedBpm", t["bpm"]) for t in by_id[lid]["tiers"]]
     # 2026-11-09: the lawn is layered from its 136 take, rising about 3 % in play order (owner).
-    assert [(t["name"], t["bpm"]) for t in by_id["pool-garden"]["tiers"]] == [("low", 128), ("mid", 132), ("high", 136)]
-    assert [t["bpm"] for t in by_id["garden"]["tiers"]] == [95, 98, 101]
+    assert [t["name"] for t in by_id["pool-garden"]["tiers"]] == ["low", "mid", "high"]
+    assert asked("pool-garden") == [128, 132, 136]
+    assert asked("garden") == [95, 98, 101]
     # 2026-11-09: the owner chose a lift of about 3 % per tier for the layered rebuild.
-    assert [t["bpm"] for t in by_id["bar"]["tiers"]] == [103, 106, 109]
-    assert [t["bpm"] for t in by_id["cool-crowd"]["tiers"]] == [120, 124, 128]
+    assert asked("bar") == [103, 106, 109]
+    assert asked("cool-crowd") == [120, 124, 128]
+    # 2026-11-10: every loop is a whole number of Opus frames (owner, option B); the nudge stays tiny.
+    assert real["loopFrameSamples"] == 960
+    for level in real["levels"]:
+        for t in level["tiers"]:
+            n = t["loopBars"] * 4 * 60 * SR / t["bpm"]
+            assert abs(n - round(n / 960) * 960) < 1e-6, (level["id"], t["name"], n)
+            assert abs(t["bpm"] / t["askedBpm"] - 1) < 0.0005, (level["id"], t["name"], t["bpm"])
     assert transition_pairs(["a", "b", "c"]) == [("a", "b"), ("b", "c"), ("c", "b"), ("b", "a"), ("c", "a")]
     assert tier_map(["a", "b", "c"]) == ["a", "a", "b", "b", "c"]
 
