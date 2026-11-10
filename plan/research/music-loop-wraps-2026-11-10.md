@@ -63,3 +63,35 @@ Columns:
 - **Bar's click 18 ms before the wrap is its downbeat.** It is in `loop.f32` at −17.8 ms, and `report.json` gives bar `beatBiasMs` 17.99: the onsets lead the bar grid. The 0.229 s clicks in the padded files are the same onset.
 - Mastering can't put a step at the wrap: `master_loop` limits with `circular: true`.
 - `mix.py build` refused once with "6.4 GB in use, over the 6 GB limit". `memory_in_use` reads the cgroup's `memory.current`, which counts reclaimable page cache: 5.9 GB of it was cache, 0.3 GB anon. Dropping the scratch files from cache (`dd iflag=nocache count=0`) cleared it. Not changed here.
+
+## Correction, later on 2026-11-10: the decoded wraps have a codec step
+
+The tables above measure the raw `loop.f32` and are right: looping itself is seamless. But **the game's decoded wrap is not**, and wrap.lua's sample-step test was too coarse to see it. Yoga's recalibrated detector (tillandsias `work/2072-tap8`, 891e5d9) found it, with an LPC-residual seam measure.
+
+- The .ogg is `loop[-pad:] + loop + loop[:pad]`, so Opus codes `loop[0]` twice: after the pre-pad, and again after `loop[n-1]`. The game jumps loopEnd → loopStart, across two different codings of the same samples. They agree only when `loopSamples` is a whole number of 960-sample frames.
+- That holds today for pool-garden low (2880000), cool-crowd low (2688000) and billiards mid (3225600): the heads match to −44 to −62 dB.
+- The other 24 mismatch by −17 to −28 dB relative to the signal (−30 to −42 dBFS), with first-sample steps up to 0.045: a small tick every loop.
+- The seam measure (residual_ratio) on the same point:
+
+  | Loop | raw `loop.f32` | grid | stream's own continuation | decoded game wrap |
+  |---|---|---|---|---|
+  | comedor low | 8.35 | 8.84 | 7.96 | 134.87 |
+  | garden high | 15.82 | 15.91 | 13.48 | 139.71 |
+  | galeria high | 10.44 | 10.76 | 17.85 | 130.60 |
+  | bar low | 4.06 | 4.16 | 4.47 | 45.61 |
+
+- **Proof of the cause and the fix.** Re-encoding with mixrs's libopus arguments reproduces the shipped values exactly. Resampled circularly (FFT) to the nearest multiple of 960, the game wrap equals the stream's continuation, and the head mismatch drops to −36 to −228 dB:
+
+  | Loop | aligned length | tempo change | wrap before → after |
+  |---|---|---|---|
+  | bar low | 2684160 | +0.004 % | 45.6 → 5.96 |
+  | garden high | 2280960 | +0.010 % | 139.7 → 15.1 |
+  | comedor low | 2973120 | −0.007 % | 134.9 → 11.3 |
+  | galeria high | 2926080 | −0.013 % | 130.6 → 16.3 |
+
+- **AAC is worse.** The .m4a (1024-sample frames, the fallback for browsers without Opus) has wraps up to 893, steps up to 0.13, and head mismatch down to −9.7 dB.
+- **The fix is open.** Make `loopSamples` a whole number of codec frames, choosing between:
+  - (A) a multiple of 15360 for both codecs, a tempo change up to 0.29 %
+  - (B) a multiple of 960, Opus only
+  - (C) per-codec loop lengths
+  The game already derives bpm from the loop points (`lib/music/rendered_music.dart:106`).
