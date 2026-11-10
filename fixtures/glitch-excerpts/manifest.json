@@ -131,6 +131,26 @@
    "expected": "loop_seam (v2 60.4x p99): the median-filter split is not circular",
    "sha256": "19ef02bf96dd4b9c3575f72f3a7f06f9a8014b6e8db99f895682c6123a3b2501",
    "bytes": 325434
+  },
+  {
+   "name": "10-comedor-low-mix-8s.flac",
+   "source": "/work/tmp/audio/calib/loops/comedor--low.wav",
+   "n": 2972903,
+   "cut": "wrap8: last 192000 samples then first 192000, loop point at 4.000 s",
+   "kind": "full mix, shipped game loop decoded from Opus",
+   "expected": "loop_seam (v2 on the whole loop: 9.47x p99, interior p99 14.24); to be measured on this cut before it is asserted",
+   "sha256": "fc41acf6938c51d1c64ffeb19bdbbf987e88228db9244496119be879f093aaf8",
+   "bytes": 1854529
+  },
+  {
+   "name": "11-salon-low-mix-8s.flac",
+   "source": "/work/tmp/audio/calib/loops/salon--low.wav",
+   "n": 2446726,
+   "cut": "wrap8: last 192000 samples then first 192000, loop point at 4.000 s",
+   "kind": "full mix, shipped game loop decoded from Opus",
+   "expected": "loop_seam (v2 on the whole loop: 3.95x p99, interior p99 13.52); to be measured on this cut before it is asserted",
+   "sha256": "78766db90d67665a23a66794e4c53809f37c80aa5eaf9319d675c0d07439669b",
+   "bytes": 1489256
   }
  ]
 }
