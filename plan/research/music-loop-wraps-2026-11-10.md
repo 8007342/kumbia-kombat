@@ -95,3 +95,44 @@ The tables above measure the raw `loop.f32` and are right: looping itself is sea
   - (B) a multiple of 960, Opus only
   - (C) per-codec loop lengths
   The game already derives bpm from the loop points (`lib/music/rendered_music.dart:106`).
+
+## The fix, re-rendered: 960-aligned loops and per-take pads (2026-11-10)
+
+The owner chose (B): every loop is a whole number of Opus frames. `work/2617-fral` (c01e6ea) re-renders all rooms.
+- **How the length is aligned.** Each tier is warped at its asked tempo, and the finished circular loop is resampled to `frameSamples` by cutting or padding its spectrum (`resample_circular` in mixrs and mix.py). A first try nudged the warp's target tempo instead. That broke the exact ratio between a layer's beat map and its parent's, so the two WSOLA passes spliced at different moments and drifted apart by up to their 4–6 ms allowance.
+- **How the pad is chosen.** Opus codes loop[0] twice, and after alignment the two codings still differ by however far the encoder is from settling. That varies with the pad and isn't monotonic: salon low reads −33 dB at 12000 and −102 dB at 13440, while garden low settles at −20.7 dB from 14400 on but reads −54 at 12000. The build tries `padChoicesSamples` per take and keeps the best (`write_take`, `head_mismatch_db`).
+- **A verify bug, found on the way.** `verify_layers` put a layer on its parent's clock by stretching envelope frame counts. The counts are floored, which alone read up to 11.6 ms of drift by the loop's end: comedor low read −6.2 ms after a uniform 0.007 % resample of the same audio. It now maps by the real length ratio (`on_parent_clock`).
+
+Measured with yoga's v2 code (tillandsias 891e5d9, local run). Wrap/p99 is the decoded game wrap's LPC seam ratio over the interior p99; it flags over 1.5. "Head codings agree" is the two codings of loop[0] in dB under the signal. The AAC column is the fallback the owner accepted as it is.
+
+| take | asked → loop bpm | stretch | pad | head codings agree | Opus wrap/p99 shipped → now | AAC wrap/p99 | layer lag ms |
+|---|---|---|---|---|---|---|---|
+| bar low | 103 → 103.004 | -0.0042 % | 19200 | -50.5 dB | 1.64 → 0.21 | 1.86 | 2.2 |
+| bar mid | 106 → 105.999 | +0.0007 % | 12000 | -225.8 dB | 1.06 → 0.12 | 0.41 | parent |
+| bar high | 109 → 109.008 | -0.0076 % | 19200 | -54.2 dB | 1.05 → 0.20 | 2.53 | -1.1 |
+| garden low | 95 → 95.012 | -0.0125 % | 12000 | -53.9 dB | 3.41 → 0.76 | 16.16 | -1.2 |
+| garden mid | 98 → 97.999 | +0.0009 % | 14400 | -147.7 dB | 1.34 → 0.77 | 3.51 | parent |
+| garden high | 101 → 101.010 | -0.0100 % | 12000 | -228.1 dB | 8.47 → 0.93 | 4.50 | -0.7 |
+| pool-garden low | 128 → 128.000 | +0.0000 % | 24000 | -93.0 dB | 0.39 → 0.51 | 6.87 | -1.6 |
+| pool-garden mid | 132 → 132.004 | -0.0031 % | 24000 | -95.8 dB | 0.51 → 0.55 | 3.03 | -0.9 |
+| pool-garden high | 136 → 135.977 | +0.0167 % | 24000 | -228.2 dB | 0.85 → 0.45 | 2.29 | parent |
+| cool-crowd low | 120 → 120.000 | +0.0000 % | 24000 | -125.5 dB | 0.35 → 0.31 | 11.70 | -1.6 |
+| cool-crowd mid | 124 → 123.985 | +0.0119 % | 24000 | -226.5 dB | 1.18 → 0.88 | 11.32 | parent |
+| cool-crowd high | 128 → 128.000 | +0.0000 % | 19200 | -49.7 dB | 0.60 → 0.69 | 5.30 | -0.9 |
+| billiards low | 97 → 96.998 | +0.0024 % | 24000 | -125.1 dB | 1.11 → 0.24 | 3.27 | -0.9 |
+| billiards mid | 100 → 100.000 | +0.0000 % | 12480 | -227.6 dB | 0.23 → 0.22 | 1.31 | parent |
+| billiards high | 103 → 103.004 | -0.0042 % | 12480 | -228.6 dB | 0.30 → 0.20 | 5.85 | -2.8 |
+| salon low | 113 → 112.985 | +0.0128 % | 19200 | -96.8 dB | 3.95 → 0.28 | 22.12 | -2.8 |
+| salon mid | 116 → 115.989 | +0.0097 % | 24000 | -112.4 dB | 1.16 → 0.50 | 9.18 | parent |
+| salon high | 119 → 119.008 | -0.0069 % | 19200 | -98.9 dB | 1.21 → 0.33 | 32.50 | -0.1 |
+| comedor low | 124 → 123.991 | +0.0073 % | 24000 | -134.9 dB | 9.47 → 0.56 | 59.27 | -2.0 |
+| comedor mid | 128 → 128.000 | +0.0000 % | 24000 | -226.2 dB | 0.55 → 0.15 | 5.31 | parent |
+| comedor high | 132 → 132.004 | -0.0031 % | 14400 | -34.2 dB | 1.95 → 0.47 | 2.47 | -1.0 |
+| galeria low | 118 → 118.009 | -0.0073 % | 19200 | -104.7 dB | 1.23 → 0.67 | 1.43 | -1.4 |
+| galeria mid | 122 → 121.982 | +0.0146 % | 12480 | -229.9 dB | 2.07 → 1.06 | 7.74 | parent |
+| galeria high | 126 → 125.984 | +0.0125 % | 12480 | -229.0 dB | 7.24 → 0.67 | 8.88 | -1.2 |
+| terraza low | 101 → 101.017 | -0.0170 % | 12000 | -56.6 dB | 1.79 → 0.48 | 1.77 | -1.9 |
+| terraza mid | 104 → 104.009 | -0.0084 % | 24000 | -124.0 dB | 2.13 → 0.64 | 5.82 | parent |
+| terraza high | 107 → 106.984 | +0.0153 % | 24000 | -102.3 dB | 3.00 → 0.46 | 10.42 | -1.3 |
+
+Opus: 0 of 27 over 1.5 (shipped: 11). AAC: 24 of 27 over. `mix.py verify`: 0 failures.
