@@ -62,5 +62,7 @@ art_runs/*/raw/*/
 # Music masters stay out of git: commit only compressed audio.
 *.wav
 *.flac
+# Excerpts for the tillandsias glitch-detector fixture (2078-kmbx) are the one exception.
+!fixtures/glitch-excerpts/*.flac
 *.aif
 *.aiff
