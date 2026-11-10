@@ -1,0 +1,136 @@
+{
+ "about": "Excerpts of Kumbia Kombat music for the tillandsias audio.detect_glitches fixture (2078-kmbx). 48 kHz stereo, FLAC 24-bit, 96000 frames each. wrap = the source's last 48000 samples then its first 48000, so the loop point is at 1.000 s; 't +-1 s' = 1 s either side of t. Expectations are the v2 detector (tool_version 2, SEAM_FACTOR 2.0) on the whole source; re-check at 1.5.",
+ "provenance": "Own renders: ACE-Step 1.5 XL turbo (acestep_v1.5_xl_turbo_bf16.safetensors, Comfy-Org/ACE-Step-1.5 rev 371bb1680f8c, Apache-2.0) in ComfyUI v0.40.0 via studio.run_workflow (pipeline 56.11.6.2); parents 2026-11-07/08, layered tiers 2026-11-09 (audio.transform), game mix mixrs 2026-11-10.",
+ "files": [
+  {
+   "name": "01-garden-low-rolled.flac",
+   "source": "/work/tmp/audio/calib/garden--low--rolled.wav",
+   "n": 2425263,
+   "cut": "wrap",
+   "kind": "rolled loop",
+   "expected": "clean (v2 0.26x p99; a beat-grid click elsewhere in the file)",
+   "sha256": "87615183e09e7f7f90f949573e776fc86d4a56cc22248941fafb3aeb3a43b2f0",
+   "bytes": 429511
+  },
+  {
+   "name": "02-bar-low-rolled.flac",
+   "source": "/work/tmp/audio/calib/bar--low--rolled.wav",
+   "n": 2684272,
+   "cut": "wrap",
+   "kind": "rolled loop",
+   "expected": "clean (v2 0.49x p99)",
+   "sha256": "8435af2c83244d7678152965d998edb2bbc46bd0e9ab8274a67d52553a769f26",
+   "bytes": 371172
+  },
+  {
+   "name": "03-billiards-mid-rolled.flac",
+   "source": "/work/tmp/audio/calib/billiards--mid--rolled.wav",
+   "n": 3225600,
+   "cut": "wrap",
+   "kind": "rolled loop",
+   "expected": "clean (v2 0.22x p99, no findings)",
+   "sha256": "8b82f93b20ca946468057cebb9b5065c487297ca1f14a67c6874c9f7a8f6b8cf",
+   "bytes": 334995
+  },
+  {
+   "name": "04-billiards-mid-mix.flac",
+   "source": "/work/tmp/audio/calib/loops/billiards--mid.wav",
+   "n": 3225600,
+   "cut": "wrap",
+   "kind": "full mix, shipped game loop decoded from Opus",
+   "expected": "clean (v2 0.23x p99, no findings)",
+   "sha256": "2ccc8eb2bdc60fe01e3bf718a26765b2755579c379e75291dda288262668cae9",
+   "bytes": 348193
+  },
+  {
+   "name": "05-bar-mid-xfade20.flac",
+   "source": "/work/tmp/audio/calib/bar-mid-src--xfade20.wav",
+   "n": 2608302,
+   "cut": "wrap",
+   "kind": "20 ms crossfade, mixrs construction",
+   "expected": "clean (v2 0.05x p99, no findings)",
+   "sha256": "bf97fa102dbd598c175d2cc8c671cb27c7965015145de290a6af14a683f2be8f",
+   "bytes": 409318
+  },
+  {
+   "name": "06-garden-mid-xfade20.flac",
+   "source": "/work/tmp/audio/calib/garden-mid-src--xfade20.wav",
+   "n": 2351020,
+   "cut": "wrap",
+   "kind": "20 ms crossfade, mixrs construction",
+   "expected": "no loop_seam (v2 0.07x p99); click and clipping reported on the whole file, the source peaks at full scale",
+   "sha256": "4fbeff4a052c8c077953373071439ea735efaf7f5c6c0740f9235ae407e4e7cc",
+   "bytes": 422700
+  },
+  {
+   "name": "07-bar-low-offwrap.flac",
+   "source": "/work/tmp/audio/calib/planted/bar--low--offwrap.wav",
+   "n": 2674265,
+   "cut": "wrap",
+   "kind": "planted: bar low game loop with its last 10007 samples cut",
+   "expected": "loop_seam (v2 6.90x p99)",
+   "sha256": "d66496c3ab49937b81b85e127be4017c9b509f505909430a384049c24cf650ab",
+   "bytes": 436516
+  },
+  {
+   "name": "08-bar-low-click03.flac",
+   "source": "/work/tmp/audio/calib/planted/bar--low--rolled--click03.wav",
+   "n": 2684272,
+   "cut": "10.758 s +-1 s",
+   "kind": "planted: +0.3 on one sample",
+   "expected": "click at 1.000 s of the excerpt",
+   "sha256": "9fa297529e81459f55b80338ebd591c09b6a9ea01b34859adb4bf0f520ea865b",
+   "bytes": 371191
+  },
+  {
+   "name": "09-bar-low-dropout1ms.flac",
+   "source": "/work/tmp/audio/calib/planted/bar--low--rolled--dropout1ms.wav",
+   "n": 2684272,
+   "cut": "20.300 s +-1 s",
+   "kind": "planted: 1 ms of zeros",
+   "expected": "dropout at 1.000 s of the excerpt",
+   "sha256": "7caee6edf9a0d9229ec4d3e469465b4bfa0690088fdba8d69a31b0e1e061bdb3",
+   "bytes": 400066
+  },
+  {
+   "name": "10-comedor-low-mix.flac",
+   "source": "/work/tmp/audio/calib/loops/comedor--low.wav",
+   "n": 2972903,
+   "cut": "wrap",
+   "kind": "full mix, shipped game loop decoded from Opus",
+   "expected": "loop_seam (v2 9.47x p99): Opus codes loop[0] twice and the codings differ",
+   "sha256": "4aa3cfb2d7aac79438c78eee42199df462fdf06ee232c705063b80fe6dd4ce36",
+   "bytes": 443209
+  },
+  {
+   "name": "11-salon-low-mix.flac",
+   "source": "/work/tmp/audio/calib/loops/salon--low.wav",
+   "n": 2446726,
+   "cut": "wrap",
+   "kind": "full mix, shipped game loop decoded from Opus",
+   "expected": "loop_seam (v2 3.95x p99): the same codec step, subtler",
+   "sha256": "82d45f47fdea1bf9c19852feac79435047ef7d609fe63d25dc8394ecc2758d1b",
+   "bytes": 387383
+  },
+  {
+   "name": "12a-billiards-mid-perc.flac",
+   "source": "/work/tmp/audio/calib/billiards--mid--perc.wav",
+   "n": 3225600,
+   "cut": "wrap",
+   "kind": "HPSS percussive part of 04",
+   "expected": "loop_seam (v2 40.9x p99): the median-filter split is not circular",
+   "sha256": "3a159f98b0db7fe74101d98b276a017470d53c8c5e5471d4e67150916489651f",
+   "bytes": 316844
+  },
+  {
+   "name": "12b-billiards-mid-harm.flac",
+   "source": "/work/tmp/audio/calib/billiards--mid--harm.wav",
+   "n": 3225600,
+   "cut": "wrap",
+   "kind": "HPSS harmonic part of 04",
+   "expected": "loop_seam (v2 60.4x p99): the median-filter split is not circular",
+   "sha256": "19ef02bf96dd4b9c3575f72f3a7f06f9a8014b6e8db99f895682c6123a3b2501",
+   "bytes": 325434
+  }
+ ]
+}
