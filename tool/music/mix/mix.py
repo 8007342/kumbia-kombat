@@ -1188,9 +1188,19 @@ def _write_atomic(path, text):
     os.replace(part, path)
 
 
-def memory_in_use():
+def memory_in_use(current=pathlib.Path("/sys/fs/cgroup/memory.current"),
+                  stat=pathlib.Path("/sys/fs/cgroup/memory.stat")):
+    """What the forge can't get back: anon + shmem from memory.stat. memory.current also
+    counts the page cache, which reading and writing takes fills and the kernel reclaims;
+    it refused a build at 6.4 GB with 0.3 GB anon. memory.current only without a stat."""
     try:
-        return int(pathlib.Path("/sys/fs/cgroup/memory.current").read_text())
+        fields = dict(line.split() for line in stat.read_text().splitlines() if line.count(" ") == 1)
+        if "anon" in fields:
+            return int(fields["anon"]) + int(fields.get("shmem", 0))
+    except (OSError, ValueError):
+        pass
+    try:
+        return int(current.read_text())
     except (OSError, ValueError):
         return None
 
@@ -1629,6 +1639,17 @@ def _synth(path, bpm, seconds, pickup_beats, root_shift, tempo_error=0.0, seed=1
 
 
 def self_test():
+    # The memory guard counts what can't be reclaimed: anon + shmem, not the page cache.
+    # A cache-heavy cgroup (2026-11-10: 6.4 GB current, 5.9 GB of it file cache) must not refuse.
+    with tempfile.TemporaryDirectory() as tmp:
+        cur, stat = pathlib.Path(tmp, "memory.current"), pathlib.Path(tmp, "memory.stat")
+        cur.write_text("6373761024\n")
+        stat.write_text("anon 317825024\nfile 5870370816\nkernel 120000000\nshmem 910852096\n")
+        assert memory_in_use(cur, stat) == 317825024 + 910852096, memory_in_use(cur, stat)
+        stat.write_text("file 5870370816\n")  # no anon line: fall back to memory.current
+        assert memory_in_use(cur, stat) == 6373761024
+        assert memory_in_use(pathlib.Path(tmp, "none"), pathlib.Path(tmp, "none")) is None
+
     # Blocks of separation still sum back, and sit close to separating the whole.
     long_mix = np.random.default_rng(6).normal(0, 0.2, (SR * 24, 2))
     long_h, long_p = hpss(long_mix)
