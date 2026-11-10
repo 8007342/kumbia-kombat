@@ -137,6 +137,8 @@ Was three separate takes cut together, at 144 / 160 / 136 in play order. Now it 
 
 ## Next
 
+**Next: run detection on `/work/tmp/audio/after/*.ogg`** (`audio.detect_glitches`, `loop: true` for `low`, `mid` and `high`, `loop: false` for `bridge`; 36 files, each room's tiers and bridge, copied from `assets/music/rendered/`). This forge's host tools were still served by the 56.11.9.1 launcher behind the terminal window, so the #1048 fix only reaches them after the operator relaunches the window. Report the findings to macuahuitl-fedora. If they're clean, the owner decides on `main`; if not, fix each flagged file on a new work ref. Two rooms at a time on the GPU.
+
 - **All nine rooms are layered.** `mix.py verify`: 0 failures on all nine. The full `flutter test` passes (792).
 - The synth fallback scores in `tool/music/generate.mjs` still carry the old ladders for every room. They play only for a room with no rendered takes, and all nine have them. On a decode failure the synth already runs on the take's clock (`rendered_page_test`). Not changed here.
 - **Promoted to `game` on 2026-11-10** (8d3544e), on the owner's approval ahead of the detector. `main` waits for `audio.detect_glitches`: it hung on 2026-11-09 (three calls timed out after 30 minutes); its fix (#1048) is in tray v56.11.10.1, but on 2026-11-10 this forge's audio tools still answered from the 56.11.9.1 app. The 36 files to check are staged in `/work/tmp/audio/after/<room>--{low,mid,high,bridge}.ogg`.
