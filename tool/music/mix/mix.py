@@ -1046,7 +1046,27 @@ def tier_map(order):
 def load_config(path=None):
     cfg = json.loads((pathlib.Path(path) if path else HERE / "levels.json").read_text())
     check_config(cfg)
+    frame_loops(cfg)
     return cfg
+
+
+def frame_loops(cfg):
+    """With `loopFrameSamples`, nudge each tier's tempo so its loop is a whole number of
+    that many samples. The .ogg is loop[-pad:] + loop + loop[:pad], so the codec codes
+    loop[0] twice; the codings agree only when the loop starts both times on a frame
+    boundary, and the game jumps from one to the other at every wrap. 15360 is a whole
+    number of Opus (960) and AAC (1024) frames. The warp onto the target grid does the
+    rest, so the tempo moves by under half a frame-multiple over the loop (0.3 % at most
+    on these loops). The asked tempo is kept as `askedBpm`."""
+    frame = cfg.get("loopFrameSamples")
+    if not frame:
+        return
+    for level in cfg["levels"]:
+        for tier in level["tiers"]:
+            beats = tier["loopBars"] * 4
+            n = max(1, round(beats * beat_samples(tier["bpm"]) / frame)) * frame
+            tier["askedBpm"] = tier["bpm"]
+            tier["bpm"] = beats * 60.0 * SR / n
 
 
 def check_config(cfg):
@@ -1649,6 +1669,20 @@ def self_test():
         stat.write_text("file 5870370816\n")  # no anon line: fall back to memory.current
         assert memory_in_use(cur, stat) == 6373761024
         assert memory_in_use(pathlib.Path(tmp, "none"), pathlib.Path(tmp, "none")) is None
+
+    # Loop lengths a whole number of codec frames: Opus codes loop[0] twice in the padded
+    # file, and the two codings agree only on a frame boundary (2026-11-10, work/2617-fral).
+    framed = {"loopFrameSamples": 15360, "levels": [{"id": "x", "tiers": [
+        {"name": "low", "bpm": 103, "loopBars": 24}, {"name": "mid", "bpm": 106, "loopBars": 24}]}]}
+    frame_loops(framed)
+    for tier in framed["levels"][0]["tiers"]:
+        n = tier["loopBars"] * 4 * 60 * SR / tier["bpm"]
+        assert abs(n - round(n)) < 1e-6 and round(n) % 15360 == 0, (tier, n)
+    assert [t["bpm"] for t in framed["levels"][0]["tiers"]] == [24 * 4 * 60 * SR / 2688000, 24 * 4 * 60 * SR / 2611200]
+    assert framed["levels"][0]["tiers"][0]["askedBpm"] == 103
+    unframed = {"levels": [{"id": "x", "tiers": [{"name": "low", "bpm": 103, "loopBars": 24}]}]}
+    frame_loops(unframed)
+    assert unframed["levels"][0]["tiers"][0]["bpm"] == 103 and "askedBpm" not in unframed["levels"][0]["tiers"][0]
 
     # Blocks of separation still sum back, and sit close to separating the whole.
     long_mix = np.random.default_rng(6).normal(0, 0.2, (SR * 24, 2))
