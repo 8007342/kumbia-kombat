@@ -813,6 +813,41 @@ def prepare_tier(args):
 
 # ---------------------------------------------------------------- joins and exits
 
+def head_mismatch_db(decoded, pad, n, k=480):
+    """How far the two codings of a loop's head disagree, in dB under the signal: the
+    decoded file holds loop[0] at pad (after the pre-pad) and at pad + n (after the loop),
+    and the game jumps from just before the second to the first at every wrap."""
+    first, second = decoded[pad:pad + k], decoded[pad + n:pad + n + k]
+    level = lambda v: 20 * np.log10(np.sqrt(np.mean(v ** 2)) + 1e-12)
+    return level(first - second) - level(second)
+
+
+def write_take(loop, base, cfg, root):
+    """Encode a take as loop[-pad:] + loop + loop[:pad]. The two codings of loop[0] agree
+    only once the Opus encoder has settled, and where it settles changes with the pad
+    (salon's low: -33 dB at 12000, -102 dB at 13440; garden's low the other way round,
+    2026-11-10), so each of `padChoicesSamples` is tried in turn and the one whose codings
+    agree best is kept. Returns the written entry, the offsets, the pad and the choice."""
+    choices = cfg.get("padChoicesSamples") or [int(round(cfg["padSeconds"] * SR))]
+    tried, best = {}, None
+    for pad in choices:
+        written, offsets = write_asset(np.vstack([loop[-pad:], loop, loop[:pad]]), base, cfg, root)
+        # The offset can be negative (billiards' low decodes a sample early), so it moves
+        # where the heads are read rather than slicing the decoded file.
+        decoded = decode(root / written["files"]["opus"])
+        tried[pad] = round(float(head_mismatch_db(decoded, pad + offsets.get("opus", 0), len(loop))), 1)
+        if not np.isfinite(tried[pad]):
+            raise ValueError(f"{base}: the head mismatch at pad {pad} isn't a number")
+        if best is None or tried[pad] < tried[best[0]]:
+            best = (pad, written, offsets)
+        if tried[pad] < -90:
+            break
+    pad, written, offsets = best
+    if pad != list(tried)[-1]:
+        written, offsets = write_asset(np.vstack([loop[-pad:], loop, loop[:pad]]), base, cfg, root)
+    return written, offsets, pad, {"samples": pad, "headMismatchDb": tried[pad], "tried": tried}
+
+
 def write_asset(audio, base, cfg, root):
     """Encode, lowering any peak the codecs push too high, then measure where ffmpeg's
     decoder puts the content. The manifest carries an offset only where one exists."""
@@ -1141,13 +1176,13 @@ def build(cfg, only=None, root=REPO, workers=None, report_path=None):
         for name in order:
             tier = ready[(lid, name)]
             loop = tier["loop"]
-            wrapped = np.vstack([loop[-pad:], loop, loop[:pad]])
-            written, offsets = write_asset(wrapped, directory / name, cfg, root)
+            written, offsets, take_pad, choice = write_take(loop, directory / name, cfg, root)
             rep = tier["report"]
             rep["decodeOffsetSamples"] = offsets
+            rep["pad"] = choice
             entry["takes"][name] = {
                 "bpm": tier.get("loopBpm", tier["bpm"]), "bars": tier["bars"], "beatsPerBar": 4,
-                "loopStartSeconds": pad / SR, "loopEndSeconds": (pad + len(loop)) / SR,
+                "loopStartSeconds": take_pad / SR, "loopEndSeconds": (take_pad + len(loop)) / SR,
                 "loopSamples": len(loop), "sampleRate": SR, "gainDb": tier_gain(level, name), **written,
                 "lufs": rep["lufs"], "bar1Confidence": rep["bar1Confidence"],
                 "goodExitBars": good_exit_bars(tier)}
@@ -1728,6 +1763,13 @@ def self_test():
     parent_env, layer_env = onsets(2880000, 0.46875), onsets(2973120, 0.46875)
     lags, _ = layer_lags(parent_env, layer_env, 2973120 / 2880000, int(8 * 240.0 / 128 * ENV_RATE), int(0.08 * ENV_RATE))
     assert max(abs(v) for v in lags) < 1.0, lags
+
+    # The head's two codings: equal heads read far below the signal, a head 20 dB off reads -20.
+    body = np.random.default_rng(9).normal(0, 0.1, (5000, 2))
+    padded = np.vstack([body[-300:], body, body[:600]])
+    assert head_mismatch_db(padded, 300, 5000) < -200
+    padded[300 + 5000:300 + 5000 + 480] += 0.1 * padded[300:300 + 480]
+    assert abs(head_mismatch_db(padded, 300, 5000) - 20 * np.log10(0.1 / 1.1)) < 0.01
 
     # Blocks of separation still sum back, and sit close to separating the whole.
     long_mix = np.random.default_rng(6).normal(0, 0.2, (SR * 24, 2))
